@@ -142,6 +142,11 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     f.setPointSize(globalConfig->preferencesLogFontSize());
     ui->plainTextEditProjectLog->setFont(f);
 
+    connect(ui->spinBoxCreateHDCylinders, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
+    connect(ui->spinBoxCreateHDHeads, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
+    connect(ui->spinBoxCreateHDSectors, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
+    connect(ui->spinBoxCreateHDSectorSize, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
+
     QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -667,6 +672,19 @@ void ProjectWidget::on_toolButtonBrowseCreateHDIdentFile_clicked()
 void ProjectWidget::on_comboBoxCreateHDCompression_currentIndexChanged(int index)
 {
     updateCompression(ui->comboBoxCreateHDCompression, &createHDCompressors, index);
+}
+
+void ProjectWidget::updateCreateHDDiskCapacity()
+{
+    qreal cyls = ui->spinBoxCreateHDCylinders->value();
+    qreal heads = ui->spinBoxCreateHDHeads->value();
+    qreal sectors = ui->spinBoxCreateHDSectors->value();
+    qreal bps = ui->spinBoxCreateHDSectorSize->value();
+
+    if ( cyls < 0 || heads < 0 || sectors < 0 || bps < 0 )
+        ui->labelCreateHDDiskCapacity->setText(tr("unknown"));
+    else
+        ui->labelCreateHDDiskCapacity->setText(mainWindow->humanReadable(cyls * heads * sectors * bps));
 }
 
 void ProjectWidget::init()

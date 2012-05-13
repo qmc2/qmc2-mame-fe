@@ -71,6 +71,7 @@ public slots:
     void on_toolButtonBrowseCreateHDParentOutputFile_clicked();
     void on_toolButtonBrowseCreateHDIdentFile_clicked();
     void on_comboBoxCreateHDCompression_currentIndexChanged(int);
+    void updateCreateHDDiskCapacity();
 
     // CreateCD
 

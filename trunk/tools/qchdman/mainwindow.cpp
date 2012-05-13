@@ -239,6 +239,41 @@ ProjectWindow *MainWindow::createProjectWindow()
     return projectWindow;
 }
 
+QString MainWindow::humanReadable(qreal value)
+{
+    qreal humanReadableValue;
+    QLocale locale;
+
+#if __WORDSIZE == 64
+    if ( (qreal)value / (qreal)QCHDMAN_ONE_KILOBYTE < (qreal)QCHDMAN_ONE_KILOBYTE ) {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_KILOBYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+    } else if ( (qreal)value / (qreal)QCHDMAN_ONE_MEGABYTE < (qreal)QCHDMAN_ONE_KILOBYTE ) {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_MEGABYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+    } else if ( (qreal)value / (qreal)QCHDMAN_ONE_GIGABYTE < (qreal)QCHDMAN_ONE_KILOBYTE ) {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_GIGABYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+    } else {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_TERABYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" TB"));
+    }
+#else
+    if ( (qreal)value / (qreal)QCHDMAN_ONE_KILOBYTE < (qreal)QCHDMAN_ONE_KILOBYTE ) {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_KILOBYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+    } else if ( (qreal)value / (qreal)QCHDMAN_ONE_MEGABYTE < (qreal)QCHDMAN_ONE_KILOBYTE ) {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_MEGABYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+    } else {
+        humanReadableValue = (qreal)value / (qreal)QCHDMAN_ONE_GIGABYTE;
+        humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+    }
+#endif
+
+    return humanReadableString;
+}
+
 void MainWindow::updateStatus()
 {
     statisticsLabel->setText(" " + tr("Running projects: %1").arg(runningProjects) + " ");

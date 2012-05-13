@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
+    <width>574</width>
     <height>634</height>
    </rect>
   </property>
@@ -234,8 +234,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>666</width>
-         <height>539</height>
+         <width>560</width>
+         <height>562</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayoutScrollArea">
@@ -1785,6 +1785,29 @@ Creates a new HD CHD from an input file.
                 <widget class="QLabel" name="labelCreateHDCHS">
                  <property name="text">
                   <string>Cyls / Heads / Sectors</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Disk capacity</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QLabel" name="labelCreateHDDiskCapacity">
+                 <property name="toolTip">
+                  <string>Calculated hard disk capacity (if applicable)</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <property name="text">
+                  <string>unknown</string>
                  </property>
                 </widget>
                </item>

@@ -65,4 +65,22 @@
 #define QCHDMAN_ITEM_ACTIVE         QString("active")
 #define QCHDMAN_ITEM_INACTIVE       QString("inactive")
 
+// standard sizes
+#define QCHDMAN_ONE_KILOBYTE        1024
+#define QCHDMAN_ONE_MEGABYTE        1048576
+#define QCHDMAN_ONE_GIGABYTE        1073741824
+#define QCHDMAN_ONE_TERABYTE        1099511627776
+#define QCHDMAN_1K                  QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_4K                  4 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_8K                  8 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_16K                 16 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_32K                 32 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_64K                 64 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_128K                128 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_256K                256 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_512K                512 * QCHDMAN_ONE_KILOBYTE
+#define QCHDMAN_1M                  QCHDMAN_ONE_MEGABYTE
+#define QCHDMAN_1G                  QCHDMAN_ONE_GIGABYTE
+#define QCHDMAN_1T                  QCHDMAN_ONE_TERABYTE
+
 #endif // MACROS_H
