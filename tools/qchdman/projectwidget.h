@@ -7,6 +7,28 @@ namespace Ui {
 class ProjectWidget;
 }
 
+class DiskGeometry
+{
+public:
+    QString name;
+    int cyls, heads, sectors, sectorSize;
+
+    DiskGeometry()
+    {
+        name.clear();
+        cyls = heads = sectors = sectorSize = 0;
+    }
+
+    DiskGeometry(QString n, int c, int h, int s, int ss)
+    {
+        name = n;
+        cyls = c;
+        heads = h;
+        sectors = s;
+        sectorSize = ss;
+    }
+};
+
 class ProjectWidget : public QWidget
 {
     Q_OBJECT
@@ -36,6 +58,7 @@ public:
     QMap<QString, QString> compressionTypes;
     QMap<int, QList<QWidget *> > copyGroups;
     QMap<int, QList<int> > copyTypes;
+    QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
     QStringList copyCompressors;
     QStringList createRawCompressors;
     QStringList createHDCompressors;
@@ -71,6 +94,7 @@ public slots:
     void on_toolButtonBrowseCreateHDParentOutputFile_clicked();
     void on_toolButtonBrowseCreateHDIdentFile_clicked();
     void on_comboBoxCreateHDCompression_currentIndexChanged(int);
+    void on_comboBoxCreateHDFromTemplate_currentIndexChanged(int);
     void updateCreateHDDiskCapacity();
 
     // CreateCD
