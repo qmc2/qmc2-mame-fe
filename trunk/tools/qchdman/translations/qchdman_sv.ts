@@ -6,12 +6,12 @@
     <message>
         <location filename="../aboutdialog.ui" line="14"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="92"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="23"/>
@@ -21,12 +21,12 @@
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
         <source>All Rights Reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla rättigheter är reserverade.</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="25"/>
@@ -69,137 +69,137 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation>Huvudfönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="37"/>
         <source>&amp;Project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Projekt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="41"/>
         <source>Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Senaste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="63"/>
         <source>View mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Visningsläge</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="81"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hjälp</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nytt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="96"/>
         <source>Create a new project</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa ett nytt projekt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="99"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="104"/>
         <source>Load...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs in...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="107"/>
         <source>Load existing project from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs in befintligt projekt från fil</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="110"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="118"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="121"/>
         <source>Save project to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara projekt till fil</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="124"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="132"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara som...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="135"/>
         <source>Save project under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara projekt under ett annat namn</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="138"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="146"/>
         <source>Quit GUI</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="149"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="157"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Nästa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
         <source>Select next project window</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj nästa projektfönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="163"/>
         <source>Ctrl+Alt+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+N</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="171"/>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Föregående</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Select previous project window</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj föregående projektfönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="177"/>
         <source>Ctrl+Alt+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+P</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
@@ -234,62 +234,62 @@
     <message>
         <location filename="../mainwindow.ui" line="213"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="216"/>
         <source>Close active project window</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng aktivt projektfönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng alla</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="227"/>
         <source>Close all project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng alla projektfönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="232"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation>Om...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
         <source>About this program</source>
-        <translation type="unfinished"></translation>
+        <translation>Om detta programmet</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
         <source>About Qt...</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Qt...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="243"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Qt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="248"/>
         <source>Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="251"/>
         <source>General preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Allmänna inställningar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="254"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="259"/>
         <source>No recent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga tidigare filer</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="267"/>
@@ -324,27 +324,27 @@
     <message>
         <location filename="../mainwindow.ui" line="295"/>
         <source>Save all</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara allt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="298"/>
         <source>Save all projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara alla projekt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
         <source>Ctrl+Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+S</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="83"/>
         <source>Choose file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj fil</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="83"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
@@ -372,17 +372,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="279"/>
         <source>Running projects: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kör projekt: %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="341"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektet &quot;%1&quot; finns inte</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="422"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekräfta</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="424"/>
@@ -391,7 +391,11 @@
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns 1 projekt som för närvarande körs.
+
+Stängning av dess fönster kommer att döda den externa processen!
+
+Fortsätta?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="425"/>
@@ -400,7 +404,11 @@ Proceed?</source>
 Closing their windows will kill the external processes!
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns %1 projekt som för närvarande körs.
+
+Stängning av dessa fönster kommer att döda de externa processerna!
+
+Fortsätta?</translation>
     </message>
 </context>
 <context>
@@ -408,164 +416,164 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="35"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="42"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkställ</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="49"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="75"/>
         <source>GUI</source>
-        <translation type="unfinished"></translation>
+        <translation>Gränssnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="81"/>
         <source>Lanuage</source>
-        <translation type="unfinished"></translation>
+        <translation>Språk</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="88"/>
         <source>Select the GUI language (requires a restart to take effect!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj språk för gränssnittet (kräver en omstart för att bli aktiv)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="95"/>
         <source>German (de)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyska (de)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="100"/>
         <source>Spanish (es)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanska (es)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="105"/>
         <source>Greek (el)</source>
-        <translation type="unfinished"></translation>
+        <translation>Grekiska (el)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="110"/>
         <source>French (fr)</source>
-        <translation type="unfinished"></translation>
+        <translation>Franska (fr)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="115"/>
         <source>Italian (it)</source>
-        <translation type="unfinished"></translation>
+        <translation>Italienska (it)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="120"/>
         <source>Polish (pl)</source>
-        <translation type="unfinished"></translation>
+        <translation>Polska (pl)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="125"/>
         <source>Portuguese (pt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugisiska (pt)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="130"/>
         <source>Romanian (ro)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rumänska (ro)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="135"/>
         <source>Swedish (sv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Svenska (sv)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
-        <translation type="unfinished"></translation>
+        <translation>Engelska (us)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="161"/>
         <source>Select the GUI style</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj stil för gränssnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="174"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="181"/>
         <source>Application font</source>
-        <translation type="unfinished"></translation>
+        <translation>Programtypsnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="194"/>
         <location filename="../preferencesdialog.ui" line="234"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Storlek</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="201"/>
         <source>Application font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Storlek för programtypsnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="214"/>
         <location filename="../preferencesdialog.ui" line="221"/>
         <source>Log font</source>
-        <translation type="unfinished"></translation>
+        <translation>Loggtypsnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="241"/>
         <source>Log font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Storlek för loggtypsnitt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="250"/>
         <source>Make sure project help texts are shown</source>
-        <translation type="unfinished"></translation>
+        <translation>Försäkra dig om att projektets hjälptexter visas</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="253"/>
         <source>Display project help texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa projektets hjälptexter</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="260"/>
         <source>Maximize new project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximera nya projektfönster</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="263"/>
         <source>Maximize project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximera projektfönster</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="270"/>
         <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd plattformens inbyggda fildialoger eller Qt:s inbyggda</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="273"/>
         <source>Use native file dialogs</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd inbyggda fildialoger</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="296"/>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökvägar</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="302"/>
@@ -585,7 +593,7 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.cpp" line="78"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla filer (*)</translation>
     </message>
 </context>
 <context>
@@ -593,7 +601,7 @@ Proceed?</source>
     <message>
         <location filename="../projectwidget.ui" line="23"/>
         <source>Select project type</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj projekttyp</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="30"/>
@@ -660,12 +668,12 @@ Proceed?</source>
         <location filename="../projectwidget.cpp" line="493"/>
         <location filename="../projectwidget.cpp" line="581"/>
         <source>Idle</source>
-        <translation type="unfinished"></translation>
+        <translation>Overksam</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="157"/>
         <source>Run this project</source>
-        <translation type="unfinished"></translation>
+        <translation>Kör detta projekt</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="177"/>
@@ -685,7 +693,7 @@ Proceed?</source>
     <message>
         <location filename="../projectwidget.ui" line="278"/>
         <source>Verbose output</source>
-        <translation type="unfinished"></translation>
+        <translation>Informativ utskrift</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="291"/>
@@ -748,7 +756,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="1176"/>
         <location filename="../projectwidget.ui" line="1738"/>
         <source>Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Komprimering</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="484"/>
@@ -871,7 +879,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="961"/>
         <location filename="../projectwidget.ui" line="1397"/>
         <source>Number of CPUs</source>
-        <translation type="unfinished"></translation>
+        <translation>Antal processorer</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="664"/>
@@ -1504,12 +1512,12 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwindow.cpp" line="20"/>
         <source>Noname-%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Namnlös-%1</translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="97"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekräfta</translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="98"/>
