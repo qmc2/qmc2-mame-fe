@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     bool closeOk;
     bool forceQuit;
+    QString humanReadableString;
     QLabel *statisticsLabel;
     QTimer statusTimer;
     int nextProjectID;
@@ -29,6 +30,7 @@ public:
 
     QMdiArea *mdiArea();
     ProjectWindow *createProjectWindow();
+    QString humanReadable(qreal);
 
 public slots:
     // File menu
