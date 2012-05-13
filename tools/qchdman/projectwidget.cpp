@@ -37,26 +37,10 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     compressionTypes["lzma"] = tr("lzma (LZMA)");
     compressionTypes["zlib"] = tr("zlib (Deflate)");
 
-    // hard disk geometry templates
-    QStringList categories;
-    categories << tr("Typical"); // this is only to make sure lupdate sees the tr()!
-    hardDiskTemplates[tr("Typical")] << DiskGeometry(tr("5 MB"), 153, 4, 16, 512)
-                                     << DiskGeometry(tr("10 MB"), 615, 2, 16, 512)
-                                     << DiskGeometry(tr("20 MB"), 615, 4, 16, 512)
-                                     << DiskGeometry(tr("40 MB"), 615, 4, 32, 512)
-                                     << DiskGeometry(tr("80 MB"), 615, 8, 32, 512)
-                                     << DiskGeometry(tr("160 MB"), 615, 16, 32, 512)
-                                     << DiskGeometry(tr("320 MB"), 1222, 16, 32, 512)
-                                     << DiskGeometry(tr("500 MB"), 1018, 24, 40, 512)
-                                     << DiskGeometry(tr("750 MB"), 1454, 16, 63, 512)
-                                     << DiskGeometry(tr("1 GB"), 524, 64, 63, 512)
-                                     << DiskGeometry(tr("2 GB"), 3876, 16, 63, 512)
-                                     << DiskGeometry(tr("4 GB"), 7752, 16, 63, 512);
-
     // prepare HD geometry template selector
     ui->comboBoxCreateHDFromTemplate->addItem(tr("Select"));
     ui->comboBoxCreateHDFromTemplate->insertSeparator(1);
-    QMapIterator<QString, QList<DiskGeometry> > it(hardDiskTemplates);
+    QMapIterator<QString, QList<DiskGeometry> > it(mainWindow->hardDiskTemplates);
     while ( it.hasNext() ) {
        it.next();
        foreach (DiskGeometry geo, it.value())
@@ -706,7 +690,7 @@ void ProjectWidget::on_comboBoxCreateHDFromTemplate_currentIndexChanged(int inde
         QStringList entryInfo = ui->comboBoxCreateHDFromTemplate->currentText().split(": ", QString::SkipEmptyParts);
         QString category = entryInfo[0];
         QString entry = entryInfo[1];
-        QList<DiskGeometry> geoList = hardDiskTemplates[category];
+        QList<DiskGeometry> geoList = mainWindow->hardDiskTemplates[category];
         bool found = false;
         DiskGeometry geo;
         for (int i = 0; i < geoList.count() && !found; i++) {

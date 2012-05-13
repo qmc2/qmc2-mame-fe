@@ -60,6 +60,27 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
     statusTimer.start(QCHDMAN_STATUS_INTERVAL);
 
+    // setup hard disk geometry templates
+    QStringList categories;
+    categories << tr("Typical") << tr("IBM PC"); // this is only to make sure lupdate sees the tr()!
+    hardDiskTemplates[tr("Typical")] << DiskGeometry(tr("5 MB"), 153, 4, 16, 512)
+                                     << DiskGeometry(tr("10 MB"), 615, 2, 16, 512)
+                                     << DiskGeometry(tr("20 MB"), 615, 4, 16, 512)
+                                     << DiskGeometry(tr("40 MB"), 615, 4, 32, 512)
+                                     << DiskGeometry(tr("80 MB"), 615, 8, 32, 512)
+                                     << DiskGeometry(tr("160 MB"), 615, 16, 32, 512)
+                                     << DiskGeometry(tr("320 MB"), 1222, 16, 32, 512)
+                                     << DiskGeometry(tr("500 MB"), 1018, 24, 40, 512)
+                                     << DiskGeometry(tr("750 MB"), 1454, 16, 63, 512)
+                                     << DiskGeometry(tr("1 GB"), 524, 64, 63, 512)
+                                     << DiskGeometry(tr("2 GB"), 3876, 16, 63, 512)
+                                     << DiskGeometry(tr("4 GB"), 7752, 16, 63, 512);
+    hardDiskTemplates[tr("IBM PC")]  << DiskGeometry(tr("Type 1 - 10 MB"), 306, 4, 17, 512)
+                                     << DiskGeometry(tr("Type 16 - 20 MB"), 612, 4, 17, 512)
+                                     << DiskGeometry(tr("Type 19 - 60 MB"), 1024, 7, 17, 512)
+                                     << DiskGeometry(tr("Type 32 - 128 MB"), 1024, 15, 17, 512)
+                                     << DiskGeometry(tr("Type 46 - 152 MB"), 1224, 15, 17, 512);
+
     QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
 }
 
