@@ -86,12 +86,12 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
                                       << ui->checkBoxCreateHDForce << ui->spinBoxCreateHDProcessors << ui->spinBoxCreateHDInputStartByte << ui->spinBoxCreateHDInputStartHunk
                                       << ui->spinBoxCreateHDInputBytes << ui->spinBoxCreateHDInputHunks << ui->spinBoxCreateHDHunkSize << ui->comboBoxCreateHDCompression
                                       << 0 << ui->spinBoxCreateHDCylinders << ui->spinBoxCreateHDHeads << ui->spinBoxCreateHDSectors
-                                      << ui->lineEditCreateHDIdentFile;
+                                      << ui->lineEditCreateHDIdentFile << ui->spinBoxCreateHDSectorSize;
     copyTypes[QCHDMAN_PRJ_CREATE_HD] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
                                      << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
                                      << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
                                      << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-                                     << QCHDMAN_TYPE_LINEEDIT;
+                                     << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_SPINBOX;
 
     // prepare compression selectors
     copyCompressors.clear();
