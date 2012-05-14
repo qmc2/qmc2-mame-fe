@@ -22,7 +22,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt 4 based UNIX multi-emulator frontend&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], built for SDLMAME&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;QMC2 - M.A.M.E. Catalog / Launcher II&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt 4-baserat UNIX-gränssnitt för flera emulatorer&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], byggd för SDLMAME&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Tyskland&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="93"/>
@@ -40,7 +46,20 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;List subscription:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Projektets webbplats:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://www.mameworld.net/mamecat&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Utvecklingsplats:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://sourceforge.net/projects/qmc2&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Sändlista för QMC2-utveckling:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qmc2-devel@lists.sourceforge.net (endast prenumeranter)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Listprenumeration:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="123"/>
@@ -110,7 +129,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="119"/>
         <source>Qt 4 based multi-platform/multi-emulator front end</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt 4-baserat gränssnitt för flera plattformar/emulatorer</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="120"/>
@@ -150,17 +169,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="142"/>
         <source>QMC2 development mailing list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sändlista för QMC2-utveckling:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="142"/>
         <source>subscription required</source>
-        <translation type="unfinished"></translation>
+        <translation>prenumeration krävs</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="143"/>
         <source>List subscription:</source>
-        <translation type="unfinished"></translation>
+        <translation>Listprenumeration:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="144"/>
@@ -186,7 +205,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="161"/>
         <source>Template information:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mallinformation:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="161"/>
@@ -307,27 +326,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="48"/>
         <source>ArcadeScreenshotSaverThread: Started</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Startad</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="66"/>
         <source>ArcadeScreenshotSaverThread: Saving screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Sparar skärmbild</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="71"/>
         <source>ArcadeScreenshotSaverThread: Failed to create screen shot directory &apos;%1&apos; - aborting screen shot creation</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Misslyckades med att skapa katalog för skärmbilder &quot;%1&quot; - avbryter skapandet av skärmbild</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="80"/>
         <source>ArcadeScreenshotSaverThread: Screen shot successfully saved as &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Skärmbild sparades som &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="82"/>
         <source>ArcadeScreenshotSaverThread: Failed to save screen shot as &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Misslyckades med att spara skärmbild som &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="83"/>
@@ -337,7 +356,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="92"/>
         <source>ArcadeScreenshotSaverThread: Ended</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Avslutad</translation>
     </message>
 </context>
 <context>
@@ -476,7 +495,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="242"/>
         <source>Show FPS</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa bilder/s (FPS)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="253"/>
@@ -523,7 +542,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="295"/>
         <source>Snapshot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog för skärmbilder</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="304"/>
@@ -729,7 +748,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="641"/>
         <source>Arcade font</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkadtypsnitt</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="648"/>
@@ -754,7 +773,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="683"/>
         <source>Virtual resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Virtuell upplösning</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="711"/>
@@ -774,7 +793,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="759"/>
         <source>Game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Spellista</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="771"/>
@@ -930,7 +949,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2267"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2488"/>
         <source>Texture</source>
-        <translation type="unfinished"></translation>
+        <translation>Textur</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="948"/>
@@ -2674,47 +2693,47 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="624"/>
         <location filename="../../gamelist.cpp" line="627"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>okänt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>good</source>
-        <translation type="unfinished"></translation>
+        <translation>bra</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>bad</source>
-        <translation type="unfinished"></translation>
+        <translation>dålig</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>preliminär</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>supported</source>
-        <translation type="unfinished"></translation>
+        <translation>stöds</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation>stöds inte</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>ofullständig</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>yes</source>
-        <translation type="unfinished"></translation>
+        <translation>ja</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation>nej</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
@@ -2746,22 +2765,22 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1526"/>
         <location filename="../../gamelist.cpp" line="1795"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Okänt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>On</source>
-        <translation type="unfinished"></translation>
+        <translation>På</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Av</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>ljud</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
@@ -2776,17 +2795,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>cpu</source>
-        <translation type="unfinished"></translation>
+        <translation>processor</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>vector</source>
-        <translation type="unfinished"></translation>
+        <translation>vektor</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>lcd</source>
-        <translation type="unfinished"></translation>
+        <translation>lcd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
@@ -2861,22 +2880,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>printer</source>
-        <translation type="unfinished"></translation>
+        <translation>skrivare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cdrom</source>
-        <translation type="unfinished"></translation>
+        <translation>cdrom</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cartridge</source>
-        <translation type="unfinished"></translation>
+        <translation>cartridge</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cassette</source>
-        <translation type="unfinished"></translation>
+        <translation>kassett</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
@@ -2886,7 +2905,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>floppydisk</source>
-        <translation type="unfinished"></translation>
+        <translation>diskett</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
@@ -2906,7 +2925,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="160"/>
         <source>compatible</source>
-        <translation type="unfinished"></translation>
+        <translation>kompatibel</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="166"/>
@@ -2924,7 +2943,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2161"/>
         <location filename="../../gamelist.cpp" line="3011"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Väntar på data...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="442"/>
@@ -3009,7 +3028,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="690"/>
         <source>XML cache - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>XML-cache - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="730"/>
@@ -3044,7 +3063,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="807"/>
         <source>XML data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>XML-data - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="824"/>
@@ -3080,7 +3099,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="939"/>
         <source>ROM check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM-kontroll - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1020"/>
@@ -3105,80 +3124,80 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Namn</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Source file</source>
-        <translation type="unfinished"></translation>
+        <translation>Källfil</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Is BIOS?</source>
-        <translation type="unfinished"></translation>
+        <translation>Är BIOS?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Is device?</source>
-        <translation type="unfinished"></translation>
+        <translation>Är enhet?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Runnable</source>
-        <translation type="unfinished"></translation>
+        <translation>Körbar</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Clone of</source>
-        <translation type="unfinished"></translation>
+        <translation>Klon av</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>ROM of</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM av</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Sample of</source>
-        <translation type="unfinished"></translation>
+        <translation>Sampling av</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1067"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>År</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1074"/>
         <source>Manufacturer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillverkare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1079"/>
         <location filename="../../gamelist.cpp" line="1507"/>
         <location filename="../../gamelist.cpp" line="1776"/>
         <source>ROM</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>BIOS</source>
-        <translation type="unfinished"></translation>
+        <translation>BIOS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Storlek</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>SHA1</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
@@ -3190,12 +3209,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Region</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Position</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
@@ -3203,41 +3222,41 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1217"/>
         <location filename="../../gamelist.cpp" line="1237"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Optional</source>
-        <translation type="unfinished"></translation>
+        <translation>Valfritt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1089"/>
         <source>Device reference</source>
-        <translation type="unfinished"></translation>
+        <translation>Enhetsreferens</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1094"/>
         <source>Chip</source>
-        <translation type="unfinished"></translation>
+        <translation>Chip</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1099"/>
         <location filename="../../gamelist.cpp" line="1169"/>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagg</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1099"/>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1099"/>
         <source>Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Klocka</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1104"/>
@@ -3247,7 +3266,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotera</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
@@ -3257,12 +3276,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Bredd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Höjd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
@@ -3308,42 +3327,42 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1113"/>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljud</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1117"/>
         <source>Channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanaler</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1122"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Inmatning</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjänst</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Tilt</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Players</source>
-        <translation type="unfinished"></translation>
+        <translation>Spelare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Knappar</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Coins</source>
-        <translation type="unfinished"></translation>
+        <translation>Mynt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1133"/>
@@ -3353,17 +3372,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Minimum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimum</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Sensitivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Känslighet</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
@@ -3373,7 +3392,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>Omvänd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1145"/>
@@ -3393,12 +3412,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1254"/>
         <location filename="../../gamelist.cpp" line="1304"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1164"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguration</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1169"/>
@@ -3408,32 +3427,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1176"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställning</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1181"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Värde</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1188"/>
         <source>Driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Drivrutin</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulering</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Färg</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
@@ -3443,17 +3462,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Protection</source>
-        <translation type="unfinished"></translation>
+        <translation>Skydd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Save state</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara tillstånd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Palette size</source>
-        <translation type="unfinished"></translation>
+        <translation>Palettstorlek</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1197"/>
@@ -3463,7 +3482,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1202"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1207"/>
@@ -3473,17 +3492,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1212"/>
         <source>Disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1222"/>
@@ -3498,52 +3517,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1242"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategori</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1249"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1261"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Enhet</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Mandatory</source>
-        <translation type="unfinished"></translation>
+        <translation>Nödvändig</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Gränssnitt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1273"/>
         <source>Instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Instans</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1278"/>
         <source>Brief name</source>
-        <translation type="unfinished"></translation>
+        <translation>Kort namn</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1285"/>
         <source>Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillägg</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1292"/>
         <source>RAM options</source>
-        <translation type="unfinished"></translation>
+        <translation>RAM-alternativ</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1296"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativ</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1341"/>
@@ -3607,36 +3626,36 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1446"/>
         <source>loading game data from game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>läser in speldata från spellistcache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1448"/>
         <location filename="../../gamelist.cpp" line="1666"/>
         <source>Game data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Speldata - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1450"/>
         <source>loading machine data from machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>läser in maskindata från maskinlistcache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1452"/>
         <location filename="../../gamelist.cpp" line="1670"/>
         <source>Machine data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskindata - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1505"/>
         <location filename="../../gamelist.cpp" line="1774"/>
         <source>ROM, CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM, CHD</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1509"/>
         <location filename="../../gamelist.cpp" line="1778"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1516"/>
@@ -3644,7 +3663,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1785"/>
         <location filename="../../gamelist.cpp" line="1786"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Inte tillgänglig</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1527"/>
@@ -3652,7 +3671,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3584"/>
         <location filename="../../gamelist.cpp" line="3717"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1643"/>
@@ -3696,7 +3715,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2997"/>
         <location filename="../../gamelist.cpp" line="2999"/>
         <source>ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>stigande</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2147"/>
@@ -3704,13 +3723,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2997"/>
         <location filename="../../gamelist.cpp" line="2999"/>
         <source>descending</source>
-        <translation type="unfinished"></translation>
+        <translation>fallande</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2149"/>
         <location filename="../../gamelist.cpp" line="2999"/>
         <source>sorting machine list by %1 in %2 order</source>
-        <translation type="unfinished"></translation>
+        <translation>sorterar maskinlistan enligt %1 i %2 ordning</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2181"/>
@@ -3732,8 +3751,9 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2212"/>
         <source>%n game(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n spel</numerusform>
+            <numerusform>%n spel</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3748,8 +3768,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2212"/>
         <location filename="../../gamelist.cpp" line="2215"/>
         <source> and %n device(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform> and %n enhet inlästa</numerusform>
+            <numerusform> and %n enheter inlästa</numerusform>
         </translation>
     </message>
     <message>
@@ -3760,8 +3781,9 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2215"/>
         <source>%n machine(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n maskin</numerusform>
+            <numerusform>%n maskiner</numerusform>
         </translation>
     </message>
     <message>
@@ -3833,7 +3855,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2366"/>
         <source>saving game list</source>
-        <translation type="unfinished"></translation>
+        <translation>sparar spellista</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2367"/>
@@ -3853,7 +3875,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2380"/>
         <source>loading favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>läser in favoriter</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2404"/>
@@ -3863,7 +3885,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2417"/>
         <source>saving favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>sparar favoriter</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2433"/>
@@ -4054,12 +4076,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="3478"/>
         <source>loading catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>läser in catver.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3484"/>
         <source>Catver.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Catver.ini - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3522"/>
@@ -4092,52 +4114,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="14"/>
         <source>HTML Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-redigerare</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWYG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation>about:blank</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="56"/>
         <source>HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="86"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Arkiv</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="95"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>R&amp;edigera</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="99"/>
         <source>Insert &amp;image</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga &amp;bild</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="124"/>
         <source>F&amp;ormat</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ormatera</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="128"/>
         <source>St&amp;yle</source>
-        <translation type="unfinished"></translation>
+        <translation>St&amp;il</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="142"/>
         <source>&amp;Align</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Justera</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="175"/>
@@ -4152,179 +4174,179 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="234"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ny</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="237"/>
         <location filename="../../htmleditor/htmleditor.ui" line="240"/>
         <location filename="../../htmleditor/htmleditor.ui" line="243"/>
         <source>New file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny fil</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="252"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Öppna...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="255"/>
         <location filename="../../htmleditor/htmleditor.ui" line="258"/>
         <location filename="../../htmleditor/htmleditor.ui" line="261"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna fil</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="270"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spara</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="273"/>
         <location filename="../../htmleditor/htmleditor.ui" line="276"/>
         <location filename="../../htmleditor/htmleditor.ui" line="279"/>
         <source>Save file</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara fil</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="284"/>
         <source>Save &amp;copy...</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara k&amp;opia...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="287"/>
         <location filename="../../htmleditor/htmleditor.ui" line="290"/>
         <source>Save file under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara fil under ett annat namn</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="299"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ångra</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="302"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ångra</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="311"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gör om</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="314"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Gör om</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="323"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>Klipp &amp;ut</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="326"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Klipp ut</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="335"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopiera</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="338"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Klistra &amp;in</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Klistra in</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="359"/>
         <source>Select a&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Markera &amp;allt</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="362"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Markera allt</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="374"/>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fet</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Fet</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="389"/>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kursiv</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kursiv</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="404"/>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Understruken</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="407"/>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Understruken</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="419"/>
         <source>&amp;Strikethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Genomstruken</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="422"/>
         <source>Strikethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>Genomstruken</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="431"/>
         <source>Align &amp;left</source>
-        <translation type="unfinished"></translation>
+        <translation>Justera &amp;vänster</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="434"/>
         <source>Align left</source>
-        <translation type="unfinished"></translation>
+        <translation>Justera vänster</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="443"/>
         <source>Align &amp;center</source>
-        <translation type="unfinished"></translation>
+        <translation>Justera &amp;centrerad</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="446"/>
         <source>Align center</source>
-        <translation type="unfinished"></translation>
+        <translation>Justera centrerad</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="455"/>
         <source>Align &amp;right</source>
-        <translation type="unfinished"></translation>
+        <translation>Justera &amp;höger</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Align right</source>
-        <translation type="unfinished"></translation>
+        <translation>Justera höger</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="467"/>
@@ -4374,157 +4396,157 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="524"/>
         <source>Numbered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Numrerad lista</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="533"/>
         <source>From &amp;file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Från &amp;fil...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="536"/>
         <source>Insert image from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga bild från fil</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="545"/>
         <source>From &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Från &amp;URL...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="548"/>
         <source>Insert image from URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga bild från URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="557"/>
         <source>Create &amp;link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa &amp;länk...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="560"/>
         <source>Create link</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa länk</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="569"/>
         <location filename="../../htmleditor/htmleditor.ui" line="572"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Zooma ut</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="581"/>
         <location filename="../../htmleditor/htmleditor.ui" line="584"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Zooma in</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="589"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>St&amp;ycke</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="594"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;1</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="599"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;2</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="604"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;3</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="609"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;4</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="614"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;5</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="619"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubrik &amp;6</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="624"/>
         <source>Pre&amp;formatted</source>
-        <translation type="unfinished"></translation>
+        <translation>För&amp;formaterad</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="629"/>
         <source>&amp;Address</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adress</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="634"/>
         <source>&amp;Font name...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Typsnittsnamn...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="637"/>
         <source>Font name</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnittsnamn</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="642"/>
         <source>Text &amp;color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Text&amp;färg...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="645"/>
         <source>Text color</source>
-        <translation type="unfinished"></translation>
+        <translation>Textfärg</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="650"/>
         <source>Bac&amp;kground color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ba&amp;kgrundsfärg...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="653"/>
         <source>Background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Bakgrundsfärg</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="658"/>
         <source>Font si&amp;ze...</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnittssto&amp;rlek...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="661"/>
         <source>Font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnittsstorlek</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="670"/>
         <source>Insert &amp;HTML...</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga &amp;HTML...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="673"/>
         <location filename="../../htmleditor/htmleditor.ui" line="676"/>
         <location filename="../../htmleditor/htmleditor.ui" line="679"/>
         <source>Insert HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="688"/>
         <location filename="../../htmleditor/htmleditor.ui" line="696"/>
         <source>Insert &amp;table...</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga &amp;tabell...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="691"/>
         <source>Insert table</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga tabell</translation>
     </message>
 </context>
 <context>
@@ -4532,142 +4554,142 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="68"/>
         <source>WYSIWYG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="69"/>
         <source>HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="227"/>
         <source>Open file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna fil...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="227"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="261"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-filer (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="227"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="261"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="296"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="261"/>
         <source>Save a copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara en kopia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="292"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Vanliga bildformat (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="293"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="294"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="295"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Graphics Interchange Format (GIF) (*.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="298"/>
         <source>Open image...</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna bild...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="312"/>
         <source>Insert image from URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Infoga bild från URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="312"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="356"/>
         <source>Enter URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange URL:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="356"/>
         <source>Create link</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa länk</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="580"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnitt</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="580"/>
         <source>Select font:</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj typsnitt:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <source>XS</source>
-        <translation type="unfinished"></translation>
+        <translation>XS</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation>S</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="591"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>M</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <source>L</source>
-        <translation type="unfinished"></translation>
+        <translation>L</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <source>XL</source>
-        <translation type="unfinished"></translation>
+        <translation>XL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="589"/>
         <source>XXL</source>
-        <translation type="unfinished"></translation>
+        <translation>XXL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="591"/>
         <source>Font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnittsstorlek</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="591"/>
         <source>Font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Typsnittsstorlek:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="667"/>
         <source>Open &apos;%1&apos; in default browser?</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna &quot;%1&quot; i standardwebbläsaren?</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="668"/>
         <source>Open link</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna länk</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="678"/>
         <source>Zoom: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom: %1%</translation>
     </message>
 </context>
 <context>
@@ -5352,7 +5374,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../keyseqscan.ui" line="46"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="56"/>
@@ -5362,7 +5384,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../keyseqscan.ui" line="59"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.cpp" line="21"/>
@@ -5435,32 +5457,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="245"/>
         <source>Device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Enhetsinstans</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="250"/>
         <source>Brief name</source>
-        <translation type="unfinished"></translation>
+        <translation>Kort namn</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="255"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="260"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagg</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="265"/>
         <source>Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillägg</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="270"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fil</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="279"/>
@@ -5584,7 +5606,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1114"/>
         <location filename="../../messdevcfg.cpp" line="1236"/>
         <source>No devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga enheter</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="169"/>
@@ -5605,13 +5627,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="232"/>
         <location filename="../../messdevcfg.cpp" line="274"/>
         <source>Play selected game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela markerat spel</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="233"/>
         <location filename="../../messdevcfg.cpp" line="275"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spela</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="238"/>
@@ -5643,7 +5665,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="255"/>
         <source>Select file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj fil...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="266"/>
@@ -5780,7 +5802,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="55"/>
         <source>&amp;Game list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spellista</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="78"/>
@@ -5807,13 +5829,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="147"/>
         <source>List of all supported games</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista över alla spel som stöds</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="154"/>
         <location filename="../../qmc2main.cpp" line="1169"/>
         <source>Game / Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Spel / Attribut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="159"/>
@@ -5834,7 +5856,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1173"/>
         <location filename="../../qmc2main.cpp" line="1180"/>
         <source>Icon / Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikon / Värde</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="169"/>
@@ -5846,7 +5868,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1255"/>
         <location filename="../../qmc2main.cpp" line="1280"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>År</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="174"/>
@@ -5858,7 +5880,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1257"/>
         <location filename="../../qmc2main.cpp" line="1282"/>
         <source>Manufacturer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillverkare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="179"/>
@@ -5870,7 +5892,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1259"/>
         <location filename="../../qmc2main.cpp" line="1284"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Namn</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="184"/>
@@ -5882,7 +5904,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1261"/>
         <location filename="../../qmc2main.cpp" line="1286"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM-typer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="189"/>
@@ -5894,7 +5916,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1263"/>
         <location filename="../../qmc2main.cpp" line="1288"/>
         <source>Players</source>
-        <translation type="unfinished"></translation>
+        <translation>Spelare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="194"/>
@@ -5906,7 +5928,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1265"/>
         <location filename="../../qmc2main.cpp" line="1290"/>
         <source>Driver status</source>
-        <translation type="unfinished"></translation>
+        <translation>Drivrutinsstatus</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="199"/>
@@ -5917,7 +5939,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1236"/>
         <location filename="../../qmc2main.cpp" line="1292"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategori</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="204"/>
@@ -5928,7 +5950,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1239"/>
         <location filename="../../qmc2main.cpp" line="1267"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="209"/>
@@ -5951,13 +5973,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="8180"/>
         <location filename="../../qmc2main.cpp" line="8197"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Väntar på data...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="259"/>
         <location filename="../../qmc2main.ui" line="391"/>
         <source>Loading game list, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser in spellista, vänta...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="282"/>
@@ -5968,7 +5990,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="286"/>
         <location filename="../../qmc2main.cpp" line="1209"/>
         <source>Game / Clones</source>
-        <translation type="unfinished"></translation>
+        <translation>Spel / Kloner</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="296"/>
@@ -5980,7 +6002,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1278"/>
         <location filename="../../qmc2main.cpp" line="8414"/>
         <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikon</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="414"/>
@@ -6017,13 +6039,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="680"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sök</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="695"/>
         <location filename="../../qmc2main.ui" line="698"/>
         <source>Search result</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökresultat</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="711"/>
@@ -6035,12 +6057,12 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="714"/>
         <location filename="../../qmc2main.cpp" line="435"/>
         <source>Search for games</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök efter spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="729"/>
         <source>Favo&amp;rites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favo&amp;riter</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="744"/>
@@ -6134,7 +6156,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1489"/>
         <source>&amp;Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Konfiguration</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1498"/>
@@ -6164,12 +6186,12 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1543"/>
         <source>MA&amp;WS</source>
-        <translation type="unfinished"></translation>
+        <translation>MA&amp;WS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1552"/>
         <source>&amp;PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;PCB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1561"/>
@@ -6179,7 +6201,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1570"/>
         <source>&amp;YouTube</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1606"/>
@@ -6228,32 +6250,32 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1737"/>
         <location filename="../../qmc2main.ui" line="2143"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1742"/>
         <source>LED0</source>
-        <translation type="unfinished"></translation>
+        <translation>LED0</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1747"/>
         <source>LED1</source>
-        <translation type="unfinished"></translation>
+        <translation>LED1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1752"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1757"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1770"/>
         <source>MP&amp;3 player</source>
-        <translation type="unfinished"></translation>
+        <translation>MP&amp;3-spelare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1791"/>
@@ -6266,14 +6288,14 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1815"/>
         <location filename="../../qmc2main.ui" line="3033"/>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Föregående spår</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1826"/>
         <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="3054"/>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Nästa spår</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1840"/>
@@ -6308,7 +6330,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1923"/>
         <location filename="../../qmc2main.ui" line="3162"/>
         <source>Play track</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela upp spår</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1937"/>
@@ -6373,7 +6395,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2054"/>
         <source>Shuffle</source>
-        <translation type="unfinished"></translation>
+        <translation>Blanda</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2061"/>
@@ -6384,7 +6406,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2067"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Paus</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2077"/>
@@ -6411,7 +6433,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2148"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Förlopp</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2156"/>
@@ -6449,7 +6471,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2258"/>
         <source>Project&amp;MESS</source>
-        <translation type="unfinished"></translation>
+        <translation>Project&amp;MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2267"/>
@@ -6459,17 +6481,17 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2291"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hjälp</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2300"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver&amp;ktyg</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2304"/>
         <source>&amp;Audio player</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ljudspelare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2322"/>
@@ -6479,22 +6501,22 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2363"/>
         <source>&amp;Game</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2367"/>
         <source>&amp;Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Ko&amp;ntroll</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2384"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Visa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2397"/>
         <source>&amp;Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tagg</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2430"/>
@@ -6504,7 +6526,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2434"/>
         <source>&amp;Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;rkad</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2456"/>
@@ -6514,7 +6536,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2471"/>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktygsrad</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2520"/>
@@ -6555,23 +6577,23 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="923"/>
         <location filename="../../qmc2main.cpp" line="982"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spela</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2565"/>
         <location filename="../../qmc2main.ui" line="2568"/>
         <source>Play current game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela aktuellt spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2571"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2583"/>
         <source>&amp;Documentation...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dokumentation...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2586"/>
@@ -6582,39 +6604,39 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2592"/>
         <source>Ctrl+H</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2604"/>
         <source>&amp;About...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Om...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2607"/>
         <location filename="../../qmc2main.ui" line="2610"/>
         <source>About M.A.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>Om M.A.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2613"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2625"/>
         <source>About &amp;Qt...</source>
-        <translation type="unfinished"></translation>
+        <translation>Om &amp;Qt...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2628"/>
         <location filename="../../qmc2main.cpp" line="2837"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Qt</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2631"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2643"/>
@@ -6819,12 +6841,12 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2886"/>
         <source>Analyse ROM...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysera ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2889"/>
         <source>Analyse ROM</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysera ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2892"/>
@@ -7094,7 +7116,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3294"/>
         <source>Screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>Skärmbild</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3297"/>
