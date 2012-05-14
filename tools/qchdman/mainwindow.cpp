@@ -103,7 +103,8 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("WDAC11000 (1 GB)", 2046, 16, 63, 512);
 
     hardDiskTemplates["Seagate"]
-            << DiskGeometry("ST-412 (10 MB)", 306, 4, 17, 512)
+            << DiskGeometry("ST-506 (5 MB)", 153, 4, 32, 256)
+            << DiskGeometry("ST-412 (10 MB)", 306, 4, 32, 256)
             << DiskGeometry("ST-225 (20 MB)", 615, 4, 17, 512)
             << DiskGeometry("ST-251 (41 MB)", 820, 6, 17, 512)
             << DiskGeometry("ST-9100A (82 MB)", 748, 14, 16, 512)
