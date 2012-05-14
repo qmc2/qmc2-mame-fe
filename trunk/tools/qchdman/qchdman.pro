@@ -63,9 +63,9 @@ RESOURCES += qchdman.qrc
 
 TRANSLATIONS += translations/qchdman_de.ts \
     translations/qchdman_es.ts \
+    translations/qchdman_el.ts \
     translations/qchdman_it.ts \
     translations/qchdman_fr.ts \
-    translations/qchdman_gr.ts \
     translations/qchdman_pl.ts \
     translations/qchdman_pt.ts \
     translations/qchdman_ro.ts \

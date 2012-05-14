@@ -103,6 +103,9 @@ public slots:
     // ExtractRaw
 
     // ExtractHD
+    void on_toolButtonBrowseExtractHDInputFile_clicked();
+    void on_toolButtonBrowseExtractHDOutputFile_clicked();
+    void on_toolButtonBrowseExtractHDParentInputFile_clicked();
 
     // ExtractCD
 

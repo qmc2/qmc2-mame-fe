@@ -60,28 +60,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
     statusTimer.start(QCHDMAN_STATUS_INTERVAL);
 
-    /*
-    QStringList categories;
-    categories << tr("Typical") << tr("IBM PC"); // this is only to make sure lupdate sees the tr()!
-    hardDiskTemplates[tr("Typical")] << DiskGeometry(tr("5 MB"), 16, 16, 40, 512)
-                                     << DiskGeometry(tr("10 MB"), 32, 16, 40, 512)
-                                     << DiskGeometry(tr("20 MB"), 64, 16, 40, 512)
-                                     << DiskGeometry(tr("40 MB"), 128, 16, 40, 512)
-                                     << DiskGeometry(tr("80 MB"), 256, 16, 40, 512)
-                                     << DiskGeometry(tr("160 MB"), 512, 16, 40, 512)
-                                     << DiskGeometry(tr("320 MB"), 1024, 16, 40, 512)
-                                     << DiskGeometry(tr("500 MB"), 1600, 16, 40, 512)
-                                     << DiskGeometry(tr("750 MB"), 1600, 16, 60, 512)
-                                     << DiskGeometry(tr("1 GB"), 2560, 16, 50, 512)
-                                     << DiskGeometry(tr("2 GB"), 5120, 16, 50, 512)
-                                     << DiskGeometry(tr("4 GB"), 10240, 16, 50, 512);
-    hardDiskTemplates[tr("IBM PC")]  << DiskGeometry(tr("Type 1 - 10 MB"), 306, 4, 17, 512)
-                                     << DiskGeometry(tr("Type 16 - 20 MB"), 612, 4, 17, 512)
-                                     << DiskGeometry(tr("Type 19 - 60 MB"), 1024, 7, 17, 512)
-                                     << DiskGeometry(tr("Type 32 - 128 MB"), 1024, 15, 17, 512)
-                                     << DiskGeometry(tr("Type 46 - 152 MB"), 1224, 15, 17, 512);
-    */
-
     // hard disk templates
     hardDiskTemplates["Conner"]
             << DiskGeometry("CP3024 (20 MB)", 636, 2, 33, 512)
@@ -95,6 +73,7 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("DK227A-41 (3.8 GB)", 7944, 16, 63, 512);
 
     hardDiskTemplates["Western Digital"]
+            << DiskGeometry("WD95038X (32 MB)", 615, 6, 17, 512)
             << DiskGeometry("WDAC140 (41 MB)", 980, 5, 17, 512)
             << DiskGeometry("WDAC280 (81 MB)", 980, 10, 17, 512)
             << DiskGeometry("WDAC1170 (163 MB)", 1010, 6, 55, 512)
@@ -106,6 +85,7 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("ST-506 (5 MB)", 153, 4, 32, 256)
             << DiskGeometry("ST-412 (10 MB)", 306, 4, 32, 256)
             << DiskGeometry("ST-225 (20 MB)", 615, 4, 17, 512)
+            //<< DiskGeometry("ST-262 (21 MB)", 615, 4, 17, 512)
             << DiskGeometry("ST-251 (41 MB)", 820, 6, 17, 512)
             << DiskGeometry("ST-9100A (82 MB)", 748, 14, 16, 512)
             << DiskGeometry("ST-3243A (204 MB)", 1024, 12, 34, 512)
@@ -114,6 +94,22 @@ MainWindow::MainWindow(QWidget *parent) :
     hardDiskTemplates["Maxtor"]
             << DiskGeometry("XT-2085 (69 MB)", 1224, 7, 33, 256)
             << DiskGeometry("XT-2190 (148 MB)", 1224, 15, 33, 256);
+
+    hardDiskTemplates["JTC"]
+            << DiskGeometry("100 (5 MB)", 131, 4, 17, 512)
+            << DiskGeometry("1006 (7 MB)", 436, 2, 17, 512)
+            << DiskGeometry("1010 (14 MB)", 436, 4, 17, 512);
+
+    hardDiskTemplates["JVC"]
+            << DiskGeometry("JD 3812M0Z0 (21 MB)", 436, 2, 48, 512)
+            << DiskGeometry("JD E3848HA (43 MB)", 436, 4, 48, 512);
+
+    hardDiskTemplates["Magtron"]
+            << DiskGeometry("MT 5760 (677 MB)", 1632, 15, 54, 512);
+
+    hardDiskTemplates["Texas Instruments"]
+            << DiskGeometry("TI-5 (5 MB)", 153, 4, 17, 512)
+            << DiskGeometry("525-122 (10 MB)", 306, 4, 17, 512);
 
     QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
 }

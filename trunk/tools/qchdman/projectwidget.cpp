@@ -48,34 +48,53 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     }
 
     // prepare morph & clone functionality
-    copyGroups[QCHDMAN_PRJ_INFO] << ui->lineEditInfoInputFile << ui->checkBoxInfoVerbose;
-    copyTypes[QCHDMAN_PRJ_INFO] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX;
-    copyGroups[QCHDMAN_PRJ_VERIFY] << ui->lineEditVerifyInputFile << ui->lineEditVerifyParentInputFile;
-    copyTypes[QCHDMAN_PRJ_VERIFY] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT;
-    copyGroups[QCHDMAN_PRJ_COPY] << ui->lineEditCopyInputFile << ui->lineEditCopyParentInputFile << ui->lineEditCopyOutputFile << ui->lineEditCopyParentOutputFile
-                                 << ui->checkBoxCopyForce << ui->spinBoxCopyProcessors << ui->spinBoxCopyInputStartByte << ui->spinBoxCopyInputStartHunk
-                                 << ui->spinBoxCopyInputBytes << ui->spinBoxCopyInputHunks << ui->spinBoxCopyHunkSize << ui->comboBoxCopyCompression;
-    copyTypes[QCHDMAN_PRJ_COPY] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-                                << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-                                << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
-    copyGroups[QCHDMAN_PRJ_CREATE_RAW] << ui->lineEditCreateRawInputFile << 0 << ui->lineEditCreateRawOutputFile << ui->lineEditCreateRawParentOutputFile
-                                       << ui->checkBoxCreateRawForce << ui->spinBoxCreateRawProcessors << ui->spinBoxCreateRawInputStartByte << ui->spinBoxCreateRawInputStartHunk
-                                       << ui->spinBoxCreateRawInputBytes << ui->spinBoxCreateRawInputHunks << ui->spinBoxCreateRawHunkSize << ui->comboBoxCreateRawCompression
-                                       << ui->spinBoxCreateRawUnitSize;
-    copyTypes[QCHDMAN_PRJ_CREATE_RAW] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-                                      << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-                                      << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
-                                      << QCHDMAN_TYPE_SPINBOX;
-    copyGroups[QCHDMAN_PRJ_CREATE_HD] << ui->lineEditCreateHDInputFile << 0 << ui->lineEditCreateHDOutputFile << ui->lineEditCreateHDParentOutputFile
-                                      << ui->checkBoxCreateHDForce << ui->spinBoxCreateHDProcessors << ui->spinBoxCreateHDInputStartByte << ui->spinBoxCreateHDInputStartHunk
-                                      << ui->spinBoxCreateHDInputBytes << ui->spinBoxCreateHDInputHunks << ui->spinBoxCreateHDHunkSize << ui->comboBoxCreateHDCompression
-                                      << 0 << ui->spinBoxCreateHDCylinders << ui->spinBoxCreateHDHeads << ui->spinBoxCreateHDSectors
-                                      << ui->lineEditCreateHDIdentFile << ui->spinBoxCreateHDSectorSize;
-    copyTypes[QCHDMAN_PRJ_CREATE_HD] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-                                     << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-                                     << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
-                                     << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-                                     << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_SPINBOX;
+    // FIXME: missing QCHDMAN_PRJ_CREATE_CD, QCHDMAN_PRJ_CREATE_LD, QCHDMAN_PRJ_EXTRACT_RAW, QCHDMAN_PRJ_EXTRACT_CD and QCHDMAN_PRJ_EXTRACT_LD
+    copyGroups[QCHDMAN_PRJ_INFO]
+            << ui->lineEditInfoInputFile << ui->checkBoxInfoVerbose;
+    copyTypes[QCHDMAN_PRJ_INFO]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX;
+    copyGroups[QCHDMAN_PRJ_VERIFY]
+            << ui->lineEditVerifyInputFile << ui->lineEditVerifyParentInputFile;
+    copyTypes[QCHDMAN_PRJ_VERIFY]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT;
+    copyGroups[QCHDMAN_PRJ_COPY]
+            << ui->lineEditCopyInputFile << ui->lineEditCopyParentInputFile << ui->lineEditCopyOutputFile << ui->lineEditCopyParentOutputFile
+            << ui->checkBoxCopyForce << ui->spinBoxCopyProcessors << ui->spinBoxCopyInputStartByte << ui->spinBoxCopyInputStartHunk
+            << ui->spinBoxCopyInputBytes << ui->spinBoxCopyInputHunks << ui->spinBoxCopyHunkSize << ui->comboBoxCopyCompression;
+    copyTypes[QCHDMAN_PRJ_COPY]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
+            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
+    copyGroups[QCHDMAN_PRJ_CREATE_RAW]
+            << ui->lineEditCreateRawInputFile << 0 << ui->lineEditCreateRawOutputFile << ui->lineEditCreateRawParentOutputFile
+            << ui->checkBoxCreateRawForce << ui->spinBoxCreateRawProcessors << ui->spinBoxCreateRawInputStartByte << ui->spinBoxCreateRawInputStartHunk
+            << ui->spinBoxCreateRawInputBytes << ui->spinBoxCreateRawInputHunks << ui->spinBoxCreateRawHunkSize << ui->comboBoxCreateRawCompression
+            << ui->spinBoxCreateRawUnitSize;
+    copyTypes[QCHDMAN_PRJ_CREATE_RAW]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
+            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
+            << QCHDMAN_TYPE_SPINBOX;
+    copyGroups[QCHDMAN_PRJ_CREATE_HD]
+            << ui->lineEditCreateHDInputFile << 0 << ui->lineEditCreateHDOutputFile << ui->lineEditCreateHDParentOutputFile
+            << ui->checkBoxCreateHDForce << ui->spinBoxCreateHDProcessors << ui->spinBoxCreateHDInputStartByte << ui->spinBoxCreateHDInputStartHunk
+            << ui->spinBoxCreateHDInputBytes << ui->spinBoxCreateHDInputHunks << ui->spinBoxCreateHDHunkSize << ui->comboBoxCreateHDCompression
+            << 0 << ui->spinBoxCreateHDCylinders << ui->spinBoxCreateHDHeads << ui->spinBoxCreateHDSectors
+            << ui->lineEditCreateHDIdentFile << ui->spinBoxCreateHDSectorSize;
+    copyTypes[QCHDMAN_PRJ_CREATE_HD]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
+            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
+            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_SPINBOX;
+    copyGroups[QCHDMAN_PRJ_EXTRACT_HD]
+            << ui->lineEditExtractHDInputFile << ui->lineEditExtractHDParentInputFile << ui->lineEditExtractHDOutputFile << 0
+            << ui->checkBoxExtractHDForce << 0 << ui->spinBoxExtractHDInputStartByte << ui->spinBoxExtractHDInputStartHunk
+            << ui->spinBoxExtractHDInputBytes << ui->spinBoxExtractHDInputHunks;
+    copyTypes[QCHDMAN_PRJ_EXTRACT_HD]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE
+            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX;
 
     // prepare compression selectors
     copyCompressors.clear();
@@ -237,6 +256,13 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         parentWidget()->setWindowIcon(QIcon(":/images/extractraw.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
+        widgetHeight = ui->frameExtractHD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelExtractHDHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelExtractHDHelp->margin();
+#endif
         parentWidget()->setWindowIcon(QIcon(":/images/extracthd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
@@ -399,7 +425,22 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_EXTRACT_HD:
         projectTypeName = tr("ExtractHD");
         arguments << "extracthd";
-        // FIXME
+        if ( !ui->lineEditExtractHDInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditExtractHDInputFile->text();
+        if ( !ui->lineEditExtractHDParentInputFile->text().isEmpty() )
+            arguments << "--parentinput" << ui->lineEditExtractHDParentInputFile->text();
+        if ( !ui->lineEditExtractHDOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditExtractHDOutputFile->text();
+        if ( ui->checkBoxExtractHDForce->isChecked() )
+            arguments << "--force";
+        if ( ui->spinBoxExtractHDInputStartByte->value() >= 0 )
+            arguments << "--inputstartbyte" << QString::number(ui->spinBoxExtractHDInputStartByte->value());
+        if ( ui->spinBoxExtractHDInputStartHunk->value() >= 0 )
+            arguments << "--inputstarthunk" << QString::number(ui->spinBoxExtractHDInputStartHunk->value());
+        if ( ui->spinBoxExtractHDInputBytes->value() >= 0 )
+            arguments << "--inputbytes" << QString::number(ui->spinBoxExtractHDInputBytes->value());
+        if ( ui->spinBoxExtractHDInputHunks->value() >= 0 )
+            arguments << "--inputhunks" << QString::number(ui->spinBoxExtractHDInputHunks->value());
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
         projectTypeName = tr("ExtractCD");
@@ -466,8 +507,12 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     runningProjects--;
     QString statusString = tr("normal");
-    if ( !terminatedOnDemand && exitStatus == QProcess::CrashExit )
-        statusString = tr("crashed");
+    if ( exitStatus == QProcess::CrashExit ) {
+        if ( terminatedOnDemand )
+            statusString = tr("terminated");
+        else
+            statusString = tr("crashed");
+    }
     log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(statusString));
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
@@ -508,6 +553,7 @@ void ProjectWidget::readyReadStandardError()
             case QCHDMAN_PRJ_COPY:
             case QCHDMAN_PRJ_CREATE_RAW:
             case QCHDMAN_PRJ_CREATE_HD:
+            case QCHDMAN_PRJ_EXTRACT_HD:
                 if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
                     QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
                     int pos = rx.indexIn(s);
@@ -515,7 +561,7 @@ void ProjectWidget::readyReadStandardError()
                         int decimal = rx.cap(2).toInt();
                         percent = rx.cap(1).toInt() + (decimal >= 5 ? 1 : 0);
                     }
-                } else if ( s.contains("Compression complete ... final ratio =") )
+                } else if ( s.contains("Compression complete ... final ratio =") || s.contains("Extraction complete") )
                     percent = 100;
                 break;
             }
@@ -718,6 +764,27 @@ void ProjectWidget::updateCreateHDDiskCapacity()
         ui->labelCreateHDDiskCapacity->setText(tr("unknown"));
     else
         ui->labelCreateHDDiskCapacity->setText(mainWindow->humanReadable(cyls * heads * sectors * bps));
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractHDInputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), ui->lineEditExtractHDInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractHDInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractHDOutputFile_clicked()
+{
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), ui->lineEditExtractHDOutputFile->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractHDOutputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractHDParentInputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), ui->lineEditExtractHDParentInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractHDParentInputFile->setText(s);
 }
 
 void ProjectWidget::init()
@@ -987,16 +1054,37 @@ void ProjectWidget::load(const QString &fileName)
                         ui->spinBoxCreateHDSectors->setValue(line.remove("CreateHDSectors = ").toInt());
                     break;
                 case QCHDMAN_PRJ_CREATE_CD:
+                    // FIXME
                     break;
                 case QCHDMAN_PRJ_CREATE_LD:
+                    // FIXME
                     break;
                 case QCHDMAN_PRJ_EXTRACT_RAW:
+                    // FIXME
                     break;
                 case QCHDMAN_PRJ_EXTRACT_HD:
+                    if ( line.startsWith("ExtractHDInputFile = ") )
+                        ui->lineEditExtractHDInputFile->setText(line.remove("ExtractHDInputFile = "));
+                    if ( line.startsWith("ExtractHDOutputFile = ") )
+                        ui->lineEditExtractHDOutputFile->setText(line.remove("ExtractHDOutputFile = "));
+                    if ( line.startsWith("ExtractHDParentInputFile = ") )
+                        ui->lineEditExtractHDParentInputFile->setText(line.remove("ExtractHDParentInputFile = "));
+                    if ( line.startsWith("ExtractHDForce = ") )
+                        ui->checkBoxExtractHDForce->setChecked(line.remove("ExtractHDForce = ").toInt());
+                    if ( line.startsWith("ExtractHDInputStartByte = ") )
+                        ui->spinBoxExtractHDInputStartByte->setValue(line.remove("ExtractHDInputStartByte = ").toInt());
+                    if ( line.startsWith("ExtractHDInputStartHunk = ") )
+                        ui->spinBoxExtractHDInputStartHunk->setValue(line.remove("ExtractHDInputStartHunk = ").toInt());
+                    if ( line.startsWith("ExtractHDInputBytes = ") )
+                        ui->spinBoxExtractHDInputBytes->setValue(line.remove("ExtractHDInputBytes = ").toInt());
+                    if ( line.startsWith("ExtractHDInputHunks = ") )
+                        ui->spinBoxExtractHDInputHunks->setValue(line.remove("ExtractHDInputHunks = ").toInt());
                     break;
                 case QCHDMAN_PRJ_EXTRACT_CD:
+                    // FIXME
                     break;
                 case QCHDMAN_PRJ_EXTRACT_LD:
+                    // FIXME
                     break;
                 }
             }
@@ -1130,6 +1218,14 @@ void ProjectWidget::saveAs(const QString &fileName)
         case QCHDMAN_PRJ_EXTRACT_RAW:
             break;
         case QCHDMAN_PRJ_EXTRACT_HD:
+            ts << "ExtractHDInputFile = " << ui->lineEditExtractHDInputFile->text() << "\n";
+            ts << "ExtractHDOutputFile = " << ui->lineEditExtractHDOutputFile->text() << "\n";
+            ts << "ExtractHDParentInputFile = " << ui->lineEditExtractHDParentInputFile->text() << "\n";
+            ts << "ExtractHDForce = " << ui->checkBoxExtractHDForce->isChecked() << "\n";
+            ts << "ExtractHDInputStartByte = " << ui->spinBoxExtractHDInputStartByte->value() << "\n";
+            ts << "ExtractHDInputStartHunk = " << ui->spinBoxExtractHDInputStartHunk->value() << "\n";
+            ts << "ExtractHDInputBytes = " << ui->spinBoxExtractHDInputBytes->value() << "\n";
+            ts << "ExtractHDInputHunks = " << ui->spinBoxExtractHDInputHunks->value() << "\n";
             break;
         case QCHDMAN_PRJ_EXTRACT_CD:
             break;
