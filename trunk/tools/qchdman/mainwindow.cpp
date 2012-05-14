@@ -49,11 +49,6 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->menuProjectRecent->addAction(file, this, SLOT(loadRecentFile()));
     }
 
-    // check CHDMAN binary setting
-    QFileInfo chdmanFileInfo(globalConfig->preferencesChdmanBinary());   
-    if ( globalConfig->preferencesChdmanBinary().isEmpty() || !chdmanFileInfo.isExecutable() )
-        QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
-
     statisticsLabel = new QLabel;
     statusBar()->addPermanentWidget(statisticsLabel);
     updateStatus();
@@ -73,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("DK227A-41 (3.8 GB)", 7944, 16, 63, 512);
 
     hardDiskTemplates["Western Digital"]
+            << DiskGeometry("WD262 (20 MB)", 615, 4, 17, 512) // same specs as ST-225
             << DiskGeometry("WD95038X (32 MB)", 615, 6, 17, 512)
             << DiskGeometry("WDAC140 (41 MB)", 980, 5, 17, 512)
             << DiskGeometry("WDAC280 (81 MB)", 980, 10, 17, 512)
@@ -84,8 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
     hardDiskTemplates["Seagate"]
             << DiskGeometry("ST-506 (5 MB)", 153, 4, 32, 256)
             << DiskGeometry("ST-412 (10 MB)", 306, 4, 32, 256)
-            << DiskGeometry("ST-225 (20 MB)", 615, 4, 17, 512)
-            //<< DiskGeometry("ST-262 (21 MB)", 615, 4, 17, 512)
+            << DiskGeometry("ST-225 (20 MB)", 615, 4, 17, 512) // same specs as WD262
             << DiskGeometry("ST-251 (41 MB)", 820, 6, 17, 512)
             << DiskGeometry("ST-9100A (82 MB)", 748, 14, 16, 512)
             << DiskGeometry("ST-3243A (204 MB)", 1024, 12, 34, 512)
@@ -112,6 +107,11 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("525-122 (10 MB)", 306, 4, 17, 512);
 
     QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
+
+    // check CHDMAN binary setting
+    QFileInfo chdmanFileInfo(globalConfig->preferencesChdmanBinary());
+    if ( globalConfig->preferencesChdmanBinary().isEmpty() || !chdmanFileInfo.isExecutable() )
+        QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
 }
 
 MainWindow::~MainWindow()
