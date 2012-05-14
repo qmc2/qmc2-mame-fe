@@ -16,7 +16,7 @@
     <message>
         <location filename="../aboutdialog.cpp" line="23"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt-baserat grafiskt användargränssnitt till CHDMAN, CHD-hanteringsverktyget för MAME/MESS</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
@@ -31,37 +31,37 @@
     <message>
         <location filename="../aboutdialog.cpp" line="25"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta program är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="28"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
-        <translation type="unfinished"></translation>
+        <translation>Detta program distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. </translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>See the</source>
-        <translation type="unfinished"></translation>
+        <translation>Se</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>GNU General Public License</source>
-        <translation type="unfinished"></translation>
+        <translation>GNU General Public License</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>for more details.</source>
-        <translation type="unfinished"></translation>
+        <translation>för mer information.</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="31"/>
         <source>Qt CHDMAN GUI is part of the</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt CHDMAN GUI är en del av</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="31"/>
         <source>QMC2 project</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2-projektet</translation>
     </message>
 </context>
 <context>
@@ -204,17 +204,17 @@
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Tile</source>
-        <translation type="unfinished"></translation>
+        <translation>Sida vid sida</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>Tile project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Rada upp projektfönstren</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Ctrl+Alt+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+T</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="199"/>
@@ -344,67 +344,67 @@
     <message>
         <location filename="../mainwindow.cpp" line="65"/>
         <source>IBM PC</source>
-        <translation type="unfinished"></translation>
+        <translation>IBM PC</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="66"/>
         <source>5 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>5 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>10 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>10 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
         <source>20 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>20 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="69"/>
         <source>40 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>40 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="70"/>
         <source>80 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>80 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="71"/>
         <source>160 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>160 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="72"/>
         <source>320 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>320 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>500 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>500 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="74"/>
         <source>750 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>750 MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>1 GB</source>
-        <translation type="unfinished"></translation>
+        <translation>1 GB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="76"/>
         <source>2 GB</source>
-        <translation type="unfinished"></translation>
+        <translation>2 GB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="77"/>
         <source>4 GB</source>
-        <translation type="unfinished"></translation>
+        <translation>4 GB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="78"/>
@@ -445,24 +445,24 @@
         <location filename="../mainwindow.cpp" line="271"/>
         <location filename="../mainwindow.cpp" line="285"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation> KB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="274"/>
         <location filename="../mainwindow.cpp" line="288"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="277"/>
         <location filename="../mainwindow.cpp" line="291"/>
         <source> GB</source>
-        <translation type="unfinished"></translation>
+        <translation> GB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="280"/>
         <source> TB</source>
-        <translation type="unfinished"></translation>
+        <translation> TB</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="300"/>
@@ -701,17 +701,17 @@ Fortsätta?</translation>
     <message>
         <location filename="../projectwidget.ui" line="30"/>
         <source>Display information about a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa information om en CHD-fil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="39"/>
         <source>Verify the integrity of a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifiera integriteten för en CHD-fil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="48"/>
         <source>Copy data from one CHD to another</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera data från en CHD till en annan</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="57"/>
@@ -778,7 +778,7 @@ Fortsätta?</translation>
     <message>
         <location filename="../projectwidget.ui" line="194"/>
         <source>Tools menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktygsmeny</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="275"/>
@@ -865,7 +865,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="1031"/>
         <location filename="../projectwidget.ui" line="1422"/>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv över befintliga filer</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="500"/>
@@ -1040,18 +1040,18 @@ Copies data from one CHD to another of the same type.
         <location filename="../projectwidget.ui" line="1018"/>
         <location filename="../projectwidget.ui" line="1209"/>
         <source>(required)</source>
-        <translation type="unfinished"></translation>
+        <translation>(nödvändig)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1076"/>
         <location filename="../projectwidget.ui" line="1703"/>
         <source>Input file (--input)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inmatningsfil (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1079"/>
         <source>Input file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inmatningsfil (nödvändig)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1199"/>
@@ -1123,7 +1123,7 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="1558"/>
         <source>Sector size</source>
-        <translation type="unfinished"></translation>
+        <translation>Sektorstorlek</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1571"/>
@@ -1138,7 +1138,7 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="1653"/>
         <source>Sectors  (--chs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sektorer  (--chs)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1678"/>
@@ -1148,12 +1148,12 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="1706"/>
         <source>Input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1719"/>
         <source>Cylinders (--chs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cylindrar (--chs)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1787"/>
@@ -1163,7 +1163,7 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="1794"/>
         <source>Disk capacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Diskkapacitet</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1801"/>
@@ -1178,57 +1178,57 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="1827"/>
         <source>From template</source>
-        <translation type="unfinished"></translation>
+        <translation>Från mall</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1862"/>
         <source>Project log</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektlogg</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="31"/>
         <source>avhu (A/V Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>avhu (A/V Huffman)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="32"/>
         <source>cdfl (CD FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdfl (CD FLAC)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="33"/>
         <source>cdlz (CD LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdlz (CD LZMA)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="34"/>
         <source>cdzl (CD Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdzl (CD Deflate)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="35"/>
         <source>flac (FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>flac (FLAC)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="36"/>
         <source>huff (Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>huff (Huffman)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="37"/>
         <source>lzma (LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation>lzma (LZMA)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="38"/>
         <source>zlib (Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation>zlib (Deflate)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="41"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="88"/>
@@ -1243,7 +1243,7 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="1193"/>
         <location filename="../projectwidget.cpp" line="1272"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>standard</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="93"/>
@@ -1251,27 +1251,27 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="1191"/>
         <location filename="../projectwidget.cpp" line="1270"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>ingen</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="108"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs in</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="109"/>
         <source>Save</source>
-        <translation type="unfinished">Spara</translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="110"/>
         <source>Save as...</source>
-        <translation type="unfinished">Spara som...</translation>
+        <translation>Spara som...</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="112"/>
         <source>Clone to</source>
-        <translation type="unfinished"></translation>
+        <translation>Klona till</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="126"/>
@@ -1306,7 +1306,7 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.cpp" line="281"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="311"/>
@@ -1356,7 +1356,7 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.cpp" line="442"/>
         <source>Starting</source>
-        <translation type="unfinished"></translation>
+        <translation>Startar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="448"/>
@@ -1372,18 +1372,18 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.cpp" line="462"/>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation>Kör</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="468"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="470"/>
         <location filename="../projectwidget.cpp" line="537"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>kraschad</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="471"/>
@@ -1393,44 +1393,44 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.cpp" line="491"/>
         <source>stdout</source>
-        <translation type="unfinished"></translation>
+        <translation>standard ut</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="505"/>
         <source>stderr</source>
-        <translation type="unfinished"></translation>
+        <translation>standard in</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="534"/>
         <source>failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>misslyckades med att starta</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="543"/>
         <source>timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>tidsgränsen överstegs</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="546"/>
         <source>write error</source>
-        <translation type="unfinished"></translation>
+        <translation>skrivfel</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="549"/>
         <source>read error</source>
-        <translation type="unfinished"></translation>
+        <translation>läsfel</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1810"/>
         <location filename="../projectwidget.cpp" line="553"/>
         <location filename="../projectwidget.cpp" line="718"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>okänd</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="558"/>
         <source>process error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>processfel: %1</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="576"/>
@@ -1452,7 +1452,7 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="663"/>
         <location filename="../projectwidget.cpp" line="670"/>
         <source>CHD files (*.chd);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD-filer (*.chd);;Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="590"/>
@@ -1478,7 +1478,7 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="630"/>
         <location filename="../projectwidget.cpp" line="656"/>
         <source>Choose input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="630"/>
@@ -1487,7 +1487,7 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="817"/>
         <location filename="../projectwidget.cpp" line="1034"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Alla filer (*)</translation>
+        <translation>Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="677"/>
@@ -1498,7 +1498,7 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="817"/>
         <location filename="../projectwidget.cpp" line="1034"/>
         <source>Choose file</source>
-        <translation type="unfinished">Välj fil</translation>
+        <translation>Välj fil</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1012"/>
@@ -1509,7 +1509,7 @@ Creates a new HD CHD from an input file.
         <location filename="../projectwidget.cpp" line="1019"/>
         <location filename="../projectwidget.cpp" line="1033"/>
         <source>Noname-%1</source>
-        <translation type="unfinished">Namnlös-%1</translation>
+        <translation>Namnlös-%1</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1046"/>
@@ -1519,17 +1519,17 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>Project &apos;%1&apos; saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektet &quot;%1&quot; sparades</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1145"/>
         <source>Failed saving project &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Misslyckades med att spara projektet &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1233"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
-        <translation type="unfinished"></translation>
+        <translation>kloning till &quot;%1&quot; stöds inte än</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1312"/>
@@ -1556,7 +1556,11 @@ Creates a new HD CHD from an input file.
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns %1 projekt som för närvarande körs.
+
+Stängning av dessa fönster kommer att döda de externa processerna!
+
+Fortsätta?</translation>
     </message>
 </context>
 </TS>
