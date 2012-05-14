@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
     statusTimer.start(QCHDMAN_STATUS_INTERVAL);
 
-    // setup hard disk geometry templates
+    /*
     QStringList categories;
     categories << tr("Typical") << tr("IBM PC"); // this is only to make sure lupdate sees the tr()!
     hardDiskTemplates[tr("Typical")] << DiskGeometry(tr("5 MB"), 16, 16, 40, 512)
@@ -80,6 +80,39 @@ MainWindow::MainWindow(QWidget *parent) :
                                      << DiskGeometry(tr("Type 19 - 60 MB"), 1024, 7, 17, 512)
                                      << DiskGeometry(tr("Type 32 - 128 MB"), 1024, 15, 17, 512)
                                      << DiskGeometry(tr("Type 46 - 152 MB"), 1224, 15, 17, 512);
+    */
+
+    // hard disk templates
+    hardDiskTemplates["Conner"]
+            << DiskGeometry("CP3024 (20 MB)", 636, 2, 33, 512)
+            << DiskGeometry("CP349 (40 MB)", 788, 4, 26, 512)
+            << DiskGeometry("CP3184 (80 MB)", 832, 6, 33, 512)
+            << DiskGeometry("CP3104 (100 MB)", 776, 8, 33, 512)
+            << DiskGeometry("CFS210A (203 MB)", 685, 16, 38, 512);
+
+    hardDiskTemplates["Hitachi"]
+            << DiskGeometry("DK226A-21 (2.0 GB)", 4188, 16, 63, 512)
+            << DiskGeometry("DK227A-41 (3.8 GB)", 7944, 16, 63, 512);
+
+    hardDiskTemplates["Western Digital"]
+            << DiskGeometry("WDAC140 (41 MB)", 980, 5, 17, 512)
+            << DiskGeometry("WDAC280 (81 MB)", 980, 10, 17, 512)
+            << DiskGeometry("WDAC1170 (163 MB)", 1010, 6, 55, 512)
+            << DiskGeometry("WDAC2340 (325 MB)", 1010, 12, 55, 512)
+            << DiskGeometry("WDAC2700 (697 MB)", 1416, 16, 63, 512)
+            << DiskGeometry("WDAC11000 (1 GB)", 2046, 16, 63, 512);
+
+    hardDiskTemplates["Seagate"]
+            << DiskGeometry("ST-412 (10 MB)", 306, 4, 17, 512)
+            << DiskGeometry("ST-225 (20 MB)", 615, 4, 17, 512)
+            << DiskGeometry("ST-251 (41 MB)", 820, 6, 17, 512)
+            << DiskGeometry("ST-9100A (82 MB)", 748, 14, 16, 512)
+            << DiskGeometry("ST-3243A (204 MB)", 1024, 12, 34, 512)
+            << DiskGeometry("ST-9655AG (512 MB)", 1024, 16, 64, 512);
+
+    hardDiskTemplates["Maxtor"]
+            << DiskGeometry("XT-2085 (69 MB)", 1224, 7, 33, 256)
+            << DiskGeometry("XT-2190 (148 MB)", 1224, 15, 33, 256);
 
     QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
 }
