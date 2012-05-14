@@ -337,150 +337,83 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="65"/>
         <source>Typical</source>
-        <translation>Typisch</translation>
+        <translation type="obsolete">Typisch</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="65"/>
         <source>IBM PC</source>
-        <translation>IBM PC</translation>
+        <translation type="obsolete">IBM PC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="66"/>
-        <source>5 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="67"/>
-        <source>10 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="68"/>
-        <source>20 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="69"/>
-        <source>40 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="70"/>
-        <source>80 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="71"/>
-        <source>160 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="72"/>
-        <source>320 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="73"/>
-        <source>500 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="74"/>
-        <source>750 MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="75"/>
-        <source>1 GB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="76"/>
-        <source>2 GB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="77"/>
-        <source>4 GB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="78"/>
         <source>Type 1 - 10 MB</source>
-        <translation>Typ 1 - 10 MB</translation>
+        <translation type="obsolete">Typ 1 - 10 MB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="79"/>
         <source>Type 16 - 20 MB</source>
-        <translation>Typ 16 - 20 MB</translation>
+        <translation type="obsolete">Typ 16 - 20 MB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="80"/>
         <source>Type 19 - 60 MB</source>
-        <translation>Typ 19 - 60 MB</translation>
+        <translation type="obsolete">Typ 19 - 60 MB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="81"/>
         <source>Type 32 - 128 MB</source>
-        <translation>Typ 32 - 128 MB</translation>
+        <translation type="obsolete">Typ 32 - 128 MB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
         <source>Type 46 - 152 MB</source>
-        <translation>Typ 46 - 152 MB</translation>
+        <translation type="obsolete">Typ 46 - 152 MB</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="104"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>Choose file</source>
         <translation>Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="104"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <location filename="../mainwindow.cpp" line="285"/>
+        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="318"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="274"/>
-        <location filename="../mainwindow.cpp" line="288"/>
+        <location filename="../mainwindow.cpp" line="307"/>
+        <location filename="../mainwindow.cpp" line="321"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="277"/>
-        <location filename="../mainwindow.cpp" line="291"/>
+        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="324"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="280"/>
+        <location filename="../mainwindow.cpp" line="313"/>
         <source> TB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="300"/>
+        <location filename="../mainwindow.cpp" line="333"/>
         <source>Running projects: %1</source>
         <translation>Aktive Projekte: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="362"/>
+        <location filename="../mainwindow.cpp" line="395"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Project &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="443"/>
+        <location filename="../mainwindow.cpp" line="476"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="445"/>
+        <location filename="../mainwindow.cpp" line="478"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -493,7 +426,7 @@ Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="446"/>
+        <location filename="../mainwindow.cpp" line="479"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
