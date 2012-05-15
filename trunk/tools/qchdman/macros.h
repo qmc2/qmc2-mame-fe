@@ -36,6 +36,9 @@
 #define QCHDMAN_PRJ_EXTRACT_HD      8
 #define QCHDMAN_PRJ_EXTRACT_CD      9
 #define QCHDMAN_PRJ_EXTRACT_LD      10
+#define QCHDMAN_PRJ_DUMP_META       11
+#define QCHDMAN_PRJ_ADD_META        12
+#define QCHDMAN_PRJ_DEL_META        13
 
 // widget types
 #define QCHDMAN_TYPE_NONE           -1

@@ -54,6 +54,10 @@ void PreferencesDialog::applySettings()
 
     // Paths
     globalConfig->setPreferencesChdmanBinary(ui->lineEditChdmanBinary->text());
+    globalConfig->setPreferencesPreferredCHDInputPath(ui->lineEditPreferredCHDInputPath->text());
+    globalConfig->setPreferencesPreferredInputPath(ui->lineEditPreferredInputPath->text());
+    globalConfig->setPreferencesPreferredCHDOutputPath(ui->lineEditPreferredCHDOutputPath->text());
+    globalConfig->setPreferencesPreferredOutputPath(ui->lineEditPreferredOutputPath->text());
 
     mainWindow->applySettings();
 }
@@ -79,6 +83,34 @@ void PreferencesDialog::on_toolButtonBrowseChdmanBinary_clicked()
     QString s = QFileDialog::getOpenFileName(this, tr("Choose CHDMAN binary"), ui->lineEditChdmanBinary->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditChdmanBinary->setText(s);
+}
+
+void PreferencesDialog::on_toolButtonBrowsePreferredCHDInputPath_clicked()
+{
+    QString s = QFileDialog::getExistingDirectory(this, tr("Choose preferred CHD input path"), ui->lineEditPreferredCHDInputPath->text(), globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditPreferredCHDInputPath->setText(s);
+}
+
+void PreferencesDialog::on_toolButtonBrowsePreferredInputPath_clicked()
+{
+    QString s = QFileDialog::getExistingDirectory(this, tr("Choose preferred non-CHD input path"), ui->lineEditPreferredInputPath->text(), globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditPreferredInputPath->setText(s);
+}
+
+void PreferencesDialog::on_toolButtonBrowsePreferredCHDOutputPath_clicked()
+{
+    QString s = QFileDialog::getExistingDirectory(this, tr("Choose preferred CHD output path"), ui->lineEditPreferredCHDOutputPath->text(), globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditPreferredCHDOutputPath->setText(s);
+}
+
+void PreferencesDialog::on_toolButtonBrowsePreferredOutputPath_clicked()
+{
+    QString s = QFileDialog::getExistingDirectory(this, tr("Choose preferred non-CHD output path"), ui->lineEditPreferredOutputPath->text(), globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditPreferredOutputPath->setText(s);
 }
 
 void PreferencesDialog::restoreSettings()
@@ -110,6 +142,10 @@ void PreferencesDialog::restoreSettings()
 
     // Paths
     ui->lineEditChdmanBinary->setText(globalConfig->preferencesChdmanBinary());
+    ui->lineEditPreferredCHDInputPath->setText(globalConfig->preferencesPreferredCHDInputPath());
+    ui->lineEditPreferredInputPath->setText(globalConfig->preferencesPreferredInputPath());
+    ui->lineEditPreferredCHDOutputPath->setText(globalConfig->preferencesPreferredCHDOutputPath());
+    ui->lineEditPreferredOutputPath->setText(globalConfig->preferencesPreferredOutputPath());
 }
 
 void PreferencesDialog::showEvent(QShowEvent *e)

@@ -71,6 +71,15 @@ public slots:
     int preferencesLogFontSize() { return value("Preferences/LogFontSize", qApp->font().pointSize()).toInt(); }
     void setPreferencesChdmanBinary(QString path) { setValue("Preferences/ChdmanBinary", path); }
     QString preferencesChdmanBinary() { return value("Preferences/ChdmanBinary", QString()).toString(); }
+    void setPreferencesPreferredCHDInputPath(QString path) { setValue("Preferences/PreferredCHDInputPath", path); }
+    QString preferencesPreferredCHDInputPath() { return value("Preferences/PreferredCHDInputPath", QString()).toString(); }
+    void setPreferencesPreferredCHDOutputPath(QString path) { setValue("Preferences/PreferredCHDOutputPath", path); }
+    QString preferencesPreferredCHDOutputPath() { return value("Preferences/PreferredCHDOutputPath", QString()).toString(); }
+    void setPreferencesPreferredInputPath(QString path) { setValue("Preferences/PreferredInputPath", path); }
+    QString preferencesPreferredInputPath() { return value("Preferences/PreferredInputPath", QString()).toString(); }
+    void setPreferencesPreferredOutputPath(QString path) { setValue("Preferences/PreferredOutputPath", path); }
+    QString preferencesPreferredOutputPath() { return value("Preferences/PreferredOutputPath", QString()).toString(); }
+
     void setPreferencesShowHelpTexts(bool enable) { setValue("Preferences/ShowHelpTexts", enable); }
     bool preferencesShowHelpTexts() { return value("Preferences/ShowHelpTexts", false).toBool(); }
     void setPreferencesMaximizeWindows(bool enable) { setValue("Preferences/MaximizeWindows", enable); }
