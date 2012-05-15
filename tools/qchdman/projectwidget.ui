@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>690</width>
-    <height>591</height>
+    <width>603</width>
+    <height>630</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -124,6 +124,33 @@
         <normaloff>:/images/extractld.png</normaloff>:/images/extractld.png</iconset>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Dump meta-data from a CHD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/dumpmeta.png</normaloff>:/images/dumpmeta.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Add meta-data to a CHD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/addmeta.png</normaloff>:/images/addmeta.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Remove meta-data from a CHD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/delmeta.png</normaloff>:/images/delmeta.png</iconset>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="0" column="1">
@@ -234,7 +261,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>676</width>
+         <width>589</width>
          <height>572</height>
         </rect>
        </property>
@@ -2137,6 +2164,9 @@ Extracts an HD file from a CHD input file.
           </widget>
           <widget class="QWidget" name="pageExtractCD"/>
           <widget class="QWidget" name="pageExtractLD"/>
+          <widget class="QWidget" name="pageDumpMeta"/>
+          <widget class="QWidget" name="pageAddMeta"/>
+          <widget class="QWidget" name="pageDelMeta"/>
          </widget>
         </item>
        </layout>

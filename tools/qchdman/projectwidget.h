@@ -111,6 +111,12 @@ public slots:
 
     // ExtractLD
 
+    // DumpMeta
+
+    // AddMeta
+
+    // DelMeta
+
     // Other
     void init();
     void log(QString);
