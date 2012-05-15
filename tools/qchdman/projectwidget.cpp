@@ -626,49 +626,70 @@ void ProjectWidget::stateChanged(QProcess::ProcessState)
 
 void ProjectWidget::on_toolButtonBrowseInfoInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), ui->lineEditInfoInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditInfoInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditInfoInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseVerifyInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), ui->lineEditVerifyInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditVerifyInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditVerifyInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseVerifyParentInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), ui->lineEditVerifyParentInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditVerifyParentInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditVerifyParentInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCopyInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), ui->lineEditCopyInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCopyInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCopyInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCopyOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), ui->lineEditCopyOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCopyOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCopyOutputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCopyParentInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), ui->lineEditCopyParentInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCopyParentInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCopyParentInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCopyParentOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), ui->lineEditCopyParentOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCopyParentOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCopyParentOutputFile->setText(s);
 }
@@ -680,21 +701,30 @@ void ProjectWidget::on_comboBoxCopyCompression_currentIndexChanged(int index)
 
 void ProjectWidget::on_toolButtonBrowseCreateRawInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose input file"), ui->lineEditCreateRawInputFile->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateRawInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose input file"), folder, tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateRawInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCreateRawOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), ui->lineEditCreateRawOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateRawOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateRawOutputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCreateRawParentOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), ui->lineEditCreateRawParentOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateRawParentOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateRawParentOutputFile->setText(s);
 }
@@ -706,28 +736,40 @@ void ProjectWidget::on_comboBoxCreateRawCompression_currentIndexChanged(int inde
 
 void ProjectWidget::on_toolButtonBrowseCreateHDInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose input file"), ui->lineEditCreateHDInputFile->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateHDInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose input file"), folder, tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateHDInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCreateHDOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), ui->lineEditCreateHDOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateHDOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateHDOutputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCreateHDParentOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), ui->lineEditCreateHDParentOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateHDParentOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateHDParentOutputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseCreateHDIdentFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose ident file"), ui->lineEditCreateHDIdentFile->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditCreateHDIdentFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose ident file"), folder, tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateHDIdentFile->setText(s);
 }
@@ -775,21 +817,30 @@ void ProjectWidget::updateCreateHDDiskCapacity()
 
 void ProjectWidget::on_toolButtonBrowseExtractHDInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), ui->lineEditExtractHDInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditExtractHDInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractHDInputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseExtractHDOutputFile_clicked()
 {
-    QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), ui->lineEditExtractHDOutputFile->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditExtractHDOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractHDOutputFile->setText(s);
 }
 
 void ProjectWidget::on_toolButtonBrowseExtractHDParentInputFile_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), ui->lineEditExtractHDParentInputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString folder = ui->lineEditExtractHDParentInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractHDParentInputFile->setText(s);
 }

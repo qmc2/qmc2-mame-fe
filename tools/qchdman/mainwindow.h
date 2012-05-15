@@ -25,6 +25,10 @@ public:
     QStringList projectTypes;
     QStringList recentFiles;
     QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
+    QString preferredCHDInputFolder;
+    QString preferredInputFolder;
+    QString preferredCHDOutputFolder;
+    QString preferredOutputFolder;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

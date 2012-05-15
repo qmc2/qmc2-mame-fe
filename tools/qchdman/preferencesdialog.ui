@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>359</width>
-    <height>231</height>
+    <height>254</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,7 +68,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabGUI">
       <attribute name="title">
@@ -306,14 +306,21 @@
        <string>Paths</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutTabPaths">
-       <item row="0" column="0">
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelPreferredCHDInputPath">
+         <property name="text">
+          <string>CHD input</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLabel" name="labelChdmanBinary">
          <property name="text">
           <string>CHDMAN binary</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="lineEditChdmanBinary">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -326,7 +333,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
+       <item row="1" column="2">
         <widget class="QToolButton" name="toolButtonBrowseChdmanBinary">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -340,7 +347,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="3">
+       <item row="7" column="0" colspan="3">
         <spacer name="verticalSpacerPaths">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -352,6 +359,149 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>&lt;b&gt;Paths to program binaries&lt;/b&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelPreferredInputPath">
+         <property name="text">
+          <string>Non-CHD input</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QLabel" name="labelPreferredPaths">
+         <property name="text">
+          <string>&lt;b&gt;Preferred folders for input &amp;amp; output files&lt;/b&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="labelPreferredCHDOutputPath">
+         <property name="text">
+          <string>CHD output</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="labelPreferredOutputPath">
+         <property name="text">
+          <string>Non-CHD output</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="lineEditPreferredOutputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Preferred folder to use for non-CHD output files</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="lineEditPreferredCHDOutputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Preferred folder to use for CHD output files</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="lineEditPreferredInputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Preferred folder to search for non-CHD input files</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEditPreferredCHDInputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Preferred folder to search for CHD input files</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QToolButton" name="toolButtonBrowsePreferredCHDInputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="icon">
+          <iconset resource="qchdman.qrc">
+           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QToolButton" name="toolButtonBrowsePreferredInputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="icon">
+          <iconset resource="qchdman.qrc">
+           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QToolButton" name="toolButtonBrowsePreferredCHDOutputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="icon">
+          <iconset resource="qchdman.qrc">
+           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QToolButton" name="toolButtonBrowsePreferredOutputPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="icon">
+          <iconset resource="qchdman.qrc">
+           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -373,6 +523,14 @@
   <tabstop>checkBoxLogChannelNames</tabstop>
   <tabstop>lineEditChdmanBinary</tabstop>
   <tabstop>toolButtonBrowseChdmanBinary</tabstop>
+  <tabstop>lineEditPreferredCHDInputPath</tabstop>
+  <tabstop>toolButtonBrowsePreferredCHDInputPath</tabstop>
+  <tabstop>lineEditPreferredInputPath</tabstop>
+  <tabstop>toolButtonBrowsePreferredInputPath</tabstop>
+  <tabstop>lineEditPreferredCHDOutputPath</tabstop>
+  <tabstop>toolButtonBrowsePreferredCHDOutputPath</tabstop>
+  <tabstop>lineEditPreferredOutputPath</tabstop>
+  <tabstop>toolButtonBrowsePreferredOutputPath</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonApply</tabstop>
   <tabstop>pushButtonCancel</tabstop>

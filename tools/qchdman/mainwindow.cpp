@@ -350,6 +350,10 @@ void MainWindow::applySettings()
             // FIXME
         }
     }
+    preferredCHDInputFolder = globalConfig->preferencesPreferredCHDInputPath();
+    preferredInputFolder = globalConfig->preferencesPreferredInputPath();
+    preferredCHDOutputFolder = globalConfig->preferencesPreferredCHDOutputPath();
+    preferredOutputFolder = globalConfig->preferencesPreferredOutputPath();
 }
 
 void MainWindow::updateSubWindows()
