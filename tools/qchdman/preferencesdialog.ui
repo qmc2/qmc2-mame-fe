@@ -264,13 +264,23 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="2">
+         <item row="1" column="0">
           <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
            <property name="toolTip">
             <string>Use the platform's native file dialogs or the Qt built-in ones</string>
            </property>
            <property name="text">
             <string>Use native file dialogs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkBoxLogChannelNames">
+           <property name="toolTip">
+            <string>Include the names of the I/O channels (stdout / stderr) when logging CHDMAN output</string>
+           </property>
+           <property name="text">
+            <string>Log channel names</string>
            </property>
           </widget>
          </item>
@@ -360,6 +370,7 @@
   <tabstop>checkBoxShowProjectHelp</tabstop>
   <tabstop>checkBoxMaximizeWindows</tabstop>
   <tabstop>checkBoxNativeFileDialogs</tabstop>
+  <tabstop>checkBoxLogChannelNames</tabstop>
   <tabstop>lineEditChdmanBinary</tabstop>
   <tabstop>toolButtonBrowseChdmanBinary</tabstop>
   <tabstop>pushButtonOk</tabstop>
