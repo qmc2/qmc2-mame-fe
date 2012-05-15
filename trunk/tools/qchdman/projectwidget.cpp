@@ -561,6 +561,7 @@ void ProjectWidget::on_toolButtonStop_clicked()
 
 void ProjectWidget::started()
 {
+    projectTimer.start();
     runningProjects++;
 #if defined(Q_OS_WIN)
     log(tr("process started: PID = %1").arg(chdmanProc->pid()->dwProcessId));
@@ -581,7 +582,9 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
         else
             statusString = tr("crashed");
     }
-    log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(statusString));
+    QTime execTime;
+    execTime = execTime.addMSecs(projectTimer.elapsed());
+    log(tr("process finished: exitCode = %1, exitStatus = %2, execTime = %3").arg(exitCode).arg(statusString).arg(execTime.toString("hh:mm:ss.zzz")));
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     ui->comboBoxProjectType->setEnabled(true);

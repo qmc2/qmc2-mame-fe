@@ -63,6 +63,7 @@ public:
     QStringList createHDCompressors;
     QStringList createCDCompressors;
     QStringList arguments;
+    QElapsedTimer projectTimer;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
