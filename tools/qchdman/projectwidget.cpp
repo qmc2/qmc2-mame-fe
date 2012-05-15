@@ -171,6 +171,21 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     morphActionMap[menuMorphActions->addAction(QIcon(":/images/delmeta.png"), tr("DelMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DEL_META;
     actionMorphMenu = menuActions->addMenu(menuMorphActions);
 
+    iconMap[QCHDMAN_PRJ_INFO] = QIcon(":/images/info.png");
+    iconMap[QCHDMAN_PRJ_VERIFY] = QIcon(":/images/verify.png");
+    iconMap[QCHDMAN_PRJ_COPY] = QIcon(":/images/copy.png");
+    iconMap[QCHDMAN_PRJ_CREATE_RAW] = QIcon(":/images/createraw.png");
+    iconMap[QCHDMAN_PRJ_CREATE_HD] = QIcon(":/images/createhd.png");
+    iconMap[QCHDMAN_PRJ_CREATE_CD] = QIcon(":/images/createcd.png");
+    iconMap[QCHDMAN_PRJ_CREATE_LD] = QIcon(":/images/createld.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_RAW] = QIcon(":/images/extractraw.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_HD] = QIcon(":/images/extracthd.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_CD] = QIcon(":/images/extractcd.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_LD] = QIcon(":/images/extractld.png");
+    iconMap[QCHDMAN_PRJ_DUMP_META] = QIcon(":/images/dumpmeta.png");
+    iconMap[QCHDMAN_PRJ_ADD_META] = QIcon(":/images/addmeta.png");
+    iconMap[QCHDMAN_PRJ_DEL_META] = QIcon(":/images/delmeta.png");
+
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
     actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
     actionCopyCommandToClipboard = menuActions->addAction(tr("Copy command to clipboard"), this, SLOT(copyCommandToClipboard()));
@@ -219,7 +234,6 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelInfoHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/info.png"));
         break;
     case QCHDMAN_PRJ_VERIFY:
         widgetHeight = ui->frameVerify->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -229,7 +243,6 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelVerifyHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/verify.png"));
         break;
     case QCHDMAN_PRJ_COPY:
         widgetHeight = ui->frameCopy->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -239,7 +252,6 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelCopyHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/copy.png"));
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         widgetHeight = ui->frameCreateRaw->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -249,7 +261,6 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelCreateRawHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/createraw.png"));
         break;
     case QCHDMAN_PRJ_CREATE_HD:
         widgetHeight = ui->frameCreateHD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -259,7 +270,6 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelCreateHDHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/createhd.png"));
         break;
     case QCHDMAN_PRJ_CREATE_CD:
         widgetHeight = ui->frameCreateCD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -269,15 +279,12 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelCreateCDHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/createcd.png"));
         break;
     case QCHDMAN_PRJ_CREATE_LD:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/createld.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/extractraw.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
         widgetHeight = ui->frameExtractHD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -287,29 +294,26 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         if ( isAquaStyle )
             widgetHeight -= ui->labelExtractHDHelp->margin();
 #endif
-        parentWidget()->setWindowIcon(QIcon(":/images/extracthd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/extractcd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/extractld.png"));
         break;
     case QCHDMAN_PRJ_DUMP_META:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/dumpmeta.png"));
         break;
     case QCHDMAN_PRJ_ADD_META:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/addmeta.png"));
         break;
     case QCHDMAN_PRJ_DEL_META:
         // FIXME
-        parentWidget()->setWindowIcon(QIcon(":/images/delmeta.png"));
         break;
     }
+
+    // adjust window icon
+    parentWidget()->setWindowIcon(currentIcon.isNull() ? iconMap[index] : currentIcon);
 
     // adjust splitter
     int splitterHeight = ui->splitter->height();
@@ -585,6 +589,8 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     QTime execTime;
     execTime = execTime.addMSecs(projectTimer.elapsed());
     log(tr("process finished: exitCode = %1, exitStatus = %2, execTime = %3").arg(exitCode).arg(statusString).arg(execTime.toString("hh:mm:ss.zzz")));
+    parentWidget()->setWindowIcon(iconMap[ui->comboBoxProjectType->currentIndex()]);
+    currentIcon = QIcon();
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     ui->comboBoxProjectType->setEnabled(true);
@@ -647,6 +653,17 @@ void ProjectWidget::readyReadStandardError()
         }
     }
     ui->progressBar->setValue(percent);
+
+    QPixmap pm(iconMap[ui->comboBoxProjectType->currentIndex()].pixmap(64, 64));
+    int h = int((qreal)pm.height() * (qreal)percent / 100.0);
+    QPainter p;
+    p.begin(&pm);
+    p.fillRect(0, pm.height() - h - 1, pm.width() / 4, pm.height(), QColor(0, 255, 0, 192));
+    p.end();
+    QIcon icon;
+    icon.addPixmap(pm);
+    parentWidget()->setWindowIcon(icon);
+    currentIcon = icon;
 }
 
 void ProjectWidget::error(QProcess::ProcessError processError)

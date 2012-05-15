@@ -64,6 +64,8 @@ public:
     QStringList createCDCompressors;
     QStringList arguments;
     QElapsedTimer projectTimer;
+    QMap<int, QIcon> iconMap;
+    QIcon currentIcon;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
