@@ -532,8 +532,12 @@ void ProjectWidget::readyReadStandardOutput()
     for (i = 0; i < sl.count(); i++) {
         s = sl[i];
         s.remove(QRegExp("\\s+$"));
-        if ( !s.isEmpty() )
-            log(tr("stdout") + ": " + s);
+        if ( !s.isEmpty() ) {
+            if ( globalConfig->preferencesLogChannelNames() )
+                log(tr("stdout") + ": " + s);
+            else
+                log(s);
+        }
     }
 }
 
@@ -547,7 +551,10 @@ void ProjectWidget::readyReadStandardError()
         s = sl[i];
         s.remove(QRegExp("\\s+$"));
         if ( !s.isEmpty() ) {
-            log(tr("stderr") + ": " + s);
+            if ( globalConfig->preferencesLogChannelNames() )
+                log(tr("stderr") + ": " + s);
+            else
+                log(s);
             switch ( ui->comboBoxProjectType->currentIndex() ) {
             case QCHDMAN_PRJ_VERIFY:
             case QCHDMAN_PRJ_COPY:

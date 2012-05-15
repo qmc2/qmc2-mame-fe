@@ -50,6 +50,7 @@ void PreferencesDialog::applySettings()
     globalConfig->setPreferencesShowHelpTexts(ui->checkBoxShowProjectHelp->isChecked());
     globalConfig->setPreferencesMaximizeWindows(ui->checkBoxMaximizeWindows->isChecked());
     globalConfig->setPreferencesNativeFileDialogs(ui->checkBoxNativeFileDialogs->isChecked());
+    globalConfig->setPreferencesLogChannelNames(ui->checkBoxLogChannelNames->isChecked());
 
     // Paths
     globalConfig->setPreferencesChdmanBinary(ui->lineEditChdmanBinary->text());
@@ -105,6 +106,7 @@ void PreferencesDialog::restoreSettings()
     ui->checkBoxShowProjectHelp->setChecked(globalConfig->preferencesShowHelpTexts());
     ui->checkBoxMaximizeWindows->setChecked(globalConfig->preferencesMaximizeWindows());
     ui->checkBoxNativeFileDialogs->setChecked(globalConfig->preferencesNativeFileDialogs());
+    ui->checkBoxLogChannelNames->setChecked(globalConfig->preferencesLogChannelNames());
 
     // Paths
     ui->lineEditChdmanBinary->setText(globalConfig->preferencesChdmanBinary());
