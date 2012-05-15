@@ -61,6 +61,7 @@ public:
     QStringList copyCompressors;
     QStringList createRawCompressors;
     QStringList createHDCompressors;
+    QStringList createCDCompressors;
     QStringList arguments;
 
     explicit ProjectWidget(QWidget *parent = 0);
@@ -97,6 +98,10 @@ public slots:
     void updateCreateHDDiskCapacity();
 
     // CreateCD
+    void on_toolButtonBrowseCreateCDInputFile_clicked();
+    void on_toolButtonBrowseCreateCDOutputFile_clicked();
+    void on_toolButtonBrowseCreateCDParentOutputFile_clicked();
+    void on_comboBoxCreateCDCompression_currentIndexChanged(int);
 
     // CreateLD
 

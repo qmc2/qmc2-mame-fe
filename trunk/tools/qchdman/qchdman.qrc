@@ -29,6 +29,7 @@
         <file>images/stop.png</file>
         <file>images/tools.png</file>
         <file>images/verify.png</file>
+        <file>images/warning.png</file>
         <file>translations/qchdman_de.qm</file>
         <file>translations/qchdman_el.qm</file>
         <file>translations/qchdman_es.qm</file>
