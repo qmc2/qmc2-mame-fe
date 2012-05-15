@@ -3268,6 +3268,7 @@ qmc2/.svn/text-base/youtubevideoplayer.h.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.ui.svn-base
 qmc2/tools/qchdman/images/.svn
 qmc2/tools/qchdman/images/.svn/prop-base/active.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/addmeta.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/compression.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/copy.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createcd.png.svn-base
@@ -3275,6 +3276,8 @@ qmc2/tools/qchdman/images/.svn/prop-base/createhd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createld.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createraw.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/default.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/delmeta.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/dumpmeta.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/extractcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/extracthd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/extractld.png.svn-base
@@ -3296,6 +3299,7 @@ qmc2/tools/qchdman/images/.svn/prop-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/tools.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/verify.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/active.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/addmeta.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/compression.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/copy.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createcd.png.svn-base
@@ -3303,6 +3307,8 @@ qmc2/tools/qchdman/images/.svn/text-base/createhd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createld.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createraw.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/default.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/delmeta.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/dumpmeta.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/extractcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/extracthd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/extractld.png.svn-base
