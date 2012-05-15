@@ -56,55 +56,89 @@ MainWindow::MainWindow(QWidget *parent) :
     statusTimer.start(QCHDMAN_STATUS_INTERVAL);
 
     // hard disk templates
+    hardDiskTemplates["Alps Electric"]
+            << DiskGeometry("DRND-10A", 615, 2, 17, 256)
+            << DiskGeometry("DRND-20A", 615, 4, 17, 256)
+            << DiskGeometry("RPO-20A", 615, 4, 17, 512);
+
+    hardDiskTemplates["Ampex"]
+            << DiskGeometry("Pyxis-7", 320, 2, 17, 512)
+            << DiskGeometry("Pyxis-13", 320, 4, 17, 512)
+            << DiskGeometry("Pyxis-20", 320, 6, 17, 512)
+            << DiskGeometry("Pyxis-27", 320, 8, 17, 512);
+
+    hardDiskTemplates["Amstrad"]
+            << DiskGeometry("DRMD2OA12A", 615, 4, 17, 512)
+            << DiskGeometry("SRD 30400-50", 822, 2, 51, 512)
+            << DiskGeometry("SRD 3O8OC-50", 964, 10, 17, 512);
+
+    hardDiskTemplates["Blue Disk"]
+            << DiskGeometry("CD 1241-ISA", 976, 8, 31, 512)
+            << DiskGeometry("CD 1501-ISA", 989, 8, 37, 512)
+            << DiskGeometry("CD 2401-ISA", 977, 8, 59, 512)
+            << DiskGeometry("CD 3251-ISA", 1024, 12, 51, 512)
+            << DiskGeometry("CD 421-ISA", 976, 4, 21, 512)
+            << DiskGeometry("CD 5101", 977, 14, 72, 512);
+
     hardDiskTemplates["Conner"]
-            << DiskGeometry("CP3024 (20 MB)", 636, 2, 33, 512)
-            << DiskGeometry("CP349 (40 MB)", 788, 4, 26, 512)
-            << DiskGeometry("CP3184 (80 MB)", 832, 6, 33, 512)
-            << DiskGeometry("CP3104 (100 MB)", 776, 8, 33, 512)
-            << DiskGeometry("CFS210A (203 MB)", 685, 16, 38, 512);
+            << DiskGeometry("CP3024", 636, 2, 33, 512)
+            << DiskGeometry("CP349", 788, 4, 26, 512)
+            << DiskGeometry("CP3184", 832, 6, 33, 512)
+            << DiskGeometry("CP3104", 776, 8, 33, 512)
+            << DiskGeometry("CFS210A", 685, 16, 38, 512);
+
+    hardDiskTemplates["DMA"]
+            << DiskGeometry("306", 612, 2, 17, 256);
 
     hardDiskTemplates["Hitachi"]
-            << DiskGeometry("DK226A-21 (2.0 GB)", 4188, 16, 63, 512)
-            << DiskGeometry("DK227A-41 (3.8 GB)", 7944, 16, 63, 512);
-
-    hardDiskTemplates["Western Digital"]
-            << DiskGeometry("WD262 (20 MB)", 615, 4, 17, 512) // same specs as ST-225
-            << DiskGeometry("WD95038X (32 MB)", 615, 6, 17, 512)
-            << DiskGeometry("WDAC140 (41 MB)", 980, 5, 17, 512)
-            << DiskGeometry("WDAC280 (81 MB)", 980, 10, 17, 512)
-            << DiskGeometry("WDAC1170 (163 MB)", 1010, 6, 55, 512)
-            << DiskGeometry("WDAC2340 (325 MB)", 1010, 12, 55, 512)
-            << DiskGeometry("WDAC2700 (697 MB)", 1416, 16, 63, 512)
-            << DiskGeometry("WDAC11000 (1 GB)", 2046, 16, 63, 512);
-
-    hardDiskTemplates["Seagate"]
-            << DiskGeometry("ST-506 (5 MB)", 153, 4, 32, 256)
-            << DiskGeometry("ST-412 (10 MB)", 306, 4, 32, 256)
-            << DiskGeometry("ST-225 (20 MB)", 615, 4, 17, 512) // same specs as WD262
-            << DiskGeometry("ST-251 (41 MB)", 820, 6, 17, 512)
-            << DiskGeometry("ST-9100A (82 MB)", 748, 14, 16, 512)
-            << DiskGeometry("ST-3243A (204 MB)", 1024, 12, 34, 512)
-            << DiskGeometry("ST-9655AG (512 MB)", 1024, 16, 64, 512);
-
-    hardDiskTemplates["Maxtor"]
-            << DiskGeometry("XT-2085 (69 MB)", 1224, 7, 33, 256)
-            << DiskGeometry("XT-2190 (148 MB)", 1224, 15, 33, 256);
-
-    hardDiskTemplates["JTC"]
-            << DiskGeometry("100 (5 MB)", 131, 4, 17, 512)
-            << DiskGeometry("1006 (7 MB)", 436, 2, 17, 512)
-            << DiskGeometry("1010 (14 MB)", 436, 4, 17, 512);
+            << DiskGeometry("DK226A-21", 4188, 16, 63, 512)
+            << DiskGeometry("DK227A-41", 7944, 16, 63, 512);
 
     hardDiskTemplates["JVC"]
-            << DiskGeometry("JD 3812M0Z0 (21 MB)", 436, 2, 48, 512)
-            << DiskGeometry("JD E3848HA (43 MB)", 436, 4, 48, 512);
+            << DiskGeometry("JD 3812M0Z0", 436, 2, 48, 512)
+            << DiskGeometry("JD E3848HA", 436, 4, 48, 512);
+
+    hardDiskTemplates["JTC"]
+            << DiskGeometry("100", 131, 4, 17, 512)
+            << DiskGeometry("1006", 436, 2, 17, 512)
+            << DiskGeometry("1010", 436, 4, 17, 512);
 
     hardDiskTemplates["Magtron"]
-            << DiskGeometry("MT 5760 (677 MB)", 1632, 15, 54, 512);
+            << DiskGeometry("MT 5760", 1632, 15, 54, 512);
+
+    hardDiskTemplates["Maxtor"]
+            << DiskGeometry("XT-1065", 918, 7, 17, 512)
+            << DiskGeometry("XT-1085", 1024, 8, 17, 512)
+            << DiskGeometry("XT-1105", 918, 11, 17, 512)
+            << DiskGeometry("XT-2085", 1224, 7, 33, 256)
+            << DiskGeometry("XT-2190", 1224, 15, 33, 256)
+            << DiskGeometry("XT-4170E/S", 1224, 7, 36, 512)
+            << DiskGeometry("XT-4280S", 1224, 11, 36, 512)
+            << DiskGeometry("XT-8380S", 1632, 8, 54, 512)
+            << DiskGeometry("XT-8760S", 1632, 15, 54, 512);
+
+    hardDiskTemplates["Seagate"]
+            << DiskGeometry("ST-506", 153, 4, 32, 256)
+            << DiskGeometry("ST-412", 306, 4, 32, 256)
+            << DiskGeometry("ST-225", 615, 4, 17, 512) // same specs as Western Digital WD262
+            << DiskGeometry("ST-251", 820, 6, 17, 512)
+            << DiskGeometry("ST-9100A", 748, 14, 16, 512)
+            << DiskGeometry("ST-3243A", 1024, 12, 34, 512)
+            << DiskGeometry("ST-9655AG", 1024, 16, 64, 512);
 
     hardDiskTemplates["Texas Instruments"]
-            << DiskGeometry("TI-5 (5 MB)", 153, 4, 17, 512)
-            << DiskGeometry("525-122 (10 MB)", 306, 4, 17, 512);
+            << DiskGeometry("TI-5", 153, 4, 17, 512)
+            << DiskGeometry("525-122", 306, 4, 17, 512);
+
+    hardDiskTemplates["Western Digital"]
+            << DiskGeometry("WD262", 615, 4, 17, 512) // same specs as Seagate ST-225
+            << DiskGeometry("WD95038X", 615, 6, 17, 512)
+            << DiskGeometry("WDAC140", 980, 5, 17, 512)
+            << DiskGeometry("WDAC280", 980, 10, 17, 512)
+            << DiskGeometry("WDAC1170", 1010, 6, 55, 512)
+            << DiskGeometry("WDAC2340", 1010, 12, 55, 512)
+            << DiskGeometry("WDAC2700", 1416, 16, 63, 512)
+            << DiskGeometry("WDAC11000", 2046, 16, 63, 512);
 
     QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
 
