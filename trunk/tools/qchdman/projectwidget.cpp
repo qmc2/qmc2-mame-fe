@@ -44,7 +44,7 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     while ( it.hasNext() ) {
        it.next();
        foreach (DiskGeometry geo, it.value())
-           ui->comboBoxCreateHDFromTemplate->addItem(it.key() + ": " + geo.name + QString(" (%1)").arg(mainWindow->humanReadable(geo.cyls * geo.heads * geo.sectors * geo.sectorSize)));
+           ui->comboBoxCreateHDFromTemplate->addItem(it.key() + ": " + geo.name + QString(" (%1)").arg(mainWindow->humanReadable((qreal)geo.cyls * (qreal)geo.heads * (qreal)geo.sectors * (qreal)geo.sectorSize)));
     }
 
     // prepare morph & clone functionality
