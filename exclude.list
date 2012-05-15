@@ -3298,6 +3298,7 @@ qmc2/tools/qchdman/images/.svn/prop-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/tools.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/verify.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/warning.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/active.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/addmeta.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/compression.png.svn-base
@@ -3329,6 +3330,7 @@ qmc2/tools/qchdman/images/.svn/text-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/tools.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/verify.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/warning.png.svn-base
 qmc2/tools/qchdman/.svn
 qmc2/tools/qchdman/.svn/text-base/aboutdialog.cpp.svn-base
 qmc2/tools/qchdman/.svn/text-base/aboutdialog.h.svn-base
