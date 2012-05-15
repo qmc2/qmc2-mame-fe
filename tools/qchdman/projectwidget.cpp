@@ -48,7 +48,7 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     }
 
     // prepare morph & clone functionality
-    // FIXME: missing QCHDMAN_PRJ_CREATE_CD, QCHDMAN_PRJ_CREATE_LD, QCHDMAN_PRJ_EXTRACT_RAW, QCHDMAN_PRJ_EXTRACT_CD and QCHDMAN_PRJ_EXTRACT_LD
+    // FIXME: missing QCHDMAN_PRJ_CREATE_LD, QCHDMAN_PRJ_EXTRACT_RAW, QCHDMAN_PRJ_EXTRACT_CD, QCHDMAN_PRJ_EXTRACT_LD, QCHDMAN_PRJ_DUMP_META,QCHDMAN_PRJ_ADD_META and QCHDMAN_PRJ_DEL_META
     copyGroups[QCHDMAN_PRJ_INFO]
             << ui->lineEditInfoInputFile << ui->checkBoxInfoVerbose;
     copyTypes[QCHDMAN_PRJ_INFO]
@@ -87,6 +87,14 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
             << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
             << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
             << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_SPINBOX;
+    copyGroups[QCHDMAN_PRJ_CREATE_CD]
+            << ui->lineEditCreateCDInputFile << 0 << ui->lineEditCreateCDOutputFile << ui->lineEditCreateCDParentOutputFile
+            << ui->checkBoxCreateCDForce << ui->spinBoxCreateCDProcessors << 0 << 0
+            << 0 << 0 << ui->spinBoxCreateCDHunkSize << ui->comboBoxCreateCDCompression;
+    copyTypes[QCHDMAN_PRJ_CREATE_CD]
+            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
+            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE
+            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
     copyGroups[QCHDMAN_PRJ_EXTRACT_HD]
             << ui->lineEditExtractHDInputFile << ui->lineEditExtractHDParentInputFile << ui->lineEditExtractHDOutputFile << 0
             << ui->checkBoxExtractHDForce << 0 << ui->spinBoxExtractHDInputStartByte << ui->spinBoxExtractHDInputStartHunk
@@ -100,8 +108,9 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     copyCompressors.clear();
     createRawCompressors.clear();
     createHDCompressors.clear();
+    createCDCompressors.clear();
     QList<QComboBox *> compressionBoxes;
-    compressionBoxes << ui->comboBoxCopyCompression << ui->comboBoxCreateRawCompression << ui->comboBoxCreateHDCompression;
+    compressionBoxes << ui->comboBoxCopyCompression << ui->comboBoxCreateRawCompression << ui->comboBoxCreateHDCompression << ui->comboBoxCreateCDCompression;
     foreach (QComboBox *cb, compressionBoxes) {
         cb->blockSignals(true);
         cb->insertItem(0, tr("default"));
@@ -253,12 +262,21 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         parentWidget()->setWindowIcon(QIcon(":/images/createhd.png"));
         break;
     case QCHDMAN_PRJ_CREATE_CD:
+        widgetHeight = ui->frameCreateCD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelCreateCDHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelCreateCDHelp->margin();
+#endif
         parentWidget()->setWindowIcon(QIcon(":/images/createcd.png"));
         break;
     case QCHDMAN_PRJ_CREATE_LD:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/createld.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/extractraw.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
@@ -272,18 +290,23 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         parentWidget()->setWindowIcon(QIcon(":/images/extracthd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/extractcd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/extractld.png"));
         break;
     case QCHDMAN_PRJ_DUMP_META:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/dumpmeta.png"));
         break;
     case QCHDMAN_PRJ_ADD_META:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/addmeta.png"));
         break;
     case QCHDMAN_PRJ_DEL_META:
+        // FIXME
         parentWidget()->setWindowIcon(QIcon(":/images/delmeta.png"));
         break;
     }
@@ -425,7 +448,22 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_CREATE_CD:
         projectTypeName = tr("CreateCD");
         arguments << "createcd";
-        // FIXME
+        if ( !ui->lineEditCreateCDInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditCreateCDInputFile->text();
+        if ( !ui->lineEditCreateCDOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditCreateCDOutputFile->text();
+        if ( !ui->lineEditCreateCDParentOutputFile->text().isEmpty() )
+            arguments << "--parentoutput" << ui->lineEditCreateCDParentOutputFile->text();
+        if ( ui->checkBoxCreateCDForce->isChecked() )
+            arguments << "--force";
+        if ( ui->spinBoxCreateCDHunkSize->value() >= 0 )
+            arguments << "--hunksize" << QString::number(ui->spinBoxCreateCDHunkSize->value());
+        if ( !createCDCompressors.isEmpty() )
+            arguments << "--compression" << createCDCompressors.join(",");
+        else if ( ui->comboBoxCreateCDCompression->currentText() != tr("default") )
+            arguments << "--compression" << "none";
+        if ( ui->spinBoxCreateCDProcessors->value() >= 1 )
+            arguments << "--numprocessors" << QString::number(ui->spinBoxCreateCDProcessors->value());
         break;
     case QCHDMAN_PRJ_CREATE_LD:
         projectTypeName = tr("CreateLD");
@@ -590,6 +628,7 @@ void ProjectWidget::readyReadStandardError()
             case QCHDMAN_PRJ_COPY:
             case QCHDMAN_PRJ_CREATE_RAW:
             case QCHDMAN_PRJ_CREATE_HD:
+            case QCHDMAN_PRJ_CREATE_CD:
             case QCHDMAN_PRJ_EXTRACT_HD:
                 if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
                     QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
@@ -843,6 +882,41 @@ void ProjectWidget::updateCreateHDDiskCapacity()
         ui->labelCreateHDDiskCapacity->setText(tr("unknown"));
     else
         ui->labelCreateHDDiskCapacity->setText(mainWindow->humanReadable(cyls * heads * sectors * bps));
+}
+
+void ProjectWidget::on_toolButtonBrowseCreateCDInputFile_clicked()
+{
+    QString folder = ui->lineEditCreateCDInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredInputFolder;
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CD input file"), folder, tr("CUE files (*.cue);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditCreateCDInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCreateCDOutputFile_clicked()
+{
+    QString folder = ui->lineEditCreateCDOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditCreateCDOutputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCreateCDParentOutputFile_clicked()
+{
+    QString folder = ui->lineEditCreateCDParentOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDOutputFolder;
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose parent CHD output file"), folder, tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditCreateCDParentOutputFile->setText(s);
+}
+
+void ProjectWidget::on_comboBoxCreateCDCompression_currentIndexChanged(int index)
+{
+    updateCompression(ui->comboBoxCreateCDCompression, &createCDCompressors, index);
 }
 
 void ProjectWidget::on_toolButtonBrowseExtractHDInputFile_clicked()
@@ -1142,7 +1216,37 @@ void ProjectWidget::load(const QString &fileName)
                         ui->spinBoxCreateHDSectors->setValue(line.remove("CreateHDSectors = ").toInt());
                     break;
                 case QCHDMAN_PRJ_CREATE_CD:
-                    // FIXME
+                    if ( line.startsWith("CreateCDInputFile = ") )
+                        ui->lineEditCreateCDInputFile->setText(line.remove("CreateCDInputFile = "));
+                    if ( line.startsWith("CreateCDOutputFile = ") )
+                        ui->lineEditCreateCDOutputFile->setText(line.remove("CreateCDOutputFile = "));
+                    if ( line.startsWith("CreateCDParentOutputFile = ") )
+                        ui->lineEditCreateCDParentOutputFile->setText(line.remove("CreateCDParentOutputFile = "));
+                    if ( line.startsWith("CreateCDForce = ") )
+                        ui->checkBoxCreateCDForce->setChecked(line.remove("CreateCDForce = ").toInt());
+                    if ( line.startsWith("CreateCDProcessors = ") )
+                        ui->spinBoxCreateCDProcessors->setValue(line.remove("CreateCDProcessors = ").toInt());
+                    if ( line.startsWith("CreateCDHunkSize = ") )
+                        ui->spinBoxCreateCDHunkSize->setValue(line.remove("CreateCDHunkSize = ").toInt());
+                    if ( line.startsWith("CreateCDCompression = ") ) {
+                        QString compression = line.remove("CreateCDCompression = ");
+                        if ( compression == "none" )
+                            ui->comboBoxCreateCDCompression->setCurrentIndex(3);
+                        else if ( compression != "default" ) {
+                            createCDCompressors.clear();
+                            foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
+                                if ( compressionTypes.contains(cmp) ) {
+                                    int index = ui->comboBoxCreateCDCompression->findText(cmp + " ", Qt::MatchStartsWith);
+                                    if ( index > 4 ) {
+                                        ui->comboBoxCreateCDCompression->setItemIcon(index, QIcon(":/images/active.png"));
+                                        ui->comboBoxCreateCDCompression->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+                                        createCDCompressors << cmp;
+                                    }
+                                }
+                            }
+                            on_comboBoxCreateCDCompression_currentIndexChanged(-1);
+                        }
+                    }
                     break;
                 case QCHDMAN_PRJ_CREATE_LD:
                     // FIXME
@@ -1309,7 +1413,20 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "CreateHDSectors = " << ui->spinBoxCreateHDSectors->value() << "\n";
             break;
         case QCHDMAN_PRJ_CREATE_CD:
-            // FIXME
+            ts << "CreateCDInputFile = " << ui->lineEditCreateCDInputFile->text() << "\n";
+            ts << "CreateCDOutputFile = " << ui->lineEditCreateCDOutputFile->text() << "\n";
+            ts << "CreateCDParentOutputFile = " << ui->lineEditCreateCDParentOutputFile->text() << "\n";
+            ts << "CreateCDForce = " << ui->checkBoxCreateCDForce->isChecked() << "\n";
+            ts << "CreateCDProcessors = " << ui->spinBoxCreateCDProcessors->value() << "\n";
+            ts << "CreateCDHunkSize = " << ui->spinBoxCreateCDHunkSize->value() << "\n";
+            ts << "CreateCDCompression = ";
+            if ( !createCDCompressors.isEmpty() )
+                ts << createCDCompressors.join(",");
+            else if ( ui->comboBoxCreateCDCompression->currentText() == tr("default") )
+                ts << "default";
+            else
+                ts << "none";
+            ts << "\n";
             break;
         case QCHDMAN_PRJ_CREATE_LD:
             // FIXME
@@ -1405,6 +1522,12 @@ void ProjectWidget::clone()
                         case QCHDMAN_PRJ_CREATE_RAW:
                             projectWidget->createRawCompressors.clear();
                             break;
+                        case QCHDMAN_PRJ_CREATE_HD:
+                            projectWidget->createHDCompressors.clear();
+                            break;
+                        case QCHDMAN_PRJ_CREATE_CD:
+                            projectWidget->createCDCompressors.clear();
+                            break;
                         }
                         foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
                             if ( compressionTypes.contains(cmp) ) {
@@ -1419,6 +1542,12 @@ void ProjectWidget::clone()
                                     case QCHDMAN_PRJ_CREATE_RAW:
                                         projectWidget->createRawCompressors << cmp;
                                         break;
+                                    case QCHDMAN_PRJ_CREATE_HD:
+                                        projectWidget->createHDCompressors << cmp;
+                                        break;
+                                    case QCHDMAN_PRJ_CREATE_CD:
+                                        projectWidget->createCDCompressors << cmp;
+                                        break;
                                     }
                                 }
                             }
@@ -1429,6 +1558,12 @@ void ProjectWidget::clone()
                             break;
                         case QCHDMAN_PRJ_CREATE_RAW:
                             projectWidget->on_comboBoxCreateRawCompression_currentIndexChanged(-1);
+                            break;
+                        case QCHDMAN_PRJ_CREATE_HD:
+                            projectWidget->on_comboBoxCreateHDCompression_currentIndexChanged(-1);
+                            break;
+                        case QCHDMAN_PRJ_CREATE_CD:
+                            projectWidget->on_comboBoxCreateCDCompression_currentIndexChanged(-1);
                             break;
                         }
                     }
@@ -1484,6 +1619,12 @@ void ProjectWidget::morph()
                         case QCHDMAN_PRJ_CREATE_RAW:
                             createRawCompressors.clear();
                             break;
+                        case QCHDMAN_PRJ_CREATE_HD:
+                            createHDCompressors.clear();
+                            break;
+                        case QCHDMAN_PRJ_CREATE_CD:
+                            createCDCompressors.clear();
+                            break;
                         }
                         foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
                             if ( compressionTypes.contains(cmp) ) {
@@ -1498,6 +1639,12 @@ void ProjectWidget::morph()
                                     case QCHDMAN_PRJ_CREATE_RAW:
                                         createRawCompressors << cmp;
                                         break;
+                                    case QCHDMAN_PRJ_CREATE_HD:
+                                        createHDCompressors << cmp;
+                                        break;
+                                    case QCHDMAN_PRJ_CREATE_CD:
+                                        createCDCompressors << cmp;
+                                        break;
                                     }
                                 }
                             }
@@ -1508,6 +1655,12 @@ void ProjectWidget::morph()
                             break;
                         case QCHDMAN_PRJ_CREATE_RAW:
                             on_comboBoxCreateRawCompression_currentIndexChanged(-1);
+                            break;
+                        case QCHDMAN_PRJ_CREATE_HD:
+                            on_comboBoxCreateHDCompression_currentIndexChanged(-1);
+                            break;
+                        case QCHDMAN_PRJ_CREATE_CD:
+                            on_comboBoxCreateCDCompression_currentIndexChanged(-1);
                             break;
                         }
                     }

@@ -54,6 +54,11 @@ void PreferencesDialog::applySettings()
 
     // Paths
     globalConfig->setPreferencesChdmanBinary(ui->lineEditChdmanBinary->text());
+    QFileInfo chdmanInfo(ui->lineEditChdmanBinary->text());
+    if ( chdmanInfo.exists() && chdmanInfo.isExecutable() )
+        ui->labelChdmanWarningPixmap->hide();
+    else
+        ui->labelChdmanWarningPixmap->show();
     globalConfig->setPreferencesPreferredCHDInputPath(ui->lineEditPreferredCHDInputPath->text());
     globalConfig->setPreferencesPreferredInputPath(ui->lineEditPreferredInputPath->text());
     globalConfig->setPreferencesPreferredCHDOutputPath(ui->lineEditPreferredCHDOutputPath->text());
@@ -142,6 +147,11 @@ void PreferencesDialog::restoreSettings()
 
     // Paths
     ui->lineEditChdmanBinary->setText(globalConfig->preferencesChdmanBinary());
+    QFileInfo chdmanInfo(ui->lineEditChdmanBinary->text());
+    if ( chdmanInfo.exists() && chdmanInfo.isExecutable() )
+        ui->labelChdmanWarningPixmap->hide();
+    else
+        ui->labelChdmanWarningPixmap->show();
     ui->lineEditPreferredCHDInputPath->setText(globalConfig->preferencesPreferredCHDInputPath());
     ui->lineEditPreferredInputPath->setText(globalConfig->preferencesPreferredInputPath());
     ui->lineEditPreferredCHDOutputPath->setText(globalConfig->preferencesPreferredCHDOutputPath());

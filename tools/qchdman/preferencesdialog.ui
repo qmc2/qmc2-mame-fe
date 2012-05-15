@@ -68,7 +68,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabGUI">
       <attribute name="title">
@@ -306,13 +306,6 @@
        <string>Paths</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutTabPaths">
-       <item row="3" column="0">
-        <widget class="QLabel" name="labelPreferredCHDInputPath">
-         <property name="text">
-          <string>CHD input</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="labelChdmanBinary">
          <property name="text">
@@ -320,7 +313,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="1" column="2">
         <widget class="QLineEdit" name="lineEditChdmanBinary">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -333,7 +326,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="1" column="3">
         <widget class="QToolButton" name="toolButtonBrowseChdmanBinary">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -347,7 +340,7 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="3">
+       <item row="7" column="0" colspan="4">
         <spacer name="verticalSpacerPaths">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -360,42 +353,21 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="0" colspan="3">
-        <widget class="QLabel" name="label">
+       <item row="0" column="0" colspan="4">
+        <widget class="QLabel" name="labelBinaryPaths">
          <property name="text">
           <string>&lt;b&gt;Paths to program binaries&lt;/b&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="labelPreferredInputPath">
-         <property name="text">
-          <string>Non-CHD input</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="3">
+       <item row="2" column="0" colspan="4">
         <widget class="QLabel" name="labelPreferredPaths">
          <property name="text">
           <string>&lt;b&gt;Preferred folders for input &amp;amp; output files&lt;/b&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="labelPreferredCHDOutputPath">
-         <property name="text">
-          <string>CHD output</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="labelPreferredOutputPath">
-         <property name="text">
-          <string>Non-CHD output</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
+       <item row="6" column="2">
         <widget class="QLineEdit" name="lineEditPreferredOutputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -408,7 +380,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="5" column="2">
         <widget class="QLineEdit" name="lineEditPreferredCHDOutputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -421,7 +393,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="4" column="2">
         <widget class="QLineEdit" name="lineEditPreferredInputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -434,7 +406,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="3" column="2">
         <widget class="QLineEdit" name="lineEditPreferredCHDInputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -447,7 +419,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
+       <item row="3" column="3">
         <widget class="QToolButton" name="toolButtonBrowsePreferredCHDInputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -461,7 +433,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
+       <item row="4" column="3">
         <widget class="QToolButton" name="toolButtonBrowsePreferredInputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -475,7 +447,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
+       <item row="5" column="3">
         <widget class="QToolButton" name="toolButtonBrowsePreferredCHDOutputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -489,7 +461,7 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="2">
+       <item row="6" column="3">
         <widget class="QToolButton" name="toolButtonBrowsePreferredOutputPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -500,6 +472,56 @@
          <property name="icon">
           <iconset resource="qchdman.qrc">
            <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="labelChdmanWarningPixmap">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="qchdman.qrc">:/images/warning.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="labelPreferredCHDInputPath">
+         <property name="text">
+          <string>CHD input</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QLabel" name="labelPreferredInputPath">
+         <property name="text">
+          <string>Non-CHD input</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QLabel" name="labelPreferredCHDOutputPath">
+         <property name="text">
+          <string>CHD output</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QLabel" name="labelPreferredOutputPath">
+         <property name="text">
+          <string>Non-CHD output</string>
          </property>
         </widget>
        </item>
