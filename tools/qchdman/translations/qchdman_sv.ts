@@ -219,17 +219,17 @@
     <message>
         <location filename="../mainwindow.ui" line="199"/>
         <source>Cascade</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alla</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Cascade project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alla projektfönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="205"/>
         <source>Ctrl+Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+C</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="213"/>
@@ -294,32 +294,32 @@
     <message>
         <location filename="../mainwindow.ui" line="267"/>
         <source>Windowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Fönster</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="270"/>
         <source>View projects in windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa projekt i fönsterläge</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="273"/>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="281"/>
         <source>Tabbed</source>
-        <translation type="unfinished"></translation>
+        <translation>Flikar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="284"/>
         <source>View projects in tabbed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa projekt i flikläge</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="287"/>
         <source>Ctrl+Shift+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+T</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="295"/>
@@ -593,12 +593,12 @@ Fortsätta?</translation>
     <message>
         <location filename="../preferencesdialog.ui" line="312"/>
         <source>CHDMAN binary</source>
-        <translation type="unfinished"></translation>
+        <translation>CHDMAN-binärfil</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="325"/>
         <source>Path to the CHDMAN binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökväg till CHDMAN-binärfil</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="359"/>
@@ -648,7 +648,7 @@ Fortsätta?</translation>
     <message>
         <location filename="../preferencesdialog.cpp" line="88"/>
         <source>Choose CHDMAN binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj CHDMAN-binärfil</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="88"/>
@@ -701,42 +701,42 @@ Fortsätta?</translation>
     <message>
         <location filename="../projectwidget.ui" line="57"/>
         <source>Create a raw CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa en rå CHD från en inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="66"/>
         <source>Create an HD CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa en HD CHD från en inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="75"/>
         <source>Create a CD CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa en CD CHD från en inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="84"/>
         <source>Create an LD CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa en LD CHD från en inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="93"/>
         <source>Extract a raw file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera en rå fil från en CHD-inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="102"/>
         <source>Extract an HD file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera en HD-fil från en CHD-inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="111"/>
         <source>Extract a CD file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera en CD-fil från en CHD-inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="120"/>
         <source>Extract an LD AVI file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera en LD AVI-fil från en CHD-inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="129"/>
@@ -756,7 +756,7 @@ Fortsätta?</translation>
     <message>
         <location filename="../projectwidget.ui" line="165"/>
         <source>Project status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektstatus / -förlopp</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="171"/>
@@ -773,7 +773,7 @@ Fortsätta?</translation>
     <message>
         <location filename="../projectwidget.ui" line="204"/>
         <source>Terminate the running process</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta körande processen</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="221"/>
@@ -783,7 +783,7 @@ Fortsätta?</translation>
     <message>
         <location filename="../projectwidget.ui" line="302"/>
         <source>Output additional information (--verbose)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv ut ytterligare information (--verbose)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="305"/>
@@ -796,7 +796,7 @@ Fortsätta?</translation>
         <location filename="../projectwidget.ui" line="718"/>
         <location filename="../projectwidget.ui" line="2271"/>
         <source>CHD input file (--input)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD-inmatningsfil (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="321"/>
@@ -804,7 +804,7 @@ Fortsätta?</translation>
         <location filename="../projectwidget.ui" line="721"/>
         <location filename="../projectwidget.ui" line="2274"/>
         <source>CHD input file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD-inmatningsfil (nödvändig)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="331"/>
@@ -819,7 +819,17 @@ Displays information about a CHD file.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --verbose, -v: output additional information
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Info&lt;/b&gt;
+&lt;/p&gt;
+Visar information om en CHD-fil.
+&lt;p&gt;
+&lt;b&gt;Parametrar&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filnamn&amp;gt;: inmatningsfilnamn (nödvändig)&lt;br&gt;
+--verbose, -v: skriv ut ytterligare information
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="422"/>
@@ -865,7 +875,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="1976"/>
         <location filename="../projectwidget.ui" line="2223"/>
         <source>Force overwriting output files (--force)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvinga överskrivning av utmatningsfiler (--force)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="514"/>
@@ -913,7 +923,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="2242"/>
         <location filename="../projectwidget.ui" line="2327"/>
         <source>auto</source>
-        <translation type="unfinished"></translation>
+        <translation>auto</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="552"/>
@@ -977,7 +987,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="1639"/>
         <location filename="../projectwidget.ui" line="1966"/>
         <source>CHD output file (--output)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD-utmatningsfil (--output)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="670"/>
@@ -985,7 +995,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="1642"/>
         <location filename="../projectwidget.ui" line="1969"/>
         <source>CHD output file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD-utmatningsfil (nödvändig)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="677"/>
@@ -1205,7 +1215,7 @@ Creates a new HD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="1844"/>
         <source>Set disk geometry from predefined templates</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ in diskgeometri från fördefinierade mallar</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1854"/>
@@ -1245,12 +1255,12 @@ Creates a CD CHD from an input file.
     <message>
         <location filename="../projectwidget.ui" line="2188"/>
         <source>Output file (--output)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utmatningsfil (--output)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2191"/>
         <source>Output file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utmatningsfil (nödvändig)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2367"/>
@@ -1376,27 +1386,27 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="174"/>
         <source>Copy stdout to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera standard ut till urklipp</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="175"/>
         <source>Copy stderr to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera standard fel till urklipp</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="176"/>
         <source>Copy command to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera kommando till urklipp</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="329"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="337"/>
         <source>Verify</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifiera</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="345"/>
@@ -1461,7 +1471,7 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="540"/>
         <source>starting process</source>
-        <translation type="unfinished"></translation>
+        <translation>startar process</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="551"/>
@@ -1471,13 +1481,13 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="557"/>
         <source>terminating process</source>
-        <translation type="unfinished"></translation>
+        <translation>avslutar process</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="566"/>
         <location filename="../projectwidget.cpp" line="568"/>
         <source>process started: PID = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>process startad: PID = %1</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="571"/>
@@ -1492,7 +1502,7 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="580"/>
         <source>terminated</source>
-        <translation type="unfinished"></translation>
+        <translation>avslutad</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="582"/>
@@ -1503,7 +1513,7 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="584"/>
         <source>process finished: exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>process färdig: exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="605"/>
@@ -1558,7 +1568,7 @@ Extracts an HD file from a CHD input file.
         <location filename="../projectwidget.cpp" line="731"/>
         <location filename="../projectwidget.cpp" line="927"/>
         <source>Choose CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj CHD-inmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="701"/>
@@ -1592,7 +1602,7 @@ Extracts an HD file from a CHD input file.
         <location filename="../projectwidget.cpp" line="821"/>
         <location filename="../projectwidget.cpp" line="902"/>
         <source>Choose CHD output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj CHD-utmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="761"/>
@@ -1631,7 +1641,7 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="937"/>
         <source>Choose output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj utmatningsfil</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1046"/>
@@ -1642,7 +1652,7 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="1301"/>
         <source>Failed loading project &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Misslyckades med att läsa in projektet &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1308"/>
@@ -1653,7 +1663,7 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="1335"/>
         <source>Qt CHDMAN project file -- please do not edit manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt CHDMAN-projektfil -- redigera inte manuellt</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1466"/>
