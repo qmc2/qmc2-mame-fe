@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>images/active.png</file>
+        <file>images/addmeta.png</file>
         <file>images/copy.png</file>
         <file>images/compression.png</file>
         <file>images/createcd.png</file>
@@ -8,6 +9,8 @@
         <file>images/createld.png</file>
         <file>images/createraw.png</file>
         <file>images/default.png</file>
+        <file>images/delmeta.png</file>
+        <file>images/dumpmeta.png</file>
         <file>images/extractcd.png</file>
         <file>images/extracthd.png</file>
         <file>images/extractld.png</file>

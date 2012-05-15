@@ -731,60 +731,75 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../projectwidget.ui" line="129"/>
+        <source>Dump meta-data from a CHD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../projectwidget.ui" line="138"/>
+        <source>Add meta-data to a CHD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="147"/>
+        <source>Remove meta-data from a CHD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="165"/>
         <source>Project status / progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="144"/>
-        <location filename="../projectwidget.cpp" line="522"/>
-        <location filename="../projectwidget.cpp" line="618"/>
+        <location filename="../projectwidget.ui" line="171"/>
+        <location filename="../projectwidget.cpp" line="552"/>
+        <location filename="../projectwidget.cpp" line="648"/>
         <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="157"/>
+        <location filename="../projectwidget.ui" line="184"/>
         <source>Run this project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="177"/>
+        <location filename="../projectwidget.ui" line="204"/>
         <source>Terminate the running process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="194"/>
+        <location filename="../projectwidget.ui" line="221"/>
         <source>Tools menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="275"/>
+        <location filename="../projectwidget.ui" line="302"/>
         <source>Output additional information (--verbose)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="278"/>
+        <location filename="../projectwidget.ui" line="305"/>
         <source>Verbose output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="291"/>
-        <location filename="../projectwidget.ui" line="365"/>
-        <location filename="../projectwidget.ui" line="691"/>
-        <location filename="../projectwidget.ui" line="1995"/>
+        <location filename="../projectwidget.ui" line="318"/>
+        <location filename="../projectwidget.ui" line="392"/>
+        <location filename="../projectwidget.ui" line="718"/>
+        <location filename="../projectwidget.ui" line="2022"/>
         <source>CHD input file (--input)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="294"/>
-        <location filename="../projectwidget.ui" line="368"/>
-        <location filename="../projectwidget.ui" line="694"/>
-        <location filename="../projectwidget.ui" line="1998"/>
+        <location filename="../projectwidget.ui" line="321"/>
+        <location filename="../projectwidget.ui" line="395"/>
+        <location filename="../projectwidget.ui" line="721"/>
+        <location filename="../projectwidget.ui" line="2025"/>
         <source>CHD input file (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="304"/>
+        <location filename="../projectwidget.ui" line="331"/>
         <source>&lt;p&gt;
 &lt;b&gt;CHDMAN Info&lt;/b&gt;
 &lt;/p&gt;
@@ -799,21 +814,21 @@ Displays information about a CHD file.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="395"/>
-        <location filename="../projectwidget.ui" line="798"/>
-        <location filename="../projectwidget.ui" line="2011"/>
+        <location filename="../projectwidget.ui" line="422"/>
+        <location filename="../projectwidget.ui" line="825"/>
+        <location filename="../projectwidget.ui" line="2038"/>
         <source>Parent CHD input file (--inputparent)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="398"/>
-        <location filename="../projectwidget.ui" line="801"/>
-        <location filename="../projectwidget.ui" line="2014"/>
+        <location filename="../projectwidget.ui" line="425"/>
+        <location filename="../projectwidget.ui" line="828"/>
+        <location filename="../projectwidget.ui" line="2041"/>
         <source>Parent CHD input file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="422"/>
+        <location filename="../projectwidget.ui" line="449"/>
         <source>&lt;p&gt;
 &lt;b&gt;CHDMAN Verify&lt;/b&gt;
 &lt;/p&gt;
@@ -828,75 +843,75 @@ Verifies a CHD&apos;s integrity.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="500"/>
-        <location filename="../projectwidget.ui" line="990"/>
-        <location filename="../projectwidget.ui" line="1379"/>
-        <location filename="../projectwidget.ui" line="1928"/>
+        <location filename="../projectwidget.ui" line="527"/>
+        <location filename="../projectwidget.ui" line="1017"/>
+        <location filename="../projectwidget.ui" line="1406"/>
+        <location filename="../projectwidget.ui" line="1955"/>
         <source>Starting byte offset within the input (--inputstartbyte)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="503"/>
-        <location filename="../projectwidget.ui" line="528"/>
-        <location filename="../projectwidget.ui" line="567"/>
-        <location filename="../projectwidget.ui" line="710"/>
-        <location filename="../projectwidget.ui" line="735"/>
-        <location filename="../projectwidget.ui" line="760"/>
-        <location filename="../projectwidget.ui" line="899"/>
-        <location filename="../projectwidget.ui" line="945"/>
-        <location filename="../projectwidget.ui" line="993"/>
-        <location filename="../projectwidget.ui" line="1047"/>
-        <location filename="../projectwidget.ui" line="1139"/>
-        <location filename="../projectwidget.ui" line="1382"/>
-        <location filename="../projectwidget.ui" line="1445"/>
-        <location filename="../projectwidget.ui" line="1477"/>
-        <location filename="../projectwidget.ui" line="1503"/>
-        <location filename="../projectwidget.ui" line="1528"/>
-        <location filename="../projectwidget.ui" line="1590"/>
-        <location filename="../projectwidget.ui" line="1631"/>
-        <location filename="../projectwidget.ui" line="1656"/>
-        <location filename="../projectwidget.ui" line="1681"/>
-        <location filename="../projectwidget.ui" line="1722"/>
-        <location filename="../projectwidget.ui" line="1890"/>
-        <location filename="../projectwidget.ui" line="1931"/>
-        <location filename="../projectwidget.ui" line="1966"/>
-        <location filename="../projectwidget.ui" line="2051"/>
+        <location filename="../projectwidget.ui" line="530"/>
+        <location filename="../projectwidget.ui" line="555"/>
+        <location filename="../projectwidget.ui" line="594"/>
+        <location filename="../projectwidget.ui" line="737"/>
+        <location filename="../projectwidget.ui" line="762"/>
+        <location filename="../projectwidget.ui" line="787"/>
+        <location filename="../projectwidget.ui" line="926"/>
+        <location filename="../projectwidget.ui" line="972"/>
+        <location filename="../projectwidget.ui" line="1020"/>
+        <location filename="../projectwidget.ui" line="1074"/>
+        <location filename="../projectwidget.ui" line="1166"/>
+        <location filename="../projectwidget.ui" line="1409"/>
+        <location filename="../projectwidget.ui" line="1472"/>
+        <location filename="../projectwidget.ui" line="1504"/>
+        <location filename="../projectwidget.ui" line="1530"/>
+        <location filename="../projectwidget.ui" line="1555"/>
+        <location filename="../projectwidget.ui" line="1617"/>
+        <location filename="../projectwidget.ui" line="1658"/>
+        <location filename="../projectwidget.ui" line="1683"/>
+        <location filename="../projectwidget.ui" line="1708"/>
+        <location filename="../projectwidget.ui" line="1749"/>
+        <location filename="../projectwidget.ui" line="1917"/>
+        <location filename="../projectwidget.ui" line="1958"/>
+        <location filename="../projectwidget.ui" line="1993"/>
+        <location filename="../projectwidget.ui" line="2078"/>
         <source>auto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="525"/>
-        <location filename="../projectwidget.ui" line="1015"/>
-        <location filename="../projectwidget.ui" line="1474"/>
+        <location filename="../projectwidget.ui" line="552"/>
+        <location filename="../projectwidget.ui" line="1042"/>
+        <location filename="../projectwidget.ui" line="1501"/>
         <source>Size in bytes of each hunk (--hunksize)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="544"/>
-        <location filename="../projectwidget.ui" line="915"/>
-        <location filename="../projectwidget.ui" line="1412"/>
-        <location filename="../projectwidget.ui" line="1860"/>
+        <location filename="../projectwidget.ui" line="571"/>
+        <location filename="../projectwidget.ui" line="942"/>
+        <location filename="../projectwidget.ui" line="1439"/>
+        <location filename="../projectwidget.ui" line="1887"/>
         <source>Input hunks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="551"/>
-        <location filename="../projectwidget.ui" line="1123"/>
-        <location filename="../projectwidget.ui" line="1398"/>
-        <location filename="../projectwidget.ui" line="2035"/>
+        <location filename="../projectwidget.ui" line="578"/>
+        <location filename="../projectwidget.ui" line="1150"/>
+        <location filename="../projectwidget.ui" line="1425"/>
+        <location filename="../projectwidget.ui" line="2062"/>
         <source>Input bytes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="564"/>
-        <location filename="../projectwidget.ui" line="942"/>
-        <location filename="../projectwidget.ui" line="1442"/>
-        <location filename="../projectwidget.ui" line="1887"/>
+        <location filename="../projectwidget.ui" line="591"/>
+        <location filename="../projectwidget.ui" line="969"/>
+        <location filename="../projectwidget.ui" line="1469"/>
+        <location filename="../projectwidget.ui" line="1914"/>
         <source>Effective length of input in bytes (--inputbytes)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="825"/>
+        <location filename="../projectwidget.ui" line="852"/>
         <source>&lt;p&gt;
 &lt;b&gt;CHDMAN Copy&lt;/b&gt;
 &lt;/p&gt;
@@ -921,12 +936,12 @@ Copies data from one CHD to another of the same type.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1206"/>
+        <location filename="../projectwidget.ui" line="1233"/>
         <source>Size in bytes of each unit (--unitsize)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1222"/>
+        <location filename="../projectwidget.ui" line="1249"/>
         <source>&lt;p&gt;
 &lt;b&gt;CHDMAN CreateRaw&lt;/b&gt;
 &lt;/p&gt;
@@ -951,7 +966,7 @@ Creates a new raw CHD from an input file.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1281"/>
+        <location filename="../projectwidget.ui" line="1308"/>
         <source>&lt;p&gt;
 &lt;b&gt;CHDMAN CreateHD&lt;/b&gt;
 &lt;/p&gt;
@@ -978,32 +993,32 @@ Creates a new HD CHD from an input file.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1500"/>
+        <location filename="../projectwidget.ui" line="1527"/>
         <source>Size in bytes of each hard disk sector (--sectorsize)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1571"/>
+        <location filename="../projectwidget.ui" line="1598"/>
         <source>Ident file to provide CHS information (--ident)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1787"/>
+        <location filename="../projectwidget.ui" line="1814"/>
         <source>Cyls / Heads / Sectors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1801"/>
+        <location filename="../projectwidget.ui" line="1828"/>
         <source>Calculated hard disk capacity (if applicable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1817"/>
+        <location filename="../projectwidget.ui" line="1844"/>
         <source>Set disk geometry from predefined templates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="2091"/>
+        <location filename="../projectwidget.ui" line="2118"/>
         <source>&lt;p&gt;
 &lt;b&gt;CHDMAN ExtractHD&lt;/b&gt;
 &lt;/p&gt;
@@ -1024,190 +1039,190 @@ Extracts an HD file from a CHD input file.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="477"/>
-        <location filename="../projectwidget.ui" line="1176"/>
-        <location filename="../projectwidget.ui" line="1738"/>
+        <location filename="../projectwidget.ui" line="504"/>
+        <location filename="../projectwidget.ui" line="1203"/>
+        <location filename="../projectwidget.ui" line="1765"/>
         <source>Compression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="597"/>
-        <location filename="../projectwidget.ui" line="1063"/>
-        <location filename="../projectwidget.ui" line="1461"/>
-        <location filename="../projectwidget.ui" line="1982"/>
+        <location filename="../projectwidget.ui" line="624"/>
+        <location filename="../projectwidget.ui" line="1090"/>
+        <location filename="../projectwidget.ui" line="1488"/>
+        <location filename="../projectwidget.ui" line="2009"/>
         <source>Input start byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="624"/>
-        <location filename="../projectwidget.ui" line="1092"/>
-        <location filename="../projectwidget.ui" line="1347"/>
+        <location filename="../projectwidget.ui" line="651"/>
+        <location filename="../projectwidget.ui" line="1119"/>
+        <location filename="../projectwidget.ui" line="1374"/>
         <source>Parent CHD output file (--outputparent)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="627"/>
-        <location filename="../projectwidget.ui" line="1095"/>
-        <location filename="../projectwidget.ui" line="1350"/>
+        <location filename="../projectwidget.ui" line="654"/>
+        <location filename="../projectwidget.ui" line="1122"/>
+        <location filename="../projectwidget.ui" line="1377"/>
         <source>Parent CHD output file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="640"/>
-        <location filename="../projectwidget.ui" line="974"/>
-        <location filename="../projectwidget.ui" line="1612"/>
+        <location filename="../projectwidget.ui" line="667"/>
+        <location filename="../projectwidget.ui" line="1001"/>
+        <location filename="../projectwidget.ui" line="1639"/>
         <source>CHD output file (--output)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="643"/>
-        <location filename="../projectwidget.ui" line="977"/>
-        <location filename="../projectwidget.ui" line="1615"/>
+        <location filename="../projectwidget.ui" line="670"/>
+        <location filename="../projectwidget.ui" line="1004"/>
+        <location filename="../projectwidget.ui" line="1642"/>
         <source>CHD output file (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="650"/>
-        <location filename="../projectwidget.ui" line="1102"/>
-        <location filename="../projectwidget.ui" line="1405"/>
+        <location filename="../projectwidget.ui" line="677"/>
+        <location filename="../projectwidget.ui" line="1129"/>
+        <location filename="../projectwidget.ui" line="1432"/>
         <source>Hunk size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="657"/>
-        <location filename="../projectwidget.ui" line="961"/>
-        <location filename="../projectwidget.ui" line="1429"/>
+        <location filename="../projectwidget.ui" line="684"/>
+        <location filename="../projectwidget.ui" line="988"/>
+        <location filename="../projectwidget.ui" line="1456"/>
         <source>Number of CPUs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="664"/>
-        <location filename="../projectwidget.ui" line="1155"/>
-        <location filename="../projectwidget.ui" line="1493"/>
-        <location filename="../projectwidget.ui" line="2067"/>
+        <location filename="../projectwidget.ui" line="691"/>
+        <location filename="../projectwidget.ui" line="1182"/>
+        <location filename="../projectwidget.ui" line="1520"/>
+        <location filename="../projectwidget.ui" line="2094"/>
         <source>Input start hunk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="484"/>
-        <location filename="../projectwidget.ui" line="1028"/>
-        <location filename="../projectwidget.ui" line="1419"/>
-        <location filename="../projectwidget.ui" line="1947"/>
+        <location filename="../projectwidget.ui" line="511"/>
+        <location filename="../projectwidget.ui" line="1055"/>
+        <location filename="../projectwidget.ui" line="1446"/>
+        <location filename="../projectwidget.ui" line="1974"/>
         <source>Force overwriting output files (--force)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="487"/>
-        <location filename="../projectwidget.ui" line="1031"/>
-        <location filename="../projectwidget.ui" line="1422"/>
-        <location filename="../projectwidget.ui" line="1950"/>
+        <location filename="../projectwidget.ui" line="514"/>
+        <location filename="../projectwidget.ui" line="1058"/>
+        <location filename="../projectwidget.ui" line="1449"/>
+        <location filename="../projectwidget.ui" line="1977"/>
         <source>Overwrite existing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="707"/>
-        <location filename="../projectwidget.ui" line="896"/>
-        <location filename="../projectwidget.ui" line="1628"/>
+        <location filename="../projectwidget.ui" line="734"/>
+        <location filename="../projectwidget.ui" line="923"/>
+        <location filename="../projectwidget.ui" line="1655"/>
         <source>Limit the number of processors to use during compression (--numprocessors)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="732"/>
-        <location filename="../projectwidget.ui" line="1136"/>
-        <location filename="../projectwidget.ui" line="1587"/>
-        <location filename="../projectwidget.ui" line="2048"/>
+        <location filename="../projectwidget.ui" line="759"/>
+        <location filename="../projectwidget.ui" line="1163"/>
+        <location filename="../projectwidget.ui" line="1614"/>
+        <location filename="../projectwidget.ui" line="2075"/>
         <source>Starting hunk offset within the input (--inputstarthunk)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="757"/>
-        <location filename="../projectwidget.ui" line="1044"/>
-        <location filename="../projectwidget.ui" line="1525"/>
-        <location filename="../projectwidget.ui" line="1963"/>
+        <location filename="../projectwidget.ui" line="784"/>
+        <location filename="../projectwidget.ui" line="1071"/>
+        <location filename="../projectwidget.ui" line="1552"/>
+        <location filename="../projectwidget.ui" line="1990"/>
         <source>Effective length of input in hunks (--inputhunks)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="782"/>
-        <location filename="../projectwidget.ui" line="1189"/>
-        <location filename="../projectwidget.ui" line="1363"/>
+        <location filename="../projectwidget.ui" line="809"/>
+        <location filename="../projectwidget.ui" line="1216"/>
+        <location filename="../projectwidget.ui" line="1390"/>
         <source>Select up to 4 compression codecs to use (--compression)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1018"/>
-        <location filename="../projectwidget.ui" line="1209"/>
+        <location filename="../projectwidget.ui" line="1045"/>
+        <location filename="../projectwidget.ui" line="1236"/>
         <source>(required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1076"/>
-        <location filename="../projectwidget.ui" line="1703"/>
+        <location filename="../projectwidget.ui" line="1103"/>
+        <location filename="../projectwidget.ui" line="1730"/>
         <source>Input file (--input)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1079"/>
+        <location filename="../projectwidget.ui" line="1106"/>
         <source>Input file (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1199"/>
+        <location filename="../projectwidget.ui" line="1226"/>
         <source>Unit size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1558"/>
+        <location filename="../projectwidget.ui" line="1585"/>
         <source>Sector size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1574"/>
+        <location filename="../projectwidget.ui" line="1601"/>
         <source>Ident file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1653"/>
+        <location filename="../projectwidget.ui" line="1680"/>
         <source>Sectors  (--chs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1678"/>
+        <location filename="../projectwidget.ui" line="1705"/>
         <source>Heads  (--chs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1706"/>
+        <location filename="../projectwidget.ui" line="1733"/>
         <source>Input file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1719"/>
+        <location filename="../projectwidget.ui" line="1746"/>
         <source>Cylinders (--chs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1794"/>
+        <location filename="../projectwidget.ui" line="1821"/>
         <source>Disk capacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1827"/>
+        <location filename="../projectwidget.ui" line="1854"/>
         <source>From template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1912"/>
+        <location filename="../projectwidget.ui" line="1939"/>
         <source>Output file (--output)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1915"/>
+        <location filename="../projectwidget.ui" line="1942"/>
         <source>Output file (required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="2153"/>
+        <location filename="../projectwidget.ui" line="2183"/>
         <source>Project log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1259,23 +1274,23 @@ Extracts an HD file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="107"/>
         <location filename="../projectwidget.cpp" line="110"/>
-        <location filename="../projectwidget.cpp" line="331"/>
-        <location filename="../projectwidget.cpp" line="361"/>
-        <location filename="../projectwidget.cpp" line="389"/>
-        <location filename="../projectwidget.cpp" line="927"/>
-        <location filename="../projectwidget.cpp" line="1220"/>
-        <location filename="../projectwidget.cpp" line="1241"/>
-        <location filename="../projectwidget.cpp" line="1261"/>
-        <location filename="../projectwidget.cpp" line="1347"/>
-        <location filename="../projectwidget.cpp" line="1426"/>
+        <location filename="../projectwidget.cpp" line="346"/>
+        <location filename="../projectwidget.cpp" line="376"/>
+        <location filename="../projectwidget.cpp" line="404"/>
+        <location filename="../projectwidget.cpp" line="957"/>
+        <location filename="../projectwidget.cpp" line="1259"/>
+        <location filename="../projectwidget.cpp" line="1280"/>
+        <location filename="../projectwidget.cpp" line="1300"/>
+        <location filename="../projectwidget.cpp" line="1400"/>
+        <location filename="../projectwidget.cpp" line="1479"/>
         <source>default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="112"/>
-        <location filename="../projectwidget.cpp" line="929"/>
-        <location filename="../projectwidget.cpp" line="1345"/>
-        <location filename="../projectwidget.cpp" line="1424"/>
+        <location filename="../projectwidget.cpp" line="959"/>
+        <location filename="../projectwidget.cpp" line="1398"/>
+        <location filename="../projectwidget.cpp" line="1477"/>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1300,280 +1315,295 @@ Extracts an HD file from a CHD input file.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="145"/>
+        <location filename="../projectwidget.cpp" line="148"/>
         <source>Morph to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="159"/>
+        <location filename="../projectwidget.cpp" line="165"/>
         <source>Copy stdout to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="160"/>
+        <location filename="../projectwidget.cpp" line="166"/>
         <source>Copy stderr to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="161"/>
+        <location filename="../projectwidget.cpp" line="167"/>
         <source>Copy command to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="291"/>
+        <location filename="../projectwidget.cpp" line="306"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="299"/>
+        <location filename="../projectwidget.cpp" line="314"/>
         <source>Verify</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="307"/>
+        <location filename="../projectwidget.cpp" line="322"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="337"/>
+        <location filename="../projectwidget.cpp" line="352"/>
         <source>CreateRaw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="367"/>
+        <location filename="../projectwidget.cpp" line="382"/>
         <source>CreateHD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="411"/>
+        <location filename="../projectwidget.cpp" line="426"/>
         <source>CreateCD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="416"/>
+        <location filename="../projectwidget.cpp" line="431"/>
         <source>CreateLD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="421"/>
+        <location filename="../projectwidget.cpp" line="436"/>
         <source>ExtractRaw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="426"/>
+        <location filename="../projectwidget.cpp" line="441"/>
         <source>ExtractHD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="446"/>
+        <location filename="../projectwidget.cpp" line="461"/>
         <source>ExtractCD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="451"/>
+        <location filename="../projectwidget.cpp" line="466"/>
         <source>ExtractLD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="472"/>
+        <location filename="../projectwidget.cpp" line="471"/>
+        <source>DumpMeta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="476"/>
+        <source>AddMeta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="481"/>
+        <source>DelMeta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="502"/>
         <source>starting process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="483"/>
+        <location filename="../projectwidget.cpp" line="513"/>
         <source>Starting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="489"/>
+        <location filename="../projectwidget.cpp" line="519"/>
         <source>terminating process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="498"/>
-        <location filename="../projectwidget.cpp" line="500"/>
+        <location filename="../projectwidget.cpp" line="528"/>
+        <location filename="../projectwidget.cpp" line="530"/>
         <source>process started: PID = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="503"/>
+        <location filename="../projectwidget.cpp" line="533"/>
         <source>Running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="509"/>
+        <location filename="../projectwidget.cpp" line="539"/>
         <source>normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="512"/>
+        <location filename="../projectwidget.cpp" line="542"/>
         <source>terminated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="514"/>
-        <location filename="../projectwidget.cpp" line="590"/>
+        <location filename="../projectwidget.cpp" line="544"/>
+        <location filename="../projectwidget.cpp" line="620"/>
         <source>crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="516"/>
+        <location filename="../projectwidget.cpp" line="546"/>
         <source>process finished: exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="537"/>
+        <location filename="../projectwidget.cpp" line="567"/>
         <source>stdout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="555"/>
+        <location filename="../projectwidget.cpp" line="585"/>
         <source>stderr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="587"/>
+        <location filename="../projectwidget.cpp" line="617"/>
         <source>failed to start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="596"/>
+        <location filename="../projectwidget.cpp" line="626"/>
         <source>timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="599"/>
+        <location filename="../projectwidget.cpp" line="629"/>
         <source>write error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="602"/>
+        <location filename="../projectwidget.cpp" line="632"/>
         <source>read error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1810"/>
-        <location filename="../projectwidget.cpp" line="606"/>
-        <location filename="../projectwidget.cpp" line="813"/>
+        <location filename="../projectwidget.ui" line="1837"/>
+        <location filename="../projectwidget.cpp" line="636"/>
+        <location filename="../projectwidget.cpp" line="843"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="611"/>
+        <location filename="../projectwidget.cpp" line="641"/>
         <source>process error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="632"/>
-        <location filename="../projectwidget.cpp" line="642"/>
         <location filename="../projectwidget.cpp" line="662"/>
-        <location filename="../projectwidget.cpp" line="823"/>
+        <location filename="../projectwidget.cpp" line="672"/>
+        <location filename="../projectwidget.cpp" line="692"/>
+        <location filename="../projectwidget.cpp" line="853"/>
         <source>Choose CHD input file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="632"/>
-        <location filename="../projectwidget.cpp" line="642"/>
-        <location filename="../projectwidget.cpp" line="652"/>
         <location filename="../projectwidget.cpp" line="662"/>
         <location filename="../projectwidget.cpp" line="672"/>
         <location filename="../projectwidget.cpp" line="682"/>
         <location filename="../projectwidget.cpp" line="692"/>
-        <location filename="../projectwidget.cpp" line="717"/>
-        <location filename="../projectwidget.cpp" line="727"/>
-        <location filename="../projectwidget.cpp" line="752"/>
-        <location filename="../projectwidget.cpp" line="762"/>
-        <location filename="../projectwidget.cpp" line="823"/>
-        <location filename="../projectwidget.cpp" line="843"/>
+        <location filename="../projectwidget.cpp" line="702"/>
+        <location filename="../projectwidget.cpp" line="712"/>
+        <location filename="../projectwidget.cpp" line="722"/>
+        <location filename="../projectwidget.cpp" line="747"/>
+        <location filename="../projectwidget.cpp" line="757"/>
+        <location filename="../projectwidget.cpp" line="782"/>
+        <location filename="../projectwidget.cpp" line="792"/>
+        <location filename="../projectwidget.cpp" line="853"/>
+        <location filename="../projectwidget.cpp" line="873"/>
         <source>CHD files (*.chd);;All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="652"/>
         <location filename="../projectwidget.cpp" line="682"/>
-        <location filename="../projectwidget.cpp" line="843"/>
+        <location filename="../projectwidget.cpp" line="712"/>
+        <location filename="../projectwidget.cpp" line="873"/>
         <source>Choose parent CHD input file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="672"/>
-        <location filename="../projectwidget.cpp" line="717"/>
-        <location filename="../projectwidget.cpp" line="752"/>
+        <location filename="../projectwidget.cpp" line="702"/>
+        <location filename="../projectwidget.cpp" line="747"/>
+        <location filename="../projectwidget.cpp" line="782"/>
         <source>Choose CHD output file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="692"/>
-        <location filename="../projectwidget.cpp" line="727"/>
-        <location filename="../projectwidget.cpp" line="762"/>
+        <location filename="../projectwidget.cpp" line="722"/>
+        <location filename="../projectwidget.cpp" line="757"/>
+        <location filename="../projectwidget.cpp" line="792"/>
         <source>Choose parent CHD output file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="707"/>
-        <location filename="../projectwidget.cpp" line="742"/>
+        <location filename="../projectwidget.cpp" line="737"/>
+        <location filename="../projectwidget.cpp" line="772"/>
         <source>Choose input file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="772"/>
+        <location filename="../projectwidget.cpp" line="802"/>
         <source>Choose ident file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="833"/>
+        <location filename="../projectwidget.cpp" line="863"/>
         <source>Choose output file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="942"/>
-        <location filename="../projectwidget.cpp" line="1180"/>
+        <location filename="../projectwidget.cpp" line="972"/>
+        <location filename="../projectwidget.cpp" line="1219"/>
         <source>Choose file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="707"/>
-        <location filename="../projectwidget.cpp" line="742"/>
+        <location filename="../projectwidget.cpp" line="737"/>
         <location filename="../projectwidget.cpp" line="772"/>
-        <location filename="../projectwidget.cpp" line="833"/>
-        <location filename="../projectwidget.cpp" line="942"/>
-        <location filename="../projectwidget.cpp" line="1180"/>
+        <location filename="../projectwidget.cpp" line="802"/>
+        <location filename="../projectwidget.cpp" line="863"/>
+        <location filename="../projectwidget.cpp" line="972"/>
+        <location filename="../projectwidget.cpp" line="1219"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1158"/>
+        <location filename="../projectwidget.cpp" line="1197"/>
         <source>Failed loading project &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1165"/>
-        <location filename="../projectwidget.cpp" line="1179"/>
+        <location filename="../projectwidget.cpp" line="1204"/>
+        <location filename="../projectwidget.cpp" line="1218"/>
         <source>Noname-%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1192"/>
+        <location filename="../projectwidget.cpp" line="1231"/>
         <source>Qt CHDMAN project file -- please do not edit manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1296"/>
+        <location filename="../projectwidget.cpp" line="1349"/>
         <source>Project &apos;%1&apos; saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1299"/>
+        <location filename="../projectwidget.cpp" line="1352"/>
         <source>Failed saving project &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1387"/>
+        <location filename="../projectwidget.cpp" line="1440"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1466"/>
+        <location filename="../projectwidget.cpp" line="1519"/>
         <source>morphing to &apos;%1&apos; is not supported yet</source>
         <translation type="unfinished"></translation>
     </message>

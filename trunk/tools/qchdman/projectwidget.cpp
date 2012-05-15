@@ -140,6 +140,9 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     cloneActionMap[menuCloneActions->addAction(tr("ExtractHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_HD;
     cloneActionMap[menuCloneActions->addAction(tr("ExtractCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_CD;
     cloneActionMap[menuCloneActions->addAction(tr("ExtractLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_LD;
+    cloneActionMap[menuCloneActions->addAction(tr("DumpMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_DUMP_META;
+    cloneActionMap[menuCloneActions->addAction(tr("AddMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_ADD_META;
+    cloneActionMap[menuCloneActions->addAction(tr("DelMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_DEL_META;
     actionCloneMenu = menuActions->addMenu(menuCloneActions);
 
     menuMorphActions = new QMenu(tr("Morph to"), this);
@@ -154,6 +157,9 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     morphActionMap[menuMorphActions->addAction(tr("ExtractHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_HD;
     morphActionMap[menuMorphActions->addAction(tr("ExtractCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_CD;
     morphActionMap[menuMorphActions->addAction(tr("ExtractLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_LD;
+    morphActionMap[menuMorphActions->addAction(tr("DumpMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DUMP_META;
+    morphActionMap[menuMorphActions->addAction(tr("AddMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_ADD_META;
+    morphActionMap[menuMorphActions->addAction(tr("DelMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DEL_META;
     actionMorphMenu = menuActions->addMenu(menuMorphActions);
 
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
@@ -270,6 +276,15 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
         parentWidget()->setWindowIcon(QIcon(":/images/extractld.png"));
+        break;
+    case QCHDMAN_PRJ_DUMP_META:
+        parentWidget()->setWindowIcon(QIcon(":/images/dumpmeta.png"));
+        break;
+    case QCHDMAN_PRJ_ADD_META:
+        parentWidget()->setWindowIcon(QIcon(":/images/addmeta.png"));
+        break;
+    case QCHDMAN_PRJ_DEL_META:
+        parentWidget()->setWindowIcon(QIcon(":/images/delmeta.png"));
         break;
     }
 
@@ -450,6 +465,21 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_EXTRACT_LD:
         projectTypeName = tr("ExtractLD");
         arguments << "extractld";
+        // FIXME
+        break;
+    case QCHDMAN_PRJ_DUMP_META:
+        projectTypeName = tr("DumpMeta");
+        arguments << "dumpmeta";
+        // FIXME
+        break;
+    case QCHDMAN_PRJ_ADD_META:
+        projectTypeName = tr("AddMeta");
+        arguments << "addmeta";
+        // FIXME
+        break;
+    case QCHDMAN_PRJ_DEL_META:
+        projectTypeName = tr("DelMeta");
+        arguments << "delmeta";
         // FIXME
         break;
     }
@@ -1144,6 +1174,15 @@ void ProjectWidget::load(const QString &fileName)
                 case QCHDMAN_PRJ_EXTRACT_LD:
                     // FIXME
                     break;
+                case QCHDMAN_PRJ_DUMP_META:
+                    // FIXME
+                    break;
+                case QCHDMAN_PRJ_ADD_META:
+                    // FIXME
+                    break;
+                case QCHDMAN_PRJ_DEL_META:
+                    // FIXME
+                    break;
                 }
             }
             ui->comboBoxProjectType->setCurrentIndex(projectType);
@@ -1270,10 +1309,13 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "CreateHDSectors = " << ui->spinBoxCreateHDSectors->value() << "\n";
             break;
         case QCHDMAN_PRJ_CREATE_CD:
+            // FIXME
             break;
         case QCHDMAN_PRJ_CREATE_LD:
+            // FIXME
             break;
         case QCHDMAN_PRJ_EXTRACT_RAW:
+            // FIXME
             break;
         case QCHDMAN_PRJ_EXTRACT_HD:
             ts << "ExtractHDInputFile = " << ui->lineEditExtractHDInputFile->text() << "\n";
@@ -1286,8 +1328,19 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "ExtractHDInputHunks = " << ui->spinBoxExtractHDInputHunks->value() << "\n";
             break;
         case QCHDMAN_PRJ_EXTRACT_CD:
+            // FIXME
             break;
         case QCHDMAN_PRJ_EXTRACT_LD:
+            // FIXME
+            break;
+        case QCHDMAN_PRJ_DUMP_META:
+            // FIXME
+            break;
+        case QCHDMAN_PRJ_ADD_META:
+            // FIXME
+            break;
+        case QCHDMAN_PRJ_DEL_META:
+            // FIXME
             break;
         }
         saveFile.close();
