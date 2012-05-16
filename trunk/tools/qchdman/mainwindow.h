@@ -29,6 +29,7 @@ public:
     QString preferredInputFolder;
     QString preferredCHDOutputFolder;
     QString preferredOutputFolder;
+    QMap<int, QIcon> iconMap;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

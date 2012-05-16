@@ -49,11 +49,21 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->menuProjectRecent->addAction(file, this, SLOT(loadRecentFile()));
     }
 
-    statisticsLabel = new QLabel;
-    statusBar()->addPermanentWidget(statisticsLabel);
-    updateStatus();
-    connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
-    statusTimer.start(QCHDMAN_STATUS_INTERVAL);
+    // sub-window icons
+    iconMap[QCHDMAN_PRJ_INFO] = QIcon(":/images/info.png");
+    iconMap[QCHDMAN_PRJ_VERIFY] = QIcon(":/images/verify.png");
+    iconMap[QCHDMAN_PRJ_COPY] = QIcon(":/images/copy.png");
+    iconMap[QCHDMAN_PRJ_CREATE_RAW] = QIcon(":/images/createraw.png");
+    iconMap[QCHDMAN_PRJ_CREATE_HD] = QIcon(":/images/createhd.png");
+    iconMap[QCHDMAN_PRJ_CREATE_CD] = QIcon(":/images/createcd.png");
+    iconMap[QCHDMAN_PRJ_CREATE_LD] = QIcon(":/images/createld.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_RAW] = QIcon(":/images/extractraw.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_HD] = QIcon(":/images/extracthd.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_CD] = QIcon(":/images/extractcd.png");
+    iconMap[QCHDMAN_PRJ_EXTRACT_LD] = QIcon(":/images/extractld.png");
+    iconMap[QCHDMAN_PRJ_DUMP_META] = QIcon(":/images/dumpmeta.png");
+    iconMap[QCHDMAN_PRJ_ADD_META] = QIcon(":/images/addmeta.png");
+    iconMap[QCHDMAN_PRJ_DEL_META] = QIcon(":/images/delmeta.png");
 
     // hard disk templates
     hardDiskTemplates["Alps Electric"]
@@ -147,6 +157,12 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("WDAC2340", 1010, 12, 55, 512)
             << DiskGeometry("WDAC2700", 1416, 16, 63, 512)
             << DiskGeometry("WDAC11000", 2046, 16, 63, 512);
+
+    statisticsLabel = new QLabel(this);
+    statusBar()->addPermanentWidget(statisticsLabel);
+    updateStatus();
+    connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
+    statusTimer.start(QCHDMAN_STATUS_INTERVAL);
 
     QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
 

@@ -138,53 +138,38 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     actionSaveAs = menuActions->addAction(tr("Save as..."), this, SLOT(triggerSaveAs()));
 
     menuCloneActions = new QMenu(tr("Clone to"), this);
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/info.png"), tr("Info"), this, SLOT(clone()))] = QCHDMAN_PRJ_INFO;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/verify.png"), tr("Verify"), this, SLOT(clone()))] = QCHDMAN_PRJ_VERIFY;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/copy.png"), tr("Copy"), this, SLOT(clone()))] = QCHDMAN_PRJ_COPY;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/createraw.png"), tr("CreateRaw"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_RAW;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/createhd.png"), tr("CreateHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_HD;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/createcd.png"), tr("CreateCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_CD;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/createld.png"), tr("CreateLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_LD;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/extractraw.png"), tr("ExtractRaw"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_RAW;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/extracthd.png"), tr("ExtractHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_HD;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/extractcd.png"), tr("ExtractCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_CD;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/extractld.png"), tr("ExtractLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_LD;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/dumpmeta.png"), tr("DumpMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_DUMP_META;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/addmeta.png"), tr("AddMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_ADD_META;
-    cloneActionMap[menuCloneActions->addAction(QIcon(":/images/delmeta.png"), tr("DelMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_DEL_META;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_INFO], tr("Info"), this, SLOT(clone()))] = QCHDMAN_PRJ_INFO;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_VERIFY], tr("Verify"), this, SLOT(clone()))] = QCHDMAN_PRJ_VERIFY;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_COPY], tr("Copy"), this, SLOT(clone()))] = QCHDMAN_PRJ_COPY;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_RAW], tr("CreateRaw"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_RAW;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_HD], tr("CreateHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_HD;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_CD], tr("CreateCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_CD;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_LD], tr("CreateLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_LD;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_RAW], tr("ExtractRaw"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_RAW;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_HD], tr("ExtractHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_HD;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_CD], tr("ExtractCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_CD;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_LD], tr("ExtractLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_LD;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_DUMP_META], tr("DumpMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_DUMP_META;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_ADD_META], tr("AddMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_ADD_META;
+    cloneActionMap[menuCloneActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_DEL_META], tr("DelMeta"), this, SLOT(clone()))] = QCHDMAN_PRJ_DEL_META;
     actionCloneMenu = menuActions->addMenu(menuCloneActions);
 
     menuMorphActions = new QMenu(tr("Morph to"), this);
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/info.png"), tr("Info"), this, SLOT(morph()))] = QCHDMAN_PRJ_INFO;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/verify.png"), tr("Verify"), this, SLOT(morph()))] = QCHDMAN_PRJ_VERIFY;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/copy.png"), tr("Copy"), this, SLOT(morph()))] = QCHDMAN_PRJ_COPY;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/createraw.png"), tr("CreateRaw"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_RAW;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/createhd.png"), tr("CreateHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_HD;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/createcd.png"), tr("CreateCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_CD;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/createld.png"), tr("CreateLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_LD;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/extractraw.png"), tr("ExtractRaw"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_RAW;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/extracthd.png"), tr("ExtractHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_HD;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/extractcd.png"), tr("ExtractCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_CD;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/extractld.png"), tr("ExtractLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_LD;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/dumpmeta.png"), tr("DumpMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DUMP_META;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/addmeta.png"), tr("AddMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_ADD_META;
-    morphActionMap[menuMorphActions->addAction(QIcon(":/images/delmeta.png"), tr("DelMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DEL_META;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_INFO], tr("Info"), this, SLOT(morph()))] = QCHDMAN_PRJ_INFO;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_VERIFY], tr("Verify"), this, SLOT(morph()))] = QCHDMAN_PRJ_VERIFY;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_COPY], tr("Copy"), this, SLOT(morph()))] = QCHDMAN_PRJ_COPY;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_RAW], tr("CreateRaw"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_RAW;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_HD], tr("CreateHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_HD;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_CD], tr("CreateCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_CD;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_CREATE_LD], tr("CreateLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_LD;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_RAW], tr("ExtractRaw"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_RAW;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_HD], tr("ExtractHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_HD;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_CD], tr("ExtractCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_CD;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_EXTRACT_LD], tr("ExtractLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_LD;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_DUMP_META], tr("DumpMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DUMP_META;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_ADD_META], tr("AddMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_ADD_META;
+    morphActionMap[menuMorphActions->addAction(mainWindow->iconMap[QCHDMAN_PRJ_DEL_META], tr("DelMeta"), this, SLOT(morph()))] = QCHDMAN_PRJ_DEL_META;
     actionMorphMenu = menuActions->addMenu(menuMorphActions);
-
-    iconMap[QCHDMAN_PRJ_INFO] = QIcon(":/images/info.png");
-    iconMap[QCHDMAN_PRJ_VERIFY] = QIcon(":/images/verify.png");
-    iconMap[QCHDMAN_PRJ_COPY] = QIcon(":/images/copy.png");
-    iconMap[QCHDMAN_PRJ_CREATE_RAW] = QIcon(":/images/createraw.png");
-    iconMap[QCHDMAN_PRJ_CREATE_HD] = QIcon(":/images/createhd.png");
-    iconMap[QCHDMAN_PRJ_CREATE_CD] = QIcon(":/images/createcd.png");
-    iconMap[QCHDMAN_PRJ_CREATE_LD] = QIcon(":/images/createld.png");
-    iconMap[QCHDMAN_PRJ_EXTRACT_RAW] = QIcon(":/images/extractraw.png");
-    iconMap[QCHDMAN_PRJ_EXTRACT_HD] = QIcon(":/images/extracthd.png");
-    iconMap[QCHDMAN_PRJ_EXTRACT_CD] = QIcon(":/images/extractcd.png");
-    iconMap[QCHDMAN_PRJ_EXTRACT_LD] = QIcon(":/images/extractld.png");
-    iconMap[QCHDMAN_PRJ_DUMP_META] = QIcon(":/images/dumpmeta.png");
-    iconMap[QCHDMAN_PRJ_ADD_META] = QIcon(":/images/addmeta.png");
-    iconMap[QCHDMAN_PRJ_DEL_META] = QIcon(":/images/delmeta.png");
 
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
     actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
@@ -313,7 +298,7 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
     }
 
     // adjust window icon
-    parentWidget()->setWindowIcon(currentIcon.isNull() ? iconMap[index] : currentIcon);
+    parentWidget()->setWindowIcon(currentIcon.isNull() ? mainWindow->iconMap[index] : currentIcon);
 
     // adjust splitter
     int splitterHeight = ui->splitter->height();
@@ -589,7 +574,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     QTime execTime;
     execTime = execTime.addMSecs(projectTimer.elapsed());
     log(tr("process finished: exitCode = %1, exitStatus = %2, execTime = %3").arg(exitCode).arg(statusString).arg(execTime.toString("hh:mm:ss.zzz")));
-    parentWidget()->setWindowIcon(iconMap[ui->comboBoxProjectType->currentIndex()]);
+    parentWidget()->setWindowIcon(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()]);
     currentIcon = QIcon();
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
@@ -654,7 +639,7 @@ void ProjectWidget::readyReadStandardError()
     }
     ui->progressBar->setValue(percent);
 
-    QPixmap pm(iconMap[ui->comboBoxProjectType->currentIndex()].pixmap(64, 64));
+    QPixmap pm(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()].pixmap(64, 64));
     int h = int((qreal)pm.height() * (qreal)percent / 100.0);
     QPainter p;
     p.begin(&pm);
@@ -996,6 +981,11 @@ void ProjectWidget::init()
 
 void ProjectWidget::log(QString message)
 {
+    if ( chdmanProc )
+        if ( chdmanProc->state() == QProcess::Running )
+            if ( message == lastLogMessage )
+                return;
+    lastLogMessage = message;
     message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
     ui->plainTextEditProjectLog->appendPlainText(message);
     ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
