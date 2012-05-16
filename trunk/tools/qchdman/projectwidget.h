@@ -116,6 +116,10 @@ public slots:
     void on_toolButtonBrowseExtractHDParentInputFile_clicked();
 
     // ExtractCD
+    void on_toolButtonBrowseExtractCDInputFile_clicked();
+    void on_toolButtonBrowseExtractCDOutputFile_clicked();
+    void on_toolButtonBrowseExtractCDParentInputFile_clicked();
+    void on_toolButtonBrowseExtractCDOutputBinFile_clicked();
 
     // ExtractLD
 
