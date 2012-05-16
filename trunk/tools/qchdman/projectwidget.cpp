@@ -1554,7 +1554,7 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "ExtractCDOutputFile = " << ui->lineEditExtractCDOutputFile->text() << "\n";
             ts << "ExtractCDParentInputFile = " << ui->lineEditExtractCDParentInputFile->text() << "\n";
             ts << "ExtractCDOutputBinFile = " << ui->lineEditExtractCDOutputBinFile->text() << "\n";
-            ts << "ExtractCDForce = " << ui->checkBoxExtractHDForce->isChecked() << "\n";
+            ts << "ExtractCDForce = " << ui->checkBoxExtractCDForce->isChecked() << "\n";
             break;
         case QCHDMAN_PRJ_EXTRACT_LD:
             // FIXME
