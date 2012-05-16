@@ -1691,26 +1691,31 @@ Extracts a CD file from a CHD input file.
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>CUE files (*.cue)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>TOC files (*.toc)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>GDI files (*.gdi)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>NRG files (*.nrg)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1724,6 +1729,11 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1016"/>
         <source>Choose output file</source>
         <translation>Välj utmatningsfil</translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="1037"/>
+        <source>Binary CD files (*.bin)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1038"/>
