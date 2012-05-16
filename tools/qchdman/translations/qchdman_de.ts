@@ -1771,26 +1771,31 @@ Extrahiert eine CD Datei aus einer CHD Eingabedatei.
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg)</source>
         <translation>Kompatible Dateien (*.cue *.toc *.gdi *.nrg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>CUE files (*.cue)</source>
         <translation>CUE Dateien (*.cue)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>TOC files (*.toc)</source>
         <translation>TOC Dateien (*.toc)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>GDI files (*.gdi)</source>
         <translation>GDI Dateien (*.gdi)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="933"/>
+        <location filename="../projectwidget.cpp" line="1015"/>
         <source>NRG files (*.nrg)</source>
         <translation>NRG Dateien (*.nrg)</translation>
     </message>
@@ -1804,6 +1809,11 @@ Extrahiert eine CD Datei aus einer CHD Eingabedatei.
         <location filename="../projectwidget.cpp" line="1016"/>
         <source>Choose output file</source>
         <translation>Ausgabedatei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="1037"/>
+        <source>Binary CD files (*.bin)</source>
+        <translation>Binäre CD Dateien (*.bin)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1038"/>

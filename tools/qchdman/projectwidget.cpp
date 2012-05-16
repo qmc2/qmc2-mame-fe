@@ -1012,7 +1012,7 @@ void ProjectWidget::on_toolButtonBrowseExtractCDOutputFile_clicked()
     QString folder = ui->lineEditExtractCDOutputFile->text();
     if ( folder.isEmpty() )
         folder = mainWindow->preferredOutputFolder;
-    QString filter = tr("All files (*)");
+    QString filter = tr("Compatible files (*.cue *.toc *.gdi *.nrg)") + ";;" + tr("CUE files (*.cue)") + ";;" + tr("TOC files (*.toc)") + ";;" + tr("GDI files (*.gdi)") + ";;" + tr("NRG files (*.nrg)") + ";;" + tr("All files (*)");
     QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractCDOutputFile->setText(s);
@@ -1034,7 +1034,7 @@ void ProjectWidget::on_toolButtonBrowseExtractCDOutputBinFile_clicked()
     QString folder = ui->lineEditExtractCDOutputBinFile->text();
     if ( folder.isEmpty() )
         folder = mainWindow->preferredOutputFolder;
-    QString filter = tr("All files (*)");
+    QString filter = tr("Binary CD files (*.bin)") + ";;" + tr("All files (*)");
     QString s = QFileDialog::getSaveFileName(this, tr("Choose binary output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractCDOutputBinFile->setText(s);
