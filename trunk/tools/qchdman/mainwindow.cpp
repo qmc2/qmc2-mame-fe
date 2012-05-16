@@ -117,6 +117,14 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("XT-8380S", 1632, 8, 54, 512)
             << DiskGeometry("XT-8760S", 1632, 15, 54, 512);
 
+    hardDiskTemplates["Quantum"]
+            << DiskGeometry("ProDrive 40 S", 834, 3, 35, 512) // SCSI
+            << DiskGeometry("ProDrive 105 S", 1019, 6, 35, 512) // SCSI
+            << DiskGeometry("ProDrive 170 AT", 1123, 7, 43, 512)
+            << DiskGeometry("ProDrive 210 AT", 1156, 7, 56, 512)
+            << DiskGeometry("ProDrive 425 AT", 1021, 16, 51, 512)
+            << DiskGeometry("ProDrive LPS 525 AT", 1017, 16, 63, 512);
+
     hardDiskTemplates["Seagate"]
             << DiskGeometry("ST-506", 153, 4, 32, 256)
             << DiskGeometry("ST-412", 306, 4, 32, 256)
