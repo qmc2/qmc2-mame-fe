@@ -1856,7 +1856,7 @@ Creates a new HD CHD from an input file.
                 </widget>
                </item>
                <item row="9" column="0" colspan="7">
-                <widget class="Line" name="line">
+                <widget class="Line" name="lineCreateHD">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -2411,7 +2411,198 @@ Extracts an HD file from a CHD input file.
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageExtractCD"/>
+          <widget class="QWidget" name="pageExtractCD">
+           <layout class="QGridLayout" name="gridLayoutPageExtractCD">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameExtractCD">
+              <layout class="QGridLayout" name="gridLayoutFrameExtractCD">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="2" column="0" colspan="2">
+                <widget class="QLineEdit" name="lineEditExtractCDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Output file (--output)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Output file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QToolButton" name="toolButtonBrowseExtractCDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QLineEdit" name="lineEditExtractCDOutputBinFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Binary output file (--outputbin)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Binary output file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QToolButton" name="toolButtonBrowseExtractCDParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QLineEdit" name="lineEditExtractCDParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD input file (--inputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD input file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QToolButton" name="toolButtonBrowseExtractCDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QToolButton" name="toolButtonBrowseExtractCDOutputBinFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="3">
+                <widget class="QCheckBox" name="checkBoxExtractCDForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QLineEdit" name="lineEditExtractCDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD input file (required)</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelExtractCDHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractCD&lt;/b&gt;
+&lt;/p&gt;
+Extracts a CD file from a CHD input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--outputbin, -ob &amp;lt;filename&amp;gt;: output file name for binary data&lt;br&gt;
+--force, -f: force overwriting an existing file
+&lt;/p&gt;
+</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerExtractCD">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>252</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageExtractLD"/>
           <widget class="QWidget" name="pageDumpMeta"/>
           <widget class="QWidget" name="pageAddMeta"/>
@@ -2518,7 +2709,26 @@ Extracts an HD file from a CHD input file.
   <tabstop>spinBoxExtractHDInputStartHunk</tabstop>
   <tabstop>spinBoxExtractHDInputBytes</tabstop>
   <tabstop>spinBoxExtractHDInputHunks</tabstop>
+  <tabstop>lineEditExtractCDInputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractCDInputFile</tabstop>
+  <tabstop>lineEditExtractCDParentInputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractCDParentInputFile</tabstop>
+  <tabstop>lineEditExtractCDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractCDOutputFile</tabstop>
+  <tabstop>lineEditExtractCDOutputBinFile</tabstop>
+  <tabstop>toolButtonBrowseExtractCDOutputBinFile</tabstop>
+  <tabstop>checkBoxExtractCDForce</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
+  <tabstop>comboBoxCreateCDCompression</tabstop>
+  <tabstop>spinBoxCreateCDProcessors</tabstop>
+  <tabstop>lineEditCreateCDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateCDInputFile</tabstop>
+  <tabstop>checkBoxCreateCDForce</tabstop>
+  <tabstop>lineEditCreateCDParentOutputFile</tabstop>
+  <tabstop>spinBoxCreateCDHunkSize</tabstop>
+  <tabstop>lineEditCreateCDInputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateCDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateCDParentOutputFile</tabstop>
  </tabstops>
  <resources>
   <include location="qchdman.qrc"/>
