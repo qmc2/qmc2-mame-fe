@@ -41,7 +41,6 @@ public:
     QString stdoutOutput;
     QString stderrOutput;
     QString projectTypeName;
-    QString lastLogMessage;
     QProcess *chdmanProc;
     QMenu *menuActions;
     QMenu *menuMorphActions;

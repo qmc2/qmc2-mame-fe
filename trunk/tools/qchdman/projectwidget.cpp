@@ -662,10 +662,14 @@ void ProjectWidget::readyReadStandardError()
     ui->progressBar->setValue(percent);
 
     QPixmap pm(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()].pixmap(64, 64));
-    int h = int((qreal)pm.height() * (qreal)percent / 100.0);
     QPainter p;
     p.begin(&pm);
-    p.fillRect(0, pm.height() - h - 1, pm.width() / 4, pm.height(), QColor(0, 255, 0, 192));
+    int w = int((qreal)pm.height() * (qreal)percent / 100.0);
+    int h = pm.height() / 4;
+    QLinearGradient linearGradient(QPointF(0, 0), QPointF(pm.width() - 1, h - 1));
+    linearGradient.setColorAt(0.0, QColor(255, 255, 0, 192));
+    linearGradient.setColorAt(1.0, QColor(0, 255, 0, 192));
+    p.fillRect(0, pm.height() - h - 1, w + 1, h, QBrush(linearGradient));
     p.end();
     QIcon icon;
     icon.addPixmap(pm);
@@ -1047,11 +1051,6 @@ void ProjectWidget::init()
 
 void ProjectWidget::log(QString message)
 {
-    if ( chdmanProc )
-        if ( chdmanProc->state() == QProcess::Running )
-            if ( message == lastLogMessage )
-                return;
-    lastLogMessage = message;
     message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
     ui->plainTextEditProjectLog->appendPlainText(message);
     ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
