@@ -2011,17 +2011,17 @@ Extrahiert eine CD Datei aus einer CHD Eingabedatei.
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="83"/>
-        <location filename="../projectwindow.cpp" line="106"/>
+        <location filename="../projectwindow.cpp" line="104"/>
         <source>terminating process</source>
         <translation>Prozess wird beendet</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="102"/>
+        <location filename="../projectwindow.cpp" line="100"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="103"/>
+        <location filename="../projectwindow.cpp" line="101"/>
         <source>Project &apos;%1&apos; is currently running.
 
 Closing its window will kill the external process!

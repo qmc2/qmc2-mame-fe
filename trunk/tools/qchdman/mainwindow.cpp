@@ -598,6 +598,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
+        if ( projectWidget->chdmanProc && projectWidget->chdmanProc->state() == QProcess::Running )
+            projectWidget->chdmanProc->terminate();
+    }
+
     ui->mdiArea->closeAllSubWindows();
     qApp->processEvents();
 

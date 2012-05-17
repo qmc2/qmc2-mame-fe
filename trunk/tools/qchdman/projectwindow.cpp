@@ -81,11 +81,9 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
     if ( subWindowType == QCHDMAN_MDI_PROJECT ) {
         if ( mainWindow->forceQuit ) {
             projectWidget->log(tr("terminating process"));
-            qApp->processEvents();
-            projectWidget->chdmanProc->kill();
-            while ( !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
-                qApp->processEvents();
+            while ( projectWidget->chdmanProc->state() == QProcess::Running && !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
                 projectWidget->chdmanProc->kill();
+                qApp->processEvents();
             }
             e->accept();
             deleteLater();
@@ -104,12 +102,10 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
                                                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
                 case QMessageBox::Yes:
                     projectWidget->log(tr("terminating process"));
-                    while ( !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
-                        qApp->processEvents();
+                    while ( projectWidget->chdmanProc->state() == QProcess::Running && !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
                         projectWidget->chdmanProc->kill();
+                        qApp->processEvents();
                     }
-                    projectWidget->chdmanProc->kill();
-                    projectWidget->chdmanProc->waitForFinished();
                     break;
                 case QMessageBox::No:
                 default:
