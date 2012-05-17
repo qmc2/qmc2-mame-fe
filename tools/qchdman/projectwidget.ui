@@ -2117,7 +2117,322 @@ Creates a CD CHD from an input file.
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageCreateLD"/>
+          <widget class="QWidget" name="pageCreateLD">
+           <layout class="QGridLayout" name="gridLayoutPageCreateLD">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameCreateLD">
+              <layout class="QGridLayout" name="gridLayoutFrameCopy_2">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="1" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCreateLDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD output file (--output)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD output file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCreateLDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateLDInputFrames">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in frames (--inputframes)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="labelCreateLDCompressors">
+                 <property name="text">
+                  <string>Compression</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateLDHunkSize">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Size in bytes of each hunk (--hunksize)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCreateLDParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD output file (--outputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD output file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateLDProcessors">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Limit the number of processors to use during compression (--numprocessors)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>9999</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxCreateLDForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="labelCreateLDInputFrames">
+                 <property name="text">
+                  <string>Input frames</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <widget class="QComboBox" name="comboBoxCreateLDCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select up to 4 compression codecs to use (--compression)</string>
+                 </property>
+                 <property name="maxVisibleItems">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelCreateLDHunkSize">
+                 <property name="text">
+                  <string>Hunk size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCreateLDParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="labelCreateLDProcessors">
+                 <property name="text">
+                  <string>Number of CPUs</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCreateLDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>LD input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>LD input file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCreateLDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateLDInputStartFrame">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting frame within the input (--inputstartframe)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelCreateLDInputStartFrame">
+                 <property name="text">
+                  <string>Input start frame</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelCreateLDHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateLD&lt;/b&gt;
+&lt;/p&gt;
+Creates a laser-disc CHD from an input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: parent file name for output CHD&lt;br&gt;
+--force, -f: force overwriting an existing file&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limit the number of processors to use during compression&lt;br&gt;
+--inputstartframe, -isf &amp;lt;offset&amp;gt;: starting frame within the input&lt;br&gt;
+--inputframes, -if &amp;lt;length&amp;gt;: effective length of input in frames&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerCreateLD">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>176</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageExtractRaw"/>
           <widget class="QWidget" name="pageExtractHD">
            <layout class="QGridLayout" name="gridLayoutPageExtractHD">
@@ -2638,7 +2953,6 @@ Extracts a CD file from a CHD input file.
   <tabstop>toolButtonRun</tabstop>
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonActions</tabstop>
-  <tabstop>scrollArea</tabstop>
   <tabstop>lineEditInfoInputFile</tabstop>
   <tabstop>toolButtonBrowseInfoInputFile</tabstop>
   <tabstop>checkBoxInfoVerbose</tabstop>
@@ -2698,6 +3012,28 @@ Extracts a CD file from a CHD input file.
   <tabstop>spinBoxCreateHDSectorSize</tabstop>
   <tabstop>comboBoxCreateHDCompression</tabstop>
   <tabstop>comboBoxCreateHDFromTemplate</tabstop>
+  <tabstop>lineEditCreateCDInputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateCDInputFile</tabstop>
+  <tabstop>lineEditCreateCDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateCDOutputFile</tabstop>
+  <tabstop>lineEditCreateCDParentOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateCDParentOutputFile</tabstop>
+  <tabstop>checkBoxCreateCDForce</tabstop>
+  <tabstop>spinBoxCreateCDProcessors</tabstop>
+  <tabstop>spinBoxCreateCDHunkSize</tabstop>
+  <tabstop>comboBoxCreateCDCompression</tabstop>
+  <tabstop>lineEditCreateLDInputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateLDInputFile</tabstop>
+  <tabstop>lineEditCreateLDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateLDOutputFile</tabstop>
+  <tabstop>lineEditCreateLDParentOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateLDParentOutputFile</tabstop>
+  <tabstop>checkBoxCreateLDForce</tabstop>
+  <tabstop>spinBoxCreateLDProcessors</tabstop>
+  <tabstop>spinBoxCreateLDInputStartFrame</tabstop>
+  <tabstop>spinBoxCreateLDInputFrames</tabstop>
+  <tabstop>spinBoxCreateLDHunkSize</tabstop>
+  <tabstop>comboBoxCreateLDCompression</tabstop>
   <tabstop>lineEditExtractHDInputFile</tabstop>
   <tabstop>toolButtonBrowseExtractHDInputFile</tabstop>
   <tabstop>lineEditExtractHDOutputFile</tabstop>
@@ -2719,16 +3055,7 @@ Extracts a CD file from a CHD input file.
   <tabstop>toolButtonBrowseExtractCDOutputBinFile</tabstop>
   <tabstop>checkBoxExtractCDForce</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
-  <tabstop>comboBoxCreateCDCompression</tabstop>
-  <tabstop>spinBoxCreateCDProcessors</tabstop>
-  <tabstop>lineEditCreateCDOutputFile</tabstop>
-  <tabstop>toolButtonBrowseCreateCDInputFile</tabstop>
-  <tabstop>checkBoxCreateCDForce</tabstop>
-  <tabstop>lineEditCreateCDParentOutputFile</tabstop>
-  <tabstop>spinBoxCreateCDHunkSize</tabstop>
-  <tabstop>lineEditCreateCDInputFile</tabstop>
-  <tabstop>toolButtonBrowseCreateCDOutputFile</tabstop>
-  <tabstop>toolButtonBrowseCreateCDParentOutputFile</tabstop>
+  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources>
   <include location="qchdman.qrc"/>

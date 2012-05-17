@@ -62,6 +62,7 @@ public:
     QStringList createRawCompressors;
     QStringList createHDCompressors;
     QStringList createCDCompressors;
+    QStringList createLDCompressors;
     QStringList arguments;
     QElapsedTimer projectTimer;
     QIcon currentIcon;
@@ -107,6 +108,10 @@ public slots:
     void on_comboBoxCreateCDCompression_currentIndexChanged(int);
 
     // CreateLD
+    void on_toolButtonBrowseCreateLDInputFile_clicked();
+    void on_toolButtonBrowseCreateLDOutputFile_clicked();
+    void on_toolButtonBrowseCreateLDParentOutputFile_clicked();
+    void on_comboBoxCreateLDCompression_currentIndexChanged(int);
 
     // ExtractRaw
 
