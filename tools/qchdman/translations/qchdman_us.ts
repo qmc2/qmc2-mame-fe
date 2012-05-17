@@ -1861,17 +1861,17 @@ Extracts a CD file from a CHD input file.
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="83"/>
-        <location filename="../projectwindow.cpp" line="106"/>
+        <location filename="../projectwindow.cpp" line="104"/>
         <source>terminating process</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="102"/>
+        <location filename="../projectwindow.cpp" line="100"/>
         <source>Confirm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="103"/>
+        <location filename="../projectwindow.cpp" line="101"/>
         <source>Project &apos;%1&apos; is currently running.
 
 Closing its window will kill the external process!
