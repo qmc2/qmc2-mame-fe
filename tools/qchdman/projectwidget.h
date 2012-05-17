@@ -65,6 +65,7 @@ public:
     QStringList arguments;
     QElapsedTimer projectTimer;
     QIcon currentIcon;
+    QLinearGradient linearGradient;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
