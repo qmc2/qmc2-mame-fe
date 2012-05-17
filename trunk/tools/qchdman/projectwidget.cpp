@@ -187,6 +187,12 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     menuActions->insertSeparator(actionCopyCommandToClipboard);
     ui->toolButtonActions->setMenu(menuActions);
 
+    // linear gradient from red over yellow to green (this assumes that sub-window icons are in 64x64)
+    linearGradient = QLinearGradient(QPointF(0, 0), QPointF(63, 0));
+    linearGradient.setColorAt(0.0, QColor(255, 0, 0, 192));
+    linearGradient.setColorAt(0.5, QColor(220, 220, 0, 192));
+    linearGradient.setColorAt(1.0, QColor(0, 255, 0, 192));
+
     QFont f;
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
@@ -662,14 +668,9 @@ void ProjectWidget::readyReadStandardError()
     ui->progressBar->setValue(percent);
 
     QPixmap pm(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()].pixmap(64, 64));
-    QPainter p;
-    p.begin(&pm);
-    int w = int((qreal)pm.height() * (qreal)percent / 100.0);
-    int h = pm.height() / 4;
-    QLinearGradient linearGradient(QPointF(0, 0), QPointF(pm.width() - 1, h - 1));
-    linearGradient.setColorAt(0.0, QColor(255, 255, 0, 192));
-    linearGradient.setColorAt(1.0, QColor(0, 255, 0, 192));
-    p.fillRect(0, pm.height() - h - 1, w + 1, h, QBrush(linearGradient));
+    QPainter p(&pm);
+    int w = int((qreal)pm.height() * (qreal)percent / 100.0) + 1;
+    p.fillRect(0, pm.height() - 17, w, 16, QBrush(linearGradient));
     p.end();
     QIcon icon;
     icon.addPixmap(pm);
