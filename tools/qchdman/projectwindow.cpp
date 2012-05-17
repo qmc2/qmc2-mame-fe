@@ -80,8 +80,13 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
 
     if ( subWindowType == QCHDMAN_MDI_PROJECT ) {
         if ( mainWindow->forceQuit ) {
+            projectWidget->log(tr("terminating process"));
+            qApp->processEvents();
             projectWidget->chdmanProc->kill();
-            projectWidget->chdmanProc->waitForFinished();
+            while ( !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
+                qApp->processEvents();
+                projectWidget->chdmanProc->kill();
+            }
             e->accept();
             deleteLater();
             return;
@@ -98,6 +103,11 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
                                                tr("Project '%1' is currently running.\n\nClosing its window will kill the external process!\n\nProceed?").arg(windowTitle()),
                                                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
                 case QMessageBox::Yes:
+                    projectWidget->log(tr("terminating process"));
+                    while ( !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
+                        qApp->processEvents();
+                        projectWidget->chdmanProc->kill();
+                    }
                     projectWidget->chdmanProc->kill();
                     projectWidget->chdmanProc->waitForFinished();
                     break;
