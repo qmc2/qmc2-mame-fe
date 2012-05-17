@@ -670,7 +670,8 @@ void ProjectWidget::readyReadStandardError()
     QPixmap pm(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()].pixmap(64, 64));
     QPainter p(&pm);
     int w = int((qreal)pm.height() * (qreal)percent / 100.0) + 1;
-    p.fillRect(0, pm.height() - 17, w, 16, QBrush(linearGradient));
+    p.fillRect(0, 47, 64, 16, QColor(64, 64, 64, 64));
+    p.fillRect(0, 47, w, 16, QBrush(linearGradient));
     p.end();
     QIcon icon;
     icon.addPixmap(pm);
