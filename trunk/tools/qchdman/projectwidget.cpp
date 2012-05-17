@@ -27,16 +27,6 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     terminatedOnDemand = askFileName = false;
     needsTabbedUiAdjustment = needsWindowedUiAdjustment = true;
 
-    // compression codecs
-    compressionTypes["avhu"] = tr("avhu (A/V Huffman)");
-    compressionTypes["cdfl"] = tr("cdfl (CD FLAC)");
-    compressionTypes["cdlz"] = tr("cdlz (CD LZMA)");
-    compressionTypes["cdzl"] = tr("cdzl (CD Deflate)");
-    compressionTypes["flac"] = tr("flac (FLAC)");
-    compressionTypes["huff"] = tr("huff (Huffman)");
-    compressionTypes["lzma"] = tr("lzma (LZMA)");
-    compressionTypes["zlib"] = tr("zlib (Deflate)");
-
     // prepare HD geometry template selector
     ui->comboBoxCreateHDFromTemplate->addItem(tr("Select"));
     ui->comboBoxCreateHDFromTemplate->insertSeparator(1);
@@ -47,80 +37,43 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
            ui->comboBoxCreateHDFromTemplate->addItem(it.key() + ": " + geo.name + QString(" (%1)").arg(mainWindow->humanReadable((qreal)geo.cyls * (qreal)geo.heads * (qreal)geo.sectors * (qreal)geo.sectorSize)));
     }
 
-    // prepare morph & clone functionality
-    // FIXME: missing QCHDMAN_PRJ_EXTRACT_RAW, QCHDMAN_PRJ_EXTRACT_LD, QCHDMAN_PRJ_DUMP_META, QCHDMAN_PRJ_ADD_META and QCHDMAN_PRJ_DEL_META
+    // morph & clone groups
     copyGroups[QCHDMAN_PRJ_INFO]
             << ui->lineEditInfoInputFile << ui->checkBoxInfoVerbose;
-    copyTypes[QCHDMAN_PRJ_INFO]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX;
     copyGroups[QCHDMAN_PRJ_VERIFY]
             << ui->lineEditVerifyInputFile << ui->lineEditVerifyParentInputFile;
-    copyTypes[QCHDMAN_PRJ_VERIFY]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT;
     copyGroups[QCHDMAN_PRJ_COPY]
             << ui->lineEditCopyInputFile << ui->lineEditCopyParentInputFile << ui->lineEditCopyOutputFile << ui->lineEditCopyParentOutputFile
             << ui->checkBoxCopyForce << ui->spinBoxCopyProcessors << ui->spinBoxCopyInputStartByte << ui->spinBoxCopyInputStartHunk
             << ui->spinBoxCopyInputBytes << ui->spinBoxCopyInputHunks << ui->spinBoxCopyHunkSize << ui->comboBoxCopyCompression;
-    copyTypes[QCHDMAN_PRJ_COPY]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
     copyGroups[QCHDMAN_PRJ_CREATE_RAW]
             << ui->lineEditCreateRawInputFile << 0 << ui->lineEditCreateRawOutputFile << ui->lineEditCreateRawParentOutputFile
             << ui->checkBoxCreateRawForce << ui->spinBoxCreateRawProcessors << ui->spinBoxCreateRawInputStartByte << ui->spinBoxCreateRawInputStartHunk
             << ui->spinBoxCreateRawInputBytes << ui->spinBoxCreateRawInputHunks << ui->spinBoxCreateRawHunkSize << ui->comboBoxCreateRawCompression
             << ui->spinBoxCreateRawUnitSize;
-    copyTypes[QCHDMAN_PRJ_CREATE_RAW]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
-            << QCHDMAN_TYPE_SPINBOX;
     copyGroups[QCHDMAN_PRJ_CREATE_HD]
             << ui->lineEditCreateHDInputFile << 0 << ui->lineEditCreateHDOutputFile << ui->lineEditCreateHDParentOutputFile
             << ui->checkBoxCreateHDForce << ui->spinBoxCreateHDProcessors << ui->spinBoxCreateHDInputStartByte << ui->spinBoxCreateHDInputStartHunk
             << ui->spinBoxCreateHDInputBytes << ui->spinBoxCreateHDInputHunks << ui->spinBoxCreateHDHunkSize << ui->comboBoxCreateHDCompression
             << 0 << ui->spinBoxCreateHDCylinders << ui->spinBoxCreateHDHeads << ui->spinBoxCreateHDSectors
             << ui->lineEditCreateHDIdentFile << ui->spinBoxCreateHDSectorSize;
-    copyTypes[QCHDMAN_PRJ_CREATE_HD]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
-            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_SPINBOX;
     copyGroups[QCHDMAN_PRJ_CREATE_CD]
             << ui->lineEditCreateCDInputFile << 0 << ui->lineEditCreateCDOutputFile << ui->lineEditCreateCDParentOutputFile
             << ui->checkBoxCreateCDForce << ui->spinBoxCreateCDProcessors << 0 << 0
             << 0 << 0 << ui->spinBoxCreateCDHunkSize << ui->comboBoxCreateCDCompression;
-    copyTypes[QCHDMAN_PRJ_CREATE_CD]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE
-            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
     copyGroups[QCHDMAN_PRJ_CREATE_LD]
             << ui->lineEditCreateLDInputFile << 0 << ui->lineEditCreateLDOutputFile << ui->lineEditCreateLDParentOutputFile
             << ui->checkBoxCreateLDForce << ui->spinBoxCreateLDProcessors << 0 << 0
             << 0 << 0 << ui->spinBoxCreateLDHunkSize << ui->comboBoxCreateLDCompression
             << 0 << 0 << 0 << 0
             << 0 << 0 << ui->spinBoxCreateLDInputStartFrame << ui->spinBoxCreateLDInputFrames;
-    copyTypes[QCHDMAN_PRJ_CREATE_LD]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE
-            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX
-            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE
-            << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX;
     copyGroups[QCHDMAN_PRJ_EXTRACT_HD]
             << ui->lineEditExtractHDInputFile << ui->lineEditExtractHDParentInputFile << ui->lineEditExtractHDOutputFile << 0
             << ui->checkBoxExtractHDForce << 0 << ui->spinBoxExtractHDInputStartByte << ui->spinBoxExtractHDInputStartHunk
             << ui->spinBoxExtractHDInputBytes << ui->spinBoxExtractHDInputHunks;
-    copyTypes[QCHDMAN_PRJ_EXTRACT_HD]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE
-            << QCHDMAN_TYPE_CHECKBOX << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
-            << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX;
     copyGroups[QCHDMAN_PRJ_EXTRACT_CD]
             << ui->lineEditExtractCDInputFile << ui->lineEditExtractCDParentInputFile << ui->lineEditExtractCDOutputFile << ui->lineEditExtractCDOutputBinFile
             << ui->checkBoxExtractCDForce;
-    copyTypes[QCHDMAN_PRJ_EXTRACT_CD]
-            << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT
-            << QCHDMAN_TYPE_CHECKBOX;
 
     // prepare compression selectors
     copyCompressors.clear();
@@ -141,7 +94,7 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
         cb->setItemIcon(3, QIcon(":/images/none.png"));
         cb->insertSeparator(4);
         int i = 5;
-        foreach (QString cmp, compressionTypes) {
+        foreach (QString cmp, mainWindow->compressionTypes) {
             cb->insertItem(i, cmp);
             cb->setItemIcon(i, QIcon(":/images/inactive.png"));
             cb->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
@@ -1282,7 +1235,7 @@ void ProjectWidget::load(const QString &fileName)
                         else if ( compression != "default" ) {
                             copyCompressors.clear();
                             foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                                if ( compressionTypes.contains(cmp) ) {
+                                if ( mainWindow->compressionTypes.contains(cmp) ) {
                                     int index = ui->comboBoxCopyCompression->findText(cmp + " ", Qt::MatchStartsWith);
                                     if ( index > 4 ) {
                                         ui->comboBoxCopyCompression->setItemIcon(index, QIcon(":/images/active.png"));
@@ -1325,7 +1278,7 @@ void ProjectWidget::load(const QString &fileName)
                         else if ( compression != "default" ) {
                             createRawCompressors.clear();
                             foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                                if ( compressionTypes.contains(cmp) ) {
+                                if ( mainWindow->compressionTypes.contains(cmp) ) {
                                     int index = ui->comboBoxCreateRawCompression->findText(cmp + " ", Qt::MatchStartsWith);
                                     if ( index > 4 ) {
                                         ui->comboBoxCreateRawCompression->setItemIcon(index, QIcon(":/images/active.png"));
@@ -1366,7 +1319,7 @@ void ProjectWidget::load(const QString &fileName)
                         else if ( compression != "default" ) {
                             createHDCompressors.clear();
                             foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                                if ( compressionTypes.contains(cmp) ) {
+                                if ( mainWindow->compressionTypes.contains(cmp) ) {
                                     int index = ui->comboBoxCreateHDCompression->findText(cmp + " ", Qt::MatchStartsWith);
                                     if ( index > 4 ) {
                                         ui->comboBoxCreateHDCompression->setItemIcon(index, QIcon(":/images/active.png"));
@@ -1409,7 +1362,7 @@ void ProjectWidget::load(const QString &fileName)
                         else if ( compression != "default" ) {
                             createCDCompressors.clear();
                             foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                                if ( compressionTypes.contains(cmp) ) {
+                                if ( mainWindow->compressionTypes.contains(cmp) ) {
                                     int index = ui->comboBoxCreateCDCompression->findText(cmp + " ", Qt::MatchStartsWith);
                                     if ( index > 4 ) {
                                         ui->comboBoxCreateCDCompression->setItemIcon(index, QIcon(":/images/active.png"));
@@ -1446,7 +1399,7 @@ void ProjectWidget::load(const QString &fileName)
                         else if ( compression != "default" ) {
                             createLDCompressors.clear();
                             foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                                if ( compressionTypes.contains(cmp) ) {
+                                if ( mainWindow->compressionTypes.contains(cmp) ) {
                                     int index = ui->comboBoxCreateLDCompression->findText(cmp + " ", Qt::MatchStartsWith);
                                     if ( index > 4 ) {
                                         ui->comboBoxCreateLDCompression->setItemIcon(index, QIcon(":/images/active.png"));
@@ -1725,9 +1678,9 @@ void ProjectWidget::clone()
         ProjectWidget *projectWidget = projectWindow->projectWidget;
         projectWidget->setProjectType(cloneType);
         QList<QWidget *> sourceWidgets = copyGroups[ui->comboBoxProjectType->currentIndex()];
-        QList<int> sourceTypes = copyTypes[ui->comboBoxProjectType->currentIndex()];
+        QList<int> sourceTypes = mainWindow->copyTypes[ui->comboBoxProjectType->currentIndex()];
         QList<QWidget *> targetWidgets = projectWidget->copyGroups[cloneType];
-        QList<int> targetTypes = projectWidget->copyTypes[cloneType];
+        QList<int> targetTypes = mainWindow->copyTypes[cloneType];
         for (int i = 0; i < sourceWidgets.count() && i < targetWidgets.count(); i++) {
             QWidget *sW = sourceWidgets[i];
             int sT = sourceTypes[i];
@@ -1769,7 +1722,7 @@ void ProjectWidget::clone()
                             break;
                         }
                         foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                            if ( compressionTypes.contains(cmp) ) {
+                            if ( mainWindow->compressionTypes.contains(cmp) ) {
                                 int index = cb->findText(cmp + " ", Qt::MatchStartsWith);
                                 if ( index > 4 ) {
                                     cb->setItemIcon(index, QIcon(":/images/active.png"));
@@ -1830,9 +1783,9 @@ void ProjectWidget::morph()
 
     if ( copyGroups.contains(morphType) ) {
         QList<QWidget *> sourceWidgets = copyGroups[ui->comboBoxProjectType->currentIndex()];
-        QList<int> sourceTypes = copyTypes[ui->comboBoxProjectType->currentIndex()];
+        QList<int> sourceTypes = mainWindow->copyTypes[ui->comboBoxProjectType->currentIndex()];
         QList<QWidget *> targetWidgets = copyGroups[morphType];
-        QList<int> targetTypes = copyTypes[morphType];
+        QList<int> targetTypes = mainWindow->copyTypes[morphType];
         setProjectType(morphType);
         for (int i = 0; i < sourceWidgets.count() && i < targetWidgets.count(); i++) {
             QWidget *sW = sourceWidgets[i];
@@ -1875,7 +1828,7 @@ void ProjectWidget::morph()
                             break;
                         }
                         foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
-                            if ( compressionTypes.contains(cmp) ) {
+                            if ( mainWindow->compressionTypes.contains(cmp) ) {
                                 int index = cb->findText(cmp + " ", Qt::MatchStartsWith);
                                 if ( index > 4 ) {
                                     cb->setItemIcon(index, QIcon(":/images/active.png"));

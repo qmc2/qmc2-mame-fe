@@ -60,6 +60,9 @@
 // max. recent files
 #define QCHDMAN_MAX_RECENT_FILES    10
 
+// wait time between consecutive kill retries
+#define QCHDMAN_KILL_WAIT           100
+
 // view modes
 #define QCHDMAN_VIEWMODE_WINDOWED   QMdiArea::SubWindowView
 #define QCHDMAN_VIEWMODE_TABBED     QMdiArea::TabbedView

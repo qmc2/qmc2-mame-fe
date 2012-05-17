@@ -24,11 +24,13 @@ public:
     PreferencesDialog *preferencesDialog;
     QStringList projectTypes;
     QStringList recentFiles;
+    QMap<QString, QString> compressionTypes;
     QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
     QString preferredCHDInputFolder;
     QString preferredInputFolder;
     QString preferredCHDOutputFolder;
     QString preferredOutputFolder;
+    QMap<int, QList<int> > copyTypes;
     QMap<int, QIcon> iconMap;
 
     explicit MainWindow(QWidget *parent = 0);
