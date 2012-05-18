@@ -426,6 +426,9 @@
 // maximum age of an MAWS disk-cache entry in seconds (24h for now)
 #define QMC2_MAWS_MAX_CACHE_AGE			86400
 
+// maximum number of pages held in QtWebKit's page cache
+#define QMC2_BROWSER_CACHE_PAGES		100
+
 // type conversions
 #define QMC2_TO_UINT32(a)			((uchar)*((a) + 0) * (quint32)16777216ULL + \
 						(uchar)*((a) + 1) * (quint32)65536ULL + \
