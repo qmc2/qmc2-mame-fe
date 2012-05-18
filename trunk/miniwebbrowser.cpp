@@ -3,6 +3,8 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QDir>
 
 #include "miniwebbrowser.h"
@@ -113,8 +115,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 #if defined(QMC2_BROWSER_JAVASCRIPT_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, true);
 #else
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
 #endif
@@ -509,3 +511,15 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
   }
 }
 
+QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
+{
+	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+	if ( type == QWebPage::WebModalDialog )
+		webBrowser->setWindowModality(Qt::ApplicationModal);
+	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+	webBrowser->adjustSize();
+	webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+	webBrowser->show();
+	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+	return webBrowser->webViewBrowser;
+}

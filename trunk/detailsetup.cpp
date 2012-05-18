@@ -114,9 +114,9 @@ DetailSetup::DetailSetup(QWidget *parent)
 	shortTitleMap[QMC2_DEVICE_INDEX] = tr("De&vices");
 	longTitleMap[QMC2_DEVICE_INDEX] = tr("Device configuration");
 	iconMap[QMC2_DEVICE_INDEX] = QIcon(QString::fromUtf8(":/data/img/tape.png"));
-	shortTitleMap[QMC2_MESS_WIKI_INDEX] = tr("MESS &Wiki");
-	longTitleMap[QMC2_MESS_WIKI_INDEX] = tr("MESS wiki (web lookup)");
-	iconMap[QMC2_MESS_WIKI_INDEX] = QIcon(QString::fromUtf8(":/data/img/internet.png"));
+	shortTitleMap[QMC2_PROJECTMESS_INDEX] = tr("Pr&ojectMESS");
+	longTitleMap[QMC2_PROJECTMESS_INDEX] = tr("ProjectMESS (web lookup)");
+	iconMap[QMC2_PROJECTMESS_INDEX] = QIcon(QString::fromUtf8(":/data/img/project_mess.png"));
 	shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
 	longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
 	iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
@@ -137,7 +137,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 			<< QMC2_EMUINFO_INDEX
 			<< QMC2_CONFIG_INDEX
 			<< QMC2_DEVICE_INDEX
-			<< QMC2_MESS_WIKI_INDEX
+			<< QMC2_PROJECTMESS_INDEX
 			<< QMC2_PCB_INDEX
 			<< QMC2_CABINET_INDEX
 			<< QMC2_SOFTWARE_LIST_INDEX;
@@ -150,7 +150,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 	tabWidgetsMap[QMC2_EMUINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX);
 	tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
 	tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
-	tabWidgetsMap[QMC2_MESS_WIKI_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MESS_WIKI_INDEX);
+	tabWidgetsMap[QMC2_PROJECTMESS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PROJECTMESS_INDEX);
 	tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 	tabWidgetsMap[QMC2_CABINET_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX);
 	tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
@@ -214,7 +214,7 @@ void DetailSetup::loadDetail()
 				<< QMC2_EMUINFO_INDEX
 				<< QMC2_CONFIG_INDEX
 				<< QMC2_DEVICE_INDEX
-				<< QMC2_MESS_WIKI_INDEX
+				<< QMC2_PROJECTMESS_INDEX
 				<< QMC2_PCB_INDEX
 				<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED

@@ -79,7 +79,7 @@
 #define QMC2_MARQUEE_INDEX			8
 #define QMC2_TITLE_INDEX			9
 #define QMC2_MAWS_INDEX				10
-#define QMC2_MESS_WIKI_INDEX			QMC2_MAWS_INDEX
+#define QMC2_PROJECTMESS_INDEX			QMC2_MAWS_INDEX
 #define QMC2_PCB_INDEX				11
 #define QMC2_SOFTWARE_LIST_INDEX		12
 #define QMC2_YOUTUBE_INDEX			13
@@ -400,16 +400,15 @@
 // MAWS ROM set base URL (default)
 #define QMC2_MAWS_BASE_URL			"http://maws.mameworld.info/maws/romset/%1"
 
-// MESS Wiki base URL (default)
-#define QMC2_MESS_WIKI_PATTERN_URL		"http://www.mess.org/mess:drivers:%1"
-#define QMC2_MESS_WIKI_BASE_URL			"http://www.mess.org/mess:drivers"
+// ProjectMESS driver look-up URL
+#define QMC2_PROJECTMESS_PATTERN_URL		"http://www.progettoemma.net/mess/system.php?machine=%1"
 
 // MAWS image links base URL (default)
 #define QMC2_MAWS_IMGLINKS_BASE_URL		"http://maws.mameworld.info/maws/"
 
-// MAWS / MESS wiki web cache size (in-memory, 8 MB fixed for now)
+// MAWS / ProjectMESS web cache size (in-memory, 8 MB fixed for now)
 #define QMC2_MAWS_CACHE_SIZE			8 * QMC2_ONE_MEGABYTE
-#define QMC2_MESS_WIKI_CACHE_SIZE		QMC2_MAWS_CACHE_SIZE
+#define QMC2_PROJECTMESS_CACHE_SIZE		QMC2_MAWS_CACHE_SIZE
 
 // delay creation of MAWS quick download menu for how many milliseconds
 // (use same delay to start auto downloads)

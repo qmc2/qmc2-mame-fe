@@ -569,7 +569,7 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Game"));
 #endif
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MAWSCache.setMaxCost(QMC2_MESS_WIKI_CACHE_SIZE);
+  qmc2MAWSCache.setMaxCost(QMC2_PROJECTMESS_CACHE_SIZE);
   actionLaunchQMC2MESS->setVisible(false);
   actionDemoMode->setVisible(false);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
@@ -592,10 +592,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionClearGamelistCache->setToolTip(tr("Forcedly clear (remove) the machine list cache"));
   actionClearGamelistCache->setStatusTip(tr("Forcedly clear (remove) the machine list cache"));
   treeWidgetGamelist->setStatusTip(tr("List of all supported machines"));
-  actionClearMAWSCache->setText(tr("Clear MESS wiki cache"));
-  actionClearMAWSCache->setIconText(tr("Clear MESS wiki cache"));
-  actionClearMAWSCache->setToolTip(tr("Clear MESS wiki cache"));
-  actionClearMAWSCache->setStatusTip(tr("Clear MESS wiki cache"));
+  actionClearMAWSCache->setText(tr("Clear ProjectMESS cache"));
+  actionClearMAWSCache->setIconText(tr("Clear ProjectMESS cache"));
+  actionClearMAWSCache->setToolTip(tr("Clear ProjectMESS cache"));
+  actionClearMAWSCache->setStatusTip(tr("Clear ProjectMESS cache"));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
@@ -2252,7 +2252,7 @@ void MainWindow::on_actionClearMAWSCache_triggered(bool)
   cacheStatus = tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles));
   log(QMC2_LOG_FRONTEND, tr("MAWS on-disk cache cleared (%1)").arg(cacheStatus));
 #elif defined(QMC2_EMUTYPE_MESS)
-  log(QMC2_LOG_FRONTEND, tr("MESS wiki in-memory cache cleared (%1)").arg(cacheStatus));
+  log(QMC2_LOG_FRONTEND, tr("ProjectMESS in-memory cache cleared (%1)").arg(cacheStatus));
 #endif
 }
 
@@ -3790,7 +3790,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
-    case QMC2_MESS_WIKI_INDEX:
+    case QMC2_PROJECTMESS_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
 	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
@@ -3800,7 +3800,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( qmc2MAWSLookup ) {
           QLayout *vbl = tabMAWS->layout();
           if ( vbl ) delete vbl;
-          qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MESSWiki/Zoom", qmc2MAWSLookup->spinBoxZoom->value());
+          qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", qmc2MAWSLookup->spinBoxZoom->value());
           delete qmc2MAWSLookup;
           qmc2MAWSLookup = NULL;
         }
@@ -3808,44 +3808,31 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
-	qmc2MAWSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MESSWiki/Zoom", 100).toInt());
+	qmc2MAWSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", 100).toInt());
         qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
         qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
-        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for all drivers"));
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);
-        QString messWikiUrl = QMC2_MESS_WIKI_BASE_URL;
+        QString projectMessUrl;
         QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
-        QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
-        if ( driverName.isEmpty() ) {
-          if ( qmc2MAWSCache.contains("QMC2_MESS_WIKI_ALL_DRIVERS") )
-            qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache["QMC2_MESS_WIKI_ALL_DRIVERS"])), QUrl(messWikiUrl));
-          else
-            qmc2MAWSLookup->webViewBrowser->setHtml(
-                                    QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
-                                    tr("Fetching MESS wiki page for all drivers, please wait...") +
-                                    "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(messWikiUrl) + "</p></center></body></html>",
-                                    QUrl(messWikiUrl));
-          qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
-	} else if ( !qmc2MAWSCache.contains(driverName) ) {
-          qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
-          messWikiUrl = QString(QMC2_MESS_WIKI_PATTERN_URL).arg(driverName);
+        QString machName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("ProjectMESS page for system '%1'").arg(machName));
+	if ( !qmc2MAWSCache.contains(machName) ) {
+          projectMessUrl = QString(QMC2_PROJECTMESS_PATTERN_URL).arg(machName);
           qmc2MAWSLookup->webViewBrowser->setHtml(
                                   QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
-                                  tr("Fetching MESS wiki page for driver '%1', please wait...").arg(driverName) +
-                                  "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(messWikiUrl) + "</p></center></body></html>",
-                                  QUrl(messWikiUrl));
-          qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
+                                  tr("Fetching ProjectMESS page for system '%1', please wait...").arg(machName) +
+                                  "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(projectMessUrl) + "</p></center></body></html>",
+                                  QUrl(projectMessUrl));
+          qmc2MAWSLookup->webViewBrowser->load(QUrl(projectMessUrl));
         } else {
-          // FIXME: There's currently a bug in QWebView::setHtml() so that it executes JavaScript twice.
-          qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
-          messWikiUrl = QString(QMC2_MESS_WIKI_PATTERN_URL).arg(driverName);
-          qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[driverName])), QUrl(messWikiUrl));
-          qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
+          projectMessUrl = QString(QMC2_PROJECTMESS_PATTERN_URL).arg(machName);
+          qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[machName])), QUrl(projectMessUrl));
+          qmc2MAWSLookup->webViewBrowser->load(QUrl(projectMessUrl));
         }
         qmc2LastMAWSItem = qmc2CurrentItem;
-        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(messWikiLoadFinished(bool)));
-        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(messWikiLoadStarted()));
+        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessDriverLoadFinished(bool)));
+        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessDriverLoadStarted()));
         tabMAWS->setUpdatesEnabled(true);
       }
       break;
@@ -5837,7 +5824,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 #elif defined(QMC2_EMUTYPE_MESS)
   if ( qmc2MAWSLookup ) {
-    log(QMC2_LOG_FRONTEND, tr("destroying MESS wiki lookup"));
+    log(QMC2_LOG_FRONTEND, tr("destroying ProjectMESS lookup"));
     delete qmc2MAWSLookup;
   }
 #endif
@@ -8733,28 +8720,26 @@ void MainWindow::storeMawsIcon()
 }
 
 #elif defined(QMC2_EMUTYPE_MESS)
-void MainWindow::messWikiLoadStarted()
+void MainWindow::projectMessDriverLoadStarted()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::messWikiLoadStarted()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::projectMessDriverLoadStarted()");
 #endif
 
 }
 
-void MainWindow::messWikiLoadFinished(bool ok)
+void MainWindow::projectMessDriverLoadFinished(bool ok)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::messWikiLoadFinished(bool ok = %1)").arg(ok));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::projectMessDriverLoadFinished(bool ok = %1)").arg(ok));
 #endif
 
 	if ( ok ) {
-		QByteArray messWikiData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
-    		QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
-		if ( driverName.isEmpty() )
-			driverName = "QMC2_MESS_WIKI_ALL_DRIVERS";
-		if ( qmc2MAWSCache.contains(driverName) )
-			qmc2MAWSCache.remove(driverName);
-		qmc2MAWSCache.insert(driverName, new QByteArray(messWikiData), messWikiData.size());
+		QByteArray projectMessData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+    		QString machName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+		if ( qmc2MAWSCache.contains(machName) )
+			qmc2MAWSCache.remove(machName);
+		qmc2MAWSCache.insert(machName, new QByteArray(projectMessData), projectMessData.size());
 	}
 }
 #endif

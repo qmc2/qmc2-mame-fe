@@ -318,7 +318,7 @@ Options::Options(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MESS wiki cache"), NULL);
+  qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
