@@ -54,6 +54,7 @@ class BrowserWidget : public QWebView
       mouseCurrentlyOnView = false;
       emit mouseOnView(false);
     }
+    QWebView *createWindow(QWebPage::WebWindowType);
 };
 
 class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser

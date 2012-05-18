@@ -452,8 +452,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetVersionView_itemSelectionChanged();
     void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
 #elif defined(QMC2_EMUTYPE_MESS)
-    void messWikiLoadStarted();
-    void messWikiLoadFinished(bool);
+    void projectMessDriverLoadStarted();
+    void projectMessDriverLoadFinished(bool);
     void projectMessLoadStarted();
     void projectMessLoadFinished(bool);
 #endif
