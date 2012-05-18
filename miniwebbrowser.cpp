@@ -31,7 +31,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   setupUi(this);
 
-  webViewBrowser = new BrowserWidget(frameBrowser);
+  webViewBrowser = new BrowserWidget(frameBrowser, this);
   webViewBrowser->setObjectName("webViewBrowser");
   gridLayoutBrowser->addWidget(webViewBrowser);
 
@@ -517,9 +517,12 @@ QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 	if ( type == QWebPage::WebModalDialog )
 		webBrowser->setWindowModality(Qt::ApplicationModal);
 	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+	webBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value());
 	webBrowser->adjustSize();
 	webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
-	webBrowser->show();
+	webBrowser->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
+	webBrowser->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
 	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+	webBrowser->show();
 	return webBrowser->webViewBrowser;
 }
