@@ -26,6 +26,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   setObjectName("MiniWebBrowser");
 
+  QWebSettings::setMaximumPagesInCache(QMC2_BROWSER_CACHE_PAGES);
+
   if ( MiniWebBrowser::supportedSchemes.isEmpty() )
     MiniWebBrowser::supportedSchemes << "http" << "file";
 
