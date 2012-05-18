@@ -5941,6 +5941,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
   delete qmc2KeyPressFilter;
   delete qmc2Options;
   e->accept();
+
+  // remove possible left-overs
+  QApplication::closeAllWindows();
 }
 
 void MainWindow::init()
