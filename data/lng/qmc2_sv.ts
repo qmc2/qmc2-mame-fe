@@ -5410,8 +5410,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1363"/>
-        <location filename="../../messdevcfg.cpp" line="1368"/>
+        <location filename="../../messdevcfg.cpp" line="1365"/>
+        <location filename="../../messdevcfg.cpp" line="1370"/>
         <source>Active device configuration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5609,10 +5609,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="168"/>
         <location filename="../../messdevcfg.cpp" line="638"/>
-        <location filename="../../messdevcfg.cpp" line="888"/>
-        <location filename="../../messdevcfg.cpp" line="937"/>
-        <location filename="../../messdevcfg.cpp" line="1114"/>
-        <location filename="../../messdevcfg.cpp" line="1236"/>
+        <location filename="../../messdevcfg.cpp" line="890"/>
+        <location filename="../../messdevcfg.cpp" line="939"/>
+        <location filename="../../messdevcfg.cpp" line="1116"/>
+        <location filename="../../messdevcfg.cpp" line="1238"/>
         <source>No devices</source>
         <translation>Inga enheter</translation>
     </message>
@@ -5682,7 +5682,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="288"/>
-        <location filename="../../messdevcfg.cpp" line="1617"/>
+        <location filename="../../messdevcfg.cpp" line="1619"/>
         <source>&amp;Open archive</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5690,8 +5690,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="337"/>
         <location filename="../../messdevcfg.cpp" line="695"/>
         <location filename="../../messdevcfg.cpp" line="800"/>
-        <location filename="../../messdevcfg.cpp" line="1375"/>
-        <location filename="../../messdevcfg.cpp" line="1800"/>
+        <location filename="../../messdevcfg.cpp" line="1377"/>
+        <location filename="../../messdevcfg.cpp" line="1802"/>
         <source>No devices available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5739,44 +5739,50 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="970"/>
+        <location filename="../../messdevcfg.cpp" line="834"/>
+        <location filename="../../messdevcfg.cpp" line="847"/>
+        <source>default</source>
+        <translation type="unfinished">standard</translation>
+    </message>
+    <message>
         <location filename="../../messdevcfg.cpp" line="972"/>
+        <location filename="../../messdevcfg.cpp" line="974"/>
         <source>%1. copy of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1212"/>
-        <location filename="../../messdevcfg.cpp" line="1815"/>
+        <location filename="../../messdevcfg.cpp" line="1214"/>
+        <location filename="../../messdevcfg.cpp" line="1817"/>
         <source>%1. variant of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1306"/>
+        <location filename="../../messdevcfg.cpp" line="1308"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1617"/>
+        <location filename="../../messdevcfg.cpp" line="1619"/>
         <source>&amp;Close archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1817"/>
+        <location filename="../../messdevcfg.cpp" line="1819"/>
         <source>Choose a unique configuration name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1817"/>
+        <location filename="../../messdevcfg.cpp" line="1819"/>
         <source>Unique configuration name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1820"/>
+        <location filename="../../messdevcfg.cpp" line="1822"/>
         <source>Name conflict</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1820"/>
+        <location filename="../../messdevcfg.cpp" line="1822"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>

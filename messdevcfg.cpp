@@ -831,7 +831,7 @@ bool MESSDeviceConfigurator::load()
 		cb->setAutoFillBackground(true);
 		QString defaultSlotOption = xmlHandler.defaultSlotOptions[slotName];
 		if ( defaultSlotOption.isEmpty() ) {
-			cb->insertItem(0, tr("not used"));
+			cb->insertItem(0, tr("not used") + " / " + tr("default"));
 			if ( slotOptions.count() > 0 ) {
 				cb->insertSeparator(1);
 				cb->insertItems(2, slotOptions);
@@ -842,7 +842,9 @@ bool MESSDeviceConfigurator::load()
 			if ( slotOptions.count() > 0 ) {
 				cb->insertSeparator(1);
 				cb->insertItems(2, slotOptions);
-				slotPreselectionMap[cb] = slotOptionsShort.indexOf(defaultSlotOption) + 2;
+				int defaultIndex = slotOptionsShort.indexOf(defaultSlotOption);
+				slotPreselectionMap[cb] = defaultIndex + 2;
+				cb->setItemText(defaultIndex + 2, slotOptions[defaultIndex] + " / " + tr("default"));
 			} else
 				slotPreselectionMap[cb] = 0;
 		}
