@@ -74,6 +74,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
          firstTimeLoadFinished;
     QTimer statusTimer;
     BrowserWidget *webViewBrowser;
+    QString currentTitle;
 
     MiniWebBrowser(QWidget *parent = 0);
     ~MiniWebBrowser();
@@ -83,6 +84,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
     void on_spinBoxZoom_valueChanged(int);
+    void changeTitle(QString &);
 
     // page actions
     void processPageActionDownloadRequested(const QNetworkRequest &);

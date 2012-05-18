@@ -31,6 +31,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   setupUi(this);
 
+  currentTitle = "QMC2_NO_TITLE";
+  changeTitle(currentTitle);
+
   webViewBrowser = new BrowserWidget(frameBrowser, this);
   webViewBrowser->setObjectName("webViewBrowser");
   gridLayoutBrowser->addWidget(webViewBrowser);
@@ -149,6 +152,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 #else
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, false);
 #endif
+
+  connect(this, SIGNAL(titleChanged(QString &)), this, SLOT(changeTitle(QString &)));
 
   // we want to detect/handle unsupported content
   webViewBrowser->page()->setForwardUnsupportedContent(true);
@@ -511,6 +516,28 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
                         .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
   }
+}
+
+void MiniWebBrowser::changeTitle(QString &title)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::changeTitle(QString &title = %1): currentTitle = %2").arg(title).arg(currentTitle));
+#endif
+
+	if ( title == "QMC2_NO_TITLE" ) {
+			setWindowTitle(tr("MiniWebBrowser"));
+			currentTitle = "QMC2_NO_TITLE";
+	} else {
+		if ( title.isEmpty() ) {
+			if ( currentTitle == "QMC2_NO_TITLE" )
+				setWindowTitle(tr("MiniWebBrowser"));
+			else
+				setWindowTitle(tr("MiniWebBrowser") + " :: " + currentTitle);
+		} else {
+			currentTitle = title;
+			setWindowTitle(tr("MiniWebBrowser") + " :: " + currentTitle);
+		}
+	}
 }
 
 QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
