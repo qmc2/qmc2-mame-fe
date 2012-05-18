@@ -9641,14 +9641,14 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../miniwebbrowser.ui" line="33"/>
         <location filename="../../miniwebbrowser.ui" line="36"/>
-        <location filename="../../miniwebbrowser.cpp" line="100"/>
+        <location filename="../../miniwebbrowser.cpp" line="104"/>
         <source>Go back</source>
         <translation>Idź wstecz</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="56"/>
         <location filename="../../miniwebbrowser.ui" line="59"/>
-        <location filename="../../miniwebbrowser.cpp" line="102"/>
+        <location filename="../../miniwebbrowser.cpp" line="106"/>
         <source>Go forward</source>
         <translation>Idź naprzód</translation>
     </message>
@@ -9700,64 +9700,77 @@ Ponowić próbę osadzania?</translation>
         <translation>Idź do strony domowej (pierwszej)</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="86"/>
+        <location filename="../../miniwebbrowser.cpp" line="89"/>
         <source>Open link</source>
         <translation>Otwórz element docelowy</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="88"/>
+        <location filename="../../miniwebbrowser.cpp" line="91"/>
         <source>Open link in new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="90"/>
+        <location filename="../../miniwebbrowser.cpp" line="93"/>
         <source>Open image in new window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="92"/>
+        <location filename="../../miniwebbrowser.cpp" line="95"/>
         <source>Save link as...</source>
         <translation>Zapisz element docelowy jako...</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="94"/>
+        <location filename="../../miniwebbrowser.cpp" line="97"/>
         <source>Copy link</source>
         <translation>Kopiuj adres odnośnika</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="96"/>
+        <location filename="../../miniwebbrowser.cpp" line="99"/>
         <source>Save image as...</source>
         <translation>Zapisz obraz jako...</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="98"/>
+        <location filename="../../miniwebbrowser.cpp" line="101"/>
         <source>Copy image</source>
         <translation>Kopiuj adres obrazka</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="104"/>
+        <location filename="../../miniwebbrowser.cpp" line="103"/>
+        <source>Copy image address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="108"/>
         <source>Reload</source>
         <translation>Odśwież</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="106"/>
+        <location filename="../../miniwebbrowser.cpp" line="110"/>
         <source>Stop</source>
         <translation>Zatrzymaj</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="108"/>
+        <location filename="../../miniwebbrowser.cpp" line="112"/>
         <source>Copy</source>
         <translation>Skopiuj</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="111"/>
+        <location filename="../../miniwebbrowser.cpp" line="115"/>
         <source>Inspect</source>
         <translation>Zbadaj</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="489"/>
+        <location filename="../../miniwebbrowser.cpp" line="495"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>UWAGA: niepoprawna odpowiedź sieci lub błąd sieci</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="529"/>
+        <location filename="../../miniwebbrowser.cpp" line="534"/>
+        <location filename="../../miniwebbrowser.cpp" line="536"/>
+        <location filename="../../miniwebbrowser.cpp" line="539"/>
+        <source>MiniWebBrowser</source>
+        <translation type="unfinished">MiniWebBrowser</translation>
     </message>
 </context>
 <context>
