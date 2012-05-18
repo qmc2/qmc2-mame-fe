@@ -80,13 +80,15 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   connect(toolButtonStop, SIGNAL(clicked()), webViewBrowser, SLOT(stop()));
 
   // hide page actions we don't provide
-  webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
   webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
-  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
 
   // change provided page actions to better fit our usage / integrate into QMC2's look
   webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
   webViewBrowser->pageAction(QWebPage::OpenLink)->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setText(tr("Open link in new window"));
+  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
+  webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setText(tr("Open image in new window"));
+  webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
   webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setText(tr("Save link as..."));
   webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
   webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setText(tr("Copy link"));
