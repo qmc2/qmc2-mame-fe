@@ -89,6 +89,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     // page actions
     void processPageActionDownloadRequested(const QNetworkRequest &);
     void processPageActionHandleUnsupportedContent(QNetworkReply *);
+    void postProcessPageActionInspect();
 
     // other
     void webViewBrowser_linkClicked(const QUrl);
@@ -102,6 +103,9 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void webViewBrowser_statusBarVisibilityChangeRequested(bool);
     void webViewBrowser_frameCreated(QWebFrame *);
     void statusTimeout();
+
+  protected:
+    void hideEvent(QHideEvent *);
 
   signals:
     void titleChanged(QString &);

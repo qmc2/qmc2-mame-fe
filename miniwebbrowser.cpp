@@ -1,18 +1,22 @@
 #include <QWebHistory>
 #include <QWebFrame>
+#include <QWebInspector>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QSettings>
 #include <QDir>
 
 #include "miniwebbrowser.h"
 #include "macros.h"
 #include "qmc2main.h"
+#include "options.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
+extern QSettings *qmc2Config;
 
 QCache<QString, QIcon> MiniWebBrowser::iconCache;
 QStringList MiniWebBrowser::supportedSchemes;
@@ -158,6 +162,10 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   connect(this, SIGNAL(titleChanged(QString &)), this, SLOT(changeTitle(QString &)));
 
+#if defined(QMC2_BROWSER_EXTRAS_ENABLED)
+  connect(webViewBrowser->pageAction(QWebPage::InspectElement), SIGNAL(triggered()), this, SLOT(postProcessPageActionInspect()), Qt::QueuedConnection);
+#endif
+
   // we want to detect/handle unsupported content
   webViewBrowser->page()->setForwardUnsupportedContent(true);
 
@@ -171,9 +179,47 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 MiniWebBrowser::~MiniWebBrowser()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::~MiniWebBrowser()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::~MiniWebBrowser()");
 #endif
 
+	hideEvent(NULL);
+}
+
+void MiniWebBrowser::hideEvent(QHideEvent *e)
+{
+#if defined(QMC2_BROWSER_EXTRAS_ENABLED)
+  	foreach (QWidget *widget, QApplication::topLevelWidgets()) {
+		if ( widget->inherits("QWebInspector") ) {
+			QWebInspector *inspector = (QWebInspector *)widget;
+			if ( inspector->page() == webViewBrowser->page() ) {
+				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebInspector/Geometry", inspector->saveGeometry());
+				inspector->close();
+				inspector->update();
+				qApp->processEvents();
+				break;
+			}
+		}
+	}
+#endif
+	if ( !e )
+		return;
+
+	e->accept();
+}
+
+void MiniWebBrowser::postProcessPageActionInspect()
+{
+#if defined(QMC2_BROWSER_EXTRAS_ENABLED)
+  	foreach (QWidget *widget, QApplication::topLevelWidgets()) {
+		if ( widget->inherits("QWebInspector") ) {
+			QWebInspector *inspector = (QWebInspector *)widget;
+			if ( inspector->page() == webViewBrowser->page() ) {
+				inspector->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebInspector/Geometry", QByteArray()).toByteArray());
+				break;
+			}
+		}
+	}
+#endif
 }
 
 void MiniWebBrowser::on_comboBoxURL_activated()
