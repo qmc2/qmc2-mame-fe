@@ -8,6 +8,8 @@
 #include "ui_miniwebbrowser.h"
 #include "macros.h"
 
+class MiniWebBrowser;
+
 class BrowserWidget : public QWebView
 {
   Q_OBJECT
@@ -16,12 +18,14 @@ class BrowserWidget : public QWebView
     QPoint lastMouseClickPosition;
     bool mouseCurrentlyOnView;
     QTimer bwuDelayTimer;
+    MiniWebBrowser *parentBrowser;
 
-    BrowserWidget(QWidget *parent = NULL) : QWebView(parent)
+    BrowserWidget(QWidget *parent, MiniWebBrowser *browserParent) : QWebView(parent)
     {
       bwuDelayTimer.setSingleShot(true);
       lastMouseClickPosition = QPoint(-1, -1);
       mouseCurrentlyOnView = false;
+      parentBrowser = browserParent;
     }
 
   public slots:
