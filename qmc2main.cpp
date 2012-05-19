@@ -3335,8 +3335,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				QString entryTitle = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
 				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				QString projectMessUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ProjectMESS/BaseURL", QMC2_PROJECT_MESS_BASE_URL).toString().arg(entryName).arg(listName);
-				qmc2ProjectMESS->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
-				qmc2ProjectMESS->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
 				qmc2ProjectMESS->webViewBrowser->setStatusTip(tr("ProjectMESS page for '%1' / '%2'").arg(listName).arg(entryTitle));
 				if ( !qmc2ProjectMESSCache.contains(listName + "_" + entryName) ) {
 					QColor color = qmc2ProjectMESS->webViewBrowser->palette().color(QPalette::WindowText);
@@ -3809,8 +3807,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
 	qmc2MAWSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", 100).toInt());
-        qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
-        qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);
         QString projectMessUrl;
@@ -3858,8 +3854,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
         qmc2MAWSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/Zoom", 100).toInt());
-        qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
-        qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
         qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);

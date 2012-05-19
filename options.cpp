@@ -613,6 +613,11 @@ void Options::apply()
   
   tableWidgetRegisteredEmulators->resizeRowsToContents();
 
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont, logFont.family());
+  QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, qApp->font().pointSize() + 1);
+  QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFixedFontSize, logFont.pointSize() + 1);
+
 #if QMC2_JOYSTICK == 1
   pushButtonRescanJoysticks->setIconSize(iconSize);
   pushButtonRemapJoystickFunction->setIconSize(iconSize);
@@ -626,7 +631,6 @@ void Options::apply()
     QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();
     if ( tabBar ) tabBar->setIconSize(iconSize);
   }
-#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);
@@ -634,9 +638,12 @@ void Options::apply()
     qmc2MAWSLookup->toolButtonStop->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonHome->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonLoad->setIconSize(iconSize);
+#if defined(QMC2_EMUTYPE_MAME)
     if ( qmc2MainWindow->toolButtonMAWSQuickLinks )
       qmc2MainWindow->toolButtonMAWSQuickLinks->setIconSize(iconSize);
+#endif
   }
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2MawsQuickDownloadSetup )
     QTimer::singleShot(0, qmc2MawsQuickDownloadSetup, SLOT(adjustIconSizes()));
 #endif
