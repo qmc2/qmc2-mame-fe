@@ -589,6 +589,20 @@ void MiniWebBrowser::changeTitle(QString &title)
 	}
 }
 
+void MiniWebBrowser::resizeEvent(QResizeEvent *e)
+{
+	QWidget::resizeEvent(e);
+	if ( parentWidget() == 0 )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry", saveGeometry());
+}
+
+void MiniWebBrowser::moveEvent(QMoveEvent *e)
+{
+	QWidget::moveEvent(e);
+	if ( parentWidget() == 0 )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry", saveGeometry());
+}
+
 QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 {
 	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
@@ -596,8 +610,12 @@ QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 		webBrowser->setWindowModality(Qt::ApplicationModal);
 	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
 	webBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value());
-	webBrowser->adjustSize();
-	webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+		webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+	else {
+		webBrowser->adjustSize();
+		webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+	}
 	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
 	webBrowser->show();
 	return webBrowser->webViewBrowser;
