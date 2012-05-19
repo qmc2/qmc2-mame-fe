@@ -106,6 +106,8 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void statusTimeout();
 
   protected:
+    void resizeEvent(QResizeEvent *);
+    void moveEvent(QMoveEvent *);
     void hideEvent(QHideEvent *);
 
   signals:
