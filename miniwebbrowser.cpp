@@ -602,3 +602,14 @@ QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 	webBrowser->show();
 	return webBrowser->webViewBrowser;
 }
+
+void BrowserWidget::wheelEvent(QWheelEvent *e)
+{
+	if ( e->modifiers() & Qt::ControlModifier ) {
+		parentBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value() + parentBrowser->spinBoxZoom->singleStep() * (e->delta() > 0 ? 1 : e->delta() < 0 ? -1 : 0));
+		e->accept();
+	} else {
+		e->ignore();
+		QWebView::wheelEvent(e);
+	}
+}
