@@ -598,8 +598,6 @@ QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 	webBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value());
 	webBrowser->adjustSize();
 	webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
-	webBrowser->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
-	webBrowser->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
 	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
 	webBrowser->show();
 	return webBrowser->webViewBrowser;
