@@ -519,7 +519,7 @@ void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &r
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
 #endif
 
-  qmc2MainWindow->startDownload(qmc2NetworkAccessManager->get(request));
+  qmc2MainWindow->startDownload(this, qmc2NetworkAccessManager->get(request));
 }
 
 void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)
@@ -553,7 +553,7 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
   if ( MiniWebBrowser::supportedSchemes.contains(reply->url().scheme().toLower()) ) {
     switch ( reply->operation() ) {
       case QNetworkAccessManager::GetOperation:
-        qmc2MainWindow->startDownload(reply);
+        qmc2MainWindow->startDownload(this, reply);
         break;
 
       default:

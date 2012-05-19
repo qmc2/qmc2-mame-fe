@@ -8670,7 +8670,7 @@ void MainWindow::downloadMawsQuickLink()
     else
       return;
     QNetworkRequest request(actionWords[1]);
-    startDownload(qmc2NetworkAccessManager->get(request), saveName, savePath);
+    startDownload(this, qmc2NetworkAccessManager->get(request), saveName, savePath);
   }
 }
 
@@ -8741,10 +8741,10 @@ void MainWindow::projectMessDriverLoadFinished(bool ok)
 }
 #endif
 
-void MainWindow::startDownload(QNetworkReply *reply, QString saveAsName, QString savePath)
+void MainWindow::startDownload(QWidget *forParent, QNetworkReply *reply, QString saveAsName, QString savePath)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QNetworkReply *reply = %1, QString saveAsName = %2, QString savePath = %3)").arg((qulonglong)reply).arg(saveAsName).arg(savePath));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QWidget *forParent = %1, QNetworkReply *reply = %2, QString saveAsName = %3, QString savePath = %4)").arg((qulonglong)forParent).arg((qulonglong)reply).arg(saveAsName).arg(savePath));
 #endif
 
   if ( !reply )
@@ -8765,7 +8765,7 @@ void MainWindow::startDownload(QNetworkReply *reply, QString saveAsName, QString
   } else {
     if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
       proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
-    filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store download"), proposedName, tr("All files (*)"));
+    filePath = QFileDialog::getSaveFileName(forParent, tr("Choose file to store download"), proposedName, tr("All files (*)"));
   }
 
   if ( !filePath.isEmpty() ) {

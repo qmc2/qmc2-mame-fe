@@ -468,7 +468,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_EMUTYPE_MESS)
     QString &messWikiToHtml(QString &);
 #endif
-    void startDownload(QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
+    void startDownload(QWidget *, QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
     void on_pushButtonClearFinishedDownloads_clicked();
     void on_pushButtonReloadSelectedDownloads_clicked();
     void on_pushButtonStopSelectedDownloads_clicked();
