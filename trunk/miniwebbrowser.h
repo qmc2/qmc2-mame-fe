@@ -58,6 +58,7 @@ class BrowserWidget : public QWebView
       mouseCurrentlyOnView = false;
       emit mouseOnView(false);
     }
+    void wheelEvent(QWheelEvent *);
     QWebView *createWindow(QWebPage::WebWindowType);
 };
 
