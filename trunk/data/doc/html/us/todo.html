@@ -8,24 +8,22 @@
 <h3>TODO - v0.36, 19-MAY-2012</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
-  <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
-  <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior!)</li>
-  <li>The icon sizes of all menu actions are not adjusted to the actual font size -- this is a Qt restriction, and I have not yet found a way to work around this restriction... however, it's just a minor/cosmetic issue</li>
-  <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised()</li>
-  <li>MAME/MESS output notifiers are not supported on Windows yet</li>
-  <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
-      It's not even <i>meant</i> to be a full-featured browser. However, when using Qt 4.7.1+, the browser works quite nicely. It even supports plugins (when enabled at compile time).</li>
-  <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it)</li>
-  <li>X11 only: Embedded emulators that change their display sizes at runtime (usually during startup) may not be correctly centered initially -- however, we made several improvements related to this in v0.2.b19 so that it should happen only very rarely</li>
-  <li>Corrupted PNG images may cause crashes -- if the log file contains corresponding Qt warning or error messages after the crash, please correct your images!! For instance, we've experienced Qt paint engine crashes due to wrong iCCP chunks. After correcting the corrupted PNGs (using <i>convert</i> from ImageMagick) the crashes were history.</li> 
+  <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
+  <li>The icon sizes of all menu actions are not adjusted to the actual font size -- this is a Qt restriction, and I have not yet found a way to work around this restriction... however, it's just a minor/cosmetic issue.</li>
+  <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised().</li>
+  <li>MAME/MESS output notifiers are not supported on Windows yet.</li>
+  <li>The built-in <i>MiniWebBrowser</i> has a fairly restrictive set of features which is tailored to the uses of QMC2. It's not even <i>meant</i> to be a full-featured browser, even though it meanwhile supports most of the typical browser-functions.</li>
+  <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it).</li>
+  <li>X11 only: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly.</li>
   <li>Both the 'set repair' and 'set rewriter' functions (ROMAlyzer features) only work on ZIPs! As of yet, there's no support for CHDs or ROM sets stored as unzipped files in individual sub-directores.</li>
-  <li>Due to a Qt restriction, a corner-widget of a QTabWidget is only shown when the tab-position is either 'north' or 'south'.</li>
+  <li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either 'north' or 'south'.</li>
   <li>Windows only: There are known issues for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash (of the emulator) and screen-shots aren't taken correctly from within the GUI (black image).</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
   <li>Adding a Swedish translation -- thanks to <a href="credits.html#DanielNylander">Daniel Nylander</a></li>
   <li>Adding a Greek translation -- thanks to <a href="credits.html#Kostas">Kostas Albanidis</a></li>
+  <li>Adding a stand-alone CHDMAN GUI (see tools/qchdman/)</li>
   <li>Adding a Spanish translation (mostly done) -- thanks to <a href="credits.html#Daniel">Daniel Barrado</a></li>
   <li>Adding an Italian translation -- thanks to <a href="credits.html#Stefano">Stefano Cereda</a></li>
   <li>Adding a Romanian translation (mostly done) -- thanks to <a href="credits.html#Mihai">Mihai Boisteanu</a></li>
@@ -51,7 +49,6 @@
   <li>Add support for category- &amp; version-ini's from <a href="http://www.mameworld.info/mameinfo/" target="_blank">http://www.mameworld.info/mameinfo/</a> as an alternative to catver.ini</li>
   <li>Make the tool-bar's actions / separators customizable</li>
   <li>Add ability to restore, reset (to default), export, import and/or apply <b>individual</b> emulator options by adding a column with respective action (tool) buttons that are enabled/disabled according to the option's current ini-state (import/export are always available)</li>
-  <li>Add a full-featured chdman UI, probably as a stand-alone tool</li>
   <li>Add a backup / restore tool for QMC2's configuration and caches (though it's a trivial task, see <a href="faq.html#A2.17">Q2.17</a> in the FAQ)</li>
   <li>Add export / import functionality for YouTube video attachments (to allow for merging of videos found by different people, or to backup / restore discovered videos)</li>
   <li>Add a high-score database</li>
