@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QNetworkAccessManager>
 #include <QSettings>
+#include <QToolTip>
 
 #include "qmc2main.h"
 #include "macros.h"
@@ -186,12 +187,14 @@ void ItemDownloader::error(QNetworkReply::NetworkError code)
   if ( localFile.isOpen() )
     localFile.close();
 
+  QString idString = tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" + tr("Local path: %1").arg(localPath);
   downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
-                           tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
-                           tr("Local path: %2").arg(localPath) + "\n" +
+                           idString + "\n" +
                            tr("Status: %1").arg(tr("download aborted")) + "\n" +
                            tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
-                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
+                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((qreal)progressWidget->value()/(qreal)progressWidget->maximum()) * 100));
+  if ( QToolTip::isVisible() && QToolTip::text().startsWith(idString) && downloadItem->treeWidget->visualItemRect(downloadItem).contains(downloadItem->treeWidget->viewport()->mapFromGlobal(QCursor::pos())) )
+    QToolTip::showText(QCursor::pos(), downloadItem->toolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS));
 }
 
 void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
@@ -203,12 +206,14 @@ void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
   progressWidget->setRange(0, bytesTotal); // FIXME: may overflow?
   progressWidget->setValue(bytesReceived);
 
+  QString idString = tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" + tr("Local path: %1").arg(localPath);
   downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
-                           tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
-                           tr("Local path: %2").arg(localPath) + "\n" +
+                           idString + "\n" +
                            tr("Status: %1").arg(tr("downloading")) + "\n" +
                            tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
-                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100, 0, 'f', 2));
+                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((qreal)progressWidget->value()/(qreal)progressWidget->maximum()) * 100, 0, 'f', 2));
+  if ( QToolTip::isVisible() && QToolTip::text().startsWith(idString) && downloadItem->treeWidget->visualItemRect(downloadItem).contains(downloadItem->treeWidget->viewport()->mapFromGlobal(QCursor::pos())) )
+    QToolTip::showText(QCursor::pos(), downloadItem->toolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS));
 }
 
 void ItemDownloader::metaDataChanged()
@@ -234,12 +239,14 @@ void ItemDownloader::finished()
     downloadItem->treeWidget->resizeColumnToContents(QMC2_DOWNLOAD_COLUMN_STATUS);
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download finished: URL = %1, local path = %2, reply ID = %3")
                         .arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
+    QString idString = tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" + tr("Local path: %1").arg(localPath);
     downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
-                             tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
-                             tr("Local path: %2").arg(localPath) + "\n" +
+                             idString + "\n" +
                              tr("Status: %1").arg(tr("download finished")) + "\n" +
                              tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
-                             tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
+                             tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((qreal)progressWidget->value()/(qreal)progressWidget->maximum()) * 100));
+    if ( QToolTip::isVisible() && QToolTip::text().startsWith(idString) && downloadItem->treeWidget->visualItemRect(downloadItem).contains(downloadItem->treeWidget->viewport()->mapFromGlobal(QCursor::pos())) )
+      QToolTip::showText(QCursor::pos(), downloadItem->toolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS));
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", false).toBool() )
       QTimer::singleShot(QMC2_DOWNLOAD_CLEANUP_DELAY, qmc2MainWindow, SLOT(on_pushButtonClearFinishedDownloads_clicked()));
   }
