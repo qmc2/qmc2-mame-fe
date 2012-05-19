@@ -613,7 +613,12 @@ void Options::apply()
   
   tableWidgetRegisteredEmulators->resizeRowsToContents();
 
+  // global web-browser fonts
   QWebSettings::globalSettings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::SerifFont, qApp->font().family());
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::SansSerifFont, qApp->font().family());
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::FantasyFont, qApp->font().family());
+  QWebSettings::globalSettings()->setFontFamily(QWebSettings::CursiveFont, qApp->font().family());
   QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont, logFont.family());
   QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, qApp->font().pointSize() + 1);
   QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFixedFontSize, logFont.pointSize() + 1);
