@@ -1764,7 +1764,6 @@ p, li { white-space: pre-wrap; }
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2460,7 +2459,6 @@ p, li { white-space: pre-wrap; }
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3009,7 +3007,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="643"/>
         <source>%n supported set(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3592,7 +3589,6 @@ p, li { white-space: pre-wrap; }
         <source>%n cached ROM state(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3765,7 +3761,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2215"/>
         <source>, %n BIOS set(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4009,14 +4004,12 @@ p, li { white-space: pre-wrap; }
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2939"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4067,7 +4060,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3450"/>
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5151,7 +5143,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="209"/>
         <location filename="../../downloaditem.cpp" line="242"/>
         <source>Local path: %1</source>
-        <translation type="unfinished">Lokal sökväg: %1</translation>
+        <translation>Lokal sökväg: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="193"/>
@@ -5682,13 +5674,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="266"/>
         <source>Use as default directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd som standardkatalog</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="288"/>
         <location filename="../../messdevcfg.cpp" line="1619"/>
         <source>&amp;Open archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Öppna arkiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="337"/>
@@ -5697,7 +5689,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1377"/>
         <location filename="../../messdevcfg.cpp" line="1802"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga enheter tillgängliga</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="395"/>
@@ -5740,57 +5732,59 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="834"/>
         <location filename="../../messdevcfg.cpp" line="841"/>
         <source>not used</source>
-        <translation type="unfinished"></translation>
+        <translation>används inte</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="834"/>
         <location filename="../../messdevcfg.cpp" line="847"/>
         <source>default</source>
-        <translation type="unfinished">standard</translation>
+        <translation>standard</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="972"/>
         <location filename="../../messdevcfg.cpp" line="974"/>
         <source>%1. copy of </source>
-        <translation type="unfinished"></translation>
+        <translation>%1. kopia av </translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1214"/>
         <location filename="../../messdevcfg.cpp" line="1817"/>
         <source>%1. variant of </source>
-        <translation type="unfinished"></translation>
+        <translation>%1. variant av </translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1308"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj standardenhetskatalog för &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1619"/>
         <source>&amp;Close archive</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;täng arkiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1819"/>
         <source>Choose a unique configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj ett unikt konfigurationsnamn</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1819"/>
         <source>Unique configuration name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unikt konfigurationsnamn:</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1822"/>
         <source>Name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Namnkonflikt</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1822"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
-        <translation type="unfinished"></translation>
+        <translation>En konfiguration med namnet &quot;%1&quot; finns redan.
+
+Vill du välja ett annat namn?</translation>
     </message>
 </context>
 <context>
@@ -6114,12 +6108,12 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="847"/>
         <location filename="../../qmc2main.ui" line="850"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</source>
-        <translation type="unfinished"></translation>
+        <translation>L:Listad - C:Korrekt - M:Mestadels korrekt - I:Felaktig - N:Hittades inte - U:Okänd - S:Sök - T:Taggad</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="853"/>
         <source>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="866"/>
@@ -6158,7 +6152,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1432"/>
         <location filename="../../qmc2main.ui" line="1435"/>
         <source>Detailed game information</source>
-        <translation type="unfinished"></translation>
+        <translation>Detaljerad spelinformation</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1453"/>
@@ -6354,20 +6348,20 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1937"/>
         <location filename="../../qmc2main.ui" line="1940"/>
         <source>Progress indicator for current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Förloppsindikator för aktuellt spår</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1946"/>
         <location filename="../../qmc2main.cpp" line="7067"/>
         <location filename="../../qmc2main.cpp" line="7077"/>
         <source>%vs (%ms total)</source>
-        <translation type="unfinished"></translation>
+        <translation>%vs (%ms totalt)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1955"/>
         <location filename="../../qmc2main.ui" line="1958"/>
         <source>Audio player volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Volym för ljudspelare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1976"/>
@@ -6402,13 +6396,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2041"/>
         <source>Play on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela upp vid start</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2048"/>
         <location filename="../../qmc2main.ui" line="2051"/>
         <source>Select random tracks from playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj slumpmässiga spår från spellistan</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2054"/>
@@ -6440,7 +6434,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2100"/>
         <source>Dow&amp;nloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Hä&amp;mtningar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2115"/>
@@ -6479,7 +6473,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2210"/>
         <source>Remove finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort färdiga</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2249"/>
@@ -6559,7 +6553,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2520"/>
         <source>Check &amp;samples...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera &amp;samplingar...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2523"/>
@@ -6570,7 +6564,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2529"/>
         <source>Ctrl+2</source>
-        <translation type="unfinished">Ctrl+2</translation>
+        <translation>Ctrl+2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2541"/>
@@ -6586,7 +6580,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2550"/>
         <source>Ctrl+3</source>
-        <translation type="unfinished">Ctrl+3</translation>
+        <translation>Ctrl+3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2562"/>
@@ -6617,7 +6611,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2586"/>
         <location filename="../../qmc2main.ui" line="2589"/>
         <source>View online documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa onlinedokumentation</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2592"/>
@@ -6812,7 +6806,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2823"/>
         <location filename="../../qmc2main.ui" line="2826"/>
         <source>Clear icon cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm ikoncache</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2829"/>
@@ -6849,7 +6843,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="942"/>
         <location filename="../../qmc2main.cpp" line="1010"/>
         <source>Check current game&apos;s ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera ROM-tillstånd för aktuellt spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2874"/>
@@ -6870,7 +6864,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2892"/>
         <location filename="../../qmc2main.ui" line="2895"/>
         <source>Analyse current game with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysera aktuellt spel med ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2898"/>
@@ -6880,18 +6874,18 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2910"/>
         <source>Analyse ROM (tagged)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysera ROM (taggade)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2913"/>
         <source>Analyse ROM (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysera ROM (taggade)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2916"/>
         <location filename="../../qmc2main.ui" line="2919"/>
         <source>Analyse all tagged sets with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysera alla taggade uppsättningar med ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2922"/>
@@ -6901,13 +6895,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2934"/>
         <source>ROMAly&amp;zer...</source>
-        <translation type="unfinished"></translation>
+        <translation>ROMAly&amp;zer...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2937"/>
         <location filename="../../qmc2main.ui" line="2940"/>
         <source>Open ROMAlyzer dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna ROMAlyzer-dialogrutan</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2943"/>
@@ -6918,7 +6912,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2958"/>
         <location filename="../../qmc2main.cpp" line="1090"/>
         <source>&amp;Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Konfigurera...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2961"/>
@@ -6929,7 +6923,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2970"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2985"/>
@@ -6945,7 +6939,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2997"/>
         <source>F12</source>
-        <translation type="unfinished">F12</translation>
+        <translation>F12</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3012"/>
@@ -7070,7 +7064,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3211"/>
         <source>&amp;Export ROM status...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exportera ROM-tillstånd...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3214"/>
@@ -7081,7 +7075,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3220"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3232"/>
@@ -7139,12 +7133,12 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3297"/>
         <source>Save a screen shot from the current arcade scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara en skärmbild från den aktuellt arkadscenen</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3300"/>
         <source>Take screen shot from arcade scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta skärmbild från arkadscenen</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3303"/>
@@ -7201,13 +7195,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3367"/>
         <source>&amp;Demo mode...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Demonstrationsläge...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3370"/>
         <location filename="../../qmc2main.ui" line="3373"/>
         <source>Open the demo mode dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna demonstrationsläget</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3385"/>
@@ -7342,45 +7336,45 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3553"/>
         <source>Play (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela (taggade)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3556"/>
         <location filename="../../qmc2main.ui" line="3559"/>
         <source>Play all tagged games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela alla taggade spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3571"/>
         <source>Play embedded (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela inbäddat (taggade)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3574"/>
         <location filename="../../qmc2main.ui" line="3577"/>
         <source>Play all tagged games (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela alla taggade spel (inbäddat)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3589"/>
         <source>To favorites (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Till favoriter (taggade)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3592"/>
         <location filename="../../qmc2main.ui" line="3595"/>
         <source>Add all tagged games to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till alla taggade spel till favoriter</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3598"/>
         <source>Ctrl+Shift+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3610"/>
         <source>ROM state (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM-tillstånd (taggade)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3613"/>
@@ -7396,13 +7390,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3631"/>
         <source>E&amp;xit / Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;vsluta / Stoppa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3634"/>
         <location filename="../../qmc2main.ui" line="3637"/>
         <source>Exit program / Stop any active processing</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta programmet / Stoppa aktiva behandlingar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3640"/>
@@ -7412,7 +7406,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3652"/>
         <source>Set tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ in tagg</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3655"/>
@@ -7428,7 +7422,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3673"/>
         <source>Unset tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort tagg</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3676"/>
@@ -7444,7 +7438,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3694"/>
         <source>Toggle tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla tagg</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3697"/>
@@ -7460,7 +7454,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3715"/>
         <source>Tag all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagga alla</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3718"/>
@@ -7476,7 +7470,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3736"/>
         <source>Untag all</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort alla taggar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3739"/>
@@ -7492,7 +7486,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3757"/>
         <source>Invert all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertera alla taggar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3760"/>
@@ -7524,7 +7518,6 @@ Do you want to choose a different name?</source>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7537,7 +7530,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="5978"/>
         <location filename="../../qmc2main.cpp" line="6025"/>
         <source>Default</source>
-        <translation type="unfinished">Standard</translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="432"/>
@@ -7613,35 +7606,35 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="576"/>
         <location filename="../../qmc2main.cpp" line="1176"/>
         <source>Machine / Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskin / Attribut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="577"/>
         <location filename="../../qmc2main.cpp" line="1216"/>
         <source>Machine / Clones</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskin / Kloner</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="578"/>
         <source>M&amp;achine list</source>
-        <translation type="unfinished"></translation>
+        <translation>M&amp;askinlista</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="579"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskin&amp;info</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="580"/>
         <location filename="../../qmc2main.cpp" line="581"/>
         <source>Detailed machine info</source>
-        <translation type="unfinished"></translation>
+        <translation>Detaljerad maskininformation</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="582"/>
         <location filename="../../qmc2main.cpp" line="583"/>
         <source>Favorite machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoritmaskiner</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="584"/>
@@ -7653,19 +7646,19 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="586"/>
         <location filename="../../qmc2main.cpp" line="587"/>
         <source>Play current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela aktuell maskin</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="588"/>
         <location filename="../../qmc2main.cpp" line="589"/>
         <source>Play all tagged machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela alla taggade maskiner</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="590"/>
         <location filename="../../qmc2main.cpp" line="591"/>
         <source>Clear machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Töm cache för maskinlista</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="592"/>
@@ -7690,13 +7683,13 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="600"/>
         <location filename="../../qmc2main.cpp" line="601"/>
         <source>Play current machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela aktuell maskin (inbäddat)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="602"/>
         <location filename="../../qmc2main.cpp" line="603"/>
         <source>Play all tagged machines (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela alla taggade maskiner (inbäddat)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="606"/>
@@ -7715,19 +7708,19 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="891"/>
         <location filename="../../qmc2main.cpp" line="1002"/>
         <source>Add current machine to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till aktuell maskin till favoriter</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="612"/>
         <location filename="../../qmc2main.cpp" line="613"/>
         <source>Add all tagged machines to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till alla taggade maskiner till favoriter</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="614"/>
         <location filename="../../qmc2main.cpp" line="615"/>
         <source>Reload entire machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Läs om hela maskinlistan</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="616"/>
@@ -7854,7 +7847,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="790"/>
         <source>&amp;Embed</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bädda in</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="796"/>
@@ -7864,7 +7857,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="797"/>
         <source>&amp;Terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Terminera</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="801"/>
@@ -7874,7 +7867,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="802"/>
         <source>&amp;Kill</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Döda</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="807"/>
@@ -7894,7 +7887,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="919"/>
         <location filename="../../qmc2main.cpp" line="978"/>
         <source>Play selected game</source>
-        <translation type="unfinished">Spela markerat spel</translation>
+        <translation>Spela markerat spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="817"/>
@@ -7902,7 +7895,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="921"/>
         <location filename="../../qmc2main.cpp" line="980"/>
         <source>Start selected machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta markerad maskin</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="826"/>
@@ -7910,7 +7903,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="930"/>
         <location filename="../../qmc2main.cpp" line="989"/>
         <source>Play selected game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spela markerat spel (inbäddat)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="828"/>
@@ -7918,7 +7911,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="932"/>
         <location filename="../../qmc2main.cpp" line="991"/>
         <source>Start selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta markerad maskin (inbäddat)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="851"/>
@@ -7926,7 +7919,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="946"/>
         <location filename="../../qmc2main.cpp" line="1014"/>
         <source>Check &amp;ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera &amp;ROM-tillstånd</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="856"/>
@@ -7950,7 +7943,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="955"/>
         <location filename="../../qmc2main.cpp" line="1023"/>
         <source>&amp;Analyse ROM...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Analysera ROM...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="960"/>
@@ -8134,7 +8127,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="1689"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga enheter tillgängliga</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1723"/>
@@ -8247,15 +8240,14 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2233"/>
         <source>%n entry(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n post</numerusform>
+            <numerusform>%n poster</numerusform>
         </translation>
     </message>
     <message>
@@ -8267,9 +8259,9 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="2252"/>
         <location filename="../../qmc2main.cpp" line="2281"/>
         <source>removed %n byte(s) in %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>tog bort %n byte i %1</numerusform>
+            <numerusform>tog bort %n byte i %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -8411,12 +8403,12 @@ Do you really want to check all ROM states now?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="3949"/>
         <source>Emulator for this game</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulator för detta spel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3951"/>
         <source>Emulator for this machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulator för denna maskin</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3992"/>
@@ -8507,12 +8499,12 @@ Do you really want to check all ROM states now?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="4660"/>
         <source>Kill emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Döda emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4661"/>
         <source>&amp;Kill emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Döda emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4685"/>
@@ -8597,7 +8589,8 @@ Retry embedding?</source>
         <location filename="../../qmc2main.cpp" line="5465"/>
         <source>Your configuration changes have not been applied yet.
 Really quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dina konfigurationsändringar har ännu inte tillämpats.
+Verkligen avsluta?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5480"/>
@@ -8821,14 +8814,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5906"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8882,7 +8873,6 @@ Should they be killed on exit?</source>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8898,12 +8888,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="6353"/>
         <source>Game info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Spelinfo - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6355"/>
         <source>Machine info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskininfo - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6435"/>
@@ -8955,7 +8945,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8972,7 +8961,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6477"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -9021,7 +9009,6 @@ Should they be killed on exit?</source>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9037,7 +9024,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="6919"/>
         <source>Add URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till URL</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6919"/>
@@ -9052,7 +9039,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="7183"/>
         <source>Buffering %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffrar %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7247"/>
@@ -9091,12 +9078,12 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="7437"/>
         <location filename="../../qmc2main.cpp" line="7447"/>
         <source>running</source>
-        <translation type="unfinished">kör</translation>
+        <translation>kör</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7386"/>
         <source>stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>stoppad</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7403"/>
@@ -9165,7 +9152,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="8541"/>
         <source>Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurera...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8656"/>
@@ -9190,7 +9177,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="8664"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>PCB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8702"/>
@@ -9549,7 +9536,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="615"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="626"/>
@@ -9559,7 +9546,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="629"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">A&amp;vbryt</translation>
+        <translation>A&amp;vbryt</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="113"/>
@@ -9678,12 +9665,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="97"/>
         <source>Open link in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna länk i nytt fönster</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="99"/>
         <source>Open image in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna bild i nytt fönster</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="101"/>
@@ -9708,7 +9695,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="109"/>
         <source>Copy image address</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera bildens adress</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="114"/>
@@ -9741,7 +9728,7 @@ Should they be killed on exit?</source>
         <location filename="../../miniwebbrowser.cpp" line="584"/>
         <location filename="../../miniwebbrowser.cpp" line="587"/>
         <source>MiniWebBrowser</source>
-        <translation type="unfinished">Miniwebbläsare</translation>
+        <translation>Miniwebbläsare</translation>
     </message>
 </context>
 <context>
@@ -9759,7 +9746,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="41"/>
         <source>&amp;GUI</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafiskt &amp;gränssnitt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="91"/>
@@ -10186,7 +10173,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="768"/>
         <source>Kill emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Döda emulatorer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="775"/>
@@ -13137,17 +13124,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../procmgr.cpp" line="363"/>
         <source>game doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>spelet finns inte</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="365"/>
         <source>machine doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>maskinen finns inte</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="367"/>
         <source>invalid configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>ogiltig konfiguration</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="368"/>
@@ -13538,7 +13525,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="15"/>
         <source>ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="29"/>
@@ -13548,7 +13535,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="39"/>
         <source>Start / stop analysis</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta / stoppa analys</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="42"/>
@@ -13566,7 +13553,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="271"/>
         <location filename="../../romalyzer.cpp" line="596"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Paus</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="79"/>
@@ -13576,12 +13563,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="88"/>
         <source>Analysis report</source>
-        <translation type="unfinished"></translation>
+        <translation>Analysrapport</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="98"/>
         <source>Game / File</source>
-        <translation type="unfinished"></translation>
+        <translation>Spel / Fil</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="103"/>
@@ -13592,7 +13579,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.ui" line="108"/>
         <location filename="../../romalyzer.ui" line="1345"/>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="113"/>
@@ -13602,29 +13589,29 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="118"/>
         <source>File status</source>
-        <translation type="unfinished"></translation>
+        <translation>Filstatus</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="123"/>
         <source>Size</source>
-        <translation type="unfinished">Storlek</translation>
+        <translation>Storlek</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="128"/>
         <location filename="../../romalyzer.ui" line="1417"/>
         <source>CRC</source>
-        <translation type="unfinished">CRC</translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="133"/>
         <location filename="../../romalyzer.ui" line="1412"/>
         <source>SHA1</source>
-        <translation type="unfinished">SHA1</translation>
+        <translation>SHA1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="138"/>
         <source>MD5</source>
-        <translation type="unfinished">MD5</translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="147"/>
@@ -13819,7 +13806,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="514"/>
         <source>Select game</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj spel</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="526"/>
@@ -13848,7 +13835,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1889"/>
         <location filename="../../romalyzer.cpp" line="1903"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="568"/>
@@ -13863,7 +13850,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="587"/>
         <source> lines</source>
-        <translation type="unfinished"></translation>
+        <translation> rader</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="603"/>
@@ -13903,7 +13890,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="716"/>
         <source>SQL driver to use</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL-drivrutin att använda</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="720"/>
@@ -13923,7 +13910,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="752"/>
         <source>Server / IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Server / IP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="765"/>
@@ -14150,7 +14137,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.ui" line="1251"/>
         <location filename="../../romalyzer.ui" line="1454"/>
         <source>Search</source>
-        <translation type="unfinished">Sök</translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1268"/>
@@ -14180,22 +14167,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1330"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1335"/>
         <source>Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Filnamn</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1340"/>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1350"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökväg</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1360"/>
@@ -14257,7 +14244,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1480"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Byt namn</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1494"/>
@@ -14267,7 +14254,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1519"/>
         <source>ID / Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>ID / Filnamn</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1524"/>
@@ -14337,7 +14324,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1682"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">S&amp;täng</translation>
+        <translation>S&amp;täng</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1702"/>
@@ -14351,7 +14338,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2253"/>
         <location filename="../../romalyzer.cpp" line="2939"/>
         <source>Idle</source>
-        <translation type="unfinished"></translation>
+        <translation>Overksam</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1721"/>
@@ -14371,7 +14358,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="90"/>
         <source>Select machine</source>
-        <translation type="unfinished">Välj maskin</translation>
+        <translation>Välj maskin</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="91"/>
@@ -14391,17 +14378,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
         <source>none</source>
-        <translation type="unfinished">ingen</translation>
+        <translation>ingen</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
         <source>zlib</source>
-        <translation type="unfinished"></translation>
+        <translation>zlib</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
         <source>zlib+</source>
-        <translation type="unfinished"></translation>
+        <translation>zlib+</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
@@ -14431,12 +14418,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flac (FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>flac (FLAC)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="115"/>
         <source>huff (Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>huff (Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="116"/>
@@ -14446,7 +14433,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="117"/>
         <source>zlib (Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation>zlib (Deflate)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="125"/>
@@ -14471,7 +14458,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="170"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiera till urklipp</translation>
+        <translation>Kopiera till urklipp</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="246"/>
@@ -14486,7 +14473,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="253"/>
         <source>starting analysis</source>
-        <translation type="unfinished"></translation>
+        <translation>startar analys</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="267"/>
@@ -14501,7 +14488,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="593"/>
         <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stoppa</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="604"/>
@@ -14536,9 +14523,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="655"/>
         <source>%n game(s) to analyze</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n spel att analysera</numerusform>
+            <numerusform>%n spel att analysera</numerusform>
         </translation>
     </message>
     <message>
@@ -14549,9 +14536,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="658"/>
         <source>%n machine(s) to analyze</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n maskin att analysera</numerusform>
+            <numerusform>%n maskiner att analysera</numerusform>
         </translation>
     </message>
     <message>
@@ -14562,18 +14549,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="668"/>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Åter&amp;uppta</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="671"/>
         <source>Paused</source>
-        <translation type="unfinished">Pausad</translation>
+        <translation>Pausad</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="688"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14607,7 +14593,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14628,7 +14613,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2723"/>
         <location filename="../../romalyzer.cpp" line="2787"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="797"/>
@@ -14636,12 +14621,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="973"/>
         <location filename="../../romalyzer.cpp" line="1010"/>
         <source>not found</source>
-        <translation type="unfinished">hittade inte</translation>
+        <translation>hittades inte</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="826"/>
         <source>error</source>
-        <translation type="unfinished"></translation>
+        <translation>fel</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="841"/>
@@ -14651,18 +14636,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2505"/>
         <location filename="../../romalyzer.cpp" line="2698"/>
         <source>bad</source>
-        <translation type="unfinished">dålig</translation>
+        <translation>dålig</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="870"/>
         <location filename="../../romalyzer.cpp" line="975"/>
         <source>no dump</source>
-        <translation type="unfinished">ingen dump</translation>
+        <translation>ingen dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="876"/>
         <source>Checksums</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollsummor</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="883"/>
@@ -14677,7 +14662,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1172"/>
         <location filename="../../romalyzer.cpp" line="2233"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="891"/>
@@ -14692,7 +14677,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="903"/>
         <source>SIZE </source>
-        <translation type="unfinished"></translation>
+        <translation>STORLEK</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="918"/>
@@ -14702,7 +14687,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="930"/>
         <source>SHA1 </source>
-        <translation type="unfinished">SHA1: {1 ?}</translation>
+        <translation>SHA1 </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="941"/>
@@ -14711,12 +14696,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2504"/>
         <location filename="../../romalyzer.cpp" line="2700"/>
         <source>good</source>
-        <translation type="unfinished">bra</translation>
+        <translation>bra</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="955"/>
         <source>MD5 </source>
-        <translation type="unfinished">MD5 </translation>
+        <translation>MD5 </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="969"/>
@@ -14727,7 +14712,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="999"/>
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14786,7 +14770,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14797,17 +14780,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1084"/>
         <source>%n game(s) left</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n spel kvar</numerusform>
+            <numerusform>%n spel kvar</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1086"/>
         <source>%n machine(s) left</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n maskin kvar</numerusform>
+            <numerusform>%n maskiner kvar</numerusform>
         </translation>
     </message>
     <message>
@@ -14828,7 +14811,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1209"/>
         <source>loading &apos;%1&apos;%2</source>
-        <translation type="unfinished"></translation>
+        <translation>läser in &apos;%1&apos;%2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1209"/>
@@ -14849,13 +14832,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1248"/>
         <source>  version: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  version: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1249"/>
         <location filename="../../romalyzer.cpp" line="1483"/>
         <source>CHD v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD v%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1254"/>
@@ -14867,7 +14850,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1256"/>
         <location filename="../../romalyzer.cpp" line="1280"/>
         <source>  flags: %1, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>  flaggor: %1, %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1256"/>
@@ -14891,7 +14874,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1256"/>
         <location filename="../../romalyzer.cpp" line="1280"/>
         <source>read only</source>
-        <translation type="unfinished"></translation>
+        <translation>skrivskyddad</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1258"/>
@@ -14946,7 +14929,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1306"/>
         <source>none (uncompressed)</source>
-        <translation type="unfinished"></translation>
+        <translation>ingen (okomprimerad)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1311"/>
@@ -15028,7 +15011,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1476"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopiera</translation>
+        <translation>Kopiera</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1482"/>
@@ -15106,7 +15089,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1680"/>
         <source>loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;%5</source>
-        <translation type="unfinished"></translation>
+        <translation>läser in &apos;%1&apos; med CRC &apos;%2&apos; från &apos;%3&apos; som &apos;%4&apos;%5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1731"/>
@@ -15132,18 +15115,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1886"/>
         <location filename="../../romalyzer.cpp" line="1900"/>
         <source> KB</source>
-        <translation type="unfinished"> KB</translation>
+        <translation> KB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1892"/>
         <location filename="../../romalyzer.cpp" line="1906"/>
         <source> GB</source>
-        <translation type="unfinished"> GB</translation>
+        <translation> GB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1895"/>
         <source> TB</source>
-        <translation type="unfinished"> TB</translation>
+        <translation> TB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1932"/>
@@ -15154,7 +15137,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1932"/>
         <location filename="../../romalyzer.cpp" line="2985"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Alla filer (*)</translation>
+        <translation>Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1944"/>
@@ -15185,7 +15168,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2000"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2001"/>
@@ -15260,7 +15243,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2345"/>
         <source>Reading &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser &apos;%1&apos; - %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2349"/>
@@ -15310,7 +15293,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2411"/>
         <source>Writing &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriver &apos;%1&apos; - %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2413"/>
@@ -15352,7 +15335,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2712"/>
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15456,7 +15438,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2906"/>
         <source>Fixed by QMC2 v%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fixad av QMC2 v%1 (%2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2912"/>
@@ -15492,7 +15474,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2945"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15556,22 +15537,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.ui" line="23"/>
         <location filename="../../romstatusexport.ui" line="36"/>
         <source>Select output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj utdataformat</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="40"/>
         <source>ASCII</source>
-        <translation type="unfinished"></translation>
+        <translation>ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="45"/>
         <source>CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="50"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="72"/>
@@ -15616,12 +15597,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
         <source>Game description</source>
-        <translation type="unfinished">Spelbeskrivning</translation>
+        <translation>Spelbeskrivning</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="203"/>
         <source>ROM state</source>
-        <translation type="unfinished">ROM-tillstånd</translation>
+        <translation>ROM-tillstånd</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="208"/>
@@ -15630,7 +15611,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="563"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Year</source>
-        <translation type="unfinished">År</translation>
+        <translation>År</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="213"/>
@@ -15639,12 +15620,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="564"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Tillverkare</translation>
+        <translation>Tillverkare</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="218"/>
         <source>Game name</source>
-        <translation type="unfinished">Spelnamn</translation>
+        <translation>Spelnamn</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="223"/>
@@ -15653,27 +15634,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="565"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>ROM types</source>
-        <translation type="unfinished">ROM-typer</translation>
+        <translation>ROM-typer</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="231"/>
         <source>Sort order</source>
-        <translation type="unfinished">Sorteringsordning</translation>
+        <translation>Sorteringsordning</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="244"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Välj sorteringsordning</translation>
+        <translation>Välj sorteringsordning</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="248"/>
         <source>Ascending</source>
-        <translation type="unfinished">Stigande</translation>
+        <translation>Stigande</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="257"/>
         <source>Descending</source>
-        <translation type="unfinished">Fallande</translation>
+        <translation>Fallande</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="269"/>
@@ -15723,7 +15704,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="342"/>
         <source>ASCII file</source>
-        <translation type="unfinished"></translation>
+        <translation>ASCII-fil</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="362"/>
@@ -15753,7 +15734,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="447"/>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation>CSV-fil</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="467"/>
@@ -15773,12 +15754,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="518"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="531"/>
         <source>Delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>Avgränsare</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="559"/>
@@ -15788,7 +15769,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="562"/>
         <source>&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="618"/>
@@ -15798,12 +15779,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="621"/>
         <source>HTML file</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-fil</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="641"/>
         <source>HTML export file</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-exportfil</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="648"/>
@@ -15833,7 +15814,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="731"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">S&amp;täng</translation>
+        <translation>S&amp;täng</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="742"/>
@@ -15843,29 +15824,29 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="748"/>
         <source>%p%</source>
-        <translation type="unfinished"></translation>
+        <translation>%p%</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="36"/>
         <source>Machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskinbeskrivning</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="37"/>
         <source>Machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskinnamn</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="43"/>
         <source>All formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla format</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="142"/>
         <location filename="../../romstatusexport.cpp" line="448"/>
         <location filename="../../romstatusexport.cpp" line="666"/>
         <source>Confirm</source>
-        <translation type="unfinished">Bekräfta</translation>
+        <translation>Bekräfta</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="143"/>
@@ -15903,7 +15884,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="499"/>
         <location filename="../../romstatusexport.cpp" line="727"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="179"/>
@@ -15911,7 +15892,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="500"/>
         <location filename="../../romstatusexport.cpp" line="729"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Tid</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="180"/>
@@ -15935,7 +15916,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="508"/>
         <location filename="../../romstatusexport.cpp" line="745"/>
         <source>Mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>Mestadels korrekt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="183"/>
@@ -15951,7 +15932,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="510"/>
         <location filename="../../romstatusexport.cpp" line="749"/>
         <source>Not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Hittades inte</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="185"/>
@@ -15959,7 +15940,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="511"/>
         <location filename="../../romstatusexport.cpp" line="751"/>
         <source>Unknown</source>
-        <translation type="unfinished">Okänt</translation>
+        <translation>Okänt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="193"/>
@@ -15975,28 +15956,28 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="488"/>
         <location filename="../../romstatusexport.cpp" line="711"/>
         <source>SDLMAME</source>
-        <translation type="unfinished">SDLMAME</translation>
+        <translation>SDLMAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="198"/>
         <location filename="../../romstatusexport.cpp" line="490"/>
         <location filename="../../romstatusexport.cpp" line="713"/>
         <source>SDLMESS</source>
-        <translation type="unfinished">SDLMESS</translation>
+        <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
         <location filename="../../romstatusexport.cpp" line="492"/>
         <location filename="../../romstatusexport.cpp" line="715"/>
         <source>MAME</source>
-        <translation type="unfinished">MAME</translation>
+        <translation>MAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="202"/>
         <location filename="../../romstatusexport.cpp" line="494"/>
         <location filename="../../romstatusexport.cpp" line="717"/>
         <source>MESS</source>
-        <translation type="unfinished">MESS</translation>
+        <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="204"/>
@@ -16036,7 +16017,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="562"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Description</source>
-        <translation type="unfinished">Beskrivning</translation>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="230"/>
@@ -16044,7 +16025,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="560"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Name</source>
-        <translation type="unfinished">Namn</translation>
+        <translation>Namn</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="231"/>
@@ -16052,7 +16033,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="561"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="250"/>
@@ -16068,7 +16049,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="596"/>
         <location filename="../../romstatusexport.cpp" line="841"/>
         <source>mostly correct</source>
-        <translation type="unfinished">mestadels korrekta</translation>
+        <translation>mestadels korrekta</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="264"/>
@@ -16076,7 +16057,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="607"/>
         <location filename="../../romstatusexport.cpp" line="854"/>
         <source>incorrect</source>
-        <translation type="unfinished">felaktiga</translation>
+        <translation>felaktiga</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="271"/>
@@ -16084,7 +16065,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="618"/>
         <location filename="../../romstatusexport.cpp" line="867"/>
         <source>not found</source>
-        <translation type="unfinished">hittade inte</translation>
+        <translation>hittades inte</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="336"/>
@@ -16187,7 +16168,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="927"/>
         <location filename="../../romstatusexport.cpp" line="939"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Alla filer (*)</translation>
+        <translation>Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="927"/>
@@ -16202,7 +16183,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.cpp" line="952"/>
         <source>gamelist is not ready, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>spellistan är inte redo, vänta</translation>
     </message>
 </context>
 <context>
@@ -16974,7 +16955,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="195"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="221"/>
@@ -16989,7 +16970,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="252"/>
         <source>&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
@@ -17022,7 +17003,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Year</source>
-        <translation type="unfinished">År</translation>
+        <translation>År</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
@@ -17063,7 +17044,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">S&amp;täng</translation>
+        <translation>S&amp;täng</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="382"/>
@@ -17073,7 +17054,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="388"/>
         <source>%p%</source>
-        <translation type="unfinished"></translation>
+        <translation>%p%</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="403"/>
@@ -17113,7 +17094,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="469"/>
         <source>Ascending</source>
-        <translation type="unfinished">Stigande</translation>
+        <translation>Stigande</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="478"/>
@@ -17169,7 +17150,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.cpp" line="185"/>
         <location filename="../../swlistexport.cpp" line="317"/>
         <source>Confirm</source>
-        <translation type="unfinished">Bekräfta</translation>
+        <translation>Bekräfta</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="185"/>
@@ -17236,7 +17217,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.cpp" line="409"/>
         <location filename="../../swlistexport.cpp" line="423"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Alla filer (*)</translation>
+        <translation>Alla filer (*)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="423"/>
