@@ -5151,7 +5151,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="209"/>
         <location filename="../../downloaditem.cpp" line="242"/>
         <source>Local path: %1</source>
-        <translation type="unfinished">Ruta local: %1</translation>
+        <translation>Ruta local: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="193"/>
