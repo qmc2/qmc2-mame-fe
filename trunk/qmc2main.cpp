@@ -8262,7 +8262,7 @@ void MainWindow::projectMessLoadFinished(bool ok)
 		// store compressed page to in-memory cache
 		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 		if ( qmc2ProjectMESSCache.contains(cacheKey) ) qmc2ProjectMESSCache.remove(cacheKey);
-		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
 		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
 	}
 
@@ -8316,7 +8316,7 @@ void MainWindow::mawsLoadFinished(bool ok)
       }
 
       // store compressed page to in-memory cache
-      QByteArray mawsData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+      QByteArray mawsData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
 #ifdef QMC2_DEBUG
@@ -8343,7 +8343,7 @@ void MainWindow::mawsLoadFinished(bool ok)
 #if defined(QMC2_WC_COMPRESSION_ENABLED)
           mawsCacheFile.write(mawsData);
 #else
-          mawsCacheFile.write((const char *)qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+          mawsCacheFile.write((const char *)qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
 #endif
           mawsCacheFile.close();
         }
@@ -8732,7 +8732,7 @@ void MainWindow::projectMessDriverLoadFinished(bool ok)
 #endif
 
 	if ( ok ) {
-		QByteArray projectMessData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+		QByteArray projectMessData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
     		QString machName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 		if ( qmc2MAWSCache.contains(machName) )
 			qmc2MAWSCache.remove(machName);
