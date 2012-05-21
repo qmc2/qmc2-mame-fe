@@ -1997,12 +1997,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="117"/>
         <source>Pr&amp;ojectMESS</source>
-        <translation type="unfinished"></translation>
+        <translation>Pr&amp;ojectMESS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="118"/>
         <source>ProjectMESS (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>ProjectMESS (odwołanie do sieci)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="369"/>
@@ -5162,7 +5162,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="209"/>
         <location filename="../../downloaditem.cpp" line="242"/>
         <source>Local path: %1</source>
-        <translation type="unfinished">Lokalna ścieżka: %1</translation>
+        <translation>Lokalna ścieżka: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="193"/>
@@ -5769,7 +5769,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="834"/>
         <location filename="../../messdevcfg.cpp" line="847"/>
         <source>default</source>
-        <translation type="unfinished">domyślny</translation>
+        <translation>domyślny</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1308"/>
@@ -7216,7 +7216,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5821"/>
         <source>destroying ProjectMESS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie odwołania ProjectMESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9272"/>
@@ -8892,8 +8892,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9034,7 +9032,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="597"/>
         <location filename="../../qmc2main.cpp" line="598"/>
         <source>Clear ProjectMESS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor ProjectMESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="602"/>
@@ -9066,17 +9064,17 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2255"/>
         <source>ProjectMESS in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyszczono pamięciowy bufor ProjectMESS (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3815"/>
         <source>ProjectMESS page for system &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona ProjectMESS dla systemu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3820"/>
         <source>Fetching ProjectMESS page for system &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie strony ProjectMESS dla systemu &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4641"/>
@@ -9711,12 +9709,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="97"/>
         <source>Open link in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz odnośnik w nowym oknie</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="99"/>
         <source>Open image in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz obrazek w nowym oknie</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="101"/>
@@ -9741,7 +9739,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="109"/>
         <source>Copy image address</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj adres obrazka</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="114"/>
@@ -9774,7 +9772,7 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../miniwebbrowser.cpp" line="584"/>
         <location filename="../../miniwebbrowser.cpp" line="587"/>
         <source>MiniWebBrowser</source>
-        <translation type="unfinished">MiniWebBrowser</translation>
+        <translation>MiniWebBrowser</translation>
     </message>
 </context>
 <context>
@@ -10378,7 +10376,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="140"/>
         <source>EL (Greek)</source>
-        <translation type="unfinished"></translation>
+        <translation>EL (grecki)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="160"/>
@@ -10766,7 +10764,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="170"/>
         <source>SV (Swedish)</source>
-        <translation type="unfinished"></translation>
+        <translation>SV (szwedzki)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2229"/>
@@ -12537,7 +12535,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="321"/>
         <source>Clear ProjectMESS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor ProjectMESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="325"/>
