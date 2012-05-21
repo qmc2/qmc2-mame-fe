@@ -1954,12 +1954,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="117"/>
         <source>Pr&amp;ojectMESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="118"/>
         <source>ProjectMESS (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>ProjectMESS (acesso web)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="55"/>
@@ -5151,7 +5151,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="209"/>
         <location filename="../../downloaditem.cpp" line="242"/>
         <source>Local path: %1</source>
-        <translation type="unfinished">Caminho Local: %1</translation>
+        <translation>Caminho Local: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="193"/>
@@ -5554,7 +5554,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="834"/>
         <location filename="../../messdevcfg.cpp" line="847"/>
         <source>default</source>
-        <translation type="unfinished">padrão</translation>
+        <translation>padrão</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="972"/>
@@ -6782,12 +6782,12 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="597"/>
         <location filename="../../qmc2main.cpp" line="598"/>
         <source>Clear ProjectMESS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache do ProjectMESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2255"/>
         <source>ProjectMESS in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache em memória do ProjectMESS limpo (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2314"/>
@@ -6832,12 +6832,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3815"/>
         <source>ProjectMESS page for system &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Página do ProjectMESS para o sistema &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3820"/>
         <source>Fetching ProjectMESS page for system &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixando página do ProjectMESS para o sistema &apos;%1&apos;, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5542"/>
@@ -7087,7 +7087,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5821"/>
         <source>destroying ProjectMESS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo lookup do ProjectMESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5860"/>
@@ -9623,12 +9623,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="97"/>
         <source>Open link in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir link em uma nova janela</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="99"/>
         <source>Open image in new window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir imagem em uma nova janela</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="101"/>
@@ -9653,7 +9653,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="109"/>
         <source>Copy image address</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar endereço da imagem</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="577"/>
@@ -9661,7 +9661,7 @@ Tentar novamente?</translation>
         <location filename="../../miniwebbrowser.cpp" line="584"/>
         <location filename="../../miniwebbrowser.cpp" line="587"/>
         <source>MiniWebBrowser</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="33"/>
@@ -10796,7 +10796,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="321"/>
         <source>Clear ProjectMESS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache do ProjectMESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="331"/>
@@ -11325,7 +11325,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="140"/>
         <source>EL (Greek)</source>
-        <translation type="unfinished"></translation>
+        <translation>EL (Grego)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="302"/>
@@ -12279,7 +12279,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="170"/>
         <source>SV (Swedish)</source>
-        <translation type="unfinished"></translation>
+        <translation>SV (Sueco)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2229"/>
