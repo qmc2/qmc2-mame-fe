@@ -1206,7 +1206,7 @@ ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp arch/Darwin/Info.plist Info.plist Makefile.qmake.xcodeproj/*
 	@$(RMDIR) Makefile.qmake.xcodeproj
 else
-	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
+	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) arch/Darwin/Info.plist Info.plist
 	@$(MAKE) -f $(QMAKEFILE) distclean
 endif
 else
@@ -1243,7 +1243,7 @@ ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp arch/Darwin/Info.plist Info.plist Makefile.qmake.xcodeproj/* > /dev/null
 	@$(RMDIR) Makefile.qmake.xcodeproj > /dev/null
 else
-	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
+	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) arch/Darwin/Info.plist Info.plist > /dev/null
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
 endif
 else
