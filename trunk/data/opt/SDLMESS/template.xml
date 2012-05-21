@@ -323,6 +323,7 @@
       <description lang="pt" text="Habilitar multi-processamento; isso habilita renderização e blitting em threads separadas"/>
     </option>
     <option name="sdlvideofps" type="bool" default="false">
+      <description lang="es" text="Muestra el rendimiento de video SDL"/>
       <description lang="us" text="Show SDL video performance"/>
       <description lang="de" text="SDL Video Performance anzeigen"/>
       <description lang="pl" text="Pokaż wydajność obrazu SDL"/>
@@ -916,6 +917,7 @@
       <description lang="pt" text="Manter razão de aspecto original"/>
     </option>
     <option name="unevenstretch" type="bool" default="true">
+      <description lang="es" text="Permitir valores de relación de aspecto no enteros"/>
       <description lang="us" text="Allow non-integer stretch factors"/>
       <description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren zulassen"/>
       <description lang="pl" text="Pozwól na niecałkowite współczynniki rozciągnięcia"/>
@@ -931,6 +933,7 @@
       <description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
     </option>
     <option name="centerh" type="bool" default="true">
+      <description lang="es" text="Centrar horizontalmente en el área visible"/>
       <description lang="us" text="Center horizontally within the view area"/>
       <description lang="de" text="Horizontal skalieren innerhalb des Sichtbereichs"/>
       <description lang="pl" text="Wyśrodkuj w poziomie w obszarze widoku"/>
@@ -938,6 +941,7 @@
       <description lang="pt" text="Centrar horizontalmente dentro da área de visão"/>
     </option>
     <option name="centerv" type="bool" default="true">
+      <description lang="es" text="Centrar verticalmente en el área visible"/>
       <description lang="us" text="Center vertically within the view area"/>
       <description lang="de" text="Vertikal skalieren innerhalb des Sichtbereichs"/>
       <description lang="pl" text="Wyśrodkuj w pionie w obszarze widoku"/>
@@ -953,6 +957,7 @@
       <description lang="pt" text="Esperar o início da sincronização verfical antes de inverter telas; reduz efeitos de tremor"/>
     </option>
     <option name="scalemode" type="combo" default="none">
+      <description lang="es" text="Modo de escalado: ninguno, async, yv12, yuy2 yv12x2, yuy2x2 (-solo video por soft)"/>
       <description lang="us" text="Scale mode: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft only)"/>
       <description lang="de" text="Scalierungs-Modus: none, async, yv12, yuy2, yv12x2, yuy2x2 (nur mit -video soft)"/>
       <description lang="pl" text="Tryb skalowania: none, async, yv12, yuy2, yv12x2, yuy2x2 (tylko z -video soft)"/>
@@ -975,6 +980,7 @@
     </option>
   </section>
   <section name="opengl">
+    <description lang="es" text="OpenGL"/>
     <description lang="us" text="OpenGL"/>
     <description lang="de" text="OpenGL"/>
     <description lang="pl" text="OpenGL"/>
@@ -997,6 +1003,7 @@
       <description lang="pt" text="Esticar renderização de tela por esse valor (em software)"/>
     </option>
     <option name="gl_forcepow2texture" type="bool" default="false">
+      <description lang="es" text="Forzar texturas a poder de dos (desactivado por defecto)"/>
       <description lang="us" text="Force power of two textures (default off)"/>
       <description lang="de" text="'Power of 2' Texturen forcieren (Standard: aus)"/>
       <description lang="pl" text="Wymuś tekstury będące potęgo liczby dwa (domyślnie wyłączone)"/>
@@ -1004,6 +1011,7 @@
       <description lang="pt" text="Forçar texturas em potência de 2 (padrão desligado)"/>
     </option>
     <option name="gl_notexturerect" type="bool" default="false">
+      <description lang="es" text="No utilizar OpenGL GL_ARB_texture_rectangle (activado por defecto)"/>
       <description lang="us" text="Don't use OpenGL GL_ARB_texture_rectangle (default on)"/>
       <description lang="de" text="OpenGL GL_ARB_texture_rectangle nicht benutzen (Standard: an)"/>
       <description lang="pl" text="Nie używaj GL_ARB_texture_rectangle (domyślnie włączone)"/>
@@ -1011,6 +1019,7 @@
       <description lang="pt" text="Não usar GL_ARB_texture_rectangle (padrão ligado)"/>
     </option>
     <option name="gl_vbo" type="bool" default="true">
+      <description lang="es" text="Activar OpenGL VBO si está disponible (activado por defecto)"/>
       <description lang="us" text="Enable OpenGL VBO, if available (default on)"/>
       <description lang="de" text="OpenGL VBO aktivieren, falls verfügbar (Standard: an)"/>
       <description lang="pl" text="Włącz OpenGL VBO, jeśli dostępne (domyślnie włączone)"/>
@@ -1018,6 +1027,7 @@
       <description lang="pt" text="Ativar VBO do OpenGL, se disponível (padrão ligado)"/>
     </option>
     <option name="gl_pbo" type="bool" default="true">
+      <description lang="es" text="Activar OpenGL PBO si está disponible (activado por defecto)"/>
       <description lang="us" text="Enable OpenGL PBO, if available (default on)"/>
       <description lang="de" text="OpenGL PBO aktivieren, falls verfügbar (Standard: an)"/>
       <description lang="pl" text="Włącz OpenGL PBO, jeśli dostępne (domyślnie włączone)"/>
@@ -1025,6 +1035,7 @@
       <description lang="pt" text="Ativar PBO do OpenGL, se disponível (padrão ligado)"/>
     </option>
     <option name="gl_glsl" type="bool" default="false">
+      <description lang="es" text="Activar OpenGL GLSL si está disponible (desactivado por defecto)"/>
       <description lang="us" text="Enable OpenGL GLSL, if available (default off)"/>
       <description lang="de" text="OpenGL GLSL aktivieren, falls verfügbar (Standard: aus)"/>
       <description lang="pl" text="Włącz OpenGL GLSL, jeśli dostępne (domyślnie wyłączone)"/>
@@ -1032,6 +1043,7 @@
       <description lang="pt" text="Ativar GLSL do OpenGL, se disponível (padrão ligado)"/>
     </option>
     <option name="gl_glsl_filter" type="int" default="1">
+      <description lang="es" text="Activar filtrado OpenGL GLSL en vez de filtrado FF: 0-plano, 1-bilineal (1 por defecto)"/>
       <description lang="us" text="Enable OpenGL GLSL filtering instead of FF filtering: 0-plain, 1-bilinear (default 1)"/>
       <description lang="de" text="OpenGL GLSL Filterung anstelle der FF Filterung aktivieren: 0-plain, 1-bilinear (Standard: 1)"/>
       <description lang="pl" text="Włącz filtrowanie OpenGL GLSL zamiast filtrowania FF: 0-proste, 1-dwuliniowe (domyślne: 1)"/>
@@ -1039,6 +1051,7 @@
       <description lang="pt" text="Habilitar filtro GLSL do OpenGL ao invés do filtro FF: 0-plano, 1-bilinear (padrão 1)"/>
     </option>
     <option name="gl_glsl_vid_attr" type="bool" default="true">
+      <description lang="es" text="Activar el manejo de brillo y contraste por OpenGL GLSL. Mejor rendimiento RGB gratis (activado por defecto)"/>
       <description lang="us" text="Enable OpenGL GLSL handling of brightness and contrast. Better RGB game performance for free (default on)"/>
       <description lang="de" text="OpenGL GLSL Verwaltung von Helligkeit und Kontrast: bessere RGB Spiel-Performance gratis (Standard: an)"/>
       <description lang="pl" text="Włącz obsługę jasności i kontrastu przez OpenGL GLSL. Lepsza wydajność RGB za darmo (domyślnie włączone)"/>
@@ -1046,6 +1059,7 @@
       <description lang="pt" text="Habilitar tratamento de brilho e contraste GLSL do OpenGL. Desempenho RGB melhor de graça (padrão ligado)"/>
     </option>
     <option name="glsl_shader_mame0" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 0 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 0"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 0"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 0"/>
@@ -1054,6 +1068,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame1" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 1 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 1"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 1"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 1"/>
@@ -1062,6 +1077,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame2" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 2 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 2"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 2"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 2"/>
@@ -1070,6 +1086,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame3" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 3 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 3"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 3"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 3"/>
@@ -1078,6 +1095,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame4" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 4 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 4"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 4"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 4"/>
@@ -1086,6 +1104,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame5" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 5 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 5"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 5"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 5"/>
@@ -1094,6 +1113,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame6" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 6 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 6"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 6"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 6"/>
@@ -1102,6 +1122,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame7" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 7 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 7"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 7"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 7"/>
@@ -1110,6 +1131,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame8" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 8 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 8"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 8"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 8"/>
@@ -1118,6 +1140,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_mame9" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 9 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 9"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 9"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 9"/>
@@ -1126,6 +1149,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen0" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 0 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 0"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 0"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 0"/>
@@ -1134,6 +1158,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen1" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 1 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 1"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 1"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 1"/>
@@ -1142,6 +1167,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen2" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 2 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 2"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 2"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 2"/>
@@ -1150,6 +1176,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen3" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 3 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 3"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 3"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 3"/>
@@ -1158,6 +1185,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen4" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 4 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 4"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 4"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 4"/>
@@ -1166,6 +1194,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen5" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 5 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 5"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 5"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 5"/>
@@ -1174,6 +1203,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen6" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 6 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 6"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 6"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 6"/>
@@ -1182,6 +1212,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen7" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 7 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 7"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 7"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 7"/>
@@ -1190,6 +1221,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen8" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 8 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 8"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 8"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 8"/>
@@ -1198,6 +1230,7 @@
       <choice name="none"/>
     </option>
     <option name="glsl_shader_screen9" type="combo" default="none">
+      <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 9 de la pantalla"/>
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 9"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 9"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 9"/>
@@ -1410,6 +1443,7 @@
       <description lang="pt" text="Habilitar troca de resolução"/>
     </option>
     <option name="useallheads" type="bool" default="false" ignore.Darwin="true">
+      <description lang="es" text="Dividir la imagen de pantalla completa entre monitores"/>
       <description lang="us" text="Split full screen image across monitors"/>
       <description lang="de" text="Vollbildschirm-Darstellung über alle Monitore verteilen"/>
       <description lang="pl" text="Rozdziel obraz pełnoekranowy na wszystkie monitory"/>
@@ -1530,12 +1564,14 @@
     </option>
   </section>
   <section name="keyboard_mapping">
+    <description lang="es" text="Mapeado de teclado"/>
     <description lang="us" text="Keyboard mapping"/>
     <description lang="de" text="Tastatur-Mapping"/>
     <description lang="pl" text="Mapowanie klawiatury"/>
     <description lang="fr" text="Mapping de clavier"/>
     <description lang="pt" text="Mapeamento de teclado"/>
     <option name="keymap" type="bool" default="false">
+      <description lang="es" text="Activar el mapeado de teclado"/>
       <description lang="us" text="Enable keyboard mapping"/>
       <description lang="de" text="Tastatur-Mapping aktivieren"/>
       <description lang="pl" text="Włącz mapowanie klawiatury"/>
@@ -1543,6 +1579,7 @@
       <description lang="pt" text="Habilitar mapeamento de teclado"/>
     </option>
     <option name="keymap_file" type="file" default="keymap.dat">
+      <description lang="es" text="Archivo de mapa de teclado"/>
       <description lang="us" text="Keyboard map file"/>
       <description lang="de" text="Tastatur-Map Datei"/>
       <description lang="pl" text="Plik mapy klawiatury"/>
@@ -1550,6 +1587,7 @@
       <description lang="pt" text="Arquivo de mapeamento de teclado"/>
     </option>
     <option name="uimodekey" type="string" default="SCRLOCK" default.Darwin="DELETE">
+      <description lang="es" text="Especifica la tecla usada para cambiar entre UI completa y parcial"/>
       <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
       <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
       <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
@@ -1558,12 +1596,14 @@
     </option>
   </section>
   <section name="joystick_mapping">
+    <description lang="es" text="Mapeado de joystick"/>
     <description lang="us" text="Joystick mapping"/>
     <description lang="de" text="Joystick-Mapping"/>
     <description lang="pl" text="Mapowanie dżojstika"/>
     <description lang="fr" text="Mapping de joystick"/>
     <description lang="pt" text="Mapeamento de joystick"/>
     <option name="joy_idx1" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #1"/>
       <description lang="us" text="Name of joystick mapped to joystick #1"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #1 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #1"/>
@@ -1572,6 +1612,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx2" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #2"/>
       <description lang="us" text="Name of joystick mapped to joystick #2"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #2 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #2"/>
@@ -1580,6 +1621,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx3" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #3"/>
       <description lang="us" text="Name of joystick mapped to joystick #3"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #3 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #3"/>
@@ -1588,6 +1630,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx4" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #4"/>
       <description lang="us" text="Name of joystick mapped to joystick #4"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #4 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #4"/>
@@ -1596,6 +1639,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx5" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #5"/>
       <description lang="us" text="Name of joystick mapped to joystick #5"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #5 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #5"/>
@@ -1604,6 +1648,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx6" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #6"/>
       <description lang="us" text="Name of joystick mapped to joystick #6"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #6 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #6"/>
@@ -1612,6 +1657,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx7" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #7"/>
       <description lang="us" text="Name of joystick mapped to joystick #7"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #7 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #7"/>
@@ -1620,6 +1666,7 @@
       <choice name="auto"/>
     </option>
     <option name="joy_idx8" type="combo" default="auto">
+      <description lang="es" text="Nombre de joystick mapeado a joystick #8"/>
       <description lang="us" text="Name of joystick mapped to joystick #8"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #8 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #8"/>
@@ -1628,6 +1675,7 @@
       <choice name="auto"/>
     </option>
     <option name="sixaxis" type="bool" default="false">
+      <description lang="es" text="Usar un control especial para los mandos PS3 Sixaxis"/>
       <description lang="us" text="Use special handling for PS3 Sixaxis controllers"/>
       <description lang="de" text="Spezielle Behandlung von PS3 Sixaxis Controllern aktivieren"/>
       <description lang="pl" text="Użyj specjalnej obsługi kontrolera PS3 Sixaxis"/>
@@ -1636,12 +1684,14 @@
     </option>
   </section>
   <section name="sdl_driver_options">
+    <description lang="es" text="Opciones de driver SDL"/>
     <description lang="us" text="SDL driver options"/>
     <description lang="de" text="SDL Treiber Optionen"/>
     <description lang="pl" text="Opcje sterowników SDL"/>
     <description lang="fr" text="Options du pilote SDL"/>
     <description lang="pt" text="Opções do driver SDL"/>
     <option name="videodriver" type="combo" default="auto">
+      <description lang="es" text="Driver de video SDL a utilizar ('x11', 'directfb', ... o 'auto' para el predeterminado de SDL)"/>
       <description lang="us" text="SDL video driver to use ('x11', 'directfb', ... or 'auto' for SDL default)"/>
       <description lang="de" text="Einzusetzender SDL Video Treiber ('x11', 'directfb', ... oder 'auto' für SDL Standard)"/>
       <description lang="pl" text="Używany sterownik obrazu SDL ('x11', 'directfb', ... lub 'auto' dla domyślnego SDL)"/>
@@ -1652,6 +1702,7 @@
       <choice name="directfb"/>
     </option>
     <option name="audiodriver" type="combo" default="auto">
+      <description lang="es" text="Driver de audio SDL a utilizar ('alsa', 'arts', ... o 'auto' para el predeterminado de SDL)"/>
       <description lang="us" text="SDL audio driver to use ('alsa', 'arts', ... or 'auto' for SDL default)"/>
       <description lang="de" text="Einzusetzender SDL Audio Treiber ('alsa', 'arts', ... oder 'auto' für SDL Standard)"/>
       <description lang="pl" text="Używany sterownik dźwięku SDL ('alsa', 'arts', ... lub 'auto' dla domyślnego SDL)"/>
@@ -1664,6 +1715,7 @@
       <choice name="pulse"/>
     </option>
     <option name="gl_lib" type="file" default="auto" default.Darwin="/System/Library/Frameworks/OpenGL.framework/Libraries/libGL.dylib">
+      <description lang="es" text="libGL.so alternativa a utilizar; 'auto' para predeterminado de sistema"/>
       <description lang="us" text="Alternative libGL.so to use; 'auto' for system default"/>
       <description lang="de" text="Alternativ einzusetzende libGL.so; 'auto' für System Standard"/>
       <description lang="pl" text="Alternatywny libGL.so; 'auto' dla domyślnego systemowego"/>
