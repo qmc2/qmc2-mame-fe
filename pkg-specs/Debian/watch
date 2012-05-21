@@ -1,0 +1,3 @@
+version=3
+opts="dversionmangle=s/~/-/" \
+http://sf.net/qmc2/qmc2-(.+)\.tar\.gz
