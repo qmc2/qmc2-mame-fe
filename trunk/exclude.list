@@ -3480,6 +3480,12 @@ qmc2/tools/qmc2_options_editor_java/.svn/text-base/.project.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/run.sh.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/TODO.svn-base
 qmc2/tools/.svn
+qmc2/tools/template_sync/.svn
+qmc2/tools/template_sync/.svn/text-base/main.cpp.svn-base
+qmc2/tools/template_sync/.svn/text-base/syncer.cpp.svn-base
+qmc2/tools/template_sync/.svn/text-base/syncer.h.svn-base
+qmc2/tools/template_sync/.svn/text-base/template_sync.pro.svn-base
+qmc2/tools/template_sync/.svn/text-base/template_sync.pro.user.svn-base
 qmc2/zlib/.svn
 qmc2/zlib/.svn/text-base/adler32.c.svn-base
 qmc2/zlib/.svn/text-base/compress.c.svn-base
