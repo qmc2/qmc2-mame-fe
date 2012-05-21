@@ -583,7 +583,7 @@ PROJECT = qmc2
 
 # version
 VERSION_MAJOR = 0
-VERSION_MINOR = 36
+VERSION_MINOR = 37
 
 # commands are platform/distribution-specific
 ifneq '$(ARCH)' 'Windows'

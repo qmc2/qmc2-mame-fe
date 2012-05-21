@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.36
+Version:        0.37
 Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
 Group:          System/Emulators/Other
@@ -94,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
+* Mon May 21 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.37-1
+- updated spec to QMC2 0.37
+
 * Sun Apr 29 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.36-1
 - updated spec to QMC2 0.36 / added fdupes macro / updated licence name
 
