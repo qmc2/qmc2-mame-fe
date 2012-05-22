@@ -21,7 +21,7 @@
 #include "direditwidget.h"
 #include "comboeditwidget.h"
 #include "macros.h"
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 #include "demomode.h"
 #endif
 
@@ -35,7 +35,7 @@ extern bool qmc2GuiReady;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2ReloadActive;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern DemoModeDialog *qmc2DemoModeDialog;
 #endif
 
@@ -396,7 +396,7 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   lineEditSearch = NULL;
   if ( !group.contains("Global") ) {
     emulatorOptions = NULL;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     setStatusTip(tr("Game specific emulator configuration"));
 #elif defined(QMC2_EMUTYPE_MESS)
     setStatusTip(tr("Machine specific emulator configuration"));
@@ -628,7 +628,7 @@ void EmulatorOptions::save()
   if ( loadActive )
     return;
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2DemoModeDialog )
     if ( qmc2DemoModeDialog->demoModeRunning )
       return;
@@ -970,20 +970,20 @@ void EmulatorOptions::createTemplateMap()
   templateEmulator = tr("unknown");
   templateVersion = tr("unknown");
   templateFormat = tr("unknown");
-#if defined(QMC2_EMUTYPE_MAME)
-  QString templateFile = qmc2Config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString();
-#elif defined(QMC2_EMUTYPE_MESS)
-  QString templateFile = qmc2Config->value("MESS/FilesAndDirectories/OptionsTemplateFile").toString();
-#endif
+  QString templateFile = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile").toString();
   if ( templateFile.isEmpty() )
 #if defined(QMC2_SDLMAME)
     templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml";
 #elif defined(QMC2_SDLMESS)
     templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml";
+#elif defined(QMC2_SDLUME)
+    templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml";
 #elif defined(QMC2_MAME)
     templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml";
 #elif defined(QMC2_MESS)
     templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/MESS/template.xml";
+#elif defined(QMC2_UME)
+    templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/UME/template.xml";
 #endif
   QFile qmc2TemplateFile(templateFile);
   QString lang = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
@@ -1101,11 +1101,7 @@ void EmulatorOptions::checkTemplateMap()
   qApp->processEvents();
   bool commandProcStarted = false;
   int retries = 0;
-#if defined(QMC2_EMUTYPE_MAME)
-  commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
-#elif defined(QMC2_EMUTYPE_MESS)
-  commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
-#endif
+  commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
   bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
     started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
@@ -1123,6 +1119,8 @@ void EmulatorOptions::checkTemplateMap()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
+#elif defined(QMC2_EMUTYPE_UME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
 #endif
     return;
   }
@@ -1135,6 +1133,10 @@ void EmulatorOptions::checkTemplateMap()
   QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
 #elif defined(QMC2_MESS)
   QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#elif defined(QMC2_SDLUME)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #else
   QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
@@ -1154,7 +1156,7 @@ void EmulatorOptions::checkTemplateMap()
       if ( l.startsWith("#") ) continue;
       if ( l.startsWith("<") ) continue;
       if ( l.startsWith("readconfig") ) continue;
-#if defined(QMC2_SDLMESS)
+#if defined(QMC2_MESS)
       // this is a 'non-SDL Windows MESS'-only option and is ignored for all SDLMESS builds
       if ( l.startsWith("newui") ) continue;
 #endif
@@ -1348,11 +1350,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
   static QBrush redBrush(QColor(255, 0, 0));
   static QBrush greenBrush(QColor(0, 255, 0));
 
-#if defined(QMC2_EMUTYPE_MAME)
-  QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
-#elif defined(QMC2_EMUTYPE_MESS)
-  QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
-#endif
+  QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
   if ( iniPaths.isEmpty() ) {
     // lookup default value for inipath
     foreach (QString sectionTitle, qmc2GlobalEmulatorOptions->optionsMap.keys() ) {
@@ -1413,6 +1411,8 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
       fileName = "/mame.ini";
 #elif defined(QMC2_EMUTYPE_MESS)
       fileName = "/mess.ini";
+#elif defined(QMC2_EMUTYPE_UME)
+      fileName = "/ume.ini";
 #endif
     } else {
       if ( !qmc2CurrentItem )
@@ -1442,6 +1442,8 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MAME configuration to %2").arg(global ? tr("global") : tr("game-specific")).arg(fileName));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MESS configuration to %2").arg(global ? tr("global") : tr("machine-specific")).arg(fileName));
+#elif defined(QMC2_EMUTYPE_UME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 UME configuration to %2").arg(global ? tr("global") : tr("game-specific")).arg(fileName));
 #endif
     QTextStream ts(&iniFile);
     QString sectionTitle;
@@ -1495,6 +1497,8 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 MAME configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 MESS configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("machine-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
+#elif defined(QMC2_EMUTYPE_UME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 UME configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
 }
@@ -1508,11 +1512,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
   static QBrush redBrush(QColor(255, 0, 0));
   static QBrush greenBrush(QColor(0, 255, 0));
 
-#if defined(QMC2_EMUTYPE_MAME)
-  QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
-#elif defined(QMC2_EMUTYPE_MESS)
-  QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
-#endif
+  QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
   if ( iniPaths.isEmpty() ) {
     // lookup default value for inipath
     foreach (QString sectionTitle, qmc2GlobalEmulatorOptions->optionsMap.keys() ) {
@@ -1573,6 +1573,8 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
       fileName = "/mame.ini";
 #elif defined(QMC2_EMUTYPE_MESS)
       fileName = "/mess.ini";
+#elif defined(QMC2_EMUTYPE_UME)
+      fileName = "/ume.ini";
 #endif
     } else {
       if ( !qmc2CurrentItem )
@@ -1603,6 +1605,8 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MAME configuration from %2").arg(global ? tr("global") : tr("game-specific")). arg(fileName));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MESS configuration from %2").arg(global ? tr("global") : tr("machine-specific")). arg(fileName));
+#elif defined(QMC2_EMUTYPE_UME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 UME configuration from %2").arg(global ? tr("global") : tr("game-specific")). arg(fileName));
 #endif
     QTextStream ts(&iniFile);
 
@@ -1704,6 +1708,8 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 MAME configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 MESS configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("machine-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
+#elif defined(QMC2_EMUTYPE_UME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 UME configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
 }

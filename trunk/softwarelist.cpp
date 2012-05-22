@@ -67,7 +67,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	QString altText = tr("Add the currently selected software to the favorites list");
 	toolButtonAddToFavorites->setToolTip(altText); toolButtonAddToFavorites->setStatusTip(altText);
 	treeWidgetFavoriteSoftware->setColumnCount(QMC2_SWLIST_COLUMN_DEVICECFG);
-#elif defined(QMC2_EMUTYPE_MESS)
+#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	horizontalLayout->removeItem(horizontalSpacer);
 #endif
 
@@ -201,7 +201,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_INTERFACE));
 	action = menuFavoriteSoftwareHeader->addAction(tr("List"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_LIST);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) | defined(QMC2_EMUTYPE_UME)
 	action = menuFavoriteSoftwareHeader->addAction(tr("Device configuration"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_DEVICECFG);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_DEVICECFG));
 #endif
@@ -296,7 +296,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 
 	softwareListDeviceName.clear();
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QString s = "<game name=\"" + systemName + "\"";
 	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
 	if ( qmc2Gamelist->xmlLines[i].contains(s) ) cachedDeviceLookupPosition = i - 1;
@@ -393,7 +393,7 @@ QString &SoftwareList::getXmlData()
 		softwareList.clear();
 		int i = 0;
 		QString filter;
-#if defined(QMC2_EMUTYPE_MAME) 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QString s = "<game name=\"" + systemName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) && !interruptLoad ) i++;
 		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") && !interruptLoad ) {
@@ -454,9 +454,9 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
 
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		// load available device configurations, if any...
-		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(systemName));
+		qmc2Config->beginGroup(QString(QMC2_EMULATOR_PREFIX + "Configuration/Devices/%1").arg(systemName));
 		QStringList configurationList = qmc2Config->childGroups();
 		qmc2Config->endGroup();
 		if ( !configurationList.isEmpty() ) {
@@ -485,11 +485,7 @@ bool SoftwareList::load()
 	isLoading = true;
 	fullyLoaded = false;
 	validData = swlSupported;
-#if defined(QMC2_EMUTYPE_MAME)
-	QString swlCachePath = qmc2Config->value("MAME/FilesAndDirectories/SoftwareListCache").toString();
-#elif defined(QMC2_EMUTYPE_MESS)
-	QString swlCachePath = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache").toString();
-#endif
+	QString swlCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCache").toString();
 
 	toolButtonReload->setEnabled(false);
 
@@ -536,6 +532,14 @@ bool SoftwareList::load()
 				}
 #elif defined(QMC2_EMUTYPE_MESS)
 				if ( line.startsWith("MESS_VERSION") ) {
+					QStringList words = line.split("\t");
+					if ( words.count() > 1 ) {
+						if ( qmc2Gamelist->emulatorVersion == words[1] )
+							swlCacheOkay = true;
+					}
+				}
+#elif defined(QMC2_EMUTYPE_UME)
+				if ( line.startsWith("UME_VERSION") ) {
 					QStringList words = line.split("\t");
 					if ( words.count() > 1 ) {
 						if ( qmc2Gamelist->emulatorVersion == words[1] )
@@ -589,6 +593,8 @@ bool SoftwareList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards"));
 #elif defined(QMC2_EMUTYPE_MESS)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards"));
+#elif defined(QMC2_EMUTYPE_UME)
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the UME software list cache is empty -- please correct this and reload the game list afterwards"));
 #endif
 			labelLoadingSoftwareLists->setVisible(false);
 			toolBoxSoftwareList->setVisible(true);
@@ -617,6 +623,8 @@ bool SoftwareList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards").arg(swlCachePath));
 #elif defined(QMC2_EMUTYPE_MESS)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards").arg(swlCachePath));
+#elif defined(QMC2_EMUTYPE_UME)
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards").arg(swlCachePath));
 #endif
 			isLoading = false;
 			return false;
@@ -632,6 +640,8 @@ bool SoftwareList::load()
 		tsSWLCache << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
 #elif defined(QMC2_EMUTYPE_MESS)
 		tsSWLCache << "MESS_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
+#elif defined(QMC2_EMUTYPE_UME)
+		tsSWLCache << "UME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
 #endif
 		
 		loadProc = new QProcess(this);
@@ -643,21 +653,12 @@ bool SoftwareList::load()
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
 		connect(loadProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(loadStateChanged(QProcess::ProcessState)));
 
-#if defined(QMC2_EMUTYPE_MAME)
-		QString command = qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString();
+		QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
 		QStringList args;
 		args << "-listsoftware";
-		QString hashPath = qmc2Config->value("MAME/Configuration/Global/hashpath").toString().replace("~", "$HOME");
+		QString hashPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath").toString().replace("~", "$HOME");
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << hashPath;
-#elif defined(QMC2_EMUTYPE_MESS)
-		QString command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
-		QStringList args;
-		args << "-listsoftware";
-		QString hashPath = qmc2Config->value("MESS/Configuration/Global/hashpath").toString().replace("~", "$HOME");
-		if ( !hashPath.isEmpty() )
-			args << "-hashpath" << hashPath;
-#endif
 
 		if ( !qmc2StopParser ) {
 			validData = true;
@@ -743,10 +744,10 @@ bool SoftwareList::load()
 
 		// load favorites
 #if defined(QMC2_EMUTYPE_MAME)
-		QStringList softwareNames = qmc2Config->value(QString("MAME/Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
-#elif defined(QMC2_EMUTYPE_MESS)
-		QStringList softwareNames = qmc2Config->value(QString("MESS/Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
-		QStringList configNames = qmc2Config->value(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
+		QStringList softwareNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
+#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+		QStringList softwareNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
+		QStringList configNames = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
 #endif
 
 		QStringList compatFilters = systemSoftwareFilterMap[systemName];
@@ -776,7 +777,7 @@ bool SoftwareList::load()
 				item->setText(QMC2_SWLIST_COLUMN_LIST, swItem->text(QMC2_SWLIST_COLUMN_LIST));
 				SoftwareItem *subItem = new SoftwareItem(item);
 				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 				if ( configNames.count() > i )
 					item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, configNames[i]);
 #endif
@@ -812,23 +813,19 @@ bool SoftwareList::save()
 	if ( !fullyLoaded )
 		return false;
 
-#if defined(QMC2_EMUTYPE_MAME)
-	qmc2Config->remove(QString("MAME/Favorites/%1").arg(systemName));
-#elif defined(QMC2_EMUTYPE_MESS)
-	qmc2Config->remove(QString("MESS/Favorites/%1").arg(systemName));
-#endif
+	qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1").arg(systemName));
 
 	QList<QTreeWidgetItem *> itemList = treeWidgetFavoriteSoftware->findItems("*", Qt::MatchWildcard);
 
 	QStringList softwareNames;
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	QStringList configNames;
 	bool onlyEmptyConfigNames = true;
 #endif
 
 	foreach (QTreeWidgetItem *item, itemList) {
 		softwareNames << item->text(QMC2_SWLIST_COLUMN_NAME);
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QString s = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
 		if ( !s.isEmpty() ) onlyEmptyConfigNames = false;
 		configNames << s;
@@ -837,13 +834,13 @@ bool SoftwareList::save()
 
 	if ( !softwareNames.isEmpty() ) {
 #if defined(QMC2_EMUTYPE_MAME)
-		qmc2Config->setValue(QString("MAME/Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
-#elif defined(QMC2_EMUTYPE_MESS)
-		qmc2Config->setValue(QString("MESS/Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
+		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
+#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+		qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
 		if ( onlyEmptyConfigNames )
-			qmc2Config->remove(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName));
+			qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName));
 		else
-			qmc2Config->setValue(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName), configNames);
+			qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName), configNames);
 #endif
 	}
 
@@ -970,6 +967,8 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 #elif defined(QMC2_EMUTYPE_MESS)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+#elif defined(QMC2_EMUTYPE_UME)
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the UME software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 #endif
 		validData = false;
 	}
@@ -1034,6 +1033,8 @@ void SoftwareList::loadReadyReadStandardError()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected MAME emulator doesn't support software lists"));
 #elif defined(QMC2_EMUTYPE_MESS)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected MESS emulator doesn't support software lists"));
+#elif defined(QMC2_EMUTYPE_UME)
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected UME emulator doesn't support software lists"));
 #endif
 		swlSupported = false;
 		if ( fileSWLCache.isOpen() )
@@ -1052,6 +1053,8 @@ void SoftwareList::loadError(QProcess::ProcessError processError)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists caused an error -- processError = %1").arg(processError));
 #elif defined(QMC2_EMUTYPE_MESS)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists caused an error -- processError = %1").arg(processError));
+#elif defined(QMC2_EMUTYPE_MESS)
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the UME software lists caused an error -- processError = %1").arg(processError));
 #endif
 	validData = false;
 	loadFinishedFlag = true;
@@ -1252,7 +1255,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 			item->setText(QMC2_SWLIST_COLUMN_PART, si->text(QMC2_SWLIST_COLUMN_PART));
 			item->setText(QMC2_SWLIST_COLUMN_INTERFACE, si->text(QMC2_SWLIST_COLUMN_INTERFACE));
 			item->setText(QMC2_SWLIST_COLUMN_LIST, si->text(QMC2_SWLIST_COLUMN_LIST));
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 			if ( comboBoxDeviceConfiguration->currentIndex() > QMC2_SWLIST_MSEL_AUTO_MOUNT )
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, comboBoxDeviceConfiguration->currentText());
 			else
@@ -1949,7 +1952,7 @@ QStringList &SoftwareList::arguments()
 		}
 	}
 
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	// optionally add arguments for the selected device configuration
 	QString devConfigName = comboBoxDeviceConfiguration->currentText();
 	if ( devConfigName != tr("No additional devices") ) {
@@ -2209,7 +2212,7 @@ void SoftwareList::loadFavoritesFromFile()
 								item->setText(QMC2_SWLIST_COLUMN_PART, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_PART));
 								item->setText(QMC2_SWLIST_COLUMN_INTERFACE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 								item->setText(QMC2_SWLIST_COLUMN_LIST, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_LIST));
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 								if ( words.count() > 2 )
 									item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, words[2]);
 #endif
@@ -2259,12 +2262,15 @@ void SoftwareList::saveFavoritesToFile()
 #elif defined(QMC2_EMUTYPE_MAME)
 			ts << QString("# MAME software-list favorites export for driver '%1'\n").arg(systemName);
 			ts << QString("# Format: <list-name><TAB><entry-name>\n");
+#elif defined(QMC2_EMUTYPE_UME)
+			ts << QString("# UME software-list favorites export for driver '%1'\n").arg(systemName);
+			ts << QString("# Format: <list-name><TAB><entry-name>[<TAB><additional-device-configuration>]\n");
 #endif
 			for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
 				QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
 				if ( item ) {
 					ts << item->text(QMC2_SWLIST_COLUMN_LIST) << "\t" << item->text(QMC2_SWLIST_COLUMN_NAME);
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 					if ( !item->text(QMC2_SWLIST_COLUMN_DEVICECFG).isEmpty() )
 						ts << "\t" << item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
 #endif
@@ -2617,15 +2623,9 @@ void SoftwareSnap::loadSnapshot()
 		if ( qmc2UseSoftwareSnapFile ) {
 			// try loading image from ZIP
 			if ( !snapFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-				snapFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+				snapFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
 				if ( snapFile == NULL )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-				snapFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
-				if ( snapFile == NULL )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString()));
-#endif
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
 			}
 			if ( snapFile ) {
 				bool fileOk = true;
@@ -2653,11 +2653,7 @@ void SoftwareSnap::loadSnapshot()
 			}
 		} else {
 			// try loading image from folder
-#if defined(QMC2_EMUTYPE_MAME)
-			QDir snapDir(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
-#elif defined(QMC2_EMUTYPE_MESS)
-			QDir snapDir(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
-#endif
+			QDir snapDir(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
 			if ( snapDir.exists(entryName + ".png") ) {
 				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
 				if ( pm.load(filePath) ) {
@@ -3149,15 +3145,9 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 	if ( qmc2UseSoftwareSnapFile ) {
 		// try loading image from ZIP
 		if ( !qmc2SoftwareSnap->snapFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
 			if ( qmc2SoftwareSnap->snapFile == NULL )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
-			if ( qmc2SoftwareSnap->snapFile == NULL )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString()));
-#endif
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
 		}
 
 		if ( qmc2SoftwareSnap->snapFile ) {
@@ -3185,11 +3175,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 		}
 	} else {
 		// try loading image from folder
-#if defined(QMC2_EMUTYPE_MAME)
-		QDir snapDir(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
-#elif defined(QMC2_EMUTYPE_MESS)
-		QDir snapDir(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
-#endif
+		QDir snapDir(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
 		if ( snapDir.exists(entryName + ".png") ) {
 			QString filePath = snapDir.absoluteFilePath(entryName + ".png");
 			if ( pm.load(filePath) ) {

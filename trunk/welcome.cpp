@@ -31,10 +31,14 @@ Welcome::Welcome(QWidget *parent)
 
 #if defined(QMC2_EMUTYPE_MESS)
     labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
+#elif defined(QMC2_EMUTYPE_UME)
+    labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_ume_logo_big.png"));
 #endif
 
 #if defined(QMC2_SDLMAME)
     QString emulatorName = tr("SDLMAME");
+#elif defined(QMC2_SDLUME)
+    QString emulatorName = tr("SDLUME");
 #elif defined(QMC2_SDLMESS)
     QString emulatorName = tr("SDLMESS");
     labelSamplePath->setVisible(false);
@@ -42,6 +46,8 @@ Welcome::Welcome(QWidget *parent)
     toolButtonBrowseSamplePath->setVisible(false);
 #elif defined(QMC2_MAME)
     QString emulatorName = tr("MAME");
+#elif defined(QMC2_UME)
+    QString emulatorName = tr("UME");
 #elif defined(QMC2_MESS)
     QString emulatorName = tr("MESS");
     labelSamplePath->setVisible(false);
@@ -77,30 +83,30 @@ void Welcome::on_pushButtonOkay_clicked()
   if ( !checkOkay ) {
     QFileInfo fileInfo(lineEditExecutableFile->text());
     if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
-#if defined(QMC2_EMUTYPE_MAME)
-      startupConfig->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+      startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
       if ( !lineEditWorkingDirectory->text().isEmpty() ) {
         QString s = lineEditWorkingDirectory->text();
 	if ( !s.endsWith("/") ) s += "/";
-        startupConfig->setValue("MAME/FilesAndDirectories/WorkingDirectory", s);
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", s);
       }
       if ( !lineEditROMPath->text().isEmpty() )
-        startupConfig->setValue("MAME/Configuration/Global/rompath", lineEditROMPath->text());
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditSamplePath->text().isEmpty() )
-        startupConfig->setValue("MAME/Configuration/Global/samplepath", lineEditSamplePath->text());
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
       if ( !lineEditHashPath->text().isEmpty() )
-        startupConfig->setValue("MAME/Configuration/Global/hashpath", lineEditHashPath->text());
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
 #elif defined(QMC2_EMUTYPE_MESS)
-      startupConfig->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+      startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
       if ( !lineEditWorkingDirectory->text().isEmpty() ) {
         QString s = lineEditWorkingDirectory->text();
 	if ( !s.endsWith("/") ) s += "/";
-        startupConfig->setValue("MESS/FilesAndDirectories/WorkingDirectory", s);
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", s);
       }
       if ( !lineEditROMPath->text().isEmpty() )
-        startupConfig->setValue("MESS/Configuration/Global/rompath", lineEditROMPath->text());
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditHashPath->text().isEmpty() )
-        startupConfig->setValue("MESS/Configuration/Global/hashpath", lineEditHashPath->text());
+        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
 #endif
       startupConfig->sync();
       emit accept();
@@ -160,7 +166,7 @@ void Welcome::on_toolButtonBrowseSamplePath_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseSamplePath_clicked()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
   if ( !s.isNull() )
     lineEditSamplePath->setText(s);
@@ -238,12 +244,18 @@ bool Welcome::checkConfig()
 #elif defined(QMC2_SDLMESS)
   variant = "qmc2-sdlmess";
   fallbackVariant = "qmc2-sdlmame";
+#elif defined(QMC2_SDLUME)
+  variant = "qmc2-sdlume";
+  fallbackVariant = "qmc2-sdlume";
 #elif defined(QMC2_MAME)
   variant = "qmc2-mame";
   fallbackVariant = "qmc2-mess";
 #elif defined(QMC2_MESS)
   variant = "qmc2-mess";
   fallbackVariant = "qmc2-mame";
+#elif defined(QMC2_UME)
+  variant = "qmc2-ume";
+  fallbackVariant = "qmc2-ume";
 #else
   variant = "qmc2-???";
   fallbackVariant = "qmc2-sdlmame";
@@ -312,11 +324,7 @@ bool Welcome::checkConfig()
 	  }
   }
 
-#if defined(QMC2_EMUTYPE_MAME)
-  configOkay &= !startupConfig->value("MAME/FilesAndDirectories/ExecutableFile").toString().isEmpty();
-#elif defined(QMC2_EMUTYPE_MESS)
-  configOkay &= !startupConfig->value("MESS/FilesAndDirectories/ExecutableFile").toString().isEmpty();
-#endif
+  configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
 
   return configOkay;
 }

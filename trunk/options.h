@@ -141,13 +141,15 @@ class Options : public QDialog, public Ui::Options
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
     void on_toolButtonBrowseMAMEVariantExe_clicked();
     void on_toolButtonBrowseMESSVariantExe_clicked();
+    void on_toolButtonBrowseUMEVariantExe_clicked();
     void mameVariantSpecifyArguments();
     void messVariantSpecifyArguments();
+    void umeVariantSpecifyArguments();
 #endif
     void on_toolButtonBrowseDataDirectory_clicked();
     void on_toolButtonBrowseGameInfoDB_clicked();
     void on_toolButtonBrowseEmuInfoDB_clicked();
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void on_toolButtonBrowseCatverIniFile_clicked();
 #endif
     void on_toolButtonBrowseWorkingDirectory_clicked();

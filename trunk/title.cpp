@@ -57,7 +57,7 @@ Title::Title(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game title image"));
   setStatusTip(tr("Game title image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -67,15 +67,9 @@ Title::Title(QWidget *parent)
 
   titleFile = NULL;
   if ( qmc2UseTitleFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    titleFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/TitleFile").toString().toAscii());
+    titleFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString().toAscii());
     if ( titleFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/TitleFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    titleFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/TitleFile").toString().toAscii());
-    if ( titleFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/TitleFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString()));
   }
 }
 
@@ -187,11 +181,7 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
     }
   } else {
     // use title directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/TitleDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/TitleDirectory").toString() + gameName + ".png";
-#endif
+    QString imagePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleDirectory").toString() + gameName + ".png";
 
     if ( fileName )
       *fileName = gameName + ".png";

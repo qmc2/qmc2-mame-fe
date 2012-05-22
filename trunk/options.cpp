@@ -41,7 +41,7 @@
 #include "joystick.h"
 #include "joyfuncscan.h"
 #endif
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #include "messdevcfg.h"
 #endif
 #include "softwarelist.h"
@@ -133,7 +133,7 @@ extern QWidget *qmc2DetailSetupParent;
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
 #endif
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern MiniWebBrowser *qmc2ProjectMESS;
 #endif
@@ -217,6 +217,9 @@ Options::Options(QWidget *parent)
   labelMESSVariantExe->setVisible(false);
   lineEditMESSVariantExe->setVisible(false);
   toolButtonBrowseMESSVariantExe->setVisible(false);
+  labelUMEVariantExe->setVisible(false);
+  lineEditUMEVariantExe->setVisible(false);
+  toolButtonBrowseUMEVariantExe->setVisible(false);
 #else
 #if defined(QMC2_EMUTYPE_MESS)
   labelMESSVariantExe->setVisible(false);
@@ -228,10 +231,38 @@ Options::Options(QWidget *parent)
   variantMAMEMenu->addSeparator();
   connect(variantMAMEMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditMAMEVariantExe, SLOT(clear()));
   toolButtonBrowseMAMEVariantExe->setMenu(variantMAMEMenu);
+  QMenu *variantUMEMenu = new QMenu(0);
+  QAction *variantUMEAction = variantUMEMenu->addAction(tr("Specify arguments..."));
+  connect(variantUMEAction, SIGNAL(triggered()), this, SLOT(umeVariantSpecifyArguments()));
+  variantUMEMenu->addSeparator();
+  connect(variantUMEMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditUMEVariantExe, SLOT(clear()));
+  toolButtonBrowseUMEVariantExe->setMenu(variantUMEMenu);
 #elif defined(QMC2_EMUTYPE_MAME)
   labelMAMEVariantExe->setVisible(false);
   lineEditMAMEVariantExe->setVisible(false);
   toolButtonBrowseMAMEVariantExe->setVisible(false);
+  QMenu *variantMESSMenu = new QMenu(0);
+  QAction *variantMESSAction = variantMESSMenu->addAction(tr("Specify arguments..."));
+  connect(variantMESSAction, SIGNAL(triggered()), this, SLOT(messVariantSpecifyArguments()));
+  variantMESSMenu->addSeparator();
+  connect(variantMESSMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditMESSVariantExe, SLOT(clear()));
+  toolButtonBrowseMESSVariantExe->setMenu(variantMESSMenu);
+  QMenu *variantUMEMenu = new QMenu(0);
+  QAction *variantUMEAction = variantUMEMenu->addAction(tr("Specify arguments..."));
+  connect(variantUMEAction, SIGNAL(triggered()), this, SLOT(umeVariantSpecifyArguments()));
+  variantUMEMenu->addSeparator();
+  connect(variantUMEMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditUMEVariantExe, SLOT(clear()));
+  toolButtonBrowseUMEVariantExe->setMenu(variantUMEMenu);
+#elif defined(QMC2_EMUTYPE_UME)
+  labelUMEVariantExe->setVisible(false);
+  lineEditUMEVariantExe->setVisible(false);
+  toolButtonBrowseUMEVariantExe->setVisible(false);
+  QMenu *variantMAMEMenu = new QMenu(0);
+  QAction *variantMAMEAction = variantMAMEMenu->addAction(tr("Specify arguments..."));
+  connect(variantMAMEAction, SIGNAL(triggered()), this, SLOT(mameVariantSpecifyArguments()));
+  variantMAMEMenu->addSeparator();
+  connect(variantMAMEMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditMAMEVariantExe, SLOT(clear()));
+  toolButtonBrowseMAMEVariantExe->setMenu(variantMAMEMenu);
   QMenu *variantMESSMenu = new QMenu(0);
   QAction *variantMESSAction = variantMESSMenu->addAction(tr("Specify arguments..."));
   connect(variantMESSAction, SIGNAL(triggered()), this, SLOT(messVariantSpecifyArguments()));
@@ -280,9 +311,12 @@ Options::Options(QWidget *parent)
   checkBoxRestoreGameSelection->setText(tr("Restore machine selection"));
   checkBoxRestoreGameSelection->setToolTip(tr("Restore saved machine selection at start and after reloading the machine list"));
   labelGamelistCacheFile->setText(tr("Machine list cache"));
-#elif defined(QMC2_EMUTYPE_MAME)
+#endif
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+#endif
+#if defined(QMC2_EMUTYPE_MAME)
   labelGeneralSoftwareFolder->setVisible(false);
   lineEditGeneralSoftwareFolder->setVisible(false);
   toolButtonBrowseGeneralSoftwareFolder->setVisible(false);
@@ -290,21 +324,21 @@ Options::Options(QWidget *parent)
 
   // shortcuts
   qmc2ShortcutMap["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+3"] = QPair<QString, QAction *>(tr("Check preview images"), NULL);
   qmc2ShortcutMap["Ctrl+4"] = QPair<QString, QAction *>(tr("Check flyer images"), NULL);
   qmc2ShortcutMap["Ctrl+5"] = QPair<QString, QAction *>(tr("Check icon images"), NULL);
   qmc2ShortcutMap["Ctrl+A"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
   qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current machine"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
   qmc2ShortcutMap["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
   qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
@@ -317,7 +351,7 @@ Options::Options(QWidget *parent)
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
-#elif defined(QMC2_EMUTYPE_MESS)
+#elif defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
@@ -327,7 +361,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload game list"), NULL);
   qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -351,9 +385,11 @@ Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
   qmc2ShortcutMap["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for MAME"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for MESS"), NULL);
+  qmc2ShortcutMap["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for UME"), NULL);
 #else
   qmc2ShortcutMap["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMAME"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMESS"), NULL);
+  qmc2ShortcutMap["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLUME"), NULL);
 #endif
 #endif
   qmc2ShortcutMap["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), NULL);
@@ -362,13 +398,13 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
   qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Machine list with full detail"), NULL);
 #endif
   qmc2ShortcutMap["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["F7"] = QPair<QString, QAction *>(tr("View games by category"), NULL);
   qmc2ShortcutMap["F8"] = QPair<QString, QAction *>(tr("View games by version"), NULL);
 #endif
@@ -542,9 +578,11 @@ void Options::apply()
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
+  toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
+#endif
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSizeMiddle);
-  toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
   checkBoxUseCatverIni->setIconSize(iconSize);
   toolButtonBrowseCatverIniFile->setIconSize(iconSize);
 #endif
@@ -582,6 +620,7 @@ void Options::apply()
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
   toolButtonBrowseMAMEVariantExe->setIconSize(iconSize);
   toolButtonBrowseMESSVariantExe->setIconSize(iconSize);
+  toolButtonBrowseUMEVariantExe->setIconSize(iconSize);
 #endif
   toolButtonBrowseWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
@@ -682,7 +721,7 @@ void Options::apply()
   if ( qmc2ROMStatusExporter )
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
   toolButtonBrowseSoftwareListCache->setIconSize(iconSize);
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
   toolButtonBrowseGeneralSoftwareFolder->setIconSize(iconSize);
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->toolButtonConfiguration->setIconSize(iconSize);
@@ -720,7 +759,7 @@ void Options::apply()
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
     if ( qmc2SoftwareNotesEditor ) qmc2SoftwareNotesEditor->adjustIconSizes();
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
     if ( qmc2ProjectMESS ) {
       qmc2ProjectMESS->toolButtonBack->setIconSize(iconSize);
       qmc2ProjectMESS->toolButtonForward->setIconSize(iconSize);
@@ -1168,6 +1207,129 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
   invalidateEmuInfoDB |= (config->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
   config->setValue("MESS/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
+#elif defined(QMC2_EMUTYPE_UME)
+  needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1));
+  needReopenPreviewFile |= (config->value("UME/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
+  qmc2UsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
+  config->setValue("UME/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
+  config->setValue("UME/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
+  needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1));
+  needReopenFlyerFile |= (config->value("UME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
+  qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
+  config->setValue("UME/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
+  config->setValue("UME/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
+  needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1));
+  needReopenIconFile |= (config->value("UME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
+  qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
+  config->setValue("UME/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
+  config->setValue("UME/FilesAndDirectories/IconFile", lineEditIconFile->text());
+  needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1));
+  needReopenCabinetFile |= (config->value("UME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
+  qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
+  config->setValue("UME/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
+  config->setValue("UME/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
+  needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1));
+  needReopenControllerFile |= (config->value("UME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
+  qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
+  config->setValue("UME/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
+  config->setValue("UME/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
+  needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1));
+  needReopenMarqueeFile |= (config->value("UME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
+  qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
+  config->setValue("UME/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
+  config->setValue("UME/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
+  needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1));
+  needReopenTitleFile |= (config->value("UME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
+  qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
+  config->setValue("UME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
+  config->setValue("UME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+  needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1));
+  needReopenPCBFile |= (config->value("UME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
+  qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
+  config->setValue("UME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
+  config->setValue("UME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+  needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1));
+  needReopenSoftwareSnapFile |= (config->value("UME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
+  qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
+  config->setValue("UME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
+  config->setValue("UME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
+  config->setValue("UME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+  config->setValue("UME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
+  config->setValue("UME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
+  config->setValue("UME/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
+  s = lineEditGameInfoDB->text();
+  needManualReload |= (config->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
+  invalidateGameInfoDB |= (config->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
+  config->setValue("UME/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
+  s = lineEditEmuInfoDB->text();
+  needManualReload |= (config->value("UME/FilesAndDirectories/EmuInfoDB").toString() != s);
+  invalidateEmuInfoDB |= (config->value("UME/FilesAndDirectories/EmuInfoDB").toString() != s);
+  config->setValue("UME/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
+  config->setValue("UME/FilesAndDirectories/CatverIni", lineEditCatverIniFile->text());
+  bool catverUsed = checkBoxUseCatverIni->isChecked();
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool() != catverUsed );
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", catverUsed);
+  if ( catverUsed ) {
+    qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->actionViewByCategory->setVisible(true);
+    qmc2MainWindow->actionViewByCategory->setEnabled(true);
+    qmc2MainWindow->actionViewByVersion->setVisible(true);
+    qmc2MainWindow->actionViewByVersion->setEnabled(true);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(true);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(true);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(true);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setEnabled(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(true);
+    if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
+      comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
+      comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+    }
+    if ( qmc2MainWindow->comboBoxViewSelect->count() - 1 < QMC2_VIEWCATEGORY_INDEX ) {
+      qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWCATEGORY_INDEX, tr("View games by category (not filtered)"));
+      qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWCATEGORY_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+      qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWVERSION_INDEX, tr("View games by emulator version (not filtered)"));
+      qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWVERSION_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+    }
+  } else {
+    qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->actionViewByCategory->setVisible(false);
+    qmc2MainWindow->actionViewByCategory->setEnabled(false);
+    qmc2MainWindow->actionViewByVersion->setVisible(false);
+    qmc2MainWindow->actionViewByVersion->setEnabled(false);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(false);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(false);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(false);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setEnabled(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(false);
+    if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
+      comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
+      comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
+    }
+    if ( qmc2MainWindow->comboBoxViewSelect->count() > QMC2_VIEWVERSION_INDEX ) {
+      qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWVERSION_INDEX);
+      qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWCATEGORY_INDEX);
+    }
+  }
 #endif
 
   // Gamelist
@@ -1332,7 +1494,7 @@ void Options::on_pushButtonApply_clicked()
 	  case QMC2_VIEW_TREE_INDEX:
 		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 		  break;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	  case QMC2_VIEW_CATEGORY_INDEX:
 		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
 		  break;
@@ -1349,7 +1511,7 @@ void Options::on_pushButtonApply_clicked()
     if ( qmc2GlobalEmulatorOptions->changed ) {
       if ( qmc2EmulatorOptions ) {
         switch ( QMessageBox::question(this, tr("Confirm"), 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
                  tr("An open game-specific emulator configuration has been detected.\nUse local game-settings, overwrite with global settings or don't apply?"),
 #elif defined(QMC2_EMUTYPE_MESS)
                  tr("An open machine-specific emulator configuration has been detected.\nUse local machine-settings, overwrite with global settings or don't apply?"),
@@ -1387,6 +1549,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
   config->setValue("MAME/FilesAndDirectories/MESSVariantExe", lineEditMESSVariantExe->text());
+  config->setValue("MAME/FilesAndDirectories/UMEVariantExe", lineEditUMEVariantExe->text());
 #endif
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
@@ -1405,6 +1568,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
   config->setValue("MESS/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
+  config->setValue("MESS/FilesAndDirectories/UMEVariantExe", lineEditUMEVariantExe->text());
 #endif
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
@@ -1417,6 +1581,24 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/OptionsTemplateFile", s);
   config->setValue("MESS/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
   config->setValue("MESS/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
+#elif defined(QMC2_EMUTYPE_UME)
+  needReload |= config->value("UME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
+  config->setValue("UME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+  config->setValue("UME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  config->setValue("UME/FilesAndDirectories/MESSVariantExe", lineEditMESSVariantExe->text());
+  config->setValue("UME/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
+#endif
+  config->setValue("UME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
+  config->setValue("UME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+  config->setValue("UME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
+  config->setValue("UME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
+  config->setValue("UME/FilesAndDirectories/SoftwareListCache", lineEditSoftwareListCache->text());
+  s = lineEditOptionsTemplateFile->text();
+  needRecreateTemplateMap = needRecreateTemplateMap || (config->value("UME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
+  config->setValue("UME/FilesAndDirectories/OptionsTemplateFile", s);
+  config->setValue("UME/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
+  config->setValue("UME/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
 #endif
 
   // Additional emulators
@@ -1432,15 +1614,9 @@ void Options::on_pushButtonApply_clicked()
         emuWorkDir = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR)->text();
       if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS) )
         emuArgs = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS)->text();
-#if defined(QMC2_EMUTYPE_MAME)
-      config->setValue(QString("MAME/RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
-      config->setValue(QString("MAME/RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
-      config->setValue(QString("MAME/RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
-#elif defined(QMC2_EMUTYPE_MESS)
-      config->setValue(QString("MESS/RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
-      config->setValue(QString("MESS/RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
-      config->setValue(QString("MESS/RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
-#endif
+      config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
+      config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
+      config->setValue(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
     }
   }
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
@@ -1457,7 +1633,7 @@ void Options::on_pushButtonApply_clicked()
     apply();
 
   if ( invalidateGameInfoDB ) {
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
@@ -1493,7 +1669,7 @@ void Options::on_pushButtonApply_clicked()
   }
 
   if ( needManualReload )
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload game list for some changes to take effect"));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload machine list for some changes to take effect"));
@@ -1509,7 +1685,7 @@ void Options::on_pushButtonApply_clicked()
     bool doResort = true;
 
     if ( qmc2VerifyActive ) {
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("re-sort of game list impossible at this time, please wait for ROM verification to finish and try again"));
 #elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("re-sort of machine list impossible at this time, please wait for ROM verification to finish and try again"));
@@ -1523,7 +1699,7 @@ void Options::on_pushButtonApply_clicked()
       QString sortCriteria = "?";
       switch ( qmc2SortCriteria ) {
         case QMC2_SORT_BY_DESCRIPTION:
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
           sortCriteria = QObject::tr("game description");
 #elif defined(QMC2_EMUTYPE_MESS)
           sortCriteria = QObject::tr("machine description");
@@ -1542,7 +1718,7 @@ void Options::on_pushButtonApply_clicked()
           sortCriteria = QObject::tr("manufacturer");
           break;
         case QMC2_SORT_BY_NAME:
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
           sortCriteria = QObject::tr("game name");
 #elif defined(QMC2_EMUTYPE_MESS)
           sortCriteria = QObject::tr("machine name");
@@ -1557,7 +1733,7 @@ void Options::on_pushButtonApply_clicked()
         case QMC2_SORT_BY_DRVSTAT:
           sortCriteria = QObject::tr("driver status");
           break;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
         case QMC2_SORT_BY_CATEGORY:
           sortCriteria = QObject::tr("category");
           break;
@@ -1566,7 +1742,7 @@ void Options::on_pushButtonApply_clicked()
           break;
 #endif
       }
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
@@ -1589,7 +1765,7 @@ void Options::on_pushButtonApply_clicked()
       qApp->processEvents();
       qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 #endif
@@ -1603,7 +1779,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1616,7 +1792,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1629,7 +1805,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1642,7 +1818,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1655,7 +1831,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1668,7 +1844,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1681,7 +1857,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1694,7 +1870,7 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
@@ -1702,7 +1878,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
       break;
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_CATEGORY:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
@@ -1729,7 +1905,7 @@ void Options::on_pushButtonApply_clicked()
     default:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(false);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
 #endif
@@ -1749,15 +1925,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Preview ) {
     if ( needReopenPreviewFile ) {
       if ( qmc2UsePreviewFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2Preview->previewFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/PreviewFile").toString().toAscii());
+        qmc2Preview->previewFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toAscii());
         if ( qmc2Preview->previewFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/PreviewFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2Preview->previewFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/PreviewFile").toString().toAscii());
-        if ( qmc2Preview->previewFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/PreviewFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString()));
       } else
         unzClose(qmc2Preview->previewFile);
     }
@@ -1767,15 +1937,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Flyer ) {
     if ( needReopenFlyerFile ) {
       if ( qmc2UseFlyerFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2Flyer->flyerFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/FlyerFile").toString().toAscii());
+        qmc2Flyer->flyerFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString().toAscii());
         if ( qmc2Flyer->flyerFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/FlyerFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2Flyer->flyerFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/FlyerFile").toString().toAscii());
-        if ( qmc2Flyer->flyerFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/FlyerFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString()));
       } else
         unzClose(qmc2Flyer->flyerFile);
     }
@@ -1785,15 +1949,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Cabinet ) {
     if ( needReopenCabinetFile ) {
       if ( qmc2UseCabinetFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2Cabinet->cabinetFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/CabinetFile").toString().toAscii());
+        qmc2Cabinet->cabinetFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString().toAscii());
         if ( qmc2Cabinet->cabinetFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/CabinetFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2Cabinet->cabinetFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/CabinetFile").toString().toAscii());
-        if ( qmc2Cabinet->cabinetFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/CabinetFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString()));
       } else
         unzClose(qmc2Cabinet->cabinetFile);
     }
@@ -1803,15 +1961,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Controller ) {
     if ( needReopenControllerFile ) {
       if ( qmc2UseControllerFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2Controller->controllerFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/ControllerFile").toString().toAscii());
+        qmc2Controller->controllerFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString().toAscii());
         if ( qmc2Controller->controllerFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/ControllerFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2Controller->controllerFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/ControllerFile").toString().toAscii());
-        if ( qmc2Controller->controllerFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/ControllerFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString()));
       } else
         unzClose(qmc2Controller->controllerFile);
     }
@@ -1821,15 +1973,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Marquee ) {
     if ( needReopenMarqueeFile ) {
       if ( qmc2UseMarqueeFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2Marquee->marqueeFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/MarqueeFile").toString().toAscii());
+        qmc2Marquee->marqueeFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString().toAscii());
         if ( qmc2Marquee->marqueeFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/MarqueeFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2Marquee->marqueeFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/MarqueeFile").toString().toAscii());
-        if ( qmc2Marquee->marqueeFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/MarqueeFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString()));
       } else
         unzClose(qmc2Marquee->marqueeFile);
     }
@@ -1839,15 +1985,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Title ) {
     if ( needReopenTitleFile ) {
       if ( qmc2UseTitleFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2Title->titleFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/TitleFile").toString().toAscii());
+        qmc2Title->titleFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString().toAscii());
         if ( qmc2Title->titleFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/TitleFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2Title->titleFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/TitleFile").toString().toAscii());
-        if ( qmc2Title->titleFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/TitleFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString()));
       } else
         unzClose(qmc2Title->titleFile);
     }
@@ -1857,15 +1997,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2PCB ) {
     if ( needReopenPCBFile ) {
       if ( qmc2UsePCBFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2PCB->pcbFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/PCBFile").toString().toAscii());
+        qmc2PCB->pcbFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFile").toString().toAscii());
         if ( qmc2PCB->pcbFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/PCBFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2PCB->pcbFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/PCBFile").toString().toAscii());
-        if ( qmc2PCB->pcbFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/TitleFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString()));
       } else
         unzClose(qmc2PCB->pcbFile);
     }
@@ -1875,15 +2009,9 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2SoftwareSnap ) {
     if ( needReopenSoftwareSnapFile ) {
       if ( qmc2UseSoftwareSnapFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
         if ( qmc2SoftwareSnap->snapFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
-        if ( qmc2SoftwareSnap->snapFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString()));
-#endif
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
       } else
         unzClose(qmc2SoftwareSnap->snapFile);
     }
@@ -1892,21 +2020,15 @@ void Options::on_pushButtonApply_clicked()
 
   if ( needReopenIconFile ) {
     if ( qmc2UseIconFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-      qmc2IconFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/IconFile").toString().toAscii());
+      qmc2IconFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toAscii());
       if ( qmc2IconFile == NULL )
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/IconFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-      qmc2IconFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/IconFile").toString().toAscii());
-      if ( qmc2IconFile == NULL )
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/IconFile").toString()));
-#endif
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString()));
     } else
       unzClose(qmc2IconFile);
   }
 
   if ( needReload ) {
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of game list"));
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
@@ -2153,6 +2275,66 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
+#elif defined(QMC2_EMUTYPE_UME)
+#if defined(QMC2_SDLUME)
+  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlume.log").toString());
+#elif defined(QMC2_UME)
+  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
+  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-ume.log").toString());
+#endif
+  lineEditPreviewDirectory->setText(config->value("UME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
+  lineEditPreviewFile->setText(config->value("UME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  qmc2UsePreviewFile = config->value("UME/FilesAndDirectories/UsePreviewFile", false).toBool();
+  stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
+  radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
+  lineEditFlyerDirectory->setText(config->value("UME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
+  lineEditFlyerFile->setText(config->value("UME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  qmc2UseFlyerFile = config->value("UME/FilesAndDirectories/UseFlyerFile", false).toBool();
+  stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
+  radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
+  lineEditIconDirectory->setText(config->value("UME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
+  lineEditIconFile->setText(config->value("UME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  qmc2UseIconFile = config->value("UME/FilesAndDirectories/UseIconFile", false).toBool();
+  stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
+  radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
+  lineEditCabinetDirectory->setText(config->value("UME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
+  lineEditCabinetFile->setText(config->value("UME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  qmc2UseCabinetFile = config->value("UME/FilesAndDirectories/UseCabinetFile", false).toBool();
+  stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
+  radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
+  lineEditControllerDirectory->setText(config->value("UME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
+  lineEditControllerFile->setText(config->value("UME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  qmc2UseControllerFile = config->value("UME/FilesAndDirectories/UseControllerFile", false).toBool();
+  stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
+  radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
+  lineEditMarqueeDirectory->setText(config->value("UME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
+  lineEditMarqueeFile->setText(config->value("UME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
+  qmc2UseMarqueeFile = config->value("UME/FilesAndDirectories/UseMarqueeFile", false).toBool();
+  stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
+  radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
+  lineEditTitleDirectory->setText(config->value("UME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
+  lineEditTitleFile->setText(config->value("UME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  qmc2UseTitleFile = config->value("UME/FilesAndDirectories/UseTitleFile", false).toBool();
+  stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
+  radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
+  lineEditPCBDirectory->setText(config->value("UME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  lineEditPCBFile->setText(config->value("UME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  qmc2UsePCBFile = config->value("UME/FilesAndDirectories/UsePCBFile", false).toBool();
+  stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
+  radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
+  lineEditSoftwareSnapDirectory->setText(config->value("UME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
+  lineEditSoftwareSnapFile->setText(config->value("UME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  qmc2UseSoftwareSnapFile = config->value("UME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
+  stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
+  radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
+  lineEditSoftwareNotesFolder->setText(config->value("UME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
+  lineEditSoftwareNotesTemplate->setText(config->value("UME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
+  checkBoxUseSoftwareNotesTemplate->setChecked(config->value("UME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
+  lineEditGameInfoDB->setText(config->value("UME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditEmuInfoDB->setText(config->value("UME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
+  lineEditCatverIniFile->setText(config->value("UME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
+  checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
 #endif
 
   // Gamelist
@@ -2301,6 +2483,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditWorkingDirectory->setText(config->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
   lineEditMESSVariantExe->setText(config->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
+  lineEditUMEVariantExe->setText(config->value("MAME/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(config->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
@@ -2325,6 +2508,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditWorkingDirectory->setText(config->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
   lineEditMAMEVariantExe->setText(config->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
+  lineEditUMEVariantExe->setText(config->value("MESS/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(config->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
   lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
@@ -2339,17 +2523,33 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditFavoritesFile->setText(config->value("MESS/FilesAndDirectories/FavoritesFile", userScopePath + "/mess.fav").toString());
   lineEditHistoryFile->setText(config->value("MESS/FilesAndDirectories/HistoryFile", userScopePath + "/mess.hst").toString());
+#elif defined(QMC2_EMUTYPE_UME)
+  lineEditExecutableFile->setText(config->value("UME/FilesAndDirectories/ExecutableFile", "").toString());
+  lineEditWorkingDirectory->setText(config->value("UME/FilesAndDirectories/WorkingDirectory", "").toString());
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  lineEditMAMEVariantExe->setText(config->value("UME/FilesAndDirectories/MAMEVariantExe", "").toString());
+  lineEditMESSVariantExe->setText(config->value("UME/FilesAndDirectories/MESSVariantExe", "").toString());
+#endif
+  lineEditEmulatorLogFile->setText(config->value("UME/FilesAndDirectories/LogFile", userScopePath + "/ume.log").toString());
+  lineEditListXMLCache->setText(config->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString());
+  lineEditGamelistCacheFile->setText(config->value("UME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/ume.glc").toString());
+  lineEditROMStateCacheFile->setText(config->value("UME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/ume.rsc").toString());
+  lineEditSoftwareListCache->setText(config->value("UME/FilesAndDirectories/SoftwareListCache", userScopePath + "/ume.swl").toString());
+  lineEditGeneralSoftwareFolder->setText(config->value("UME/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
+#if defined(QMC2_SDLUME)
+  lineEditOptionsTemplateFile->setText(config->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml").toString());
+#elif defined(QMC2_UME)
+  lineEditOptionsTemplateFile->setText(config->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/UME/template.xml").toString());
+#endif
+  lineEditFavoritesFile->setText(config->value("UME/FilesAndDirectories/FavoritesFile", userScopePath + "/ume.fav").toString());
+  lineEditHistoryFile->setText(config->value("UME/FilesAndDirectories/HistoryFile", userScopePath + "/ume.hst").toString());
 #endif
 
   // Additional emulators
   tableWidgetRegisteredEmulators->clearContents();
   tableWidgetRegisteredEmulators->setRowCount(0);
 
-#if defined(QMC2_EMUTYPE_MAME)
-  config->beginGroup("MAME/RegisteredEmulators");
-#elif defined(QMC2_EMUTYPE_MESS)
-  config->beginGroup("MESS/RegisteredEmulators");
-#endif
+  config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
   QStringList additionalEmulators = config->childGroups();
   tableWidgetRegisteredEmulators->setSortingEnabled(false);
   foreach (QString emuName, additionalEmulators) {
@@ -2670,22 +2870,34 @@ void Options::on_toolButtonBrowseMESSVariantExe_clicked()
 	raise();
 }
 
+void Options::on_toolButtonBrowseUMEVariantExe_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseUMEVariantExe_clicked()");
+#endif
+
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose UME variant's exe file"), lineEditUMEVariantExe->text(), tr("All files (*)"));
+	if ( !s.isNull() )
+		lineEditUMEVariantExe->setText(s);
+	raise();
+}
+
 void Options::mameVariantSpecifyArguments()
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::mameVariantSpecifyArguments()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MESS)
+#if !defined(QMC2_EMUTYPE_MAME)
 	bool ok;
 	QString mameVariantExeArgs = QInputDialog::getText(this,
 							tr("MAME variant arguments"),
 							tr("Specify command line arguments passed to the MAME variant\n(empty means: 'pass the arguments we were called with'):"),
 							QLineEdit::Normal,
-							config->value("MESS/FilesAndDirectories/MAMEVariantExeArguments", "").toString(),
+							config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MAMEVariantExeArguments", "").toString(),
 							&ok);
 	if ( ok )
-		config->setValue("MESS/FilesAndDirectories/MAMEVariantExeArguments", mameVariantExeArgs);
+		config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MAMEVariantExeArguments", mameVariantExeArgs);
 #endif
 }
 
@@ -2695,16 +2907,35 @@ void Options::messVariantSpecifyArguments()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::messVariantSpecifyArguments()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if !defined(QMC2_EMUTYPE_MESS)
 	bool ok;
 	QString messVariantExeArgs = QInputDialog::getText(this,
 							tr("MESS variant arguments"),
 							tr("Specify command line arguments passed to the MESS variant\n(empty means: 'pass the arguments we were called with'):"),
 							QLineEdit::Normal,
-							config->value("MAME/FilesAndDirectories/MESSVariantExeArguments", "").toString(),
+							config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MESSVariantExeArguments", "").toString(),
 							&ok);
 	if ( ok )
-		config->setValue("MAME/FilesAndDirectories/MESSVariantExeArguments", messVariantExeArgs);
+		config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MESSVariantExeArguments", messVariantExeArgs);
+#endif
+}
+
+void Options::umeVariantSpecifyArguments()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::umeVariantSpecifyArguments()");
+#endif
+
+#if !defined(QMC2_EMUTYPE_UME)
+	bool ok;
+	QString umeVariantExeArgs = QInputDialog::getText(this,
+							tr("UME variant arguments"),
+							tr("Specify command line arguments passed to the UME variant\n(empty means: 'pass the arguments we were called with'):"),
+							QLineEdit::Normal,
+							config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UMEVariantExeArguments", "").toString(),
+							&ok);
+	if ( ok )
+		config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UMEVariantExeArguments", umeVariantExeArgs);
 #endif
 }
 #endif
@@ -2936,7 +3167,7 @@ void Options::on_toolButtonBrowseEmuInfoDB_clicked()
   raise();
 }
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void Options::on_toolButtonBrowseCatverIniFile_clicked()
 {
 #ifdef QMC2_DEBUG

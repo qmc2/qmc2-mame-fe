@@ -57,7 +57,7 @@ Flyer::Flyer(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game flyer image"));
   setStatusTip(tr("Game flyer image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -67,15 +67,9 @@ Flyer::Flyer(QWidget *parent)
 
   flyerFile = NULL;
   if ( qmc2UseFlyerFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    flyerFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/FlyerFile").toString().toAscii());
+    flyerFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString().toAscii());
     if ( flyerFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/FlyerFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    flyerFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString().toAscii());
-    if ( flyerFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString()));
   }
 }
 
@@ -187,11 +181,7 @@ bool Flyer::loadFlyer(QString gameName, QString onBehalfOf, bool checkOnly, QStr
     }
   } else {
     // use flyer directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/FlyerDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/FlyerDirectory").toString() + gameName + ".png";
-#endif
+    QString imagePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerDirectory").toString() + gameName + ".png";
 
     if ( fileName )
       *fileName = gameName + ".png";

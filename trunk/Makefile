@@ -52,8 +52,8 @@ endif
 #
 # Supported emulators:
 #
-# UNIX and Mac OS X .... SDLMAME (default) or SDLMESS
-# Windows .............. MAME (default), MAMEUIFX32 or MESS
+# UNIX and Mac OS X .... SDLMAME (default), SDLMESS or SDLUME
+# Windows .............. MAME (default), MESS or UME
 #
 ifndef EMULATOR
 ifeq '$(MINGW)' '1'
@@ -616,17 +616,18 @@ endif
 ifeq '$(EMULATOR)' 'mess'
 QMC2_EMULATOR = MESS
 endif
+ifeq '$(EMULATOR)' 'ume'
+QMC2_EMULATOR = UME
+endif
 ifeq '$(EMULATOR)' 'sdlmame'
 QMC2_EMULATOR = SDLMAME
 endif
 ifeq '$(EMULATOR)' 'sdlmess'
 QMC2_EMULATOR = SDLMESS
 endif
+ifeq '$(EMULATOR)' 'sdlume'
+QMC2_EMULATOR = SDLUME
 endif
-
-# emulator target fall-back for MAMEUIFX32
-ifeq '$(QMC2_EMULATOR)' 'MAMEUIFX32'
-QMC2_EMULATOR = MAME
 endif
 
 # associate icon files
@@ -636,6 +637,9 @@ MYAPPICON = mame.icns
 endif
 ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 MYAPPICON = mess.icns
+endif
+ifeq '$(QMC2_EMULATOR)' 'SDLUME'
+MYAPPICON = ume.icns
 endif
 endif
 
@@ -789,11 +793,17 @@ endif
 ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 EMUICO = mess.png
 GENERICNAME = M.E.S.S. Catalog / Launcher II
-else
+endif
+ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
 EMUICO = mame.png
 GENERICNAME = M.A.M.E. Catalog / Launcher II
 endif
+ifeq '$(QMC2_EMULATOR)' 'SDLUME'
+EMUICO = ume.png
+GENERICNAME = U.M.E. Catalog / Launcher II
+endif
 
+# target name (variant)
 ifneq '$(ARCH)' 'Windows'
 TARGET_NAME = $(PROJECT)-$(shell echo $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
 else
@@ -802,6 +812,9 @@ TARGET_NAME = $(PROJECT)-mame
 endif
 ifeq '$(QMC2_EMULATOR)' 'MESS'
 TARGET_NAME = $(PROJECT)-mess
+endif
+ifeq '$(QMC2_EMULATOR)' 'UME'
+TARGET_NAME = $(PROJECT)-ume
 endif
 endif
 QMAKE_CONF = TARGET=$(TARGET_NAME)
@@ -980,12 +993,15 @@ endif
 
 ifeq '$(QUIET)' '1'
 ifeq '$(ARCH)' 'Windows'
-rcgen: qmc2-mame.rc qmc2-mess.rc
+rcgen: qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
 
 qmc2-mame.rc:
 	@arch\Windows\rcgen.bat
 
 qmc2-mess.rc:
+	@arch\Windows\rcgen.bat
+
+qmc2-ume.rc:
 	@arch\Windows\rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
@@ -1049,12 +1065,15 @@ endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
-rcgen: qmc2-mame.rc qmc2-mess.rc
+rcgen: qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
 
 qmc2-mame.rc:
 	@arch\Windows\rcgen.bat
 
 qmc2-mess.rc:
+	@arch\Windows\rcgen.bat
+
+qmc2-ume.rc:
 	@arch\Windows\rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
@@ -1215,7 +1234,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out qmc2-mame.rc qmc2-mess.rc
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
 	@$(RMDIR) /s /q release > NUL
 	@$(RMDIR) /s /q debug > NUL
 endif

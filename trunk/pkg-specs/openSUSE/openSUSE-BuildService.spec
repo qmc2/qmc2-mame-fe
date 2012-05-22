@@ -1,7 +1,7 @@
 Name:           qmc2
 Version:        0.37
 Release:        1
-Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
+Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
 URL:            http://qmc2.arcadehits.net/wordpress
@@ -19,7 +19,7 @@ BuildRequires:  openSUSE-release
 BuildRequires:  fdupes
 
 %description
-QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS variants.
+QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and UME variants.
 
 %prep
 %setup -qcT
@@ -27,12 +27,21 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
+tar -xjf %{SOURCE0}
+mv %{name} sdlume
 
 %build
 pushd sdlmess
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
+popd
+
+pushd sdlume
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLUME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
@@ -55,6 +64,15 @@ popd
 
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
+pushd sdlume
+make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLUME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
+popd
+
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
+
 pushd sdlmame
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
@@ -72,10 +90,12 @@ cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
 # update the desktop files
 %suse_update_desktop_file %{name}-sdlmame Game ArcadeGame
 %suse_update_desktop_file %{name}-sdlmess Game ArcadeGame
+%suse_update_desktop_file %{name}-sdlume Game ArcadeGame
 
 # make sure the executable permissions are set correctly
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlume
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 %clean
@@ -90,12 +110,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/qmc2
 %{_bindir}/qmc2-sdlmame
 %{_bindir}/qmc2-sdlmess
+%{_bindir}/qmc2-sdlume
 %{_datadir}/applications/qmc2-sdlmame.desktop
 %{_datadir}/applications/qmc2-sdlmess.desktop
+%{_datadir}/applications/qmc2-sdlume.desktop
 
 %changelog
-* Mon May 21 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.37-1
-- updated spec to QMC2 0.37
+* Tue May 22 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.37-1
+- updated spec to QMC2 0.37, added new UME emulator target
 
 * Sun Apr 29 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.36-1
 - updated spec to QMC2 0.36 / added fdupes macro / updated licence name

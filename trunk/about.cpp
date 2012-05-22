@@ -50,6 +50,8 @@ About::About(QWidget *parent)
 
 #if defined(QMC2_EMUTYPE_MESS)
   labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
+#elif defined(QMC2_EMUTYPE_UME)
+  labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_ume_logo_big.png"));
 #endif
 
   adjustSize();
@@ -60,7 +62,10 @@ About::About(QWidget *parent)
     case QSysInfo::MV_10_4: macVersion = tr("Mac OS X 10.4"); break;
     case QSysInfo::MV_10_5: macVersion = tr("Mac OS X 10.5"); break;
     case QSysInfo::MV_10_6: macVersion = tr("Mac OS X 10.6"); break;
-    default: macVersion = tr("Mac (unkown)"); break;
+#if QT_VERSION >= 0x040800
+    case QSysInfo::MV_10_7: macVersion = tr("Mac OS X 10.7"); break;
+#endif
+    default: macVersion = tr("Mac (unknown)"); break;
   }
 #elif defined(Q_WS_WIN)
   switch ( QSysInfo::WindowsVersion ) {
@@ -115,6 +120,8 @@ void About::showEvent(QShowEvent *e)
           "<p><font size=\"+1\"><b>QMC2 - M.A.M.E. Catalog / Launcher II</b></font><br>" +
 #elif defined(QMC2_EMUTYPE_MESS)
           "<p><font size=\"+1\"><b>QMC2 - M.E.S.S. Catalog / Launcher II</b></font><br>" +
+#elif defined(QMC2_EMUTYPE_UME)
+          "<p><font size=\"+1\"><b>QMC2 - U.M.E. Catalog / Launcher II</b></font><br>" +
 #endif
           tr("Qt 4 based multi-platform/multi-emulator front end") + "<br>" +
           tr("Version ") + QString(XSTR(QMC2_VERSION)) +
@@ -126,10 +133,14 @@ void About::showEvent(QShowEvent *e)
           " SDLMAME" +
 #elif defined(QMC2_SDLMESS)
           " SDLMESS" +
+#elif defined(QMC2_SDLUME)
+          " SDLUME" +
 #elif defined(QMC2_MAME)
           " MAME" +
 #elif defined(QMC2_MESS)
           " MESS" +
+#elif defined(QMC2_UME)
+          " UME" +
 #else
           " ???" +
 #endif

@@ -29,7 +29,7 @@ extern bool qmc2EarlyStartup;
 extern bool qmc2StopParser;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
@@ -491,6 +491,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mame_romdb").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
   lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mess_romdb").toString());
+#elif defined(QMC2_EMUTYPE_UME)
+  lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "ume_romdb").toString());
 #endif
   spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
   lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", "").toString());
@@ -558,17 +560,10 @@ void ROMAlyzer::analyze()
   qmc2ROMAlyzerActive = true;
 
   QString myRomPath;
-#if defined(QMC2_EMUTYPE_MAME)
-  if ( qmc2Config->contains("MAME/Configuration/Global/rompath") )
-    myRomPath = qmc2Config->value("MAME/Configuration/Global/rompath").toString();
+  if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
+    myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
   else
     myRomPath = "roms";
-#elif defined(QMC2_EMUTYPE_MESS)
-  if ( qmc2Config->contains("MESS/Configuration/Global/rompath") )
-    myRomPath = qmc2Config->value("MESS/Configuration/Global/rompath").toString();
-  else
-    myRomPath = "roms";
-#endif
 
   if ( groupBoxSetRewriter->isChecked() )
     if ( !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
@@ -602,7 +597,7 @@ void ROMAlyzer::analyze()
   romalyzerXmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
   analysisTimer.start();
   log(tr("analysis started"));
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   log(tr("determining list of games to analyze"));
 #elif defined(QMC2_EMUTYPE_MESS)
   log(tr("determining list of machines to analyze"));
@@ -622,7 +617,7 @@ void ROMAlyzer::analyze()
 
     if ( analyzerList.empty() ) {
       // determine list of games to analyze
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       labelStatus->setText(tr("Searching games"));
 #elif defined(QMC2_EMUTYPE_MESS)
       labelStatus->setText(tr("Searching machines"));
@@ -650,7 +645,7 @@ void ROMAlyzer::analyze()
   quickSearch = false;
 
   if ( !qmc2StopParser ) {
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     log(tr("done (determining list of games to analyze)"));
     log(tr("%n game(s) to analyze", "", analyzerList.count()));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -891,6 +886,8 @@ void ROMAlyzer::analyze()
 		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #elif defined(QMC2_EMUTYPE_MESS)
 		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
+#elif defined(QMC2_EMUTYPE_UME)
+		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #endif
 		      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
 	      }
@@ -1080,7 +1077,7 @@ void ROMAlyzer::analyze()
 
       i++;
       log(tr("done (analyzing '%1')").arg(gameName));
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       log(tr("%n game(s) left", "", analyzerList.count() - i));
 #elif defined(QMC2_EMUTYPE_MESS)
       log(tr("%n machine(s) left", "", analyzerList.count() - i));
@@ -1124,7 +1121,7 @@ QString &ROMAlyzer::getXmlData(QString gameName)
   int *iCached = romalyzerXmlGamePositionCache[gameName];
   if ( iCached ) i = *iCached;
   int xmlLinesCount = qmc2Gamelist->xmlLines.count();
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   QString s = "<game name=\"" + gameName + "\"";
 #elif defined(QMC2_EMUTYPE_MESS)
   QString s = "<machine name=\"" + gameName + "\"";
@@ -1136,13 +1133,13 @@ QString &ROMAlyzer::getXmlData(QString gameName)
   if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
     romalyzerXmlGamePositionCache.insert(gameName, new int(i));
     xmlBuffer = "<?xml version=\"1.0\"?>\n";
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
 #elif defined(QMC2_EMUTYPE_MESS)
     while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
 #endif
       xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     xmlBuffer += "</game>\n";
 #elif defined(QMC2_EMUTYPE_MESS)
     xmlBuffer += "</machine>\n";
@@ -1845,7 +1842,7 @@ void ROMAlyzer::selectItem(QString gameName)
       }
       break;
     }
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWCATEGORY_INDEX: {
       QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
       if ( categoryItem ) {
@@ -2195,7 +2192,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 		progressBar->setValue(i);
 		qApp->processEvents();
 		QString xmlLine = qmc2Gamelist->xmlLines[i];
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		int gameNamePos = xmlLine.indexOf("<game name=\"");
 		if ( gameNamePos == 0 ) gameNamePos = 12;
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -2210,7 +2207,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 			int j;
 			for (j = i + 1; j < numXmlLines && !gameEnd; j++) {
 				xmlLine = qmc2Gamelist->xmlLines[j];
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				if ( xmlLine.startsWith("</game>") ) {
 					gameEnd = true;
 					continue;
@@ -3114,7 +3111,7 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
 
   QString s;
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qName == "game" ) {
 #elif defined(QMC2_EMUTYPE_MESS)
   if ( qName == "machine" ) {
@@ -3165,7 +3162,7 @@ bool ROMAlyzerXmlHandler::endElement(const QString &namespaceURI, const QString 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qName == "game" ) {
 #elif defined(QMC2_EMUTYPE_MESS)
   if ( qName == "machine" ) {

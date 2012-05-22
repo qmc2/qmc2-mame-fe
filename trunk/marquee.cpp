@@ -57,7 +57,7 @@ Marquee::Marquee(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game marquee image"));
   setStatusTip(tr("Game marquee image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -67,15 +67,9 @@ Marquee::Marquee(QWidget *parent)
 
   marqueeFile = NULL;
   if ( qmc2UseMarqueeFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    marqueeFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/MarqueeFile").toString().toAscii());
+    marqueeFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString().toAscii());
     if ( marqueeFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/MarqueeFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    marqueeFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/MarqueeFile").toString().toAscii());
-    if ( marqueeFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/MarqueeFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString()));
   }
 }
 
@@ -187,11 +181,7 @@ bool Marquee::loadMarquee(QString gameName, QString onBehalfOf, bool checkOnly, 
     }
   } else {
     // use marquee directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/MarqueeDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/MarqueeDirectory").toString() + gameName + ".png";
-#endif
+    QString imagePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeDirectory").toString() + gameName + ".png";
 
     if ( fileName )
       *fileName = gameName + ".png";

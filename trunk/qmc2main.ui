@@ -2450,6 +2450,7 @@
     <addaction name="separator"/>
     <addaction name="actionLaunchQMC2MAME"/>
     <addaction name="actionLaunchQMC2MESS"/>
+    <addaction name="actionLaunchQMC2UME"/>
    </widget>
    <widget class="QMenu" name="menu_ForeignIDs">
     <property name="title">
@@ -2510,6 +2511,7 @@
    <addaction name="separator"/>
    <addaction name="actionLaunchQMC2MAME"/>
    <addaction name="actionLaunchQMC2MESS"/>
+   <addaction name="actionLaunchQMC2UME"/>
   </widget>
   <action name="actionCheckSamples">
    <property name="icon">
@@ -3260,6 +3262,27 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+2</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionLaunchQMC2UME">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/ume.png</normaloff>:/data/img/ume.png</iconset>
+   </property>
+   <property name="text">
+    <string>QMC2 for SDLUME</string>
+   </property>
+   <property name="toolTip">
+    <string>Launch QMC2 for SDLUME</string>
+   </property>
+   <property name="statusTip">
+    <string>Launch QMC2 for SDLUME</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+3</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

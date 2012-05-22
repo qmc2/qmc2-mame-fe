@@ -69,7 +69,7 @@ class Gamelist : public QObject
     void load();
     void verify(bool currentOnly = false);
     void save();
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void loadCatverIni();
     void createCategoryView();
     void createVersionView();

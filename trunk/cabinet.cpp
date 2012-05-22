@@ -57,7 +57,7 @@ Cabinet::Cabinet(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game cabinet image"));
   setStatusTip(tr("Game cabinet image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -67,15 +67,9 @@ Cabinet::Cabinet(QWidget *parent)
 
   cabinetFile = NULL;
   if ( qmc2UseCabinetFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    cabinetFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/CabinetFile").toString().toAscii());
+    cabinetFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString().toAscii());
     if ( cabinetFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/CabinetFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    cabinetFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/CabinetFile").toString().toAscii());
-    if ( cabinetFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/CabinetFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString()));
   }
 }
 
@@ -187,11 +181,7 @@ bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, 
     }
   } else {
     // use cabinet directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/CabinetDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/CabinetDirectory").toString() + gameName + ".png";
-#endif
+    QString imagePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetDirectory").toString() + gameName + ".png";
 
     if ( fileName )
       *fileName = gameName + ".png";
