@@ -141,5 +141,10 @@ build-indep:
 
 build-arch:
 
-binary: clean qmc2-sdlmame qmc2-sdlmess qmc2-runonce qmc2-data binary-indep binary-arch
+binary-indep: qmc2-data
+
+binary-arch: qmc2-sdlmame qmc2-sdlmess qmc2-runonce
+
+binary: clean binary-arch binary-indep
+
 .PHONY: build clean binary-indep binary-arch binary install configure qmc2-sdlmess qmc2-sdlmame
