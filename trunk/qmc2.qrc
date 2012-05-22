@@ -130,10 +130,13 @@
         <file>data/img/project_mess.png</file>
         <file>data/img/qmc2_logo_big.png</file>
         <file>data/img/qmc2_logo_small.png</file>
+        <file>data/img/qmc2_mame_splash.png</file>
         <file>data/img/qmc2_mess_logo_big.png</file>
         <file>data/img/qmc2_mess_logo_small.png</file>
-        <file>data/img/qmc2_mame_splash.png</file>
         <file>data/img/qmc2_mess_splash.png</file>
+        <file>data/img/qmc2_ume_logo_big.png</file>
+        <file>data/img/qmc2_ume_logo_small.png</file>
+        <file>data/img/qmc2_ume_splash.png</file>
         <file>data/img/qt-logo.png</file>
         <file>data/img/redo.png</file>
         <file>data/img/release.png</file>
