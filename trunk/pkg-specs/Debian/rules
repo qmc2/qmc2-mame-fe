@@ -137,9 +137,9 @@ qmc2-data:
 	dh_md5sums -p$@
 	dh_builddeb -p$@
 
-binary-indep:
+build-indep:
 
-binary-arch:
+build-arch:
 
 binary: clean qmc2-sdlmame qmc2-sdlmess qmc2-runonce qmc2-data binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install configure qmc2-sdlmess qmc2-sdlmame
