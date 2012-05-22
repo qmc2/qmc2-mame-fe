@@ -2934,15 +2934,17 @@ qmc2/data/mrq/.svn
 qmc2/data/mrq/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/opt/MAME/.svn
 qmc2/data/opt/MAME/.svn/text-base/template.xml.svn-base
-qmc2/data/opt/MAMEUIFX32/.svn
-qmc2/data/opt/MAMEUIFX32/.svn/text-base/template.xml.svn-base
 qmc2/data/opt/MESS/.svn
 qmc2/data/opt/MESS/.svn/text-base/template.xml.svn-base
 qmc2/data/opt/SDLMAME/.svn
 qmc2/data/opt/SDLMAME/.svn/text-base/template.xml.svn-base
 qmc2/data/opt/SDLMESS/.svn
 qmc2/data/opt/SDLMESS/.svn/text-base/template.xml.svn-base
+qmc2/data/opt/SDLUME/.svn
+qmc2/data/opt/SDLUME/.svn/text-base/template.xml.svn-base
 qmc2/data/opt/.svn
+qmc2/data/opt/UME/.svn
+qmc2/data/opt/UME/.svn/text-base/template.xml.svn-base
 qmc2/data/pcb/.svn
 qmc2/data/pcb/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/prv/.svn
@@ -3052,7 +3054,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/qmc2-data.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmame.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmess.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
-qmc2/pkg-specs/Debian/.svn/text-base/substvars.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/watch.svn-base
 qmc2/pkg-specs/Fedora/.svn
 qmc2/pkg-specs/Fedora/.svn/text-base/README.Fedora-spec.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn

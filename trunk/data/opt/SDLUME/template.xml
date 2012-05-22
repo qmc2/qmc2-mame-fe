@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="SDLMAME" format="0.2.5" version="0.146">
+<template emulator="SDLUME" format="0.2.5" version="0.146">
   <section name="search_paths">
     <description lang="es" text="Rutas de búsqueda"/>
     <description lang="us" text="Search paths"/>
@@ -47,7 +47,7 @@
       <description lang="fr" text="Répertoire des paramètres des controleurs"/>
       <description lang="pt" text="Caminho para as definições de controles"/>
     </option>
-    <option default="~/.mame;.;ini" name="inipath" type="directory">
+    <option default="~/.ume;.;ini" name="inipath" type="directory">
       <description lang="es" text="Ruta a archivos ini"/>
       <description lang="us" text="Path to ini files"/>
       <description lang="de" text="Suchpfad für INI-Dateien"/>
