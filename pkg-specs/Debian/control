@@ -3,7 +3,7 @@ Section: games
 Priority: extra
 Maintainer: Marcelo Marzola Bossoni <mmbossoni@gmail.com>
 Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.7.0), libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev, libsdl1.2-dev, rsync, libxmu-dev
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Homepage: http://qmc2.arcadehits.net
 
 Package: qmc2-sdlmame
@@ -23,6 +23,7 @@ Description: M.A.M.E./M.E.S.S. Catalog / Launcher II
 
 Package: qmc2-runonce
 Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: QMC2 Variant Launcher Utility
  Runonce is a small application used to switch
  between QMC2 variants.
