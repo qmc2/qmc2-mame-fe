@@ -7,6 +7,8 @@
 # 
 # This script creates a debian package from the source folder
 
+IFS='
+'
 if [ $# -ne 2 ]
 then
   echo "use: $0 release_version src_line
@@ -44,7 +46,8 @@ else
 
    #create orig file
   mkdir ${RELEASE_FOLDER}.orig
-  cp -a ${RELEASE_FOLDER}/* ${RELEASE_FOLDER}.orig/  
+  cp -a ${RELEASE_FOLDER}/* ${RELEASE_FOLDER}.orig/
+  tar cvjf qmc2_$1.orig.tar.bz2 ${RELEASE_FOLDER}.orig
 
   #copy content on pkg-spec/Debian folder to debian folder inside release dir
   mkdir ${RELEASE_FOLDER}/debian
