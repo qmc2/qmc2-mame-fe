@@ -405,6 +405,10 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLUME)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
@@ -532,6 +536,10 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
 	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLUME)
+	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 	if ( commandProcStarted && qmc2TempSlots.open(QFile::ReadOnly) ) {

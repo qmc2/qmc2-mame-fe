@@ -222,6 +222,7 @@
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO		"/tmp/sdlmame_out"
 #define QMC2_SDLMESS_OUTPUT_FIFO		QMC2_SDLMAME_OUTPUT_FIFO
+#define QMC2_SDLUME_OUTPUT_FIFO			QMC2_SDLMAME_OUTPUT_FIFO
 
 // index positions of game list view stack
 #define QMC2_VIEWGAMELIST_INDEX			0
@@ -655,7 +656,7 @@
 #define QMC2_XKEYEVENT_TRANSITION_TIME		50
 
 // page indizes for the software detail widget
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #define QMC2_SWINFO_SNAPSHOT_PAGE		0
 #define QMC2_SWINFO_PROJECTMESS_PAGE		1
 #define QMC2_SWINFO_NOTES_PAGE			2

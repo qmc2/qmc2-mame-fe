@@ -1,6 +1,7 @@
 [Frontend]
 qmc2-sdlmame\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
 qmc2-sdlmess\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
+qmc2-sdlume\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
 
 [MAME]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template.xml
@@ -18,6 +19,20 @@ FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
 
 [MESS]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMESS/template.xml
+FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
+FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
+FilesAndDirectories\IconDirectory=DATADIR/qmc2/ico/
+FilesAndDirectories\CabinetDirectory=DATADIR/qmc2/cab/
+FilesAndDirectories\ControllerDirectory=DATADIR/qmc2/ctl/
+FilesAndDirectories\MarqueeDirectory=DATADIR/qmc2/mrq/
+FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
+FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
+FilesAndDirectories\SoftwareSnapDirectory=DATADIR/qmc2/sws/
+FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
+FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
+
+[UME]
+FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLUME/template.xml
 FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
 FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
 FilesAndDirectories\IconDirectory=DATADIR/qmc2/ico/

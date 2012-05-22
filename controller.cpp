@@ -57,7 +57,7 @@ Controller::Controller(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game controller image"));
   setStatusTip(tr("Game controller image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -67,15 +67,9 @@ Controller::Controller(QWidget *parent)
 
   controllerFile = NULL;
   if ( qmc2UseControllerFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    controllerFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/ControllerFile").toString().toAscii());
+    controllerFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString().toAscii());
     if ( controllerFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/ControllerFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    controllerFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/ControllerFile").toString().toAscii());
-    if ( controllerFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/ControllerFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString()));
   }
 }
 
@@ -187,11 +181,7 @@ bool Controller::loadController(QString gameName, QString onBehalfOf, bool check
     }
   } else {
     // use controller directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/ControllerDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/ControllerDirectory").toString() + gameName + ".png";
-#endif
+    QString imagePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerDirectory").toString() + gameName + ".png";
 
     if ( fileName )
       *fileName = gameName + ".png";

@@ -838,8 +838,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>214</width>
-                <height>584</height>
+                <width>515</width>
+                <height>587</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2293,7 +2293,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>508</width>
-                <height>270</height>
+                <height>273</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3983,8 +3983,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>182</width>
-                <height>377</height>
+                <width>515</width>
+                <height>409</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4050,14 +4050,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="0">
+                 <item row="5" column="0">
                   <widget class="QLabel" name="labelEmulatorLogFile">
                    <property name="text">
                     <string>Emulator log file</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="1">
+                 <item row="5" column="1">
                   <widget class="QLineEdit" name="lineEditEmulatorLogFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4070,7 +4070,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="2">
+                 <item row="5" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseEmulatorLogFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4087,14 +4087,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0">
+                 <item row="6" column="0">
                   <widget class="QLabel" name="labelOptionsTemplateFile">
                    <property name="text">
                     <string>Options template file</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="1">
+                 <item row="6" column="1">
                   <widget class="QLineEdit" name="lineEditOptionsTemplateFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4107,7 +4107,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="2">
+                 <item row="6" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseOptionsTemplateFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4124,14 +4124,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0">
+                 <item row="7" column="0">
                   <widget class="QLabel" name="labelListXMLCache">
                    <property name="text">
                     <string>XML game list cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="1">
+                 <item row="7" column="1">
                   <widget class="QLineEdit" name="lineEditListXMLCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4144,7 +4144,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="2">
+                 <item row="7" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseListXMLCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4161,14 +4161,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0">
+                 <item row="8" column="0">
                   <widget class="QLabel" name="labelGamelistCacheFile">
                    <property name="text">
                     <string>Game list cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="1">
+                 <item row="8" column="1">
                   <widget class="QLineEdit" name="lineEditGamelistCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4181,7 +4181,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="2">
+                 <item row="8" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseGamelistCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4198,14 +4198,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0">
+                 <item row="9" column="0">
                   <widget class="QLabel" name="labelROMStateCacheFile">
                    <property name="text">
                     <string>ROM state cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="1">
+                 <item row="9" column="1">
                   <widget class="QLineEdit" name="lineEditROMStateCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4218,7 +4218,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="2">
+                 <item row="9" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseROMStateCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4235,7 +4235,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0" colspan="3">
+                 <item row="13" column="0" colspan="3">
                   <spacer name="spacer11">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -4248,7 +4248,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="13" column="0" colspan="3">
+                 <item row="14" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout17">
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
@@ -4284,14 +4284,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="9" column="0">
+                 <item row="10" column="0">
                   <widget class="QLabel" name="labelMAWSCacheDirectory">
                    <property name="text">
                     <string>MAWS cache directory</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="1">
+                 <item row="10" column="1">
                   <widget class="QLineEdit" name="lineEditMAWSCacheDirectory">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4304,7 +4304,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="2">
+                 <item row="10" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseMAWSCacheDirectory">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4324,14 +4324,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="0">
+                 <item row="11" column="0">
                   <widget class="QLabel" name="labelSoftwareListCache">
                    <property name="text">
                     <string>Software list cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="1">
+                 <item row="11" column="1">
                   <widget class="QLineEdit" name="lineEditSoftwareListCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4344,7 +4344,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="2">
+                 <item row="11" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareListCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4361,14 +4361,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0">
+                 <item row="12" column="0">
                   <widget class="QLabel" name="labelGeneralSoftwareFolder">
                    <property name="text">
                     <string>General software folder</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="1">
+                 <item row="12" column="1">
                   <widget class="QLineEdit" name="lineEditGeneralSoftwareFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4381,7 +4381,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="2">
+                 <item row="12" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseGeneralSoftwareFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4502,6 +4502,43 @@
                    </property>
                    <property name="toolTip">
                     <string>Browse working directory</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="labelUMEVariantExe">
+                   <property name="text">
+                    <string>UME variant exe</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QLineEdit" name="lineEditUMEVariantExe">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Specify the exe file for the UME variant (leave empty when all variants are installed in the same directory)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseUMEVariantExe">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse UME variant exe</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -5092,6 +5129,8 @@
   <tabstop>toolButtonBrowseMAMEVariantExe</tabstop>
   <tabstop>lineEditMESSVariantExe</tabstop>
   <tabstop>toolButtonBrowseMESSVariantExe</tabstop>
+  <tabstop>lineEditUMEVariantExe</tabstop>
+  <tabstop>toolButtonBrowseUMEVariantExe</tabstop>
   <tabstop>lineEditEmulatorLogFile</tabstop>
   <tabstop>toolButtonBrowseEmulatorLogFile</tabstop>
   <tabstop>lineEditOptionsTemplateFile</tabstop>

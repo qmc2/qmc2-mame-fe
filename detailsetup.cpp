@@ -159,6 +159,85 @@ DetailSetup::DetailSetup(QWidget *parent)
 	configurableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
 
+#elif defined(QMC2_EMUTYPE_UME)
+	shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
+	longTitleMap[QMC2_PREVIEW_INDEX] = tr("Game preview image");
+	iconMap[QMC2_PREVIEW_INDEX] = QIcon(QString::fromUtf8(":/data/img/camera.png"));
+	shortTitleMap[QMC2_FLYER_INDEX] = tr("Fl&yer");
+	longTitleMap[QMC2_FLYER_INDEX] = tr("Game flyer image");
+	iconMap[QMC2_FLYER_INDEX] = QIcon(QString::fromUtf8(":/data/img/thumbnail.png"));
+	shortTitleMap[QMC2_GAMEINFO_INDEX] = tr("Game &info");
+	longTitleMap[QMC2_GAMEINFO_INDEX] = tr("Game information");
+	iconMap[QMC2_GAMEINFO_INDEX] = QIcon(QString::fromUtf8(":/data/img/info.png"));
+	shortTitleMap[QMC2_EMUINFO_INDEX] = tr("Em&ulator info");
+	longTitleMap[QMC2_EMUINFO_INDEX] = tr("Emulator information");
+	iconMap[QMC2_EMUINFO_INDEX] = QIcon(QString::fromUtf8(":/data/img/info.png"));
+	shortTitleMap[QMC2_CONFIG_INDEX] = tr("&Configuration");
+	longTitleMap[QMC2_CONFIG_INDEX] = tr("Emulator configuration");
+	iconMap[QMC2_CONFIG_INDEX] = QIcon(QString::fromUtf8(":/data/img/work.png"));
+	shortTitleMap[QMC2_DEVICE_INDEX] = tr("De&vices");
+	longTitleMap[QMC2_DEVICE_INDEX] = tr("Device configuration");
+	iconMap[QMC2_DEVICE_INDEX] = QIcon(QString::fromUtf8(":/data/img/tape.png"));
+	shortTitleMap[QMC2_PROJECTMESS_INDEX] = tr("Pr&ojectMESS");
+	longTitleMap[QMC2_PROJECTMESS_INDEX] = tr("ProjectMESS (web lookup)");
+	iconMap[QMC2_PROJECTMESS_INDEX] = QIcon(QString::fromUtf8(":/data/img/project_mess.png"));
+	shortTitleMap[QMC2_CABINET_INDEX] = tr("Ca&binet");
+	longTitleMap[QMC2_CABINET_INDEX] = tr("Arcade cabinet image");
+	iconMap[QMC2_CABINET_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png"));
+	shortTitleMap[QMC2_CONTROLLER_INDEX] = tr("C&ontroller");
+	longTitleMap[QMC2_CONTROLLER_INDEX] = tr("Control panel image");
+	iconMap[QMC2_CONTROLLER_INDEX] = QIcon(QString::fromUtf8(":/data/img/joystick.png"));
+	shortTitleMap[QMC2_MARQUEE_INDEX] = tr("Mar&quee");
+	longTitleMap[QMC2_MARQUEE_INDEX] = tr("Marquee image");
+	iconMap[QMC2_MARQUEE_INDEX] = QIcon(QString::fromUtf8(":/data/img/marquee.png"));
+	shortTitleMap[QMC2_TITLE_INDEX] = tr("Titl&e");
+	longTitleMap[QMC2_TITLE_INDEX] = tr("Title screen image");
+	iconMap[QMC2_TITLE_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcademode.png"));
+	shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
+	longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
+	iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
+	shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
+	longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
+	iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
+#if QMC2_YOUTUBE_ENABLED
+	shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
+	longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
+	iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
+#endif
+	availableDetailList << QMC2_PREVIEW_INDEX
+			<< QMC2_FLYER_INDEX
+			<< QMC2_GAMEINFO_INDEX
+			<< QMC2_EMUINFO_INDEX
+			<< QMC2_CONFIG_INDEX
+			<< QMC2_DEVICE_INDEX
+			<< QMC2_PROJECTMESS_INDEX
+			<< QMC2_CABINET_INDEX
+			<< QMC2_CONTROLLER_INDEX
+			<< QMC2_MARQUEE_INDEX
+			<< QMC2_TITLE_INDEX
+			<< QMC2_PCB_INDEX
+			<< QMC2_SOFTWARE_LIST_INDEX;
+#if QMC2_YOUTUBE_ENABLED
+	availableDetailList << QMC2_YOUTUBE_INDEX;
+#endif
+	tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
+	tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
+	tabWidgetsMap[QMC2_GAMEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX);
+	tabWidgetsMap[QMC2_EMUINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX);
+	tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
+	tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
+	tabWidgetsMap[QMC2_PROJECTMESS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PROJECTMESS_INDEX);
+	tabWidgetsMap[QMC2_CABINET_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX);
+	tabWidgetsMap[QMC2_CONTROLLER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX);
+	tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
+	tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
+	tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
+	tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
+#if QMC2_YOUTUBE_ENABLED
+	tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
+	configurableDetailList << QMC2_YOUTUBE_INDEX;
+#endif
+
 #endif
 
 	setupUi(this);
@@ -215,6 +294,23 @@ void DetailSetup::loadDetail()
 				<< QMC2_CONFIG_INDEX
 				<< QMC2_DEVICE_INDEX
 				<< QMC2_PROJECTMESS_INDEX
+				<< QMC2_PCB_INDEX
+				<< QMC2_SOFTWARE_LIST_INDEX;
+#if QMC2_YOUTUBE_ENABLED
+		activeDetailList << QMC2_YOUTUBE_INDEX;
+#endif
+#elif defined(QMC2_EMUTYPE_UME)
+		activeDetailList << QMC2_PREVIEW_INDEX
+				<< QMC2_FLYER_INDEX
+				<< QMC2_GAMEINFO_INDEX
+				<< QMC2_EMUINFO_INDEX
+				<< QMC2_CONFIG_INDEX
+				<< QMC2_DEVICE_INDEX
+				<< QMC2_PROJECTMESS_INDEX
+				<< QMC2_CABINET_INDEX
+				<< QMC2_CONTROLLER_INDEX
+				<< QMC2_MARQUEE_INDEX
+				<< QMC2_TITLE_INDEX
 				<< QMC2_PCB_INDEX
 				<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED

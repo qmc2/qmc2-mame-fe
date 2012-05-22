@@ -57,7 +57,7 @@ PCB::PCB(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game PCB image"));
   setStatusTip(tr("Game PCB image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -67,15 +67,9 @@ PCB::PCB(QWidget *parent)
 
   pcbFile = NULL;
   if ( qmc2UsePCBFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    pcbFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/PCBFile").toString().toAscii());
+    pcbFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFile").toString().toAscii());
     if ( pcbFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/PCBFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    pcbFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/PCBFile").toString().toAscii());
-    if ( pcbFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/PCBFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFile").toString()));
   }
 }
 
@@ -187,11 +181,7 @@ bool PCB::loadPCB(QString gameName, QString onBehalfOf, bool checkOnly, QString 
     }
   } else {
     // use PCB directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/PCBDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/PCBDirectory").toString() + gameName + ".png";
-#endif
+    QString imagePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBDirectory").toString() + gameName + ".png";
 
     if ( fileName )
       *fileName = gameName + ".png";

@@ -73,6 +73,8 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
   env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MAME-ID-%1").arg(procCount));
 #elif defined(QMC2_EMUTYPE_MESS)
   env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MESS-ID-%1").arg(procCount));
+#elif defined(QMC2_EMUTYPE_UME)
+  env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-UME-ID-%1").arg(procCount));
 #endif
   proc->setProcessEnvironment(env);
 #endif
@@ -359,7 +361,7 @@ QString &ProcessManager::exitCodeString(int exitCode, bool textOnly)
 		case QMC2_MAME_ERROR_MISSING_FILES: exitCodeText = tr("missing files"); break;
 		case QMC2_MAME_ERROR_FATALERROR: exitCodeText = tr("fatal error"); break;
 		case QMC2_MAME_ERROR_DEVICE: exitCodeText = tr("device initialization error"); break; // MESS-specific
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_MAME_ERROR_NO_SUCH_GAME: exitCodeText = tr("game doesn't exist"); break;
 #elif defined(QMC2_EMUTYPE_MESS)
 		case QMC2_MAME_ERROR_NO_SUCH_GAME: exitCodeText = tr("machine doesn't exist"); break;

@@ -25,7 +25,7 @@ extern bool qmc2FilterActive;
 extern bool qmc2StopParser;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
@@ -121,7 +121,7 @@ void SampleChecker::verify()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verify()"));
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2SampleCheckActive = true;
   qmc2StopParser = false;
 
@@ -491,7 +491,7 @@ void SampleChecker::selectItem(QString gameName)
       }
       break;
     }
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWCATEGORY_INDEX: {
       QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
       if ( categoryItem ) {

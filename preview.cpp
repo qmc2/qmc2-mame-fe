@@ -59,7 +59,7 @@ Preview::Preview(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   setToolTip(tr("Game preview image"));
   setStatusTip(tr("Game preview image"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -69,15 +69,9 @@ Preview::Preview(QWidget *parent)
 
   previewFile = NULL;
   if ( qmc2UsePreviewFile ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    previewFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/PreviewFile").toString().toAscii());
+    previewFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toAscii());
     if ( previewFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/PreviewFile").toString()));
-#elif defined(QMC2_EMUTYPE_MESS)
-    previewFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/PreviewFile").toString().toAscii());
-    if ( previewFile == NULL )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/PreviewFile").toString()));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString()));
   }
 }
 
@@ -189,11 +183,7 @@ bool Preview::loadPreview(QString gameName, QString onBehalfOf, bool checkOnly, 
     }
   } else {
     // use preview directory
-#if defined(QMC2_EMUTYPE_MAME)
-    QString baseDirectory = qmc2Config->value("MAME/FilesAndDirectories/PreviewDirectory").toString();
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString baseDirectory = qmc2Config->value("MESS/FilesAndDirectories/PreviewDirectory").toString();
-#endif
+    QString baseDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewDirectory").toString();
     QString imageDir = baseDirectory + gameName;
     QString imagePath = imageDir + ".png";
 

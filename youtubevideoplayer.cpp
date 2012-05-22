@@ -49,7 +49,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
 	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
 	checkBoxRepeat->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", true).toBool());
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "Arcade").toString();
 #else
 	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "").toString();

@@ -101,7 +101,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuVerticalSplitter;
     QMenu *menuGamelistHeader;
     QMenu *menuHierarchyHeader;
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     QMenu *menuCategoryHeader;
     QMenu *menuVersionHeader;
     QAction *actionMenuGamelistHeaderCategory;
@@ -232,6 +232,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionFullscreenToggle_triggered(bool checked = false);
     void on_actionLaunchQMC2MAME_triggered(bool checked = false);
     void on_actionLaunchQMC2MESS_triggered(bool checked = false);
+    void on_actionLaunchQMC2UME_triggered(bool checked = false);
 
     // help menu
     void on_actionDocumentation_triggered(bool checked = false);
@@ -423,22 +424,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *, int);
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *, int);
-    void mawsLoadStarted();
-    void mawsLoadFinished(bool);
-    void mawsQuickLinksSetVisible(bool);
-    void mawsQuickLinksMenuHidden();
-    void createMawsQuickLinksMenu();
-    void setupMawsQuickLinks();
-    void downloadMawsQuickLink();
-    void storeMawsIcon();
-    void startMawsAutoDownloads();
-    void viewByCategory();
-    void viewByVersion();
     void on_treeWidgetCategoryView_headerSectionClicked(int);
     void on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *, int);
@@ -451,9 +441,23 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetVersionView_itemSelectionChanged();
     void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
-#elif defined(QMC2_EMUTYPE_MESS)
-    void projectMessDriverLoadStarted();
-    void projectMessDriverLoadFinished(bool);
+    void viewByCategory();
+    void viewByVersion();
+#endif
+#if defined(QMC2_EMUTYPE_MAME)
+    void mawsLoadStarted();
+    void mawsLoadFinished(bool);
+    void mawsQuickLinksSetVisible(bool);
+    void mawsQuickLinksMenuHidden();
+    void createMawsQuickLinksMenu();
+    void setupMawsQuickLinks();
+    void downloadMawsQuickLink();
+    void storeMawsIcon();
+    void startMawsAutoDownloads();
+#endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+    void projectMessSystemLoadStarted();
+    void projectMessSystemLoadFinished(bool);
     void projectMessLoadStarted();
     void projectMessLoadFinished(bool);
 #endif
@@ -487,7 +491,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void actionGamelistHeader_triggered();
     void treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &);
     void actionHierarchyHeader_triggered();
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &);
     void actionCategoryHeader_triggered();
     void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);

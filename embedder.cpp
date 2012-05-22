@@ -539,6 +539,8 @@ void Embedder::checkWindow()
 			hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
 #elif defined(QMC2_EMUTYPE_MESS)
 			hwnd = winFindWindowHandleOfProcess(gamePid, "MESS:");
+#elif defined(QMC2_EMUTYPE_UME)
+			hwnd = winFindWindowHandleOfProcess(gamePid, "UME:");
 #endif
 			if ( !hwnd )
 				QTest::qWait(QMC2_WININFO_DELAY);
