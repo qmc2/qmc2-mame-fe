@@ -195,6 +195,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			LIBS += -framework SDL -framework Cocoa
 			contains(TARGET, qmc2-sdlmame): ICON = data/img/classic/mame.icns
 			contains(TARGET, qmc2-sdlmess): ICON = data/img/classic/mess.icns
+			contains(TARGET, qmc2-sdlume): ICON = data/img/classic/ume.icns
 			greaterThan(QMC2_MAC_UNIVERSAL, 0) {
 				CONFIG += x86 ppc
 			}
@@ -217,11 +218,13 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
+				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc
 			} else {
 				CONFIG += embed_manifest_exe windows
 				LIBS += psapi.lib
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
+				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc
 			}
 		}
 	} else {
