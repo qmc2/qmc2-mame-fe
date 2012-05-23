@@ -487,6 +487,9 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setText(tr("QMC2 for MESS"));
   actionLaunchQMC2MESS->setToolTip(tr("Launch QMC2 for MESS"));
   actionLaunchQMC2MESS->setStatusTip(tr("Launch QMC2 for MESS"));
+  actionLaunchQMC2UME->setText(tr("QMC2 for UME"));
+  actionLaunchQMC2UME->setToolTip(tr("Launch QMC2 for UME"));
+  actionLaunchQMC2UME->setStatusTip(tr("Launch QMC2 for UME"));
 #endif
 
   // FIXME: remove this WIP clause when arcade mode is ready (probably never ;)?)

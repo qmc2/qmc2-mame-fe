@@ -130,8 +130,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       float2Editor->setAccessibleName("float2Editor");
       if ( !optionDescription.isEmpty() )
         float2Editor->setToolTip(optionDescription);
-      connect(float2Editor->doubleSpinBox0, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
-      connect(float2Editor->doubleSpinBox1, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
+      connect(float2Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
       return float2Editor;
     }
 
@@ -150,9 +149,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       float3Editor->setAccessibleName("float3Editor");
       if ( !optionDescription.isEmpty() )
         float3Editor->setToolTip(optionDescription);
-      connect(float3Editor->doubleSpinBox0, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
-      connect(float3Editor->doubleSpinBox1, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
-      connect(float3Editor->doubleSpinBox2, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
+      connect(float3Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
       return float3Editor;
     }
 
