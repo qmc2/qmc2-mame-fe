@@ -435,7 +435,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 				int i = 0;
 #if defined(QMC2_EMUTYPE_MESS)
 				QString s = "<machine name=\"" + machineName + "\"";
-#elif defined(QMC2_EMUTYPE_UME)
+#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				QString s = "<game name=\"" + machineName + "\"";
 #endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
@@ -449,7 +449,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 						slotXmlBuffer.clear();
 					} else
 						slotXmlBuffer += "</machine>\n";
-#elif defined(QMC2_EMUTYPE_UME)
+#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
 						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
 					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
@@ -487,7 +487,7 @@ QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
 			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
 		normalXmlBuffer += "</machine>\n";
-#elif defined(QMC2_EMUTYPE_UME)
+#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QString s = "<game name=\"" + machineName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
 		normalXmlBuffer = "<?xml version=\"1.0\"?>\n";
