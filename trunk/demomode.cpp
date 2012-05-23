@@ -11,6 +11,7 @@ extern MainWindow *qmc2MainWindow;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QStringList qmc2BiosROMs;
+extern QStringList qmc2DeviceROMs;
 extern QString qmc2DemoGame;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
@@ -131,7 +132,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     selectedGames.clear();
     if ( checkBoxTagged->isChecked() ) {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-		    if ( qmc2BiosROMs.contains(game) ) continue;
+		    if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) ) continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( !gameItem ) continue;
 		    if ( gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
@@ -139,7 +140,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 	    }
     } else {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-	      if ( qmc2BiosROMs.contains(game) ) continue;
+	      if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) ) continue;
 	      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 	      if ( !gameItem ) continue;
 	      switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
