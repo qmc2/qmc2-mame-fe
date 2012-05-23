@@ -93,12 +93,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="66"/>
         <source>Mac OS X 10.7</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Mac (unknown)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mac (desconocido)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="72"/>
@@ -721,7 +721,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="563"/>
         <source>Background image file (read)</source>
-        <translation>Archivo de fondo de pantalla (leer)</translation>
+        <translation>Archivo de fondo de pantalla (lectura)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="576"/>
@@ -747,7 +747,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="607"/>
         <source>Foreground image file (read)</source>
-        <translation>Archivo de imagen frontal (leer)</translation>
+        <translation>Archivo de imagen frontal (lectura)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="620"/>
@@ -1830,7 +1830,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="85"/>
         <source>Active details</source>
-        <translation>Activar detalles</translation>
+        <translation>Detalles activados</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="91"/>
@@ -2463,7 +2463,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1120"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede iniciar el ejecutable de UME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1180"/>
@@ -2584,7 +2584,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1443"/>
         <source>exporting %1 UME configuration to %2</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando configuración UME %1 a %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1494"/>
@@ -2599,7 +2599,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1498"/>
         <source>done (exporting %1 UME configuration to %2, elapsed time = %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (exportando configuración UME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1541"/>
@@ -2634,7 +2634,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1606"/>
         <source>importing %1 UME configuration from %2</source>
-        <translation type="unfinished"></translation>
+        <translation>importando configuración UME %1 de %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1695"/>
@@ -2659,7 +2659,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1709"/>
         <source>done (importing %1 UME configuration from %2, elapsed time = %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (importando configuración UME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
 </context>
 <context>
@@ -3037,7 +3037,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="488"/>
         <location filename="../../gamelist.cpp" line="602"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede iniciar el ejecutable de UME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="529"/>
@@ -3052,7 +3052,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="559"/>
         <source>FATAL: selected executable file is not UME</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: el archivo ejecutable seleccionado no es UME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="569"/>
@@ -3088,7 +3088,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="650"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid UME binary</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se pudo determinar la versión del emulador, el valor de identificación es &apos;%1&apos; -- por favor informe a los desarrolladores si está seguro de que es un binario válido de UME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="660"/>
@@ -7035,7 +7035,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3014"/>
         <source>Toggle &amp;full screen</source>
-        <translation>Cambiar pantalla &amp;completa</translation>
+        <translation>Alternar pantalla &amp;completa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3017"/>
@@ -7203,18 +7203,18 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3276"/>
         <source>QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 para SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3279"/>
         <location filename="../../qmc2main.ui" line="3282"/>
         <source>Launch QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar QMC2 para SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3285"/>
         <source>Ctrl+Alt+3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3296"/>
@@ -8419,13 +8419,13 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="490"/>
         <source>QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 para UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="491"/>
         <location filename="../../qmc2main.cpp" line="492"/>
         <source>Launch QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar QMC2 para UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2301"/>
@@ -8815,7 +8815,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="5831"/>
         <source>saving current game&apos;s device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>guardando las configuraciones de dispositivo del juego actual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5839"/>
@@ -9203,7 +9203,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="7359"/>
         <source>WARNING: can&apos;t create SDLUME output notifier FIFO, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: no se puede crear notificador de salida FIFO de SDLUME, ruta = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7375"/>
@@ -9230,13 +9230,13 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="7397"/>
         <source>SDLUME output notifier FIFO created</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLUME: notificador de salida FIFO creado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7401"/>
         <location filename="../../qmc2main.cpp" line="7404"/>
         <source>WARNING: can&apos;t open SDLUME output notifier FIFO for reading, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: no se puede abrir notificador de salida FIFO de SDLUME para su lectura, ruta = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7483"/>
@@ -9266,7 +9266,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="7520"/>
         <location filename="../../qmc2main.cpp" line="7593"/>
         <source>unhandled UME output notification: game = %1, class = %2, what = %3, state = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>notificación de salida de UME sin tratar: juego = %1, clase = %2, que = %3, estado = %4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8326"/>
@@ -10177,7 +10177,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.ui" line="466"/>
         <location filename="../../options.ui" line="501"/>
         <source> lines</source>
-        <translation>líneas</translation>
+        <translation> líneas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="482"/>
@@ -10459,7 +10459,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1012"/>
         <source>Frontend data directory (read)</source>
-        <translation>Directorio de datos de la interfaz (leer)</translation>
+        <translation>Directorio de datos de la interfaz (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1025"/>
@@ -10469,7 +10469,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1042"/>
         <source>Game information database - MAME history.dat (read)</source>
-        <translation>Base de datos de información del juego -  MAME history.dat (leer)</translation>
+        <translation>Base de datos de información del juego -  MAME history.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1055"/>
@@ -10479,7 +10479,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1072"/>
         <source>Emulator information database - mameinfo.dat (read)</source>
-        <translation>Base de datos de información del emulador - mameinfo.dat (leer)</translation>
+        <translation>Base de datos de información del emulador - mameinfo.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1085"/>
@@ -10499,7 +10499,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1116"/>
         <source>Path to catver.ini (read)</source>
-        <translation>Ruta a catver.ini (leer)</translation>
+        <translation>Ruta a catver.ini (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1129"/>
@@ -10523,7 +10523,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1178"/>
         <source>Preview directory (read)</source>
-        <translation>Directorio de previsualizaciones (leer)</translation>
+        <translation>Directorio de previsualizaciones (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1191"/>
@@ -10533,7 +10533,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1215"/>
         <source>ZIP-compressed preview file (read)</source>
-        <translation>Archivo comprimido ZIP de previsualizaciones (leer)</translation>
+        <translation>Archivo comprimido ZIP de previsualizaciones (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1228"/>
@@ -10557,7 +10557,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1281"/>
         <source>Flyer directory (read)</source>
-        <translation>Directorio de flyers (leer)</translation>
+        <translation>Directorio de flyers (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1294"/>
@@ -10567,7 +10567,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1318"/>
         <source>ZIP-compressed flyer file (read)</source>
-        <translation>Archivo comprimido ZIP de flyers (leer)</translation>
+        <translation>Archivo comprimido ZIP de flyers (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1331"/>
@@ -10591,7 +10591,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1384"/>
         <source>Icon directory (read)</source>
-        <translation>Directorio de iconos (leer)</translation>
+        <translation>Directorio de iconos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1397"/>
@@ -10601,7 +10601,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1421"/>
         <source>ZIP-compressed icon file (read)</source>
-        <translation>Archivo comprimido ZIP de iconos (leer)</translation>
+        <translation>Archivo comprimido ZIP de iconos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1434"/>
@@ -10625,7 +10625,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1487"/>
         <source>Cabinet directory (read)</source>
-        <translation>Directorio de cabinas (leer)</translation>
+        <translation>Directorio de cabinas (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1500"/>
@@ -10635,7 +10635,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1524"/>
         <source>ZIP-compressed cabinet file (read)</source>
-        <translation>Archivo comprimido ZIP de cabinas (leer)</translation>
+        <translation>Archivo comprimido ZIP de cabinas (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1537"/>
@@ -10659,7 +10659,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1590"/>
         <source>Controller directory (read)</source>
-        <translation>Directorio de mandos (leer)</translation>
+        <translation>Directorio de mandos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1603"/>
@@ -10669,7 +10669,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1627"/>
         <source>ZIP-compressed controller file (read)</source>
-        <translation>Archivo comprimido ZIP de mandos (leer)</translation>
+        <translation>Archivo comprimido ZIP de mandos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1640"/>
@@ -10693,7 +10693,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1693"/>
         <source>Marquee directory (read)</source>
-        <translation>Directorio de marquesinas (leer)</translation>
+        <translation>Directorio de marquesinas (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1706"/>
@@ -10703,7 +10703,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1730"/>
         <source>ZIP-compressed marquee file (read)</source>
-        <translation>Archivo comprimido ZIP de marquesinas (leer)</translation>
+        <translation>Archivo comprimido ZIP de marquesinas (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1743"/>
@@ -10727,7 +10727,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1796"/>
         <source>Title directory (read)</source>
-        <translation>Directorio de títulos (leer)</translation>
+        <translation>Directorio de títulos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1809"/>
@@ -10737,7 +10737,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1833"/>
         <source>ZIP-compressed title file (read)</source>
-        <translation>Archivo comprimido ZIP de títulos (leer)</translation>
+        <translation>Archivo comprimido ZIP de títulos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1846"/>
@@ -10761,7 +10761,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1899"/>
         <source>PCB directory (read)</source>
-        <translation>Directorio de PCB (leer)</translation>
+        <translation>Directorio de PCB (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1912"/>
@@ -10771,7 +10771,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1936"/>
         <source>ZIP-compressed PCB file (read)</source>
-        <translation>Archivo comprimido ZIP de PCB (leer)</translation>
+        <translation>Archivo comprimido ZIP de PCB (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1949"/>
@@ -10781,7 +10781,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="1986"/>
         <source>Software snap-shot directory (read)</source>
-        <translation>Directorio de instantáneas de software (leer)</translation>
+        <translation>Directorio de instantáneas de software (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1999"/>
@@ -10791,7 +10791,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2023"/>
         <source>ZIP-compressed software snap-shot file (read)</source>
-        <translation>Archivo comprimido ZIP de instantáneas de software (leer)</translation>
+        <translation>Archivo comprimido ZIP de instantáneas de software (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2036"/>
@@ -10891,7 +10891,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2245"/>
         <source>HTML file used as a template for software-notes (read)</source>
-        <translation>Archivo HTML usado como plantilla para las notas de software (leer)</translation>
+        <translation>Archivo HTML usado como plantilla para las notas de software (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2258"/>
@@ -11191,7 +11191,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2854"/>
         <source>Hide while loading</source>
-        <translation>Ocultar mienstras se carga</translation>
+        <translation>Ocultar mientras se carga</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2867"/>
@@ -11496,7 +11496,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="3572"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
-        <translation>Herramienta zip externa, p.ej. &quot;zip&quot; (leer y ejecutar)</translation>
+        <translation>Herramienta zip externa, p.ej. &quot;zip&quot; (lectura y ejecutar)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3585"/>
@@ -11525,7 +11525,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="3638"/>
         <source>External file removal tool, i.e. &quot;rm&quot; (read and execute)</source>
-        <translation>Herramienta de eliminación de archivos externa, p.ej. -&quot;rm&quot; (leer y ejecutar)</translation>
+        <translation>Herramienta de eliminación de archivos externa, p.ej. -&quot;rm&quot; (lectura y ejecutar)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3651"/>
@@ -11669,7 +11669,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4032"/>
         <source>Emulator executable file (read and execute)</source>
-        <translation>Archivo ejecutable del emulador (leer y ejecutar)</translation>
+        <translation>Archivo ejecutable del emulador (lectura y ejecutar)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4045"/>
@@ -11700,7 +11700,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4106"/>
         <source>Options template file (read)</source>
-        <translation>Archivo de plantilla de opciones (leer)</translation>
+        <translation>Archivo de plantilla de opciones (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4119"/>
@@ -11842,17 +11842,17 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4515"/>
         <source>UME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Exe de variante UME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4528"/>
         <source>Specify the exe file for the UME variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifica el archivo exe para la variante UME (dejar vacío cuando se instalen todas las variantes en el mismo directorio)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4541"/>
         <source>Browse UME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a exe de variante UME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4559"/>
@@ -12022,7 +12022,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="278"/>
         <source>Emulator information database - messinfo.dat (read)</source>
-        <translation>Base de datos de información del emulador - messinfo.dat (leer)</translation>
+        <translation>Base de datos de información del emulador - messinfo.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="279"/>
@@ -12042,7 +12042,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="282"/>
         <source>Machine information database - MESS sysinfo.dat (read)</source>
-        <translation>Base de datos de información de máquina - MESS sysinfo.dat (leer)</translation>
+        <translation>Base de datos de información de máquina - MESS sysinfo.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="283"/>
@@ -12337,7 +12337,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="388"/>
         <source>Launch QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar QMC2 para UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="390"/>
@@ -12352,7 +12352,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="392"/>
         <source>Launch QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar QMC2 para SDLUME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="395"/>
@@ -12948,7 +12948,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2879"/>
         <source>Choose UME variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el archivo exe de la variante UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2894"/>
@@ -12977,13 +12977,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2932"/>
         <source>UME variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos de la variante UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2933"/>
         <source>Specify command line arguments passed to the UME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar los argumentos de línea de comandos enviados a la variante UME
+(vacío significa: &apos;envía los argumentos con los que fuimos invocados&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2949"/>
@@ -13556,7 +13557,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../qmc2main.cpp" line="10297"/>
         <source>U.M.E. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10303"/>
@@ -13604,7 +13605,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../qmc2main.cpp" line="10355"/>
         <location filename="../../qmc2main.cpp" line="10356"/>
         <source>Export global UME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuración UME global</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10360"/>
@@ -13622,7 +13623,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../qmc2main.cpp" line="10366"/>
         <location filename="../../qmc2main.cpp" line="10367"/>
         <source>Import global UME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuración UME global</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10379"/>
@@ -13640,7 +13641,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../qmc2main.cpp" line="10383"/>
         <location filename="../../qmc2main.cpp" line="10393"/>
         <source>&lt;inipath&gt;/ume.ini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10385"/>
@@ -13929,7 +13930,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="306"/>
         <source>CHD manager executable file (read and execute)</source>
-        <translation>Archivo ejecutable del gestor de CHD (leer y ejecutar)</translation>
+        <translation>Archivo ejecutable del gestor de CHD (lectura y ejecutar)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="319"/>
@@ -14939,7 +14940,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="890"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACIÓN: archivo %1 &apos;%2&apos; tiene una mezcla (&apos;%3&apos;) pero no un set padre -- ignorado, pero debería informarse a los desarrolladores de UME como un posible error de XML del driver respectivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="900"/>
@@ -16993,7 +16994,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="597"/>
         <source>ERROR: the file name for the UME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: el nombre de archivo de la caché de la lista de software UME está vacío -- por favor solucionalo y recarga la lista de juegos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="614"/>
@@ -17008,17 +17009,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="623"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation>ERROR: no se puede abrir la caché de la lista de software MAME para su escritura, ruta = %1 -- por favor comprueba/corrije los permisos de acceso y recarga la lista de juegos</translation>
+        <translation>ERROR: no se puede abrir la caché de la lista de software MAME para su escritura, ruta = %1 -- por favor comprueba/corrige los permisos de acceso y recarga la lista de juegos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="625"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation>ERROR: no se puede abrir la caché de la lista de software MESS para su escritura, ruta = %1 -- por favor comprueba/corrije los permisos de acceso y recarga la lista de juegos</translation>
+        <translation>ERROR: no se puede abrir la caché de la lista de software MESS para su escritura, ruta = %1 -- por favor comprueba/corrige los permisos de acceso y recarga la lista de juegos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="627"/>
         <source>ERROR: can&apos;t open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir la caché de la lista de software UME para su escritura, ruta = %1 -- por favor comprueba/corrige los permisos de acceso y recarga la lista de juegos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="719"/>
@@ -17068,7 +17069,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="971"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: el proceso externo invocado para cargar la lista de software UME no finalizó correctamente -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="977"/>
@@ -17078,17 +17079,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="1033"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
-        <translation>ATENCIÓN: el emulador MAME seleccionado actualmente no soporta listas de software</translation>
+        <translation>ATENCIÓN: el emulador MAME actualmente seleccionado no soporta listas de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1035"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
-        <translation>ATENCIÓN: el emulador MESS seleccionado actualmente no soporta listas de software</translation>
+        <translation>ATENCIÓN: el emulador MESS actualmente seleccionado no soporta listas de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1037"/>
         <source>WARNING: the currently selected UME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: el emulador UME actualmente seleccionado no soporta listas de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1053"/>
@@ -17103,7 +17104,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="1057"/>
         <source>WARNING: the external process called to load the UME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: el proceso externo invocado para cargar la lista de software UME causó un error -- processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1368"/>
@@ -17840,7 +17841,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.cpp" line="41"/>
         <source>SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="43"/>
@@ -17855,7 +17856,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.cpp" line="50"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="52"/>
