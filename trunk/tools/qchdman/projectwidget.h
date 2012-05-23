@@ -112,6 +112,9 @@ public slots:
     void on_comboBoxCreateLDCompression_currentIndexChanged(int);
 
     // ExtractRaw
+    void on_toolButtonBrowseExtractRawInputFile_clicked();
+    void on_toolButtonBrowseExtractRawOutputFile_clicked();
+    void on_toolButtonBrowseExtractRawParentInputFile_clicked();
 
     // ExtractHD
     void on_toolButtonBrowseExtractHDInputFile_clicked();
@@ -125,6 +128,9 @@ public slots:
     void on_toolButtonBrowseExtractCDOutputBinFile_clicked();
 
     // ExtractLD
+    void on_toolButtonBrowseExtractLDInputFile_clicked();
+    void on_toolButtonBrowseExtractLDOutputFile_clicked();
+    void on_toolButtonBrowseExtractLDParentInputFile_clicked();
 
     // DumpMeta
 

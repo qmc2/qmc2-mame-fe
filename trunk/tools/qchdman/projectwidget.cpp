@@ -67,6 +67,10 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
             << 0 << 0 << ui->spinBoxCreateLDHunkSize << ui->comboBoxCreateLDCompression
             << 0 << 0 << 0 << 0
             << 0 << 0 << ui->spinBoxCreateLDInputStartFrame << ui->spinBoxCreateLDInputFrames;
+    copyGroups[QCHDMAN_PRJ_EXTRACT_RAW]
+            << ui->lineEditExtractRawInputFile << ui->lineEditExtractRawParentInputFile << ui->lineEditExtractRawOutputFile << 0
+            << ui->checkBoxExtractRawForce << 0 << ui->spinBoxExtractRawInputStartByte << ui->spinBoxExtractRawInputStartHunk
+            << ui->spinBoxExtractRawInputBytes << ui->spinBoxExtractRawInputHunks;
     copyGroups[QCHDMAN_PRJ_EXTRACT_HD]
             << ui->lineEditExtractHDInputFile << ui->lineEditExtractHDParentInputFile << ui->lineEditExtractHDOutputFile << 0
             << ui->checkBoxExtractHDForce << 0 << ui->spinBoxExtractHDInputStartByte << ui->spinBoxExtractHDInputStartHunk
@@ -74,6 +78,12 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     copyGroups[QCHDMAN_PRJ_EXTRACT_CD]
             << ui->lineEditExtractCDInputFile << ui->lineEditExtractCDParentInputFile << ui->lineEditExtractCDOutputFile << ui->lineEditExtractCDOutputBinFile
             << ui->checkBoxExtractCDForce;
+    copyGroups[QCHDMAN_PRJ_EXTRACT_LD]
+            << ui->lineEditExtractLDInputFile << ui->lineEditExtractLDOutputFile << ui->lineEditExtractLDParentInputFile << 0
+            << ui->checkBoxExtractLDForce << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << ui->spinBoxExtractLDInputStartFrame << ui->spinBoxExtractLDInputFrames;
 
     // prepare compression selectors
     copyCompressors.clear();
@@ -250,9 +260,16 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 #if defined(Q_OS_MAC)
         if ( isAquaStyle )
             widgetHeight -= ui->labelCreateLDHelp->margin();
-#endif        break;
+#endif
+        break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
-        // FIXME
+        widgetHeight = ui->frameExtractRaw->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelExtractRawHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelExtractRawHelp->margin();
+#endif
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
         widgetHeight = ui->frameExtractHD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
@@ -273,7 +290,13 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 #endif
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
-        // FIXME
+        widgetHeight = ui->frameExtractLD->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelExtractLDHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelExtractLDHelp->margin();
+#endif
         break;
     case QCHDMAN_PRJ_DUMP_META:
         // FIXME
@@ -470,7 +493,22 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_EXTRACT_RAW:
         projectTypeName = tr("ExtractRaw");
         arguments << "extractraw";
-        // FIXME
+        if ( !ui->lineEditExtractRawInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditExtractRawInputFile->text();
+        if ( !ui->lineEditExtractRawParentInputFile->text().isEmpty() )
+            arguments << "--parentinput" << ui->lineEditExtractRawParentInputFile->text();
+        if ( !ui->lineEditExtractRawOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditExtractRawOutputFile->text();
+        if ( ui->checkBoxExtractRawForce->isChecked() )
+            arguments << "--force";
+        if ( ui->spinBoxExtractRawInputStartByte->value() >= 0 )
+            arguments << "--inputstartbyte" << QString::number(ui->spinBoxExtractRawInputStartByte->value());
+        if ( ui->spinBoxExtractRawInputStartHunk->value() >= 0 )
+            arguments << "--inputstarthunk" << QString::number(ui->spinBoxExtractRawInputStartHunk->value());
+        if ( ui->spinBoxExtractRawInputBytes->value() >= 0 )
+            arguments << "--inputbytes" << QString::number(ui->spinBoxExtractRawInputBytes->value());
+        if ( ui->spinBoxExtractRawInputHunks->value() >= 0 )
+            arguments << "--inputhunks" << QString::number(ui->spinBoxExtractRawInputHunks->value());
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
         projectTypeName = tr("ExtractHD");
@@ -509,7 +547,18 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_EXTRACT_LD:
         projectTypeName = tr("ExtractLD");
         arguments << "extractld";
-        // FIXME
+        if ( !ui->lineEditExtractLDInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditExtractLDInputFile->text();
+        if ( !ui->lineEditExtractLDOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditExtractLDOutputFile->text();
+        if ( !ui->lineEditExtractLDParentInputFile->text().isEmpty() )
+            arguments << "--parentinput" << ui->lineEditExtractLDParentInputFile->text();
+        if ( ui->checkBoxExtractLDForce->isChecked() )
+            arguments << "--force";
+        if ( ui->spinBoxExtractLDInputStartFrame->value() >= 0 )
+            arguments << "--inputstartframe" << QString::number(ui->spinBoxExtractLDInputStartFrame->value());
+        if ( ui->spinBoxExtractLDInputFrames->value() >= 0 )
+            arguments << "--inputframes" << QString::number(ui->spinBoxExtractLDInputFrames->value());
         break;
     case QCHDMAN_PRJ_DUMP_META:
         projectTypeName = tr("DumpMeta");
@@ -642,8 +691,10 @@ void ProjectWidget::readyReadStandardError()
             case QCHDMAN_PRJ_CREATE_HD:
             case QCHDMAN_PRJ_CREATE_CD:
             case QCHDMAN_PRJ_CREATE_LD:
+            case QCHDMAN_PRJ_EXTRACT_RAW:
             case QCHDMAN_PRJ_EXTRACT_HD:
             case QCHDMAN_PRJ_EXTRACT_CD:
+            case QCHDMAN_PRJ_EXTRACT_LD:
                 if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
                     QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
                     int pos = rx.indexIn(s);
@@ -999,6 +1050,39 @@ void ProjectWidget::on_comboBoxCreateLDCompression_currentIndexChanged(int index
     updateCompression(ui->comboBoxCreateLDCompression, &createLDCompressors, index);
 }
 
+void ProjectWidget::on_toolButtonBrowseExtractRawInputFile_clicked()
+{
+    QString folder = ui->lineEditExtractRawInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractRawInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractRawOutputFile_clicked()
+{
+    QString folder = ui->lineEditExtractRawOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredOutputFolder;
+    QString filter = tr("Raw disk image (*.img)") + ";;" + tr("Mac disk image (*.dmg)") + ";;" + tr("Apple IIgs disk image (*.2mg)") + ";;" + tr("FM-Towns disk image (*.h0 *.h1 *.h2 *.h3 *.h4)") + ";;" + tr("IDE64 disk image (*.hdd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractRawOutputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractRawParentInputFile_clicked()
+{
+    QString folder = ui->lineEditExtractRawParentInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractRawParentInputFile->setText(s);
+}
+
 void ProjectWidget::on_toolButtonBrowseExtractHDInputFile_clicked()
 {
     QString folder = ui->lineEditExtractHDInputFile->text();
@@ -1074,6 +1158,39 @@ void ProjectWidget::on_toolButtonBrowseExtractCDOutputBinFile_clicked()
     QString s = QFileDialog::getSaveFileName(this, tr("Choose binary output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractCDOutputBinFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractLDInputFile_clicked()
+{
+    QString folder = ui->lineEditExtractLDInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractLDInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractLDOutputFile_clicked()
+{
+    QString folder = ui->lineEditExtractLDOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredOutputFolder;
+    QString filter = tr("AVI files (*.avi)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractLDOutputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseExtractLDParentInputFile_clicked()
+{
+    QString folder = ui->lineEditExtractLDParentInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditExtractLDParentInputFile->setText(s);
 }
 
 void ProjectWidget::init()
@@ -1413,7 +1530,22 @@ void ProjectWidget::load(const QString &fileName)
                     }
                     break;
                 case QCHDMAN_PRJ_EXTRACT_RAW:
-                    // FIXME
+                    if ( line.startsWith("ExtractRawInputFile = ") )
+                        ui->lineEditExtractRawInputFile->setText(line.remove("ExtractRawInputFile = "));
+                    if ( line.startsWith("ExtractRawOutputFile = ") )
+                        ui->lineEditExtractRawOutputFile->setText(line.remove("ExtractRawOutputFile = "));
+                    if ( line.startsWith("ExtractRawParentInputFile = ") )
+                        ui->lineEditExtractRawParentInputFile->setText(line.remove("ExtractRawParentInputFile = "));
+                    if ( line.startsWith("ExtractRawForce = ") )
+                        ui->checkBoxExtractRawForce->setChecked(line.remove("ExtractRawForce = ").toInt());
+                    if ( line.startsWith("ExtractRawInputStartByte = ") )
+                        ui->spinBoxExtractRawInputStartByte->setValue(line.remove("ExtractRawInputStartByte = ").toInt());
+                    if ( line.startsWith("ExtractRawInputStartHunk = ") )
+                        ui->spinBoxExtractRawInputStartHunk->setValue(line.remove("ExtractRawInputStartHunk = ").toInt());
+                    if ( line.startsWith("ExtractRawInputBytes = ") )
+                        ui->spinBoxExtractRawInputBytes->setValue(line.remove("ExtractRawInputBytes = ").toInt());
+                    if ( line.startsWith("ExtractRawInputHunks = ") )
+                        ui->spinBoxExtractRawInputHunks->setValue(line.remove("ExtractRawInputHunks = ").toInt());
                     break;
                 case QCHDMAN_PRJ_EXTRACT_HD:
                     if ( line.startsWith("ExtractHDInputFile = ") )
@@ -1446,7 +1578,18 @@ void ProjectWidget::load(const QString &fileName)
                         ui->checkBoxExtractCDForce->setChecked(line.remove("ExtractCDForce = ").toInt());
                     break;
                 case QCHDMAN_PRJ_EXTRACT_LD:
-                    // FIXME
+                    if ( line.startsWith("ExtractLDInputFile = ") )
+                        ui->lineEditExtractLDInputFile->setText(line.remove("ExtractLDInputFile = "));
+                    if ( line.startsWith("ExtractLDOutputFile = ") )
+                        ui->lineEditExtractLDOutputFile->setText(line.remove("ExtractLDOutputFile = "));
+                    if ( line.startsWith("ExtractLDParentOutputFile = ") )
+                        ui->lineEditExtractLDParentInputFile->setText(line.remove("ExtractLDParentInputFile = "));
+                    if ( line.startsWith("ExtractLDForce = ") )
+                        ui->checkBoxExtractLDForce->setChecked(line.remove("ExtractLDForce = ").toInt());
+                    if ( line.startsWith("ExtractLDInputStartFrame = ") )
+                        ui->spinBoxExtractLDInputStartFrame->setValue(line.remove("ExtractLDInputStartFrame = ").toInt());
+                    if ( line.startsWith("ExtractLDInputFrames = ") )
+                        ui->spinBoxExtractLDInputFrames->setValue(line.remove("ExtractLDInputFrames = ").toInt());
                     break;
                 case QCHDMAN_PRJ_DUMP_META:
                     // FIXME
@@ -1617,7 +1760,14 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "\n";
             break;
         case QCHDMAN_PRJ_EXTRACT_RAW:
-            // FIXME
+            ts << "ExtractRawInputFile = " << ui->lineEditExtractRawInputFile->text() << "\n";
+            ts << "ExtractRawOutputFile = " << ui->lineEditExtractRawOutputFile->text() << "\n";
+            ts << "ExtractRawParentInputFile = " << ui->lineEditExtractRawParentInputFile->text() << "\n";
+            ts << "ExtractRawForce = " << ui->checkBoxExtractRawForce->isChecked() << "\n";
+            ts << "ExtractRawInputStartByte = " << ui->spinBoxExtractRawInputStartByte->value() << "\n";
+            ts << "ExtractRawInputStartHunk = " << ui->spinBoxExtractRawInputStartHunk->value() << "\n";
+            ts << "ExtractRawInputBytes = " << ui->spinBoxExtractRawInputBytes->value() << "\n";
+            ts << "ExtractRawInputHunks = " << ui->spinBoxExtractRawInputHunks->value() << "\n";
             break;
         case QCHDMAN_PRJ_EXTRACT_HD:
             ts << "ExtractHDInputFile = " << ui->lineEditExtractHDInputFile->text() << "\n";
@@ -1637,7 +1787,12 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "ExtractCDForce = " << ui->checkBoxExtractCDForce->isChecked() << "\n";
             break;
         case QCHDMAN_PRJ_EXTRACT_LD:
-            // FIXME
+            ts << "ExtractLDInputFile = " << ui->lineEditExtractLDInputFile->text() << "\n";
+            ts << "ExtractLDOutputFile = " << ui->lineEditExtractLDOutputFile->text() << "\n";
+            ts << "ExtractLDParentInputFile = " << ui->lineEditExtractLDParentInputFile->text() << "\n";
+            ts << "ExtractLDForce = " << ui->checkBoxExtractLDForce->isChecked() << "\n";
+            ts << "ExtractLDInputStartFrame = " << ui->spinBoxExtractLDInputStartFrame->value() << "\n";
+            ts << "ExtractLDInputFrames = " << ui->spinBoxExtractLDInputFrames->value() << "\n";
             break;
         case QCHDMAN_PRJ_DUMP_META:
             // FIXME
