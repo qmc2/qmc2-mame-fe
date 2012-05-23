@@ -353,6 +353,14 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
 #elif defined(QMC2_MESS)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#elif defined(QMC2_SDLMAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLUME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 #if !defined(Q_WS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
@@ -425,10 +433,15 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			slotXmlBuffer.clear();
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
+#if defined(QMC2_EMUTYPE_MESS)
 				QString s = "<machine name=\"" + machineName + "\"";
+#elif defined(QMC2_EMUTYPE_UME)
+				QString s = "<game name=\"" + machineName + "\"";
+#endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
 				slotXmlBuffer = "<?xml version=\"1.0\"?>\n";
 				if ( i < xmlLines.count() ) {
+#if defined(QMC2_EMUTYPE_MESS)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
 						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
 					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
@@ -436,6 +449,15 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 						slotXmlBuffer.clear();
 					} else
 						slotXmlBuffer += "</machine>\n";
+#elif defined(QMC2_EMUTYPE_UME)
+					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
+						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
+					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
+						slotXmlBuffer.clear();
+					} else
+						slotXmlBuffer += "</game>\n";
+#endif
 				} else {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
 					slotXmlBuffer.clear();
@@ -458,12 +480,21 @@ QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 
 	if ( normalXmlBuffer.isEmpty() ) {
 		int i = 0;
+#if defined(QMC2_EMUTYPE_MESS)
 		QString s = "<machine name=\"" + machineName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
 		normalXmlBuffer = "<?xml version=\"1.0\"?>\n";
 		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
 			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
 		normalXmlBuffer += "</machine>\n";
+#elif defined(QMC2_EMUTYPE_UME)
+		QString s = "<game name=\"" + machineName + "\"";
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+		normalXmlBuffer = "<?xml version=\"1.0\"?>\n";
+		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
+			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+		normalXmlBuffer += "</game>\n";
+#endif
 		messXmlDataCache[machineName] = normalXmlBuffer;
 	}
 
@@ -485,6 +516,14 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
 #elif defined(QMC2_MESS)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#elif defined(QMC2_SDLMAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLUME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
 #if !defined(Q_WS_WIN)
