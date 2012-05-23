@@ -2110,7 +2110,7 @@ Creates a CD CHD from an input file.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>228</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -2124,7 +2124,7 @@ Creates a CD CHD from an input file.
             </property>
             <item row="0" column="0">
              <widget class="QFrame" name="frameCreateLD">
-              <layout class="QGridLayout" name="gridLayoutFrameCopy_2">
+              <layout class="QGridLayout" name="gridLayoutFrameCreateLD">
                <property name="margin">
                 <number>0</number>
                </property>
@@ -2426,14 +2426,305 @@ Creates a laser-disc CHD from an input file.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>176</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageExtractRaw"/>
+          <widget class="QWidget" name="pageExtractRaw">
+           <layout class="QGridLayout" name="gridLayoutPageExtractRaw">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameExtractRaw">
+              <layout class="QGridLayout" name="gridLayoutFrameExtractRaw">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="5" column="2">
+                <widget class="QLabel" name="labelExtractrawInputHunks">
+                 <property name="text">
+                  <string>Input hunks</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseExtractRawInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QSpinBox" name="spinBoxExtractRawInputBytes">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in bytes (--inputbytes)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditExtractRawOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Output file (--output)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Output file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="spinBoxExtractRawInputStartByte">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting byte offset within the input (--inputstartbyte)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxExtractRawForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <widget class="QSpinBox" name="spinBoxExtractRawInputHunks">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in hunks (--inputhunks)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelExtractRawInputStartByte">
+                 <property name="text">
+                  <string>Input start byte</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditExtractRawInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD input file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditExtractRawParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD input file (--inputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD input file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseExtractRawOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelExtractRawInputBytes">
+                 <property name="text">
+                  <string>Input bytes</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QSpinBox" name="spinBoxExtractRawInputStartHunk">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting hunk offset within the input (--inputstarthunk)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="labelExtractRawInputStartHunk">
+                 <property name="text">
+                  <string>Input start hunk</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseExtractRawParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelExtractRawHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractRaw&lt;/b&gt;
+&lt;/p&gt;
+Extracts a raw file from a CHD input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--inputparent, -op &amp;lt;filename&amp;gt;: parent file name for input CHD&lt;br&gt;
+--force, -f: force overwriting an existing file&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: starting byte offset within the input&lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerExtractRaw">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageExtractHD">
            <layout class="QGridLayout" name="gridLayoutPageExtractHD">
             <property name="margin">
@@ -2441,7 +2732,7 @@ Creates a laser-disc CHD from an input file.
             </property>
             <item row="0" column="0">
              <widget class="QFrame" name="frameExtractHD">
-              <layout class="QGridLayout" name="gridLayoutFrameCreateRaw_2">
+              <layout class="QGridLayout" name="gridLayoutFrameExtractHD">
                <property name="margin">
                 <number>0</number>
                </property>
@@ -2719,7 +3010,7 @@ Extracts an HD file from a CHD input file.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>177</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -2911,14 +3202,239 @@ Extracts a CD file from a CHD input file.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>252</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageExtractLD"/>
+          <widget class="QWidget" name="pageExtractLD">
+           <layout class="QGridLayout" name="gridLayoutPageExtractLD">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameExtractLD">
+              <layout class="QGridLayout" name="gridLayoutFrameExtractLD">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="spinBoxExtractLDInputStartFrame">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting frame within the input (--inputstartframe)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditExtractLDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD input file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseExtractLDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelExtractLDInputStartFrame">
+                 <property name="text">
+                  <string>Input start frame</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxExtractLDForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseExtractLDParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditExtractLDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>LD output file (--output)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>LD output file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditExtractLDParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD input file (--inputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD input file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QSpinBox" name="spinBoxExtractLDInputFrames">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in frames (--inputframes)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseExtractLDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="labelExtractLDInputFrames">
+                 <property name="text">
+                  <string>Input frames</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelExtractLDHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractLD&lt;/b&gt;
+&lt;/p&gt;
+Extracts a laser-disc AVI file from a CHD input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD&lt;br&gt;
+--force, -f: force overwriting an existing file&lt;br&gt;
+--inputstartframe, -isf &amp;lt;offset&amp;gt;: starting frame within the input&lt;br&gt;
+--inputframes, -if &amp;lt;length&amp;gt;: effective length of input in frames
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerExtractLD">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageDumpMeta"/>
           <widget class="QWidget" name="pageAddMeta"/>
           <widget class="QWidget" name="pageDelMeta"/>
@@ -3034,6 +3550,17 @@ Extracts a CD file from a CHD input file.
   <tabstop>spinBoxCreateLDInputFrames</tabstop>
   <tabstop>spinBoxCreateLDHunkSize</tabstop>
   <tabstop>comboBoxCreateLDCompression</tabstop>
+  <tabstop>lineEditExtractRawInputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractRawInputFile</tabstop>
+  <tabstop>lineEditExtractRawOutputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractRawOutputFile</tabstop>
+  <tabstop>lineEditExtractRawParentInputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractRawParentInputFile</tabstop>
+  <tabstop>checkBoxExtractRawForce</tabstop>
+  <tabstop>spinBoxExtractRawInputStartByte</tabstop>
+  <tabstop>spinBoxExtractRawInputStartHunk</tabstop>
+  <tabstop>spinBoxExtractRawInputBytes</tabstop>
+  <tabstop>spinBoxExtractRawInputHunks</tabstop>
   <tabstop>lineEditExtractHDInputFile</tabstop>
   <tabstop>toolButtonBrowseExtractHDInputFile</tabstop>
   <tabstop>lineEditExtractHDOutputFile</tabstop>
@@ -3054,6 +3581,15 @@ Extracts a CD file from a CHD input file.
   <tabstop>lineEditExtractCDOutputBinFile</tabstop>
   <tabstop>toolButtonBrowseExtractCDOutputBinFile</tabstop>
   <tabstop>checkBoxExtractCDForce</tabstop>
+  <tabstop>lineEditExtractLDInputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractLDInputFile</tabstop>
+  <tabstop>lineEditExtractLDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractLDOutputFile</tabstop>
+  <tabstop>lineEditExtractLDParentInputFile</tabstop>
+  <tabstop>toolButtonBrowseExtractLDParentInputFile</tabstop>
+  <tabstop>checkBoxExtractLDForce</tabstop>
+  <tabstop>spinBoxExtractLDInputStartFrame</tabstop>
+  <tabstop>spinBoxExtractLDInputFrames</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
   <tabstop>scrollArea</tabstop>
  </tabstops>
