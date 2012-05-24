@@ -226,10 +226,6 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <source>Mac (unkown)</source>
-        <translation type="obsolete">Mac (unbekannt)</translation>
-    </message>
-    <message>
         <location filename="../../about.cpp" line="72"/>
         <source>Windows NT (Windows 4.0)</source>
         <translation></translation>
@@ -1616,34 +1612,34 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DemoModeDialog</name>
     <message>
-        <location filename="../../demomode.cpp" line="105"/>
+        <location filename="../../demomode.cpp" line="106"/>
         <source>demo mode stopped</source>
         <translation>Demo Modus angehalten</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="263"/>
-        <location filename="../../demomode.cpp" line="107"/>
+        <location filename="../../demomode.cpp" line="108"/>
         <source>Run &amp;demo</source>
         <translation>&amp;Demo starten</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="260"/>
-        <location filename="../../demomode.cpp" line="108"/>
+        <location filename="../../demomode.cpp" line="109"/>
         <source>Run demo now</source>
         <translation>Demo jetzt starten</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="124"/>
+        <location filename="../../demomode.cpp" line="125"/>
         <source>please wait for reload to finish and try again</source>
         <translation>Bitte warte bis die Spieleliste aktualisiert wurde und versuche es dann erneut</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="128"/>
+        <location filename="../../demomode.cpp" line="129"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>Bitte warte bis die ROM Verifikation abgeschlossen wurde und versuche es dann erneut</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="170"/>
+        <location filename="../../demomode.cpp" line="171"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>Demo Modus gestartet -- %n Spiel durch Filter ausgewählt</numerusform>
@@ -1651,22 +1647,22 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="172"/>
+        <location filename="../../demomode.cpp" line="173"/>
         <source>demo mode cannot start -- no games selected by filter</source>
         <translation>Demo Modus kann nicht gestartet werden -- kein Spiel durch Filter ausgewählt</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="176"/>
+        <location filename="../../demomode.cpp" line="177"/>
         <source>Stop &amp;demo</source>
         <translation>&amp;Demo anhalten</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="177"/>
+        <location filename="../../demomode.cpp" line="178"/>
         <source>Stop demo now</source>
         <translation>Demo jetzt anhalten</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="240"/>
+        <location filename="../../demomode.cpp" line="241"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>Starte Emulation im Demo Modus für &apos;%1&apos;</translation>
     </message>
@@ -5478,8 +5474,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1373"/>
-        <location filename="../../messdevcfg.cpp" line="1378"/>
+        <location filename="../../messdevcfg.cpp" line="1412"/>
+        <location filename="../../messdevcfg.cpp" line="1417"/>
         <source>Active device configuration</source>
         <translation>Aktive Geräte-Konfiguration</translation>
     </message>
@@ -5622,11 +5618,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="168"/>
-        <location filename="../../messdevcfg.cpp" line="646"/>
-        <location filename="../../messdevcfg.cpp" line="898"/>
-        <location filename="../../messdevcfg.cpp" line="947"/>
-        <location filename="../../messdevcfg.cpp" line="1124"/>
-        <location filename="../../messdevcfg.cpp" line="1246"/>
+        <location filename="../../messdevcfg.cpp" line="685"/>
+        <location filename="../../messdevcfg.cpp" line="937"/>
+        <location filename="../../messdevcfg.cpp" line="986"/>
+        <location filename="../../messdevcfg.cpp" line="1163"/>
+        <location filename="../../messdevcfg.cpp" line="1285"/>
         <source>No devices</source>
         <translation>Keine Geräte</translation>
     </message>
@@ -5674,14 +5670,14 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="980"/>
-        <location filename="../../messdevcfg.cpp" line="982"/>
+        <location filename="../../messdevcfg.cpp" line="1019"/>
+        <location filename="../../messdevcfg.cpp" line="1021"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1222"/>
-        <location filename="../../messdevcfg.cpp" line="1825"/>
+        <location filename="../../messdevcfg.cpp" line="1261"/>
+        <location filename="../../messdevcfg.cpp" line="1864"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
@@ -5693,7 +5689,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="166"/>
-        <location filename="../../messdevcfg.cpp" line="499"/>
+        <location filename="../../messdevcfg.cpp" line="538"/>
         <source>Reading slot info, please wait...</source>
         <translation>Lese Slot-Infos, bitte warten...</translation>
     </message>
@@ -5756,33 +5752,34 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="288"/>
-        <location filename="../../messdevcfg.cpp" line="1627"/>
+        <location filename="../../messdevcfg.cpp" line="1666"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Archiv öffnen</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="337"/>
-        <location filename="../../messdevcfg.cpp" line="703"/>
-        <location filename="../../messdevcfg.cpp" line="808"/>
-        <location filename="../../messdevcfg.cpp" line="1385"/>
-        <location filename="../../messdevcfg.cpp" line="1810"/>
+        <location filename="../../messdevcfg.cpp" line="742"/>
+        <location filename="../../messdevcfg.cpp" line="847"/>
+        <location filename="../../messdevcfg.cpp" line="1424"/>
+        <location filename="../../messdevcfg.cpp" line="1849"/>
         <source>No devices available</source>
         <translation>Keine Geräte verfügbar</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="435"/>
-        <location filename="../../messdevcfg.cpp" line="440"/>
+        <location filename="../../messdevcfg.cpp" line="448"/>
+        <location filename="../../messdevcfg.cpp" line="456"/>
+        <location filename="../../messdevcfg.cpp" line="462"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation>FATAL: ungültige XML Daten für &apos;%1&apos; erhalten</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="502"/>
+        <location filename="../../messdevcfg.cpp" line="541"/>
         <source>loading available system slots</source>
         <translation>Lade verfügbare System-Slots</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="395"/>
-        <location filename="../../messdevcfg.cpp" line="523"/>
+        <location filename="../../messdevcfg.cpp" line="403"/>
+        <location filename="../../messdevcfg.cpp" line="562"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare MESS Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
@@ -5793,64 +5790,64 @@ p, li { white-space: pre-wrap; }
         <translation>Ausgewählte Maschine spielen (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="524"/>
+        <location filename="../../messdevcfg.cpp" line="563"/>
         <source>Failed to read slot info</source>
         <translation>Fehler beim Lesen der Slot-Infos</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="529"/>
+        <location filename="../../messdevcfg.cpp" line="568"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation>WARNUNG: das externe Kommando zum Laden verfügbarer System-Slots ist abgebrochen, Slot-Optionen sind möglicherweise unvollständig</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="609"/>
+        <location filename="../../messdevcfg.cpp" line="648"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
         <translation>Fertig (Lade verfügbare System-Slots, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="658"/>
+        <location filename="../../messdevcfg.cpp" line="697"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="842"/>
-        <location filename="../../messdevcfg.cpp" line="849"/>
+        <location filename="../../messdevcfg.cpp" line="881"/>
+        <location filename="../../messdevcfg.cpp" line="888"/>
         <source>not used</source>
         <translation>nicht verwendet</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="842"/>
-        <location filename="../../messdevcfg.cpp" line="855"/>
+        <location filename="../../messdevcfg.cpp" line="881"/>
+        <location filename="../../messdevcfg.cpp" line="894"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1316"/>
+        <location filename="../../messdevcfg.cpp" line="1355"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1627"/>
+        <location filename="../../messdevcfg.cpp" line="1666"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Archiv schließen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1827"/>
+        <location filename="../../messdevcfg.cpp" line="1866"/>
         <source>Choose a unique configuration name</source>
         <translation>Eindeutiger Name für Geräte-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1827"/>
+        <location filename="../../messdevcfg.cpp" line="1866"/>
         <source>Unique configuration name:</source>
         <translation>Eindeutiger Name der Geräte-Konfiguration:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1830"/>
+        <location filename="../../messdevcfg.cpp" line="1869"/>
         <source>Name conflict</source>
         <translation>Namenskonflikt</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1830"/>
+        <location filename="../../messdevcfg.cpp" line="1869"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -13668,7 +13665,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Phonon Features aktiviert - verwende Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1701"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1799"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>Videospieler: XML-Fehler: fataler Fehler in Zeile %1, Spalte %2: %3</translation>
     </message>
@@ -16020,19 +16017,19 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="208"/>
-        <location filename="../../romstatusexport.cpp" line="233"/>
-        <location filename="../../romstatusexport.cpp" line="342"/>
-        <location filename="../../romstatusexport.cpp" line="563"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="237"/>
+        <location filename="../../romstatusexport.cpp" line="346"/>
+        <location filename="../../romstatusexport.cpp" line="571"/>
+        <location filename="../../romstatusexport.cpp" line="818"/>
         <source>Year</source>
         <translation>Jahr</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="213"/>
-        <location filename="../../romstatusexport.cpp" line="232"/>
-        <location filename="../../romstatusexport.cpp" line="343"/>
-        <location filename="../../romstatusexport.cpp" line="564"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="236"/>
+        <location filename="../../romstatusexport.cpp" line="347"/>
+        <location filename="../../romstatusexport.cpp" line="572"/>
+        <location filename="../../romstatusexport.cpp" line="818"/>
         <source>Manufacturer</source>
         <translation>Hersteller</translation>
     </message>
@@ -16062,38 +16059,38 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Absteigend</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="915"/>
+        <location filename="../../romstatusexport.cpp" line="927"/>
         <source>Choose ASCII export file</source>
         <translation>ASCII Export Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="915"/>
         <location filename="../../romstatusexport.cpp" line="927"/>
         <location filename="../../romstatusexport.cpp" line="939"/>
+        <location filename="../../romstatusexport.cpp" line="951"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="927"/>
+        <location filename="../../romstatusexport.cpp" line="939"/>
         <source>Choose CSV export file</source>
         <translation>CSV Export Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="939"/>
+        <location filename="../../romstatusexport.cpp" line="951"/>
         <source>Choose HTML export file</source>
         <translation>HTML Export Datei auswählen</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="142"/>
-        <location filename="../../romstatusexport.cpp" line="448"/>
-        <location filename="../../romstatusexport.cpp" line="666"/>
+        <location filename="../../romstatusexport.cpp" line="452"/>
+        <location filename="../../romstatusexport.cpp" line="674"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="143"/>
-        <location filename="../../romstatusexport.cpp" line="449"/>
-        <location filename="../../romstatusexport.cpp" line="667"/>
+        <location filename="../../romstatusexport.cpp" line="453"/>
+        <location filename="../../romstatusexport.cpp" line="675"/>
         <source>Overwrite existing file?</source>
         <translation>Existierende Datei überschreiben?</translation>
     </message>
@@ -16113,21 +16110,21 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Exportiere ROM Status im ASCII Format zur Zwischenablage</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="204"/>
-        <location filename="../../romstatusexport.cpp" line="279"/>
-        <location filename="../../romstatusexport.cpp" line="393"/>
-        <location filename="../../romstatusexport.cpp" line="496"/>
-        <location filename="../../romstatusexport.cpp" line="630"/>
-        <location filename="../../romstatusexport.cpp" line="719"/>
-        <location filename="../../romstatusexport.cpp" line="881"/>
+        <location filename="../../romstatusexport.cpp" line="208"/>
+        <location filename="../../romstatusexport.cpp" line="283"/>
+        <location filename="../../romstatusexport.cpp" line="397"/>
+        <location filename="../../romstatusexport.cpp" line="504"/>
+        <location filename="../../romstatusexport.cpp" line="638"/>
+        <location filename="../../romstatusexport.cpp" line="731"/>
+        <location filename="../../romstatusexport.cpp" line="893"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="177"/>
-        <location filename="../../romstatusexport.cpp" line="206"/>
-        <location filename="../../romstatusexport.cpp" line="498"/>
-        <location filename="../../romstatusexport.cpp" line="725"/>
+        <location filename="../../romstatusexport.cpp" line="210"/>
+        <location filename="../../romstatusexport.cpp" line="506"/>
+        <location filename="../../romstatusexport.cpp" line="737"/>
         <source>Emulator</source>
         <translation>Emulator</translation>
     </message>
@@ -16138,262 +16135,276 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="178"/>
-        <location filename="../../romstatusexport.cpp" line="207"/>
-        <location filename="../../romstatusexport.cpp" line="499"/>
-        <location filename="../../romstatusexport.cpp" line="727"/>
+        <location filename="../../romstatusexport.cpp" line="211"/>
+        <location filename="../../romstatusexport.cpp" line="507"/>
+        <location filename="../../romstatusexport.cpp" line="739"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="179"/>
-        <location filename="../../romstatusexport.cpp" line="208"/>
-        <location filename="../../romstatusexport.cpp" line="500"/>
-        <location filename="../../romstatusexport.cpp" line="729"/>
+        <location filename="../../romstatusexport.cpp" line="212"/>
+        <location filename="../../romstatusexport.cpp" line="508"/>
+        <location filename="../../romstatusexport.cpp" line="741"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="181"/>
-        <location filename="../../romstatusexport.cpp" line="216"/>
-        <location filename="../../romstatusexport.cpp" line="507"/>
-        <location filename="../../romstatusexport.cpp" line="743"/>
+        <location filename="../../romstatusexport.cpp" line="220"/>
+        <location filename="../../romstatusexport.cpp" line="515"/>
+        <location filename="../../romstatusexport.cpp" line="755"/>
         <source>Correct</source>
         <translation>Korrekt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="182"/>
-        <location filename="../../romstatusexport.cpp" line="217"/>
-        <location filename="../../romstatusexport.cpp" line="508"/>
-        <location filename="../../romstatusexport.cpp" line="745"/>
+        <location filename="../../romstatusexport.cpp" line="221"/>
+        <location filename="../../romstatusexport.cpp" line="516"/>
+        <location filename="../../romstatusexport.cpp" line="757"/>
         <source>Mostly correct</source>
         <translation>Beinahe korrekt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="183"/>
-        <location filename="../../romstatusexport.cpp" line="218"/>
-        <location filename="../../romstatusexport.cpp" line="509"/>
-        <location filename="../../romstatusexport.cpp" line="747"/>
+        <location filename="../../romstatusexport.cpp" line="222"/>
+        <location filename="../../romstatusexport.cpp" line="517"/>
+        <location filename="../../romstatusexport.cpp" line="759"/>
         <source>Incorrect</source>
         <translation>Inkorrekt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="184"/>
-        <location filename="../../romstatusexport.cpp" line="219"/>
-        <location filename="../../romstatusexport.cpp" line="510"/>
-        <location filename="../../romstatusexport.cpp" line="749"/>
+        <location filename="../../romstatusexport.cpp" line="223"/>
+        <location filename="../../romstatusexport.cpp" line="518"/>
+        <location filename="../../romstatusexport.cpp" line="761"/>
         <source>Not found</source>
         <translation>Nicht gefunden</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="185"/>
-        <location filename="../../romstatusexport.cpp" line="220"/>
-        <location filename="../../romstatusexport.cpp" line="511"/>
-        <location filename="../../romstatusexport.cpp" line="751"/>
+        <location filename="../../romstatusexport.cpp" line="224"/>
+        <location filename="../../romstatusexport.cpp" line="519"/>
+        <location filename="../../romstatusexport.cpp" line="763"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="196"/>
-        <location filename="../../romstatusexport.cpp" line="488"/>
-        <location filename="../../romstatusexport.cpp" line="711"/>
+        <location filename="../../romstatusexport.cpp" line="492"/>
+        <location filename="../../romstatusexport.cpp" line="719"/>
         <source>SDLMAME</source>
         <translation>SDLMAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="198"/>
-        <location filename="../../romstatusexport.cpp" line="490"/>
-        <location filename="../../romstatusexport.cpp" line="713"/>
+        <location filename="../../romstatusexport.cpp" line="494"/>
+        <location filename="../../romstatusexport.cpp" line="721"/>
         <source>SDLMESS</source>
         <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
-        <location filename="../../romstatusexport.cpp" line="492"/>
-        <location filename="../../romstatusexport.cpp" line="715"/>
+        <location filename="../../romstatusexport.cpp" line="496"/>
+        <location filename="../../romstatusexport.cpp" line="723"/>
+        <source>SDLUME</source>
+        <translation>SDLUME</translation>
+    </message>
+    <message>
+        <location filename="../../romstatusexport.cpp" line="202"/>
+        <location filename="../../romstatusexport.cpp" line="498"/>
+        <location filename="../../romstatusexport.cpp" line="725"/>
         <source>MAME</source>
         <translation>MAME</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="202"/>
-        <location filename="../../romstatusexport.cpp" line="494"/>
-        <location filename="../../romstatusexport.cpp" line="717"/>
+        <location filename="../../romstatusexport.cpp" line="204"/>
+        <location filename="../../romstatusexport.cpp" line="500"/>
+        <location filename="../../romstatusexport.cpp" line="727"/>
         <source>MESS</source>
         <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="223"/>
-        <location filename="../../romstatusexport.cpp" line="234"/>
-        <location filename="../../romstatusexport.cpp" line="344"/>
-        <location filename="../../romstatusexport.cpp" line="565"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="238"/>
+        <location filename="../../romstatusexport.cpp" line="348"/>
+        <location filename="../../romstatusexport.cpp" line="573"/>
+        <location filename="../../romstatusexport.cpp" line="818"/>
         <source>ROM types</source>
         <translation>ROM Typen</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="427"/>
+        <location filename="../../romstatusexport.cpp" line="431"/>
         <source>done (exporting ROM status in ASCII format to clipboard)</source>
         <translation>Fertig (Exportiere ROM Status im ASCII Format zur Zwischenablage)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="430"/>
+        <location filename="../../romstatusexport.cpp" line="434"/>
         <source>done (exporting ROM status in ASCII format to &apos;%1&apos;)</source>
         <translation>Fertig (Exportiere ROM Status im ASCII Format nach &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="952"/>
+        <location filename="../../romstatusexport.cpp" line="964"/>
         <source>gamelist is not ready, please wait</source>
         <translation>Spieleliste ist nicht bereit, bitte warten</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="230"/>
-        <location filename="../../romstatusexport.cpp" line="339"/>
-        <location filename="../../romstatusexport.cpp" line="560"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="234"/>
+        <location filename="../../romstatusexport.cpp" line="343"/>
+        <location filename="../../romstatusexport.cpp" line="568"/>
+        <location filename="../../romstatusexport.cpp" line="818"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="231"/>
-        <location filename="../../romstatusexport.cpp" line="340"/>
-        <location filename="../../romstatusexport.cpp" line="561"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="235"/>
+        <location filename="../../romstatusexport.cpp" line="344"/>
+        <location filename="../../romstatusexport.cpp" line="569"/>
+        <location filename="../../romstatusexport.cpp" line="818"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="229"/>
-        <location filename="../../romstatusexport.cpp" line="341"/>
-        <location filename="../../romstatusexport.cpp" line="562"/>
-        <location filename="../../romstatusexport.cpp" line="806"/>
+        <location filename="../../romstatusexport.cpp" line="233"/>
+        <location filename="../../romstatusexport.cpp" line="345"/>
+        <location filename="../../romstatusexport.cpp" line="570"/>
+        <location filename="../../romstatusexport.cpp" line="818"/>
         <source>Description</source>
         <translation>Beschreibung</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="250"/>
-        <location filename="../../romstatusexport.cpp" line="376"/>
-        <location filename="../../romstatusexport.cpp" line="585"/>
-        <location filename="../../romstatusexport.cpp" line="828"/>
+        <location filename="../../romstatusexport.cpp" line="254"/>
+        <location filename="../../romstatusexport.cpp" line="380"/>
+        <location filename="../../romstatusexport.cpp" line="593"/>
+        <location filename="../../romstatusexport.cpp" line="840"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="257"/>
-        <location filename="../../romstatusexport.cpp" line="380"/>
-        <location filename="../../romstatusexport.cpp" line="596"/>
-        <location filename="../../romstatusexport.cpp" line="841"/>
+        <location filename="../../romstatusexport.cpp" line="261"/>
+        <location filename="../../romstatusexport.cpp" line="384"/>
+        <location filename="../../romstatusexport.cpp" line="604"/>
+        <location filename="../../romstatusexport.cpp" line="853"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="264"/>
-        <location filename="../../romstatusexport.cpp" line="384"/>
-        <location filename="../../romstatusexport.cpp" line="607"/>
-        <location filename="../../romstatusexport.cpp" line="854"/>
+        <location filename="../../romstatusexport.cpp" line="268"/>
+        <location filename="../../romstatusexport.cpp" line="388"/>
+        <location filename="../../romstatusexport.cpp" line="615"/>
+        <location filename="../../romstatusexport.cpp" line="866"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="271"/>
-        <location filename="../../romstatusexport.cpp" line="388"/>
-        <location filename="../../romstatusexport.cpp" line="618"/>
-        <location filename="../../romstatusexport.cpp" line="867"/>
+        <location filename="../../romstatusexport.cpp" line="275"/>
+        <location filename="../../romstatusexport.cpp" line="392"/>
+        <location filename="../../romstatusexport.cpp" line="626"/>
+        <location filename="../../romstatusexport.cpp" line="879"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="227"/>
+        <location filename="../../romstatusexport.cpp" line="231"/>
         <source>sorting, filtering and analyzing export data</source>
         <translation>Sortiere, filtere und analysiere Export-Daten</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="180"/>
-        <location filename="../../romstatusexport.cpp" line="215"/>
-        <location filename="../../romstatusexport.cpp" line="506"/>
-        <location filename="../../romstatusexport.cpp" line="741"/>
+        <location filename="../../romstatusexport.cpp" line="219"/>
+        <location filename="../../romstatusexport.cpp" line="514"/>
+        <location filename="../../romstatusexport.cpp" line="753"/>
         <source>Total sets</source>
         <translation>Sets gesamt</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="336"/>
+        <location filename="../../romstatusexport.cpp" line="206"/>
+        <location filename="../../romstatusexport.cpp" line="502"/>
+        <location filename="../../romstatusexport.cpp" line="729"/>
+        <source>UME</source>
+        <translation>UME</translation>
+    </message>
+    <message>
+        <location filename="../../romstatusexport.cpp" line="340"/>
         <source>done (sorting, filtering and analyzing export data)</source>
         <translation>Fertig (Sortiere, filtere und analysiere Export-Daten)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="337"/>
-        <location filename="../../romstatusexport.cpp" line="558"/>
-        <location filename="../../romstatusexport.cpp" line="802"/>
+        <location filename="../../romstatusexport.cpp" line="341"/>
+        <location filename="../../romstatusexport.cpp" line="566"/>
+        <location filename="../../romstatusexport.cpp" line="814"/>
         <source>writing export data</source>
         <translation>Schreibe Export-Daten</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="423"/>
-        <location filename="../../romstatusexport.cpp" line="641"/>
-        <location filename="../../romstatusexport.cpp" line="895"/>
+        <location filename="../../romstatusexport.cpp" line="427"/>
+        <location filename="../../romstatusexport.cpp" line="649"/>
+        <location filename="../../romstatusexport.cpp" line="907"/>
         <source>done (writing export data)</source>
         <translation>Fertig (Schreibe Export-Daten)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="464"/>
+        <location filename="../../romstatusexport.cpp" line="468"/>
         <source>exporting ROM status in CSV format to &apos;%1&apos;</source>
         <translation>Exportiere ROM Status im CSV Format nach &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="466"/>
+        <location filename="../../romstatusexport.cpp" line="470"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
         <translation>WARNUNG: kann CSV Export Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="472"/>
+        <location filename="../../romstatusexport.cpp" line="476"/>
         <source>exporting ROM status in CSV format to clipboard</source>
         <translation>Exportiere ROM Status im CSV Format zur Zwischenablage</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="517"/>
-        <location filename="../../romstatusexport.cpp" line="761"/>
+        <location filename="../../romstatusexport.cpp" line="525"/>
+        <location filename="../../romstatusexport.cpp" line="773"/>
         <source>sorting and filtering export data</source>
         <translation>Sortiere und filtere Export-Daten</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="645"/>
+        <location filename="../../romstatusexport.cpp" line="653"/>
         <source>done (exporting ROM status in CSV format to clipboard)</source>
         <translation>Fertig (Exportiere ROM Status im CSV Format zur Zwischenablage)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="648"/>
+        <location filename="../../romstatusexport.cpp" line="656"/>
         <source>done (exporting ROM status in CSV format to &apos;%1&apos;)</source>
         <translation>Fertig (Exportiere ROM Status im CSV Format nach &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="193"/>
         <location filename="../../romstatusexport.cpp" line="194"/>
-        <location filename="../../romstatusexport.cpp" line="486"/>
-        <location filename="../../romstatusexport.cpp" line="705"/>
-        <location filename="../../romstatusexport.cpp" line="721"/>
+        <location filename="../../romstatusexport.cpp" line="490"/>
+        <location filename="../../romstatusexport.cpp" line="713"/>
+        <location filename="../../romstatusexport.cpp" line="733"/>
         <source>ROM Status Export - created by QMC2 %1</source>
         <translation>ROM Status Export - erzeugt durch QMC2 %1</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="682"/>
+        <location filename="../../romstatusexport.cpp" line="690"/>
         <source>exporting ROM status in HTML format to &apos;%1&apos;</source>
         <translation>Exportiere ROM Status im HTNL Format nach &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="684"/>
+        <location filename="../../romstatusexport.cpp" line="692"/>
         <source>WARNING: can&apos;t open HTML export file &apos;%1&apos; for writing, please check permissions</source>
         <translation>WARNUNG: kann HTML Export Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="690"/>
+        <location filename="../../romstatusexport.cpp" line="698"/>
         <source>exporting ROM status in HTML format to clipboard</source>
         <translation>Exportiere ROM Status im HTML Format zur Zwischenablage</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="899"/>
+        <location filename="../../romstatusexport.cpp" line="911"/>
         <source>done (exporting ROM status in HTML format to clipboard)</source>
         <translation>Fertig (Exportiere ROM Status im HTML Format zur Zwischenablage)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="902"/>
+        <location filename="../../romstatusexport.cpp" line="914"/>
         <source>done (exporting ROM status in HTML format to &apos;%1&apos;)</source>
         <translation>Fertig (Exportiere ROM Status im HTML Format nach &apos;%1&apos;)</translation>
     </message>
@@ -16408,24 +16419,24 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Linienbreite des Rahmens von Tabellen (0 = kein Rahmen)</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="213"/>
-        <location filename="../../romstatusexport.cpp" line="214"/>
-        <location filename="../../romstatusexport.cpp" line="505"/>
-        <location filename="../../romstatusexport.cpp" line="737"/>
+        <location filename="../../romstatusexport.cpp" line="217"/>
+        <location filename="../../romstatusexport.cpp" line="218"/>
+        <location filename="../../romstatusexport.cpp" line="513"/>
+        <location filename="../../romstatusexport.cpp" line="749"/>
         <source>Overall ROM Status</source>
         <translation>Gesamt ROM Status</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="223"/>
-        <location filename="../../romstatusexport.cpp" line="224"/>
-        <location filename="../../romstatusexport.cpp" line="514"/>
-        <location filename="../../romstatusexport.cpp" line="757"/>
+        <location filename="../../romstatusexport.cpp" line="227"/>
+        <location filename="../../romstatusexport.cpp" line="228"/>
+        <location filename="../../romstatusexport.cpp" line="522"/>
+        <location filename="../../romstatusexport.cpp" line="769"/>
         <source>Detailed ROM Status</source>
         <translation>Detaillierter ROM Status</translation>
     </message>
     <message>
-        <location filename="../../romstatusexport.cpp" line="557"/>
-        <location filename="../../romstatusexport.cpp" line="801"/>
+        <location filename="../../romstatusexport.cpp" line="565"/>
+        <location filename="../../romstatusexport.cpp" line="813"/>
         <source>done (sorting and filtering export data)</source>
         <translation>Fertig (Sortiere und filtere Export-Daten)</translation>
     </message>
@@ -17677,29 +17688,34 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>VideoItemWidget</name>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="173"/>
+        <location filename="../../videoitemwidget.cpp" line="182"/>
+        <source>Path:</source>
+        <translation>Pfad:</translation>
+    </message>
+    <message>
+        <location filename="../../videoitemwidget.cpp" line="184"/>
         <source>Title:</source>
         <translation>Titel:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="178"/>
-        <location filename="../../videoitemwidget.cpp" line="180"/>
+        <location filename="../../videoitemwidget.cpp" line="189"/>
+        <location filename="../../videoitemwidget.cpp" line="191"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="178"/>
+        <location filename="../../videoitemwidget.cpp" line="189"/>
         <source>Open author URL with the default browser</source>
         <translation>Home-URL des Autors mit Standard-Browser öffnen</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="186"/>
+        <location filename="../../videoitemwidget.cpp" line="197"/>
         <source>Open video URL with the default browser</source>
         <translation>Video URL mit Standard-Browser öffnen</translation>
     </message>
     <message>
-        <location filename="../../videoitemwidget.cpp" line="186"/>
-        <location filename="../../videoitemwidget.cpp" line="188"/>
+        <location filename="../../videoitemwidget.cpp" line="197"/>
+        <location filename="../../videoitemwidget.cpp" line="199"/>
         <source>Video:</source>
         <translation>Video:</translation>
     </message>
@@ -17986,49 +18002,49 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="203"/>
-        <location filename="../../youtubevideoplayer.cpp" line="83"/>
+        <location filename="../../youtubevideoplayer.cpp" line="84"/>
         <source>FLV 240P</source>
         <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="212"/>
-        <location filename="../../youtubevideoplayer.cpp" line="84"/>
+        <location filename="../../youtubevideoplayer.cpp" line="85"/>
         <source>FLV 360P</source>
         <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="221"/>
-        <location filename="../../youtubevideoplayer.cpp" line="85"/>
+        <location filename="../../youtubevideoplayer.cpp" line="86"/>
         <source>MP4 360P</source>
         <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="230"/>
-        <location filename="../../youtubevideoplayer.cpp" line="86"/>
+        <location filename="../../youtubevideoplayer.cpp" line="87"/>
         <source>FLV 480P</source>
         <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="239"/>
-        <location filename="../../youtubevideoplayer.cpp" line="87"/>
+        <location filename="../../youtubevideoplayer.cpp" line="88"/>
         <source>MP4 720P</source>
         <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="248"/>
-        <location filename="../../youtubevideoplayer.cpp" line="88"/>
+        <location filename="../../youtubevideoplayer.cpp" line="89"/>
         <source>MP4 1080P</source>
         <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="257"/>
-        <location filename="../../youtubevideoplayer.cpp" line="89"/>
+        <location filename="../../youtubevideoplayer.cpp" line="90"/>
         <source>MP4 3072P</source>
         <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="275"/>
-        <location filename="../../youtubevideoplayer.cpp" line="148"/>
+        <location filename="../../youtubevideoplayer.cpp" line="155"/>
         <source>Start / pause / resume video playback</source>
         <translation>Video Wiedergabe starten / pausieren / fortsetzen</translation>
     </message>
@@ -18083,227 +18099,250 @@ p, li { white-space: pre-wrap; }
         <translation>Suchzeichenkette vorschlagen (gedrückt halten für Menü)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="65"/>
+        <location filename="../../youtubevideoplayer.cpp" line="66"/>
         <source>Mute / unmute audio output</source>
         <translation>Audio-Ausgabe stummschalten / aktivieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="100"/>
+        <location filename="../../youtubevideoplayer.cpp" line="101"/>
         <source>Video progress</source>
         <translation>Video-Fortschrittsanzeige</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="107"/>
-        <location filename="../../youtubevideoplayer.cpp" line="773"/>
-        <location filename="../../youtubevideoplayer.cpp" line="797"/>
-        <location filename="../../youtubevideoplayer.cpp" line="817"/>
-        <location filename="../../youtubevideoplayer.cpp" line="866"/>
-        <location filename="../../youtubevideoplayer.cpp" line="884"/>
+        <location filename="../../youtubevideoplayer.cpp" line="108"/>
+        <location filename="../../youtubevideoplayer.cpp" line="863"/>
+        <location filename="../../youtubevideoplayer.cpp" line="887"/>
+        <location filename="../../youtubevideoplayer.cpp" line="907"/>
+        <location filename="../../youtubevideoplayer.cpp" line="956"/>
+        <location filename="../../youtubevideoplayer.cpp" line="974"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Puffer-Füllstand: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="114"/>
-        <location filename="../../youtubevideoplayer.cpp" line="190"/>
+        <location filename="../../youtubevideoplayer.cpp" line="115"/>
+        <location filename="../../youtubevideoplayer.cpp" line="203"/>
         <source>Play this video</source>
         <translation>Dieses Video abspielen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="121"/>
-        <location filename="../../youtubevideoplayer.cpp" line="163"/>
-        <location filename="../../youtubevideoplayer.cpp" line="201"/>
+        <location filename="../../youtubevideoplayer.cpp" line="122"/>
+        <location filename="../../youtubevideoplayer.cpp" line="170"/>
+        <location filename="../../youtubevideoplayer.cpp" line="214"/>
         <source>Copy video URL</source>
         <translation>Video-URL kopieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="127"/>
-        <location filename="../../youtubevideoplayer.cpp" line="169"/>
-        <location filename="../../youtubevideoplayer.cpp" line="206"/>
+        <location filename="../../youtubevideoplayer.cpp" line="128"/>
+        <location filename="../../youtubevideoplayer.cpp" line="176"/>
+        <location filename="../../youtubevideoplayer.cpp" line="219"/>
         <source>Copy author URL</source>
         <translation>Home-URL des Autors kopieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="133"/>
-        <location filename="../../youtubevideoplayer.cpp" line="175"/>
+        <location filename="../../youtubevideoplayer.cpp" line="134"/>
+        <location filename="../../youtubevideoplayer.cpp" line="182"/>
         <source>Paste video URL</source>
         <translation>Video-URL einfügen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="140"/>
+        <location filename="../../youtubevideoplayer.cpp" line="141"/>
+        <location filename="../../youtubevideoplayer.cpp" line="189"/>
+        <source>Local movie file...</source>
+        <translation>Lokale Video Datei...</translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="147"/>
         <source>Remove selected videos</source>
         <translation>Ausgewählte Videos entfernen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="156"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1336"/>
+        <location filename="../../youtubevideoplayer.cpp" line="163"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1434"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Vollbild (Rückkehr mit Umschalt-Taste)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="182"/>
         <location filename="../../youtubevideoplayer.cpp" line="195"/>
+        <location filename="../../youtubevideoplayer.cpp" line="208"/>
         <source>Attach this video</source>
         <translation>Dieses Video zuordnen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="213"/>
+        <location filename="../../youtubevideoplayer.cpp" line="226"/>
         <source>Auto-suggest a search pattern?</source>
         <translation>Suche-Zeichenkette automatisch vorschlagen?</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="214"/>
+        <location filename="../../youtubevideoplayer.cpp" line="227"/>
         <source>Auto-suggest</source>
         <translation>Autom. vorschlagen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="219"/>
+        <location filename="../../youtubevideoplayer.cpp" line="232"/>
         <source>Enter string to be appended</source>
         <translation>Angefügte Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="220"/>
+        <location filename="../../youtubevideoplayer.cpp" line="233"/>
         <source>Append...</source>
         <translation>Anhängen...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="230"/>
+        <location filename="../../youtubevideoplayer.cpp" line="243"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="340"/>
+        <location filename="../../youtubevideoplayer.cpp" line="353"/>
         <source>Appended string</source>
         <translation>Angehängte Zeichenkette</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="341"/>
+        <location filename="../../youtubevideoplayer.cpp" line="354"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
         <translation>Zeichenkette, die dem Vorschlag immer angehängt werden soll:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="603"/>
+        <location filename="../../youtubevideoplayer.cpp" line="531"/>
+        <location filename="../../youtubevideoplayer.cpp" line="543"/>
+        <source>All files (*)</source>
+        <translation>Alle Dateien (*)</translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="532"/>
+        <location filename="../../youtubevideoplayer.cpp" line="544"/>
+        <source>Choose movie file</source>
+        <translation>Lokale Video Datei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="678"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
         <translation>Vollbild-Modus -- %1 drücken, um in den Fenstermodus zurückzukehren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="605"/>
+        <location filename="../../youtubevideoplayer.cpp" line="680"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
         <translation>Vollbild-Modus -- Umschalttaste drücken, um in den Fenstermodus zurückzukehren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="629"/>
+        <location filename="../../youtubevideoplayer.cpp" line="709"/>
+        <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
+        <translation>Videospieler: die lokale Video Datei &apos;%1&apos; ist bereits zugeordnet, ignoriert</translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="713"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
         <translation>Videospieler: ein Video mit der ID &apos;%1&apos; ist bereits zugeordnet, ignoriert</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="798"/>
+        <location filename="../../youtubevideoplayer.cpp" line="888"/>
         <source>Buffering: %1%</source>
         <translation>Pufferung: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="819"/>
+        <location filename="../../youtubevideoplayer.cpp" line="909"/>
         <source>Loading</source>
         <translation>Lade Video-Stream</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="836"/>
+        <location filename="../../youtubevideoplayer.cpp" line="926"/>
         <source>Playing</source>
         <translation>Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="847"/>
+        <location filename="../../youtubevideoplayer.cpp" line="937"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="850"/>
+        <location filename="../../youtubevideoplayer.cpp" line="940"/>
         <source>video player: playback error: %1</source>
         <translation>Videospieler: Wiedergabe-Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="851"/>
+        <location filename="../../youtubevideoplayer.cpp" line="941"/>
         <source>Video playback error: %1</source>
         <translation>Wiedergabe-Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="931"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1021"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Ermittle Infos für Video ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1018"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1108"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>Videospieler: Video-Info Fehler: ID= &apos;%1&apos;, Status = &apos;%2&apos;, Fehler-Code = &apos;%3&apos;, Fehler-Text = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1019"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1126"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1506"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1109"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1216"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1604"/>
         <source>Video info error: %1</source>
         <translation>Video-Info Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1088"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1178"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>Videospieler: Video-Info Fehler: Zeitüberschreitung der Anfrage</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1089"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1179"/>
         <source>Video info error: timeout occurred</source>
         <translation>Video-Info Fehler: Zeitüberschreitung der Anfrage</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1125"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1215"/>
         <source>video player: video info error: %1</source>
         <translation>Videospieler: Video-Info Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1334"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1432"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Vollbild (Rückkehr mit %1)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1505"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1603"/>
         <source>video player: video image info error: %1</source>
         <translation>Videospieler: Videobild-Info Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1537"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1635"/>
         <source>video player: search request error: %1</source>
         <translation>Videospieler: Suchanfrage-Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1565"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1663"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>Videospieler: Suchanfrage-Fehler: kann XML Daten nicht parsen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1598"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1696"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>Videospieler: kann die Video ID nicht aus der Antwort URL &apos;%1&apos; ermitteln -- bitte Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1604"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1702"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>Videospieler: kann die erhaltenen Bilddaten nicht mit der Video ID &apos;%1&apos; assoziieren -- bitte Entwickler informieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1621"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1719"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>Videospieler: kann das Bild für Video ID &apos;%1&apos; nicht im YouTube Cache Verzeichnis &apos;%2&apos; abspeichern -- bitte Berechtigungen prüfen</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1623"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1721"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>Videospieler: kann das Bild für Video ID &apos;%1&apos; nicht abspeichern, da das YouTube Cache Verzeichnis &apos;%2&apos; nicht existiert -- bitte korrigieren</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1625"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1723"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>Videospieler: der Download des Bildes für Video ID &apos;%1&apos; ist fehlgeschlagen, da die erhaltenen Bilddaten nicht gültig sind</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1627"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1725"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>Videospieler: der Download des Bildes für Video ID &apos;%1&apos; ist fehlgeschlagen, Fehlertext = &apos;%2&apos;</translation>
     </message>

@@ -195,6 +195,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void adjustIconSizes();
 		void saveSettings();
 
+		void playMovieFile(QString &);
+		void attachMovieFile();
 		void playVideo(QString &);
 		void loadVideo(QString &);
 		void loadNullVideo();
@@ -233,6 +235,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void copyYouTubeUrl();
 		void pasteYouTubeUrl();
 		void playerPasteYouTubeUrl();
+		void playerLocalMovieFile();
 		void copySearchYouTubeUrl();
 		void copyAuthorUrl();
 		void copySearchAuthorUrl();
