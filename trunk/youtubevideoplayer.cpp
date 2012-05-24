@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QPixmapCache>
 #include <QImageReader>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QFile>
 #include <QDir>
@@ -137,6 +138,12 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(action, SIGNAL(triggered()), this, SLOT(pasteYouTubeUrl()));
 	avmActionPasteVideoUrl = action;
 	menuAttachedVideos->addSeparator();
+	s = tr("Local movie file...");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(attachMovieFile()));
+	menuAttachedVideos->addSeparator();
 	s = tr("Remove selected videos");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -178,6 +185,12 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playerPasteYouTubeUrl()));
 	videoMenuPasteVideoUrlAction = action;
+	menuVideoPlayer->addSeparator();
+	s = tr("Local movie file...");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(playerLocalMovieFile()));
 	menuVideoPlayer->addSeparator();
 	s = tr("Attach this video");
 	action = menuVideoPlayer->addAction(s);
@@ -374,16 +387,29 @@ void YouTubeVideoPlayer::playNextVideo()
 			case YOUTUBE_PLAYOMATIC_RANDOM: {
 					int index = qrand() % il.count();
 					VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[index]);
-					if ( checkBoxRepeat->isChecked() )
-						playVideo(viw->videoID);
-					else if ( !playedVideos.contains(viw->videoID) )
-						playVideo(viw->videoID);
-					else if ( playedVideos.count() < il.count() ) {
+					bool localFile = (viw->itemType == VIDEOITEM_TYPE_LOCAL_MOVIE);
+					QString vidCopy = viw->videoID;
+					if ( localFile )
+						vidCopy.remove(QRegExp("^\\#\\:"));
+					if ( checkBoxRepeat->isChecked() ) {
+						if ( localFile )
+							playMovieFile(vidCopy);
+						else
+							playVideo(viw->videoID);
+					} else if ( !playedVideos.contains(viw->videoID) ) {
+						if ( localFile )
+							playMovieFile(vidCopy);
+						else
+							playVideo(viw->videoID);
+					} else if ( playedVideos.count() < il.count() ) {
 						do {
 							index = qrand() % il.count();
 							viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[index]);
 						} while ( playedVideos.contains(viw->videoID) );
-						playVideo(viw->videoID);
+						if ( localFile )
+							playMovieFile(vidCopy);
+						else
+							playVideo(viw->videoID);
 					} else
 						videoPlayer->stop();
 				}
@@ -393,11 +419,21 @@ void YouTubeVideoPlayer::playNextVideo()
 					 if ( videoSeqNum > il.count() - 1 || videoSeqNum < 0 )
 						 videoSeqNum = 0;
 					 VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[videoSeqNum]);
-					 if ( checkBoxRepeat->isChecked() )
-						 playVideo(viw->videoID);
-					 else if ( !playedVideos.contains(viw->videoID) )
-						 playVideo(viw->videoID);
-					 else
+					 bool localFile = (viw->itemType == VIDEOITEM_TYPE_LOCAL_MOVIE);
+					 QString vidCopy = viw->videoID;
+					 if ( localFile )
+						 vidCopy.remove(QRegExp("^\\#\\:"));
+					 if ( checkBoxRepeat->isChecked() ) {
+						 if ( localFile )
+							 playMovieFile(vidCopy);
+						 else
+							 playVideo(viw->videoID);
+					 } else if ( !playedVideos.contains(viw->videoID) ) {
+						 if ( localFile )
+							 playMovieFile(vidCopy);
+						 else
+							 playVideo(viw->videoID);
+					 } else
 						 videoPlayer->stop();
 					 videoSeqNum++;
 				}
@@ -484,6 +520,45 @@ void YouTubeVideoPlayer::playerPasteYouTubeUrl()
 		return;
 
 	playVideo(videoID);
+}
+
+void YouTubeVideoPlayer::playerLocalMovieFile()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playerLocalMovieFile()");
+#endif
+	
+	QString filter = tr("All files (*)");
+	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter);
+	if ( !path.isNull() )
+		playMovieFile(path);
+}
+
+void YouTubeVideoPlayer::attachMovieFile()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachMovieFile()");
+#endif
+
+	QString filter = tr("All files (*)");
+	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter);
+	if ( !path.isNull() )
+		attachVideo("#:" + path, "", "");
+}
+
+void YouTubeVideoPlayer::playMovieFile(QString &filePath)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::playMovieFile(QString &filePath = %1)").arg(filePath));
+#endif
+
+	QFileInfo fi(filePath);
+	if ( fi.exists() ) {
+		currentVideoID = "#:" + filePath;
+		loadOnly = false;
+		videoPlayer->play(Phonon::MediaSource(filePath));
+		if ( !playedVideos.contains(currentVideoID) ) playedVideos << currentVideoID;
+	}
 }
 
 void YouTubeVideoPlayer::copyAuthorUrl()
@@ -625,7 +700,16 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideo(QString id = '%1', QString title = '%2', QString author = '%3')").arg(id).arg(title).arg(author));
 #endif
 
-	if ( viwMap.keys().contains(id) ) {
+	int itemType = VIDEOITEM_TYPE_YOUTUBE;
+
+	if ( id.startsWith("#:") ) {
+		itemType = VIDEOITEM_TYPE_LOCAL_MOVIE;
+		if ( viwMap.keys().contains(id) ) {
+			id.remove(QRegExp("^\\#\\:"));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: the local movie file '%1' is already attached, ignored").arg(id));
+			return;
+		}
+	} else if ( viwMap.keys().contains(id) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: a video with the ID '%1' is already attached, ignored").arg(id));
 		return;
 	}
@@ -650,9 +734,9 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 	listWidgetItem->setSizeHint(size);
 	VideoItemWidget *videoItemWidget;
 	if ( pixmapFound )
-		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, VIDEOITEM_TYPE_YOUTUBE, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, itemType, this, this);
 	else
-		videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, itemType, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
 	qmc2YouTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
@@ -665,7 +749,9 @@ void YouTubeVideoPlayer::attachCurrentVideo()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachCurrentVideo()");
 #endif
 
-	if ( !currentVideoID.isEmpty() && !currentVideoTitle.isEmpty() && !currentVideoAuthor.isEmpty() ) {
+	if ( currentVideoID.startsWith("#:") ) {
+		attachVideo(currentVideoID, "", "");
+	} else if ( !currentVideoID.isEmpty() && !currentVideoTitle.isEmpty() && !currentVideoAuthor.isEmpty() ) {
 		attachVideo(currentVideoID, currentVideoTitle, currentVideoAuthor);
 		QTimer::singleShot(10, this, SLOT(updateAttachedVideoInfoImages()));
 	}
@@ -700,11 +786,15 @@ void YouTubeVideoPlayer::init()
 
 	QStringList attachedVideos = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList();
 	foreach(QString vid, attachedVideos ) {
-		if ( qmc2YouTubeVideoInfoMap.contains(vid) ) {
-			YouTubeVideoInfo vi = qmc2YouTubeVideoInfoMap[vid];
-			attachVideo(vid, vi.title, vi.author);
-		} else
-			attachVideoById(vid); // this is more expensive
+		if ( vid.startsWith("#:" ) ) {
+			attachVideo(vid, "", "");
+		} else {
+			if ( qmc2YouTubeVideoInfoMap.contains(vid) ) {
+				YouTubeVideoInfo vi = qmc2YouTubeVideoInfoMap[vid];
+				attachVideo(vid, vi.title, vi.author);
+			} else
+				attachVideoById(vid); // this is more expensive
+		}
 	}
 
 	if ( forcedExit )
@@ -1226,10 +1316,20 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 	VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 	if ( viw ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
-		if ( currentVideoID == viw->videoID && !videoPlayer->isPlaying() )
-			videoPlayer->play();
-		else if ( currentVideoID != viw->videoID || !videoPlayer->isPlaying() )
-			playVideo(viw->videoID);
+		if ( viw->itemType == VIDEOITEM_TYPE_LOCAL_MOVIE ) {
+			if ( currentVideoID == viw->videoID && !videoPlayer->isPlaying() )
+				videoPlayer->play();
+			else {
+				QString vidCopy = viw->videoID;
+				vidCopy.remove(QRegExp("^\\#\\:"));
+				playMovieFile(vidCopy);
+			}
+		} else {
+			if ( currentVideoID == viw->videoID && !videoPlayer->isPlaying() )
+				videoPlayer->play();
+			else if ( currentVideoID != viw->videoID || !videoPlayer->isPlaying() )
+				playVideo(viw->videoID);
+		}
 	}
 }
 
@@ -1274,14 +1374,12 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 			menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
 			menuAttachedVideos->show();
 		} else {
-			if ( avmActionPasteVideoUrl->isEnabled() ) {
-				avmActionPlayVideo->setEnabled(false);
-				avmActionCopyVideoUrl->setEnabled(false);
-				avmActionCopyAuthorUrl->setEnabled(false);
-				avmActionRemoveVideos->setEnabled(false);
-				menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
-				menuAttachedVideos->show();
-			}
+			avmActionPlayVideo->setEnabled(false);
+			avmActionCopyVideoUrl->setEnabled(false);
+			avmActionCopyAuthorUrl->setEnabled(false);
+			avmActionRemoveVideos->setEnabled(false);
+			menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
+			menuAttachedVideos->show();
 		}
 	}
 }
