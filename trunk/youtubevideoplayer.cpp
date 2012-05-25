@@ -125,6 +125,12 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyYouTubeUrl()));
 	avmActionCopyVideoUrl = action;
+	s = tr("Copy video URL (no country filter)");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyYouTubeUrlAlt()));
+	avmActionCopyVideoUrlAlt = action;
 	s = tr("Copy author URL");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -173,6 +179,12 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	videoMenuCopyVideoUrlAction = action;
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentYouTubeUrl()));
+	s = tr("Copy video URL (no country filter)");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	videoMenuCopyVideoUrlAltAction = action;
+	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentYouTubeUrlAlt()));
 	s = tr("Copy author URL");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -216,6 +228,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copySearchYouTubeUrl()));
+	s = tr("Copy video URL (no country filter)");
+	action = menuSearchResults->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copySearchYouTubeUrlAlt()));
 	s = tr("Copy author URL");
 	action = menuSearchResults->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -487,6 +504,27 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 	}
 }
 
+void YouTubeVideoPlayer::copyYouTubeUrlAlt()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyYouTubeUrlAlt()");
+#endif
+
+	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
+	if ( item ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoID.isEmpty() ) {
+				if ( !viw->videoUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
+					url.replace("$VIDEO_ID$", viw->videoID);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
 void YouTubeVideoPlayer::pasteYouTubeUrl()
 {
 	QString videoID = qApp->clipboard()->text();
@@ -603,6 +641,27 @@ void YouTubeVideoPlayer::copySearchYouTubeUrl()
 	}
 }
 
+void YouTubeVideoPlayer::copySearchYouTubeUrlAlt()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchYouTubeUrlAlt()");
+#endif
+
+	QListWidgetItem *item = listWidgetSearchResults->currentItem();
+	if ( item ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoID.isEmpty() ) {
+				if ( !viw->videoUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
+					url.replace("$VIDEO_ID$", viw->videoID);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
 void YouTubeVideoPlayer::copySearchAuthorUrl()
 {
 #ifdef QMC2_DEBUG
@@ -632,6 +691,19 @@ void YouTubeVideoPlayer::copyCurrentYouTubeUrl()
 
 	if ( !currentVideoID.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
+		url.replace("$VIDEO_ID$", currentVideoID);
+		qApp->clipboard()->setText(url);
+	}
+}
+
+void YouTubeVideoPlayer::copyCurrentYouTubeUrlAlt()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentYouTubeUrlAlt()");
+#endif
+
+	if ( !currentVideoID.isEmpty() ) {
+		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
 		url.replace("$VIDEO_ID$", currentVideoID);
 		qApp->clipboard()->setText(url);
 	}
@@ -1366,21 +1438,30 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
 			w = (QWidget *)sender();
 	if ( w && menuAttachedVideos ) {
-		if ( listWidgetAttachedVideos->itemAt(p) ) {
-			avmActionPlayVideo->setEnabled(true);
-			avmActionCopyVideoUrl->setEnabled(true);
-			avmActionCopyAuthorUrl->setEnabled(true);
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(listWidgetAttachedVideos->itemAt(p));
+		if ( w->objectName() == "QMC2_VIDEO_TITLE" )
+			viw = (VideoItemWidget *)w->parentWidget();
+		if ( viw ) {
 			avmActionRemoveVideos->setEnabled(true);
-			menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
-			menuAttachedVideos->show();
+			avmActionPlayVideo->setEnabled(true);
+			if ( viw->itemType == VIDEOITEM_TYPE_YOUTUBE ) {
+				avmActionCopyVideoUrl->setEnabled(true);
+				avmActionCopyVideoUrlAlt->setEnabled(true);
+				avmActionCopyAuthorUrl->setEnabled(true);
+			} else {
+				avmActionCopyVideoUrl->setEnabled(false);
+				avmActionCopyVideoUrlAlt->setEnabled(false);
+				avmActionCopyAuthorUrl->setEnabled(false);
+			}
 		} else {
 			avmActionPlayVideo->setEnabled(false);
 			avmActionCopyVideoUrl->setEnabled(false);
+			avmActionCopyVideoUrlAlt->setEnabled(false);
 			avmActionCopyAuthorUrl->setEnabled(false);
 			avmActionRemoveVideos->setEnabled(false);
-			menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
-			menuAttachedVideos->show();
 		}
+		menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
+		menuAttachedVideos->show();
 	}
 }
 
@@ -1418,13 +1499,21 @@ void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint 
 		if ( currentVideoID.isEmpty() ) {
 			videoMenuPlayPauseAction->setEnabled(false);
 			videoMenuCopyVideoUrlAction->setEnabled(false);
+			videoMenuCopyVideoUrlAltAction->setEnabled(false);
 			videoMenuCopyAuthorUrlAction->setEnabled(false);
 			videoMenuAttachVideoAction->setEnabled(false);
 		} else {
 			videoMenuPlayPauseAction->setEnabled(true);
-			videoMenuCopyVideoUrlAction->setEnabled(true);
-			videoMenuCopyAuthorUrlAction->setEnabled(true);
 			videoMenuAttachVideoAction->setEnabled(true);
+			if ( currentVideoID.startsWith("#:") ) {
+				videoMenuCopyVideoUrlAction->setEnabled(false);
+				videoMenuCopyVideoUrlAltAction->setEnabled(false);
+				videoMenuCopyAuthorUrlAction->setEnabled(false);
+			} else {
+				videoMenuCopyVideoUrlAction->setEnabled(true);
+				videoMenuCopyVideoUrlAltAction->setEnabled(true);
+				videoMenuCopyAuthorUrlAction->setEnabled(true);
+			}
 		}
 
 		QString keySeq = qmc2CustomShortcutMap["F11"];
