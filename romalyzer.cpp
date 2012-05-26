@@ -53,14 +53,15 @@ QCache<QString, int> romalyzerXmlGamePositionCache;
   INFO: How MAME searches for ROMs & CHDs of a game
 
   <rompath> = <first_rompath>
-  for all ROM and CHD <file>'s {
-    1) try <rompath>/<game>/<file> - if okay skip to 6)
-    2) try <file> from <rompath1>/<game>.zip - if okay skip to 6)
-    3) if more rompaths exists, retry 1) and 2) for <next_rompath>...
-    4) if a <merge> exists, retry 1), 2) and 3) for <romof>/<merge> instead of <game>/<file>
-    5) <file> was not found - stop
-    6) load <file> and check CRC
-    7) ...
+  foreach <file> {
+    1) try <rompath>/<game>/<file> - if okay skip to 7)
+    2) try <file> from <rompath>/<game>.zip - if okay skip to 7)
+    3) if more <rompaths> exists, retry 1) and 2) for <rompath> = <next_rompath>
+    4a) if a <merge> exists, retry 1), 2) and 3) for <romof>/<merge> instead of <game>/<file>
+    4b) if <merge> is empty, retry 1), 2) and 3) for <romof>/<file> instead of <game>/<file>
+    6) <file> was not found - stop
+    7) load <file> and check CRC
+    8) ...
   }
 
   Backward engineering powered by strace :)! 
