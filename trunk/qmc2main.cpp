@@ -3775,6 +3775,21 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  break;
   }
 
+  // depending on the codec, an unused YT widget may still cause load on the system, so we destroy it when it's no longer required...
+  if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_YOUTUBE_INDEX ) {
+	  if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
+		  qmc2YouTubeWidget->saveSettings();
+		  qmc2YouTubeWidget->forcedExit = true;
+		  if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
+			  qmc2YouTubeWidget->videoPlayer->stop();
+		  QLayout *vbl = tabYouTube->layout();
+		  if ( vbl ) delete vbl;
+		  qmc2YouTubeWidget->close();
+		  delete qmc2YouTubeWidget;
+		  qmc2YouTubeWidget = NULL;
+	  }
+  }
+
   int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
 #if defined(QMC2_YOUTUBE_ENABLED)
