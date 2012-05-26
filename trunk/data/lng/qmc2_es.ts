@@ -2766,12 +2766,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>good</source>
-        <translation>bien</translation>
+        <translation>bueno</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>bad</source>
-        <translation>mal</translation>
+        <translation>malo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
@@ -10923,7 +10923,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2365"/>
         <source>No SW snaps for visible details</source>
-        <translation>Sin instantánead de SW para los detalles visibles</translation>
+        <translation>Sin instantánea de SW para los detalles visibles</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2378"/>
@@ -12607,7 +12607,7 @@ Use local game-settings, overwrite with global settings or don&apos;t apply?</so
         <location filename="../../options.cpp" line="1517"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local machine-settings, overwrite with global settings or don&apos;t apply?</source>
-        <translation>Se ha detectado una configuración de emulador específica de un máquina abierta.
+        <translation>Se ha detectado una configuración de emulador específica de una máquina abierta.
 ¿Usar la configuración de máquina local, sobrescribir con la configuración global o no aplicar?</translation>
     </message>
     <message>
@@ -16239,7 +16239,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="496"/>
         <location filename="../../romstatusexport.cpp" line="723"/>
         <source>SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="202"/>
@@ -16260,7 +16260,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="502"/>
         <location filename="../../romstatusexport.cpp" line="729"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="208"/>
@@ -17708,7 +17708,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../videoitemwidget.cpp" line="190"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="192"/>
@@ -18154,7 +18154,7 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../youtubevideoplayer.cpp" line="182"/>
         <location filename="../../youtubevideoplayer.cpp" line="231"/>
         <source>Copy video URL (no country filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver juegos por categoría (sin filtro de país)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="134"/>
@@ -18173,7 +18173,7 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../youtubevideoplayer.cpp" line="147"/>
         <location filename="../../youtubevideoplayer.cpp" line="201"/>
         <source>Local movie file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de película local...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="153"/>
@@ -18231,13 +18231,13 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../youtubevideoplayer.cpp" line="569"/>
         <location filename="../../youtubevideoplayer.cpp" line="581"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos los archivos (*)</translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="570"/>
         <location filename="../../youtubevideoplayer.cpp" line="582"/>
         <source>Choose movie file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de película</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="750"/>
@@ -18252,7 +18252,7 @@ Aunque puede que sean los restos de una caida previa.
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="781"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>reproductor de vídeo: el archivo de película local &apos;%1&apos; ya está agregado, ignorando</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="785"/>
