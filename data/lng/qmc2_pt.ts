@@ -195,12 +195,12 @@
     <message>
         <location filename="../../about.cpp" line="66"/>
         <source>Mac OS X 10.7</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Mac (unknown)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mac (desconhecido)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="184"/>
@@ -2459,7 +2459,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1120"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do UME dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1180"/>
@@ -2580,7 +2580,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1443"/>
         <source>exporting %1 UME configuration to %2</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando configuração do UME %1 para %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1494"/>
@@ -2595,7 +2595,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1498"/>
         <source>done (exporting %1 UME configuration to %2, elapsed time = %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando configuração do UME %1 para %2, tempo = %3)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1541"/>
@@ -2630,7 +2630,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1606"/>
         <source>importing %1 UME configuration from %2</source>
-        <translation type="unfinished"></translation>
+        <translation>importando configuração do UME %1 para %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1695"/>
@@ -2655,7 +2655,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1709"/>
         <source>done (importing %1 UME configuration from %2, elapsed time = %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (importando configuração do UME %1 para %2, tempo = %3)</translation>
     </message>
 </context>
 <context>
@@ -3016,7 +3016,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="488"/>
         <location filename="../../gamelist.cpp" line="602"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do UME dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="529"/>
@@ -3031,7 +3031,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="559"/>
         <source>FATAL: selected executable file is not UME</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: arquivo executável selecionado não é UME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="569"/>
@@ -3062,7 +3062,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="650"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid UME binary</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível determinar a versão do emulador, texto de identificação de tipo é &apos;%1&apos; -- por favor informar os desenvolvedores se você está certo de que este executável do UME é válido</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="706"/>
@@ -7103,13 +7103,13 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="490"/>
         <source>QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 para UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="491"/>
         <location filename="../../qmc2main.cpp" line="492"/>
         <source>Launch QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar o QMC2 para UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="570"/>
@@ -7189,7 +7189,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5831"/>
         <source>saving current game&apos;s device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando configurações de dispositivos do jogo atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5911"/>
@@ -7452,12 +7452,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="7359"/>
         <source>WARNING: can&apos;t create SDLUME output notifier FIFO, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível criar notificador FIFO de saída do UME, caminho = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7375"/>
         <source>SDLMAME output notifier FIFO created</source>
-        <translation>cridor notificador FIFO de saída do SDLMAME</translation>
+        <translation>criado notificador FIFO de saída do SDLMAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7379"/>
@@ -7479,13 +7479,13 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="7397"/>
         <source>SDLUME output notifier FIFO created</source>
-        <translation type="unfinished"></translation>
+        <translation>criado notificador FIFO de saída do SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7401"/>
         <location filename="../../qmc2main.cpp" line="7404"/>
         <source>WARNING: can&apos;t open SDLUME output notifier FIFO for reading, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir notificador FIFO de saída do SDLUME para leitura, caminho = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7483"/>
@@ -7515,7 +7515,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="7520"/>
         <location filename="../../qmc2main.cpp" line="7593"/>
         <source>unhandled UME output notification: game = %1, class = %2, what = %3, state = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>notificação de saída do UME não tratado: jogo = %1, classe = %2, o que = %3, estado = %4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9390"/>
@@ -9009,18 +9009,18 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3276"/>
         <source>QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 para SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3279"/>
         <location filename="../../qmc2main.ui" line="3282"/>
         <source>Launch QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar QMC2 para SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3285"/>
         <source>Ctrl+Alt+3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3296"/>
@@ -10229,7 +10229,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="388"/>
         <source>Launch QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar o QMC2 para UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="390"/>
@@ -10244,7 +10244,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="392"/>
         <source>Launch QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar QMC2 para SDLUME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="395"/>
@@ -11013,18 +11013,19 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2879"/>
         <source>Choose UME variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo executável da variante do UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2932"/>
         <source>UME variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos do variante do UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2933"/>
         <source>Specify command line arguments passed to the UME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique os argumentos de linha de comando passados para a variante do UME
+(vazio significa: &apos;use os mesmos argumentos os quais foram passados para nós&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3086"/>
@@ -12988,17 +12989,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4515"/>
         <source>UME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Exe da variante do UME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4528"/>
         <source>Specify the exe file for the UME variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique o arquivo exe para a variante do UME (deixe em branco quando todas as variantes estão instaladas no mesmo diretório)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4541"/>
         <source>Browse UME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar exe do variante do UME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4601"/>
@@ -13554,7 +13555,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../qmc2main.cpp" line="10297"/>
         <source>U.M.E. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10303"/>
@@ -13602,7 +13603,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../qmc2main.cpp" line="10355"/>
         <location filename="../../qmc2main.cpp" line="10356"/>
         <source>Export global UME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuração global do UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10360"/>
@@ -13620,7 +13621,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../qmc2main.cpp" line="10366"/>
         <location filename="../../qmc2main.cpp" line="10367"/>
         <source>Import global UME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuração global do UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10379"/>
@@ -13638,7 +13639,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../qmc2main.cpp" line="10383"/>
         <location filename="../../qmc2main.cpp" line="10393"/>
         <source>&lt;inipath&gt;/ume.ini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10385"/>
@@ -14459,7 +14460,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="890"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMAÇÃO: arquivo %1 &apos;%2&apos; tem um merge (&apos;%3&apos;) que não está no conjunto pai -- ignorado, mas deveria ser reportado aos desenvolvedores do UME como um possível bug no XML do driver</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1018"/>
@@ -15941,7 +15942,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="496"/>
         <location filename="../../romstatusexport.cpp" line="723"/>
         <source>SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="202"/>
@@ -15962,7 +15963,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="502"/>
         <location filename="../../romstatusexport.cpp" line="729"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="208"/>
@@ -17005,7 +17006,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="597"/>
         <source>ERROR: the file name for the UME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: o nome do arquivo para o cache da lista de software do UME está vazio -- por favor corrija o problema e recarregue a lista de jogos em seguida</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="614"/>
@@ -17030,7 +17031,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="627"/>
         <source>ERROR: can&apos;t open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do UME para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="719"/>
@@ -17075,12 +17076,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="969"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation>AVISO: o processo externo chamado para carregar as listas de software do MESS não terminaram corretamente -- código da saída = %1, estado de saída = %2</translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do MESS não terminou corretamente -- código da saída = %1, estado de saída = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="971"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do UME não terminou corretamente -- código da saída = %1, estado de saída = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="977"/>
@@ -17100,7 +17101,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1037"/>
         <source>WARNING: the currently selected UME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o emulador UME selecionado atualmente não suporta lista de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1053"/>
@@ -17115,7 +17116,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1057"/>
         <source>WARNING: the external process called to load the UME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do UME causou um erro -- Erro do Processo = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1368"/>
@@ -17708,7 +17709,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../videoitemwidget.cpp" line="190"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="192"/>
@@ -17748,7 +17749,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../welcome.cpp" line="41"/>
         <source>SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="43"/>
@@ -17763,7 +17764,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../welcome.cpp" line="50"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="52"/>
@@ -18154,7 +18155,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="182"/>
         <location filename="../../youtubevideoplayer.cpp" line="231"/>
         <source>Copy video URL (no country filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL do vídeo (sem filtro de país)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="134"/>
@@ -18173,7 +18174,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="147"/>
         <location filename="../../youtubevideoplayer.cpp" line="201"/>
         <source>Local movie file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de vídeo local...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="153"/>
@@ -18231,13 +18232,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="569"/>
         <location filename="../../youtubevideoplayer.cpp" line="581"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="570"/>
         <location filename="../../youtubevideoplayer.cpp" line="582"/>
         <source>Choose movie file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="750"/>
@@ -18252,7 +18253,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="781"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>video player: o arquivo de vídeo local &apos;%1&apos; ja está anexado, ignorado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="785"/>
