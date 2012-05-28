@@ -3775,6 +3775,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  break;
   }
 
+#if QMC2_USE_PHONON_API
   // depending on the codec, an unused YT widget may still cause load on the system, so we destroy it when it's no longer required...
   if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_YOUTUBE_INDEX ) {
 	  if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
@@ -3789,6 +3790,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  qmc2YouTubeWidget = NULL;
 	  }
   }
+#endif
 
   int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
