@@ -266,6 +266,9 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
+#if defined(QMC2_WIP_ENABLED)
+  qmc2Options->pushButtonCustomizeToolBar->setEnabled(enable);
+#endif
   for (int row = 0; row < qmc2Options->tableWidgetRegisteredEmulators->rowCount(); row++) {
 	  QWidget *w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
 	  if ( w ) w->setEnabled(enable);

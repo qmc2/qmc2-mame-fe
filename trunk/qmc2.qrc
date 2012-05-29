@@ -102,9 +102,11 @@
         <file>data/img/media_back.png</file>
         <file>data/img/media_fastbackward.png</file>
         <file>data/img/media_fastforward.png</file>
+        <file>data/img/media_lower_volume.png</file>
         <file>data/img/media_next.png</file>
         <file>data/img/media_pause.png</file>
         <file>data/img/media_play.png</file>
+        <file>data/img/media_raise_volume.png</file>
         <file>data/img/media_stop.png</file>
         <file>data/img/merge.png</file>
         <file>data/img/merge_nok.png</file>

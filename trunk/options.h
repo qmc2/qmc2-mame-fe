@@ -175,6 +175,7 @@ class Options : public QDialog, public Ui::Options
     void on_pushButtonRedefineKeySequence_clicked();
     void on_pushButtonResetShortcut_clicked();
     void on_pushButtonDetailSetup_clicked();
+    void on_pushButtonCustomizeToolBar_clicked();
     void on_toolButtonBrowseAdditionalEmulatorExecutable_clicked();
     void on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked();
     void on_toolButtonAddEmulator_clicked();
