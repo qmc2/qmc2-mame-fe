@@ -1151,6 +1151,8 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWCATEGORY_INDEX);
     }
   }
+  if ( qmc2ToolBarCustomizer )
+	  QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(refreshAvailableActions()));
 #elif defined(QMC2_EMUTYPE_MESS)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1));
   needReopenPreviewFile |= (config->value("MESS/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
@@ -1340,6 +1342,8 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWCATEGORY_INDEX);
     }
   }
+  if ( qmc2ToolBarCustomizer )
+	  QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(refreshAvailableActions()));
 #endif
 
   // Gamelist
