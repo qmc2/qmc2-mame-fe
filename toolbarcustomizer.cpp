@@ -17,7 +17,36 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 #endif
 
 	setupUi(this);
-	
+
+	foreach (QAction *action, qmc2MainWindow->toolbar->actions()) {
+		if ( action->isSeparator() )
+			defaultToolBarActions << "--";
+		else if ( action->isVisible() && !action->icon().isNull() )
+			defaultToolBarActions << action->objectName();
+	}
+	separatorAction = new QAction(this);
+	separatorAction->setSeparator(true);
+
+	QTimer::singleShot(0, this, SLOT(refreshAvailableActions()));
+}
+
+ToolBarCustomizer::~ToolBarCustomizer()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::~ToolBarCustomizer()");
+#endif
+
+}
+
+void ToolBarCustomizer::refreshAvailableActions()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::refreshAvailableActions()");
+#endif
+
+	listWidgetAvailableActions->clear();
+	availableToolBarActions.clear();
+	availableActionsByName.clear();
 	foreach (QAction *menuBarAction, qmc2MainWindow->menuBar()->actions()) {
 		foreach (QAction *action, menuBarAction->menu()->actions()) {
 			if ( action->isSeparator() || !action->isVisible() || action->icon().isNull() )
@@ -30,12 +59,14 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 					item->setText(subAction->statusTip());
 					item->setIcon(subAction->icon());
 					availableToolBarActions[item] = subAction;
+					availableActionsByName[subAction->objectName()] = subAction;
 				}
 			} else {
 				QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 				item->setText(action->statusTip());
 				item->setIcon(action->icon());
 				availableToolBarActions[item] = action;
+				availableActionsByName[action->objectName()] = action;
 			}
 		}
 	}
@@ -43,14 +74,34 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	item->setText(tr("Tool-bar search box"));
 	item->setIcon(QIcon(QString::fromUtf8(":/data/img/hint.png")));
 	availableToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
+	availableActionsByName[qmc2MainWindow->widgetActionToolbarSearch->objectName()] = qmc2MainWindow->widgetActionToolbarSearch;
+	QTimer::singleShot(0, this, SLOT(refreshActiveActions()));
 }
 
-ToolBarCustomizer::~ToolBarCustomizer()
+void ToolBarCustomizer::refreshActiveActions()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::~ToolBarCustomizer()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::refreshActiveActions()");
 #endif
 
+	listWidgetActiveActions->clear();
+	activeToolBarActions.clear();
+	QStringList activeActions = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolBarActions").toStringList();
+	if ( activeActions.isEmpty() )
+		activeActions = defaultToolBarActions;
+	foreach (QString actionName, activeActions) {
+		if ( actionName == "--" ) {
+			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
+			item->setText(tr("-- Separator --"));
+			activeToolBarActions[item] = separatorAction;
+		} else if ( availableActionsByName.contains(actionName) ) {
+			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
+			QAction *action = availableActionsByName[actionName];
+			item->setText(action->statusTip());
+			item->setIcon(action->icon());
+			activeToolBarActions[item] = action;
+		}
+	}
 }
 
 void ToolBarCustomizer::adjustIconSizes()
