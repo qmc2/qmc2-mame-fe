@@ -35,6 +35,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			demomode.ui \
 			audioeffects.ui \
 			customidsetup.ui \
+			toolbarcustomizer.ui \
 			arcade/arcadesetupdialog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
@@ -82,6 +83,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			audioeffects.cpp \
 			romdbmgr.cpp \
 			customidsetup.cpp \
+			toolbarcustomizer.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -154,6 +156,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			audioeffects.h \
 			romdbmgr.h \
 			customidsetup.h \
+			toolbarcustomizer.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

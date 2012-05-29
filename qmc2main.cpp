@@ -61,6 +61,7 @@
 #include "embedder.h"
 #include "demomode.h"
 #include "softwarelist.h"
+#include "toolbarcustomizer.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -114,6 +115,7 @@ SampleChecker *qmc2SampleChecker = NULL;
 ROMAlyzer *qmc2ROMAlyzer = NULL;
 ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 DetailSetup *qmc2DetailSetup = NULL;
+ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
 QWidget *qmc2DetailSetupParent = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
@@ -581,6 +583,8 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2MAWSCache.setMaxCost(QMC2_PROJECTMESS_CACHE_SIZE);
   actionLaunchQMC2UME->setVisible(false);
   setWindowTitle(tr("U.M.E. Catalog / Launcher II"));
+  actionAbout->setToolTip(tr("About U.M.E. Catalog / Launcher II"));
+  actionAbout->setStatusTip(tr("About U.M.E. Catalog / Launcher II"));
   actionClearMAWSCache->setText(tr("Clear ProjectMESS cache"));
   actionClearMAWSCache->setIconText(tr("Clear ProjectMESS cache"));
   actionClearMAWSCache->setToolTip(tr("Clear ProjectMESS cache"));
@@ -593,6 +597,8 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setVisible(false);
   actionDemoMode->setVisible(false);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
+  actionAbout->setToolTip(tr("About M.E.S.S. Catalog / Launcher II"));
+  actionAbout->setStatusTip(tr("About M.E.S.S. Catalog / Launcher II"));
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
   treeWidgetHierarchy->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Clones"));
   tabWidgetGamelist->setTabText(QMC2_GAMELIST_INDEX, tr("M&achine list"));
@@ -5953,6 +5959,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     log(QMC2_LOG_FRONTEND, tr("destroying detail setup"));
     qmc2DetailSetup->close();
     delete qmc2DetailSetup;
+  }
+  if ( qmc2ToolBarCustomizer ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying tool-bar customization"));
+    qmc2ToolBarCustomizer->close();
+    delete qmc2ToolBarCustomizer;
   }
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2DemoModeDialog ) {

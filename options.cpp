@@ -36,6 +36,7 @@
 #include "romstatusexport.h"
 #include "docbrowser.h"
 #include "detailsetup.h"
+#include "toolbarcustomizer.h"
 #include "mawsqdlsetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
@@ -129,6 +130,7 @@ extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
+extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern QWidget *qmc2DetailSetupParent;
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
@@ -187,6 +189,10 @@ Options::Options(QWidget *parent)
   config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
   setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED)
+  pushButtonCustomizeToolBar->setEnabled(false);
+#endif
 
 #if !defined(Q_WS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
@@ -805,6 +811,10 @@ void Options::apply()
   if ( qmc2DetailSetup )
     if ( qmc2DetailSetup->isVisible() )
       QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
+
+  if ( qmc2ToolBarCustomizer )
+    if ( qmc2ToolBarCustomizer->isVisible() )
+      QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(adjustIconSizes()));
 }
 
 void Options::on_pushButtonOk_clicked()
@@ -3665,6 +3675,18 @@ void Options::on_pushButtonDetailSetup_clicked()
 
   qmc2DetailSetupParent = this;
   qmc2MainWindow->on_menuTabWidgetGameDetail_Setup_activated();
+}
+
+void Options::on_pushButtonCustomizeToolBar_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonCustomizeToolBar_clicked()");
+#endif
+
+	if ( !qmc2ToolBarCustomizer )
+		qmc2ToolBarCustomizer = new ToolBarCustomizer(this);
+
+	qmc2ToolBarCustomizer->exec();
 }
 
 void Options::checkShortcuts()

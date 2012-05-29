@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
+    <width>500</width>
     <height>473</height>
    </rect>
   </property>
@@ -57,43 +57,13 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>515</width>
-                <height>599</height>
+                <width>451</width>
+                <height>601</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_99">
-                 <item row="0" column="0">
-                  <layout class="QHBoxLayout" name="layout5">
-                   <item>
-                    <widget class="QLabel" name="labelLanguagePic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/exit_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelLanguage">
-                     <property name="text">
-                      <string>Language</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
                  <item row="8" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxScaledPreview">
                    <property name="toolTip">
@@ -101,16 +71,6 @@
                    </property>
                    <property name="text">
                     <string>Scaled preview</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxSaveLayout">
-                   <property name="toolTip">
-                    <string>Save window layout at exit</string>
-                   </property>
-                   <property name="text">
-                    <string>Save layout</string>
                    </property>
                   </widget>
                  </item>
@@ -177,33 +137,33 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="6" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxSaveGameSelection">
+                 <item row="6" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxSaveLayout">
                    <property name="toolTip">
-                    <string>Save game selection on exit and before reloading the game list</string>
+                    <string>Save window layout at exit</string>
                    </property>
                    <property name="text">
-                    <string>Save game selection</string>
+                    <string>Save layout</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxScaledCabinet">
+                 <item row="15" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxStatusbar">
                    <property name="toolTip">
-                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                    <string>Show status bar</string>
                    </property>
                    <property name="text">
-                    <string>Scaled cabinet</string>
+                    <string>Show status bar</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
+                 <item row="18" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
                    <property name="toolTip">
-                    <string>Restore saved game selection at start and after reloading the game list</string>
+                    <string>Show vertical game status indicator in game details</string>
                    </property>
                    <property name="text">
-                    <string>Restore game selection</string>
+                    <string>Game status indicator</string>
                    </property>
                   </widget>
                  </item>
@@ -217,33 +177,33 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxScaledController">
+                 <item row="11" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxSmoothScaling">
                    <property name="toolTip">
-                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                    <string>Smooth image scaling (nicer, but slower)</string>
                    </property>
                    <property name="text">
-                    <string>Scaled controller</string>
+                    <string>Smooth scaling</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxScaledMarquee">
+                 <item row="12" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxRetryLoadingImages">
                    <property name="toolTip">
-                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                    <string>Retry loading images which weren't found before?</string>
                    </property>
                    <property name="text">
-                    <string>Scaled marquee</string>
+                    <string>Retry loading images</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxStatusbar">
+                 <item row="16" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxProgressTexts">
                    <property name="toolTip">
-                    <string>Show status bar</string>
+                    <string>Show short description of current processing in progress bar</string>
                    </property>
                    <property name="text">
-                    <string>Show status bar</string>
+                    <string>Show progress texts</string>
                    </property>
                   </widget>
                  </item>
@@ -260,23 +220,43 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxProgressTexts">
-                   <property name="toolTip">
-                    <string>Show short description of current processing in progress bar</string>
-                   </property>
-                   <property name="text">
-                    <string>Show progress texts</string>
-                   </property>
-                  </widget>
+                 <item row="0" column="0">
+                  <layout class="QHBoxLayout" name="layout5">
+                   <item>
+                    <widget class="QLabel" name="labelLanguagePic">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="pixmap">
+                      <pixmap resource="qmc2.qrc">:/data/img/exit_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelLanguage">
+                     <property name="text">
+                      <string>Language</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
-                 <item row="18" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
+                 <item row="10" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxScaledMarquee">
                    <property name="toolTip">
-                    <string>Show vertical game status indicator in game details</string>
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
                    </property>
                    <property name="text">
-                    <string>Game status indicator</string>
+                    <string>Scaled marquee</string>
                    </property>
                   </widget>
                  </item>
@@ -293,13 +273,33 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxRetryLoadingImages">
+                 <item row="6" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxSaveGameSelection">
                    <property name="toolTip">
-                    <string>Retry loading images which weren't found before?</string>
+                    <string>Save game selection on exit and before reloading the game list</string>
                    </property>
                    <property name="text">
-                    <string>Retry loading images</string>
+                    <string>Save game selection</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
+                   <property name="toolTip">
+                    <string>Restore saved game selection at start and after reloading the game list</string>
+                   </property>
+                   <property name="text">
+                    <string>Restore game selection</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxScaledCabinet">
+                   <property name="toolTip">
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                   </property>
+                   <property name="text">
+                    <string>Scaled cabinet</string>
                    </property>
                   </widget>
                  </item>
@@ -310,6 +310,16 @@
                    </property>
                    <property name="text">
                     <string>Show game name</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxScaledController">
+                   <property name="toolTip">
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                   </property>
+                   <property name="text">
+                    <string>Scaled controller</string>
                    </property>
                   </widget>
                  </item>
@@ -575,16 +585,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxSmoothScaling">
-                   <property name="toolTip">
-                    <string>Smooth image scaling (nicer, but slower)</string>
-                   </property>
-                   <property name="text">
-                    <string>Smooth scaling</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="12" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxParentImageFallback">
                    <property name="toolTip">
@@ -634,16 +634,6 @@
                    </property>
                    <property name="value">
                     <number>64</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="3" colspan="4">
-                  <widget class="QPushButton" name="pushButtonDetailSetup">
-                   <property name="toolTip">
-                    <string>Open the detail setup dialog</string>
-                   </property>
-                   <property name="text">
-                    <string>Detail setup...</string>
                    </property>
                   </widget>
                  </item>
@@ -809,6 +799,36 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="5" column="3" colspan="4">
+                  <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <item>
+                    <widget class="QPushButton" name="pushButtonDetailSetup">
+                     <property name="toolTip">
+                      <string>Open the detail setup dialog</string>
+                     </property>
+                     <property name="text">
+                      <string>Detail setup...</string>
+                     </property>
+                     <property name="autoDefault">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButtonCustomizeToolBar">
+                     <property name="toolTip">
+                      <string>Customize the tool-bar</string>
+                     </property>
+                     <property name="text">
+                      <string>Tool-bar...</string>
+                     </property>
+                     <property name="autoDefault">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -838,7 +858,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>515</width>
+                <width>451</width>
                 <height>587</height>
                </rect>
               </property>
@@ -2293,7 +2313,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>508</width>
-                <height>273</height>
+                <height>353</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2970,8 +2990,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>468</width>
+                <height>370</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2992,6 +3012,9 @@
                     <iconset resource="qmc2.qrc">
                      <normaloff>:/data/img/keyboard.png</normaloff>:/data/img/keyboard.png</iconset>
                    </property>
+                   <property name="autoDefault">
+                    <bool>false</bool>
+                   </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
@@ -3008,6 +3031,9 @@
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
                      <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
+                   </property>
+                   <property name="autoDefault">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -3083,8 +3109,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>227</height>
+                <width>468</width>
+                <height>370</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3120,6 +3146,9 @@
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
                      <normaloff>:/data/img/joystick.png</normaloff>:/data/img/joystick.png</iconset>
+                   </property>
+                   <property name="autoDefault">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -3540,7 +3569,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>351</width>
+                <width>451</width>
                 <height>461</height>
                </rect>
               </property>
@@ -3983,7 +4012,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>515</width>
+                <width>451</width>
                 <height>409</height>
                </rect>
               </property>
@@ -4575,8 +4604,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>236</width>
-                <height>211</height>
+                <width>468</width>
+                <height>370</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -4878,6 +4907,9 @@
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
        </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -4892,6 +4924,9 @@
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
        </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -4905,6 +4940,9 @@
        <property name="icon">
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -4928,6 +4966,9 @@
        </property>
        <property name="text">
         <string>&amp;Ok</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -4961,6 +5002,7 @@
   <tabstop>spinBoxEmulatorLogSize</tabstop>
   <tabstop>spinBoxPixmapCacheSize</tabstop>
   <tabstop>pushButtonDetailSetup</tabstop>
+  <tabstop>pushButtonCustomizeToolBar</tabstop>
   <tabstop>checkBoxSaveLayout</tabstop>
   <tabstop>checkBoxSaveGameSelection</tabstop>
   <tabstop>checkBoxRestoreLayout</tabstop>
