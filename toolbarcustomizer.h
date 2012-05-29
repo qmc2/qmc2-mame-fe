@@ -15,7 +15,11 @@ class ToolBarCustomizer : public QDialog, public Ui::ToolBarCustomizer
 		QMap<QListWidgetItem *, QAction *> activeToolBarActions;
 		QMap<QString, QAction *> availableActionsByName;
 		QStringList defaultToolBarActions;
+		QStringList activeActions;
+		QStringList appliedActions;
 		QAction *separatorAction;
+		bool resetToDefault;
+		bool firstRefresh;
 
 		ToolBarCustomizer(QWidget *parent = 0);
 		~ToolBarCustomizer();
@@ -27,6 +31,14 @@ class ToolBarCustomizer : public QDialog, public Ui::ToolBarCustomizer
 		void on_pushButtonOk_clicked();
 		void on_pushButtonApply_clicked();
 		void on_pushButtonCancel_clicked();
+		void on_pushButtonActivateActions_clicked();
+		void on_pushButtonDeactivateActions_clicked();
+		void on_pushButtonActionUp_clicked();
+		void on_pushButtonActionDown_clicked();
+		void on_pushButtonInsertSeparator_clicked();
+		void on_pushButtonDefault_clicked();
+		void on_listWidgetAvailableActions_itemSelectionChanged();
+		void on_listWidgetActiveActions_itemSelectionChanged();
 
 	protected:
 		void showEvent(QShowEvent *);

@@ -7,8 +7,6 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-#define QMC2_DEBUG
-
 ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	: QDialog(parent)
 {
@@ -18,15 +16,21 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 
 	setupUi(this);
 
+	resetToDefault = false;
+	firstRefresh = true;
+
 	foreach (QAction *action, qmc2MainWindow->toolbar->actions()) {
 		if ( action->isSeparator() )
 			defaultToolBarActions << "--";
 		else if ( action->isVisible() && !action->icon().isNull() )
 			defaultToolBarActions << action->objectName();
 	}
+	defaultToolBarActions << qmc2MainWindow->widgetActionToolbarSearch->objectName();
 	separatorAction = new QAction(this);
 	separatorAction->setSeparator(true);
+	separatorAction->setObjectName("--");
 
+	activeActions.clear();
 	QTimer::singleShot(0, this, SLOT(refreshAvailableActions()));
 }
 
@@ -48,6 +52,8 @@ void ToolBarCustomizer::refreshAvailableActions()
 	availableToolBarActions.clear();
 	availableActionsByName.clear();
 	foreach (QAction *menuBarAction, qmc2MainWindow->menuBar()->actions()) {
+		if ( menuBarAction->menu() == qmc2MainWindow->menu_ForeignIDs )
+			continue;
 		foreach (QAction *action, menuBarAction->menu()->actions()) {
 			if ( action->isSeparator() || !action->isVisible() || action->icon().isNull() )
 				continue;
@@ -86,14 +92,24 @@ void ToolBarCustomizer::refreshActiveActions()
 
 	listWidgetActiveActions->clear();
 	activeToolBarActions.clear();
-	QStringList activeActions = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolBarActions").toStringList();
-	if ( activeActions.isEmpty() )
+	if ( activeActions.isEmpty() && !resetToDefault ) {
+		activeActions = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolBarActions", QStringList()).toStringList();
+		appliedActions = activeActions;
+	}
+	if ( activeActions.isEmpty() ) {
 		activeActions = defaultToolBarActions;
+		appliedActions = activeActions;
+	}
 	foreach (QString actionName, activeActions) {
 		if ( actionName == "--" ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
 			item->setText(tr("-- Separator --"));
 			activeToolBarActions[item] = separatorAction;
+		} else if ( actionName == "widgetActionToolbarSearch" ) {
+			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
+			item->setText(tr("Tool-bar search box"));
+			item->setIcon(QIcon(QString::fromUtf8(":/data/img/hint.png")));
+			activeToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
 		} else if ( availableActionsByName.contains(actionName) ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
 			QAction *action = availableActionsByName[actionName];
@@ -102,6 +118,13 @@ void ToolBarCustomizer::refreshActiveActions()
 			activeToolBarActions[item] = action;
 		}
 	}
+
+	if ( firstRefresh ) {
+		on_pushButtonApply_clicked();
+		firstRefresh = false;
+	}
+
+	resetToDefault = false;
 }
 
 void ToolBarCustomizer::adjustIconSizes()
@@ -123,6 +146,7 @@ void ToolBarCustomizer::adjustIconSizes()
 	pushButtonActionUp->setIconSize(iconSize);
 	pushButtonActionDown->setIconSize(iconSize);
 	pushButtonInsertSeparator->setIconSize(iconSize);
+	pushButtonDefault->setIconSize(iconSize);
 	listWidgetAvailableActions->setIconSize(iconSize);
 	listWidgetActiveActions->setIconSize(iconSize);
 }
@@ -143,6 +167,7 @@ void ToolBarCustomizer::on_pushButtonOk_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonOk_clicked()");
 #endif
 
+	on_pushButtonApply_clicked();
 }
 
 void ToolBarCustomizer::on_pushButtonApply_clicked()
@@ -151,6 +176,18 @@ void ToolBarCustomizer::on_pushButtonApply_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonApply_clicked()");
 #endif
 
+	appliedActions.clear();
+	QToolBar *tb = qmc2MainWindow->toolbar;
+	tb->clear();
+	foreach (QListWidgetItem *item, listWidgetActiveActions->findItems("*", Qt::MatchWildcard)) {
+		QAction *action = activeToolBarActions[item];
+		appliedActions << action->objectName();
+		if ( action->objectName() == "--" )
+			tb->addSeparator();
+		else
+			tb->addAction(action);
+	}
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolBarActions", appliedActions);
 }
 
 void ToolBarCustomizer::on_pushButtonCancel_clicked()
@@ -159,4 +196,132 @@ void ToolBarCustomizer::on_pushButtonCancel_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonCancel_clicked()");
 #endif
 
+	activeActions = appliedActions;
+	refreshAvailableActions();
 }
+
+void ToolBarCustomizer::on_pushButtonDefault_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonDefault_clicked()");
+#endif
+
+	activeActions.clear();
+	resetToDefault = true;
+	refreshAvailableActions();
+}
+
+void ToolBarCustomizer::on_pushButtonActivateActions_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonActivateActions_clicked()");
+#endif
+
+	foreach (QListWidgetItem *item, listWidgetAvailableActions->selectedItems()) {
+		QAction *action = availableToolBarActions[item];
+		if ( !activeToolBarActions.values().contains(action) ) {
+			QListWidgetItem *activeItem = new QListWidgetItem(listWidgetActiveActions);
+			activeItem->setText(item->text());
+			activeItem->setIcon(item->icon());
+			activeToolBarActions[activeItem] = action;
+		}
+	}
+}
+
+void ToolBarCustomizer::on_pushButtonDeactivateActions_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonDeactivateActions_clicked()");
+#endif
+
+	foreach (QListWidgetItem *item, listWidgetActiveActions->selectedItems()) {
+		QListWidgetItem *deactivateItem = listWidgetActiveActions->takeItem(listWidgetActiveActions->row(item));
+		activeToolBarActions.remove(deactivateItem);
+		delete deactivateItem;
+	}
+}
+
+void ToolBarCustomizer::on_pushButtonActionUp_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonActionUp_clicked()");
+#endif
+
+	foreach (QListWidgetItem *item, listWidgetActiveActions->selectedItems()) {
+		if ( item ) {
+			int row = listWidgetActiveActions->row(item);
+			if ( row > 0 ) {
+				QListWidgetItem *takenItem = listWidgetActiveActions->takeItem(row);
+				if ( takenItem ) {
+					listWidgetActiveActions->insertItem(row - 1, takenItem);
+					takenItem->setSelected(true);
+				}
+			}
+			listWidgetActiveActions->scrollToItem(item);
+		}
+	}
+}
+
+void ToolBarCustomizer::on_pushButtonActionDown_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonActionDown_clicked()");
+#endif
+
+	foreach (QListWidgetItem *item, listWidgetActiveActions->selectedItems()) {
+		if ( item ) {
+			int row = listWidgetActiveActions->row(item);
+			if ( row < listWidgetActiveActions->count() - 1 ) {
+				QListWidgetItem *takenItem = listWidgetActiveActions->takeItem(row);
+				if ( takenItem ) {
+					listWidgetActiveActions->insertItem(row + 1, takenItem);
+					takenItem->setSelected(true);
+				}
+			}
+			listWidgetActiveActions->scrollToItem(item);
+		}
+	}
+}
+
+void ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()");
+#endif
+
+	QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
+	item->setText(tr("-- Separator --"));
+	activeToolBarActions[item] = separatorAction;
+}
+
+void ToolBarCustomizer::on_listWidgetAvailableActions_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_listWidgetAvailableActions_itemSelectionChanged()");
+#endif
+
+	pushButtonActivateActions->setEnabled(listWidgetAvailableActions->selectedItems().count() > 0);
+}
+ 
+void ToolBarCustomizer::on_listWidgetActiveActions_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_listWidgetActiveActions_itemSelectionChanged()");
+#endif
+
+	if ( listWidgetActiveActions->selectedItems().count() > 0 ) {
+		pushButtonDeactivateActions->setEnabled(true);
+		if ( listWidgetActiveActions->selectedItems().count() == 1 ) {
+			pushButtonActionUp->setEnabled(true);
+			pushButtonActionDown->setEnabled(true);
+		} else {
+			pushButtonActionUp->setEnabled(false);
+			pushButtonActionDown->setEnabled(false);
+		}
+	} else {
+		pushButtonDeactivateActions->setEnabled(false);
+		pushButtonActionUp->setEnabled(false);
+		pushButtonActionDown->setEnabled(false);
+	}
+}
+

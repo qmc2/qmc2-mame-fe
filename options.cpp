@@ -190,10 +190,6 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-  pushButtonCustomizeToolBar->setEnabled(false);
-#endif
-
 #if !defined(Q_WS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif

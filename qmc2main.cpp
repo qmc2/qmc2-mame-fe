@@ -6080,6 +6080,9 @@ void MainWindow::init()
 	QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
   }
 
+  // tool-bar customization
+  qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
+
 #if defined(Q_WS_MAC)
   bool isShown = qmc2Options->isVisible();
   qmc2Options->setParent(this, Qt::Dialog);
