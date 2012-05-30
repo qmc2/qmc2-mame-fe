@@ -1340,7 +1340,8 @@ void Gamelist::parse()
   romCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
   romCache.open(QIODevice::ReadOnly | QIODevice::Text);
   if ( !romCache.isOpen() ) {
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
+    if ( !autoRomCheck )
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
   } else {
     parseTimer.start();
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading ROM state from cache"));
