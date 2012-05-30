@@ -96,10 +96,8 @@ void ToolBarCustomizer::refreshActiveActions()
 		activeActions = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolBarActions", QStringList()).toStringList();
 		appliedActions = activeActions;
 	}
-	if ( activeActions.isEmpty() ) {
+	if ( activeActions.isEmpty() )
 		activeActions = defaultToolBarActions;
-		appliedActions = activeActions;
-	}
 	foreach (QString actionName, activeActions) {
 		if ( actionName == "--" ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
