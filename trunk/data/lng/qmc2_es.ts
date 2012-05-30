@@ -1871,7 +1871,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="198"/>
         <source>Cancel detail setup and close dialog</source>
-        <translation>Cancela la configuración de detalles y cierra la ventana</translation>
+        <translation>Cancelar la configuración de detalles y cerrar la ventana</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="201"/>
@@ -6145,7 +6145,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="695"/>
         <location filename="../../qmc2main.ui" line="698"/>
         <source>Search result</source>
-        <translation>Buscar resultado</translation>
+        <translation>Resultado de la búsqueda</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="711"/>
@@ -6647,7 +6647,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2525"/>
         <location filename="../../qmc2main.ui" line="2528"/>
         <source>Check sample set</source>
-        <translation>Comprobar el set de muestras</translation>
+        <translation>Comprobar set de muestras</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2531"/>
@@ -6663,7 +6663,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2546"/>
         <location filename="../../qmc2main.ui" line="2549"/>
         <source>Check preview images</source>
-        <translation>Comprobar las imágenes de previsualización</translation>
+        <translation>Comprobar imágenes de previsualización</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2552"/>
@@ -8428,13 +8428,13 @@ Se sobrescribirá los datos existentes en caché.
         <location filename="../../qmc2main.cpp" line="587"/>
         <location filename="../../qmc2main.cpp" line="588"/>
         <source>About U.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de U.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="601"/>
         <location filename="../../qmc2main.cpp" line="602"/>
         <source>About M.E.S.S. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de M.E.S.S. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2308"/>
@@ -8939,7 +8939,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="5965"/>
         <source>destroying tool-bar customization</source>
-        <translation type="unfinished"></translation>
+        <translation>destruyendo la personalización de la barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5971"/>
@@ -10302,12 +10302,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="653"/>
         <source>Use standard or custom color palette?</source>
-        <translation>¿Usar la paleta de colores estandar o personalizada?</translation>
+        <translation>¿Usar la paleta de colores estándar o personalizada?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="656"/>
         <source>Standard color palette</source>
-        <translation>Paleta de colores estandar</translation>
+        <translation>Paleta de colores estándar</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="663"/>
@@ -10403,12 +10403,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="820"/>
         <source>Customize the tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar la barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="823"/>
         <source>Tool-bar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de herramientas...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="842"/>
@@ -11006,7 +11006,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2450"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
-        <translation>Mostrar las instantáneas de software cuando al pasar el cursor del ratón por la lista de software</translation>
+        <translation>Mostrar las instantáneas de software al pasar el cursor del ratón por la lista de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2453"/>
@@ -13380,7 +13380,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../procmgr.cpp" line="363"/>
         <source>device initialization error</source>
-        <translation>error de inicialización de dispositivo</translation>
+        <translation>error de iniciación de dispositivo</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="365"/>
@@ -13698,7 +13698,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="3177"/>
         <location filename="../../romalyzer.cpp" line="3196"/>
         <source>good</source>
-        <translation>bien</translation>
+        <translation>bueno</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3143"/>
@@ -14331,7 +14331,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1055"/>
         <source>Rewrite sets only when they are &apos;good&apos; (otherwise, &apos;bad&apos; sets will be included)</source>
-        <translation>Organizar solo sets marcados &apos;bien&apos; (o incluir también sets marcados &apos;mal&apos;)</translation>
+        <translation type="unfinished">Organizar solo sets marcados &apos;bien&apos; (o incluir también sets marcados &apos;mal&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1058"/>
@@ -14437,7 +14437,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1288"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
-        <translation>Reparar sets &apos;mal&apos; seleccionados usando el archivo del primer set &apos;bien&apos; seleccionado (al menos un set bueno y uno malo deben ser seleccionados)</translation>
+        <translation>Reparar sets &apos;malo&apos; seleccionados usando el archivo del primer set &apos;bueno&apos; seleccionado (al menos un set bueno y uno malo deben ser seleccionados)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1291"/>
@@ -14990,7 +14990,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2502"/>
         <location filename="../../romalyzer.cpp" line="2698"/>
         <source>good</source>
-        <translation>bien</translation>
+        <translation type="unfinished">bien</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="953"/>
@@ -15013,52 +15013,52 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1013"/>
         <source>good / not found / skipped</source>
-        <translation>bien / no encontrado / ignorado</translation>
+        <translation type="unfinished">bien / no encontrado / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1015"/>
         <source>good / not found</source>
-        <translation>bien / no encontrado</translation>
+        <translation type="unfinished">bien / no encontrado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1019"/>
         <source>good / no dump / skipped</source>
-        <translation>bien / sin dump / ignorado</translation>
+        <translation type="unfinished">bien / sin dump / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1021"/>
         <source>good / no dump</source>
-        <translation>bien / sin dump</translation>
+        <translation type="unfinished">bien / sin dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1025"/>
         <source>good / skipped</source>
-        <translation>bien / ignorado</translation>
+        <translation type="unfinished">bien / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1033"/>
         <source>bad / not found / skipped</source>
-        <translation>mal / no encontrado / ignorado</translation>
+        <translation>malo / no encontrado / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1035"/>
         <source>bad / not found</source>
-        <translation>mal / no encontrado</translation>
+        <translation>malo / no encontrado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1039"/>
         <source>bad / no dump / skipped</source>
-        <translation>mal / sin dump / ignorado</translation>
+        <translation>malo / sin dump / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1041"/>
         <source>bad / no dump</source>
-        <translation>mal / sin dump</translation>
+        <translation>malo / sin dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1045"/>
         <source>bad / skipped</source>
-        <translation>mal / ignorado</translation>
+        <translation>malo / ignorado</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1067"/>
@@ -17663,114 +17663,114 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../toolbarcustomizer.ui" line="14"/>
         <source>Customize tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizar barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="26"/>
         <source>Available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Acciones disponibles</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="32"/>
         <source>List of available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de acciones de barra de herramientas disponibles</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="48"/>
         <source>Activate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar las acciones de barra de herramientas seleccionadas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="51"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="74"/>
         <source>Active tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Acciones activas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="80"/>
         <source>List of active tool-bar actions and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de acciones de barra de herramientas disponibles y su orden</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="96"/>
         <source>Deactivate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar las acciones de barra de herramientas seleccionadas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="113"/>
         <source>Move selected action up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover la acción seleccionada arriba</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="133"/>
         <source>Move selected action down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover la acción seleccionada abajo</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="153"/>
         <source>Insert a separator line</source>
-        <translation type="unfinished"></translation>
+        <translation>Insertar una línea de separador</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="156"/>
         <source>Separator</source>
-        <translation type="unfinished">Separador</translation>
+        <translation>Separador</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="170"/>
         <source>Reset tool-bar actions to default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Volver a la configuración predeterminada de acciones</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="173"/>
         <source>Default</source>
-        <translation type="unfinished">Predeterminado</translation>
+        <translation>Predeterminado</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="202"/>
         <source>Apply tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar la configuración de barra de herramientas y cerrar la ventana</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="205"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Aceptar</translation>
+        <translation>&amp;Aceptar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="219"/>
         <source>Apply tool-bar setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar la configuración de barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="222"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aplicar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="236"/>
         <source>Cancel tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar la configuración de barra de herramientas y cerrar la ventana</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="239"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="80"/>
         <location filename="../../toolbarcustomizer.cpp" line="110"/>
         <source>Tool-bar search box</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Búsqueda de barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="106"/>
         <location filename="../../toolbarcustomizer.cpp" line="293"/>
         <source>-- Separator --</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Separador --</translation>
     </message>
 </context>
 <context>
