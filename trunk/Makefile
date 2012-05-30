@@ -951,10 +951,10 @@ endif
 
 ifeq '$(ARCH)' 'Windows'
 qchdman:
-	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) "$(QCHDMAN_DEFINES)" && $(MAKE)
+	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE)
 
 qchdman-clean:
-	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
+	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
 	@$(RMDIR) /s /q tools\qchdman\release
 	@$(RMDIR) /s /q tools\qchdman\debug
 	@$(RM) tools\qchdman\object_script.qchdman.Release tools\qchdman\object_script.qchdman.Debug
@@ -963,10 +963,10 @@ tools: qchdman
 tools-clean: qchdman-clean
 else
 qchdman:
-	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) '$(QCHDMAN_DEFINES)' && $(MAKE)
+	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE)
 
 qchdman-clean:
-	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
+	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) tools/qchdman/Info.plist
 
