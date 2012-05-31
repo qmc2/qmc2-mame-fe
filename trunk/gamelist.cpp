@@ -3370,46 +3370,48 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       QTime preloadTimer, elapsedTime;
       preloadTimer.start();
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from directory"));
-      qApp->processEvents();
-      QString icoDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString();
-      QDir iconDirectory(icoDir);
-      QStringList nameFilter;
-      nameFilter << "*.png";
-      QStringList iconFiles = iconDirectory.entryList(nameFilter, QDir::Files | QDir::Readable);
-      int iconCount;
+      int iconCount = 0;
       int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
       QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-        qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
-      else
-        qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-      qmc2MainWindow->progressBarGamelist->setRange(0, iconFiles.count());
-      qmc2MainWindow->progressBarGamelist->reset();
-      qApp->processEvents();
-      for (iconCount = 0; iconCount < iconFiles.count(); iconCount++) {
-        qmc2MainWindow->progressBarGamelist->setValue(iconCount);
-        if ( iconCount % 25 == 0 )
-          qApp->processEvents();
+      foreach(QString icoDir, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts)) {
+	      qApp->processEvents();
+	      QDir iconDirectory(icoDir);
+	      QStringList nameFilter;
+	      nameFilter << "*.png";
+	      QStringList iconFiles = iconDirectory.entryList(nameFilter, QDir::Files | QDir::Readable);
+	      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
+	      else
+		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+	      qmc2MainWindow->progressBarGamelist->setRange(0, iconFiles.count());
+	      qmc2MainWindow->progressBarGamelist->reset();
+	      qApp->processEvents();
+	      for (iconCount = 0; iconCount < iconFiles.count(); iconCount++) {
+		qmc2MainWindow->progressBarGamelist->setValue(iconCount);
+		if ( iconCount % 25 == 0 )
+		  qApp->processEvents();
 #ifdef QMC2_DEBUG
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(iconFiles[iconCount]));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(iconFiles[iconCount]));
 #endif
-        QPixmap iconPixmap;
-        if ( iconPixmap.load(icoDir + iconFiles[iconCount]) )
-          icon = QIcon(iconPixmap);
-        else
-          icon = QIcon();
-        qmc2IconMap[iconFiles[iconCount].toLower().remove(".png")] = icon;
-        if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
-          qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
-          qApp->processEvents();
-          qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
-        }
+		QPixmap iconPixmap;
+		if ( iconPixmap.load(icoDir + iconFiles[iconCount]) )
+		  icon = QIcon(iconPixmap);
+		else
+		  icon = QIcon();
+		qmc2IconMap[iconFiles[iconCount].toLower().remove(".png")] = icon;
+		if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
+		  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+		  qApp->processEvents();
+		  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+		}
+	      }
       }
+
       qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-        qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+	qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
       else
-        qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+	qmc2MainWindow->progressBarGamelist->setFormat("%p%");
       elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from directory, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
