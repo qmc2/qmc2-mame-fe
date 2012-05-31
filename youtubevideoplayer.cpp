@@ -370,7 +370,8 @@ void YouTubeVideoPlayer::setSuggestorAppendString()
 	bool ok;
 	QString appendString = QInputDialog::getText(this,
 						tr("Appended string"),
-						tr("Enter the string to be appended when suggesting a pattern:"),
+						tr("Enter the string to be appended when suggesting a pattern:") +
+						"\n(" + tr("Valid placeholder macros:") + " $MANUFACTURER$, $YEAR$)",
 						QLineEdit::Normal,
 						suggestorAppendString,
 						&ok);
