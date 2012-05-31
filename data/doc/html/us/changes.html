@@ -18,6 +18,7 @@ inf: informational only
 <ul>
   <li>fix: changes made to multi-value floats as used in HLSL options weren't updated correctly</li>
   <li>fix: demo-mode: don't select device-sets</li>
+  <li>fix: non-Windows: avoid a rare crash when exiting QMC2 while a running emulator is producing output on the notifier FIFO</li>
   <li>imp: adjusted the ghost-image used for videos (wrong text removed)</li>
   <li>imp: depending on the installed codecs, an unused YouTube widget may still cause load on the system, so it's now already destroyed when it's no longer required</li>
   <li>imp: updated redistributed Qt translations from Qt 4.8.2</li>

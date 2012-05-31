@@ -7484,6 +7484,9 @@ void MainWindow::processFifoData()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::processFifoData()");
 #endif
 
+  if ( qmc2CleaningUp )
+    return;
+
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_SDLUME)
   QTextStream ts(qmc2FifoFile);
   QString data = ts.readAll();
