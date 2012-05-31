@@ -21,7 +21,13 @@ QString Flyer::imageZip()
 
 QString Flyer::imageDir()
 {
-	return qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerDirectory").toString();
+	QStringList dirList;
+	foreach (QString dir, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerDirectory").toString().split(";", QString::SkipEmptyParts)) {
+		if ( !dir.endsWith("/") )
+			dir += "/";
+		dirList << dir;
+	}
+	return dirList.join(";");
 }
 
 bool Flyer::useZip()

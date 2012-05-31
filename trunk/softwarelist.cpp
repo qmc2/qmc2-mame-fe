@@ -2652,14 +2652,19 @@ void SoftwareSnap::loadSnapshot()
 				}
 			}
 		} else {
-			// try loading image from folder
-			QDir snapDir(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
-			if ( snapDir.exists(entryName + ".png") ) {
-				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
-				if ( pm.load(filePath) ) {
-					pmLoaded = true;
-					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+			// try loading image from (semicolon-separated) software-snapshot folder(s)
+			pmLoaded = false;
+			foreach (QString baseDirectory, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString().split(";", QString::SkipEmptyParts)) {
+				QDir snapDir(baseDirectory + "/" + listName);
+				if ( snapDir.exists(entryName + ".png") ) {
+					QString filePath = snapDir.absoluteFilePath(entryName + ".png");
+					if ( pm.load(filePath) ) {
+						pmLoaded = true;
+						QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+					}
 				}
+				if ( pmLoaded )
+					break;
 			}
 		}
 	}
@@ -3174,15 +3179,20 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 			}
 		}
 	} else {
-		// try loading image from folder
-		QDir snapDir(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
-		if ( snapDir.exists(entryName + ".png") ) {
-			QString filePath = snapDir.absoluteFilePath(entryName + ".png");
-			if ( pm.load(filePath) ) {
-				fileOk = true;
-				QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
-			} else
-				fileOk = false;
+		// try loading image from (semicolon-separated) software-snapshot folder(s)
+		fileOk = false;
+		foreach (QString baseDirectory, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString().split(";", QString::SkipEmptyParts)) {
+			QDir snapDir(baseDirectory + "/" + listName);
+			if ( snapDir.exists(entryName + ".png") ) {
+				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
+				if ( pm.load(filePath) ) {
+					fileOk = true;
+					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+				} else
+					fileOk = false;
+			}
+			if ( fileOk )
+				break;
 		}
 	}
 

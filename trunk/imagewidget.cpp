@@ -139,7 +139,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	bool fileOk = true;
 
 	if ( useZip() ) {
-		// use image file
+		// try loading image form ZIP
 		QByteArray imageData;
 		int len, i;
 		QString gameFile = gameName + ".png";
@@ -169,7 +169,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 			} else {
 				QString parentName = qmc2ParentMap[gameName];
 				if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
-					loadImage(parentName, onBehalfOf);
+					fileOk = loadImage(parentName, onBehalfOf);
 				} else {
 					if ( !qmc2RetryLoadingImages )
 						QPixmapCache::insert(onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap); 
@@ -178,48 +178,52 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 			}
 		}
 	} else {
-		// use image directory
-		QString baseDirectory = imageDir();
-		QString imgDir = baseDirectory + gameName;
-		QString imagePath = imgDir + ".png";
+		// try loading image from (semicolon-separated) folder(s)
+		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
+			QString imgDir = baseDirectory + gameName;
+			QString imagePath = imgDir + ".png";
 
-		if ( fileName )
-			*fileName = gameName + ".png";
+			if ( fileName )
+				*fileName = gameName + ".png";
 
-		QFile f(imagePath);
-		if ( !f.exists() ) {
-			QDir dir(imgDir);
-			if ( dir.exists() ) {
-				QStringList nameFilter;
-				nameFilter << "*.png";
-				QStringList dirEntries = dir.entryList(nameFilter, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive, QDir::Name | QDir::Reversed);
-				if ( dirEntries.count() > 0 ) {
-					imagePath = imgDir + "/" + dirEntries[0];
-					QString pathCopy = imagePath;
-					if ( fileName )
-						*fileName = pathCopy.remove(baseDirectory);
+			QFile f(imagePath);
+			if ( !f.exists() ) {
+				QDir dir(imgDir);
+				if ( dir.exists() ) {
+					QStringList nameFilter;
+					nameFilter << "*.png";
+					QStringList dirEntries = dir.entryList(nameFilter, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive, QDir::Name | QDir::Reversed);
+					if ( dirEntries.count() > 0 ) {
+						imagePath = imgDir + "/" + dirEntries[0];
+						QString pathCopy = imagePath;
+						if ( fileName )
+							*fileName = pathCopy.remove(baseDirectory);
+					}
 				}
 			}
-		}
 
-		if ( checkOnly ) {
-			fileOk = pm.load(imagePath, "PNG");
-		} else {
-			if ( pm.load(imagePath, "PNG") ) {
-				QPixmapCache::insert(onBehalfOf, pm); 
-				currentPixmap = pm;
-				fileOk = true;
+			if ( checkOnly ) {
+				fileOk = pm.load(imagePath, "PNG");
 			} else {
-				QString parentName = qmc2ParentMap[gameName];
-				if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
-					loadImage(parentName, onBehalfOf);
+				if ( pm.load(imagePath, "PNG") ) {
+					QPixmapCache::insert(onBehalfOf, pm); 
+					currentPixmap = pm;
+					fileOk = true;
 				} else {
-					if ( !qmc2RetryLoadingImages )
-						QPixmapCache::insert(onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap); 
-					currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-					fileOk = false;
+					QString parentName = qmc2ParentMap[gameName];
+					if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
+						fileOk = loadImage(parentName, onBehalfOf);
+					} else {
+						if ( !qmc2RetryLoadingImages )
+							QPixmapCache::insert(onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap); 
+						currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+						fileOk = false;
+					}
 				}
 			}
+
+			if ( fileOk )
+				break;
 		}
 	}
 
