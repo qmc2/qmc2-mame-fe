@@ -1,45 +1,22 @@
 #ifndef _PREVIEW_H_
 #define _PREVIEW_H_
 
-#include <QMap>
-#include <QMenu>
-#include <QWidget>
-#include <QPixmap>
-#include <QPainter>
-#include <QTreeWidgetItem>
-#if QMC2_OPENGL == 1
-#include <QGLWidget>
-#endif
+#include "imagewidget.h"
 
-#include "unzip.h"
-
-#if QMC2_OPENGL == 1
-class Preview : public QGLWidget
-#else
-class Preview : public QWidget
-#endif
+class Preview : public ImageWidget
 {
-  Q_OBJECT 
+	Q_OBJECT 
 
-  public:
-    unzFile previewFile;
-    QPixmap currentPreviewPixmap;
-    QMenu *contextMenu;
-    QString myCacheKey;
+	public:
+		Preview(QWidget *parent);
 
-    Preview(QWidget *parent);
-    ~Preview();
-
-  public slots:
-    void drawCenteredImage(QPixmap *, QPainter *);
-    void drawScaledImage(QPixmap *, QPainter *);
-    bool loadPreview(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
-    void copyToClipboard();
-    void refresh();
-
-  protected:
-    void paintEvent(QPaintEvent *);
-    void contextMenuEvent(QContextMenuEvent *);
+	protected:
+		virtual QString cachePrefix() { return "prv_"; }
+		virtual QString imageZip();
+		virtual QString imageDir();
+		virtual QString imageType() { return tr("preview"); }
+		virtual bool useZip();
+		virtual bool scaledImage();
 };
 
 #endif

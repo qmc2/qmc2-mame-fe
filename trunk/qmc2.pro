@@ -53,6 +53,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romalyzer.cpp \
 			gamelist.cpp \
 			procmgr.cpp \
+			imagewidget.cpp \
 			preview.cpp \
 			flyer.cpp \
 			cabinet.cpp \
@@ -125,6 +126,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romalyzer.h \
 			gamelist.h \
 			procmgr.h \
+			imagewidget.h \
 			preview.h \
 			flyer.h \
 			cabinet.h \

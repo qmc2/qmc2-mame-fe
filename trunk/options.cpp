@@ -1935,11 +1935,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Preview ) {
     if ( needReopenPreviewFile ) {
       if ( qmc2UsePreviewFile ) {
-        qmc2Preview->previewFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toAscii());
-        if ( qmc2Preview->previewFile == NULL )
+        qmc2Preview->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toLocal8Bit());
+        if ( qmc2Preview->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString()));
       } else
-        unzClose(qmc2Preview->previewFile);
+        unzClose(qmc2Preview->imageFile);
     }
     qmc2Preview->update();
   }
@@ -1947,11 +1947,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Flyer ) {
     if ( needReopenFlyerFile ) {
       if ( qmc2UseFlyerFile ) {
-        qmc2Flyer->flyerFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString().toAscii());
-        if ( qmc2Flyer->flyerFile == NULL )
+        qmc2Flyer->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString().toLocal8Bit());
+        if ( qmc2Flyer->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString()));
       } else
-        unzClose(qmc2Flyer->flyerFile);
+        unzClose(qmc2Flyer->imageFile);
     }
     qmc2Flyer->update();
   }
@@ -1959,11 +1959,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Cabinet ) {
     if ( needReopenCabinetFile ) {
       if ( qmc2UseCabinetFile ) {
-        qmc2Cabinet->cabinetFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString().toAscii());
-        if ( qmc2Cabinet->cabinetFile == NULL )
+        qmc2Cabinet->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString().toLocal8Bit());
+        if ( qmc2Cabinet->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetFile").toString()));
       } else
-        unzClose(qmc2Cabinet->cabinetFile);
+        unzClose(qmc2Cabinet->imageFile);
     }
     qmc2Cabinet->update();
   }
@@ -1971,11 +1971,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Controller ) {
     if ( needReopenControllerFile ) {
       if ( qmc2UseControllerFile ) {
-        qmc2Controller->controllerFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString().toAscii());
-        if ( qmc2Controller->controllerFile == NULL )
+        qmc2Controller->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString().toLocal8Bit());
+        if ( qmc2Controller->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFile").toString()));
       } else
-        unzClose(qmc2Controller->controllerFile);
+        unzClose(qmc2Controller->imageFile);
     }
     qmc2Controller->update();
   }
@@ -1983,11 +1983,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Marquee ) {
     if ( needReopenMarqueeFile ) {
       if ( qmc2UseMarqueeFile ) {
-        qmc2Marquee->marqueeFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString().toAscii());
-        if ( qmc2Marquee->marqueeFile == NULL )
+        qmc2Marquee->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString().toLocal8Bit());
+        if ( qmc2Marquee->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString()));
       } else
-        unzClose(qmc2Marquee->marqueeFile);
+        unzClose(qmc2Marquee->imageFile);
     }
     qmc2Marquee->update();
   }
@@ -1995,11 +1995,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Title ) {
     if ( needReopenTitleFile ) {
       if ( qmc2UseTitleFile ) {
-        qmc2Title->titleFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString().toAscii());
-        if ( qmc2Title->titleFile == NULL )
+        qmc2Title->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString().toLocal8Bit());
+        if ( qmc2Title->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString()));
       } else
-        unzClose(qmc2Title->titleFile);
+        unzClose(qmc2Title->imageFile);
     }
     qmc2Title->update();
   }
@@ -2007,11 +2007,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2PCB ) {
     if ( needReopenPCBFile ) {
       if ( qmc2UsePCBFile ) {
-        qmc2PCB->pcbFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFile").toString().toAscii());
-        if ( qmc2PCB->pcbFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFile").toString()));
+        qmc2PCB->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFile").toString().toLocal8Bit());
+        if ( qmc2PCB->imageFile == NULL )
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFile").toString()));
       } else
-        unzClose(qmc2PCB->pcbFile);
+        unzClose(qmc2PCB->imageFile);
     }
     qmc2PCB->update();
   }
@@ -2019,7 +2019,7 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2SoftwareSnap ) {
     if ( needReopenSoftwareSnapFile ) {
       if ( qmc2UseSoftwareSnapFile ) {
-        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toLocal8Bit());
         if ( qmc2SoftwareSnap->snapFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
       } else
@@ -2030,7 +2030,7 @@ void Options::on_pushButtonApply_clicked()
 
   if ( needReopenIconFile ) {
     if ( qmc2UseIconFile ) {
-      qmc2IconFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toAscii());
+      qmc2IconFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toLocal8Bit());
       if ( qmc2IconFile == NULL )
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString()));
     } else

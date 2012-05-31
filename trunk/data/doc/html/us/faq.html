@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-  <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - FAQ</title>
+  <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - FAQ</title>
   <style type="text/css">
     .menuitem { margin-left: 20px; }
     .menusubitem { margin-left: 40px; }
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.37, 21-MAY-2012</h3>
+<h3>FAQ - v0.37, 31-MAY-2012</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.7+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -337,7 +337,7 @@ greater if you set the responsiveness parameter a bit higher (250 - 500, for exa
 <p><a name="A2.5"></a><b>Q2.5: What do I have to do to make QMC2 access my image &amp; icon collections?</b></p>
 <p>QMC2 can handle images of in-game screenshots (previews), flyers, cabinets, control panels, marquees, title screens, PCBs, software snap-shots and icons stored in directories or ZIP archives.</p>
 <p>Every image file (or ZIP member) must be named exactly as the corresponding <b>lower-case</b> game's/machine's short name, followed by the <b>lower-case</b> file extension ".png" (for example <i>galaga.png</i> or <i>1945kiii.png</i>).</p>
-<p>The use of ZIP archives requires a <i>flat</i> directory structure (= no sub-directories!). This is true for image directories as well, with the exception of previews: to support the direct use of in-game screenshots created with MAME/MESS, QMC2 also tries to find preview images in sub-directories of the preview-directory which are named as <i>&lt;gamename&gt;/XXXX.png</i> / <i>&lt;machinename&gt;/XXXX.png</i> (XXXX = 0000 - 9999). The file with the highest number will be used, but only if <i>&lt;gamename&gt;.png</i> / <i>&lt;machinename&gt;.png</i> wasn't found in the base preview-directory before. Note that for this to work, it is also required to setup the <i>snapshot_directory</i> of MAME/MESS to the directory where your previews are stored! See <i>Emulator</i> -&gt; <i>Global configuration</i> in the setup dialog to synchronize that.</p>
+<p>The use of ZIP archives requires a <i>flat</i> directory structure (= no sub-directories!). This is generally also true for image-directories, with the exception that for images stored in separate folders the direct use of screenshots created through MAME/MESS/UME is supported as well, so QMC2 also tries to find images in sub-directories which are named as <i>&lt;gamename&gt;/XXXX.png</i> / <i>&lt;machinename&gt;/XXXX.png</i> (XXXX = 0000 - 9999). The file with the highest number will be used, but only if <i>&lt;gamename&gt;.png</i> / <i>&lt;machinename&gt;.png</i> wasn't found in the base directory before.</p>
 <p>Note also that you shouldn't overwrite the default snapshot naming scheme via the <i>snapname</i> option if you want QMC2 to find your previews on-the-fly. We currently only support the default naming of MAME/MESS (<i>&lt;gamename/machinename&gt;/XXXX.png</i>).</p>
 <p>Make sure the access permissions to all image files and directories are setup correctly!</p>
 <p>Software snap-shots need to be placed in a separate directory or ZIP-archive. Its sub-directory structure has to reflect the software list names for which the respective images are valid. For instance, software snap-shots for
@@ -405,7 +405,7 @@ Try "mame | less" for example - the behavior will be the same.</p>
 <p>To be able to use the so called <i>QMC2 variant launcher</i> all QMC2-binaries (including the <i>runonce</i> utility!) must be installed in a place which is part of your search path -- make sure the environment variable <i>PATH</i> is setup correctly!</p>
 <p>What the variant launcher effectively tries to do is run the following command:</p>
 <pre>$ runonce qmc2-&lt;variant&gt; '&lt;variant-title&gt;' qmc2-&lt;variant&gt;</pre>
-<p>(&lt;variant&gt; = <i>sdlmame</i>, <i>sdlmess</i> -- &lt;variant-title&gt; = <i>M.A.M.E. Catalog / Launcher II</i>, <i>M.E.S.S. Catalog / Launcher II</i>)</p>
+<p>(&lt;variant&gt; = <i>sdlmame</i>, <i>sdlmess</i>, <i>sdlume</i> -- &lt;variant-title&gt; = <i>M.A.M.E. Catalog / Launcher II</i>, <i>M.E.S.S. Catalog / Launcher II</i>, <i>U.M.E. Catalog / Launcher II</i>)</p>
 <p>As long as this doesn't work from a shell/terminal there's few hope it will work from QMC2 -- provided that in both situations the same PATH variable is used, of course.</p>
 <p>We utilize the <i>runonce</i> utility in order to make sure that the called QMC2 variant will run only <i>once</i> (as the name suggests), and if it already runs, to raise its main window.
 Raising an application window from another program has some restrictions on X11, though. It's highly dependent on the window manager and its setup -- the window manager may simply ignore
