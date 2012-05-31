@@ -14,6 +14,7 @@
 
 #include "macros.h"
 #include "qmc2main.h"
+#include "gamelist.h"
 #include "youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
@@ -21,6 +22,7 @@ extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
+extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
@@ -1547,6 +1549,9 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
 	if ( !suggestorAppendString.isEmpty() )
 		suggestedSearchPattern.append(" " + suggestorAppendString);
+	QTreeWidgetItem *item = qmc2GamelistItemMap[mySetID];
+	if ( item )
+		suggestedSearchPattern.replace("$MANUFACTURER$", item->text(QMC2_GAMELIST_COLUMN_MANU)).replace("$YEAR$", item->text(QMC2_GAMELIST_COLUMN_YEAR));
 	lineEditSearchString->setText(suggestedSearchPattern);
 }
 
