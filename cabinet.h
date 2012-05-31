@@ -1,45 +1,22 @@
 #ifndef _CABINET_H_
 #define _CABINET_H_
 
-#include <QMap>
-#include <QMenu>
-#include <QWidget>
-#include <QPixmap>
-#include <QPainter>
-#include <QTreeWidgetItem>
-#if QMC2_OPENGL == 1
-#include <QGLWidget>
-#endif
+#include "imagewidget.h"
 
-#include "unzip.h"
-
-#if QMC2_OPENGL == 1
-class Cabinet : public QGLWidget
-#else
-class Cabinet : public QWidget
-#endif
+class Cabinet : public ImageWidget
 {
-  Q_OBJECT
+	Q_OBJECT 
 
-  public:
-    unzFile cabinetFile;
-    QPixmap currentCabinetPixmap;
-    QMenu *contextMenu;
-    QString myCacheKey;
+	public:
+		Cabinet(QWidget *parent);
 
-    Cabinet(QWidget *parent = 0);
-    ~Cabinet();
-
-  public slots:
-    void drawCenteredImage(QPixmap *, QPainter *);
-    void drawScaledImage(QPixmap *, QPainter *);
-    bool loadCabinet(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
-    void copyToClipboard();
-    void refresh();
-
-  protected:
-    void paintEvent(QPaintEvent *);
-    void contextMenuEvent(QContextMenuEvent *);
+	protected:
+		virtual QString cachePrefix() { return "cab_"; }
+		virtual QString imageZip();
+		virtual QString imageDir();
+		virtual QString imageType() { return tr("cabinet"); }
+		virtual bool useZip();
+		virtual bool scaledImage();
 };
 
 #endif

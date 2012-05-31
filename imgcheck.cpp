@@ -160,7 +160,7 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
       it.next();
       QString gameName = it.key();
       QString fileName;
-      if ( qmc2Preview->loadPreview(gameName, gameName, true, &fileName) )
+      if ( qmc2Preview->loadImage(gameName, gameName, true, &fileName) )
         foundPreviews << gameName;
       else
         missingPreviews << gameName;
@@ -190,11 +190,11 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
       QStringList fileList;
       i = 0;
       unz_global_info unzGlobalInfo;
-      if ( unzGetGlobalInfo(qmc2Preview->previewFile, &unzGlobalInfo) == UNZ_OK ) {
+      if ( unzGetGlobalInfo(qmc2Preview->imageFile, &unzGlobalInfo) == UNZ_OK ) {
         qmc2MainWindow->progressBarGamelist->setRange(0, unzGlobalInfo.number_entry);
         qmc2MainWindow->progressBarGamelist->reset();
         qApp->processEvents();
-        if ( unzGoToFirstFile(qmc2Preview->previewFile) == UNZ_OK ) {
+        if ( unzGoToFirstFile(qmc2Preview->imageFile) == UNZ_OK ) {
           do {
             char unzFileName[QMC2_MAX_PATH_LENGTH];
             i++;
@@ -202,10 +202,10 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
               qmc2MainWindow->progressBarGamelist->setValue(i);
               qApp->processEvents();
             }
-            if ( unzGetCurrentFileInfo(qmc2Preview->previewFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
+            if ( unzGetCurrentFileInfo(qmc2Preview->imageFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
               fileList << unzFileName;
             }
-          } while ( unzGoToNextFile(qmc2Preview->previewFile) != UNZ_END_OF_LIST_OF_FILE );
+          } while ( unzGoToNextFile(qmc2Preview->imageFile) != UNZ_END_OF_LIST_OF_FILE );
         }
         qmc2MainWindow->progressBarGamelist->setRange(0, fileList.count());
         qmc2MainWindow->progressBarGamelist->reset();
@@ -329,10 +329,10 @@ void ImageChecker::on_pushButtonPreviewsRemoveObsolete_clicked()
     }
 
     qmc2Preview->setUpdatesEnabled(false);
-    unzClose(qmc2Preview->previewFile);
+    unzClose(qmc2Preview->imageFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
-    qmc2Preview->previewFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toAscii());
+    qmc2Preview->imageFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toAscii());
     qmc2Preview->setUpdatesEnabled(true);
   } else {
 #if defined(Q_WS_WIN)
@@ -464,7 +464,7 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
       it.next();
       QString gameName = it.key();
       QString fileName;
-      if ( qmc2Flyer->loadFlyer(gameName, gameName, true, &fileName) )
+      if ( qmc2Flyer->loadImage(gameName, gameName, true, &fileName) )
         foundFlyers << gameName;
       else
         missingFlyers << gameName;
@@ -494,11 +494,11 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
       QStringList fileList;
       i = 0;
       unz_global_info unzGlobalInfo;
-      if ( unzGetGlobalInfo(qmc2Flyer->flyerFile, &unzGlobalInfo) == UNZ_OK ) {
+      if ( unzGetGlobalInfo(qmc2Flyer->imageFile, &unzGlobalInfo) == UNZ_OK ) {
         qmc2MainWindow->progressBarGamelist->setRange(0, unzGlobalInfo.number_entry);
         qmc2MainWindow->progressBarGamelist->reset();
         qApp->processEvents();
-        if ( unzGoToFirstFile(qmc2Flyer->flyerFile) == UNZ_OK ) {
+        if ( unzGoToFirstFile(qmc2Flyer->imageFile) == UNZ_OK ) {
           do {
             char unzFileName[QMC2_MAX_PATH_LENGTH];
             i++;
@@ -506,10 +506,10 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
               qmc2MainWindow->progressBarGamelist->setValue(i);
               qApp->processEvents();
             }
-            if ( unzGetCurrentFileInfo(qmc2Flyer->flyerFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
+            if ( unzGetCurrentFileInfo(qmc2Flyer->imageFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
               fileList << unzFileName;
             }
-          } while ( unzGoToNextFile(qmc2Flyer->flyerFile) != UNZ_END_OF_LIST_OF_FILE );
+          } while ( unzGoToNextFile(qmc2Flyer->imageFile) != UNZ_END_OF_LIST_OF_FILE );
         }
         qmc2MainWindow->progressBarGamelist->setRange(0, fileList.count());
         qmc2MainWindow->progressBarGamelist->reset();
@@ -633,10 +633,10 @@ void ImageChecker::on_pushButtonFlyersRemoveObsolete_clicked()
     }
 
     qmc2Flyer->setUpdatesEnabled(false);
-    unzClose(qmc2Flyer->flyerFile);
+    unzClose(qmc2Flyer->imageFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
-    qmc2Flyer->flyerFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString().toAscii());
+    qmc2Flyer->imageFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFile").toString().toAscii());
     qmc2Flyer->setUpdatesEnabled(true);
   } else {
 #if defined(Q_WS_WIN)
