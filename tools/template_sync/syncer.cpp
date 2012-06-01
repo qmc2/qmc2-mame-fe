@@ -115,7 +115,7 @@ void Syncer::syncTemplates()
                     endIndex = line.indexOf("\"", startIndex);
                     section = line.mid(startIndex, endIndex - startIndex);
                     option.clear();
-                    std::cout << lineCopy.toStdString() << "\n";
+                    std::cout << lineCopy.toLocal8Bit().constData() << "\n";
                 } else if ( line.startsWith("<option ") ) {
                     startIndex = line.indexOf("name=\"") + 6;
                     endIndex = line.indexOf("\"", startIndex);
