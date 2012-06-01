@@ -8,24 +8,17 @@
 #include <QTreeWidgetItem>
 
 #include "imagewidget.h"
-#include "options.h"
-#include "gamelist.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern Options *qmc2Options;
-extern Gamelist *qmc2Gamelist;
-extern bool qmc2GuiReady;
-extern bool qmc2ReloadActive;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
 extern bool qmc2ShowGameName;
 extern bool qmc2ShowGameNameOnlyWhenRequired;
 extern QTreeWidgetItem *qmc2CurrentItem;
-extern QSettings *qmc2Config;
 extern QMap<QString, QString> qmc2ParentMap;
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 
@@ -73,6 +66,21 @@ ImageWidget::~ImageWidget()
 
 	if ( useZip() )
 		unzClose(imageFile);
+}
+
+QString ImageWidget::cleanDir(QString dirs)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::cleanDir(QString dirs = %1)").arg(dirs));
+#endif
+
+	QStringList dirList;
+	foreach (QString dir, dirs.split(";", QString::SkipEmptyParts)) {
+		if ( !dir.endsWith("/") )
+			dir += "/";
+		dirList << dir;
+	}
+	return dirList.join(";");
 }
 
 void ImageWidget::paintEvent(QPaintEvent *e)

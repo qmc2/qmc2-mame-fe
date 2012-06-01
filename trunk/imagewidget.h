@@ -29,6 +29,8 @@ class ImageWidget : public QWidget
 		ImageWidget(QWidget *parent);
 		~ImageWidget();
 
+		QString cleanDir(QString);
+
 	public slots:
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);

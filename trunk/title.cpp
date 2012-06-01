@@ -21,13 +21,7 @@ QString Title::imageZip()
 
 QString Title::imageDir()
 {
-	QStringList dirList;
-	foreach (QString dir, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleDirectory").toString().split(";", QString::SkipEmptyParts)) {
-		if ( !dir.endsWith("/") )
-			dir += "/";
-		dirList << dir;
-	}
-	return dirList.join(";");
+	return cleanDir(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleDirectory").toString());
 }
 
 bool Title::useZip()
