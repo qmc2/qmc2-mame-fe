@@ -57,8 +57,8 @@ Welcome::Welcome(QWidget *parent)
     QString emulatorName = tr("Unsupported emulator");
 #endif
     labelExecutableFile->setText(tr("%1 executable file").arg(emulatorName));
-    show();
     adjustSize();
+    show();
   } else {
     checkOkay = true;
     QTimer::singleShot(0, this, SLOT(on_pushButtonOkay_clicked()));

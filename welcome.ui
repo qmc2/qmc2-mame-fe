@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>499</width>
-    <height>651</height>
+    <height>611</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,21 +38,17 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout2">
-      <item row="2" column="2">
-       <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
-        <property name="toolTip">
-         <string>Browse emulator executable file</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelROMPath">
+        <property name="text">
+         <string>ROM path</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="3">
-       <widget class="QLabel" name="labelSpacer">
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelWorkingDirectory">
         <property name="text">
-         <string/>
+         <string>Working directory</string>
         </property>
        </widget>
       </item>
@@ -69,25 +65,59 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="2">
-       <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
-        <property name="toolTip">
-         <string>Browse working directory</string>
+      <item row="0" column="0" colspan="3">
+       <widget class="QLabel" name="labelWelcome">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Welcome to QMC2!&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator's executable file below.&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator's global configuration at any time later).&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It's strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="6" column="2">
-       <widget class="QToolButton" name="toolButtonBrowseHashPath">
-        <property name="toolTip">
-         <string>Browse hash path</string>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelExecutableFile">
+        <property name="text">
+         <string>Emulator executable</string>
         </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="lineEditROMPath">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Path to ROM images</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEditWorkingDirectory">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Working directory that's used when the emulator is executed (if empty, QMC2's current working directory is used)</string>
         </property>
        </widget>
       </item>
@@ -95,6 +125,28 @@
        <widget class="QToolButton" name="toolButtonBrowseROMPath">
         <property name="toolTip">
          <string>Browse ROM path</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
+        <property name="toolTip">
+         <string>Browse emulator executable file</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QToolButton" name="toolButtonBrowseSamplePath">
+        <property name="toolTip">
+         <string>Browse sample path</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
@@ -122,25 +174,16 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="labelHashPath">
-        <property name="text">
-         <string>Hash path</string>
+      <item row="6" column="2">
+       <widget class="QToolButton" name="toolButtonBrowseHashPath">
+        <property name="toolTip">
+         <string>Browse hash path</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
-      </item>
-      <item row="7" column="0" colspan="3">
-       <spacer name="spacer3">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item row="5" column="1">
        <widget class="QLineEdit" name="lineEditSamplePath">
@@ -155,37 +198,30 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelExecutableFile">
-        <property name="text">
-         <string>Emulator executable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="lineEditWorkingDirectory">
+      <item row="1" column="0" colspan="3">
+       <widget class="QLabel" name="labelSpacer">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip">
-         <string>Working directory that's used when the emulator is executed (if empty, QMC2's current working directory is used)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelWorkingDirectory">
         <property name="text">
-         <string>Working directory</string>
+         <string/>
         </property>
        </widget>
       </item>
-      <item row="5" column="2">
-       <widget class="QToolButton" name="toolButtonBrowseSamplePath">
+      <item row="6" column="0">
+       <widget class="QLabel" name="labelHashPath">
+        <property name="text">
+         <string>Hash path</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
         <property name="toolTip">
-         <string>Browse sample path</string>
+         <string>Browse working directory</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
@@ -193,48 +229,18 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QLineEdit" name="lineEditROMPath">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+      <item row="7" column="0" colspan="3">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
-        <property name="toolTip">
-         <string>Path to ROM images</string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
         </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="3">
-       <widget class="QLabel" name="labelWelcome">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Welcome to QMC2!&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator's executable file below.&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator's global configuration at any time later).&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It's strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="labelROMPath">
-        <property name="text">
-         <string>ROM path</string>
-        </property>
-       </widget>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -274,26 +280,26 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item row="2" column="0">
-    <spacer name="spacer1">
+    <spacer name="horizontalSpacer1">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>182</width>
+       <width>0</width>
        <height>20</height>
       </size>
      </property>
     </spacer>
    </item>
    <item row="2" column="3">
-    <spacer name="spacer2">
+    <spacer name="horizontalSpacer2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>181</width>
+       <width>0</width>
        <height>20</height>
       </size>
      </property>

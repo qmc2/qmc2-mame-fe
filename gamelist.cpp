@@ -467,31 +467,42 @@ void Gamelist::load()
   qApp->processEvents();
   bool commandProcStarted = false;
   int retries = 0;
-  commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
-  bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
-  while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-    started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
-    qApp->processEvents();
-  }
-  if ( started ) {
-    commandProcStarted = true;
-    bool commandProcRunning = (commandProc.state() == QProcess::Running);
-    while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
-      qApp->processEvents();
-      commandProcRunning = (commandProc.state() == QProcess::Running);
-    }
-  } else {
+  QString execFile = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
+  QFileInfo fi(execFile);
+  bool started = false;
+  if ( fi.exists() && fi.isReadable() ) {
+	  commandProc.start(execFile, args);
+	  started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
+	  while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+		  started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+		  qApp->processEvents();
+	  }
+	  if ( started ) {
+		  commandProcStarted = true;
+		  bool commandProcRunning = (commandProc.state() == QProcess::Running);
+		  while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+			  qApp->processEvents();
+			  commandProcRunning = (commandProc.state() == QProcess::Running);
+		  }
+	  } else {
 #if defined(QMC2_EMUTYPE_MAME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
+		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
 #elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
+		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
 #elif defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
+		  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
 #endif
-    qmc2ReloadActive = qmc2EarlyReloadActive = false;
-    qmc2StopParser = true;
-    enableWidgets(true);
-    return;
+		  qmc2ReloadActive = qmc2EarlyReloadActive = false;
+		  qmc2StopParser = true;
+		  enableWidgets(true);
+		  return;
+	  }
+  } else {
+	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start %1 executable, file '%2' does not exist").arg(QMC2_EMU_NAME).arg(execFile));
+	  qmc2ReloadActive = qmc2EarlyReloadActive = false;
+	  qmc2StopParser = true;
+	  enableWidgets(true);
+	  return;
   }
 
 #if defined(QMC2_SDLMAME)
@@ -581,7 +592,7 @@ void Gamelist::load()
   qApp->processEvents();
   commandProcStarted = false;
   retries = 0;
-  commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
+  commandProc.start(execFile, args);
   started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
     started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
