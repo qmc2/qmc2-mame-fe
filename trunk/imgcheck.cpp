@@ -258,6 +258,7 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
       listWidgetPreviewsObsolete->sortItems(Qt::AscendingOrder);
     }
 
+    qmc2MainWindow->progressBarGamelist->setRange(0, 100);
     qmc2MainWindow->progressBarGamelist->reset();
 
     // reallow changes to preview source after check
@@ -562,6 +563,7 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
       listWidgetFlyersObsolete->sortItems(Qt::AscendingOrder);
     }
 
+    qmc2MainWindow->progressBarGamelist->setRange(0, 100);
     qmc2MainWindow->progressBarGamelist->reset();
 
     // reallow changes to flyer source after check

@@ -147,7 +147,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	bool fileOk = true;
 
 	if ( useZip() ) {
-		// try loading image form ZIP
+		// try loading image from ZIP
 		QByteArray imageData;
 		int len, i;
 		QString gameFile = gameName + ".png";
@@ -275,7 +275,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 	if ( drawGameName ) {
 		// draw game/machine title
-		QString title = QString("%1").arg(qmc2GamelistDescriptionMap[qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)]);
+		QString title = qmc2GamelistDescriptionMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
 		QFont f(qApp->font());
 		f.setWeight(QFont::Bold);
 		p->setFont(f);
@@ -288,10 +288,10 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 		r = p->boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, title);
 		r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
 		r.setBottom(rect().bottom());
-		p->setPen(QPen(QColor(255, 255, 255, 0)));
+		p->setPen(QColor(255, 255, 255, 0));
 		p->fillRect(r, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
 		p->setPen(QPen(QColor(255, 255, 255, 255)));
-		p->drawText(r, Qt::AlignCenter | Qt::TextWordWrap, QString("%1").arg(qmc2GamelistDescriptionMap[qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)]));
+		p->drawText(r, Qt::AlignCenter | Qt::TextWordWrap, title);
 	}
 
 	p->end();
