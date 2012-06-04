@@ -1480,7 +1480,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.h" line="17"/>
         <source>cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>gabinete</translation>
     </message>
 </context>
 <context>
@@ -1488,7 +1488,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.h" line="17"/>
         <source>controller</source>
-        <translation type="unfinished"></translation>
+        <translation>controle</translation>
     </message>
 </context>
 <context>
@@ -2658,7 +2658,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.h" line="17"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2940,7 +2940,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="501"/>
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável %1, arquivo &apos;%2&apos; não existe</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="541"/>
@@ -5072,22 +5072,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagewidget.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Recarregar</translation>
+        <translation>Recarregar</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="64"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo %1, por favor verifique as permissões de acesso para %2</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="91"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aguardando dados...</translation>
     </message>
 </context>
 <context>
@@ -7067,13 +7067,13 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="587"/>
         <location filename="../../qmc2main.cpp" line="588"/>
         <source>About U.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre o U.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="601"/>
         <location filename="../../qmc2main.cpp" line="602"/>
         <source>About M.E.S.S. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre o M.E.S.S. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="676"/>
@@ -7158,7 +7158,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5965"/>
         <source>destroying tool-bar customization</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo customização da barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5979"/>
@@ -9402,7 +9402,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../marquee.h" line="17"/>
         <source>marquee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -12415,12 +12415,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="820"/>
         <source>Customize the tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Customizar a barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="823"/>
         <source>Tool-bar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de ferramentas...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2249"/>
@@ -13115,7 +13115,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../pcb.h" line="17"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -13123,7 +13123,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../preview.h" line="17"/>
         <source>preview</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -17495,7 +17495,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../title.h" line="17"/>
         <source>title</source>
-        <translation type="unfinished">título</translation>
+        <translation>título</translation>
     </message>
 </context>
 <context>
@@ -17503,114 +17503,114 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../toolbarcustomizer.ui" line="14"/>
         <source>Customize tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Customizar barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="26"/>
         <source>Available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ações da barra de ferramentas disponíveis</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="32"/>
         <source>List of available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista das ações da barra de ferramentas disponíveis</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="48"/>
         <source>Activate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar ações da barra de ferramentas selecionadas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="51"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="74"/>
         <source>Active tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ações ativas da barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="80"/>
         <source>List of active tool-bar actions and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista das ações ativas da barra de ferramentas e sua ordem</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="96"/>
         <source>Deactivate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativar ações da barra de ferramentas selecionadas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="113"/>
         <source>Move selected action up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover ação selecionada para cima</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="133"/>
         <source>Move selected action down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover ação selecionada para baixo</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="153"/>
         <source>Insert a separator line</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir separador</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="156"/>
         <source>Separator</source>
-        <translation type="unfinished">Separador</translation>
+        <translation>Separador</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="170"/>
         <source>Reset tool-bar actions to default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar ações da barra de ferramentas para a configuração padrão</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="173"/>
         <source>Default</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="202"/>
         <source>Apply tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração da barra de ferramentas e fechar janela</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="205"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="219"/>
         <source>Apply tool-bar setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração da barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="222"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Aplicar</translation>
+        <translation>&amp;Aplicar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="236"/>
         <source>Cancel tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar configuração da barra de ferramentas e fechar janela</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="239"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="80"/>
         <location filename="../../toolbarcustomizer.cpp" line="108"/>
         <source>Tool-bar search box</source>
-        <translation type="unfinished"></translation>
+        <translation>Caixa de busca da barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="104"/>
         <location filename="../../toolbarcustomizer.cpp" line="291"/>
         <source>-- Separator --</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Separador --</translation>
     </message>
 </context>
 <context>
@@ -18214,7 +18214,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="374"/>
         <source>Valid placeholder macros:</source>
-        <translation type="unfinished"></translation>
+        <translation>Variáveis válidas:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="572"/>
