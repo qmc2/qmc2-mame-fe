@@ -1,1 +1,2 @@
-The "mrq" directory is the default place to store marquee images.
+The "mrq" directory is the default place to store marquee images or - in case
+of MESS - system/manufacturer logos.

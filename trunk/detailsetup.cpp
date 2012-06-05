@@ -123,6 +123,9 @@ DetailSetup::DetailSetup(QWidget *parent)
 	shortTitleMap[QMC2_CABINET_INDEX] = tr("Ca&binet");
 	longTitleMap[QMC2_CABINET_INDEX] = tr("Machine cabinet image");
 	iconMap[QMC2_CABINET_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png"));
+	shortTitleMap[QMC2_MARQUEE_INDEX] = tr("Lo&go");
+	longTitleMap[QMC2_MARQUEE_INDEX] = tr("Logo image");
+	iconMap[QMC2_MARQUEE_INDEX] = QIcon(QString::fromUtf8(":/data/img/marquee.png"));
 	shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
 	longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
 	iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
@@ -140,6 +143,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 			<< QMC2_PROJECTMESS_INDEX
 			<< QMC2_PCB_INDEX
 			<< QMC2_CABINET_INDEX
+			<< QMC2_MARQUEE_INDEX
 			<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
 	availableDetailList << QMC2_YOUTUBE_INDEX;
@@ -153,6 +157,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 	tabWidgetsMap[QMC2_PROJECTMESS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PROJECTMESS_INDEX);
 	tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 	tabWidgetsMap[QMC2_CABINET_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX);
+	tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
 	tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
 #if QMC2_YOUTUBE_ENABLED
 	tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
