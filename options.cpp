@@ -295,7 +295,10 @@ Options::Options(QWidget *parent)
   checkBoxScaledMarquee->setToolTip(tr("Scaled logo"));
   radioButtonMarqueeSelect->setText(tr("Logo directory"));
   radioButtonMarqueeSelect->setToolTip(tr("Switch between specifying a logo directory or a ZIP-compressed logo file"));
+  lineEditMarqueeDirectory->setToolTip(tr("Logo directory (read)"));
   lineEditMarqueeFile->setToolTip(tr("ZIP-compressed logo file (read)"));
+  toolButtonBrowseMarqueeDirectory->setToolTip(tr("Browse logo directory"));
+  toolButtonBrowseMarqueeFile->setToolTip(tr("Browse ZIP-compressed logo file"));
   radioButtonTitleSelect->setVisible(false);
   stackedWidgetController->setVisible(false);
   stackedWidgetTitle->setVisible(false);
