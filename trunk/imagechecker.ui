@@ -238,7 +238,7 @@
       <attribute name="title">
        <string>Check results</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayoutCheckResults">
        <item row="0" column="0">
         <widget class="QLabel" name="labelFound">
          <property name="text">
@@ -287,7 +287,7 @@
       <attribute name="title">
        <string>Log</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
+      <layout class="QGridLayout" name="gridLayoutLog">
        <item row="0" column="0">
         <widget class="QPlainTextEdit" name="plainTextEditLog"/>
        </item>
