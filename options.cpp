@@ -28,7 +28,11 @@
 #include "pcb.h"
 #include "qmc2main.h"
 #include "gamelist.h"
+#if defined(QMC2_WIP_ENABLED)
+#include "imagechecker.h"
+#else
 #include "imgcheck.h"
+#endif
 #include "macros.h"
 #include "unzip.h"
 #include "keyseqscan.h"
@@ -677,10 +681,15 @@ void Options::apply()
     qmc2ROMAlyzer->textBrowserLog->setFont(logFont);
     QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(adjustIconSizes()));
   }
+#if !defined(QMC2_WIP_ENABLED)
   if ( qmc2ImageChecker ) {
     QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();
     if ( tabBar ) tabBar->setIconSize(iconSize);
   }
+#else
+  if ( qmc2ImageChecker )
+	  qmc2ImageChecker->adjustIconSizes();
+#endif
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);

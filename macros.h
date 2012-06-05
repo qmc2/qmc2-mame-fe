@@ -84,6 +84,17 @@
 #define QMC2_SOFTWARE_LIST_INDEX		12
 #define QMC2_YOUTUBE_INDEX			13
 
+// image checker image types
+#define QMC2_IMGCHK_INDEX_PREVIEW		0
+#define QMC2_IMGCHK_INDEX_FLYER			1
+#define QMC2_IMGCHK_INDEX_CABINET		2
+#define QMC2_IMGCHK_INDEX_CONTROLLER		3
+#define QMC2_IMGCHK_INDEX_MARQUEE		4
+#define QMC2_IMGCHK_INDEX_TITLE			5
+#define QMC2_IMGCHK_INDEX_PCB			6
+#define QMC2_IMGCHK_INDEX_SEPARATOR		7
+#define QMC2_IMGCHK_INDEX_ICON			8
+
 // current format version of the GLC (game list cache)
 #define QMC2_GLC_VERSION			5
 
