@@ -24,6 +24,53 @@ extern QSettings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
+#define QMC2_DEBUG
+
+ImageCheckerThread::ImageCheckerThread(int tNum, QObject *parent)
+	: QThread(parent)
+{
+	threadNumber = tNum;
+	exitThread = false;
+	start();
+}
+
+ImageCheckerThread::~ImageCheckerThread()
+{
+	quit();
+	wait();
+}
+
+void ImageCheckerThread::run()
+{
+#ifdef QMC2_DEBUG
+	emit log(QString("DEBUG: ImageCheckerThread[%1]: started").arg(threadNumber));
+#endif
+	while ( !exitThread ) {
+#ifdef QMC2_DEBUG
+		emit log(QString("DEBUG: ImageCheckerThread[%1]: going to sleep").arg(threadNumber));
+#endif
+
+		mutex.lock();
+		waitCondition.wait(&mutex);
+		mutex.unlock();
+
+#ifdef QMC2_DEBUG
+		emit log(QString("DEBUG: ArcadeScreenshotSaverThread[%1]: woke up").arg(threadNumber));
+#endif
+
+		mutex.lock();
+
+		// FIXME: check images
+
+		mutex.unlock();
+	}
+
+#ifdef QMC2_DEBUG
+	emit log(QString("DEBUG: ImageCheckerThread[%1]: ended").arg(threadNumber));
+#endif
+}
+
+
 ImageChecker::ImageChecker(QWidget *parent)
 #if defined(Q_WS_WIN)
 	: QDialog(parent, Qt::Dialog)
@@ -82,6 +129,28 @@ void ImageChecker::on_listWidgetMissing_itemSelectionChanged()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetMissing_itemSelectionChanged()");
 #endif
 
+}
+
+void ImageChecker::log(const QString &message)
+{
+	QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
+
+	bool scrollBarMaximum = (plainTextEditLog->verticalScrollBar()->value() == plainTextEditLog->verticalScrollBar()->maximum());
+	plainTextEditLog->appendPlainText(msg);
+	if ( scrollBarMaximum ) {
+		plainTextEditLog->update();
+		qApp->processEvents();
+		plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
+	}
+}
+
+void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList)"));
+#endif
+
+	// FIXME
 }
 
 void ImageChecker::selectItem(QString setName)
@@ -145,15 +214,23 @@ void ImageChecker::closeEvent(QCloseEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	QDialog::closeEvent(e);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Geometry", saveGeometry());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/ImageType", comboBoxImageType->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/Threads", spinBoxThreads->value());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/SelectSets", toolButtonSelectSets->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/ClearCaches", toolButtonClearCaches->isChecked());
+
+	if ( e )
+		QDialog::closeEvent(e);
 }
 
 void ImageChecker::hideEvent(QHideEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	closeEvent(NULL);
 	QDialog::hideEvent(e);
 }
 
@@ -164,5 +241,12 @@ void ImageChecker::showEvent(QShowEvent *e)
 #endif
 
 	adjustIconSizes();
+
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Geometry", QByteArray()).toByteArray());
+	comboBoxImageType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/ImageType", QMC2_IMGCHK_INDEX_PREVIEW).toInt());
+	spinBoxThreads->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Threads", 1).toInt());
+	toolButtonSelectSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/SelectSets", true).toBool());
+	toolButtonClearCaches->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/ClearCaches", true).toBool());
+
 	QDialog::showEvent(e);
 }
