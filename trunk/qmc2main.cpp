@@ -49,7 +49,11 @@
 #include "docbrowser.h"
 #include "about.h"
 #include "welcome.h"
+#if defined(QMC2_WIP_ENABLED)
+#include "imagechecker.h"
+#else
 #include "imgcheck.h"
+#endif
 #include "sampcheck.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
@@ -783,10 +787,14 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
 #endif
+#if !defined(QMC2_WIP_ENABLED)
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible").toBool() ) {
       on_actionCheckPreviews_triggered();
       qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/CurrentTab", 0).toInt());
     }
+#else
+    // FIXME
+#endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible").toBool() )
       on_actionCheckSamples_triggered();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible").toBool() )
@@ -2072,7 +2080,9 @@ void MainWindow::on_actionCheckPreviews_triggered(bool)
   if ( !qmc2ImageChecker )
     qmc2ImageChecker = new ImageChecker(this);
 
+#if !defined(QMC2_WIP_ENABLED)
   qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(QMC2_PREVIEW_INDEX);
+#endif
   if ( qmc2ImageChecker->isHidden() )
     qmc2ImageChecker->show();
   else if ( qmc2ImageChecker->isMinimized() )
@@ -2090,7 +2100,9 @@ void MainWindow::on_actionCheckFlyers_triggered(bool)
   if ( !qmc2ImageChecker )
     qmc2ImageChecker = new ImageChecker(this);
 
+#if !defined(QMC2_WIP_ENABLED)
   qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(QMC2_FLYER_INDEX);
+#endif
   if ( qmc2ImageChecker->isHidden() )
     qmc2ImageChecker->show();
   else if ( qmc2ImageChecker->isMinimized() )
@@ -2108,7 +2120,9 @@ void MainWindow::on_actionCheckIcons_triggered(bool)
   if ( !qmc2ImageChecker )
     qmc2ImageChecker = new ImageChecker(this);
 
+#if !defined(QMC2_WIP_ENABLED)
   qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(QMC2_ICON_INDEX);
+#endif
   if ( qmc2ImageChecker->isHidden() )
     qmc2ImageChecker->show();
   else if ( qmc2ImageChecker->isMinimized() )

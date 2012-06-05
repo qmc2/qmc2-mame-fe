@@ -192,6 +192,16 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QT += widgets
 		}
 
+		# WIP stuff
+		contains(DEFINES, QMC2_WIP_ENABLED) {
+			FORMS -= imgcheck.ui
+			FORMS += imagechecker.ui
+			SOURCES -= imgcheck.cpp
+			SOURCES += imagechecker.cpp
+			HEADERS -= imgcheck.h
+			HEADERS += imagechecker.h
+		}
+
 		# platform specific stuff
 		macx {
 			QMAKESPEC = macx-xcode

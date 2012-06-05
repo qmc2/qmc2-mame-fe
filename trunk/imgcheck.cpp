@@ -61,7 +61,7 @@ ImageChecker::ImageChecker(QWidget *parent)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::ImageChecker(QWidget *parent = %1").arg((qulonglong)parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::ImageChecker(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   setupUi(this);
