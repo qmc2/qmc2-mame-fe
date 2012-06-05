@@ -364,6 +364,7 @@ qmc2/data/img/circles/.svn/prop-base/ghost.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/ghost_video.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/gradient2.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/halt.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/help.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/hint.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/hint_small.png.svn-base
@@ -435,6 +436,7 @@ qmc2/data/img/circles/.svn/prop-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/redo.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/refresh.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/release_alternate.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/release.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/reload.png.svn-base
@@ -581,6 +583,7 @@ qmc2/data/img/circles/.svn/text-base/ghost.png.svn-base
 qmc2/data/img/circles/.svn/text-base/ghost_video.png.svn-base
 qmc2/data/img/circles/.svn/text-base/gradient1.png.svn-base
 qmc2/data/img/circles/.svn/text-base/gradient2.png.svn-base
+qmc2/data/img/circles/.svn/text-base/halt.png.svn-base
 qmc2/data/img/circles/.svn/text-base/help.png.svn-base
 qmc2/data/img/circles/.svn/text-base/hint.png.svn-base
 qmc2/data/img/circles/.svn/text-base/hint_small.png.svn-base
@@ -652,6 +655,7 @@ qmc2/data/img/circles/.svn/text-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/circles/.svn/text-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/circles/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/circles/.svn/text-base/redo.png.svn-base
+qmc2/data/img/circles/.svn/text-base/refresh.png.svn-base
 qmc2/data/img/circles/.svn/text-base/release_alternate.png.svn-base
 qmc2/data/img/circles/.svn/text-base/release.png.svn-base
 qmc2/data/img/circles/.svn/text-base/reload.png.svn-base
@@ -808,6 +812,7 @@ qmc2/data/img/classic/.svn/prop-base/ghost.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/ghost_video.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/gradient2.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/halt.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/help.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/hint.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/hint_small.png.svn-base
@@ -879,6 +884,7 @@ qmc2/data/img/classic/.svn/prop-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/redo.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/refresh.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/release_alternate.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/release.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/reload.png.svn-base
@@ -1025,6 +1031,7 @@ qmc2/data/img/classic/.svn/text-base/ghost.png.svn-base
 qmc2/data/img/classic/.svn/text-base/ghost_video.png.svn-base
 qmc2/data/img/classic/.svn/text-base/gradient1.png.svn-base
 qmc2/data/img/classic/.svn/text-base/gradient2.png.svn-base
+qmc2/data/img/classic/.svn/text-base/halt.png.svn-base
 qmc2/data/img/classic/.svn/text-base/help.png.svn-base
 qmc2/data/img/classic/.svn/text-base/hint.png.svn-base
 qmc2/data/img/classic/.svn/text-base/hint_small.png.svn-base
@@ -1096,6 +1103,7 @@ qmc2/data/img/classic/.svn/text-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/classic/.svn/text-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/classic/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/classic/.svn/text-base/redo.png.svn-base
+qmc2/data/img/classic/.svn/text-base/refresh.png.svn-base
 qmc2/data/img/classic/.svn/text-base/release_alternate.png.svn-base
 qmc2/data/img/classic/.svn/text-base/release.png.svn-base
 qmc2/data/img/classic/.svn/text-base/reload.png.svn-base
@@ -1243,6 +1251,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/ghost.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/ghost_video.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/gradient2.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/halt.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/help.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/hint.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/hint_small.png.svn-base
@@ -1314,6 +1323,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/redo.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/refresh.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/release_alternate.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/release.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/reload.png.svn-base
@@ -1460,6 +1470,7 @@ qmc2/data/img/crazy-black/.svn/text-base/ghost.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/ghost_video.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/gradient1.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/gradient2.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/halt.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/help.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/hint.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/hint_small.png.svn-base
@@ -1531,6 +1542,7 @@ qmc2/data/img/crazy-black/.svn/text-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/redo.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/refresh.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/release_alternate.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/release.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/reload.png.svn-base
@@ -1682,6 +1694,7 @@ qmc2/data/img/crazy/.svn/prop-base/ghost.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/ghost_video.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/gradient2.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/halt.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/help.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/hint.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/hint_small.png.svn-base
@@ -1753,6 +1766,7 @@ qmc2/data/img/crazy/.svn/prop-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/redo.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/refresh.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/release_alternate.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/release.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/reload.png.svn-base
@@ -1899,6 +1913,7 @@ qmc2/data/img/crazy/.svn/text-base/ghost.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/ghost_video.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/gradient1.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/gradient2.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/halt.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/help.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/hint.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/hint_small.png.svn-base
@@ -1970,6 +1985,7 @@ qmc2/data/img/crazy/.svn/text-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/redo.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/refresh.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/release_alternate.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/release.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/reload.png.svn-base
@@ -2121,6 +2137,7 @@ qmc2/data/img/cubes/.svn/prop-base/ghost.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/ghost_video.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/gradient2.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/halt.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/help.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/hint.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/hint_small.png.svn-base
@@ -2192,6 +2209,7 @@ qmc2/data/img/cubes/.svn/prop-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/redo.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/refresh.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/release_alternate.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/release.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/reload.png.svn-base
@@ -2338,6 +2356,7 @@ qmc2/data/img/cubes/.svn/text-base/ghost.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/ghost_video.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/gradient1.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/gradient2.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/halt.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/help.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/hint.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/hint_small.png.svn-base
@@ -2409,6 +2428,7 @@ qmc2/data/img/cubes/.svn/text-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/redo.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/refresh.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/release_alternate.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/release.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/reload.png.svn-base
@@ -2565,6 +2585,7 @@ qmc2/data/img/.svn/prop-base/ghost.png.svn-base
 qmc2/data/img/.svn/prop-base/ghost_video.png.svn-base
 qmc2/data/img/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/img/.svn/prop-base/gradient2.png.svn-base
+qmc2/data/img/.svn/prop-base/halt.png.svn-base
 qmc2/data/img/.svn/prop-base/help.png.svn-base
 qmc2/data/img/.svn/prop-base/hint.png.svn-base
 qmc2/data/img/.svn/prop-base/hint_small.png.svn-base
@@ -2636,6 +2657,7 @@ qmc2/data/img/.svn/prop-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/.svn/prop-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/.svn/prop-base/redo.png.svn-base
+qmc2/data/img/.svn/prop-base/refresh.png.svn-base
 qmc2/data/img/.svn/prop-base/release_alternate.png.svn-base
 qmc2/data/img/.svn/prop-base/release.png.svn-base
 qmc2/data/img/.svn/prop-base/reload.png.svn-base
@@ -2782,6 +2804,7 @@ qmc2/data/img/.svn/text-base/ghost.png.svn-base
 qmc2/data/img/.svn/text-base/ghost_video.png.svn-base
 qmc2/data/img/.svn/text-base/gradient1.png.svn-base
 qmc2/data/img/.svn/text-base/gradient2.png.svn-base
+qmc2/data/img/.svn/text-base/halt.png.svn-base
 qmc2/data/img/.svn/text-base/help.png.svn-base
 qmc2/data/img/.svn/text-base/hint.png.svn-base
 qmc2/data/img/.svn/text-base/hint_small.png.svn-base
@@ -2853,6 +2876,7 @@ qmc2/data/img/.svn/text-base/qmc2_ume_logo_small.png.svn-base
 qmc2/data/img/.svn/text-base/qmc2_ume_splash.png.svn-base
 qmc2/data/img/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/.svn/text-base/redo.png.svn-base
+qmc2/data/img/.svn/text-base/refresh.png.svn-base
 qmc2/data/img/.svn/text-base/release_alternate.png.svn-base
 qmc2/data/img/.svn/text-base/release.png.svn-base
 qmc2/data/img/.svn/text-base/reload.png.svn-base
@@ -3270,6 +3294,9 @@ qmc2/.svn/text-base/flyer.cpp.svn-base
 qmc2/.svn/text-base/flyer.h.svn-base
 qmc2/.svn/text-base/gamelist.cpp.svn-base
 qmc2/.svn/text-base/gamelist.h.svn-base
+qmc2/.svn/text-base/imagechecker.cpp.svn-base
+qmc2/.svn/text-base/imagechecker.h.svn-base
+qmc2/.svn/text-base/imagechecker.ui.svn-base
 qmc2/.svn/text-base/imagewidget.cpp.svn-base
 qmc2/.svn/text-base/imagewidget.h.svn-base
 qmc2/.svn/text-base/imgcheck.cpp.svn-base
