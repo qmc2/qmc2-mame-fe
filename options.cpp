@@ -290,13 +290,14 @@ Options::Options(QWidget *parent)
   spinBoxUpdateDelay->setToolTip(tr("Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?"));
   checkBoxSortOnline->setToolTip(tr("Sort machine list while reloading (slower)"));
   checkBoxScaledController->setVisible(false);
-  checkBoxScaledMarquee->setVisible(false);
   checkBoxScaledTitle->setVisible(false);
   radioButtonControllerSelect->setVisible(false);
-  radioButtonMarqueeSelect->setVisible(false);
+  checkBoxScaledMarquee->setToolTip(tr("Scaled logo"));
+  radioButtonMarqueeSelect->setText(tr("Logo directory"));
+  radioButtonMarqueeSelect->setToolTip(tr("Switch between specifying a logo directory or a ZIP-compressed logo file"));
+  lineEditMarqueeFile->setToolTip(tr("ZIP-compressed logo file (read)"));
   radioButtonTitleSelect->setVisible(false);
   stackedWidgetController->setVisible(false);
-  stackedWidgetMarquee->setVisible(false);
   stackedWidgetTitle->setVisible(false);
   labelMAWSCacheDirectory->setVisible(false);
   lineEditMAWSCacheDirectory->setVisible(false);
@@ -1985,7 +1986,11 @@ void Options::on_pushButtonApply_clicked()
       if ( qmc2UseMarqueeFile ) {
         qmc2Marquee->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString().toLocal8Bit());
         if ( qmc2Marquee->imageFile == NULL )
+#if defined(QMC2_EMUTYPE_MESS)
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open logo file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString()));
+#else
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFile").toString()));
+#endif
       } else
         unzClose(qmc2Marquee->imageFile);
     }
@@ -2261,10 +2266,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
   lineEditMarqueeDirectory->setText(config->value("MESS/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
-  lineEditMarqueeFile->setText(config->value("MESS/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
+  lineEditMarqueeFile->setText(config->value("MESS/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/logos.zip").toString());
   qmc2UseMarqueeFile = config->value("MESS/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
-  radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
+  radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Logo file") : tr("Logo directory"));
   lineEditTitleDirectory->setText(config->value("MESS/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   lineEditTitleFile->setText(config->value("MESS/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
   qmc2UseTitleFile = config->value("MESS/FilesAndDirectories/UseTitleFile", false).toBool();
@@ -2795,7 +2800,11 @@ void Options::on_toolButtonBrowseMarqueeDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeDirectory_clicked()");
 #endif
 
+#if defined(QMC2_EMUTYPE_MESS)
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose logo directory"), lineEditMarqueeDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+#else
   QString s = QFileDialog::getExistingDirectory(this, tr("Choose marquee directory"), lineEditMarqueeDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+#endif
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditMarqueeDirectory->setText(s);
@@ -3363,7 +3372,11 @@ void Options::on_radioButtonMarqueeSelect_clicked()
 
   bool currentUseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   stackedWidgetMarquee->setCurrentIndex(!currentUseMarqueeFile);
+#if defined(QMC2_EMUTYPE_MESS)
+  radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Logo file") : tr("Logo directory"));
+#else
   radioButtonMarqueeSelect->setText(!currentUseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
+#endif
 }
 
 void Options::on_radioButtonTitleSelect_clicked()
@@ -3465,7 +3478,11 @@ void Options::on_toolButtonBrowseMarqueeFile_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeFile_clicked()");
 #endif
 
+#if defined(QMC2_EMUTYPE_MESS)
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed logo file"), lineEditMarqueeFile->text(), tr("All files (*)"));
+#else
   QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed marquee file"), lineEditMarqueeFile->text(), tr("All files (*)"));
+#endif
   if ( !s.isNull() )
     lineEditMarqueeFile->setText(s);
   raise();
