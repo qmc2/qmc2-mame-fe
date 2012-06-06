@@ -31,13 +31,11 @@ ImageCheckerThread::ImageCheckerThread(int tNum, QObject *parent)
 {
 	threadNumber = tNum;
 	exitThread = false;
-	start();
 }
 
 ImageCheckerThread::~ImageCheckerThread()
 {
-	quit();
-	wait();
+	// NOP
 }
 
 void ImageCheckerThread::run()
@@ -55,21 +53,16 @@ void ImageCheckerThread::run()
 		mutex.unlock();
 
 #ifdef QMC2_DEBUG
-		emit log(QString("DEBUG: ArcadeScreenshotSaverThread[%1]: woke up").arg(threadNumber));
+		emit log(QString("DEBUG: ImageCheckerThread[%1]: woke up").arg(threadNumber));
 #endif
 
-		mutex.lock();
-
 		// FIXME: check images
-
-		mutex.unlock();
 	}
 
 #ifdef QMC2_DEBUG
 	emit log(QString("DEBUG: ImageCheckerThread[%1]: ended").arg(threadNumber));
 #endif
 }
-
 
 ImageChecker::ImageChecker(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -84,6 +77,7 @@ ImageChecker::ImageChecker(QWidget *parent)
 
 	setupUi(this);
 
+	isRunning = false;
 	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
 }
 
@@ -113,6 +107,10 @@ void ImageChecker::adjustIconSizes()
 	toolButtonClearCaches->setIconSize(iconSize);
 	toolButtonStartStop->setIconSize(iconSize);
 	toolButtonRemoveObsolete->setIconSize(iconSize);
+
+	QFont logFont;
+	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+	plainTextEditLog->setFont(logFont);
 }
 
 void ImageChecker::on_listWidgetFound_itemSelectionChanged()
@@ -127,6 +125,53 @@ void ImageChecker::on_listWidgetMissing_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetMissing_itemSelectionChanged()");
+#endif
+
+}
+
+void ImageChecker::on_toolButtonStartStop_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonStartStop_clicked()");
+#endif
+
+	if ( isRunning ) {
+		foreach (ImageCheckerThread *thread, threadMap) {
+			thread->exitThread = true;
+			thread->waitCondition.wakeAll();
+			thread->quit();
+			thread->wait();
+			delete thread;
+		}
+		threadMap.clear();
+		isRunning = false;
+		toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+	} else {
+		threadMap.clear();
+		for (int t = 0; t < spinBoxThreads->value(); t++) {
+			ImageCheckerThread *thread = new ImageCheckerThread(t, this);
+			connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
+			connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &)));
+			threadMap[t] = thread;
+			thread->start();
+		}
+		isRunning = true;
+		toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
+	}
+}
+
+void ImageChecker::on_toolButtonRemoveObsolete_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveObsolete_clicked()");
+#endif
+
+}
+
+void ImageChecker::on_comboBoxImageType_currentIndexChanged(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::on_comboBoxImageType_currentIndexChanged(int index = %1)").arg(index));
 #endif
 
 }
