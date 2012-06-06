@@ -1,6 +1,7 @@
 #ifndef _IMAGECHECKER_H_
 #define _IMAGECHECKER_H_
 
+#include <QMap>
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
@@ -45,12 +46,18 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 	Q_OBJECT
 
 	public:
+		bool isRunning;
+		QMap<int, ImageCheckerThread *> threadMap;
+
 		ImageChecker(QWidget *parent = 0);
 		~ImageChecker();
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();
 		void on_listWidgetMissing_itemSelectionChanged();
+		void on_toolButtonStartStop_clicked();
+		void on_toolButtonRemoveObsolete_clicked();
+		void on_comboBoxImageType_currentIndexChanged(int);
 		void selectItem(QString);
 		void adjustIconSizes();
 		void log(const QString &);
