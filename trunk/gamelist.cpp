@@ -98,10 +98,10 @@ extern QStringList qmc2DeviceROMs;
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QString> qmc2CategoryMap;
-extern QMap<QString, QString> qmc2VersionMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+extern QMap<QString, QString> qmc2VersionMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -128,7 +128,7 @@ Gamelist::Gamelist(QObject *parent)
   cachedGamesCounter = numTaggedSets = 0;
   loadProc = verifyProc = NULL;
   emulatorVersion = tr("unknown");
-  autoRomCheck = false;
+  mergeCategories = autoRomCheck = false;
 
   QString imgDir = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", "data/").toString() + "img/";
   qmc2UnknownImageIcon.addFile(imgDir + "sphere_blue.png");
@@ -208,6 +208,10 @@ void Gamelist::enableWidgets(bool enable)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
+#endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+  qmc2Options->toolButtonBrowseCategoryIniFile->setEnabled(enable);
+  qmc2Options->checkBoxUseCategoryIni->setEnabled(enable);
 #endif
   qmc2Options->checkBoxShowROMStatusIcons->setEnabled(enable);
   qmc2Options->checkBoxRomStateFilter->setEnabled(enable);
@@ -320,10 +324,10 @@ void Gamelist::load()
   numTaggedSets = 0;
   qmc2MainWindow->treeWidgetGamelist->clear();
   qmc2MainWindow->treeWidgetHierarchy->clear();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2CategoryItemMap.clear();
-  qmc2VersionItemMap.clear();
   qmc2MainWindow->treeWidgetCategoryView->clear();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  qmc2VersionItemMap.clear();
   qmc2MainWindow->treeWidgetVersionView->clear();
 #endif
   qmc2MainWindow->listWidgetSearch->clear();
@@ -399,13 +403,14 @@ void Gamelist::load()
   qmc2PCB->update();
 
   qApp->processEvents();
+
   QTreeWidgetItem *dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetGamelist);
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
   dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
 #endif
@@ -422,16 +427,18 @@ void Gamelist::load()
   }
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
     case QMC2_VIEW_CATEGORY_INDEX:
       QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
       break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEW_VERSION_INDEX:
       QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByVersion()));
       break;
-  }
 #endif
+    default:
+      break;
+  }
 
   // determine emulator version and supported sets
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
@@ -678,9 +685,16 @@ void Gamelist::load()
   }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool() )
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool() ) {
     loadCatverIni();
+    mergeCategories = true;
+  }
 #endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool() )
+    loadCategoryIni();
+#endif
+  mergeCategories = false;
 
   gamelistBuffer.clear();
 
@@ -813,10 +827,10 @@ void Gamelist::load()
 			    case QMC2_VIEW_TREE_INDEX:
 				    qmc2MainWindow->treeWidgetHierarchy->setFocus();
 				    break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			    case QMC2_VIEW_CATEGORY_INDEX:
 				    qmc2MainWindow->treeWidgetCategoryView->setFocus();
 				    break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			    case QMC2_VIEW_VERSION_INDEX:
 				    qmc2MainWindow->treeWidgetVersionView->setFocus();
 				    break;
@@ -1449,8 +1463,15 @@ void Gamelist::parse()
       }
     }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+#if defined(QMC2_EMUTYPE_MAME)
     bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
+    bool useCategoryIni = false;
+#elif defined(QMC2_EMUTYPE_UME)
+    bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
+    bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
+#elif defined(QMC2_EMUTYPE_MESS)
+    bool useCatverIni = false;
+    bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
 #endif
 
     if ( !reparseGamelist && !qmc2StopParser ) {
@@ -1531,14 +1552,14 @@ void Gamelist::parse()
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
             }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-            if ( useCatverIni ) {
+            if ( useCatverIni || useCategoryIni ) {
               QString categoryString = qmc2CategoryMap[gameName];
-              QString versionString = qmc2VersionMap[gameName];
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString.isEmpty() ? tr("Unknown") : categoryString);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+              QString versionString = qmc2VersionMap[gameName];
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString.isEmpty() ? tr("?") : versionString);
-            }
 #endif
+            }
             switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
               case 'C': 
                 numCorrectGames++;
@@ -1733,8 +1754,15 @@ void Gamelist::parse()
         gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
         gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+#if defined(QMC2_EMUTYPE_MAME)
         bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
+        bool useCategoryIni = false;
+#elif defined(QMC2_EMUTYPE_UME)
+        bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
+        bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
+#elif defined(QMC2_EMUTYPE_MESS)
+        bool useCatverIni = false;
+        bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
 #endif
 
         // find year & manufacturer and determine ROM/CHD requirements
@@ -1802,14 +1830,14 @@ void Gamelist::parse()
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
         }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-        if ( useCatverIni ) {
+        if ( useCatverIni || useCategoryIni ) {
           QString categoryString = qmc2CategoryMap[gameName];
-          QString versionString = qmc2VersionMap[gameName];
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString.isEmpty() ? tr("Unknown") : categoryString);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+          QString versionString = qmc2VersionMap[gameName];
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString.isEmpty() ? tr("?") : versionString);
-        }
 #endif
+        }
         switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
           case 'C': 
             numCorrectGames++;
@@ -1923,8 +1951,15 @@ void Gamelist::parse()
   if ( gamelistCache.isOpen() )
     gamelistCache.close();
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+#if defined(QMC2_EMUTYPE_MAME)
   bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
+  bool useCategoryIni = false;
+#elif defined(QMC2_EMUTYPE_UME)
+  bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool();
+  bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
+#elif defined(QMC2_EMUTYPE_MESS)
+  bool useCatverIni = false;
+  bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni").toBool();
 #endif
 
   // create parent/clone hierarchy tree
@@ -1950,12 +1985,12 @@ void Gamelist::parse()
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    if ( useCatverIni ) {
+    if ( useCatverIni || useCategoryIni ) {
       hierarchyItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       hierarchyItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
-    }
 #endif
+    }
     qmc2HierarchyItemMap[iValue] = hierarchyItem;
     switch ( qmc2GamelistStatusMap[iValue][0].toAscii() ) {
       case 'C': 
@@ -2036,12 +2071,12 @@ void Gamelist::parse()
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      if ( useCatverIni ) {
+      if ( useCatverIni || useCategoryIni ) {
         hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
         hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
-      }
 #endif
+      }
       qmc2HierarchyItemMap[jValue] = hierarchySubItem;
       qmc2ParentMap[jValue] = iValue;
       // "fill up" emulator info data for clones
@@ -2148,10 +2183,10 @@ void Gamelist::parse()
     case QMC2_SORT_BY_DRVSTAT:
       sortCriteria = QObject::tr("driver status");
       break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_CATEGORY:
       sortCriteria = QObject::tr("category");
       break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_VERSION:
       sortCriteria = QObject::tr("version");
       break;
@@ -2566,10 +2601,10 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			  case QMC2_VIEW_TREE_INDEX:
 				  qmc2MainWindow->treeWidgetHierarchy->setFocus();
 				  break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			  case QMC2_VIEW_CATEGORY_INDEX:
 				  qmc2MainWindow->treeWidgetCategoryView->setFocus();
 				  break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			  case QMC2_VIEW_VERSION_INDEX:
 				  qmc2MainWindow->treeWidgetVersionView->setFocus();
 				  break;
@@ -2719,8 +2754,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
         bool isDevice = qmc2DeviceROMs.contains(gameName);
         QTreeWidgetItem *romItem = qmc2GamelistItemMap[gameName];
         QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
 #endif
         if ( romItem && hierarchyItem ) {
@@ -2777,8 +2812,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
         bool isDevice = qmc2DeviceROMs.contains(gameName);
         QTreeWidgetItem *romItem = qmc2GamelistItemMap[gameName];
         QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
 #endif
 	// there are a number of machines in MESS and some in MAME that don't require any ROMs...
@@ -3041,8 +3076,8 @@ void Gamelist::verifyReadyReadStandardOutput()
         if ( qmc2GamelistItemMap.count(romName) == 1 ) {
           QTreeWidgetItem *romItem = qmc2GamelistItemMap[romName];
           QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[romName];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
           QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[romName];
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
           QTreeWidgetItem *versionItem = qmc2VersionItemMap[romName];
 #endif
           if ( romItem && hierarchyItem ) {
@@ -3441,74 +3476,63 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
   return false;
 }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-void Gamelist::loadCatverIni()
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+void Gamelist::loadCategoryIni()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCategoryIni()");
 #endif
 
-  qmc2CategoryMap.clear();
-  qmc2VersionMap.clear();
+	if ( !mergeCategories )
+		qmc2CategoryMap.clear();
 
-  QTime loadTimer, elapsedTime;
-  loadTimer.start();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
-  qApp->processEvents();
+	QTime loadTimer, elapsedTime;
+	loadTimer.start();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading category.ini"));
+	qApp->processEvents();
 
-  int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-  QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-    qmc2MainWindow->progressBarGamelist->setFormat(tr("Catver.ini - %p%"));
-  else
-    qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-  qmc2MainWindow->progressBarGamelist->setRange(0, 2 * numTotalGames); // we can't assume that catver.ini has exactly this number of games, though!
-  qmc2MainWindow->progressBarGamelist->reset();
-  qApp->processEvents();
+	int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
+	QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		qmc2MainWindow->progressBarGamelist->setFormat(tr("Category.ini - %p%"));
+	else
+		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 
-  QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
-  int entryCounter = 0;
-  if ( catverIniFile.open(QFile::ReadOnly) ) {
-    QTextStream tsCatverIni(&catverIniFile);
-    bool isVersion = false, isCategory = false;
-    while ( !tsCatverIni.atEnd() ) {
-      QString catverLine = tsCatverIni.readLine().simplified().trimmed();
-      if ( catverLine.isEmpty() )
-        continue;
-      if ( catverLine.contains("[Category]") ) {
-        isCategory = true;
-        isVersion = false;
-      } else if ( catverLine.contains("[VerAdded]") ) {
-        isCategory = false;
-        isVersion = true;
-      } else {
-        QStringList tokens = catverLine.split("=");
-        if ( tokens.count() >= 2 ) {
-          qmc2MainWindow->progressBarGamelist->setValue(++entryCounter);
-          if ( isCategory )
-            qmc2CategoryMap.insert(tokens[0], tokens[1]);
-          else if ( isVersion ) {
-            QString verStr = tokens[1];
-            if ( verStr.startsWith(".") ) verStr.prepend("0");
-            qmc2VersionMap.insert(tokens[0], verStr);
-          }
-        }
-      }
-    }
-    catverIniFile.close();
-  } else
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value("MAME/FilesAndDirectories/CatverIni").toString()));
+	qmc2MainWindow->progressBarGamelist->setRange(0, 2 * numTotalGames); // we can't assume that category.ini has exactly this number of games, though!
+	qmc2MainWindow->progressBarGamelist->reset();
+	qApp->processEvents();
 
-  qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-    qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
-  else
-    qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+	QFile categoryIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString());
+	int entryCounter = 0;
+	if ( categoryIniFile.open(QFile::ReadOnly) ) {
+		QTextStream tsCategoryIni(&categoryIniFile);
+		QString categoryName;
+		while ( !tsCategoryIni.atEnd() ) {
+			QString categoryLine = tsCategoryIni.readLine().simplified().trimmed();
+			if ( categoryLine.isEmpty() )
+				continue;
+			if ( categoryLine.indexOf(QRegExp("^\\[.*\\]$")) == 0 ) {
+				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
+			} else if ( !categoryName.isEmpty() ) {
+				qmc2MainWindow->progressBarGamelist->setValue(++entryCounter);
+				qmc2CategoryMap.insert(categoryLine, categoryName);
+			}
+		}
+		categoryIniFile.close();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no category.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString()));
 
-  elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(qmc2CategoryMap.count()).arg(qmc2VersionMap.count()));
+	qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+	else
+		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+
+	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading category.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n category record(s) loaded", "", entryCounter));
 }
+#endif
 
 void Gamelist::createCategoryView()
 {
@@ -3641,6 +3665,75 @@ void Gamelist::createCategoryView()
 	qmc2MainWindow->treeWidgetCategoryView->show();
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+}
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+void Gamelist::loadCatverIni()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
+#endif
+
+  qmc2CategoryMap.clear();
+  qmc2VersionMap.clear();
+
+  QTime loadTimer, elapsedTime;
+  loadTimer.start();
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
+  qApp->processEvents();
+
+  int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
+  QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+    qmc2MainWindow->progressBarGamelist->setFormat(tr("Catver.ini - %p%"));
+  else
+    qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+  qmc2MainWindow->progressBarGamelist->setRange(0, 2 * numTotalGames); // we can't assume that catver.ini has exactly this number of games, though!
+  qmc2MainWindow->progressBarGamelist->reset();
+  qApp->processEvents();
+
+  QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
+  int entryCounter = 0;
+  if ( catverIniFile.open(QFile::ReadOnly) ) {
+    QTextStream tsCatverIni(&catverIniFile);
+    bool isVersion = false, isCategory = false;
+    while ( !tsCatverIni.atEnd() ) {
+      QString catverLine = tsCatverIni.readLine().simplified().trimmed();
+      if ( catverLine.isEmpty() )
+        continue;
+      if ( catverLine.contains("[Category]") ) {
+        isCategory = true;
+        isVersion = false;
+      } else if ( catverLine.contains("[VerAdded]") ) {
+        isCategory = false;
+        isVersion = true;
+      } else {
+        QStringList tokens = catverLine.split("=");
+        if ( tokens.count() >= 2 ) {
+          qmc2MainWindow->progressBarGamelist->setValue(++entryCounter);
+          if ( isCategory )
+            qmc2CategoryMap.insert(tokens[0], tokens[1]);
+          else if ( isVersion ) {
+            QString verStr = tokens[1];
+            if ( verStr.startsWith(".") ) verStr.prepend("0");
+            qmc2VersionMap.insert(tokens[0], verStr);
+          }
+        }
+      }
+    }
+    catverIniFile.close();
+  } else
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
+
+  qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+    qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+  else
+    qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+
+  elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(qmc2CategoryMap.count()).arg(qmc2VersionMap.count()));
 }
 
 void Gamelist::createVersionView()
@@ -3853,10 +3946,10 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
     case QMC2_SORT_BY_DRVSTAT:
       return (text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_CATEGORY:
       return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_VERSION:
       return (text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
 #endif

@@ -60,6 +60,7 @@ class Gamelist : public QObject
     QTreeWidgetItem *checkedItem;
     bool autoRomCheck;
     QMap<QString, QString> driverNameMap;
+    bool mergeCategories;
 
     QString lookupDriverName(QString);
     Gamelist(QObject *parent = 0);
@@ -71,9 +72,12 @@ class Gamelist : public QObject
     void save();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void loadCatverIni();
-    void createCategoryView();
     void createVersionView();
 #endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+    void loadCategoryIni();
+#endif
+    void createCategoryView();
     void loadFavorites();
     void saveFavorites();
     void loadPlayHistory();

@@ -15,8 +15,8 @@
 extern MainWindow *qmc2MainWindow;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QMap<QString, QIcon> qmc2IconMap;
@@ -229,7 +229,6 @@ void ImageChecker::selectItem(QString setName)
 			break;
 		}
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_VIEWCATEGORY_INDEX: {
 			QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[setName];
 			if ( categoryItem ) {
@@ -241,6 +240,7 @@ void ImageChecker::selectItem(QString setName)
 			break;
 		}
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_VIEWVERSION_INDEX: {
 			QTreeWidgetItem *versionItem = qmc2VersionItemMap[setName];
 			if ( versionItem ) {

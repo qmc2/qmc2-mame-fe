@@ -152,6 +152,9 @@ class Options : public QDialog, public Ui::Options
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void on_toolButtonBrowseCatverIniFile_clicked();
 #endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+    void on_toolButtonBrowseCategoryIniFile_clicked();
+#endif
     void on_toolButtonBrowseWorkingDirectory_clicked();
     void on_toolButtonBrowseOptionsTemplateFile_clicked();
     void on_toolButtonBrowseListXMLCache_clicked();
