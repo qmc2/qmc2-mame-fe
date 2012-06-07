@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.37, 01-JUN-2012</h3>
+<h3>README - v0.37, 07-JUN-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -72,7 +72,6 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
   <li>Support for all emulation-related extra information available through the emulator (displayed in a tree)</li>
   <li>Fast search function with automatic wildcard pattern matching</li>
   <li>All emulator targets: selectable sort criteria and order for game/machine lists (description, name/ID, ROM state, year, manufacturer and ROM types)</li>
-  <li>MAME/UME targets only: two additional sort criteria (category and version) when <a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a> support is enabled</i>
   <li>Straightforward process management to control emulator processes</li>
   <li>Clear and full logging (separate front end and emulator logs)</li>
   <li>Cached ROM state verification, indicated as colored spheres in front of each game/machine description</li>
@@ -80,7 +79,7 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
   <li>Game/machine image checks (icons, previews &amp; flyers)
   <li>Online display of current game/machine list and search result statistics</li>
   <li>All emulator targets: two different views of the game/machine list: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
-  <li>MAME/UME targets only: two additional views (<i>category</i> and <i>version</i>) when <a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a> support is enabled</i>
+  <li>Optional additional <i>category-oriented</i> (MAME/MESS/UME) and <i>version-oriented</i> (MAME/UME) views when <a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a> and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_blank">MESS category.ini</a> support is enabled</i>
   <li>The GUI will always remain interactive even if heavy background processing is running</li>
   <li>Time-consuming background tasks can be stopped on demand at (nearly) any time</li>
   <li>Optional auto-save/restore of window layout and game/machine selection</li>
@@ -364,7 +363,7 @@ For MAME/MESS updates there's probably no way around it, though (unless you know
 <p>ROM states can be used to filter and/or sort the detailed game/machine list (a.k.a. the <i>master list</i>). Please note that as a matter of principle
 the ROM state filter can't be applied to the hierarchical parent/clone view of the game/machine list, because the display of clones depends on the display
 of their parents. The optional views 'by version' and 'by category' (which are only available when the use of <a href="http://www.progettoemma.net/?catlist" target="_blank">catver.ini</a>
-has been enabled) are also not filtered.</p>
+and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_blank">MESS category.ini</a> has been enabled) are also not filtered.</p>
 <p>BTW, the words <i>game</i>, <i>machine</i> or <i>system</i> are used as <u>synonyms</u> throughout QMC2. The MAME and UME variants prefer to operate on <i>games</i>, whereas the MESS variants operate on <i>machines</i> (or <i>systems</i>).</p>
 <p><b>ROMAlyzer</b></p>
 <p>Since v0.2.b1, there is also a so called <i>ROMAlyzer</i> which allows to deeply scan individual (or multiple) games/machines for their exact ROM state. This work was inspired by <a href="credits.html#Carsten">Carsten Engel's</a> romalyzer.pl Perl script (see scripts/romalyzer.pl in the source distribution) - he also offered very helpful comments on ROM identification and how to handle CHDs. Thanks!</p>
