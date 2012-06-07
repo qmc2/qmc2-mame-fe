@@ -56,7 +56,9 @@ void ImageCheckerThread::run()
 		emit log(QString("DEBUG: ImageCheckerThread[%1]: woke up").arg(threadNumber));
 #endif
 
-		// FIXME: check images
+		if ( !exitThread ) {
+			// FIXME: check images here
+		}
 	}
 
 #ifdef QMC2_DEBUG

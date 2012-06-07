@@ -1099,7 +1099,14 @@ void ProjectWidget::on_toolButtonBrowseExtractHDOutputFile_clicked()
     QString folder = ui->lineEditExtractHDOutputFile->text();
     if ( folder.isEmpty() )
         folder = mainWindow->preferredOutputFolder;
-    QString filter = tr("Raw disk image (*.img)") + ";;" + tr("Mac disk image (*.dmg)") + ";;" + tr("Apple IIgs disk image (*.2mg)") + ";;" + tr("FM-Towns disk image (*.h0 *.h1 *.h2 *.h3 *.h4)") + ";;" + tr("IDE64 disk image (*.hdd)") + ";;" + tr("All files (*)");
+    QString filter = tr("Raw disk image (*.img)") + ";;" +
+                     tr("Mac disk image (*.dmg)") + ";;" +
+                     tr("Apple IIgs disk image (*.2mg)") + ";;" +
+                     tr("FM-Towns disk image (*.h0 *.h1 *.h2 *.h3 *.h4)") + ";;" +
+                     tr("IDE64 disk image (*.hdd)") + ";;" +
+                     tr("X68k SASI disk image (*.hdf)") + ";;" +
+                     tr("X68k SCSI disk image (*.hds)") + ";;" +
+                     tr("All files (*)");
     QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractHDOutputFile->setText(s);
