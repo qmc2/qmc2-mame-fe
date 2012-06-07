@@ -3498,7 +3498,7 @@ void Gamelist::loadCategoryIni()
 	else
 		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, 2 * numTotalGames); // we can't assume that category.ini has exactly this number of games, though!
+	qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
 	qmc2MainWindow->progressBarGamelist->reset();
 	qApp->processEvents();
 
