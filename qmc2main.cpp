@@ -208,12 +208,12 @@ QCache<QString, QByteArray> qmc2MAWSCache;
 #if defined(QMC2_EMUTYPE_MAME)
 MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup = NULL;
 #endif
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 QMap<QString, QString> qmc2CategoryMap;
-QMap<QString, QString> qmc2VersionMap;
 QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
-QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+QMap<QString, QString> qmc2VersionMap;
+QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
 #endif
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
@@ -482,8 +482,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   treeWidgetGamelist->setMouseTracking(true);
   treeWidgetHierarchy->setMouseTracking(true);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   treeWidgetCategoryView->setMouseTracking(true);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   treeWidgetVersionView->setMouseTracking(true);
 #endif
 
@@ -606,6 +606,7 @@ MainWindow::MainWindow(QWidget *parent)
   actionAbout->setStatusTip(tr("About M.E.S.S. Catalog / Launcher II"));
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
   treeWidgetHierarchy->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Clones"));
+  treeWidgetCategoryView->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Category / Machine"));
   tabWidgetGamelist->setTabText(QMC2_GAMELIST_INDEX, tr("M&achine list"));
   tabWidgetGameDetail->setTabText(QMC2_GAMEINFO_INDEX, tr("Machine &info"));
   textBrowserGameInfo->setToolTip(tr("Detailed machine info"));
@@ -646,8 +647,6 @@ MainWindow::MainWindow(QWidget *parent)
   actionReload->setStatusTip(tr("Reload entire machine list"));
   actionViewFullDetail->setToolTip(tr("View machine list with full detail"));
   actionViewFullDetail->setStatusTip(tr("View machine list with full detail"));
-  actionViewByCategory->setEnabled(false);
-  actionViewByCategory->setVisible(false);
   actionViewByVersion->setEnabled(false);
   actionViewByVersion->setVisible(false);
   actionCheckCurrentROM->setToolTip(tr("Check current machine's ROM state"));
@@ -735,8 +734,8 @@ MainWindow::MainWindow(QWidget *parent)
   // remove column-width restrictions
   treeWidgetGamelist->header()->setMinimumSectionSize(0);
   treeWidgetHierarchy->header()->setMinimumSectionSize(0);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   treeWidgetCategoryView->header()->setMinimumSectionSize(0);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   treeWidgetVersionView->header()->setMinimumSectionSize(0);
 #endif
 
@@ -774,9 +773,9 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetHierarchy->header()->setDefaultAlignment(Qt::AlignLeft);
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     treeWidgetCategoryView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState").toByteArray());
     treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
     treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
@@ -1227,10 +1226,10 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuGamelistHeader->addAction(tr("Driver status"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuGamelistHeader->addAction(tr("Category"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   actionMenuGamelistHeaderCategory = action;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuGamelistHeader->addAction(tr("Version"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
   actionMenuGamelistHeaderVersion = action;
@@ -1267,10 +1266,10 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuHierarchyHeader->addAction(tr("Driver status"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuHierarchyHeader->addAction(tr("Category"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   actionMenuHierarchyHeaderCategory = action;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuHierarchyHeader->addAction(tr("Version"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
   actionMenuHierarchyHeaderVersion = action;
@@ -1278,10 +1277,13 @@ MainWindow::MainWindow(QWidget *parent)
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &)));
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   menuCategoryHeader = new QMenu(0);
   header = treeWidgetCategoryView->header();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuCategoryHeader->addAction(tr("Category / Game"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
+#elif defined(QMC2_EMUTYPE_MESS)
+  action = menuCategoryHeader->addAction(tr("Category / Machine"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
+#endif
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
   action = menuCategoryHeader->addAction(tr("Tag"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_TAG);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_TAG));
@@ -1299,11 +1301,14 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuCategoryHeader->addAction(tr("Driver status"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuCategoryHeader->addAction(tr("Version"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
+#endif
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &)));
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   menuVersionHeader = new QMenu(0);
   header = treeWidgetVersionView->header();
   action = menuVersionHeader->addAction(tr("Version / Game"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
@@ -1333,8 +1338,8 @@ MainWindow::MainWindow(QWidget *parent)
   // other actions
   connect(actionViewFullDetail, SIGNAL(triggered()), this, SLOT(viewFullDetail()));
   connect(actionViewParentClones, SIGNAL(triggered()), this, SLOT(viewParentClones()));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   connect(actionViewByCategory, SIGNAL(triggered()), this, SLOT(viewByCategory()));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
 #endif
   connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
@@ -1448,10 +1453,10 @@ MainWindow::MainWindow(QWidget *parent)
   connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetHierarchy_headerSectionClicked(int)));
   treeWidgetGamelist->header()->setClickable(true);
   treeWidgetHierarchy->header()->setClickable(true);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetCategoryView_headerSectionClicked(int)));
-  connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetVersionView_headerSectionClicked(int)));
   treeWidgetCategoryView->header()->setClickable(true);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetVersionView_headerSectionClicked(int)));
   treeWidgetVersionView->header()->setClickable(true);
 #endif
 
@@ -3235,8 +3240,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   if ( !qmc2EarlyStartup ) {
     menuGamelistHeader->hide();
     menuHierarchyHeader->hide();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     menuCategoryHeader->hide();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     menuVersionHeader->hide();
 #endif
   }
@@ -3263,11 +3268,11 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 		      treeWidgetHierarchy->activateWindow();
 		      treeWidgetHierarchy->setFocus();
 		      break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	      case QMC2_VIEW_CATEGORY_INDEX:
 		      treeWidgetCategoryView->activateWindow();
 		      treeWidgetCategoryView->setFocus();
 		      break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	      case QMC2_VIEW_VERSION_INDEX:
 		      treeWidgetVersionView->activateWindow();
 		      treeWidgetVersionView->setFocus();
@@ -3538,7 +3543,6 @@ void MainWindow::scrollToCurrentItem()
         }
         break;
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       case QMC2_VIEWCATEGORY_INDEX:
         ci = qmc2CategoryItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
         if ( ci ) {
@@ -3548,6 +3552,7 @@ void MainWindow::scrollToCurrentItem()
         }
         break;
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       case QMC2_VIEWVERSION_INDEX:
         ci = qmc2VersionItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
         if ( ci ) {
@@ -5259,8 +5264,8 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
   if ( !qmc2EarlyStartup ) {
     menuGamelistHeader->hide();
     menuHierarchyHeader->hide();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     menuCategoryHeader->hide();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     menuVersionHeader->hide();
 #endif
   }
@@ -5294,7 +5299,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
       }
       break;
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWCATEGORY_INDEX:
       if ( !qmc2ReloadActive ) {
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
@@ -5308,6 +5312,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
       }
       break;
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWVERSION_INDEX:
       if ( !qmc2ReloadActive ) {
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
@@ -5777,8 +5782,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", saveState());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState", treeWidgetHierarchy->header()->saveState());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState", treeWidgetCategoryView->header()->saveState());
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState", treeWidgetVersionView->header()->saveState());
 #endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState", treeWidgetEmulators->header()->saveState());
@@ -6106,9 +6111,8 @@ void MainWindow::init()
 
 #if defined(QMC2_EMUTYPE_MESS)
   treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
-  treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
   treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
-  treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+  treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
 
 #if QMC2_USE_PHONON_API
@@ -6254,7 +6258,6 @@ void MainWindow::viewParentClones()
   qApp->processEvents();
 }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::viewByCategory()
 {
 #ifdef QMC2_DEBUG
@@ -6276,6 +6279,7 @@ void MainWindow::viewByCategory()
   qApp->processEvents();
 }
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::viewByVersion()
 {
 #ifdef QMC2_DEBUG
@@ -7732,8 +7736,8 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
 
   qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(false);
   qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
 #endif
 
@@ -7794,7 +7798,6 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_DRVSTAT);
       break;
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_GAMELIST_COLUMN_CATEGORY:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_CATEGORY )
         qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
@@ -7802,6 +7805,7 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_CATEGORY);
       break;
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_GAMELIST_COLUMN_VERSION:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_VERSION )
         qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
@@ -8141,7 +8145,6 @@ void MainWindow::on_treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
   on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
@@ -8250,6 +8253,7 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 	qmc2GameMenu->show();
 }
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
@@ -8396,16 +8400,16 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		  menuRomStatusFilter->setVisible(false);
 		  viewParentClones();
 		  break;
+	  case QMC2_VIEWCATEGORY_INDEX:
+		  pushButtonSelectRomFilter->setVisible(false);
+		  menuRomStatusFilter->setVisible(false);
+		  viewByCategory();
+		  break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	  case QMC2_VIEWVERSION_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
 		  menuRomStatusFilter->setVisible(false);
 		  viewByVersion();
-		  break;
-	  case QMC2_VIEWCATEGORY_INDEX:
-		  pushButtonSelectRomFilter->setVisible(false);
-		  menuRomStatusFilter->setVisible(false);
-		  viewByCategory();
 		  break;
 #endif
 	  default:
@@ -9116,11 +9120,11 @@ int MainWindow::sortCriteriaLogicalIndex() {
       return QMC2_GAMELIST_COLUMN_DRVSTAT;
       break;
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_CATEGORY:
       return QMC2_GAMELIST_COLUMN_CATEGORY;
       break;
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_VERSION:
       return QMC2_GAMELIST_COLUMN_VERSION;
       break;
@@ -9237,10 +9241,10 @@ void MainWindow::on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *item, int co
 				item = qmc2HierarchyItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				item = qmc2CategoryItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				item = qmc2VersionItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
@@ -9273,10 +9277,10 @@ void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int c
 				item = qmc2GamelistItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				item = qmc2CategoryItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				item = qmc2VersionItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
@@ -9296,7 +9300,6 @@ void MainWindow::on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *item, int c
 	on_treeWidgetHierarchy_itemEntered(item, column);
 }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, int column)
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
@@ -9313,9 +9316,11 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 				item = qmc2HierarchyItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				item = qmc2VersionItemMap[gameName];
 				if ( item )
 					item->setCheckState(column, cs);
+#endif
 				if ( wasTagged )
 					qmc2Gamelist->numTaggedSets--;
 				else
@@ -9331,6 +9336,7 @@ void MainWindow::on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *item, in
 	on_treeWidgetCategoryView_itemEntered(item, column);
 }
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int column)
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
@@ -9364,6 +9370,7 @@ void MainWindow::on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *item, int
 {
 	on_treeWidgetVersionView_itemEntered(item, column);
 }
+#endif
 
 void MainWindow::treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &p)
 {
@@ -9398,6 +9405,7 @@ void MainWindow::actionCategoryHeader_triggered()
 	}
 }
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 void MainWindow::treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
@@ -9662,10 +9670,10 @@ void MainWindow::on_actionSetTag_triggered(bool)
 	item = qmc2HierarchyItemMap[gameName];
 	if ( item )
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	item = qmc2CategoryItemMap[gameName];
 	if ( item )
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	item = qmc2VersionItemMap[gameName];
 	if ( item )
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
@@ -9695,10 +9703,10 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 	item = qmc2HierarchyItemMap[gameName];
 	if ( item )
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	item = qmc2CategoryItemMap[gameName];
 	if ( item )
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	item = qmc2VersionItemMap[gameName];
 	if ( item )
 		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -9727,10 +9735,10 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 		item = qmc2HierarchyItemMap[gameName];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		item = qmc2CategoryItemMap[gameName];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		item = qmc2VersionItemMap[gameName];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
@@ -9769,10 +9777,10 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		item = qmc2HierarchyItemMap[it.key()];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		item = qmc2CategoryItemMap[it.key()];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		item = qmc2VersionItemMap[it.key()];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
@@ -9811,10 +9819,10 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		item = qmc2HierarchyItemMap[it.key()];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		item = qmc2CategoryItemMap[it.key()];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		item = qmc2VersionItemMap[it.key()];
 		if ( item )
 			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -9855,10 +9863,10 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 			item = qmc2HierarchyItemMap[it.key()];
 			if ( item )
 				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			item = qmc2CategoryItemMap[it.key()];
 			if ( item )
 				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			item = qmc2VersionItemMap[it.key()];
 			if ( item )
 				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
@@ -10194,8 +10202,8 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
   qmc2ShortcutMap["F5"].second = qmc2MainWindow->actionViewFullDetail;
   qmc2ShortcutMap["F6"].second = qmc2MainWindow->actionViewParentClones;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["F7"].second = qmc2MainWindow->actionViewByCategory;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["F8"].second = qmc2MainWindow->actionViewByVersion;
 #endif
   qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;

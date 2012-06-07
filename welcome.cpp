@@ -322,6 +322,13 @@ bool Welcome::checkConfig()
 			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "MESSWiki/Zoom");
 		  }
 	  }
+#if defined(QMC2_EMUTYPE_MESS)
+	  if ( oldMinor < 37 || (oldSvnRevision < 3983 && oldSvnRevision > 0) ) {
+		  // add F7 standard-shortcut for all MESS targets
+		  if ( !startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7") )
+			   startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7", "F7");
+	  }
+#endif
   }
 
   configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

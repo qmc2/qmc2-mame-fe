@@ -106,7 +106,7 @@
 #define QMC2_DOWNLOADS_INDEX			4
 
 // column to add game icon in game list
-#define QMC2_ICON_INDEX			2
+#define QMC2_ICON_INDEX				2
 
 // index positions of game/machine list view selector
 #define QMC2_VIEW_DETAIL_INDEX			0
@@ -137,7 +137,7 @@
 #define QMC2_MACHINELIST_COLUMN_DRVSTAT		QMC2_GAMELIST_COLUMN_DRVSTAT
 
 #define QMC2_GAMELIST_COLUMNS			11
-#define QMC2_MACHINELIST_COLUMNS		9
+#define QMC2_MACHINELIST_COLUMNS		10
 
 // logical column indizes in the emulator control panel
 #define QMC2_EMUCONTROL_COLUMN_NUMBER		0

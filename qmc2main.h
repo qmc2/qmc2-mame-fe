@@ -101,12 +101,12 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuVerticalSplitter;
     QMenu *menuGamelistHeader;
     QMenu *menuHierarchyHeader;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     QMenu *menuCategoryHeader;
-    QMenu *menuVersionHeader;
     QAction *actionMenuGamelistHeaderCategory;
-    QAction *actionMenuGamelistHeaderVersion;
     QAction *actionMenuHierarchyHeaderCategory;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+    QMenu *menuVersionHeader;
+    QAction *actionMenuGamelistHeaderVersion;
     QAction *actionMenuHierarchyHeaderVersion;
 #endif
     QAction *actionRomStatusFilterC;
@@ -424,24 +424,24 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *, int);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *, int);
-    void on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *, int);
-    void on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_headerSectionClicked(int);
     void on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetCategoryView_itemSelectionChanged();
     void on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &);
+    void viewByCategory();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+    void on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *, int);
+    void on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_headerSectionClicked(int);
     void on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetVersionView_itemSelectionChanged();
     void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
-    void viewByCategory();
     void viewByVersion();
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
@@ -491,9 +491,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void actionGamelistHeader_triggered();
     void treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &);
     void actionHierarchyHeader_triggered();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &);
     void actionCategoryHeader_triggered();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);
     void actionVersionHeader_triggered();
 #endif

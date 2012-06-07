@@ -25,8 +25,8 @@ extern bool qmc2FilterActive;
 extern bool qmc2StopParser;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
@@ -491,7 +491,6 @@ void SampleChecker::selectItem(QString gameName)
       }
       break;
     }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWCATEGORY_INDEX: {
       QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
       if ( categoryItem ) {
@@ -502,6 +501,7 @@ void SampleChecker::selectItem(QString gameName)
       }
       break;
     }
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWVERSION_INDEX: {
       QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
       if ( versionItem ) {
