@@ -9303,29 +9303,31 @@ void MainWindow::on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *item, int c
 void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, int column)
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
-		if ( qApp->mouseButtons() == Qt::LeftButton ) {
-			QPoint cPos = treeWidgetCategoryView->viewport()->mapFromGlobal(QCursor::pos());
-			if ( treeWidgetCategoryView->itemAt(cPos) == item ) {
-				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
-				bool wasTagged = (cs != Qt::Checked);
-				item->setCheckState(column, cs);
-				QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
-				item = qmc2GamelistItemMap[gameName];
-				if ( item )
+		if ( item->parent() ) {
+			if ( qApp->mouseButtons() == Qt::LeftButton ) {
+				QPoint cPos = treeWidgetCategoryView->viewport()->mapFromGlobal(QCursor::pos());
+				if ( treeWidgetCategoryView->itemAt(cPos) == item ) {
+					Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+					bool wasTagged = (cs != Qt::Checked);
 					item->setCheckState(column, cs);
-				item = qmc2HierarchyItemMap[gameName];
-				if ( item )
-					item->setCheckState(column, cs);
+					QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+					item = qmc2GamelistItemMap[gameName];
+					if ( item )
+						item->setCheckState(column, cs);
+					item = qmc2HierarchyItemMap[gameName];
+					if ( item )
+						item->setCheckState(column, cs);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				item = qmc2VersionItemMap[gameName];
-				if ( item )
-					item->setCheckState(column, cs);
+					item = qmc2VersionItemMap[gameName];
+					if ( item )
+						item->setCheckState(column, cs);
 #endif
-				if ( wasTagged )
-					qmc2Gamelist->numTaggedSets--;
-				else
-					qmc2Gamelist->numTaggedSets++;
-				labelGamelistStatus->setText(qmc2Gamelist->status());
+					if ( wasTagged )
+						qmc2Gamelist->numTaggedSets--;
+					else
+						qmc2Gamelist->numTaggedSets++;
+					labelGamelistStatus->setText(qmc2Gamelist->status());
+				}
 			}
 		}
 	}
@@ -9340,27 +9342,29 @@ void MainWindow::on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *item, in
 void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int column)
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
-		if ( qApp->mouseButtons() == Qt::LeftButton ) {
-			QPoint cPos = treeWidgetVersionView->viewport()->mapFromGlobal(QCursor::pos());
-			if ( treeWidgetVersionView->itemAt(cPos) == item ) {
-				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
-				bool wasTagged = (cs != Qt::Checked);
-				item->setCheckState(column, cs);
-				QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
-				item = qmc2GamelistItemMap[gameName];
-				if ( item )
+		if ( item->parent() ) {
+			if ( qApp->mouseButtons() == Qt::LeftButton ) {
+				QPoint cPos = treeWidgetVersionView->viewport()->mapFromGlobal(QCursor::pos());
+				if ( treeWidgetVersionView->itemAt(cPos) == item ) {
+					Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+					bool wasTagged = (cs != Qt::Checked);
 					item->setCheckState(column, cs);
-				item = qmc2HierarchyItemMap[gameName];
-				if ( item )
-					item->setCheckState(column, cs);
-				item = qmc2CategoryItemMap[gameName];
-				if ( item )
-					item->setCheckState(column, cs);
-				if ( wasTagged )
-					qmc2Gamelist->numTaggedSets--;
-				else
-					qmc2Gamelist->numTaggedSets++;
-				labelGamelistStatus->setText(qmc2Gamelist->status());
+					QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+					item = qmc2GamelistItemMap[gameName];
+					if ( item )
+						item->setCheckState(column, cs);
+					item = qmc2HierarchyItemMap[gameName];
+					if ( item )
+						item->setCheckState(column, cs);
+					item = qmc2CategoryItemMap[gameName];
+					if ( item )
+						item->setCheckState(column, cs);
+					if ( wasTagged )
+						qmc2Gamelist->numTaggedSets--;
+					else
+						qmc2Gamelist->numTaggedSets++;
+					labelGamelistStatus->setText(qmc2Gamelist->status());
+				}
 			}
 		}
 	}
