@@ -47,7 +47,7 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 	QString startPath = lineEditFile->text();
 	if ( startPath.isEmpty() )
 		startPath = qmc2FileEditStartPath;
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter);
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter);
 	if ( !s.isEmpty() ) {
 		if ( browserPart == "basename" ) {
 			QFileInfo fi(s);
