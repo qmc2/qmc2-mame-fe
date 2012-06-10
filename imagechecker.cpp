@@ -58,40 +58,43 @@ void ImageCheckerThread::run()
 		emit log(QString("DEBUG: ImageCheckerThread[%1]: going to sleep").arg(threadNumber));
 #endif
 
-		isActive = false;
 		mutex.lock();
+		isActive = false;
 		waitCondition.wait(&mutex);
-		mutex.unlock();
 		isActive = true;
+		mutex.unlock();
 
 #ifdef QMC2_DEBUG
 		emit log(QString("DEBUG: ImageCheckerThread[%1]: woke up").arg(threadNumber));
 #endif
 
 		if ( !exitThread && !qmc2StopParser ) {
+			if ( workUnitMutex.tryLock() ) {
 #ifdef QMC2_DEBUG
-			emit log(QString("DEBUG: ImageCheckerThread[%1]: processing work unit with %2 entries").arg(threadNumber).arg(checkList.count()));
+				emit log(QString("DEBUG: ImageCheckerThread[%1]: processing work unit with %2 entries").arg(threadNumber).arg(workUnit.count()));
 #endif
-			foundList.clear();
-			missingList.clear();
-			foreach (QString gameName, checkList) {
-				if ( exitThread || qmc2StopParser )
-					break;
-				QString fileName;
-				if ( imageWidget->checkImage(gameName, &fileName) ) {
-					foundList << gameName;
+				foundList.clear();
+				missingList.clear();
+				foreach (QString gameName, workUnit) {
+					if ( exitThread || qmc2StopParser )
+						break;
+					QString fileName;
+					if ( imageWidget->checkImage(gameName, &fileName) ) {
+						foundList << gameName;
 #ifdef QMC2_DEBUG
-					emit log(QString("DEBUG: ImageCheckerThread[%1]: image for '%2' found, loaded from '%3'").arg(threadNumber).arg(gameName).arg(fileName));
+						emit log(QString("DEBUG: ImageCheckerThread[%1]: image for '%2' found, loaded from '%3'").arg(threadNumber).arg(gameName).arg(fileName));
 #endif
-				} else {
-					missingList << gameName;
+					} else {
+						missingList << gameName;
 #ifdef QMC2_DEBUG
-					emit log(QString("DEBUG: ImageCheckerThread[%1]: image for '%2' missing").arg(threadNumber).arg(gameName));
+						emit log(QString("DEBUG: ImageCheckerThread[%1]: image for '%2' missing").arg(threadNumber).arg(gameName));
 #endif
+					}
 				}
+				workUnit.clear();
+				workUnitMutex.unlock();
+				emit resultsReady(foundList, missingList);
 			}
-			emit resultsReady(foundList, missingList);
-			qApp->processEvents();
 		}
 	}
 
@@ -265,28 +268,34 @@ void ImageChecker::feedWorkerThreads()
 #endif
 	while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
 		int selectedThread = -1;
-		for (int t = lastThreadID + 1; t < threadMap.count() && selectedThread == -1; t++)
-			if ( !threadMap[t]->isActive )
-				selectedThread = t;
-		for (int t = 0; t < lastThreadID && selectedThread == -1; t++)
-			if ( !threadMap[t]->isActive )
-				selectedThread = t;
+		if ( threadMap.count() > 1 ) {
+			for (int t = lastThreadID + 1; t < threadMap.count() && selectedThread == -1; t++)
+				if ( !threadMap[t]->isActive )
+					selectedThread = t;
+			for (int t = 0; t < lastThreadID && selectedThread == -1; t++)
+				if ( !threadMap[t]->isActive )
+					selectedThread = t;
+		} else
+			selectedThread = 0;
 		if ( selectedThread >= 0 ) {
-			QStringList workUnit;
-			while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
-				it.next();
-				workUnit << it.key();
-			}
-			if ( qmc2ImageCheckActive ) {
-				threadMap[selectedThread]->checkList = workUnit;
-				threadMap[selectedThread]->waitCondition.wakeAll();
+			if ( threadMap[selectedThread]->workUnitMutex.tryLock() ) {
+				QStringList workUnit;
+				while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
+					it.next();
+					workUnit << it.key();
+				}
+				threadMap[selectedThread]->workUnitMutex.unlock();
+				if ( qmc2ImageCheckActive ) {
+					threadMap[selectedThread]->workUnit += workUnit;
+					threadMap[selectedThread]->waitCondition.wakeAll();
 #ifdef QMC2_DEBUG
-				count += workUnit.count();
-				log(QString("DEBUG: ImageChecker::feedWorkerThreads(): count = %1").arg(count));
+					count += workUnit.count();
+					log(QString("DEBUG: ImageChecker::feedWorkerThreads(): count = %1").arg(count));
 #endif
+				}
 			}
+			lastThreadID = selectedThread;
 		}
-		lastThreadID = selectedThread;
 		qApp->processEvents();
 	}
 }

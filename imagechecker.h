@@ -19,10 +19,11 @@ class ImageCheckerThread : public QThread
 		bool exitThread;
 		bool isActive;
 		int threadNumber;
-		QStringList checkList;
+		QStringList workUnit;
 		QStringList foundList;
 		QStringList missingList;
 		ImageWidget *imageWidget;
+		QMutex workUnitMutex;
 		QMutex mutex;
 		QWaitCondition waitCondition;
 
