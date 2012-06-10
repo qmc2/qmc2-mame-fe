@@ -238,6 +238,58 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	return fileOk;
 }
 
+bool ImageWidget::checkImage(QString gameName, QString *fileName)
+{
+	QImage image;
+	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+
+	if ( fileName )
+		*fileName = "";
+
+	bool fileOk = true;
+
+	if ( useZip() ) {
+		// try loading image from ZIP
+		QByteArray imageData;
+		int len, i;
+		QString gameFile = gameName + ".png";
+
+		if ( fileName )
+			*fileName = gameFile;
+
+		if ( unzLocateFile(imageFile, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
+			if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
+				while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+					for (i = 0; i < len; i++)
+						imageData += imageBuffer[i];
+				}
+				unzCloseCurrentFile(imageFile);
+			} else
+				fileOk = false;
+		} else
+			fileOk = false;
+
+		if ( fileOk )
+			fileOk = image.loadFromData(imageData, "PNG");
+	} else {
+		// try loading image from (semicolon-separated) folder(s)
+		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
+			QString imgDir = baseDirectory + gameName;
+			QString imagePath = imgDir + ".png";
+
+			if ( fileName )
+				*fileName = QDir::toNativeSeparators(imagePath);
+
+			fileOk = image.load(imagePath, "PNG");
+
+			if ( fileOk )
+				break;
+		}
+	}
+
+	return fileOk;
+}
+
 void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
 #ifdef QMC2_DEBUG

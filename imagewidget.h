@@ -34,7 +34,8 @@ class ImageWidget : public QWidget
 	public slots:
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
-		bool loadImage(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
+		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL);
+		bool checkImage(QString, QString *fileName = NULL);
 		void copyToClipboard();
 		void refresh();
 
