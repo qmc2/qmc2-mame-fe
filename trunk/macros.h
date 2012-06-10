@@ -95,6 +95,9 @@
 #define QMC2_IMGCHK_INDEX_SEPARATOR		7
 #define QMC2_IMGCHK_INDEX_ICON			8
 
+// number of images per work-unit
+#define QMC2_IMGCHK_WORKUNIT_SIZE		25
+
 // current format version of the GLC (game list cache)
 #define QMC2_GLC_VERSION			5
 
@@ -285,6 +288,7 @@
 
 // update lists every how many milliseconds (for image & sample checkers)?
 #define QMC2_CHECK_UPDATE			1000
+#define QMC2_CHECK_UPDATE_FAST			250
 
 // maximium length of a single filename/path in a ZIP archive
 #define QMC2_MAX_PATH_LENGTH			1024

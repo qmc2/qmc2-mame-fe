@@ -3,19 +3,13 @@
 
 #include <QMap>
 #include <QThread>
+#include <QTimer>
 #include <QMutex>
 #include <QWaitCondition>
+#include <QStringList>
 
 #include "ui_imagechecker.h"
-
-#include "preview.h"
-#include "flyer.h"
-#include "cabinet.h"
-#include "controller.h"
-#include "marquee.h"
-#include "title.h"
-#include "pcb.h"
-#include "gamelist.h"
+#include "imagewidget.h"
 
 class ImageCheckerThread : public QThread
 {
@@ -23,14 +17,16 @@ class ImageCheckerThread : public QThread
 
 	public:
 		bool exitThread;
+		bool isActive;
 		int threadNumber;
-		QMutex mutex;
-		QWaitCondition waitCondition;
 		QStringList checkList;
 		QStringList foundList;
 		QStringList missingList;
+		ImageWidget *imageWidget;
+		QMutex mutex;
+		QWaitCondition waitCondition;
 
-		ImageCheckerThread(int tNum, QObject *parent = 0);
+		ImageCheckerThread(int, ImageWidget *, QObject *parent = 0);
 		~ImageCheckerThread();
 
 	protected:
@@ -47,6 +43,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 
 	public:
 		bool isRunning;
+		QStringList bufferedFoundList;
+		QStringList bufferedMissingList;
+		QTimer updateTimer;
 		QMap<int, ImageCheckerThread *> threadMap;
 
 		ImageChecker(QWidget *parent = 0);
@@ -57,11 +56,12 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void on_listWidgetMissing_itemSelectionChanged();
 		void on_toolButtonStartStop_clicked();
 		void on_toolButtonRemoveObsolete_clicked();
-		void on_comboBoxImageType_currentIndexChanged(int);
 		void selectItem(QString);
 		void adjustIconSizes();
 		void log(const QString &);
 		void resultsReady(const QStringList &, const QStringList &);
+		void feedWorkerThreads();
+		void updateResults();
 
 	protected:
 		void closeEvent(QCloseEvent *);
