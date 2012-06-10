@@ -197,11 +197,11 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 		isRunning = false;
 		qmc2ImageCheckActive = false;
 		toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+		updateResults();
 		progressBar->setRange(0, 100);
 		progressBar->setValue(0);
 		progressBar->setFormat(tr("Idle"));
 		updateTimer.stop();
-		updateResults();
 	} else {
 		threadMap.clear();
 		plainTextEditLog->clear();
