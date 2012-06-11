@@ -6208,13 +6208,11 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
     if ( f.open(QIODevice::ReadOnly) ) {
       if ( styleSheetName != oldStyleSheetName )
         log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
-      QString currentDir = QDir::currentPath();
-      QDir::setCurrent(QFileInfo(f).absolutePath());
+      if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", false).toBool() )
+        QDir::setCurrent(QFileInfo(f).absolutePath());
       qApp->setStyleSheet("");
       qApp->setStyleSheet(f.readAll());
       f.close();
-      // FIXME: "cd -" won't work because of relative URLs
-      // QDir::setCurrent(currentDir);
     } else
       log(QMC2_LOG_FRONTEND, tr("FATAL: can't open style sheet file '%1', please check").arg(styleSheetName));
   } else {
