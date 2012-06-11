@@ -576,6 +576,16 @@ ifndef ALTERNATE_FSM
 ALTERNATE_FSM = 1
 endif
 
+# >>> XCODE3 <<<
+#
+# When this option is set to 1, assume that XCode 3 is used in case of Mac OS X,
+# forcibly overwriting the special handling of Qt 4.8+ to circumvent XCode 4
+# incompatibility
+#
+ifndef XCODE3
+XCODE3 = 0
+endif
+
 # >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
 
 # project name
@@ -684,12 +694,16 @@ ifeq '$(QMAKEV)' '2'
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
+ifeq '$(XCODE)' '0'
 QT_LIBTMP = $(shell echo $(QT_LIBVERSION) | tr "." " " )
 QT_LIBMAJ = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
 QT_LIBMIN = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
 QT_LIB48PLUS = $(shell [ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ] && echo true)
 ifeq '$(QT_LIB48PLUS)' 'true'
 QMAKEFILE = Makefile.qmake
+endif
+else
+QT_LIB48PLUS = false
 endif
 endif
 endif

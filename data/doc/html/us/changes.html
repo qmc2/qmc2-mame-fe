@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.37, 08-JUN-2012</h3>
+<h3>CHANGES - v0.37, 10-JUN-2012</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.37, 08-JUN-2012:</b></p>
+<p><b>v0.37, 10-JUN-2012:</b></p>
 <ul>
   <li>fix: changes made to multi-value floats as used in HLSL options weren't updated correctly</li>
   <li>fix: demo-mode: don't select device-sets</li>
@@ -26,6 +26,7 @@ inf: informational only
   <li>imp: updated redistributed Qt translations from Qt 4.8.2</li>
   <li>imp: unified the image processing to remove code duplication for different image types</li>
   <li>imp: check for the existance of the emulator's executable file before trying to actually run a null process (which may cause issues on Mac OS X)</li>
+  <li>imp: Mac OS X build: added build option <i>XCODE3</i> which (if set to 1) will disable the special handling when Qt 4.8+ is detected</li>
   <li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
   <li>new: the YouTube video-player now supports local movie files as well</li>
   <li>new: added support for tool-bar customization</li>
