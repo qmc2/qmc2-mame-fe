@@ -164,6 +164,8 @@ QBrush Options::redBrush(QColor(255, 0, 0));
 QBrush Options::greyBrush(QColor(128, 128, 128));
 QBrush Options::lightgreyBrush(QColor(200, 200, 200));
 
+QString qmc2StandardWorkDir;
+
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
   : QDialog(parent, Qt::Dialog)
@@ -193,6 +195,8 @@ Options::Options(QWidget *parent)
   config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
   setupUi(this);
+
+  qmc2StandardWorkDir = QDir::currentPath();
 
 #if !defined(Q_WS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
@@ -999,6 +1003,7 @@ void Options::on_pushButtonApply_clicked()
   qmc2SuppressQtMessages = checkBoxSuppressQtMessages->isChecked();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", qmc2SuppressQtMessages);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", checkBoxShowSplashScreen->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", checkBoxSetWorkDirFromExec->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", checkBoxGameStatusIndicator->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", checkBoxGameStatusIndicatorOnlyWhenRequired->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", checkBoxShowGameName->isChecked());
@@ -2140,6 +2145,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();
   checkBoxSuppressQtMessages->setChecked(qmc2SuppressQtMessages);
   checkBoxShowSplashScreen->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool());
+  checkBoxSetWorkDirFromExec->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", false).toBool());
+  if ( checkBoxSetWorkDirFromExec->isChecked() )
+	  QDir::setCurrent(QCoreApplication::applicationDirPath());
+  else
+	  QDir::setCurrent(qmc2StandardWorkDir);
   checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", false).toBool());
   checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", true).toBool());
   checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", false).toBool());

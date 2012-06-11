@@ -1056,7 +1056,6 @@ endif
 	@echo "Build of QMC2 v$(VERSION) complete"
 	@echo "Target emulator: $(QMC2_EMULATOR)"
 
-
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
 else

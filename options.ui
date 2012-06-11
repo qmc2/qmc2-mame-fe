@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>473</height>
+    <width>492</width>
+    <height>421</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>451</width>
+                <width>446</width>
                 <height>601</height>
                </rect>
               </property>
@@ -789,16 +789,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="21" column="0" colspan="7">
-                  <widget class="QCheckBox" name="checkBoxShowSplashScreen">
-                   <property name="toolTip">
-                    <string>Show splash screen when starting up?</string>
-                   </property>
-                   <property name="text">
-                    <string>Show splash screen</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="5" column="3" colspan="4">
                   <layout class="QHBoxLayout" name="horizontalLayout_4">
                    <item>
@@ -829,6 +819,26 @@
                    </item>
                   </layout>
                  </item>
+                 <item row="21" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxShowSplashScreen">
+                   <property name="toolTip">
+                    <string>Show splash screen when starting up?</string>
+                   </property>
+                   <property name="text">
+                    <string>Show splash screen</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="21" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxSetWorkDirFromExec">
+                   <property name="toolTip">
+                    <string>Force QMC2's working directory to be the same as the executable's path</string>
+                   </property>
+                   <property name="text">
+                    <string>Set working directory from executable</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -858,7 +868,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>451</width>
+                <width>564</width>
                 <height>616</height>
                </rect>
               </property>
@@ -2356,8 +2366,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>508</width>
-                <height>273</height>
+                <width>581</width>
+                <height>607</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3034,8 +3044,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>581</width>
+                <height>607</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3153,8 +3163,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>227</height>
+                <width>581</width>
+                <height>607</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3613,8 +3623,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>351</width>
-                <height>461</height>
+                <width>581</width>
+                <height>607</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -5079,6 +5089,7 @@
   <tabstop>checkBoxCheckSingleInstance</tabstop>
   <tabstop>checkBoxSuppressQtMessages</tabstop>
   <tabstop>checkBoxShowSplashScreen</tabstop>
+  <tabstop>checkBoxSetWorkDirFromExec</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
