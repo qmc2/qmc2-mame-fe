@@ -51,7 +51,7 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 	if ( toolButtonClear->isVisible() )
 		s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter);
 	else
-		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter);
+		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontConfirmOverwrite);
 	if ( !s.isEmpty() ) {
 		if ( browserPart == "basename" ) {
 			QFileInfo fi(s);
