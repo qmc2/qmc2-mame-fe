@@ -10,7 +10,6 @@ class Title : public ImageWidget
 	public:
 		Title(QWidget *parent);
 
-	protected:
 		virtual QString cachePrefix() { return "ttl_"; }
 		virtual QString imageZip();
 		virtual QString imageDir();

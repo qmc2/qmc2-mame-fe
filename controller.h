@@ -10,7 +10,6 @@ class Controller : public ImageWidget
 	public:
 		Controller(QWidget *parent);
 
-	protected:
 		virtual QString cachePrefix() { return "ctl_"; }
 		virtual QString imageZip();
 		virtual QString imageDir();

@@ -9,6 +9,7 @@
 #include "pcb.h"
 #include "gamelist.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
 
 // external global variables
@@ -21,6 +22,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QSettings *qmc2Config;
+extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern bool qmc2ImageCheckActive;
@@ -33,7 +35,7 @@ extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 
-#define QMC2_DEBUG
+//#define QMC2_DEBUG
 
 ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject *parent)
 	: QThread(parent)
@@ -41,6 +43,7 @@ ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject
 	threadNumber = tNum;
 	imageWidget = imgWidget;
 	isActive = exitThread = false;
+	zip = NULL;
 }
 
 ImageCheckerThread::~ImageCheckerThread()
@@ -50,13 +53,21 @@ ImageCheckerThread::~ImageCheckerThread()
 
 void ImageCheckerThread::run()
 {
-#ifdef QMC2_DEBUG
-	emit log(QString("DEBUG: ImageCheckerThread[%1]: started").arg(threadNumber));
-#endif
+	emit log(tr("Thread[%1]: started").arg(threadNumber));
+
+	if ( imageWidget->useZip() ) {
+		QString zipFileName = imageWidget->imageZip();
+		zip = unzOpen(zipFileName.toLocal8Bit());
+		if ( zip ) {
+			emit log(tr("Thread[%1]: ZIP file '%2' successfully opened").arg(threadNumber).arg(zipFileName));
+		} else {
+			emit log(tr("Thread[%1]: failed opening ZIP file '%2'").arg(threadNumber).arg(zipFileName));
+			exitThread = true;
+		}
+	}
+
 	while ( !exitThread && !qmc2StopParser ) {
-#ifdef QMC2_DEBUG
-		emit log(QString("DEBUG: ImageCheckerThread[%1]: going to sleep").arg(threadNumber));
-#endif
+		emit log(tr("Thread[%1]: waiting for work").arg(threadNumber));
 
 		mutex.lock();
 		isActive = false;
@@ -64,31 +75,23 @@ void ImageCheckerThread::run()
 		isActive = true;
 		mutex.unlock();
 
-#ifdef QMC2_DEBUG
-		emit log(QString("DEBUG: ImageCheckerThread[%1]: woke up").arg(threadNumber));
-#endif
-
 		if ( !exitThread && !qmc2StopParser ) {
 			if ( workUnitMutex.tryLock() ) {
-#ifdef QMC2_DEBUG
-				emit log(QString("DEBUG: ImageCheckerThread[%1]: processing work unit with %2 entries").arg(threadNumber).arg(workUnit.count()));
-#endif
+				emit log(tr("Thread[%1]: processing work unit with %n entries", "", workUnit.count()).arg(threadNumber));
 				foundList.clear();
 				missingList.clear();
 				foreach (QString gameName, workUnit) {
 					if ( exitThread || qmc2StopParser )
 						break;
 					QString fileName;
-					if ( imageWidget->checkImage(gameName, &fileName) ) {
+					QSize imageSize;
+					int byteCount;
+					if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName) ) {
 						foundList << gameName;
-#ifdef QMC2_DEBUG
-						emit log(QString("DEBUG: ImageCheckerThread[%1]: image for '%2' found, loaded from '%3'").arg(threadNumber).arg(gameName).arg(fileName));
-#endif
+						emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(byteCount));
 					} else {
 						missingList << gameName;
-#ifdef QMC2_DEBUG
-						emit log(QString("DEBUG: ImageCheckerThread[%1]: image for '%2' missing").arg(threadNumber).arg(gameName));
-#endif
+						emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 					}
 				}
 				workUnit.clear();
@@ -98,9 +101,12 @@ void ImageCheckerThread::run()
 		}
 	}
 
-#ifdef QMC2_DEBUG
-	emit log(QString("DEBUG: ImageCheckerThread[%1]: ended").arg(threadNumber));
-#endif
+	if ( zip ) {
+		unzClose(zip);
+		emit log(tr("Thread[%1]: ZIP file '%2' closed").arg(threadNumber).arg(imageWidget->imageZip()));
+	}
+
+	emit log(tr("Thread[%1]: ended").arg(threadNumber));
 }
 
 ImageChecker::ImageChecker(QWidget *parent)
@@ -118,6 +124,9 @@ ImageChecker::ImageChecker(QWidget *parent)
 
 	isRunning = false;
 	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
+	labelFound->setText(tr("Found:") + " 0");
+	labelMissing->setText(tr("Missing:") + " 0");
+	labelObsolete->setText(tr("Obsolete:") + " 0");
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(updateResults()));
 }
 
@@ -144,7 +153,6 @@ void ImageChecker::adjustIconSizes()
 
 	comboBoxImageType->setIconSize(iconSize);
 	toolButtonSelectSets->setIconSize(iconSize);
-	toolButtonClearCaches->setIconSize(iconSize);
 	toolButtonStartStop->setIconSize(iconSize);
 	toolButtonRemoveObsolete->setIconSize(iconSize);
 
@@ -202,6 +210,7 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 		progressBar->setValue(0);
 		progressBar->setFormat(tr("Idle"));
 		updateTimer.stop();
+		enableWidgets(true);
 	} else {
 		threadMap.clear();
 		plainTextEditLog->clear();
@@ -229,6 +238,7 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 				imageWidget = qmc2PCB;
 				break;
 		}
+		enableWidgets(false);
 		for (int t = 0; t < spinBoxThreads->value(); t++) {
 			ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
 			connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
@@ -253,6 +263,45 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 		QTimer::singleShot(0, this, SLOT(feedWorkerThreads()));
 		updateTimer.start(QMC2_CHECK_UPDATE_FAST);
 	}
+}
+
+void ImageChecker::enableWidgets(bool enable)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::enableWidgets(bool enable = %1)").arg(enable ? "true" : "false"));
+#endif
+
+	switch ( comboBoxImageType->currentIndex() ) {
+		case QMC2_IMGCHK_INDEX_PREVIEW:
+			qmc2Options->stackedWidgetPreview->setEnabled(enable);
+			qmc2Options->radioButtonPreviewSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_FLYER:
+			qmc2Options->stackedWidgetFlyer->setEnabled(enable);
+			qmc2Options->radioButtonFlyerSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_CABINET:
+			qmc2Options->stackedWidgetCabinet->setEnabled(enable);
+			qmc2Options->radioButtonCabinetSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_CONTROLLER:
+			qmc2Options->stackedWidgetController->setEnabled(enable);
+			qmc2Options->radioButtonControllerSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_MARQUEE:
+			qmc2Options->stackedWidgetMarquee->setEnabled(enable);
+			qmc2Options->radioButtonMarqueeSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_TITLE:
+			qmc2Options->stackedWidgetTitle->setEnabled(enable);
+			qmc2Options->radioButtonTitleSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_PCB:
+			qmc2Options->stackedWidgetPCB->setEnabled(enable);
+			qmc2Options->radioButtonPCBSelect->setEnabled(enable);
+			break;
+	}
+	comboBoxImageType->setEnabled(enable);
 }
 
 void ImageChecker::feedWorkerThreads()
@@ -311,15 +360,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 
 void ImageChecker::log(const QString &message)
 {
-	QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
-
-	bool scrollBarMaximum = (plainTextEditLog->verticalScrollBar()->value() == plainTextEditLog->verticalScrollBar()->maximum());
-	plainTextEditLog->appendPlainText(msg);
-	if ( scrollBarMaximum ) {
-		plainTextEditLog->update();
-		qApp->processEvents();
-		plainTextEditLog->verticalScrollBar()->setValue(plainTextEditLog->verticalScrollBar()->maximum());
-	}
+	plainTextEditLog->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
 void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList)
@@ -348,8 +389,16 @@ void ImageChecker::updateResults()
 	labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
 	qApp->processEvents();
-	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning )
+	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning ) {
 		QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
+	} else {
+		int runCount = 0;
+		foreach (ImageCheckerThread *thread, threadMap)
+			if ( !thread->exitThread )
+				runCount++;
+		if ( runCount == 0 && isRunning )
+			QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
+	}
 }
 
 void ImageChecker::selectItem(QString setName)
@@ -417,7 +466,6 @@ void ImageChecker::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/ImageType", comboBoxImageType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/Threads", spinBoxThreads->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/SelectSets", toolButtonSelectSets->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/ClearCaches", toolButtonClearCaches->isChecked());
 
 	if ( e )
 		QDialog::closeEvent(e);
@@ -445,7 +493,6 @@ void ImageChecker::showEvent(QShowEvent *e)
 	comboBoxImageType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/ImageType", QMC2_IMGCHK_INDEX_PREVIEW).toInt());
 	spinBoxThreads->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Threads", 1).toInt());
 	toolButtonSelectSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/SelectSets", true).toBool());
-	toolButtonClearCaches->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/ClearCaches", true).toBool());
 
 	QDialog::showEvent(e);
 }

@@ -155,29 +155,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonClearCaches">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Clear image / icon cache when starting check</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/dev_quickload.png</normaloff>:/data/img/dev_quickload.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QProgressBar" name="progressBar">
        <property name="toolTip">
         <string>Current status / progress</string>
