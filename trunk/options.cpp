@@ -1934,9 +1934,7 @@ void Options::on_pushButtonApply_clicked()
 
   if ( qmc2Preview ) {
     if ( needReopenPreviewFile ) {
-	    printf("DBG 1\n");
       if ( qmc2UsePreviewFile ) {
-	    printf("DBG 2\n");
         qmc2Preview->imageFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString().toLocal8Bit());
         if ( qmc2Preview->imageFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFile").toString()));
