@@ -48,8 +48,6 @@ extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
 extern int qmc2GamelistResponsiveness;
 extern QSettings *qmc2Config;
-extern unzFile qmc2PreviewFile;
-extern unzFile qmc2FlyerFile;
 extern unzFile qmc2IconFile;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
