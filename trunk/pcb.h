@@ -10,7 +10,6 @@ class PCB : public ImageWidget
 	public:
 		PCB(QWidget *parent);
 
-	protected:
 		virtual QString cachePrefix() { return "pcb_"; }
 		virtual QString imageZip();
 		virtual QString imageDir();

@@ -10,7 +10,6 @@ class Cabinet : public ImageWidget
 	public:
 		Cabinet(QWidget *parent);
 
-	protected:
 		virtual QString cachePrefix() { return "cab_"; }
 		virtual QString imageZip();
 		virtual QString imageDir();

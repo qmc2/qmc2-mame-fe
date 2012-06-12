@@ -10,7 +10,6 @@ class Flyer : public ImageWidget
 	public:
 		Flyer(QWidget *parent);
 
-	protected:
 		virtual QString cachePrefix() { return "fly_"; }
 		virtual QString imageZip();
 		virtual QString imageDir();

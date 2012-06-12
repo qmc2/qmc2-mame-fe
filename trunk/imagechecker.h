@@ -7,6 +7,7 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QStringList>
+#include "unzip.h"
 
 #include "ui_imagechecker.h"
 #include "imagewidget.h"
@@ -19,6 +20,7 @@ class ImageCheckerThread : public QThread
 		bool exitThread;
 		bool isActive;
 		int threadNumber;
+		unzFile zip;
 		QStringList workUnit;
 		QStringList foundList;
 		QStringList missingList;
@@ -63,6 +65,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void resultsReady(const QStringList &, const QStringList &);
 		void feedWorkerThreads();
 		void updateResults();
+		void enableWidgets(bool);
 
 	protected:
 		void closeEvent(QCloseEvent *);

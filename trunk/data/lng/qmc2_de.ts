@@ -1459,7 +1459,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Cabinet</name>
     <message>
-        <location filename="../../cabinet.h" line="17"/>
+        <location filename="../../cabinet.h" line="16"/>
         <source>cabinet</source>
         <translation>Gehäuse</translation>
     </message>
@@ -1467,7 +1467,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Controller</name>
     <message>
-        <location filename="../../controller.h" line="17"/>
+        <location filename="../../controller.h" line="16"/>
         <source>controller</source>
         <translation>Controller</translation>
     </message>
@@ -2648,7 +2648,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Flyer</name>
     <message>
-        <location filename="../../flyer.h" line="17"/>
+        <location filename="../../flyer.h" line="16"/>
         <source>flyer</source>
         <translation>Flyer</translation>
     </message>
@@ -4797,74 +4797,72 @@ p, li { white-space: pre-wrap; }
         <translation>Sets in Master-Listen auswählen, wenn diese in den Gefunden- oder Fehlend-Listen (unten) ausgewählt werden</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="166"/>
-        <source>Clear image / icon cache when starting check</source>
-        <translation>Bild- / Icon-Cache vor Prüfung leeren</translation>
-    </message>
-    <message>
-        <location filename="../../imagechecker.ui" line="183"/>
+        <location filename="../../imagechecker.ui" line="160"/>
         <source>Current status / progress</source>
         <translation>Aktueller Status / Fortschritt</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="189"/>
-        <location filename="../../imagechecker.cpp" line="203"/>
+        <location filename="../../imagechecker.ui" line="166"/>
+        <location filename="../../imagechecker.cpp" line="211"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="202"/>
+        <location filename="../../imagechecker.ui" line="179"/>
         <source>Start / stop checking images</source>
         <translation>Bild-Prüfung starten / stoppen</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="222"/>
+        <location filename="../../imagechecker.ui" line="199"/>
         <source>Remove obsolete image files</source>
         <translation>Überflüssige Bild-Dateien löschen</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="239"/>
+        <location filename="../../imagechecker.ui" line="216"/>
         <source>Check results</source>
         <translation>Prüfergebnisse</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="245"/>
-        <location filename="../../imagechecker.cpp" line="243"/>
-        <location filename="../../imagechecker.cpp" line="347"/>
+        <location filename="../../imagechecker.ui" line="222"/>
+        <location filename="../../imagechecker.cpp" line="127"/>
+        <location filename="../../imagechecker.cpp" line="253"/>
+        <location filename="../../imagechecker.cpp" line="388"/>
         <source>Found:</source>
         <translation>Gefunden:</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="252"/>
-        <location filename="../../imagechecker.cpp" line="245"/>
-        <location filename="../../imagechecker.cpp" line="348"/>
+        <location filename="../../imagechecker.ui" line="229"/>
+        <location filename="../../imagechecker.cpp" line="128"/>
+        <location filename="../../imagechecker.cpp" line="255"/>
+        <location filename="../../imagechecker.cpp" line="389"/>
         <source>Missing:</source>
         <translation>Fehlend:</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="259"/>
-        <location filename="../../imagechecker.cpp" line="247"/>
-        <location filename="../../imagechecker.cpp" line="349"/>
+        <location filename="../../imagechecker.ui" line="236"/>
+        <location filename="../../imagechecker.cpp" line="129"/>
+        <location filename="../../imagechecker.cpp" line="257"/>
+        <location filename="../../imagechecker.cpp" line="390"/>
         <source>Obsolete:</source>
         <translation>Überflüssig:</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="266"/>
+        <location filename="../../imagechecker.ui" line="243"/>
         <source>Sets for which at least one valid image was found</source>
         <translation>Sets für welche mindestens ein gültiges Bild gefunden wurde</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="276"/>
+        <location filename="../../imagechecker.ui" line="253"/>
         <source>Sets for which no valid images could be found</source>
         <translation>Sets für welche kein gültiges Bild gefunden wurde</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="286"/>
+        <location filename="../../imagechecker.ui" line="263"/>
         <source>Files which couldn&apos;t be matched to any set (and are thus obsolete)</source>
         <translation>Dateien welche keinem Set zugeordnet werden konnten (und somit überflüssig sind)</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.ui" line="297"/>
+        <location filename="../../imagechecker.ui" line="274"/>
         <source>Log</source>
         <translation>Log</translation>
     </message>
@@ -4892,9 +4890,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="115"/>
-        <location filename="../../imgcheck.cpp" line="284"/>
-        <location filename="../../imgcheck.cpp" line="589"/>
-        <location filename="../../imgcheck.cpp" line="896"/>
+        <location filename="../../imgcheck.cpp" line="282"/>
+        <location filename="../../imgcheck.cpp" line="587"/>
+        <location filename="../../imgcheck.cpp" line="894"/>
         <source>&amp;Check previews</source>
         <translation>Vorschaubilber &amp;prüfen</translation>
     </message>
@@ -4910,9 +4908,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="253"/>
-        <location filename="../../imgcheck.cpp" line="285"/>
-        <location filename="../../imgcheck.cpp" line="590"/>
-        <location filename="../../imgcheck.cpp" line="897"/>
+        <location filename="../../imgcheck.cpp" line="283"/>
+        <location filename="../../imgcheck.cpp" line="588"/>
+        <location filename="../../imgcheck.cpp" line="895"/>
         <source>&amp;Check flyers</source>
         <translation>Flyer &amp;prüfen</translation>
     </message>
@@ -4933,9 +4931,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="368"/>
-        <location filename="../../imgcheck.cpp" line="286"/>
-        <location filename="../../imgcheck.cpp" line="591"/>
-        <location filename="../../imgcheck.cpp" line="898"/>
+        <location filename="../../imgcheck.cpp" line="284"/>
+        <location filename="../../imgcheck.cpp" line="589"/>
+        <location filename="../../imgcheck.cpp" line="896"/>
         <source>&amp;Check icons</source>
         <translation>Icons &amp;prüfen</translation>
     </message>
@@ -4950,22 +4948,22 @@ p, li { white-space: pre-wrap; }
         <translation>Sch&amp;ließen</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="1014"/>
+        <location filename="../../imgcheck.cpp" line="1012"/>
         <source>please wait for reload to finish and try again</source>
         <translation>Bitte warte bis die Spieleliste aktualisiert wurde und versuche es dann erneut</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="1024"/>
+        <location filename="../../imgcheck.cpp" line="1022"/>
         <source>please wait for ROM state filter to finish and try again</source>
         <translation>Bitte warte bis der ROM Status gefiltert wurde und versuche es dann erneut</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="1029"/>
+        <location filename="../../imgcheck.cpp" line="1027"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>Bitte warte bis die ROM Verifikation abgeschlossen wurde und versuche es dann erneut</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="1034"/>
+        <location filename="../../imgcheck.cpp" line="1032"/>
         <source>please wait for sample check to finish and try again</source>
         <translation>Bitte warte bis die Überprüfung der Samples abgeschlossen wurde und versuche es dann erneut</translation>
     </message>
@@ -4975,25 +4973,25 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Flyer</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="104"/>
+        <location filename="../../imgcheck.cpp" line="102"/>
         <source>checking previews from ZIP archive</source>
         <translation>Prüfe Vorschaubilder aus ZIP Archiv</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="106"/>
+        <location filename="../../imgcheck.cpp" line="104"/>
         <source>checking previews from directory</source>
         <translation>Prüfe Vorschaubilder aus Verzeichnis</translation>
     </message>
     <message>
+        <location filename="../../imgcheck.cpp" line="121"/>
+        <location filename="../../imgcheck.cpp" line="122"/>
         <location filename="../../imgcheck.cpp" line="123"/>
-        <location filename="../../imgcheck.cpp" line="124"/>
-        <location filename="../../imgcheck.cpp" line="125"/>
+        <location filename="../../imgcheck.cpp" line="426"/>
+        <location filename="../../imgcheck.cpp" line="427"/>
         <location filename="../../imgcheck.cpp" line="428"/>
-        <location filename="../../imgcheck.cpp" line="429"/>
-        <location filename="../../imgcheck.cpp" line="430"/>
+        <location filename="../../imgcheck.cpp" line="733"/>
+        <location filename="../../imgcheck.cpp" line="734"/>
         <location filename="../../imgcheck.cpp" line="735"/>
-        <location filename="../../imgcheck.cpp" line="736"/>
-        <location filename="../../imgcheck.cpp" line="737"/>
         <source>&amp;Stop check</source>
         <translation>&amp;Anhalten</translation>
     </message>
@@ -5001,9 +4999,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.ui" line="70"/>
         <location filename="../../imgcheck.ui" line="243"/>
         <location filename="../../imgcheck.ui" line="323"/>
-        <location filename="../../imgcheck.cpp" line="137"/>
-        <location filename="../../imgcheck.cpp" line="442"/>
-        <location filename="../../imgcheck.cpp" line="749"/>
+        <location filename="../../imgcheck.cpp" line="135"/>
+        <location filename="../../imgcheck.cpp" line="440"/>
+        <location filename="../../imgcheck.cpp" line="747"/>
         <source>Found: 0</source>
         <translation>Gefunden: 0</translation>
     </message>
@@ -5011,9 +5009,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.ui" line="83"/>
         <location filename="../../imgcheck.ui" line="230"/>
         <location filename="../../imgcheck.ui" line="336"/>
-        <location filename="../../imgcheck.cpp" line="139"/>
-        <location filename="../../imgcheck.cpp" line="444"/>
-        <location filename="../../imgcheck.cpp" line="751"/>
+        <location filename="../../imgcheck.cpp" line="137"/>
+        <location filename="../../imgcheck.cpp" line="442"/>
+        <location filename="../../imgcheck.cpp" line="749"/>
         <source>Missing: 0</source>
         <translation>Fehlend: 0</translation>
     </message>
@@ -5021,97 +5019,97 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.ui" line="96"/>
         <location filename="../../imgcheck.ui" line="217"/>
         <location filename="../../imgcheck.ui" line="349"/>
-        <location filename="../../imgcheck.cpp" line="141"/>
-        <location filename="../../imgcheck.cpp" line="446"/>
-        <location filename="../../imgcheck.cpp" line="753"/>
+        <location filename="../../imgcheck.cpp" line="139"/>
+        <location filename="../../imgcheck.cpp" line="444"/>
+        <location filename="../../imgcheck.cpp" line="751"/>
         <source>Obsolete: 0</source>
         <translation>Überflüssig: 0</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="146"/>
+        <location filename="../../imgcheck.cpp" line="144"/>
         <source>check pass 1: found and missing previews</source>
         <translation>Prüf-Durchgang 1: gefundene und fehlende Vorschaubilder</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="154"/>
-        <location filename="../../imgcheck.cpp" line="176"/>
-        <location filename="../../imgcheck.cpp" line="459"/>
-        <location filename="../../imgcheck.cpp" line="481"/>
-        <location filename="../../imgcheck.cpp" line="766"/>
-        <location filename="../../imgcheck.cpp" line="788"/>
+        <location filename="../../imgcheck.cpp" line="152"/>
+        <location filename="../../imgcheck.cpp" line="174"/>
+        <location filename="../../imgcheck.cpp" line="457"/>
+        <location filename="../../imgcheck.cpp" line="479"/>
+        <location filename="../../imgcheck.cpp" line="764"/>
+        <location filename="../../imgcheck.cpp" line="786"/>
         <source>Found: %1</source>
         <translation>Gefunden: %1</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="156"/>
-        <location filename="../../imgcheck.cpp" line="179"/>
-        <location filename="../../imgcheck.cpp" line="461"/>
-        <location filename="../../imgcheck.cpp" line="484"/>
-        <location filename="../../imgcheck.cpp" line="768"/>
-        <location filename="../../imgcheck.cpp" line="791"/>
+        <location filename="../../imgcheck.cpp" line="154"/>
+        <location filename="../../imgcheck.cpp" line="177"/>
+        <location filename="../../imgcheck.cpp" line="459"/>
+        <location filename="../../imgcheck.cpp" line="482"/>
+        <location filename="../../imgcheck.cpp" line="766"/>
+        <location filename="../../imgcheck.cpp" line="789"/>
         <source>Missing: %1</source>
         <translation>Fehlend: %1</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="219"/>
-        <location filename="../../imgcheck.cpp" line="232"/>
-        <location filename="../../imgcheck.cpp" line="248"/>
-        <location filename="../../imgcheck.cpp" line="257"/>
-        <location filename="../../imgcheck.cpp" line="524"/>
-        <location filename="../../imgcheck.cpp" line="537"/>
-        <location filename="../../imgcheck.cpp" line="553"/>
-        <location filename="../../imgcheck.cpp" line="562"/>
-        <location filename="../../imgcheck.cpp" line="832"/>
-        <location filename="../../imgcheck.cpp" line="845"/>
-        <location filename="../../imgcheck.cpp" line="861"/>
-        <location filename="../../imgcheck.cpp" line="870"/>
+        <location filename="../../imgcheck.cpp" line="217"/>
+        <location filename="../../imgcheck.cpp" line="230"/>
+        <location filename="../../imgcheck.cpp" line="246"/>
+        <location filename="../../imgcheck.cpp" line="255"/>
+        <location filename="../../imgcheck.cpp" line="522"/>
+        <location filename="../../imgcheck.cpp" line="535"/>
+        <location filename="../../imgcheck.cpp" line="551"/>
+        <location filename="../../imgcheck.cpp" line="560"/>
+        <location filename="../../imgcheck.cpp" line="830"/>
+        <location filename="../../imgcheck.cpp" line="843"/>
+        <location filename="../../imgcheck.cpp" line="859"/>
+        <location filename="../../imgcheck.cpp" line="868"/>
         <source>Obsolete: %1</source>
         <translation>Überflüssig: %1</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="275"/>
+        <location filename="../../imgcheck.cpp" line="273"/>
         <source>done (checking previews from ZIP archive, elapsed time = %1)</source>
         <translation>Fertig (Prüfe Vorschaubilder aus ZIP Archiv, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="277"/>
+        <location filename="../../imgcheck.cpp" line="275"/>
         <source>done (checking previews from directory, elapsed time = %1)</source>
         <translation>Fertig (Prüfe Vorschaubilder aus Verzeichnis, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="278"/>
-        <location filename="../../imgcheck.cpp" line="583"/>
-        <location filename="../../imgcheck.cpp" line="890"/>
+        <location filename="../../imgcheck.cpp" line="276"/>
+        <location filename="../../imgcheck.cpp" line="581"/>
+        <location filename="../../imgcheck.cpp" line="888"/>
         <source>%1 found, %2 missing, %3 obsolete</source>
         <translation>%1 gefunden, %2 fehlend, %3 überflüssig</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="409"/>
+        <location filename="../../imgcheck.cpp" line="407"/>
         <source>checking flyers from ZIP archive</source>
         <translation>Prüfe Flyer aus ZIP Archiv</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="411"/>
+        <location filename="../../imgcheck.cpp" line="409"/>
         <source>checking flyers from directory</source>
         <translation>Prüfe Flyer aus Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="451"/>
+        <location filename="../../imgcheck.cpp" line="449"/>
         <source>check pass 1: found and missing flyers</source>
         <translation>Prüf-Durchgang 1: gefundene und fehlende Flyer</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="580"/>
+        <location filename="../../imgcheck.cpp" line="578"/>
         <source>done (checking flyers from ZIP archive, elapsed time = %1)</source>
         <translation>Fertig (Prüfe Flyer aus ZIP Archiv, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="582"/>
+        <location filename="../../imgcheck.cpp" line="580"/>
         <source>done (checking flyers from directory, elapsed time = %1)</source>
         <translation>Fertig (Prüfe Flyer aus Verzeichnis, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="1039"/>
+        <location filename="../../imgcheck.cpp" line="1037"/>
         <source>stopping image check upon user request</source>
         <translation>Beende Bild-Prüfung auf Wunsch des Benutzers</translation>
     </message>
@@ -5123,27 +5121,27 @@ p, li { white-space: pre-wrap; }
         <translation>Spiel &amp;auswählen</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="716"/>
+        <location filename="../../imgcheck.cpp" line="714"/>
         <source>checking icons from ZIP archive</source>
         <translation>Prüfe Icons aus ZIP Archiv</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="718"/>
+        <location filename="../../imgcheck.cpp" line="716"/>
         <source>checking icons from directory</source>
         <translation>Prüfe Icons aus Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="758"/>
+        <location filename="../../imgcheck.cpp" line="756"/>
         <source>check pass 1: found and missing icons</source>
         <translation>Prüf-Durchgang 1: gefundene und fehlende Icons</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="887"/>
+        <location filename="../../imgcheck.cpp" line="885"/>
         <source>done (checking icons from ZIP archive, elapsed time = %1)</source>
         <translation>Fertig (Prüfe Icons aus ZIP Archiv, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="889"/>
+        <location filename="../../imgcheck.cpp" line="887"/>
         <source>done (checking icons from directory, elapsed time = %1)</source>
         <translation>Fertig (Prüfe Icons aus Verzeichnis, benötigte Zeit = %1)</translation>
     </message>
@@ -5158,48 +5156,48 @@ p, li { white-space: pre-wrap; }
         <translation>Cache &amp;leeren</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="187"/>
-        <location filename="../../imgcheck.cpp" line="492"/>
-        <location filename="../../imgcheck.cpp" line="799"/>
+        <location filename="../../imgcheck.cpp" line="185"/>
+        <location filename="../../imgcheck.cpp" line="490"/>
+        <location filename="../../imgcheck.cpp" line="797"/>
         <source>check pass 2: obsolete files: reading ZIP directory</source>
         <translation>Prüf-Durchgang 2: überflüssige Dateien: lese ZIP Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="236"/>
-        <location filename="../../imgcheck.cpp" line="541"/>
-        <location filename="../../imgcheck.cpp" line="849"/>
+        <location filename="../../imgcheck.cpp" line="234"/>
+        <location filename="../../imgcheck.cpp" line="539"/>
+        <location filename="../../imgcheck.cpp" line="847"/>
         <source>check pass 2: obsolete files: reading directory structure</source>
         <translation>Prüf-Durchgang 2: überflüssige Dateien: lese Verzeichnisstruktur</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="109"/>
+        <location filename="../../imgcheck.cpp" line="107"/>
         <source>Preview check - %p%</source>
         <translation>Vorschau Prüfung - %p%</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="414"/>
+        <location filename="../../imgcheck.cpp" line="412"/>
         <source>Flyer check - %p%</source>
         <translation>Flyer Prüfung - %p%</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="721"/>
+        <location filename="../../imgcheck.cpp" line="719"/>
         <source>Icon check - %p%</source>
         <translation>Icon Prüfung - %p%</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="1019"/>
+        <location filename="../../imgcheck.cpp" line="1017"/>
         <source>please wait for ROMAlyzer to finish the current analysis and try again</source>
         <translation>Bitte warte bis der ROMAlyzer die aktuelle Analyse abgeschlossen hat und versuche es dann erneut</translation>
     </message>
     <message>
+        <location filename="../../imgcheck.cpp" line="68"/>
         <location filename="../../imgcheck.cpp" line="70"/>
-        <location filename="../../imgcheck.cpp" line="72"/>
         <source>Select machine</source>
         <translation>Maschine selektieren</translation>
     </message>
     <message>
+        <location filename="../../imgcheck.cpp" line="69"/>
         <location filename="../../imgcheck.cpp" line="71"/>
-        <location filename="../../imgcheck.cpp" line="73"/>
         <source>Select machine in machine list if selected in check lists?</source>
         <translation>Maschine in Machinenliste auswählen, wenn in Prüflisten selektiert?</translation>
     </message>
@@ -5211,23 +5209,74 @@ p, li { white-space: pre-wrap; }
         <translation>Spiel in Spieleliste auswählen, wenn in Prüflisten selektiert?</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="117"/>
-        <location filename="../../imgcheck.cpp" line="422"/>
-        <location filename="../../imgcheck.cpp" line="729"/>
+        <location filename="../../imgcheck.cpp" line="115"/>
+        <location filename="../../imgcheck.cpp" line="420"/>
+        <location filename="../../imgcheck.cpp" line="727"/>
         <source>WARNING: game list not fully loaded, check results may be misleading</source>
         <translation>WARNUNG: Spieleliste nicht vollständig geladen, Prüfergebnisse könnten irreführend sein</translation>
     </message>
     <message>
-        <location filename="../../imgcheck.cpp" line="119"/>
-        <location filename="../../imgcheck.cpp" line="424"/>
-        <location filename="../../imgcheck.cpp" line="731"/>
+        <location filename="../../imgcheck.cpp" line="117"/>
+        <location filename="../../imgcheck.cpp" line="422"/>
+        <location filename="../../imgcheck.cpp" line="729"/>
         <source>WARNING: machine list not fully loaded, check results may be misleading</source>
         <translation>WARNUNG: Maschinenliste nicht vollständig geladen, Prüfergebnisse könnten irreführend sein</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="250"/>
+        <location filename="../../imagechecker.cpp" line="260"/>
         <source>Pass #1</source>
         <translation>Durchlauf #1</translation>
+    </message>
+</context>
+<context>
+    <name>ImageCheckerThread</name>
+    <message>
+        <location filename="../../imagechecker.cpp" line="56"/>
+        <source>Thread[%1]: started</source>
+        <translation>Thread[%1]: Gestarted</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="62"/>
+        <source>Thread[%1]: ZIP file &apos;%2&apos; successfully opened</source>
+        <translation>Thread[%1]: ZIP Datei &apos;%2&apos; erfolgreich geöffnet</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="64"/>
+        <source>Thread[%1]: failed opening ZIP file &apos;%2&apos;</source>
+        <translation>Thread[%1]: Öffnen der ZIP Datei &apos;%2&apos; fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="70"/>
+        <source>Thread[%1]: waiting for work</source>
+        <translation>Thread[%1]: Warte auf Arbeit</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../imagechecker.cpp" line="80"/>
+        <source>Thread[%1]: processing work unit with %n entries</source>
+        <translation>
+            <numerusform>Thread[%1]: Verarbeite Arbeitseinheit mit %n Eintrag</numerusform>
+            <numerusform>Thread[%1]: Verarbeite Arbeitseinheit mit %n Einträgen</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="91"/>
+        <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
+        <translation>Thread[%1]: Bild für &apos;%2&apos; gefunden, geladen von &apos;%3&apos;, Größe = %4x%5, Bytes = %6</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="94"/>
+        <source>Thread[%1]: image for &apos;%2&apos; is missing</source>
+        <translation>Thread[%1]: Bild für &apos;%2&apos; fehlt</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="106"/>
+        <source>Thread[%1]: ZIP file &apos;%2&apos; closed</source>
+        <translation>Thread[%1]: ZIP Datei &apos;%2&apos; geschlossen</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="109"/>
+        <source>Thread[%1]: ended</source>
+        <translation>Thread[%1]: Beendet</translation>
     </message>
 </context>
 <context>
@@ -9569,7 +9618,7 @@ Einbettung wiederholen?</translation>
 <context>
     <name>Marquee</name>
     <message>
-        <location filename="../../marquee.h" line="17"/>
+        <location filename="../../marquee.h" line="16"/>
         <source>marquee</source>
         <translation>Marquee</translation>
     </message>
@@ -13381,7 +13430,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>PCB</name>
     <message>
-        <location filename="../../pcb.h" line="17"/>
+        <location filename="../../pcb.h" line="16"/>
         <source>PCB</source>
         <translation>PCB</translation>
     </message>
@@ -13389,7 +13438,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>Preview</name>
     <message>
-        <location filename="../../preview.h" line="17"/>
+        <location filename="../../preview.h" line="16"/>
         <source>preview</source>
         <translation>Vorschau</translation>
     </message>
@@ -17761,7 +17810,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>Title</name>
     <message>
-        <location filename="../../title.h" line="17"/>
+        <location filename="../../title.h" line="16"/>
         <source>title</source>
         <translation>Titel</translation>
     </message>

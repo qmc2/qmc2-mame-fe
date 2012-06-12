@@ -10,7 +10,6 @@ class Preview : public ImageWidget
 	public:
 		Preview(QWidget *parent);
 
-	protected:
 		virtual QString cachePrefix() { return "prv_"; }
 		virtual QString imageZip();
 		virtual QString imageDir();

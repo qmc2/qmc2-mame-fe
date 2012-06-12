@@ -31,15 +31,6 @@ class ImageWidget : public QWidget
 
 		QString cleanDir(QString);
 
-	public slots:
-		void drawCenteredImage(QPixmap *, QPainter *);
-		void drawScaledImage(QPixmap *, QPainter *);
-		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL);
-		bool checkImage(QString, QString *fileName = NULL);
-		void copyToClipboard();
-		void refresh();
-
-	protected:
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }
 		virtual QString imageZip() { return QString(); }
@@ -51,6 +42,14 @@ class ImageWidget : public QWidget
 		// events CAN be reimplemented in the concrete image classes
 		virtual void paintEvent(QPaintEvent *);
 		virtual void contextMenuEvent(QContextMenuEvent *);
+
+	public slots:
+		void drawCenteredImage(QPixmap *, QPainter *);
+		void drawScaledImage(QPixmap *, QPainter *);
+		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL);
+		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL);
+		void copyToClipboard();
+		void refresh();
 };
 
 #endif

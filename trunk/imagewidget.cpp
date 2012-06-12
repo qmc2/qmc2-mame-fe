@@ -238,7 +238,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	return fileOk;
 }
 
-bool ImageWidget::checkImage(QString gameName, QString *fileName)
+bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, int *bytesUsed, QString *fileName)
 {
 	QImage image;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
@@ -257,20 +257,30 @@ bool ImageWidget::checkImage(QString gameName, QString *fileName)
 		if ( fileName )
 			*fileName = gameFile;
 
-		if ( unzLocateFile(imageFile, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
-			if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
-				while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+		if ( zip == NULL )
+			zip = imageFile;
+
+		if ( unzLocateFile(zip, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
+			if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
+				while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
 					for (i = 0; i < len; i++)
 						imageData += imageBuffer[i];
 				}
-				unzCloseCurrentFile(imageFile);
+				unzCloseCurrentFile(zip);
 			} else
 				fileOk = false;
 		} else
 			fileOk = false;
 
-		if ( fileOk )
+		if ( fileOk ) {
 			fileOk = image.loadFromData(imageData, "PNG");
+			if ( fileOk ) {
+				if ( sizeReturn )
+					*sizeReturn = image.size();
+				if ( bytesUsed )
+					*bytesUsed = image.byteCount();
+			}
+		}
 	} else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
@@ -282,8 +292,13 @@ bool ImageWidget::checkImage(QString gameName, QString *fileName)
 
 			fileOk = image.load(imagePath, "PNG");
 
-			if ( fileOk )
+			if ( fileOk ) {
+				if ( sizeReturn )
+					*sizeReturn = image.size();
+				if ( bytesUsed )
+					*bytesUsed = image.byteCount();
 				break;
+			}
 		}
 	}
 
