@@ -1395,7 +1395,8 @@ void Options::on_pushButtonApply_clicked()
 
   bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
   if ( checkBoxRomStateFilter->isChecked() ) {
-	  qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
+	  if ( qmc2MainWindow->comboBoxViewSelect->currentIndex() == QMC2_VIEWGAMELIST_INDEX )
+	  	qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
 	  qmc2MainWindow->actionRomStatusFilterC->setEnabled(true);
 	  qmc2MainWindow->actionRomStatusFilterM->setEnabled(true);
 	  qmc2MainWindow->actionRomStatusFilterI->setEnabled(true);
