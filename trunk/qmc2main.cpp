@@ -8390,7 +8390,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 
   switch ( index ) {
 	  case QMC2_VIEWGAMELIST_INDEX:
-		  pushButtonSelectRomFilter->setVisible(true);
+		  pushButtonSelectRomFilter->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool());
 		  viewFullDetail();
 		  break;
 	  case QMC2_VIEWHIERARCHY_INDEX:
