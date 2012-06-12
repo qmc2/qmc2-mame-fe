@@ -238,6 +238,7 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 				imageWidget = qmc2PCB;
 				break;
 		}
+		qmc2StopParser = false;
 		enableWidgets(false);
 		for (int t = 0; t < spinBoxThreads->value(); t++) {
 			ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
@@ -396,7 +397,7 @@ void ImageChecker::updateResults()
 		foreach (ImageCheckerThread *thread, threadMap)
 			if ( !thread->exitThread )
 				runCount++;
-		if ( runCount == 0 && isRunning )
+		if ( (runCount == 0 || qmc2StopParser) && isRunning )
 			QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
 	}
 }
