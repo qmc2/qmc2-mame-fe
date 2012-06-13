@@ -1947,6 +1947,11 @@ void MainWindow::on_actionReload_triggered(bool)
     if ( !qmc2StopParser )
       qmc2Gamelist->load();
   }
+
+  static bool initialCall = true;
+  if ( initialCall )
+  	QTimer::singleShot(0, this, SLOT(checkRomPath()));
+  initialCall = false;
 }
 
 void MainWindow::on_actionExitStop_triggered(bool)
@@ -10117,6 +10122,42 @@ void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
 	if ( tabWidgetGamelist->currentIndex() == QMC2_SEARCH_INDEX )
 		comboBoxSearch->lineEdit()->setText(text);
+}
+
+void MainWindow::checkRomPath()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkRompath()");
+#endif
+
+	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "CheckRomPath", true).toBool() )
+		return;
+
+	QString myRomPath;
+
+	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
+		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
+	else if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory")  )
+		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString() + "/roms";
+	else
+		myRomPath = QDir::currentPath() + "/roms";
+
+	QDir romDir(myRomPath);
+
+	if ( myRomPath.isEmpty() || !romDir.exists() || !romDir.isReadable() ) {
+		log(QMC2_LOG_FRONTEND, tr("WARNING: the ROM path is either not specified or the directory doesn't exist (or isn't accessible)"));
+		switch ( QMessageBox::warning(this, tr("Check ROM path"),
+					      tr("The ROM path is either not specified or the directory couldn't be found (or isn't accessible).\n\n"
+					         "Please check the 'rompath' option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!"),
+					      QMessageBox::Ok | QMessageBox::Ignore, QMessageBox::Ok) ) {
+			case QMessageBox::Ignore:
+				qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "CheckRomPath", false);
+				break;
+			case QMessageBox::Ok:
+			default:
+				break;
+		}
+	}
 }
 
 void myQtMessageHandler(QtMsgType type, const char *msg)
