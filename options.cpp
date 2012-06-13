@@ -300,7 +300,7 @@ Options::Options(QWidget *parent)
   checkBoxScaledController->setVisible(false);
   checkBoxScaledTitle->setVisible(false);
   radioButtonControllerSelect->setVisible(false);
-  checkBoxScaledMarquee->setToolTip(tr("Scaled logo"));
+  checkBoxScaledMarquee->setText(tr("Scaled logo"));
   radioButtonMarqueeSelect->setText(tr("Logo directory"));
   radioButtonMarqueeSelect->setToolTip(tr("Switch between specifying a logo directory or a ZIP-compressed logo file"));
   lineEditMarqueeDirectory->setToolTip(tr("Logo directory (read)"));
