@@ -10142,9 +10142,14 @@ void MainWindow::checkRomPath()
 	else
 		myRomPath = QDir::currentPath() + "/roms";
 
-	QDir romDir(myRomPath);
+	bool romPathFound = false;
+	foreach (QString rompath, myRomPath.split(";", QString::SkipEmptyParts)) {
+		QDir romDir(rompath);
+		if ( romDir.exists() && romDir.isReadable() )
+			romPathFound = true;
+	}
 
-	if ( myRomPath.isEmpty() || !romDir.exists() || !romDir.isReadable() ) {
+	if ( !romPathFound ) {
 		log(QMC2_LOG_FRONTEND, tr("WARNING: the ROM path is either not specified or the directory doesn't exist (or isn't accessible)"));
 		switch ( QMessageBox::warning(this, tr("Check ROM path"),
 					      tr("The ROM path is either not specified or the directory couldn't be found (or isn't accessible).\n\n"
