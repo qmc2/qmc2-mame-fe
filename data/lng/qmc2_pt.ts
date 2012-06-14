@@ -1958,12 +1958,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="126"/>
         <source>Lo&amp;go</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="127"/>
         <source>Logo image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem logo</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="470"/>
@@ -4098,22 +4098,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="3491"/>
         <source>loading category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando category.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3497"/>
         <source>Category.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3523"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir &apos;%1&apos; para leitura -- arquivo category.ini não disponível</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3532"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando category.ini, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3682"/>
@@ -4148,9 +4148,9 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="3533"/>
         <source>%n category record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registo de categoria carregado</numerusform>
+            <numerusform>%n registos de categoria carregado</numerusform>
         </translation>
     </message>
     <message>
@@ -5023,93 +5023,93 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.ui" line="22"/>
         <source>Image type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de imagem</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="35"/>
         <source>Select image type to be checked</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o tipo de imagem a ser verificado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="39"/>
         <source>Previews</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="48"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="57"/>
         <source>Cabinets</source>
-        <translation type="unfinished">Gabinetes</translation>
+        <translation>Gabinetes</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="66"/>
         <source>Controllers</source>
-        <translation type="unfinished">Controles</translation>
+        <translation>Controles</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="75"/>
         <source>Marquees</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="84"/>
         <source>Titles</source>
-        <translation type="unfinished">Títulos</translation>
+        <translation>Títulos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="93"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="102"/>
         <source>Icons</source>
-        <translation type="unfinished">Ícones</translation>
+        <translation>Ícones</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="114"/>
         <source>Threads</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="127"/>
         <source>Number of parallel threads used when checking images</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de processos paralelos utilizados ao verificar as imagens</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="143"/>
         <source>Select sets in master list when selected in the found- or missing-lists below</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar conjuntos na lista principal quando selecionado nas listas de encontradas ou faltantes abaixo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="160"/>
         <source>Current status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado atual / progresso</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="166"/>
         <location filename="../../imagechecker.cpp" line="211"/>
         <source>Idle</source>
-        <translation type="unfinished">Ocioso</translation>
+        <translation>Ocioso</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="179"/>
         <source>Start / stop checking images</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar / parar checagem de imagens</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="199"/>
         <source>Remove obsolete image files</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover arquivos de imagem obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="216"/>
         <source>Check results</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar resultados</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="222"/>
@@ -5117,7 +5117,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="254"/>
         <location filename="../../imagechecker.cpp" line="389"/>
         <source>Found:</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontradas:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="229"/>
@@ -5125,7 +5125,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="256"/>
         <location filename="../../imagechecker.cpp" line="390"/>
         <source>Missing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltantes:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="236"/>
@@ -5133,27 +5133,27 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="258"/>
         <location filename="../../imagechecker.cpp" line="391"/>
         <source>Obsolete:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoletas:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="243"/>
         <source>Sets for which at least one valid image was found</source>
-        <translation type="unfinished"></translation>
+        <translation>Conjuntos para o qual ao menos uma imagem válida foi encontrada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="253"/>
         <source>Sets for which no valid images could be found</source>
-        <translation type="unfinished"></translation>
+        <translation>Conjuntos para o qual nenhuma imagem válida foi encontrada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="263"/>
         <source>Files which couldn&apos;t be matched to any set (and are thus obsolete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos que não combinam com nenhum conjunto (e portanto, obsoletas)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="274"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="36"/>
@@ -5244,7 +5244,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="261"/>
         <source>Pass #1</source>
-        <translation type="unfinished"></translation>
+        <translation>Passo #1</translation>
     </message>
 </context>
 <context>
@@ -5252,50 +5252,50 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="56"/>
         <source>Thread[%1]: started</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: iniciada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="62"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]:  Arquivo ZIP &apos;%2&apos; aberto com sucesso</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="64"/>
         <source>Thread[%1]: failed opening ZIP file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: falha ao abrir arquivo ZIP &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="70"/>
         <source>Thread[%1]: waiting for work</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: esperando pelo trabalho</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="80"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Thread[%1]: processando unidade de trabalho com %n entrada</numerusform>
+            <numerusform>Thread[%1]: processando unidade de trabalho com %n entradas</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="91"/>
         <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: imagem para &apos;%2&apos; encontrada, carregada de &apos;%3&apos;, tamanho = %4x%5, bytes = %6</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="94"/>
         <source>Thread[%1]: image for &apos;%2&apos; is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: imagem para &apos;%2&apos; está faltando</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="106"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: Arquivo ZIP &apos;%2&apos; fechado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="109"/>
         <source>Thread[%1]: ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: finalizada</translation>
     </message>
 </context>
 <context>
@@ -7340,7 +7340,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="609"/>
         <location filename="../../qmc2main.cpp" line="1285"/>
         <source>Category / Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria / Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1551"/>
@@ -7765,19 +7765,21 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="10148"/>
         <source>WARNING: the ROM path is either not specified or the directory doesn&apos;t exist (or isn&apos;t accessible)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o caminho para as ROMs não está especificado ou o diretório não existe (ou está inacessível)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10149"/>
         <source>Check ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar caminho das ROMs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10150"/>
         <source>The ROM path is either not specified or the directory couldn&apos;t be found (or isn&apos;t accessible).
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>O caminho para as ROMs não está especificado ou o diretório não pode ser encontrado (ou está inacessível).
+
+Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulador para corrigir isso ou as ROMs não estarão disponíveis para o emulador!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4751"/>
@@ -8083,7 +8085,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <location filename="../../qmc2main.ui" line="78"/>
         <location filename="../../qmc2main.ui" line="81"/>
         <source>Switch between detailed game list and parent / clone hierarchy</source>
-        <translation>Trocar entre lista de jogos detalhada e hierarquia de pai / clone</translation>
+        <translation>Alternar entre lista de jogos detalhada e hierarquia de pai / clone</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="85"/>
@@ -10186,39 +10188,39 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="303"/>
         <source>Scaled logo</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo esticado</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="304"/>
         <location filename="../../options.cpp" line="2277"/>
         <location filename="../../options.cpp" line="3399"/>
         <source>Logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de Logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="305"/>
         <source>Switch between specifying a logo directory or a ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de logo um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="306"/>
         <source>Logo directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de logos (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="307"/>
         <source>ZIP-compressed logo file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de logos comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="308"/>
         <source>Browse logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar diretório de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="309"/>
         <source>Browse ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por arquivo comprimido de logos (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="319"/>
@@ -10511,7 +10513,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="425"/>
         <source>View machines by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categoria</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="427"/>
@@ -10704,7 +10706,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="1309"/>
         <source>View machines by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categoria (não filtrada)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1459"/>
@@ -10835,7 +10837,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1990"/>
         <source>FATAL: can&apos;t open logo file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo do logo, por favor verifique permissões de acesso para %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1992"/>
@@ -11242,7 +11244,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.cpp" line="2277"/>
         <location filename="../../options.cpp" line="3399"/>
         <source>Logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2592"/>
@@ -11259,7 +11261,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2813"/>
         <source>Choose logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2907"/>
@@ -11321,7 +11323,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3219"/>
         <source>Choose category.ini file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo category.ini</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3444"/>
@@ -11351,7 +11353,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3505"/>
         <source>Choose ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de logos comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3507"/>
@@ -11989,7 +11991,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1170"/>
         <source>Switch between specifying a preview directory or a ZIP-compressed preview file</source>
-        <translation>Trocar entre especificar um diretório de preview ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de preview ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1208"/>
@@ -12014,7 +12016,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1273"/>
         <source>Switch between specifying a flyer directory or a ZIP-compressed flyer file</source>
-        <translation>Trocar entre especificar um diretório de flyer ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de flyer ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1311"/>
@@ -12039,7 +12041,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1376"/>
         <source>Switch between specifying an icon directory or a ZIP-compressed icon file</source>
-        <translation>Trocar entre especificar um diretório de ícones ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de ícones ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1414"/>
@@ -12084,7 +12086,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1479"/>
         <source>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</source>
-        <translation>Trocar entre especificar um diretório de gabinetes ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de gabinetes ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1620"/>
@@ -12109,7 +12111,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1582"/>
         <source>Switch between specifying a controller directory or a ZIP-compressed controller file</source>
-        <translation>Trocar entre especificar um diretório de controles ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de controles ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1723"/>
@@ -12134,7 +12136,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1685"/>
         <source>Switch between specifying a marquee directory or a ZIP-compressed marquee file</source>
-        <translation>Trocar entre especificar um diretório de marquee ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de marquee ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1826"/>
@@ -12159,12 +12161,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1788"/>
         <source>Switch between specifying a title directory or a ZIP-compressed title file</source>
-        <translation>Trocar entre especificar um diretório de títulos ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de títulos ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1891"/>
         <source>Switch between specifying a PCB directory or a ZIP-compressed PCB file</source>
-        <translation>Trocar entre especificar um diretório de PCB ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de PCB ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1929"/>
@@ -12204,12 +12206,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1159"/>
         <source>Browse path to catver.ini</source>
-        <translation>Procurar caminha para catver.ini</translation>
+        <translation>Procurar caminho para catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2206"/>
         <source>Switch between specifying a software snap directory or a ZIP-compressed software snap file</source>
-        <translation>Trocar entre especificar um diretório de snapshots de software ou um arquivo comprimido (ZIP)</translation>
+        <translation>Alternar entre especificar um diretório de snapshots de software ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2209"/>
@@ -12748,12 +12750,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="835"/>
         <source>Force QMC2&apos;s working directory to be the same as the executable&apos;s path</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar o diretório de trabalho do QMC2 ser o mesmo do caminho do executável</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="838"/>
         <source>Set working directory from executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir o diretório de trabalho a partir do executável</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2259"/>
@@ -12778,22 +12780,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2299"/>
         <source>Enable the use of category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar o uso do arquivo category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2302"/>
         <source>Use category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2319"/>
         <source>Path to category.ini (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para category.ini (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2332"/>
         <source>Browse path to category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2436"/>
