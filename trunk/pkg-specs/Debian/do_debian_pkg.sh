@@ -52,6 +52,6 @@ else
   #copy content on pkg-spec/Debian folder to debian folder inside release dir
   mkdir ${RELEASE_FOLDER}/debian
   cp -a ${RELEASE_FOLDER}/pkg-specs/Debian/* ${RELEASE_FOLDER}/debian/
-  rm ${RELEASE_FOLDER}/debian/do_debian_pkg.sh
+  rm ${RELEASE_FOLDER}/debian/*.sh
 
 fi
