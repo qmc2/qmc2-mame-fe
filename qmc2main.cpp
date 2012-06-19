@@ -6095,7 +6095,7 @@ void MainWindow::init()
 
   if ( qmc2SplashScreen ) {
 #if defined(QMC2_EMUTYPE_UME)
-	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, QColor("#005a82"));
+	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
 #else
 	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 #endif
@@ -10355,7 +10355,7 @@ int main(int argc, char *argv[])
 	qmc2SplashScreen->setWindowOpacity(0.8);
 #if defined(Q_WS_X11)
 #if defined(QMC2_EMUTYPE_UME)
-	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, QColor("#005a82"));
+	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
 #else
 	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 #endif
