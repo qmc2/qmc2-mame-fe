@@ -171,6 +171,7 @@ qmc2/data/doc/html/images/.svn/prop-base/gradient2.png.svn-base
 qmc2/data/doc/html/images/.svn/prop-base/jonas.png.svn-base
 qmc2/data/doc/html/images/.svn/prop-base/qmc2_logo.png.svn-base
 qmc2/data/doc/html/images/.svn/prop-base/qmc2_mess_logo.png.svn-base
+qmc2/data/doc/html/images/.svn/prop-base/qmc2_ume_logo.png.svn-base
 qmc2/data/doc/html/images/.svn/prop-base/rene.png.svn-base
 qmc2/data/doc/html/images/.svn/prop-base/robert.png.svn-base
 qmc2/data/doc/html/images/.svn/prop-base/sammy.png.svn-base
@@ -189,6 +190,7 @@ qmc2/data/doc/html/images/.svn/text-base/gradient2.png.svn-base
 qmc2/data/doc/html/images/.svn/text-base/jonas.png.svn-base
 qmc2/data/doc/html/images/.svn/text-base/qmc2_logo.png.svn-base
 qmc2/data/doc/html/images/.svn/text-base/qmc2_mess_logo.png.svn-base
+qmc2/data/doc/html/images/.svn/text-base/qmc2_ume_logo.png.svn-base
 qmc2/data/doc/html/images/.svn/text-base/rene.png.svn-base
 qmc2/data/doc/html/images/.svn/text-base/robert.png.svn-base
 qmc2/data/doc/html/images/.svn/text-base/sammy.png.svn-base
@@ -3109,6 +3111,7 @@ qmc2/pkg-specs/Debian/source/.svn
 qmc2/pkg-specs/Debian/source/.svn/text-base/format.svn-base
 qmc2/pkg-specs/Debian/.svn
 qmc2/pkg-specs/Debian/.svn/prop-base/do_debian_pkg.sh.svn-base
+qmc2/pkg-specs/Debian/.svn/prop-base/release_unstable.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/prop-base/rules.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/changelog.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/compat.svn-base
@@ -3119,6 +3122,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/do_debian_pkg.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-data.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmame.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmess.dirs.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/release_unstable.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/watch.svn-base
 qmc2/pkg-specs/Fedora/.svn
