@@ -108,6 +108,7 @@ qmc2-sdlmess:
 	dh_builddeb -p$@
 
 qmc2-sdlmame:
+	$(MAKE) DISTCFG=1 clean
 	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/
 	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-sdlmame install
 	
