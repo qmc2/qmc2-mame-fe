@@ -3122,6 +3122,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/do_debian_pkg.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-data.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmame.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmess.dirs.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlume.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/release_unstable.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/watch.svn-base
