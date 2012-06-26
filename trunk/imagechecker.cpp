@@ -123,11 +123,31 @@ ImageChecker::ImageChecker(QWidget *parent)
 	setupUi(this);
 
 	isRunning = false;
-	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
 	labelObsolete->setText(tr("Obsolete:") + " 0");
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(updateResults()));
+
+	comboBoxImageType->clear();
+#if defined(QMC2_EMUTYPE_MESS)
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_FLYER, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")), tr("Flyers"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CABINET, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinets"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_LOGO, QIcon(QString::fromUtf8(":/data/img/marquee.png")), tr("Logos"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PCB, QIcon(QString::fromUtf8(":/data/img/circuit.png")), tr("PCBs"));
+	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_ICON, QIcon(QString::fromUtf8(":/data/img/icon.png")), tr("Icons"));
+#else
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_FLYER, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")), tr("Flyers"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CABINET, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinets"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CONTROLLER, QIcon(QString::fromUtf8(":/data/img/joystick.png")), tr("Controllers"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_MARQUEE, QIcon(QString::fromUtf8(":/data/img/marquee.png")), tr("Marquees"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_TITLE, QIcon(QString::fromUtf8(":/data/img/arcademode.png")), tr("Titles"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PCB, QIcon(QString::fromUtf8(":/data/img/circuit.png")), tr("PCBs"));
+	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_ICON, QIcon(QString::fromUtf8(":/data/img/icon.png")), tr("Icons"));
+#endif
 }
 
 ImageChecker::~ImageChecker()
@@ -225,27 +245,38 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 			case QMC2_IMGCHK_INDEX_CABINET:
 				imageWidget = qmc2Cabinet;
 				break;
-			case QMC2_IMGCHK_INDEX_CONTROLLER:
-				imageWidget = qmc2Controller;
-				break;
 			case QMC2_IMGCHK_INDEX_MARQUEE:
 				imageWidget = qmc2Marquee;
+				break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			case QMC2_IMGCHK_INDEX_CONTROLLER:
+				imageWidget = qmc2Controller;
 				break;
 			case QMC2_IMGCHK_INDEX_TITLE:
 				imageWidget = qmc2Title;
 				break;
+#endif
 			case QMC2_IMGCHK_INDEX_PCB:
 				imageWidget = qmc2PCB;
+				break;
+			case QMC2_IMGCHK_INDEX_ICON:
+			default:
+				imageWidget = NULL;
 				break;
 		}
 		qmc2StopParser = false;
 		enableWidgets(false);
-		for (int t = 0; t < spinBoxThreads->value(); t++) {
-			ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
-			connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
-			connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &)));
-			threadMap[t] = thread;
-			thread->start();
+		if ( imageWidget ) {
+			// images
+			for (int t = 0; t < spinBoxThreads->value(); t++) {
+				ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
+				connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
+				connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &)));
+				threadMap[t] = thread;
+				thread->start();
+			}
+		} else {
+			// icons
 		}
 		isRunning = true;
 		toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
@@ -285,21 +316,27 @@ void ImageChecker::enableWidgets(bool enable)
 			qmc2Options->stackedWidgetCabinet->setEnabled(enable);
 			qmc2Options->radioButtonCabinetSelect->setEnabled(enable);
 			break;
-		case QMC2_IMGCHK_INDEX_CONTROLLER:
-			qmc2Options->stackedWidgetController->setEnabled(enable);
-			qmc2Options->radioButtonControllerSelect->setEnabled(enable);
-			break;
 		case QMC2_IMGCHK_INDEX_MARQUEE:
 			qmc2Options->stackedWidgetMarquee->setEnabled(enable);
 			qmc2Options->radioButtonMarqueeSelect->setEnabled(enable);
+			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		case QMC2_IMGCHK_INDEX_CONTROLLER:
+			qmc2Options->stackedWidgetController->setEnabled(enable);
+			qmc2Options->radioButtonControllerSelect->setEnabled(enable);
 			break;
 		case QMC2_IMGCHK_INDEX_TITLE:
 			qmc2Options->stackedWidgetTitle->setEnabled(enable);
 			qmc2Options->radioButtonTitleSelect->setEnabled(enable);
 			break;
+#endif
 		case QMC2_IMGCHK_INDEX_PCB:
 			qmc2Options->stackedWidgetPCB->setEnabled(enable);
 			qmc2Options->radioButtonPCBSelect->setEnabled(enable);
+			break;
+		case QMC2_IMGCHK_INDEX_ICON:
+			qmc2Options->stackedWidgetIcon->setEnabled(enable);
+			qmc2Options->radioButtonIconSelect->setEnabled(enable);
 			break;
 	}
 	comboBoxImageType->setEnabled(enable);
@@ -327,7 +364,7 @@ void ImageChecker::feedWorkerThreads()
 					selectedThread = t;
 		} else
 			selectedThread = 0;
-		if ( selectedThread >= 0 ) {
+		if ( selectedThread >= 0 && !threadMap.isEmpty() ) {
 			if ( threadMap[selectedThread]->workUnitMutex.tryLock() ) {
 				QStringList workUnit;
 				while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
