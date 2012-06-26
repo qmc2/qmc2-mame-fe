@@ -46,13 +46,18 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 
 	public:
 		bool isRunning;
+		bool startStopClicked;
 		QStringList bufferedFoundList;
 		QStringList bufferedMissingList;
+		QStringList bufferedObsoleteList;
 		QTimer updateTimer;
 		QMap<int, ImageCheckerThread *> threadMap;
+		int passNumber;
 
 		ImageChecker(QWidget *parent = 0);
 		~ImageChecker();
+
+		void recursiveFileList(const QString &, QStringList &);
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();
@@ -66,7 +71,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void resultsReady(const QStringList &, const QStringList &);
 		void feedWorkerThreads();
 		void updateResults();
+		void checkObsoleteFiles();
 		void enableWidgets(bool);
+		void startStop();
 
 	protected:
 		void closeEvent(QCloseEvent *);
