@@ -123,7 +123,8 @@ ImageChecker::ImageChecker(QWidget *parent)
 
 	setupUi(this);
 
-	isRunning = false;
+	startStopClicked = isRunning = false;
+	passNumber = 0;
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
 	labelObsolete->setText(tr("Obsolete:") + " 0");
@@ -208,10 +209,10 @@ void ImageChecker::on_listWidgetMissing_itemSelectionChanged()
 	}
 }
 
-void ImageChecker::on_toolButtonStartStop_clicked()
+void ImageChecker::startStop()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonStartStop_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::startStop()");
 #endif
 
 	if ( isRunning ) {
@@ -223,17 +224,28 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 			delete thread;
 		}
 		threadMap.clear();
-		isRunning = false;
-		qmc2ImageCheckActive = false;
-		toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
-		updateResults();
-		progressBar->setRange(0, 100);
-		progressBar->setValue(0);
-		progressBar->setFormat(tr("Idle"));
-		updateTimer.stop();
-		enableWidgets(true);
+		if ( passNumber == 2 && !startStopClicked ) {
+			progressBar->setRange(0, qmc2GamelistItemMap.count());
+			progressBar->setValue(0);
+			progressBar->setFormat(tr("Pass #%1").arg(passNumber));
+			bufferedObsoleteList.clear();
+			QTimer::singleShot(0, this, SLOT(checkObsoleteFiles()));
+			updateTimer.start(QMC2_CHECK_UPDATE_FAST);
+		} else if ( passNumber == -1 || startStopClicked ) {
+			isRunning = false;
+			qmc2ImageCheckActive = false;
+			toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+			updateResults();
+			progressBar->setRange(0, 100);
+			progressBar->setValue(0);
+			progressBar->setFormat(tr("Idle"));
+			updateTimer.stop();
+			enableWidgets(true);
+			passNumber = 0;
+		}
 	} else {
 		threadMap.clear();
+		passNumber = 0;
 		plainTextEditLog->clear();
 		ImageWidget *imageWidget;
 		switch ( comboBoxImageType->currentIndex() ) {
@@ -276,8 +288,6 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 				threadMap[t] = thread;
 				thread->start();
 			}
-		} else {
-			// icons
 		}
 		isRunning = true;
 		toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
@@ -290,12 +300,24 @@ void ImageChecker::on_toolButtonStartStop_clicked()
 		labelObsolete->setText(tr("Obsolete:") + " 0");
 		progressBar->setRange(0, qmc2GamelistItemMap.count());
 		progressBar->setValue(0);
-		progressBar->setFormat(tr("Pass #1"));
+		passNumber = 1;
+		progressBar->setFormat(tr("Pass #%1").arg(passNumber));
 		bufferedFoundList.clear();
 		bufferedMissingList.clear();
 		QTimer::singleShot(0, this, SLOT(feedWorkerThreads()));
 		updateTimer.start(QMC2_CHECK_UPDATE_FAST);
 	}
+}
+
+void ImageChecker::on_toolButtonStartStop_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonStartStop_clicked()");
+#endif
+
+	startStopClicked = true;
+	startStop();
+	startStopClicked = false;
 }
 
 void ImageChecker::enableWidgets(bool enable)
@@ -460,6 +482,16 @@ void ImageChecker::resultsReady(const QStringList &foundList, const QStringList 
 	qApp->processEvents();
 }
 
+void ImageChecker::checkObsoleteFiles()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::checkObsoleteFiles()");
+#endif
+
+	passNumber = -1;
+	QTimer::singleShot(0, this, SLOT(startStop()));
+}
+
 void ImageChecker::updateResults()
 {
 #ifdef QMC2_DEBUG
@@ -468,8 +500,10 @@ void ImageChecker::updateResults()
 
 	listWidgetFound->insertItems(listWidgetFound->count(), bufferedFoundList);
 	listWidgetMissing->insertItems(listWidgetMissing->count(), bufferedMissingList);
+	listWidgetObsolete->insertItems(listWidgetObsolete->count(), bufferedObsoleteList);
 	bufferedFoundList.clear();
 	bufferedMissingList.clear();
+	bufferedObsoleteList.clear();
 	labelFound->setText(tr("Found:") + " " + QString::number(listWidgetFound->count()));
 	labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
@@ -477,17 +511,20 @@ void ImageChecker::updateResults()
 	qApp->processEvents();
 
 	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning ) {
-		QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
+		passNumber = 2;
+		QTimer::singleShot(0, this, SLOT(startStop()));
 	} else {
 		int runCount = 0;
 		foreach (ImageCheckerThread *thread, threadMap)
 			if ( !thread->exitThread )
 				runCount++;
-		if ( (runCount == 0 || qmc2StopParser) && isRunning && !threadMap.isEmpty() )
-			QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
+		if ( (runCount == 0 || qmc2StopParser) && isRunning && !threadMap.isEmpty() ) {
+			passNumber = -1;
+			QTimer::singleShot(0, this, SLOT(startStop()));
+		}
 	}
 
-	if ( threadMap.isEmpty() )
+	if ( threadMap.isEmpty() && passNumber == 1 )
 		progressBar->setValue(listWidgetFound->count() + listWidgetMissing->count());
 }
 
@@ -585,4 +622,27 @@ void ImageChecker::showEvent(QShowEvent *e)
 	toolButtonSelectSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/SelectSets", true).toBool());
 
 	QDialog::showEvent(e);
+}
+
+void ImageChecker::recursiveFileList(const QString &sDir, QStringList &fileNames)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveFileList(const QString& sDir = %1, QStringList &fileNames)").arg(sDir));
+#endif
+
+	QDir dir(sDir);
+	QFileInfoList list = dir.entryInfoList();
+	int i;
+	for (i = 0; i < list.count(); i++) {
+		QFileInfo info = list[i];
+		QString path = info.filePath();
+		if ( info.isDir() ) {
+			// directory recursion
+			if ( info.fileName() != ".." && info.fileName() != "." ) {
+				recursiveFileList(path, fileNames);
+				qApp->processEvents();
+			}
+		} else
+			fileNames << path;
+	}
 }
