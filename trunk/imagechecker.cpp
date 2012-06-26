@@ -52,6 +52,42 @@ ImageCheckerThread::~ImageCheckerThread()
 	// NOP
 }
 
+QString ImageCheckerThread::humanReadable(quint64 value)
+{
+	QString humanReadableString;
+	qreal humanReadableValue;
+	QLocale locale;
+
+#if __WORDSIZE == 64
+	if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+	} else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+	} else if ( (qreal)value / (qreal)QMC2_ONE_GIGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+	} else {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_TERABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" TB"));
+	}
+#else
+	if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+	} else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+	} else {
+		humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
+		humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+	}
+#endif
+
+	return humanReadableString;
+}
+
 void ImageCheckerThread::run()
 {
 	emit log(tr("Thread[%1]: started").arg(threadNumber));
@@ -89,7 +125,7 @@ void ImageCheckerThread::run()
 					int byteCount;
 					if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName) ) {
 						foundList << gameName;
-						emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(byteCount));
+						emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 					} else {
 						missingList << gameName;
 						emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
@@ -435,7 +471,7 @@ void ImageChecker::feedWorkerThreads()
 					qmc2MainWindow->progressBarGamelist->reset();
 					firstCheck = false;
 				}
-				if ( itemCount++ % 25 == 0 )
+				if ( itemCount++ % 50 == 0 )
 					qApp->processEvents();
 			}
 			while ( qmc2ImageCheckActive && !qmc2StopParser )

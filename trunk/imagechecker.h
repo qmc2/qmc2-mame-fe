@@ -32,6 +32,8 @@ class ImageCheckerThread : public QThread
 		ImageCheckerThread(int, ImageWidget *, QObject *parent = 0);
 		~ImageCheckerThread();
 
+		QString humanReadable(quint64);
+
 	protected:
 		void run();
 
