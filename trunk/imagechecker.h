@@ -4,6 +4,7 @@
 #include <QMap>
 #include <QThread>
 #include <QTimer>
+#include <QElapsedTimer>
 #include <QMutex>
 #include <QWaitCondition>
 #include <QStringList>
@@ -20,6 +21,7 @@ class ImageCheckerThread : public QThread
 		bool exitThread;
 		bool isActive;
 		int threadNumber;
+		quint64 scanCount;
 		unzFile zip;
 		QStringList workUnit;
 		QStringList foundList;
@@ -49,10 +51,12 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 	public:
 		bool isRunning;
 		bool startStopClicked;
+		double avgScanSpeed;
 		QStringList bufferedFoundList;
 		QStringList bufferedMissingList;
 		QStringList bufferedObsoleteList;
 		QTimer updateTimer;
+		QElapsedTimer checkTimer;
 		QMap<int, ImageCheckerThread *> threadMap;
 		int passNumber;
 

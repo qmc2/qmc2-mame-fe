@@ -4743,54 +4743,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="39"/>
-        <location filename="../../imagechecker.cpp" line="171"/>
-        <location filename="../../imagechecker.cpp" line="179"/>
+        <location filename="../../imagechecker.cpp" line="174"/>
+        <location filename="../../imagechecker.cpp" line="182"/>
         <source>Previews</source>
         <translation>Vorschaubilder</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="48"/>
-        <location filename="../../imagechecker.cpp" line="172"/>
-        <location filename="../../imagechecker.cpp" line="180"/>
+        <location filename="../../imagechecker.cpp" line="175"/>
+        <location filename="../../imagechecker.cpp" line="183"/>
         <source>Flyers</source>
         <translation>Flyer</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="57"/>
-        <location filename="../../imagechecker.cpp" line="173"/>
-        <location filename="../../imagechecker.cpp" line="181"/>
+        <location filename="../../imagechecker.cpp" line="176"/>
+        <location filename="../../imagechecker.cpp" line="184"/>
         <source>Cabinets</source>
         <translation>Gehäuse</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="66"/>
-        <location filename="../../imagechecker.cpp" line="182"/>
+        <location filename="../../imagechecker.cpp" line="185"/>
         <source>Controllers</source>
         <translation>Controller</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="75"/>
-        <location filename="../../imagechecker.cpp" line="183"/>
+        <location filename="../../imagechecker.cpp" line="186"/>
         <source>Marquees</source>
         <translation>Marquees</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="84"/>
-        <location filename="../../imagechecker.cpp" line="184"/>
+        <location filename="../../imagechecker.cpp" line="187"/>
         <source>Titles</source>
         <translation>Titel</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="93"/>
-        <location filename="../../imagechecker.cpp" line="175"/>
-        <location filename="../../imagechecker.cpp" line="185"/>
+        <location filename="../../imagechecker.cpp" line="178"/>
+        <location filename="../../imagechecker.cpp" line="188"/>
         <source>PCBs</source>
         <translation>PCBs</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="102"/>
-        <location filename="../../imagechecker.cpp" line="177"/>
-        <location filename="../../imagechecker.cpp" line="187"/>
+        <location filename="../../imagechecker.cpp" line="180"/>
+        <location filename="../../imagechecker.cpp" line="190"/>
         <source>Icons</source>
         <translation>Icons</translation>
     </message>
@@ -4816,7 +4816,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="166"/>
-        <location filename="../../imagechecker.cpp" line="277"/>
+        <location filename="../../imagechecker.cpp" line="296"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -4837,25 +4837,25 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="222"/>
-        <location filename="../../imagechecker.cpp" line="164"/>
-        <location filename="../../imagechecker.cpp" line="332"/>
-        <location filename="../../imagechecker.cpp" line="543"/>
+        <location filename="../../imagechecker.cpp" line="167"/>
+        <location filename="../../imagechecker.cpp" line="352"/>
+        <location filename="../../imagechecker.cpp" line="562"/>
         <source>Found:</source>
         <translation>Gefunden:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="229"/>
-        <location filename="../../imagechecker.cpp" line="165"/>
-        <location filename="../../imagechecker.cpp" line="334"/>
-        <location filename="../../imagechecker.cpp" line="544"/>
+        <location filename="../../imagechecker.cpp" line="168"/>
+        <location filename="../../imagechecker.cpp" line="354"/>
+        <location filename="../../imagechecker.cpp" line="563"/>
         <source>Missing:</source>
         <translation>Fehlend:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="236"/>
-        <location filename="../../imagechecker.cpp" line="166"/>
-        <location filename="../../imagechecker.cpp" line="336"/>
-        <location filename="../../imagechecker.cpp" line="545"/>
+        <location filename="../../imagechecker.cpp" line="169"/>
+        <location filename="../../imagechecker.cpp" line="356"/>
+        <location filename="../../imagechecker.cpp" line="564"/>
         <source>Obsolete:</source>
         <translation>Überflüssig:</translation>
     </message>
@@ -5236,84 +5236,113 @@ p, li { white-space: pre-wrap; }
         <translation>WARNUNG: Maschinenliste nicht vollständig geladen, Prüfergebnisse könnten irreführend sein</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="174"/>
+        <location filename="../../imagechecker.cpp" line="177"/>
         <source>Logos</source>
         <translation>Logos</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../imagechecker.cpp" line="271"/>
+        <source>Average scanning speed = %n icon(s) per second</source>
+        <translation>
+            <numerusform>Durchschnittliche Prüfgeschwindigkeit = %n Icon pro Sekunde</numerusform>
+            <numerusform>Durchschnittliche Prüfgeschwindigkeit = %n Icons pro Sekunde</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../imagechecker.cpp" line="273"/>
+        <location filename="../../imagechecker.cpp" line="285"/>
+        <source>Average scanning speed = %n image(s) per second</source>
+        <translation>
+            <numerusform>Durchschnittliche Prüfgeschwindigkeit = %n Bild pro Sekunde</numerusform>
+            <numerusform>Durchschnittliche Prüfgeschwindigkeit = %n Bilder pro Sekunde</numerusform>
+        </translation>
+    </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="266"/>
-        <location filename="../../imagechecker.cpp" line="340"/>
+        <location filename="../../imagechecker.cpp" line="278"/>
+        <location filename="../../imagechecker.cpp" line="361"/>
         <source>Pass #%1</source>
         <translation>Durchlauf #%1</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="459"/>
-        <source>Thread[%1]: Icon check started</source>
-        <translation>Thread[%1]: Icon Prüfung gestarted</translation>
+        <location filename="../../imagechecker.cpp" line="292"/>
+        <source>%1 check ended -- elapsed time = %2</source>
+        <translation>%1-Prüfung beendet -- benötigte Zeit = %2</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="464"/>
+        <location filename="../../imagechecker.cpp" line="292"/>
+        <location filename="../../imagechecker.cpp" line="337"/>
+        <source>Icon</source>
+        <translation>Icon</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="292"/>
+        <location filename="../../imagechecker.cpp" line="337"/>
+        <source>Image</source>
+        <translation>Bild</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="337"/>
+        <source>%1 check started</source>
+        <translation>%1-Prüfung gestartet</translation>
+    </message>
+    <message>
+        <location filename="../../imagechecker.cpp" line="485"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; found</source>
         <translation>Thread[%1]: Icon für &apos;%2&apos; gefunden</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="467"/>
+        <location filename="../../imagechecker.cpp" line="488"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; is missing</source>
         <translation>Thread[%1]: Icon für &apos;%2&apos; fehlt</translation>
-    </message>
-    <message>
-        <location filename="../../imagechecker.cpp" line="479"/>
-        <source>Thread[%1]: Icon check ended</source>
-        <translation>Thread[%1]: Icon Prüfung beendet</translation>
     </message>
 </context>
 <context>
     <name>ImageCheckerThread</name>
     <message>
-        <location filename="../../imagechecker.cpp" line="64"/>
-        <location filename="../../imagechecker.cpp" line="78"/>
+        <location filename="../../imagechecker.cpp" line="65"/>
+        <location filename="../../imagechecker.cpp" line="79"/>
         <source> KB</source>
         <translation> KB</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="67"/>
-        <location filename="../../imagechecker.cpp" line="81"/>
+        <location filename="../../imagechecker.cpp" line="68"/>
+        <location filename="../../imagechecker.cpp" line="82"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="70"/>
-        <location filename="../../imagechecker.cpp" line="84"/>
+        <location filename="../../imagechecker.cpp" line="71"/>
+        <location filename="../../imagechecker.cpp" line="85"/>
         <source> GB</source>
         <translation> GB</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="73"/>
+        <location filename="../../imagechecker.cpp" line="74"/>
         <source> TB</source>
         <translation> TB</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="93"/>
+        <location filename="../../imagechecker.cpp" line="94"/>
         <source>Thread[%1]: started</source>
         <translation>Thread[%1]: Gestarted</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="99"/>
+        <location filename="../../imagechecker.cpp" line="100"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; successfully opened</source>
         <translation>Thread[%1]: ZIP Datei &apos;%2&apos; erfolgreich geöffnet</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="101"/>
+        <location filename="../../imagechecker.cpp" line="102"/>
         <source>Thread[%1]: failed opening ZIP file &apos;%2&apos;</source>
         <translation>Thread[%1]: Öffnen der ZIP Datei &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="107"/>
+        <location filename="../../imagechecker.cpp" line="108"/>
         <source>Thread[%1]: waiting for work</source>
         <translation>Thread[%1]: Warte auf Arbeit</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../imagechecker.cpp" line="117"/>
+        <location filename="../../imagechecker.cpp" line="118"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
         <translation>
             <numerusform>Thread[%1]: Verarbeite Arbeitseinheit mit %n Eintrag</numerusform>
@@ -5321,22 +5350,22 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="128"/>
+        <location filename="../../imagechecker.cpp" line="129"/>
         <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
         <translation>Thread[%1]: Bild für &apos;%2&apos; gefunden, geladen von &apos;%3&apos;, Größe = %4x%5, Bytes = %6</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="131"/>
+        <location filename="../../imagechecker.cpp" line="132"/>
         <source>Thread[%1]: image for &apos;%2&apos; is missing</source>
         <translation>Thread[%1]: Bild für &apos;%2&apos; fehlt</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="143"/>
+        <location filename="../../imagechecker.cpp" line="145"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; closed</source>
         <translation>Thread[%1]: ZIP Datei &apos;%2&apos; geschlossen</translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="146"/>
+        <location filename="../../imagechecker.cpp" line="148"/>
         <source>Thread[%1]: ended</source>
         <translation>Thread[%1]: Beendet</translation>
     </message>
