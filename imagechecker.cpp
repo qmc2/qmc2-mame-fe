@@ -45,6 +45,7 @@ ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject
 	imageWidget = imgWidget;
 	isActive = exitThread = false;
 	zip = NULL;
+	scanCount = 0;
 }
 
 ImageCheckerThread::~ImageCheckerThread()
@@ -130,6 +131,7 @@ void ImageCheckerThread::run()
 						missingList << gameName;
 						emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 					}
+					scanCount++;
 				}
 				workUnit.clear();
 				workUnitMutex.unlock();
@@ -161,6 +163,7 @@ ImageChecker::ImageChecker(QWidget *parent)
 
 	startStopClicked = isRunning = false;
 	passNumber = 0;
+	avgScanSpeed = 0.0;
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
 	labelObsolete->setText(tr("Obsolete:") + " 0");
@@ -253,6 +256,7 @@ void ImageChecker::startStop()
 
 	if ( isRunning ) {
 		foreach (ImageCheckerThread *thread, threadMap) {
+			avgScanSpeed += thread->scanCount;
 			thread->exitThread = true;
 			thread->waitCondition.wakeAll();
 			thread->quit();
@@ -261,6 +265,14 @@ void ImageChecker::startStop()
 		}
 		threadMap.clear();
 		if ( passNumber == 2 && !startStopClicked ) {
+			if ( avgScanSpeed > 0.0 ) {
+				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
+				if ( comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON )
+					log(tr("Average scanning speed = %n icon(s) per second", "", int(avgScanSpeed)));
+				else
+					log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
+				avgScanSpeed = 0.0;
+			}
 			progressBar->setRange(0, qmc2GamelistItemMap.count());
 			progressBar->setValue(0);
 			progressBar->setFormat(tr("Pass #%1").arg(passNumber));
@@ -268,9 +280,16 @@ void ImageChecker::startStop()
 			QTimer::singleShot(0, this, SLOT(checkObsoleteFiles()));
 			updateTimer.start(QMC2_CHECK_UPDATE_FAST);
 		} else if ( passNumber == -1 || startStopClicked ) {
+			if ( avgScanSpeed > 0.0 ) {
+				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
+				log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
+			}
 			isRunning = false;
 			qmc2ImageCheckActive = false;
 			toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+			QTime elapsedTime;
+			elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
+			log(tr("%1 check ended -- elapsed time = %2").arg(comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON ? tr("Icon") : tr("Image")).arg(elapsedTime.toString("mm:ss.zzz")));
 			updateResults();
 			progressBar->setRange(0, 100);
 			progressBar->setValue(0);
@@ -315,6 +334,7 @@ void ImageChecker::startStop()
 		}
 		qmc2StopParser = false;
 		enableWidgets(false);
+		log(tr("%1 check started").arg(imageWidget ? tr("Image") : tr("Icon")));
 		if ( imageWidget ) {
 			// images
 			for (int t = 0; t < spinBoxThreads->value(); t++) {
@@ -336,12 +356,14 @@ void ImageChecker::startStop()
 		labelObsolete->setText(tr("Obsolete:") + " 0");
 		progressBar->setRange(0, qmc2GamelistItemMap.count());
 		progressBar->setValue(0);
+		avgScanSpeed = 0.0;
 		passNumber = 1;
 		progressBar->setFormat(tr("Pass #%1").arg(passNumber));
 		bufferedFoundList.clear();
 		bufferedMissingList.clear();
 		QTimer::singleShot(0, this, SLOT(feedWorkerThreads()));
 		updateTimer.start(QMC2_CHECK_UPDATE_FAST);
+		checkTimer.start();
 	}
 }
 
@@ -456,7 +478,6 @@ void ImageChecker::feedWorkerThreads()
 			bool firstCheck = true;
 			qmc2MainWindow->progressBarGamelist->setRange(0, qmc2GamelistItemMap.count());
 			qmc2MainWindow->progressBarGamelist->setFormat("");
-			log(tr("Thread[%1]: Icon check started").arg(0));
 			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
 				it.next();
 				QString gameName = it.key();
@@ -473,10 +494,8 @@ void ImageChecker::feedWorkerThreads()
 				}
 				if ( itemCount++ % 50 == 0 )
 					qApp->processEvents();
+				avgScanSpeed += 1.0;
 			}
-			while ( qmc2ImageCheckActive && !qmc2StopParser )
-				qApp->processEvents();
-			log(tr("Thread[%1]: Icon check ended").arg(0));
 			qmc2MainWindow->progressBarGamelist->reset();
 		}
 		qApp->processEvents();
