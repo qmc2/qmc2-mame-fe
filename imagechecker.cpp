@@ -27,6 +27,7 @@ extern Gamelist *qmc2Gamelist;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern bool qmc2ImageCheckActive;
 extern bool qmc2StopParser;
+extern bool qmc2IconsPreloaded;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
@@ -340,6 +341,10 @@ void ImageChecker::enableWidgets(bool enable)
 			break;
 	}
 	comboBoxImageType->setEnabled(enable);
+	if ( comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON )
+		spinBoxThreads->setEnabled(false);
+	else
+		spinBoxThreads->setEnabled(enable);
 }
 
 void ImageChecker::feedWorkerThreads()
@@ -354,34 +359,67 @@ void ImageChecker::feedWorkerThreads()
 	int count = 0;
 #endif
 	while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
-		int selectedThread = -1;
-		if ( threadMap.count() > 1 ) {
-			for (int t = lastThreadID + 1; t < threadMap.count() && selectedThread == -1; t++)
-				if ( !threadMap[t]->isActive )
-					selectedThread = t;
-			for (int t = 0; t < lastThreadID && selectedThread == -1; t++)
-				if ( !threadMap[t]->isActive )
-					selectedThread = t;
-		} else
-			selectedThread = 0;
-		if ( selectedThread >= 0 && !threadMap.isEmpty() ) {
-			if ( threadMap[selectedThread]->workUnitMutex.tryLock() ) {
-				QStringList workUnit;
-				while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
-					it.next();
-					workUnit << it.key();
-				}
-				threadMap[selectedThread]->workUnitMutex.unlock();
-				if ( qmc2ImageCheckActive ) {
-					threadMap[selectedThread]->workUnit += workUnit;
-					threadMap[selectedThread]->waitCondition.wakeAll();
+		if ( !threadMap.isEmpty() ) {
+			// images
+			int selectedThread = -1;
+			if ( threadMap.count() > 1 ) {
+				for (int t = lastThreadID + 1; t < threadMap.count() && selectedThread == -1; t++)
+					if ( !threadMap[t]->isActive )
+						selectedThread = t;
+				for (int t = 0; t < lastThreadID && selectedThread == -1; t++)
+					if ( !threadMap[t]->isActive )
+						selectedThread = t;
+			} else
+				selectedThread = 0;
+			if ( selectedThread >= 0 ) {
+				if ( threadMap[selectedThread]->workUnitMutex.tryLock() ) {
+					QStringList workUnit;
+					while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
+						it.next();
+						workUnit << it.key();
+					}
+					threadMap[selectedThread]->workUnitMutex.unlock();
+					if ( qmc2ImageCheckActive ) {
+						threadMap[selectedThread]->workUnit += workUnit;
+						threadMap[selectedThread]->waitCondition.wakeAll();
 #ifdef QMC2_DEBUG
-					count += workUnit.count();
-					log(QString("DEBUG: ImageChecker::feedWorkerThreads(): count = %1").arg(count));
+						count += workUnit.count();
+						log(QString("DEBUG: ImageChecker::feedWorkerThreads(): count = %1").arg(count));
 #endif
+					}
 				}
+				lastThreadID = selectedThread;
 			}
-			lastThreadID = selectedThread;
+		} else {
+			// icons
+			qmc2IconMap.clear();
+			qmc2IconsPreloaded = false;
+			int itemCount = 0;
+			bool firstCheck = true;
+			qmc2MainWindow->progressBarGamelist->setRange(0, qmc2GamelistItemMap.count());
+			qmc2MainWindow->progressBarGamelist->setFormat("");
+			log(tr("Thread[%1]: Icon check started").arg(0));
+			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
+				it.next();
+				QString gameName = it.key();
+				if ( qmc2Gamelist->loadIcon(gameName, NULL, true, NULL) ) {
+					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(gameName));
+					bufferedFoundList << gameName;
+				} else {
+					log(tr("Thread[%1]: Icon for '%2' is missing").arg(0).arg(gameName));
+					bufferedMissingList << gameName;
+				}
+				if ( firstCheck ) {
+					qmc2MainWindow->progressBarGamelist->reset();
+					firstCheck = false;
+				}
+				if ( itemCount++ % 25 == 0 )
+					qApp->processEvents();
+			}
+			while ( qmc2ImageCheckActive && !qmc2StopParser )
+				qApp->processEvents();
+			log(tr("Thread[%1]: Icon check ended").arg(0));
+			qmc2MainWindow->progressBarGamelist->reset();
 		}
 		qApp->processEvents();
 	}
@@ -394,6 +432,15 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 #endif
 
 	// FIXME
+}
+
+void ImageChecker::on_comboBoxImageType_currentIndexChanged(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::on_comboBoxImageType_currentIndexChanged(int index = %1)").arg(index));
+#endif
+
+	spinBoxThreads->setEnabled(index != QMC2_IMGCHK_INDEX_ICON);
 }
 
 void ImageChecker::log(const QString &message)
@@ -426,7 +473,9 @@ void ImageChecker::updateResults()
 	labelFound->setText(tr("Found:") + " " + QString::number(listWidgetFound->count()));
 	labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
+
 	qApp->processEvents();
+
 	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning ) {
 		QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
 	} else {
@@ -434,9 +483,12 @@ void ImageChecker::updateResults()
 		foreach (ImageCheckerThread *thread, threadMap)
 			if ( !thread->exitThread )
 				runCount++;
-		if ( (runCount == 0 || qmc2StopParser) && isRunning )
+		if ( (runCount == 0 || qmc2StopParser) && isRunning && !threadMap.isEmpty() )
 			QTimer::singleShot(0, toolButtonStartStop, SLOT(animateClick()));
 	}
+
+	if ( threadMap.isEmpty() )
+		progressBar->setValue(listWidgetFound->count() + listWidgetMissing->count());
 }
 
 void ImageChecker::selectItem(QString setName)
