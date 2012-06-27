@@ -64,6 +64,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		~ImageChecker();
 
 		void recursiveFileList(const QString &, QStringList &);
+		void recursiveZipList(unzFile, QStringList &);
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();
