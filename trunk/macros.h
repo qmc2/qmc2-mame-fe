@@ -85,7 +85,7 @@
 #define QMC2_YOUTUBE_INDEX			13
 
 // number of images per work-unit
-#define QMC2_IMGCHK_WORKUNIT_SIZE		25
+#define QMC2_IMGCHK_WORKUNIT_SIZE		50
 
 // current format version of the GLC (game list cache)
 #define QMC2_GLC_VERSION			5

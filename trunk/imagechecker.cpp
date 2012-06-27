@@ -28,6 +28,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern bool qmc2ImageCheckActive;
 extern bool qmc2StopParser;
 extern bool qmc2IconsPreloaded;
+extern bool qmc2UseIconFile;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
@@ -35,6 +36,7 @@ extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
+extern unzFile qmc2IconFile;
 
 //#define QMC2_DEBUG
 
@@ -543,6 +545,62 @@ void ImageChecker::checkObsoleteFiles()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::checkObsoleteFiles()");
 #endif
 
+	ImageWidget *imageWidget = NULL;
+	if ( comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON ) {
+		log(tr("Checking for obsolete icons"));
+	} else {
+		log(tr("Checking for obsolete images"));
+		switch ( comboBoxImageType->currentIndex() ) {
+			case QMC2_IMGCHK_INDEX_PREVIEW:
+				imageWidget = qmc2Preview;
+				break;
+			case QMC2_IMGCHK_INDEX_FLYER:
+				imageWidget = qmc2Flyer;
+				break;
+			case QMC2_IMGCHK_INDEX_CABINET:
+				imageWidget = qmc2Cabinet;
+				break;
+			case QMC2_IMGCHK_INDEX_MARQUEE:
+				imageWidget = qmc2Marquee;
+				break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			case QMC2_IMGCHK_INDEX_CONTROLLER:
+				imageWidget = qmc2Controller;
+				break;
+			case QMC2_IMGCHK_INDEX_TITLE:
+				imageWidget = qmc2Title;
+				break;
+#endif
+			case QMC2_IMGCHK_INDEX_PCB:
+				imageWidget = qmc2PCB;
+				break;
+		}
+	}
+
+	QStringList fileList;
+	if ( imageWidget ) {
+		// images
+		if ( imageWidget->useZip() ) {
+			log(tr("Reading ZIP directory recursively"));
+			recursiveZipList(imageWidget->imageFile, fileList);
+		} else {
+			log(tr("Reading directory recursively"));
+			recursiveFileList(imageWidget->imageDir(), fileList);
+		}
+	} else {
+		// icons
+		if ( qmc2UseIconFile ) {
+			log(tr("Reading ZIP directory recursively"));
+			recursiveZipList(qmc2IconFile, fileList);
+		} else {
+			log(tr("Reading directory recursively"));
+			recursiveFileList(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString(), fileList);
+		}
+	}
+	log(tr("%n directory entries to check", "", fileList.count()));
+
+	// FIXME
+
 	passNumber = -1;
 	QTimer::singleShot(0, this, SLOT(startStop()));
 }
@@ -699,5 +757,28 @@ void ImageChecker::recursiveFileList(const QString &sDir, QStringList &fileNames
 			}
 		} else
 			fileNames << path;
+	}
+}
+
+void ImageChecker::recursiveZipList(unzFile zip, QStringList &fileNames)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveZipList(unzFile zip = %1, QStringList &fileNames)").arg((qulonglong)zip));
+#endif
+
+	if ( zip ) {
+		unz_global_info unzGlobalInfo;
+		int i = 0;
+		if ( unzGetGlobalInfo(zip, &unzGlobalInfo) == UNZ_OK ) {
+			if ( unzGoToFirstFile(qmc2IconFile) == UNZ_OK ) {
+				do {
+					char unzFileName[QMC2_MAX_PATH_LENGTH];
+					if ( i++ % 25 == 0 )
+						qApp->processEvents();
+					if ( unzGetCurrentFileInfo(zip, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
+						fileNames << unzFileName;
+				} while ( unzGoToNextFile(zip) != UNZ_END_OF_LIST_OF_FILE );
+			}
+		}
 	}
 }
