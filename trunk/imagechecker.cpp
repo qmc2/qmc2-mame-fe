@@ -649,7 +649,7 @@ void ImageChecker::checkObsoleteFiles()
 #endif
 
 					if ( !isValidPath ) {
-						QString subPath = fi.filePath().remove(fi.fileName()).remove("\\").remove("/");
+						QString subPath = fi.dir().dirName();
 						QString imageFile = fi.baseName();
 						if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
