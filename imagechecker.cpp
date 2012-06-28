@@ -116,7 +116,7 @@ void ImageCheckerThread::run()
 		mutex.unlock();
 
 		if ( !exitThread && !qmc2StopParser ) {
-			if ( workUnitMutex.tryLock() ) {
+			if ( workUnitMutex.tryLock(QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT) ) {
 				emit log(tr("Thread[%1]: processing work unit with %n entries", "", workUnit.count()).arg(threadNumber));
 				foundList.clear();
 				missingList.clear();
@@ -454,7 +454,7 @@ void ImageChecker::feedWorkerThreads()
 			} else
 				selectedThread = 0;
 			if ( selectedThread >= 0 ) {
-				if ( threadMap[selectedThread]->workUnitMutex.tryLock() ) {
+				if ( threadMap[selectedThread]->workUnitMutex.tryLock(QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT) ) {
 					QStringList workUnit;
 					while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
 						it.next();
@@ -536,7 +536,7 @@ void ImageChecker::resultsReady(const QStringList &foundList, const QStringList 
 	bufferedFoundList += foundList;
 	bufferedMissingList += missingList;
 	progressBar->setValue(progressBar->value() + foundList.count() + missingList.count());
-	qApp->processEvents();
+	progressBar->update();
 }
 
 void ImageChecker::checkObsoleteFiles()
