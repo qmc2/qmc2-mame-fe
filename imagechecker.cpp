@@ -587,7 +587,7 @@ void ImageChecker::checkObsoleteFiles()
 		} else {
 			dirList = imageWidget->imageDir().split(";", QString::SkipEmptyParts);
 			foreach (QString path, dirList) {
-				log(tr("Reading image directory '%1' recursively").arg(path));
+				log(tr("Reading image directory '%1' recursively").arg(QDir::toNativeSeparators(path)));
 				recursiveFileList(path, fileList);
 			}
 		}
@@ -599,7 +599,7 @@ void ImageChecker::checkObsoleteFiles()
 		} else {
 			dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
 			foreach (QString path, dirList) {
-				log(tr("Reading icon directory '%1' recursively").arg(path));
+				log(tr("Reading icon directory '%1' recursively").arg(QDir::toNativeSeparators(path)));
 				recursiveFileList(path, fileList);
 			}
 		}
