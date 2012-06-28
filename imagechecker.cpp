@@ -578,14 +578,18 @@ void ImageChecker::checkObsoleteFiles()
 	}
 
 	QStringList fileList;
+	QStringList dirList;
 	if ( imageWidget ) {
 		// images
 		if ( imageWidget->useZip() ) {
 			log(tr("Reading ZIP directory recursively"));
 			recursiveZipList(imageWidget->imageFile, fileList);
 		} else {
-			log(tr("Reading directory recursively"));
-			recursiveFileList(imageWidget->imageDir(), fileList);
+			dirList = imageWidget->imageDir().split(";", QString::SkipEmptyParts);
+			foreach (QString path, dirList) {
+				log(tr("Reading image directory '%1' recursively").arg(path));
+				recursiveFileList(path, fileList);
+			}
 		}
 	} else {
 		// icons
@@ -593,16 +597,102 @@ void ImageChecker::checkObsoleteFiles()
 			log(tr("Reading ZIP directory recursively"));
 			recursiveZipList(qmc2IconFile, fileList);
 		} else {
-			log(tr("Reading directory recursively"));
-			recursiveFileList(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString(), fileList);
+			dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
+			foreach (QString path, dirList) {
+				log(tr("Reading icon directory '%1' recursively").arg(path));
+				recursiveFileList(path, fileList);
+			}
 		}
 	}
+
 	log(tr("%n directory entries to check", "", fileList.count()));
 
-	// FIXME
+	progressBar->setRange(0, fileList.count());
+	int itemCount = 0;
+	QStringList imageFormats;
+	foreach (QByteArray format, QImageReader::supportedImageFormats())
+		imageFormats << QString(format).toLower();
+	foreach (QString path, fileList) {
+		progressBar->setValue(itemCount);
+		if ( qmc2StopParser || !isRunning )
+			break;
+		QFileInfo fi(path);
+		bool isValidPath = false;
+		if ( imageWidget ) {
+			// images
+			if ( imageWidget->useZip() ) {
+				// FIXME
+#if defined(Q_OS_WIN)
+				if ( fi.completeSuffix().toLower() == "png" )
+					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+						isValidPath = true;
+#else
+				if ( fi.completeSuffix() == "png" )
+					if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+						isValidPath = true;
+#endif
+			} else {
+				foreach (QString dirPath, dirList) {
+					if ( isValidPath )
+						break;
+					QString pathCopy = path;
+					pathCopy.remove(dirPath);
+					fi.setFile(pathCopy);
+#if defined(Q_OS_WIN)
+					if ( pathCopy == fi.filePath() && fi.completeSuffix().toLower() == "png" )
+						if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+							isValidPath = true;
+#else
+					if ( pathCopy == fi.filePath() && fi.completeSuffix() == "png" )
+						if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+							isValidPath = true;
+#endif
 
-	passNumber = -1;
-	QTimer::singleShot(0, this, SLOT(startStop()));
+					if ( !isValidPath ) {
+						QString subPath = fi.filePath().remove(fi.fileName()).remove(QDir::separator());
+						QString imageFile = fi.baseName();
+						if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
+#if defined(Q_OS_WIN)
+							if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
+								if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+									isValidPath = true;
+							}
+#else
+							if ( qmc2GamelistItemMap.contains(subPath) ) {
+								if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+									isValidPath = true;
+							}
+#endif
+						}
+					}
+				}
+			}
+		} else {
+			// icons
+			if ( qmc2UseIconFile ) {
+				// for icons from ZIP, only the lower-case basenames and image-type suffixes actually count (.ico, .png, ...)
+				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
+					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+						isValidPath = true;
+				}
+			} else {
+				// FIXME
+			}
+		}
+
+		if ( !isValidPath ) {
+			log(tr("%1 file '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
+			bufferedObsoleteList << path;
+		}
+
+		if ( itemCount++ % 25 == 0 )
+			qApp->processEvents();
+	}
+
+	if ( passNumber > 0 && isRunning ) {
+		passNumber = -1;
+		QTimer::singleShot(0, this, SLOT(startStop()));
+	}
 }
 
 void ImageChecker::updateResults()
@@ -623,7 +713,7 @@ void ImageChecker::updateResults()
 
 	qApp->processEvents();
 
-	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning ) {
+	if ( listWidgetFound->count() + listWidgetMissing->count() >= qmc2GamelistItemMap.count() && isRunning && passNumber != 2 ) {
 		passNumber = 2;
 		QTimer::singleShot(0, this, SLOT(startStop()));
 	} else {
@@ -776,7 +866,8 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList &fileNames)
 					if ( i++ % 25 == 0 )
 						qApp->processEvents();
 					if ( unzGetCurrentFileInfo(zip, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
-						fileNames << unzFileName;
+						if ( unzFileName != NULL )
+							fileNames << unzFileName;
 				} while ( unzGoToNextFile(zip) != UNZ_END_OF_LIST_OF_FILE );
 			}
 		}
