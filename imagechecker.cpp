@@ -649,7 +649,7 @@ void ImageChecker::checkObsoleteFiles()
 #endif
 
 					if ( !isValidPath ) {
-						QString subPath = fi.filePath().remove(fi.fileName()).remove(QDir::separator());
+						QString subPath = fi.filePath().remove(fi.fileName()).remove("\\").remove("/");
 						QString imageFile = fi.baseName();
 						if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
@@ -681,6 +681,7 @@ void ImageChecker::checkObsoleteFiles()
 		}
 
 		if ( !isValidPath ) {
+			path = QDir::toNativeSeparators(path);
 			log(tr("%1 file '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
 			bufferedObsoleteList << path;
 		}
