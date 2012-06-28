@@ -722,4 +722,7 @@
 #define QMC2_IMGCHK_INDEX_ICON			8
 #endif
 
+// image checker work-unit-mutex-lock-timeout
+#define QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT	10
+
 #endif
