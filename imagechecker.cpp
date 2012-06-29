@@ -621,17 +621,36 @@ void ImageChecker::checkObsoleteFiles()
 		if ( imageWidget ) {
 			// images
 			if ( imageWidget->useZip() ) {
-				// FIXME
+				// zipped images
 #if defined(Q_OS_WIN)
-				if ( fi.completeSuffix().toLower() == "png" )
+				if ( path == fi.filePath() && fi.completeSuffix().toLower() == "png" )
 					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
 						isValidPath = true;
 #else
-				if ( fi.completeSuffix() == "png" )
+				if ( path == fi.filePath() && fi.completeSuffix() == "png" )
 					if ( qmc2GamelistItemMap.contains(fi.baseName()) )
 						isValidPath = true;
 #endif
+
+				if ( !isValidPath ) {
+					QString subPath = fi.dir().dirName();
+					QString imageFile = fi.baseName();
+					if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
+#if defined(Q_OS_WIN)
+						if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
+							if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+								isValidPath = fi.completeSuffix().toLower() == "png";
+						}
+#else
+						if ( qmc2GamelistItemMap.contains(subPath) ) {
+							if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+								isValidPath = fi.completeSuffix() == "png";
+						}
+#endif
+					}
+				}
 			} else {
+				// unzipped images
 				foreach (QString dirPath, dirList) {
 					if ( isValidPath )
 						break;
@@ -655,12 +674,12 @@ void ImageChecker::checkObsoleteFiles()
 #if defined(Q_OS_WIN)
 							if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
 								if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
-									isValidPath = true;
+									isValidPath = fi.completeSuffix().toLower() == "png";
 							}
 #else
 							if ( qmc2GamelistItemMap.contains(subPath) ) {
 								if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
-									isValidPath = true;
+									isValidPath = fi.completeSuffix() == "png";
 							}
 #endif
 						}
@@ -670,13 +689,13 @@ void ImageChecker::checkObsoleteFiles()
 		} else {
 			// icons
 			if ( qmc2UseIconFile ) {
-				// for icons from ZIP, only the lower-case basenames and image-type suffixes actually count (.ico, .png, ...)
+				// for zipped icons only the lower-case basenames and image-type suffixes actually count (.ico, .png, ...)
 				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
 					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
 						isValidPath = true;
 				}
 			} else {
-				// FIXME
+				// for unzipped icons only PNG images are (currently) allowed
 			}
 		}
 
