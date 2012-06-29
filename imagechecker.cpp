@@ -171,6 +171,11 @@ ImageChecker::ImageChecker(QWidget *parent)
 	labelObsolete->setText(tr("Obsolete:") + " 0");
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(updateResults()));
 
+	listWidgetFoundSelectionTimer.setSingleShot(true);
+	connect(&listWidgetFoundSelectionTimer, SIGNAL(timeout()), this, SLOT(on_listWidgetFound_itemSelectionChanged_delayed()));
+	listWidgetMissingSelectionTimer.setSingleShot(true);
+	connect(&listWidgetMissingSelectionTimer, SIGNAL(timeout()), this, SLOT(on_listWidgetMissing_itemSelectionChanged_delayed()));
+
 	comboBoxImageType->clear();
 #if defined(QMC2_EMUTYPE_MESS)
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
@@ -231,6 +236,15 @@ void ImageChecker::on_listWidgetFound_itemSelectionChanged()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetFound_itemSelectionChanged()");
 #endif
 
+	listWidgetFoundSelectionTimer.start(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
+}
+
+void ImageChecker::on_listWidgetFound_itemSelectionChanged_delayed()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetFound_itemSelectionChanged_delayed()");
+#endif
+
 	if ( toolButtonSelectSets->isChecked() ) {
 		QList<QListWidgetItem *> items = listWidgetFound->selectedItems();
 		if ( items.count() > 0 )
@@ -242,6 +256,15 @@ void ImageChecker::on_listWidgetMissing_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetMissing_itemSelectionChanged()");
+#endif
+
+	listWidgetMissingSelectionTimer.start(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
+}
+
+void ImageChecker::on_listWidgetMissing_itemSelectionChanged_delayed()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetMissing_itemSelectionChanged_delayed()");
 #endif
 
 	if ( toolButtonSelectSets->isChecked() ) {

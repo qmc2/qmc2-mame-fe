@@ -56,6 +56,8 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		QStringList bufferedMissingList;
 		QStringList bufferedObsoleteList;
 		QTimer updateTimer;
+		QTimer listWidgetFoundSelectionTimer;
+		QTimer listWidgetMissingSelectionTimer;
 		QElapsedTimer checkTimer;
 		QMap<int, ImageCheckerThread *> threadMap;
 		int passNumber;
@@ -68,7 +70,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();
+		void on_listWidgetFound_itemSelectionChanged_delayed();
 		void on_listWidgetMissing_itemSelectionChanged();
+		void on_listWidgetMissing_itemSelectionChanged_delayed();
 		void on_toolButtonStartStop_clicked();
 		void on_toolButtonClear_clicked();
 		void on_toolButtonRemoveObsolete_clicked();
