@@ -70,6 +70,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void on_listWidgetFound_itemSelectionChanged();
 		void on_listWidgetMissing_itemSelectionChanged();
 		void on_toolButtonStartStop_clicked();
+		void on_toolButtonClear_clicked();
 		void on_toolButtonRemoveObsolete_clicked();
 		void on_comboBoxImageType_currentIndexChanged(int);
 		void selectItem(QString);

@@ -185,6 +185,26 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonClear">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Clear check results and log</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="toolButtonRemoveObsolete">
        <property name="enabled">
         <bool>false</bool>
@@ -196,11 +216,11 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Remove obsolete image files</string>
+        <string>Remove obsolete files</string>
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+         <normaloff>:/data/img/remove.png</normaloff>:/data/img/remove.png</iconset>
        </property>
       </widget>
      </item>
@@ -293,7 +313,9 @@
  <tabstops>
   <tabstop>comboBoxImageType</tabstop>
   <tabstop>spinBoxThreads</tabstop>
+  <tabstop>toolButtonSelectSets</tabstop>
   <tabstop>toolButtonStartStop</tabstop>
+  <tabstop>toolButtonClear</tabstop>
   <tabstop>toolButtonRemoveObsolete</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>listWidgetFound</tabstop>

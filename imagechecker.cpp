@@ -217,6 +217,7 @@ void ImageChecker::adjustIconSizes()
 	comboBoxImageType->setIconSize(iconSize);
 	toolButtonSelectSets->setIconSize(iconSize);
 	toolButtonStartStop->setIconSize(iconSize);
+	toolButtonClear->setIconSize(iconSize);
 	toolButtonRemoveObsolete->setIconSize(iconSize);
 
 	QFont logFont;
@@ -427,6 +428,13 @@ void ImageChecker::enableWidgets(bool enable)
 		spinBoxThreads->setEnabled(false);
 	else
 		spinBoxThreads->setEnabled(enable);
+	if ( enable ) {
+		if ( listWidgetFound->count() > 0 || listWidgetMissing->count() > 0 || listWidgetObsolete->count() > 0 || plainTextEditLog->blockCount() > 0 )
+			toolButtonClear->setEnabled(true);
+		else
+			toolButtonClear->setEnabled(false);
+	} else
+		toolButtonClear->setEnabled(false);
 }
 
 void ImageChecker::feedWorkerThreads()
@@ -502,6 +510,25 @@ void ImageChecker::feedWorkerThreads()
 		}
 		qApp->processEvents();
 	}
+}
+
+void ImageChecker::on_toolButtonClear_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonClear_clicked()");
+#endif
+
+	listWidgetFound->clear();
+	labelFound->setText(tr("Found:") + " 0");
+	listWidgetMissing->clear();
+	labelMissing->setText(tr("Missing:") + " 0");
+	listWidgetObsolete->clear();
+	labelObsolete->setText(tr("Obsolete:") + " 0");
+	plainTextEditLog->clear();
+	progressBar->setRange(0, qmc2GamelistItemMap.count());
+	progressBar->setValue(0);
+	avgScanSpeed = 0.0;
+	passNumber = 0;
 }
 
 void ImageChecker::on_toolButtonRemoveObsolete_clicked()
