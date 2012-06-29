@@ -545,36 +545,36 @@ void ImageChecker::checkObsoleteFiles()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::checkObsoleteFiles()");
 #endif
 
-	ImageWidget *imageWidget = NULL;
-	if ( comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON ) {
-		log(tr("Checking for obsolete icons"));
-	} else {
-		log(tr("Checking for obsolete images"));
-		switch ( comboBoxImageType->currentIndex() ) {
-			case QMC2_IMGCHK_INDEX_PREVIEW:
-				imageWidget = qmc2Preview;
-				break;
-			case QMC2_IMGCHK_INDEX_FLYER:
-				imageWidget = qmc2Flyer;
-				break;
-			case QMC2_IMGCHK_INDEX_CABINET:
-				imageWidget = qmc2Cabinet;
-				break;
-			case QMC2_IMGCHK_INDEX_MARQUEE:
-				imageWidget = qmc2Marquee;
-				break;
+	ImageWidget *imageWidget;
+	log(tr("Checking for obsolete files"));
+	switch ( comboBoxImageType->currentIndex() ) {
+		case QMC2_IMGCHK_INDEX_PREVIEW:
+			imageWidget = qmc2Preview;
+			break;
+		case QMC2_IMGCHK_INDEX_FLYER:
+			imageWidget = qmc2Flyer;
+			break;
+		case QMC2_IMGCHK_INDEX_CABINET:
+			imageWidget = qmc2Cabinet;
+			break;
+		case QMC2_IMGCHK_INDEX_MARQUEE:
+			imageWidget = qmc2Marquee;
+			break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			case QMC2_IMGCHK_INDEX_CONTROLLER:
-				imageWidget = qmc2Controller;
-				break;
-			case QMC2_IMGCHK_INDEX_TITLE:
-				imageWidget = qmc2Title;
-				break;
+		case QMC2_IMGCHK_INDEX_CONTROLLER:
+			imageWidget = qmc2Controller;
+			break;
+		case QMC2_IMGCHK_INDEX_TITLE:
+			imageWidget = qmc2Title;
+			break;
 #endif
-			case QMC2_IMGCHK_INDEX_PCB:
-				imageWidget = qmc2PCB;
-				break;
-		}
+		case QMC2_IMGCHK_INDEX_PCB:
+			imageWidget = qmc2PCB;
+			break;
+		case QMC2_IMGCHK_INDEX_ICON:
+		default:
+			imageWidget = NULL;
+			break;
 	}
 
 	QStringList fileList;

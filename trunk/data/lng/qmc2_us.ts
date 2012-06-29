@@ -5078,7 +5078,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.ui" line="222"/>
         <location filename="../../imagechecker.cpp" line="169"/>
         <location filename="../../imagechecker.cpp" line="354"/>
-        <location filename="../../imagechecker.cpp" line="710"/>
+        <location filename="../../imagechecker.cpp" line="730"/>
         <source>Found:</source>
         <translation></translation>
     </message>
@@ -5086,7 +5086,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.ui" line="229"/>
         <location filename="../../imagechecker.cpp" line="170"/>
         <location filename="../../imagechecker.cpp" line="356"/>
-        <location filename="../../imagechecker.cpp" line="711"/>
+        <location filename="../../imagechecker.cpp" line="731"/>
         <source>Missing:</source>
         <translation></translation>
     </message>
@@ -5094,7 +5094,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.ui" line="236"/>
         <location filename="../../imagechecker.cpp" line="171"/>
         <location filename="../../imagechecker.cpp" line="358"/>
-        <location filename="../../imagechecker.cpp" line="712"/>
+        <location filename="../../imagechecker.cpp" line="732"/>
         <source>Obsolete:</source>
         <translation></translation>
     </message>
@@ -5271,14 +5271,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="294"/>
         <location filename="../../imagechecker.cpp" line="339"/>
-        <location filename="../../imagechecker.cpp" line="684"/>
+        <location filename="../../imagechecker.cpp" line="704"/>
         <source>Icon</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="294"/>
         <location filename="../../imagechecker.cpp" line="339"/>
-        <location filename="../../imagechecker.cpp" line="684"/>
+        <location filename="../../imagechecker.cpp" line="704"/>
         <source>Image</source>
         <translation></translation>
     </message>
@@ -5298,13 +5298,8 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="550"/>
-        <source>Checking for obsolete icons</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../imagechecker.cpp" line="552"/>
-        <source>Checking for obsolete images</source>
+        <location filename="../../imagechecker.cpp" line="549"/>
+        <source>Checking for obsolete files</source>
         <translation></translation>
     </message>
     <message>
@@ -5324,7 +5319,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagechecker.cpp" line="684"/>
+        <location filename="../../imagechecker.cpp" line="704"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
         <translation></translation>
     </message>
