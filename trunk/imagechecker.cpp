@@ -696,6 +696,13 @@ void ImageChecker::checkObsoleteFiles()
 				}
 			} else {
 				// for unzipped icons only PNG images are (currently) allowed
+#if defined(Q_OS_WIN)
+				if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) && fi.completeSuffix().toLower() == "png" )
+					isValidPath = true;
+#else
+				if ( qmc2GamelistItemMap.contains(fi.baseName()) && fi.completeSuffix() == "png" )
+					isValidPath = true;
+#endif
 			}
 		}
 
