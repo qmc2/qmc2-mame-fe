@@ -1575,7 +1575,7 @@ void MainWindow::on_actionPlay_triggered(bool)
         foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName)).toString();
         QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName)).toString();
-        QStringList emuArgs = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription).split(" ");
+        QStringList emuArgs = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription).split(" ", QString::SkipEmptyParts);
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
     } else if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
       QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
@@ -1583,7 +1583,7 @@ void MainWindow::on_actionPlay_triggered(bool)
         foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
         QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator)).toString();
-        QStringList emuArgs = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]).split(" ");
+        QStringList emuArgs = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]).split(" ", QString::SkipEmptyParts);
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
       }
     }
