@@ -10,6 +10,7 @@
 #include "gamelist.h"
 #include "qmc2main.h"
 #include "options.h"
+#include "toolexec.h"
 #include "macros.h"
 
 // external global variables
@@ -134,10 +135,18 @@ void ImageCheckerThread::run()
 						emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 					}
 					scanCount++;
+
+					// it can happen that the work-unit grows above the 'limit' so we need to report our intermediate results in order to update the GUI
+					if ( foundList.count() > QMC2_IMGCHK_WORKUNIT_SIZE || missingList.count() > QMC2_IMGCHK_WORKUNIT_SIZE ) {
+						emit resultsReady(foundList, missingList);
+						foundList.clear();
+						missingList.clear();
+					}
 				}
 				workUnit.clear();
 				workUnitMutex.unlock();
-				emit resultsReady(foundList, missingList);
+				if ( !foundList.isEmpty() || !missingList.isEmpty() )
+					emit resultsReady(foundList, missingList);
 			}
 		}
 	}
@@ -598,6 +607,49 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		// images
 		if ( imageWidget->useZip() ) {
 			// zipped images
+#if defined(Q_OS_WIN)
+			QString command = "cmd.exe";
+			QStringList args;
+			args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+			     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#else
+			QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+			QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#endif
+			QString fullCommandString = command;
+			int i, j;
+			QStringList addArgs;
+			for (i = 0; i < args.count(); i++) {
+				if ( args[i] == "$ARCHIVE$" ) {
+#if defined(Q_OS_WIN)
+					QString zipFile = imageWidget->imageZip();
+					args[i] = zipFile.replace('/', '\\');
+#else
+					args[i] = imageWidget->imageZip();
+#endif
+				} else if ( args[i] == "$FILELIST$" ) {
+					QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
+					for (j = 0; j < items.count(); j++) {
+						addArgs << items[j]->text();
+					}
+					args.removeAt(i);
+					args << addArgs;
+				}
+			}
+			foreach (QString s, args) {
+				if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+					s = "\"" + s + "\"";
+				fullCommandString += " " + s;
+			}
+			log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+			unzClose(imageWidget->imageFile);
+			ToolExecutor zipRemovalTool(this, command, args);
+			zipRemovalTool.exec();
+			imageWidget->imageFile = unzOpen(imageWidget->imageZip().toLocal8Bit());
+			listWidgetObsolete->setUpdatesEnabled(false);
+			listWidgetObsolete->clear();
+			checkObsoleteFiles();
+			listWidgetObsolete->setUpdatesEnabled(true);
 		} else {
 			// unzipped images
 			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
@@ -618,6 +670,48 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		// icons
 		if ( qmc2UseIconFile ) {
 			// zipped icons
+#if defined(Q_OS_WIN)
+			QString command = "cmd.exe";
+			QStringList args;
+			args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+			     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#else
+			QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+			QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#endif
+			QString fullCommandString = command;
+			int i, j;
+			QStringList addArgs;
+			for (i = 0; i < args.count(); i++) {
+				if ( args[i] == "$ARCHIVE$" ) {
+#if defined(Q_OS_WIN)
+					args[i] = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().replace('/', '\\');
+#else
+					args[i] = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString();
+#endif
+				} else if ( args[i] == "$FILELIST$" ) {
+					QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
+					for (j = 0; j < items.count(); j++) {
+						addArgs << items[j]->text();
+					}
+					args.removeAt(i);
+					args << addArgs;
+				}
+			}
+			foreach (QString s, args) {
+				if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+					s = "\"" + s + "\"";
+				fullCommandString += " " + s;
+			}
+			log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+			unzClose(qmc2IconFile);
+			ToolExecutor zipRemovalTool(this, command, args);
+			zipRemovalTool.exec();
+			qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toAscii());
+			listWidgetObsolete->setUpdatesEnabled(false);
+			listWidgetObsolete->clear();
+			checkObsoleteFiles();
+			listWidgetObsolete->setUpdatesEnabled(true);
 		} else {
 			// unzipped icons
 			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
@@ -635,7 +729,6 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			}
 		}
 	}
-
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
 	toolButtonRemoveObsolete->setEnabled(listWidgetObsolete->count() > 0);
 }
@@ -736,6 +829,7 @@ void ImageChecker::checkObsoleteFiles()
 
 	progressBar->setRange(0, fileList.count());
 	int itemCount = 0;
+	int obsoleteCount = 0;
 	QStringList imageFormats;
 	foreach (QByteArray format, QImageReader::supportedImageFormats())
 		imageFormats << QString(format).toLower();
@@ -758,7 +852,6 @@ void ImageChecker::checkObsoleteFiles()
 					if ( qmc2GamelistItemMap.contains(fi.baseName()) )
 						isValidPath = true;
 #endif
-
 				if ( !isValidPath ) {
 					QString subPath = fi.dir().dirName();
 					QString imageFile = fi.baseName();
@@ -773,6 +866,14 @@ void ImageChecker::checkObsoleteFiles()
 							if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
 								isValidPath = fi.completeSuffix() == "png";
 						}
+#endif
+					} else if ( !subPath.isEmpty() ) {
+#if defined(Q_OS_WIN)
+						if ( qmc2GamelistItemMap.contains(subPath.toLower()) )
+							isValidPath = true;
+#else
+						if ( qmc2GamelistItemMap.contains(subPath) )
+							isValidPath = true;
 #endif
 					}
 				}
@@ -837,6 +938,7 @@ void ImageChecker::checkObsoleteFiles()
 			path = QDir::toNativeSeparators(path);
 			log(tr("%1 file '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
 			bufferedObsoleteList << path;
+			obsoleteCount++;
 		}
 
 		if ( itemCount++ % 25 == 0 )
@@ -847,6 +949,8 @@ void ImageChecker::checkObsoleteFiles()
 		passNumber = -1;
 		QTimer::singleShot(0, this, SLOT(startStop()));
 	}
+
+	log(tr("%n obsolete file(s) found", "", obsoleteCount));
 }
 
 void ImageChecker::updateResults()
