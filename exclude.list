@@ -3196,9 +3196,6 @@ qmc2/.svn/prop-base/flyer.cpp.svn-base
 qmc2/.svn/prop-base/flyer.h.svn-base
 qmc2/.svn/prop-base/gamelist.cpp.svn-base
 qmc2/.svn/prop-base/gamelist.h.svn-base
-qmc2/.svn/prop-base/imgcheck.cpp.svn-base
-qmc2/.svn/prop-base/imgcheck.h.svn-base
-qmc2/.svn/prop-base/imgcheck.ui.svn-base
 qmc2/.svn/prop-base/itemselect.cpp.svn-base
 qmc2/.svn/prop-base/itemselect.h.svn-base
 qmc2/.svn/prop-base/itemselect.ui.svn-base
@@ -3304,9 +3301,6 @@ qmc2/.svn/text-base/imagechecker.h.svn-base
 qmc2/.svn/text-base/imagechecker.ui.svn-base
 qmc2/.svn/text-base/imagewidget.cpp.svn-base
 qmc2/.svn/text-base/imagewidget.h.svn-base
-qmc2/.svn/text-base/imgcheck.cpp.svn-base
-qmc2/.svn/text-base/imgcheck.h.svn-base
-qmc2/.svn/text-base/imgcheck.ui.svn-base
 qmc2/.svn/text-base/itemselect.cpp.svn-base
 qmc2/.svn/text-base/itemselect.h.svn-base
 qmc2/.svn/text-base/itemselect.ui.svn-base
