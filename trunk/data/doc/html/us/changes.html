@@ -28,7 +28,7 @@ inf: informational only
   <li>imp: depending on the installed codecs, an unused YouTube widget may still cause load on the system, so it's now already destroyed when it's no longer required</li>
   <li>imp: updated redistributed Qt translations from Qt 4.8.2</li>
   <li>imp: unified the image processing to remove code duplication for different image types</li>
-  <li>imp: check for the existance of the emulator's executable file before trying to actually run a null process (which may cause issues on Mac OS X)</li>
+  <li>imp: check for the existence of the emulator's executable file before trying to actually run a null process (which may cause issues on Mac OS X)</li>
   <li>imp: Mac OS X build: added build option <i>XCODE3</i> which (if set to 1) will disable the special handling when Qt 4.8+ is detected</li>
   <li>imp: MAME/MESS/UME emulator templates updated to 0.146u1</li>
   <li>imp: added an option to allow for setting QMC2's working directory to be the same as the executable's path (for <u>special</u> use cases, not commonly used)</li>
@@ -77,7 +77,7 @@ inf: informational only
   <li>imp: ROMAlyzer: interpret emu- and file-states of sets that have no ROMs as 'good' also in case of MAME (new since 0.145u2)</li>
   <li>imp: ROM status check: circumvent the corner case of sets without ROMs also in case of MAME (new since 0.145u2, see 'ide_baseboard' and 'hdd' devices)</li>
   <li>imp: ROMAlyzer: log possible driver XML bugs where a merge-name is given without a parent set to take it from (other than this, these cases are ignored and treated as 'good' merge-states)</li>
-  <li>imp: when registering foreign emulators, the existance of the <i>$ID$</i> placeholder on the supplied command line is now indicated through a green/yellow colored label (when $ID$ is missing, the configuration will most likely not work)</li>
+  <li>imp: when registering foreign emulators, the existence of the <i>$ID$</i> placeholder on the supplied command line is now indicated through a green/yellow colored label (when $ID$ is missing, the configuration will most likely not work)</li>
   <li>imp: allow the specification of the emulator's working directory already in the welcome dialog</li>
   <li>imp: updated redistributed Qt translations from Qt 4.8.1</li>
   <li>imp: honor 'players' value for device sets where applicable (i.e. some input devices)</li>
