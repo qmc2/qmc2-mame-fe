@@ -61,6 +61,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		QElapsedTimer checkTimer;
 		QMap<int, ImageCheckerThread *> threadMap;
 		int passNumber;
+		int currentImageType;
 
 		ImageChecker(QWidget *parent = 0);
 		~ImageChecker();

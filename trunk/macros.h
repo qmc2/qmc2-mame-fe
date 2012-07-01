@@ -701,6 +701,7 @@
 #define QMC2_CRITSECT_POLLING_TIME		10
 
 // image checker image types
+#define QMC2_IMGCHK_INDEX_NONE			-1
 #if defined(QMC2_EMUTYPE_MESS)
 #define QMC2_IMGCHK_INDEX_PREVIEW		0
 #define QMC2_IMGCHK_INDEX_FLYER			1
