@@ -165,6 +165,7 @@ ImageChecker::ImageChecker(QWidget *parent)
 
 	startStopClicked = isRunning = false;
 	passNumber = 0;
+	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	avgScanSpeed = 0.0;
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
@@ -293,7 +294,7 @@ void ImageChecker::startStop()
 		if ( passNumber == 2 && !startStopClicked ) {
 			if ( avgScanSpeed > 0.0 ) {
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
-				if ( comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON )
+				if ( currentImageType == QMC2_IMGCHK_INDEX_ICON )
 					log(tr("Average scanning speed = %n icon(s) per second", "", int(avgScanSpeed)));
 				else
 					log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
@@ -315,7 +316,7 @@ void ImageChecker::startStop()
 			toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
 			QTime elapsedTime;
 			elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
-			log(tr("%1 check ended -- elapsed time = %2").arg(comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON ? tr("Icon") : tr("Image")).arg(elapsedTime.toString("mm:ss.zzz")));
+			log(tr("%1 check ended -- elapsed time = %2").arg(currentImageType == QMC2_IMGCHK_INDEX_ICON ? tr("Icon") : tr("Image")).arg(elapsedTime.toString("mm:ss.zzz")));
 			updateResults();
 			progressBar->setRange(0, 100);
 			progressBar->setValue(0);
@@ -329,7 +330,8 @@ void ImageChecker::startStop()
 		passNumber = 0;
 		plainTextEditLog->clear();
 		ImageWidget *imageWidget;
-		switch ( comboBoxImageType->currentIndex() ) {
+		currentImageType = comboBoxImageType->currentIndex();
+		switch ( currentImageType ) {
 			case QMC2_IMGCHK_INDEX_PREVIEW:
 				imageWidget = qmc2Preview;
 				break;
@@ -410,7 +412,7 @@ void ImageChecker::enableWidgets(bool enable)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::enableWidgets(bool enable = %1)").arg(enable ? "true" : "false"));
 #endif
 
-	switch ( comboBoxImageType->currentIndex() ) {
+	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			qmc2Options->stackedWidgetPreview->setEnabled(enable);
 			qmc2Options->radioButtonPreviewSelect->setEnabled(enable);
@@ -447,17 +449,14 @@ void ImageChecker::enableWidgets(bool enable)
 			break;
 	}
 	comboBoxImageType->setEnabled(enable);
-	if ( comboBoxImageType->currentIndex() == QMC2_IMGCHK_INDEX_ICON )
-		spinBoxThreads->setEnabled(false);
-	else
-		spinBoxThreads->setEnabled(enable);
+	spinBoxThreads->setEnabled(currentImageType == QMC2_IMGCHK_INDEX_ICON ? false : enable);
 	if ( enable ) {
-		if ( listWidgetFound->count() > 0 || listWidgetMissing->count() > 0 || listWidgetObsolete->count() > 0 || plainTextEditLog->blockCount() > 0 )
-			toolButtonClear->setEnabled(true);
-		else
-			toolButtonClear->setEnabled(false);
-	} else
+		toolButtonClear->setEnabled(listWidgetFound->count() > 0 || listWidgetMissing->count() > 0 || listWidgetObsolete->count() > 0 || plainTextEditLog->blockCount() > 0);
+		toolButtonRemoveObsolete->setEnabled(listWidgetObsolete->count() > 0);
+	} else {
 		toolButtonClear->setEnabled(false);
+		toolButtonRemoveObsolete->setEnabled(false);
+	}
 }
 
 void ImageChecker::feedWorkerThreads()
@@ -552,6 +551,9 @@ void ImageChecker::on_toolButtonClear_clicked()
 	progressBar->setValue(0);
 	avgScanSpeed = 0.0;
 	passNumber = 0;
+	currentImageType = QMC2_IMGCHK_INDEX_NONE;
+	toolButtonClear->setEnabled(false);
+	toolButtonRemoveObsolete->setEnabled(false);
 }
 
 void ImageChecker::on_toolButtonRemoveObsolete_clicked()
@@ -560,7 +562,82 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveObsolete_clicked()");
 #endif
 
-	// FIXME
+	ImageWidget *imageWidget;
+	switch ( currentImageType ) {
+		case QMC2_IMGCHK_INDEX_PREVIEW:
+			imageWidget = qmc2Preview;
+			break;
+		case QMC2_IMGCHK_INDEX_FLYER:
+			imageWidget = qmc2Flyer;
+			break;
+		case QMC2_IMGCHK_INDEX_CABINET:
+			imageWidget = qmc2Cabinet;
+			break;
+		case QMC2_IMGCHK_INDEX_MARQUEE:
+			imageWidget = qmc2Marquee;
+			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		case QMC2_IMGCHK_INDEX_CONTROLLER:
+			imageWidget = qmc2Controller;
+			break;
+		case QMC2_IMGCHK_INDEX_TITLE:
+			imageWidget = qmc2Title;
+			break;
+#endif
+		case QMC2_IMGCHK_INDEX_PCB:
+			imageWidget = qmc2PCB;
+			break;
+		case QMC2_IMGCHK_INDEX_ICON:
+		default:
+			imageWidget = NULL;
+			break;
+	}
+
+	int itemCount = 0;
+	if ( imageWidget ) {
+		// images
+		if ( imageWidget->useZip() ) {
+			// zipped images
+		} else {
+			// unzipped images
+			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
+				QString fileName = item->text();
+				QFile f(fileName);
+				if ( f.remove() ) {
+					log(tr("Obsolete image file '%1' removed").arg(fileName));
+					QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+					if ( itemToDelete )
+						delete itemToDelete;
+				} else
+					log(tr("Obsolete image file '%1' cannot be removed, please check permissions").arg(fileName));
+				if ( itemCount++ % 25 )
+					qApp->processEvents();
+			}
+		}
+	} else {
+		// icons
+		if ( qmc2UseIconFile ) {
+			// zipped icons
+		} else {
+			// unzipped icons
+			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
+				QString fileName = item->text();
+				QFile f(fileName);
+				if ( f.remove() ) {
+					log(tr("Obsolete icon file '%1' removed").arg(fileName));
+					QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+					if ( itemToDelete )
+						delete itemToDelete;
+				} else
+					log(tr("Obsolete icon file '%1' cannot be removed, please check permissions").arg(fileName));
+				if ( itemCount++ % 25 )
+					qApp->processEvents();
+			}
+		}
+	}
+
+	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
+	toolButtonRemoveObsolete->setEnabled(listWidgetObsolete->count() > 0);
 }
 
 void ImageChecker::on_comboBoxImageType_currentIndexChanged(int index)
@@ -597,7 +674,7 @@ void ImageChecker::checkObsoleteFiles()
 
 	ImageWidget *imageWidget;
 	log(tr("Checking for obsolete files"));
-	switch ( comboBoxImageType->currentIndex() ) {
+	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			imageWidget = qmc2Preview;
 			break;
