@@ -2342,10 +2342,7 @@
     </widget>
     <addaction name="actionCheckROMs"/>
     <addaction name="actionCheckSamples"/>
-    <addaction name="separator"/>
-    <addaction name="actionCheckPreviews"/>
-    <addaction name="actionCheckFlyers"/>
-    <addaction name="actionCheckIcons"/>
+    <addaction name="actionCheckImagesAndIcons"/>
     <addaction name="separator"/>
     <addaction name="actionROMAlyzer"/>
     <addaction name="actionExportROMStatus"/>
@@ -2496,10 +2493,7 @@
    <addaction name="separator"/>
    <addaction name="actionCheckROMs"/>
    <addaction name="actionCheckSamples"/>
-   <addaction name="separator"/>
-   <addaction name="actionCheckPreviews"/>
-   <addaction name="actionCheckFlyers"/>
-   <addaction name="actionCheckIcons"/>
+   <addaction name="actionCheckImagesAndIcons"/>
    <addaction name="separator"/>
    <addaction name="actionROMAlyzer"/>
    <addaction name="actionExportROMStatus"/>
@@ -2534,19 +2528,19 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionCheckPreviews">
+  <action name="actionCheckImagesAndIcons">
    <property name="icon">
     <iconset resource="qmc2.qrc">
      <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
    </property>
    <property name="text">
-    <string>Check &amp;previews...</string>
+    <string>Check &amp;images / icons...</string>
    </property>
    <property name="toolTip">
-    <string>Check preview images</string>
+    <string>Check images and icons</string>
    </property>
    <property name="statusTip">
-    <string>Check preview images</string>
+    <string>Check images and icons</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+3</string>
@@ -2799,27 +2793,6 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionCheckFlyers">
-   <property name="icon">
-    <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/thumbnail.png</normaloff>:/data/img/thumbnail.png</iconset>
-   </property>
-   <property name="text">
-    <string>Check &amp;flyers...</string>
-   </property>
-   <property name="toolTip">
-    <string>Check flyer images</string>
-   </property>
-   <property name="statusTip">
-    <string>Check flyer images</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+4</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
   <action name="actionClearIconCache">
    <property name="text">
     <string>Clear icon cache</string>
@@ -2829,27 +2802,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
-  <action name="actionCheckIcons">
-   <property name="icon">
-    <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/icon.png</normaloff>:/data/img/icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Check &amp;icons...</string>
-   </property>
-   <property name="toolTip">
-    <string>Check icon images</string>
-   </property>
-   <property name="statusTip">
-    <string>Check icon images</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+5</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

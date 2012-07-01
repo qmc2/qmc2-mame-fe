@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			docbrowser.ui \
 			about.ui \
 			welcome.ui \
-			imgcheck.ui \
+			imagechecker.ui \
 			sampcheck.ui \
 			keyseqscan.ui \
 			joyfuncscan.ui \
@@ -45,7 +45,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			docbrowser.cpp \
 			about.cpp \
 			welcome.cpp \
-			imgcheck.cpp \
+			imagechecker.cpp \
 			sampcheck.cpp \
 			keyseqscan.cpp \
 			toolexec.cpp \
@@ -118,7 +118,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			docbrowser.h \
 			about.h \
 			welcome.h \
-			imgcheck.h \
+			imagechecker.h \
 			sampcheck.h \
 			keyseqscan.h \
 			toolexec.h \
@@ -190,16 +190,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		# QtWidgets is a separate module in Qt 5
 		greaterThan(QT_MAJOR_VERSION, 4) {
 			QT += widgets
-		}
-
-		# WIP stuff
-		contains(DEFINES, QMC2_WIP_ENABLED) {
-			FORMS -= imgcheck.ui
-			FORMS += imagechecker.ui
-			SOURCES -= imgcheck.cpp
-			SOURCES += imagechecker.cpp
-			HEADERS -= imgcheck.h
-			HEADERS += imagechecker.h
 		}
 
 		# platform specific stuff

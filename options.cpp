@@ -28,11 +28,7 @@
 #include "pcb.h"
 #include "qmc2main.h"
 #include "gamelist.h"
-#if defined(QMC2_WIP_ENABLED)
 #include "imagechecker.h"
-#else
-#include "imgcheck.h"
-#endif
 #include "macros.h"
 #include "unzip.h"
 #include "keyseqscan.h"
@@ -344,9 +340,7 @@ Options::Options(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
 #endif
-  qmc2ShortcutMap["Ctrl+3"] = QPair<QString, QAction *>(tr("Check preview images"), NULL);
-  qmc2ShortcutMap["Ctrl+4"] = QPair<QString, QAction *>(tr("Check flyer images"), NULL);
-  qmc2ShortcutMap["Ctrl+5"] = QPair<QString, QAction *>(tr("Check icon images"), NULL);
+  qmc2ShortcutMap["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), NULL);
   qmc2ShortcutMap["Ctrl+A"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
@@ -694,15 +688,8 @@ void Options::apply()
     qmc2ROMAlyzer->textBrowserLog->setFont(logFont);
     QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(adjustIconSizes()));
   }
-#if !defined(QMC2_WIP_ENABLED)
-  if ( qmc2ImageChecker ) {
-    QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();
-    if ( tabBar ) tabBar->setIconSize(iconSize);
-  }
-#else
   if ( qmc2ImageChecker )
 	  qmc2ImageChecker->adjustIconSizes();
-#endif
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);
