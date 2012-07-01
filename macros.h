@@ -84,9 +84,6 @@
 #define QMC2_SOFTWARE_LIST_INDEX		12
 #define QMC2_YOUTUBE_INDEX			13
 
-// number of images per work-unit
-#define QMC2_IMGCHK_WORKUNIT_SIZE		50
-
 // current format version of the GLC (game list cache)
 #define QMC2_GLC_VERSION			5
 
@@ -722,6 +719,9 @@
 #define QMC2_IMGCHK_INDEX_SEPARATOR		7
 #define QMC2_IMGCHK_INDEX_ICON			8
 #endif
+
+// number of images per work-unit
+#define QMC2_IMGCHK_WORKUNIT_SIZE		50
 
 // image checker work-unit-mutex-lock-timeout
 #define QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT	10
