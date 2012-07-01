@@ -49,11 +49,7 @@
 #include "docbrowser.h"
 #include "about.h"
 #include "welcome.h"
-#if defined(QMC2_WIP_ENABLED)
 #include "imagechecker.h"
-#else
-#include "imgcheck.h"
-#endif
 #include "sampcheck.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
@@ -785,14 +781,6 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
-#endif
-#if !defined(QMC2_WIP_ENABLED)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible").toBool() ) {
-      on_actionCheckPreviews_triggered();
-      qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/CurrentTab", 0).toInt());
-    }
-#else
-    // FIXME
 #endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible").toBool() )
       on_actionCheckSamples_triggered();
@@ -2081,58 +2069,15 @@ void MainWindow::on_actionCheckSamples_triggered(bool)
   QTimer::singleShot(0, qmc2SampleChecker, SLOT(raise()));
 }
 
-void MainWindow::on_actionCheckPreviews_triggered(bool)
+void MainWindow::on_actionCheckImagesAndIcons_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckPreviews_triggered(bool)");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckImagesAndIcons_triggered(bool)");
 #endif
 
   if ( !qmc2ImageChecker )
     qmc2ImageChecker = new ImageChecker(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-  qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(QMC2_PREVIEW_INDEX);
-#endif
-  if ( qmc2ImageChecker->isHidden() )
-    qmc2ImageChecker->show();
-  else if ( qmc2ImageChecker->isMinimized() )
-    qmc2ImageChecker->showNormal();
-
-  QTimer::singleShot(0, qmc2ImageChecker, SLOT(raise()));
-}
-
-void MainWindow::on_actionCheckFlyers_triggered(bool)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckFlyers_triggered(bool)");
-#endif
-
-  if ( !qmc2ImageChecker )
-    qmc2ImageChecker = new ImageChecker(this);
-
-#if !defined(QMC2_WIP_ENABLED)
-  qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(QMC2_FLYER_INDEX);
-#endif
-  if ( qmc2ImageChecker->isHidden() )
-    qmc2ImageChecker->show();
-  else if ( qmc2ImageChecker->isMinimized() )
-    qmc2ImageChecker->showNormal();
-
-  QTimer::singleShot(0, qmc2ImageChecker, SLOT(raise()));
-}
-
-void MainWindow::on_actionCheckIcons_triggered(bool)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckIcons_triggered(bool)");
-#endif
-
-  if ( !qmc2ImageChecker )
-    qmc2ImageChecker = new ImageChecker(this);
-
-#if !defined(QMC2_WIP_ENABLED)
-  qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(QMC2_ICON_INDEX);
-#endif
   if ( qmc2ImageChecker->isHidden() )
     qmc2ImageChecker->show();
   else if ( qmc2ImageChecker->isMinimized() )
@@ -10198,9 +10143,7 @@ void prepareShortcuts()
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
 #endif
-  qmc2ShortcutMap["Ctrl+3"].second = qmc2MainWindow->actionCheckPreviews;
-  qmc2ShortcutMap["Ctrl+4"].second = qmc2MainWindow->actionCheckFlyers;
-  qmc2ShortcutMap["Ctrl+5"].second = qmc2MainWindow->actionCheckIcons;
+  qmc2ShortcutMap["Ctrl+3"].second = qmc2MainWindow->actionCheckImagesAndIcons;
   qmc2ShortcutMap["Ctrl+A"].second = qmc2MainWindow->actionAbout;
   qmc2ShortcutMap["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
   qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
