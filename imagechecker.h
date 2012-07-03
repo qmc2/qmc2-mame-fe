@@ -22,6 +22,8 @@ class ImageCheckerThread : public QThread
 		bool isActive;
 		int threadNumber;
 		quint64 scanCount;
+		quint64 foundCount;
+		quint64 missingCount;
 		unzFile zip;
 		QStringList workUnit;
 		QStringList foundList;
@@ -52,6 +54,8 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		bool isRunning;
 		bool startStopClicked;
 		double avgScanSpeed;
+		quint64 foundCount;
+		quint64 missingCount;
 		QStringList bufferedFoundList;
 		QStringList bufferedMissingList;
 		QStringList bufferedObsoleteList;

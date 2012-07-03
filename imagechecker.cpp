@@ -48,7 +48,7 @@ ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject
 	imageWidget = imgWidget;
 	isActive = exitThread = false;
 	zip = NULL;
-	scanCount = 0;
+	scanCount = foundCount = missingCount = 0;
 }
 
 ImageCheckerThread::~ImageCheckerThread()
@@ -130,9 +130,11 @@ void ImageCheckerThread::run()
 					if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName) ) {
 						foundList << gameName;
 						emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+						foundCount++;
 					} else {
 						missingList << gameName;
 						emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+						missingCount++;
 					}
 					scanCount++;
 
@@ -145,8 +147,12 @@ void ImageCheckerThread::run()
 				}
 				workUnit.clear();
 				workUnitMutex.unlock();
-				if ( !foundList.isEmpty() || !missingList.isEmpty() )
+
+				if ( !foundList.isEmpty() || !missingList.isEmpty() ) {
 					emit resultsReady(foundList, missingList);
+					foundList.clear();
+					missingList.clear();
+				}
 			}
 		}
 	}
@@ -173,9 +179,9 @@ ImageChecker::ImageChecker(QWidget *parent)
 	setupUi(this);
 
 	startStopClicked = isRunning = false;
-	passNumber = 0;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	avgScanSpeed = 0.0;
+	foundCount = missingCount = passNumber = 0;
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
 	labelObsolete->setText(tr("Obsolete:") + " 0");
@@ -292,22 +298,29 @@ void ImageChecker::startStop()
 
 	if ( isRunning ) {
 		foreach (ImageCheckerThread *thread, threadMap) {
-			avgScanSpeed += thread->scanCount;
 			thread->exitThread = true;
 			thread->waitCondition.wakeAll();
-			thread->quit();
 			thread->wait();
+			qApp->processEvents();
+			avgScanSpeed += thread->scanCount;
+			foundCount += thread->foundCount;
+			missingCount += thread->missingCount;
 			delete thread;
 		}
 		threadMap.clear();
 		if ( passNumber == 2 && !startStopClicked ) {
 			if ( avgScanSpeed > 0.0 ) {
+				int scannedItems = int(avgScanSpeed);
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
-				if ( currentImageType == QMC2_IMGCHK_INDEX_ICON )
+				if ( currentImageType == QMC2_IMGCHK_INDEX_ICON ) {
+					log(QString("%1, %2, %3").arg(tr("%n icon(s) scanned", "", scannedItems)).arg(tr("%n valid icon file(s) were found", "", foundCount)).arg(tr("%n icon file(s) were missing or bad", "", missingCount)));
 					log(tr("Average scanning speed = %n icon(s) per second", "", int(avgScanSpeed)));
-				else
+				} else {
+					log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) were found", "", foundCount)).arg(tr("%n image file(s) were missing or bad", "", missingCount)));
 					log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
+				}
 				avgScanSpeed = 0.0;
+				foundCount = missingCount = 0;
 			}
 			progressBar->setRange(0, qmc2GamelistItemMap.count());
 			progressBar->setValue(0);
@@ -317,7 +330,9 @@ void ImageChecker::startStop()
 			updateTimer.start(QMC2_CHECK_UPDATE_FAST);
 		} else if ( passNumber == -1 || startStopClicked ) {
 			if ( avgScanSpeed > 0.0 ) {
+				int scannedItems = int(avgScanSpeed);
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
+				log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) were found", "", foundCount)).arg(tr("%n image file(s) were missing or bad", "", missingCount)));
 				log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
 			}
 			isRunning = false;
@@ -332,7 +347,8 @@ void ImageChecker::startStop()
 			progressBar->setFormat(tr("Idle"));
 			updateTimer.stop();
 			enableWidgets(true);
-			passNumber = 0;
+			avgScanSpeed = 0.0;
+			passNumber = foundCount = missingCount = 0;
 		}
 	} else {
 		threadMap.clear();
@@ -394,6 +410,7 @@ void ImageChecker::startStop()
 		progressBar->setRange(0, qmc2GamelistItemMap.count());
 		progressBar->setValue(0);
 		avgScanSpeed = 0.0;
+		foundCount = missingCount = 0;
 		passNumber = 1;
 		progressBar->setFormat(tr("Pass #%1").arg(passNumber));
 		bufferedFoundList.clear();
@@ -525,9 +542,11 @@ void ImageChecker::feedWorkerThreads()
 				if ( qmc2Gamelist->loadIcon(gameName, NULL, true, NULL) ) {
 					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(gameName));
 					bufferedFoundList << gameName;
+					foundCount++;
 				} else {
 					log(tr("Thread[%1]: Icon for '%2' is missing").arg(0).arg(gameName));
 					bufferedMissingList << gameName;
+					missingCount++;
 				}
 				if ( firstCheck ) {
 					qmc2MainWindow->progressBarGamelist->reset();
@@ -559,7 +578,7 @@ void ImageChecker::on_toolButtonClear_clicked()
 	progressBar->setRange(0, qmc2GamelistItemMap.count());
 	progressBar->setValue(0);
 	avgScanSpeed = 0.0;
-	passNumber = 0;
+	foundCount = missingCount = passNumber = 0;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	toolButtonClear->setEnabled(false);
 	toolButtonRemoveObsolete->setEnabled(false);
