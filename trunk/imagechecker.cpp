@@ -313,10 +313,10 @@ void ImageChecker::startStop()
 				int scannedItems = int(avgScanSpeed);
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
 				if ( currentImageType == QMC2_IMGCHK_INDEX_ICON ) {
-					log(QString("%1, %2, %3").arg(tr("%n icon(s) scanned", "", scannedItems)).arg(tr("%n valid icon file(s) were found", "", foundCount)).arg(tr("%n icon file(s) were missing or bad", "", missingCount)));
+					log(QString("%1, %2, %3").arg(tr("%n icon(s) scanned", "", scannedItems)).arg(tr("%n valid icon file(s) found", "", foundCount)).arg(tr("%n icon file(s) missing or bad", "", missingCount)));
 					log(tr("Average scanning speed = %n icon(s) per second", "", int(avgScanSpeed)));
 				} else {
-					log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) were found", "", foundCount)).arg(tr("%n image file(s) were missing or bad", "", missingCount)));
+					log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) found", "", foundCount)).arg(tr("%n image file(s) missing or bad", "", missingCount)));
 					log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
 				}
 				avgScanSpeed = 0.0;
@@ -332,7 +332,7 @@ void ImageChecker::startStop()
 			if ( avgScanSpeed > 0.0 ) {
 				int scannedItems = int(avgScanSpeed);
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
-				log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) were found", "", foundCount)).arg(tr("%n image file(s) were missing or bad", "", missingCount)));
+				log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) found", "", foundCount)).arg(tr("%n image file(s) missing or bad", "", missingCount)));
 				log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
 			}
 			isRunning = false;
