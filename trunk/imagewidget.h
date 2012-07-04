@@ -47,7 +47,7 @@ class ImageWidget : public QWidget
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
 		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL);
-		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL);
+		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL);
 		void copyToClipboard();
 		void refresh();
 };
