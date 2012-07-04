@@ -127,13 +127,17 @@ void ImageCheckerThread::run()
 					QString fileName;
 					QSize imageSize;
 					int byteCount;
-					if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName) ) {
+					QString readerError;
+					if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName, &readerError) ) {
 						foundList << gameName;
 						emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 						foundCount++;
 					} else {
 						missingList << gameName;
-						emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+						if ( !readerError.isEmpty() )
+							emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
+						else
+							emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 						missingCount++;
 					}
 					scanCount++;

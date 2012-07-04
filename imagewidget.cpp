@@ -1,8 +1,10 @@
 #include <QPixmapCache>
 #include <QPixmap>
 #include <QImage>
+#include <QImageReader>
 #include <QDir>
 #include <QByteArray>
+#include <QBuffer>
 #include <QMap>
 #include <QClipboard>
 #include <QTreeWidgetItem>
@@ -238,7 +240,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	return fileOk;
 }
 
-bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, int *bytesUsed, QString *fileName)
+bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError)
 {
 	QImage image;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
@@ -273,13 +275,16 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 			fileOk = false;
 
 		if ( fileOk ) {
-			fileOk = image.loadFromData(imageData, "PNG");
+			QBuffer buffer(&imageData);
+			QImageReader imageReader(&buffer, "PNG");
+			fileOk = imageReader.read(&image);
 			if ( fileOk ) {
 				if ( sizeReturn )
 					*sizeReturn = image.size();
 				if ( bytesUsed )
 					*bytesUsed = image.byteCount();
-			}
+			} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+				*readerError = imageReader.errorString();
 		}
 	} else {
 		// try loading image from (semicolon-separated) folder(s)
@@ -290,7 +295,8 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 			if ( fileName )
 				*fileName = QDir::toNativeSeparators(imagePath);
 
-			fileOk = image.load(imagePath, "PNG");
+			QImageReader imageReader(imagePath, "PNG");
+			fileOk = imageReader.read(&image);
 
 			if ( fileOk ) {
 				if ( sizeReturn )
@@ -298,7 +304,8 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 				if ( bytesUsed )
 					*bytesUsed = image.byteCount();
 				break;
-			}
+			} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+				*readerError = imageReader.errorString();
 		}
 	}
 
