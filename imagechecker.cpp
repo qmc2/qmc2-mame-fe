@@ -134,9 +134,10 @@ void ImageCheckerThread::run()
 						foundCount++;
 					} else {
 						missingList << gameName;
-						if ( !readerError.isEmpty() )
+						if ( !readerError.isEmpty() ) {
 							emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
-						else
+							badList << gameName;
+						} else
 							emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 						missingCount++;
 					}
@@ -144,18 +145,20 @@ void ImageCheckerThread::run()
 
 					// it can happen that the work-unit grows above the 'limit' so we need to report our intermediate results in order to update the GUI
 					if ( foundList.count() > QMC2_IMGCHK_WORKUNIT_SIZE || missingList.count() > QMC2_IMGCHK_WORKUNIT_SIZE ) {
-						emit resultsReady(foundList, missingList);
+						emit resultsReady(foundList, missingList, badList);
 						foundList.clear();
 						missingList.clear();
+						badList.clear();
 					}
 				}
 				workUnit.clear();
 				workUnitMutex.unlock();
 
 				if ( !foundList.isEmpty() || !missingList.isEmpty() ) {
-					emit resultsReady(foundList, missingList);
+					emit resultsReady(foundList, missingList, badList);
 					foundList.clear();
 					missingList.clear();
+					badList.clear();
 				}
 			}
 		}
@@ -244,6 +247,9 @@ void ImageChecker::adjustIconSizes()
 	toolButtonStartStop->setIconSize(iconSize);
 	toolButtonClear->setIconSize(iconSize);
 	toolButtonRemoveObsolete->setIconSize(iconSize);
+	listWidgetFound->setIconSize(iconSize);
+	listWidgetMissing->setIconSize(iconSize);
+	listWidgetObsolete->setIconSize(iconSize);
 
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
@@ -397,7 +403,7 @@ void ImageChecker::startStop()
 			for (int t = 0; t < spinBoxThreads->value(); t++) {
 				ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
 				connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
-				connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &)));
+				connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &, const QStringList &)));
 				threadMap[t] = thread;
 				thread->start();
 			}
@@ -419,6 +425,7 @@ void ImageChecker::startStop()
 		progressBar->setFormat(tr("Pass #%1").arg(passNumber));
 		bufferedFoundList.clear();
 		bufferedMissingList.clear();
+		bufferedBadList.clear();
 		QTimer::singleShot(0, this, SLOT(feedWorkerThreads()));
 		updateTimer.start(QMC2_CHECK_UPDATE_FAST);
 		checkTimer.start();
@@ -770,14 +777,15 @@ void ImageChecker::log(const QString &message)
 	plainTextEditLog->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
-void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList)
+void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList, const QStringList &badList)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::resultsReady(const QStringList &foundList = ..., const QStringList &missingList = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::resultsReady(const QStringList &foundList = ..., const QStringList &missingList = ..., const QStringList &badList = ...)");
 #endif
 
 	bufferedFoundList += foundList;
 	bufferedMissingList += missingList;
+	bufferedBadList += badList;
 	progressBar->setValue(progressBar->value() + foundList.count() + missingList.count());
 	progressBar->update();
 }
@@ -988,6 +996,12 @@ void ImageChecker::updateResults()
 	bufferedFoundList.clear();
 	bufferedMissingList.clear();
 	bufferedObsoleteList.clear();
+	if ( !bufferedBadList.isEmpty() ) {
+		QString searchRegExp = "(" + bufferedBadList.join("|") + ")";
+		foreach (QListWidgetItem *item, listWidgetMissing->findItems(searchRegExp, Qt::MatchRegExp))
+			item->setIcon(QIcon(QString::fromUtf8(":/data/img/warning.png")));
+		bufferedBadList.clear();
+	}
 	labelFound->setText(tr("Found:") + " " + QString::number(listWidgetFound->count()));
 	labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));

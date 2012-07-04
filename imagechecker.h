@@ -28,6 +28,7 @@ class ImageCheckerThread : public QThread
 		QStringList workUnit;
 		QStringList foundList;
 		QStringList missingList;
+		QStringList badList;
 		ImageWidget *imageWidget;
 		QMutex workUnitMutex;
 		QMutex mutex;
@@ -43,7 +44,7 @@ class ImageCheckerThread : public QThread
 
 	signals:
 		void log(const QString &);
-		void resultsReady(const QStringList &, const QStringList &);
+		void resultsReady(const QStringList &, const QStringList &, const QStringList &);
 };
 
 class ImageChecker : public QDialog, public Ui::ImageChecker
@@ -59,6 +60,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		QStringList bufferedFoundList;
 		QStringList bufferedMissingList;
 		QStringList bufferedObsoleteList;
+		QStringList bufferedBadList;
 		QTimer updateTimer;
 		QTimer listWidgetFoundSelectionTimer;
 		QTimer listWidgetMissingSelectionTimer;
@@ -85,7 +87,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void selectItem(QString);
 		void adjustIconSizes();
 		void log(const QString &);
-		void resultsReady(const QStringList &, const QStringList &);
+		void resultsReady(const QStringList &, const QStringList &, const QStringList &);
 		void feedWorkerThreads();
 		void updateResults();
 		void checkObsoleteFiles();
