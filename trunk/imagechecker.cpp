@@ -188,7 +188,7 @@ ImageChecker::ImageChecker(QWidget *parent)
 	startStopClicked = isRunning = false;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	avgScanSpeed = 0.0;
-	foundCount = missingCount = passNumber = 0;
+	foundCount = missingCount = badCount = passNumber = 0;
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
 	labelObsolete->setText(tr("Obsolete:") + " 0");
@@ -323,10 +323,10 @@ void ImageChecker::startStop()
 				int scannedItems = int(avgScanSpeed);
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
 				if ( currentImageType == QMC2_IMGCHK_INDEX_ICON ) {
-					log(QString("%1, %2, %3").arg(tr("%n icon(s) scanned", "", scannedItems)).arg(tr("%n valid icon file(s) found", "", foundCount)).arg(tr("%n icon file(s) missing or bad", "", missingCount)));
+					log(QString("%1, %2, %3 (%4)").arg(tr("%n icon(s) scanned", "", scannedItems)).arg(tr("%n valid icon file(s) found", "", foundCount)).arg(tr("%n icon file(s) missing", "", missingCount)).arg(tr("%n bad file(s)", "", badCount)));
 					log(tr("Average scanning speed = %n icon(s) per second", "", int(avgScanSpeed)));
 				} else {
-					log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) found", "", foundCount)).arg(tr("%n image file(s) missing or bad", "", missingCount)));
+					log(QString("%1, %2, %3 (%4)").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) found", "", foundCount)).arg(tr("%n image file(s) missing", "", missingCount)).arg(tr("%n bad file(s)", "", badCount)));
 					log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
 				}
 				avgScanSpeed = 0.0;
@@ -342,7 +342,7 @@ void ImageChecker::startStop()
 			if ( avgScanSpeed > 0.0 ) {
 				int scannedItems = int(avgScanSpeed);
 				avgScanSpeed *= 1000.0 / (double)checkTimer.elapsed();
-				log(QString("%1, %2, %3").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) found", "", foundCount)).arg(tr("%n image file(s) missing or bad", "", missingCount)));
+				log(QString("%1, %2, %3 (%4)").arg(tr("%n image(s) scanned", "", scannedItems)).arg(tr("%n valid image file(s) found", "", foundCount)).arg(tr("%n image file(s) missing", "", missingCount)).arg(tr("%n bad file(s)", "", badCount)));
 				log(tr("Average scanning speed = %n image(s) per second", "", int(avgScanSpeed)));
 			}
 			isRunning = false;
@@ -358,7 +358,7 @@ void ImageChecker::startStop()
 			updateTimer.stop();
 			enableWidgets(true);
 			avgScanSpeed = 0.0;
-			passNumber = foundCount = missingCount = 0;
+			passNumber = foundCount = missingCount = badCount = 0;
 		}
 	} else {
 		threadMap.clear();
@@ -420,7 +420,7 @@ void ImageChecker::startStop()
 		progressBar->setRange(0, qmc2GamelistItemMap.count());
 		progressBar->setValue(0);
 		avgScanSpeed = 0.0;
-		foundCount = missingCount = 0;
+		foundCount = missingCount = badCount = 0;
 		passNumber = 1;
 		progressBar->setFormat(tr("Pass #%1").arg(passNumber));
 		bufferedFoundList.clear();
@@ -589,7 +589,7 @@ void ImageChecker::on_toolButtonClear_clicked()
 	progressBar->setRange(0, qmc2GamelistItemMap.count());
 	progressBar->setValue(0);
 	avgScanSpeed = 0.0;
-	foundCount = missingCount = passNumber = 0;
+	foundCount = missingCount = badCount = passNumber = 0;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	toolButtonClear->setEnabled(false);
 	toolButtonRemoveObsolete->setEnabled(false);
@@ -1000,10 +1000,14 @@ void ImageChecker::updateResults()
 		QString searchRegExp = "(" + bufferedBadList.join("|") + ")";
 		foreach (QListWidgetItem *item, listWidgetMissing->findItems(searchRegExp, Qt::MatchRegExp))
 			item->setIcon(QIcon(QString::fromUtf8(":/data/img/warning.png")));
+		badCount += bufferedBadList.count();
 		bufferedBadList.clear();
 	}
 	labelFound->setText(tr("Found:") + " " + QString::number(listWidgetFound->count()));
-	labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
+	if ( badCount > 0 )
+		labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()) + " (" + tr("Bad:") + " " + QString::number(badCount) + ")");
+	else
+		labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
 
 	qApp->processEvents();

@@ -57,6 +57,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		double avgScanSpeed;
 		quint64 foundCount;
 		quint64 missingCount;
+		quint64 badCount;
 		QStringList bufferedFoundList;
 		QStringList bufferedMissingList;
 		QStringList bufferedObsoleteList;
