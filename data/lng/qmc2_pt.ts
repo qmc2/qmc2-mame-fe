@@ -4846,17 +4846,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.ui" line="199"/>
         <source>Clear check results and log</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar resultados da verificação e logs</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="219"/>
         <source>Save the current log contents to a file</source>
-        <translation type="unfinished">Salvar o conteúdo atual do log para um arquivo</translation>
+        <translation>Salvar o conteúdo atual do log para um arquivo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="239"/>
         <source>Remove obsolete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover arquivos obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="256"/>
@@ -4920,17 +4920,17 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon(s) scanned</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n ícone escaneado</numerusform>
+            <numerusform>%n ícones escaneados</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon file(s) missing</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n arquivo de ícone faltando</numerusform>
+            <numerusform>%n arquivos de ícone faltando</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -4938,9 +4938,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n bad file(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n arquivo ruim</numerusform>
+            <numerusform>%n arquivos ruim</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -4955,35 +4955,35 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n image(s) scanned</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n imagem escaneada</numerusform>
+            <numerusform>%n imagens escaneadas</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n valid icon file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n arquivo de ícone válido</numerusform>
+            <numerusform>%n arquivos de ícone válidos</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n valid image file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n arquivo de imagem válido</numerusform>
+            <numerusform>%n arquivos de imagem válidos</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n image file(s) missing</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n arquivo de imagem faltando</numerusform>
+            <numerusform>%n arquivos de imagem faltando</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5038,95 +5038,95 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="609"/>
         <source>Choose file to store the image checker log</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo para guardar o log do verificador de imagens</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="609"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="614"/>
         <location filename="../../imagechecker.cpp" line="615"/>
         <source>saving image checker log to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando log do verificador de imagens para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="618"/>
         <location filename="../../imagechecker.cpp" line="619"/>
         <source>done (saving image checker log to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (salvando log do verificador de imagens para &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="621"/>
         <location filename="../../imagechecker.cpp" line="622"/>
         <source>WARNING: can&apos;t open file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">AVISO: impossível abrir arquivo &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
+        <translation>AVISO: impossível abrir arquivo &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="703"/>
         <location filename="../../imagechecker.cpp" line="765"/>
         <source>Running ZIP tool to remove obsolete files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando ferramenta ZIP para remover arquivos obsoletos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="718"/>
         <source>Obsolete image file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem obsoleto &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="723"/>
         <source>Obsolete image file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem obsoleto &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="780"/>
         <source>Obsolete icon file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de ícone obsoleto &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="785"/>
         <source>Obsolete icon file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de ícone obsoleto &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="829"/>
         <source>Checking for obsolete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurando por arquivos obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="865"/>
         <location filename="../../imagechecker.cpp" line="877"/>
         <source>Reading ZIP directory recursively</source>
-        <translation>Lendo diretório do ZIP recursivamento</translation>
+        <translation>Lendo diretório do ZIP recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="870"/>
         <source>Reading image directory &apos;%1&apos; recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo diretório de imagens &apos;%1&apos; recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="882"/>
         <source>Reading icon directory &apos;%1&apos; recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo diretório de ícones &apos;%1&apos; recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de %1 &apos;%2&apos; é obsoleto</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="1013"/>
         <source>%n obsolete file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n arquivo obsoleto encontrado</numerusform>
+            <numerusform>%n arquivos obsoletos encontrados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1037"/>
         <source>Bad:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruim:</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="888"/>
@@ -5198,7 +5198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="139"/>
         <source>Thread[%1]: image for &apos;%2&apos; loaded from &apos;%3&apos; is bad, error = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: imagem para &apos;%2&apos; carregada de &apos;%3&apos; é defeituosa, erro = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="142"/>
@@ -8679,13 +8679,13 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2537"/>
         <source>Check &amp;images / icons...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar &amp;imagens / ícones...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2540"/>
         <location filename="../../qmc2main.ui" line="2543"/>
         <source>Check images and icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar imagens e ícones</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2582"/>
@@ -11083,7 +11083,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="343"/>
         <source>Check images and icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar imagens e ícones</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="366"/>
