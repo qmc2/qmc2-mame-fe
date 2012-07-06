@@ -205,6 +205,26 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonSaveLog">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Save the current log contents to a file</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="toolButtonRemoveObsolete">
        <property name="enabled">
         <bool>false</bool>
@@ -316,6 +336,7 @@
   <tabstop>toolButtonSelectSets</tabstop>
   <tabstop>toolButtonStartStop</tabstop>
   <tabstop>toolButtonClear</tabstop>
+  <tabstop>toolButtonSaveLog</tabstop>
   <tabstop>toolButtonRemoveObsolete</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>listWidgetFound</tabstop>

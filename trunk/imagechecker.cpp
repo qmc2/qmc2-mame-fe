@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QFileDialog>
 #include "imagechecker.h"
 #include "preview.h"
 #include "flyer.h"
@@ -246,6 +247,7 @@ void ImageChecker::adjustIconSizes()
 	toolButtonSelectSets->setIconSize(iconSize);
 	toolButtonStartStop->setIconSize(iconSize);
 	toolButtonClear->setIconSize(iconSize);
+	toolButtonSaveLog->setIconSize(iconSize);
 	toolButtonRemoveObsolete->setIconSize(iconSize);
 	listWidgetFound->setIconSize(iconSize);
 	listWidgetMissing->setIconSize(iconSize);
@@ -490,9 +492,11 @@ void ImageChecker::enableWidgets(bool enable)
 	if ( enable ) {
 		toolButtonClear->setEnabled(listWidgetFound->count() > 0 || listWidgetMissing->count() > 0 || listWidgetObsolete->count() > 0 || plainTextEditLog->blockCount() > 0);
 		toolButtonRemoveObsolete->setEnabled(listWidgetObsolete->count() > 0);
+		toolButtonSaveLog->setEnabled(plainTextEditLog->blockCount() > 1);
 	} else {
 		toolButtonClear->setEnabled(false);
 		toolButtonRemoveObsolete->setEnabled(false);
+		toolButtonSaveLog->setEnabled(false);
 	}
 }
 
@@ -592,7 +596,32 @@ void ImageChecker::on_toolButtonClear_clicked()
 	foundCount = missingCount = badCount = passNumber = 0;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	toolButtonClear->setEnabled(false);
+	toolButtonSaveLog->setEnabled(false);
 	toolButtonRemoveObsolete->setEnabled(false);
+}
+
+void ImageChecker::on_toolButtonSaveLog_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonSaveLog_clicked()");
+#endif
+
+	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the image checker log"), "qmc2-imagechecker.log", tr("All files (*)"));
+	if ( !fileName.isEmpty() ) {
+		QFile f(fileName);
+		if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			QTextStream ts(&f);
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving image checker log to '%1'").arg(fileName));
+			log(tr("saving image checker log to '%1'").arg(fileName));
+			ts << plainTextEditLog->toPlainText();
+			f.close();
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving image checker log to '%1')").arg(fileName));
+			log(tr("done (saving image checker log to '%1')").arg(fileName));
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
+			log(tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
+		}
+	}
 }
 
 void ImageChecker::on_toolButtonRemoveObsolete_clicked()
