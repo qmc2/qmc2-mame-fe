@@ -83,6 +83,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		void on_listWidgetMissing_itemSelectionChanged_delayed();
 		void on_toolButtonStartStop_clicked();
 		void on_toolButtonClear_clicked();
+		void on_toolButtonSaveLog_clicked();
 		void on_toolButtonRemoveObsolete_clicked();
 		void on_comboBoxImageType_currentIndexChanged(int);
 		void selectItem(QString);
