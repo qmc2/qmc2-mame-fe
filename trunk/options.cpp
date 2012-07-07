@@ -1444,10 +1444,10 @@ void Options::on_pushButtonApply_clicked()
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't initialize joystick"));
       } else {
         // (re)connect joystick callbacks to main widget
-        connect(joystick, SIGNAL(axisValueChanged(int, int)), qmc2MainWindow, SLOT(on_joystickAxisValueChanged(int, int)));
-        connect(joystick, SIGNAL(buttonValueChanged(int, bool)), qmc2MainWindow, SLOT(on_joystickButtonValueChanged(int, bool)));
-        connect(joystick, SIGNAL(hatValueChanged(int, int)), qmc2MainWindow, SLOT(on_joystickHatValueChanged(int, int)));
-        connect(joystick, SIGNAL(trackballValueChanged(int, int, int)), qmc2MainWindow, SLOT(on_joystickTrackballValueChanged(int, int, int)));
+        connect(joystick, SIGNAL(axisValueChanged(int, int)), qmc2MainWindow, SLOT(joystickAxisValueChanged(int, int)));
+        connect(joystick, SIGNAL(buttonValueChanged(int, bool)), qmc2MainWindow, SLOT(joystickButtonValueChanged(int, bool)));
+        connect(joystick, SIGNAL(hatValueChanged(int, int)), qmc2MainWindow, SLOT(joystickHatValueChanged(int, int)));
+        connect(joystick, SIGNAL(trackballValueChanged(int, int, int)), qmc2MainWindow, SLOT(joystickTrackballValueChanged(int, int, int)));
         qmc2MainWindow->joyIndex = config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index").toInt();
       }
     }
@@ -3699,7 +3699,7 @@ void Options::on_pushButtonDetailSetup_clicked()
 #endif
 
   qmc2DetailSetupParent = this;
-  qmc2MainWindow->on_menuTabWidgetGameDetail_Setup_activated();
+  qmc2MainWindow->menuTabWidgetGameDetail_Setup_activated();
 }
 
 void Options::on_pushButtonCustomizeToolBar_clicked()

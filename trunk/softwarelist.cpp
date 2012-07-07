@@ -910,7 +910,7 @@ void SoftwareList::updateDetail()
 #endif
 
 	detailUpdateTimer.stop();
-	qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+	qmc2MainWindow->tabWidgetSoftwareDetail_updateCurrent();
 }
 
 void SoftwareList::resizeEvent(QResizeEvent *e)
@@ -1105,7 +1105,7 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 
 	if ( checked ) {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+		qmc2MainWindow->tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
