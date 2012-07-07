@@ -196,9 +196,9 @@ ImageChecker::ImageChecker(QWidget *parent)
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(updateResults()));
 
 	listWidgetFoundSelectionTimer.setSingleShot(true);
-	connect(&listWidgetFoundSelectionTimer, SIGNAL(timeout()), this, SLOT(on_listWidgetFound_itemSelectionChanged_delayed()));
+	connect(&listWidgetFoundSelectionTimer, SIGNAL(timeout()), this, SLOT(listWidgetFound_itemSelectionChanged_delayed()));
 	listWidgetMissingSelectionTimer.setSingleShot(true);
-	connect(&listWidgetMissingSelectionTimer, SIGNAL(timeout()), this, SLOT(on_listWidgetMissing_itemSelectionChanged_delayed()));
+	connect(&listWidgetMissingSelectionTimer, SIGNAL(timeout()), this, SLOT(listWidgetMissing_itemSelectionChanged_delayed()));
 
 	comboBoxImageType->clear();
 #if defined(QMC2_EMUTYPE_MESS)
@@ -267,10 +267,10 @@ void ImageChecker::on_listWidgetFound_itemSelectionChanged()
 	listWidgetFoundSelectionTimer.start(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
 }
 
-void ImageChecker::on_listWidgetFound_itemSelectionChanged_delayed()
+void ImageChecker::listWidgetFound_itemSelectionChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetFound_itemSelectionChanged_delayed()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::listWidgetFound_itemSelectionChanged_delayed()");
 #endif
 
 	if ( toolButtonSelectSets->isChecked() ) {
@@ -289,10 +289,10 @@ void ImageChecker::on_listWidgetMissing_itemSelectionChanged()
 	listWidgetMissingSelectionTimer.start(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
 }
 
-void ImageChecker::on_listWidgetMissing_itemSelectionChanged_delayed()
+void ImageChecker::listWidgetMissing_itemSelectionChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_listWidgetMissing_itemSelectionChanged_delayed()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::listWidgetMissing_itemSelectionChanged_delayed()");
 #endif
 
 	if ( toolButtonSelectSets->isChecked() ) {
