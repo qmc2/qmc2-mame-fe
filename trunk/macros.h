@@ -15,6 +15,12 @@
 #endif
 #endif
 
+#if !defined(Q_OS_WIN)
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#endif
+
 // don't use SVN revision in version strings when QMC2_SVN_REV is undefined
 #if !defined(QMC2_SVN_REV)
 #define QMC2_SVN_REV				0

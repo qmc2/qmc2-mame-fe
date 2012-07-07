@@ -27,12 +27,6 @@
 #include <QDesktopWidget>
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_SDLUME)
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#endif
-
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
@@ -1457,6 +1451,11 @@ MainWindow::MainWindow(QWidget *parent)
   // URL replacement regexp
   QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*");
   urlSectionRegExp = QString("[%1]+").arg(urlChar);
+
+#if defined(QMC2_MEMORY_INFO_ENABLED)
+  progressBarMemory->setRange(0, 100);
+  connect(&memoryUpdateTimer, SIGNAL(timeout()), this, SLOT(memoryUpdateTimer_timeout()));
+#endif
 
   QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -8966,23 +8965,25 @@ void MainWindow::on_pushButtonStopSelectedDownloads_clicked()
 }
 
 #if defined(QMC2_MEMORY_INFO_ENABLED)
-void MainWindow::on_memoryUpdateTimer_timeout()
+void MainWindow::memoryUpdateTimer_timeout()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_memoryUpdateTimer_timeout()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::memoryUpdateTimer_timeout()");
 #endif
 
   // get memory information
   quint64 numPages, pageSize, freePages, totalSize, totalUsed, totalFree;
   numPages = sysconf(_SC_PHYS_PAGES) / 1024;
   pageSize = sysconf(_SC_PAGESIZE) / 1024;
-  freePages = sysconf( _SC_AVPHYS_PAGES) / 1024;
+  freePages = sysconf(_SC_AVPHYS_PAGES) / 1024;
   totalSize = numPages * pageSize;
   totalFree = pageSize * freePages;
   totalUsed = totalSize - totalFree;
   progressBarMemory->setValue(100 * ((double)totalUsed/(double)totalSize));
   progressBarMemory->setToolTip("<b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed));
 }
+#else
+void MainWindow::memoryUpdateTimer_timeout() { ; }
 #endif
 
 void MainWindow::checkActivity()
@@ -10111,29 +10112,37 @@ void myQtMessageHandler(QtMsgType type, const char *msg)
   if ( qmc2SuppressQtMessages )
     return;
 
-  if ( !qmc2GuiReady )
-    return;
+  QString msgString;
 
   switch ( type ) {
     case QtDebugMsg:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, "QtDebugMsg: " + QString(msg));
+      msgString = "QtDebugMsg: " + QString(msg);
       break;
 
     case QtWarningMsg:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, "QtWarningMsg: " + QString(msg));
+      msgString = "QtWarningMsg: " + QString(msg);
       break;
 
     case QtCriticalMsg:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, "QtCriticalMsg: " + QString(msg));
+      msgString = "QtCriticalMsg: " + QString(msg);
       break;
 
     case QtFatalMsg:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, "QtFatalMsg: " + QString(msg));
+      msgString = "QtFatalMsg: " + QString(msg);
       break;
 
     default:
-      break;
+      return;
   }
+
+  if ( qmc2GuiReady )
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
+#if defined(QMC2_DEBUG)
+  else {
+    printf("%s\n", (const char *)msgString.toLocal8Bit());
+    fflush(stdout);
+  }
+#endif
 }
 
 void prepareShortcuts()
