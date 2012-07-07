@@ -78,9 +78,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();
-		void on_listWidgetFound_itemSelectionChanged_delayed();
+		void listWidgetFound_itemSelectionChanged_delayed();
 		void on_listWidgetMissing_itemSelectionChanged();
-		void on_listWidgetMissing_itemSelectionChanged_delayed();
+		void listWidgetMissing_itemSelectionChanged_delayed();
 		void on_toolButtonStartStop_clicked();
 		void on_toolButtonClear_clicked();
 		void on_toolButtonSaveLog_clicked();
