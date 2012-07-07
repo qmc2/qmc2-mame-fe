@@ -534,7 +534,7 @@ MainWindow::MainWindow(QWidget *parent)
   toolButtonEmbedderMaximizeToggle->setAutoRaise(true);
   toolButtonEmbedderMaximizeToggle->setCheckable(true);
   toolButtonEmbedderMaximizeToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", false).toBool());
-  connect(toolButtonEmbedderMaximizeToggle, SIGNAL(toggled(bool)), this, SLOT(on_toolButtonEmbedderMaximizeToggle_toggled(bool)));
+  connect(toolButtonEmbedderMaximizeToggle, SIGNAL(toggled(bool)), this, SLOT(toolButtonEmbedderMaximizeToggle_toggled(bool)));
   embedderCornerLayout->addWidget(toolButtonEmbedderMaximizeToggle);
 
   embedderCornerWidget->setLayout(embedderCornerLayout);
@@ -752,10 +752,10 @@ MainWindow::MainWindow(QWidget *parent)
     if ( vSplitterSwapped ) vSplitterSizes.swap(0, 1);
     hSplitter->setSizes(hSplitterSizes);
     vSplitter->setSizes(vSplitterSizes);
-    if ( hSplitterFlipped ) on_menuHorizontalSplitter_FlipOrientation_activated();
-    if ( vSplitterFlipped ) on_menuVerticalSplitter_FlipOrientation_activated();
-    if ( hSplitterSwapped ) on_menuHorizontalSplitter_SwapLayouts_activated();
-    if ( vSplitterSwapped ) on_menuVerticalSplitter_SwapWidgets_activated();
+    if ( hSplitterFlipped ) menuHorizontalSplitter_FlipOrientation_activated();
+    if ( vSplitterFlipped ) menuVerticalSplitter_FlipOrientation_activated();
+    if ( hSplitterSwapped ) menuHorizontalSplitter_SwapLayouts_activated();
+    if ( vSplitterSwapped ) menuVerticalSplitter_SwapWidgets_activated();
     tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
     tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
     on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
@@ -1063,94 +1063,94 @@ MainWindow::MainWindow(QWidget *parent)
   action = menuTabWidgetGamelist->addAction(tr("&North"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGamelist_North_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_North_activated()));
   s = tr("Set tab position south");
   action = menuTabWidgetGamelist->addAction(tr("&South"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGamelist_South_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_South_activated()));
   s = tr("Set tab position west");
   action = menuTabWidgetGamelist->addAction(tr("&West"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGamelist_West_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_West_activated()));
   s = tr("Set tab position east");
   action = menuTabWidgetGamelist->addAction(tr("&East"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGamelist_East_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGamelist_East_activated()));
 
   menuTabWidgetGameDetail = new QMenu(0);
   s = tr("Set tab position north");
   action = menuTabWidgetGameDetail->addAction(tr("&North"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_North_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_North_activated()));
   s = tr("Set tab position south");
   action = menuTabWidgetGameDetail->addAction(tr("&South"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_South_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_South_activated()));
   s = tr("Set tab position west");
   action = menuTabWidgetGameDetail->addAction(tr("&West"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_West_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_West_activated()));
   s = tr("Set tab position east");
   action = menuTabWidgetGameDetail->addAction(tr("&East"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_East_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_East_activated()));
   menuTabWidgetGameDetail->addSeparator();
   s = tr("Detail setup");
   action = menuTabWidgetGameDetail->addAction(tr("&Setup..."));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_Setup_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetGameDetail_Setup_activated()));
 
   menuTabWidgetLogsAndEmulators = new QMenu(0);
   s = tr("Set tab position north");
   action = menuTabWidgetLogsAndEmulators->addAction(tr("&North"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_North_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_North_activated()));
   s = tr("Set tab position south");
   action = menuTabWidgetLogsAndEmulators->addAction(tr("&South"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_South_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_South_activated()));
   s = tr("Set tab position west");
   action = menuTabWidgetLogsAndEmulators->addAction(tr("&West"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_West_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_West_activated()));
   s = tr("Set tab position east");
   action = menuTabWidgetLogsAndEmulators->addAction(tr("&East"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_East_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_East_activated()));
 
   menuTabWidgetSoftwareDetail = new QMenu(0);
   s = tr("Set tab position north");
   action = menuTabWidgetSoftwareDetail->addAction(tr("&North"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_North_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_North_activated()));
   s = tr("Set tab position south");
   action = menuTabWidgetSoftwareDetail->addAction(tr("&South"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_South_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_South_activated()));
   s = tr("Set tab position west");
   action = menuTabWidgetSoftwareDetail->addAction(tr("&West"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_West_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_West_activated()));
   s = tr("Set tab position east");
   action = menuTabWidgetSoftwareDetail->addAction(tr("&East"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_East_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_East_activated()));
 
   // splitter context menus
   menuHorizontalSplitter = new QMenu(0);
@@ -1158,24 +1158,24 @@ MainWindow::MainWindow(QWidget *parent)
   action = menuHorizontalSplitter->addAction(tr("&Flip splitter orientation"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/flip.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuHorizontalSplitter_FlipOrientation_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuHorizontalSplitter_FlipOrientation_activated()));
   s = tr("Swap splitter's sub-layouts");
   action = menuHorizontalSplitter->addAction(tr("&Swap splitter's sub-layouts"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/swap.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuHorizontalSplitter_SwapLayouts_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuHorizontalSplitter_SwapLayouts_activated()));
 
   menuVerticalSplitter = new QMenu(0);
   s = tr("Flip splitter orientation");
   action = menuVerticalSplitter->addAction(tr("&Flip splitter orientation"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/flip.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_FlipOrientation_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuVerticalSplitter_FlipOrientation_activated()));
   s = tr("Swap splitter's sub-widgets");
   action = menuVerticalSplitter->addAction(tr("&Swap splitter's sub-widgets"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/swap.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_SwapWidgets_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(menuVerticalSplitter_SwapWidgets_activated()));
 
   QHeaderView *header;
 
@@ -1325,8 +1325,8 @@ MainWindow::MainWindow(QWidget *parent)
   connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
 #endif
   connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
-  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_editTextChanged_delayed()));
-  connect(&updateTimer, SIGNAL(timeout()), this, SLOT(on_treeWidgetGamelist_itemSelectionChanged_delayed()));
+  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
+  connect(&updateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetGamelist_itemSelectionChanged_delayed()));
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = false;
 
@@ -1395,31 +1395,31 @@ MainWindow::MainWindow(QWidget *parent)
   actionRomStatusFilterC->setShortcut(QKeySequence("Ctrl+Alt+C"));
   actionRomStatusFilterC->setShortcutContext(Qt::ApplicationShortcut);
   actionRomStatusFilterC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC").toBool());
-  connect(actionRomStatusFilterC, SIGNAL(toggled(bool)), this, SLOT(on_romStateFilterC_toggled(bool)));
+  connect(actionRomStatusFilterC, SIGNAL(toggled(bool)), this, SLOT(romStateFilterC_toggled(bool)));
   actionRomStatusFilterM = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_yellowgreen.png")), tr("&Mostly correct"));
   actionRomStatusFilterM->setCheckable(true);
   actionRomStatusFilterM->setShortcut(QKeySequence("Ctrl+Alt+M"));
   actionRomStatusFilterM->setShortcutContext(Qt::ApplicationShortcut);
   actionRomStatusFilterM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM").toBool());
-  connect(actionRomStatusFilterM, SIGNAL(toggled(bool)), this, SLOT(on_romStateFilterM_toggled(bool)));
+  connect(actionRomStatusFilterM, SIGNAL(toggled(bool)), this, SLOT(romStateFilterM_toggled(bool)));
   actionRomStatusFilterI = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_red.png")), tr("&Incorrect"));
   actionRomStatusFilterI->setCheckable(true);
   actionRomStatusFilterI->setShortcut(QKeySequence("Ctrl+Alt+I"));
   actionRomStatusFilterI->setShortcutContext(Qt::ApplicationShortcut);
   actionRomStatusFilterI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI").toBool());
-  connect(actionRomStatusFilterI, SIGNAL(toggled(bool)), this, SLOT(on_romStateFilterI_toggled(bool)));
+  connect(actionRomStatusFilterI, SIGNAL(toggled(bool)), this, SLOT(romStateFilterI_toggled(bool)));
   actionRomStatusFilterN = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_grey.png")), tr("&Not found"));
   actionRomStatusFilterN->setCheckable(true);
   actionRomStatusFilterN->setShortcut(QKeySequence("Ctrl+Alt+N"));
   actionRomStatusFilterN->setShortcutContext(Qt::ApplicationShortcut);
   actionRomStatusFilterN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN").toBool());
-  connect(actionRomStatusFilterN, SIGNAL(toggled(bool)), this, SLOT(on_romStateFilterN_toggled(bool)));
+  connect(actionRomStatusFilterN, SIGNAL(toggled(bool)), this, SLOT(romStateFilterN_toggled(bool)));
   actionRomStatusFilterU = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_blue.png")), tr("&Unknown"));
   actionRomStatusFilterU->setCheckable(true);
   actionRomStatusFilterU->setShortcut(QKeySequence("Ctrl+Alt+U"));
   actionRomStatusFilterU->setShortcutContext(Qt::ApplicationShortcut);
   actionRomStatusFilterU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU").toBool());
-  connect(actionRomStatusFilterU, SIGNAL(toggled(bool)), this, SLOT(on_romStateFilterU_toggled(bool)));
+  connect(actionRomStatusFilterU, SIGNAL(toggled(bool)), this, SLOT(romStateFilterU_toggled(bool)));
   pushButtonSelectRomFilter->setMenu(menuRomStatusFilter);
 
   // initialize ROM state toggles
@@ -1431,14 +1431,14 @@ MainWindow::MainWindow(QWidget *parent)
   actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
 
   // connect header click signals
-  connect(treeWidgetGamelist->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetGamelist_headerSectionClicked(int)));
-  connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetHierarchy_headerSectionClicked(int)));
+  connect(treeWidgetGamelist->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetGamelist_headerSectionClicked(int)));
+  connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetHierarchy_headerSectionClicked(int)));
   treeWidgetGamelist->header()->setClickable(true);
   treeWidgetHierarchy->header()->setClickable(true);
-  connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetCategoryView_headerSectionClicked(int)));
+  connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetCategoryView_headerSectionClicked(int)));
   treeWidgetCategoryView->header()->setClickable(true);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetVersionView_headerSectionClicked(int)));
+  connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetVersionView_headerSectionClicked(int)));
   treeWidgetVersionView->header()->setClickable(true);
 #endif
 
@@ -2973,7 +2973,7 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
   searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
-void MainWindow::on_comboBoxSearch_editTextChanged_delayed()
+void MainWindow::comboBoxSearch_editTextChanged_delayed()
 {
   searchTimer.stop();
 
@@ -3021,7 +3021,7 @@ void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
     tabWidgetGamelist->blockSignals(false);
   }
   QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
-  on_comboBoxSearch_editTextChanged_delayed();
+  comboBoxSearch_editTextChanged_delayed();
 }
 
 void MainWindow::on_listWidgetSearch_currentTextChanged(QString s)
@@ -4043,7 +4043,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         emuSelectorLayout->addWidget(labelEmuSelector);
         emuSelectorLayout->addWidget(comboBoxEmuSelector);
         layout->addLayout(emuSelectorLayout);
-        connect(comboBoxEmuSelector, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(on_emuSelector_currentIndexChanged(const QString &)));
+        connect(comboBoxEmuSelector, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(emuSelector_currentIndexChanged(const QString &)));
 
         // (default) emulator options
         qmc2EmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/" + gameName, configWidget);
@@ -4082,12 +4082,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
         // import/export menus
         qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile);
-        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/%1.ini").arg(gameName)), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonCurrentEmulatorOptionsExportToFile_clicked()));
-        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()));
+        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/%1.ini").arg(gameName)), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonCurrentEmulatorOptionsExportToFile_clicked()));
+        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()));
         qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile->setMenu(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile);
         qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile = new QMenu(qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile);
-        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/%1.ini").arg(gameName)), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked()));
-        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()));
+        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/%1.ini").arg(gameName)), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonCurrentEmulatorOptionsImportFromFile_clicked()));
+        connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()));
         qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile);
         qmc2EmulatorOptions->resizeColumnToContents(0);
         qmc2EmulatorOptions->pseudoConstructor();
@@ -4311,10 +4311,10 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 	return xmlChoices;
 }
 
-void MainWindow::on_emuSelector_currentIndexChanged(const QString &text)
+void MainWindow::emuSelector_currentIndexChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_emuSelector_currentIndexChanged(const QString &text = %1)").arg(text));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::emuSelector_currentIndexChanged(const QString &text = %1)").arg(text));
 #endif
 
   if ( !qmc2EmulatorOptions )
@@ -4454,7 +4454,7 @@ void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *curre
   if ( qmc2UpdateDelay > 0 )
     updateTimer.start(qmc2UpdateDelay);
   else
-    on_treeWidgetGamelist_itemSelectionChanged_delayed();
+    treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
@@ -4467,7 +4467,7 @@ void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *curr
   if ( qmc2UpdateDelay > 0 )
     updateTimer.start(qmc2UpdateDelay);
   else
-    on_treeWidgetGamelist_itemSelectionChanged_delayed();
+    treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetGamelist_itemSelectionChanged()
@@ -4479,13 +4479,13 @@ void MainWindow::on_treeWidgetGamelist_itemSelectionChanged()
   if ( qmc2UpdateDelay > 0 )
     updateTimer.start(qmc2UpdateDelay);
   else
-    on_treeWidgetGamelist_itemSelectionChanged_delayed();
+    treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
-void MainWindow::on_treeWidgetGamelist_itemSelectionChanged_delayed()
+void MainWindow::treeWidgetGamelist_itemSelectionChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetGamelist_itemSelectionChanged_delayed()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetGamelist_itemSelectionChanged_delayed()");
 #endif
 
   updateTimer.stop();
@@ -4715,7 +4715,7 @@ void MainWindow::action_embedEmulator_triggered()
         optionsButton->setToolTip(tr("Toggle embedder options (hold down for menu)"));
         optionsButton->setStatusTip(tr("Toggle embedder options (hold down for menu)"));
         optionsButton->setCheckable(true);
-        connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(on_embedderOptions_toggled(bool)));
+        connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(embedderOptions_toggled(bool)));
 
 	QMenu *optionsMenu = new QMenu(optionsButton);
         QString s;
@@ -4724,24 +4724,24 @@ void MainWindow::action_embedEmulator_triggered()
         action = optionsMenu->addAction(tr("To &favorites"));
         action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
         action->setToolTip(s); action->setStatusTip(s);
-        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_ToFavorites_activated()));
+        connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_ToFavorites_activated()));
         optionsMenu->addSeparator();
         s = tr("Terminate emulator");
         action = optionsMenu->addAction(tr("&Terminate emulator"));
         action->setIcon(QIcon(QString::fromUtf8(":/data/img/terminate.png")));
         action->setToolTip(s); action->setStatusTip(s);
-        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_TerminateEmulator_activated()));
+        connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_TerminateEmulator_activated()));
         s = tr("Kill emulator");
         action = optionsMenu->addAction(tr("&Kill emulator"));
         action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
         action->setToolTip(s); action->setStatusTip(s);
-        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_KillEmulator_activated()));
+        connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_KillEmulator_activated()));
         optionsMenu->addSeparator();
         s = tr("Copy emulator command line to clipboard");
         action = optionsMenu->addAction(tr("&Copy command"));
         action->setToolTip(s); action->setStatusTip(s);
         action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_CopyCommand_activated()));
+        connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_CopyCommand_activated()));
 
 	optionsButton->setMenu(optionsMenu);
 
@@ -4797,12 +4797,12 @@ void MainWindow::action_embedderScanPauseKey_triggered()
 }
 #endif
 
-void MainWindow::on_embedderOptions_toggled(bool enabled)
+void MainWindow::embedderOptions_toggled(bool enabled)
 {
   // serious hack to access the tab bar ;)
   QToolButton *optionsButton = (QToolButton *)sender();
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_embedderOptions_toggled(bool enabled = %1)").arg(enabled));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::embedderOptions_toggled(bool enabled = %1)").arg(enabled));
 #endif
 
   QTabBar *tabBar = (QTabBar *)optionsButton->parent();
@@ -4864,10 +4864,10 @@ void MainWindow::closeEmbeddedEmuTab()
     on_tabWidgetEmbeddedEmulators_tabCloseRequested(tabWidgetEmbeddedEmulators->indexOf(embedder));
 }
 
-void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
+void MainWindow::toolButtonEmbedderMaximizeToggle_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on = %1)").arg(on));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::toolButtonEmbedderMaximizeToggle_toggled(bool on = %1)").arg(on));
 #endif
 
 	if ( on ) {
@@ -4894,7 +4894,7 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 	}
 }
 
-void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
+void MainWindow::embedderOptionsMenu_KillEmulator_activated()
 {
   // serious hack to access the corresponding embedder ;)
   QAction *action = (QAction *)sender();
@@ -4903,14 +4903,14 @@ void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
   QTabBar *tabBar = (QTabBar *)toolButton->parent();
   Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_KillEmulator_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_KillEmulator_activated()");
 #endif
 
   if ( embedder )
     qmc2ProcessManager->kill(embedder->gameID.toInt());
 }
 
-void MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()
+void MainWindow::embedderOptionsMenu_TerminateEmulator_activated()
 {
   // serious hack to access the corresponding embedder ;)
   QAction *action = (QAction *)sender();
@@ -4919,14 +4919,14 @@ void MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()
   QTabBar *tabBar = (QTabBar *)toolButton->parent();
   Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_TerminateEmulator_activated()");
 #endif
 
   if ( embedder )
     qmc2ProcessManager->terminate(embedder->gameID.toInt());
 }
 
-void MainWindow::on_embedderOptionsMenu_ToFavorites_activated()
+void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 {
   // serious hack to access the corresponding embedder ;)
   QAction *action = (QAction *)sender();
@@ -4935,7 +4935,7 @@ void MainWindow::on_embedderOptionsMenu_ToFavorites_activated()
   QTabBar *tabBar = (QTabBar *)toolButton->parent();
   Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_ToFavorites_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_ToFavorites_activated()");
 #endif
 
   if ( embedder ) {
@@ -4949,7 +4949,7 @@ void MainWindow::on_embedderOptionsMenu_ToFavorites_activated()
   }
 }
 
-void MainWindow::on_embedderOptionsMenu_CopyCommand_activated()
+void MainWindow::embedderOptionsMenu_CopyCommand_activated()
 {
   // serious hack to access the corresponding embedder ;)
   QAction *action = (QAction *)sender();
@@ -4958,7 +4958,7 @@ void MainWindow::on_embedderOptionsMenu_CopyCommand_activated()
   QTabBar *tabBar = (QTabBar *)toolButton->parent();
   Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_CopyCommand_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::embedderOptionsMenu_CopyCommand_activated()");
 #endif
 
   if ( embedder ) {
@@ -5285,10 +5285,10 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
   }
 }
 
-void MainWindow::on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
+void MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()");
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -5302,22 +5302,22 @@ void MainWindow::on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
 #endif
   QString s = QFileDialog::getSaveFileName(qmc2Options, tr("Choose export file"), fileName, tr("All files (*)"));
   if ( !s.isNull() )
-    on_pushButtonGlobalEmulatorOptionsExportToFile_clicked(s);
+    pushButtonGlobalEmulatorOptionsExportToFile_clicked(s);
 }
 
-void MainWindow::on_pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName)
+void MainWindow::pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName = %1)").arg(useFileName));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName = %1)").arg(useFileName));
 #endif
 
   qmc2GlobalEmulatorOptions->exportToIni(true, useFileName);
 }
 
-void MainWindow::on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
+void MainWindow::pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()");
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -5331,22 +5331,22 @@ void MainWindow::on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
 #endif
   QString s = QFileDialog::getOpenFileName(qmc2Options, tr("Choose import file"), fileName, tr("All files (*)"));
   if ( !s.isNull() )
-    on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked(s);
+    pushButtonGlobalEmulatorOptionsImportFromFile_clicked(s);
 }
 
-void MainWindow::on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName)
+void MainWindow::pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName = %1)").arg(useFileName));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName = %1)").arg(useFileName));
 #endif
 
   qmc2GlobalEmulatorOptions->importFromIni(true, useFileName);
 }
 
-void MainWindow::on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
+void MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()");
 #endif
 
   QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath", QDir::homePath()).toString().split(";");
@@ -5359,22 +5359,22 @@ void MainWindow::on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
   }
   QString s = QFileDialog::getSaveFileName(this, tr("Choose export file"), iniPath, tr("All files (*)"));
   if ( !s.isNull() )
-    on_pushButtonCurrentEmulatorOptionsExportToFile_clicked(s);
+    pushButtonCurrentEmulatorOptionsExportToFile_clicked(s);
 }
 
-void MainWindow::on_pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName)
+void MainWindow::pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName = %1)").arg(useFileName));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName = %1)").arg(useFileName));
 #endif
 
   qmc2EmulatorOptions->exportToIni(false, useFileName);
 }
 
-void MainWindow::on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
+void MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()");
 #endif
 
   if ( !qmc2CurrentItem )
@@ -5391,13 +5391,13 @@ void MainWindow::on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
   iniPath += "/" + qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".ini";
   QString s = QFileDialog::getOpenFileName(this, tr("Choose import file"), iniPath, tr("All files (*)"));
   if ( !s.isNull() )
-    on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked(s);
+    pushButtonCurrentEmulatorOptionsImportFromFile_clicked(s);
 }
 
-void MainWindow::on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName)
+void MainWindow::pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = %1)").arg(useFileName));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = %1)").arg(useFileName));
 #endif
 
   qmc2EmulatorOptions->importFromIni(false, useFileName);
@@ -5443,10 +5443,10 @@ void MainWindow::mapJoystickFunction(QString function)
   }
 }
 
-void MainWindow::on_joystickAxisValueChanged(int axis, int value)
+void MainWindow::joystickAxisValueChanged(int axis, int value)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
 #endif
 
   if ( qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(axis), true).toBool() ) {
@@ -5455,30 +5455,30 @@ void MainWindow::on_joystickAxisValueChanged(int axis, int value)
   }
 }
 
-void MainWindow::on_joystickButtonValueChanged(int button, bool value)
+void MainWindow::joystickButtonValueChanged(int button, bool value)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
 #endif
 
    if ( value )
      mapJoystickFunction(QString("B%1").arg(button));
 }
 
-void MainWindow::on_joystickHatValueChanged(int hat, int value)
+void MainWindow::joystickHatValueChanged(int hat, int value)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
 #endif
 
    if ( value != 0 )
      mapJoystickFunction(QString("H%1:%2").arg(hat).arg(value));
 }
 
-void MainWindow::on_joystickTrackballValueChanged(int trackball, int deltaX, int deltaY)
+void MainWindow::joystickTrackballValueChanged(int trackball, int deltaX, int deltaY)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
 #endif
 
   mapJoystickFunction(QString("T%1:X%2,Y%3").arg(trackball)
@@ -6732,7 +6732,7 @@ void MainWindow::on_actionAudioPreviousTrack_triggered(bool checked)
 #endif
 
   toolButtonAudioPreviousTrack->setDown(true);
-  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(on_toolButtonAudioPreviousTrack_resetButton()));
+  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioPreviousTrack_resetButton()));
   audioFastForwarding = audioFastBackwarding = false;
   audioSkippingTracks = true;
 
@@ -6765,10 +6765,10 @@ void MainWindow::on_actionAudioPreviousTrack_triggered(bool checked)
   }
 }
 
-void MainWindow::on_toolButtonAudioPreviousTrack_resetButton()
+void MainWindow::toolButtonAudioPreviousTrack_resetButton()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioPreviousTrack_resetButton()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioPreviousTrack_resetButton()");
 #endif
 
   toolButtonAudioPreviousTrack->setDown(false);
@@ -6781,7 +6781,7 @@ void MainWindow::on_actionAudioNextTrack_triggered(bool checked)
 #endif
 
   toolButtonAudioNextTrack->setDown(true);
-  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(on_toolButtonAudioNextTrack_resetButton()));
+  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioNextTrack_resetButton()));
   audioFastForwarding = audioFastBackwarding = false;
   audioSkippingTracks = true;
 
@@ -6814,10 +6814,10 @@ void MainWindow::on_actionAudioNextTrack_triggered(bool checked)
   }
 }
 
-void MainWindow::on_toolButtonAudioNextTrack_resetButton()
+void MainWindow::toolButtonAudioNextTrack_resetButton()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioNextTrack_resetButton()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioNextTrack_resetButton()");
 #endif
 
   toolButtonAudioNextTrack->setDown(false);
@@ -6830,7 +6830,7 @@ void MainWindow::on_actionAudioFastBackward_triggered(bool checked)
 #endif
 
   toolButtonAudioFastBackward->setDown(true);
-  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(on_toolButtonAudioFastBackward_resetButton()));
+  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioFastBackward_resetButton()));
 
   on_toolButtonAudioFastBackward_clicked(checked);
 }
@@ -6850,10 +6850,10 @@ void MainWindow::on_toolButtonAudioFastBackward_clicked(bool checked)
   }
 }
 
-void MainWindow::on_toolButtonAudioFastBackward_resetButton()
+void MainWindow::toolButtonAudioFastBackward_resetButton()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioFastBackward_resetButton()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioFastBackward_resetButton()");
 #endif
 
   toolButtonAudioFastBackward->setDown(false);
@@ -6867,7 +6867,7 @@ void MainWindow::on_actionAudioFastForward_triggered(bool checked)
 #endif
 
   toolButtonAudioFastForward->setDown(true);
-  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(on_toolButtonAudioFastForward_resetButton()));
+  QTimer::singleShot(QMC2_BUTTON_ANIMATION_TIMEOUT, this, SLOT(toolButtonAudioFastForward_resetButton()));
 
   on_toolButtonAudioFastForward_clicked(checked);
 }
@@ -6887,10 +6887,10 @@ void MainWindow::on_toolButtonAudioFastForward_clicked(bool checked)
   }
 }
 
-void MainWindow::on_toolButtonAudioFastForward_resetButton()
+void MainWindow::toolButtonAudioFastForward_resetButton()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioFastForward_resetButton()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::toolButtonAudioFastForward_resetButton()");
 #endif
 
   toolButtonAudioFastForward->setDown(false);
@@ -7279,15 +7279,15 @@ void MainWindow::audioBufferStatus(int percentFilled)
 }
 #else
 void MainWindow::on_actionAudioPreviousTrack_triggered(bool) { ; }
-void MainWindow::on_toolButtonAudioPreviousTrack_resetButton() { ; }
+void MainWindow::toolButtonAudioPreviousTrack_resetButton() { ; }
 void MainWindow::on_actionAudioNextTrack_triggered(bool) { ; }
-void MainWindow::on_toolButtonAudioNextTrack_resetButton() { ; }
+void MainWindow::toolButtonAudioNextTrack_resetButton() { ; }
 void MainWindow::on_actionAudioFastBackward_triggered(bool) { ; }
 void MainWindow::on_toolButtonAudioFastBackward_clicked(bool) { ; }
-void MainWindow::on_toolButtonAudioFastBackward_resetButton() { ; }
+void MainWindow::toolButtonAudioFastBackward_resetButton() { ; }
 void MainWindow::on_actionAudioFastForward_triggered(bool) { ; }
 void MainWindow::on_toolButtonAudioFastForward_clicked(bool) { ; }
-void MainWindow::on_toolButtonAudioFastForward_resetButton() { ; }
+void MainWindow::toolButtonAudioFastForward_resetButton() { ; }
 void MainWindow::on_actionAudioStopTrack_triggered(bool) { ; }
 void MainWindow::on_actionAudioPauseTrack_triggered(bool) { ; }
 void MainWindow::on_actionAudioPlayTrack_triggered(bool) { ; }
@@ -7603,10 +7603,10 @@ void MainWindow::processFifoData()
 #endif
 }
 
-void MainWindow::on_romStateFilterC_toggled(bool on)
+void MainWindow::romStateFilterC_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_romStateFilterC_toggled(bool on = %1)").arg(on));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterC_toggled(bool on = %1)").arg(on));
 #endif
 
   if ( qmc2StatesTogglesEnabled ) {
@@ -7617,10 +7617,10 @@ void MainWindow::on_romStateFilterC_toggled(bool on)
   }
 }
 
-void MainWindow::on_romStateFilterM_toggled(bool on)
+void MainWindow::romStateFilterM_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_romStateFilterM_toggled(bool on = %1)").arg(on));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterM_toggled(bool on = %1)").arg(on));
 #endif
 
   if ( qmc2StatesTogglesEnabled ) {
@@ -7631,10 +7631,10 @@ void MainWindow::on_romStateFilterM_toggled(bool on)
   }
 }
 
-void MainWindow::on_romStateFilterI_toggled(bool on)
+void MainWindow::romStateFilterI_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_romStateFilterI_toggled(bool on = %1)").arg(on));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterI_toggled(bool on = %1)").arg(on));
 #endif
 
   if ( qmc2StatesTogglesEnabled ) {
@@ -7645,10 +7645,10 @@ void MainWindow::on_romStateFilterI_toggled(bool on)
   }
 }
 
-void MainWindow::on_romStateFilterN_toggled(bool on)
+void MainWindow::romStateFilterN_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_romStateFilterN_toggled(bool on = %1)").arg(on));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterN_toggled(bool on = %1)").arg(on));
 #endif
 
   if ( qmc2StatesTogglesEnabled ) {
@@ -7659,10 +7659,10 @@ void MainWindow::on_romStateFilterN_toggled(bool on)
   }
 }
 
-void MainWindow::on_romStateFilterU_toggled(bool on)
+void MainWindow::romStateFilterU_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_romStateFilterU_toggled(bool on = %1)").arg(on));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::romStateFilterU_toggled(bool on = %1)").arg(on));
 #endif
 
   if ( qmc2StatesTogglesEnabled ) {
@@ -7673,10 +7673,10 @@ void MainWindow::on_romStateFilterU_toggled(bool on)
   }
 }
 
-void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
+void MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
   qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(false);
@@ -7766,10 +7766,10 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
   QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
 }
 
-void MainWindow::on_menuTabWidgetGamelist_North_activated()
+void MainWindow::menuTabWidgetGamelist_North_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGamelist_North_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_North_activated()"));
 #endif
 
   tabWidgetGamelist->setTabPosition(QTabWidget::North);
@@ -7777,10 +7777,10 @@ void MainWindow::on_menuTabWidgetGamelist_North_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North);
 }
 
-void MainWindow::on_menuTabWidgetGamelist_South_activated()
+void MainWindow::menuTabWidgetGamelist_South_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGamelist_South_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_South_activated()"));
 #endif
 
   tabWidgetGamelist->setTabPosition(QTabWidget::South);
@@ -7788,10 +7788,10 @@ void MainWindow::on_menuTabWidgetGamelist_South_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::South);
 }
 
-void MainWindow::on_menuTabWidgetGamelist_West_activated()
+void MainWindow::menuTabWidgetGamelist_West_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGamelist_West_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_West_activated()"));
 #endif
 
   tabWidgetGamelist->setTabPosition(QTabWidget::West);
@@ -7799,10 +7799,10 @@ void MainWindow::on_menuTabWidgetGamelist_West_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::West);
 }
 
-void MainWindow::on_menuTabWidgetGamelist_East_activated()
+void MainWindow::menuTabWidgetGamelist_East_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGamelist_East_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGamelist_East_activated()"));
 #endif
 
   tabWidgetGamelist->setTabPosition(QTabWidget::East);
@@ -7822,10 +7822,10 @@ void MainWindow::on_tabWidgetGamelist_customContextMenuRequested(const QPoint &p
   }
 }
 
-void MainWindow::on_menuTabWidgetGameDetail_North_activated()
+void MainWindow::menuTabWidgetGameDetail_North_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_North_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_North_activated()"));
 #endif
 
   tabWidgetGameDetail->setTabPosition(QTabWidget::North);
@@ -7833,10 +7833,10 @@ void MainWindow::on_menuTabWidgetGameDetail_North_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North);
 }
 
-void MainWindow::on_menuTabWidgetGameDetail_South_activated()
+void MainWindow::menuTabWidgetGameDetail_South_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_South_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_South_activated()"));
 #endif
 
   tabWidgetGameDetail->setTabPosition(QTabWidget::South);
@@ -7844,10 +7844,10 @@ void MainWindow::on_menuTabWidgetGameDetail_South_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::South);
 }
 
-void MainWindow::on_menuTabWidgetGameDetail_West_activated()
+void MainWindow::menuTabWidgetGameDetail_West_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_West_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_West_activated()"));
 #endif
 
   tabWidgetGameDetail->setTabPosition(QTabWidget::West);
@@ -7855,10 +7855,10 @@ void MainWindow::on_menuTabWidgetGameDetail_West_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::West);
 }
 
-void MainWindow::on_menuTabWidgetGameDetail_East_activated()
+void MainWindow::menuTabWidgetGameDetail_East_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_East_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_East_activated()"));
 #endif
 
   tabWidgetGameDetail->setTabPosition(QTabWidget::East);
@@ -7866,10 +7866,10 @@ void MainWindow::on_menuTabWidgetGameDetail_East_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::East);
 }
 
-void MainWindow::on_menuTabWidgetGameDetail_Setup_activated()
+void MainWindow::menuTabWidgetGameDetail_Setup_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_Setup_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetGameDetail_Setup_activated()"));
 #endif
 
   if ( !qmc2DetailSetup )
@@ -7907,10 +7907,10 @@ void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint 
   }
 }
 
-void MainWindow::on_menuTabWidgetLogsAndEmulators_North_activated()
+void MainWindow::menuTabWidgetLogsAndEmulators_North_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetLogsAndEmulators_North_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_North_activated()"));
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::North);
@@ -7918,10 +7918,10 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_North_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North);
 }
 
-void MainWindow::on_menuTabWidgetLogsAndEmulators_South_activated()
+void MainWindow::menuTabWidgetLogsAndEmulators_South_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetLogsAndEmulators_South_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_South_activated()"));
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::South);
@@ -7929,10 +7929,10 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_South_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::South);
 }
 
-void MainWindow::on_menuTabWidgetLogsAndEmulators_West_activated()
+void MainWindow::menuTabWidgetLogsAndEmulators_West_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetLogsAndEmulators_West_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_West_activated()"));
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::West);
@@ -7940,10 +7940,10 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_West_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::West);
 }
 
-void MainWindow::on_menuTabWidgetLogsAndEmulators_East_activated()
+void MainWindow::menuTabWidgetLogsAndEmulators_East_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetLogsAndEmulators_East_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetLogsAndEmulators_East_activated()"));
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::East);
@@ -7963,10 +7963,10 @@ void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const Q
   }
 }
 
-void MainWindow::on_menuTabWidgetSoftwareDetail_North_activated()
+void MainWindow::menuTabWidgetSoftwareDetail_North_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_North_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_North_activated()"));
 #endif
 
   tabWidgetSoftwareDetail->setTabPosition(QTabWidget::North);
@@ -7974,10 +7974,10 @@ void MainWindow::on_menuTabWidgetSoftwareDetail_North_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::North);
 }
 
-void MainWindow::on_menuTabWidgetSoftwareDetail_South_activated()
+void MainWindow::menuTabWidgetSoftwareDetail_South_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_South_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_South_activated()"));
 #endif
 
   tabWidgetSoftwareDetail->setTabPosition(QTabWidget::South);
@@ -7985,10 +7985,10 @@ void MainWindow::on_menuTabWidgetSoftwareDetail_South_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::South);
 }
 
-void MainWindow::on_menuTabWidgetSoftwareDetail_West_activated()
+void MainWindow::menuTabWidgetSoftwareDetail_West_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_West_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_West_activated()"));
 #endif
 
   tabWidgetSoftwareDetail->setTabPosition(QTabWidget::West);
@@ -7996,10 +7996,10 @@ void MainWindow::on_menuTabWidgetSoftwareDetail_West_activated()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::West);
 }
 
-void MainWindow::on_menuTabWidgetSoftwareDetail_East_activated()
+void MainWindow::menuTabWidgetSoftwareDetail_East_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_East_activated()"));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::menuTabWidgetSoftwareDetail_East_activated()"));
 #endif
 
   tabWidgetSoftwareDetail->setTabPosition(QTabWidget::East);
@@ -8039,10 +8039,10 @@ void MainWindow::on_vSplitter_customContextMenuRequested(const QPoint &p)
   menuVerticalSplitter->show();
 }
 
-void MainWindow::on_menuHorizontalSplitter_FlipOrientation_activated()
+void MainWindow::menuHorizontalSplitter_FlipOrientation_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuHorizontalSplitter_FlipOrientation_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuHorizontalSplitter_FlipOrientation_activated()");
 #endif
 
   if ( hSplitter->orientation() == Qt::Horizontal )
@@ -8051,19 +8051,19 @@ void MainWindow::on_menuHorizontalSplitter_FlipOrientation_activated()
     hSplitter->setOrientation(Qt::Horizontal);
 }
 
-void MainWindow::on_menuHorizontalSplitter_SwapLayouts_activated()
+void MainWindow::menuHorizontalSplitter_SwapLayouts_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuHorizontalSplitter_SwapLayouts_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuHorizontalSplitter_SwapLayouts_activated()");
 #endif
 
   hSplitter->insertWidget(0, hSplitter->widget(1));
 }
 
-void MainWindow::on_menuVerticalSplitter_FlipOrientation_activated()
+void MainWindow::menuVerticalSplitter_FlipOrientation_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuVerticalSplitter_FlipOrientation_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuVerticalSplitter_FlipOrientation_activated()");
 #endif
 
   if ( vSplitter->orientation() == Qt::Horizontal )
@@ -8072,31 +8072,31 @@ void MainWindow::on_menuVerticalSplitter_FlipOrientation_activated()
     vSplitter->setOrientation(Qt::Horizontal);
 }
 
-void MainWindow::on_menuVerticalSplitter_SwapWidgets_activated()
+void MainWindow::menuVerticalSplitter_SwapWidgets_activated()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuVerticalSplitter_SwapWidgets_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::menuVerticalSplitter_SwapWidgets_activated()");
 #endif
 
   vSplitter->insertWidget(0, vSplitter->widget(1));
 }
 
-void MainWindow::on_treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
+void MainWindow::treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetHierarchy_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
-  on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+  treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
-void MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
+void MainWindow::treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetCategoryView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
-	on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, int column)
@@ -8160,7 +8160,7 @@ void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *c
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		on_treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
@@ -8199,13 +8199,13 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-void MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex)
+void MainWindow::treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::treeWidgetVersionView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
-	on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, int column)
@@ -8266,7 +8266,7 @@ void MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *cu
 	if ( qmc2UpdateDelay > 0 )
 		updateTimer.start(qmc2UpdateDelay);
 	else
-		on_treeWidgetGamelist_itemSelectionChanged_delayed();
+		treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
@@ -10057,7 +10057,7 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 	tabWidgetGamelist->setCurrentIndex(QMC2_SEARCH_INDEX);
 	tabWidgetGamelist->blockSignals(false);
 	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
-	on_comboBoxSearch_editTextChanged_delayed();
+	comboBoxSearch_editTextChanged_delayed();
 }
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
@@ -10137,12 +10137,12 @@ void myQtMessageHandler(QtMsgType type, const char *msg)
 
   if ( qmc2GuiReady )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
-#if defined(QMC2_DEBUG)
+//#if defined(QMC2_DEBUG)
   else {
     printf("%s\n", (const char *)msgString.toLocal8Bit());
     fflush(stdout);
   }
-#endif
+//#endif
 }
 
 void prepareShortcuts()
@@ -10435,23 +10435,23 @@ int main(int argc, char *argv[])
   // export/import menus
   qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
 #if defined(QMC2_EMUTYPE_MAME)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #elif defined(QMC2_EMUTYPE_MESS)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #elif defined(QMC2_EMUTYPE_UME)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #endif
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile);
   qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
 #if defined(QMC2_EMUTYPE_MAME)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #elif defined(QMC2_EMUTYPE_MESS)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #elif defined(QMC2_EMUTYPE_MESS)
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/ume.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #endif
-  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
+  QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
   qmc2GlobalEmulatorOptions->pseudoConstructor();
 

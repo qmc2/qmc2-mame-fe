@@ -239,7 +239,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
     // search widget
     void on_comboBoxSearch_editTextChanged(const QString &);
-    void on_comboBoxSearch_editTextChanged_delayed();
+    void comboBoxSearch_editTextChanged_delayed();
     void on_comboBoxSearch_activated(const QString &);
     void on_listWidgetSearch_currentTextChanged(QString);
     void on_listWidgetSearch_itemActivated(QListWidgetItem *);
@@ -270,31 +270,31 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_vSplitter_customContextMenuRequested(const QPoint &);
 
     // splitter flip/swap callbacks
-    void on_menuHorizontalSplitter_FlipOrientation_activated();
-    void on_menuHorizontalSplitter_SwapLayouts_activated();
-    void on_menuVerticalSplitter_FlipOrientation_activated();
-    void on_menuVerticalSplitter_SwapWidgets_activated();
+    void menuHorizontalSplitter_FlipOrientation_activated();
+    void menuHorizontalSplitter_SwapLayouts_activated();
+    void menuVerticalSplitter_FlipOrientation_activated();
+    void menuVerticalSplitter_SwapWidgets_activated();
 
     // joystick functions
 #if QMC2_JOYSTICK == 1
-    void on_joystickAxisValueChanged(int, int);
-    void on_joystickButtonValueChanged(int, bool);
-    void on_joystickHatValueChanged(int, int);
-    void on_joystickTrackballValueChanged(int, int, int);
+    void joystickAxisValueChanged(int, int);
+    void joystickButtonValueChanged(int, bool);
+    void joystickHatValueChanged(int, int);
+    void joystickTrackballValueChanged(int, int, int);
     void mapJoystickFunction(QString);
 #endif
 
     // audio player functions
     void on_actionAudioPreviousTrack_triggered(bool checked = false);
-    void on_toolButtonAudioPreviousTrack_resetButton();
+    void toolButtonAudioPreviousTrack_resetButton();
     void on_actionAudioNextTrack_triggered(bool checked = false);
-    void on_toolButtonAudioNextTrack_resetButton();
+    void toolButtonAudioNextTrack_resetButton();
     void on_actionAudioFastBackward_triggered(bool checked = false);
     void on_toolButtonAudioFastBackward_clicked(bool checked = false);
-    void on_toolButtonAudioFastBackward_resetButton();
+    void toolButtonAudioFastBackward_resetButton();
     void on_actionAudioFastForward_triggered(bool checked = false);
     void on_toolButtonAudioFastForward_clicked(bool checked = false);
-    void on_toolButtonAudioFastForward_resetButton();
+    void toolButtonAudioFastForward_resetButton();
     void on_actionAudioStopTrack_triggered(bool checked = false);
     void on_actionAudioPauseTrack_triggered(bool checked = false);
     void on_actionAudioPlayTrack_triggered(bool checked = false);
@@ -318,11 +318,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_checkBoxRemoveFinishedDownloads_stateChanged(int);
 
     // ROM state filter toggles
-    void on_romStateFilterC_toggled(bool);
-    void on_romStateFilterM_toggled(bool);
-    void on_romStateFilterI_toggled(bool);
-    void on_romStateFilterN_toggled(bool);
-    void on_romStateFilterU_toggled(bool);
+    void romStateFilterC_toggled(bool);
+    void romStateFilterM_toggled(bool);
+    void romStateFilterI_toggled(bool);
+    void romStateFilterN_toggled(bool);
+    void romStateFilterU_toggled(bool);
 
     // arcade mode actions and functions
     void on_actionArcadeShowFPS_toggled(bool);
@@ -330,23 +330,23 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void destroyArcadeView();
 
     // tab widget position callbacks
-    void on_menuTabWidgetGamelist_North_activated();
-    void on_menuTabWidgetGamelist_South_activated();
-    void on_menuTabWidgetGamelist_West_activated();
-    void on_menuTabWidgetGamelist_East_activated();
-    void on_menuTabWidgetGameDetail_North_activated();
-    void on_menuTabWidgetGameDetail_South_activated();
-    void on_menuTabWidgetGameDetail_West_activated();
-    void on_menuTabWidgetGameDetail_East_activated();
-    void on_menuTabWidgetGameDetail_Setup_activated();
-    void on_menuTabWidgetLogsAndEmulators_North_activated();
-    void on_menuTabWidgetLogsAndEmulators_South_activated();
-    void on_menuTabWidgetLogsAndEmulators_West_activated();
-    void on_menuTabWidgetLogsAndEmulators_East_activated();
-    void on_menuTabWidgetSoftwareDetail_North_activated();
-    void on_menuTabWidgetSoftwareDetail_South_activated();
-    void on_menuTabWidgetSoftwareDetail_West_activated();
-    void on_menuTabWidgetSoftwareDetail_East_activated();
+    void menuTabWidgetGamelist_North_activated();
+    void menuTabWidgetGamelist_South_activated();
+    void menuTabWidgetGamelist_West_activated();
+    void menuTabWidgetGamelist_East_activated();
+    void menuTabWidgetGameDetail_North_activated();
+    void menuTabWidgetGameDetail_South_activated();
+    void menuTabWidgetGameDetail_West_activated();
+    void menuTabWidgetGameDetail_East_activated();
+    void menuTabWidgetGameDetail_Setup_activated();
+    void menuTabWidgetLogsAndEmulators_North_activated();
+    void menuTabWidgetLogsAndEmulators_South_activated();
+    void menuTabWidgetLogsAndEmulators_West_activated();
+    void menuTabWidgetLogsAndEmulators_East_activated();
+    void menuTabWidgetSoftwareDetail_North_activated();
+    void menuTabWidgetSoftwareDetail_South_activated();
+    void menuTabWidgetSoftwareDetail_West_activated();
+    void menuTabWidgetSoftwareDetail_East_activated();
 
     // memory indicator
     void memoryUpdateTimer_timeout();
@@ -356,38 +356,38 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void retry_tabWidgetGameDetail_currentChanged() { on_tabWidgetGameDetail_currentChanged(retry_tabWidgetGameDetail_currentIndex); };
     void on_tabWidgetGamelist_currentChanged(int);
     void on_tabWidgetLogsAndEmulators_currentChanged(int);
-    void on_tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };
+    void tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };
     void on_tabWidgetSoftwareDetail_currentChanged(int);
-    void on_tabWidgetSoftwareDetail_updateCurrent() { on_tabWidgetSoftwareDetail_currentChanged(tabWidgetSoftwareDetail->currentIndex()); };
+    void tabWidgetSoftwareDetail_updateCurrent() { on_tabWidgetSoftwareDetail_currentChanged(tabWidgetSoftwareDetail->currentIndex()); };
     void on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem *, int); 
     void on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *);
     void on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetGamelist_itemSelectionChanged();
-    void on_treeWidgetGamelist_itemSelectionChanged_delayed();
+    void treeWidgetGamelist_itemSelectionChanged_delayed();
     void on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetHierarchy_itemSelectionChanged();
     void on_stackedWidgetView_currentChanged(int);
-    void on_pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName = QString());
-    void on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked();
-    void on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
-    void on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked();
-    void on_pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName = QString());
-    void on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked();
-    void on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
-    void on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
+    void pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName = QString());
+    void pushButtonGlobalEmulatorOptionsSelectExportFile_clicked();
+    void pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
+    void pushButtonGlobalEmulatorOptionsSelectImportFile_clicked();
+    void pushButtonCurrentEmulatorOptionsExportToFile_clicked(QString useFileName = QString());
+    void pushButtonCurrentEmulatorOptionsSelectExportFile_clicked();
+    void pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
+    void pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
     void action_embedEmulator_triggered();
     void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
-    void on_embedderOptions_toggled(bool);
+    void embedderOptions_toggled(bool);
     void closeEmbeddedEmuTab();
-    void on_toolButtonEmbedderMaximizeToggle_toggled(bool);
-    void on_embedderOptionsMenu_KillEmulator_activated();
-    void on_embedderOptionsMenu_TerminateEmulator_activated();
-    void on_embedderOptionsMenu_ToFavorites_activated();
-    void on_embedderOptionsMenu_CopyCommand_activated();
+    void toolButtonEmbedderMaximizeToggle_toggled(bool);
+    void embedderOptionsMenu_KillEmulator_activated();
+    void embedderOptionsMenu_TerminateEmulator_activated();
+    void embedderOptionsMenu_ToFavorites_activated();
+    void embedderOptionsMenu_CopyCommand_activated();
 #endif
 #if defined(Q_WS_X11)
     void action_embedderScanPauseKey_triggered();
@@ -422,7 +422,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *, int);
-    void on_treeWidgetCategoryView_headerSectionClicked(int);
+    void treeWidgetCategoryView_headerSectionClicked(int);
     void on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *, int);
     void on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
@@ -432,7 +432,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     void on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *, int);
-    void on_treeWidgetVersionView_headerSectionClicked(int);
+    void treeWidgetVersionView_headerSectionClicked(int);
     void on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *, int);
     void on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
@@ -463,8 +463,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_hSplitter_splitterMoved(int, int);
     void on_comboBoxViewSelect_currentIndexChanged(int);
     void processEvents() { qApp->processEvents(); }
-    void on_treeWidgetGamelist_headerSectionClicked(int);
-    void on_treeWidgetHierarchy_headerSectionClicked(int);
+    void treeWidgetGamelist_headerSectionClicked(int);
+    void treeWidgetHierarchy_headerSectionClicked(int);
 #if defined(QMC2_EMUTYPE_MESS)
     QString &messWikiToHtml(QString &);
 #endif
@@ -472,7 +472,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonClearFinishedDownloads_clicked();
     void on_pushButtonReloadSelectedDownloads_clicked();
     void on_pushButtonStopSelectedDownloads_clicked();
-    void on_emuSelector_currentIndexChanged(const QString &);
+    void emuSelector_currentIndexChanged(const QString &);
     void checkActivity();
     void enableContextMenuPlayActions(bool);
     void softwareLoadInterrupted();
