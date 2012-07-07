@@ -1018,17 +1018,15 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", checkBoxMinimizeOnVariantLaunch->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", checkBoxExitOnVariantLaunch->isChecked());
 #endif
+
 #if defined(QMC2_MEMORY_INFO_ENABLED)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", checkBoxMemoryIndicator->isChecked());
   if ( checkBoxMemoryIndicator->isChecked() ) {
-    qmc2MainWindow->progressBarMemory->setRange(0, 100);
-    qmc2MainWindow->on_memoryUpdateTimer_timeout();
-    qmc2MainWindow->progressBarMemory->setVisible(true);
-    connect(&qmc2MainWindow->memoryUpdateTimer, SIGNAL(timeout()), qmc2MainWindow, SLOT(on_memoryUpdateTimer_timeout()));
     qmc2MainWindow->memoryUpdateTimer.start(QMC2_MEMORY_UPDATE_TIME);
+    qmc2MainWindow->progressBarMemory->setVisible(true);
+    qmc2MainWindow->memoryUpdateTimer_timeout();
   } else {
     qmc2MainWindow->memoryUpdateTimer.stop();
-    disconnect(&qmc2MainWindow->memoryUpdateTimer);
     qmc2MainWindow->progressBarMemory->setVisible(false);
   }
 #endif

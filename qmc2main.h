@@ -348,10 +348,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_menuTabWidgetSoftwareDetail_West_activated();
     void on_menuTabWidgetSoftwareDetail_East_activated();
 
-#if defined(QMC2_MEMORY_INFO_ENABLED)
     // memory indicator
-    void on_memoryUpdateTimer_timeout();
-#endif
+    void memoryUpdateTimer_timeout();
 
     // other
     void on_tabWidgetGameDetail_currentChanged(int);
