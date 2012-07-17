@@ -950,6 +950,11 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 			xmlReader->readNext();
 	}
 
+	if ( !validChoices.isEmpty() ) {
+		validChoices.removeDuplicates();
+		qSort(validChoices.begin(), validChoices.end(), MainWindow::qStringListLessThan);
+	}
+
 	return validChoices;
 }
 

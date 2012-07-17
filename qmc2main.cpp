@@ -4253,6 +4253,18 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 }
 
+bool MainWindow::qStringListLessThan(const QString &s1, const QString &s2)
+{
+	quint64 n1, n2;
+	bool n1Ok, n2Ok;
+       	n1 = s1.toULong(&n1Ok);
+       	n2 = s2.toULong(&n2Ok);
+	if ( n1Ok && n2Ok )
+		return n1 < n2;
+	else
+		return s1.toLower() < s2.toLower();
+}
+
 QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, QString optionAttribute)
 {
 #ifdef QMC2_DEBUG
@@ -4309,8 +4321,11 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 			}
 		}
 	}
-	if ( !xmlChoices.isEmpty() )
+	if ( !xmlChoices.isEmpty() ) {
+		xmlChoices.removeDuplicates();
+		qSort(xmlChoices.begin(), xmlChoices.end(), qStringListLessThan);
 		xmlChoices.insert(0, QString());
+	}
 	return xmlChoices;
 }
 
