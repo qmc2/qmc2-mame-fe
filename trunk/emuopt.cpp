@@ -436,9 +436,9 @@ void EmulatorOptions::pseudoConstructor()
     header()->resizeSections(QHeaderView::Custom);
     header()->resizeSection(0, qmc2Config->value(settingsGroup + "/OptionColumnWidth", 200).toInt());
     header()->restoreState(qmc2Config->value(settingsGroup + "/HeaderState").toByteArray());
-  } else {
-    header()->setMovable(false);
   }
+
+  header()->setMovable(false);
 }
 
 void EmulatorOptions::pseudoDestructor()

@@ -4048,7 +4048,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         layout->addLayout(emuSelectorLayout);
         connect(comboBoxEmuSelector, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(emuSelector_currentIndexChanged(const QString &)));
 
-        // (default) emulator options
+        // emulator options
         qmc2EmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/" + gameName, configWidget);
         qmc2EmulatorOptions->load();
 
@@ -10447,9 +10447,6 @@ int main(int argc, char *argv[])
   buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
   layout->addLayout(buttonLayout);
   qmc2Options->tabGlobalConfiguration->setLayout(layout);
-  qmc2GlobalEmulatorOptions->show();
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->show();
-  qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->show();
   // export/import menus
   qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
 #if defined(QMC2_EMUTYPE_MAME)
