@@ -1476,6 +1476,9 @@ void MainWindow::action_foreignIDsMenuItem_triggered()
 		// 0:emuName -- 1:id -- 2:description 
 		foreignEmuName = foreignInfo[0];
 		foreignID = foreignInfo[1];
+		// foreign IDs main contain white-space, which need to be quoted then
+		if ( foreignID.contains(QRegExp("\\s")) )
+			foreignID = "\"" + foreignID + "\"";
 		foreignDescription = foreignInfo[2];
 #ifdef QMC2_DEBUG
 		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::action_foreignIDsMenuItem_triggered(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
