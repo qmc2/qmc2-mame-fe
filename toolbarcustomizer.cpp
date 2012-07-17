@@ -252,7 +252,7 @@ void ToolBarCustomizer::on_pushButtonActionUp_clicked()
 				QListWidgetItem *takenItem = listWidgetActiveActions->takeItem(row);
 				if ( takenItem ) {
 					listWidgetActiveActions->insertItem(row - 1, takenItem);
-					takenItem->setSelected(true);
+					listWidgetActiveActions->setCurrentItem(takenItem);
 				}
 			}
 			listWidgetActiveActions->scrollToItem(item);
@@ -273,7 +273,7 @@ void ToolBarCustomizer::on_pushButtonActionDown_clicked()
 				QListWidgetItem *takenItem = listWidgetActiveActions->takeItem(row);
 				if ( takenItem ) {
 					listWidgetActiveActions->insertItem(row + 1, takenItem);
-					takenItem->setSelected(true);
+					listWidgetActiveActions->setCurrentItem(takenItem);
 				}
 			}
 			listWidgetActiveActions->scrollToItem(item);
@@ -287,8 +287,14 @@ void ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()");
 #endif
 
-	QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
-	item->setText(tr("-- Separator --"));
+	QListWidgetItem *item = new QListWidgetItem(tr("-- Separator --"));
+	if ( listWidgetActiveActions->selectedItems().isEmpty() )
+		listWidgetActiveActions->insertItem(0, item);
+	else
+		listWidgetActiveActions->insertItem(listWidgetActiveActions->currentRow() + 1, item);
+	listWidgetActiveActions->reset();
+	listWidgetActiveActions->setCurrentItem(item);
+	listWidgetActiveActions->scrollToItem(item);
 	activeToolBarActions[item] = separatorAction;
 }
 
