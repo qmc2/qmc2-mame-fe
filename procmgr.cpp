@@ -268,9 +268,10 @@ void ProcessManager::started()
   procItem->setText(QMC2_EMUCONTROL_COLUMN_PID, QString::number((quint64)(proc->pid())));
   procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
   procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
-  if ( launchForeignID )
-    procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2MainWindow->foreignID);
-  else
+  if ( launchForeignID ) {
+    if ( !qmc2MainWindow->foreignID.isEmpty() ) 
+      procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2MainWindow->foreignID.split(" ", QString::SkipEmptyParts)[0]);
+  } else
     procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2DriverName);
 #if defined(Q_WS_WIN)
   QString emuCommandLine = lastCommand;

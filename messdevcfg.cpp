@@ -334,6 +334,8 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", toolButtonChooserProcessZIPs->isChecked());
 	if ( !fileChooserHeaderState.isEmpty() )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
+	if ( !dirChooserHeaderState.isEmpty() )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DirChooserHeaderState", dirChooserHeaderState);
 	if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
 }
@@ -1460,13 +1462,19 @@ void MESSDeviceConfigurator::setupFileChooser()
 	if ( path.isEmpty() )
 		path = QDir::rootPath();
 
-	dirModel = new QFileSystemModel(this);
+	dirModel = new DirectoryModel(this);
 	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive);
 	dirModel->setRootPath(QDir::rootPath());
 	treeViewDirChooser->setModel(dirModel);
 	treeViewDirChooser->setCurrentIndex(dirModel->index(path));
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--) treeViewDirChooser->setColumnHidden(i, true);
-	treeViewDirChooser->setHeaderHidden(true);
+	treeViewDirChooser->setSortingEnabled(true);
+	treeViewDirChooser->header()->setMovable(false);
+	treeViewDirChooser->header()->setStretchLastSection(true);
+	treeViewDirChooser->header()->setResizeMode(QHeaderView::Stretch);
+  	treeViewDirChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DirChooserHeaderState").toByteArray());
+	treeViewDirChooser->sortByColumn(0, treeViewDirChooser->header()->sortIndicatorOrder());
+	treeViewDirChooser->updateGeometry();
 
 #if !defined(QMC2_ALTERNATE_FSM)
 	fileModel = new QFileSystemModel(this);
@@ -1491,6 +1499,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
 	treeViewFileChooser->setModel(fileModel);
   	treeViewFileChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray());
+	connect(treeViewDirChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewDirChooser_headerClicked(int)));
 	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
 	connect(treeViewFileChooser->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewFileChooser_sectionMoved(int, int, int)));
 	connect(treeViewFileChooser->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(treeViewFileChooser_sectionResized(int, int, int)));
@@ -1736,6 +1745,12 @@ void MESSDeviceConfigurator::treeViewFileChooser_expandRequested()
 			}
 		}
 	}
+}
+
+void MESSDeviceConfigurator::treeViewDirChooser_headerClicked(int)
+{
+	dirChooserHeaderState = treeViewDirChooser->header()->saveState();
+  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DirChooserHeaderState", dirChooserHeaderState);
 }
 
 void MESSDeviceConfigurator::treeViewFileChooser_headerClicked(int)
