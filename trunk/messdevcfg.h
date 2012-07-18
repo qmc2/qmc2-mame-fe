@@ -4,10 +4,7 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QXmlDefaultHandler>
-#include <QFileSystemModel>
-#if defined(QMC2_ALTERNATE_FSM)
 #include "filesystemmodel.h"
-#endif
 
 #include "ui_messdevcfg.h"
 
@@ -73,6 +70,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QMenu *fileChooserContextMenu;
 		QAction *actionRemoveConfiguration;
 		QByteArray fileChooserHeaderState;
+		QByteArray dirChooserHeaderState;
 #if defined(QMC2_ALTERNATE_FSM)
 		QAction *actionChooserToggleArchive;
 		QTimer searchTimer;
@@ -82,7 +80,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 #else
 		QFileSystemModel *fileModel;
 #endif
-		QFileSystemModel *dirModel;
+		DirectoryModel *dirModel;
 		QModelIndex modelIndexFileModel;
 		QModelIndex modelIndexDirModel;
 		QString normalXmlBuffer;
@@ -136,6 +134,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void dirChooserDelayedInit();
 		void fileModel_rowsInserted(const QModelIndex &, int, int);
 		void fileModel_finished();
+		void treeViewDirChooser_headerClicked(int);
 		void treeViewFileChooser_headerClicked(int);
 		void treeViewFileChooser_sectionMoved(int, int, int);
 		void treeViewFileChooser_sectionResized(int, int, int);

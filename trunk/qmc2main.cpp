@@ -1476,9 +1476,6 @@ void MainWindow::action_foreignIDsMenuItem_triggered()
 		// 0:emuName -- 1:id -- 2:description 
 		foreignEmuName = foreignInfo[0];
 		foreignID = foreignInfo[1];
-		// foreign IDs main contain white-space, which need to be quoted then
-		if ( foreignID.contains(QRegExp("\\s")) )
-			foreignID = "\"" + foreignID + "\"";
 		foreignDescription = foreignInfo[2];
 #ifdef QMC2_DEBUG
 		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::action_foreignIDsMenuItem_triggered(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
@@ -1562,10 +1559,17 @@ void MainWindow::on_actionPlay_triggered(bool)
   if ( registeredEmulators.count() > 0 ) {
 #endif
     if ( launchForeignID ) {
-        foreignEmulator = true;
+	foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName)).toString();
         QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName)).toString();
-        QStringList emuArgs = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription).split(" ", QString::SkipEmptyParts);
+        QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
+        QStringList emuArgs;
+        QRegExp rx("([^ ]+|\"[^\"]+\")");
+        int i = 0;
+        while ( (i = rx.indexIn(s, i)) != -1 ) {
+		emuArgs << rx.cap(1).remove(QRegExp("^\"")).remove(QRegExp("\"$"));
+		i += rx.matchedLength();
+        }
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
     } else if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
       QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
@@ -1573,7 +1577,14 @@ void MainWindow::on_actionPlay_triggered(bool)
         foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
         QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator)).toString();
-        QStringList emuArgs = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]).split(" ", QString::SkipEmptyParts);
+	QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]);
+        QStringList emuArgs;
+        QRegExp rx("([^ ]+|\"[^\"]+\")");
+        int i = 0;
+        while ( (i = rx.indexIn(s, i)) != -1 ) {
+		emuArgs << rx.cap(1).remove(QRegExp("^\"")).remove(QRegExp("\"$"));
+		i += rx.matchedLength();
+        }
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
       }
     }

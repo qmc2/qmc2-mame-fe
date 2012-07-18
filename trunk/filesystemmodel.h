@@ -6,7 +6,7 @@
 #include <QDateTime>
 #include <QFileIconProvider>
 #include <QAbstractItemModel>
-#include <QSortFilterProxyModel>
+#include <QFileSystemModel>
 #include <QApplication>
 #include <QThread>
 #include <QMutex>
@@ -20,6 +20,28 @@
 #include <time.h>
 
 #define QMC2_DIRENTRY_THRESHOLD		250
+
+class DirectoryModel : public QFileSystemModel
+{
+	Q_OBJECT
+
+	public:
+		DirectoryModel(QObject *parent = 0) : QFileSystemModel(parent) {}
+
+		virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const
+		{
+			if ( orientation == Qt::Horizontal ) {
+				switch ( role ) {
+					case Qt::DisplayRole:
+						return tr("Folders");
+					case Qt::TextAlignmentRole:
+						return Qt::AlignLeft;
+				}
+			}
+
+			return QVariant();
+		}
+};
 
 class DirectoryScannerThread : public QThread
 {
