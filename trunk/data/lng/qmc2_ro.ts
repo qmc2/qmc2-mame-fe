@@ -2109,7 +2109,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DirectoryModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="36"/>
+        <location filename="../../filesystemmodel.h" line="37"/>
+        <source>Drives / Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../filesystemmodel.h" line="39"/>
         <source>Folders</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2636,40 +2641,40 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="296"/>
+        <location filename="../../filesystemmodel.h" line="300"/>
         <source>Name</source>
         <translation>Nume</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="296"/>
+        <location filename="../../filesystemmodel.h" line="300"/>
         <source>Size</source>
         <translation>Marima</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="296"/>
+        <location filename="../../filesystemmodel.h" line="300"/>
         <source>Date modified</source>
         <translation>Data modificarii</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="486"/>
-        <location filename="../../filesystemmodel.h" line="500"/>
+        <location filename="../../filesystemmodel.h" line="490"/>
+        <location filename="../../filesystemmodel.h" line="504"/>
         <source> KB</source>
         <translation> KB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="489"/>
-        <location filename="../../filesystemmodel.h" line="503"/>
+        <location filename="../../filesystemmodel.h" line="493"/>
+        <location filename="../../filesystemmodel.h" line="507"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="492"/>
-        <location filename="../../filesystemmodel.h" line="506"/>
+        <location filename="../../filesystemmodel.h" line="496"/>
+        <location filename="../../filesystemmodel.h" line="510"/>
         <source> GB</source>
         <translation> GB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="495"/>
+        <location filename="../../filesystemmodel.h" line="499"/>
         <source> TB</source>
         <translation> TB</translation>
     </message>
