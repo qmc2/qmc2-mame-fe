@@ -33,7 +33,7 @@ class DirectoryModel : public QFileSystemModel
 			if ( orientation == Qt::Horizontal ) {
 				switch ( role ) {
 					case Qt::DisplayRole:
-#if defined(Q_OS_WIM)
+#if defined(Q_OS_WIN)
 						return tr("Drives / Folders");
 #else
 						return tr("Folders");
