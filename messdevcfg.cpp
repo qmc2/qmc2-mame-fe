@@ -1464,7 +1464,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 
 	dirModel = new DirectoryModel(this);
 	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive);
-	dirModel->setRootPath(QDir::rootPath());
+	dirModel->setRootPath(dirModel->myComputer().toString());
 	treeViewDirChooser->setModel(dirModel);
 	treeViewDirChooser->setCurrentIndex(dirModel->index(path));
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--) treeViewDirChooser->setColumnHidden(i, true);
