@@ -694,7 +694,7 @@ ifeq '$(QMAKEV)' '2'
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
-ifeq '$(XCODE)' '0'
+ifeq '$(XCODE3)' '0'
 QT_LIBTMP = $(shell echo $(QT_LIBVERSION) | tr "." " " )
 QT_LIBMAJ = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
 QT_LIBMIN = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
