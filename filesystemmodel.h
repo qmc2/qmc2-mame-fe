@@ -264,7 +264,7 @@ class FileSystemItem : public QObject
 				case NAME:
 				default: {
 						QMap<QString, FileSystemItem *> map;
-						foreach (FileSystemItem *item, mFiles) map.insert(item->fileName(), item);
+						foreach (FileSystemItem *item, mFiles) map.insert(item->fileName().toLower(), item);
 						mFiles = map.values();
 					}
 					break;
