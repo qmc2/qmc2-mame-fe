@@ -263,7 +263,7 @@ class FileSystemItem : public QObject
 				//case TYPE:
 				case NAME:
 				default: {
-						QMap<QString, FileSystemItem *> map;
+						QMultiMap<QString, FileSystemItem *> map;
 						foreach (FileSystemItem *item, mFiles) map.insert(item->fileName().toLower(), item);
 						mFiles = map.values();
 					}
