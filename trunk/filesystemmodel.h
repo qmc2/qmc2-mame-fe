@@ -142,7 +142,7 @@ class FileSystemItem : public QObject
 	Q_OBJECT
 
 	public:
-		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
+		enum Column {NAME, SIZE, DATE, LASTCOLUMN};
 
 		FileSystemItem(QString path, FileSystemItem *parent = 0, bool archiveMember = false, quint64 uncompressedSize = 0, QDateTime entryDate = QDateTime()) : QObject(parent)
 		{
@@ -260,7 +260,6 @@ class FileSystemItem : public QObject
 						mFiles = map.values();
 					}
 					break;
-				//case TYPE:
 				case NAME:
 				default: {
 						QMultiMap<QString, FileSystemItem *> map;
@@ -292,7 +291,7 @@ class FileSystemModel : public QAbstractItemModel
 	Q_OBJECT
 
 	public:
-		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
+		enum Column {NAME, SIZE, DATE, LASTCOLUMN};
 		DirectoryScannerThread *dirScanner;
 
 		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
@@ -455,16 +454,10 @@ class FileSystemModel : public QAbstractItemModel
 				case SIZE:
 					data = humanReadable(item->fileSize());
 					break;
-				/*
-				case TYPE:
-					data = mIconFactory->type(item->fileInfo());
-					break;
-				*/
 				case DATE:
 					data = item->fileDate().toString(Qt::LocalDate);
 					break;
 				default:
-					QVariant();
 					break;
 			}
 
