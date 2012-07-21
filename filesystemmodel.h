@@ -106,8 +106,6 @@ class DirectoryScannerThread : public QThread
 								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
 #endif
 							dirEntries.clear();
-							//QThread::yieldCurrentThread();
-							//QTest::qSleep(1);
 						}
 					}
 					if ( !stopScanning && !quitFlag ) {

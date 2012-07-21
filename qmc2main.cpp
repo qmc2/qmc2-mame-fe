@@ -1706,24 +1706,17 @@ void MainWindow::on_actionPlay_triggered(bool)
 				if ( selectionModel )
 					indexList = selectionModel->selectedIndexes();
 				if ( indexList.count() > 0 && instance != tr("No devices available") ) {
-#if !defined(QMC2_ALTERNATE_FSM)
-					QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(indexList[0]).absoluteFilePath();
-#else
-					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
-#endif
-
-#if defined(Q_WS_WIN)
-					args << QString("-%1").arg(instance) << file.replace('/', '\\');
-#else
-					args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
-#endif
 					QList<QTreeWidgetItem *> allSlotItems = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
 					foreach (QTreeWidgetItem *item, allSlotItems) {
-						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 						if ( !slotName.isEmpty() ) {
 							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
-								int defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								int defaultIndex = -1;
+								if ( qmc2MESSDeviceConfigurator->slotPreselectionMap.contains(cb) )
+									defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								else if ( qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
+									defaultIndex = qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap[cb];
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
@@ -1733,6 +1726,16 @@ void MainWindow::on_actionPlay_triggered(bool)
 							}
 						}
 					}
+#if !defined(QMC2_ALTERNATE_FSM)
+					QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(indexList[0]).absoluteFilePath();
+#else
+					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
+#endif
+#if defined(Q_WS_WIN)
+					args << QString("-%1").arg(instance) << file.replace('/', '\\');
+#else
+					args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
+#endif
 				}
 			}
 			break;
@@ -1743,26 +1746,46 @@ void MainWindow::on_actionPlay_triggered(bool)
 					// make sure the currently edited data is up to date
 					qmc2MESSDeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
 					if ( qmc2MESSDeviceConfigurator->configurationMap.contains(configName) ) {
-						QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
+						QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
 						int i;
+						for (i = 0; i < valuePair.first.count(); i++) {
+							QString slotName = valuePair.first[i];
+							QString slotOption = valuePair.second[i];
+							QComboBox *cb = qmc2MESSDeviceConfigurator->comboBoxByName(slotName);
+							if ( cb ) {
+								int defaultIndex = -1;
+								if ( qmc2MESSDeviceConfigurator->slotPreselectionMap.contains(cb) )
+									defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								else if ( qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
+									defaultIndex = qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap[cb];
+								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
+									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
+									args << QString("-%1").arg(slotName) << "\"\"";
+								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
+									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+							}
+						}
+						valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
 						for (i = 0; i < valuePair.first.count(); i++)
 #if defined(Q_WS_WIN)
 							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
 #else
 							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
 #endif
-						valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
-						for (i = 0; i < valuePair.first.count(); i++)
-							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i];
 					}
 				} else {
 					QList<QTreeWidgetItem *> allSlotItems = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
 					foreach (QTreeWidgetItem *item, allSlotItems) {
-						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 						if ( !slotName.isEmpty() ) {
 							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
-								int defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								int defaultIndex = -1;
+								if ( qmc2MESSDeviceConfigurator->slotPreselectionMap.contains(cb) )
+									defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								else if ( qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
+									defaultIndex = qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap[cb];
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
@@ -9875,9 +9898,6 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 	QStringList wikiLines = wikiText.split("<p>");
 	wikiText.clear();
 	foreach (QString wikiLine, wikiLines) {
-		// DEBUG
-		//printf("wikiLine = [%s]\n", (const char *)wikiLine.toAscii()); fflush(stdout);
-		// DEBUG
 		QString wikiLineTrimmed = wikiLine.trimmed();
 		if ( wikiLine.indexOf(QRegExp("\\s*<code>")) == 0 ) {
 			codeOn = true;
@@ -10166,12 +10186,10 @@ void myQtMessageHandler(QtMsgType type, const char *msg)
 
   if ( qmc2GuiReady )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
-//#if defined(QMC2_DEBUG)
   else {
     printf("%s\n", (const char *)msgString.toLocal8Bit());
     fflush(stdout);
   }
-//#endif
 }
 
 void prepareShortcuts()
