@@ -2097,8 +2097,40 @@ void MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 					QStringList files;
 					instances << instance;
 					files << file;
+
+					// save device instances
 					configurationMap[targetName].first = instances;
 					configurationMap[targetName].second = files;
+
+					// save slot setup
+					QList<QTreeWidgetItem *> allSlotItems = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+					QStringList slotNames, slotOptions;
+					foreach (QTreeWidgetItem *item, allSlotItems) {
+						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+						if ( !slotName.isEmpty() ) {
+							QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+							if ( cb ) {
+								int defaultIndex = -1;
+								if ( slotPreselectionMap.contains(cb) )
+									defaultIndex = slotPreselectionMap[cb];
+								else if ( nestedSlotPreselectionMap.contains(cb) )
+									defaultIndex = nestedSlotPreselectionMap[cb];
+								if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
+									slotNames << slotName;
+									slotOptions << cb->currentText().split(" ")[0];
+								} else if (cb->currentIndex() == 0 && defaultIndex > 0 ) {
+									slotNames << slotName;
+									slotOptions << "\"\"";
+								} else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex ) {
+									slotNames << slotName;
+									slotOptions << cb->currentText().split(" ")[0];
+								}
+							}
+						}
+					}
+					slotMap[targetName].first = slotNames;
+					slotMap[targetName].second = slotOptions;
+
 					listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
 					goOn = false;
 				}
