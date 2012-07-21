@@ -810,6 +810,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for '%1'").arg(messMachineName));
 		return false;
 	}
+	treeWidgetDeviceSetup->sortItems(QMC2_DEVCONFIG_COLUMN_NAME, Qt::AscendingOrder);
 
 	// update (nested) slots
 	QStringList oldNestedSlots = nestedSlots;
@@ -848,6 +849,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 
 	allSlots = xmlHandler.allSlots;
 	checkRemovedSlots();
+	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
 
 	// update file-chooser's device instance selector
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
