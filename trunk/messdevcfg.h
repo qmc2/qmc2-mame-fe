@@ -37,6 +37,10 @@ class MESSDeviceConfiguratorXmlHandler : public QXmlDefaultHandler
 		QStringList deviceInstances;
 		QStringList deviceExtensions;
 		QString slotName;
+		QStringList newSlots;
+		QStringList allSlots;
+		QMap<QString, QStringList> newSlotOptions;
+		QMap<QString, QString> newSlotDevices;
 		QMap<QString, QString> defaultSlotOptions;
 
 		MESSDeviceConfiguratorXmlHandler(QTreeWidget *);
@@ -57,6 +61,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool updateSlots;
 		bool isLoading;
 		bool fileChooserSetup;
+		bool isManualSlotOptionChange;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QString messMachineName;
 		QMap<QString, QPair<QStringList, QStringList> > configurationMap;
@@ -86,17 +91,26 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QString normalXmlBuffer;
 		QString slotXmlBuffer;
 		QMap<QComboBox *, int> slotPreselectionMap;
+		QMap<QComboBox *, int> nestedSlotPreselectionMap;
+		QMap<QComboBox *, int> newNestedSlotPreselectionMap;
+		QStringList nestedSlots;
+		QMap<QString, QMap<QString, QString> > nestedSlotOptionMap;
+		QStringList allSlots;
 
 		MESSDeviceConfigurator(QString, QWidget *);
 		~MESSDeviceConfigurator();
 
 		QString &getXmlData(QString);
 		QString &getXmlDataWithEnabledSlots(QString);
+		QComboBox *comboBoxByName(QString);
 
 	public slots:
 		void preselectSlots();
 		bool readSystemSlots();
 		bool refreshDeviceMap();
+		void addNestedSlot(QString, QStringList, QStringList, QString);
+		void preselectNestedSlots();
+		void checkRemovedSlots();
 		bool load();
 		bool save();
 

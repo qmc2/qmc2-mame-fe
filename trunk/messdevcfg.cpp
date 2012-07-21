@@ -22,6 +22,10 @@ extern QString qmc2FileEditStartPath;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern int qmc2DefaultLaunchMode;
 extern bool qmc2CriticalSection;
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
+#endif
+extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 
 QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
@@ -158,7 +162,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 #endif
 	dirModel = NULL;
 	fileModel = NULL;
-	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = false;
+	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = false;
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
@@ -374,12 +378,31 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 
 	QList<QTreeWidgetItem *> allSlotItems = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
 	foreach (QTreeWidgetItem *item, allSlotItems) {
-		QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 		if ( !slotName.isEmpty() ) {
+			bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(slotName);
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
-			if ( cb )
-				if ( cb->currentIndex() > 0 )
-					args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+			if ( cb ) {
+				int defaultIndex = -1;
+				bool addArg = true;
+				if ( slotPreselectionMap.contains(cb) )
+					defaultIndex = slotPreselectionMap[cb];
+				else if ( nestedSlotPreselectionMap.contains(cb) )
+					defaultIndex = nestedSlotPreselectionMap[cb];
+				if ( isNestedSlot ) {
+					QStringList nestedSlotParts = slotName.split(":", QString::SkipEmptyParts);
+					if ( !nestedSlotParts.isEmpty() )
+						addArg = args.contains("-" + nestedSlotParts[0]); // there must be a "parent" slot, otherwise ignore this argument
+				}
+				if ( addArg ) {
+					if ( cb->currentIndex() > 0 && defaultIndex == 0 )
+						args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+					else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
+						args << QString("-%1").arg(slotName) << "\"\"";
+					else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
+						args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+				}
+			}
 		}
 	}
 
@@ -660,7 +683,92 @@ void MESSDeviceConfigurator::slotOptionChanged(int index)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::slotOptionChanged(int index = %1)").arg(index));
 #endif
 
+	isManualSlotOptionChange = true;
 	QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
+}
+
+void MESSDeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOptionNames, QStringList slotOptionDescriptions, QString defaultSlotOption)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::addNestedSlot(QString slotName = %1, QStringList slotOptionNames = ..., QStringList slotOptionDescriptions = ..., QString defaultSlotOption = %2)").arg(slotName).arg(defaultSlotOption));
+#endif
+
+	if ( nestedSlots.contains(slotName) )
+		return;
+
+	QStringList slotOptions;
+	QStringList slotOptionsShort;
+	int count = 0;
+	foreach (QString s, slotOptionNames) {
+		slotOptions << QString("%1 (%2)").arg(s).arg(slotOptionDescriptions[count]);
+		slotOptionsShort << s;
+		nestedSlotOptionMap[slotName][s] = slotOptionDescriptions[count++];
+	}
+	slotOptions.sort();
+	slotOptionsShort.sort();
+	QComboBox *cb = new QComboBox(0);
+	cb->setAutoFillBackground(true);
+	if ( defaultSlotOption.isEmpty() ) {
+		cb->insertItem(0, tr("not used") + " / " + tr("default"));
+		if ( slotOptions.count() > 0 ) {
+			cb->insertSeparator(1);
+			cb->insertItems(2, slotOptions);
+		}
+		nestedSlotPreselectionMap[cb] = 0;
+		newNestedSlotPreselectionMap[cb] = 0;
+	} else {
+		cb->insertItem(0, tr("not used"));
+		if ( slotOptions.count() > 0 ) {
+			cb->insertSeparator(1);
+			cb->insertItems(2, slotOptions);
+			int defaultIndex = slotOptionsShort.indexOf(defaultSlotOption);
+			nestedSlotPreselectionMap[cb] = defaultIndex + 2;
+			newNestedSlotPreselectionMap[cb] = defaultIndex + 2;
+			cb->setItemText(defaultIndex + 2, slotOptions[defaultIndex] + " / " + tr("default"));
+		} else {
+			nestedSlotPreselectionMap[cb] = 0;
+			newNestedSlotPreselectionMap[cb] = 0;
+		}
+	}
+	QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
+	slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
+	slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
+	treeWidgetSlotOptions->setItemWidget(slotItem, QMC2_SLOTCONFIG_COLUMN_OPTION, cb);
+
+	nestedSlots << slotName;
+}
+
+void MESSDeviceConfigurator::checkRemovedSlots()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::checkRemovedSlots()"));
+#endif
+
+	QList<QTreeWidgetItem *> allSlotItems = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+	foreach (QTreeWidgetItem *item, allSlotItems) {
+		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
+		if ( !allSlots.contains(slotName) ) {
+			item = treeWidgetSlotOptions->takeTopLevelItem(treeWidgetSlotOptions->indexOfTopLevelItem(item));
+			if ( item ) {
+#ifdef QMC2_DEBUG
+				printf("removedSlot = %s\n", (const char *)slotName.toLocal8Bit());
+#endif
+				nestedSlotPreselectionMap.remove((QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION));
+				nestedSlots.removeAll(slotName);
+				nestedSlotOptionMap.remove(slotName);
+				delete item;
+			}
+		}
+	}
+}
+
+QComboBox *MESSDeviceConfigurator::comboBoxByName(QString slotName)
+{
+	QList<QTreeWidgetItem *> sl = treeWidgetSlotOptions->findItems(slotName, Qt::MatchExactly);
+	if ( !sl.isEmpty() )
+		return (QComboBox *)treeWidgetSlotOptions->itemWidget(sl[0], QMC2_SLOTCONFIG_COLUMN_OPTION);
+	else
+		return NULL;
 }
 
 bool MESSDeviceConfigurator::refreshDeviceMap()
@@ -668,6 +776,9 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::refreshDeviceMap(): refreshRunning = %1").arg(refreshRunning ? "true" : "false"));
 #endif
+
+	bool wasManualSlotOptionChange = isManualSlotOptionChange;
+	isManualSlotOptionChange = false;
 
 	if ( refreshRunning )
 		return false;
@@ -700,6 +811,45 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		return false;
 	}
 
+	// update (nested) slots
+	QStringList oldNestedSlots = nestedSlots;
+	newNestedSlotPreselectionMap.clear();
+	foreach (QString newSlot, xmlHandler.newSlots) {
+		if ( nestedSlots.contains(newSlot) )
+			continue;
+#ifdef QMC2_DEBUG
+		printf("newSlot = %s\n", (const char *)newSlot.toLocal8Bit());
+#endif
+		QStringList newSlotOptionDescriptions;
+		foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
+#ifdef QMC2_DEBUG
+			printf("  newSlotOption = %s [%s], default = %s\n",
+			       (const char *)newSlotOption.toLocal8Bit(),
+			       (const char *)qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]].toLocal8Bit(),
+			       xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
+#endif
+			newSlotOptionDescriptions << qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]];
+		}
+		addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
+	}
+
+	bool slotsChanged = oldNestedSlots.count() != nestedSlots.count();
+	if ( !slotsChanged ) {
+		foreach (QString ns, nestedSlots) {
+			if ( !oldNestedSlots.contains(ns) ) {
+				slotsChanged = true;
+				break;
+			}
+		}
+	}
+
+	if ( !newNestedSlotPreselectionMap.isEmpty() || slotsChanged )
+		preselectNestedSlots();
+
+	allSlots = xmlHandler.allSlots;
+	checkRemovedSlots();
+
+	// update file-chooser's device instance selector
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
 
 	QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
@@ -758,14 +908,33 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		qApp->processEvents();
 	}
 
+	if ( slotsChanged && !wasManualSlotOptionChange )
+		updateSlots = true;
+	else
+		updateSlots = isLoading;
+
 	dontIgnoreNameChange = true;
-	updateSlots = isLoading;
 	on_lineEditConfigurationName_textChanged(configName);
 	dontIgnoreNameChange = updateSlots = false;
 
 	refreshRunning = false;
 
+	if ( slotsChanged )
+		QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
+
 	return true;
+}
+
+void MESSDeviceConfigurator::preselectNestedSlots()
+{
+	QMapIterator<QComboBox *, int> it(newNestedSlotPreselectionMap);
+	while ( it.hasNext() ) {
+		it.next();
+		QComboBox *cb = it.key();
+		int index = it.value();
+		cb->setCurrentIndex(index);
+		connect(cb, SIGNAL(currentIndexChanged(int)), this, SLOT(slotOptionChanged(int)));
+	}
 }
 
 void MESSDeviceConfigurator::preselectSlots()
@@ -865,9 +1034,11 @@ bool MESSDeviceConfigurator::load()
 
 	QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
 	slotPreselectionMap.clear();
+	nestedSlotPreselectionMap.clear();
 	while ( it.hasNext() ) {
 		it.next();
 		QString slotName = it.key();
+		bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(slotName);
 		QStringList slotOptions;
 		QStringList slotOptionsShort;
 		foreach (QString s, it.value()) {
@@ -885,17 +1056,27 @@ bool MESSDeviceConfigurator::load()
 				cb->insertSeparator(1);
 				cb->insertItems(2, slotOptions);
 			}
-			slotPreselectionMap[cb] = 0;
+			if ( isNestedSlot )
+				nestedSlotPreselectionMap[cb] = 0;	
+			else
+				slotPreselectionMap[cb] = 0;
 		} else {
 			cb->insertItem(0, tr("not used"));
 			if ( slotOptions.count() > 0 ) {
 				cb->insertSeparator(1);
 				cb->insertItems(2, slotOptions);
 				int defaultIndex = slotOptionsShort.indexOf(defaultSlotOption);
-				slotPreselectionMap[cb] = defaultIndex + 2;
+				if ( isNestedSlot )
+					nestedSlotPreselectionMap[cb] = defaultIndex + 2;
+				else
+					slotPreselectionMap[cb] = defaultIndex + 2;
 				cb->setItemText(defaultIndex + 2, slotOptions[defaultIndex] + " / " + tr("default"));
-			} else
-				slotPreselectionMap[cb] = 0;
+			} else {
+				if ( isNestedSlot )
+					nestedSlotPreselectionMap[cb] = 0;
+				else
+					slotPreselectionMap[cb] = 0;
+			}
 		}
 		QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
 		slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
@@ -1064,7 +1245,11 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 			if ( !slotName.isEmpty() ) {
 				QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 				if ( cb ) {
-					int defaultIndex = slotPreselectionMap[cb];
+					int defaultIndex = -1;
+					if ( slotPreselectionMap.contains(cb) )
+						defaultIndex = slotPreselectionMap[cb];
+					else if ( nestedSlotPreselectionMap.contains(cb) )
+						defaultIndex = nestedSlotPreselectionMap[cb];
 					if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
 						slotNames << slotName;
 						slotOptions << cb->currentText().split(" ")[0];
@@ -1198,9 +1383,16 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 				foreach (QTreeWidgetItem *item, itemList) {
 					QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 					if ( cb ) {
-						cb->blockSignals(true);
-						cb->setCurrentIndex(slotPreselectionMap[cb]);
-						cb->blockSignals(false);
+						int index = -1;
+						if ( slotPreselectionMap.contains(cb) )
+							index = slotPreselectionMap[cb];
+						else if ( nestedSlotPreselectionMap.contains(cb) )
+							index = nestedSlotPreselectionMap[cb];
+						if ( index >= 0 ) {
+							cb->blockSignals(true);
+							cb->setCurrentIndex(index);
+							cb->blockSignals(false);
+						}
 					}
 				}
 				if ( slotMap.contains(configName) ) {
@@ -1210,9 +1402,16 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 						if ( itemList.count() > 0 ) {
 							QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemList[0], QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
-								int index = 0;
-								if ( valuePair.second[i] != "\"\"" )
-									index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
+								int index = -1;
+								bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(valuePair.first[i]);
+								if ( valuePair.second[i] != "\"\"" ) {
+									if ( isNestedSlot )
+										index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
+									else
+										index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
+								} else
+									index = 0;
+
 								if ( index >= 0 ) {
 									cb->blockSignals(true);
 									cb->setCurrentIndex(index);
@@ -1952,7 +2151,18 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 		deviceExtensions << attributes.value("name");
 	} else if ( qName == "slot" ) {
 		slotName = attributes.value("name");
+		allSlots << slotName;
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+		if ( !messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) )
+			newSlots << slotName;
+#endif
 	} else if ( qName == "slotoption" ) {
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+		if ( !messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) ) {
+			newSlotOptions[slotName] << attributes.value("name");
+			newSlotDevices[attributes.value("name")] = attributes.value("devname");
+		}
+#endif
 		if ( attributes.value("default") == "yes" )
 			defaultSlotOptions[slotName] = attributes.value("name");
 	}
