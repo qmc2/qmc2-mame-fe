@@ -377,6 +377,14 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	args << machineName;
 
 	QList<QTreeWidgetItem *> allSlotItems = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+
+	QStringList availableSlots;
+	QList<QComboBox *> availableSlotOptions;
+	foreach (QTreeWidgetItem *item, allSlotItems) {
+		availableSlots << item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
+		availableSlotOptions << (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+	}
+
 	foreach (QTreeWidgetItem *item, allSlotItems) {
 		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 		if ( !slotName.isEmpty() ) {
@@ -391,8 +399,14 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 					defaultIndex = nestedSlotPreselectionMap[cb];
 				if ( isNestedSlot ) {
 					QStringList nestedSlotParts = slotName.split(":", QString::SkipEmptyParts);
-					if ( !nestedSlotParts.isEmpty() )
-						addArg = args.contains("-" + nestedSlotParts[0]); // there must be a "parent" slot, otherwise ignore this argument
+					if ( nestedSlotParts.count() > 1 ) {
+						// there must be a "parent" slot, otherwise ignore this argument
+						int index = availableSlots.indexOf(nestedSlotParts[0]);
+						if ( index >= 0 )
+							addArg = (availableSlotOptions[index]->currentText().split(" ")[0] == nestedSlotParts[1]);
+						else
+							addArg = false;
+					}
 				}
 				if ( addArg ) {
 					if ( cb->currentIndex() > 0 && defaultIndex == 0 )
@@ -407,6 +421,10 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	}
 
 	args << "-listxml";
+
+#ifdef QMC2_DEBUG
+	printf("MESSDeviceConfigurator::getXmlDataWithEnabledSlots(): args = %s\n", (const char *)args.join(" ").toLocal8Bit());
+#endif
 
 	bool commandProcStarted = false;
 	int retries = 0;
@@ -751,7 +769,7 @@ void MESSDeviceConfigurator::checkRemovedSlots()
 			item = treeWidgetSlotOptions->takeTopLevelItem(treeWidgetSlotOptions->indexOfTopLevelItem(item));
 			if ( item ) {
 #ifdef QMC2_DEBUG
-				printf("removedSlot = %s\n", (const char *)slotName.toLocal8Bit());
+				printf("MESSDeviceConfigurator::checkRemovedSlots(): removedSlot = %s\n", (const char *)slotName.toLocal8Bit());
 #endif
 				nestedSlotPreselectionMap.remove((QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION));
 				nestedSlots.removeAll(slotName);
@@ -819,12 +837,12 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		if ( nestedSlots.contains(newSlot) )
 			continue;
 #ifdef QMC2_DEBUG
-		printf("newSlot = %s\n", (const char *)newSlot.toLocal8Bit());
+		printf("MESSDeviceConfigurator::refreshDeviceMap(): newSlot = %s\n", (const char *)newSlot.toLocal8Bit());
 #endif
 		QStringList newSlotOptionDescriptions;
 		foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
 #ifdef QMC2_DEBUG
-			printf("  newSlotOption = %s [%s], default = %s\n",
+			printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
 			       (const char *)newSlotOption.toLocal8Bit(),
 			       (const char *)qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]].toLocal8Bit(),
 			       xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
