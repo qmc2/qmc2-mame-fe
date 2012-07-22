@@ -200,6 +200,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionTagAll_triggered(bool checked = false);
     void on_actionUntagAll_triggered(bool checked = false);
     void on_actionInvertTags_triggered(bool checked = false);
+    void on_actionTagVisible_triggered(bool checked = false);
+    void on_actionUntagVisible_triggered(bool checked = false);
+    void on_actionInvertVisibleTags_triggered(bool checked = false);
 
     // arcade menu
     void on_actionArcadeToggle_triggered(bool checked = false);

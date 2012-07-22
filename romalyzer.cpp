@@ -799,11 +799,12 @@ void ROMAlyzer::analyze()
 	  bool somethingsWrong = false;
 	  bool eligibleForDatabaseUpload = false;
 	  bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
+	  bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
 	  bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
 
 	  if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
-	    if ( zipped )
-	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/zip.png")));
+	    if ( isROM )
+	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/rom.png")));
 	    else if ( isCHD )
 	      childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/disk2.png")));
 	    else if ( hasDump )
