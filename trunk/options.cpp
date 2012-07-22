@@ -409,6 +409,9 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+V"] = QPair<QString, QAction *>(tr("Tag visible sets"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+W"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1380,8 +1383,12 @@ void Options::on_pushButtonApply_clicked()
 
   bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
   if ( checkBoxRomStateFilter->isChecked() ) {
-	  if ( qmc2MainWindow->comboBoxViewSelect->currentIndex() == QMC2_VIEWGAMELIST_INDEX )
+	  if ( qmc2MainWindow->comboBoxViewSelect->currentIndex() == QMC2_VIEWGAMELIST_INDEX ) {
 	  	qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
+		qmc2MainWindow->actionTagVisible->setVisible(true);
+		qmc2MainWindow->actionUntagVisible->setVisible(true);
+		qmc2MainWindow->actionInvertVisibleTags->setVisible(true);
+	  }
 	  qmc2MainWindow->actionRomStatusFilterC->setEnabled(true);
 	  qmc2MainWindow->actionRomStatusFilterM->setEnabled(true);
 	  qmc2MainWindow->actionRomStatusFilterI->setEnabled(true);
@@ -1394,6 +1401,9 @@ void Options::on_pushButtonApply_clicked()
 	  }
   } else {
 	  qmc2MainWindow->pushButtonSelectRomFilter->setVisible(false);
+	  qmc2MainWindow->actionTagVisible->setVisible(false);
+	  qmc2MainWindow->actionUntagVisible->setVisible(false);
+	  qmc2MainWindow->actionInvertVisibleTags->setVisible(false);
 	  qmc2MainWindow->actionRomStatusFilterC->setEnabled(false);
 	  qmc2MainWindow->actionRomStatusFilterM->setEnabled(false);
 	  qmc2MainWindow->actionRomStatusFilterI->setEnabled(false);

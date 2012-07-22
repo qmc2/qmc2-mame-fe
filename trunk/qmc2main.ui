@@ -2404,6 +2404,10 @@
      <addaction name="actionTagAll"/>
      <addaction name="actionUntagAll"/>
      <addaction name="actionInvertTags"/>
+     <addaction name="separator"/>
+     <addaction name="actionTagVisible"/>
+     <addaction name="actionUntagVisible"/>
+     <addaction name="actionInvertVisibleTags"/>
     </widget>
     <addaction name="actionPlay"/>
     <addaction name="actionPlayTagged"/>
@@ -3747,6 +3751,69 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+I</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionTagVisible">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/tagged_visible.png</normaloff>:/data/img/tagged_visible.png</iconset>
+   </property>
+   <property name="text">
+    <string>Tag visible</string>
+   </property>
+   <property name="toolTip">
+    <string>Set tag mark for all visible sets</string>
+   </property>
+   <property name="statusTip">
+    <string>Set tag mark for all visible sets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+V</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionUntagVisible">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/untagged_visible.png</normaloff>:/data/img/untagged_visible.png</iconset>
+   </property>
+   <property name="text">
+    <string>Untag visible</string>
+   </property>
+   <property name="toolTip">
+    <string>Unset all tag marks of visible sets</string>
+   </property>
+   <property name="statusTip">
+    <string>Unset all tag marks of visible sets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionInvertVisibleTags">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/invert_tag_visible.png</normaloff>:/data/img/invert_tag_visible.png</iconset>
+   </property>
+   <property name="text">
+    <string>Invert visible tags</string>
+   </property>
+   <property name="toolTip">
+    <string>Invert all tag marks of visible sets</string>
+   </property>
+   <property name="statusTip">
+    <string>Invert all tag marks of visible sets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+X</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
