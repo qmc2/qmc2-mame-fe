@@ -2110,12 +2110,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../filesystemmodel.h" line="37"/>
         <source>Drives / Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Drives / Pastas</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="39"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Pastas</translation>
     </message>
 </context>
 <context>
@@ -9327,50 +9327,50 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="3765"/>
         <source>Tag visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar visíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3768"/>
         <location filename="../../qmc2main.ui" line="3771"/>
         <source>Set tag mark for all visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Colocar marca de etiqueta para todos os conjuntos visíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3774"/>
         <source>Ctrl+Shift+V</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3786"/>
         <source>Untag visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Desetiquetar visíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3789"/>
         <location filename="../../qmc2main.ui" line="3792"/>
         <source>Unset all tag marks of visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover marca de etiqueta para todos os conjuntos visíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3795"/>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3807"/>
         <source>Invert visible tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter etiquetas de visíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3810"/>
         <location filename="../../qmc2main.ui" line="3813"/>
         <source>Invert all tag marks of visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter todas as marcas de etiquetas para conjuntos visíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3816"/>
         <source>Ctrl+Shift+X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2880"/>
@@ -10446,17 +10446,17 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="412"/>
         <source>Tag visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar conjuntos visíveis</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="413"/>
         <source>Untag visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Desetiquetar conjuntos visíveis</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="414"/>
         <source>Invert visible tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter etiquetas de visíveis</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="420"/>
