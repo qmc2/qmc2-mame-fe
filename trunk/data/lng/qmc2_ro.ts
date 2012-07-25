@@ -5626,8 +5626,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1633"/>
-        <location filename="../../messdevcfg.cpp" line="1638"/>
+        <location filename="../../messdevcfg.cpp" line="1632"/>
+        <location filename="../../messdevcfg.cpp" line="1637"/>
         <source>Active device configuration</source>
         <translation>Configuratie dispozitive active</translation>
     </message>
@@ -5673,141 +5673,141 @@ p, li { white-space: pre-wrap; }
         <translation>Dispozitiv mapari</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="226"/>
         <location filename="../../messdevcfg.ui" line="229"/>
-        <location filename="../../messdevcfg.ui" line="232"/>
         <source>Device setup of current configuration</source>
         <translation>Instalare dispozitiv pentru configuratie actuala</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="245"/>
+        <location filename="../../messdevcfg.ui" line="242"/>
         <source>Device instance</source>
         <translation>Instanta dispozitiv</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="250"/>
+        <location filename="../../messdevcfg.ui" line="247"/>
         <source>Brief name</source>
         <translation>Nume scurt</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="255"/>
+        <location filename="../../messdevcfg.ui" line="252"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="260"/>
+        <location filename="../../messdevcfg.ui" line="257"/>
         <source>Tag</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="265"/>
+        <location filename="../../messdevcfg.ui" line="262"/>
         <source>Extensions</source>
         <translation>Extensii</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="270"/>
+        <location filename="../../messdevcfg.ui" line="267"/>
         <source>File</source>
         <translation>Fisier</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="279"/>
+        <location filename="../../messdevcfg.ui" line="276"/>
         <source>Slot options</source>
         <translation>Optiuni slot</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="294"/>
         <location filename="../../messdevcfg.ui" line="297"/>
-        <location filename="../../messdevcfg.ui" line="300"/>
         <source>Available slot options</source>
         <translation>Optiuni slot disponibile</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="313"/>
+        <location filename="../../messdevcfg.ui" line="310"/>
         <source>Slot</source>
         <translation>Slot</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="318"/>
+        <location filename="../../messdevcfg.ui" line="315"/>
         <source>Option</source>
         <translation>Optiune</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="327"/>
+        <location filename="../../messdevcfg.ui" line="324"/>
         <source>File chooser</source>
         <translation>Selector fisier</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="363"/>
         <location filename="../../messdevcfg.ui" line="366"/>
-        <location filename="../../messdevcfg.ui" line="369"/>
         <source>Save selected instance / file as a new device configuration</source>
         <translation>Salvati instanta selectata / fisier ca o noua configuratie</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="386"/>
         <location filename="../../messdevcfg.ui" line="389"/>
-        <location filename="../../messdevcfg.ui" line="392"/>
         <source>Select the device instance the file is mapped to</source>
         <translation>Alegeti instanta dispozitiv la care fisierul este mapat</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="405"/>
         <location filename="../../messdevcfg.ui" line="408"/>
-        <location filename="../../messdevcfg.ui" line="411"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
         <translation>Alegeti automat primul dispozitiv cand alegeti un fisier cu extensia valida</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="428"/>
         <location filename="../../messdevcfg.ui" line="431"/>
-        <location filename="../../messdevcfg.ui" line="434"/>
         <source>Filter files by allowed extensions for the current device instance</source>
         <translation>Filtrati fisiere dupa extensiile permise pentru instanta dispozitivului curent</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="451"/>
         <location filename="../../messdevcfg.ui" line="454"/>
-        <location filename="../../messdevcfg.ui" line="457"/>
         <source>Process ZIP contents on item activation</source>
         <translation>Procesati obiecte ZIP la activare obiect</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="474"/>
         <location filename="../../messdevcfg.ui" line="477"/>
-        <location filename="../../messdevcfg.ui" line="480"/>
         <source>Enter search string (case-insensitive)</source>
         <translation>Introduceti sir de cautare (nu tine cont de majuscule)</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="493"/>
         <location filename="../../messdevcfg.ui" line="496"/>
-        <location filename="../../messdevcfg.ui" line="499"/>
         <source>Clear search string</source>
         <translation>Stergeti sirul de cautare</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="513"/>
         <location filename="../../messdevcfg.ui" line="516"/>
-        <location filename="../../messdevcfg.ui" line="519"/>
         <source>Number of files scanned</source>
         <translation>Numar de fisiere scanate</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="535"/>
         <location filename="../../messdevcfg.ui" line="538"/>
-        <location filename="../../messdevcfg.ui" line="541"/>
         <source>Reload directory contents</source>
         <translation>Reincarc continut director</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="555"/>
         <location filename="../../messdevcfg.ui" line="558"/>
-        <location filename="../../messdevcfg.ui" line="561"/>
         <source>Play the selected configuration</source>
         <translation>Jucati cu configuratia selectata</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="575"/>
         <location filename="../../messdevcfg.ui" line="578"/>
-        <location filename="../../messdevcfg.ui" line="581"/>
         <source>Play the selected configuration (embedded)</source>
         <translation>Jucati cu configuratia selectata (incorporat)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="647"/>
+        <location filename="../../messdevcfg.ui" line="644"/>
         <source>Available device configurations</source>
         <translation>Configurari dispozitive disponibile</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="656"/>
         <location filename="../../messdevcfg.ui" line="659"/>
-        <location filename="../../messdevcfg.ui" line="662"/>
         <source>List of available device configurations</source>
         <translation>Lista de configuratii dispozitiv disponibile</translation>
     </message>
@@ -5888,16 +5888,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="292"/>
-        <location filename="../../messdevcfg.cpp" line="1894"/>
+        <location filename="../../messdevcfg.cpp" line="1893"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Deschide arhiva</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="343"/>
-        <location filename="../../messdevcfg.cpp" line="914"/>
-        <location filename="../../messdevcfg.cpp" line="1038"/>
-        <location filename="../../messdevcfg.cpp" line="1645"/>
-        <location filename="../../messdevcfg.cpp" line="2083"/>
+        <location filename="../../messdevcfg.cpp" line="915"/>
+        <location filename="../../messdevcfg.cpp" line="1040"/>
+        <location filename="../../messdevcfg.cpp" line="1644"/>
+        <location filename="../../messdevcfg.cpp" line="2082"/>
         <source>No devices available</source>
         <translation>Niciun dispozitiv disponibil</translation>
     </message>
@@ -5935,75 +5935,75 @@ p, li { white-space: pre-wrap; }
         <translation>terminat (incarcsloturi de sistem disponibile, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="172"/>
-        <location filename="../../messdevcfg.cpp" line="816"/>
-        <location filename="../../messdevcfg.cpp" line="1140"/>
-        <location filename="../../messdevcfg.cpp" line="1189"/>
-        <location filename="../../messdevcfg.cpp" line="1370"/>
-        <location filename="../../messdevcfg.cpp" line="1506"/>
-        <source>No devices</source>
-        <translation>Niciun dispozitiv</translation>
-    </message>
-    <message>
-        <location filename="../../messdevcfg.cpp" line="828"/>
+        <location filename="../../messdevcfg.cpp" line="829"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATAL: eroare analiza date XML pentru &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="730"/>
-        <location filename="../../messdevcfg.cpp" line="738"/>
-        <location filename="../../messdevcfg.cpp" line="1074"/>
-        <location filename="../../messdevcfg.cpp" line="1084"/>
+        <location filename="../../messdevcfg.cpp" line="731"/>
+        <location filename="../../messdevcfg.cpp" line="739"/>
+        <location filename="../../messdevcfg.cpp" line="1077"/>
+        <location filename="../../messdevcfg.cpp" line="1087"/>
         <source>not used</source>
         <translation>nefolosit</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="730"/>
-        <location filename="../../messdevcfg.cpp" line="745"/>
-        <location filename="../../messdevcfg.cpp" line="1074"/>
-        <location filename="../../messdevcfg.cpp" line="1093"/>
+        <location filename="../../messdevcfg.cpp" line="172"/>
+        <location filename="../../messdevcfg.cpp" line="817"/>
+        <location filename="../../messdevcfg.cpp" line="1143"/>
+        <location filename="../../messdevcfg.cpp" line="1192"/>
+        <location filename="../../messdevcfg.cpp" line="1373"/>
+        <location filename="../../messdevcfg.cpp" line="1505"/>
+        <source>Default configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="731"/>
+        <location filename="../../messdevcfg.cpp" line="746"/>
+        <location filename="../../messdevcfg.cpp" line="1077"/>
+        <location filename="../../messdevcfg.cpp" line="1096"/>
         <source>default</source>
         <translation type="unfinished">implicit</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1222"/>
-        <location filename="../../messdevcfg.cpp" line="1224"/>
+        <location filename="../../messdevcfg.cpp" line="1225"/>
+        <location filename="../../messdevcfg.cpp" line="1227"/>
         <source>%1. copy of </source>
         <translation>%1 copie a </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1482"/>
-        <location filename="../../messdevcfg.cpp" line="2098"/>
+        <location filename="../../messdevcfg.cpp" line="1481"/>
+        <location filename="../../messdevcfg.cpp" line="2097"/>
         <source>%1. variant of </source>
         <translation>%1 varianta a </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1576"/>
+        <location filename="../../messdevcfg.cpp" line="1575"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Alegeti directorul implicit pentru dispozitivul &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1894"/>
+        <location filename="../../messdevcfg.cpp" line="1893"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Clonati arhiva</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2100"/>
+        <location filename="../../messdevcfg.cpp" line="2099"/>
         <source>Choose a unique configuration name</source>
         <translation>Alegeti un nume unic pentru configuratie</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2100"/>
+        <location filename="../../messdevcfg.cpp" line="2099"/>
         <source>Unique configuration name:</source>
         <translation>Nume configurare unic:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2103"/>
+        <location filename="../../messdevcfg.cpp" line="2102"/>
         <source>Name conflict</source>
         <translation>Conflict nume</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2103"/>
+        <location filename="../../messdevcfg.cpp" line="2102"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -8396,8 +8396,8 @@ Doriti sa alegeti un nume diferit?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1745"/>
-        <source>No devices</source>
-        <translation>Niciun dispozitiv</translation>
+        <source>Default configuration</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1918"/>

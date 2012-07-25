@@ -1742,7 +1742,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 		default: {
 				QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
-				if ( configName != tr("No devices") ) {
+				if ( configName != tr("Default configuration") ) {
 					// make sure the currently edited data is up to date
 					qmc2MESSDeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
 					if ( qmc2MESSDeviceConfigurator->configurationMap.contains(configName) ) {
