@@ -726,6 +726,7 @@ void MESSDeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOpt
 	slotOptionsShort.sort();
 	QComboBox *cb = new QComboBox(0);
 	cb->setAutoFillBackground(true);
+	cb->setMaxVisibleItems(20);
 	if ( defaultSlotOption.isEmpty() ) {
 		cb->insertItem(0, tr("not used") + " / " + tr("default"));
 		if ( slotOptions.count() > 0 ) {
@@ -1069,6 +1070,7 @@ bool MESSDeviceConfigurator::load()
 		slotOptionsShort.sort();
 		QComboBox *cb = new QComboBox(0);
 		cb->setAutoFillBackground(true);
+		cb->setMaxVisibleItems(20);
 		QString defaultSlotOption = xmlHandler.defaultSlotOptions[slotName];
 		if ( defaultSlotOption.isEmpty() ) {
 			cb->insertItem(0, tr("not used") + " / " + tr("default"));
