@@ -1706,7 +1706,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 				if ( selectionModel )
 					indexList = selectionModel->selectedIndexes();
 				if ( indexList.count() > 0 && instance != tr("No devices available") ) {
-					QList<QTreeWidgetItem *> allSlotItems = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+					QList<QTreeWidgetItem *> allSlotItems;
+					foreach (QTreeWidgetItem *item, qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+						allSlotItems << item;
+						qmc2MESSDeviceConfigurator->insertChildItems(item, allSlotItems);
+					}
 					foreach (QTreeWidgetItem *item, allSlotItems) {
 						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 						if ( !slotName.isEmpty() ) {
@@ -1775,7 +1779,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 #endif
 					}
 				} else {
-					QList<QTreeWidgetItem *> allSlotItems = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+					QList<QTreeWidgetItem *> allSlotItems;
+					foreach (QTreeWidgetItem *item, qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+						allSlotItems << item;
+						qmc2MESSDeviceConfigurator->insertChildItems(item, allSlotItems);
+					}
 					foreach (QTreeWidgetItem *item, allSlotItems) {
 						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 						if ( !slotName.isEmpty() ) {

@@ -103,14 +103,16 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QString &getXmlData(QString);
 		QString &getXmlDataWithEnabledSlots(QString);
 		QComboBox *comboBoxByName(QString);
+		void addNestedSlot(QString, QStringList, QStringList, QString);
+		void insertChildItems(QTreeWidgetItem *, QList<QTreeWidgetItem *> &);
+		void checkRemovedSlots(QTreeWidgetItem *parentItem = NULL);
+		bool checkParentSlot(QTreeWidgetItem *, QString &);
 
 	public slots:
 		void preselectSlots();
 		bool readSystemSlots();
 		bool refreshDeviceMap();
-		void addNestedSlot(QString, QStringList, QStringList, QString);
 		void preselectNestedSlots();
-		void checkRemovedSlots();
 		bool load();
 		bool save();
 
