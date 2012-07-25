@@ -5626,8 +5626,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1633"/>
-        <location filename="../../messdevcfg.cpp" line="1638"/>
+        <location filename="../../messdevcfg.cpp" line="1632"/>
+        <location filename="../../messdevcfg.cpp" line="1637"/>
         <source>Active device configuration</source>
         <translation>Aktywna konfiguracja urządzeń</translation>
     </message>
@@ -5655,151 +5655,141 @@ p, li { white-space: pre-wrap; }
         <translation>Mapowania urządzeń</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="226"/>
         <location filename="../../messdevcfg.ui" line="229"/>
-        <location filename="../../messdevcfg.ui" line="232"/>
         <source>Device setup of current configuration</source>
         <translation>Ustawienia urządzeń bieżącej konfiguracji</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="250"/>
+        <location filename="../../messdevcfg.ui" line="247"/>
         <source>Brief name</source>
         <translation>Skrócona nazwa</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="279"/>
+        <location filename="../../messdevcfg.ui" line="276"/>
         <source>Slot options</source>
         <translation>Opcje slotów</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="294"/>
         <location filename="../../messdevcfg.ui" line="297"/>
-        <location filename="../../messdevcfg.ui" line="300"/>
         <source>Available slot options</source>
         <translation>Dostępne opcje slotów</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="313"/>
+        <location filename="../../messdevcfg.ui" line="310"/>
         <source>Slot</source>
         <translation>Slot</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="318"/>
+        <location filename="../../messdevcfg.ui" line="315"/>
         <source>Option</source>
         <translation>Opcja</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="327"/>
+        <location filename="../../messdevcfg.ui" line="324"/>
         <source>File chooser</source>
         <translation>Selektor plików</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="363"/>
         <location filename="../../messdevcfg.ui" line="366"/>
-        <location filename="../../messdevcfg.ui" line="369"/>
         <source>Save selected instance / file as a new device configuration</source>
         <translation>Zapisz wybraną instancję / plik jako nową konfigurację urządzeń</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="386"/>
         <location filename="../../messdevcfg.ui" line="389"/>
-        <location filename="../../messdevcfg.ui" line="392"/>
         <source>Select the device instance the file is mapped to</source>
         <translation>Wybierz instancję urządzenia, do której przypisany jest plik</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="405"/>
         <location filename="../../messdevcfg.ui" line="408"/>
-        <location filename="../../messdevcfg.ui" line="411"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
         <translation>Automatycznie wybierz pierwszą pasującą instancję urządzenia podczas wyboru pliku o prawidłowym rozszerzeniu</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="428"/>
         <location filename="../../messdevcfg.ui" line="431"/>
-        <location filename="../../messdevcfg.ui" line="434"/>
         <source>Filter files by allowed extensions for the current device instance</source>
         <translation>Filtruj pliki na podstawie rozszerzeń dozwolonych dla obecnej instancji urządzenia</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="451"/>
         <location filename="../../messdevcfg.ui" line="454"/>
-        <location filename="../../messdevcfg.ui" line="457"/>
         <source>Process ZIP contents on item activation</source>
         <translation>Przetwarzaj zawartość plików ZIP podczas aktywacji elementu</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="474"/>
         <location filename="../../messdevcfg.ui" line="477"/>
-        <location filename="../../messdevcfg.ui" line="480"/>
         <source>Enter search string (case-insensitive)</source>
         <translation>Proszę wpisać szukany ciąg (bez uwzględniania wielkości liter)</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="493"/>
         <location filename="../../messdevcfg.ui" line="496"/>
-        <location filename="../../messdevcfg.ui" line="499"/>
         <source>Clear search string</source>
         <translation>Wyczyść szukany ciąg</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="513"/>
         <location filename="../../messdevcfg.ui" line="516"/>
-        <location filename="../../messdevcfg.ui" line="519"/>
         <source>Number of files scanned</source>
         <translation>Liczba przeskanowanych plików</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="535"/>
         <location filename="../../messdevcfg.ui" line="538"/>
-        <location filename="../../messdevcfg.ui" line="541"/>
         <source>Reload directory contents</source>
         <translation>Odśwież zawartość katalogu</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="555"/>
         <location filename="../../messdevcfg.ui" line="558"/>
-        <location filename="../../messdevcfg.ui" line="561"/>
         <source>Play the selected configuration</source>
         <translation>Uruchom używając wybranej konfiguracji</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="575"/>
         <location filename="../../messdevcfg.ui" line="578"/>
-        <location filename="../../messdevcfg.ui" line="581"/>
         <source>Play the selected configuration (embedded)</source>
         <translation>Uruchom używając wybranej konfiguracji (tryb osadzony)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="647"/>
+        <location filename="../../messdevcfg.ui" line="644"/>
         <source>Available device configurations</source>
         <translation>Dostępne konfiguracje urządzeń</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="656"/>
         <location filename="../../messdevcfg.ui" line="659"/>
-        <location filename="../../messdevcfg.ui" line="662"/>
         <source>List of available device configurations</source>
         <translation>Lista dostępnych konfiguracji urządzeń</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="172"/>
-        <location filename="../../messdevcfg.cpp" line="816"/>
-        <location filename="../../messdevcfg.cpp" line="1140"/>
-        <location filename="../../messdevcfg.cpp" line="1189"/>
-        <location filename="../../messdevcfg.cpp" line="1370"/>
-        <location filename="../../messdevcfg.cpp" line="1506"/>
-        <source>No devices</source>
-        <translation>Brak urządzeń</translation>
-    </message>
-    <message>
-        <location filename="../../messdevcfg.ui" line="245"/>
+        <location filename="../../messdevcfg.ui" line="242"/>
         <source>Device instance</source>
         <translation>Instancja urządzenia</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="255"/>
+        <location filename="../../messdevcfg.ui" line="252"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="260"/>
+        <location filename="../../messdevcfg.ui" line="257"/>
         <source>Tag</source>
         <translation>Zaznaczenie</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="265"/>
+        <location filename="../../messdevcfg.ui" line="262"/>
         <source>Extensions</source>
         <translation>Rozszerzenia</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="270"/>
+        <location filename="../../messdevcfg.ui" line="267"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
@@ -5822,14 +5812,14 @@ p, li { white-space: pre-wrap; }
         <translation>Klonuj bieżącą konfigurację urządzeń</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1222"/>
-        <location filename="../../messdevcfg.cpp" line="1224"/>
+        <location filename="../../messdevcfg.cpp" line="1225"/>
+        <location filename="../../messdevcfg.cpp" line="1227"/>
         <source>%1. copy of </source>
         <translation>%1. kopia</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1482"/>
-        <location filename="../../messdevcfg.cpp" line="2098"/>
+        <location filename="../../messdevcfg.cpp" line="1481"/>
+        <location filename="../../messdevcfg.cpp" line="2097"/>
         <source>%1. variant of </source>
         <translation>%1 wariant</translation>
     </message>
@@ -5904,16 +5894,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="292"/>
-        <location filename="../../messdevcfg.cpp" line="1894"/>
+        <location filename="../../messdevcfg.cpp" line="1893"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Otwórz archiwum</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="343"/>
-        <location filename="../../messdevcfg.cpp" line="914"/>
-        <location filename="../../messdevcfg.cpp" line="1038"/>
-        <location filename="../../messdevcfg.cpp" line="1645"/>
-        <location filename="../../messdevcfg.cpp" line="2083"/>
+        <location filename="../../messdevcfg.cpp" line="915"/>
+        <location filename="../../messdevcfg.cpp" line="1040"/>
+        <location filename="../../messdevcfg.cpp" line="1644"/>
+        <location filename="../../messdevcfg.cpp" line="2082"/>
         <source>No devices available</source>
         <translation>Brak dostępnych urządzeń</translation>
     </message>
@@ -5957,53 +5947,63 @@ p, li { white-space: pre-wrap; }
         <translation>ukończono (wczytywanie dostępnych slotów systemu, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="828"/>
+        <location filename="../../messdevcfg.cpp" line="829"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATALNIE: błąd podczas parsowania danych XML dla &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="730"/>
-        <location filename="../../messdevcfg.cpp" line="738"/>
-        <location filename="../../messdevcfg.cpp" line="1074"/>
-        <location filename="../../messdevcfg.cpp" line="1084"/>
+        <location filename="../../messdevcfg.cpp" line="731"/>
+        <location filename="../../messdevcfg.cpp" line="739"/>
+        <location filename="../../messdevcfg.cpp" line="1077"/>
+        <location filename="../../messdevcfg.cpp" line="1087"/>
         <source>not used</source>
         <translation>nieużywany</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="730"/>
-        <location filename="../../messdevcfg.cpp" line="745"/>
-        <location filename="../../messdevcfg.cpp" line="1074"/>
-        <location filename="../../messdevcfg.cpp" line="1093"/>
+        <location filename="../../messdevcfg.cpp" line="172"/>
+        <location filename="../../messdevcfg.cpp" line="817"/>
+        <location filename="../../messdevcfg.cpp" line="1143"/>
+        <location filename="../../messdevcfg.cpp" line="1192"/>
+        <location filename="../../messdevcfg.cpp" line="1373"/>
+        <location filename="../../messdevcfg.cpp" line="1505"/>
+        <source>Default configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="731"/>
+        <location filename="../../messdevcfg.cpp" line="746"/>
+        <location filename="../../messdevcfg.cpp" line="1077"/>
+        <location filename="../../messdevcfg.cpp" line="1096"/>
         <source>default</source>
         <translation>domyślny</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1576"/>
+        <location filename="../../messdevcfg.cpp" line="1575"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Wybierz domyślny katalog urządzeń &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1894"/>
+        <location filename="../../messdevcfg.cpp" line="1893"/>
         <source>&amp;Close archive</source>
         <translation>Za&amp;mknij archiwum</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2100"/>
+        <location filename="../../messdevcfg.cpp" line="2099"/>
         <source>Choose a unique configuration name</source>
         <translation>Proszę wybrać unikalną nazwę konfiguracji</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2100"/>
+        <location filename="../../messdevcfg.cpp" line="2099"/>
         <source>Unique configuration name:</source>
         <translation>Unikalna nazwa konfiguracji:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2103"/>
+        <location filename="../../messdevcfg.cpp" line="2102"/>
         <source>Name conflict</source>
         <translation>Konflikt nazw</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2103"/>
+        <location filename="../../messdevcfg.cpp" line="2102"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -8709,11 +8709,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>zapisywanie konfiguracji urządzeń bieżącej maszyny</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1745"/>
-        <source>No devices</source>
-        <translation>Brak urządzeń</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="1393"/>
         <source>&amp;Correct</source>
         <translation>&amp;Poprawny</translation>
@@ -9382,6 +9377,11 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="635"/>
         <source>Add all tagged machines to favorites</source>
         <translation>Dodaj wszystkie zaznaczone maszyny do ulubionych</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="1745"/>
+        <source>Default configuration</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1944"/>

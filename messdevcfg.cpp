@@ -169,7 +169,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	if ( messSystemSlotMap.isEmpty() )
 		lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 	else
-		lineEditConfigurationName->setText(tr("No devices"));
+		lineEditConfigurationName->setText(tr("Default configuration"));
 	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 	lineEditConfigurationName->blockSignals(false);
 
@@ -392,7 +392,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 			if ( cb ) {
 				int defaultIndex = -1;
-				bool addArg = true;
+				bool addArg = false;
 				if ( slotPreselectionMap.contains(cb) )
 					defaultIndex = slotPreselectionMap[cb];
 				else if ( nestedSlotPreselectionMap.contains(cb) )
@@ -401,13 +401,35 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 					QStringList nestedSlotParts = slotName.split(":", QString::SkipEmptyParts);
 					if ( nestedSlotParts.count() > 1 ) {
 						// there must be a "parent" slot, otherwise ignore this argument
-						int index = availableSlots.indexOf(nestedSlotParts[0]);
-						if ( index >= 0 )
-							addArg = (availableSlotOptions[index]->currentText().split(" ")[0] == nestedSlotParts[1]);
-						else
-							addArg = false;
+						int depth = 1;
+						while ( depth < nestedSlotParts.count() && !addArg ) {
+							QString parentPart;
+							QString slotPart;
+							int i;
+							for (i = 0; i < depth; i++) {
+								if ( i > 0 )
+									parentPart += ":";
+								parentPart += nestedSlotParts[i];
+							}
+							for (int j = nestedSlotParts.count() - 1; j >= depth; j--) {
+								if ( i < nestedSlotParts.count() - 1 )
+									slotPart += ":";
+								slotPart = nestedSlotParts[j];
+							}
+							int index = availableSlots.indexOf(parentPart);
+							if ( index >= 0 )
+								addArg = (availableSlotOptions[index]->currentText().split(" ")[0] == slotPart );
+
+#ifdef QMC2_DEBUG
+							if ( addArg )
+								printf("MESSDeviceConfigurator::getXmlDataWithEnabledSlots(): parentPart = %s, slotPart = %s\n", (const char *)parentPart.toLocal8Bit(), (const char *)slotPart.toLocal8Bit());
+#endif
+							depth++;
+						}
 					}
-				}
+				} else
+					addArg = true;
+
 				if ( addArg ) {
 					if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 						args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
@@ -814,7 +836,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	QList<QListWidgetItem *> itemList = listWidgetDeviceConfigurations->selectedItems();
 	QString configName;
 	if ( !itemList.isEmpty() )
-		if ( itemList[0]->text() != tr("No devices") )
+		if ( itemList[0]->text() != tr("Default configuration") )
 			configName = itemList[0]->text();
 
 	treeWidgetDeviceSetup->clear();
@@ -886,6 +908,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	comboBoxDeviceInstanceChooser->clear();
 
 	if ( instances.count() > 0 ) {
+		treeWidgetDeviceSetup->setEnabled(true);
 		qSort(instances);
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
@@ -1001,6 +1024,7 @@ bool MESSDeviceConfigurator::load()
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
 	QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 	QStringList instances;
+	treeWidgetDeviceSetup->sortItems(QMC2_DEVCONFIG_COLUMN_NAME, Qt::AscendingOrder);
 
 	extensionInstanceMap.clear();
 	foreach (QTreeWidgetItem *item, items) {
@@ -1010,6 +1034,7 @@ bool MESSDeviceConfigurator::load()
 	}
 
 	if ( instances.count() > 0 ) {
+		treeWidgetDeviceSetup->setEnabled(true);
 		qSort(instances);
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
@@ -1105,6 +1130,7 @@ bool MESSDeviceConfigurator::load()
 		slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
 		treeWidgetSlotOptions->setItemWidget(slotItem, QMC2_SLOTCONFIG_COLUMN_OPTION, cb);
 	}
+	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
 	QTimer::singleShot(0, this, SLOT(preselectSlots()));
 
 	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
@@ -1139,7 +1165,7 @@ bool MESSDeviceConfigurator::load()
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
 	}
 
-	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
+	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("Default configuration"), listWidgetDeviceConfigurations);
 	if ( selectedItem == NULL ) {
 		dontIgnoreNameChange = true;
 		listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
@@ -1188,7 +1214,7 @@ bool MESSDeviceConfigurator::save()
 
 	QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
 	if ( curItem != NULL ) {
-		if ( curItem->text() == tr("No devices") )
+		if ( curItem->text() == tr("Default configuration") )
 			qmc2Config->remove(group + "/SelectedConfiguration");
 		else
 			qmc2Config->setValue(group + "/SelectedConfiguration", curItem->text());
@@ -1369,28 +1395,22 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 #endif
 
 	toolButtonSaveConfiguration->setEnabled(false);
-	if ( text == tr("No devices") ) {
+	if ( text == tr("Default configuration") ) {
 		toolButtonCloneConfiguration->setEnabled(false);
-		toolButtonSaveConfiguration->setEnabled(false);
 		toolButtonRemoveConfiguration->setEnabled(false);
-		treeWidgetDeviceSetup->setEnabled(false);
 	} else if ( !text.isEmpty() ) {
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
 		if ( matchedItemList.count() > 0 ) {
 			toolButtonRemoveConfiguration->setEnabled(true);
-			toolButtonSaveConfiguration->setEnabled(true);
 			toolButtonCloneConfiguration->setEnabled(true);
 		} else {
 			toolButtonRemoveConfiguration->setEnabled(false);
-			toolButtonSaveConfiguration->setEnabled(true);
 			toolButtonCloneConfiguration->setEnabled(false);
 		}
-		treeWidgetDeviceSetup->setEnabled(true);
+		toolButtonSaveConfiguration->setEnabled(true);
 	} else {
 		toolButtonCloneConfiguration->setEnabled(false);
-		toolButtonSaveConfiguration->setEnabled(false);
 		toolButtonRemoveConfiguration->setEnabled(false);
-		treeWidgetDeviceSetup->setEnabled(false);
 	}
 
 	if ( dontIgnoreNameChange ) {
@@ -1505,7 +1525,7 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenu
 
 	QListWidgetItem *item = listWidgetDeviceConfigurations->itemAt(point);
 	if ( item ) {
-		if ( item->text() == tr("No devices") )
+		if ( item->text() == tr("Default configuration") )
 			actionRemoveConfiguration->setVisible(false);
 		else
 			actionRemoveConfiguration->setVisible(true);
