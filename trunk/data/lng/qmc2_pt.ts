@@ -5747,7 +5747,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1373"/>
         <location filename="../../messdevcfg.cpp" line="1505"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração padrão</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1225"/>
@@ -6985,7 +6985,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1745"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2252"/>
