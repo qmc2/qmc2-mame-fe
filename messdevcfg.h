@@ -124,6 +124,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void on_toolButtonRemoveConfiguration_clicked();
 		void on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *);
 		void on_listWidgetDeviceConfigurations_currentTextChanged(const QString &);
+		void on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *);
 		void on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetSlotOptions_customContextMenuRequested(const QPoint &);
