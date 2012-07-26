@@ -311,6 +311,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 		messDevIconMap["quickload"] = QIcon(QString::fromUtf8(":/data/img/dev_quickload.png"));
 		messDevIconMap["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
 		messDevIconMap["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
+		messDevIconMap["romimage"] = QIcon(QString::fromUtf8(":/data/img/rom.png"));
 	}
 
 #if defined(QMC2_ALTERNATE_FSM)
