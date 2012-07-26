@@ -780,6 +780,17 @@ void MESSDeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOpt
 			}
 		}
 	}
+	if ( parentItem == NULL ) {
+		foreach (QTreeWidgetItem *item, allSlotItems) {
+			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+			if ( cb ) {
+				if ( slotName.startsWith(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT) + ":" + cb->currentText().split(" ")[0]) ) {
+					parentItem = item;
+					break;
+				}
+			}
+		}
+	}
 
 #ifdef QMC2_DEBUG
 	printf("MESSDeviceConfigurator::addNestedSlot(): slotName = %s, parentItem = %p\n", (const char *)slotName.toLocal8Bit(), parentItem);
@@ -902,20 +913,22 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	foreach (QString newSlot, xmlHandler.newSlots) {
 		if ( nestedSlots.contains(newSlot) )
 			continue;
+		if ( !xmlHandler.newSlotOptions[newSlot].isEmpty() ) {
 #ifdef QMC2_DEBUG
-		printf("MESSDeviceConfigurator::refreshDeviceMap(): newSlot = %s\n", (const char *)newSlot.toLocal8Bit());
+			printf("MESSDeviceConfigurator::refreshDeviceMap(): newSlot = %s\n", (const char *)newSlot.toLocal8Bit());
 #endif
-		QStringList newSlotOptionDescriptions;
-		foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
+			QStringList newSlotOptionDescriptions;
+			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
 #ifdef QMC2_DEBUG
-			printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
-			       (const char *)newSlotOption.toLocal8Bit(),
-			       (const char *)qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]].toLocal8Bit(),
-			       xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
+				printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
+				       (const char *)newSlotOption.toLocal8Bit(),
+				       (const char *)qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]].toLocal8Bit(),
+				       xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
 #endif
-			newSlotOptionDescriptions << qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]];
+				newSlotOptionDescriptions << qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]];
+			}
+			addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
 		}
-		addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
 	}
 
 	bool slotsChanged = oldNestedSlots.count() != nestedSlots.count();
@@ -1369,6 +1382,20 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 	}
 
 	on_lineEditConfigurationName_textChanged(lineEditConfigurationName->text());
+}
+
+void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item = %1)").arg(qulonglong)item);
+#endif
+
+	dontIgnoreNameChange = true;
+	updateSlots = true;
+	on_lineEditConfigurationName_textChanged(item->text());
+	updateSlots = false;
+	dontIgnoreNameChange = false;
+	item->setSelected(true);
 }
 
 void MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
