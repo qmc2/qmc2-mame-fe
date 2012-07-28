@@ -29,6 +29,7 @@ extern bool qmc2ShowGameName;
 extern int qmc2UpdateDelay;
 extern int qmc2DefaultLaunchMode;
 extern bool qmc2StopParser;
+extern bool qmc2CriticalSection;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -283,6 +284,131 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 	return softwareListXmlBuffer;
 }
 
+QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs = ..."));
+#endif
+
+	static QString xmlBuffer;
+
+	xmlBuffer.clear();
+
+	qmc2CriticalSection = true;
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QProcess commandProc;
+#if defined(QMC2_SDLMESS)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+#elif defined(QMC2_MESS)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#elif defined(QMC2_SDLMAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLUME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
+#endif
+#if !defined(Q_WS_WIN)
+	commandProc.setStandardErrorFile("/dev/null");
+#endif
+
+	QStringList args;
+	args << systemName << swlArgs << "-listxml";
+
+#ifdef QMC2_DEBUG
+	printf("SoftwareList::getXmlDataWithEnabledSlots(): args = %s\n", (const char *)args.join(" ").toLocal8Bit());
+#endif
+
+	bool commandProcStarted = false;
+	int retries = 0;
+	commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
+	bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
+	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+		qApp->processEvents();
+	}
+
+	if ( started ) {
+		commandProcStarted = true;
+		bool commandProcRunning = (commandProc.state() == QProcess::Running);
+		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+			qApp->processEvents();
+			commandProcRunning = (commandProc.state() == QProcess::Running);
+		}
+	} else {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
+		qmc2CriticalSection = false;
+		return xmlBuffer;
+	}
+
+#if defined(QMC2_SDLMESS)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+#elif defined(QMC2_MESS)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#elif defined(QMC2_SDLMAME)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLUME)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+#elif defined(QMC2_UME)
+	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
+#endif
+
+	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
+		QTextStream ts(&qmc2TempXml);
+		xmlBuffer = ts.readAll();
+#if defined(Q_WS_WIN)
+		xmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#endif
+		qmc2TempXml.close();
+		qmc2TempXml.remove();
+		if ( !xmlBuffer.isEmpty() ) {
+			QStringList xmlLines = xmlBuffer.split("\n");
+			qApp->processEvents();
+			xmlBuffer.clear();
+			if ( !xmlLines.isEmpty() ) {
+				int i = 0;
+#if defined(QMC2_EMUTYPE_MESS)
+				QString s = "<machine name=\"" + systemName + "\"";
+#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				QString s = "<game name=\"" + systemName + "\"";
+#endif
+				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
+				xmlBuffer = "<?xml version=\"1.0\"?>\n";
+				if ( i < xmlLines.count() ) {
+#if defined(QMC2_EMUTYPE_MESS)
+					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
+						xmlBuffer += xmlLines[i++].simplified() + "\n";
+					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
+						xmlBuffer.clear();
+					} else
+						xmlBuffer += "</machine>\n";
+#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+					while ( i < xmlLines.count() && !xmlLines[i].contains("</game>") )
+						xmlBuffer += xmlLines[i++].simplified() + "\n";
+					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</game>") ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
+						xmlBuffer.clear();
+					} else
+						xmlBuffer += "</game>\n";
+#endif
+				} else {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(systemName));
+					xmlBuffer.clear();
+				}
+			}
+		}
+	}
+
+	qmc2CriticalSection = false;
+	return xmlBuffer;
+}
+
 QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStringList *mountList)
 {
 #ifdef QMC2_DEBUG
@@ -292,16 +418,47 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	static QString softwareListDeviceName;
 
 	QMap<QString, QStringList> deviceInstanceMap;
-	int i = cachedDeviceLookupPosition;
-
 	softwareListDeviceName.clear();
 
+	QStringList *xmlData = &qmc2Gamelist->xmlLines;
+	QStringList dynamicXmlData;
+	if ( comboBoxDeviceConfiguration->currentIndex() > 0 ) {
+		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(comboBoxDeviceConfiguration->currentText()));
+		QStringList instances = qmc2Config->value("Instances").toStringList();
+		QStringList files = qmc2Config->value("Files").toStringList();
+		QStringList slotNames = qmc2Config->value("Slots").toStringList();
+		QStringList slotOptions = qmc2Config->value("SlotOptions").toStringList();
+		qmc2Config->endGroup();
+		QStringList swlArgs;
+		for (int j = 0; j < slotNames.count(); j++)
+			swlArgs << QString("-%1").arg(slotNames[j]) << slotOptions[j];
+		for (int j = 0; j < instances.count(); j++) {
+#if defined(Q_WS_WIN)
+			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace('/', '\\');
+#else
+			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace("~", "$HOME");
+#endif
+		}
+		foreach (QString line, getXmlDataWithEnabledSlots(swlArgs).split("\n", QString::SkipEmptyParts))
+			dynamicXmlData << line.trimmed();
+		xmlData = &dynamicXmlData;
+#ifdef QMC2_DEBUG
+		printf("SoftwareList::getXmlDataWithEnabledSlots(): XML data start\n");
+		foreach (QString line, dynamicXmlData)
+			printf("%s\n", (const char *)line.toLocal8Bit());
+		printf("SoftwareList::getXmlDataWithEnabledSlots(): XML data end\n");
+#endif
+	}
+
+	int i = 0;
+	if ( xmlData == &qmc2Gamelist->xmlLines )
+		i = cachedDeviceLookupPosition;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QString s = "<game name=\"" + systemName + "\"";
-	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-	if ( qmc2Gamelist->xmlLines[i].contains(s) ) cachedDeviceLookupPosition = i - 1;
-	while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
-		QString line = qmc2Gamelist->xmlLines[i++].simplified();
+	while ( !(*xmlData)[i].contains(s) ) i++;
+	if ( (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
+	while ( !(*xmlData)[i].contains("</game>") ) {
+		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
 			int endIndex;
@@ -317,7 +474,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 					foreach (QString devIf, devInterfaces)
 						deviceInstanceMap[devIf] << devName;
 			} else {
-				line = qmc2Gamelist->xmlLines[i++].simplified();
+				line = (*xmlData)[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
 				QString devName = line.mid(startIndex, endIndex - startIndex);
@@ -328,10 +485,10 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	}
 #elif defined(QMC2_EMUTYPE_MESS)
 	QString s = "<machine name=\"" + systemName + "\"";
-	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-	if ( qmc2Gamelist->xmlLines[i].contains(s) ) cachedDeviceLookupPosition = i - 1;
-	while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
-		QString line = qmc2Gamelist->xmlLines[i++].simplified();
+	while ( !(*xmlData)[i].contains(s) ) i++;
+	if ( (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
+	while ( !(*xmlData)[i].contains("</machine>") ) {
+		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
 			int endIndex;
@@ -339,7 +496,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 				startIndex += 11;
 				int endIndex = line.indexOf("\"", startIndex);
 				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
-				line = qmc2Gamelist->xmlLines[i++].simplified();
+				line = (*xmlData)[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
 				QString devName = line.mid(startIndex, endIndex - startIndex);
@@ -347,7 +504,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 					foreach (QString devIf, devInterfaces)
 						deviceInstanceMap[devIf] << devName;
 			} else {
-				line = qmc2Gamelist->xmlLines[i++].simplified();
+				line = (*xmlData)[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
 				QString devName = line.mid(startIndex, endIndex - startIndex);
@@ -1920,7 +2077,7 @@ QStringList &SoftwareList::arguments()
 	// optionally add arguments for the selected device configuration
 	QString devConfigName = comboBoxDeviceConfiguration->currentText();
 	if ( devConfigName != tr("No additional devices") ) {
-		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1/%2").arg(systemName).arg(devConfigName));
+		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(devConfigName));
 		QStringList instances = qmc2Config->value("Instances").toStringList();
 		QStringList files = qmc2Config->value("Files").toStringList();
 		QStringList slotNames = qmc2Config->value("Slots").toStringList();
