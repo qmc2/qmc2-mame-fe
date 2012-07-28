@@ -105,7 +105,7 @@
        </property>
        <item>
         <property name="text">
-         <string>No additional devices</string>
+         <string>Default configuration</string>
         </property>
        </item>
       </widget>
@@ -346,8 +346,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>548</width>
-        <height>192</height>
+        <width>83</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -436,8 +436,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>548</width>
-        <height>193</height>
+        <width>83</width>
+        <height>90</height>
        </rect>
       </property>
       <attribute name="icon">

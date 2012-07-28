@@ -1412,7 +1412,7 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 	toolButtonCompatFilterToggle->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
 	comboBoxDeviceConfiguration->clear();
-	comboBoxDeviceConfiguration->insertItem(0, tr("No additional devices"));
+	comboBoxDeviceConfiguration->insertItem(0, tr("Default configuration"));
 	qApp->processEvents();
 
 	QTimer::singleShot(0, this, SLOT(load()));
@@ -2146,7 +2146,7 @@ QStringList &SoftwareList::arguments()
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	// optionally add arguments for the selected device configuration
 	QString devConfigName = comboBoxDeviceConfiguration->currentText();
-	if ( devConfigName != tr("No additional devices") ) {
+	if ( devConfigName != tr("Default configuration") ) {
 		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(devConfigName));
 		QStringList instances = qmc2Config->value("Instances").toStringList();
 		QStringList files = qmc2Config->value("Files").toStringList();
