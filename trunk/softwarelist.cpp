@@ -1682,12 +1682,14 @@ void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
 	comboBoxDeviceConfiguration->setCurrentIndex(0);
 	switch ( index ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			updateMountDevices();
 			on_treeWidgetKnownSoftware_itemSelectionChanged();
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			on_treeWidgetFavoriteSoftware_itemSelectionChanged();
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
+			updateMountDevices();
 			on_treeWidgetSearchResults_itemSelectionChanged();
 			break;
 		default:
