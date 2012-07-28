@@ -173,6 +173,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool isLoading;
 		bool fullyLoaded;
 		bool loadFinishedFlag;
+		bool updatingMountDevices;
 		QStringList successfulLookups;
 		int cachedDeviceLookupPosition;
 		SoftwareListExporter *exporter;
@@ -192,6 +193,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 	public slots:
 		bool load();
 		bool save();
+		void updateMountDevices();
 
 		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);
@@ -225,6 +227,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetSearchResults_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetSearchResults_itemSelectionChanged(); }
 		void on_comboBoxSearch_editTextChanged(const QString &);
 		void on_comboBoxSearch_activated(const QString &);
+		void on_comboBoxDeviceConfiguration_currentIndexChanged(int);
 		void on_toolBoxSoftwareList_currentChanged(int);
 
 		// process management
