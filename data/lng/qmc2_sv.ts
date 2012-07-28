@@ -5602,8 +5602,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1632"/>
-        <location filename="../../messdevcfg.cpp" line="1637"/>
+        <location filename="../../messdevcfg.cpp" line="1735"/>
+        <location filename="../../messdevcfg.cpp" line="1740"/>
         <source>Active device configuration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5649,49 +5649,49 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="226"/>
         <location filename="../../messdevcfg.ui" line="229"/>
+        <location filename="../../messdevcfg.ui" line="232"/>
         <source>Device setup of current configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="242"/>
+        <location filename="../../messdevcfg.ui" line="245"/>
         <source>Device instance</source>
         <translation>Enhetsinstans</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="247"/>
+        <location filename="../../messdevcfg.ui" line="250"/>
         <source>Brief name</source>
         <translation>Kort namn</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="252"/>
+        <location filename="../../messdevcfg.ui" line="255"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="257"/>
+        <location filename="../../messdevcfg.ui" line="260"/>
         <source>Tag</source>
         <translation>Tagg</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="262"/>
+        <location filename="../../messdevcfg.ui" line="265"/>
         <source>Extensions</source>
         <translation>Tillägg</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="267"/>
+        <location filename="../../messdevcfg.ui" line="270"/>
         <source>File</source>
         <translation>Fil</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="276"/>
+        <location filename="../../messdevcfg.ui" line="279"/>
         <source>Slot options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="294"/>
         <location filename="../../messdevcfg.ui" line="297"/>
+        <location filename="../../messdevcfg.ui" line="300"/>
         <source>Available slot options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5794,17 +5794,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="170"/>
-        <location filename="../../messdevcfg.cpp" line="581"/>
+        <location filename="../../messdevcfg.cpp" line="595"/>
         <source>Reading slot info, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="172"/>
-        <location filename="../../messdevcfg.cpp" line="817"/>
-        <location filename="../../messdevcfg.cpp" line="1143"/>
-        <location filename="../../messdevcfg.cpp" line="1192"/>
-        <location filename="../../messdevcfg.cpp" line="1373"/>
-        <location filename="../../messdevcfg.cpp" line="1505"/>
+        <location filename="../../messdevcfg.cpp" line="893"/>
+        <location filename="../../messdevcfg.cpp" line="1225"/>
+        <location filename="../../messdevcfg.cpp" line="1274"/>
+        <location filename="../../messdevcfg.cpp" line="1473"/>
+        <location filename="../../messdevcfg.cpp" line="1608"/>
         <source>Default configuration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5874,112 +5874,116 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="292"/>
-        <location filename="../../messdevcfg.cpp" line="1893"/>
+        <location filename="../../messdevcfg.cpp" line="1996"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Öppna arkiv</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="343"/>
-        <location filename="../../messdevcfg.cpp" line="915"/>
-        <location filename="../../messdevcfg.cpp" line="1040"/>
-        <location filename="../../messdevcfg.cpp" line="1644"/>
-        <location filename="../../messdevcfg.cpp" line="2082"/>
+        <location filename="../../messdevcfg.cpp" line="344"/>
+        <location filename="../../messdevcfg.cpp" line="994"/>
+        <location filename="../../messdevcfg.cpp" line="1120"/>
+        <location filename="../../messdevcfg.cpp" line="1747"/>
+        <location filename="../../messdevcfg.cpp" line="2185"/>
         <source>No devices available</source>
         <translation>Inga enheter tillgängliga</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="446"/>
-        <location filename="../../messdevcfg.cpp" line="605"/>
+        <location filename="../../messdevcfg.cpp" line="460"/>
+        <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="619"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="491"/>
-        <location filename="../../messdevcfg.cpp" line="499"/>
         <location filename="../../messdevcfg.cpp" line="505"/>
+        <location filename="../../messdevcfg.cpp" line="513"/>
+        <location filename="../../messdevcfg.cpp" line="519"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="584"/>
+        <location filename="../../messdevcfg.cpp" line="598"/>
         <source>loading available system slots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="606"/>
+        <location filename="../../messdevcfg.cpp" line="620"/>
         <source>Failed to read slot info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="611"/>
+        <location filename="../../messdevcfg.cpp" line="625"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="691"/>
+        <location filename="../../messdevcfg.cpp" line="705"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="829"/>
+        <location filename="../../messdevcfg.cpp" line="905"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="731"/>
-        <location filename="../../messdevcfg.cpp" line="739"/>
-        <location filename="../../messdevcfg.cpp" line="1077"/>
-        <location filename="../../messdevcfg.cpp" line="1087"/>
+        <location filename="../../messdevcfg.cpp" line="745"/>
+        <location filename="../../messdevcfg.cpp" line="753"/>
+        <location filename="../../messdevcfg.cpp" line="1157"/>
+        <location filename="../../messdevcfg.cpp" line="1167"/>
         <source>not used</source>
         <translation>används inte</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="731"/>
-        <location filename="../../messdevcfg.cpp" line="746"/>
-        <location filename="../../messdevcfg.cpp" line="1077"/>
-        <location filename="../../messdevcfg.cpp" line="1096"/>
+        <location filename="../../messdevcfg.cpp" line="745"/>
+        <location filename="../../messdevcfg.cpp" line="760"/>
+        <location filename="../../messdevcfg.cpp" line="1157"/>
+        <location filename="../../messdevcfg.cpp" line="1176"/>
         <source>default</source>
         <translation>standard</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1225"/>
-        <location filename="../../messdevcfg.cpp" line="1227"/>
+        <location filename="../../messdevcfg.cpp" line="1307"/>
+        <location filename="../../messdevcfg.cpp" line="1309"/>
         <source>%1. copy of </source>
         <translation>%1. kopia av </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1481"/>
-        <location filename="../../messdevcfg.cpp" line="2097"/>
+        <location filename="../../messdevcfg.cpp" line="1584"/>
+        <location filename="../../messdevcfg.cpp" line="2200"/>
         <source>%1. variant of </source>
         <translation>%1. variant av </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1575"/>
+        <location filename="../../messdevcfg.cpp" line="1678"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Välj standardenhetskatalog för &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1893"/>
+        <location filename="../../messdevcfg.cpp" line="1996"/>
         <source>&amp;Close archive</source>
         <translation>S&amp;täng arkiv</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2099"/>
+        <location filename="../../messdevcfg.cpp" line="2202"/>
         <source>Choose a unique configuration name</source>
         <translation>Välj ett unikt konfigurationsnamn</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2099"/>
+        <location filename="../../messdevcfg.cpp" line="2202"/>
         <source>Unique configuration name:</source>
         <translation>Unikt konfigurationsnamn:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2102"/>
+        <location filename="../../messdevcfg.cpp" line="2205"/>
         <source>Name conflict</source>
         <translation>Namnkonflikt</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2102"/>
+        <location filename="../../messdevcfg.cpp" line="2205"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -6170,21 +6174,21 @@ Vill du välja ett annat namn?</translation>
         <location filename="../../qmc2main.ui" line="341"/>
         <location filename="../../qmc2main.ui" line="476"/>
         <location filename="../../qmc2main.ui" line="611"/>
-        <location filename="../../qmc2main.cpp" line="1900"/>
-        <location filename="../../qmc2main.cpp" line="2154"/>
-        <location filename="../../qmc2main.cpp" line="2178"/>
-        <location filename="../../qmc2main.cpp" line="3521"/>
-        <location filename="../../qmc2main.cpp" line="3736"/>
-        <location filename="../../qmc2main.cpp" line="4475"/>
-        <location filename="../../qmc2main.cpp" line="4583"/>
-        <location filename="../../qmc2main.cpp" line="5236"/>
-        <location filename="../../qmc2main.cpp" line="5252"/>
-        <location filename="../../qmc2main.cpp" line="6270"/>
-        <location filename="../../qmc2main.cpp" line="6292"/>
-        <location filename="../../qmc2main.cpp" line="8229"/>
-        <location filename="../../qmc2main.cpp" line="8246"/>
-        <location filename="../../qmc2main.cpp" line="8335"/>
-        <location filename="../../qmc2main.cpp" line="8352"/>
+        <location filename="../../qmc2main.cpp" line="1908"/>
+        <location filename="../../qmc2main.cpp" line="2162"/>
+        <location filename="../../qmc2main.cpp" line="2186"/>
+        <location filename="../../qmc2main.cpp" line="3529"/>
+        <location filename="../../qmc2main.cpp" line="3744"/>
+        <location filename="../../qmc2main.cpp" line="4483"/>
+        <location filename="../../qmc2main.cpp" line="4591"/>
+        <location filename="../../qmc2main.cpp" line="5244"/>
+        <location filename="../../qmc2main.cpp" line="5260"/>
+        <location filename="../../qmc2main.cpp" line="6278"/>
+        <location filename="../../qmc2main.cpp" line="6300"/>
+        <location filename="../../qmc2main.cpp" line="8237"/>
+        <location filename="../../qmc2main.cpp" line="8254"/>
+        <location filename="../../qmc2main.cpp" line="8343"/>
+        <location filename="../../qmc2main.cpp" line="8360"/>
         <source>Waiting for data...</source>
         <translation>Väntar på data...</translation>
     </message>
@@ -6213,7 +6217,7 @@ Vill du välja ett annat namn?</translation>
         <location filename="../../qmc2main.cpp" line="1236"/>
         <location filename="../../qmc2main.cpp" line="1272"/>
         <location filename="../../qmc2main.cpp" line="1300"/>
-        <location filename="../../qmc2main.cpp" line="8583"/>
+        <location filename="../../qmc2main.cpp" line="8591"/>
         <source>Icon</source>
         <translation>Ikon</translation>
     </message>
@@ -6296,7 +6300,7 @@ Vill du välja ett annat namn?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="789"/>
-        <location filename="../../qmc2main.cpp" line="4744"/>
+        <location filename="../../qmc2main.cpp" line="4752"/>
         <source>Embedded emulators</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6553,8 +6557,8 @@ Vill du välja ett annat namn?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1946"/>
-        <location filename="../../qmc2main.cpp" line="7206"/>
-        <location filename="../../qmc2main.cpp" line="7216"/>
+        <location filename="../../qmc2main.cpp" line="7214"/>
+        <location filename="../../qmc2main.cpp" line="7224"/>
         <source>%vs (%ms total)</source>
         <translation>%vs (%ms totalt)</translation>
     </message>
@@ -6831,7 +6835,7 @@ Vill du välja ett annat namn?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2628"/>
-        <location filename="../../qmc2main.cpp" line="2945"/>
+        <location filename="../../qmc2main.cpp" line="2953"/>
         <source>About Qt</source>
         <translation>Om Qt</translation>
     </message>
@@ -6926,7 +6930,7 @@ Vill du välja ett annat namn?</translation>
         <location filename="../../qmc2main.cpp" line="857"/>
         <location filename="../../qmc2main.cpp" line="909"/>
         <location filename="../../qmc2main.cpp" line="1020"/>
-        <location filename="../../qmc2main.cpp" line="4776"/>
+        <location filename="../../qmc2main.cpp" line="4784"/>
         <source>To &amp;favorites</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7757,13 +7761,13 @@ Vill du välja ett annat namn?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="421"/>
-        <location filename="../../qmc2main.cpp" line="4045"/>
-        <location filename="../../qmc2main.cpp" line="4077"/>
-        <location filename="../../qmc2main.cpp" line="4271"/>
-        <location filename="../../qmc2main.cpp" line="4375"/>
-        <location filename="../../qmc2main.cpp" line="5890"/>
-        <location filename="../../qmc2main.cpp" line="6123"/>
-        <location filename="../../qmc2main.cpp" line="6170"/>
+        <location filename="../../qmc2main.cpp" line="4053"/>
+        <location filename="../../qmc2main.cpp" line="4085"/>
+        <location filename="../../qmc2main.cpp" line="4279"/>
+        <location filename="../../qmc2main.cpp" line="4383"/>
+        <location filename="../../qmc2main.cpp" line="5898"/>
+        <location filename="../../qmc2main.cpp" line="6131"/>
+        <location filename="../../qmc2main.cpp" line="6178"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
@@ -8111,13 +8115,13 @@ Vill du välja ett annat namn?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="823"/>
-        <location filename="../../qmc2main.cpp" line="4792"/>
+        <location filename="../../qmc2main.cpp" line="4800"/>
         <source>Copy emulator command line to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="824"/>
-        <location filename="../../qmc2main.cpp" line="4793"/>
+        <location filename="../../qmc2main.cpp" line="4801"/>
         <source>&amp;Copy command</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8370,90 +8374,90 @@ Vill du välja ett annat namn?</translation>
         <translation>Inga enheter tillgängliga</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1745"/>
+        <location filename="../../qmc2main.cpp" line="1749"/>
         <source>Default configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1918"/>
-        <location filename="../../qmc2main.cpp" line="1997"/>
-        <location filename="../../qmc2main.cpp" line="2019"/>
+        <location filename="../../qmc2main.cpp" line="1926"/>
+        <location filename="../../qmc2main.cpp" line="2005"/>
+        <location filename="../../qmc2main.cpp" line="2027"/>
         <source>please wait for ROM state filter to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1923"/>
-        <location filename="../../qmc2main.cpp" line="2294"/>
+        <location filename="../../qmc2main.cpp" line="1931"/>
+        <location filename="../../qmc2main.cpp" line="2302"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1928"/>
-        <location filename="../../qmc2main.cpp" line="2003"/>
-        <location filename="../../qmc2main.cpp" line="2025"/>
+        <location filename="../../qmc2main.cpp" line="1936"/>
+        <location filename="../../qmc2main.cpp" line="2011"/>
+        <location filename="../../qmc2main.cpp" line="2033"/>
         <source>please wait for image check to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1933"/>
-        <location filename="../../qmc2main.cpp" line="2005"/>
-        <location filename="../../qmc2main.cpp" line="2027"/>
+        <location filename="../../qmc2main.cpp" line="1941"/>
+        <location filename="../../qmc2main.cpp" line="2013"/>
+        <location filename="../../qmc2main.cpp" line="2035"/>
         <source>please wait for sample check to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1938"/>
-        <location filename="../../qmc2main.cpp" line="2007"/>
-        <location filename="../../qmc2main.cpp" line="2029"/>
-        <location filename="../../qmc2main.cpp" line="2182"/>
+        <location filename="../../qmc2main.cpp" line="1946"/>
+        <location filename="../../qmc2main.cpp" line="2015"/>
+        <location filename="../../qmc2main.cpp" line="2037"/>
+        <location filename="../../qmc2main.cpp" line="2190"/>
         <source>please wait for ROMAlyzer to finish the current analysis and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1944"/>
+        <location filename="../../qmc2main.cpp" line="1952"/>
         <source>game list reload is already active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1946"/>
+        <location filename="../../qmc2main.cpp" line="1954"/>
         <source>machine list reload is already active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1966"/>
-        <location filename="../../qmc2main.cpp" line="5730"/>
+        <location filename="../../qmc2main.cpp" line="1974"/>
+        <location filename="../../qmc2main.cpp" line="5738"/>
         <source>saving game selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="1999"/>
-        <location filename="../../qmc2main.cpp" line="2021"/>
+        <location filename="../../qmc2main.cpp" line="2007"/>
+        <location filename="../../qmc2main.cpp" line="2029"/>
         <source>ROM verification already active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2001"/>
-        <location filename="../../qmc2main.cpp" line="2023"/>
-        <location filename="../../qmc2main.cpp" line="2290"/>
-        <location filename="../../qmc2main.cpp" line="2331"/>
-        <location filename="../../qmc2main.cpp" line="2370"/>
-        <location filename="../../qmc2main.cpp" line="2405"/>
-        <location filename="../../qmc2main.cpp" line="4466"/>
+        <location filename="../../qmc2main.cpp" line="2009"/>
+        <location filename="../../qmc2main.cpp" line="2031"/>
+        <location filename="../../qmc2main.cpp" line="2298"/>
+        <location filename="../../qmc2main.cpp" line="2339"/>
+        <location filename="../../qmc2main.cpp" line="2378"/>
+        <location filename="../../qmc2main.cpp" line="2413"/>
+        <location filename="../../qmc2main.cpp" line="4474"/>
         <source>please wait for reload to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2033"/>
-        <location filename="../../qmc2main.cpp" line="5114"/>
-        <location filename="../../qmc2main.cpp" line="5159"/>
-        <location filename="../../qmc2main.cpp" line="5586"/>
-        <location filename="../../qmc2main.cpp" line="5601"/>
-        <location filename="../../qmc2main.cpp" line="5632"/>
+        <location filename="../../qmc2main.cpp" line="2041"/>
+        <location filename="../../qmc2main.cpp" line="5122"/>
+        <location filename="../../qmc2main.cpp" line="5167"/>
+        <location filename="../../qmc2main.cpp" line="5594"/>
+        <location filename="../../qmc2main.cpp" line="5609"/>
+        <location filename="../../qmc2main.cpp" line="5640"/>
         <source>Confirm</source>
         <translation>Bekräfta</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2034"/>
+        <location filename="../../qmc2main.cpp" line="2042"/>
         <source>The ROM verification process may be very time-consuming.
 It will overwrite existing cached data.
 
@@ -8461,22 +8465,22 @@ Do you really want to check all ROM states now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2045"/>
+        <location filename="../../qmc2main.cpp" line="2053"/>
         <source>automatic ROM check triggered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2210"/>
+        <location filename="../../qmc2main.cpp" line="2218"/>
         <source>image cache cleared</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2221"/>
+        <location filename="../../qmc2main.cpp" line="2229"/>
         <source>icon cache cleared</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="2230"/>
+        <location filename="../../qmc2main.cpp" line="2238"/>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8484,7 +8488,7 @@ Do you really want to check all ROM states now?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="2230"/>
+        <location filename="../../qmc2main.cpp" line="2238"/>
         <source>%n entry(s)</source>
         <translation>
             <numerusform>%n post</numerusform>
@@ -8492,13 +8496,13 @@ Do you really want to check all ROM states now?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2233"/>
+        <location filename="../../qmc2main.cpp" line="2241"/>
         <source>MAWS in-memory cache cleared (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="2249"/>
-        <location filename="../../qmc2main.cpp" line="2278"/>
+        <location filename="../../qmc2main.cpp" line="2257"/>
+        <location filename="../../qmc2main.cpp" line="2286"/>
         <source>removed %n byte(s) in %1</source>
         <translation>
             <numerusform>tog bort %n byte i %1</numerusform>
@@ -8506,8 +8510,8 @@ Do you really want to check all ROM states now?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="2249"/>
-        <location filename="../../qmc2main.cpp" line="2278"/>
+        <location filename="../../qmc2main.cpp" line="2257"/>
+        <location filename="../../qmc2main.cpp" line="2286"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n fil</numerusform>
@@ -8515,27 +8519,27 @@ Do you really want to check all ROM states now?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2250"/>
+        <location filename="../../qmc2main.cpp" line="2258"/>
         <source>MAWS on-disk cache cleared (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2252"/>
+        <location filename="../../qmc2main.cpp" line="2260"/>
         <source>ProjectMESS in-memory cache cleared (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3933"/>
+        <location filename="../../qmc2main.cpp" line="3941"/>
         <source>ProjectMESS page for system &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3938"/>
+        <location filename="../../qmc2main.cpp" line="3946"/>
         <source>Fetching ProjectMESS page for system &apos;%1&apos;, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2279"/>
+        <location filename="../../qmc2main.cpp" line="2287"/>
         <source>YouTube on-disk cache cleared (%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8569,229 +8573,229 @@ Do you really want to check all ROM states now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2313"/>
+        <location filename="../../qmc2main.cpp" line="2321"/>
         <source>ROM state cache file &apos;%1&apos; forcedly removed upon user request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2315"/>
+        <location filename="../../qmc2main.cpp" line="2323"/>
         <source>WARNING: cannot remove the ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2320"/>
+        <location filename="../../qmc2main.cpp" line="2328"/>
         <source>triggering an automatic ROM check on next reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2351"/>
+        <location filename="../../qmc2main.cpp" line="2359"/>
         <source>game list cache file &apos;%1&apos; forcedly removed upon user request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2353"/>
+        <location filename="../../qmc2main.cpp" line="2361"/>
         <source>WARNING: cannot remove the game list cache file &apos;%1&apos;, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2356"/>
+        <location filename="../../qmc2main.cpp" line="2364"/>
         <source>machine list cache file &apos;%1&apos; forcedly removed upon user request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2358"/>
+        <location filename="../../qmc2main.cpp" line="2366"/>
         <source>WARNING: cannot remove the machine list cache file &apos;%1&apos;, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2389"/>
+        <location filename="../../qmc2main.cpp" line="2397"/>
         <source>XML cache file &apos;%1&apos; forcedly removed upon user request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2391"/>
+        <location filename="../../qmc2main.cpp" line="2399"/>
         <source>WARNING: cannot remove the XML cache file &apos;%1&apos;, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2424"/>
+        <location filename="../../qmc2main.cpp" line="2432"/>
         <source>software list cache file &apos;%1&apos; forcedly removed upon user request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2426"/>
+        <location filename="../../qmc2main.cpp" line="2434"/>
         <source>WARNING: cannot remove the software list cache file &apos;%1&apos;, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2649"/>
-        <location filename="../../qmc2main.cpp" line="2651"/>
-        <location filename="../../qmc2main.cpp" line="2750"/>
-        <location filename="../../qmc2main.cpp" line="2752"/>
-        <location filename="../../qmc2main.cpp" line="2851"/>
-        <location filename="../../qmc2main.cpp" line="2853"/>
+        <location filename="../../qmc2main.cpp" line="2657"/>
+        <location filename="../../qmc2main.cpp" line="2659"/>
+        <location filename="../../qmc2main.cpp" line="2758"/>
+        <location filename="../../qmc2main.cpp" line="2760"/>
+        <location filename="../../qmc2main.cpp" line="2859"/>
+        <location filename="../../qmc2main.cpp" line="2861"/>
         <source>variant &apos;%1&apos; launched</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2689"/>
-        <location filename="../../qmc2main.cpp" line="2691"/>
-        <location filename="../../qmc2main.cpp" line="2790"/>
-        <location filename="../../qmc2main.cpp" line="2792"/>
-        <location filename="../../qmc2main.cpp" line="2891"/>
-        <location filename="../../qmc2main.cpp" line="2893"/>
+        <location filename="../../qmc2main.cpp" line="2697"/>
+        <location filename="../../qmc2main.cpp" line="2699"/>
+        <location filename="../../qmc2main.cpp" line="2798"/>
+        <location filename="../../qmc2main.cpp" line="2800"/>
+        <location filename="../../qmc2main.cpp" line="2899"/>
+        <location filename="../../qmc2main.cpp" line="2901"/>
         <source>WARNING: failed to launch variant &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="2954"/>
-        <location filename="../../qmc2main.cpp" line="2973"/>
+        <location filename="../../qmc2main.cpp" line="2962"/>
+        <location filename="../../qmc2main.cpp" line="2981"/>
         <source>WARNING: this feature is not yet working!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3159"/>
+        <location filename="../../qmc2main.cpp" line="3167"/>
         <source>ERROR: no match found (?)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3446"/>
+        <location filename="../../qmc2main.cpp" line="3454"/>
         <source>ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3451"/>
+        <location filename="../../qmc2main.cpp" line="3459"/>
         <source>Fetching ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3975"/>
+        <location filename="../../qmc2main.cpp" line="3983"/>
         <source>MAWS page for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4013"/>
+        <location filename="../../qmc2main.cpp" line="4021"/>
         <source>Fetching MAWS page for &apos;%1&apos;, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4067"/>
+        <location filename="../../qmc2main.cpp" line="4075"/>
         <source>Emulator for this game</source>
         <translation>Emulator för detta spel</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4069"/>
+        <location filename="../../qmc2main.cpp" line="4077"/>
         <source>Emulator for this machine</source>
         <translation>Emulator för denna maskin</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4100"/>
+        <location filename="../../qmc2main.cpp" line="4108"/>
         <source>Export to...</source>
         <translation>Exportera till...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4122"/>
-        <location filename="../../qmc2main.cpp" line="4126"/>
+        <location filename="../../qmc2main.cpp" line="4130"/>
+        <location filename="../../qmc2main.cpp" line="4134"/>
         <source>&lt;inipath&gt;/%1.ini</source>
         <translation>&lt;inipath&gt;/%1.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4123"/>
-        <location filename="../../qmc2main.cpp" line="4127"/>
+        <location filename="../../qmc2main.cpp" line="4131"/>
+        <location filename="../../qmc2main.cpp" line="4135"/>
         <source>Select file...</source>
         <translation>Välj fil...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4205"/>
-        <location filename="../../qmc2main.cpp" line="4212"/>
+        <location filename="../../qmc2main.cpp" line="4213"/>
+        <location filename="../../qmc2main.cpp" line="4220"/>
         <source>&lt;p&gt;No data available&lt;/p&gt;</source>
         <translation>&lt;p&gt;Inget data tillgängligt&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4207"/>
-        <location filename="../../qmc2main.cpp" line="4214"/>
-        <location filename="../../qmc2main.cpp" line="4253"/>
-        <location filename="../../qmc2main.cpp" line="4256"/>
+        <location filename="../../qmc2main.cpp" line="4215"/>
+        <location filename="../../qmc2main.cpp" line="4222"/>
+        <location filename="../../qmc2main.cpp" line="4261"/>
+        <location filename="../../qmc2main.cpp" line="4264"/>
         <source>No data available</source>
         <translation>Inget data tillgängligt</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4660"/>
+        <location filename="../../qmc2main.cpp" line="4668"/>
         <source>emulator #%1 is already embedded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4690"/>
+        <location filename="../../qmc2main.cpp" line="4698"/>
         <source>FATAL: can&apos;t start XWININFO within a reasonable time frame, giving up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4733"/>
-        <location filename="../../qmc2main.cpp" line="4736"/>
+        <location filename="../../qmc2main.cpp" line="4741"/>
+        <location filename="../../qmc2main.cpp" line="4744"/>
         <source>WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4746"/>
-        <location filename="../../qmc2main.cpp" line="4749"/>
+        <location filename="../../qmc2main.cpp" line="4754"/>
+        <location filename="../../qmc2main.cpp" line="4757"/>
         <source>embedding emulator #%1, window ID = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4747"/>
-        <location filename="../../qmc2main.cpp" line="7600"/>
-        <location filename="../../qmc2main.cpp" line="7614"/>
+        <location filename="../../qmc2main.cpp" line="4755"/>
+        <location filename="../../qmc2main.cpp" line="7608"/>
+        <location filename="../../qmc2main.cpp" line="7622"/>
         <source>paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4759"/>
+        <location filename="../../qmc2main.cpp" line="4767"/>
         <source>Release emulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4767"/>
-        <location filename="../../qmc2main.cpp" line="4768"/>
+        <location filename="../../qmc2main.cpp" line="4775"/>
+        <location filename="../../qmc2main.cpp" line="4776"/>
         <source>Toggle embedder options (hold down for menu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4775"/>
+        <location filename="../../qmc2main.cpp" line="4783"/>
         <source>To favorites</source>
         <translation>Till favoriter</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4781"/>
+        <location filename="../../qmc2main.cpp" line="4789"/>
         <source>Terminate emulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4782"/>
+        <location filename="../../qmc2main.cpp" line="4790"/>
         <source>&amp;Terminate emulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4786"/>
+        <location filename="../../qmc2main.cpp" line="4794"/>
         <source>Kill emulator</source>
         <translation>Döda emulator</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4787"/>
+        <location filename="../../qmc2main.cpp" line="4795"/>
         <source>&amp;Kill emulator</source>
         <translation>&amp;Döda emulator</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4811"/>
+        <location filename="../../qmc2main.cpp" line="4819"/>
         <source>WARNING: no matching window for emulator #%1 found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4817"/>
+        <location filename="../../qmc2main.cpp" line="4825"/>
         <source>Embedding failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4818"/>
+        <location filename="../../qmc2main.cpp" line="4826"/>
         <source>Couldn&apos;t find the window ID of one or more
 emulator(s) within a reasonable timeframe.
 
@@ -8799,303 +8803,303 @@ Retry embedding?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4828"/>
+        <location filename="../../qmc2main.cpp" line="4836"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4828"/>
+        <location filename="../../qmc2main.cpp" line="4836"/>
         <source>Sorry, the emulator meanwhile died a sorrowful death :(.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4843"/>
-        <location filename="../../qmc2main.cpp" line="4844"/>
+        <location filename="../../qmc2main.cpp" line="4851"/>
+        <location filename="../../qmc2main.cpp" line="4852"/>
         <source>Scanning pause key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5115"/>
+        <location filename="../../qmc2main.cpp" line="5123"/>
         <source>Are you sure you want to clear the favorites list?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5160"/>
+        <location filename="../../qmc2main.cpp" line="5168"/>
         <source>Are you sure you want to clear the play history?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5355"/>
-        <location filename="../../qmc2main.cpp" line="5412"/>
+        <location filename="../../qmc2main.cpp" line="5363"/>
+        <location filename="../../qmc2main.cpp" line="5420"/>
         <source>Choose export file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5355"/>
-        <location filename="../../qmc2main.cpp" line="5384"/>
-        <location filename="../../qmc2main.cpp" line="5412"/>
-        <location filename="../../qmc2main.cpp" line="5444"/>
-        <location filename="../../qmc2main.cpp" line="7046"/>
-        <location filename="../../qmc2main.cpp" line="8887"/>
-        <location filename="../../qmc2main.cpp" line="8954"/>
+        <location filename="../../qmc2main.cpp" line="5363"/>
+        <location filename="../../qmc2main.cpp" line="5392"/>
+        <location filename="../../qmc2main.cpp" line="5420"/>
+        <location filename="../../qmc2main.cpp" line="5452"/>
+        <location filename="../../qmc2main.cpp" line="7054"/>
+        <location filename="../../qmc2main.cpp" line="8895"/>
+        <location filename="../../qmc2main.cpp" line="8962"/>
         <source>All files (*)</source>
         <translation>Alla filer (*)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5384"/>
-        <location filename="../../qmc2main.cpp" line="5444"/>
+        <location filename="../../qmc2main.cpp" line="5392"/>
+        <location filename="../../qmc2main.cpp" line="5452"/>
         <source>Choose import file</source>
         <translation>Välj importfil</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5410"/>
-        <location filename="../../qmc2main.cpp" line="5441"/>
+        <location filename="../../qmc2main.cpp" line="5418"/>
+        <location filename="../../qmc2main.cpp" line="5449"/>
         <source>WARNING: invalid inipath</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5573"/>
-        <location filename="../../qmc2main.cpp" line="5580"/>
+        <location filename="../../qmc2main.cpp" line="5581"/>
+        <location filename="../../qmc2main.cpp" line="5588"/>
         <source>stopping current processing upon user request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5587"/>
+        <location filename="../../qmc2main.cpp" line="5595"/>
         <source>Your configuration changes have not been applied yet.
 Really quit?</source>
         <translation>Dina konfigurationsändringar har ännu inte tillämpats.
 Verkligen avsluta?</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5602"/>
+        <location filename="../../qmc2main.cpp" line="5610"/>
         <source>There are one or more emulators still running.
 Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5633"/>
+        <location filename="../../qmc2main.cpp" line="5641"/>
         <source>There are one or more running downloads. Quit anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5648"/>
+        <location filename="../../qmc2main.cpp" line="5656"/>
         <source>cleaning up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5652"/>
+        <location filename="../../qmc2main.cpp" line="5660"/>
         <source>aborting running downloads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5664"/>
+        <location filename="../../qmc2main.cpp" line="5672"/>
         <source>saving YouTube video info map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5691"/>
+        <location filename="../../qmc2main.cpp" line="5699"/>
         <source>done (saving YouTube video info map)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5693"/>
-        <location filename="../../qmc2main.cpp" line="5695"/>
+        <location filename="../../qmc2main.cpp" line="5701"/>
+        <location filename="../../qmc2main.cpp" line="5703"/>
         <source>failed (saving YouTube video info map)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5700"/>
+        <location filename="../../qmc2main.cpp" line="5708"/>
         <source>disconnecting audio source from audio sink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5703"/>
+        <location filename="../../qmc2main.cpp" line="5711"/>
         <source>destroying audio effects dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5709"/>
+        <location filename="../../qmc2main.cpp" line="5717"/>
         <source>destroying YouTube video widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5737"/>
+        <location filename="../../qmc2main.cpp" line="5745"/>
         <source>saving main widget layout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5817"/>
+        <location filename="../../qmc2main.cpp" line="5825"/>
         <source>destroying arcade view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5822"/>
+        <location filename="../../qmc2main.cpp" line="5830"/>
         <source>destroying arcade setup dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5840"/>
-        <location filename="../../qmc2main.cpp" line="5871"/>
+        <location filename="../../qmc2main.cpp" line="5848"/>
+        <location filename="../../qmc2main.cpp" line="5879"/>
         <source>saving current game&apos;s favorite software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5853"/>
+        <location filename="../../qmc2main.cpp" line="5861"/>
         <source>saving current machine&apos;s favorite software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5859"/>
+        <location filename="../../qmc2main.cpp" line="5867"/>
         <source>saving current machine&apos;s device configurations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5877"/>
+        <location filename="../../qmc2main.cpp" line="5885"/>
         <source>saving current game&apos;s device configurations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5885"/>
+        <location filename="../../qmc2main.cpp" line="5893"/>
         <source>destroying current game&apos;s emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5887"/>
+        <location filename="../../qmc2main.cpp" line="5895"/>
         <source>destroying current machine&apos;s emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5897"/>
+        <location filename="../../qmc2main.cpp" line="5905"/>
         <source>destroying global emulator options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5903"/>
+        <location filename="../../qmc2main.cpp" line="5911"/>
         <source>destroying game list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5905"/>
+        <location filename="../../qmc2main.cpp" line="5913"/>
         <source>destroying machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5910"/>
+        <location filename="../../qmc2main.cpp" line="5918"/>
         <source>destroying preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5914"/>
+        <location filename="../../qmc2main.cpp" line="5922"/>
         <source>destroying flyer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5918"/>
+        <location filename="../../qmc2main.cpp" line="5926"/>
         <source>destroying cabinet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5922"/>
+        <location filename="../../qmc2main.cpp" line="5930"/>
         <source>destroying controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5926"/>
+        <location filename="../../qmc2main.cpp" line="5934"/>
         <source>destroying marquee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5930"/>
+        <location filename="../../qmc2main.cpp" line="5938"/>
         <source>destroying title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5934"/>
+        <location filename="../../qmc2main.cpp" line="5942"/>
         <source>destroying PCB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5938"/>
+        <location filename="../../qmc2main.cpp" line="5946"/>
         <source>destroying about dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5942"/>
+        <location filename="../../qmc2main.cpp" line="5950"/>
         <source>destroying MiniWebBrowser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5947"/>
+        <location filename="../../qmc2main.cpp" line="5955"/>
         <source>destroying MAWS lookup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5951"/>
+        <location filename="../../qmc2main.cpp" line="5959"/>
         <source>destroying MAWS quick download setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5957"/>
+        <location filename="../../qmc2main.cpp" line="5965"/>
         <source>destroying ProjectMESS lookup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5962"/>
+        <location filename="../../qmc2main.cpp" line="5970"/>
         <source>destroying image checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5967"/>
+        <location filename="../../qmc2main.cpp" line="5975"/>
         <source>destroying sample checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5972"/>
+        <location filename="../../qmc2main.cpp" line="5980"/>
         <source>destroying ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5977"/>
+        <location filename="../../qmc2main.cpp" line="5985"/>
         <source>destroying ROM status exporter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5982"/>
+        <location filename="../../qmc2main.cpp" line="5990"/>
         <source>destroying detail setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5987"/>
+        <location filename="../../qmc2main.cpp" line="5995"/>
         <source>destroying tool-bar customization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5993"/>
+        <location filename="../../qmc2main.cpp" line="6001"/>
         <source>destroying demo mode dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6001"/>
+        <location filename="../../qmc2main.cpp" line="6009"/>
         <source>destroying game info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6003"/>
+        <location filename="../../qmc2main.cpp" line="6011"/>
         <source>destroying machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6019"/>
+        <location filename="../../qmc2main.cpp" line="6027"/>
         <source>destroying emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6034"/>
+        <location filename="../../qmc2main.cpp" line="6042"/>
         <source>destroying process manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6044"/>
+        <location filename="../../qmc2main.cpp" line="6052"/>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -9103,7 +9107,7 @@ Should they be killed on exit?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6047"/>
+        <location filename="../../qmc2main.cpp" line="6055"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -9111,52 +9115,52 @@ Should they be killed on exit?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6069"/>
+        <location filename="../../qmc2main.cpp" line="6077"/>
         <source>destroying network access manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6073"/>
+        <location filename="../../qmc2main.cpp" line="6081"/>
         <source>so long and thanks for all the fish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6093"/>
+        <location filename="../../qmc2main.cpp" line="6101"/>
         <source>Welcome to QMC2 v%1!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6209"/>
+        <location filename="../../qmc2main.cpp" line="6217"/>
         <source>loading style sheet &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6216"/>
+        <location filename="../../qmc2main.cpp" line="6224"/>
         <source>FATAL: can&apos;t open style sheet file &apos;%1&apos;, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6219"/>
+        <location filename="../../qmc2main.cpp" line="6227"/>
         <source>removing current style sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6398"/>
+        <location filename="../../qmc2main.cpp" line="6406"/>
         <source>loading YouTube video info map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6419"/>
+        <location filename="../../qmc2main.cpp" line="6427"/>
         <source>YouTube index - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6448"/>
+        <location filename="../../qmc2main.cpp" line="6456"/>
         <source>done (loading YouTube video info map)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6449"/>
+        <location filename="../../qmc2main.cpp" line="6457"/>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -9164,72 +9168,72 @@ Should they be killed on exit?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6466"/>
+        <location filename="../../qmc2main.cpp" line="6474"/>
         <source>loading game info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6468"/>
+        <location filename="../../qmc2main.cpp" line="6476"/>
         <source>loading machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6496"/>
+        <location filename="../../qmc2main.cpp" line="6504"/>
         <source>Game info - %p%</source>
         <translation>Spelinfo - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6498"/>
+        <location filename="../../qmc2main.cpp" line="6506"/>
         <source>Machine info - %p%</source>
         <translation>Maskininfo - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6578"/>
+        <location filename="../../qmc2main.cpp" line="6586"/>
         <source>WARNING: missing &apos;$end&apos; in game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6580"/>
+        <location filename="../../qmc2main.cpp" line="6588"/>
         <source>WARNING: missing &apos;$end&apos; in machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6585"/>
+        <location filename="../../qmc2main.cpp" line="6593"/>
         <source>WARNING: missing &apos;$bio&apos; in game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6587"/>
+        <location filename="../../qmc2main.cpp" line="6595"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6592"/>
+        <location filename="../../qmc2main.cpp" line="6600"/>
         <source>WARNING: missing &apos;$info&apos; in game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6594"/>
+        <location filename="../../qmc2main.cpp" line="6602"/>
         <source>WARNING: missing &apos;$info&apos; in machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6606"/>
+        <location filename="../../qmc2main.cpp" line="6614"/>
         <source>WARNING: can&apos;t open game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6608"/>
+        <location filename="../../qmc2main.cpp" line="6616"/>
         <source>WARNING: can&apos;t open machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6614"/>
+        <location filename="../../qmc2main.cpp" line="6622"/>
         <source>done (loading game info DB, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6615"/>
+        <location filename="../../qmc2main.cpp" line="6623"/>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -9237,17 +9241,17 @@ Should they be killed on exit?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6617"/>
+        <location filename="../../qmc2main.cpp" line="6625"/>
         <source>invalidating game info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6619"/>
+        <location filename="../../qmc2main.cpp" line="6627"/>
         <source>done (loading machine info DB, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6620"/>
+        <location filename="../../qmc2main.cpp" line="6628"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -9255,47 +9259,47 @@ Should they be killed on exit?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6622"/>
+        <location filename="../../qmc2main.cpp" line="6630"/>
         <source>invalidating machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6652"/>
+        <location filename="../../qmc2main.cpp" line="6660"/>
         <source>loading emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6677"/>
+        <location filename="../../qmc2main.cpp" line="6685"/>
         <source>Emu info - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6739"/>
+        <location filename="../../qmc2main.cpp" line="6747"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6742"/>
+        <location filename="../../qmc2main.cpp" line="6750"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6745"/>
+        <location filename="../../qmc2main.cpp" line="6753"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6755"/>
+        <location filename="../../qmc2main.cpp" line="6763"/>
         <source>WARNING: can&apos;t open emulator info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6758"/>
+        <location filename="../../qmc2main.cpp" line="6766"/>
         <source>done (loading emulator info DB, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6759"/>
+        <location filename="../../qmc2main.cpp" line="6767"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -9303,293 +9307,293 @@ Should they be killed on exit?</source>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6761"/>
+        <location filename="../../qmc2main.cpp" line="6769"/>
         <source>invalidating emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7046"/>
+        <location filename="../../qmc2main.cpp" line="7054"/>
         <source>Select one or more audio files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7058"/>
+        <location filename="../../qmc2main.cpp" line="7066"/>
         <source>Add URL</source>
         <translation>Lägg till URL</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7058"/>
+        <location filename="../../qmc2main.cpp" line="7066"/>
         <source>Enter valid MP3 stream URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7308"/>
+        <location filename="../../qmc2main.cpp" line="7316"/>
         <source>audio player: track info: title = &apos;%1&apos;, artist = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7322"/>
+        <location filename="../../qmc2main.cpp" line="7330"/>
         <source>Buffering %p%</source>
         <translation>Buffrar %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7386"/>
+        <location filename="../../qmc2main.cpp" line="7394"/>
         <source>WARNING: can&apos;t create SDLMAME output notifier FIFO, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7398"/>
+        <location filename="../../qmc2main.cpp" line="7406"/>
         <source>WARNING: can&apos;t create SDLMESS output notifier FIFO, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7410"/>
+        <location filename="../../qmc2main.cpp" line="7418"/>
         <source>WARNING: can&apos;t create SDLUME output notifier FIFO, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7426"/>
+        <location filename="../../qmc2main.cpp" line="7434"/>
         <source>SDLMAME output notifier FIFO created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7430"/>
-        <location filename="../../qmc2main.cpp" line="7433"/>
+        <location filename="../../qmc2main.cpp" line="7438"/>
+        <location filename="../../qmc2main.cpp" line="7441"/>
         <source>WARNING: can&apos;t open SDLMAME output notifier FIFO for reading, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7437"/>
+        <location filename="../../qmc2main.cpp" line="7445"/>
         <source>SDLMESS output notifier FIFO created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7441"/>
-        <location filename="../../qmc2main.cpp" line="7444"/>
+        <location filename="../../qmc2main.cpp" line="7449"/>
+        <location filename="../../qmc2main.cpp" line="7452"/>
         <source>WARNING: can&apos;t open SDLMESS output notifier FIFO for reading, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7448"/>
+        <location filename="../../qmc2main.cpp" line="7456"/>
         <source>SDLUME output notifier FIFO created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7452"/>
-        <location filename="../../qmc2main.cpp" line="7455"/>
+        <location filename="../../qmc2main.cpp" line="7460"/>
+        <location filename="../../qmc2main.cpp" line="7463"/>
         <source>WARNING: can&apos;t open SDLUME output notifier FIFO for reading, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7537"/>
-        <location filename="../../qmc2main.cpp" line="7606"/>
-        <location filename="../../qmc2main.cpp" line="7616"/>
+        <location filename="../../qmc2main.cpp" line="7545"/>
+        <location filename="../../qmc2main.cpp" line="7614"/>
+        <location filename="../../qmc2main.cpp" line="7624"/>
         <source>running</source>
         <translation>kör</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7553"/>
+        <location filename="../../qmc2main.cpp" line="7561"/>
         <source>stopped</source>
         <translation>stoppad</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7570"/>
-        <location filename="../../qmc2main.cpp" line="7643"/>
+        <location filename="../../qmc2main.cpp" line="7578"/>
+        <location filename="../../qmc2main.cpp" line="7651"/>
         <source>unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7572"/>
-        <location filename="../../qmc2main.cpp" line="7645"/>
+        <location filename="../../qmc2main.cpp" line="7580"/>
+        <location filename="../../qmc2main.cpp" line="7653"/>
         <source>unhandled MESS output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7574"/>
-        <location filename="../../qmc2main.cpp" line="7647"/>
+        <location filename="../../qmc2main.cpp" line="7582"/>
+        <location filename="../../qmc2main.cpp" line="7655"/>
         <source>unhandled UME output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8380"/>
+        <location filename="../../qmc2main.cpp" line="8388"/>
         <source>ArcadeView is not currently active, can&apos;t take screen shot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8570"/>
+        <location filename="../../qmc2main.cpp" line="8578"/>
         <source>Quick download links for MAWS data usable by QMC2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8589"/>
+        <location filename="../../qmc2main.cpp" line="8597"/>
         <source>Cabinet art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8620"/>
+        <location filename="../../qmc2main.cpp" line="8628"/>
         <source>No cabinet art</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8632"/>
+        <location filename="../../qmc2main.cpp" line="8640"/>
         <source>Previews</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8663"/>
+        <location filename="../../qmc2main.cpp" line="8671"/>
         <source>No previews</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8678"/>
-        <location filename="../../qmc2main.cpp" line="8851"/>
+        <location filename="../../qmc2main.cpp" line="8686"/>
+        <location filename="../../qmc2main.cpp" line="8859"/>
         <source>preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8685"/>
+        <location filename="../../qmc2main.cpp" line="8693"/>
         <source>Titles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8703"/>
+        <location filename="../../qmc2main.cpp" line="8711"/>
         <source>No titles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8718"/>
-        <location filename="../../qmc2main.cpp" line="8853"/>
+        <location filename="../../qmc2main.cpp" line="8726"/>
+        <location filename="../../qmc2main.cpp" line="8861"/>
         <source>title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8726"/>
+        <location filename="../../qmc2main.cpp" line="8734"/>
         <source>Setup...</source>
         <translation>Konfigurera...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8841"/>
+        <location filename="../../qmc2main.cpp" line="8849"/>
         <source>Cabinet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8843"/>
+        <location filename="../../qmc2main.cpp" line="8851"/>
         <source>Controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8845"/>
+        <location filename="../../qmc2main.cpp" line="8853"/>
         <source>Flyer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8847"/>
+        <location filename="../../qmc2main.cpp" line="8855"/>
         <source>Marquee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8849"/>
+        <location filename="../../qmc2main.cpp" line="8857"/>
         <source>PCB</source>
         <translation>PCB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8887"/>
+        <location filename="../../qmc2main.cpp" line="8895"/>
         <source>Choose file to store the icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8893"/>
+        <location filename="../../qmc2main.cpp" line="8901"/>
         <source>icon image for &apos;%1&apos; stored as &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8900"/>
+        <location filename="../../qmc2main.cpp" line="8908"/>
         <source>FATAL: icon image for &apos;%1&apos; couldn&apos;t be stored as &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8954"/>
+        <location filename="../../qmc2main.cpp" line="8962"/>
         <source>Choose file to store download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9049"/>
+        <location filename="../../qmc2main.cpp" line="9057"/>
         <source>Physical memory:</source>
         <translation>Fysiskt minne:</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9049"/>
+        <location filename="../../qmc2main.cpp" line="9057"/>
         <source>Total: %1 MB</source>
         <translation>Totalt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9049"/>
+        <location filename="../../qmc2main.cpp" line="9057"/>
         <source>Free: %1 MB</source>
         <translation>Ledigt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9049"/>
+        <location filename="../../qmc2main.cpp" line="9057"/>
         <source>Used: %1 MB</source>
         <translation>Använt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9468"/>
-        <location filename="../../qmc2main.cpp" line="9502"/>
+        <location filename="../../qmc2main.cpp" line="9476"/>
+        <location filename="../../qmc2main.cpp" line="9510"/>
         <source>Play tagged - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9538"/>
+        <location filename="../../qmc2main.cpp" line="9546"/>
         <source>Add favorites - %p%</source>
         <translation>Lägg till favoriter - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9571"/>
-        <location filename="../../qmc2main.cpp" line="9599"/>
-        <location filename="../../qmc2main.cpp" line="9639"/>
+        <location filename="../../qmc2main.cpp" line="9579"/>
+        <location filename="../../qmc2main.cpp" line="9607"/>
+        <location filename="../../qmc2main.cpp" line="9647"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9645"/>
+        <location filename="../../qmc2main.cpp" line="9653"/>
         <source>ROM tool tagged - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9779"/>
-        <location filename="../../qmc2main.cpp" line="9909"/>
+        <location filename="../../qmc2main.cpp" line="9787"/>
+        <location filename="../../qmc2main.cpp" line="9917"/>
         <source>Tag - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9821"/>
-        <location filename="../../qmc2main.cpp" line="9952"/>
+        <location filename="../../qmc2main.cpp" line="9829"/>
+        <location filename="../../qmc2main.cpp" line="9960"/>
         <source>Untag - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9863"/>
-        <location filename="../../qmc2main.cpp" line="9995"/>
+        <location filename="../../qmc2main.cpp" line="9871"/>
+        <location filename="../../qmc2main.cpp" line="10003"/>
         <source>Invert tag - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10204"/>
+        <location filename="../../qmc2main.cpp" line="10212"/>
         <source>Software detail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10290"/>
+        <location filename="../../qmc2main.cpp" line="10298"/>
         <source>WARNING: the ROM path is either not specified or the directory doesn&apos;t exist (or isn&apos;t accessible)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10291"/>
+        <location filename="../../qmc2main.cpp" line="10299"/>
         <source>Check ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10292"/>
+        <location filename="../../qmc2main.cpp" line="10300"/>
         <source>The ROM path is either not specified or the directory couldn&apos;t be found (or isn&apos;t accessible).
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!</source>
@@ -13699,143 +13703,143 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4102"/>
-        <location filename="../../qmc2main.cpp" line="4103"/>
-        <source>Export game-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="4105"/>
-        <location filename="../../qmc2main.cpp" line="4106"/>
-        <source>Export machine-specific MESS configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="4108"/>
-        <location filename="../../qmc2main.cpp" line="10613"/>
-        <source>Import from...</source>
-        <translation>Importera från...</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="4110"/>
         <location filename="../../qmc2main.cpp" line="4111"/>
-        <source>Import game-specific MAME configuration</source>
+        <source>Export game-specific MAME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4113"/>
         <location filename="../../qmc2main.cpp" line="4114"/>
+        <source>Export machine-specific MESS configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="4116"/>
+        <location filename="../../qmc2main.cpp" line="10621"/>
+        <source>Import from...</source>
+        <translation>Importera från...</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="4118"/>
+        <location filename="../../qmc2main.cpp" line="4119"/>
+        <source>Import game-specific MAME configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="4121"/>
+        <location filename="../../qmc2main.cpp" line="4122"/>
         <source>Import machine-specific MESS configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10501"/>
+        <location filename="../../qmc2main.cpp" line="10509"/>
         <source>Setting up the GUI, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10548"/>
+        <location filename="../../qmc2main.cpp" line="10556"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10550"/>
-        <location filename="../../qmc2main.cpp" line="10554"/>
+        <location filename="../../qmc2main.cpp" line="10558"/>
+        <location filename="../../qmc2main.cpp" line="10562"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10552"/>
+        <location filename="../../qmc2main.cpp" line="10560"/>
         <source>U.M.E. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10558"/>
+        <location filename="../../qmc2main.cpp" line="10566"/>
         <source>SVN r%1</source>
         <translation>SVN r%1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10580"/>
+        <location filename="../../qmc2main.cpp" line="10588"/>
         <source>OpenGL features enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10584"/>
+        <location filename="../../qmc2main.cpp" line="10592"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10589"/>
+        <location filename="../../qmc2main.cpp" line="10597"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10593"/>
+        <location filename="../../qmc2main.cpp" line="10601"/>
         <source>processing global emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10602"/>
+        <location filename="../../qmc2main.cpp" line="10610"/>
         <source>Export to...</source>
         <translation>Exportera till...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10604"/>
-        <location filename="../../qmc2main.cpp" line="10605"/>
+        <location filename="../../qmc2main.cpp" line="10612"/>
+        <location filename="../../qmc2main.cpp" line="10613"/>
         <source>Export global MAME configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="10607"/>
-        <location filename="../../qmc2main.cpp" line="10608"/>
-        <source>Export global MESS configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="10610"/>
-        <location filename="../../qmc2main.cpp" line="10611"/>
-        <source>Export global UME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10615"/>
         <location filename="../../qmc2main.cpp" line="10616"/>
-        <source>Import global MAME configuration</source>
+        <source>Export global MESS configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10618"/>
         <location filename="../../qmc2main.cpp" line="10619"/>
+        <source>Export global UME configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="10623"/>
+        <location filename="../../qmc2main.cpp" line="10624"/>
+        <source>Import global MAME configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="10626"/>
+        <location filename="../../qmc2main.cpp" line="10627"/>
         <source>Import global MESS configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10621"/>
-        <location filename="../../qmc2main.cpp" line="10622"/>
+        <location filename="../../qmc2main.cpp" line="10629"/>
+        <location filename="../../qmc2main.cpp" line="10630"/>
         <source>Import global UME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10631"/>
-        <location filename="../../qmc2main.cpp" line="10641"/>
+        <location filename="../../qmc2main.cpp" line="10639"/>
+        <location filename="../../qmc2main.cpp" line="10649"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation>&lt;inipath&gt;/mame.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10633"/>
-        <location filename="../../qmc2main.cpp" line="10643"/>
+        <location filename="../../qmc2main.cpp" line="10641"/>
+        <location filename="../../qmc2main.cpp" line="10651"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10635"/>
-        <location filename="../../qmc2main.cpp" line="10645"/>
+        <location filename="../../qmc2main.cpp" line="10643"/>
+        <location filename="../../qmc2main.cpp" line="10653"/>
         <source>&lt;inipath&gt;/ume.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10637"/>
-        <location filename="../../qmc2main.cpp" line="10647"/>
+        <location filename="../../qmc2main.cpp" line="10645"/>
+        <location filename="../../qmc2main.cpp" line="10655"/>
         <source>Select file...</source>
         <translation>Välj fil...</translation>
     </message>
@@ -13876,90 +13880,90 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2104"/>
-        <location filename="../../softwarelist.cpp" line="2142"/>
-        <location filename="../../softwarelist.cpp" line="2925"/>
+        <location filename="../../softwarelist.cpp" line="2261"/>
+        <location filename="../../softwarelist.cpp" line="2299"/>
+        <location filename="../../softwarelist.cpp" line="3082"/>
         <source>Auto mount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2114"/>
-        <location filename="../../softwarelist.cpp" line="2126"/>
-        <location filename="../../softwarelist.cpp" line="2131"/>
-        <location filename="../../softwarelist.cpp" line="2146"/>
-        <location filename="../../softwarelist.cpp" line="2930"/>
-        <location filename="../../softwarelist.cpp" line="2934"/>
+        <location filename="../../softwarelist.cpp" line="2271"/>
+        <location filename="../../softwarelist.cpp" line="2283"/>
+        <location filename="../../softwarelist.cpp" line="2288"/>
+        <location filename="../../softwarelist.cpp" line="2303"/>
+        <location filename="../../softwarelist.cpp" line="3087"/>
+        <location filename="../../softwarelist.cpp" line="3091"/>
         <source>Not mounted</source>
         <translation>Inte monterad</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2116"/>
-        <location filename="../../softwarelist.cpp" line="2149"/>
-        <location filename="../../softwarelist.cpp" line="2936"/>
+        <location filename="../../softwarelist.cpp" line="2273"/>
+        <location filename="../../softwarelist.cpp" line="2306"/>
+        <location filename="../../softwarelist.cpp" line="3093"/>
         <source>Mounted on:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2121"/>
-        <location filename="../../softwarelist.cpp" line="2924"/>
+        <location filename="../../softwarelist.cpp" line="2278"/>
+        <location filename="../../softwarelist.cpp" line="3081"/>
         <source>Don&apos;t mount</source>
         <translation>Montera inte</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2325"/>
+        <location filename="../../softwarelist.cpp" line="2482"/>
         <source>Waiting for data...</source>
         <translation>Väntar på data...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2889"/>
-        <location filename="../../softwarelist.cpp" line="2891"/>
+        <location filename="../../softwarelist.cpp" line="3046"/>
+        <location filename="../../softwarelist.cpp" line="3048"/>
         <source>Searching</source>
         <translation>Söker</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2903"/>
+        <location filename="../../softwarelist.cpp" line="3060"/>
         <source>Updating</source>
         <translation>Uppdaterar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2915"/>
+        <location filename="../../softwarelist.cpp" line="3072"/>
         <source>Part:</source>
         <translation>Del:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2941"/>
+        <location filename="../../softwarelist.cpp" line="3098"/>
         <source>No mount device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2942"/>
+        <location filename="../../softwarelist.cpp" line="3099"/>
         <source>Unmanaged</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2967"/>
+        <location filename="../../softwarelist.cpp" line="3124"/>
         <source>Data area:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2970"/>
-        <location filename="../../softwarelist.cpp" line="2982"/>
-        <location filename="../../softwarelist.cpp" line="2996"/>
+        <location filename="../../softwarelist.cpp" line="3127"/>
+        <location filename="../../softwarelist.cpp" line="3139"/>
+        <location filename="../../softwarelist.cpp" line="3153"/>
         <source>Size:</source>
         <translation>Storlek:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2979"/>
+        <location filename="../../softwarelist.cpp" line="3136"/>
         <source>Disk area:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2999"/>
+        <location filename="../../softwarelist.cpp" line="3156"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3014"/>
+        <location filename="../../softwarelist.cpp" line="3171"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
@@ -16893,8 +16897,8 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="108"/>
-        <location filename="../../softwarelist.cpp" line="1188"/>
-        <location filename="../../softwarelist.cpp" line="1958"/>
+        <location filename="../../softwarelist.cpp" line="1345"/>
+        <location filename="../../softwarelist.cpp" line="2079"/>
         <source>No additional devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16957,9 +16961,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="307"/>
         <location filename="../../softwarelist.ui" line="392"/>
         <location filename="../../softwarelist.ui" line="501"/>
-        <location filename="../../softwarelist.cpp" line="171"/>
-        <location filename="../../softwarelist.cpp" line="190"/>
-        <location filename="../../softwarelist.cpp" line="213"/>
+        <location filename="../../softwarelist.cpp" line="172"/>
+        <location filename="../../softwarelist.cpp" line="191"/>
+        <location filename="../../softwarelist.cpp" line="214"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16967,9 +16971,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="312"/>
         <location filename="../../softwarelist.ui" line="397"/>
         <location filename="../../softwarelist.ui" line="506"/>
-        <location filename="../../softwarelist.cpp" line="173"/>
-        <location filename="../../softwarelist.cpp" line="192"/>
-        <location filename="../../softwarelist.cpp" line="215"/>
+        <location filename="../../softwarelist.cpp" line="174"/>
+        <location filename="../../softwarelist.cpp" line="193"/>
+        <location filename="../../softwarelist.cpp" line="216"/>
         <source>Name</source>
         <translation type="unfinished">Namn</translation>
     </message>
@@ -16977,9 +16981,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="317"/>
         <location filename="../../softwarelist.ui" line="402"/>
         <location filename="../../softwarelist.ui" line="511"/>
-        <location filename="../../softwarelist.cpp" line="175"/>
-        <location filename="../../softwarelist.cpp" line="194"/>
-        <location filename="../../softwarelist.cpp" line="217"/>
+        <location filename="../../softwarelist.cpp" line="176"/>
+        <location filename="../../softwarelist.cpp" line="195"/>
+        <location filename="../../softwarelist.cpp" line="218"/>
         <source>Publisher</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16987,9 +16991,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="322"/>
         <location filename="../../softwarelist.ui" line="407"/>
         <location filename="../../softwarelist.ui" line="516"/>
-        <location filename="../../softwarelist.cpp" line="177"/>
-        <location filename="../../softwarelist.cpp" line="196"/>
-        <location filename="../../softwarelist.cpp" line="219"/>
+        <location filename="../../softwarelist.cpp" line="178"/>
+        <location filename="../../softwarelist.cpp" line="197"/>
+        <location filename="../../softwarelist.cpp" line="220"/>
         <source>Year</source>
         <translation type="unfinished">År</translation>
     </message>
@@ -16997,9 +17001,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="327"/>
         <location filename="../../softwarelist.ui" line="412"/>
         <location filename="../../softwarelist.ui" line="521"/>
-        <location filename="../../softwarelist.cpp" line="179"/>
-        <location filename="../../softwarelist.cpp" line="198"/>
-        <location filename="../../softwarelist.cpp" line="221"/>
+        <location filename="../../softwarelist.cpp" line="180"/>
+        <location filename="../../softwarelist.cpp" line="199"/>
+        <location filename="../../softwarelist.cpp" line="222"/>
         <source>Part</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17007,9 +17011,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="332"/>
         <location filename="../../softwarelist.ui" line="417"/>
         <location filename="../../softwarelist.ui" line="526"/>
-        <location filename="../../softwarelist.cpp" line="181"/>
-        <location filename="../../softwarelist.cpp" line="200"/>
-        <location filename="../../softwarelist.cpp" line="223"/>
+        <location filename="../../softwarelist.cpp" line="182"/>
+        <location filename="../../softwarelist.cpp" line="201"/>
+        <location filename="../../softwarelist.cpp" line="224"/>
         <source>Interface</source>
         <translation type="unfinished">Gränssnitt</translation>
     </message>
@@ -17017,9 +17021,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="337"/>
         <location filename="../../softwarelist.ui" line="422"/>
         <location filename="../../softwarelist.ui" line="531"/>
-        <location filename="../../softwarelist.cpp" line="183"/>
-        <location filename="../../softwarelist.cpp" line="202"/>
-        <location filename="../../softwarelist.cpp" line="225"/>
+        <location filename="../../softwarelist.cpp" line="184"/>
+        <location filename="../../softwarelist.cpp" line="203"/>
+        <location filename="../../softwarelist.cpp" line="226"/>
         <source>List</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17041,7 +17045,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="427"/>
-        <location filename="../../softwarelist.cpp" line="205"/>
+        <location filename="../../softwarelist.cpp" line="206"/>
         <source>Device configuration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17069,332 +17073,344 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="555"/>
-        <location filename="../../softwarelist.cpp" line="511"/>
+        <location filename="../../softwarelist.cpp" line="668"/>
         <source>Loading software-lists, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="67"/>
+        <location filename="../../softwarelist.cpp" line="68"/>
         <source>Add the currently selected software to the favorites list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="78"/>
+        <location filename="../../softwarelist.cpp" line="79"/>
         <source>Enter search string</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="112"/>
+        <location filename="../../softwarelist.cpp" line="113"/>
         <source>Play selected software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="113"/>
+        <location filename="../../softwarelist.cpp" line="114"/>
         <source>&amp;Play</source>
         <translation type="unfinished">&amp;Spela</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="118"/>
+        <location filename="../../softwarelist.cpp" line="119"/>
         <source>Play selected software (embedded)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="119"/>
+        <location filename="../../softwarelist.cpp" line="120"/>
         <source>Play &amp;embedded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="125"/>
+        <location filename="../../softwarelist.cpp" line="126"/>
         <source>Add to favorite software list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="126"/>
+        <location filename="../../softwarelist.cpp" line="127"/>
         <source>&amp;Add to favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="130"/>
+        <location filename="../../softwarelist.cpp" line="131"/>
         <source>Remove from favorite software list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="131"/>
+        <location filename="../../softwarelist.cpp" line="132"/>
         <source>&amp;Remove from favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="138"/>
+        <location filename="../../softwarelist.cpp" line="139"/>
         <source>Load favorites from a file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="143"/>
+        <location filename="../../softwarelist.cpp" line="144"/>
         <source>Save favorites to a file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="274"/>
+        <location filename="../../softwarelist.cpp" line="275"/>
         <source>WARNING: software list &apos;%1&apos; not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="452"/>
+        <location filename="../../softwarelist.cpp" line="342"/>
+        <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="387"/>
+        <location filename="../../softwarelist.cpp" line="395"/>
+        <location filename="../../softwarelist.cpp" line="401"/>
+        <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="609"/>
         <source>Known software (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="453"/>
+        <location filename="../../softwarelist.cpp" line="610"/>
         <source>Favorites (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="454"/>
+        <location filename="../../softwarelist.cpp" line="611"/>
         <source>Search (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="468"/>
-        <location filename="../../softwarelist.cpp" line="689"/>
+        <location filename="../../softwarelist.cpp" line="625"/>
+        <location filename="../../softwarelist.cpp" line="846"/>
         <source>Known software (no data available)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="469"/>
-        <location filename="../../softwarelist.cpp" line="690"/>
+        <location filename="../../softwarelist.cpp" line="626"/>
+        <location filename="../../softwarelist.cpp" line="847"/>
         <source>Favorites (no data available)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="470"/>
-        <location filename="../../softwarelist.cpp" line="691"/>
+        <location filename="../../softwarelist.cpp" line="627"/>
+        <location filename="../../softwarelist.cpp" line="848"/>
         <source>Search (no data available)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="551"/>
+        <location filename="../../softwarelist.cpp" line="708"/>
         <source>loading XML software list data from cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="556"/>
+        <location filename="../../softwarelist.cpp" line="713"/>
         <source>SWL cache - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="585"/>
+        <location filename="../../softwarelist.cpp" line="742"/>
         <source>done (loading XML software list data from cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="593"/>
+        <location filename="../../softwarelist.cpp" line="750"/>
         <source>ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="595"/>
+        <location filename="../../softwarelist.cpp" line="752"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="597"/>
+        <location filename="../../softwarelist.cpp" line="754"/>
         <source>ERROR: the file name for the UME software list cache is empty -- please correct this and reload the game list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="614"/>
+        <location filename="../../softwarelist.cpp" line="771"/>
         <source>loading XML software list data and (re)creating cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="617"/>
+        <location filename="../../softwarelist.cpp" line="774"/>
         <source>SWL data - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="623"/>
+        <location filename="../../softwarelist.cpp" line="780"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="625"/>
+        <location filename="../../softwarelist.cpp" line="782"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="627"/>
+        <location filename="../../softwarelist.cpp" line="784"/>
         <source>ERROR: can&apos;t open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="719"/>
+        <location filename="../../softwarelist.cpp" line="876"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="734"/>
+        <location filename="../../softwarelist.cpp" line="891"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="779"/>
-        <location filename="../../softwarelist.cpp" line="1241"/>
-        <location filename="../../softwarelist.cpp" line="1356"/>
-        <location filename="../../softwarelist.cpp" line="1390"/>
-        <location filename="../../softwarelist.cpp" line="1424"/>
-        <location filename="../../softwarelist.cpp" line="1855"/>
-        <location filename="../../softwarelist.cpp" line="2198"/>
+        <location filename="../../softwarelist.cpp" line="936"/>
+        <location filename="../../softwarelist.cpp" line="1398"/>
+        <location filename="../../softwarelist.cpp" line="1513"/>
+        <location filename="../../softwarelist.cpp" line="1547"/>
+        <location filename="../../softwarelist.cpp" line="1581"/>
+        <location filename="../../softwarelist.cpp" line="2012"/>
+        <location filename="../../softwarelist.cpp" line="2355"/>
         <source>Waiting for data...</source>
         <translation type="unfinished">Väntar på data...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="967"/>
+        <location filename="../../softwarelist.cpp" line="1124"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="967"/>
-        <location filename="../../softwarelist.cpp" line="969"/>
-        <location filename="../../softwarelist.cpp" line="971"/>
+        <location filename="../../softwarelist.cpp" line="1124"/>
+        <location filename="../../softwarelist.cpp" line="1126"/>
+        <location filename="../../softwarelist.cpp" line="1128"/>
         <source>normal</source>
         <translation type="unfinished">normal</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="967"/>
-        <location filename="../../softwarelist.cpp" line="969"/>
-        <location filename="../../softwarelist.cpp" line="971"/>
+        <location filename="../../softwarelist.cpp" line="1124"/>
+        <location filename="../../softwarelist.cpp" line="1126"/>
+        <location filename="../../softwarelist.cpp" line="1128"/>
         <source>crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="969"/>
+        <location filename="../../softwarelist.cpp" line="1126"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="971"/>
+        <location filename="../../softwarelist.cpp" line="1128"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="977"/>
+        <location filename="../../softwarelist.cpp" line="1134"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1033"/>
+        <location filename="../../softwarelist.cpp" line="1190"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1035"/>
+        <location filename="../../softwarelist.cpp" line="1192"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1037"/>
+        <location filename="../../softwarelist.cpp" line="1194"/>
         <source>WARNING: the currently selected UME emulator doesn&apos;t support software lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1053"/>
+        <location filename="../../softwarelist.cpp" line="1210"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1055"/>
+        <location filename="../../softwarelist.cpp" line="1212"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1057"/>
+        <location filename="../../softwarelist.cpp" line="1214"/>
         <source>WARNING: the external process called to load the UME software lists caused an error -- processError = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1368"/>
-        <location filename="../../softwarelist.cpp" line="1402"/>
-        <location filename="../../softwarelist.cpp" line="1436"/>
+        <location filename="../../softwarelist.cpp" line="1525"/>
+        <location filename="../../softwarelist.cpp" line="1559"/>
+        <location filename="../../softwarelist.cpp" line="1593"/>
         <source>Searching</source>
         <translation type="unfinished">Söker</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1373"/>
-        <location filename="../../softwarelist.cpp" line="1407"/>
-        <location filename="../../softwarelist.cpp" line="1441"/>
+        <location filename="../../softwarelist.cpp" line="1530"/>
+        <location filename="../../softwarelist.cpp" line="1564"/>
+        <location filename="../../softwarelist.cpp" line="1598"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1376"/>
-        <location filename="../../softwarelist.cpp" line="1410"/>
-        <location filename="../../softwarelist.cpp" line="1444"/>
+        <location filename="../../softwarelist.cpp" line="1533"/>
+        <location filename="../../softwarelist.cpp" line="1567"/>
+        <location filename="../../softwarelist.cpp" line="1601"/>
         <source>FATAL: couldn&apos;t find XML data for software list &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2168"/>
+        <location filename="../../softwarelist.cpp" line="2325"/>
         <source>Choose file to merge favorites from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2168"/>
-        <location filename="../../softwarelist.cpp" line="2246"/>
+        <location filename="../../softwarelist.cpp" line="2325"/>
+        <location filename="../../softwarelist.cpp" line="2403"/>
         <source>All files (*)</source>
         <translation type="unfinished">Alla filer (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2180"/>
+        <location filename="../../softwarelist.cpp" line="2337"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2219"/>
+        <location filename="../../softwarelist.cpp" line="2376"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2221"/>
+        <location filename="../../softwarelist.cpp" line="2378"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2223"/>
+        <location filename="../../softwarelist.cpp" line="2380"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2225"/>
+        <location filename="../../softwarelist.cpp" line="2382"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2229"/>
+        <location filename="../../softwarelist.cpp" line="2386"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2231"/>
+        <location filename="../../softwarelist.cpp" line="2388"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2246"/>
+        <location filename="../../softwarelist.cpp" line="2403"/>
         <source>Choose file to store favorites to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2257"/>
+        <location filename="../../softwarelist.cpp" line="2414"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2282"/>
+        <location filename="../../softwarelist.cpp" line="2439"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2284"/>
+        <location filename="../../softwarelist.cpp" line="2441"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17732,17 +17748,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="2416"/>
+        <location filename="../../softwarelist.cpp" line="2573"/>
         <source>Copy to clipboard</source>
         <translation>Kopiera till urklipp</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2421"/>
+        <location filename="../../softwarelist.cpp" line="2578"/>
         <source>Refresh</source>
         <translation>Uppdatera</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2628"/>
+        <location filename="../../softwarelist.cpp" line="2785"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17750,17 +17766,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3087"/>
+        <location filename="../../softwarelist.cpp" line="3244"/>
         <source>Copy to clipboard</source>
         <translation>Kopiera till urklipp</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3092"/>
+        <location filename="../../softwarelist.cpp" line="3249"/>
         <source>Refresh</source>
         <translation>Uppdatera</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3155"/>
+        <location filename="../../softwarelist.cpp" line="3312"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation type="unfinished"></translation>
     </message>
