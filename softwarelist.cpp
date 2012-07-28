@@ -59,7 +59,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	loadProc = NULL;
 	exporter = NULL;
 	currentItem = NULL;
-	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = false;
+	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = updatingMountDevices = false;
 	validData = autoMounted = true;
 	cachedDeviceLookupPosition = 0;
 
@@ -409,6 +409,17 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 	return xmlBuffer;
 }
 
+void SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index = %1)").arg(index));
+#endif
+
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+	QTimer::singleShot(0, this, SLOT(updateMountDevices()));
+#endif
+}
+
 QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStringList *mountList)
 {
 #ifdef QMC2_DEBUG
@@ -516,6 +527,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 #endif
 
 	QStringList briefNames = deviceInstanceMap[interface];
+	briefNames.sort();
 
 	if ( briefNames.contains(device) )
 		softwareListDeviceName = device;
@@ -628,6 +640,64 @@ QString &SoftwareList::getXmlData()
 	}
 
 	return xmlBuffer;
+}
+
+void SoftwareList::updateMountDevices()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::updateMountDevices()");
+#endif
+
+	if ( updatingMountDevices )
+		return;
+
+	updatingMountDevices = true;
+	autoMounted = true;
+
+	QTreeWidget *treeWidget = NULL;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			treeWidget = treeWidgetKnownSoftware;
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = treeWidgetSearchResults;
+			break;
+	}
+
+	QTreeWidgetItemIterator it(treeWidget);
+	while ( *it ) {
+		QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
+		if ( comboBox ) {
+			comboBox->blockSignals(true);
+			comboBox->setUpdatesEnabled(false);
+			comboBox->clear();
+			QStringList mountList;
+			successfulLookups.clear();
+			QString mountDev = lookupMountDevice((*it)->text(QMC2_SWLIST_COLUMN_PART), (*it)->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList);
+			if ( mountList.count() > 0 ) {
+				mountList.prepend(QObject::tr("Don't mount"));
+				mountList.prepend(QObject::tr("Auto mount"));
+				comboBox->insertItems(0, mountList);
+				comboBox->insertSeparator(QMC2_SWLIST_MSEL_SEPARATOR);
+				comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_AUTO_MOUNT);
+				if ( mountDev.isEmpty() )
+					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+				else
+					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDev);
+			} else {
+				(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("No mount device"));
+				(*it)->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("Unmanaged"));
+			}
+			comboBox->setUpdatesEnabled(true);
+			comboBox->blockSignals(false);
+		}
+		it++;
+	}
+
+	updatingMountDevices = false;
 }
 
 bool SoftwareList::load()
@@ -1413,7 +1483,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 			item->setText(QMC2_SWLIST_COLUMN_INTERFACE, si->text(QMC2_SWLIST_COLUMN_INTERFACE));
 			item->setText(QMC2_SWLIST_COLUMN_LIST, si->text(QMC2_SWLIST_COLUMN_LIST));
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-			if ( comboBoxDeviceConfiguration->currentIndex() > QMC2_SWLIST_MSEL_AUTO_MOUNT )
+			if ( comboBoxDeviceConfiguration->currentIndex() > 0 )
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, comboBoxDeviceConfiguration->currentText());
 			else
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, QString());
