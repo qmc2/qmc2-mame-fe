@@ -442,7 +442,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 
 	bool commandProcStarted = false;
 	int retries = 0;
-	commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
+	commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
 	bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
@@ -457,7 +457,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
 		qmc2CriticalSection = false;
 		return slotXmlBuffer;
 	}

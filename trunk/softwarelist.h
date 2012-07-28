@@ -14,7 +14,6 @@
 #include "unzip.h"
 #include "swlistexport.h"
 
-
 class SoftwareListExporter;
 
 class SoftwareItem : public QTreeWidgetItem
@@ -186,6 +185,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData();
+		QString &getXmlDataWithEnabledSlots(QStringList);
 		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
 		QStringList &arguments();
 
