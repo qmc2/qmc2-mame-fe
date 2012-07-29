@@ -2479,7 +2479,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "-f -v $FILELIST$").toString());
 #endif
   lineEditRomTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
-  lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ $DESCRIPTION$").toString());
+  lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ \"$DESCRIPTION$\"").toString());
   lineEditRomToolWorkingDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
   checkBoxCopyToolOutput->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", true).toBool());
   checkBoxCloseToolDialog->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool());
