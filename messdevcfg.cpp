@@ -413,15 +413,13 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 					defaultIndex = nestedSlotPreselectionMap[cb];
 				if ( isNestedSlot ) {
 					// there must be a "parent" slot, otherwise ignore this argument
-					if ( item->parent() != NULL ) {
+					if ( item->parent() != NULL )
 						addArg = checkParentSlot(item->parent(), slotName);
-#ifdef QMC2_DEBUG
-						printf("MESSDeviceConfigurator::getXmlDataWithEnabledSlots(): slotName = %s, addArg = %s\n", (const char *)slotName.toLocal8Bit(), addArg ? "true" : "false");
-#endif
-					}
 				} else
 					addArg = true;
-
+#ifdef QMC2_DEBUG
+				printf("MESSDeviceConfigurator::getXmlDataWithEnabledSlots(): slotName = %s, isNested = %s, defaultIndex = %d, addArg = %s\n", (const char *)slotName.toLocal8Bit(), isNestedSlot ? "true" : "false", defaultIndex, addArg ? "true" : "false");
+#endif
 				if ( addArg ) {
 					if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 						args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
@@ -665,14 +663,14 @@ bool MESSDeviceConfigurator::readSystemSlots()
 					if ( slotWords.count() >= 4 ) {
 						systemName = slotWords[0];
 						slotName = slotWords[1];
-						if ( slotWords.count() > 2 ) {
+						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 2 ) {
 							slotOption = slotWords[2];
 							slotDeviceName = slotLine.trimmed();
 							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+\\S+\\s+"));
 							messSlotNameMap[slotOption] = slotDeviceName;
 							messSystemSlotMap[systemName][slotName] << slotOption;
 						} else
-							messSystemSlotMap[systemName][slotName].clear();
+							messSystemSlotMap[systemName].remove(slotName);
 					} else {
 						systemName = slotWords[0];
 						messSystemSlotMap[systemName].clear();
@@ -680,21 +678,23 @@ bool MESSDeviceConfigurator::readSystemSlots()
 				} else {
 					QStringList slotWords = slotLine.trimmed().split(" ", QString::SkipEmptyParts);
 					if ( slotLine[13] == ' ' ) { // this isn't nice, but I see no other way at the moment...
-						slotOption = slotWords[0];
-						slotDeviceName = slotLine.trimmed();
-						slotDeviceName.remove(QRegExp("^\\S+\\s+"));
-						messSystemSlotMap[systemName][slotName] << slotOption;
-						messSlotNameMap[slotOption] = slotDeviceName;
+						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 ) {
+							slotOption = slotWords[0];
+							slotDeviceName = slotLine.trimmed();
+							slotDeviceName.remove(QRegExp("^\\S+\\s+"));
+							messSlotNameMap[slotOption] = slotDeviceName;
+							messSystemSlotMap[systemName][slotName] << slotOption;
+						}
 					} else {
 						slotName = slotWords[0];
-						if ( slotWords.count() > 1 ) {
+						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 1 ) {
 							slotOption = slotWords[1];
 							slotDeviceName = slotLine.trimmed();
 							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+"));
-							messSystemSlotMap[systemName][slotName] << slotOption;
 							messSlotNameMap[slotOption] = slotDeviceName;
+							messSystemSlotMap[systemName][slotName] << slotOption;
 						} else
-							messSystemSlotMap[systemName][slotName].clear();
+							messSystemSlotMap[systemName].remove(slotName);
 					}
 				}
 			}
@@ -1190,9 +1190,6 @@ bool MESSDeviceConfigurator::load()
 	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
 	QTimer::singleShot(0, this, SLOT(preselectSlots()));
 
-	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
-		treeWidgetSlotOptions->setEnabled(false);
-
 	configurationMap.clear();
 	slotMap.clear();
 
@@ -1222,20 +1219,19 @@ bool MESSDeviceConfigurator::load()
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
 	}
 
+	updateSlots = dontIgnoreNameChange = true;
+	refreshRunning = false;
 	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("Default configuration"), listWidgetDeviceConfigurations);
-	if ( selectedItem == NULL ) {
-		dontIgnoreNameChange = true;
+	if ( selectedItem == NULL )
 		listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
-		dontIgnoreNameChange = false;
-	} else {
-		refreshRunning = false;
-		updateSlots = dontIgnoreNameChange = true;
+	else
 		listWidgetDeviceConfigurations->setCurrentItem(selectedItem);
-		QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
-		updateSlots = dontIgnoreNameChange = false;
-	}
+	QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
+	updateSlots = dontIgnoreNameChange = isLoading = false;
 
-	refreshRunning = isLoading = false;
+	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
+		treeWidgetSlotOptions->setEnabled(false);
+
 	return true;
 }
 
@@ -1560,7 +1556,11 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 				}
 			}
 		} else {
-			listWidgetDeviceConfigurations->clearSelection();
+			QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(tr("Default configuration"), Qt::MatchExactly);
+			if ( !matchedItemList.isEmpty() )
+				listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
+			else
+				listWidgetDeviceConfigurations->clearSelection();
 			toolButtonRemoveConfiguration->setEnabled(false);
 			toolButtonCloneConfiguration->setEnabled(false);
 		}
