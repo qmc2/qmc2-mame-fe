@@ -2749,6 +2749,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     if ( qmc2StopParser || !cleanExit ) {
       for (i = 0; i < remainingGames.count(); i++) {
         qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
+        qmc2MainWindow->labelGamelistStatus->setText(status());
+	if ( i % 25 == 0 ) qApp->processEvents();
         QString gameName = remainingGames[i];
         bool isBIOS = qmc2BiosROMs.contains(gameName);
         bool isDevice = qmc2DeviceROMs.contains(gameName);
@@ -2806,6 +2808,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
       for (i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
         qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
         qmc2MainWindow->labelGamelistStatus->setText(status());
+	if ( i % 25 == 0 ) qApp->processEvents();
         qApp->processEvents();
         QString gameName = remainingGames[i];
         bool isBIOS = qmc2BiosROMs.contains(gameName);
