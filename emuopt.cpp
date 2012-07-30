@@ -1009,12 +1009,19 @@ void EmulatorOptions::createTemplateMap()
           QXmlStreamAttributes attributes = xmlReader.attributes();
           QString name = attributes.value("name").toString();
           if ( elementType == "section" ) {
-            sectionTitle = readDescription(&xmlReader, lang, &readNext);
-            templateMap[sectionTitle].clear();
+            bool ignore = false;
+	    if ( attributes.hasAttribute("ignore") )
+              ignore = attributes.value("ignore") == "true";
+            if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) )
+              ignore = attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) == "true";
+            if ( !ignore ) {
+              sectionTitle = readDescription(&xmlReader, lang, &readNext);
+              templateMap[sectionTitle].clear();
 #ifdef QMC2_DEBUG
-            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::createTemplateMap(): elementType = [%1], name = [%2], description = [%3]").
-                                arg(elementType).arg(name).arg(sectionTitle));
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::createTemplateMap(): elementType = [%1], name = [%2], description = [%3]").
+                                  arg(elementType).arg(name).arg(sectionTitle));
 #endif
+            }
           } else if ( elementType == "option" ) {
             bool ignore = false;
 	    bool visible = true;
