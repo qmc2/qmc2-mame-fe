@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="SDLUME" format="0.2.5" version="0.146u3">
+<template emulator="SDLUME" format="0.2.5" version="0.146u4">
   <section name="search_paths">
     <description lang="es" text="Rutas de búsqueda"/>
     <description lang="us" text="Search paths"/>
@@ -1721,6 +1721,50 @@
       <description lang="fr" text="libGL.so alernatif à utiliser; 'auto' pour réglage par défaut"/>
       <description lang="pt" text="libGL.so alternativo à utilizar; 'auto' para usar o padrão do sistema"/>
       <description lang="es" text="libGL.so alternativa a utilizar; 'auto' para predeterminado de sistema"/>
+    </option>
+  </section>
+  <section name="sdl_lightgun_mapping">
+    <description lang="us" text="SDL lightgun mapping"/>
+    <description lang="de" text="SDL Lichtpistolen-Zuweisungen"/>
+    <option default="auto" name="lightgun_index1" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #1"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #1 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index2" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #2"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #2 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index3" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #3"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #3 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index4" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #4"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #4 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index5" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #5"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #5 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index6" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #6"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #6 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index7" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #7"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #7 zugewiesen ist"/>
+      <choice name="auto"/>
+    </option>
+    <option default="auto" name="lightgun_index8" type="combo">
+      <description lang="us" text="Name of lightgun mapped to lightgun #8"/>
+      <description lang="de" text="Name der Lichtpistole, welche Index #8 zugewiesen ist"/>
+      <choice name="auto"/>
     </option>
   </section>
 </template>
