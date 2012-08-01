@@ -1463,7 +1463,7 @@
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QPushButton" name="pushButtonSetRenamerRenameSets">
+        <widget class="QPushButton" name="pushButtonSetRenamerPerformActions">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -1474,10 +1474,10 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Rename selected sets</string>
+          <string>Perform proposed actions on all selected sets</string>
          </property>
          <property name="text">
-          <string>Rename</string>
+          <string>Perform actions</string>
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
@@ -1529,6 +1529,11 @@
            <string>Match probability</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>Action</string>
+          </property>
+         </column>
         </widget>
        </item>
        <item row="4" column="0" colspan="4">
@@ -1563,7 +1568,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Automatically select sure matches and rename sets accordingly</string>
+             <string>Automatically select sure matches and perform proposed actions</string>
             </property>
            </item>
           </widget>
@@ -1828,7 +1833,7 @@
   <tabstop>comboBoxChecksumWizardAutomationLevel</tabstop>
   <tabstop>lineEditSetRenamerPattern</tabstop>
   <tabstop>pushButtonSetRenamerSearch</tabstop>
-  <tabstop>pushButtonSetRenamerRenameSets</tabstop>
+  <tabstop>pushButtonSetRenamerPerformActions</tabstop>
   <tabstop>lineEditSetRenamerOldXmlFile</tabstop>
   <tabstop>toolButtonBrowseSetRenamerOldXmlFile</tabstop>
   <tabstop>treeWidgetSetRenamerSearchResult</tabstop>
