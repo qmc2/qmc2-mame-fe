@@ -2264,9 +2264,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../emuopt.cpp" line="972"/>
         <location filename="../../emuopt.cpp" line="973"/>
         <location filename="../../emuopt.cpp" line="974"/>
-        <location filename="../../emuopt.cpp" line="1069"/>
-        <location filename="../../emuopt.cpp" line="1071"/>
-        <location filename="../../emuopt.cpp" line="1073"/>
+        <location filename="../../emuopt.cpp" line="1076"/>
+        <location filename="../../emuopt.cpp" line="1078"/>
+        <location filename="../../emuopt.cpp" line="1080"/>
         <source>unknown</source>
         <translation>desconocido</translation>
     </message>
@@ -2381,87 +2381,87 @@ p, li { white-space: pre-wrap; }
         <translation>ERROR: fallo XML leyendo plantilla: %1 en archivo &apos;%2&apos; en la línea %3, columna %4</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1060"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
         <translation>info plantilla: emulador = %1, versión = %2, formato = %3</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1074"/>
         <source>FATAL: can&apos;t open options template file</source>
         <translation>ERROR: no se puede abrir el archivo de opciones de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1070"/>
+        <location filename="../../emuopt.cpp" line="1077"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
         <translation>ATENCIÓN: no se pudo determinar el tipo de emulador de la plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1072"/>
+        <location filename="../../emuopt.cpp" line="1079"/>
         <source>WARNING: couldn&apos;t determine template version</source>
         <translation>ATENCIÓN: no se pudo determinar la versión de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1074"/>
+        <location filename="../../emuopt.cpp" line="1081"/>
         <source>WARNING: couldn&apos;t determine template format</source>
         <translation>ATENCIÓN: no se pudo determinar el formato de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1084"/>
+        <location filename="../../emuopt.cpp" line="1091"/>
         <source>please wait for reload to finish and try again</source>
         <translation>por favor espera a que finalice la recarga y vuelve a intentarlo</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1093"/>
+        <location filename="../../emuopt.cpp" line="1100"/>
         <source>checking template configuration map against selected emulator</source>
         <translation>comprobando el mapa de configuración de plantilla con el emulador seleccionado</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1121"/>
+        <location filename="../../emuopt.cpp" line="1128"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MAME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1123"/>
+        <location filename="../../emuopt.cpp" line="1130"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MESS en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1125"/>
+        <location filename="../../emuopt.cpp" line="1132"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de UME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1185"/>
+        <location filename="../../emuopt.cpp" line="1192"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation>ERROR: no se puede crear el archivo temporal, por favor comprueba el ejecutable del emulador y los permisos</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1202"/>
-        <location filename="../../emuopt.cpp" line="1211"/>
-        <location filename="../../emuopt.cpp" line="1220"/>
-        <location filename="../../emuopt.cpp" line="1229"/>
-        <location filename="../../emuopt.cpp" line="1241"/>
-        <location filename="../../emuopt.cpp" line="1258"/>
+        <location filename="../../emuopt.cpp" line="1209"/>
+        <location filename="../../emuopt.cpp" line="1218"/>
+        <location filename="../../emuopt.cpp" line="1227"/>
+        <location filename="../../emuopt.cpp" line="1236"/>
+        <location filename="../../emuopt.cpp" line="1248"/>
+        <location filename="../../emuopt.cpp" line="1265"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
         <translation>el emulador utiliza un valor predeterminado diferente para la opción &apos;%1&apos; (&apos;%2&apos; contra &apos;%3&apos;); opción admitida es &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1265"/>
+        <location filename="../../emuopt.cpp" line="1272"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
         <translation>opción de plantilla &apos;%1&apos; es de tipo desconocido para el emulador</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1275"/>
+        <location filename="../../emuopt.cpp" line="1282"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
         <translation>opción del emulador &apos;%1&apos; con valor predeterminado &apos;%2&apos; es desconocida para la plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1279"/>
+        <location filename="../../emuopt.cpp" line="1286"/>
         <source>done (checking template configuration map against selected emulator)</source>
         <translation>hecho (comprobando el mapa de configuración de plantilla con el emulador seleccionado)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../emuopt.cpp" line="1280"/>
+        <location filename="../../emuopt.cpp" line="1287"/>
         <source>check results: %n difference(s)</source>
         <translation>
             <numerusform>comprobar resultados: %n diferencia</numerusform>
@@ -2469,160 +2469,160 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1384"/>
+        <location filename="../../emuopt.cpp" line="1391"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
         <translation>ATENCIÓN: ini-export: ninguna ruta ini con permisos encontrada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1388"/>
-        <location filename="../../emuopt.cpp" line="1550"/>
+        <location filename="../../emuopt.cpp" line="1395"/>
+        <location filename="../../emuopt.cpp" line="1557"/>
         <source>Path selection</source>
         <translation>Selección de ruta</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1389"/>
+        <location filename="../../emuopt.cpp" line="1396"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
         <translation>Múltiples rutas ini encontradas. Selecciona la(s) ruta(s) a las que exportar:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1408"/>
+        <location filename="../../emuopt.cpp" line="1415"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
         <translation>ATENCIÓN: ini-export: ninguna ruta seleccionada (o ruta inválida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1422"/>
-        <location filename="../../emuopt.cpp" line="1584"/>
+        <location filename="../../emuopt.cpp" line="1429"/>
+        <location filename="../../emuopt.cpp" line="1591"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1438"/>
+        <location filename="../../emuopt.cpp" line="1445"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
         <translation>ERROR: no se puede abrir el archivo de exportado para escritura, ruta = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1444"/>
+        <location filename="../../emuopt.cpp" line="1451"/>
         <source>exporting %1 MAME configuration to %2</source>
         <translation>exportando configuración MAME %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1444"/>
-        <location filename="../../emuopt.cpp" line="1446"/>
-        <location filename="../../emuopt.cpp" line="1448"/>
-        <location filename="../../emuopt.cpp" line="1499"/>
-        <location filename="../../emuopt.cpp" line="1501"/>
-        <location filename="../../emuopt.cpp" line="1503"/>
-        <location filename="../../emuopt.cpp" line="1607"/>
-        <location filename="../../emuopt.cpp" line="1609"/>
-        <location filename="../../emuopt.cpp" line="1611"/>
-        <location filename="../../emuopt.cpp" line="1710"/>
-        <location filename="../../emuopt.cpp" line="1712"/>
-        <location filename="../../emuopt.cpp" line="1714"/>
+        <location filename="../../emuopt.cpp" line="1451"/>
+        <location filename="../../emuopt.cpp" line="1453"/>
+        <location filename="../../emuopt.cpp" line="1455"/>
+        <location filename="../../emuopt.cpp" line="1506"/>
+        <location filename="../../emuopt.cpp" line="1508"/>
+        <location filename="../../emuopt.cpp" line="1510"/>
+        <location filename="../../emuopt.cpp" line="1614"/>
+        <location filename="../../emuopt.cpp" line="1616"/>
+        <location filename="../../emuopt.cpp" line="1618"/>
+        <location filename="../../emuopt.cpp" line="1717"/>
+        <location filename="../../emuopt.cpp" line="1719"/>
+        <location filename="../../emuopt.cpp" line="1721"/>
         <source>global</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1444"/>
-        <location filename="../../emuopt.cpp" line="1448"/>
-        <location filename="../../emuopt.cpp" line="1499"/>
-        <location filename="../../emuopt.cpp" line="1503"/>
-        <location filename="../../emuopt.cpp" line="1607"/>
-        <location filename="../../emuopt.cpp" line="1611"/>
-        <location filename="../../emuopt.cpp" line="1710"/>
-        <location filename="../../emuopt.cpp" line="1714"/>
+        <location filename="../../emuopt.cpp" line="1451"/>
+        <location filename="../../emuopt.cpp" line="1455"/>
+        <location filename="../../emuopt.cpp" line="1506"/>
+        <location filename="../../emuopt.cpp" line="1510"/>
+        <location filename="../../emuopt.cpp" line="1614"/>
+        <location filename="../../emuopt.cpp" line="1618"/>
+        <location filename="../../emuopt.cpp" line="1717"/>
+        <location filename="../../emuopt.cpp" line="1721"/>
         <source>game-specific</source>
         <translation>específico-de-juego</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1446"/>
+        <location filename="../../emuopt.cpp" line="1453"/>
         <source>exporting %1 MESS configuration to %2</source>
         <translation>exportando configuración MESS %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1446"/>
-        <location filename="../../emuopt.cpp" line="1501"/>
-        <location filename="../../emuopt.cpp" line="1609"/>
-        <location filename="../../emuopt.cpp" line="1712"/>
+        <location filename="../../emuopt.cpp" line="1453"/>
+        <location filename="../../emuopt.cpp" line="1508"/>
+        <location filename="../../emuopt.cpp" line="1616"/>
+        <location filename="../../emuopt.cpp" line="1719"/>
         <source>machine-specific</source>
         <translation>específico-de-máquina</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1448"/>
+        <location filename="../../emuopt.cpp" line="1455"/>
         <source>exporting %1 UME configuration to %2</source>
         <translation>exportando configuración UME %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1499"/>
+        <location filename="../../emuopt.cpp" line="1506"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración MAME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1501"/>
+        <location filename="../../emuopt.cpp" line="1508"/>
         <source>done (exporting %1 MESS configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración MESS %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1503"/>
+        <location filename="../../emuopt.cpp" line="1510"/>
         <source>done (exporting %1 UME configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración UME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1546"/>
+        <location filename="../../emuopt.cpp" line="1553"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
         <translation>ATENCIÓN: ini-import: ninguna ruta de ini legible encontrada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1551"/>
+        <location filename="../../emuopt.cpp" line="1558"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
         <translation>Múltiples rutas ini encontradas. Selecciona la(s) ruta(s) a las que importar:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1570"/>
+        <location filename="../../emuopt.cpp" line="1577"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
         <translation>ATENCIÓN: ini-import: ninguna ruta seleccionada (o ruta inválida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1601"/>
+        <location filename="../../emuopt.cpp" line="1608"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
         <translation>ERROR: no se puede abrir el archivo de importado para su lectura, ruta = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1607"/>
+        <location filename="../../emuopt.cpp" line="1614"/>
         <source>importing %1 MAME configuration from %2</source>
         <translation>importando configuración MAME %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1609"/>
+        <location filename="../../emuopt.cpp" line="1616"/>
         <source>importing %1 MESS configuration from %2</source>
         <translation>importando configuración MESS %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1611"/>
+        <location filename="../../emuopt.cpp" line="1618"/>
         <source>importing %1 UME configuration from %2</source>
         <translation>importando configuración UME %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1700"/>
+        <location filename="../../emuopt.cpp" line="1707"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
         <translation>ATENCIÓN: opción desconocida &apos;%1&apos; en la línea %2 (%3) ignorada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1703"/>
+        <location filename="../../emuopt.cpp" line="1710"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
         <translation>ATENCIÓN: sintaxis inválida en la línea %1 (%2) ignorada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1710"/>
+        <location filename="../../emuopt.cpp" line="1717"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración MAME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1712"/>
+        <location filename="../../emuopt.cpp" line="1719"/>
         <source>done (importing %1 MESS configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración MESS %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1714"/>
+        <location filename="../../emuopt.cpp" line="1721"/>
         <source>done (importing %1 UME configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración UME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
@@ -2951,7 +2951,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1642"/>
         <location filename="../../gamelist.cpp" line="1920"/>
         <location filename="../../gamelist.cpp" line="2210"/>
-        <location filename="../../gamelist.cpp" line="3028"/>
+        <location filename="../../gamelist.cpp" line="3031"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
@@ -3701,8 +3701,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1560"/>
         <location filename="../../gamelist.cpp" line="1838"/>
-        <location filename="../../gamelist.cpp" line="3586"/>
-        <location filename="../../gamelist.cpp" line="3788"/>
+        <location filename="../../gamelist.cpp" line="3589"/>
+        <location filename="../../gamelist.cpp" line="3791"/>
         <source>?</source>
         <translation>¿?</translation>
     </message>
@@ -3738,29 +3738,29 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2196"/>
-        <location filename="../../gamelist.cpp" line="3014"/>
+        <location filename="../../gamelist.cpp" line="3017"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>ordenando lista de juegos por %1 en orden %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2196"/>
         <location filename="../../gamelist.cpp" line="2198"/>
-        <location filename="../../gamelist.cpp" line="3014"/>
-        <location filename="../../gamelist.cpp" line="3016"/>
+        <location filename="../../gamelist.cpp" line="3017"/>
+        <location filename="../../gamelist.cpp" line="3019"/>
         <source>ascending</source>
         <translation>ascendente</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2196"/>
         <location filename="../../gamelist.cpp" line="2198"/>
-        <location filename="../../gamelist.cpp" line="3014"/>
-        <location filename="../../gamelist.cpp" line="3016"/>
+        <location filename="../../gamelist.cpp" line="3017"/>
+        <location filename="../../gamelist.cpp" line="3019"/>
         <source>descending</source>
         <translation>descendente</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2198"/>
-        <location filename="../../gamelist.cpp" line="3016"/>
+        <location filename="../../gamelist.cpp" line="3019"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>ordenando lista de máquinas por %1 en orden %2</translation>
     </message>
@@ -3842,7 +3842,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2280"/>
-        <location filename="../../gamelist.cpp" line="3000"/>
+        <location filename="../../gamelist.cpp" line="3003"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation>Info estado de ROM: L:%1 C:%2 M:%3 I:%4 N:%5 D:%6</translation>
     </message>
@@ -4025,14 +4025,14 @@ p, li { white-space: pre-wrap; }
         <translation>hecho (cargando lista XML de máquinas y (re)creando caché, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2796"/>
-        <location filename="../../gamelist.cpp" line="2949"/>
-        <location filename="../../gamelist.cpp" line="3261"/>
+        <location filename="../../gamelist.cpp" line="2798"/>
+        <location filename="../../gamelist.cpp" line="2952"/>
+        <location filename="../../gamelist.cpp" line="3264"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
         <translation>ATENCIÓN: no se puede encontrar la entrada para %1 -- estado de ROM sin determinar</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="2805"/>
+        <location filename="../../gamelist.cpp" line="2807"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation>
             <numerusform>comprobando estado real de %n set no indicado en la auditoría completa</numerusform>
@@ -4040,7 +4040,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="2956"/>
+        <location filename="../../gamelist.cpp" line="2959"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation>
             <numerusform>hecho (comprobando estado real de %n set no indicado en la auditoría completa)</numerusform>
@@ -4048,50 +4048,50 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2992"/>
+        <location filename="../../gamelist.cpp" line="2995"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>hecho (verificando estado de ROM para &apos;%1&apos;, tiempo transcurrido = %2)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2995"/>
+        <location filename="../../gamelist.cpp" line="2998"/>
         <source>done (verifying ROM status for all games, elapsed time = %1)</source>
         <translation>hecho (verificando estado de ROM para todos los juegos, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2997"/>
+        <location filename="../../gamelist.cpp" line="3000"/>
         <source>done (verifying ROM status for all machines, elapsed time = %1)</source>
         <translation>hecho (verificando estado de ROM para todas las máquinas, tiempo transcurrido = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3014"/>
-        <location filename="../../gamelist.cpp" line="3016"/>
+        <location filename="../../gamelist.cpp" line="3017"/>
+        <location filename="../../gamelist.cpp" line="3019"/>
         <source>ROM state</source>
         <translation>estado de ROM</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3276"/>
+        <location filename="../../gamelist.cpp" line="3279"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>estado de ROM para &apos;%1&apos; es &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3351"/>
+        <location filename="../../gamelist.cpp" line="3354"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation>pre-cacheando iconos desde archivo ZIP</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3357"/>
-        <location filename="../../gamelist.cpp" line="3429"/>
+        <location filename="../../gamelist.cpp" line="3360"/>
+        <location filename="../../gamelist.cpp" line="3432"/>
         <source>Icon cache - %p%</source>
         <translation>caché iconos -  %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3404"/>
+        <location filename="../../gamelist.cpp" line="3407"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>hecho (pre-cacheando iconos desde archivo ZIP, tiempo transcurrido = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3405"/>
-        <location filename="../../gamelist.cpp" line="3463"/>
+        <location filename="../../gamelist.cpp" line="3408"/>
+        <location filename="../../gamelist.cpp" line="3466"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n icono cargado</numerusform>
@@ -4099,67 +4099,67 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3418"/>
+        <location filename="../../gamelist.cpp" line="3421"/>
         <source>pre-caching icons from directory</source>
         <translation>pre-cacheando iconos desde directorio</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3462"/>
+        <location filename="../../gamelist.cpp" line="3465"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>hecho (pre-cacheando iconos desde directorio, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3491"/>
+        <location filename="../../gamelist.cpp" line="3494"/>
         <source>loading category.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3497"/>
+        <location filename="../../gamelist.cpp" line="3500"/>
         <source>Category.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3523"/>
+        <location filename="../../gamelist.cpp" line="3526"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3532"/>
+        <location filename="../../gamelist.cpp" line="3535"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3682"/>
+        <location filename="../../gamelist.cpp" line="3685"/>
         <source>loading catver.ini</source>
         <translation>cargando catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3688"/>
+        <location filename="../../gamelist.cpp" line="3691"/>
         <source>Catver.ini - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3726"/>
+        <location filename="../../gamelist.cpp" line="3729"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>ERROR: no se puede abrir &apos;%1&apos; para su lectura -- no hay datos de catver.ini disponibles</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3735"/>
+        <location filename="../../gamelist.cpp" line="3738"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>hecho (cargando catver.ini, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3736"/>
+        <location filename="../../gamelist.cpp" line="3739"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>categoría %1 / %2 registros de versión cargados</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3567"/>
+        <location filename="../../gamelist.cpp" line="3570"/>
         <source>Category view - %p%</source>
         <translation>Vista por categorías - %p%</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3533"/>
+        <location filename="../../gamelist.cpp" line="3536"/>
         <source>%n category record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4167,7 +4167,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3769"/>
+        <location filename="../../gamelist.cpp" line="3772"/>
         <source>Version view - %p%</source>
         <translation>Vista versión - %p%</translation>
     </message>
@@ -5794,7 +5794,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="170"/>
-        <location filename="../../messdevcfg.cpp" line="595"/>
+        <location filename="../../messdevcfg.cpp" line="593"/>
         <source>Reading slot info, please wait...</source>
         <translation>Leyendo la información del slot, por favor espera...</translation>
     </message>
@@ -5878,34 +5878,34 @@ p, li { white-space: pre-wrap; }
         <translation>No hay dispositivos disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="460"/>
+        <location filename="../../messdevcfg.cpp" line="458"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="619"/>
+        <location filename="../../messdevcfg.cpp" line="617"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MESS en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="505"/>
-        <location filename="../../messdevcfg.cpp" line="513"/>
-        <location filename="../../messdevcfg.cpp" line="519"/>
+        <location filename="../../messdevcfg.cpp" line="503"/>
+        <location filename="../../messdevcfg.cpp" line="511"/>
+        <location filename="../../messdevcfg.cpp" line="517"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation>ERROR: recuperados datos XML inválidos para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="598"/>
+        <location filename="../../messdevcfg.cpp" line="596"/>
         <source>loading available system slots</source>
         <translation>cargando slots de sistema disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="620"/>
+        <location filename="../../messdevcfg.cpp" line="618"/>
         <source>Failed to read slot info</source>
         <translation>Fallo all leer la información de slot</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="625"/>
+        <location filename="../../messdevcfg.cpp" line="623"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation>ATENCIÓN: el comando externo utilizado para leer los slots de sistema disponibles falló, las opciones de slot pueden no estar completas</translation>
     </message>
@@ -5930,9 +5930,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="172"/>
         <location filename="../../messdevcfg.cpp" line="893"/>
-        <location filename="../../messdevcfg.cpp" line="1225"/>
-        <location filename="../../messdevcfg.cpp" line="1274"/>
-        <location filename="../../messdevcfg.cpp" line="1473"/>
+        <location filename="../../messdevcfg.cpp" line="1224"/>
+        <location filename="../../messdevcfg.cpp" line="1270"/>
+        <location filename="../../messdevcfg.cpp" line="1469"/>
+        <location filename="../../messdevcfg.cpp" line="1559"/>
         <location filename="../../messdevcfg.cpp" line="1608"/>
         <source>Default configuration</source>
         <translation type="unfinished"></translation>
@@ -5946,8 +5947,8 @@ p, li { white-space: pre-wrap; }
         <translation>predeterminado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1307"/>
-        <location filename="../../messdevcfg.cpp" line="1309"/>
+        <location filename="../../messdevcfg.cpp" line="1303"/>
+        <location filename="../../messdevcfg.cpp" line="1305"/>
         <source>%1. copy of </source>
         <translation>%1 copia de</translation>
     </message>
@@ -13680,28 +13681,28 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>versión</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3086"/>
+        <location filename="../../gamelist.cpp" line="3089"/>
         <source>correct</source>
         <translation>correcto</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3121"/>
+        <location filename="../../gamelist.cpp" line="3124"/>
         <source>incorrect</source>
         <translation>incorrecto</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3156"/>
+        <location filename="../../gamelist.cpp" line="3159"/>
         <source>mostly correct</source>
         <translation>mayormente correcto</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3191"/>
+        <location filename="../../gamelist.cpp" line="3194"/>
         <source>not found</source>
         <translation>no encontrado</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3226"/>
-        <location filename="../../gamelist.cpp" line="3263"/>
+        <location filename="../../gamelist.cpp" line="3229"/>
+        <location filename="../../gamelist.cpp" line="3266"/>
         <location filename="../../romalyzer.cpp" line="3148"/>
         <location filename="../../romalyzer.cpp" line="3181"/>
         <location filename="../../romalyzer.cpp" line="3193"/>
@@ -13893,95 +13894,95 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="682"/>
-        <location filename="../../softwarelist.cpp" line="2331"/>
-        <location filename="../../softwarelist.cpp" line="2369"/>
-        <location filename="../../softwarelist.cpp" line="3152"/>
+        <location filename="../../softwarelist.cpp" line="2333"/>
+        <location filename="../../softwarelist.cpp" line="2371"/>
+        <location filename="../../softwarelist.cpp" line="3154"/>
         <source>Auto mount</source>
         <translation>Auto montaje</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="687"/>
-        <location filename="../../softwarelist.cpp" line="2341"/>
-        <location filename="../../softwarelist.cpp" line="2353"/>
-        <location filename="../../softwarelist.cpp" line="2358"/>
-        <location filename="../../softwarelist.cpp" line="2373"/>
-        <location filename="../../softwarelist.cpp" line="3157"/>
-        <location filename="../../softwarelist.cpp" line="3161"/>
+        <location filename="../../softwarelist.cpp" line="2343"/>
+        <location filename="../../softwarelist.cpp" line="2355"/>
+        <location filename="../../softwarelist.cpp" line="2360"/>
+        <location filename="../../softwarelist.cpp" line="2375"/>
+        <location filename="../../softwarelist.cpp" line="3159"/>
+        <location filename="../../softwarelist.cpp" line="3163"/>
         <source>Not mounted</source>
         <translation>No montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="689"/>
-        <location filename="../../softwarelist.cpp" line="2343"/>
-        <location filename="../../softwarelist.cpp" line="2376"/>
-        <location filename="../../softwarelist.cpp" line="3163"/>
+        <location filename="../../softwarelist.cpp" line="2345"/>
+        <location filename="../../softwarelist.cpp" line="2378"/>
+        <location filename="../../softwarelist.cpp" line="3165"/>
         <source>Mounted on:</source>
         <translation>Montado en:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="681"/>
-        <location filename="../../softwarelist.cpp" line="2348"/>
-        <location filename="../../softwarelist.cpp" line="3151"/>
+        <location filename="../../softwarelist.cpp" line="2350"/>
+        <location filename="../../softwarelist.cpp" line="3153"/>
         <source>Don&apos;t mount</source>
         <translation>No montar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2552"/>
+        <location filename="../../softwarelist.cpp" line="2554"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3116"/>
         <location filename="../../softwarelist.cpp" line="3118"/>
+        <location filename="../../softwarelist.cpp" line="3120"/>
         <source>Searching</source>
         <translation>Buscando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3130"/>
+        <location filename="../../softwarelist.cpp" line="3132"/>
         <source>Updating</source>
         <translation>Actualizando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3142"/>
+        <location filename="../../softwarelist.cpp" line="3144"/>
         <source>Part:</source>
         <translation>Parte:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="691"/>
-        <location filename="../../softwarelist.cpp" line="3168"/>
+        <location filename="../../softwarelist.cpp" line="3170"/>
         <source>No mount device</source>
         <translation>Sin dispositivo montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="692"/>
-        <location filename="../../softwarelist.cpp" line="3169"/>
+        <location filename="../../softwarelist.cpp" line="3171"/>
         <source>Unmanaged</source>
         <translation>No gestionado</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3194"/>
+        <location filename="../../softwarelist.cpp" line="3196"/>
         <source>Data area:</source>
         <translation>Área de datos:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3197"/>
-        <location filename="../../softwarelist.cpp" line="3209"/>
-        <location filename="../../softwarelist.cpp" line="3223"/>
+        <location filename="../../softwarelist.cpp" line="3199"/>
+        <location filename="../../softwarelist.cpp" line="3211"/>
+        <location filename="../../softwarelist.cpp" line="3225"/>
         <source>Size:</source>
         <translation>Tamaño:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3206"/>
+        <location filename="../../softwarelist.cpp" line="3208"/>
         <source>Disk area:</source>
         <translation>Área de disco:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3226"/>
+        <location filename="../../softwarelist.cpp" line="3228"/>
         <source>CRC:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3241"/>
+        <location filename="../../softwarelist.cpp" line="3243"/>
         <source>SHA1:</source>
         <translation></translation>
     </message>
@@ -14657,7 +14658,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1360"/>
-        <location filename="../../romalyzer.ui" line="1539"/>
+        <location filename="../../romalyzer.ui" line="1544"/>
         <source>Level of automation</source>
         <translation>Nivel de automatismo</translation>
     </message>
@@ -14668,7 +14669,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1377"/>
-        <location filename="../../romalyzer.ui" line="1556"/>
+        <location filename="../../romalyzer.ui" line="1561"/>
         <source>Do nothing automatically</source>
         <translation>No hacer nada automáticamente</translation>
     </message>
@@ -14709,13 +14710,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1477"/>
-        <source>Rename selected sets</source>
-        <translation>Renombrar sets seleccionados</translation>
+        <source>Perform proposed actions on all selected sets</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1480"/>
-        <source>Rename</source>
-        <translation>Renombrar</translation>
+        <source>Perform actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1571"/>
+        <source>Automatically select sure matches and perform proposed actions</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1494"/>
@@ -14738,72 +14744,72 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Probabilidad de coincidencia</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1552"/>
+        <location filename="../../romalyzer.ui" line="1534"/>
+        <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1557"/>
         <source>Choose the level of automated set renamer operations</source>
         <translation>Selecciona el nivel de automatización de las operaciones de renombrado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1561"/>
+        <location filename="../../romalyzer.ui" line="1566"/>
         <source>Automatically select sure matches</source>
         <translation>Automáticamente seleccionar coincidencias exactas</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1566"/>
-        <source>Automatically select sure matches and rename sets accordingly</source>
-        <translation>Automáticamente seleccionar coincidencias exactas y renombrar los sets en consecuencia</translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.ui" line="1578"/>
+        <location filename="../../romalyzer.ui" line="1583"/>
         <source>Old XML</source>
         <translation>XML antiguo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1591"/>
+        <location filename="../../romalyzer.ui" line="1596"/>
         <source>Old XML data input file (produced with &apos;-listxml&apos;)</source>
         <translation>Archivo de entrada de datos XML antiguo (creado con &apos;-listxml&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1604"/>
+        <location filename="../../romalyzer.ui" line="1609"/>
         <source>Browse old XML data input file (produced with &apos;-listxml&apos;)</source>
         <translation>Navegar al archivo de entrada de datos XML antiguo (creado con &apos;-listxml&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1628"/>
+        <location filename="../../romalyzer.ui" line="1633"/>
         <source>Export selected results to a file</source>
         <translation>Exportar los resultados seleccionados a un archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1631"/>
+        <location filename="../../romalyzer.ui" line="1636"/>
         <source>Export results...</source>
         <translation>Exportar resultados...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1651"/>
+        <location filename="../../romalyzer.ui" line="1656"/>
         <source>Import results from a file</source>
         <translation>Importar resultados desde un archivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1654"/>
+        <location filename="../../romalyzer.ui" line="1659"/>
         <source>Import results...</source>
         <translation>Importar resultados...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1679"/>
+        <location filename="../../romalyzer.ui" line="1684"/>
         <source>Close ROMAlyzer</source>
         <translation>Cerrar ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1682"/>
+        <location filename="../../romalyzer.ui" line="1687"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1702"/>
+        <location filename="../../romalyzer.ui" line="1707"/>
         <source>Current ROMAlyzer status</source>
         <translation>Estado de ROMAlyzer actual</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1705"/>
+        <location filename="../../romalyzer.ui" line="1710"/>
         <location filename="../../romalyzer.cpp" line="642"/>
         <location filename="../../romalyzer.cpp" line="1099"/>
         <location filename="../../romalyzer.cpp" line="2252"/>
@@ -14812,12 +14818,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Parado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1721"/>
+        <location filename="../../romalyzer.ui" line="1726"/>
         <source>Analysis progress indicator</source>
         <translation>Indicador de progreso del análisis</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1740"/>
+        <location filename="../../romalyzer.ui" line="1745"/>
         <source>File I/O progress indicator</source>
         <translation>Indicador de progreso de I/O del archivo</translation>
     </message>
@@ -16916,7 +16922,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="108"/>
         <location filename="../../softwarelist.cpp" line="1415"/>
-        <location filename="../../softwarelist.cpp" line="2149"/>
+        <location filename="../../softwarelist.cpp" line="2151"/>
         <source>Default configuration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17276,8 +17282,8 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1583"/>
         <location filename="../../softwarelist.cpp" line="1617"/>
         <location filename="../../softwarelist.cpp" line="1651"/>
-        <location filename="../../softwarelist.cpp" line="2082"/>
-        <location filename="../../softwarelist.cpp" line="2425"/>
+        <location filename="../../softwarelist.cpp" line="2084"/>
+        <location filename="../../softwarelist.cpp" line="2427"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
@@ -17367,68 +17373,68 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>ERROR: no se pudo encontrar datos XML para la lista de software &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2395"/>
+        <location filename="../../softwarelist.cpp" line="2397"/>
         <source>Choose file to merge favorites from</source>
         <translation>Selecciona un archivo desde el que mezclar los favoritos</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2395"/>
-        <location filename="../../softwarelist.cpp" line="2473"/>
+        <location filename="../../softwarelist.cpp" line="2397"/>
+        <location filename="../../softwarelist.cpp" line="2475"/>
         <source>All files (*)</source>
         <translation>Todos los archivos (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2407"/>
+        <location filename="../../softwarelist.cpp" line="2409"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>cargando favoritos-software para &apos;%1&apos; desde &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2446"/>
+        <location filename="../../softwarelist.cpp" line="2448"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>entrada &apos;%1:%2&apos; importada con éxito</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2448"/>
+        <location filename="../../softwarelist.cpp" line="2450"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>ATENCIÓN: la entrada &apos;%1:%2&apos; no se puede asociar con ningún software conocido para este sistema (línea %3 ignorada)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2450"/>
+        <location filename="../../softwarelist.cpp" line="2452"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>ATENCIÓN: una entrada favorita para &apos;%1:%2&apos; ya existe (línea %3 ignorada)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2452"/>
+        <location filename="../../softwarelist.cpp" line="2454"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>ATENCIÓN: error de sintaxis en línea %1 (ignorada)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2456"/>
+        <location filename="../../softwarelist.cpp" line="2458"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>hecho (cargando favoritos-software para &apos;%1&apos; desde &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2458"/>
+        <location filename="../../softwarelist.cpp" line="2460"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>ERROR: no se puede abrir &apos;%1&apos; para su lectura, por favor comprueba los permisos</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2473"/>
+        <location filename="../../softwarelist.cpp" line="2475"/>
         <source>Choose file to store favorites to</source>
         <translation>Selecciona el archivo donde guardar los favoritos</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2484"/>
+        <location filename="../../softwarelist.cpp" line="2486"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Guardando favoritos-software para &apos;%1&apos; a &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2509"/>
+        <location filename="../../softwarelist.cpp" line="2511"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>hecho (guardando favoritos-software para &apos;%1&apos; a &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2511"/>
+        <location filename="../../softwarelist.cpp" line="2513"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>ERROR: no se puede abrir &apos;%1&apos; para su escritura, por favor comprueba los permisos</translation>
     </message>
@@ -17766,17 +17772,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="2643"/>
+        <location filename="../../softwarelist.cpp" line="2645"/>
         <source>Copy to clipboard</source>
         <translation>Copiar al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2648"/>
+        <location filename="../../softwarelist.cpp" line="2650"/>
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2855"/>
+        <location filename="../../softwarelist.cpp" line="2857"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>ERROR: no se puede abrir el archivo de captura de software, por favor comprueba los permisos de acceso para &apos;%1&apos;</translation>
     </message>
@@ -17784,17 +17790,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3314"/>
+        <location filename="../../softwarelist.cpp" line="3316"/>
         <source>Copy to clipboard</source>
         <translation>Copiar al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3319"/>
+        <location filename="../../softwarelist.cpp" line="3321"/>
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3382"/>
+        <location filename="../../softwarelist.cpp" line="3384"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>ERROR: no se puede abrir el archivo de captura de software, por favor comprueba los permisos de acceso para &apos;%1&apos;</translation>
     </message>

@@ -216,7 +216,7 @@ void ROMAlyzer::adjustIconSizes()
   pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
   pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
   pushButtonSetRenamerSearch->setIconSize(iconSize);
-  pushButtonSetRenamerRenameSets->setIconSize(iconSize);
+  pushButtonSetRenamerPerformActions->setIconSize(iconSize);
   toolButtonBrowseSetRenamerOldXmlFile->setIconSize(iconSize);
   pushButtonSetRenamerExportResults->setIconSize(iconSize);
   pushButtonSetRenamerImportResults->setIconSize(iconSize);
