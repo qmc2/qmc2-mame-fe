@@ -5682,7 +5682,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="458"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="503"/>
@@ -15521,12 +15521,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1477"/>
         <source>Perform proposed actions on all selected sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ações propostas em todos os conjuntos selecionados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1480"/>
         <source>Perform actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ações</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1529"/>
@@ -15536,7 +15536,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1571"/>
         <source>Automatically select sure matches and perform proposed actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar automaticamente correspondências precisas e executar ações propostas</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="797"/>
@@ -15947,7 +15947,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1534"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ação</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1557"/>
@@ -16971,7 +16971,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="1415"/>
         <location filename="../../softwarelist.cpp" line="2151"/>
         <source>Default configuration</source>
-        <translation type="unfinished">Configuração padrão</translation>
+        <translation>Configuração padrão</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="135"/>
@@ -17172,14 +17172,14 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="342"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="387"/>
         <location filename="../../softwarelist.cpp" line="395"/>
         <location filename="../../softwarelist.cpp" line="401"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
-        <translation type="unfinished">FATAL: dados XML inválidos adquiridos para &apos;%1&apos;</translation>
+        <translation>FATAL: dados XML inválidos adquiridos para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="621"/>
