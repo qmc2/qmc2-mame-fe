@@ -1237,6 +1237,7 @@ ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(RMDIR) Makefile.qmake.xcodeproj
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
+	@$(RM) arch/Darwin/Info.plist Info.plist
 endif
 else
 ifneq '$(ARCH)' 'Windows'
@@ -1272,6 +1273,7 @@ ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(RMDIR) Makefile.qmake.xcodeproj > /dev/null
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
+	@$(RM) arch/Darwin/Info.plist Info.plist > /dev/null
 endif
 else
 ifneq '$(ARCH)' 'Windows'
