@@ -2859,11 +2859,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	}
 	if ( xmlFound ) {
 		int romCounter = 0;
+		int chdCounter = 0;
 		bool endFound = false;
 		while ( !endFound && xmlCounter < xmlLines.count() ) {
 #if defined(QMC2_EMUTYPE_MESS)
 			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
 				romCounter++;
+				endFound = true;
+			} else if ( xmlLines[xmlCounter].contains("<disk name=\"") ) {
+				chdCounter++;
 				endFound = true;
 			} else if ( xmlLines[xmlCounter].contains("</machine>") )
 				endFound = true;
@@ -2871,12 +2875,18 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
 				romCounter++;
 				endFound = true;
+			} else if ( xmlLines[xmlCounter].contains("<disk name=\"") ) {
+				chdCounter++;
+				endFound = true;
 			} else if ( xmlLines[xmlCounter].contains("</game>") )
 				endFound = true;
 #endif
 			xmlCounter++;
 		}
-		romRequired = (romCounter > 0);
+		if ( romCounter == 0 && chdCounter > 0 )
+			romRequired = true;
+		else
+			romRequired = (romCounter > 0);
 	}
         if ( romItem && hierarchyItem ) {
 	  if ( romCache.isOpen() ) {

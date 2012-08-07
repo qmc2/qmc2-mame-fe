@@ -26,6 +26,7 @@ inf: informational only
   <li>fix: don't pass <i>empty</i> arguments when launching foreign emulators</li>
   <li>fix: non-Windows: the optional memory indicator wasn't updated because the corresponding timer didn't fire</li>
   <li>fix: MESS device configurator: when a configuration made with the file-chooser was saved, the current slot setup wasn't stored together with it -- rendering the stored item useless when slot customizations were required</li>
+  <li>fix: corrected ROM status determination for sets containing only CHDs (but no ROMs)</li>
   <li>imp: adjusted the ghost-image used for videos (wrong text removed)</li>
   <li>imp: depending on the installed codecs, an unused YouTube widget may still cause load on the system, so it's now already destroyed when it's no longer required</li>
   <li>imp: updated redistributed Qt translations from Qt 4.8.2</li>
