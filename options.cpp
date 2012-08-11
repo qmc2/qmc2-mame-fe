@@ -2681,6 +2681,9 @@ void Options::applyDelayed()
 					  // FIXME: add support for individual icons for foreign IDs
 					  action->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
 					  action->setData(emuName + "\t" + id + "\t" + description);
+					  QString tipText = menu->title() + " / " + action->text();
+					  action->setStatusTip(tr("Launch foreign ID '%1'").arg(tipText));
+					  action->setToolTip(tr("Launch foreign ID '%1'").arg(tipText));
 					  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(action_foreignIDsMenuItem_triggered()));
 					  showMenu = true;
 				  }
