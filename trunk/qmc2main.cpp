@@ -665,6 +665,12 @@ MainWindow::MainWindow(QWidget *parent)
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
 
+  // detail tabs are movable
+  tabWidgetGameDetail->setMovable(true);
+  QTabBar *tabBar = tabWidgetGameDetail->findChild<QTabBar *>();
+  if ( tabBar )
+	  connect(tabBar, SIGNAL(tabMoved(int, int)), this, SLOT(tabWidgetGameDetail_tabMoved(int, int)));
+
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2Options->checkBoxShowGameName->setText(tr("Show game/software titles"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show game- or software-titles at the bottom of any images"));
@@ -1466,6 +1472,26 @@ MainWindow::~MainWindow()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::~MainWindow()");
 #endif
 
+}
+
+void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::tabWidgetGameDetail_tabMoved(int from = %1, int to = %2)").arg(from).arg(to));
+#endif
+
+	int fromDetail = qmc2DetailSetup->appliedDetailList[from];
+	qmc2DetailSetup->appliedDetailList.removeAt(from);
+	qmc2DetailSetup->appliedDetailList.insert(to, fromDetail);
+
+	QListWidgetItem *takenItem = qmc2DetailSetup->listWidgetActiveDetails->takeItem(from);
+	if ( takenItem )
+		qmc2DetailSetup->listWidgetActiveDetails->insertItem(to, takenItem);
+
+	QStringList activeIndexList;
+	for (int i = 0; i < qmc2DetailSetup->appliedDetailList.count(); i++)
+		activeIndexList << QString::number(qmc2DetailSetup->appliedDetailList[i]);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
 }
 
 void MainWindow::action_foreignIDsMenuItem_triggered()
