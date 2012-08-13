@@ -1480,9 +1480,14 @@ void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::tabWidgetGameDetail_tabMoved(int from = %1, int to = %2)").arg(from).arg(to));
 #endif
 
+	qmc2DetailSetup->loadDetail();
+
 	int fromDetail = qmc2DetailSetup->appliedDetailList[from];
 	qmc2DetailSetup->appliedDetailList.removeAt(from);
 	qmc2DetailSetup->appliedDetailList.insert(to, fromDetail);
+	fromDetail = qmc2DetailSetup->activeDetailList[from];
+	qmc2DetailSetup->activeDetailList.removeAt(from);
+	qmc2DetailSetup->activeDetailList.insert(to, fromDetail);
 
 	QListWidgetItem *takenItem = qmc2DetailSetup->listWidgetActiveDetails->takeItem(from);
 	if ( takenItem )
@@ -1491,6 +1496,7 @@ void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)
 	QStringList activeIndexList;
 	for (int i = 0; i < qmc2DetailSetup->appliedDetailList.count(); i++)
 		activeIndexList << QString::number(qmc2DetailSetup->appliedDetailList[i]);
+
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
 }
 
