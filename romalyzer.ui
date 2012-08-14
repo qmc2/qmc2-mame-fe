@@ -28,6 +28,9 @@
        <property name="toolTip">
         <string>Shortname of game to be analyzed - wildcards allowed, use space as delimiter for multiple games</string>
        </property>
+       <property name="placeholderText">
+        <string>Specify sets to analyze</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -229,6 +232,9 @@
          </property>
          <property name="toolTip">
           <string>Search string</string>
+         </property>
+         <property name="placeholderText">
+          <string>Enter search string</string>
          </property>
         </widget>
        </item>
@@ -1234,6 +1240,9 @@
          <property name="toolTip">
           <string>Checksum to be searched</string>
          </property>
+         <property name="placeholderText">
+          <string>Enter checksum</string>
+         </property>
         </widget>
        </item>
        <item row="0" column="3">
@@ -1436,6 +1445,9 @@
          </property>
          <property name="toolTip">
           <string>Specify sets to be included in the search - wildcards allowed, use space as delimiter for multiple sets</string>
+         </property>
+         <property name="placeholderText">
+          <string>Specify sets</string>
          </property>
         </widget>
        </item>
