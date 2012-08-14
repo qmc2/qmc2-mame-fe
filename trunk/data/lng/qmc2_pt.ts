@@ -11225,7 +11225,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.cpp" line="2685"/>
         <location filename="../../options.cpp" line="2686"/>
         <source>Launch foreign ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar ID estrangeiro &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2811"/>
@@ -15332,7 +15332,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="32"/>
         <source>Specify sets to analyze</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique os conjuntos a serem analisados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="165"/>
@@ -15347,7 +15347,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="237"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre o texto de busca</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="271"/>
@@ -15522,7 +15522,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1244"/>
         <source>Enter checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o checksum</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1257"/>
@@ -15542,7 +15542,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1450"/>
         <source>Specify sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar conjuntos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1489"/>
