@@ -11,24 +11,26 @@
 #
 # Enable (1) or disable (0) support for the MinGW (GCC) compiler on Windows.
 #
+# When this option has not been specified, OS auto-detection will take place,
+# forcing the use of MinGW when the OS is found to be 'Windows_NT'.
+#
 # Notes:
 #
 # Using this option on any other OS than Windows will make the build fail! Also,
-# you'll need a working MinGW GCC installation (plus Qt, SDL and zlib) and this
-# option will enable some assumptions with regard to these requirements!
+# you'll need a working MinGW GCC installation (plus Qt and SDL). This option
+# will enable some assumptions with regard to these requirements!
 #
-# This build method for Windows requires the official MAME development tools
-# package (http://mamedev.org/tools/) plus a large add-on for QMC2 (including
-# Qt and zlib, either for the 32- or the 64-bit architecture). See here:
+# This is NOT for users of MS Visual C++ 2010!
 #
-# http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon
-#
-# This is also NOT for users of MS Visual Studio C++ 2008 or 2010 (Express)!
-# See doc/html/us/readme.html#build_win in this case (which is what we still
-# use for the official Win32 packages)!
+# For detailed build instructions on Windows, see:
+# http://qmc2.wikia.com/wiki/The_%27ultimate%27_guide_to_QMC2#Windows.
 #
 ifndef MINGW
+ifeq ($(OS),Windows_NT)
+MINGW = 1
+else
 MINGW = 0
+endif
 endif
 
 # >>> AUDIOEFFECTDIALOGS <<<
