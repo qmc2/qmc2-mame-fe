@@ -598,6 +598,7 @@ void YouTubeVideoPlayer::playMovieFile(QString &filePath)
 		currentVideoID = "#:" + filePath;
 		loadOnly = false;
 		videoPlayer->play(Phonon::MediaSource(filePath));
+		comboBoxPreferredFormat->setEnabled(false);
 		if ( !playedVideos.contains(currentVideoID) ) playedVideos << currentVideoID;
 	}
 }
@@ -1036,6 +1037,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 				loadOnly = false;
 				videoPlayer->audioOutput()->setMuted(isMuted);
 			}
+			comboBoxPreferredFormat->setEnabled(true);
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
@@ -1081,6 +1083,7 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 	if ( url.isValid() ) {
 		loadOnly = false;
 		videoPlayer->play(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
+		comboBoxPreferredFormat->setEnabled(true);
 		if ( !playedVideos.contains(videoID) ) playedVideos << videoID;
 	}
 }
