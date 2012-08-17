@@ -2128,6 +2128,24 @@ void MainWindow::on_actionDemoMode_triggered(bool)
   QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(raise()));
 }
 
+void MainWindow::on_actionNewBrowserWindow_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionNewBrowserWindow_triggered(bool)");
+#endif
+
+	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+		webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+	else {
+		webBrowser->adjustSize();
+		webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+	}
+	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+	webBrowser->show();
+}
+
 void MainWindow::on_actionCheckSamples_triggered(bool)
 {
 #ifdef QMC2_DEBUG

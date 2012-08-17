@@ -2340,6 +2340,8 @@
      <addaction name="actionRecreateTemplateMap"/>
      <addaction name="actionCheckTemplateMap"/>
     </widget>
+    <addaction name="actionOptions"/>
+    <addaction name="separator"/>
     <addaction name="actionCheckROMs"/>
     <addaction name="actionCheckSamples"/>
     <addaction name="actionCheckImagesAndIcons"/>
@@ -2347,9 +2349,8 @@
     <addaction name="actionROMAlyzer"/>
     <addaction name="actionExportROMStatus"/>
     <addaction name="separator"/>
-    <addaction name="actionOptions"/>
-    <addaction name="separator"/>
     <addaction name="actionDemoMode"/>
+    <addaction name="actionNewBrowserWindow"/>
     <addaction name="separator"/>
     <addaction name="menuAudioPlayer"/>
     <addaction name="separator"/>
@@ -3814,6 +3815,24 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+X</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionNewBrowserWindow">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/browser.png</normaloff>:/data/img/browser.png</iconset>
+   </property>
+   <property name="text">
+    <string>Browser window...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new empty browser window</string>
+   </property>
+   <property name="statusTip">
+    <string>Open a new empty browser window</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
