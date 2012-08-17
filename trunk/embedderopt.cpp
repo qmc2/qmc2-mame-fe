@@ -242,8 +242,8 @@ void SnapshotViewer::useAsPreview()
 
   Embedder *embedder = (Embedder *)(parent()->parent());
   EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-  QPixmapCache::remove(embedder->gameName);
-  QPixmapCache::insert(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+  QPixmapCache::remove("prv_" + embedder->gameName);
+  QPixmapCache::insert("prv_" + embedder->gameName, embedderOptions->snapshotMap[myItem]);
   qmc2Preview->update();
 
   // FIXME: we also need to save the image to the preview path or ZIP archive
