@@ -305,6 +305,10 @@ void Gamelist::load()
 
   QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
+  QString gameName;
+  if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )
+	  gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+
   qmc2ReloadActive = qmc2EarlyReloadActive = true;
   qmc2StopParser = false;
   qmc2GamelistItemMap.clear();
@@ -419,7 +423,15 @@ void Gamelist::load()
     QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
     if ( vbl ) delete vbl;
     delete qmc2MainWindow->labelEmuSelector;
+    if ( !gameName.isEmpty() ) {
+	    QString selectedEmulator = qmc2MainWindow->comboBoxEmuSelector->currentText();
+	    if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
+		    qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName));
+	    else
+		    qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), selectedEmulator);
+    }
     delete qmc2MainWindow->comboBoxEmuSelector;
+    qmc2MainWindow->comboBoxEmuSelector = NULL;
     delete qmc2EmulatorOptions;
     delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile;
     delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;

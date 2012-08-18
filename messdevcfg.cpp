@@ -26,6 +26,7 @@ extern bool qmc2CriticalSection;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 #endif
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
+extern bool qmc2UseDefaultEmulator;
 
 QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
@@ -704,7 +705,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 
-	setEnabled(true);
+	setEnabled(qmc2UseDefaultEmulator);
 
 	return true;
 }
@@ -1066,7 +1067,7 @@ bool MESSDeviceConfigurator::load()
 
 	isLoading = true;
 
-	setEnabled(true);
+	setEnabled(qmc2UseDefaultEmulator);
 
 	QString xmlBuffer = getXmlData(messMachineName);
   

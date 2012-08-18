@@ -172,6 +172,7 @@ bool qmc2StartEmbedded = false;
 bool qmc2FifoIsOpen = false;
 bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
+bool qmc2UseDefaultEmulator = true;
 int qmc2GamelistResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
@@ -413,6 +414,7 @@ MainWindow::MainWindow(QWidget *parent)
   desktopGeometry = qApp->desktop()->geometry();
   isActiveState = false;
   launchForeignID = false;
+  comboBoxEmuSelector = NULL;
 
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
@@ -3864,6 +3866,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 #endif
 
+  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), tr("Default")).toString() == tr("Default");
+
   int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -4024,7 +4029,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           delete qmc2MAWSLookup;
           qmc2MAWSLookup = NULL;
         }
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
@@ -4109,12 +4113,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( vbl ) delete vbl;
           delete labelEmuSelector;
           delete comboBoxEmuSelector;
+	  comboBoxEmuSelector = NULL;
           delete qmc2EmulatorOptions;
           delete pushButtonCurrentEmulatorOptionsExportToFile;
           delete pushButtonCurrentEmulatorOptionsImportFromFile;
           qmc2EmulatorOptions = NULL;
         }
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
@@ -4224,7 +4228,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
       if ( qmc2CurrentItem != qmc2LastGameInfoItem ) {
         tabGameInfo->setUpdatesEnabled(false);
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         if ( qmc2GameInfoDB.contains(gameName) || qmc2GameInfoDB.contains(qmc2ParentMap[gameName]) ) {
           // update game/machine info if it points to a different DB record
           bool updateInfo = true;
@@ -4283,7 +4286,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
       if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
         tabEmuInfo->setUpdatesEnabled(false);
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         if ( qmc2EmuInfoDB.contains(gameName) || qmc2EmuInfoDB.contains(qmc2ParentMap[gameName]) ) {
           // update emulator info if it points to a different DB record
           bool updateInfo = true;
@@ -4335,6 +4337,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( vbl ) delete vbl;
         delete labelEmuSelector;
         delete comboBoxEmuSelector;
+	comboBoxEmuSelector = NULL;
         delete qmc2EmulatorOptions;
         delete pushButtonCurrentEmulatorOptionsExportToFile;
         delete pushButtonCurrentEmulatorOptionsImportFromFile;
@@ -4431,14 +4434,30 @@ void MainWindow::emuSelector_currentIndexChanged(const QString &text)
     return;
 
   if ( text == tr("Default") ) {
+    qmc2UseDefaultEmulator = true;
     qmc2EmulatorOptions->setEnabled(true);
+    if ( qmc2SoftwareList )
+	    qmc2SoftwareList->setEnabled(true);
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+    if ( qmc2MESSDeviceConfigurator )
+	    qmc2MESSDeviceConfigurator->setEnabled(true);
+#endif
     pushButtonCurrentEmulatorOptionsExportToFile->setEnabled(true);
     pushButtonCurrentEmulatorOptionsImportFromFile->setEnabled(true);
   } else {
+    qmc2UseDefaultEmulator = false;
     qmc2EmulatorOptions->setEnabled(false);
+    if ( qmc2SoftwareList )
+	    qmc2SoftwareList->setEnabled(false);
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+    if ( qmc2MESSDeviceConfigurator )
+	    qmc2MESSDeviceConfigurator->setEnabled(false);
+#endif
     pushButtonCurrentEmulatorOptionsExportToFile->setEnabled(false);
     pushButtonCurrentEmulatorOptionsImportFromFile->setEnabled(false);
   }
+
+  qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)), qmc2UseDefaultEmulator);
 }
 
 void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int column)
