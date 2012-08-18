@@ -30,6 +30,7 @@ extern int qmc2UpdateDelay;
 extern int qmc2DefaultLaunchMode;
 extern bool qmc2StopParser;
 extern bool qmc2CriticalSection;
+extern bool qmc2UseDefaultEmulator;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -705,6 +706,8 @@ bool SoftwareList::load()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::load()");
 #endif
+
+	setEnabled(qmc2UseDefaultEmulator);
 
 	bool swlCacheOkay = true;
 	autoMounted = true;
