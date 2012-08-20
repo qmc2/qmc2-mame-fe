@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="UME" format="0.2.6" version="0.146u4">
+<template emulator="UME" format="0.2.6" version="0.146u5">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -796,6 +796,10 @@
       <description lang="fr" text="Affiche le dialogue de confirmation à la sortie"/>
       <description lang="pt" text="Mostrar confirmação ao sair"/>
       <description lang="es" text="Mostrar confirmación al salir"/>
+    </option>
+    <option default="false" name="ui_mouse" type="bool">
+      <description lang="us" text="Display UI mouse cursor"/>
+      <description lang="de" text="UI Mousecurcor anzeigen"/>
     </option>
   </section>
   <section name="configuration">

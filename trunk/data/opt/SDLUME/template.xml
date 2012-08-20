@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="SDLUME" format="0.2.5" version="0.146u6">
+<template emulator="SDLUME" format="0.2.5" version="0.146u5">
   <section name="search_paths">
     <description lang="es" text="Rutas de búsqueda"/>
     <description lang="us" text="Search paths"/>
@@ -768,6 +768,10 @@
       <description lang="pl" text="Wyświetl okienko potwierdzenia zakończenia"/>
       <description lang="fr" text="Affiche le dialogue de confirmation à la sortie"/>
       <description lang="pt" text="Mostrar confirmação ao sair"/>
+    </option>
+    <option default="false" name="ui_mouse" type="bool">
+      <description lang="us" text="Display UI mouse cursor"/>
+      <description lang="de" text="UI Mousecurcor anzeigen"/>
     </option>
   </section>
   <section name="configuration">
