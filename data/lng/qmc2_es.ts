@@ -14006,6 +14006,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
+        <location filename="../../softwarelist.cpp" line="3255"/>
+        <source>Info:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../youtubevideoplayer.cpp" line="1897"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>reproductor de vídeo: error XML: error fatal en la línea %1, columna %2: %3</translation>
@@ -17829,17 +17834,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3319"/>
+        <location filename="../../softwarelist.cpp" line="3328"/>
         <source>Copy to clipboard</source>
         <translation>Copiar al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3324"/>
+        <location filename="../../softwarelist.cpp" line="3333"/>
         <source>Refresh</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3387"/>
+        <location filename="../../softwarelist.cpp" line="3396"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>ERROR: no se puede abrir el archivo de captura de software, por favor comprueba los permisos de acceso para &apos;%1&apos;</translation>
     </message>

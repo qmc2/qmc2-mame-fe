@@ -14013,6 +14013,11 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <source>SHA1:</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="3255"/>
+        <source>Info:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ROMAlyzer</name>
@@ -17832,17 +17837,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3319"/>
+        <location filename="../../softwarelist.cpp" line="3328"/>
         <source>Copy to clipboard</source>
         <translation>Copiar para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3324"/>
+        <location filename="../../softwarelist.cpp" line="3333"/>
         <source>Refresh</source>
         <translation>Recarregar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3387"/>
+        <location filename="../../softwarelist.cpp" line="3396"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>

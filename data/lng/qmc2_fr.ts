@@ -14009,6 +14009,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="3255"/>
+        <source>Info:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ROMAlyzer</name>
@@ -17829,17 +17834,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3319"/>
+        <location filename="../../softwarelist.cpp" line="3328"/>
         <source>Copy to clipboard</source>
         <translation>Copier dans le presse-papier</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3324"/>
+        <location filename="../../softwarelist.cpp" line="3333"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3387"/>
+        <location filename="../../softwarelist.cpp" line="3396"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossible d&apos;ouvrir le fichier de captures du logiciel, vérifiez les permissions de %1</translation>
     </message>
