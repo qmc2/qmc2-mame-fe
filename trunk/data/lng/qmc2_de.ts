@@ -13994,6 +13994,11 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="3255"/>
+        <source>Info:</source>
+        <translation>Info:</translation>
+    </message>
 </context>
 <context>
     <name>ROMAlyzer</name>
@@ -17813,17 +17818,17 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3319"/>
+        <location filename="../../softwarelist.cpp" line="3328"/>
         <source>Copy to clipboard</source>
         <translation>In Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3324"/>
+        <location filename="../../softwarelist.cpp" line="3333"/>
         <source>Refresh</source>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3387"/>
+        <location filename="../../softwarelist.cpp" line="3396"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>

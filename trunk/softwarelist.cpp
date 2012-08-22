@@ -3250,6 +3250,13 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 		return true;
 	}
 
+	if ( qName == "info" ) {
+		infoItem = new SoftwareItem((QTreeWidget *)NULL);
+		infoItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Info:") + " " + attributes.value("name"));
+		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, attributes.value("value"));
+		infoItems << infoItem;
+	}
+
 	return true;
 }
 
@@ -3274,6 +3281,8 @@ bool SoftwareEntryXmlHandler::endElement(const QString &namespaceURI, const QStr
 			if ( cb )
 				parentTreeWidgetItem->treeWidget()->setItemWidget(item, QMC2_SWLIST_COLUMN_PUBLISHER, cb);
 		}
+		if ( !infoItems.isEmpty() )
+			parentTreeWidgetItem->addChildren(infoItems);
 		parentTreeWidgetItem->treeWidget()->setUpdatesEnabled(true);
 		parentTreeWidgetItem->treeWidget()->viewport()->update();
 		qApp->processEvents();
