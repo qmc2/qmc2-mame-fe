@@ -5,16 +5,21 @@ REM # !!! ADJUST THESE PATHS TO FIT YOUR LOCAL INSTALLATION !!! #
 REM #############################################################
 
 set QT_PATH=c:\Qt
+set QT_PATH_64=c:\Qt-64
 set QT_PATH_ESCAPED=c:\\Qt
+set QT_PATH_64_ESCAPED=c:\\Qt-64
 set SDL_INC_PATH=c:\sdl\include
-set SDL_LIB_PATH=c:\sdl\lib\sdl.lib
-set SDLMAIN_LIB_PATH=c:\sdl\lib\sdlmain.lib
+set SDL_LIB_PATH=c:\sdl\lib\x86\sdl.lib
+set SDL_LIB_PATH_64=c:\sdl\lib\x64\sdl.lib
+set SDLMAIN_LIB_PATH=c:\sdl\lib\x86\sdlmain.lib
+set SDLMAIN_LIB_PATH_64=c:\sdl\lib\x64\sdlmain.lib
 set SVN_REV_COMMAND="c:\Program Files\TortoiseSVN\bin\SubWCRev.exe"
 set SED_COMMAND=c:\GnuWin32\bin\sed.exe
 
 REM #####################################################################
 REM # !!! FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" !!! #
 REM #####################################################################
+
 set QMAKESPEC=win32-msvc2010
 
 REM #################################################
@@ -22,6 +27,7 @@ REM # !!! DON'T CHANGE ANYTHING BELOW THIS LINE !!! #
 REM #################################################
 
 set VERSION=0.37
+
 set SVN_REV=0
 set SVN_REV_TEMPLATE=scripts\subwcrev.template
 set SVN_REV_OUT=scripts\subwcrev.out
