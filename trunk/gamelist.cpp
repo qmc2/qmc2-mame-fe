@@ -688,7 +688,7 @@ void Gamelist::load()
   }
 
   if ( numTotalGames > 0 )
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported set(s)", "", numTotalGames));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalGames));
   else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
     qmc2ReloadActive = false;
@@ -1024,6 +1024,8 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
   if ( element.contains(attributePattern) ) {
     QString valueString = element.remove(0, element.indexOf(attributePattern) + attributePattern.length());
     valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+    if ( valueString == ">" )
+	    return QString::null;
     if ( translate )
       return tr(valueString.toAscii());
     else
@@ -1759,6 +1761,15 @@ void Gamelist::parse()
         bool isBIOS = ( value(gameElement, "isbios") == "yes" );
         bool isDevice = ( value(gameElement, "isdevice") == "yes" );
         QString gameName = value(gameElement, "name");
+	if ( gameName.isEmpty() ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
+#else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml").arg(lineCounter + 2));
+#endif
+		qApp->processEvents();
+		continue;
+	}
         QString gameCloneOf = value(gameElement, "cloneof");
         QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
         GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
@@ -2845,9 +2856,11 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			if ( !xmlFound ) {
 				if ( xmlLines[xmlCounter].contains("<machine name=\"") ) {
 					QString xmlLine = xmlLines[xmlCounter];
-					int gameNamePos = xmlLine.indexOf("machine name=\"") + 14;
-					QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
-					systemPosMap[currentGame] = xmlCounter + 1;
+					int gameNamePos = xmlLine.indexOf("<machine name=\"") + 15;
+					if ( xmlLine[gameNamePos] != '\"' ) {
+						QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
+						systemPosMap[currentGame] = xmlCounter + 1;
+					}
 				}
 			}
 			xmlCounter++;
@@ -2859,9 +2872,11 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			if ( !xmlFound ) {
 				if ( xmlLines[xmlCounter].contains("<game name=\"") ) {
 					QString xmlLine = xmlLines[xmlCounter];
-					int gameNamePos = xmlLine.indexOf("game name=\"") + 11;
-					QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
-					systemPosMap[currentGame] = xmlCounter + 1;
+					int gameNamePos = xmlLine.indexOf("<game name=\"") + 12;
+					if ( xmlLine[gameNamePos] != '\"' ) {
+						QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
+						systemPosMap[currentGame] = xmlCounter + 1;
+					}
 				}
 			}
 			xmlCounter++;
