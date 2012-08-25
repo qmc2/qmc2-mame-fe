@@ -9852,6 +9852,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 #endif
 
 	progressBarGamelist->reset();
+	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarGamelist->setFormat(tr("Tag - %p%"));
 	else
@@ -9885,6 +9886,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 	progressBarGamelist->reset();
 	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
 	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarGamelist->setFormat(oldFormat);
 }
 
 void MainWindow::on_actionUntagAll_triggered(bool)
@@ -9894,6 +9896,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 #endif
 
 	progressBarGamelist->reset();
+	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarGamelist->setFormat(tr("Untag - %p%"));
 	else
@@ -9927,6 +9930,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	progressBarGamelist->reset();
 	qmc2Gamelist->numTaggedSets = 0;
 	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarGamelist->setFormat(oldFormat);
 }
 
 void MainWindow::on_actionInvertTags_triggered(bool)
@@ -9936,6 +9940,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 #endif
 
 	progressBarGamelist->reset();
+	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
 	else
@@ -9973,6 +9978,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		}
 	}
 	progressBarGamelist->reset();
+	progressBarGamelist->setFormat(oldFormat);
 }
 
 void MainWindow::on_actionTagVisible_triggered(bool)
@@ -9982,6 +9988,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 #endif
 
 	progressBarGamelist->reset();
+	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarGamelist->setFormat(tr("Tag - %p%"));
 	else
@@ -10016,6 +10023,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	}
 	progressBarGamelist->reset();
 	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarGamelist->setFormat(oldFormat);
 }
 
 void MainWindow::on_actionUntagVisible_triggered(bool)
@@ -10025,6 +10033,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 #endif
 
 	progressBarGamelist->reset();
+	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarGamelist->setFormat(tr("Untag - %p%"));
 	else
@@ -10059,6 +10068,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	}
 	progressBarGamelist->reset();
 	labelGamelistStatus->setText(qmc2Gamelist->status());
+	progressBarGamelist->setFormat(oldFormat);
 }
 
 void MainWindow::on_actionInvertVisibleTags_triggered(bool)
@@ -10068,6 +10078,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 #endif
 
 	progressBarGamelist->reset();
+	QString oldFormat = progressBarGamelist->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
 	else
@@ -10105,6 +10116,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		}
 	}
 	progressBarGamelist->reset();
+	progressBarGamelist->setFormat(oldFormat);
 }
 
 #if defined(QMC2_EMUTYPE_MESS)
