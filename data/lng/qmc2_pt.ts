@@ -3015,9 +3015,9 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="691"/>
         <source>%n supported (non-device) set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n conjunto suportado (não-dispositivo)</numerusform>
+            <numerusform>%n conjuntos suportados (não-dispositivo)</numerusform>
         </translation>
     </message>
     <message>
@@ -3761,12 +3761,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1766"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: atributo nome está vazio na linha %1 do XML (conjunto será ignorado!) -- por favor informe os desenvolvedores do MAME e inclua a saída com problema do --listxml</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1768"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: atributo nome está vazio na linha %1 do XML (conjunto será ignorado!) -- por favor informe os desenvolvedores do MESS e inclua a saída com problema do --listxml</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2219"/>
@@ -9392,13 +9392,13 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="3829"/>
         <source>Browser window...</source>
-        <translation type="unfinished"></translation>
+        <translation>Janela do browser...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3832"/>
         <location filename="../../qmc2main.ui" line="3835"/>
         <source>Open a new empty browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abre uma nova janela de browser em branco</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2881"/>
@@ -14026,7 +14026,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="3255"/>
         <source>Info:</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação:</translation>
     </message>
 </context>
 <context>
@@ -17311,17 +17311,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="853"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do MAME para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
+        <translation>ERRO: impossível abrir o arquivo de cache da lista de software do MAME para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="855"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do MESS para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
+        <translation>ERRO: impossível abrir o arquivo de cache da lista de software do MESS para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="857"/>
         <source>ERROR: can&apos;t open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do UME para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
+        <translation>ERRO: impossível abrir o arquivo de cache da lista de software do UME para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="949"/>
