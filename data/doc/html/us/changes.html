@@ -22,7 +22,7 @@ inf: informational only
   <li>fix: don't allow tagging/untagging of parent-items in category- and version-views</li>
   <li>fix: file-browsers in emulator configuration dialogs used the wrong standard file-dialog so non-existing file names weren't accepted</li>
   <li>fix: ZIP-archived image files weren't correctly opened initially</li>
-  <li>fix: full-screen switching on Ubuntu 12.04 (<i>Unity</i> desktop) didn't work correctly -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=26" target="_blank">bug tracker ID #26</a></li>
+  <li>fix: full-screen switching on Ubuntu 12.04 (<i>Unity</i> desktop) didn't work correctly -- see <a href="http://tracker.batcom-it.net/view.php?id=26" target="_blank">bug tracker ID #26</a></li>
   <li>fix: don't pass <i>empty</i> arguments when launching foreign emulators</li>
   <li>fix: non-Windows: the optional memory indicator wasn't updated because the corresponding timer didn't fire</li>
   <li>fix: MESS device configurator: when a configuration made with the file-chooser was saved, the current slot setup wasn't stored together with it -- rendering the stored item useless when slot customizations were required</li>
@@ -50,14 +50,14 @@ inf: informational only
   <li>imp: when a non-default (= foreign) emulator is selected for the current game/machine, the device-mapper and software-list tabs are disabled now</li>
   <li>imp: sets with <i>empty</i> names are now ignored, logging corresponding warnings when the game/machine list cache is recreated (this is a driver bug which also '-validate' will warn about)</li>
   <li>imp: Win32 VC++ build: added x64 support to the project generation script</li>
-  <li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
+  <li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://tracker.batcom-it.net/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
   <li>new: the YouTube video-player now supports local movie files as well</li>
   <li>new: added support for tool-bar customization</li>
   <li>new: allow the specification of semicolon-separated lists of folders for ALL image types</li>
   <li>new: added support for system- and manufacturer-logo images (i. e. <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's new <i>MESS marquees</i></a>)</li>
   <li>new: added support for the new MESS category.ini from <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> (UME targets merge the info with data from catver.ini, if applicable)</li>
-  <li>new: added a check for the ROM path setting (a warning message will pop up when the ROM path hasn't been set or isn't available) -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=28" target="_blank">bug tracker ID #28</a></li>
-  <li>new: made a complete rewrite of the image-checker dialog, which now allows checks of ALL image types in a multi-threaded way -- this also fixes a long-standing bug on Windows, BTW (see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=5" target="_blank">bug tracker ID #5</a>)</li>
+  <li>new: added a check for the ROM path setting (a warning message will pop up when the ROM path hasn't been set or isn't available) -- see <a href="http://tracker.batcom-it.net/view.php?id=28" target="_blank">bug tracker ID #28</a></li>
+  <li>new: made a complete rewrite of the image-checker dialog, which now allows checks of ALL image types in a multi-threaded way -- this also fixes a long-standing bug on Windows, BTW (see <a href="http://tracker.batcom-it.net/view.php?id=5" target="_blank">bug tracker ID #5</a>)</li>
   <li>new: MESS device configurator: added support for <i>nested</i> slots, including real slot recursion</li>
   <li>new: software-lists: available mount-devices are dynamically upated whenever the device/slot setup changes</li>
   <li>new: added 3 new actions to tag / untag / invert tags of all <i>visible</i> sets (according to the current ROM state filter)</li>
@@ -142,7 +142,7 @@ inf: informational only
   <li>fix: YouTube video-player: attached videos could get lost when changing the current game/machine very quickly</li>
   <li>fix: ROMAlyzer: correctly 'remove' the progress-bar item-widget before deleting it (worked w/o until Qt 4.7.x, crashed since Qt 4.8.0)</li>
   <li>fix: corrected restoration of main-widget's layout when the front-end was showing a maximized embedded emulator during clean up on the previous run</li>
-  <li>fix: corrected Windows 64-bit builds with DEBUG=2 (see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=21" target="_blank">bug tracker ID #21</a>)</li>
+  <li>fix: corrected Windows 64-bit builds with DEBUG=2 (see <a href="http://tracker.batcom-it.net/view.php?id=21" target="_blank">bug tracker ID #21</a>)</li>
   <li>fix: file-chooser: the underlying item model now produces correct minimum widths for icon-less columns (size and modification date)</li>
   <li>fix: embedder on X11: corrected initial input focus after launching a new embedded emulator</li>
   <li>imp: ROM status exporter: additional output-format choice ('all formats') to export the ROM states to all three formats at once</li>
@@ -233,7 +233,7 @@ inf: informational only
   <li>fix: ROMAlyzer / checksum wizard: correctly handle ROM files when their names contain special characters (i.e. '&amp;')</li>
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
   <li>fix: remove Phonon effects asynchronously (aka QObject::deleteLater()) -- note that this finally also fixes the long-standing post-mortem crash on Mac OS X</li>
-  <li>fix: file and directory edit widgets did only commit any data changes when they were 'edited', but not when their data changed 'spontaneously' -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=17" target="_blank">bug tracker ID #17</a></li>
+  <li>fix: file and directory edit widgets did only commit any data changes when they were 'edited', but not when their data changed 'spontaneously' -- see <a href="http://tracker.batcom-it.net/view.php?id=17" target="_blank">bug tracker ID #17</a></li>
   <li>fix: MESS targets: avoid crash when exiting while a device setup is open</li>
   <li>fix: emulator configuration: correctly position the text cursor for 'int' and 'float' option types as well</li>
   <li>fix: corrected hiding of category-/version-columns in the category-/version-views</li>
@@ -249,7 +249,7 @@ inf: informational only
   <li>imp: SDLMESS/MESS templates updated to 0.143 (changed default value of <i>audio_latency</i> for SDLMESS, added new options <i>use_cpanels</i>, <i>use_marquees</i> and <i>confirm_quit</i> for all, added many new HLSL options for MESS)</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>
   <li>imp: improved log output when the validation of the emulator executable fails</li>
-  <li>imp: MESS targets: added new / alternate emulator type identification string ('M.E.S.S.' vs. 'MESS') as used since 0.142 SVN -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=16" target="_blank">bug tracker ID #16</a></li>
+  <li>imp: MESS targets: added new / alternate emulator type identification string ('M.E.S.S.' vs. 'MESS') as used since 0.142 SVN -- see <a href="http://tracker.batcom-it.net/view.php?id=16" target="_blank">bug tracker ID #16</a></li>
   <li>imp: MESS targets: the device configurator now also saves / restores the last selected setup (if any) and includes a context menu for the device instance map</li>
   <li>imp: added an option to let the user decide if the ROM status icons are to be shown or not (see in game/machine-list tab of the main setup dialog)</li>
   <li>imp: avoid potential blocking when synchronously calling external programs</li>
@@ -305,7 +305,7 @@ inf: informational only
   <li>new: added new compile-time setting <i>BROWSER_PREFETCH_DNS</i> to allow for prefetching of DNS lookups by the mini web browser (Qt 4.6 and higher)</li>
   <li>new: embedder: embedded emulators can now automatically be paused when they are hidden and resumed when they are shown (requires the MAME/MESS notifier FIFO in order to correctly track any state changes)</li>
   <li>new: embedder: the current status of an embedded emulator is now indicated through traffic lights in the respective tab widget header</li>
-  <li>new: added support for a 'number of players' column to the game/machine list as suggested by Francisco Javier Felix (<i>csfax</i>) -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=14" target="_blank">bug tracker ID #14</a></li>
+  <li>new: added support for a 'number of players' column to the game/machine list as suggested by Francisco Javier Felix (<i>csfax</i>) -- see <a href="http://tracker.batcom-it.net/view.php?id=14" target="_blank">bug tracker ID #14</a></li>
   <li>new: ROMAlyzer: added a 'copy to clipboard' function to copy the analysis output for the currently selected set to the system clipboard (as formatted text)</li> 
   <li>wip: completing the support for game/machine <i>attached</i> youtube.com videos -- note: this is a Qt 4.7+ only feature as it uses the embeddable youtube.com video player which in turn needs the npviewer browser plugin (and that's only cleanly supported since Qt 4.7)</li>
   <li>doc: updated <a href="faq.html#A1.7.2">Q1.7.2</a> in FAQ to reflect openSUSE 11.4</li>
