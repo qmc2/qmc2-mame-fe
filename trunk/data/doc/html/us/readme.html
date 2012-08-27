@@ -235,9 +235,9 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 </ol>
 <p>Using the MinGW (GCC) compiler:</p>
 <ol>
-  <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon" target="_blank">Qt add-on</a> package for your platform (the QMC2 add-on extends the MAME dev-tools with Qt 4.8.2+, see <b>README.Qt-add-on</b> for installation instructions!).</li>
+  <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon" target="_blank">Qt add-on</a> package for your platform (the Qt add-on extends the MAME dev-tools with Qt 4.8.2+, see <b>README.Qt-add-on</b> for installation instructions!).</li>
   <li>Call 'make' as usual, that is like on UNIX or Mac OS X.</li>
-  <li>Note: If you want to run make in jobserver-mode (to utilize multipe CPUs during compilation), you have to run 'make configure' followed by 'make -j &lt;#CPUs + 1&gt; -f Makefile.qmake.Release'.</li>
+  <li>If you want to run make in jobserver-mode (to utilize multiple CPUs during compilation), you have to run 'make configure' followed by 'make -j &lt;#CPUs + 1&gt; -f Makefile.qmake.Release'.</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%PATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac OS X, you can simply start the executable
