@@ -1,5 +1,8 @@
 package sourceforge.org.qmc2.options.editor.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,6 +23,8 @@ public class Option extends DescriptableItem {
 
 	private final static String ATTRIBUTE_DEFAULT = "default";
 
+	private Map<String, String> unmappedAttributes;
+	
 	public Option(String name, String type, String defaultValue) {
 		super(name);
 		this.type = type;
@@ -36,12 +41,27 @@ public class Option extends DescriptableItem {
 
 	public static Option parseOption(Node optionNode) {
 
-		String name = optionNode.getAttributes().getNamedItem(ATTRIBUTE_NAME)
-				.getNodeValue();
-		String type = optionNode.getAttributes().getNamedItem(ATTRIBUTE_TYPE)
-				.getNodeValue();
-		String defaultValue = optionNode.getAttributes()
-				.getNamedItem(ATTRIBUTE_DEFAULT).getNodeValue();
+		String name = null;
+		String type = null;
+		String defaultValue = null;
+		Map<String, String> unmappedAttrs = new HashMap<String, String>();
+		for (int i = 0; i < optionNode.getAttributes().getLength(); i++) {
+			Node item = optionNode.getAttributes().item(i);
+			if (ATTRIBUTE_NAME.equals(item.getNodeName())) {
+				name = item.getNodeValue();
+			}
+			else if(ATTRIBUTE_TYPE.equals(item.getNodeName())){
+				type = item.getNodeValue();
+			}
+			else if(ATTRIBUTE_DEFAULT.equals(item.getNodeName())) {
+				defaultValue = item.getNodeValue();
+			}
+			else {
+				unmappedAttrs.put(item.getNodeName(), item.getNodeValue());
+			}
+		}
+		
+		
 
 		OptionType optionType = null;
 		try {
@@ -69,6 +89,7 @@ public class Option extends DescriptableItem {
 
 		option.parseDescriptions(optionNode);
 		option.parseData(optionNode);
+		option.setUnmappedAttributes(unmappedAttrs);
 
 		return option;
 	}
@@ -76,7 +97,12 @@ public class Option extends DescriptableItem {
 	protected void parseData(Node optionNode) {
 
 	}
-
+	
+	
+	public void setUnmappedAttributes(Map<String, String> unmappedAttributes) {
+		this.unmappedAttributes = unmappedAttributes;
+	}
+	
 	@Override
 	public String getTagName() {
 		return TAG_OPTION;
@@ -87,6 +113,10 @@ public class Option extends DescriptableItem {
 		Element option = super.toXML(document);
 		option.setAttribute(ATTRIBUTE_TYPE, type);
 		option.setAttribute(ATTRIBUTE_DEFAULT, defaultValue);
+		for (String attr: unmappedAttributes.keySet()) {
+			option.setAttribute(attr, unmappedAttributes.get(attr));
+		}
+		
 
 		return option;
 

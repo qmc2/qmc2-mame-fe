@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="MESS" version="0.146u5" format="0.2.6">
+<template emulator="MESS" format="0.2.6" version="0.146u5">
   <section name="search_paths">
     <description lang="es" text="Rutas de búsqueda"/>
     <description lang="us" text="Search paths"/>
@@ -7,7 +7,7 @@
     <description lang="pl" text="Przeszukiwane ścieżki"/>
     <description lang="fr" text="Répertoires de recherche"/>
     <description lang="pt" text="Caminhos de busca"/>
-    <option name="rompath" type="directory" default="roms">
+    <option default="roms" name="rompath" type="directory">
       <description lang="es" text="Ruta a sets de ROMs e imágenes de disco"/>
       <description lang="us" text="Path to ROM sets and hard disk images"/>
       <description lang="de" text="Suchpfad für ROM-Sets und Festplatten Abbilder"/>
@@ -15,7 +15,7 @@
       <description lang="fr" text="Répertoires des ROMS et Images Disques"/>
       <description lang="pt" text="Caminho para as ROMs e imagens de disco"/>
     </option>
-    <option name="hashpath" type="directory" default="hash">
+    <option default="hash" name="hashpath" type="directory">
       <description lang="es" text="Ruta a archivos hash"/>
       <description lang="us" text="Path to hash files"/>
       <description lang="de" text="Suchpfad für Prüfsummen-Dateien"/>
@@ -23,7 +23,7 @@
       <description lang="fr" text="Répertoires des fichiers hash"/>
       <description lang="pt" text="Caminho para os arquivos de hash"/>
     </option>
-    <option name="samplepath" type="directory" default="samples">
+    <option default="samples" name="samplepath" type="directory">
       <description lang="es" text="Ruta a sets de muestras"/>
       <description lang="us" text="Path to sample sets"/>
       <description lang="de" text="Suchpfad für Sample-Sets"/>
@@ -31,7 +31,7 @@
       <description lang="fr" text="Répertoires des samples"/>
       <description lang="pt" text="Caminho para os exemplos"/>
     </option>
-    <option name="artpath" type="directory" default="artwork">
+    <option default="artwork" name="artpath" type="directory">
       <description lang="es" text="Ruta a archivos de arte"/>
       <description lang="us" text="Path to artwork files"/>
       <description lang="de" text="Suchpfad für Kunstwerk-Dateien"/>
@@ -39,7 +39,7 @@
       <description lang="fr" text="Répertoires des illustrations artwork"/>
       <description lang="pt" text="Caminho para os arquivos de arte"/>
     </option>
-    <option name="ctrlrpath" type="directory" default="ctrlr">
+    <option default="ctrlr" name="ctrlrpath" type="directory">
       <description lang="es" text="Ruta a definiciones de mandos"/>
       <description lang="us" text="Path to controller definitions"/>
       <description lang="de" text="Suchpfad für Controller-Definitionen"/>
@@ -47,7 +47,7 @@
       <description lang="fr" text="Répertoire des paramètres des controleurs"/>
       <description lang="pt" text="Caminho para as definições de controles"/>
     </option>
-    <option name="inipath" type="directory" default=".;ini">
+    <option default=".;ini" name="inipath" type="directory">
       <description lang="es" text="Ruta a archivos ini"/>
       <description lang="us" text="Path to ini files"/>
       <description lang="de" text="Suchpfad für INI-Dateien"/>
@@ -55,7 +55,7 @@
       <description lang="fr" text="Répertoires des fichiers ini"/>
       <description lang="pt" text="Caminho para os arquivos ini"/>
     </option>
-    <option name="fontpath" type="directory" default=".">
+    <option default="." name="fontpath" type="directory">
       <description lang="es" text="Ruta a archivos de tipografía"/>
       <description lang="us" text="Path to font files"/>
       <description lang="de" text="Suchpfad für Font-Dateien"/>
@@ -63,7 +63,7 @@
       <description lang="fr" text="Répertoire des polices de caractères"/>
       <description lang="pt" text="Caminho para os arquivos de fonte"/>
     </option>
-    <option name="cheatpath" type="directory" default="cheat">
+    <option default="cheat" name="cheatpath" type="directory">
       <description lang="es" text="Ruta a archivos de trucos"/>
       <description lang="us" text="Path to cheat files"/>
       <description lang="de" text="Suchpfad für Cheat-Dateien"/>
@@ -71,7 +71,7 @@
       <description lang="fr" text="Répertoire des fichiers cheats"/>
       <description lang="pt" text="Caminho para os arquivos de trapaça"/>
     </option>
-    <option name="crosshairpath" type="directory" default="crosshair">
+    <option default="crosshair" name="crosshairpath" type="directory">
       <description lang="es" text="Ruta a archivos de puntos de mira"/>
       <description lang="us" text="Path to crosshair files"/>
       <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
@@ -87,7 +87,7 @@
     <description lang="pl" text="Katalogi wyjściowe"/>
     <description lang="fr" text="Répertoires de sortie"/>
     <description lang="pt" text="Diretórios de saída"/>
-    <option name="cfg_directory" type="directory" default="cfg">
+    <option default="cfg" name="cfg_directory" type="directory">
       <description lang="es" text="Directorio para guardar configuraciones"/>
       <description lang="us" text="Directory to save configurations"/>
       <description lang="de" text="Verzeichnis zur Speicherung von Konfigurationen"/>
@@ -95,7 +95,7 @@
       <description lang="fr" text="Répertoire pour enregistrer les configurations"/>
       <description lang="pt" text="Diretório para salvar configurações"/>
     </option>
-    <option name="nvram_directory" type="directory" default="nvram">
+    <option default="nvram" name="nvram_directory" type="directory">
       <description lang="es" text="Directorio para guardar contenidos de nvram"/>
       <description lang="us" text="Directory to save nvram contents"/>
       <description lang="de" text="Verzeichnis zur Speicherung von NVRAM-Inhalten"/>
@@ -103,7 +103,7 @@
       <description lang="fr" text="Répertoire pour enregistrer les contenus NVRAM"/>
       <description lang="pt" text="Diretório para salvar o conteúdo de nvram"/>
     </option>
-    <option name="memcard_directory" type="directory" default="memcard">
+    <option default="memcard" name="memcard_directory" type="directory">
       <description lang="es" text="Directorio para guardar contenidos de memory card"/>
       <description lang="us" text="Directory to save memory card contents"/>
       <description lang="de" text="Verzeichnis zur Speicherung von Memcard-Inhalten"/>
@@ -111,7 +111,7 @@
       <description lang="fr" text="Répertoire pour enregistrer les contenus des cartes mémoire"/>
       <description lang="pt" text="Diretório para salvar conteúdo do cartão de memória"/>
     </option>
-    <option name="input_directory" type="directory" default="inp">
+    <option default="inp" name="input_directory" type="directory">
       <description lang="es" text="Directorio para guardar logs de dispositivo de entrada"/>
       <description lang="us" text="Directory to save input device logs"/>
       <description lang="de" text="Verzeichnis zur Speicherung von Eingabegeräte-Logs"/>
@@ -119,7 +119,7 @@
       <description lang="fr" text="Répertoire pour enregistrer les parties (INP)"/>
       <description lang="pt" text="Diretório para salvar os logs dos dispositivos de entrada"/>
     </option>
-    <option name="state_directory" type="directory" default="sta">
+    <option default="sta" name="state_directory" type="directory">
       <description lang="es" text="Directorio para guardar save states"/>
       <description lang="us" text="Directory to save states"/>
       <description lang="de" text="Verzeichnis zur Speicherung von Spiel-Stati"/>
@@ -127,7 +127,7 @@
       <description lang="fr" text="Répertoire pour enregistrer les états (STA)"/>
       <description lang="pt" text="Diretório para salvar estados"/>
     </option>
-    <option name="snapshot_directory" type="directory" default="snap">
+    <option default="snap" name="snapshot_directory" type="directory">
       <description lang="es" text="Directorio para guardar capturas de pantalla (PNG)"/>
       <description lang="us" text="Directory to save screenshots (PNG)"/>
       <description lang="de" text="Verzeichnis zur Speicherung von Screenshots (PNG)"/>
@@ -135,7 +135,7 @@
       <description lang="fr" text="Répertoire pour enregistrer les captures d'écran (PNG)"/>
       <description lang="pt" text="Diretório para salvar screenshots"/>
     </option>
-    <option name="diff_directory" type="directory" default="diff">
+    <option default="diff" name="diff_directory" type="directory">
       <description lang="es" text="Directorio de diferencias de imágenes de disco"/>
       <description lang="us" text="Directory for hard drive image difference files"/>
       <description lang="de" text="Verzeichnis zur Speicherung von Unterschieden zwischen Festplatten-Abbildern"/>
@@ -143,7 +143,7 @@
       <description lang="fr" text="Répertoire pour les fichiers diff"/>
       <description lang="pt" text="Diretório para os arquivos de diferenças do disco"/>
     </option>
-    <option name="comment_directory" type="directory" default="comments">
+    <option default="comments" name="comment_directory" type="directory">
       <description lang="es" text="Directorio para guardar comentarios del depurador"/>
       <description lang="us" text="Directory to save debugger comments"/>
       <description lang="de" text="Verzeichnis für Debugger-Kommentare"/>
@@ -159,7 +159,7 @@
     <description lang="pl" text="Stan / odtwarzanie"/>
     <description lang="fr" text="Etat / relecture"/>
     <description lang="pt" text="Estado / carregamento"/>
-    <option name="state" type="string" default="">
+    <option default="" name="state" type="string">
       <description lang="es" text="Estado guardado a cargar"/>
       <description lang="us" text="Saved state to load"/>
       <description lang="de" text="Zu ladender Spiel-Status"/>
@@ -167,7 +167,7 @@
       <description lang="fr" text="Etat à charger"/>
       <description lang="pt" text="Estado salvo para carregar"/>
     </option>
-    <option name="autosave" type="bool" default="false">
+    <option default="false" name="autosave" type="bool">
       <description lang="es" text="Habilitar la restauración automática al iniciar y guardar automáticamente al salir"/>
       <description lang="us" text="Enable automatic restore at startup, and automatic save at exit time"/>
       <description lang="de" text="Spiel-Status beim Beenden automatisch sichern und beim Start wiederherstellen"/>
@@ -175,7 +175,7 @@
       <description lang="fr" text="Sauvegarde automatiquement l'état en sortie et le restaure au démarrage"/>
       <description lang="pt" text="Habilitar restauração automática ao inicializar, e automaticamente salvar ao sair"/>
     </option>
-    <option name="playback" type="file" default="">
+    <option default="" name="playback" type="file">
       <description lang="es" text="Reproducir un fichero de entrada"/>
       <description lang="us" text="Playback an input file"/>
       <description lang="de" text="Wiedergabe einer Eingabe-Datei"/>
@@ -183,7 +183,7 @@
       <description lang="fr" text="Relire un fichier input"/>
       <description lang="pt" text="Carregar um arquivo de entrada"/>
     </option>
-    <option name="record" type="file" default="">
+    <option default="" name="record" type="file">
       <description lang="es" text="Grabar un fichero de entrada"/>
       <description lang="us" text="Record an input file"/>
       <description lang="de" text="Aufnahme einer Eingabe-Datei"/>
@@ -191,7 +191,7 @@
       <description lang="fr" text="Enregistrer un fichier input"/>
       <description lang="pt" text="Gravar um arquivo de entrada"/>
     </option>
-    <option name="mngwrite" type="file" default="">
+    <option default="" name="mngwrite" type="file">
       <description lang="es" text="Nombre de archivo opcional para guardar una vídeo MNG de la sesión actual"/>
       <description lang="us" text="Optional filename to write an MNG movie of the current session"/>
       <description lang="de" text="Optionaler Dateiname zur Aufnahme eines MNG Films"/>
@@ -199,7 +199,7 @@
       <description lang="fr" text="Nom de fichier pour enregistrer les films MNG de la session courante"/>
       <description lang="pt" text="Nome opcional de arquivo para escrever um filme MNG da sessão atual"/>
     </option>
-    <option name="aviwrite" type="file" default="">
+    <option default="" name="aviwrite" type="file">
       <description lang="es" text="Nombre de archivo opcional para guardar una vídeo AVI de la sesión actual"/>
       <description lang="us" text="Optional filename to write an AVI movie of the current session"/>
       <description lang="de" text="Optionaler Dateiname zur Aufnahme eines AVI Films"/>
@@ -207,7 +207,7 @@
       <description lang="fr" text="Nom de fichier optionnel pour enregistrer une vidéo AVI de la session courante"/>
       <description lang="pt" text="Nome opcional de arquivo para escrever um filme AVI da sessão corrente"/>
     </option>
-    <option name="wavwrite" type="file" default="">
+    <option default="" name="wavwrite" type="file">
       <description lang="es" text="Nombre de archivo opcional para guardar un archivo WAV de la sesión actual"/>
       <description lang="us" text="Optional filename to write a WAV file of the current session"/>
       <description lang="de" text="Optionaler Dateiname zur Aufnahme einer WAV Datei"/>
@@ -215,7 +215,7 @@
       <description lang="fr" text="Nom de fichier pour enregistrer les sons WAV de la session courante"/>
       <description lang="pt" text="Nome opcional de arquivo para escrever um arquivo WAV da sessão corrente"/>
     </option>
-    <option name="snapname" type="combo" default="%g/%i">
+    <option default="%g/%i" name="snapname" type="combo">
       <description lang="es" text="Modificar el nombrado predeterminado de capturas/vídeos: %g == nombre del juego, %i == índice"/>
       <description lang="us" text="Override of the default snapshot/movie naming: %g == gamename, %i == index"/>
       <description lang="de" text="Namensgebung für Screenshots/Movies ändern: %g == Spielname, %i == Index"/>
@@ -224,7 +224,7 @@
       <description lang="pt" text="Sobrescrever o nome padrão para nomear um snapshot/filme: %g == nomedojogo, %i == índice"/>
       <choice name="%g/%i"/>
     </option>
-    <option name="snapsize" type="combo" default="auto">
+    <option default="auto" name="snapsize" type="combo">
       <description lang="es" text="Especificar la resolución de capturas/vídeos (ANCHOxALTO) o 'auto' para usar el tamaño mínimo"/>
       <description lang="us" text="Specify snapshot/movie resolution (WIDTHxHEIGHT) or 'auto' to use minimal size"/>
       <description lang="de" text="Screenshot/Movie Auflösung festlegen (BREITExHOEHE) oder 'auto' für minimale Größe"/>
@@ -233,7 +233,7 @@
       <description lang="pt" text="Especifique a resolução (LARGURAxALTURA) do snapshot/filme ou use 'auto' para usar o tamanho mínimo"/>
       <choice name="auto"/>
     </option>
-    <option name="snapview" type="combo" default="internal">
+    <option default="internal" name="snapview" type="combo">
       <description lang="es" text="Especificar la vista de capturas/vídeos o 'internal' para usar la vistas aspecto-píxel internas"/>
       <description lang="us" text="Specify snapshot/movie view or 'internal' to use internal pixel-aspect views"/>
       <description lang="de" text="Screenshot/Movie Ansicht festlegen oder 'internal' für interne Ansicht"/>
@@ -242,7 +242,7 @@
       <description lang="pt" text="Especifique a visão do snapshot/filme ou 'internal' para usar as visões internas do aspecto do pixel"/>
       <choice name="internal"/>
     </option>
-    <option name="burnin" type="bool" default="false">
+    <option default="false" name="burnin" type="bool">
       <description lang="es" text="Crear capturas para cada pantalla"/>
       <description lang="us" text="Create burn-in snapshots for each screen"/>
       <description lang="de" text="Burn-in Snapshots für jeden Screen erzeugen"/>
@@ -258,7 +258,7 @@
     <description lang="pl" text="Wydajność"/>
     <description lang="fr" text="Performances"/>
     <description lang="pt" text="Desempenho"/>
-    <option name="autoframeskip" type="bool" default="false">
+    <option default="false" name="autoframeskip" type="bool">
       <description lang="es" text="Activar el salto de imágenes automático"/>
       <description lang="us" text="Enable automatic frameskip selection"/>
       <description lang="de" text="Automatische Frameskip-Auswahl aktivieren"/>
@@ -266,7 +266,7 @@
       <description lang="fr" text="Activer le saut d'image automatique"/>
       <description lang="pt" text="Ativar seleção de pulo de quadro automático"/>
     </option>
-    <option name="frameskip" type="int" default="0">
+    <option default="0" name="frameskip" type="int">
       <description lang="es" text="Definir un valor fijo para el salto de imágenes, 0-12 (el salto automático debe estar desactivado)"/>
       <description lang="us" text="Set frameskip to fixed value, 0-12 (autoframeskip must be disabled)"/>
       <description lang="de" text="Setze Frameskip auf festen Wert, 0-12 (autoframeskip muss abgeschaltet sein)"/>
@@ -274,7 +274,7 @@
       <description lang="fr" text="Saut d'image à valeur fixe, 0 à 12 (autoframeskip doit être désactivé)"/>
       <description lang="pt" text="Definir pulo de quadro para um valor fixo, 0-12 (pulo automático deve estar desabilitado)"/>
     </option>
-    <option name="seconds_to_run" type="int" default="0">
+    <option default="0" name="seconds_to_run" type="int">
       <description lang="es" text="Número de segundos de emulación a ejecutar antes de salir automáticamente"/>
       <description lang="us" text="Number of emulated seconds to run before automatically exiting"/>
       <description lang="de" text="Anzahl emulierter Sekunden bis zum automatischen Beenden"/>
@@ -282,7 +282,7 @@
       <description lang="fr" text="Nombre de secondes à jouer avant sortie"/>
       <description lang="pt" text="Número de seguntos emulados antes de sair automaticamente"/>
     </option>
-    <option name="throttle" type="bool" default="true">
+    <option default="true" name="throttle" type="bool">
       <description lang="es" text="Activar el acelerador para mantener el juego sincronizado a tiempo real"/>
       <description lang="us" text="Enable throttling to keep game running in sync with real time"/>
       <description lang="de" text="Drosselung aktivieren, um mit der Echtzeit zu synchronisieren"/>
@@ -290,7 +290,7 @@
       <description lang="fr" text="Activer l'étranglement pour conserver le jeu en synchronisation temps réel"/>
       <description lang="pt" text="Habilitar otimização para manter o jogo executando em sincronia com o tempo real"/>
     </option>
-    <option name="sleep" type="bool" default="true">
+    <option default="true" name="sleep" type="bool">
       <description lang="es" text="Activar reposo, para devolver recursos a otras aplicaciones cuando esté en espera"/>
       <description lang="us" text="Enable sleeping, which gives time back to other applications when idle"/>
       <description lang="de" text="'Schlafen bei Untätigkeit' aktivieren, um weniger Rechenzeit zu verbrauchen"/>
@@ -298,7 +298,7 @@
       <description lang="fr" text="Activer la mise en sommeil pendant l'inactivité pour libérer des ressources pour d'autres applications"/>
       <description lang="pt" text="Habilitar espera, que devolve tempo para outras aplicações enquanto ocioso"/>
     </option>
-    <option name="speed" type="float" default="1.0">
+    <option default="1.0" name="speed" type="float">
       <description lang="es" text="Controla la velocidad del juego, relativa a tiempo real; los números bajos son más lentos"/>
       <description lang="us" text="Controls the speed of gameplay, relative to realtime; smaller numbers are slower"/>
       <description lang="de" text="Steuert die Geschwindigkeit des Gameplays, relativ zur Echtzeit; kleinere Werte verlangsamen"/>
@@ -306,7 +306,7 @@
       <description lang="fr" text="Controle la vitesse de jeu, relative au temps réel; les petites valeurs ralentissent"/>
       <description lang="pt" text="Controla a velocidade do jogo, relativo ao tempo real; números menores são mais lentos"/>
     </option>
-    <option name="refreshspeed" type="bool" default="false">
+    <option default="false" name="refreshspeed" type="bool">
       <description lang="es" text="Ajusta automáticamente la velocidad del juego para mantener el refresco de pantalla por debajo del monitor"/>
       <description lang="us" text="Automatically adjusts the speed of gameplay to keep the refresh rate lower than the screen"/>
       <description lang="de" text="Spielgeschwindigkeit automatisch an die Refresh-Rate der Anzeige anpassen"/>
@@ -314,7 +314,7 @@
       <description lang="fr" text="Ajuste automatiquement la vitesse de jeu pour conserver le taux de rafraichissement du jeu plus bas que celui de l'écran"/>
       <description lang="pt" text="Automaticamente ajustar a velocidade do jogo para manter a taxa de refresh menor que a da tela"/>
     </option>
-    <option name="multithreading" type="bool" default="false">
+    <option default="false" name="multithreading" type="bool">
       <description lang="es" text="Activar multitarea, esto permite el renderizado y blitting en procesos separados "/>
       <description lang="us" text="Enable multithreading; this enables rendering and blitting on a separate thread"/>
       <description lang="de" text="Multi-Threading aktivieren; Render- und Blit-Operationen werden in eigenen Threads ausgeführt"/>
@@ -322,7 +322,7 @@
       <description lang="fr" text="Active le multi-tâche; ceci sépare le rendu et le blitting sur deux tâches séparées"/>
       <description lang="pt" text="Habilitar multi-processamento; isso habilita renderização e blitting em threads separadas"/>
     </option>
-    <option name="priority" type="int" default="0">
+    <option default="0" name="priority" type="int">
       <description lang="es" text="Prioridad del proceso para el subproceso del juego principal; rango de -15 a 1"/>
       <description lang="us" text="Thread priority for the main game thread; range from -15 to 1"/>
       <description lang="de" text="Ausführpriorität des Main-Game-Threads; Bereich: -15 bis 1"/>
@@ -330,7 +330,7 @@
       <description lang="fr" text="Priorité de processus pour le jeu; rang de -15 à 1"/>
       <description lang="pt" text="Prioridade da thread principal do jogo; Intervalo de -15 até 1"/>
     </option>
-    <option name="numprocessors" type="combo" default="auto">
+    <option default="auto" name="numprocessors" type="combo">
       <description lang="es" text="Número de procesadores (o 'auto'); modifica el número reportado por el sistema "/>
       <description lang="us" text="Number of processors (or 'auto'); this overrides the number the system reports"/>
       <description lang="de" text="Anzahl der Prozessoren (oder 'auto'); überschreibt die vom System ausgelesene Prozessoranzahl"/>
@@ -339,7 +339,7 @@
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
       <choice name="auto"/>
     </option>
-    <option name="profile" type="int" default="0">
+    <option default="0" name="profile" type="int">
       <description lang="es" text="Activar 'profiling', especificando la profundidad de stack a monitorizar"/>
       <description lang="us" text="Enable profiling, specifying the stack depth to track"/>
       <description lang="de" text="Profiling unter Angabe der zu verfolgenden Stack-Tiefe aktivieren"/>
@@ -347,7 +347,7 @@
       <description lang="fr" text="Activer le profilage, spécifiant la profondeur de pile à tracer"/>
       <description lang="pt" text="Habilitar geração de perfil (profiling), especificando a profundidade da pilha para a trilha"/>
     </option>
-    <option name="bench" type="int" default="0">
+    <option default="0" name="bench" type="int">
       <description lang="es" text="Medir rendimiento durante los segundos especificados; implica '-video none -nosound -nothrottle'"/>
       <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
       <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
@@ -363,7 +363,7 @@
     <description lang="pl" text="Obrót"/>
     <description lang="fr" text="Rotation"/>
     <description lang="pt" text="Rotação"/>
-    <option name="rotate" type="bool" default="true">
+    <option default="true" name="rotate" type="bool">
       <description lang="es" text="Rotar la imagen del juego de acuerdo a la orientación necesaria para jugar"/>
       <description lang="us" text="Rotate the game screen according to the game's orientation needs it"/>
       <description lang="de" text="Bildschirm so drehen, wie das Spiel es benötigt"/>
@@ -371,23 +371,23 @@
       <description lang="fr" text="Pivote l'écran en fonction des besoins du jeu"/>
       <description lang="pt" text="Roda a tela do jogo quando a orientação do jogo precisar"/>
     </option>
-    <option name="ror" type="bool" default="false">
+    <option default="false" name="ror" type="bool">
       <description lang="es" text="Rotar la pantalla 90 grados en el sentido de las agujas del reloj"/>
       <description lang="us" text="Rotate screen clockwise 90 degrees"/>
       <description lang="de" text="Bildschirm im Uhrzeigersinn um 90 Grad drehen"/>
       <description lang="pl" text="Obróć ekran zgodnie z ruchem wskazówek zegara o 90 stopni"/>
-      <description lang="fr" text="Rotation de l'écran de 90 degrés dans le sens des aiguilles d'une montre"/>     
+      <description lang="fr" text="Rotation de l'écran de 90 degrés dans le sens des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela sentido horário em 90 graus"/>
     </option>
-    <option name="rol" type="bool" default="false">
+    <option default="false" name="rol" type="bool">
       <description lang="es" text="Rotar la pantalla 90 grados en sentido contrario a las agujas del reloj"/>
       <description lang="us" text="Rotate screen counter-clockwise 90 degrees"/>
       <description lang="de" text="Bildschirm gegen den Uhrzeigersinn um 90 Grad drehen"/>
       <description lang="pl" text="Obróć ekran przeciwnie do ruchu wskazówek zegara o 90 stopni"/>
-      <description lang="fr" text="Rotation de l'écran de 90 degrés dans le sens contraire des aiguilles d'une montre"/> 
+      <description lang="fr" text="Rotation de l'écran de 90 degrés dans le sens contraire des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela sentido anti-horário em 90 graus"/>
     </option>
-    <option name="autoror" type="bool" default="false">
+    <option default="false" name="autoror" type="bool">
       <description lang="es" text="Automáticamente rotar 90 grados en el sentido de las agujas del reloj si es vertical "/>
       <description lang="us" text="Automatically rotate screen clockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch im Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
@@ -395,7 +395,7 @@
       <description lang="fr" text="Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido horário em 90 graus se vertical"/>
     </option>
-    <option name="autorol" type="bool" default="false">
+    <option default="false" name="autorol" type="bool">
       <description lang="es" text="Automáticamente rotar 90 grados en sentido contrario a las agujas del reloj si es vertical "/>
       <description lang="us" text="Automatically rotate screen counterclockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch gegen den Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
@@ -403,7 +403,7 @@
       <description lang="fr" text="Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido anti-horário em 90 graus se vertical"/>
     </option>
-    <option name="flipx" type="bool" default="false">
+    <option default="false" name="flipx" type="bool">
       <description lang="es" text="Invertir la imagen izquierda-derecha"/>
       <description lang="us" text="Flip screen left-right"/>
       <description lang="de" text="Bildschirm horizontal umkehren"/>
@@ -411,7 +411,7 @@
       <description lang="fr" text="Inverse l'image horizontalement"/>
       <description lang="pt" text="Inverter a tela esquerda-direita"/>
     </option>
-    <option name="flipy" type="bool" default="false">
+    <option default="false" name="flipy" type="bool">
       <description lang="es" text="Invertir la imagen arriba-abajo"/>
       <description lang="us" text="Flip screen upside-down"/>
       <description lang="de" text="Bildschirm vertikal umkehren"/>
@@ -427,7 +427,7 @@
     <description lang="pl" text="Ilustracje"/>
     <description lang="fr" text="Illustrations Artwork"/>
     <description lang="pt" text="Arte"/>
-    <option name="artwork_crop" type="bool" default="false">
+    <option default="false" name="artwork_crop" type="bool">
       <description lang="es" text="Reducir las imágenes al tamaño de la pantalla"/>
       <description lang="us" text="Crop artwork to game screen size"/>
       <description lang="de" text="Kunstwerke auf Spiel-Bildschirmgröße begrenzen"/>
@@ -435,15 +435,15 @@
       <description lang="fr" text="Réduit l'artwork en fonction de la dimension de l'écran du jeu"/>
       <description lang="pt" text="Cortar arte para o tamanho da tela do jogo"/>
     </option>
-    <option name="use_backdrops" type="bool" default="true">
+    <option default="true" name="use_backdrops" type="bool">
       <description lang="es" text="Permitir fondos de pantalla si el arte está activado y disponible"/>
       <description lang="us" text="Enable backdrops if artwork is enabled and available"/>
       <description lang="de" text="Hintergründe anzeigen, falls vorhanden und aktiviert"/>
       <description lang="pl" text="Aktywuj tła, kiedy ilustracje są dostępne i aktywne"/>
-      <description lang="fr" text="Utilise les arrières plans si l'artwork est activé et disponible"/>      
+      <description lang="fr" text="Utilise les arrières plans si l'artwork est activé et disponible"/>
       <description lang="pt" text="Habilitar cenários se a arte estiver habilitada e disponível"/>
     </option>
-    <option name="use_overlays" type="bool" default="true">
+    <option default="true" name="use_overlays" type="bool">
       <description lang="es" text="Permitir superposiciones si el arte está activado y disponible"/>
       <description lang="us" text="Enable overlays if artwork is enabled and available"/>
       <description lang="de" text="Überlagerungen anzeigen, falls vorhanden und aktiviert"/>
@@ -451,15 +451,15 @@
       <description lang="fr" text="Utilise l'affichage de calques en transparence si l'artwork est activé et disponible"/>
       <description lang="pt" text="Habilitar overlays se a arte estiver habilitada e disponível"/>
     </option>
-    <option name="use_bezels" type="bool" default="true">
+    <option default="true" name="use_bezels" type="bool">
       <description lang="es" text="Permitir marcos si el arte está activado y disponible"/>
       <description lang="us" text="Enable bezels if artwork is enabled and available"/>
       <description lang="de" text="Einfassungen anzeigen, falls vorhanden und aktiviert"/>
       <description lang="pl" text="Aktywuj ramki, kiedy ilustracje są dostępne i aktywne"/>
-      <description lang="fr" text="Utilise l'affichage des bezels si l'artwork est activé et disponible"/>     
+      <description lang="fr" text="Utilise l'affichage des bezels si l'artwork est activé et disponible"/>
       <description lang="pt" text="Habilitar molduras se a arte estiver habilitada e disponível"/>
     </option>
-    <option name="use_cpanels" type="bool" default="true">
+    <option default="true" name="use_cpanels" type="bool">
       <description lang="es" text="Permitir paneles de control si el arte está activado y disponible"/>
       <description lang="us" text="Enable control panels if artwork is enabled and available"/>
       <description lang="de" text="Steuerungselemente anzeigen, falls vorhanden und aktiviert"/>
@@ -467,7 +467,7 @@
       <description lang="fr" text="Activer l'affichage du control pannel si l'artwork est activé et disponible"/>
       <description lang="pt" text="Habilitar painéis de controle se a arte estiver habilitada e disponível"/>
     </option>
-    <option name="use_marquees" type="bool" default="true">
+    <option default="true" name="use_marquees" type="bool">
       <description lang="es" text="Permitir marquesinas si el arte está activado y disponible"/>
       <description lang="us" text="Enable marquees if artwork is enabled and available"/>
       <description lang="de" text="Marquees anzeigen, falls vorhanden und aktiviert"/>
@@ -481,38 +481,38 @@
     <description lang="us" text="Game screen"/>
     <description lang="de" text="Spiel-Bildschirm"/>
     <description lang="pl" text="Ekran gry"/>
-    <description lang="fr" text="Ecran de jeu"/>  
+    <description lang="fr" text="Ecran de jeu"/>
     <description lang="pt" text="Tela de jogo"/>
-    <option name="brightness" type="float" default="1.0">
+    <option default="1.0" name="brightness" type="float">
       <description lang="es" text="Corrección de brillo predeterminada de la pantalla del juego"/>
       <description lang="us" text="Default game screen brightness correction"/>
       <description lang="de" text="Voreingestellte Korrektur der Helligkeit"/>
       <description lang="pl" text="Domyślna poprawka jasności ekranu gry"/>
-      <description lang="fr" text="Luminosité de l'écran par défaut"/>  
+      <description lang="fr" text="Luminosité de l'écran par défaut"/>
       <description lang="pt" text="Correção padrão de brilho do jogo"/>
     </option>
-    <option name="contrast" type="float" default="1.0">
+    <option default="1.0" name="contrast" type="float">
       <description lang="es" text="Corrección de contraste predeterminada de la pantalla del juego"/>
       <description lang="us" text="Default game screen contrast correction"/>
       <description lang="de" text="Voreingestellte Korrektur des Kontrasts"/>
       <description lang="pl" text="Domyślna poprawka kontrastu ekranu gry"/>
-      <description lang="fr" text="Contraste de l'écran par défaut"/> 
+      <description lang="fr" text="Contraste de l'écran par défaut"/>
       <description lang="pt" text="Correção padrão de contraste do jogo"/>
     </option>
-    <option name="gamma" type="float" default="1.0">
+    <option default="1.0" name="gamma" type="float">
       <description lang="es" text="Corrección de gamma predeterminada de la pantalla del juego"/>
       <description lang="us" text="Default game screen gamma correction"/>
       <description lang="de" text="Voreingestellte Gamma-Korrektur"/>
       <description lang="pl" text="Domyślna poprawka gammy ekranu gry"/>
-      <description lang="fr" text="Correction du gamma de l'écran par défaut"/> 
+      <description lang="fr" text="Correction du gamma de l'écran par défaut"/>
       <description lang="pt" text="Correção padrão de gamma do jogo"/>
     </option>
-    <option name="pause_brightness" type="float" default="0.65">
+    <option default="0.65" name="pause_brightness" type="float">
       <description lang="es" text="Cantidad a modificar el brillo de la pantalla en pausa"/>
       <description lang="us" text="Amount to scale the screen brightness when paused"/>
       <description lang="de" text="Skalierung der Helligkeit während Pausen"/>
       <description lang="pl" text="Skalowanie jasności ekranu podczas pauzy"/>
-      <description lang="fr" text="Luminosité de l'écran en mode pause"/> 
+      <description lang="fr" text="Luminosité de l'écran en mode pause"/>
       <description lang="pt" text="Brilho da tela quando pausado"/>
     </option>
   </section>
@@ -521,17 +521,17 @@
     <description lang="us" text="Vector rendering"/>
     <description lang="de" text="Vektor-Rendern"/>
     <description lang="pl" text="Renderowanie grafiki wektorowej"/>
-    <description lang="fr" text="Rendu Vectoriel"/> 
+    <description lang="fr" text="Rendu Vectoriel"/>
     <description lang="pt" text="Renderização Vetorial"/>
-    <option name="antialias" type="bool" default="true">
+    <option default="true" name="antialias" type="bool">
       <description lang="es" text="Usar suavizado al dibujar vectores"/>
       <description lang="us" text="Use antialiasing when drawing vectors"/>
       <description lang="de" text="Anti-Aliasing bei Vektorgrafik verwenden"/>
       <description lang="pl" text="Użyj antyaliasingu podczas rysowania wektorów"/>
-      <description lang="fr" text="Active l'anti-alias pour le dessin des vecteurs"/> 
+      <description lang="fr" text="Active l'anti-alias pour le dessin des vecteurs"/>
       <description lang="pt" text="Usar antialiasing quando desenhar vetores"/>
     </option>
-    <option name="beam" type="float" default="1.0">
+    <option default="1.0" name="beam" type="float">
       <description lang="es" text="Definir el tamaño del vector"/>
       <description lang="us" text="Set vector beam width"/>
       <description lang="de" text="Strahlen-Breite der Vektoren"/>
@@ -539,7 +539,7 @@
       <description lang="fr" text="Sélectionner la taille du rayon"/>
       <description lang="pt" text="Definir tamanho do vetor"/>
     </option>
-    <option name="flicker" type="float" default="0.0">
+    <option default="0.0" name="flicker" type="float">
       <description lang="es" text="Definir el efecto de parpadeo del vector"/>
       <description lang="us" text="Set vector flicker effect"/>
       <description lang="de" text="Wert für Vektor Flacker-Effekt"/>
@@ -555,7 +555,7 @@
     <description lang="pl" text="Dźwięk"/>
     <description lang="fr" text="Son"/>
     <description lang="pt" text="Som"/>
-    <option name="sound" type="bool" default="true">
+    <option default="true" name="sound" type="bool">
       <description lang="es" text="Activar sonido"/>
       <description lang="us" text="Enable sound output"/>
       <description lang="de" text="Sound-Ausgabe aktivieren"/>
@@ -563,7 +563,7 @@
       <description lang="fr" text="Active les sons"/>
       <description lang="pt" text="Ativar sons"/>
     </option>
-    <option name="samplerate" type="int" default="48000">
+    <option default="48000" name="samplerate" type="int">
       <description lang="es" text="Frecuencia de salida"/>
       <description lang="us" text="Sound output sample rate"/>
       <description lang="de" text="Sampling-Rate für Sound-Ausgabe"/>
@@ -571,7 +571,7 @@
       <description lang="fr" text="Fréquence d'échantillonnage"/>
       <description lang="pt" text="Frequência de saída"/>
     </option>
-    <option name="samples" type="bool" default="true">
+    <option default="true" name="samples" type="bool">
       <description lang="es" text="Habilitar el uso de muestras si están disponibles"/>
       <description lang="us" text="Enable the use of external samples if available"/>
       <description lang="de" text="Sample-Verwendung aktivieren, falls verfügbar"/>
@@ -579,7 +579,7 @@
       <description lang="fr" text="Autorise la lecture des samples si disponibles"/>
       <description lang="pt" text="Habilitar uso de samples externas se disponível"/>
     </option>
-    <option name="volume" type="int" default="0">
+    <option default="0" name="volume" type="int">
       <description lang="es" text="Volumen del sonido en decibelios (-32 min, 0 max)"/>
       <description lang="us" text="Sound volume in decibels (-32 min, 0 max)"/>
       <description lang="de" text="Lautstärke in Dezibel (-32 min, 0 max)"/>
@@ -587,7 +587,7 @@
       <description lang="fr" text="Volume sonore en décibels (-32 min, 0 max)"/>
       <description lang="pt" text="Volume do som em decibéis (-32 min, 0 max)"/>
     </option>
-    <option name="audio_latency" type="int" default="2">
+    <option default="2" name="audio_latency" type="int">
       <description lang="es" text="Definir latencia de sonido (incrementar para reducir ruidos, reducir para aumentar velocidad de respuesta)"/>
       <description lang="us" text="Set audio latency (increase to reduce glitches, decrease for responsiveness)"/>
       <description lang="de" text="Audio-Latenz einstellen (erhöhen zur Reduktion von Störungen, verringern zur Verbesserung des Antwortverhaltens)"/>
@@ -603,7 +603,7 @@
     <description lang="pl" text="Urządzenia wejścia"/>
     <description lang="fr" text="Périphériques d'entrée"/>
     <description lang="pt" text="Dispositivos de entrada"/>
-    <option name="coin_lockout" type="bool" default="true">
+    <option default="true" name="coin_lockout" type="bool">
       <description lang="es" text="Habilita el bloqueo de monedas (créditos)"/>
       <description lang="us" text="Enable coin lockouts to actually lock out coins"/>
       <description lang="pl" text="Włącz odrzucanie monet przez przeznaczone do tego mechanizmy"/>
@@ -611,7 +611,7 @@
       <description lang="fr" text="Active le blocage des pièces (crédits)"/>
       <description lang="pt" text="Ativar trava de moedas"/>
     </option>
-    <option name="ctrlr" type="string" default="">
+    <option default="" name="ctrlr" type="string">
       <description lang="es" text="Preconfiguración para el mando especificado"/>
       <description lang="us" text="Preconfigure for specified controller"/>
       <description lang="de" text="Vorkonfiguration für angegebenen Controller"/>
@@ -619,7 +619,7 @@
       <description lang="fr" text="Pré-configuration pour un contrôleur spécifié"/>
       <description lang="pt" text="Pré-configuração para um controle específico"/>
     </option>
-    <option name="mouse" type="bool" default="false">
+    <option default="false" name="mouse" type="bool">
       <description lang="es" text="Activar el ratón"/>
       <description lang="us" text="Enable mouse input"/>
       <description lang="de" text="Maus-Eingabe aktivieren"/>
@@ -627,7 +627,7 @@
       <description lang="fr" text="Autorise l'utilisation de la souris"/>
       <description lang="pt" text="Habilitar mouse"/>
     </option>
-    <option name="joystick" type="bool" default="true">
+    <option default="true" name="joystick" type="bool">
       <description lang="es" text="Activar el joystick"/>
       <description lang="us" text="Enable joystick input"/>
       <description lang="de" text="Joystick-Eingabe aktivieren"/>
@@ -635,7 +635,7 @@
       <description lang="fr" text="Autorise l'utilisation du joystick"/>
       <description lang="pt" text="Habilitar joystick"/>
     </option>
-    <option name="lightgun" type="bool" default="false">
+    <option default="false" name="lightgun" type="bool">
       <description lang="es" text="Activar la pistola de luz (lightgun)"/>
       <description lang="us" text="Enable lightgun input"/>
       <description lang="de" text="Lightgun-Eingabe aktivieren"/>
@@ -643,7 +643,7 @@
       <description lang="fr" text="Autorise l'utilisation du pisolet a visée infra-rouge"/>
       <description lang="pt" text="Habilitar pistola laser"/>
     </option>
-    <option name="dual_lightgun" type="bool" default="false">
+    <option default="false" name="dual_lightgun" type="bool">
       <description lang="es" text="Activar pistolas de luz dobles"/>
       <description lang="us" text="Enable dual lightgun input"/>
       <description lang="de" text="Duale Lightgun-Eingabe aktivieren"/>
@@ -651,7 +651,7 @@
       <description lang="fr" text="Autorise l'utilisation du Double pistolet a visée infra-rouge"/>
       <description lang="pt" text="Habilitar pistola laser dupla"/>
     </option>
-    <option name="hide_cursor" type="bool" default="true">
+    <option default="true" name="hide_cursor" type="bool">
       <description lang="es" text="Ocultar el cursor en pantalla completa o si el ratón está activado"/>
       <description lang="us" text="Hide cursor in full screen or if mouse is enabled"/>
       <description lang="de" text="Zeiger verstecken, wenn im Vollbild-Modus oder Maus-Eingabe aktiviert ist"/>
@@ -659,55 +659,55 @@
       <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>
       <description lang="pt" text="Esconder cursor em tela cheia ou se o mouse estiver habilitado"/>
     </option>
-    <option name="multikeyboard" type="bool" default="false">
+    <option default="false" name="multikeyboard" type="bool">
       <description lang="es" text="Habilitar entradas por separado con más de un teclado (si están presentes)"/>
       <description lang="us" text="Enable separate input from each keyboard device (if present)"/>
       <description lang="de" text="Eingabe von mehreren Tastaturen aktivieren (falls vorhanden)"/>
       <description lang="pl" text="Włącz oddzielne wejście z każdej klawiatury (jeśli obecne)"/>
-      <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>     
+      <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>
       <description lang="pt" text="Habilitar entradas separadas para cada teclado (se presente)"/>
     </option>
-    <option name="multimouse" type="bool" default="false">
+    <option default="false" name="multimouse" type="bool">
       <description lang="es" text="Habilitar entradas por separado con más de un ratón (si están presentes)"/>
       <description lang="us" text="Enable separate input from each mouse device (if present)"/>
       <description lang="de" text="Eingabe von mehreren Mäusen aktivieren (falls vorhanden)"/>
       <description lang="pl" text="Włącz oddzielne wejście z każdej myszy (jeśli obecne)"/>
-      <description lang="fr" text="Autorise des entrées séparées pour chaque souris (si présentes)"/>         
+      <description lang="fr" text="Autorise des entrées séparées pour chaque souris (si présentes)"/>
       <description lang="pt" text="Habilitar entradas separadas para cada mouse (se presente)"/>
     </option>
-    <option name="steadykey" type="bool" default="false">
+    <option default="false" name="steadykey" type="bool">
       <description lang="es" text="Habilitar soporte para steadykeys"/>
       <description lang="us" text="Enable steadykey support"/>
       <description lang="de" text="Steadykey-Support aktivieren"/>
       <description lang="pl" text="Włącz wsparcie dla klawiszy trwałych"/>
-      <description lang="fr" text="Autorise le support des steadykeys"/>       
+      <description lang="fr" text="Autorise le support des steadykeys"/>
       <description lang="pt" text="Habilitar suporte para steadykeys"/>
     </option>
-    <option name="offscreen_reload" type="bool" default="false">
+    <option default="false" name="offscreen_reload" type="bool">
       <description lang="es" text="Cambiar el botón 2 de la pistola de luz a &quot;recarga fuera de pantalla&quot;"/>
       <description lang="us" text="Convert lightgun button 2 into offscreen reload"/>
       <description lang="de" text="Lightgun Button 2 zu 'Offscreen Reload' konvertieren"/>
       <description lang="pl" text="Skonwertuj 2 przycisk pistoletu na przeładowanie 'poza ekranem'"/>
-      <description lang="fr" text="Convertir le bouton 2 du pistolet a visée infra-rouge en 'recharge hors écran'"/>      
+      <description lang="fr" text="Convertir le bouton 2 du pistolet a visée infra-rouge en 'recharge hors écran'"/>
       <description lang="pt" text="Converter botão 2 da pistola laser em recarregamento fora da tela"/>
     </option>
-    <option name="joystick_map" type="file" default="auto">
+    <option default="auto" name="joystick_map" type="file">
       <description lang="es" text="Mapeado explícito de joystick, o 'auto' para auto-seleccionar"/>
       <description lang="us" text="Explicit joystick map, or 'auto' to auto-select"/>
       <description lang="de" text="Explizite Joystick-Map oder 'auto' für Auto-Selektion"/>
       <description lang="pl" text="Sprecyzowana mapa komend dżojstika, lub 'auto' dla wyboru automatycznego"/>
-      <description lang="fr" text="Choisir l'assignation des commandes du joystick, sinon 'auto' pour choisir automatiquement"/>      
+      <description lang="fr" text="Choisir l'assignation des commandes du joystick, sinon 'auto' pour choisir automatiquement"/>
       <description lang="pt" text="Mapeamento explícito de joystick, ou 'auto' para selecionar automaticamente"/>
     </option>
-    <option name="joystick_deadzone" type="float" default="0.3">
+    <option default="0.3" name="joystick_deadzone" type="float">
       <description lang="es" text="Rango de la zona muerta del joystick donde se ignoran los cambios (0.0 centro, 1.0 final)"/>
       <description lang="us" text="Center deadzone range for joystick where change is ignored (0.0 center, 1.0 end)"/>
       <description lang="de" text="Joystick-Deadzone für die Änderungen ignoriert werden (0.0 = Zentrum, 1.0 = Ende)"/>
       <description lang="pl" text="Środkowa martwa strefa dla dżojstika, dla której zmiany są ignorowane (0.0 środek, 1.0 koniec)"/>
-      <description lang="fr" text="Choisir la zone morte du joystick sur laquelle les contrôles sont ignorés (0.0 centre, 1.0 fin)"/>       
+      <description lang="fr" text="Choisir la zone morte du joystick sur laquelle les contrôles sont ignorés (0.0 centre, 1.0 fin)"/>
       <description lang="pt" text="Zona morta do centro onde mudanças são ignoradas (0.0 centro, 1.0 fim)"/>
     </option>
-    <option name="joystick_saturation" type="float" default="0.85">
+    <option default="0.85" name="joystick_saturation" type="float">
       <description lang="es" text="Final del rango de saturación del eje del joystick donde se ignoran los cambios (0.0 centro, 1.0 final)"/>
       <description lang="us" text="End of axis saturation range for joystick where change is ignored (0.0 center, 1.0 end)"/>
       <description lang="de" text="Ende der Achsen-Saturierung ab der Änderungen ignoriert werden (0.0 = Zentrum, 1.0 = Ende)"/>
@@ -715,7 +715,7 @@
       <description lang="fr" text="Choisir le plafond des axes du joystick pour lequel les contrôles sont ignorés (0.0 centre, 1.0 fin)"/>
       <description lang="pt" text="Fim do intervalo de saturação do eixo do joystick onde mudanças são ignoradas (0.0 centro, 1.0 fim)"/>
     </option>
-    <option name="natural" type="bool" default="false">
+    <option default="false" name="natural" type="bool">
       <description lang="es" text="Especifica si utilizar un teclado natural o no"/>
       <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
       <description lang="de" text="Gibt an, ob ein 'Natural Keyboard' verwendet wird oder nicht"/>
@@ -723,7 +723,7 @@
       <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
       <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
     </option>
-    <option name="joystick_contradictory" type="bool" default="false">
+    <option default="false" name="joystick_contradictory" type="bool">
       <description lang="es" text="Habilitar direcciones opuestas del joystick digital al mismo tiempo"/>
       <description lang="us" text="Enable contradictory direction digital joystick input at the same time"/>
       <description lang="de" text="Joystick Eingabe gleichzeitig in entgegengesetzten Richtungen aktivieren"/>
@@ -731,7 +731,7 @@
       <description lang="fr" text="Active la direction contradictoire du joystick en même temps"/>
       <description lang="pt" text="Habilitar entrada de joystick digital com direção contraditória simultaneamente"/>
     </option>
-    <option name="coin_impulse" type="int" default="0">
+    <option default="0" name="coin_impulse" type="int">
       <description lang="es" text="Definir el tiempo de impulso de la moneda (n &lt; 0: desactivar impulso; n == 0: obedecer driver; n &gt; 0: definir tiempo)"/>
       <description lang="us" text="Set coin impulse time (n &lt; 0: disable impulse; n == 0: obey driver; n &gt; 0: set time)"/>
       <description lang="de" text="Münz-Impuls Zeit setzen (n &lt; 0: Impuls deaktivieren; n == 0: Treiber gehorchen; n &gt; 0: Zeit setzen)"/>
@@ -747,7 +747,7 @@
     <description lang="pl" text="Różne"/>
     <description lang="fr" text="Divers"/>
     <description lang="pt" text="Diversos"/>
-    <option name="bios" type="combo" default="">
+    <option default="" name="bios" type="combo">
       <description lang="es" text="Seleccionar la BIOS de sistema a utilizar"/>
       <description lang="us" text="Select the system BIOS to use"/>
       <description lang="de" text="Zu verwendendes System BIOS auswählen"/>
@@ -755,7 +755,7 @@
       <description lang="fr" text="Sélection du BIOS Système à utiliser"/>
       <description lang="pt" text="Selecione a bios do sistema a usar"/>
     </option>
-    <option name="cheat" type="bool" default="false">
+    <option default="false" name="cheat" type="bool">
       <description lang="es" text="Habilitar el subsistema de trucos"/>
       <description lang="us" text="Enable cheat subsystem"/>
       <description lang="de" text="Aktiviere Cheat-Subsystem"/>
@@ -763,15 +763,15 @@
       <description lang="fr" text="Autorise l'utilisation de cheat.dat"/>
       <description lang="pt" text="Habilitar trapaças"/>
     </option>
-    <option name="skip_gameinfo" type="bool" default="false">
+    <option default="false" name="skip_gameinfo" type="bool">
       <description lang="es" text="Saltarse la pantalla de información al inicio"/>
       <description lang="us" text="Skip displaying the information screen at startup"/>
       <description lang="de" text="Anzeige des Gameinfo-Screens beim Start ausschalten"/>
       <description lang="pl" text="Pomiń wyświetlanie ekranu informacyjnego przy uruchomieniu"/>
-      <description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>     
+      <description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>
       <description lang="pt" text="Pular tela de informações ao iniciar"/>
     </option>
-    <option name="ramsize" type="combo" default="">
+    <option default="" name="ramsize" type="combo">
       <description lang="es" text="Tamaño de RAM (si lo soporta el driver)"/>
       <description lang="us" text="Size of RAM (if supported by driver)"/>
       <description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
@@ -779,7 +779,7 @@
       <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
       <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
     </option>
-    <option name="uifont" type="string" default="default">
+    <option default="default" name="uifont" type="string">
       <description lang="es" text="Especificar tipografía a utilizar"/>
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
@@ -787,7 +787,7 @@
       <description lang="fr" text="Spécifier une police à utiliser"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
     </option>
-    <option name="confirm_quit" type="bool" default="false">
+    <option default="false" name="confirm_quit" type="bool">
       <description lang="es" text="Mostrar confirmación al salir"/>
       <description lang="us" text="Display quit confirmation box on exit"/>
       <description lang="de" text="Beim Beenden Bestätigungs-Box anzeigen"/>
@@ -798,6 +798,7 @@
     <option default="false" name="ui_mouse" type="bool">
       <description lang="us" text="Display UI mouse cursor"/>
       <description lang="de" text="UI Mousecurcor anzeigen"/>
+      <description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
     </option>
   </section>
   <section name="configuration">
@@ -807,7 +808,7 @@
     <description lang="pl" text="Konfiguracja"/>
     <description lang="fr" text="Configuration"/>
     <description lang="pt" text="Configuração"/>
-    <option name="readconfig" type="bool" default="true">
+    <option default="true" name="readconfig" type="bool">
       <description lang="es" text="Activar la carga de archivos de configuración"/>
       <description lang="us" text="Enable loading of configuration files"/>
       <description lang="de" text="Laden der Konfigurationsdateien aktivieren"/>
@@ -815,7 +816,7 @@
       <description lang="fr" text="Active le chargement des fichiers de configuration"/>
       <description lang="pt" text="Habilitar carregamento de arquivos de configurações"/>
     </option>
-    <option name="writeconfig" type="bool" default="false">
+    <option default="false" name="writeconfig" type="bool">
       <description lang="es" text="Escribir configuración a (driver).ini al salir"/>
       <description lang="us" text="Write configuration to (driver).ini on exit"/>
       <description lang="de" text="Konfiguration beim Beenden in (driver).ini speichern"/>
@@ -831,7 +832,7 @@
     <description lang="pl" text="Debugowanie"/>
     <description lang="fr" text="Débogage"/>
     <description lang="pt" text="Debugging"/>
-    <option name="log" type="bool" default="false">
+    <option default="false" name="log" type="bool">
       <description lang="es" text="Generar un archivo error.log"/>
       <description lang="us" text="Generate an error.log file"/>
       <description lang="de" text="Erstelle error.log Datei"/>
@@ -839,7 +840,7 @@
       <description lang="fr" text="Générer un fichier error.log"/>
       <description lang="pt" text="Gerar arquivo error.log"/>
     </option>
-    <option name="oslog" type="bool" default="false">
+    <option default="false" name="oslog" type="bool">
       <description lang="es" text="Transmitir los datos de error.log al depurador de sistema"/>
       <description lang="us" text="Output error.log data to the system debugger"/>
       <description lang="de" text="Error-Log Output an System Debugger ausgeben"/>
@@ -847,23 +848,23 @@
       <description lang="fr" text="Envoyer error.log vers le déboggeur système"/>
       <description lang="pt" text="Eviar dados do error.log para o debugger do sistema"/>
     </option>
-    <option name="verbose" type="bool" default="false">
+    <option default="false" name="verbose" type="bool">
       <description lang="es" text="Mostrar información de diagnóstico adicional"/>
       <description lang="us" text="Display additional diagnostic information"/>
       <description lang="de" text="Mehr Diagnose-Informationen ausgeben"/>
       <description lang="pl" text="Wyświetl dodatkowe informacje diagnostyczne"/>
-      <description lang="fr" text="Affiche des informations de diagnostic supplémentaires"/>     
+      <description lang="fr" text="Affiche des informations de diagnostic supplémentaires"/>
       <description lang="pt" text="Mostrar informações de diagnóstico adicional"/>
     </option>
-    <option name="update_in_pause" type="bool" default="false">
+    <option default="false" name="update_in_pause" type="bool">
       <description lang="es" text="Continuar actualizando el vídeo en pausa"/>
       <description lang="us" text="Keep calling video updates while in pause"/>
       <description lang="de" text="Video-Updates im Pause-Modus"/>
       <description lang="pl" text="Kontynuuj wywoływanie aktualizacji obrazu podczas pauzy"/>
-      <description lang="fr" text="Continuer d'afficher la video pendant la pause"/>     
+      <description lang="fr" text="Continuer d'afficher la video pendant la pause"/>
       <description lang="pt" text="Continuar atualizando vídeo quando pausado"/>
     </option>
-    <option name="debug" type="bool" default="false">
+    <option default="false" name="debug" type="bool">
       <description lang="es" text="Activar/desactivar depurador"/>
       <description lang="us" text="Enable/disable debugger"/>
       <description lang="de" text="Debugger aktivieren/deaktivieren"/>
@@ -871,7 +872,7 @@
       <description lang="fr" text="Active/désactive le débogueur"/>
       <description lang="pt" text="Habilitar/desativar debugger"/>
     </option>
-    <option name="debugscript" type="file" default="">
+    <option default="" name="debugscript" type="file">
       <description lang="es" text="Script para depurador"/>
       <description lang="us" text="Script for debugger"/>
       <description lang="de" text="Skript für Debugger"/>
@@ -879,7 +880,7 @@
       <description lang="fr" text="Script pour le débogueur"/>
       <description lang="pt" text="Script para o debugger"/>
     </option>
-    <option name="debugger_font" type="string" default="Lucida Console">
+    <option default="Lucida Console" name="debugger_font" type="string">
       <description lang="es" text="Especifica la tipografía a utilizar por el depurador; predeterminado 'Lucida Console'"/>
       <description lang="us" text="Specifies the font to use for debugging; defaults to 'Lucida Console'"/>
       <description lang="de" text="Legt die Schriftart für den Debugger fest; Standard-Schriftart: 'Lucida Console'"/>
@@ -887,7 +888,7 @@
       <description lang="fr" text="Specifier la police à utiliser pour le débogage; par défaut 'Lucida Console'"/>
       <description lang="pt" text="Especificar a fonte para usar para debugging; padrão é 'Lucida Console'"/>
     </option>
-    <option name="debugger_font_size" type="int" default="9">
+    <option default="9" name="debugger_font_size" type="int">
       <description lang="es" text="Especifica el tamaño de tipografía a utilizar por el depurador; predeterminado 9 pt"/>
       <description lang="us" text="Specifies the font size to use for debugging; defaults to 9 pt"/>
       <description lang="de" text="Legt die Größe der Schriftart für den Debugger fest; Standard-Größe: 9 Pixel"/>
@@ -895,7 +896,7 @@
       <description lang="fr" text="Specifier la taille de police à utiliser pour le débogage; par défaut 9 pt"/>
       <description lang="pt" text="Especificar o tamanho da fonte para uso em debugging; padrão para 9 pt"/>
     </option>
-    <option name="watchdog" type="int" default="0">
+    <option default="0" name="watchdog" type="int">
       <description lang="es" text="Fuerza el programa a terminar si no se actualiza en un número concreto de segundos"/>
       <description lang="us" text="Force the program to terminate if no updates within specified number of seconds"/>
       <description lang="de" text="Programmabbruch erzwingen, wenn nach der angegebenen Anzahl von Sekunden kein Update passiert ist"/>
@@ -903,7 +904,7 @@
       <description lang="fr" text="Forcer le programme à quitter si rien ne se passe au bout du nombre de secondes spécifié"/>
       <description lang="pt" text="Forçar o programa a terminar se não houver atualizações dentro de um número especificado de segundos"/>
     </option>
-    <option name="debug_internal" type="bool" default="false">
+    <option default="false" name="debug_internal" type="bool">
       <description lang="es" text="Usar el depurador interno para depurar"/>
       <description lang="us" text="Use the internal debugger for debugging"/>
       <description lang="de" text="Internen Debugger verwenden"/>
@@ -917,9 +918,9 @@
     <description lang="us" text="Video"/>
     <description lang="de" text="Video"/>
     <description lang="pl" text="Obraz"/>
-    <description lang="fr" text="Vidéo"/>  
+    <description lang="fr" text="Vidéo"/>
     <description lang="pt" text="Vídeo"/>
-    <option name="video" type="combo" default="d3d">
+    <option default="d3d" name="video" type="combo">
       <description lang="es" text="Método de salida de vídeo: ninguno, gdi, ddraw o d3d"/>
       <description lang="us" text="Video output method: none, gdi, ddraw or d3d"/>
       <description lang="de" text="Methode zur Video-Ausgabe: none, gdi, ddraw oder d3d"/>
@@ -931,7 +932,7 @@
       <choice name="ddraw"/>
       <choice name="d3d"/>
     </option>
-    <option name="numscreens" type="int" default="1">
+    <option default="1" name="numscreens" type="int">
       <description lang="es" text="Número de pantallas a crear; normalmente solo se necesita una"/>
       <description lang="us" text="Number of screens to create; SDLMESS only supports 1 screen at this time"/>
       <description lang="de" text="Anzahl zu erzeugender Screens; SDLMESS unterstützt derzeit nur 1 Screen"/>
@@ -939,15 +940,15 @@
       <description lang="fr" text="Nombre d'écran à créer; SDLMESS ne supporte actuellement qu'un seul écran"/>
       <description lang="pt" text="Número de telas para criar; SDLMESS suporta somente 1 tela atualmente"/>
     </option>
-    <option name="window" type="bool" default="false">
+    <option default="false" name="window" type="bool">
       <description lang="es" text="Activar el modo ventana; si no, se supone pantalla completa"/>
       <description lang="us" text="Enable window mode; otherwise, fullscreen mode is assumed"/>
       <description lang="de" text="Fenster-Modus auswählen; andernfalls wird Vollbild-Modus angenommen"/>
       <description lang="pl" text="Włącz tryb wyświetlania w oknie, w przeciwnym wypadku zakładany jest tryb pełnoekranowy"/>
-      <description lang="fr" text="Active le mode fenêtré; Sinon, le mode plein écran est utilisé"/>    
+      <description lang="fr" text="Active le mode fenêtré; Sinon, le mode plein écran est utilisé"/>
       <description lang="pt" text="Habilitar modo janela. Senão, o modo tela cheia será utilizado"/>
     </option>
-    <option name="maximize" type="bool" default="true">
+    <option default="true" name="maximize" type="bool">
       <description lang="es" text="Maximizar las ventanas por defecto; si no, las ventanas serán minimizadas"/>
       <description lang="us" text="Default to maximized windows; otherwise, windows will be minimized"/>
       <description lang="de" text="Fenster standardmäßig maximieren; andernfalls werden Fenster minimiert"/>
@@ -955,7 +956,7 @@
       <description lang="fr" text="Maximiser la fenêtre; sinon la fenêtre sera minimisée"/>
       <description lang="pt" text="Janelas maximizadas por padrão; senão, minimizadas"/>
     </option>
-    <option name="keepaspect" type="bool" default="true">
+    <option default="true" name="keepaspect" type="bool">
       <description lang="es" text="Mantener la relación de aspecto apropiada"/>
       <description lang="us" text="Constrain to the proper aspect ratio"/>
       <description lang="de" text="Seitenverhältnis beibehalten"/>
@@ -963,7 +964,7 @@
       <description lang="fr" text="Utiliser des proportions d'affichage en rapport à l'aspect de l'original"/>
       <description lang="pt" text="Manter razão de aspecto original"/>
     </option>
-    <option name="prescale" type="int" default="1">
+    <option default="1" name="prescale" type="int">
       <description lang="es" text="Escalar el renderizado de pantalla en software por esta cantidad"/>
       <description lang="us" text="Scale screen rendering by this amount in software"/>
       <description lang="de" text="Bildschirm-Skalierung um diesen Betrag (in Software)"/>
@@ -971,7 +972,7 @@
       <description lang="fr" text="Agrandir l'affichage par ce rapport (en software)"/>
       <description lang="pt" text="Esticar renderização de tela por esse valor (em software)"/>
     </option>
-    <option name="effect" type="file" default="none" part="basename">
+    <option default="none" name="effect" part="basename" type="file">
       <description lang="es" text="Nombre de un archivo PNG a utilizar para los efectos visuales, o 'ninguno'"/>
       <description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
       <description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
@@ -979,7 +980,7 @@
       <description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
       <description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
     </option>
-    <option name="waitvsync" type="bool" default="false">
+    <option default="false" name="waitvsync" type="bool">
       <description lang="es" text="Esperar al inicio de VBLANK antes de girar las pantallas; reduce el efecto 'tearing'"/>
       <description lang="us" text="Wait for the start of VBLANK before flipping screens; reduces tearing effects"/>
       <description lang="de" text="Auf V-Sync warten, bevor die Bildschirme getauscht werden; reduziert Flacker-Effekte"/>
@@ -987,7 +988,7 @@
       <description lang="fr" text="Attendre la synchronisation verticale avant de passer à l'image suivante; réduit les effets de saccade"/>
       <description lang="pt" text="Esperar o início da sincronização verfical antes de inverter telas; reduz efeitos de tremor"/>
     </option>
-    <option name="syncrefresh" type="bool" default="false">
+    <option default="false" name="syncrefresh" type="bool">
       <description lang="es" text="Activar el uso de VBLANK para acelerar en vez del juego"/>
       <description lang="us" text="Enable using the start of VBLANK for throttling instead of the game time"/>
       <description lang="de" text="Bei Drosselung an V-Sync anpassen anstelle der Spiel-Geschwindigkeit"/>
@@ -995,7 +996,7 @@
       <description lang="fr" text="Active l'utilisation de V-BLANK comme accélérateur plutôt que le timer du jeu"/>
       <description lang="pt" text="Ativar a utilização do VBLANK como troca ao invés do tempo do jogo"/>
     </option>
-    <option name="menu" type="bool" default="false">
+    <option default="false" name="menu" type="bool">
       <description lang="es" text="Activar la barra de menús si está disponible en la UI"/>
       <description lang="us" text="Enable menu bar if available by UI implementation"/>
       <description lang="de" text="Menü-Zeile aktivieren, sofern in UI Implementierung verfügbar"/>
@@ -1011,7 +1012,7 @@
     <description lang="pl" text="DirectDraw"/>
     <description lang="fr" text="DirectDraw"/>
     <description lang="pt" text="DirectDraw"/>
-    <option name="hwstretch" type="bool" default="true">
+    <option default="true" name="hwstretch" type="bool">
       <description lang="es" text="Activar el redimensionamiento por hardware"/>
       <description lang="us" text="Enable hardware stretching"/>
       <description lang="de" text="Hardware-beschleunigte Streckung"/>
@@ -1027,7 +1028,7 @@
     <description lang="pl" text="Direct3D"/>
     <description lang="fr" text="Direct3D"/>
     <description lang="pt" text="Direct3D"/>
-    <option name="d3dversion" type="int" default="9">
+    <option default="9" name="d3dversion" type="int">
       <description lang="es" text="Especificar la versión preferida de Direct3D (8 ó 9)"/>
       <description lang="us" text="Specify the preferred Direct3D version (8 or 9)"/>
       <description lang="de" text="Bevorzugte Direct3D Version festlegen (8 oder 9)"/>
@@ -1035,7 +1036,7 @@
       <description lang="fr" text="Spécifier la version préférée de Direct3D (8 ou 9)"/>
       <description lang="pt" text="Especificar a versão preferencial do Direct3D (8 ou 9)"/>
     </option>
-    <option name="filter" type="bool" default="true">
+    <option default="true" name="filter" type="bool">
       <description lang="es" text="Activar el filtrado bilineal de la pantalla (bilinear filtering)"/>
       <description lang="us" text="Enable bilinear filtering on screen output"/>
       <description lang="de" text="Bilineare Filterung bei Bildschirmausgabe anwenden"/>
@@ -1051,7 +1052,7 @@
     <description lang="pl" text="Obraz dla danego ekranu"/>
     <description lang="fr" text="Fenêtre Vidéo"/>
     <description lang="pt" text="Vídeo por janela"/>
-    <option name="screen" type="combo" default="auto">
+    <option default="auto" name="screen" type="combo">
       <description lang="es" text="Nombre explícito de la pantalla; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Explicit name of the screen; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des Screens; 'auto' erzeugt ihn automatisch"/>
@@ -1060,7 +1061,7 @@
       <description lang="pt" text="Explicitar nome da tela; 'auto' irá tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="aspect" type="combo" default="auto">
+    <option default="auto" name="aspect" type="combo">
       <description lang="es" text="Relación de aspecto para todas las pantallas; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Aspect ratio for all screens; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis aller Screens; 'auto' erzeugt es automatisch"/>
@@ -1069,7 +1070,7 @@
       <description lang="pt" text="Razão de aspecto para todas as telas; 'auto' irá tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="resolution" type="combo" default="auto">
+    <option default="auto" name="resolution" type="combo">
       <description lang="es" text="Resolución preferida para todas las pantallas; el formato es ANCHOxALTO[@REFRESHRATE] o 'auto'"/>
       <description lang="us" text="Preferred resolution for all screens; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung aller Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
@@ -1078,7 +1079,7 @@
       <description lang="pt" text="Resolução preferencial para todas as telas; formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
       <choice name="auto"/>
     </option>
-    <option name="view" type="combo" default="auto">
+    <option default="auto" name="view" type="combo">
       <description lang="es" text="Vista preferida para todas las pantallas"/>
       <description lang="us" text="Preferred view for all screens"/>
       <description lang="de" text="Vorgezogene Ansicht aller Screens"/>
@@ -1087,7 +1088,7 @@
       <description lang="pt" text="Visão preferencial para todas as telas"/>
       <choice name="auto"/>
     </option>
-    <option name="screen0" type="combo" default="auto">
+    <option default="auto" name="screen0" type="combo">
       <description lang="es" text="Nombre explícito de la pantalla 0; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Explicit name of screen 0; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 0. Screens; 'auto' erzeugt ihn automatisch"/>
@@ -1096,7 +1097,7 @@
       <description lang="pt" text="Nome explícito da tela 0; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="aspect0" type="combo" default="auto">
+    <option default="auto" name="aspect0" type="combo">
       <description lang="es" text="Relación de aspecto de la pantalla 0; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Aspect ratio of screen 0; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 0. Screens; 'auto' erzeugt es automatisch"/>
@@ -1105,7 +1106,7 @@
       <description lang="pt" text="Razão de aspecto da tela 0; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="resolution0" type="combo" default="auto">
+    <option default="auto" name="resolution0" type="combo">
       <description lang="es" text="Resolución preferida de la pantalla 0; el formato es ANCHOxALTO[@REFRESHRATE] o 'auto'"/>
       <description lang="us" text="Preferred resolution for screen 0; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 0. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
@@ -1114,7 +1115,7 @@
       <description lang="pt" text="Resolução preferencial da tela 0; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
       <choice name="auto"/>
     </option>
-    <option name="view0" type="combo" default="auto">
+    <option default="auto" name="view0" type="combo">
       <description lang="es" text="Vista preferida de la pantalla 0"/>
       <description lang="us" text="Preferred view for screen 0"/>
       <description lang="de" text="Vorgezogene Ansicht des 0. Screens"/>
@@ -1123,7 +1124,7 @@
       <description lang="pt" text="Visão preferencial para a tela 0"/>
       <choice name="auto"/>
     </option>
-    <option name="screen1" type="combo" default="auto">
+    <option default="auto" name="screen1" type="combo">
       <description lang="es" text="Nombre explícito de la pantalla 1; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Explicit name of screen 1; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 1. Screens; 'auto' erzeugt ihn automatisch"/>
@@ -1132,7 +1133,7 @@
       <description lang="pt" text="Nome explícito da tela 1; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="aspect1" type="combo" default="auto">
+    <option default="auto" name="aspect1" type="combo">
       <description lang="es" text="Relación de aspecto de la pantalla 1; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Aspect ratio of screen 1; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 1. Screens; 'auto' erzeugt es automatisch"/>
@@ -1141,7 +1142,7 @@
       <description lang="pt" text="Razão de aspecto da tela 1; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="resolution1" type="combo" default="auto">
+    <option default="auto" name="resolution1" type="combo">
       <description lang="es" text="Resolución preferida de la pantalla 1; el formato es ANCHOxALTO[@REFRESHRATE] o 'auto'"/>
       <description lang="us" text="Preferred resolution for screen 1; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 1. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
@@ -1150,7 +1151,7 @@
       <description lang="pt" text="Resolução preferencial da tela 1; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
       <choice name="auto"/>
     </option>
-    <option name="view1" type="combo" default="auto">
+    <option default="auto" name="view1" type="combo">
       <description lang="es" text="Vista preferida de la pantalla 1"/>
       <description lang="us" text="Preferred view for screen 1"/>
       <description lang="de" text="Vorgezogene Ansicht des 1. Screens"/>
@@ -1159,7 +1160,7 @@
       <description lang="pt" text="Visão preferencial para a tela 1"/>
       <choice name="auto"/>
     </option>
-    <option name="screen2" type="combo" default="auto">
+    <option default="auto" name="screen2" type="combo">
       <description lang="es" text="Nombre explícito de la pantalla 2; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Explicit name of screen 2; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 2. Screens; 'auto' erzeugt ihn automatisch"/>
@@ -1168,7 +1169,7 @@
       <description lang="pt" text="Nome explícito da tela 2; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="aspect2" type="combo" default="auto">
+    <option default="auto" name="aspect2" type="combo">
       <description lang="es" text="Relación de aspecto de la pantalla 2; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Aspect ratio of screen 2; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 2. Screens; 'auto' erzeugt es automatisch"/>
@@ -1177,7 +1178,7 @@
       <description lang="pt" text="Razão de aspecto da tela 2; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="resolution2" type="combo" default="auto">
+    <option default="auto" name="resolution2" type="combo">
       <description lang="es" text="Resolución preferida de la pantalla 2; el formato es ANCHOxALTO[@REFRESHRATE] o 'auto'"/>
       <description lang="us" text="Preferred resolution for screen 2; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 2. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
@@ -1186,7 +1187,7 @@
       <description lang="pt" text="Resolução preferencial da tela 2; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
       <choice name="auto"/>
     </option>
-    <option name="view2" type="combo" default="auto">
+    <option default="auto" name="view2" type="combo">
       <description lang="es" text="Vista preferida de la pantalla 2"/>
       <description lang="us" text="Preferred view for screen 2"/>
       <description lang="de" text="Vorgezogene Ansicht des 2. Screens"/>
@@ -1195,7 +1196,7 @@
       <description lang="pt" text="Visão preferencial para a tela 2"/>
       <choice name="auto"/>
     </option>
-    <option name="screen3" type="combo" default="auto">
+    <option default="auto" name="screen3" type="combo">
       <description lang="es" text="Nombre explícito de la pantalla 3; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Explicit name of screen 3; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 3. Screens; 'auto' erzeugt ihn automatisch"/>
@@ -1204,7 +1205,7 @@
       <description lang="pt" text="Nome explícito da tela 3; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="aspect3" type="combo" default="auto">
+    <option default="auto" name="aspect3" type="combo">
       <description lang="es" text="Relación de aspecto de la pantalla 3; 'auto' intentará adivinarlo"/>
       <description lang="us" text="Aspect ratio of screen 3; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 3. Screens; 'auto' erzeugt es automatisch"/>
@@ -1213,7 +1214,7 @@
       <description lang="pt" text="Razão de aspecto da tela 3; 'auto' ira tentar o mais apropriado"/>
       <choice name="auto"/>
     </option>
-    <option name="resolution3" type="combo" default="auto">
+    <option default="auto" name="resolution3" type="combo">
       <description lang="es" text="Resolución preferida de la pantalla 3; el formato es ANCHOxALTO[@REFRESHRATE] o 'auto'"/>
       <description lang="us" text="Preferred resolution for screen 3; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 3. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
@@ -1222,7 +1223,7 @@
       <description lang="pt" text="Resolução preferencial da tela 3; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
       <choice name="auto"/>
     </option>
-    <option name="view3" type="combo" default="auto">
+    <option default="auto" name="view3" type="combo">
       <description lang="es" text="Vista preferida de la pantalla 3"/>
       <description lang="us" text="Preferred view for screen 3"/>
       <description lang="de" text="Vorgezogene Ansicht des 3. Screens"/>
@@ -1239,7 +1240,7 @@
     <description lang="pl" text="Pełny ekran"/>
     <description lang="fr" text="Plein écran"/>
     <description lang="pt" text="Tela cheia"/>
-    <option name="triplebuffer" type="bool" default="false">
+    <option default="false" name="triplebuffer" type="bool">
       <description lang="es" text="Activar buffer triple (triple buffering)"/>
       <description lang="us" text="Enable triple buffering"/>
       <description lang="de" text="Dreifach-Pufferung aktivieren"/>
@@ -1247,7 +1248,7 @@
       <description lang="fr" text="Active le triple buffering"/>
       <description lang="pt" text="Habilitar buffer triplo"/>
     </option>
-    <option name="switchres" type="bool" default="false">
+    <option default="false" name="switchres" type="bool">
       <description lang="es" text="Habilitar el cambio de resolución"/>
       <description lang="us" text="Enable resolution switching"/>
       <description lang="de" text="Auflösungsanpassung aktivieren"/>
@@ -1255,7 +1256,7 @@
       <description lang="fr" text="Autoriser le changement de résolution d'écran"/>
       <description lang="pt" text="Habilitar troca de resolução"/>
     </option>
-    <option name="full_screen_brightness" type="float" default="1.0">
+    <option default="1.0" name="full_screen_brightness" type="float">
       <description lang="es" text="Valor del brillo en pantalla completa"/>
       <description lang="us" text="Brightness value in full screen mode"/>
       <description lang="de" text="Helligkeits-Anpassung im Vollbildmodus"/>
@@ -1263,7 +1264,7 @@
       <description lang="fr" text="Valeur de luminosité en plein écran"/>
       <description lang="pt" text="Valor do brilho em tela cheia"/>
     </option>
-    <option name="full_screen_contrast" type="float" default="1.0">
+    <option default="1.0" name="full_screen_contrast" type="float">
       <description lang="es" text="Valor del contraste en pantalla completa"/>
       <description lang="us" text="Contrast value in full screen mode"/>
       <description lang="de" text="Kontrast-Anpassung im Vollbildmodus"/>
@@ -1271,7 +1272,7 @@
       <description lang="fr" text="Valeur de contraste en plein écran"/>
       <description lang="pt" text="Valor do contraste em tela cheia"/>
     </option>
-    <option name="full_screen_gamma" type="float" default="1.0">
+    <option default="1.0" name="full_screen_gamma" type="float">
       <description lang="es" text="Valor gamma en pantalla completa"/>
       <description lang="us" text="Gamma value in full screen mode"/>
       <description lang="de" text="Gamma-Korrektur im Vollbildmodus"/>
@@ -1287,7 +1288,7 @@
     <description lang="pl" text="Automatyczny wybór urządzeń"/>
     <description lang="fr" text="Choix automatique du périphérique de jeu"/>
     <description lang="pt" text="Seleção automática de dispositivos"/>
-    <option name="paddle_device" type="combo" default="keyboard">
+    <option default="keyboard" name="paddle_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de paddle está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a paddle control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Paddle-Controller verfügbar ist"/>
@@ -1300,7 +1301,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="adstick_device" type="combo" default="keyboard">
+    <option default="keyboard" name="adstick_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un joystick analógico está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if an analog joystick control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls analoger Joystick-Controller verfügbar ist"/>
@@ -1313,7 +1314,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="pedal_device" type="combo" default="keyboard">
+    <option default="keyboard" name="pedal_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de pedal está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a pedal control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Pedal-Controller verfügbar ist"/>
@@ -1326,7 +1327,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="dial_device" type="combo" default="keyboard">
+    <option default="keyboard" name="dial_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de dial está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a dial control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Dial-Controller verfügbar ist"/>
@@ -1339,7 +1340,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="trackball_device" type="combo" default="keyboard">
+    <option default="keyboard" name="trackball_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de trackball está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a trackball control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Trackball-Controller verfügbar ist"/>
@@ -1352,7 +1353,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="lightgun_device" type="combo" default="keyboard">
+    <option default="keyboard" name="lightgun_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de lightgun está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a lightgun control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Lightgun-Controller verfügbar ist"/>
@@ -1365,7 +1366,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="positional_device" type="combo" default="keyboard">
+    <option default="keyboard" name="positional_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de posición está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a positional control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Positional-Controller verfügbar ist"/>
@@ -1378,7 +1379,7 @@
       <choice name="lightgun"/>
       <choice name="joystick"/>
     </option>
-    <option name="mouse_device" type="combo" default="mouse">
+    <option default="mouse" name="mouse_device" type="combo">
       <description lang="es" text="Activar (none|keyboard|mouse|lightgun|joystick) si un controlador de ratón está presente"/>
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a mouse control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Maus-Controller verfügbar ist"/>
@@ -1399,357 +1400,357 @@
     <description lang="pl" text="Direct3D HLSL (Pixel Shader 3.0)"/>
     <description lang="fr" text="Direct3D HLSL (Pixel Shader 3.0)"/>
     <description lang="pt" text="Direct3D HLSL (Pixel Shader 3.0)"/>
-    <option name="hlsl_enable" type="bool" default="false">
+    <option default="false" name="hlsl_enable" type="bool">
       <description lang="es" text="Activar post-procesado HLSL (se necesita Pixel Shader 3.0)"/>
       <description lang="us" text="Enable HLSL post-processing (Pixel Shader 3.0 required)"/>
       <description lang="de" text="HLSL Post-Processing aktivieren (benötigt Pixel Shader 3.0)"/>
       <description lang="fr" text="Active HLSL post-processing (Pixel Shader 3.0 requis)"/>
       <description lang="pt" text="Habilitar pós processamento HLSL (requer Pixel Shader 3.0)"/>
     </option>
-    <option name="hlsl_ini_read" type="bool" default="false">
+    <option default="false" name="hlsl_ini_read" type="bool">
       <description lang="es" text="Activar lectura INI HLSL"/>
       <description lang="us" text="Enable HLSL INI reading"/>
       <description lang="de" text="Einlesen von HLSL INI Dateien aktivieren"/>
       <description lang="fr" text="Active la lecture du INI de HLSL"/>
       <description lang="pt" text="Habilitar leitura do INI do HLSL"/>
     </option>
-    <option name="hlsl_ini_write" type="bool" default="false">
+    <option default="false" name="hlsl_ini_write" type="bool">
       <description lang="es" text="Activar escritura INI HLSL"/>
       <description lang="us" text="Enable HLSL INI writing"/>
       <description lang="de" text="Schreiben von HLSL INI Dateien aktivieren"/>
       <description lang="fr" text="Active l'écriture du INI de HLSL"/>
       <description lang="pt" text="Habilitar escrita do INI do HLSL"/>
     </option>
-    <option name="hlslpath" type="directory" default="hlsl">
+    <option default="hlsl" name="hlslpath" type="directory">
       <description lang="es" text="Ruta a archivos hlsl"/>
       <description lang="us" text="Path to hlsl files"/>
       <description lang="de" text="Suchpfad für hlsl-Dateien"/>
       <description lang="fr" text="Répertoire des fichiers HLSL"/>
       <description lang="pt" text="Caminho para os arquivos hlsl"/>
     </option>
-    <option name="hlslini" type="string" default="%g">
+    <option default="%g" name="hlslini" type="string">
       <description lang="es" text="Ruta a archivo ini HLSL"/>
       <description lang="us" text="HLSL ini file path"/>
       <description lang="de" text="Pfad für HLSL ini Dateien"/>
       <description lang="fr" text="Répertoire des fichiers INI de HLSL"/>
       <description lang="pt" text="Caminho para o arquivo INI do HLSL"/>
     </option>
-    <option name="hlsl_prescale_x" type="int" default="0">
+    <option default="0" name="hlsl_prescale_x" type="int">
       <description lang="es" text="Factor de sustitución de pre-escala HLSL para X (0 para auto)"/>
       <description lang="us" text="HLSL pre-scale override factor for X (0 for auto)"/>
       <description lang="de" text="HLSL Pre-Skalierungsfaktor für X (0 = automatisch)"/>
       <description lang="fr" text="Facteur de substition pour la mise à l'échelle en X (0 pour automatique)"/>
       <description lang="pt" text="Fator de substituição da pré-escala do HLSL para X (0 para automático)"/>
     </option>
-    <option name="hlsl_prescale_y" type="int" default="0">
+    <option default="0" name="hlsl_prescale_y" type="int">
       <description lang="es" text="Factor de sustitución de pre-escala HLSL para Y (0 para auto)"/>
       <description lang="us" text="HLSL pre-scale override factor for Y (0 for auto)"/>
       <description lang="de" text="HLSL Pre-Skalierungsfaktor für Y (0 = automatisch)"/>
       <description lang="fr" text="Facteur de substition pour la mise à l'échelle en Y (0 pour automatique)"/>
       <description lang="pt" text="Fator de substituição da pré-escala do HLSL para Y (0 para automático)"/>
     </option>
-    <option name="hlsl_preset" type="int" default="-1">
+    <option default="-1" name="hlsl_preset" type="int">
       <description lang="es" text="Parámetro HLSL a utilizar (0-5)"/>
       <description lang="us" text="HLSL preset to use (0-5)"/>
       <description lang="de" text="HLSL Voreinstellung (0-5)"/>
       <description lang="fr" text="Paramètres HLSL à utiliser (0-5)"/>
       <description lang="pt" text="Preset HLSL a ser utilizado (0-5)"/>
     </option>
-    <option name="hlsl_write" type="file" default="">
+    <option default="" name="hlsl_write" type="file">
       <description lang="es" text="Activar la escritura de AVI HLSL al especificar un archivo de salida (se recomienda un disco rápido)"/>
       <description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
       <description lang="de" text="HLSL AVI-Schreiben durch Angabe einer Ausgabe-Datei aktivieren (große Disk I/O Bandbreite empfohlen)"/>
       <description lang="fr" text="Active l'écriture AVI HLSL en choisissant le fichier de destination (disque de hautes performances recommandé)"/>
       <description lang="pt" text="Habilitar escrita AVI do HLSL especificando um arquivo de saída (disco de alto desempenho recomendado)"/>
     </option>
-    <option name="hlsl_snap_width" type="int" default="2048">
+    <option default="2048" name="hlsl_snap_width" type="int">
       <description lang="es" text="Anchura de snapshot HLSL (upscale)"/>
       <description lang="us" text="HLSL upscaled-snapshot width"/>
       <description lang="de" text="HLSL Snapshot-Breite (hochskaliert)"/>
       <description lang="fr" text="Largeur du snapshot HLSL (upscale)"/>
       <description lang="pt" text="Largura do snapshot HLSL (upscale)"/>
     </option>
-    <option name="hlsl_snap_height" type="int" default="1536">
+    <option default="1536" name="hlsl_snap_height" type="int">
       <description lang="es" text="Altura de snapshot HLSL (upscale)"/>
       <description lang="us" text="HLSL upscaled-snapshot height"/>
       <description lang="de" text="HLSL Snapshot-Höhe (hochskaliert)"/>
       <description lang="fr" text="Hauteur du snapshot HLSL (upscale)"/>
       <description lang="pt" text="Altura do snapshot HLSL (upscale)"/>
     </option>
-    <option name="shadow_mask_alpha" type="float" default="0">
+    <option default="0" name="shadow_mask_alpha" type="float">
       <description lang="es" text="Valor de shadow mask alpha-blend (1.0 es completo, 0.0 es sin máscara)"/>
       <description lang="us" text="Shadow mask alpha-blend value (1.0 is fully blended, 0.0 is no mask)"/>
       <description lang="de" text="Wert für 'Shadow Mask Alpha Blending' (1.0 = volle Überlagerung, 0.0 = keine Maske)"/>
       <description lang="fr" text="Valeur du masque Alpha d'ombrage (1.0 pour mix total, 0.0 sans masque)"/>
       <description lang="pt" text="Valor da máscara de sombras de mistura alpha (1.0 mistura total, 0.0 sem máscara)"/>
     </option>
-    <option name="shadow_mask_texture" type="string" default="aperture.png">
+    <option default="aperture.png" name="shadow_mask_texture" type="string">
       <description lang="es" text="Nombre de la textura shadow mask"/>
       <description lang="us" text="Shadow mask texture name"/>
       <description lang="de" text="Name der Shadow Mask Textur"/>
       <description lang="fr" text="Nom de la texture du masque d'ombrage"/>
       <description lang="pt" text="Nome da textura da máscara de sombras"/>
     </option>
-    <option name="shadow_mask_x_count" type="int" default="320">
+    <option default="320" name="shadow_mask_x_count" type="int">
       <description lang="es" text="Ancho de shadow mask, en 'phosphor dots'"/>
       <description lang="us" text="Shadow mask width, in phosphor dots"/>
       <description lang="de" text="Breite der Shadow Mask, in 'Phosphor-Dots'"/>
       <description lang="fr" text="Largeur du masque d'ombrage, en 'phosphor dots'"/>
       <description lang="pt" text="Comprimento da máscara de sombras, em pontos de fósforo"/>
     </option>
-    <option name="shadow_mask_y_count" type="int" default="240">
+    <option default="240" name="shadow_mask_y_count" type="int">
       <description lang="es" text="Alto de shadow mask, en 'phosphor dots'"/>
       <description lang="us" text="Shadow mask height, in phosphor dots"/>
       <description lang="de" text="Höhe der Shadow Mask, in 'Phosphor-Dots'"/>
       <description lang="fr" text="Hauteur du masque d'ombrage, en 'phosphor dots'"/>
       <description lang="pt" text="Altura da máscara de sombras, em pontos de fósforo"/>
     </option>
-    <option name="shadow_mask_usize" type="float" default="0.09375">
+    <option default="0.09375" name="shadow_mask_usize" type="float">
       <description lang="es" text="Tamaño de textura de shadow mask en dirección U"/>
       <description lang="us" text="Shadow mask texture size in U direction"/>
       <description lang="de" text="Größe der Shadow Mask Textur in U-Richtung"/>
       <description lang="fr" text="Taille de la texture du masque d'ombrage en direction U"/>
       <description lang="pt" text="Tamanho da textura da máscara de sombras na direção U"/>
     </option>
-    <option name="shadow_mask_vsize" type="float" default="0.109375">
+    <option default="0.109375" name="shadow_mask_vsize" type="float">
       <description lang="es" text="Tamaño de textura de shadow mask en dirección V"/>
       <description lang="us" text="Shadow mask texture size in V direction"/>
       <description lang="de" text="Größe der Shadow Mask Textur in V-Richtung"/>
       <description lang="fr" text="Taille de la texture du masque d'ombrage en direction V"/>
       <description lang="pt" text="Tamanho da textura da máscara de sombras na direção V"/>
     </option>
-    <option name="curvature" type="float" default="0">
+    <option default="0" name="curvature" type="float">
       <description lang="es" text="Cantidad de curvatura de la pantalla"/>
       <description lang="us" text="Screen curvature amount"/>
       <description lang="de" text="Betrag der Bildschirmkrümmung"/>
       <description lang="fr" text="Taux de courbure de l'écran"/>
       <description lang="pt" text="Quantidade de curvatura da tela"/>
     </option>
-    <option name="pincushion" type="float" default="0">
+    <option default="0" name="pincushion" type="float">
       <description lang="es" text="Cantidad de 'pincushion'"/>
       <description lang="us" text="Pincushion amount"/>
       <description lang="de" text="Betrag der Kissenverzerrung"/>
       <description lang="fr" text="Quantité de Pincushion"/>
       <description lang="pt" text="Quantidade de pincushion"/>
     </option>
-    <option name="scanline_alpha" type="float" default="0">
+    <option default="0" name="scanline_alpha" type="float">
       <description lang="es" text="Valor global de escalado alpha de scanlines"/>
       <description lang="us" text="Overall alpha scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Alpha-Skalierungs-Wert für Abtastzeilen"/>
       <description lang="fr" text="Valeur globale d'étirement alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de alpha geral para scanlines"/>
     </option>
-    <option name="scanline_size" type="float" default="1">
+    <option default="1" name="scanline_size" type="float">
       <description lang="es" text="Valor global de altura de escalado de scanlines"/>
       <description lang="us" text="Overall height scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Höhen-Skalierungs-Wert für Abtastzeilen"/>
       <description lang="fr" text="Valeur globale d'étirement vertical alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de altura geral para scanlines"/>
     </option>
-    <option name="scanline_height" type="float" default="0.7">
+    <option default="0.7" name="scanline_height" type="float">
       <description lang="es" text="Valor individual  de altura de escalado de scanlines"/>
       <description lang="us" text="Individual height scaling value for scanlines"/>
       <description lang="de" text="Individueller Höhen-Skalierungs-Wert für Abtastzeilen"/>
       <description lang="fr" text="Valeur individuelle d'étirement alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de altura individual para scanlines"/>
     </option>
-    <option name="scanline_bright_scale" type="float" default="1">
+    <option default="1" name="scanline_bright_scale" type="float">
       <description lang="es" text="Valor de escala de brillo de scanlines (multiplicador)"/>
       <description lang="us" text="Brightness scaling value for scanlines (multiplicative)"/>
       <description lang="de" text="Wert der Helligkeits-Skalierung für Abtastzeilen (multiplikativ)"/>
       <description lang="fr" text="Valeur d'étirement de luminosité pour les scanlines (multiplicatif)"/>
       <description lang="pt" text="Valor da escala de brilho para scanlines (multiplicativo)"/>
     </option>
-    <option name="scanline_bright_offset" type="float" default="0">
+    <option default="0" name="scanline_bright_offset" type="float">
       <description lang="es" text="Valor de compensación de brillo de scanlines (aditivo)"/>
       <description lang="us" text="Brightness offset value for scanlines (additive)"/>
       <description lang="de" text="Wert des Helligkeits-Offsets für Abtastzeilen (additiv)"/>
       <description lang="fr" text="Décalage de luminosité pour les scanlines (cumulatif)"/>
       <description lang="pt" text="Valor do deslocamento de brilho para scanlines (aditivo)"/>
     </option>
-    <option name="scanline_jitter" type="float" default="0">
+    <option default="0" name="scanline_jitter" type="float">
       <description lang="es" text="Valor global de entrelazado 'jitter' de scanlines"/>
       <description lang="us" text="Overall interlace jitter scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Wert der Bildinstabilität beim Zeilensprung"/>
       <description lang="fr" text="Valeur globale d'étirement 'jitter' pour les scanlines"/>
       <description lang="pt" text="Valor da escala de variação de interlace geral para scanlines"/>
     </option>
-    <option name="defocus" type="float2" default="0.0,0.0">
+    <option default="0.0,0.0" name="defocus" type="float2">
       <description lang="es" text="Valor global de escalado 'defocus' en coordenadas relativas a la pantalla"/>
       <description lang="us" text="Overall defocus scaling in screen-relative coordinates"/>
       <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Bildschirm-relativen Koordinaten"/>
       <description lang="fr" text="Echelle globale d'étirement 'defocus' pour les coordonnées relatives à l'écran"/>
       <description lang="pt" text="Escala de desfocagem geral nas coordenadas relativas à tela"/>
     </option>
-    <option name="converge_x" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="converge_x" type="float3">
       <description lang="es" text="Convergencia en dirección X relativa a la pantalla"/>
       <description lang="us" text="Convergence in screen-relative X direction"/>
       <description lang="de" text="Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
       <description lang="fr" text="Convergence en direction X relative à l'écran"/>
       <description lang="pt" text="Convergência do vermelho na direção X relativa"/>
     </option>
-    <option name="converge_y" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="converge_y" type="float3">
       <description lang="es" text="Convergencia en dirección Y relativa a la pantalla"/>
       <description lang="us" text="Convergence in screen-relative Y direction"/>
       <description lang="de" text="Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
       <description lang="fr" text="Convergence en direction Y relative à l'écran"/>
       <description lang="pt" text="Convergência do vermelho na direção Y relativa"/>
     </option>
-    <option name="radial_converge_x" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="radial_converge_x" type="float3">
       <description lang="es" text="Convergencia radial en dirección X relativa a la pantalla"/>
       <description lang="us" text="Radial convergence in screen-relative X direction"/>
       <description lang="de" text="Radiale Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
       <description lang="fr" text="Convergence radiale en direction X relative à l'écran"/>
       <description lang="pt" text="Convergência radial do vermelho na direção X relativa"/>
     </option>
-    <option name="radial_converge_y" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="radial_converge_y" type="float3">
       <description lang="es" text="Convergencia radial en dirección Y relativa a la pantalla"/>
       <description lang="us" text="Radial convergence in screen-relative Y direction"/>
       <description lang="de" text="Radiale Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
       <description lang="fr" text="Convergence radiale en direction Y relative à l'écran"/>
       <description lang="pt" text="Convergência radial do vermelho na direção Y relativa"/>
     </option>
-    <option name="red_ratio" type="float3" default="1.0,0.0,0.0">
+    <option default="1.0,0.0,0.0" name="red_ratio" type="float3">
       <description lang="es" text="Señal de salida roja generada por la señal de entrada"/>
       <description lang="us" text="Red output signal generated by input signal"/>
       <description lang="de" text="Rotes Ausgabesignal generiert durch Eingabesignal"/>
       <description lang="fr" text="Signal de sortie Rouge généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do vermelho gerado pelo sinal de entrada"/>
     </option>
-    <option name="grn_ratio" type="float3" default="0.0,1.0,0.0">
+    <option default="0.0,1.0,0.0" name="grn_ratio" type="float3">
       <description lang="es" text="Señal de salida verde generada por la señal de entrada"/>
       <description lang="us" text="Green output signal generated by input signal"/>
       <description lang="de" text="Grünes Ausgabesignal generiert durch Eingabesignal"/>
       <description lang="fr" text="Signal de sortie Vert généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do verde gerado pelo sinal de entrada"/>
     </option>
-    <option name="blu_ratio" type="float3" default="0.0,0.0,1.0">
+    <option default="0.0,0.0,1.0" name="blu_ratio" type="float3">
       <description lang="es" text="Señal de salida azul generada por la señal de entrada"/>
       <description lang="us" text="Blue output signal generated by input signal"/>
       <description lang="de" text="Blaues Ausgabesignal generiert durch Eingabesignal"/>
       <description lang="fr" text="Signal de sortie Bleu généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada"/>
     </option>
-    <option name="saturation" type="float" default="1">
+    <option default="1" name="saturation" type="float">
       <description lang="es" text="Valor de escalado de saturación"/>
       <description lang="us" text="Saturation scaling value"/>
       <description lang="de" text="Wert der Sättigungs-Skalierung"/>
       <description lang="fr" text="Valeur d'étirement de saturation"/>
       <description lang="pt" text="Valor de escala de saturação"/>
     </option>
-    <option name="offset" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="offset" type="float3">
       <description lang="es" text="Valor de compensación de la señal (aditivo)"/>
       <description lang="us" text="Signal offset value (additive)"/>
       <description lang="de" text="Wert des Signal-Offsets (additiv)"/>
       <description lang="fr" text="Valeur de signal offset (cumulatif)"/>
       <description lang="pt" text="Valor de deslocamento do sinal (aditivo)"/>
     </option>
-    <option name="scale" type="float3" default="1.0,1.0,1.0">
+    <option default="1.0,1.0,1.0" name="scale" type="float3">
       <description lang="es" text="Valor de escalado de la señal (multiplicador)"/>
       <description lang="us" text="Signal scaling value (multiplicative)"/>
       <description lang="de" text="Wert des Signal-Offsets (multiplikativ)"/>
       <description lang="fr" text="Valeur d'étirement du signal (multiplicatif)"/>
       <description lang="pt" text="Valor de escala do sinal (multiplicativo)"/>
     </option>
-    <option name="power" type="float3" default="1.0,1.0,1.0">
+    <option default="1.0,1.0,1.0" name="power" type="float3">
       <description lang="es" text="Valor de potencia de la señal (exponencial)"/>
       <description lang="us" text="Signal power value (exponential)"/>
       <description lang="de" text="Wert der Signalstärke (exponentiell)"/>
       <description lang="fr" text="Valeur de puissance du signal (exponentiel)"/>
       <description lang="pt" text="Valor da potência do sinal (exponencial)"/>
     </option>
-    <option name="floor" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="floor" type="float3">
       <description lang="es" text="Nivel de suelo de la señal"/>
       <description lang="us" text="Signal floor level"/>
       <description lang="de" text="Niedrigster Wert der Signalstärke"/>
       <description lang="fr" text="Niveau plancher du signal"/>
       <description lang="pt" text="Nível base de sinal"/>
     </option>
-    <option name="phosphor_life" type="float3" default="0.0,0.0,0.0">
+    <option default="0.0,0.0,0.0" name="phosphor_life" type="float3">
       <description lang="es" text="Relación de decaimiento de la fosforescencia (0.0 es instantáneo, 1.0 es infinito)"/>
       <description lang="us" text="Phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
       <description lang="de" text="Rate der Nachleuchtdämpfung (0.0 = sofort, 1.0 = ewig)"/>
       <description lang="fr" text="Taux de décroissance de la phosphorescence (0.0 instantané, 1.0 sans fin)"/>
       <description lang="pt" text="Razão de decaimento da fosforescência (0.0 é instantâneo, 1.0 é para sempre)"/>
     </option>
-    <option name="yiq_enable" type="bool" default="false">
+    <option default="false" name="yiq_enable" type="bool">
       <description lang="es" text="Activar post-procesado HLSL YIQ-space"/>
       <description lang="us" text="Enable YIQ-space HLSL post-processing"/>
       <description lang="de" text="YIQ-Raum HLSL Post-Processing aktivieren"/>
       <description lang="fr" text="Active le post-proccessing YIQ-space HLSL"/>
       <description lang="pt" text="Habilitar pós processamento HLSL do espaço YIQ"/>
     </option>
-    <option name="yiq_cc" type="float" decimals="8" default="3.59754545">
+    <option decimals="8" default="3.59754545" name="yiq_cc" type="float">
       <description lang="es" text="Frecuencia de colores para el procesado de señal NTSC"/>
       <description lang="us" text="Color carrier frequency for NTSC signal processing"/>
       <description lang="de" text="Farbträger-Frequenz für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Fréquence de couleurs pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência da portadora de cor para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_a" type="float" default="0.5">
+    <option default="0.5" name="yiq_a" type="float">
       <description lang="es" text="Valor A para procesado de señal NTSC"/>
       <description lang="us" text="A value for NTSC signal processing"/>
       <description lang="de" text="A-Wert für NTSC Signalbearbeitung"/>
       <description lang="fr" text="Valeur A pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor A para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_b" type="float" default="0.5">
+    <option default="0.5" name="yiq_b" type="float">
       <description lang="es" text="Valor B para procesado de señal NTSC"/>
       <description lang="us" text="B value for NTSC signal processing"/>
       <description lang="de" text="B-Wert für NTSC Signalbearbeitung"/>
       <description lang="fr" text="Valeur B pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_o" type="float" default="0">
+    <option default="0" name="yiq_o" type="float">
       <description lang="es" text="Compensación de fase de color de salida para procesado de señal NTSC"/>
       <description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
       <description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Phase offset de sortie pour la fréquence de couleurs pour le traitement du signal NTSC"/>
       <description lang="pt" text="Deslocamento de saída de fase da portadora de cor para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_p" type="float" default="1">
+    <option default="1" name="yiq_p" type="float">
       <description lang="es" text="Valor de escalado de píxeles de entrada para procesado de señal NTSC"/>
       <description lang="us" text="Incoming pixel clock scaling value for NTSC signal processing"/>
       <description lang="de" text="Eingehender Pixel-Clock Skalierungswert für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Valeur d'étirement de pixels entrants pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor de escala do clock do pixel de entrada para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_n" type="float" default="1">
+    <option default="1" name="yiq_n" type="float">
       <description lang="es" text="Anchura de filtro Y para procesado de señal NTSC"/>
       <description lang="us" text="Y filter notch width for NTSC signal processing"/>
       <description lang="de" text="Y Filter-Aussparung für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Largeur de filtre Y pour le traitement du signal NTSC"/>
       <description lang="pt" text="Tamanho do notch do filtro Y para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_y" type="float" default="6">
+    <option default="6" name="yiq_y" type="float">
       <description lang="es" text="Frecuencia de corte de filtro Y para procesado de señal NTSC"/>
       <description lang="us" text="Y filter cutoff frequency for NTSC signal processing"/>
       <description lang="de" text="Y-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Fréquence de coupure du filtre Y pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência de corte do filtro Y para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_i" type="float" default="1.2">
+    <option default="1.2" name="yiq_i" type="float">
       <description lang="es" text="Frecuencia de corte de filtro I para procesado de señal NTSC"/>
       <description lang="us" text="I filter cutoff frequency for NTSC signal processing"/>
       <description lang="de" text="I-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Fréquence de coupure du filtre I pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência de corte do filtro I para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_q" type="float" default="0.6">
+    <option default="0.6" name="yiq_q" type="float">
       <description lang="es" text="Frecuencia de corte de filtro Q para procesado de señal NTSC"/>
       <description lang="us" text="Q filter cutoff frequency for NTSC signal processing"/>
       <description lang="de" text="Q-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Fréquence de coupure du filtre Q pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência de corte do filtro Q para o processamento de sinal NTSC"/>
     </option>
-    <option name="yiq_scan_time" type="float" default="52.6">
+    <option default="52.6" name="yiq_scan_time" type="float">
       <description lang="es" text="Duración de scanline horizontal para procesado de señal NTSC (en ms)"/>
       <description lang="us" text="Horizontal scanline duration for NTSC signal processing (in usec)"/>
       <description lang="de" text="Horizontale Verweildauer pro Abtastzeile (in Mikrosekunden) für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Durée des scanlines horizontales pour le traitement du signal NTSC (en msec)"/>
       <description lang="pt" text="Duração das scanlines horizontais para o processamento de sinal NTSC (em micro-segundos)"/>
     </option>
-    <option name="yiq_phase_count" type="int" default="2">
+    <option default="2" name="yiq_phase_count" type="int">
       <description lang="es" text="Valor de fase para procesado de señal NTSC"/>
       <description lang="us" text="Phase count value for NTSC signal processing"/>
       <description lang="de" text="Anzahl der Phasen für NTSC Signalverarbeitung"/>
