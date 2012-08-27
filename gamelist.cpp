@@ -2766,6 +2766,10 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
   if ( !verifyCurrentOnly ) {
+    // the progress text may have changed in the meantime...
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+	    qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
+
     QSet<QString> gameSet = QSet<QString>::fromList(qmc2GamelistItemMap.uniqueKeys());
     QList<QString> remainingGames = gameSet.subtract(QSet<QString>::fromList(verifiedList)).values();
     int i;
@@ -3102,6 +3106,12 @@ void Gamelist::verifyReadyReadStandardOutput()
   } else {
     verifyLastLine = lines.last();
     lines.removeLast();
+  }
+
+  if ( !verifyCurrentOnly ) {
+    // the progress text may have changed in the meantime...
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+	    qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
   }
 
   bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
