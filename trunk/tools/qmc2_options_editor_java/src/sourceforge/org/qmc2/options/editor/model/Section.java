@@ -1,8 +1,10 @@
 package sourceforge.org.qmc2.options.editor.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Document;
@@ -15,6 +17,8 @@ public class Section extends DescriptableItem {
 	private final List<Option> options = new ArrayList<Option>();
 
 	public final static String TAG_SECTION = "section";
+	
+	private Map<String, String> unmappedAttributes = null;
 
 	public Section(String name) {
 		super(name);
@@ -38,11 +42,25 @@ public class Section extends DescriptableItem {
 
 	public static Section parseSection(Node sectionNode) {
 
-		String name = sectionNode.getAttributes().getNamedItem(ATTRIBUTE_NAME)
-				.getNodeValue();
+		String name = null;
+		Map<String, String> unmappedAttributes = new HashMap<String, String>();
+		
+		for (int i = 0; i < sectionNode.getAttributes().getLength(); i++) {
+			Node item = sectionNode.getAttributes().item(i);
+			if (ATTRIBUTE_NAME.equals(item.getNodeName())) {
+				name = item.getNodeValue();
+			}
+			else {
+				unmappedAttributes.put(item.getNodeName(), item.getNodeValue());
+			}
+		}
+		
+		
+		
 		Section section = new Section(name);
 
 		section.parseDescriptions(sectionNode);
+		section.setUnmappedAttributes(unmappedAttributes);
 
 		NodeList options = sectionNode.getChildNodes();
 
@@ -58,9 +76,16 @@ public class Section extends DescriptableItem {
 		return section;
 	}
 
+	public void setUnmappedAttributes(Map<String, String> unmappedAttributes) {
+		this.unmappedAttributes = unmappedAttributes;
+	}
+
 	@Override
 	public Element toXML(Document document) {
 		Element section = super.toXML(document);
+		for (String attr: unmappedAttributes.keySet()) {
+			section.setAttribute(attr, unmappedAttributes.get(attr));
+		}
 		for (Option o : options) {
 			section.appendChild(o.toXML(document));
 		}
