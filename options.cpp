@@ -37,6 +37,7 @@
 #include "docbrowser.h"
 #include "detailsetup.h"
 #include "toolbarcustomizer.h"
+#include "iconlineedit.h"
 #include "mawsqdlsetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
@@ -574,6 +575,7 @@ void Options::apply()
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   QSize iconSizeMiddle = iconSize + QSize(2, 2);
   QSize iconSizeLarge = iconSize + QSize(4, 4);
+  ((IconLineEdit *)qmc2MainWindow->comboBoxToolbarSearch->lineEdit())->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSizeMiddle);

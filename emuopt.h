@@ -13,6 +13,7 @@
 #include <QXmlStreamReader>
 
 #include "macros.h"
+#include "iconlineedit.h"
 
 class EmulatorOptionDelegate : public QStyledItemDelegate
 {
@@ -82,7 +83,7 @@ class EmulatorOptions : public QTreeWidget
   public:
     QTimer searchTimer;
     QTime miscTimer;
-    QLineEdit *lineEditSearch;
+    IconLineEdit *lineEditSearch;
     EmulatorOptionDelegate *delegate;
     QString settingsGroup;
     QString templateEmulator;

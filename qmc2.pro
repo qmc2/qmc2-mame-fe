@@ -85,6 +85,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romdbmgr.cpp \
 			customidsetup.cpp \
 			toolbarcustomizer.cpp \
+			iconlineedit.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -159,6 +160,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romdbmgr.h \
 			customidsetup.h \
 			toolbarcustomizer.h \
+			iconlineedit.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
