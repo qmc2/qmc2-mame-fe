@@ -761,6 +761,7 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->treeWidgetDeviceSetup->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->setIconSize(iconSize);
+    ((IconLineEdit *)qmc2MESSDeviceConfigurator->comboBoxChooserFilterPattern->lineEdit())->setIconSize(iconSizeMiddle);
   }
 #endif
   if ( qmc2SoftwareList ) {
@@ -778,6 +779,7 @@ void Options::apply()
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+    ((IconLineEdit *)qmc2SoftwareList->comboBoxSearch->lineEdit())->setIconSize(iconSizeMiddle);
     if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
     if ( qmc2SoftwareNotesEditor ) qmc2SoftwareNotesEditor->adjustIconSizes();
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)

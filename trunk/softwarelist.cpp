@@ -11,6 +11,7 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
+#include "iconlineedit.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -77,6 +78,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	oldMax = 1;
 	oldFmt = qmc2MainWindow->progressBarGamelist->format();
 
+	comboBoxSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxSearch));
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
 
 	QFontMetrics fm(QApplication::font());

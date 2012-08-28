@@ -19,8 +19,8 @@ IconLineEdit::IconLineEdit(QIcon icon, int align, QWidget *parent) : QLineEdit(p
 		setStyleSheet(QString("QLineEdit { padding-left: %1px; } ").arg(dummyButton->sizeHint().width() + frameWidth + 1));
 	else
 		setStyleSheet(QString("QLineEdit { padding-right: %1px; } ").arg(dummyButton->sizeHint().width() + frameWidth + 1));
-	QSize msz = minimumSizeHint();
-	setMinimumSize(qMax(msz.width(), dummyButton->sizeHint().height() + frameWidth * 2 + 2), qMax(msz.height(), dummyButton->sizeHint().height() + frameWidth * 2 + 2));
+	//QSize msz = minimumSizeHint();
+	//setMinimumSize(qMax(msz.width(), dummyButton->sizeHint().height() + frameWidth * 2 + 2), qMax(msz.height(), dummyButton->sizeHint().height() + frameWidth * 2 + 2));
 }
 
 void IconLineEdit::centerIcon()
