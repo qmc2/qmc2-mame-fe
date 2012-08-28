@@ -575,6 +575,7 @@ void Options::apply()
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   QSize iconSizeMiddle = iconSize + QSize(2, 2);
   QSize iconSizeLarge = iconSize + QSize(4, 4);
+  ((IconLineEdit *)qmc2MainWindow->comboBoxSearch->lineEdit())->setIconSize(iconSizeMiddle);
   ((IconLineEdit *)qmc2MainWindow->comboBoxToolbarSearch->lineEdit())->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSizeMiddle);

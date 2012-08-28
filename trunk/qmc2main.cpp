@@ -1328,6 +1328,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
   // other actions
+  comboBoxSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxSearch));
   connect(actionViewFullDetail, SIGNAL(triggered()), this, SLOT(viewFullDetail()));
   connect(actionViewParentClones, SIGNAL(triggered()), this, SLOT(viewParentClones()));
   connect(actionViewByCategory, SIGNAL(triggered()), this, SLOT(viewByCategory()));
@@ -1339,7 +1340,6 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&updateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetGamelist_itemSelectionChanged_delayed()));
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = false;
-
   comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
 
   // restore toolbar state
