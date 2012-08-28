@@ -106,7 +106,7 @@ void ToolBarCustomizer::refreshActiveActions()
 		} else if ( actionName == "widgetActionToolbarSearch" ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
 			item->setText(tr("Tool-bar search box"));
-			item->setIcon(QIcon(QString::fromUtf8(":/data/img/hint.png")));
+			item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
 			activeToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
 		} else if ( availableActionsByName.contains(actionName) ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
