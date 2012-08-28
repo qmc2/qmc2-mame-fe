@@ -11,6 +11,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "fileeditwidget.h"
+#include "iconlineedit.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -158,6 +159,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	toolButtonChooserFilter->setVisible(false);
 #else
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
+	comboBoxChooserFilterPattern->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxChooserFilterPattern));
 	comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
 	comboBoxChooserFilterPatternHadFocus = false;
 #endif
