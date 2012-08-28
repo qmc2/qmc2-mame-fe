@@ -78,7 +78,7 @@ void ToolBarCustomizer::refreshAvailableActions()
 	}
 	QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 	item->setText(tr("Tool-bar search box"));
-	item->setIcon(QIcon(QString::fromUtf8(":/data/img/hint.png")));
+	item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
 	availableToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
 	availableActionsByName[qmc2MainWindow->widgetActionToolbarSearch->objectName()] = qmc2MainWindow->widgetActionToolbarSearch;
 	QTimer::singleShot(0, this, SLOT(refreshActiveActions()));
