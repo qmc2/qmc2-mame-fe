@@ -56,6 +56,7 @@
 #include "demomode.h"
 #include "softwarelist.h"
 #include "toolbarcustomizer.h"
+#include "iconlineedit.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -431,6 +432,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   // toolbar's search combo-box
   comboBoxToolbarSearch = new QComboBox(this);
+  comboBoxToolbarSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxToolbarSearch));
   comboBoxToolbarSearch->setEditable(true);
   comboBoxToolbarSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

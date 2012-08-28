@@ -1305,8 +1305,16 @@ void EmulatorOptions::keyPressEvent(QKeyEvent *e)
   }
 
   if ( !e->text().isEmpty() ) {
-    if ( !lineEditSearch )
-      lineEditSearch = new QLineEdit(this);
+    if ( !lineEditSearch ) {
+      lineEditSearch = new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, this);
+      lineEditSearch->setPlaceholderText(tr("Enter search string"));
+    }
+
+    lineEditSearch->move(4, 4);
+    if ( verticalScrollBar()->isVisible() )
+	    lineEditSearch->resize(width() - verticalScrollBar()->width() - 8, lineEditSearch->height());
+    else
+	    lineEditSearch->resize(width() - 8, lineEditSearch->height());
     lineEditSearch->show();
     lineEditSearch->raise();
     lineEditSearch->event(e);

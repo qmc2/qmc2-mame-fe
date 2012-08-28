@@ -265,7 +265,7 @@
 #define QMC2_SORTCRITERIA_VERSION		10
 
 // search window timeout in milliseconds
-#define QMC2_SEARCH_TIMEOUT			2000
+#define QMC2_SEARCH_TIMEOUT			2500
 
 // buffer size for reading zip-files
 #define QMC2_ZIP_BUFFER_SIZE			QMC2_32K
@@ -731,5 +731,10 @@
 
 // image checker work-unit-mutex-lock-timeout
 #define QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT	10
+
+// alignment constants (i.e. for icon alignment in the IconLineEdit)
+#define QMC2_ALIGN_LEFT				0
+#define QMC2_ALIGN_MIDDLE			1
+#define QMC2_ALIGN_RIGHT			2
 
 #endif
