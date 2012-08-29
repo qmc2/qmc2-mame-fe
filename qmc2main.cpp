@@ -240,6 +240,7 @@ QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 QMap<QString, QString> qmc2CustomShortcutMap;
 QMap<QString, QString> qmc2JoystickFunctionMap;
 QMap<QString, QByteArray *> qmc2GameInfoDB;
+QList<QWidget *> qmc2ActiveViews;
 QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
 int qmc2SortCriteria = QMC2_SORT_BY_DESCRIPTION;
@@ -425,6 +426,12 @@ MainWindow::MainWindow(QWidget *parent)
   setupStyle(myStyle);
 
   setupUi(this);
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  qmc2ActiveViews << treeWidgetGamelist << treeWidgetHierarchy << treeWidgetCategoryView << treeWidgetVersionView;
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2ActiveViews << treeWidgetGamelist << treeWidgetHierarchy << treeWidgetCategoryView;
+#endif
 
   // enable menu tear-off
   foreach (QMenu *menu, menuBar()->findChildren<QMenu *>())
@@ -3303,6 +3310,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
   switch ( currentIndex ) {
     case QMC2_GAMELIST_INDEX:
+      actionToggleTagCursorDown->setVisible(true);
+      actionToggleTagCursorUp->setVisible(true);
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
@@ -3337,6 +3346,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
 
     case QMC2_SEARCH_INDEX:
+      actionToggleTagCursorDown->setVisible(false);
+      actionToggleTagCursorUp->setVisible(false);
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
@@ -3357,6 +3368,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
 
     case QMC2_FAVORITES_INDEX:
+      actionToggleTagCursorDown->setVisible(false);
+      actionToggleTagCursorUp->setVisible(false);
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
@@ -3374,6 +3387,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
 
     case QMC2_PLAYED_INDEX:
+      actionToggleTagCursorDown->setVisible(false);
+      actionToggleTagCursorUp->setVisible(false);
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
@@ -3392,6 +3407,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
     case QMC2_EMBED_INDEX: {
+        actionToggleTagCursorDown->setVisible(false);
+        actionToggleTagCursorUp->setVisible(false);
         if ( toolButtonEmbedderMaximizeToggle->isChecked() ) {
           menuBar()->hide();
           statusBar()->hide();
@@ -9847,6 +9864,88 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 	}
 }
 
+void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTagCursorDown_triggered(bool)");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	QWidget *focusWidget = qApp->focusWidget();
+	if ( qmc2ActiveViews.contains(focusWidget) ) {
+		bool doToggle = true;
+		if ( focusWidget == treeWidgetGamelist ) {
+			QTreeWidgetItem *item = treeWidgetGamelist->selectedItems()[0];
+			while ( item->parent() ) item = item->parent();
+			qmc2CurrentItem = item;
+		} else if ( focusWidget == treeWidgetCategoryView ) {
+			QTreeWidgetItem *item = treeWidgetCategoryView->selectedItems()[0];
+			if ( !item->parent() )
+				doToggle = false;
+		}
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		else if ( focusWidget == treeWidgetVersionView ) {
+			QTreeWidgetItem *item = treeWidgetVersionView->selectedItems()[0];
+			if ( !item->parent() )
+				doToggle = false;
+		}
+#endif
+		if ( doToggle ) {
+			on_actionToggleTag_triggered();
+			qApp->processEvents();
+		}
+
+		QKeyEvent *pressEv = new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
+		QKeyEvent *releaseEv = new QKeyEvent(QEvent::KeyRelease, Qt::Key_Down, Qt::NoModifier);
+		qApp->postEvent(focusWidget, pressEv);
+		qApp->postEvent(focusWidget, releaseEv);
+		qApp->processEvents();
+	}
+}
+
+void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTagCursorUp_triggered(bool)");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	QWidget *focusWidget = qApp->focusWidget();
+	if ( qmc2ActiveViews.contains(focusWidget) ) {
+		bool doToggle = true;
+		if ( focusWidget == treeWidgetGamelist ) {
+			QTreeWidgetItem *item = treeWidgetGamelist->selectedItems()[0];
+			while ( item->parent() ) item = item->parent();
+			qmc2CurrentItem = item;
+		} else if ( focusWidget == treeWidgetCategoryView ) {
+			QTreeWidgetItem *item = treeWidgetCategoryView->selectedItems()[0];
+			if ( !item->parent() )
+				doToggle = false;
+		}
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		else if ( focusWidget == treeWidgetVersionView ) {
+			QTreeWidgetItem *item = treeWidgetVersionView->selectedItems()[0];
+			if ( !item->parent() )
+				doToggle = false;
+		}
+#endif
+		if ( doToggle ) {
+			on_actionToggleTag_triggered();
+			qApp->processEvents();
+		}
+
+		QKeyEvent *pressEv = new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
+		QKeyEvent *releaseEv = new QKeyEvent(QEvent::KeyRelease, Qt::Key_Up, Qt::NoModifier);
+		qApp->postEvent(focusWidget, pressEv);
+		qApp->postEvent(focusWidget, releaseEv);
+		qApp->processEvents();
+	}
+}
+
 void MainWindow::on_actionTagAll_triggered(bool)
 {
 #ifdef QMC2_DEBUG
@@ -10479,6 +10578,8 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Shift+T"].second = qmc2MainWindow->actionSetTag;
   qmc2ShortcutMap["Ctrl+Shift+U"].second = qmc2MainWindow->actionUnsetTag;
   qmc2ShortcutMap["Ctrl+Shift+G"].second = qmc2MainWindow->actionToggleTag;
+  qmc2ShortcutMap["Shift+Down"].second = qmc2MainWindow->actionToggleTagCursorDown;
+  qmc2ShortcutMap["Shift+Up"].second = qmc2MainWindow->actionToggleTagCursorUp;
   qmc2ShortcutMap["Ctrl+Shift+L"].second = qmc2MainWindow->actionTagAll;
   qmc2ShortcutMap["Ctrl+Shift+N"].second = qmc2MainWindow->actionUntagAll;
   qmc2ShortcutMap["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
