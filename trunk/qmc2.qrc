@@ -85,7 +85,9 @@
         <file>data/img/internet.png</file>
         <file>data/img/invert_tag.png</file>
         <file>data/img/invert_tag_all.png</file>
+        <file>data/img/invert_tag_down.png</file>
         <file>data/img/invert_tag_visible.png</file>
+        <file>data/img/invert_tag_up.png</file>
         <file>data/img/joystick.png</file>
         <file>data/img/keyboard.png</file>
         <file>data/img/kill.png</file>

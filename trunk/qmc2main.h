@@ -197,6 +197,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionSetTag_triggered(bool checked = false);
     void on_actionUnsetTag_triggered(bool checked = false);
     void on_actionToggleTag_triggered(bool checked = false);
+    void on_actionToggleTagCursorDown_triggered(bool checked = false);
+    void on_actionToggleTagCursorUp_triggered(bool checked = false);
     void on_actionTagAll_triggered(bool checked = false);
     void on_actionUntagAll_triggered(bool checked = false);
     void on_actionInvertTags_triggered(bool checked = false);

@@ -407,6 +407,8 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+U"] = QPair<QString, QAction *>(tr("Untag current set"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+G"] = QPair<QString, QAction *>(tr("Toggle tag mark"), NULL);
+  qmc2ShortcutMap["Shift+Down"] = QPair<QString, QAction *>(tr("Toggle tag / cursor down"), NULL);
+  qmc2ShortcutMap["Shift+Up"] = QPair<QString, QAction *>(tr("Toggle tag / cursor up"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);

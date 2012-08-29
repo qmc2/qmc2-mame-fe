@@ -2402,6 +2402,9 @@
      <addaction name="actionUnsetTag"/>
      <addaction name="actionToggleTag"/>
      <addaction name="separator"/>
+     <addaction name="actionToggleTagCursorDown"/>
+     <addaction name="actionToggleTagCursorUp"/>
+     <addaction name="separator"/>
      <addaction name="actionTagAll"/>
      <addaction name="actionUntagAll"/>
      <addaction name="actionInvertTags"/>
@@ -2750,7 +2753,7 @@
     <string>Add current game to favorites</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+F</string>
+    <string>Ctrl+V</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3583,7 +3586,7 @@
     <string>Add all tagged games to favorites</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+F</string>
+    <string>Ctrl+Shift+V</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3694,6 +3697,48 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
+  <action name="actionToggleTagCursorDown">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/invert_tag_down.png</normaloff>:/data/img/invert_tag_down.png</iconset>
+   </property>
+   <property name="text">
+	   <string>Toggle tag / cursor down</string>
+   </property>
+   <property name="toolTip">
+	   <string>Toggle tag mark / move cursor one item down</string>
+   </property>
+   <property name="statusTip">
+	   <string>Toggle tag mark / move cursor one item down</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Down</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionToggleTagCursorUp">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/invert_tag_up.png</normaloff>:/data/img/invert_tag_up.png</iconset>
+   </property>
+   <property name="text">
+	   <string>Toggle tag / cursor up</string>
+   </property>
+   <property name="toolTip">
+	   <string>Toggle tag mark / move cursor one item up</string>
+   </property>
+   <property name="statusTip">
+	   <string>Toggle tag mark / move cursor one item up</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Up</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
   <action name="actionTagAll">
    <property name="icon">
     <iconset resource="qmc2.qrc">
@@ -3772,7 +3817,7 @@
     <string>Set tag mark for all visible sets</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+V</string>
+    <string>Ctrl+Shift+X</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3793,7 +3838,7 @@
     <string>Unset all tag marks of visible sets</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+W</string>
+    <string>Ctrl+Shift+Y</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3814,7 +3859,7 @@
     <string>Invert all tag marks of visible sets</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+X</string>
+    <string>Ctrl+Shift+Z</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
