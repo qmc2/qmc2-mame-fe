@@ -10441,8 +10441,8 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
   qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
   qmc2ShortcutMap["Ctrl+E"].second = qmc2MainWindow->actionExportROMStatus;
-  qmc2ShortcutMap["Ctrl+F"].second = qmc2MainWindow->actionToFavorites;
-  qmc2ShortcutMap["Ctrl+Shift+F"].second = qmc2MainWindow->actionToFavoritesTagged;
+  qmc2ShortcutMap["Ctrl+V"].second = qmc2MainWindow->actionToFavorites;
+  qmc2ShortcutMap["Ctrl+Shift+V"].second = qmc2MainWindow->actionToFavoritesTagged;
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
 #if defined(QMC2_WIP_ENABLED)
@@ -10482,9 +10482,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Shift+L"].second = qmc2MainWindow->actionTagAll;
   qmc2ShortcutMap["Ctrl+Shift+N"].second = qmc2MainWindow->actionUntagAll;
   qmc2ShortcutMap["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
-  qmc2ShortcutMap["Ctrl+Shift+V"].second = qmc2MainWindow->actionTagVisible;
-  qmc2ShortcutMap["Ctrl+Shift+W"].second = qmc2MainWindow->actionUntagVisible;
-  qmc2ShortcutMap["Ctrl+Shift+X"].second = qmc2MainWindow->actionInvertVisibleTags;
+  qmc2ShortcutMap["Ctrl+Shift+X"].second = qmc2MainWindow->actionTagVisible;
+  qmc2ShortcutMap["Ctrl+Shift+Y"].second = qmc2MainWindow->actionUntagVisible;
+  qmc2ShortcutMap["Ctrl+Shift+Z"].second = qmc2MainWindow->actionInvertVisibleTags;
   qmc2ShortcutMap["F5"].second = qmc2MainWindow->actionViewFullDetail;
   qmc2ShortcutMap["F6"].second = qmc2MainWindow->actionViewParentClones;
   qmc2ShortcutMap["F7"].second = qmc2MainWindow->actionViewByCategory;
