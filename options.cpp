@@ -351,11 +351,11 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
   qmc2ShortcutMap["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+V"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+V"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
 #endif
-  qmc2ShortcutMap["Ctrl+Shift+F"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+V"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
   qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
   qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
 #if defined(QMC2_WIP_ENABLED)
@@ -410,9 +410,9 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
-  qmc2ShortcutMap["Ctrl+Shift+V"] = QPair<QString, QAction *>(tr("Tag visible sets"), NULL);
-  qmc2ShortcutMap["Ctrl+Shift+W"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
-  qmc2ShortcutMap["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Tag visible sets"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+Y"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
