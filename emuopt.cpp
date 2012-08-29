@@ -1318,31 +1318,28 @@ void EmulatorOptions::keyPressEvent(QKeyEvent *e)
     lineEditSearch->show();
     lineEditSearch->raise();
     lineEditSearch->event(e);
+    qApp->processEvents();
     searchTimer.start(QMC2_SEARCH_TIMEOUT);
     clearSelection();
     if ( !lineEditSearch->text().isEmpty() ) {
-      int i;
-      bool madeCurrent = false;
-      QList<QTreeWidgetItem *> foundItems = findItems(lineEditSearch->text(), Qt::MatchRecursive | Qt::MatchContains, 0);
-      for (i = 0; i < foundItems.count(); i++) {
-        QTreeWidgetItem *p = foundItems[i];
-        if ( p->parent() ) {
-          if ( !p->parent()->parent() ) {
-            p->setSelected(true);
-            p->parent()->setSelected(true);
-            if ( !madeCurrent ) {
-              scrollToItem(p);
-              setCurrentItem(p);
-              madeCurrent = true;
-            }
-          }
-        }
-      }
+	    bool madeCurrent = false;
+	    foreach (QTreeWidgetItem *item, findItems(lineEditSearch->text(), Qt::MatchRecursive | Qt::MatchContains, QMC2_EMUOPT_COLUMN_OPTION)) {
+		    if ( item->parent() ) {
+			    if ( item->parent()->parent() )
+				    continue;
+			    item->parent()->setSelected(true);
+		    }
+		    item->setSelected(true);
+		    if ( !madeCurrent && item->parent() ) {
+			    scrollToItem(item);
+			    setCurrentItem(item);
+			    madeCurrent = true;
+		    }
+	    }
     }
     e->accept();
-  } else {
+  } else
     QAbstractItemView::keyPressEvent(e);
-  }
 }
 
 void EmulatorOptions::searchTimeout()
