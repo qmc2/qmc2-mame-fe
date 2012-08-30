@@ -2471,7 +2471,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1310"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre o texto de busca</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1396"/>
@@ -9293,34 +9293,34 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="3706"/>
         <source>Toggle tag / cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / abaixar cursor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3709"/>
         <location filename="../../qmc2main.ui" line="3712"/>
         <source>Toggle tag mark / move cursor one item down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar marca da etiqueta / mover cursor um item para baixo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3715"/>
         <source>Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Baixo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3727"/>
         <source>Toggle tag / cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / subir cursor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3730"/>
         <location filename="../../qmc2main.ui" line="3733"/>
         <source>Toggle tag mark / move cursor one item up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar marca da etiqueta / mover cursor um item para cima</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3736"/>
         <source>Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Cima</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3748"/>
@@ -9416,12 +9416,12 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="3841"/>
         <source>Ctrl+Shift+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3862"/>
         <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3874"/>
@@ -9442,7 +9442,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2756"/>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3376"/>
@@ -10498,12 +10498,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="410"/>
         <source>Toggle tag / cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / abaixar cursor</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="411"/>
         <source>Toggle tag / cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / subir cursor</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="412"/>

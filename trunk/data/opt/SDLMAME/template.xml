@@ -1731,44 +1731,53 @@
   <section ignore.Darwin="true" name="sdl_lightgun_mapping">
     <description lang="us" text="SDL lightgun mapping"/>
     <description lang="de" text="SDL Lichtpistolen-Zuweisungen"/>
+    <description lang="pt" text="Mapeamento da lightgun do SDL"/>
     <option default="auto" ignore.Darwin="true" name="lightgun_index1" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #1"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #1 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #1"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index2" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #2"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #2 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #2"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index3" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #3"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #3 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #3"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index4" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #4"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #4 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #4"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index5" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #5"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #5 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #5"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index6" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #6"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #6 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #6"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index7" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #7"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #7 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #7"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index8" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #8"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #8 zugewiesen ist"/>
+      <description lang="pt" text="Nome da lightgun mapeada para a lightgun #8"/>
       <choice name="auto"/>
     </option>
   </section>
