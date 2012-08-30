@@ -298,6 +298,12 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_toggleArchive()));
 	actionChooserToggleArchive = action;
 #endif
+	fileChooserContextMenu->addSeparator();
+	action = fileChooserContextMenu->addAction(tr("Open e&xternally..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_openFileExternally()));
+	actionChooserOpenExternally = action;
 
 	if ( messDevIconMap.isEmpty() ) {
 		messDevIconMap["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
@@ -2000,6 +2006,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 			actionChooserToggleArchive->setVisible(true);
 		} else
 			actionChooserToggleArchive->setVisible(false);
+		actionChooserOpenExternally->setVisible(!fileModel->isZipContent(modelIndexFileModel));
 		fileChooserContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeViewFileChooser->viewport()->mapToGlobal(p), fileChooserContextMenu));
 		fileChooserContextMenu->show();
 	}
@@ -2050,6 +2057,18 @@ void MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()
 			fileModel->openZip(index);
 		}
 	}
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_openFileExternally()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_openFileExternally()");
+#endif
+
+	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
+
+	if ( selected.count() > 0 )
+		QDesktopServices::openUrl(QUrl::fromUserInput(fileModel->fileName(selected[0])));
 }
 
 void MESSDeviceConfigurator::treeViewFileChooser_expandRequested()
