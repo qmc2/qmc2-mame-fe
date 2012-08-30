@@ -619,6 +619,15 @@ class FileSystemModel : public QAbstractItemModel
 			}
 		}
 
+		QString fileName(const QModelIndex &index)
+		{
+			FileSystemItem *item = getItem(index);
+			if ( item )
+				return item->absoluteDirPath() + QDir::toNativeSeparators("/") + item->fileName();
+			else
+				return QString();
+		}
+
 		bool isZip(const QModelIndex &index)
 		{
 			FileSystemItem *item = getItem(index);
@@ -627,6 +636,18 @@ class FileSystemModel : public QAbstractItemModel
 					return false;
 				else
 					return item->isArchive();
+			} else
+				return false;
+		}
+
+		bool isZipContent(const QModelIndex &index)
+		{
+			FileSystemItem *item = getItem(index);
+			if ( item->itemParent() ) {
+				if ( item->itemParent()->isArchive() )
+					return true;
+				else
+					return false;
 			} else
 				return false;
 		}

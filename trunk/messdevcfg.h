@@ -85,6 +85,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 #else
 		QFileSystemModel *fileModel;
 #endif
+		QAction *actionChooserOpenExternally;
 		DirectoryModel *dirModel;
 		QModelIndex modelIndexFileModel;
 		QModelIndex modelIndexDirModel;
@@ -160,6 +161,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void treeViewFileChooser_toggleArchive();
 		void treeViewFileChooser_expandRequested();
 #endif
+		void treeViewFileChooser_openFileExternally();
 		void slotOptionChanged(int);
 
 		// misc
