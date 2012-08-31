@@ -3909,6 +3909,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 #endif
 
+  if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_SYSTEM_NOTES_INDEX )
+	  if ( qmc2SystemNotesEditor)
+		  qmc2SystemNotesEditor->hideTearOffMenus();
+
   QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
   qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), tr("Default")).toString() == tr("Default");
 
