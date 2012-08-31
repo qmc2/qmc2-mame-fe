@@ -571,6 +571,13 @@ class FileSystemModel : public QAbstractItemModel
 				return false;
 		}
 
+		void sortOpenZip(const QModelIndex &index, int column, Qt::SortOrder order = Qt::AscendingOrder)
+		{
+			FileSystemItem *fileItem = getItem(index);
+			if ( fileItem )
+				fileItem->sort(order, column);
+		}
+
 		void openZip(const QModelIndex &index)
 		{
 			if ( !index.isValid() )
