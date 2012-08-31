@@ -10523,7 +10523,7 @@ void myQtMessageHandler(QtMsgType type, const char *msg)
   if ( qmc2GuiReady )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
   else {
-    printf("%s\n", (const char *)msgString.toLocal8Bit());
+    printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)msgString.toLocal8Bit());
     fflush(stdout);
   }
 }
