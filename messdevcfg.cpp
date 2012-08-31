@@ -2024,6 +2024,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 		} else {
 			treeViewFileChooser->setExpanded(index, true);
 			fileModel->openZip(index);
+			fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 		}
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
@@ -2055,6 +2056,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()
 		} else {
 			treeViewFileChooser->setExpanded(index, true);
 			fileModel->openZip(index);
+			fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 		}
 	}
 }
@@ -2085,6 +2087,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_expandRequested()
 			if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
 				treeViewFileChooser->setExpanded(index, true);
 				fileModel->openZip(index);
+				fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 			}
 		}
 	}
