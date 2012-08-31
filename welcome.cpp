@@ -329,6 +329,33 @@ bool Welcome::checkConfig()
 			   startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7", "F7");
 	  }
 #endif
+	  if ( oldMinor < 37 || (oldSvnRevision < 4160 && oldSvnRevision > 0) ) {
+		  // rename HtmlEditor/* keys
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom") ) {
+			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom", 100).toInt());
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom");
+		  }
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/WidgetState") ) {
+			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/WidgetState");
+		  }
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/Zoom") ) {
+			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/Zoom", 100).toInt());
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/Zoom");
+		  }
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/WidgetState") ) {
+			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "HtmlEditor/WidgetState");
+		  }
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/Zoom") ) {
+			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/Zoom", 100).toInt());
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/Zoom");
+		  }
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState") ) {
+			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState");
+		  }
+	  }
   }
 
   configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

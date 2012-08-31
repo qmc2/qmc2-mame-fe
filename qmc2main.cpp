@@ -3572,7 +3572,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				if ( !qmc2SoftwareNotesEditor ) {
 					QVBoxLayout *layout = new QVBoxLayout;
 					layout->setContentsMargins(left, top, right, bottom);
-					qmc2SoftwareNotesEditor = new HtmlEditor(tabNotes);
+					qmc2SoftwareNotesEditor = new HtmlEditor("SoftwareNotes", tabNotes);
 					layout->addWidget(qmc2SoftwareNotesEditor);
 					tabNotes->setLayout(layout);
 				} else
@@ -4376,7 +4376,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      tabWidgetGameDetail->setUpdatesEnabled(false);
 		      int tabIndex = tabWidgetGameDetail->indexOf(tabSystemNotes);
 		      tabWidgetGameDetail->removeTab(tabIndex);
-		      qmc2SystemNotesEditor = new HtmlEditor(tabSystemNotes);
+		      qmc2SystemNotesEditor = new HtmlEditor("SystemNotes", tabSystemNotes);
 		      QLayout *layout = tabSystemNotes->layout();
 		      if ( layout )
 			      delete layout;

@@ -46,8 +46,9 @@ class HtmlEditor : public QMainWindow
 
 public:
     QMap<QString, QString> templateMap;
+    QString myEditorName;
 
-    HtmlEditor(QWidget *parent = 0);
+    HtmlEditor(QString, QWidget *parent = 0);
     ~HtmlEditor();
 
     static QUrl guessUrlFromString(const QString &string);
