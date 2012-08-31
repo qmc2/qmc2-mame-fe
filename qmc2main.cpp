@@ -6006,6 +6006,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2SystemNotesEditor->save();
     qmc2SystemNotesEditor->close();
     delete qmc2SystemNotesEditor;
+    qmc2SystemNotesEditor = NULL;
   }
 
 #if defined(QMC2_EMUTYPE_MAME)
