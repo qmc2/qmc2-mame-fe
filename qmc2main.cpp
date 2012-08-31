@@ -4373,10 +4373,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      int tabIndex = tabWidgetGameDetail->indexOf(tabSystemNotes);
 		      tabWidgetGameDetail->removeTab(tabIndex);
 		      qmc2SystemNotesEditor = new HtmlEditor(tabSystemNotes);
-		      QVBoxLayout *layout = new QVBoxLayout;
-		      layout->setContentsMargins(left, top, right, bottom);
-		      layout->addWidget(qmc2SystemNotesEditor);
-		      tabSystemNotes->setLayout(layout);
+		      QLayout *layout = tabSystemNotes->layout();
+		      if ( layout )
+			      delete layout;
 		      tabWidgetGameDetail->insertTab(tabIndex, tabSystemNotes, QIcon(QString::fromUtf8(":/data/img/notes.png")), tr("&Notes"));
 		      tabWidgetGameDetail->setCurrentIndex(tabIndex);
 		      tabWidgetGameDetail->setUpdatesEnabled(true);
