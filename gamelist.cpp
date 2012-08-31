@@ -36,6 +36,7 @@
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
 #endif
+#include "htmleditor/htmleditor.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -109,6 +110,7 @@ extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
 extern QMap<QString, int> qmc2XmlGamePositionMap;
+extern HtmlEditor *qmc2SystemNotesEditor;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;
@@ -253,6 +255,8 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareNotesFolder->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareNotesTemplate->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSystemNotesFolder->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSystemNotesTemplate->setEnabled(enable);
   qmc2Options->toolButtonShowC->setEnabled(enable);
   qmc2Options->toolButtonShowM->setEnabled(enable);
   qmc2Options->toolButtonShowI->setEnabled(enable);
@@ -356,6 +360,15 @@ void Gamelist::load()
   messSystemSlotMap.clear();
   messSlotNameMap.clear();
 #endif
+  if ( qmc2SystemNotesEditor ) {
+	  qmc2SystemNotesEditor->save();
+	  QLayout *vbl = qmc2MainWindow->tabSystemNotes->layout();
+	  if ( vbl ) delete vbl;
+	  qmc2SystemNotesEditor->close();
+	  qmc2SystemNotesEditor->hide();
+	  delete qmc2SystemNotesEditor;
+	  qmc2SystemNotesEditor = NULL;
+  }
   if ( qmc2SoftwareList ) {
     if ( qmc2SoftwareList->isLoading ) {
       qmc2SoftwareList->interruptLoad = true;

@@ -16,6 +16,8 @@ FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
 FilesAndDirectories\SoftwareSnapDirectory=DATADIR/qmc2/sws/
 FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
 FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
+FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
+FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
 
 [MESS]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMESS/template.xml
@@ -30,6 +32,8 @@ FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
 FilesAndDirectories\SoftwareSnapDirectory=DATADIR/qmc2/sws/
 FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
 FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
+FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
+FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
 
 [UME]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLUME/template.xml
@@ -44,3 +48,5 @@ FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
 FilesAndDirectories\SoftwareSnapDirectory=DATADIR/qmc2/sws/
 FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
 FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
+FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
+FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html

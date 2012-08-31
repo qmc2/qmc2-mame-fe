@@ -56,7 +56,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	ui->setupUi(this);
 
 	// this 'trick' allows a nested QMainWindow :)
-	setWindowFlags(Qt::SubWindow | Qt::CustomizeWindowHint);
+	setWindowFlags(Qt::Widget);
 
 	// enable menu tear-off
 	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
@@ -93,6 +93,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 #else
 	ui->webView->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
 #endif
+	ui->webView->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, false);
 
 	// popup the 'insert image' menu when the tool-bar button is pressed
 	QToolButton *tb = (QToolButton *)ui->formatToolBar->widgetForAction(ui->menuInsertImage->menuAction());
@@ -673,7 +674,8 @@ void HtmlEditor::changeZoom(int percent)
 {
 	ui->actionZoomOut->setEnabled(percent > 25);
 	ui->actionZoomIn->setEnabled(percent < 400);
-	qreal factor = static_cast<qreal>(percent) / 100;
+	//qreal factor = static_cast<qreal>(percent) / 100;
+	double factor = (double)percent / 100.0;
 	ui->webView->setZoomFactor(factor);
 	zoomLabel->setText(tr("Zoom: %1%").arg(percent));
 	zoomSlider->setValue(percent);

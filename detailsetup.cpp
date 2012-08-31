@@ -60,6 +60,9 @@ DetailSetup::DetailSetup(QWidget *parent)
 	longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
 	iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
 #endif
+	shortTitleMap[QMC2_SYSTEM_NOTES_INDEX] = tr("&Notes");
+	longTitleMap[QMC2_SYSTEM_NOTES_INDEX] = tr("System notes");
+	iconMap[QMC2_SYSTEM_NOTES_INDEX] = QIcon(QString::fromUtf8(":/data/img/notes.png"));
 	availableDetailList << QMC2_PREVIEW_INDEX
 			<< QMC2_FLYER_INDEX
 			<< QMC2_GAMEINFO_INDEX
@@ -73,7 +76,10 @@ DetailSetup::DetailSetup(QWidget *parent)
 			<< QMC2_PCB_INDEX
 			<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
-	availableDetailList << QMC2_YOUTUBE_INDEX;
+	availableDetailList << QMC2_YOUTUBE_INDEX
+			<< QMC2_SYSTEM_NOTES_INDEX;
+#else
+	availableDetailList << QMC2_SYSTEM_NOTES_INDEX;
 #endif
 	tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
 	tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
@@ -90,6 +96,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 #if QMC2_YOUTUBE_ENABLED
 	tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 #endif
+	tabWidgetsMap[QMC2_SYSTEM_NOTES_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX);
 	configurableDetailList << QMC2_MAWS_INDEX;
 #if QMC2_YOUTUBE_ENABLED
 	configurableDetailList << QMC2_YOUTUBE_INDEX;
@@ -134,6 +141,9 @@ DetailSetup::DetailSetup(QWidget *parent)
 	longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
 	iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
 #endif
+	shortTitleMap[QMC2_SYSTEM_NOTES_INDEX] = tr("&Notes");
+	longTitleMap[QMC2_SYSTEM_NOTES_INDEX] = tr("System notes");
+	iconMap[QMC2_SYSTEM_NOTES_INDEX] = QIcon(QString::fromUtf8(":/data/img/notes.png"));
 	availableDetailList << QMC2_PREVIEW_INDEX
 			<< QMC2_FLYER_INDEX
 			<< QMC2_MACHINEINFO_INDEX
@@ -146,7 +156,10 @@ DetailSetup::DetailSetup(QWidget *parent)
 			<< QMC2_MARQUEE_INDEX
 			<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
-	availableDetailList << QMC2_YOUTUBE_INDEX;
+	availableDetailList << QMC2_YOUTUBE_INDEX
+			<< QMC2_SYSTEM_NOTES_INDEX;
+#else
+	availableDetailList << QMC2_SYSTEM_NOTES_INDEX;
 #endif
 	tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
 	tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
@@ -163,6 +176,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 	tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 	configurableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
+	tabWidgetsMap[QMC2_SYSTEM_NOTES_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX);
 
 #elif defined(QMC2_EMUTYPE_UME)
 	shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
@@ -209,6 +223,9 @@ DetailSetup::DetailSetup(QWidget *parent)
 	longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
 	iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
 #endif
+	shortTitleMap[QMC2_SYSTEM_NOTES_INDEX] = tr("&Notes");
+	longTitleMap[QMC2_SYSTEM_NOTES_INDEX] = tr("System notes");
+	iconMap[QMC2_SYSTEM_NOTES_INDEX] = QIcon(QString::fromUtf8(":/data/img/notes.png"));
 	availableDetailList << QMC2_PREVIEW_INDEX
 			<< QMC2_FLYER_INDEX
 			<< QMC2_GAMEINFO_INDEX
@@ -223,7 +240,10 @@ DetailSetup::DetailSetup(QWidget *parent)
 			<< QMC2_PCB_INDEX
 			<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
-	availableDetailList << QMC2_YOUTUBE_INDEX;
+	availableDetailList << QMC2_YOUTUBE_INDEX
+			<< QMC2_SYSTEM_NOTES_INDEX;
+#else
+	availableDetailList << QMC2_SYSTEM_NOTES_INDEX;
 #endif
 	tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
 	tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
@@ -242,6 +262,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 	tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 	configurableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
+	tabWidgetsMap[QMC2_SYSTEM_NOTES_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SYSTEM_NOTES_INDEX);
 
 #endif
 
@@ -291,6 +312,7 @@ void DetailSetup::loadDetail()
 #if QMC2_YOUTUBE_ENABLED
 		activeDetailList << QMC2_YOUTUBE_INDEX;
 #endif
+		activeDetailList << QMC2_SYSTEM_NOTES_INDEX;
 #elif defined(QMC2_EMUTYPE_MESS)
 		activeDetailList << QMC2_PREVIEW_INDEX
 				<< QMC2_FLYER_INDEX
@@ -299,11 +321,14 @@ void DetailSetup::loadDetail()
 				<< QMC2_CONFIG_INDEX
 				<< QMC2_DEVICE_INDEX
 				<< QMC2_PROJECTMESS_INDEX
+				<< QMC2_CABINET_INDEX
+				<< QMC2_LOGO_INDEX
 				<< QMC2_PCB_INDEX
 				<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
 		activeDetailList << QMC2_YOUTUBE_INDEX;
 #endif
+		activeDetailList << QMC2_SYSTEM_NOTES_INDEX;
 #elif defined(QMC2_EMUTYPE_UME)
 		activeDetailList << QMC2_PREVIEW_INDEX
 				<< QMC2_FLYER_INDEX
@@ -321,6 +346,7 @@ void DetailSetup::loadDetail()
 #if QMC2_YOUTUBE_ENABLED
 		activeDetailList << QMC2_YOUTUBE_INDEX;
 #endif
+		activeDetailList << QMC2_SYSTEM_NOTES_INDEX;
 #endif
 	} else {
 		QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails").toStringList();

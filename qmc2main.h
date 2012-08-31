@@ -469,6 +469,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void recreateFifo();
     void processFifoData();
     void on_hSplitter_splitterMoved(int, int);
+    void on_vSplitter_splitterMoved(int, int);
     void on_comboBoxViewSelect_currentIndexChanged(int);
     void processEvents() { qApp->processEvents(); }
     void treeWidgetGamelist_headerSectionClicked(int);
