@@ -137,6 +137,8 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseSoftwareSnapFile_clicked();
     void on_toolButtonBrowseSoftwareNotesFolder_clicked();
     void on_toolButtonBrowseSoftwareNotesTemplate_clicked();
+    void on_toolButtonBrowseSystemNotesFolder_clicked();
+    void on_toolButtonBrowseSystemNotesTemplate_clicked();
     void on_toolButtonBrowseExecutableFile_clicked();
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
     void on_toolButtonBrowseMAMEVariantExe_clicked();

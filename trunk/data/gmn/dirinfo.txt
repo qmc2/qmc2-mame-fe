@@ -1,0 +1,2 @@
+The "gmn" directory is the default place to store personal (rich-text / HTML)
+notes about games/machines.

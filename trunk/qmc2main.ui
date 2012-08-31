@@ -1570,6 +1570,15 @@
              <string>&amp;YouTube</string>
             </attribute>
            </widget>
+           <widget class="QWidget" name="tabSystemNotes">
+            <attribute name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/notes.png</normaloff>:/data/img/notes.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string>&amp;Notes</string>
+            </attribute>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -2234,6 +2243,12 @@
           </property>
           <item row="0" column="0">
            <widget class="QTabWidget" name="tabWidgetSoftwareDetail">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="contextMenuPolicy">
              <enum>Qt::CustomContextMenu</enum>
             </property>
@@ -3703,13 +3718,13 @@
      <normaloff>:/data/img/invert_tag_down.png</normaloff>:/data/img/invert_tag_down.png</iconset>
    </property>
    <property name="text">
-	   <string>Toggle tag / cursor down</string>
+    <string>Toggle tag / cursor down</string>
    </property>
    <property name="toolTip">
-	   <string>Toggle tag mark / move cursor one item down</string>
+    <string>Toggle tag mark / move cursor one item down</string>
    </property>
    <property name="statusTip">
-	   <string>Toggle tag mark / move cursor one item down</string>
+    <string>Toggle tag mark / move cursor one item down</string>
    </property>
    <property name="shortcut">
     <string>Shift+Down</string>
@@ -3724,13 +3739,13 @@
      <normaloff>:/data/img/invert_tag_up.png</normaloff>:/data/img/invert_tag_up.png</iconset>
    </property>
    <property name="text">
-	   <string>Toggle tag / cursor up</string>
+    <string>Toggle tag / cursor up</string>
    </property>
    <property name="toolTip">
-	   <string>Toggle tag mark / move cursor one item up</string>
+    <string>Toggle tag mark / move cursor one item up</string>
    </property>
    <property name="statusTip">
-	   <string>Toggle tag mark / move cursor one item up</string>
+    <string>Toggle tag mark / move cursor one item up</string>
    </property>
    <property name="shortcut">
     <string>Shift+Up</string>

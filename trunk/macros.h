@@ -83,12 +83,18 @@
 #define QMC2_CABINET_INDEX			6
 #define QMC2_CONTROLLER_INDEX			7
 #define QMC2_MARQUEE_INDEX			8
+#define QMC2_LOGO_INDEX				QMC2_MARQUEE_INDEX
 #define QMC2_TITLE_INDEX			9
 #define QMC2_MAWS_INDEX				10
 #define QMC2_PROJECTMESS_INDEX			QMC2_MAWS_INDEX
 #define QMC2_PCB_INDEX				11
 #define QMC2_SOFTWARE_LIST_INDEX		12
+#if defined(QMC2_YOUTUBE_ENABLED)
 #define QMC2_YOUTUBE_INDEX			13
+#define QMC2_SYSTEM_NOTES_INDEX			14
+#else
+#define QMC2_SYSTEM_NOTES_INDEX			13
+#endif
 
 // current format version of the GLC (game list cache)
 #define QMC2_GLC_VERSION			5

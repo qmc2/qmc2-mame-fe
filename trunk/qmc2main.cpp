@@ -214,6 +214,8 @@ QTreeWidgetItem *qmc2LastProjectMESSItem = NULL;
 QCache<QString, QByteArray> qmc2ProjectMESSCache;
 #endif
 QTreeWidgetItem *qmc2LastSoftwareNotesItem = NULL;
+QTreeWidgetItem *qmc2LastSystemNotesItem = NULL;
+HtmlEditor *qmc2SystemNotesEditor = NULL;
 HtmlEditor *qmc2SoftwareNotesEditor = NULL;
 #if defined(QMC2_YOUTUBE_ENABLED)
 YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
@@ -1564,6 +1566,13 @@ void MainWindow::on_actionPlay_triggered(bool)
 #endif
     return;
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  if ( treeWidgetGamelist->selectedItems().isEmpty() && qmc2DemoGame.isEmpty() )
+#else
+  if ( treeWidgetGamelist->selectedItems().isEmpty() )
+#endif
+    return;
+
   QString gameName;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1900,6 +1909,17 @@ void MainWindow::on_actionPlay_triggered(bool)
 #endif
 }
 
+void MainWindow::on_vSplitter_splitterMoved(int pos, int index)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_vSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
+#endif
+
+  if ( qmc2SystemNotesEditor )
+	  if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() )
+		  qmc2SystemNotesEditor->resize(tabSystemNotes->size());
+}
+
 void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 {
 #ifdef QMC2_DEBUG
@@ -1935,6 +1955,10 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
   } else
     if ( labelGameStatus->isVisible() )
       labelGameStatus->setVisible(false);
+
+  if ( qmc2SystemNotesEditor )
+	  if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() )
+		  qmc2SystemNotesEditor->resize(tabSystemNotes->size());
 }
 
 void MainWindow::on_actionToFavorites_triggered(bool)
@@ -4338,6 +4362,59 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
+    case QMC2_SYSTEM_NOTES_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
+      if ( qmc2CurrentItem != qmc2LastSystemNotesItem ) {
+	      if ( !qmc2SystemNotesEditor ) {
+		      tabWidgetGameDetail->setUpdatesEnabled(false);
+		      int tabIndex = tabWidgetGameDetail->indexOf(tabSystemNotes);
+		      tabWidgetGameDetail->removeTab(tabIndex);
+		      qmc2SystemNotesEditor = new HtmlEditor(tabSystemNotes);
+		      QVBoxLayout *layout = new QVBoxLayout;
+		      layout->setContentsMargins(left, top, right, bottom);
+		      layout->addWidget(qmc2SystemNotesEditor);
+		      tabSystemNotes->setLayout(layout);
+		      tabWidgetGameDetail->insertTab(tabIndex, tabSystemNotes, QIcon(QString::fromUtf8(":/data/img/notes.png")), tr("&Notes"));
+		      tabWidgetGameDetail->setCurrentIndex(tabIndex);
+		      tabWidgetGameDetail->setUpdatesEnabled(true);
+		      qmc2SystemNotesEditor->resize(tabSystemNotes->size());
+	      } else
+		      qmc2SystemNotesEditor->save();
+	      QString systemNotesFolder = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesFolder").toString();
+	      QString systemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesTemplate").toString();
+	      bool useSystemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UseSystemNotesTemplate").toBool();
+	      QString fileName = systemNotesFolder + gameName + ".html";
+	      qmc2SystemNotesEditor->setCurrentFileName(fileName);
+	      if ( QFile::exists(fileName) ) {
+		      QTimer::singleShot(25, qmc2SystemNotesEditor, SLOT(loadCurrent()));
+	      } else {
+		      if ( useSystemNotesTemplate ) {
+			      qmc2SystemNotesEditor->templateMap.clear();
+			      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+			      qmc2SystemNotesEditor->templateMap["$ID$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+			      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU);
+			      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR);
+			      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			      qmc2SystemNotesEditor->templateMap["$VERSION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION);
+#endif
+			      qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_PLAYERS);
+			      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
+			      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+			      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
+			      QTimer::singleShot(25, qmc2SystemNotesEditor, SLOT(loadCurrentTemplate()));
+		      } else {
+			      qmc2SystemNotesEditor->fileNew();
+		      }
+	      }
+	      qmc2SystemNotesEditor->setCurrentFileName(fileName);
+	      qmc2LastSystemNotesItem = qmc2CurrentItem;
+      }
+      break;
+
     default:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
@@ -5923,6 +6000,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2SoftwareSnap ) {
     qmc2SoftwareSnap->close();
     delete qmc2SoftwareSnap;
+  }
+
+  if ( qmc2SystemNotesEditor ) {
+    qmc2SystemNotesEditor->save();
+    qmc2SystemNotesEditor->close();
+    delete qmc2SystemNotesEditor;
   }
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -9192,6 +9275,10 @@ void MainWindow::checkActivity()
     }
     isActiveState = false;
   }
+
+  if ( qmc2SystemNotesEditor )
+	  if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() )
+		  qmc2SystemNotesEditor->resize(tabSystemNotes->size());
 }
 
 int MainWindow::sortCriteriaLogicalIndex() {

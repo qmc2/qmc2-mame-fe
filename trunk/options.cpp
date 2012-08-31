@@ -151,6 +151,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern QFont *qmc2StartupDefaultFont;
 extern int qmc2SoftwareSnapPosition;
 extern int qmc2DefaultLaunchMode;
+extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QSplashScreen *qmc2SplashScreen;
 
@@ -631,6 +632,8 @@ void Options::apply()
   toolButtonBrowseSoftwareSnapFile->setIconSize(iconSize);
   toolButtonBrowseSoftwareNotesFolder->setIconSize(iconSize);
   toolButtonBrowseSoftwareNotesTemplate->setIconSize(iconSize);
+  toolButtonBrowseSystemNotesFolder->setIconSize(iconSize);
+  toolButtonBrowseSystemNotesTemplate->setIconSize(iconSize);
   toolButtonShowC->setIconSize(iconSize);
   toolButtonShowM->setIconSize(iconSize);
   toolButtonShowI->setIconSize(iconSize);
@@ -784,6 +787,7 @@ void Options::apply()
     ((IconLineEdit *)qmc2SoftwareList->comboBoxSearch->lineEdit())->setIconSize(iconSizeMiddle);
     if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
     if ( qmc2SoftwareNotesEditor ) qmc2SoftwareNotesEditor->adjustIconSizes();
+    if ( qmc2SystemNotesEditor ) qmc2SystemNotesEditor->adjustIconSizes();
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
     if ( qmc2ProjectMESS ) {
       qmc2ProjectMESS->toolButtonBack->setIconSize(iconSize);
@@ -1104,6 +1108,9 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   config->setValue("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("MAME/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
+  config->setValue("MAME/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
+  config->setValue("MAME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
+  config->setValue("MAME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1171,6 +1178,9 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   config->setValue("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("MESS/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
+  config->setValue("MESS/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
+  config->setValue("MESS/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
+  config->setValue("MESS/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1238,6 +1248,9 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   config->setValue("UME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("UME/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
+  config->setValue("UME/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
+  config->setValue("UME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
+  config->setValue("UME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -2235,6 +2248,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditSoftwareNotesFolder->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditSoftwareNotesTemplate->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
+  lineEditSystemNotesFolder->setText(config->value("MAME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
+  lineEditSystemNotesTemplate->setText(config->value("MAME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+  checkBoxUseSystemNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
@@ -2295,6 +2311,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditSoftwareNotesFolder->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditSoftwareNotesTemplate->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
+  lineEditSystemNotesFolder->setText(config->value("MESS/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
+  lineEditSystemNotesTemplate->setText(config->value("MESS/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+  checkBoxUseSystemNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
   lineEditCategoryIniFile->setText(config->value("MESS/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
@@ -2355,6 +2374,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditSoftwareNotesFolder->setText(config->value("UME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditSoftwareNotesTemplate->setText(config->value("UME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("UME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
+  lineEditSystemNotesFolder->setText(config->value("UME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
+  lineEditSystemNotesTemplate->setText(config->value("UME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+  checkBoxUseSystemNotesTemplate->setChecked(config->value("UME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
   lineEditGameInfoDB->setText(config->value("UME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("UME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(config->value("UME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
@@ -3589,6 +3611,32 @@ void Options::on_toolButtonBrowseSoftwareNotesTemplate_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose software notes template"), lineEditSoftwareNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
   if ( !s.isNull() )
     lineEditSoftwareNotesTemplate->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseSystemNotesFolder_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesFolder_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose system notes folder"), lineEditSystemNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditSystemNotesFolder->setText(s);
+  }
+  raise();
+}
+
+void Options::on_toolButtonBrowseSystemNotesTemplate_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSystemNotesTemplate_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose system notes template"), lineEditSystemNotesTemplate->text(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditSystemNotesTemplate->setText(s);
   raise();
 }
 

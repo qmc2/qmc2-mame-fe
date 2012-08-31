@@ -868,13 +868,42 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>564</width>
-                <height>616</height>
+                <width>636</width>
+                <height>703</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_7">
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEditFrontendLogFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Front end log file (write)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="15" column="0">
+                  <widget class="QRadioButton" name="radioButtonTitleSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a title directory or a ZIP-compressed title file</string>
+                   </property>
+                   <property name="text">
+                    <string>Title directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="labelFavoritesFile">
                    <property name="text">
@@ -940,19 +969,6 @@
                   <widget class="QLabel" name="labelFrontendLogFile">
                    <property name="text">
                     <string>Front end log file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEditFrontendLogFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Front end log file (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -1782,22 +1798,6 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="15" column="0">
-                  <widget class="QRadioButton" name="radioButtonTitleSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a title directory or a ZIP-compressed title file</string>
-                   </property>
-                   <property name="text">
-                    <string>Title directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="15" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetTitle">
                    <property name="sizePolicy">
@@ -2075,7 +2075,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="20" column="0" colspan="3">
+                 <item row="22" column="0" colspan="3">
                   <spacer name="spacer5">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -2088,7 +2088,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="21" column="0" colspan="3">
+                 <item row="23" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -2216,14 +2216,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="18" column="0">
+                 <item row="20" column="0">
                   <widget class="QLabel" name="labelSoftwareNotesFolder">
                    <property name="text">
                     <string>Software notes folder</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="18" column="1">
+                 <item row="20" column="1">
                   <widget class="QLineEdit" name="lineEditSoftwareNotesFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2236,7 +2236,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="18" column="2">
+                 <item row="20" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareNotesFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2253,7 +2253,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="0">
+                 <item row="21" column="0">
                   <widget class="QCheckBox" name="checkBoxUseSoftwareNotesTemplate">
                    <property name="toolTip">
                     <string>Enable the use of a template for (empty) software notes</string>
@@ -2263,7 +2263,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="1">
+                 <item row="21" column="1">
                   <widget class="QLineEdit" name="lineEditSoftwareNotesTemplate">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2276,7 +2276,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="2">
+                 <item row="21" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareNotesTemplate">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2337,6 +2337,83 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="18" column="0">
+                  <widget class="QLabel" name="labelSystemNotesFolder">
+                   <property name="text">
+                    <string>System notes folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="19" column="0">
+                  <widget class="QCheckBox" name="checkBoxUseSystemNotesTemplate">
+                   <property name="toolTip">
+                    <string>Enable the use of a template for (empty) system notes</string>
+                   </property>
+                   <property name="text">
+                    <string>System notes template</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="19" column="1">
+                  <widget class="QLineEdit" name="lineEditSystemNotesTemplate">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>HTML file used as a template for system-notes (read)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="18" column="1">
+                  <widget class="QLineEdit" name="lineEditSystemNotesFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Folder used to store personal notes about any systems (write)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="18" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseSystemNotesFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse software notes folder</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="19" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseSystemNotesTemplate">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse software notes folder</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2366,8 +2443,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>581</width>
-                <height>607</height>
+                <width>636</width>
+                <height>703</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3044,8 +3121,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>581</width>
-                <height>607</height>
+                <width>636</width>
+                <height>703</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3163,8 +3240,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>581</width>
-                <height>607</height>
+                <width>636</width>
+                <height>703</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3623,8 +3700,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>581</width>
-                <height>607</height>
+                <width>636</width>
+                <height>703</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -5159,6 +5236,11 @@
   <tabstop>toolButtonBrowseSoftwareSnapDirectory</tabstop>
   <tabstop>lineEditSoftwareSnapFile</tabstop>
   <tabstop>toolButtonBrowseSoftwareSnapFile</tabstop>
+  <tabstop>lineEditSystemNotesFolder</tabstop>
+  <tabstop>toolButtonBrowseSystemNotesFolder</tabstop>
+  <tabstop>checkBoxUseSystemNotesTemplate</tabstop>
+  <tabstop>lineEditSystemNotesTemplate</tabstop>
+  <tabstop>toolButtonBrowseSystemNotesTemplate</tabstop>
   <tabstop>lineEditSoftwareNotesFolder</tabstop>
   <tabstop>toolButtonBrowseSoftwareNotesFolder</tabstop>
   <tabstop>checkBoxUseSoftwareNotesTemplate</tabstop>
