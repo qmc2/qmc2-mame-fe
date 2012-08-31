@@ -50,10 +50,12 @@
 // external global variables
 extern QSettings *qmc2Config;
 
-HtmlEditor::HtmlEditor(QWidget *parent)
+HtmlEditor::HtmlEditor(QString editorName, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(true), wysiwigDirty(true), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
 {
 	ui->setupUi(this);
+
+	myEditorName = editorName;
 
 	// this 'trick' allows a nested QMainWindow :)
 	setWindowFlags(Qt::Widget);
@@ -62,8 +64,8 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
 		menu->setTearOffEnabled(true);
 
-	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState") )
-		restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName)) )
+		restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName), QByteArray()).toByteArray());
 
 	ui->tabWidget->setTabText(0, tr("WYSIWYG"));
 	ui->tabWidget->setTabText(1, tr("HTML"));
@@ -176,7 +178,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	ui->webView->setFocus();
 	ui->webView->page()->setContentEditable(true);
 
-	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", 100).toInt());
+	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), 100).toInt());
 
 	adjustIconSizes();
 	adjustActions();
@@ -187,7 +189,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
 HtmlEditor::~HtmlEditor()
 {
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState", saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName), saveState());
 
 	delete ui;
 	delete ui_dialog;
@@ -431,7 +433,7 @@ void HtmlEditor::zoomOut()
 		ui->actionZoomOut->setEnabled(percent > 25);
 		ui->actionZoomIn->setEnabled(true);
 		zoomSlider->setValue(percent);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", percent);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), percent);
 	}
 }
 
@@ -447,7 +449,7 @@ void HtmlEditor::zoomIn()
 		ui->actionZoomIn->setEnabled(percent < 400);
 		ui->actionZoomOut->setEnabled(true);
 		zoomSlider->setValue(percent);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", percent);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), percent);
 	}
 }
 
@@ -674,12 +676,11 @@ void HtmlEditor::changeZoom(int percent)
 {
 	ui->actionZoomOut->setEnabled(percent > 25);
 	ui->actionZoomIn->setEnabled(percent < 400);
-	//qreal factor = static_cast<qreal>(percent) / 100;
 	double factor = (double)percent / 100.0;
 	ui->webView->setZoomFactor(factor);
 	zoomLabel->setText(tr("Zoom: %1%").arg(percent));
 	zoomSlider->setValue(percent);
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", percent);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), percent);
 }
 
 void HtmlEditor::closeEvent(QCloseEvent *e)
