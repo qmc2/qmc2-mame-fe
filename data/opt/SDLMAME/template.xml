@@ -773,6 +773,7 @@
       <description lang="us" text="Display UI mouse cursor"/>
       <description lang="de" text="UI Mousecurcor anzeigen"/>
       <description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
+      <description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
     </option>
   </section>
   <section name="configuration">
@@ -1610,7 +1611,7 @@
     <option default="auto" name="joy_idx1" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #1"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #1 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #1"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #1"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #1"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #1"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #1"/>
@@ -1619,7 +1620,7 @@
     <option default="auto" name="joy_idx2" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #2"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #2 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #2"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #2"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #2"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #2"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #2"/>
@@ -1628,7 +1629,7 @@
     <option default="auto" name="joy_idx3" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #3"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #3 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #3"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #3"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #3"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #3"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #3"/>
@@ -1637,7 +1638,7 @@
     <option default="auto" name="joy_idx4" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #4"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #4 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #4"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #4"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #4"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #4"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #4"/>
@@ -1646,7 +1647,7 @@
     <option default="auto" name="joy_idx5" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #5"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #5 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #5"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #5"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #5"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #5"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #5"/>
@@ -1655,7 +1656,7 @@
     <option default="auto" name="joy_idx6" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #6"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #6 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #6"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #6"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #6"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #6"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #6"/>
@@ -1664,7 +1665,7 @@
     <option default="auto" name="joy_idx7" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #7"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #7 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #7"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #7"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #7"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #7"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #7"/>
@@ -1673,7 +1674,7 @@
     <option default="auto" name="joy_idx8" type="combo">
       <description lang="us" text="Name of joystick mapped to joystick #8"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #8 gemapped wird"/>
-      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #8"/>
+      <description lang="pl" text="Nazwa dżojstika, który będzie mapowany jako dżojstik #8"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #8"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #8"/>
       <description lang="es" text="Nombre de joystick mapeado a joystick #8"/>
@@ -1732,52 +1733,61 @@
     <description lang="us" text="SDL lightgun mapping"/>
     <description lang="de" text="SDL Lichtpistolen-Zuweisungen"/>
     <description lang="pt" text="Mapeamento da lightgun do SDL"/>
+    <description lang="pl" text="Mapowanie pistoletu świetlnego SDL"/>
     <option default="auto" ignore.Darwin="true" name="lightgun_index1" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #1"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #1 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #1"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #1"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index2" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #2"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #2 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #2"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #2"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index3" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #3"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #3 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #3"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #3"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index4" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #4"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #4 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #4"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #4"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index5" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #5"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #5 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #5"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #5"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index6" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #6"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #6 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #6"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #6"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index7" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #7"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #7 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #7"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #7"/>
       <choice name="auto"/>
     </option>
     <option default="auto" ignore.Darwin="true" name="lightgun_index8" type="combo">
       <description lang="us" text="Name of lightgun mapped to lightgun #8"/>
       <description lang="de" text="Name der Lichtpistole, welche Index #8 zugewiesen ist"/>
       <description lang="pt" text="Nome da lightgun mapeada para a lightgun #8"/>
+      <description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #8"/>
       <choice name="auto"/>
     </option>
   </section>
