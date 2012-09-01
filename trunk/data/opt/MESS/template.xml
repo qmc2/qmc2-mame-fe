@@ -796,6 +796,7 @@
       <description lang="pt" text="Mostrar confirmação ao sair"/>
     </option>
     <option default="false" name="ui_mouse" type="bool">
+      <description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
       <description lang="us" text="Display UI mouse cursor"/>
       <description lang="de" text="UI Mousecurcor anzeigen"/>
       <description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
