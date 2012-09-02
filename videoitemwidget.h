@@ -5,6 +5,7 @@
 
 #include <Qt>
 #include "ui_videoitemwidget.h"
+#include "imagewidget.h"
 
 #define VIDEOITEM_IMAGE_WIDTH					100
 #define VIDEOITEM_IMAGE_HEIGHT					75
@@ -23,7 +24,7 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 	Q_OBJECT
 
 	public:
-		QPixmap videoImage;
+		ImagePixmap videoImage;
 		QString videoID;
 		QString videoAuthor;
 		QString videoTitle;
@@ -33,15 +34,15 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 		void *myVideoPlayer;
 		int itemType;
 
-		VideoItemWidget(QString, QString, QString, QPixmap &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, QString, const ImagePixmap &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		VideoItemWidget(QString, QString, QString, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		~VideoItemWidget();
 
 		bool closingState();
 
 	public slots:
-		void setImage(QPixmap, bool valid = true);
-		void setImage(QPixmap *, bool valid = true);
+		void setImage(const ImagePixmap &, bool valid = true);
+		void setImage(ImagePixmap *, bool valid = true);
 		void setID(QString);
 		void setTitle(QString);
 		void setAuthor(QString);

@@ -4,13 +4,13 @@
 #include <QSettings>
 #include <QClipboard>
 #include <QInputDialog>
-#include <QPixmapCache>
 #include <QImageReader>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFile>
 #include <QDir>
 #include <QMap>
+#include <QCache>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -24,6 +24,7 @@ extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
+extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -792,16 +793,20 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 
 	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
 
-	QPixmap imagePixmap;
-	bool pixmapFound = QPixmapCache::find("yt_" + id, &imagePixmap);
+	ImagePixmap *imagePixmap = qmc2ImagePixmapCache.object("yt_" + id);
+	bool pixmapFound = (imagePixmap != NULL);
 	if ( !pixmapFound ) {
 		QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 		if ( youTubeCacheDir.exists() ) {
 			QString imageFile = id + ".png";
 			if ( youTubeCacheDir.exists(imageFile) ) {
-				pixmapFound = imagePixmap.load(youTubeCacheDir.filePath(imageFile), "PNG");
-				if ( pixmapFound )
-					QPixmapCache::insert("yt_" + id, imagePixmap);
+				QPixmap pm;
+				pixmapFound = pm.load(youTubeCacheDir.filePath(imageFile), "PNG");
+				if ( pixmapFound ) {
+					imagePixmap = new ImagePixmap(pm);
+					imagePixmap->imagePath = youTubeCacheDir.filePath(imageFile);
+					qmc2ImagePixmapCache.insert("yt_" + id, imagePixmap, pm.toImage().byteCount());
+				}
 			}
 		}
 	}
@@ -810,7 +815,7 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 	listWidgetItem->setSizeHint(size);
 	VideoItemWidget *videoItemWidget;
 	if ( pixmapFound )
-		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, itemType, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, *imagePixmap, itemType, this, this);
 	else
 		videoItemWidget = new VideoItemWidget(id, title, author, itemType, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
@@ -1608,20 +1613,24 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		if ( viw->videoImageValid )
 			continue;
 
-		QPixmap imagePixmap;
-		bool pixmapFound = QPixmapCache::find("yt_" + viw->videoID, &imagePixmap);
+		ImagePixmap *imagePixmap = qmc2ImagePixmapCache.object("yt_" + viw->videoID);
+		bool pixmapFound = (imagePixmap != NULL);
 		if ( !pixmapFound ) {
 			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 			if ( youTubeCacheDir.exists() ) {
 				QString imageFile = viw->videoID + ".png";
 				if ( youTubeCacheDir.exists(imageFile) ) {
-					pixmapFound = imagePixmap.load(youTubeCacheDir.filePath(imageFile), "PNG");
-					if ( pixmapFound )
-						QPixmapCache::insert("yt_" + viw->videoID, imagePixmap);
+					QPixmap pm;
+					pixmapFound = pm.load(youTubeCacheDir.filePath(imageFile), "PNG");
+					if ( pixmapFound ) {
+						ImagePixmap ipm = pm;
+						ipm.imagePath = youTubeCacheDir.filePath(imageFile);
+						qmc2ImagePixmapCache.insert("yt_" + viw->videoID, new ImagePixmap(ipm), pm.toImage().byteCount());
+					}
 				}
 			}
 		} else {
-			viw->setImage(imagePixmap);
+			viw->setImage(new ImagePixmap(*imagePixmap));
 			continue;
 		}
 		
@@ -1806,9 +1815,9 @@ void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 
 	if ( reply->error() == QNetworkReply::NoError ) {
 		QImageReader imageReader(reply);
-		QPixmap pm = QPixmap::fromImageReader(&imageReader);
+		ImagePixmap pm = QPixmap::fromImageReader(&imageReader);
 		if ( !pm.isNull() ) {
-			QPixmapCache::insert("yt_" + videoID, pm);
+			qmc2ImagePixmapCache.insert("yt_" + videoID, new ImagePixmap(pm), pm.toImage().byteCount());
 			viw->setImage(pm, true);
 			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 			if ( youTubeCacheDir.exists() ) {

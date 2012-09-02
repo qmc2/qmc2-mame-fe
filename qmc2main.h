@@ -14,6 +14,7 @@
 #if QMC2_USE_PHONON_API
 #include "qmc2_phonon.h"
 #endif
+#include "imagewidget.h"
 
 class KeyPressFilter : public QObject
 {
@@ -81,7 +82,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool isActiveState;
     QTimer searchTimer;
     QTimer updateTimer;
-    QPixmap qmc2GhostImagePixmap;
+    ImagePixmap qmc2GhostImagePixmap;
     QPushButton *pushButtonGlobalEmulatorOptionsExportToFile;
     QMenu *selectMenuGlobalEmulatorOptionsExportToFile;
     QPushButton *pushButtonGlobalEmulatorOptionsImportFromFile;

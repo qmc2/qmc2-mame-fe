@@ -1,4 +1,3 @@
-#include <QPixmapCache>
 #include <QPixmap>
 #include <QImage>
 #include <QImageReader>
@@ -7,6 +6,7 @@
 #include <QBuffer>
 #include <QMap>
 #include <QClipboard>
+#include <QCache>
 #include <QTreeWidgetItem>
 
 #include "imagewidget.h"
@@ -23,6 +23,7 @@ extern bool qmc2ShowGameNameOnlyWhenRequired;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QMap<QString, QString> qmc2ParentMap;
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
+extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 ImageWidget::ImageWidget(QWidget *parent)
 #if QMC2_OPENGL == 1
@@ -41,18 +42,29 @@ ImageWidget::ImageWidget(QWidget *parent)
 	QString s;
 	QAction *action;
 
-	s = tr("Copy to clipboard");
+	s = tr("Copy image to clipboard");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
-	s = tr("Refresh");
+
+	s = tr("Copy file path to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyPathToClipboard()));
+	actionCopyPathToClipboard = action;
+
+	contextMenu->addSeparator();
+
+	s = tr("Refresh cache slot");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
 	imageFile = NULL;
+
 	if ( useZip() ) {
 		imageFile = unzOpen((const char *)imageZip().toLocal8Bit());
 		if ( imageFile == NULL )
@@ -108,13 +120,12 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 		topLevelItem = topLevelItem->parent();
 
 	QString gameName = topLevelItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-
-	if ( !QPixmapCache::find(cachePrefix() + gameName, &currentPixmap) ) {
+	cacheKey = cachePrefix() + gameName;
+	ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+	if ( !cpm ) {
 		qmc2CurrentItem = topLevelItem;
 		loadImage(gameName, gameName);
 	}
-
-	cacheKey = cachePrefix() + gameName;
 
 	if ( scaledImage() )
 		drawScaledImage(&currentPixmap, &p);
@@ -129,7 +140,7 @@ void ImageWidget::refresh()
 #endif
 
 	if ( !cacheKey.isEmpty() ) {
-		QPixmapCache::remove(cacheKey);
+		qmc2ImagePixmapCache.remove(cacheKey);
 		repaint();
 	}
 }
@@ -140,7 +151,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::loadImage(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName));
 #endif
 
-	QPixmap pm;
+	ImagePixmap pm;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 
 	if ( fileName )
@@ -174,16 +185,16 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 		if ( !checkOnly ) {
 			if ( fileOk ) {
-				QPixmapCache::insert(onBehalfOf, pm);
+				qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount());
 				currentPixmap = pm;
 			} else {
 				QString parentName = qmc2ParentMap[gameName];
 				if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
 					fileOk = loadImage(parentName, onBehalfOf);
 				} else {
-					if ( !qmc2RetryLoadingImages )
-						QPixmapCache::insert(onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap); 
 					currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+					if ( !qmc2RetryLoadingImages )
+						qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
 				}
 			}
 		}
@@ -216,7 +227,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				fileOk = pm.load(imagePath, "PNG");
 			} else {
 				if ( pm.load(imagePath, "PNG") ) {
-					QPixmapCache::insert(onBehalfOf, pm); 
+					pm.imagePath = imagePath;
+					qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount());
 					currentPixmap = pm;
 					fileOk = true;
 				} else {
@@ -224,9 +236,9 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
 						fileOk = loadImage(parentName, onBehalfOf);
 					} else {
-						if ( !qmc2RetryLoadingImages )
-							QPixmapCache::insert(onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap); 
 						currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+						if ( !qmc2RetryLoadingImages )
+							qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
 						fileOk = false;
 					}
 				}
@@ -290,12 +302,12 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
 			QString imgDir = baseDirectory + gameName;
-			QString imagePath = imgDir + ".png";
+			QString localImagePath = imgDir + ".png";
 
 			if ( fileName )
-				*fileName = QDir::toNativeSeparators(imagePath);
+				*fileName = QDir::toNativeSeparators(localImagePath);
 
-			QImageReader imageReader(imagePath, "PNG");
+			QImageReader imageReader(localImagePath, "PNG");
 			fileOk = imageReader.read(&image);
 
 			if ( fileOk ) {
@@ -422,7 +434,18 @@ void ImageWidget::copyToClipboard()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::copyToClipboard()");
 #endif
 
-	qApp->clipboard()->setPixmap(currentPixmap);
+	if ( !currentPixmap.isNull() )
+		qApp->clipboard()->setPixmap(currentPixmap);
+}
+
+void ImageWidget::copyPathToClipboard()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::copyPathToClipboard()");
+#endif
+
+	if ( !currentPixmap.imagePath.isEmpty() )
+		qApp->clipboard()->setText(currentPixmap.imagePath);
 }
 
 void ImageWidget::contextMenuEvent(QContextMenuEvent *e)
@@ -431,6 +454,7 @@ void ImageWidget::contextMenuEvent(QContextMenuEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	actionCopyPathToClipboard->setVisible(!currentPixmap.imagePath.isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }

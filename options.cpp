@@ -1,4 +1,3 @@
-#include <QPixmapCache>
 #include <QTranslator>
 #include <QFileInfo>
 #include <QFileDialog>
@@ -16,6 +15,7 @@
 #include <QScrollBar>
 #include <QInputDialog>
 #include <QSplashScreen>
+#include <QCache>
 
 #include "options.h"
 #include "emuopt.h"
@@ -39,6 +39,7 @@
 #include "toolbarcustomizer.h"
 #include "iconlineedit.h"
 #include "mawsqdlsetup.h"
+#include "imagewidget.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -154,6 +155,7 @@ extern int qmc2DefaultLaunchMode;
 extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QSplashScreen *qmc2SplashScreen;
+extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -996,7 +998,7 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("image cache size set to %1 MB").arg(oldCacheSize));
   }
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/PixmapCacheSize", oldCacheSize);
-  QPixmapCache::setCacheLimit(oldCacheSize * 1024);
+  qmc2ImagePixmapCache.setMaxCost(oldCacheSize * QMC2_1M);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", checkBoxMinimizeOnEmuLaunch->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", checkBoxKillEmulatorsOnExit->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", checkBoxShowMenuBar->isChecked());

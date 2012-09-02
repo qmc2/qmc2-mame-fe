@@ -28,7 +28,6 @@
 #include <QMutex>
 #include <QPair>
 #include <QPixmap>
-#include <QPixmapCache>
 #include <QProcess>
 #include <QScrollBar>
 #include <QSet>
