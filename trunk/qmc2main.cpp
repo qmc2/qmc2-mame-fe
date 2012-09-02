@@ -3905,6 +3905,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  qmc2YouTubeWidget->close();
 		  delete qmc2YouTubeWidget;
 		  qmc2YouTubeWidget = NULL;
+		  qmc2LastYouTubeItem = NULL;
 	  }
   }
 #endif
