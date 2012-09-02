@@ -11,11 +11,11 @@
 extern MainWindow *qmc2MainWindow;
 #endif
 
-VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, QPixmap &vImage, int vType, void *vPlayer, QWidget *parent)
+VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, const ImagePixmap &vImage, int vType, void *vPlayer, QWidget *parent)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., QPixmap &vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., const ImagePixmap &vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
@@ -48,7 +48,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, i
 	setType(vType);
 	setID(vID);
 	setAuthor(vAuthor);
-	QPixmap ghostImage = QPixmap(QString::fromUtf8(":/data/img/ghost_video.png"));
+	ImagePixmap ghostImage = ImagePixmap(QPixmap(QString::fromUtf8(":/data/img/ghost_video.png")));
 	if ( vType == VIDEOITEM_TYPE_YOUTUBE_SEARCH )
 		labelVideoImage->hide();
 	else
@@ -112,25 +112,26 @@ void VideoItemWidget::setType(int type)
 	}
 }
 
-void VideoItemWidget::setImage(QPixmap vImage, bool valid)
+void VideoItemWidget::setImage(const ImagePixmap &vImage, bool valid)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(QPixmap vImage = ..., bool valid = %1)").arg(valid));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(const ImagePixmap &vImage = ..., bool valid = %1)").arg(valid));
 #endif
 
 	if ( closingState() ) return;
 
 	videoImageValid = valid;
 	videoImage = vImage;
+	videoImage.imagePath = vImage.imagePath;
 	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
 	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
 
-void VideoItemWidget::setImage(QPixmap *vImage, bool valid)
+void VideoItemWidget::setImage(ImagePixmap *vImage, bool valid)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(QPixmap *vImage = %1, bool valid = %2)").arg((qulonglong)vImage).arg(valid));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(ImagePixmap *vImage = %1, bool valid = %2)").arg((qulonglong)vImage).arg(valid));
 #endif
 
 	if ( closingState() ) return;

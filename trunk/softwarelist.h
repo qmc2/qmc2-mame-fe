@@ -5,6 +5,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QFile>
+#include <QAction>
 #include <QTextStream>
 #include <QXmlDefaultHandler>
 #if QMC2_OPENGL == 1
@@ -13,6 +14,7 @@
 #include "ui_softwarelist.h"
 #include "unzip.h"
 #include "swlistexport.h"
+#include "imagewidget.h"
 
 class SoftwareListExporter;
 
@@ -98,6 +100,7 @@ class SoftwareSnap : public QWidget
 		QMenu *contextMenu;
 		bool ctxMenuRequested;
 		QString myCacheKey;
+		QAction *actionCopyPathToClipboard;
 
 		SoftwareSnap(QWidget *parent = 0);
 		~SoftwareSnap();
@@ -106,6 +109,7 @@ class SoftwareSnap : public QWidget
 		void loadSnapshot();
 		void resetSnapForced();
 		void copyToClipboard();
+		void copyPathToClipboard();
 		void refresh();
 
 	protected:
@@ -126,9 +130,10 @@ class SoftwareSnapshot : public QWidget
 	Q_OBJECT
 
 	public:
-		QPixmap currentSnapshotPixmap;
+		ImagePixmap currentSnapshotPixmap;
 		QMenu *contextMenu;
 		QString myCacheKey;
+		QAction *actionCopyPathToClipboard;
 
 		SoftwareSnapshot(QWidget *parent = 0);
 		~SoftwareSnapshot();
@@ -138,6 +143,7 @@ class SoftwareSnapshot : public QWidget
 		void drawScaledImage(QPixmap *, QPainter *);
 		bool loadSnapshot(QString, QString);
 		void copyToClipboard();
+		void copyPathToClipboard();
 		void refresh();
 
 	protected:

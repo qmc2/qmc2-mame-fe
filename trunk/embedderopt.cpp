@@ -2,6 +2,7 @@
 #include "embedder.h"
 
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#include <QCache>
 
 #include "gamelist.h"
 #include "qmc2main.h"
@@ -14,6 +15,7 @@ extern Gamelist *qmc2Gamelist;
 extern QSettings *qmc2Config;
 extern Preview *qmc2Preview;
 extern Title *qmc2Title;
+extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 EmbedderOptions::EmbedderOptions(QWidget *parent)
   : QWidget(parent)
@@ -242,8 +244,8 @@ void SnapshotViewer::useAsPreview()
 
   Embedder *embedder = (Embedder *)(parent()->parent());
   EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-  QPixmapCache::remove("prv_" + embedder->gameName);
-  QPixmapCache::insert("prv_" + embedder->gameName, embedderOptions->snapshotMap[myItem]);
+  qmc2ImagePixmapCache.remove("prv_" + embedder->gameName);
+  qmc2ImagePixmapCache.insert("prv_" + embedder->gameName, new ImagePixmap(embedderOptions->snapshotMap[myItem]), embedderOptions->snapshotMap[myItem].toImage().byteCount());
   qmc2Preview->update();
 
   // FIXME: we also need to save the image to the preview path or ZIP archive
@@ -257,8 +259,8 @@ void SnapshotViewer::useAsTitle()
 
   Embedder *embedder = (Embedder *)(parent()->parent());
   EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-  QPixmapCache::remove("ttl_" + embedder->gameName);
-  QPixmapCache::insert("ttl_" + embedder->gameName, embedderOptions->snapshotMap[myItem]);
+  qmc2ImagePixmapCache.remove("ttl_" + embedder->gameName);
+  qmc2ImagePixmapCache.insert("ttl__" + embedder->gameName, new ImagePixmap(embedderOptions->snapshotMap[myItem]), embedderOptions->snapshotMap[myItem].toImage().byteCount());
   qmc2Title->update();
 
   // FIXME: we also need to save the image to the title path or ZIP archive

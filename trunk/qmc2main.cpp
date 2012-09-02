@@ -1,5 +1,4 @@
 #include <QMessageBox>
-#include <QPixmapCache>
 #include <QCache>
 #include <QHeaderView>
 #include <QTextStream>
@@ -273,6 +272,7 @@ int qmc2SoftwareSnapPosition = 0;
 QWidgetList qmc2AutoMinimizedWidgets;
 QSplashScreen *qmc2SplashScreen = NULL;
 int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
+QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -2299,7 +2299,7 @@ void MainWindow::on_actionClearImageCache_triggered(bool)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearImageCache_triggered(bool)");
 #endif
 
-  QPixmapCache::clear();
+  qmc2ImagePixmapCache.clear();
   log(QMC2_LOG_FRONTEND, tr("image cache cleared"));
 }
 

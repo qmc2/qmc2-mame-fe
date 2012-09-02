@@ -5,6 +5,7 @@
 #if QT_VERSION >= 0x050000
 #include <QFileDialog>
 #endif
+#include <QCache>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -32,6 +33,7 @@ extern int qmc2DefaultLaunchMode;
 extern bool qmc2StopParser;
 extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
+extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -2641,18 +2643,29 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	snapFile = NULL;
 	ctxMenuRequested = false;
+
 	contextMenu = new QMenu(this);
 	contextMenu->hide();
 	
 	QString s;
 	QAction *action;
 
-	s = tr("Copy to clipboard");
+	s = tr("Copy image to clipboard");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
-	s = tr("Refresh");
+
+	s = tr("Copy file path to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyPathToClipboard()));
+	actionCopyPathToClipboard = action;
+
+	contextMenu->addSeparator();
+
+	s = tr("Refresh cache slot");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
@@ -2731,6 +2744,7 @@ void SoftwareSnap::loadSnapshot()
 	if ( !qmc2SoftwareList || qmc2SoftwareSnapPosition == QMC2_SWSNAP_POS_DISABLE_SNAPS ) {
 		myItem = NULL;
 		resetSnapForced();
+		myCacheKey.clear();
 		return;
 	}
 
@@ -2738,6 +2752,7 @@ void SoftwareSnap::loadSnapshot()
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE || (qmc2MainWindow->tabWidgetSoftwareDetail->parent() == qmc2MainWindow && qmc2MainWindow->tabWidgetSoftwareDetail->isVisible()) ) {
 			myItem = NULL;
 			resetSnapForced();
+			myCacheKey.clear();
 			return;
 		}
 	}
@@ -2831,6 +2846,7 @@ void SoftwareSnap::loadSnapshot()
 		myItem = NULL;
 		resetSnapForced();
 		qmc2SoftwareList->cancelSoftwareSnap();
+		myCacheKey.clear();
 		return;
 	}
 
@@ -2842,6 +2858,7 @@ void SoftwareSnap::loadSnapshot()
 				myItem = NULL;
 				resetSnapForced();
 				qmc2SoftwareList->cancelSoftwareSnap();
+				myCacheKey.clear();
 				return;
 			}
 	}
@@ -2849,9 +2866,15 @@ void SoftwareSnap::loadSnapshot()
 	listName = item->text(QMC2_SWLIST_COLUMN_LIST);
 	entryName = item->text(QMC2_SWLIST_COLUMN_NAME);
 	myItem = (SoftwareItem *)item;
+	myCacheKey = "sws_" + listName + "_" + entryName;
 
-	QPixmap pm;
-	bool pmLoaded = QPixmapCache::find("sws_" + listName + "_" + entryName, &pm);
+	ImagePixmap pm;
+	bool pmLoaded = false;
+	ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
+	if ( cpm ) {
+		pmLoaded = true;
+		pm = *cpm;
+	}
 
 	if ( !pmLoaded ) {
 		if ( qmc2UseSoftwareSnapFile ) {
@@ -2881,7 +2904,7 @@ void SoftwareSnap::loadSnapshot()
 				if ( fileOk ) {
 					if ( pm.loadFromData(imageData, "PNG") ) {
 						pmLoaded = true;
-						QPixmapCache::insert("sws_" + listName + "_" + entryName, pm);
+						qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 					}
 				}
 			}
@@ -2894,7 +2917,8 @@ void SoftwareSnap::loadSnapshot()
 					QString filePath = snapDir.absoluteFilePath(entryName + ".png");
 					if ( pm.load(filePath) ) {
 						pmLoaded = true;
-						QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+						pm.imagePath = filePath;
+						qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount()); 
 					}
 				}
 				if ( pmLoaded )
@@ -3006,7 +3030,6 @@ void SoftwareSnap::loadSnapshot()
 		update();
 		raise();
 		snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
-		myCacheKey = "sws_" + listName + "_" + entryName;
 	} else {
 		myItem = NULL;
 		resetSnapForced();
@@ -3017,7 +3040,7 @@ void SoftwareSnap::loadSnapshot()
 void SoftwareSnap::refresh()
 {
 	if ( !myCacheKey.isEmpty() ) {
-		QPixmapCache::remove(myCacheKey);
+		qmc2ImagePixmapCache.remove(myCacheKey);
 		repaint();
 	}
 }
@@ -3075,6 +3098,14 @@ void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
 #endif
 
 	ctxMenuRequested = true;
+	if ( !myCacheKey.isEmpty() ) {
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
+		if ( cpm )
+			actionCopyPathToClipboard->setVisible(!cpm->imagePath.isEmpty());
+		else
+			actionCopyPathToClipboard->setVisible(false);
+	} else
+		actionCopyPathToClipboard->setVisible(false);
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }
@@ -3088,6 +3119,19 @@ void SoftwareSnap::copyToClipboard()
 	QPixmap pm(size());
 	render(&pm);
 	qApp->clipboard()->setPixmap(pm);
+}
+
+void SoftwareSnap::copyPathToClipboard()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::copyPathToClipboard()");
+#endif
+
+	if ( !myCacheKey.isEmpty() ) {
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
+		if ( cpm )
+			qApp->clipboard()->setText(cpm->imagePath);
+	}
 }
 
 SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
@@ -3327,12 +3371,22 @@ SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
 	QString s;
 	QAction *action;
 
-	s = tr("Copy to clipboard");
+	s = tr("Copy image to clipboard");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
-	s = tr("Refresh");
+
+	s = tr("Copy file path to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyPathToClipboard()));
+	actionCopyPathToClipboard = action;
+
+	contextMenu->addSeparator();
+
+	s = tr("Refresh cache slot");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
@@ -3361,14 +3415,21 @@ void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 
 	if ( !qmc2SoftwareList->currentItem ) {
 		drawCenteredImage(0, &p); // clear snapshot widget
+		myCacheKey.clear();
 		return;
 	}
 
 	QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 	QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+	myCacheKey = "sws_" + listName + "_" + entryName;
 
-	if ( !QPixmapCache::find("sws_" + listName + "_" + entryName, &currentSnapshotPixmap) )
+	ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
+	if ( !cpm )
 		loadSnapshot(listName, entryName);
+	else {
+		currentSnapshotPixmap = *cpm;
+		currentSnapshotPixmap.imagePath = cpm->imagePath;
+	}
 
 	drawScaledImage(&currentSnapshotPixmap, &p);
 }
@@ -3376,7 +3437,7 @@ void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 void SoftwareSnapshot::refresh()
 {
 	if ( !myCacheKey.isEmpty() ) {
-		QPixmapCache::remove(myCacheKey);
+		qmc2ImagePixmapCache.remove(myCacheKey);
 		repaint();
 	}
 }
@@ -3387,9 +3448,12 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::loadSnapshot(QString listName = %1, QString entryName = %2)").arg(listName).arg(entryName));
 #endif
 
-	QPixmap pm;
-
+	ImagePixmap pm;
 	bool fileOk = true;
+
+	myCacheKey = "sws_" + listName + "_" + entryName;
+	currentSnapshotPixmap.imagePath.clear();
+
 	if ( qmc2UseSoftwareSnapFile ) {
 		// try loading image from ZIP
 		if ( !qmc2SoftwareSnap->snapFile ) {
@@ -3416,7 +3480,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 				fileOk = false;
 			if ( fileOk ) {
 				if ( pm.loadFromData(imageData, "PNG") )
-					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm);
+					qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 				else
 					fileOk = false;
 			}
@@ -3430,7 +3494,9 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
 				if ( pm.load(filePath) ) {
 					fileOk = true;
-					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+					currentSnapshotPixmap = pm;
+					currentSnapshotPixmap.imagePath = filePath;
+					qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount()); 
 				} else
 					fileOk = false;
 			}
@@ -3440,13 +3506,10 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 	}
 
 	if ( !fileOk ) {
-		if ( !qmc2RetryLoadingImages )
-			QPixmapCache::insert("sws_" + listName + "_"+ entryName, qmc2MainWindow->qmc2GhostImagePixmap);
 		currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-        } else
-		currentSnapshotPixmap = pm;
-
-	myCacheKey = "sws_" + listName + "_" + entryName;
+		if ( !qmc2RetryLoadingImages )
+			qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount());
+        }
 
 	return fileOk;
 }
@@ -3539,8 +3602,15 @@ void SoftwareSnapshot::copyToClipboard()
 	qApp->clipboard()->setPixmap(currentSnapshotPixmap);
 }
 
+void SoftwareSnapshot::copyPathToClipboard()
+{
+	if ( !currentSnapshotPixmap.imagePath.isEmpty() )
+		qApp->clipboard()->setText(currentSnapshotPixmap.imagePath);
+}
+
 void SoftwareSnapshot::contextMenuEvent(QContextMenuEvent *e)
 {
+	actionCopyPathToClipboard->setVisible(!currentSnapshotPixmap.imagePath.isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }

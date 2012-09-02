@@ -6,11 +6,55 @@
 #include <QWidget>
 #include <QPixmap>
 #include <QPainter>
+#include <QAction>
 #if QMC2_OPENGL == 1
 #include <QGLWidget>
 #endif
-
 #include "unzip.h"
+
+class ImagePixmap : public QPixmap
+{
+	public:
+		QString imagePath;
+		ImagePixmap() : QPixmap()
+		{
+			imagePath.clear();
+		}
+
+		ImagePixmap(const ImagePixmap &other)
+		{
+			QPixmap::operator=((QPixmap &)other);
+			imagePath = other.imagePath;
+		}
+
+		ImagePixmap(const QPixmap &other)
+		{
+			QPixmap::operator=(other);
+			const ImagePixmap *otherImagePixmap = dynamic_cast<const ImagePixmap *>(&other);
+			if ( otherImagePixmap )
+				imagePath = otherImagePixmap->imagePath;
+			else
+				imagePath.clear();
+		}
+
+		ImagePixmap &operator=(const ImagePixmap &other)
+		{
+			QPixmap::operator=((QPixmap &)other);
+			imagePath = other.imagePath;
+			return *this;
+		}
+
+		ImagePixmap &operator=(const QPixmap &other)
+		{
+			QPixmap::operator=((QPixmap &)other);
+			const ImagePixmap *otherImagePixmap = dynamic_cast<const ImagePixmap *>(&other);
+			if ( otherImagePixmap )
+				imagePath = otherImagePixmap->imagePath;
+			else
+				imagePath.clear();
+			return *this;
+		}
+};
 
 #if QMC2_OPENGL == 1
 class ImageWidget : public QGLWidget
@@ -22,14 +66,16 @@ class ImageWidget : public QWidget
 
 	public:
 		unzFile imageFile;
-		QPixmap currentPixmap;
+		ImagePixmap currentPixmap;
 		QMenu *contextMenu;
 		QString cacheKey;
+		QAction *actionCopyPathToClipboard;
 
 		ImageWidget(QWidget *parent);
 		~ImageWidget();
 
 		QString cleanDir(QString);
+		QString absoluteImagePath() { return currentPixmap.imagePath; }
 
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }
@@ -39,6 +85,7 @@ class ImageWidget : public QWidget
 		virtual bool useZip() { return false; }
 		virtual bool scaledImage() { return false; }
 
+	protected:
 		// events CAN be reimplemented in the concrete image classes
 		virtual void paintEvent(QPaintEvent *);
 		virtual void contextMenuEvent(QContextMenuEvent *);
@@ -49,6 +96,7 @@ class ImageWidget : public QWidget
 		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL);
 		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL);
 		void copyToClipboard();
+		void copyPathToClipboard();
 		void refresh();
 };
 
