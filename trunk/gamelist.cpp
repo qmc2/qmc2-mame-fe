@@ -2661,6 +2661,9 @@ void Gamelist::loadReadyReadStandardOutput()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
 #endif
 
+  // this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
+  qApp->processEvents();
+
   QString s = loadProc->readAllStandardOutput();
   bool endsWithSpace = s.endsWith(" ");
   bool startWithSpace = s.startsWith(" ");
@@ -3104,6 +3107,9 @@ void Gamelist::verifyReadyReadStandardOutput()
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::verifyReadyReadStandardOutput(): proc = %1").arg((qulonglong) verifyProc));
 #endif
+
+  // this makes the GUI much more responsive, but is HAS to be called before verifyProc->readAllStandardOutput()!
+  qApp->processEvents();
 
   // process rom verification output
   int i;
