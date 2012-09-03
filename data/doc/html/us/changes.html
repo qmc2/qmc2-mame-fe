@@ -55,6 +55,7 @@ inf: informational only
   <li>imp: changed the short-cuts for adding games/machines to the favorites list (now Ctrl+V and Ctrl+Shift+V) to free the Ctrl+F short-cut for another/better use (i.e. for finding arbitrary text)</li>
   <li>imp: file-chooser: opened ZIP contents are sorted as well</li>
   <li>imp: completely revised the image cache internals, now also storing the file path the cached image was loaded from, which can be retrieved via the image's context-menu (the file path is not available in case of zipped images, though)</li>
+  <li>imp: much better GUI response while recreating the XML cache and checking all ROMs (full audit)</li>
   <li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://tracker.batcom-it.net/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
   <li>new: the YouTube video-player now supports local movie files as well</li>
   <li>new: added support for tool-bar customization</li>
@@ -115,7 +116,6 @@ inf: informational only
   <li>imp: MESS device configurator: sort slot-options alphanumerically, add a separator between 'not used' and available options, allow disabling of <i>default</i> slot-options and indicate them as such</li>
   <li>imp: main widget: revised all auto-connected menu actions to use QAction::triggered(bool) (instead of a meanwhile deprecated signal)</li>
   <li>imp: slightly better responsiveness while loading cached XML data</li>
-  <li>imp: much better GUI response while recreating the XML cache and checking all ROMs (full audit), slightly better response while loading cached XML data</li>
   <li>imp: Mac OS X build: avoid using xcodebuild for Qt 4.8+</li>
   <li>imp: replaced the 'MESS wiki driver look-up' with a ProjectMESS-based search since most data in the MESS wiki was lost, and ProjectMESS is the new de-facto '#1 web-resource for all things MESS' :)</li>
   <li>imp: the MiniWebBrowser's zoom-factor can now also be specified through a (mouse) wheel-event when the Ctrl-key is pressed at the same time (like most standalone browsers)</li>
