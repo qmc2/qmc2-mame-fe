@@ -255,15 +255,13 @@ Arguments in detail:
 <ul>
   <li><i>-qmc2_config_path</i>: See <a href="#config_path">configuration path</a> below!</li>
   <li><i>-cc</i>: When this CLI option is specified, all emulator caches will be cleared (removed) before the application actually starts up. This is useful whenever the emulator version doesn't change and QMC2 can't figure out that it's time to update the caches because of this (so this mainly applies to those users that are often updating their MAME/MESS/UME installation from the <a href="http://mamedev.org/?p=373" target="_blank">public SVN repository</a>).</li>
-  <li><i>qt4_arguments</i>: See the QApplication class reference for details on what Qt 4 arguments are available (note, however, that some of these arguments are useless since QMC2 will overwrite them with its saved ini-settings).</li>
+  <li><i>qt4_arguments</i>: See the <a href="http://doc.qt.nokia.com/4.8/qapplication.html#QApplication" target="_blank">QApplication class reference</a> for details on what Qt 4 arguments are available (note, however, that some of these arguments are useless since QMC2 will overwrite them with its saved ini-settings).</li>
 </ul>
 </p>
 <p><a name="config_path"></a><b>Configuration path</b></p>
 <p>When the <i>-qmc2_config_path</i> option is specified on the command line, QMC2 will use this directory instead of the default 'dot-path' (see <a href="#config_notes">configuration notes</a> below).
 Note that it's in your responsibility to copy/move the data to its desired place prior to starting QMC2 when this option is set, otherwise QMC2 will start over (which may be wanted behavior, though). Also, any settings
 that may have inherited the previous dot-path will have to be changed manually (probably by editing qmc2.ini, but take care).</p>
-<p>Besides that, QMC2 provides a number of arguments it inherits from Qt 4. See <a href="http://doc.qt.nokia.com/4.8/qapplication.html#QApplication" target="_blank">http://doc.qt.nokia.com/4.8/qapplication.html#QApplication</a> for details
-(note, however, that some of these arguments are useless since QMC2 will overwrite them with its configured settings).</p>
 <p><a name="config_notes"><b>Notes on the configuration of QMC2</b></p>
 <p>UNIX and Mac OS X:</p>
 <ul>
