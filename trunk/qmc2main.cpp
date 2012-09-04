@@ -10932,6 +10932,10 @@ int main(int argc, char *argv[])
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
   qmc2GlobalEmulatorOptions->pseudoConstructor();
 
+  // is CLI option -cc is set, clear all emulator caches before starting up
+  if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
+	  qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
+
   // finally run the application
   int retCode = qmc2App.exec();
 
