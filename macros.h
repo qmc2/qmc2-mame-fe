@@ -611,6 +611,9 @@
 // this allows to change the configuration path dynamically (by adding "-qmc2_config_path <alternate_config_path>" on the command line)
 #define QMC2_DYNAMIC_DOT_PATH			(qApp->arguments().indexOf("-qmc2_config_path") >= 0 && qApp->arguments().indexOf("-qmc2_config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-qmc2_config_path") + 1]: QMC2_DOT_PATH)
 
+// -cc: clear (all emulator) caches 
+#define QMC2_CLI_OPT_CLEAR_ALL_CACHES		(qApp->arguments().indexOf("-cc") >= 0)
+
 // determine if memory infomation can be made available at all
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
 #define QMC2_MEMORY_INFO_ENABLED
