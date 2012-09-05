@@ -4726,11 +4726,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
-        <source>Open file...</source>
-        <translation>Deschide fisier...</translation>
-    </message>
-    <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="315"/>
         <source>HTML files (*.html *.htm)</source>
         <translation>Fisiere HTML (*.html *.htm)</translation>
@@ -4741,6 +4736,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../../htmleditor/htmleditor.cpp" line="350"/>
         <source>All files (*)</source>
         <translation>Toate fisierele (*)</translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
+        <source>Select file to load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
+        <source>Select file to open</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="315"/>
