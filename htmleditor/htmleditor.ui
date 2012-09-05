@@ -87,6 +87,7 @@
     </property>
     <addaction name="actionFileNew"/>
     <addaction name="actionFileNewFromTemplate"/>
+    <addaction name="separator"/>
     <addaction name="actionFileOpen"/>
     <addaction name="actionFileSave"/>
     <addaction name="separator"/>
@@ -183,8 +184,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionFileNew"/>
-   <addaction name="actionFileNewFromTemplate"/>
    <addaction name="actionFileOpen"/>
    <addaction name="actionFileSave"/>
    <addaction name="separator"/>

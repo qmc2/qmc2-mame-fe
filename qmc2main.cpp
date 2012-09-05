@@ -3584,17 +3584,15 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				QString fileName = softwareNotesFolder + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "/" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME) + ".html";
 				qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
 
-				if ( useSoftwareNotesTemplate ) {
-					qmc2SoftwareNotesEditor->templateMap.clear();
-					qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(true);
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER);
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR);
-					qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
-				} else
-					qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(false);
+				qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(useSoftwareNotesTemplate);
+
+				qmc2SoftwareNotesEditor->templateMap.clear();
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR);
+				qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
 
 				if ( QFile::exists(fileName) ) {
 					QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrent()));
@@ -4402,23 +4400,21 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      QString fileName = systemNotesFolder + gameName + ".html";
 	      qmc2SystemNotesEditor->setCurrentFileName(fileName);
 
-	      if ( useSystemNotesTemplate ) {
-		      qmc2SystemNotesEditor->enableFileNewFromTemplateAction(true);
-		      qmc2SystemNotesEditor->templateMap.clear();
-		      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
-		      qmc2SystemNotesEditor->templateMap["$ID$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
-		      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU);
-		      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR);
-		      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY);
+	      qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
+
+	      qmc2SystemNotesEditor->templateMap.clear();
+	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+	      qmc2SystemNotesEditor->templateMap["$ID$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU);
+	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR);
+	      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		      qmc2SystemNotesEditor->templateMap["$VERSION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION);
+	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
-		      qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_PLAYERS);
-		      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
-		      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
-		      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
-	      } else
-		      qmc2SystemNotesEditor->enableFileNewFromTemplateAction(false);
+	      qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_PLAYERS);
+	      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
+	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+	      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
 
 	      if ( QFile::exists(fileName) ) {
 		      QTimer::singleShot(25, qmc2SystemNotesEditor, SLOT(loadCurrent()));
