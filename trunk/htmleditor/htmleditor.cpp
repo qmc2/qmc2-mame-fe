@@ -252,7 +252,7 @@ void HtmlEditor::fileNewFromTemplate()
 
 void HtmlEditor::fileOpen()
 {
-	QString fn = QFileDialog::getOpenFileName(this, tr("Open file..."), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
+	QString fn = QFileDialog::getOpenFileName(this, isEmbeddedEditor ? tr("Select file to load") : tr("Select file to open"), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
 
 	if ( !fn.isEmpty() ) {
 		load(fn);

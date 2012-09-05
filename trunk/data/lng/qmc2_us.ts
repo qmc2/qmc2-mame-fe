@@ -4666,11 +4666,6 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
-        <source>Open file...</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="346"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
         <translation></translation>
@@ -4729,6 +4724,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="315"/>
         <source>HTML files (*.html *.htm)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
+        <source>Select file to load</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
+        <source>Select file to open</source>
         <translation></translation>
     </message>
     <message>
