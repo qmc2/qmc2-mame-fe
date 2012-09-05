@@ -1265,6 +1265,15 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/CategoryIni", lineEditCategoryIniFile->text());
 #endif
 
+  if ( qmc2SystemNotesEditor ) {
+	  qmc2SystemNotesEditor->enableFileNewFromTemplateAction(checkBoxUseSystemNotesTemplate->isChecked());
+	  qmc2SystemNotesEditor->setCurrentTemplateName(lineEditSystemNotesTemplate->text());
+  }
+  if ( qmc2SoftwareNotesEditor ) {
+	  qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(checkBoxUseSoftwareNotesTemplate->isChecked());
+	  qmc2SoftwareNotesEditor->setCurrentTemplateName(lineEditSystemNotesTemplate->text());
+  }
+
 #if defined(QMC2_EMUTYPE_MAME)
   bool catverUsed = checkBoxUseCatverIni->isChecked();
   bool categoryUsed = false;

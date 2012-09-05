@@ -75,6 +75,16 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->tabWidget->setTabText(0, tr("WYSIWYG"));
 	ui->tabWidget->setTabText(1, tr("HTML"));
 
+	if ( isEmbeddedEditor ) {
+		ui->actionFileOpen->setText(tr("&Load..."));
+		ui->actionFileOpen->setIconText(tr("Load notes from file"));
+		ui->actionFileOpen->setToolTip(tr("Load notes from an HTML file"));
+		ui->actionFileOpen->setStatusTip(tr("Load notes from an HTML file"));
+		ui->actionFileSave->setIconText(tr("Save current notes"));
+		ui->actionFileSave->setToolTip(tr("Save current notes"));
+		ui->actionFileSave->setStatusTip(tr("Save current notes"));
+	}
+
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
 
 	highlighter = new Highlighter(ui->plainTextEdit->document());
