@@ -33,6 +33,7 @@
 #endif
 
 #include "macros.h"
+#include "miniwebbrowser.h"
 #include "htmleditor.h"
 #include "highlighter.h"
 #include "ui_htmleditor.h"
@@ -107,6 +108,7 @@ HtmlEditor::HtmlEditor(QString editorName, QWidget *parent)
 	connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
 	connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
 	connect(ui->actionFileSaveAs, SIGNAL(triggered()), SLOT(fileSaveAs()));
+	connect(ui->actionFileOpenInBrowser, SIGNAL(triggered()), SLOT(fileOpenInBrowser()));
 	connect(ui->actionInsertImageFromFile, SIGNAL(triggered()), SLOT(insertImageFromFile()));
 	connect(ui->actionInsertImageFromUrl, SIGNAL(triggered()), SLOT(insertImageFromUrl()));
 	connect(ui->actionCreateLink, SIGNAL(triggered()), SLOT(createLink()));
@@ -234,6 +236,27 @@ void HtmlEditor::fileOpen()
 		adjustHTML();
 	}
 	localModified = true;
+}
+
+void HtmlEditor::fileOpenInBrowser()
+{
+	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+		webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+	else {
+		webBrowser->adjustSize();
+		webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+	}
+	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+	if ( ui->tabWidget->currentIndex() == 1 ) {
+		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+		wysiwigDirty = false;
+	}
+	webBrowser->webViewBrowser->setHtml(ui->webView->page()->mainFrame()->toHtml());
+	if ( !fileName.isEmpty() && QFile(fileName).exists() )
+		webBrowser->comboBoxURL->lineEdit()->setText(QUrl::fromUserInput(fileName).toString());
+	webBrowser->show();
 }
 
 bool HtmlEditor::fileSave()
@@ -779,8 +802,13 @@ bool HtmlEditor::save()
 	}
 
 	QString content = ui->webView->page()->mainFrame()->toHtml();
-	if ( content == emptyContent )
+
+	if ( content == emptyContent ) {
+		QFile f(fileName);
+		if ( f.exists() )
+			f.remove();
 		return true;
+	}
 
 	QFileInfo fi(fileName);
 	QString targetPath = QDir::cleanPath(fi.absoluteDir().path());

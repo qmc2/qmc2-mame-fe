@@ -69,6 +69,7 @@ public slots:
     void fileOpen();
     bool fileSave();
     bool fileSaveAs();
+    void fileOpenInBrowser();
     void editSelectAll();
     void styleParagraph();
     void styleHeading1();

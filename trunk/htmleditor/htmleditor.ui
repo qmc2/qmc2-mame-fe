@@ -88,7 +88,9 @@
     <addaction name="actionFileNew"/>
     <addaction name="actionFileOpen"/>
     <addaction name="actionFileSave"/>
+    <addaction name="separator"/>
     <addaction name="actionFileSaveAs"/>
+    <addaction name="actionFileOpenInBrowser"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -280,6 +282,9 @@
    </property>
   </action>
   <action name="actionFileSaveAs">
+   <property name="icon">
+    <iconset resource="../qmc2.qrc"><normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+   </property>
    <property name="text">
     <string>Save &amp;copy...</string>
    </property>
@@ -288,6 +293,26 @@
    </property>
    <property name="toolTip">
     <string>Save file under a different name</string>
+   </property>
+   <property name="statusTip">
+    <string>Save file under a different name</string>
+   </property>
+  </action>
+  <action name="actionFileOpenInBrowser">
+   <property name="icon">
+    <iconset resource="../qmc2.qrc"><normaloff>:/data/img/browser.png</normaloff>:/data/img/browser.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open in browser...</string>
+   </property>
+   <property name="iconText">
+    <string>Open in new browser window</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the document in a new browser window</string>
+   </property>
+   <property name="statusTip">
+    <string>Open the document in a new browser window</string>
    </property>
   </action>
   <action name="actionEditUndo">
