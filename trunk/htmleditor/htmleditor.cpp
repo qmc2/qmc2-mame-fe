@@ -254,8 +254,10 @@ void HtmlEditor::fileOpenInBrowser()
 		wysiwigDirty = false;
 	}
 	webBrowser->webViewBrowser->setHtml(ui->webView->page()->mainFrame()->toHtml());
-	if ( !fileName.isEmpty() && QFile(fileName).exists() )
-		webBrowser->comboBoxURL->lineEdit()->setText(QUrl::fromUserInput(fileName).toString());
+	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
+		webBrowser->homeUrl = QUrl::fromUserInput(fileName);
+		webBrowser->comboBoxURL->lineEdit()->setText(webBrowser->homeUrl.toString());
+	}
 	webBrowser->show();
 }
 
