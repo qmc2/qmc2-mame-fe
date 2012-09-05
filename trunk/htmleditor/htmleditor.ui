@@ -86,6 +86,7 @@
      <string>&amp;File</string>
     </property>
     <addaction name="actionFileNew"/>
+    <addaction name="actionFileNewFromTemplate"/>
     <addaction name="actionFileOpen"/>
     <addaction name="actionFileSave"/>
     <addaction name="separator"/>
@@ -183,6 +184,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionFileNew"/>
+   <addaction name="actionFileNewFromTemplate"/>
    <addaction name="actionFileOpen"/>
    <addaction name="actionFileSave"/>
    <addaction name="separator"/>
@@ -246,6 +248,24 @@
    </property>
    <property name="statusTip">
     <string>New file</string>
+   </property>
+  </action>
+  <action name="actionFileNewFromTemplate">
+   <property name="icon">
+    <iconset resource="../qmc2.qrc">
+     <normaloff>:/htmleditor/images/document-new.png</normaloff>:/htmleditor/images/document-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>New from &amp;template</string>
+   </property>
+   <property name="iconText">
+    <string>New from template</string>
+   </property>
+   <property name="toolTip">
+    <string>Generates a new document using the template</string>
+   </property>
+   <property name="statusTip">
+    <string>Generates a new document using the template</string>
    </property>
   </action>
   <action name="actionFileOpen">
