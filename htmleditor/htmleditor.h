@@ -47,8 +47,9 @@ class HtmlEditor : public QMainWindow
 public:
     QMap<QString, QString> templateMap;
     QString myEditorName;
+    bool isEmbeddedEditor;
 
-    HtmlEditor(QString, QWidget *parent = 0);
+    HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
 
     static QUrl guessUrlFromString(const QString &string);
@@ -66,6 +67,7 @@ private:
 
 public slots:
     void fileNew();
+    void fileNewFromTemplate();
     void fileOpen();
     bool fileSave();
     bool fileSaveAs();
@@ -116,6 +118,7 @@ public slots:
     void setCurrentFileName(const QString &fileName);
     void setCurrentTemplateName(const QString &templateName);
     void hideTearOffMenus();
+    void enableFileNewFromTemplateAction(bool enable = true);
 
 private:
     Ui_HTMLEditorMainWindow *ui;

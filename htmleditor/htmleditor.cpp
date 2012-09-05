@@ -51,15 +51,19 @@
 // external global variables
 extern QSettings *qmc2Config;
 
-HtmlEditor::HtmlEditor(QString editorName, QWidget *parent)
+HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(true), wysiwigDirty(true), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
 {
 	ui->setupUi(this);
 
 	myEditorName = editorName;
+	isEmbeddedEditor = embedded;
 
 	// this 'trick' allows a nested QMainWindow :)
 	setWindowFlags(Qt::Widget);
+
+	// hide new-from-template action initially
+	ui->actionFileNewFromTemplate->setVisible(false);
 
 	// enable menu tear-off
 	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
@@ -105,6 +109,7 @@ HtmlEditor::HtmlEditor(QString editorName, QWidget *parent)
 
 	// menu actions
 	connect(ui->actionFileNew, SIGNAL(triggered()), SLOT(fileNew()));
+	connect(ui->actionFileNewFromTemplate, SIGNAL(triggered()), SLOT(fileNewFromTemplate()));
 	connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
 	connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
 	connect(ui->actionFileSaveAs, SIGNAL(triggered()), SLOT(fileSaveAs()));
@@ -207,7 +212,9 @@ void HtmlEditor::hideTearOffMenus()
 void HtmlEditor::fileNew()
 {
 	ui->webView->page()->setContentEditable(true);
-	setCurrentFileName(QString());
+
+	if ( !isEmbeddedEditor )
+		setCurrentFileName(QString());
 
 	// quirk in QWebView: need an initial mouse click to show the cursor
 	int mx = ui->webView->width() / 2;
@@ -225,6 +232,12 @@ void HtmlEditor::fileNew()
 
 	QTimer::singleShot(0, this, SLOT(styleParagraph()));
 	QTimer::singleShot(25, this, SLOT(adjustHTML()));
+}
+
+void HtmlEditor::fileNewFromTemplate()
+{
+	loadCurrentTemplate();
+	localModified = true;
 }
 
 void HtmlEditor::fileOpen()
@@ -263,6 +276,9 @@ void HtmlEditor::fileOpenInBrowser()
 
 bool HtmlEditor::fileSave()
 {
+	if ( isEmbeddedEditor && !fileName.isEmpty() && !fileName.startsWith(QLatin1String(":/")) )
+		return save();
+
 	if ( fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")) )
 		return fileSaveAs();
 
@@ -760,6 +776,8 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	if ( !file.open(QFile::ReadOnly) )
 		return false;
 
+	ui->actionFileNewFromTemplate->setVisible(true);
+
 	QString data(file.readAll().simplified());
 	file.close();
 
@@ -788,6 +806,11 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	QTimer::singleShot(0, this, SLOT(adjustHTML()));
 
 	return true;
+}
+
+void HtmlEditor::enableFileNewFromTemplateAction(bool enable)
+{
+	ui->actionFileNewFromTemplate->setVisible(enable);
 }
 
 bool HtmlEditor::save()
