@@ -186,6 +186,9 @@
    <addaction name="actionFileOpen"/>
    <addaction name="actionFileSave"/>
    <addaction name="separator"/>
+   <addaction name="actionFileSaveAs"/>
+   <addaction name="actionFileOpenInBrowser"/>
+   <addaction name="separator"/>
    <addaction name="actionEditUndo"/>
    <addaction name="actionEditRedo"/>
    <addaction name="separator"/>
