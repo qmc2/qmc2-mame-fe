@@ -162,11 +162,15 @@
 // logical column indizes of the MESS device configurator's slot setup
 #define QMC2_SLOTCONFIG_COLUMN_SLOT		0
 #define QMC2_SLOTCONFIG_COLUMN_OPTION		1
+#define QMC2_SLOTCONFIG_COLUMN_BIOS		2
 
 // indizes of the device-setup tabs of the MESS device configurator
 #define QMC2_DEVSETUP_TAB_DEVMAPPINGS		0
 #define QMC2_DEVSETUP_TAB_SLOTCONFIG		1
 #define QMC2_DEVSETUP_TAB_FILECHOOSER		2
+
+// delay in milliseconds before updating the device map due to slot-option changes
+#define QMC2_SLOTOPTION_CHANGE_DELAY		25
 
 // file chooser columns
 #define QMC2_FILECHOOSER_COLUMN_NAME		0

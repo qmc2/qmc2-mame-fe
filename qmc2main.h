@@ -173,7 +173,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
     int sortCriteriaLogicalIndex();
     QPoint adjustedWidgetPosition(QPoint, QWidget *);
-    QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString());
+    QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString(), QString *defaultChoice = NULL);
     static bool qStringListLessThan(const QString &, const QString &);
 
     MainWindow(QWidget *parent = 0);
