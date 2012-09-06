@@ -1769,16 +1769,30 @@ void MainWindow::on_actionPlay_triggered(bool)
 							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
 								int defaultIndex = -1;
+								QString biosChoice;
+								QComboBox *cbBIOS = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
+								if ( cbBIOS ) {
+									QStringList biosInfoList = cbBIOS->currentText().split(" ", QString::SkipEmptyParts);
+									if ( biosInfoList.count() == 3 && biosInfoList[2] == tr("default") )
+										biosChoice = tr("N/A");
+									else
+										biosChoice = biosInfoList[0];
+									if ( biosChoice != tr("N/A") )
+										biosChoice = ",bios=" + biosChoice;
+									else
+										biosChoice.clear();
+								}
 								if ( qmc2MESSDeviceConfigurator->slotPreselectionMap.contains(cb) )
 									defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
 								else if ( qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
 									defaultIndex = qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap[cb];
+								QString slotDeviceString = QString("%1%2").arg(cb->currentText().split(" ", QString::SkipEmptyParts)[0]).arg(biosChoice);
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
-									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
 									args << QString("-%1").arg(slotName) << "\"\"";
 								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
-									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 							}
 						}
 					}
@@ -1807,19 +1821,36 @@ void MainWindow::on_actionPlay_triggered(bool)
 						for (i = 0; i < valuePair.first.count(); i++) {
 							QString slotName = valuePair.first[i];
 							QString slotOption = valuePair.second[i];
-							QComboBox *cb = qmc2MESSDeviceConfigurator->comboBoxByName(slotName);
+							QTreeWidgetItem *item;
+							QComboBox *cb = qmc2MESSDeviceConfigurator->comboBoxByName(slotName, &item);
 							if ( cb ) {
 								int defaultIndex = -1;
+								QString biosChoice;
+								if ( item ) {
+									QComboBox *cbBIOS = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
+									if ( cbBIOS ) {
+										QStringList biosInfoList = cbBIOS->currentText().split(" ", QString::SkipEmptyParts);
+										if ( biosInfoList.count() == 3 && biosInfoList[2] == tr("default") )
+											biosChoice = tr("N/A");
+										else
+											biosChoice = biosInfoList[0];
+										if ( biosChoice != tr("N/A") )
+											biosChoice = ",bios=" + biosChoice;
+										else
+											biosChoice.clear();
+									}
+								}
 								if ( qmc2MESSDeviceConfigurator->slotPreselectionMap.contains(cb) )
 									defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
 								else if ( qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
 									defaultIndex = qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap[cb];
+								QString slotDeviceString = QString("%1%2").arg(cb->currentText().split(" ", QString::SkipEmptyParts)[0]).arg(biosChoice);
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
-									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
 									args << QString("-%1").arg(slotName) << "\"\"";
 								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
-									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 							}
 						}
 						valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
@@ -1842,16 +1873,30 @@ void MainWindow::on_actionPlay_triggered(bool)
 							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
 								int defaultIndex = -1;
+								QString biosChoice;
+								QComboBox *cbBIOS = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
+								if ( cbBIOS ) {
+									QStringList biosInfoList = cbBIOS->currentText().split(" ", QString::SkipEmptyParts);
+									if ( biosInfoList.count() == 3 && biosInfoList[2] == tr("default") )
+										biosChoice = tr("N/A");
+									else
+										biosChoice = biosInfoList[0];
+									if ( biosChoice != tr("N/A") )
+										biosChoice = ",bios=" + biosChoice;
+									else
+										biosChoice.clear();
+								}
 								if ( qmc2MESSDeviceConfigurator->slotPreselectionMap.contains(cb) )
 									defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
 								else if ( qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
 									defaultIndex = qmc2MESSDeviceConfigurator->nestedSlotPreselectionMap[cb];
+								QString slotDeviceString = QString("%1%2").arg(cb->currentText().split(" ", QString::SkipEmptyParts)[0]).arg(biosChoice);
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
-									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
 									args << QString("-%1").arg(slotName) << "\"\"";
 								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
-									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 							}
 						}
 					}
@@ -4004,7 +4049,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MESSDeviceConfigurator->save();
           QLayout *vbl = tabDevices->layout();
           if ( vbl ) delete vbl;
-          qApp->processEvents();
           delete qmc2MESSDeviceConfigurator;
           qmc2MESSDeviceConfigurator = NULL;
         }
@@ -4013,8 +4057,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
-	QTimer::singleShot(0, qmc2MESSDeviceConfigurator, SLOT(load()));
         layout->addWidget(qmc2MESSDeviceConfigurator);
+	QTimer::singleShot(0, qmc2MESSDeviceConfigurator, SLOT(load()));
         if ( !tabDevices->layout() )
           tabDevices->setLayout(layout);
         qmc2MESSDeviceConfigurator->show();
@@ -4471,14 +4515,21 @@ bool MainWindow::qStringListLessThan(const QString &s1, const QString &s2)
 		return s1.toLower() < s2.toLower();
 }
 
-QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, QString optionAttribute)
+QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, QString optionAttribute, QString *defaultChoice)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: &MainWindow::getXmlChoices(QString gameName = %1, QString optionElement = %2, QString optionAttribute = %3)").arg(gameName).arg(optionElement).arg(optionAttribute));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: &MainWindow::getXmlChoices(QString gameName = %1, QString optionElement = %2, QString optionAttribute = %3, QString *defaultChoice = %4)").arg(gameName).arg(optionElement).arg(optionAttribute).arg((qulonglong)defaultChoice));
 #endif
 
 	static QStringList xmlChoices;
 	xmlChoices.clear();
+
+	if ( gameName.isEmpty() )
+		return xmlChoices;
+
+	if ( defaultChoice )
+		defaultChoice->clear();
+
 	int i = qmc2XmlGamePositionMap[gameName];
 	if ( i <= 0 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -4520,8 +4571,12 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 					if ( index >= 0 ) {
 						xmlLine.remove(0, index + prefix.length());
 						index = xmlLine.indexOf("\"");
-						if ( index >= 0 )
-							xmlChoices << xmlLine.left(index);
+						if ( index >= 0 ) {
+							QString choice = xmlLine.left(index);
+							xmlChoices << choice;
+							if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || defaultChoice->isEmpty()) )
+								*defaultChoice = choice;
+						}
 					}
 				}
 			}

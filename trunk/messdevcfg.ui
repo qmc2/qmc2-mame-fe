@@ -315,6 +315,11 @@
                <string>Option</string>
               </property>
              </column>
+             <column>
+              <property name="text">
+               <string>BIOS</string>
+              </property>
+             </column>
             </widget>
            </item>
           </layout>
