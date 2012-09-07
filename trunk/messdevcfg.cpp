@@ -1104,10 +1104,13 @@ void MESSDeviceConfigurator::updateSlotBiosSelections()
 					if ( !currentConfigName.isEmpty() ) {
 						biosValuePair = slotBiosMap[currentConfigName];
 						slotIndex = biosValuePair.first.indexOf(slotName);
+					} else {
+						cIdx = defaultIndex;
+						cTxt = cbBIOS->itemText(defaultIndex);
 					}
 					if ( slotIndex >= 0 ) {
 						QString slotBios = biosValuePair.second[slotIndex];
-						slotIndex = cbBIOS->findText(biosValuePair.second[slotIndex]);
+						slotIndex = cbBIOS->findText(QString("^%1(| / %2)$").arg(biosValuePair.second[slotIndex]).arg(tr("default")), Qt::MatchRegExp);
 						if ( slotIndex >= 0 )
 							cbBIOS->setCurrentIndex(slotIndex);
 						else if ( cIdx >= 0 && cbBIOS->itemText(cIdx) == cTxt )
@@ -1650,7 +1653,6 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 	if ( dontIgnoreNameChange ) {
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
 		if ( !matchedItemList.isEmpty() ) {
-			currentConfigName = text;
 			matchedItemList[0]->setSelected(true);
 			listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
 			listWidgetDeviceConfigurations->scrollToItem(matchedItemList[0]);
@@ -1705,7 +1707,7 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 							if ( cbBIOS ) {
 								int index = -1;
 								if ( !biosValuePair.second.isEmpty() && !biosValuePair.second[i].isEmpty() )
-									index = cbBIOS->findText(QString("%1").arg(biosValuePair.second[i]), Qt::MatchStartsWith);
+									index = cbBIOS->findText(QString("^%1(| / %2)$").arg(biosValuePair.second[i]).arg(tr("default")), Qt::MatchRegExp);
 								if ( index >= 0 ) {
 									cbBIOS->blockSignals(true);
 									cbBIOS->setCurrentIndex(index);
