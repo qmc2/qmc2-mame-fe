@@ -3142,7 +3142,9 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 #endif
 
   comboBoxToolbarSearch->lineEdit()->blockSignals(true);
+  int cPos = comboBoxToolbarSearch->lineEdit()->cursorPosition();
   comboBoxToolbarSearch->lineEdit()->setText(text);
+  comboBoxToolbarSearch->lineEdit()->setCursorPosition(cPos);
   comboBoxToolbarSearch->lineEdit()->blockSignals(false);
 
   searchTimer.start(QMC2_SEARCH_DELAY);
