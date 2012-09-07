@@ -175,10 +175,10 @@ Gamelist::~Gamelist()
 #endif
 
   if ( loadProc )
-    loadProc->terminate();
+    loadProc->kill();
 
   if ( verifyProc )
-    verifyProc->terminate();
+    verifyProc->kill();
 }
 
 void Gamelist::enableWidgets(bool enable)
@@ -2321,7 +2321,7 @@ void Gamelist::parse()
 
   if ( qmc2StopParser ) {
 	  if ( loadProc )
-		  loadProc->terminate();
+		  loadProc->kill();
   } else {
 	  if ( cachedGamesCounter - numDevices != numTotalGames ) {
 		  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
@@ -2763,6 +2763,7 @@ void Gamelist::verifyStarted()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyStarted()");
 #endif
 
+  qmc2MainWindow->progressBarGamelist->setValue(0);
 }
 
 void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -3355,7 +3356,7 @@ void Gamelist::verifyReadyReadStandardOutput()
     tsRomCache.flush();
 
   if ( qmc2StopParser && verifyProc )
-    verifyProc->terminate();
+    verifyProc->kill();
 
   qmc2MainWindow->progressBarGamelist->setValue(numVerifyRoms);
   qmc2MainWindow->labelGamelistStatus->setText(status());
