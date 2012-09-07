@@ -1897,14 +1897,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../../detailsetup.cpp" line="144"/>
         <location filename="../../detailsetup.cpp" line="226"/>
         <source>&amp;Notes</source>
-        <translation type="unfinished">&amp;Notas</translation>
+        <translation>&amp;Notas</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="64"/>
         <location filename="../../detailsetup.cpp" line="145"/>
         <location filename="../../detailsetup.cpp" line="227"/>
         <source>System notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notas de sistema</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="107"/>
@@ -4281,18 +4281,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="258"/>
         <source>New from &amp;template</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo a partir de &amp;modelo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="261"/>
         <source>New from template</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo a partir do modelo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="264"/>
         <location filename="../../htmleditor/htmleditor.ui" line="267"/>
         <source>Generates a new document using the template</source>
-        <translation type="unfinished"></translation>
+        <translation>Cria um novo documento usando um modelo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="276"/>
@@ -4333,18 +4333,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="328"/>
         <source>Open in browser...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir no browser...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="331"/>
         <source>Open in new browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir em uma nova janela do browser</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="334"/>
         <location filename="../../htmleditor/htmleditor.ui" line="337"/>
         <source>Open the document in a new browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir o documento em uma nova janela de browser</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="346"/>
@@ -4719,25 +4719,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="79"/>
         <source>&amp;Load...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abrir...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="80"/>
         <source>Load notes from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar notas de um arquivo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="81"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="82"/>
         <source>Load notes from an HTML file</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar notas de um arquivo HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="83"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="84"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="85"/>
         <source>Save current notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar notas atuais</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
@@ -4748,12 +4748,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
         <source>Select file to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar arquivo para carregar</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
         <source>Select file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar arquivo para abrir</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="315"/>
@@ -5327,17 +5327,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagewidget.cpp" line="45"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="51"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="60"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar slot do cache</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="71"/>
@@ -5771,7 +5771,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="302"/>
         <source>Open e&amp;xternally...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir e&amp;xternamente...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="353"/>
@@ -5867,7 +5867,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1515"/>
         <location filename="../../messdevcfg.cpp" line="2435"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1429"/>
@@ -6028,7 +6028,7 @@ Você quer escolher um nome diferente?</translation>
     <message>
         <location filename="../../messdevcfg.ui" line="320"/>
         <source>BIOS</source>
-        <translation type="unfinished">BIOS</translation>
+        <translation>BIOS</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="329"/>
@@ -7418,7 +7418,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1833"/>
         <location filename="../../qmc2main.cpp" line="1880"/>
         <source>default</source>
-        <translation type="unfinished">padrão</translation>
+        <translation>padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1777"/>
@@ -7428,7 +7428,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1881"/>
         <location filename="../../qmc2main.cpp" line="1884"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2458"/>
@@ -11562,12 +11562,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3634"/>
         <source>Choose system notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório das notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3648"/>
         <source>Choose system notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o modelo das notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3839"/>
@@ -12974,37 +12974,37 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2343"/>
         <source>System notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta das notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2350"/>
         <source>Enable the use of a template for (empty) system notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar o uso de um modelo para notas (vazias) de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2353"/>
         <source>System notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modelo das notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2366"/>
         <source>HTML file used as a template for system-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo HTML usado como modelo para notas de sistema (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2379"/>
         <source>Folder used to store personal notes about any systems (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta usada para guardar notas pessoais sobre quaisquer sistemas (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2392"/>
         <source>Browse system notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pasta das notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2409"/>
         <source>Browse system notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar modelo das notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2513"/>
@@ -18048,17 +18048,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="2653"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2659"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2668"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar slot do cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2885"/>
@@ -18071,17 +18071,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="3374"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3380"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3389"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar slot do cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3462"/>
