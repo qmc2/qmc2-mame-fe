@@ -52,7 +52,7 @@
 extern QSettings *qmc2Config;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
-	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(true), wysiwigDirty(true), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
+	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(true), wysiwygDirty(true), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
 {
 	ui->setupUi(this);
 
@@ -62,8 +62,9 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	// this 'trick' allows a nested QMainWindow :)
 	setWindowFlags(Qt::Widget);
 
-	// hide new-from-template action initially
+	// hide new-from-template and file-revert actions initially
 	ui->actionFileNewFromTemplate->setVisible(false);
+	ui->actionFileRevert->setVisible(false);
 
 	// enable menu tear-off
 	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
@@ -120,6 +121,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	// menu actions
 	connect(ui->actionFileNew, SIGNAL(triggered()), SLOT(fileNew()));
 	connect(ui->actionFileNewFromTemplate, SIGNAL(triggered()), SLOT(fileNewFromTemplate()));
+	connect(ui->actionFileRevert, SIGNAL(triggered()), SLOT(fileRevert()));
 	connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
 	connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
 	connect(ui->actionFileSaveAs, SIGNAL(triggered()), SLOT(fileSaveAs()));
@@ -174,7 +176,9 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	// it's necessary to sync our actions
 	connect(ui->webView->page(), SIGNAL(selectionChanged()), SLOT(adjustActions()));
 	connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustHTML()));
+	connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(checkRevertStatus()));
 	connect(ui->plainTextEdit, SIGNAL(textChanged()), SLOT(adjustWYSIWYG()));
+	connect(ui->plainTextEdit, SIGNAL(textChanged()), SLOT(checkRevertStatus()));
 
 	// web-page connections
 	connect(ui->webView->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), SLOT(linkHovered(const QString &, const QString &, const QString &)));
@@ -212,6 +216,26 @@ HtmlEditor::~HtmlEditor()
 	delete ui_dialog;
 }
 
+void HtmlEditor::checkRevertStatus()
+{
+	if ( !fileName.isEmpty() ) {
+		bool wasModified;
+		if ( loadedContent.isEmpty() )
+			wasModified = false;
+		else if ( ui->tabWidget->currentIndex() == 0 )
+			wasModified = loadedContent != ui->webView->page()->mainFrame()->toHtml();
+		else
+			wasModified = loadedContent != ui->plainTextEdit->toPlainText();
+		
+		if ( ui->webView->page()->mainFrame()->toHtml() != emptyContent && wasModified ) {
+			QFile f(fileName);
+			ui->actionFileRevert->setVisible(f.exists());
+		} else
+			ui->actionFileRevert->setVisible(false);
+	} else
+		ui->actionFileRevert->setVisible(false);
+}
+
 void HtmlEditor::hideTearOffMenus()
 {
 	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
@@ -246,8 +270,20 @@ void HtmlEditor::fileNew()
 
 void HtmlEditor::fileNewFromTemplate()
 {
-	loadCurrentTemplate();
-	localModified = true;
+	if ( loadCurrentTemplate() ) {
+		localModified = true;
+		if ( !fileName.isEmpty() ) {
+			QFile f(fileName);
+			ui->actionFileRevert->setVisible(f.exists());
+		} else
+			ui->actionFileRevert->setVisible(false);
+	}
+}
+
+void HtmlEditor::fileRevert()
+{
+	loadCurrent();
+	checkRevertStatus();
 }
 
 void HtmlEditor::fileOpen()
@@ -274,7 +310,7 @@ void HtmlEditor::fileOpenInBrowser()
 	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
 	if ( ui->tabWidget->currentIndex() == 1 ) {
 		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
-		wysiwigDirty = false;
+		wysiwygDirty = false;
 	}
 	webBrowser->webViewBrowser->setHtml(ui->webView->page()->mainFrame()->toHtml());
 	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
@@ -286,18 +322,24 @@ void HtmlEditor::fileOpenInBrowser()
 
 bool HtmlEditor::fileSave()
 {
-	if ( isEmbeddedEditor && !fileName.isEmpty() && !fileName.startsWith(QLatin1String(":/")) )
-		return save();
+	if ( isEmbeddedEditor && !fileName.isEmpty() && !fileName.startsWith(QLatin1String(":/")) ) {
+		bool rc = save();
+		checkRevertStatus();
+		return rc;
+	}
 
-	if ( fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")) )
-		return fileSaveAs();
+	if ( fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")) ) {
+		bool rc = fileSaveAs();
+		checkRevertStatus();
+		return rc;
+	}
 
 	QFile file(fileName);
 	bool success = file.open(QIODevice::WriteOnly);
 	if ( success ) {
 		if ( ui->tabWidget->currentIndex() == 1 ) {
 			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
-			wysiwigDirty = false;
+			wysiwygDirty = false;
 		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
 		QTextStream ts(&file);
@@ -307,6 +349,7 @@ bool HtmlEditor::fileSave()
 		success = true;
 	}
 	localModified = !success;
+	checkRevertStatus();
 	return success;
 }
 
@@ -328,7 +371,7 @@ bool HtmlEditor::fileSaveAs()
 	if ( success ) {
 		if ( ui->tabWidget->currentIndex() == 1 ) {
 			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
-			wysiwigDirty = false;
+			wysiwygDirty = false;
 		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
 		QTextStream ts(&file);
@@ -680,7 +723,7 @@ void HtmlEditor::adjustActions()
 
 void HtmlEditor::adjustWYSIWYG()
 {
-	wysiwigDirty = true;
+	wysiwygDirty = true;
 
 	if ( ui->tabWidget->currentIndex() == 0 )
 		changeTab(0);
@@ -698,9 +741,9 @@ void HtmlEditor::changeTab(int index)
 {
 	switch ( index ) {
 		case 0:
-			if ( wysiwigDirty ) {
+			if ( wysiwygDirty ) {
 				ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
-				wysiwigDirty = false;
+				wysiwygDirty = false;
 			}
 			break;
 
@@ -746,6 +789,9 @@ bool HtmlEditor::loadCurrent()
 
 bool HtmlEditor::load(const QString &f)
 {
+	if ( f.isEmpty() )
+		return false;
+
 	emptyContent.clear();
 
 	if ( !QFile::exists(f) ) {
@@ -759,11 +805,20 @@ bool HtmlEditor::load(const QString &f)
 
 	QString data = file.readAll();
 	file.close();
+
+	if ( f == fileName )
+		loadedContent = data;
+
 	ui->webView->setHtml(data);
 	ui->webView->page()->setContentEditable(true);
+
 	if ( fileName.isEmpty() )
 		setCurrentFileName(f);
-	QTimer::singleShot(0, this, SLOT(adjustHTML()));
+
+	adjustHTML();
+
+	if ( f != fileName )
+		checkRevertStatus();
 
 	return true;
 }
@@ -775,6 +830,9 @@ bool HtmlEditor::loadCurrentTemplate()
 
 bool HtmlEditor::loadTemplate(const QString &f)
 {
+	if ( f.isEmpty() )
+		return false;
+
 	emptyContent.clear();
 
 	if ( !QFile::exists(f) ) {
@@ -810,10 +868,13 @@ bool HtmlEditor::loadTemplate(const QString &f)
 
 	ui->webView->setHtml(data);
 	ui->webView->page()->setContentEditable(true);
+
 	emptyContent = ui->webView->page()->mainFrame()->toHtml();
+
 	if ( fileName.isEmpty() )
 		setCurrentFileName(f);
-	QTimer::singleShot(0, this, SLOT(adjustHTML()));
+
+	adjustHTML();
 
 	return true;
 }
@@ -833,12 +894,12 @@ bool HtmlEditor::save()
 
 	if ( ui->tabWidget->currentIndex() == 1 ) {
 		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
-		wysiwigDirty = false;
+		wysiwygDirty = false;
 	}
 
-	QString content = ui->webView->page()->mainFrame()->toHtml();
+	loadedContent = ui->webView->page()->mainFrame()->toHtml();
 
-	if ( content == emptyContent ) {
+	if ( loadedContent == emptyContent ) {
 		QFile f(fileName);
 		if ( f.exists() )
 			f.remove();
@@ -859,7 +920,7 @@ bool HtmlEditor::save()
 		return false;
 
 	QTextStream ts(&f);
-	ts << content;
+	ts << loadedContent;
 	ts.flush();
 	f.close();
 

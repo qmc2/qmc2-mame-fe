@@ -68,6 +68,7 @@ private:
 public slots:
     void fileNew();
     void fileNewFromTemplate();
+    void fileRevert();
     void fileOpen();
     bool fileSave();
     bool fileSaveAs();
@@ -119,15 +120,17 @@ public slots:
     void setCurrentTemplateName(const QString &templateName);
     void hideTearOffMenus();
     void enableFileNewFromTemplateAction(bool enable = true);
+    void checkRevertStatus();
 
 private:
     Ui_HTMLEditorMainWindow *ui;
     QString fileName;
     QString templateName;
     bool htmlDirty;
-    bool wysiwigDirty;
+    bool wysiwygDirty;
     bool generateEmptyContent;
     bool localModified;
+    QString loadedContent;
     QString emptyContent;
     QLabel *zoomLabel;
     QSlider *zoomSlider;

@@ -750,4 +750,7 @@
 #define QMC2_ALIGN_MIDDLE			1
 #define QMC2_ALIGN_RIGHT			2
 
+// debugging macros
+#define QMC2_PRINT_STR(s)			printf("%s = [%s]\n", #s, (const char *)s.toLocal8Bit())
+
 #endif
