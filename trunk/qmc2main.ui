@@ -2106,7 +2106,7 @@
             <normaloff>:/data/img/download.png</normaloff>:/data/img/download.png</iconset>
           </attribute>
           <attribute name="title">
-           <string>Dow&amp;nloads</string>
+           <string>Do&amp;wnloads</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayoutDownloads">
            <property name="margin">
