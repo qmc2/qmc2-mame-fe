@@ -3654,7 +3654,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				}
 				qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
 #if defined(Q_WS_WIN)
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath;
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath;
 #else
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath;
 #endif
@@ -4486,7 +4486,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Preview ) {
 		      if ( !qmc2Preview->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file://" + filePath;
 #endif
@@ -4494,7 +4494,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Flyer ) {
 		      if ( !qmc2Flyer->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file://" + filePath;
 #endif
@@ -4502,7 +4502,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Cabinet ) {
 		      if ( !qmc2Cabinet->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file://" + filePath;
 #endif
@@ -4510,7 +4510,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Controller ) {
 		      if ( !qmc2Controller->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file://" + filePath;
 #endif
@@ -4518,8 +4518,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Marquee ) {
 		      if ( !qmc2Marquee->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = filePath;
-		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file:///" + filePath;
+		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file://" + filePath;
 		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = "file://" + filePath;
@@ -4528,7 +4528,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Title ) {
 		      if ( !qmc2Title->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file://" + filePath;
 #endif
@@ -4536,7 +4536,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2PCB ) {
 		      if ( !qmc2PCB->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
 #if defined(Q_WS_WIN)
-		      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file:///" + filePath;
 #else
 		      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file://" + filePath;
 #endif
