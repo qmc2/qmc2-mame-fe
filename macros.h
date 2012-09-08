@@ -752,5 +752,6 @@
 
 // debugging macros
 #define QMC2_PRINT_STR(s)			printf("%s = [%s]\n", #s, (const char *)s.toLocal8Bit())
+#define QMC2_PRINT_PTR(p)			printf("%s = [%p]\n", #p, p)
 
 #endif

@@ -205,7 +205,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 			QString imagePath = imgDir + ".png";
 
 			if ( fileName )
-				*fileName = gameName + ".png";
+				//*fileName = gameName + ".png";
+				*fileName = imagePath;
 
 			QFile f(imagePath);
 			if ( !f.exists() ) {
@@ -216,9 +217,10 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					QStringList dirEntries = dir.entryList(nameFilter, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive, QDir::Name | QDir::Reversed);
 					if ( dirEntries.count() > 0 ) {
 						imagePath = imgDir + "/" + dirEntries[0];
-						QString pathCopy = imagePath;
+						//QString pathCopy = imagePath;
 						if ( fileName )
-							*fileName = pathCopy.remove(baseDirectory);
+							//*fileName = pathCopy.remove(baseDirectory);
+							*fileName = imagePath;
 					}
 				}
 			}
