@@ -87,6 +87,7 @@
     </property>
     <addaction name="actionFileNew"/>
     <addaction name="actionFileNewFromTemplate"/>
+    <addaction name="actionFileRevert"/>
     <addaction name="separator"/>
     <addaction name="actionFileOpen"/>
     <addaction name="actionFileSave"/>
@@ -265,6 +266,24 @@
    </property>
    <property name="statusTip">
     <string>Generates a new document using the template</string>
+   </property>
+  </action>
+  <action name="actionFileRevert">
+   <property name="icon">
+    <iconset resource="../qmc2.qrc">
+     <normaloff>:/htmleditor/images/edit-undo.png</normaloff>:/htmleditor/images/edit-undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Revert</string>
+   </property>
+   <property name="iconText">
+    <string>Revert changes</string>
+   </property>
+   <property name="toolTip">
+    <string>Revert changes from saved file</string>
+   </property>
+   <property name="statusTip">
+    <string>Revert changes from saved file</string>
    </property>
   </action>
   <action name="actionFileOpen">
