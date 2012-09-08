@@ -48,6 +48,7 @@ public:
     QMap<QString, QString> templateMap;
     QString myEditorName;
     bool isEmbeddedEditor;
+    QString loadedContent;
 
     HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
@@ -130,7 +131,6 @@ private:
     bool wysiwygDirty;
     bool generateEmptyContent;
     bool localModified;
-    QString loadedContent;
     QString emptyContent;
     QLabel *zoomLabel;
     QSlider *zoomSlider;
