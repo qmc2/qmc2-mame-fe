@@ -1271,7 +1271,7 @@ void Options::on_pushButtonApply_clicked()
   }
   if ( qmc2SoftwareNotesEditor ) {
 	  qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(checkBoxUseSoftwareNotesTemplate->isChecked());
-	  qmc2SoftwareNotesEditor->setCurrentTemplateName(lineEditSystemNotesTemplate->text());
+	  qmc2SoftwareNotesEditor->setCurrentTemplateName(lineEditSoftwareNotesTemplate->text());
   }
 
 #if defined(QMC2_EMUTYPE_MAME)
