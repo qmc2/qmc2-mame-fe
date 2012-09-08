@@ -3622,8 +3622,11 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor = new HtmlEditor("SoftwareNotes", true, tabNotes);
 					layout->addWidget(qmc2SoftwareNotesEditor);
 					tabNotes->setLayout(layout);
-				} else
+				} else {
 					qmc2SoftwareNotesEditor->save();
+					qmc2SoftwareNotesEditor->loadedContent.clear();
+					qmc2SoftwareNotesEditor->checkRevertStatus();
+				}
 
 				QString softwareNotesFolder = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareNotesFolder").toString();
 				QString softwareNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareNotesTemplate").toString();
@@ -4437,8 +4440,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      tabWidgetGameDetail->setCurrentIndex(tabIndex);
 		      tabWidgetGameDetail->setUpdatesEnabled(true);
 		      qmc2SystemNotesEditor->resize(tabSystemNotes->size());
-	      } else
+	      } else {
 		      qmc2SystemNotesEditor->save();
+		      qmc2SystemNotesEditor->loadedContent.clear();
+		      qmc2SystemNotesEditor->checkRevertStatus();
+	      }
 
 	      QString systemNotesFolder = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesFolder").toString();
 	      QString systemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesTemplate").toString();
