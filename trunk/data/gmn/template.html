@@ -13,25 +13,44 @@
 	$PLAYERS$		Number of players (or separate input devices)
 	$ROM_TYPES$		Types of dumps included in the set (ROM/CHD)
 	$DRIVER_STATUS$		The maturity status of the driver
+
+	Image macros:
+
+	$PREVIEW_IMAGE$		Current system's preview image
+	$FLYER_IMAGE$		Current system's flyer image
+	$CABINET_IMAGE$		Current system's cabinet image
+	$CONTROLLER_IMAGE$	Current system's controller image
+	$MARQUEE_IMAGE$		Current system's marquee image
+	$LOGO_IMAGE$		Alias for $MARQUEE_IMAGE$
+	$TITLE_IMAGE$		Current system's title image (MAME/UME-only!)
+	$PCB_IMAGE$		Current system's PCB image
 -->
 <html>
 <head>
 </head>
 <body>
 <h2>$DESCRIPTION$</h2>
-<table border="0" cellspacing="5">
-<tbody>
-<tr><td bgcolor="lightgrey">Name/ID</td><td>$ID$</td></tr>
-<tr><td bgcolor="lightgrey">Manufacturer</td><td>$MANUFACTURER$</td></tr>
-<tr><td bgcolor="lightgrey">Year</td><td>$YEAR$</td></tr>
-<tr><td bgcolor="lightgrey">Category</td><td>$CATEGORY$</td></tr>
-<tr><td bgcolor="lightgrey">Players</td><td>$PLAYERS$</td></tr>
-<tr><td bgcolor="lightgrey">ROM types</td><td>$ROM_TYPES$</td></tr>
-<tr><td bgcolor="lightgrey">Driver status</td><td>$DRIVER_STATUS$</td></tr>
-</tbody>
+<table border="0" cellspacing="5" width="100%">
+	<tbody>
+		<tr><td width="25%" valign="top" bgcolor="lightgrey">Name/ID</td><td width="25%" valign="top" bgcolor="lightgrey">Manufacturer</td><td width="25%" valign="top" bgcolor="lightgrey">Year</td><td width="25%" valign="top" bgcolor="lightgrey">Category</td></tr>
+		<tr><td width="25%" valign="top">$ID$</td><td width="25%" valign="top">$MANUFACTURER$</td><td width="25%" valign="top">$YEAR$</td><td width="25%" valign="top">$CATEGORY$</td></tr>
+		<tr><td width="25%" valign="top" bgcolor="lightgrey">Players</td><td width="25%" valign="top" bgcolor="lightgrey">ROM types</td><td width="25%" valign="top" bgcolor="lightgrey">Driver status</td><!-- <td width="25%" valign="top" bgcolor="lightgrey">Version</td> --></tr>
+		<tr><td width="25%" valign="top">$PLAYERS$</td><td width="25%" valign="top">$ROM_TYPES$</td><td width="25%" valign="top">$DRIVER_STATUS$</td><!-- <td width="25%" valign="top">$VERSION$</td> --></tr>
+	</tbody>
 </table>
-<h3>Screenshots</h3>
-<p><br></p>
+<h3>System images</h3>
+<table border="0" cellspacing="5" width="100%">
+	<tbody>
+		<tr><td width="33%" valign="top" bgcolor="lightgrey">Cabinet image</td><td width="33%" valign="top" bgcolor="lightgrey">Runtime preview</td><td width="33%" valign="top" bgcolor="lightgrey">Flyer image</td></tr>
+		<tr><td width="33%" valign="top"><img width="100%" src="file://$CABINET_IMAGE$"></td><td width="33%" valign="top"><img width="100%" src="file://$PREVIEW_IMAGE$"></td><td width="33%" valign="top"><img width="100%" src="file://$FLYER_IMAGE$"></td></tr>
+		<tr><td width="33%" valign="top" bgcolor="lightgrey">Controller image</td><td width="33%" valign="top" bgcolor="lightgrey">Marquee/Logo image</td><td width="33%" valign="top" bgcolor="lightgrey">PCB image</td></tr>
+		<tr><td width="33%" valign="top"><img width="100%" src="file://$CONTROLLER_IMAGE$"></td><td width="33%" valign="top"><img width="100%" src="file://$MARQUEE_IMAGE$"></td><td width="33%" valign="top"><img width="100%" src="file://$PCB_IMAGE$"></td></tr>
+		<!--
+		<tr><td width="33%" valign="top" bgcolor="lightgrey">Title screen</td></tr>
+		<tr><td width="33%" valign="top"><img width="100%" src="file://$TITLE_IMAGE$"></td></tr>
+		-->
+	</tbody>
+</table>
 <h3>Comments</h3>
 <p><br></p>
 </body>

@@ -3628,6 +3628,9 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->checkRevertStatus();
 				}
 
+				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+
 				QString softwareNotesFolder = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareNotesFolder").toString();
 				QString softwareNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareNotesTemplate").toString();
 				bool useSoftwareNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UseSoftwareNotesTemplate").toBool();
@@ -3642,6 +3645,15 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR);
+				if ( !qmc2SoftwareSnapshot ) {
+					qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
+					QHBoxLayout *layout = new QHBoxLayout;
+					layout->addWidget(qmc2SoftwareSnapshot);
+					layout->setContentsMargins(left, top, right, bottom);
+					tabSnapshot->setLayout(layout);
+				}
+				qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath;
 				qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
 
 				if ( QFile::exists(fileName) ) {
@@ -4466,6 +4478,36 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_PLAYERS);
 	      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+	      QString filePath;
+	      if ( qmc2Preview ) {
+		      if ( !qmc2Preview->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = filePath;
+	      }
+	      if ( qmc2Flyer ) {
+		      if ( !qmc2Flyer->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = filePath;
+	      }
+	      if ( qmc2Cabinet ) {
+		      if ( !qmc2Cabinet->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = filePath;
+	      }
+	      if ( qmc2Controller ) {
+		      if ( !qmc2Controller->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = filePath;
+	      }
+	      if ( qmc2Marquee ) {
+		      if ( !qmc2Marquee->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = filePath;
+		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = filePath;
+	      }
+	      if ( qmc2Title ) {
+		      if ( !qmc2Title->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = filePath;
+	      }
+	      if ( qmc2PCB ) {
+		      if ( !qmc2PCB->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = filePath;
+	      }
 	      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
 
 	      if ( QFile::exists(fileName) ) {
