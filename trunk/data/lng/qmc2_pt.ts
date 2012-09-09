@@ -4297,18 +4297,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="277"/>
         <source>&amp;Revert</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Reverter</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="280"/>
         <source>Revert changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverter alterações</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="283"/>
         <location filename="../../htmleditor/htmleditor.ui" line="286"/>
         <source>Revert changes from saved file</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverter alterações à partir do arquivo salvo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="295"/>
@@ -8842,7 +8842,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2109"/>
         <source>Do&amp;wnloads</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2410"/>
