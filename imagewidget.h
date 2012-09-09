@@ -93,7 +93,7 @@ class ImageWidget : public QWidget
 	public slots:
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
-		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL);
+		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL, bool loadImages = true);
 		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL);
 		void copyToClipboard();
 		void copyPathToClipboard();

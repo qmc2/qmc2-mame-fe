@@ -145,10 +145,10 @@ void ImageWidget::refresh()
 	}
 }
 
-bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName)
+bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::loadImage(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::loadImage(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4, bool loadImages = %5)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName)).arg(loadImages);
 #endif
 
 	ImagePixmap pm;
@@ -205,7 +205,6 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 			QString imagePath = imgDir + ".png";
 
 			if ( fileName )
-				//*fileName = gameName + ".png";
 				*fileName = imagePath;
 
 			QFile f(imagePath);
@@ -217,16 +216,19 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					QStringList dirEntries = dir.entryList(nameFilter, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive, QDir::Name | QDir::Reversed);
 					if ( dirEntries.count() > 0 ) {
 						imagePath = imgDir + "/" + dirEntries[0];
-						//QString pathCopy = imagePath;
 						if ( fileName )
-							//*fileName = pathCopy.remove(baseDirectory);
 							*fileName = imagePath;
 					}
 				}
 			}
 
 			if ( checkOnly ) {
-				fileOk = pm.load(imagePath, "PNG");
+				if ( loadImages )
+					fileOk = pm.load(imagePath, "PNG");
+				else {
+					QFile f(imagePath);
+					fileOk = f.exists();
+				}
 			} else {
 				if ( pm.load(imagePath, "PNG") ) {
 					pm.imagePath = imagePath;
