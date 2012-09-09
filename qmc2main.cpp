@@ -10521,7 +10521,7 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 		} 
 		if ( wikiLine.indexOf(QRegExp("\\s*</code>")) == 0 )
 			codeOn = false;
-		bool listDetected = ( wikiLineTrimmed.startsWith("* ") || wikiLineTrimmed.startsWith("- ") );
+		bool listDetected = ( (wikiLineTrimmed.startsWith("* ") && wikiLine[wikiLine.indexOf("*") + 2] != ' ') || wikiLineTrimmed.startsWith("- ") );
 		if ( wikiLine == "  * " || wikiLine == "  - " || wikiLine == "  *" || wikiLine == "  -" ) continue; // this is an "artifact"... ignore :)
 		if ( !listDetected && (wikiLine.startsWith("  ") || codeOn) ) {
 			if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
