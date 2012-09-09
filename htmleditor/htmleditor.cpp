@@ -761,9 +761,18 @@ void HtmlEditor::changeTab(int index)
 
 void HtmlEditor::openLink(const QUrl &url)
 {
-	QString msg = QString(tr("Open '%1' in default browser?")).arg(url.toString());
-	if ( QMessageBox::question(this, tr("Open link"), msg, QMessageBox::Open | QMessageBox::Cancel) == QMessageBox::Open )
-		QDesktopServices::openUrl(url);
+	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+		webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+	else {
+		webBrowser->adjustSize();
+		webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+	}
+	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+	webBrowser->webViewBrowser->load(url);
+	webBrowser->homeUrl = url;
+	webBrowser->show();
 }
 
 void HtmlEditor::changeZoom(int percent)
@@ -862,7 +871,7 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	while ( it.hasNext() ) {
 		it.next();
 		QString replacementString = it.value();
-		replacementString.replace("<", "&lt;").replace(">", "&gt;");
+		//replacementString.replace("<", "&lt;").replace(">", "&gt;");
 		data.replace(it.key(), replacementString);
 	}
 

@@ -24,6 +24,13 @@
 	$LOGO_IMAGE$		Alias for $MARQUEE_IMAGE$
 	$TITLE_IMAGE$		Current system's title image (MAME/UME-only!)
 	$PCB_IMAGE$		Current system's PCB image
+
+	DAT info sources:
+
+	$GAME_INFO$		Game info DB entry (from MAME history.dat / MESS sysinfo.dat)
+	$MACHINE_INFO$		Alias for $GAME_INFO$
+	$EMU_INFO$		Emulator info DB entry (from MAME mameinfo.dat / MESS messinfo.dat)
+
 -->
 <html>
 <head>
@@ -51,5 +58,9 @@
 </table>
 <h3>Comments</h3>
 <p><br></p>
+<h3>System info</h3>
+<p>$GAME_INFO$</p>
+<h3>Emulator info</h3>
+<p>$EMU_INFO$</p>
 </body>
 </html>
