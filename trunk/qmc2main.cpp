@@ -4484,7 +4484,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
 	      QString filePath;
 	      if ( qmc2Preview ) {
-		      if ( !qmc2Preview->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2Preview->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file:///" + filePath;
 #else
@@ -4492,7 +4492,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Flyer ) {
-		      if ( !qmc2Flyer->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2Flyer->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file:///" + filePath;
 #else
@@ -4500,7 +4500,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Cabinet ) {
-		      if ( !qmc2Cabinet->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2Cabinet->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file:///" + filePath;
 #else
@@ -4508,7 +4508,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Controller ) {
-		      if ( !qmc2Controller->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2Controller->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file:///" + filePath;
 #else
@@ -4516,7 +4516,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Marquee ) {
-		      if ( !qmc2Marquee->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2Marquee->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file:///" + filePath;
 		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = "file:///" + filePath;
@@ -4526,7 +4526,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Title ) {
-		      if ( !qmc2Title->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2Title->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file:///" + filePath;
 #else
@@ -4534,7 +4534,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2PCB ) {
-		      if ( !qmc2PCB->loadImage(gameName, gameName, true, &filePath) ) filePath.clear();
+		      if ( !qmc2PCB->loadImage(gameName, gameName, true, &filePath, false) ) filePath.clear();
 #if defined(Q_WS_WIN)
 		      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file:///" + filePath;
 #else
