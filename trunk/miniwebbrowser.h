@@ -84,8 +84,11 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_comboBoxURL_activated();
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
+    void on_toolButtonBack_clicked();
+    void on_toolButtonForward_clicked();
     void on_spinBoxZoom_valueChanged(int);
     void changeTitle(QString &);
+    void checkBackAndForward();
 
     // page actions
     void processPageActionDownloadRequested(const QNetworkRequest &);

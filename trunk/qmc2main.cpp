@@ -4541,6 +4541,45 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file://" + filePath;
 #endif
 	      }
+
+	      if ( qmc2EmuInfoDB.contains(gameName) || qmc2EmuInfoDB.contains(qmc2ParentMap[gameName]) ) {
+		      QByteArray *newEmuInfo = qmc2EmuInfoDB[gameName];
+		      if ( !newEmuInfo )
+			      newEmuInfo = qmc2EmuInfoDB[qmc2ParentMap[gameName]];
+		      if ( newEmuInfo ) {
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() )
+				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+			      else
+				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+		      } else
+			      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
+	      } else
+		      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
+
+	      if ( qmc2GameInfoDB.contains(gameName) || qmc2GameInfoDB.contains(qmc2ParentMap[gameName]) ) {
+		      QByteArray *newGameInfo = qmc2GameInfoDB[gameName];
+		      if ( !newGameInfo )
+			      newGameInfo = qmc2GameInfoDB[qmc2ParentMap[gameName]];
+		      if ( newGameInfo ) {
+#if defined(QMC2_EMUTYPE_MESS)
+			      QString machineInfoString;
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
+				      machineInfoString = QString(QMC2_UNCOMPRESS(*newGameInfo));
+			      else
+				      machineInfoString = QString(*newGameInfo);
+			      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(machineInfoString);
+#else
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
+				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+			      else
+				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+#endif
+		      } else
+			      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = tr("No data available");
+	      } else
+		      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = tr("No data available");
+	      qmc2SystemNotesEditor->templateMap["$MACHINE_INFO$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO$"];
+
 	      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
 
 	      if ( QFile::exists(fileName) ) {
@@ -10606,6 +10645,12 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 				wikiText += "<p>" + wikiLine + "</p>";
 		}
 	}
+
+	if ( ulLevel > 0 )
+		for (int i = 0; i < ulLevel; i++) wikiText += "</ul>";
+	else if ( olLevel > 0 )
+		for (int i = 0; i < olLevel; i++) wikiText += "</ol>";
+
 	return wikiText;
 }
 #endif

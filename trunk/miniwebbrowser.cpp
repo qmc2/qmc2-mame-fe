@@ -83,8 +83,6 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   connect(webViewBrowser, SIGNAL(loadProgress(int)), this, SLOT(webViewBrowser_loadProgress(int)));
   connect(webViewBrowser, SIGNAL(statusBarMessage(const QString &)), this, SLOT(webViewBrowser_statusBarMessage(const QString &)));
   connect(webViewBrowser, SIGNAL(iconChanged()), this, SLOT(webViewBrowser_iconChanged()));
-  connect(toolButtonBack, SIGNAL(clicked()), webViewBrowser, SLOT(back()));
-  connect(toolButtonForward, SIGNAL(clicked()), webViewBrowser, SLOT(forward()));
   connect(toolButtonReload, SIGNAL(clicked()), webViewBrowser, SLOT(reload()));
   connect(toolButtonStop, SIGNAL(clicked()), webViewBrowser, SLOT(stop()));
 
@@ -123,6 +121,10 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
   webViewBrowser->pageAction(QWebPage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));
 #endif
+
+  // connect page actions to own routines
+  connect(webViewBrowser->pageAction(QWebPage::Back), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
+  connect(webViewBrowser->pageAction(QWebPage::Forward), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
 
   // setup browser settings
   webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DYNAMIC_DOT_PATH);
@@ -185,6 +187,24 @@ MiniWebBrowser::~MiniWebBrowser()
 #endif
 
 	hideEvent(NULL);
+}
+
+void MiniWebBrowser::checkBackAndForward()
+{
+	toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
+	toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
+}
+
+void MiniWebBrowser::on_toolButtonBack_clicked()
+{
+	webViewBrowser->back();
+	QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
+}
+
+void MiniWebBrowser::on_toolButtonForward_clicked()
+{
+	webViewBrowser->forward();
+	QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
 }
 
 void MiniWebBrowser::hideEvent(QHideEvent *e)
@@ -297,6 +317,7 @@ void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
       webViewBrowser_urlChanged(url);
     }
   }
+  QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
 }
 
 void MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url)
@@ -355,9 +376,8 @@ void MiniWebBrowser::webViewBrowser_loadStarted()
   } else {
     toolButtonStop->setEnabled(true);
     toolButtonReload->setEnabled(false);
-    toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
-    toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
     toolButtonHome->setEnabled(true);
+    QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
   }
 
   QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
@@ -383,8 +403,7 @@ void MiniWebBrowser::webViewBrowser_loadProgress(int progress)
     toolButtonHome->setEnabled(true);
   } else {
     QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
-    toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
-    toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
+    QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
   }
 }
 
@@ -405,16 +424,11 @@ void MiniWebBrowser::webViewBrowser_loadFinished(bool ok)
     firstTimeLoadFinished = false;
     homeUrl = webViewBrowser->url();
     webViewBrowser->history()->clear();
-    toolButtonBack->setEnabled(false);
-    toolButtonForward->setEnabled(false);
-  } else {
-    toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
-    toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
   }
   toolButtonStop->setEnabled(false);
   toolButtonReload->setEnabled(true);
   toolButtonHome->setEnabled(true);
-
+  QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
   QTimer::singleShot(250, this, SLOT(webViewBrowser_iconChanged()));
 }
 
