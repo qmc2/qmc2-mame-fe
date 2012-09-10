@@ -3655,14 +3655,16 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					tabSnapshot->setLayout(layout);
 				}
 				qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
+				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
+				QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 #if defined(Q_WS_WIN)
 				if ( qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath.isEmpty() )
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + QDir::fromNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png");
+					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + ghostPath;
 				else
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
 #else
 				if ( qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath.isEmpty() )
-					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png";
+					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + ghostPath;
 				else
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath;
 #endif
@@ -4491,12 +4493,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
 	      QString filePath;
-	      QString ghostPath;
-#if defined(Q_WS_WIN)
-	      ghostPath = QDir::fromNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png");
-#else
-	      ghostPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png";
-#endif
+	      QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
+	      QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 	      if ( qmc2Preview ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Preview->loadImage(gameName, gameName, true, &filePath, false) )
