@@ -4493,14 +4493,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      QString filePath;
 	      QString ghostPath;
 #if defined(Q_WS_WIN)
-	      ghostPath = QDir:fromNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png");
+	      ghostPath = QDir::fromNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png");
 #else
 	      ghostPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "img/ghost.png";
 #endif
 	      if ( qmc2Preview ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Preview->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file:///" + ghostPath;
 #else
@@ -4513,7 +4513,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Flyer ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Flyer->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file:///" + ghostPath;
 #else
@@ -4526,7 +4526,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Cabinet ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Cabinet->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file:///" + ghostPath;
 #else
@@ -4539,7 +4539,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Controller ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Controller->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file:///" + ghostPath;
 #else
@@ -4552,7 +4552,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Marquee ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Marquee->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file:///" + ghostPath;
 		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"];
@@ -4567,7 +4567,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2Title ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2Title->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file:///" + ghostPath;
 #else
@@ -4580,7 +4580,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      if ( qmc2PCB ) {
 #if defined(Q_WS_WIN)
 		      if ( qmc2PCB->loadImage(gameName, gameName, true, &filePath, false) )
-			      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file:///" + QDir:fromNativeSeparators(filePath);
+			      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
 			      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file:///" + ghostPath;
 #else
