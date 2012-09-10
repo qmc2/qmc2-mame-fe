@@ -140,6 +140,9 @@
 #define QMC2_GAMELIST_COLUMNS			11
 #define QMC2_MACHINELIST_COLUMNS		10
 
+// when parsing entries in the game/machine list, process GUI events after every this many XML lines
+#define QMC2_PARSE_GAMELIST_RSP			100000
+
 // logical column indizes in the emulator control panel
 #define QMC2_EMUCONTROL_COLUMN_NUMBER		0
 #define QMC2_EMUCONTROL_COLUMN_ID		QMC2_EMUCONTROL_COLUMN_NUMBER
@@ -753,5 +756,6 @@
 // debugging macros
 #define QMC2_PRINT_STR(s)			printf("%s = [%s]\n", #s, (const char *)s.toLocal8Bit())
 #define QMC2_PRINT_PTR(p)			printf("%s = [%p]\n", #p, p)
+#define QMC2_PRINT_INT(i)			printf("%s = [%ld]\n", #i, i)
 
 #endif

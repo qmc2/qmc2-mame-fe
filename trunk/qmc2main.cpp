@@ -4837,8 +4837,12 @@ void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
 #endif
 
   if ( item->child(0) ) {
-    if ( item->child(0)->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
-      qmc2Gamelist->parseGameDetail(item);
+    treeWidgetGamelist->viewport()->update();
+    qApp->processEvents();
+    if ( item->child(0)->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") ) {
+	    treeWidgetGamelist->viewport()->update();
+	    qmc2Gamelist->parseGameDetail(item);
+    }
   }
 }
 

@@ -1086,10 +1086,21 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     int xmlLinesCount = xmlLines.count();
     while ( !xmlLines[gamePos].contains(s) ) {
       gamePos++;
-      if ( gamePos > xmlLinesCount ) break;
+      if ( gamePos % QMC2_PARSE_GAMELIST_RSP == 0 ) {
+	      int dots = gamePos / QMC2_PARSE_GAMELIST_RSP - 3;
+	      if ( dots > 0 ) {
+		      item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data...") + QString(".").repeated(dots));
+		      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
+		      qApp->processEvents();
+	      }
+      }
+      if ( gamePos > xmlLinesCount )
+	      break;
     }
     if ( gamePos < xmlLinesCount && xmlLines[gamePos].contains(s) ) {
       xmlGamePositionMap[gameName] = gamePos;
+      item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
+      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
     } else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find game information for '%1'").arg(gameDescription));
