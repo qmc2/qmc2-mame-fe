@@ -3128,7 +3128,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1102"/>
         <source>Updating</source>
-        <translation type="unfinished">Atualizando</translation>
+        <translation>Atualizando</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1106"/>
