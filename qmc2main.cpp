@@ -246,6 +246,7 @@ QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
 int qmc2SortCriteria = QMC2_SORT_BY_DESCRIPTION;
 Qt::SortOrder qmc2SortOrder = Qt::AscendingOrder;
+bool qmc2SortingActive = false;
 QBitArray qmc2Filter;
 unzFile qmc2IconFile = NULL;
 QStringList qmc2BiosROMs;
@@ -273,6 +274,7 @@ QWidgetList qmc2AutoMinimizedWidgets;
 QSplashScreen *qmc2SplashScreen = NULL;
 int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
 QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
+QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -4832,6 +4834,12 @@ void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
     return;
   }
 
+  if ( qmc2SortingActive ) {
+    treeWidgetGamelist->collapseItem(item);
+    log(QMC2_LOG_FRONTEND, tr("please wait for sorting to finish and try again"));
+    return;
+  }
+
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
@@ -4842,6 +4850,7 @@ void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
     if ( item->child(0)->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") ) {
 	    treeWidgetGamelist->viewport()->update();
 	    qmc2Gamelist->parseGameDetail(item);
+	    qmc2ExpandedGamelistItems << item;
     }
   }
 }

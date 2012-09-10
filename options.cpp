@@ -156,6 +156,8 @@ extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QSplashScreen *qmc2SplashScreen;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
+extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
+extern bool qmc2SortingActive;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -1733,6 +1735,7 @@ void Options::on_pushButtonApply_clicked()
     }
 
     if ( doResort ) {
+      qmc2SortingActive = true;
       QString sortCriteria = "?";
       switch ( qmc2SortCriteria ) {
         case QMC2_SORT_BY_DESCRIPTION:
@@ -1785,20 +1788,16 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
       qApp->processEvents();
-      QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard);
-      for (i = 0; i < itemList.count(); i++) {
-        if ( itemList[i]->childCount() > 1 ) {
-          qmc2MainWindow->treeWidgetGamelist->collapseItem(itemList[i]);
-          QList<QTreeWidgetItem *> childrenList = itemList[i]->takeChildren();
-          int j;
-          for (j = 0; j < childrenList.count(); j++)
-            delete childrenList[j];
-          QTreeWidgetItem *nameItem = new QTreeWidgetItem(itemList[i]);
-          nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-          nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME)]);
-          qApp->processEvents();
-        }
+      foreach (QTreeWidgetItem *ti, qmc2ExpandedGamelistItems) {
+	      qmc2MainWindow->treeWidgetGamelist->collapseItem(ti);
+	      QList<QTreeWidgetItem *> childrenList = ti->takeChildren();
+	      foreach (QTreeWidgetItem *ci, ti->takeChildren())
+		      delete ci;
+	      QTreeWidgetItem *nameItem = new QTreeWidgetItem(ti);
+	      nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
+	      nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[ti->text(QMC2_GAMELIST_COLUMN_GAME)]);
       }
+      qmc2ExpandedGamelistItems.clear();
       qApp->processEvents();
       qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
@@ -1806,6 +1805,7 @@ void Options::on_pushButtonApply_clicked()
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 #endif
+      qmc2SortingActive = false;
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
     }
   }

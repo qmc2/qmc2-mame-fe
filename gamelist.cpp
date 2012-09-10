@@ -111,6 +111,7 @@ extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
 extern QMap<QString, int> qmc2XmlGamePositionMap;
 extern HtmlEditor *qmc2SystemNotesEditor;
+extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;
@@ -323,6 +324,7 @@ void Gamelist::load()
   qmc2BiosROMs.clear();
   qmc2DeviceROMs.clear();
   qmc2HierarchyItemMap.clear();
+  qmc2ExpandedGamelistItems.clear();
 
   enableWidgets(false);
 
@@ -1109,6 +1111,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 #endif
       return;
     }
+  } else {
+      item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
+      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
   }
   qApp->processEvents();
 
