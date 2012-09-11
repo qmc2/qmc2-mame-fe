@@ -228,6 +228,11 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				else {
 					QFile f(imagePath);
 					fileOk = f.exists();
+					if ( !fileOk ) {
+						QString parentName = qmc2ParentMap[gameName];
+						if ( qmc2ParentImageFallback && !parentName.isEmpty() )
+							fileOk = loadImage(parentName, onBehalfOf, checkOnly, fileName, false);
+					}
 				}
 			} else {
 				if ( pm.load(imagePath, "PNG") ) {
