@@ -1736,7 +1736,7 @@ void Options::on_pushButtonApply_clicked()
 
     if ( doResort ) {
       qmc2SortingActive = true;
-      QString sortCriteria = "?";
+      QString sortCriteria = tr("?");
       switch ( qmc2SortCriteria ) {
         case QMC2_SORT_BY_DESCRIPTION:
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
