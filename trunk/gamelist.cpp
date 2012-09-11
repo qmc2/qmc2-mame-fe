@@ -1112,7 +1112,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     if ( gamePos < xmlLinesCount && xmlLines[gamePos].contains(s) ) {
       xmlGamePositionMap[gameName] = gamePos;
       item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
-      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
+      qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
     } else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find game information for '%1'").arg(gameDescription));
@@ -1123,8 +1123,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     }
   } else {
       item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
-      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
+      qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
   }
+
   qApp->processEvents();
 
   QTreeWidgetItem *childItem = item->takeChild(0);
@@ -1389,12 +1390,14 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
         insertAttributeItems(secondChildItem, subElement, attributes, descriptions, false);
         gamePos++;
       }
-      if ( xmlLines[gamePos].contains("</machine>") || xmlLines[gamePos].contains("</game>") )
-        gamePos--;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+      if ( xmlLines[gamePos].contains("</game>") ) gamePos--;
+#else
+      if ( xmlLines[gamePos].contains("</machine>") ) gamePos--;
+#endif
     }
     gamePos++;
   }
-  qmc2MainWindow->treeWidgetGamelist->scrollToItem(item);
 }
 
 void Gamelist::parse()
