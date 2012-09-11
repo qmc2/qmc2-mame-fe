@@ -33,6 +33,7 @@ class Gamelist : public QObject
     QString gamelistBuffer;
     QStringList xmlLines;
     static QStringList phraseTranslatorList;
+    static QMap<QString, QString> reverseTranslation;
     QTime loadTimer;
     QTime verifyTimer;
     QTime parseTimer;
