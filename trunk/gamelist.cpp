@@ -115,6 +115,7 @@ extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;
+QMap<QString, QString> Gamelist::reverseTranslation;
 int numVerifyRoms = 0;
 QString verifyLastLine;
 QStringList verifiedList;
@@ -150,7 +151,7 @@ Gamelist::Gamelist(QObject *parent)
   qmc2NotFoundBIOSImageIcon.addFile(imgDir + "sphere_grey_bios.png");
   qmc2NotFoundDeviceImageIcon.addFile(imgDir + "sphere_grey_device.png");
 
-  if ( phraseTranslatorList.isEmpty() )
+  if ( phraseTranslatorList.isEmpty() ) {
     phraseTranslatorList << tr("good") << tr("bad") << tr("preliminary") << tr("supported") << tr("unsupported")
                          << tr("imperfect") << tr("yes") << tr("no") << tr("baddump") << tr("nodump")
                          << tr("vertical") << tr("horizontal") << tr("raster") << tr("unknown") << tr("Unknown") 
@@ -161,9 +162,18 @@ Gamelist::Gamelist(QObject *parent)
                          << tr("doublejoy2way") << tr("printer") << tr("cdrom") << tr("cartridge") << tr("cassette")
                          << tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot") << tr("original")
 			 << tr("compatible");
+    reverseTranslation[tr("good")] = "good";
+    reverseTranslation[tr("bad")] = "bad";
+    reverseTranslation[tr("preliminary")] = "preliminary";
+    reverseTranslation[tr("supported")] = "supported";
+    reverseTranslation[tr("unsupported")] = "unsupported";
+    reverseTranslation[tr("imperfect")] = "imperfect";
+    reverseTranslation[tr("yes")] = "yes";
+    reverseTranslation[tr("no")] = "no";
+  }
 
   if ( qmc2UseIconFile ) {
-    qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toAscii());
+    qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toLocal8Bit());
     if ( qmc2IconFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString()));
   }
@@ -1042,7 +1052,7 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
     if ( valueString == ">" )
 	    return QString::null;
     if ( translate )
-      return tr(valueString.toAscii());
+      return tr(valueString.toLocal8Bit());
     else
       return valueString;
   } else
@@ -1061,7 +1071,7 @@ void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QS
     if ( !valueString.isEmpty() ) {
       QTreeWidgetItem *attributeItem = new QTreeWidgetItem(parent);
       attributeItem->setText(QMC2_GAMELIST_COLUMN_GAME, descriptions.at(i));
-      attributeItem->setText(QMC2_GAMELIST_COLUMN_ICON, tr(valueString.toAscii()));
+      attributeItem->setText(QMC2_GAMELIST_COLUMN_ICON, tr(valueString.toLocal8Bit()));
     }
   }
 }
@@ -1593,7 +1603,7 @@ void Gamelist::parse()
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
             } else {
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
-	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
+	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
             }
             if ( useCatverIni || useCategoryIni ) {
               QString categoryString = qmc2CategoryMap[gameName];
@@ -1880,7 +1890,7 @@ void Gamelist::parse()
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
 	} else {
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
-	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
+	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
         }
         if ( useCatverIni || useCategoryIni ) {
           QString categoryString = qmc2CategoryMap[gameName];
