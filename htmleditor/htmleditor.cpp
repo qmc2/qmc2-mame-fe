@@ -871,14 +871,22 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	while ( it.hasNext() ) {
 		it.next();
 		QString replacementString = it.value();
-		//replacementString.replace("<", "&lt;").replace(">", "&gt;");
 		data.replace(it.key(), replacementString);
 	}
 
 	ui->webView->setHtml(data);
+	data = ui->webView->page()->mainFrame()->toHtml();
+	while ( data.contains("<script") ) {
+		int startIndex = data.indexOf("<script");
+		int endIndex = data.indexOf("</script>", startIndex);
+		if ( endIndex > startIndex ) {
+			endIndex += 9;
+			data.remove(startIndex, endIndex - startIndex);
+		}
+	}
+	ui->webView->setHtml(data);
 	ui->webView->page()->setContentEditable(true);
-
-	emptyContent = ui->webView->page()->mainFrame()->toHtml();
+	emptyContent = data;
 
 	if ( fileName.isEmpty() )
 		setCurrentFileName(f);
