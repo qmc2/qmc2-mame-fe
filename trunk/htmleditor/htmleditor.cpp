@@ -864,7 +864,8 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		if ( endIndex > startIndex ) {
 			endIndex += 3;
 			data.remove(startIndex, endIndex - startIndex);
-		}
+		} else
+			data.remove(startIndex, 4);
 	}
 
 	QMapIterator<QString, QString> it(templateMap);
@@ -874,18 +875,27 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		data.replace(it.key(), replacementString);
 	}
 
+	// pre-execute JavaScript (if any)
+	ui->webView->setUpdatesEnabled(false);
 	ui->webView->setHtml(data);
+
+	// remove all <script>'s from the content
 	data = ui->webView->page()->mainFrame()->toHtml();
-	while ( data.contains("<script") ) {
-		int startIndex = data.indexOf("<script");
+	while ( data.contains("<script>") ) {
+		int startIndex = data.indexOf("<script>");
 		int endIndex = data.indexOf("</script>", startIndex);
 		if ( endIndex > startIndex ) {
 			endIndex += 9;
 			data.remove(startIndex, endIndex - startIndex);
-		}
+		} else
+			data.remove(startIndex, 8);
 	}
+
+	// finally load the generated HTML and it as the new 'empty content'
 	ui->webView->setHtml(data);
+	ui->webView->setUpdatesEnabled(true);
 	ui->webView->page()->setContentEditable(true);
+
 	emptyContent = data;
 
 	if ( fileName.isEmpty() )
