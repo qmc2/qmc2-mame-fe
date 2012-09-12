@@ -3647,6 +3647,8 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR);
+	      			qmc2SoftwareNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
+	      			qmc2SoftwareNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 				if ( !qmc2SoftwareSnapshot ) {
 					qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
 					QHBoxLayout *layout = new QHBoxLayout;
@@ -4495,6 +4497,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = Gamelist::reverseTranslation[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT)];
+	      qmc2SystemNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
+	      qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 	      QString filePath;
 	      QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 	      QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
