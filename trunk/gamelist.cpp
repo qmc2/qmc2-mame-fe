@@ -2693,7 +2693,11 @@ void Gamelist::loadReadyReadStandardOutput()
   // this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
   qApp->processEvents();
 
+#if defined(Q_WS_WIN)
+  QString s =  QString::fromUtf8(loadProc->readAllStandardOutput());
+#else
   QString s = loadProc->readAllStandardOutput();
+#endif
   bool endsWithSpace = s.endsWith(" ");
   bool startWithSpace = s.startsWith(" ");
 
