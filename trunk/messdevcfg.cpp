@@ -503,7 +503,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 				QString s = "<game name=\"" + machineName + "\"";
 #endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
-				slotXmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+				slotXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
 #if defined(QMC2_EMUTYPE_MESS)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
@@ -547,14 +547,14 @@ QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 #if defined(QMC2_EMUTYPE_MESS)
 		QString s = "<machine name=\"" + machineName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+		normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
 			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
 		normalXmlBuffer += "</machine>\n";
 #elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QString s = "<game name=\"" + machineName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+		normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
 			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
 		normalXmlBuffer += "</game>\n";

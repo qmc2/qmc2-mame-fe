@@ -309,7 +309,7 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 		int swlLinesMax = swlLines.count() - 1;
 		QString s = "<softwarelist name=\"" + listName + "\"";
 		while ( !swlLines[i].startsWith(s) && i < swlLinesMax && !interruptLoad ) i++;
-		softwareListXmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+		softwareListXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax && !interruptLoad )
 			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
 		softwareListXmlBuffer += "</softwarelist>";
@@ -422,7 +422,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 				QString s = "<game name=\"" + systemName + "\"";
 #endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
-				xmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+				xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 				if ( i < xmlLines.count() ) {
 #if defined(QMC2_EMUTYPE_MESS)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
