@@ -8770,12 +8770,12 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2623"/>
         <source>A&amp;bout...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sobre...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2632"/>
         <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3340"/>
@@ -9009,7 +9009,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2771"/>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2783"/>
@@ -9412,7 +9412,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="3604"/>
         <source>Ctrl+Shift+J</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3658"/>
@@ -17225,7 +17225,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="129"/>
         <location filename="../../softwarelist.ui" line="132"/>
         <source>Select the software for which the snapname should be adjusted</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o software para o qual o nome do snap deve ser ajustado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="147"/>
@@ -17293,7 +17293,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="106"/>
         <location filename="../../softwarelist.ui" line="109"/>
         <source>Toggle automatic adjustment of the snapname parameter (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar ajuste automático do parâmetro snapname (segure pressionado para abrir o menu)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="154"/>
@@ -17496,18 +17496,19 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="164"/>
         <source>Adjust pattern...</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão de ajuste...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="290"/>
         <source>Snapname adjustment pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão de ajuste do snapname</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="291"/>
         <source>Enter the pattern used for snapname adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o padrão usado para ajustar o snapname:
+(Macros permitidas:$SOFTWARE_LIST$, $SOFTWARE_NAME$) </translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="319"/>
