@@ -2620,7 +2620,7 @@
      <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;About...</string>
+    <string>A&amp;bout...</string>
    </property>
    <property name="toolTip">
     <string>About M.A.M.E. Catalog / Launcher II</string>
@@ -2629,7 +2629,7 @@
     <string>About M.A.M.E. Catalog / Launcher II</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string>Ctrl+B</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -2768,7 +2768,7 @@
     <string>Add current game to favorites</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+V</string>
+    <string>Ctrl+J</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3601,7 +3601,7 @@
     <string>Add all tagged games to favorites</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+V</string>
+    <string>Ctrl+Shift+J</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

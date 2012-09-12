@@ -347,7 +347,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), NULL);
-  qmc2ShortcutMap["Ctrl+A"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
+  qmc2ShortcutMap["Ctrl+B"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -356,11 +356,11 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
   qmc2ShortcutMap["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  qmc2ShortcutMap["Ctrl+V"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2ShortcutMap["Ctrl+V"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
 #endif
-  qmc2ShortcutMap["Ctrl+Shift+V"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+J"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
   qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
   qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
 #if defined(QMC2_WIP_ENABLED)

@@ -2069,14 +2069,14 @@ void MainWindow::on_actionReload_triggered(bool)
 #endif
   } else {
     qmc2StopParser = false;
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_GAMEINFO_INDEX) )
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() )
       if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
         qmc2Gamelist->enableWidgets(false);
         loadGameInfoDB();
         qmc2Gamelist->enableWidgets(true);
       }
 
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_EMUINFO_INDEX) )
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() )
       if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
         qmc2Gamelist->enableWidgets(false);
         loadEmuInfoDB();
@@ -10883,12 +10883,12 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
 #endif
   qmc2ShortcutMap["Ctrl+3"].second = qmc2MainWindow->actionCheckImagesAndIcons;
-  qmc2ShortcutMap["Ctrl+A"].second = qmc2MainWindow->actionAbout;
+  qmc2ShortcutMap["Ctrl+B"].second = qmc2MainWindow->actionAbout;
   qmc2ShortcutMap["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
   qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
   qmc2ShortcutMap["Ctrl+E"].second = qmc2MainWindow->actionExportROMStatus;
-  qmc2ShortcutMap["Ctrl+V"].second = qmc2MainWindow->actionToFavorites;
-  qmc2ShortcutMap["Ctrl+Shift+V"].second = qmc2MainWindow->actionToFavoritesTagged;
+  qmc2ShortcutMap["Ctrl+J"].second = qmc2MainWindow->actionToFavorites;
+  qmc2ShortcutMap["Ctrl+Shift+J"].second = qmc2MainWindow->actionToFavoritesTagged;
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
 #if defined(QMC2_WIP_ENABLED)
