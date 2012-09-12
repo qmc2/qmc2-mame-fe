@@ -309,7 +309,7 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 		int swlLinesMax = swlLines.count() - 1;
 		QString s = "<softwarelist name=\"" + listName + "\"";
 		while ( !swlLines[i].startsWith(s) && i < swlLinesMax && !interruptLoad ) i++;
-		softwareListXmlBuffer = "<?xml version=\"1.0\"?>\n";
+		softwareListXmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
 		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax && !interruptLoad )
 			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
 		softwareListXmlBuffer += "</softwarelist>";
@@ -422,7 +422,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 				QString s = "<game name=\"" + systemName + "\"";
 #endif
 				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
-				xmlBuffer = "<?xml version=\"1.0\"?>\n";
+				xmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
 				if ( i < xmlLines.count() ) {
 #if defined(QMC2_EMUTYPE_MESS)
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
@@ -1267,9 +1267,11 @@ void SoftwareList::loadReadyReadStandardOutput()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardOutput()"));
 #endif
 
-	QString s = swlLastLine + proc->readAllStandardOutput();
 #if defined(Q_WS_WIN)
+	QString s = swlLastLine + QString::fromAscii(proc->readAllStandardOutput());
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#else
+	QString s = swlLastLine + proc->readAllStandardOutput();
 #endif
 	QStringList lines = s.split("\n");
 
