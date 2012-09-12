@@ -90,6 +90,29 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonToggleSnapnameAdjustment">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
+       </property>
+       <property name="statusTip">
+        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QComboBox" name="comboBoxDeviceConfiguration">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
@@ -346,8 +369,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>64</height>
+        <width>548</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -436,8 +459,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>90</height>
+        <width>548</width>
+        <height>195</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -566,6 +589,7 @@
   <tabstop>toolButtonReload</tabstop>
   <tabstop>toolButtonCompatFilterToggle</tabstop>
   <tabstop>toolButtonToggleSoftwareInfo</tabstop>
+  <tabstop>toolButtonToggleSnapnameAdjustment</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
   <tabstop>toolButtonExport</tabstop>
   <tabstop>toolButtonFavoritesOptions</tabstop>

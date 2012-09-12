@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #endif
 #include <QCache>
+#include <QInputDialog>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -93,6 +94,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonExport->setIconSize(iconSize);
 	toolButtonToggleSoftwareInfo->setIconSize(iconSize);
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
+	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
@@ -154,6 +156,14 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(saveFavoritesToFile()));
 	toolButtonFavoritesOptions->setMenu(favoritesOptionsMenu);
 
+	menuSnapnameAdjustment = new QMenu(this);
+	s = tr("Adjust pattern...");
+	action = menuSnapnameAdjustment->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/configure.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(adjustSnapnamePattern()));
+	toolButtonToggleSnapnameAdjustment->setMenu(menuSnapnameAdjustment);
+
 	// restore widget states
 	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/KnownSoftwareHeaderState").toByteArray());
 	treeWidgetFavoriteSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/FavoriteSoftwareHeaderState").toByteArray());
@@ -163,6 +173,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->blockSignals(true);
 	toolButtonCompatFilterToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", true).toBool());
 	toolButtonCompatFilterToggle->blockSignals(false);
+	toolButtonToggleSnapnameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname").toBool());
 
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
@@ -253,6 +264,30 @@ SoftwareList::~SoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareInfo", toolButtonToggleSoftwareInfo->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", toolButtonCompatFilterToggle->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", toolButtonToggleSnapnameAdjustment->isChecked());
+}
+
+void SoftwareList::adjustSnapnamePattern()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::adjustSnapnamePattern()");
+#endif
+
+	bool ok;
+	QStringList items;
+	items << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$" << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$/%i";
+	QString storedPattern = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString();
+	int index = items.indexOf(storedPattern);
+	if ( index < 0 ) {
+		items << storedPattern;
+		index = 2;
+	}
+	QString pattern = QInputDialog::getItem(this,
+						tr("Snapname adjustment pattern"),
+						tr("Enter the pattern used for snapname adjustment:\n(Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)"),
+						items, index, true, &ok);
+	if ( ok )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", pattern);
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
@@ -2176,6 +2211,7 @@ QStringList &SoftwareList::arguments()
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 
+	QString snapnameList, snapnameSoftware;
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItemIterator it(treeWidget);
 		QStringList manualMounts;
@@ -2183,6 +2219,12 @@ QStringList &SoftwareList::arguments()
 			// manually mounted
 			while ( *it ) {
 				QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
+				if ( snapnameList.isEmpty() ) {
+					QTreeWidgetItem *item = *it;
+					while ( item->parent() ) item = item->parent();
+					snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
+					snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
+				}
 				if ( comboBox ) {
 					if ( comboBox->currentIndex() > QMC2_SWLIST_MSEL_DONT_MOUNT ) {
 						swlArgs << QString("-%1").arg(comboBox->currentText());
@@ -2197,6 +2239,8 @@ QStringList &SoftwareList::arguments()
 			// automatically mounted
 			QTreeWidgetItem *item = selectedItems[0];
 			while ( item->parent() ) item = item->parent();
+			snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
+			snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
 			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",");
 			successfulLookups.clear();
@@ -2208,6 +2252,13 @@ QStringList &SoftwareList::arguments()
 				}
 			}
 		}
+	}
+
+	if ( toolButtonToggleSnapnameAdjustment->isChecked() && !snapnameList.isEmpty() ) {
+		QString snapnamePattern = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString();
+		snapnamePattern.replace("$SOFTWARE_LIST$", snapnameList).replace("$SOFTWARE_NAME$", snapnameSoftware);
+		swlArgs.prepend(snapnamePattern);
+		swlArgs.prepend("-snapname");
 	}
 
 	return swlArgs;
