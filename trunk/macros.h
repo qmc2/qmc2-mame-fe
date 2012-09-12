@@ -522,6 +522,7 @@
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMAME_NAME)
 #define QMC2_EMU_NAME				QString("MAME")
+#define QMC2_EMU_NAME_VARIANT			QString("SDLMAME")
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_SDLMESS)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
@@ -538,6 +539,7 @@
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMESS_NAME)
 #define QMC2_EMU_NAME				QString("MESS")
+#define QMC2_EMU_NAME_VARIANT			QString("SDLMESS")
 #define QMC2_EMUTYPE_MESS
 #elif defined(QMC2_SDLUME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
@@ -554,6 +556,7 @@
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLUME_NAME)
 #define QMC2_EMU_NAME				QString("UME")
+#define QMC2_EMU_NAME_VARIANT			QString("SDLUME")
 #define QMC2_EMUTYPE_UME
 #elif defined(QMC2_MAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
@@ -570,6 +573,7 @@
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MAME_NAME)
 #define QMC2_EMU_NAME				QString("MAME")
+#define QMC2_EMU_NAME_VARIANT			QString("MAME")
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_MESS)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
@@ -586,6 +590,7 @@
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MESS_NAME)
 #define QMC2_EMU_NAME				QString("MESS")
+#define QMC2_EMU_NAME_VARIANT			QString("MESS")
 #define QMC2_EMUTYPE_MESS
 #elif defined(QMC2_UME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
@@ -602,6 +607,7 @@
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_UME_NAME)
 #define QMC2_EMU_NAME				QString("UME")
+#define QMC2_EMU_NAME_VARIANT			QString("UME")
 #define QMC2_EMUTYPE_UME
 #endif
 
