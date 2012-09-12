@@ -167,6 +167,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QMenu *menuKnownSoftwareHeader;
 		QMenu *menuFavoriteSoftwareHeader;
 		QMenu *menuSearchResultsHeader;
+		QMenu *menuSnapnameAdjustment;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QAction *actionSaveFavoritesToFile;
@@ -261,6 +262,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void saveFavoritesToFile();
 		void checkSoftwareSnap();
 		void updateDetail();
+		void adjustSnapnamePattern();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
