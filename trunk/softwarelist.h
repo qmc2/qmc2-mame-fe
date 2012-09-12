@@ -184,6 +184,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool loadFinishedFlag;
 		bool updatingMountDevices;
 		QStringList successfulLookups;
+		QStringList mountedSoftware;
 		int cachedDeviceLookupPosition;
 		SoftwareListExporter *exporter;
 		int oldMax, oldMin;
@@ -210,6 +211,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_toolButtonAddToFavorites_clicked(bool);
 		void on_toolButtonToggleSoftwareInfo_clicked(bool);
 		void on_toolButtonCompatFilterToggle_clicked(bool);
+		void on_toolButtonToggleSnapnameAdjustment_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);

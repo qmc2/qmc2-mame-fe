@@ -53,6 +53,9 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	setupUi(this);
 
+	// hide snapname device selection initially
+	comboBoxSnapnameDevice->hide();
+
 	if ( !qmc2SoftwareSnap )
 		qmc2SoftwareSnap = new SoftwareSnap(0);
 
@@ -156,6 +159,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(saveFavoritesToFile()));
 	toolButtonFavoritesOptions->setMenu(favoritesOptionsMenu);
 
+	// snapname adjustment menu
 	menuSnapnameAdjustment = new QMenu(this);
 	s = tr("Adjust pattern...");
 	action = menuSnapnameAdjustment->addAction(s);
@@ -1343,6 +1347,18 @@ void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 
 }
 
+void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked = %1)").arg(checked));
+#endif
+
+	if ( checked && mountedSoftware.count() > 1 )
+		comboBoxSnapnameDevice->show();
+	else
+		comboBoxSnapnameDevice->hide();
+}
+
 void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
@@ -2226,6 +2242,12 @@ QStringList &SoftwareList::arguments()
 							while ( item->parent() ) item = item->parent();
 							snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
 							snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
+							if ( comboBoxSnapnameDevice->isVisible() ) {
+								if ( snapnameList + ":" + snapnameSoftware != comboBoxSnapnameDevice->currentText() ) {
+									snapnameList.clear();
+									snapnameSoftware.clear();
+								}
+							}
 						}
 						swlArgs << QString("-%1").arg(comboBox->currentText());
 						QTreeWidgetItem *item = *it;
@@ -2385,7 +2407,6 @@ void SoftwareList::checkMountDeviceSelection()
 	}
 
 	QString mountDevice = comboBoxSender->currentText();
-
 	QTreeWidgetItemIterator it(treeWidget);
 
 	if ( mountDevice == QObject::tr("Auto mount") ) {
@@ -2405,17 +2426,22 @@ void SoftwareList::checkMountDeviceSelection()
 			it++;
 		}
 		autoMounted = true;
+		mountedSoftware.clear();
 	} else if ( mountDevice == QObject::tr("Don't mount") ) {
 		while ( *it ) {
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 			if ( comboBox ) {
-				if ( comboBox == comboBoxSender )
+				QTreeWidgetItem *pItem = *it;
+				while ( pItem->parent() ) pItem = pItem->parent();
+				if ( comboBox == comboBoxSender ) {
 					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
-				else if ( comboBox->currentIndex() == QMC2_SWLIST_MSEL_AUTO_MOUNT ) {
+					mountedSoftware.removeAll(pItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + pItem->text(QMC2_SWLIST_COLUMN_NAME));
+				} else if ( comboBox->currentIndex() == QMC2_SWLIST_MSEL_AUTO_MOUNT ) {
 					comboBox->blockSignals(true);
 					comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_DONT_MOUNT); // => don't mount
 					comboBox->blockSignals(false);
 					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+					mountedSoftware.removeAll(pItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + pItem->text(QMC2_SWLIST_COLUMN_NAME));
 				}
 			}
 			it++;
@@ -2425,20 +2451,38 @@ void SoftwareList::checkMountDeviceSelection()
 		while ( *it ) {
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 			if ( comboBox ) {
+				QTreeWidgetItem *pItem = *it;
+				while ( pItem->parent() ) pItem = pItem->parent();
 				if ( comboBox != comboBoxSender ) {
 					if ( comboBox->currentText() == mountDevice || comboBox->currentText() == QObject::tr("Auto mount") ) {
 						comboBox->blockSignals(true);
 						comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_DONT_MOUNT); // => don't mount
 						comboBox->blockSignals(false);
 						(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+						mountedSoftware.removeAll(pItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + pItem->text(QMC2_SWLIST_COLUMN_NAME));
 					}
-				} else
+				} else {
 					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDevice);
+					mountedSoftware << pItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + pItem->text(QMC2_SWLIST_COLUMN_NAME);
+				}
 			}
 			it++;
 		}
 		autoMounted = false;
 	}
+
+	if ( toolButtonToggleSnapnameAdjustment->isChecked() ) {
+		if ( !autoMounted && mountedSoftware.count() > 1 ) {
+			comboBoxSnapnameDevice->setUpdatesEnabled(false);
+			comboBoxSnapnameDevice->clear();
+			qSort(mountedSoftware);
+			comboBoxSnapnameDevice->addItems(mountedSoftware);
+			comboBoxSnapnameDevice->setUpdatesEnabled(true);
+			comboBoxSnapnameDevice->show();
+		} else
+			comboBoxSnapnameDevice->hide();
+	} else
+		comboBoxSnapnameDevice->hide();
 }
 
 void SoftwareList::loadFavoritesFromFile()
