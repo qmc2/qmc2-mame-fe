@@ -1134,7 +1134,7 @@ QString &ROMAlyzer::getXmlData(QString gameName)
   }
   if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
     romalyzerXmlGamePositionCache.insert(gameName, new int(i));
-    xmlBuffer = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+    xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
 #elif defined(QMC2_EMUTYPE_MESS)
