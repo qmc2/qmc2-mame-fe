@@ -2219,14 +2219,14 @@ QStringList &SoftwareList::arguments()
 			// manually mounted
 			while ( *it ) {
 				QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
-				if ( snapnameList.isEmpty() ) {
-					QTreeWidgetItem *item = *it;
-					while ( item->parent() ) item = item->parent();
-					snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
-					snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
-				}
 				if ( comboBox ) {
 					if ( comboBox->currentIndex() > QMC2_SWLIST_MSEL_DONT_MOUNT ) {
+						if ( snapnameList.isEmpty() ) {
+							QTreeWidgetItem *item = *it;
+							while ( item->parent() ) item = item->parent();
+							snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
+							snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
+						}
 						swlArgs << QString("-%1").arg(comboBox->currentText());
 						QTreeWidgetItem *item = *it;
 						while ( item->parent() ) item = item->parent();
