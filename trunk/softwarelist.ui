@@ -90,50 +90,43 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout2">
-       <property name="spacing">
-        <number>0</number>
+      <widget class="QToolButton" name="toolButtonToggleSnapnameAdjustment">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <item>
-        <widget class="QToolButton" name="toolButtonToggleSnapnameAdjustment">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
-         </property>
-         <property name="statusTip">
-          <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBoxSnapnameDevice">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Select the software for which the snapname should be adjusted</string>
-         </property>
-         <property name="statusTip">
-          <string>Select the software for which the snapname should be adjusted</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       <property name="toolTip">
+        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
+       </property>
+       <property name="statusTip">
+        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxSnapnameDevice">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select the software for which the snapname should be adjusted</string>
+       </property>
+       <property name="statusTip">
+        <string>Select the software for which the snapname should be adjusted</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QComboBox" name="comboBoxDeviceConfiguration">
@@ -163,8 +156,8 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>0</width>
-         <height>0</height>
+         <width>13</width>
+         <height>13</height>
         </size>
        </property>
       </spacer>
@@ -392,8 +385,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>557</width>
-        <height>192</height>
+        <width>83</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -482,8 +475,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>557</width>
-        <height>193</height>
+        <width>83</width>
+        <height>90</height>
        </rect>
       </property>
       <attribute name="icon">
