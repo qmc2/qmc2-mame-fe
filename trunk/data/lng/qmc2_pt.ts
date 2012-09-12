@@ -1596,7 +1596,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="125"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>por favor espere finalizar o recarregamento e tente novamente</translation>
+        <translation>por favor espere o fim do recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="129"/>
@@ -2422,7 +2422,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1091"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>por favor aguarde finalizar o recarregamento e tente novamente</translation>
+        <translation>por favor espere o fim do recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1100"/>
@@ -3889,7 +3889,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2377"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>por favor aguarde o fim do recarregamente e tente novamente</translation>
+        <translation>por favor espere o fim do recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2386"/>
@@ -6803,7 +6803,7 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../qmc2main.cpp" line="2545"/>
         <location filename="../../qmc2main.cpp" line="4880"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>por favor aguarde finalizar o recarregamento e tente novamente</translation>
+        <translation>por favor espere o fim do recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2155"/>
@@ -7489,12 +7489,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4492"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4886"/>
         <source>please wait for sorting to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere o fim da ordenação e tente novamente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6134"/>
@@ -10982,7 +10982,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1739"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1786"/>
@@ -14574,7 +14574,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="247"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>por favor aguarde finalizar o recarregamento e tente novamente</translation>
+        <translation>por favor espere o fim do recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="250"/>
