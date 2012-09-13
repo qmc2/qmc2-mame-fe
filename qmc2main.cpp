@@ -68,13 +68,13 @@
 #include "toolexec.h"
 #include "arcade/arcadeview.h"
 #include "arcade/arcadesetupdialog.h"
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 #include "keyseqscan.h"
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
 #endif
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 #include "windows_tools.h"
 #endif
 #include "htmleditor/htmleditor.h"
@@ -288,7 +288,7 @@ extern bool exitArcade;
 extern QMap<QString, QStringList> systemSoftwareListMap;
 extern QMap<QString, QStringList> systemSoftwareFilterMap;
 extern QMap<QString, QString> softwareListXmlDataCache;
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 extern QMap<HWND, QString> winWindowMap;
 #endif
 
@@ -492,7 +492,7 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetVersionView->setMouseTracking(true);
 #endif
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   actionLaunchQMC2MAME->setText(tr("QMC2 for MAME"));
   actionLaunchQMC2MAME->setToolTip(tr("Launch QMC2 for MAME"));
   actionLaunchQMC2MAME->setStatusTip(tr("Launch QMC2 for MAME"));
@@ -513,12 +513,12 @@ MainWindow::MainWindow(QWidget *parent)
   labelGameStatus->setVisible(false);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   embedderCornerWidget = new QWidget(tabWidgetEmbeddedEmulators);
   embedderCornerLayout = new QHBoxLayout(embedderCornerWidget);
   embedderCornerLayout->setContentsMargins(0, 0, 0, 0);
 
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
   toolButtonEmbedderAutoPause = new QToolButton(embedderCornerWidget);
   toolButtonEmbedderAutoPause->setIcon(QIcon(QString::fromUtf8(":/data/img/sleep.png")));
   toolButtonEmbedderAutoPause->setToolTip(tr("Toggle automatic pausing of embedded emulators (hold down for menu)"));
@@ -586,7 +586,7 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
   actionLaunchQMC2MAME->setVisible(false);
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Game"));
 #endif
 #elif defined(QMC2_EMUTYPE_UME)
@@ -599,7 +599,7 @@ MainWindow::MainWindow(QWidget *parent)
   actionClearMAWSCache->setIconText(tr("Clear ProjectMESS cache"));
   actionClearMAWSCache->setToolTip(tr("Clear ProjectMESS cache"));
   actionClearMAWSCache->setStatusTip(tr("Clear ProjectMESS cache"));
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Game"));
 #endif
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -633,13 +633,13 @@ MainWindow::MainWindow(QWidget *parent)
   actionClearMAWSCache->setIconText(tr("Clear ProjectMESS cache"));
   actionClearMAWSCache->setToolTip(tr("Clear ProjectMESS cache"));
   actionClearMAWSCache->setStatusTip(tr("Clear ProjectMESS cache"));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
   actionPlayEmbeddedTagged->setToolTip(tr("Play all tagged machines (embedded)"));
   actionPlayEmbeddedTagged->setStatusTip(tr("Play all tagged machines (embedded)"));
 #endif
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
 #else
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine / Notifier"));
@@ -791,7 +791,7 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
     treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     // output notifiers are not supported on Windows
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
@@ -822,7 +822,7 @@ MainWindow::MainWindow(QWidget *parent)
   QString s;
 
   qmc2EmulatorMenu = new QMenu(0);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   s = tr("Embed emulator widget");
   action = qmc2EmulatorMenu->addAction(tr("&Embed"));
   action->setToolTip(s); action->setStatusTip(s);
@@ -858,7 +858,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   s = tr("Play selected game (embedded)");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -910,7 +910,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   s = tr("Play selected game (embedded)");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -962,7 +962,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   s = tr("Play selected game (embedded)");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1021,7 +1021,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   s = tr("Play selected game (embedded)");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1355,7 +1355,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   setUnifiedTitleAndToolBarOnMac(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
 #endif
 
@@ -1529,7 +1529,7 @@ void MainWindow::action_foreignIDsMenuItem_triggered()
 #endif
 		launchForeignID = true;
       		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
 				break;
@@ -1736,7 +1736,7 @@ void MainWindow::on_actionPlay_triggered(bool)
     }
   }
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   if ( qmc2StartEmbedded )
     args << "-window" << "-nomaximize" << "-keepaspect" << "-rotate" << "-noror" << "-norol";
 #endif
@@ -1803,7 +1803,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 #else
 					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
 #endif
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 					args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
 					args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
@@ -1857,7 +1857,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						}
 						valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
 						for (i = 0; i < valuePair.first.count(); i++)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
 #else
 							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
@@ -1973,7 +1973,7 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_hSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
 #endif
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   if ( tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || (tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
     hSplitterSizes = hSplitter->sizes();
   } else if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
@@ -2743,14 +2743,14 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
 
   bool launched = false;
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   OSStatus err;
   FSRef appRef;
   err = LSFindApplicationForInfo(kLSUnknownCreator, CFSTR(QMC2_VARIANT_SDLMAME_BUNDLE_ID), NULL, &appRef, NULL);
   if ( err == noErr )
     err = LSOpenFSRef(&appRef, NULL);
   launched = err == noErr;
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
   QString otherVariantExe = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MAMEVariantExe", QString()).toString();
   QStringList otherVariantArgs = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MAMEVariantExeArguments", QString()).toString().split(" ", QString::SkipEmptyParts);
   if ( otherVariantArgs.isEmpty() )
@@ -2785,7 +2785,7 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
 #endif
 
   if ( launched ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_MAME_NAME));
 #else
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLMAME_NAME));
@@ -2825,7 +2825,7 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
       showMinimized();
     }
   } else {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_MAME_NAME));
 #else
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_SDLMAME_NAME));
@@ -2844,14 +2844,14 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
 
   bool launched = false;
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   OSStatus err;
   FSRef appRef;
   err = LSFindApplicationForInfo(kLSUnknownCreator, CFSTR(QMC2_VARIANT_SDLMESS_BUNDLE_ID), NULL, &appRef, NULL);
   if ( err == noErr )
     err = LSOpenFSRef(&appRef, NULL);
   launched = err == noErr;
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
   QString otherVariantExe = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MESSVariantExe", QString()).toString();
   QStringList otherVariantArgs = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MESSVariantExeArguments", QString()).toString().split(" ", QString::SkipEmptyParts);
   if ( otherVariantArgs.isEmpty() )
@@ -2886,7 +2886,7 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
 #endif
 
   if ( launched ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_MESS_NAME));
 #else
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLMESS_NAME));
@@ -2926,7 +2926,7 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
       showMinimized();
     }
   } else {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_MESS_NAME));
 #else
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_SDLMESS_NAME));
@@ -2945,14 +2945,14 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
 
   bool launched = false;
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   OSStatus err;
   FSRef appRef;
   err = LSFindApplicationForInfo(kLSUnknownCreator, CFSTR(QMC2_VARIANT_SDLUME_BUNDLE_ID), NULL, &appRef, NULL);
   if ( err == noErr )
     err = LSOpenFSRef(&appRef, NULL);
   launched = err == noErr;
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
   QString otherVariantExe = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UMEVariantExe", QString()).toString();
   QStringList otherVariantArgs = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UMEVariantExeArguments", QString()).toString().split(" ", QString::SkipEmptyParts);
   if ( otherVariantArgs.isEmpty() )
@@ -2987,7 +2987,7 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
 #endif
 
   if ( launched ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_UME_NAME));
 #else
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLUME_NAME));
@@ -3027,7 +3027,7 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
       showMinimized();
     }
   } else {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_UME_NAME));
 #else
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_SDLUME_NAME));
@@ -3047,7 +3047,7 @@ void MainWindow::on_actionDocumentation_triggered(bool)
     searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() +
                  "doc/html/" +
                  qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     QDir searchDir(searchPath);
     QUrl docUrl("file:///" + searchDir.absolutePath() + "/index.html");
 #else
@@ -3281,7 +3281,7 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 	      if ( qmc2DemoModeDialog->demoModeRunning )
 		      return;
       		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
 				break;
@@ -3376,7 +3376,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #endif
   }
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   if ( hSplitterSizes.count() > 1 && currentIndex != QMC2_EMBED_INDEX )
     hSplitter->setSizes(hSplitterSizes);
 #endif
@@ -3385,7 +3385,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     case QMC2_GAMELIST_INDEX:
       actionToggleTagCursorDown->setVisible(true);
       actionToggleTagCursorUp->setVisible(true);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
@@ -3421,7 +3421,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     case QMC2_SEARCH_INDEX:
       actionToggleTagCursorDown->setVisible(false);
       actionToggleTagCursorUp->setVisible(false);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
@@ -3443,7 +3443,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     case QMC2_FAVORITES_INDEX:
       actionToggleTagCursorDown->setVisible(false);
       actionToggleTagCursorUp->setVisible(false);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
@@ -3462,7 +3462,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     case QMC2_PLAYED_INDEX:
       actionToggleTagCursorDown->setVisible(false);
       actionToggleTagCursorUp->setVisible(false);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
       if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
         QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
@@ -3478,7 +3478,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       }
       break;
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
     case QMC2_EMBED_INDEX: {
         actionToggleTagCursorDown->setVisible(false);
         actionToggleTagCursorUp->setVisible(false);
@@ -3659,7 +3659,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
 				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 				QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 				if ( qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath.isEmpty() )
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file:///" + ghostPath;
 				else
@@ -4503,7 +4503,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 	      QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
 	      if ( qmc2Preview ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2Preview->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$PREVIEW_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4516,7 +4516,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Flyer ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2Flyer->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$FLYER_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4529,7 +4529,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Cabinet ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2Cabinet->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$CABINET_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4542,7 +4542,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Controller ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2Controller->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$CONTROLLER_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4555,7 +4555,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Marquee ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2Marquee->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4570,7 +4570,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2Title ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2Title->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4583,7 +4583,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 	      }
 	      if ( qmc2PCB ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		      if ( qmc2PCB->loadImage(gameName, gameName, true, &filePath, false) )
 			      qmc2SystemNotesEditor->templateMap["$PCB_IMAGE$"] = "file:///" + QDir::fromNativeSeparators(filePath);
 		      else
@@ -4815,7 +4815,7 @@ void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int 
   qmc2StartEmbedded = false;
   if ( !qmc2IgnoreItemActivation ) {
 	  switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 		  case QMC2_LAUNCH_MODE_EMBEDDED:
 			  on_actionPlayEmbedded_triggered();
 			  break;
@@ -4842,7 +4842,7 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
   qmc2StartEmbedded = false;
   if ( !qmc2IgnoreItemActivation ) {
 	  switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 		  case QMC2_LAUNCH_MODE_EMBEDDED:
 			  on_actionPlayEmbedded_triggered();
 			  break;
@@ -5032,7 +5032,7 @@ void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint 
   }
 }
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 void MainWindow::action_embedEmulator_triggered()
 {
 #ifdef QMC2_DEBUG
@@ -5043,7 +5043,7 @@ void MainWindow::action_embedEmulator_triggered()
 
   QStringList gameList;
   QStringList idList;
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
   QStringList statusList;
 #endif
 
@@ -5054,7 +5054,7 @@ void MainWindow::action_embedEmulator_triggered()
     while ( item->parent() ) item = item->parent();
     gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME).split(":")[0];
     idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
     statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
 #endif
   }
@@ -5065,7 +5065,7 @@ void MainWindow::action_embedEmulator_triggered()
       while ( item->parent() ) item = item->parent();
       gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME).split(":")[0];
       idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
       statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
 #endif
     }
@@ -5074,7 +5074,7 @@ void MainWindow::action_embedEmulator_triggered()
   for (i = 0; i < gameList.count(); i++) {
     QString gameName = gameList[i];
     QString gameID = idList[i];
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
     QString gameStatus = statusList[i];
 #endif
 
@@ -5093,7 +5093,7 @@ void MainWindow::action_embedEmulator_triggered()
       continue;
     }
 
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
     // run "xwininfo -root -all" to find the window ID
     QString command = QString(XSTR(QMC2_XWININFO));
     QStringList args, winIdList;
@@ -5137,7 +5137,7 @@ void MainWindow::action_embedEmulator_triggered()
         }
       }
     }
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
     QList<WId> winIdList;
     int wininfoRetries = 0;
     while ( winIdList.isEmpty() && wininfoRetries++ < QMC2_MAX_WININFO_RETRIES ) {
@@ -5158,10 +5158,10 @@ void MainWindow::action_embedEmulator_triggered()
     }
 #endif
 
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
     if ( winIdList.count() > 1 )
       log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg(winIdList[0]));
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
     if ( winIdList.count() > 1 )
       log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg((qulonglong)winIdList[0]));
 #endif
@@ -5172,10 +5172,10 @@ void MainWindow::action_embedEmulator_triggered()
         qmc2LastListIndex = tabWidgetGamelist->currentIndex();
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg((qulonglong)winIdList[0]));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);
 #endif
@@ -5233,7 +5233,7 @@ void MainWindow::action_embedEmulator_triggered()
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
       qApp->processEvents();
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
       QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, embedder, SLOT(forceFocus()));
 #endif
     } else {
@@ -5264,7 +5264,7 @@ void MainWindow::action_embedEmulator_triggered()
   }
 }
 
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 void MainWindow::action_embedderScanPauseKey_triggered()
 {
 	qApp->removeEventFilter(qmc2KeyPressFilter);
@@ -5911,7 +5911,7 @@ void MainWindow::mapJoystickFunction(QString function)
   QWidget *focusWidget = QApplication::focusWidget();
 
   if ( focusWidget ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
     // don't map joystick functions when they are really meant for an embedded emulator
     if ( focusWidget->objectName() == "QMC2_EMBED_CONTAINER" )
       return;
@@ -6179,13 +6179,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
       }
     }
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
     if ( toolButtonEmbedderMaximizeToggle->isChecked() && tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
       qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
     else
       qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", toolButtonEmbedderMaximizeToggle->isChecked());
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/AutoPause", toolButtonEmbedderAutoPause->isChecked());
 #endif
 #else
@@ -6196,7 +6196,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
     if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
       qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
     else
@@ -6470,7 +6470,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
   if ( qmc2ProcessManager->procMap.count() > 0 ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
     for (int j = 0; j < tabWidgetEmbeddedEmulators->count(); j++) {
       Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
       if ( embedder )
@@ -6538,7 +6538,7 @@ void MainWindow::init()
   // tool-bar customization
   qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   bool isShown = qmc2Options->isVisible();
   qmc2Options->setParent(this, Qt::Dialog);
   if ( isShown )
@@ -6576,7 +6576,7 @@ void MainWindow::init()
   else
     qmc2LastListIndex = 0;
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
     qmc2LastListIndex = 0;
 #endif
@@ -6865,7 +6865,7 @@ void MainWindow::loadYouTubeVideoInfoMap()
 			quint64 curLen = 0;
 			while ( !ts.atEnd() ) {
 				QString line = ts.readLine();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 				curLen += line.length() + 2; // + 0x0d 0x0a
 #else
 				curLen += line.length() + 1; // + 0x0a
@@ -7812,7 +7812,7 @@ void MainWindow::createFifo(bool logFifoCreation)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::createFifo(bool logFifoCreation = ...)");
 #endif
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   // FIXME: implement Windows specific notifier FIFO support
 #else
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_SDLUME)
@@ -7907,7 +7907,7 @@ void MainWindow::recreateFifo()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::recreateFifo()");
 #endif
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   // FIXME: implement Windows specific notifier FIFO support
 #else
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_SDLUME)
@@ -7972,7 +7972,7 @@ void MainWindow::processFifoData()
           if ( msgClass == "MAME" ) {
             if ( msgWhat == "START" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 	      Embedder *embedder = NULL;
 	      int embedderIndex = -1;
 	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -7988,7 +7988,7 @@ void MainWindow::processFifoData()
 #endif
             } else if ( msgWhat == "STOP" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("stopped"));
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 	      Embedder *embedder = NULL;
 	      int embedderIndex = -1;
 	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -8024,7 +8024,7 @@ void MainWindow::processFifoData()
               else
                 il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
             } else if ( msgWhat == "pause" ) {
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 	      Embedder *embedder = NULL;
 	      int embedderIndex = -1;
 	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -8604,7 +8604,7 @@ void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, 
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				on_actionPlayEmbedded_triggered();
 				break;
@@ -8713,7 +8713,7 @@ void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, i
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				on_actionPlayEmbedded_triggered();
 				break;
@@ -10902,7 +10902,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
   qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   qmc2ShortcutMap["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
 #endif
   qmc2ShortcutMap["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
@@ -11040,7 +11040,7 @@ int main(int argc, char *argv[])
 	qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
 	qmc2SplashScreen->setMask(splashPixmap.mask());
 	qmc2SplashScreen->setWindowOpacity(0.8);
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait..."), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 	qmc2SplashScreen->show();
 	qmc2SplashScreen->raise();

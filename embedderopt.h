@@ -2,12 +2,11 @@
 #define _EMBEDDEROPT_H_
 
 #include <QtGui>
-#if QT_VERSION >= 0x050000
 #include "macros.h"
-#endif
+
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #include "ui_embedderopt.h"
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
 class SnapshotViewer : public QWidget
 {
   Q_OBJECT

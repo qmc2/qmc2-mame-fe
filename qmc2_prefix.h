@@ -43,9 +43,11 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
+#include "macros.h"
+
 #endif /* __cplusplus */
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 #if QMC2_JOYSTICK == 1
 #if defined(QMC2_MINGW)
 #include <SDL/SDL.h>

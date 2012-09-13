@@ -8,7 +8,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QStringList>
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 #if defined(QMC2_MINGW)
 #include <SDL/SDL.h>
 #else

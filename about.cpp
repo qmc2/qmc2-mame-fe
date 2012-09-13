@@ -9,7 +9,7 @@
 #include "gamelist.h"
 
 #if QMC2_JOYSTICK == 1
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 #if defined(QMC2_MINGW)
 #include <SDL/SDL.h>
 #else
@@ -24,7 +24,7 @@
 #include "qmc2_phonon.h"
 #endif
 
-#if defined(Q_WS_MAC) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_MAC) || defined(QMC2_OS_WIN)
 #include <QSysInfo>
 #endif
 
@@ -56,7 +56,7 @@ About::About(QWidget *parent)
 
   adjustSize();
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   switch ( QSysInfo::MacintoshVersion ) {
     case QSysInfo::MV_10_3: macVersion = tr("Mac OS X 10.3"); break;
     case QSysInfo::MV_10_4: macVersion = tr("Mac OS X 10.4"); break;
@@ -67,7 +67,7 @@ About::About(QWidget *parent)
 #endif
     default: macVersion = tr("Mac (unknown)"); break;
   }
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
   switch ( QSysInfo::WindowsVersion ) {
     case QSysInfo::WV_4_0: winVersion = tr("Windows NT (Windows 4.0)"); break;
     case QSysInfo::WV_5_0: winVersion = tr("Windows 2000 (Windows 5.0)"); break;
@@ -160,12 +160,12 @@ void About::showEvent(QShowEvent *e)
 	  libPaths += "<br>" + path;
 
   QString sysInfoString = QString("<html><body>") +
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
           "<p><b>" + tr("Build OS:") + "</b><br>" + XSTR(BUILD_OS_NAME) + " " + XSTR(BUILD_OS_RELEASE) + " " + XSTR(BUILD_MACHINE) + "</p>" +
 #endif
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
           "<p><b>" + tr("Running OS:") + "</b><br>" + macVersion + "</p>" +
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
           "<p><b>" + tr("Running OS:") + "</b><br>" + winVersion + "</p>" +
 #endif
           "<p><b>" + tr("Emulator version:") + "</b><br>" + qmc2Gamelist->emulatorVersion + "</p>" +

@@ -6,7 +6,8 @@
 #include <QLocale>
 #include <QtDebug>
 #include <QMutex>
-#ifdef Q_WS_X11
+#include "macros.h"
+#ifdef QMC2_OS_UNIX
 #include <QX11Info>  
 #endif
 #if defined(QT_NO_OPENGL)
@@ -225,7 +226,7 @@ void ArcadeView::setupGraphicsMode()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: Using software renderer"));
   }
 
-#ifdef Q_WS_X11
+#ifdef QMC2_OS_UNIX
   int myScreen = QX11Info::appScreen();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: X11: Screen number: %1").arg(myScreen));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: X11: Color depth: %1").arg(QX11Info::appDepth(myScreen)));

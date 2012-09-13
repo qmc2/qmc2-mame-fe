@@ -2,6 +2,7 @@
 #include "arcade/arcadescene.h"
 #include "qmc2main.h"
 #include "options.h"
+#include "macros.h"
 #if QT_VERSION >= 0x050000
 #include <QDesktopWidget>
 #include <QGraphicsProxyWidget>
@@ -258,7 +259,7 @@ void ArcadeScene::updateFrameCounters()
 
   int msecs = frameTime.restart();
   double avgFps = (double)frames / ((double)msecs / (double)1000.0);
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   fpsTextItem->setText(tr("FPS: %1").arg(floor(avgFps + 0.5)));
 #else
   fpsTextItem->setText(tr("FPS: %1").arg(round(avgFps)));

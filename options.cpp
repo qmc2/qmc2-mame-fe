@@ -48,7 +48,7 @@
 #include "messdevcfg.h"
 #endif
 #include "softwarelist.h"
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #include "embedder.h"
 #include "embedderopt.h"
 #endif
@@ -169,7 +169,7 @@ QBrush Options::lightgreyBrush(QColor(200, 200, 200));
 QString qmc2StandardWorkDir;
 
 Options::Options(QWidget *parent)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   : QDialog(parent, Qt::Dialog)
 #else
   : QDialog(parent, Qt::Dialog | Qt::SubWindow)
@@ -185,7 +185,7 @@ Options::Options(QWidget *parent)
   QCoreApplication::setOrganizationDomain(QMC2_ORGANIZATION_DOMAIN);
   QCoreApplication::setApplicationName(QMC2_VARIANT_NAME);
 
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
   QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -200,11 +200,11 @@ Options::Options(QWidget *parent)
 
   qmc2StandardWorkDir = QDir::currentPath();
 
-#if !defined(Q_WS_MAC)
+#if !defined(QMC2_OS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif
 
-#if !defined(Q_WS_X11) && !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)
   labelDefaultLaunchMode->setVisible(false);
   comboBoxDefaultLaunchMode->setVisible(false);
 #endif
@@ -218,11 +218,11 @@ Options::Options(QWidget *parent)
   checkBoxExitOnVariantLaunch->setVisible(false);
 #endif
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
 
-#if !defined(QMC2_VARIANT_LAUNCHER) || !defined(Q_WS_WIN)
+#if !defined(QMC2_VARIANT_LAUNCHER) || !defined(QMC2_OS_WIN)
   labelMAMEVariantExe->setVisible(false);
   lineEditMAMEVariantExe->setVisible(false);
   toolButtonBrowseMAMEVariantExe->setVisible(false);
@@ -374,7 +374,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
   qmc2ShortcutMap["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
@@ -399,7 +399,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Alt+N"] = QPair<QString, QAction *>(tr("Toggle ROM state N"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+U"] = QPair<QString, QAction *>(tr("Toggle ROM state U"), NULL);
 #if defined(QMC2_VARIANT_LAUNCHER)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   qmc2ShortcutMap["Ctrl+Alt+1"] = QPair<QString, QAction *>(tr("Launch QMC2 for MAME"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for MESS"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+3"] = QPair<QString, QAction *>(tr("Launch QMC2 for UME"), NULL);
@@ -548,7 +548,7 @@ void Options::apply()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
 #endif
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
     qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
     qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -649,7 +649,7 @@ void Options::apply()
   checkBoxShowDeviceSets->setIconSize(iconSize);
   checkBoxShowBiosSets->setIconSize(iconSize);
   toolButtonBrowseExecutableFile->setIconSize(iconSize);
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   toolButtonBrowseMAMEVariantExe->setIconSize(iconSize);
   toolButtonBrowseMESSVariantExe->setIconSize(iconSize);
   toolButtonBrowseUMEVariantExe->setIconSize(iconSize);
@@ -779,7 +779,7 @@ void Options::apply()
     qmc2SoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonFavoritesOptions->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonPlay->setIconSize(iconSize);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
     qmc2SoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
 #endif
     qmc2SoftwareList->toolButtonToggleSoftwareInfo->setIconSize(iconSize);
@@ -822,7 +822,7 @@ void Options::apply()
 
   qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   int i;
   for (i = 0; i < qmc2MainWindow->tabWidgetEmbeddedEmulators->count(); i++) {
     Embedder *embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(i);
@@ -831,7 +831,7 @@ void Options::apply()
       embedder->embedderOptions->adjustIconSizes();
   }
   qmc2MainWindow->toolButtonEmbedderMaximizeToggle->setIconSize(iconSizeLarge);
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
   qmc2MainWindow->toolButtonEmbedderAutoPause->setIconSize(iconSizeLarge);
 #endif
 #endif
@@ -911,7 +911,7 @@ void Options::on_pushButtonApply_clicked()
 
   // GUI
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", checkBoxToolbar->isChecked());
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
   qmc2MainWindow->setUnifiedTitleAndToolBarOnMac(checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 #endif
@@ -1587,7 +1587,7 @@ void Options::on_pushButtonApply_clicked()
   needReload |= config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   config->setValue("MAME/FilesAndDirectories/MESSVariantExe", lineEditMESSVariantExe->text());
   config->setValue("MAME/FilesAndDirectories/UMEVariantExe", lineEditUMEVariantExe->text());
 #endif
@@ -1606,7 +1606,7 @@ void Options::on_pushButtonApply_clicked()
   needReload |= config->value("MESS/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MESS/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   config->setValue("MESS/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
   config->setValue("MESS/FilesAndDirectories/UMEVariantExe", lineEditUMEVariantExe->text());
 #endif
@@ -1625,7 +1625,7 @@ void Options::on_pushButtonApply_clicked()
   needReload |= config->value("UME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("UME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("UME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   config->setValue("UME/FilesAndDirectories/MESSVariantExe", lineEditMESSVariantExe->text());
   config->setValue("UME/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
 #endif
@@ -2116,7 +2116,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // GUI
   checkBoxToolbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
 #endif
   checkBoxSaveLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", true).toBool());
@@ -2508,7 +2508,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
 
   // Tools / Proxy
-#if defined (Q_WS_WIN)
+#if defined (QMC2_OS_WIN)
   lineEditZipTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
   lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
   lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "del").toString());
@@ -2541,7 +2541,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_EMUTYPE_MAME)
   lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   lineEditMESSVariantExe->setText(config->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
   lineEditUMEVariantExe->setText(config->value("MAME/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
@@ -2566,7 +2566,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #elif defined(QMC2_EMUTYPE_MESS)
   lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   lineEditMAMEVariantExe->setText(config->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
   lineEditUMEVariantExe->setText(config->value("MESS/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
@@ -2586,7 +2586,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #elif defined(QMC2_EMUTYPE_UME)
   lineEditExecutableFile->setText(config->value("UME/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("UME/FilesAndDirectories/WorkingDirectory", "").toString());
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   lineEditMAMEVariantExe->setText(config->value("UME/FilesAndDirectories/MAMEVariantExe", "").toString());
   lineEditMESSVariantExe->setText(config->value("UME/FilesAndDirectories/MESSVariantExe", "").toString());
 #endif
@@ -2666,7 +2666,7 @@ void Options::applyDelayed()
   static bool firstTime = true;
 
   if ( firstTime ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     setParent(qmc2MainWindow, Qt::Dialog);
 #else
     setParent(qmc2MainWindow, Qt::Dialog | Qt::SubWindow);
@@ -2738,7 +2738,7 @@ void Options::applyDelayed()
   checkPlaceholderStatus();
   
   // hide / show the menu bar
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #else
@@ -2912,7 +2912,7 @@ void Options::on_toolButtonBrowseExecutableFile_clicked()
   raise();
 }
 
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
 void Options::on_toolButtonBrowseMAMEVariantExe_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -3271,7 +3271,7 @@ void Options::on_toolButtonBrowseFont_clicked()
   bool ok;
   QFont currentFont;
   if ( lineEditFont->text().isEmpty() )
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
     currentFont.fromString("Arial,10,-1,5,50,0,0,0,0,0");
 #else
     currentFont = QApplication::font();
@@ -3295,7 +3295,7 @@ void Options::on_toolButtonBrowseLogFont_clicked()
   bool ok;
   QFont currentFont;
   if ( lineEditLogFont->text().isEmpty() )
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
     currentFont.fromString("Courier New,10,-1,5,50,0,0,0,0,0");
 #else
     currentFont = QApplication::font();

@@ -2,16 +2,14 @@
 #define _EMBEDDER_H_
 
 #include <Qt>
-#if QT_VERSION >= 0x050000
 #include "macros.h"
-#endif
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 #include <QX11EmbedContainer>
 #include "embedderopt.h"
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
 #include <QtGui>
 #include <QTimer>
 #include "embedderopt.h"
@@ -25,9 +23,9 @@ class Embedder : public QWidget
 		bool embedded;
 		bool optionsShown;
 		WId winId;
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 		QX11EmbedContainer *embedContainer;
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
 		QWidget *embedContainer;
 #endif
 		EmbedderOptions *embedderOptions;
@@ -36,7 +34,7 @@ class Embedder : public QWidget
 		QString gameID;
 		QSize nativeResolution;
 		int cmLeft, cmTop, cmRight, cmBottom;
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 		bool pauseKeyPressed;
 		bool isPaused;
 		bool resuming;
@@ -54,7 +52,7 @@ class Embedder : public QWidget
 		void embed();
 		void embed(WId wid) { winId = wid; embed(); }
 		void release();
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 		void clientEmbedded();
 		void clientError(QX11EmbedContainer::Error);
 #endif
@@ -62,7 +60,7 @@ class Embedder : public QWidget
 		void toggleOptions();
 		void adjustIconSizes();
 		void forceFocus();
-#if defined(Q_WS_X11)
+#if defined(QMC2_OS_UNIX)
 		void simulatePauseKey();
 		void pause();
 		void resume();
@@ -79,7 +77,7 @@ class Embedder : public QWidget
 	signals:
 		void closing();
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 	private slots:
 		void checkWindow();
 		void updateWindow();

@@ -140,7 +140,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseSystemNotesFolder_clicked();
     void on_toolButtonBrowseSystemNotesTemplate_clicked();
     void on_toolButtonBrowseExecutableFile_clicked();
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
     void on_toolButtonBrowseMAMEVariantExe_clicked();
     void on_toolButtonBrowseMESSVariantExe_clicked();
     void on_toolButtonBrowseUMEVariantExe_clicked();

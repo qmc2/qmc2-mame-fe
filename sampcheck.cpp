@@ -32,7 +32,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 SampleChecker::SampleChecker(QWidget *parent)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   : QDialog(parent, Qt::Dialog)
 #else
   : QDialog(parent, Qt::Dialog | Qt::SubWindow)
@@ -244,7 +244,7 @@ void SampleChecker::verifyReadyReadStandardOutput()
   // process sample verification output
   int i;
   QString s = stdoutLastLine + proc->readAllStandardOutput();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
   QStringList lines = s.split("\n");
@@ -295,7 +295,7 @@ void SampleChecker::verifyReadyReadStandardError()
   // process sample verification output
   int i;
   QString s = stderrLastLine + proc->readAllStandardError();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
   QStringList lines = s.split("\n");
@@ -393,7 +393,7 @@ void SampleChecker::on_pushButtonSamplesRemoveObsolete_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::on_pushButtonSamplesRemoveObsolete_clicked()");
 #endif
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   QString command = "cmd.exe";
   QStringList args;
   args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool").toString().replace('/', '\\')
@@ -408,7 +408,7 @@ void SampleChecker::on_pushButtonSamplesRemoveObsolete_clicked()
   for (i = 0; i < args.count(); i++) {
     if ( args[i] == "$FILELIST$" ) {
       QList<QListWidgetItem *> items = listWidgetSamplesObsolete->findItems("*", Qt::MatchWildcard); 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
       QString samplePath;
       if ( qmc2Config->contains("MAME/Configuration/Global/samplepath") )
         samplePath = qmc2Config->value("MAME/Configuration/Global/samplepath").toString().replace('/', '\\');

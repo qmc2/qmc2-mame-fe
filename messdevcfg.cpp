@@ -57,14 +57,14 @@ QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptio
 	QStringList extensions = sibling.model()->data(sibling, Qt::EditRole).toString().split("/", QString::SkipEmptyParts);
 	QString filterString = tr("All files") + " (*)";
 	if ( extensions.count() > 0 ) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		filterString = tr("Valid device files") + " (*.zip";
 #else
 		filterString = tr("Valid device files") + " (*.[zZ][iI][pP]";
 #endif
 		for (int i = 0; i < extensions.count(); i++) {
 			QString ext = extensions[i];
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
 			QString altExt;
 			for (int j = 0; j < ext.length(); j++) {
 				QChar c = ext[j].toLower();
@@ -146,7 +146,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
 	setEnabled(false);
 
-#if !defined(Q_WS_X11) && !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)
 	toolButtonChooserPlayEmbedded->setVisible(false);
 #endif
 
@@ -241,7 +241,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -283,7 +283,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -394,7 +394,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 #elif defined(QMC2_UME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -486,7 +486,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
 		QTextStream ts(&qmc2TempXml);
 		slotXmlBuffer = ts.readAll();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		slotXmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		qmc2TempXml.close();
@@ -590,7 +590,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
 
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -652,7 +652,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		qApp->processEvents();
 		qmc2TempSlots.close();
 		qmc2TempSlots.remove();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		QStringList slotLines = s.split("\n");
@@ -1607,7 +1607,7 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QLi
 #endif
 
 	switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 		case QMC2_LAUNCH_MODE_EMBEDDED:
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 			break;
@@ -2198,7 +2198,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 		}
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 				break;

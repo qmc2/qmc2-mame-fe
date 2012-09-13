@@ -1,4 +1,4 @@
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 
 #include "windows_tools.h"
 #include <psapi.h>

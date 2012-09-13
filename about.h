@@ -2,6 +2,7 @@
 #define _ABOUT_H_
 
 #include "ui_about.h"
+#include "macros.h"
 
 class About : public QDialog, public Ui::About
 {
@@ -12,9 +13,9 @@ class About : public QDialog, public Ui::About
     QSize widgetSize;
     bool widgetPosValid;
     bool ignoreResizeAndMove;
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
     QString macVersion;
-#elif defined(Q_WS_WIN)
+#elif defined(QMC2_OS_WIN)
     QString winVersion;
 #endif
 

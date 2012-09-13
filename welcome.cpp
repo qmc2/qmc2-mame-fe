@@ -231,7 +231,7 @@ bool Welcome::checkConfig()
   QCoreApplication::setOrganizationDomain(QMC2_ORGANIZATION_DOMAIN);
   QCoreApplication::setApplicationName(QMC2_VARIANT_NAME);
 
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
   QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DYNAMIC_DOT_PATH);
