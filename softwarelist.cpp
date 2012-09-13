@@ -3395,7 +3395,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 
 	if ( qName == "info" ) {
 		infoItem = new SoftwareItem((QTreeWidget *)NULL);
+#if defined(Q_WS_WIN)
+		infoItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Info:") + " " + QString::fromUtf8(attributes.value("name").toAscii()));
+#else
 		infoItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Info:") + " " + attributes.value("name"));
+#endif
 		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, attributes.value("value"));
 		infoItems << infoItem;
 	}
