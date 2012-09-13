@@ -55,9 +55,6 @@ protected:
     virtual void closeEvent(QCloseEvent *e);
 
 private:
-    void setupActions();
-    void setupToolBar();
-    void setupMenu();
     void execCommand(const QString&);
     void execCommand(const QString &cmd, const QString &arg);
     bool queryCommandState(const QString&);

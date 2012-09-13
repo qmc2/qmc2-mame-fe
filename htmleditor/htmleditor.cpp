@@ -62,6 +62,10 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	// this 'trick' allows a nested QMainWindow :)
 	setWindowFlags(Qt::Widget);
 
+#if defined(QMC2_OS_MAC)
+	ui->menubar->setNativeMenuBar(false);
+#endif
+
 	// hide new-from-template and file-revert actions initially
 	ui->actionFileNewFromTemplate->setVisible(false);
 	ui->actionFileRevert->setVisible(false);
