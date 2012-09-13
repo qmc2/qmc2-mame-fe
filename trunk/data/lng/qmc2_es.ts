@@ -475,7 +475,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="216"/>
         <source>Display arcade scene in full screen mode or windowed</source>
-        <translation>Mostrar la imágen del arcade en pantalla completa o en una ventana</translation>
+        <translation>Mostrar la imagen del arcade en pantalla completa o en una ventana</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="219"/>
@@ -697,7 +697,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="505"/>
         <source>Select the layout you want to edit / use</source>
-        <translation>Selecciona el diseño que quieras editar / usar</translation>
+        <translation type="unfinished">Seleccionar el diseño que quieras editar / usar</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="518"/>
@@ -1343,7 +1343,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="244"/>
         <source>ArcadeView: Virtual resolution doesn&apos;t fit aspect ratio -- scene coordinates may be stretched or compressed</source>
-        <translation>VistaArcade: Resolución virtual incompatible con la relación de aspecto -- La imágen se estirará o encojera para compensar</translation>
+        <translation>VistaArcade: Resolución virtual incompatible con la relación de aspecto -- La imagen se estirará o encojera para compensar</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="245"/>
@@ -1480,7 +1480,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.h" line="16"/>
         <source>cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cabina</translation>
     </message>
 </context>
 <context>
@@ -1488,7 +1488,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.h" line="16"/>
         <source>controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Mando</translation>
     </message>
 </context>
 <context>
@@ -1996,14 +1996,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../../detailsetup.cpp" line="144"/>
         <location filename="../../detailsetup.cpp" line="226"/>
         <source>&amp;Notes</source>
-        <translation type="unfinished">&amp;Notas</translation>
+        <translation>&amp;Notas</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="64"/>
         <location filename="../../detailsetup.cpp" line="145"/>
         <location filename="../../detailsetup.cpp" line="227"/>
         <source>System notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notas de sistema</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="107"/>
@@ -2057,12 +2057,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="133"/>
         <source>Lo&amp;go</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="134"/>
         <source>Logo image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de logo</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="496"/>
@@ -2124,12 +2124,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../filesystemmodel.h" line="37"/>
         <source>Drives / Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Unidades / Carpetas</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="39"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpetas</translation>
     </message>
 </context>
 <context>
@@ -2485,7 +2485,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1310"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Introducir texto de búsqueda</translation>
+        <translation>Introducir texto de búsqueda</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1396"/>
@@ -2701,7 +2701,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.h" line="16"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3001,7 +3001,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="545"/>
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede iniciar el ejecutable %1, el archivo &apos;%2&apos; no existe</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="585"/>
@@ -3161,7 +3161,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1114"/>
         <location filename="../../gamelist.cpp" line="1125"/>
         <source>Updating</source>
-        <translation type="unfinished">Actualizando</translation>
+        <translation>Actualizando</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1118"/>
@@ -3470,9 +3470,9 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="716"/>
         <source>%n supported (non-device) set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n set soportado (sin dispositivos)</numerusform>
+            <numerusform>%n set soportados (sin dispositivos)</numerusform>
         </translation>
     </message>
     <message>
@@ -3780,12 +3780,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1808"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: atributo de nombre vacío en XML línea %1 (¡el set será ignorado!) -- por favor, informa a los desarrolladores de MAME y adjunta el archivo resultante de --listxml</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1810"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: atributo de nombre vacío en XML línea %1 (¡el set será ignorado!) -- por favor, informa a los desarrolladores de MESS y adjunta el archivo resultante de --listxml</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2261"/>
@@ -4162,22 +4162,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="3590"/>
         <source>loading category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando category.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3596"/>
         <source>Category.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Category.ini - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3622"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir &apos;%1&apos; para su lectura -- no hay datos de category.ini disponibles</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3631"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando category.ini, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3781"/>
@@ -4212,9 +4212,9 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="3632"/>
         <source>%n category record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de categorías cargado</numerusform>
+            <numerusform>%n registros de categorías cargado</numerusform>
         </translation>
     </message>
     <message>
@@ -4300,34 +4300,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="259"/>
         <source>New from &amp;template</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo de plan&amp;tilla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="262"/>
         <source>New from template</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo de plantilla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="265"/>
         <location filename="../../htmleditor/htmleditor.ui" line="268"/>
         <source>Generates a new document using the template</source>
-        <translation type="unfinished"></translation>
+        <translation>Genera un documento nuevo usando la plantilla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="277"/>
         <source>&amp;Revert</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Deshacer</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="280"/>
         <source>Revert changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Deshacer cambios</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="283"/>
         <location filename="../../htmleditor/htmleditor.ui" line="286"/>
         <source>Revert changes from saved file</source>
-        <translation type="unfinished"></translation>
+        <translation>Deshacer cambios del archivo guardado</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="295"/>
@@ -4368,18 +4368,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>Open in browser...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir en navegador...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Open in new browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir en una nueva ventana de navegador</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="353"/>
         <location filename="../../htmleditor/htmleditor.ui" line="356"/>
         <source>Open the document in a new browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir el documento en una nueva ventana del navegador</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="365"/>
@@ -4727,25 +4727,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="80"/>
         <source>&amp;Load...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cargar...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="81"/>
         <source>Load notes from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar notas desde archivo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="82"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="83"/>
         <source>Load notes from an HTML file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar notas desde un archivo HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="84"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="85"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="86"/>
         <source>Save current notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar las notas actuales</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="291"/>
@@ -4763,12 +4763,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="291"/>
         <source>Select file to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo a cargar</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="291"/>
         <source>Select file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo a abrir</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="358"/>
@@ -4883,116 +4883,116 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.ui" line="22"/>
         <source>Image type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de imagen</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="35"/>
         <source>Select image type to be checked</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el tipo de imagen a comprobar</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="39"/>
         <location filename="../../imagechecker.cpp" line="205"/>
         <location filename="../../imagechecker.cpp" line="213"/>
         <source>Previews</source>
-        <translation type="unfinished">Previsualizaciones</translation>
+        <translation>Previsualizaciones</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="48"/>
         <location filename="../../imagechecker.cpp" line="206"/>
         <location filename="../../imagechecker.cpp" line="214"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="57"/>
         <location filename="../../imagechecker.cpp" line="207"/>
         <location filename="../../imagechecker.cpp" line="215"/>
         <source>Cabinets</source>
-        <translation type="unfinished">Cabinas</translation>
+        <translation>Cabinas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="66"/>
         <location filename="../../imagechecker.cpp" line="216"/>
         <source>Controllers</source>
-        <translation type="unfinished">Mandos</translation>
+        <translation>Mandos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="75"/>
         <location filename="../../imagechecker.cpp" line="217"/>
         <source>Marquees</source>
-        <translation type="unfinished">Marquesinas</translation>
+        <translation>Marquesinas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="84"/>
         <location filename="../../imagechecker.cpp" line="218"/>
         <source>Titles</source>
-        <translation type="unfinished">Títulos</translation>
+        <translation>Títulos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="93"/>
         <location filename="../../imagechecker.cpp" line="209"/>
         <location filename="../../imagechecker.cpp" line="219"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="102"/>
         <location filename="../../imagechecker.cpp" line="211"/>
         <location filename="../../imagechecker.cpp" line="221"/>
         <source>Icons</source>
-        <translation type="unfinished">Iconos</translation>
+        <translation>Iconos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="114"/>
         <source>Threads</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancias</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="127"/>
         <source>Number of parallel threads used when checking images</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de instáncias paralelas a usar cuando se comprueben imágenes</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="143"/>
         <source>Select sets in master list when selected in the found- or missing-lists below</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar sets en la lista maestra cuando se seleccionen en la listas de encontrados de abajo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="160"/>
         <source>Current status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado actual / progreso</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="166"/>
         <location filename="../../imagechecker.cpp" line="359"/>
         <source>Idle</source>
-        <translation type="unfinished">Parado</translation>
+        <translation>Parado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="179"/>
         <source>Start / stop checking images</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar / detener la comprobación de imágenes</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="199"/>
         <source>Clear check results and log</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar los resultados y el log de la comprobación</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="219"/>
         <source>Save the current log contents to a file</source>
-        <translation type="unfinished">Guardar los contenidos actuales del log a un archivo</translation>
+        <translation>Guardar los contenidos actuales del log a un archivo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="239"/>
         <source>Remove obsolete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar los archivos obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="256"/>
         <source>Check results</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobar resultados</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="262"/>
@@ -5001,7 +5001,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="587"/>
         <location filename="../../imagechecker.cpp" line="1035"/>
         <source>Found:</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrado:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="269"/>
@@ -5011,7 +5011,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="1037"/>
         <location filename="../../imagechecker.cpp" line="1039"/>
         <source>Missing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausente:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="276"/>
@@ -5021,47 +5021,47 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="791"/>
         <location filename="../../imagechecker.cpp" line="1040"/>
         <source>Obsolete:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoleto:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="283"/>
         <source>Sets for which at least one valid image was found</source>
-        <translation type="unfinished"></translation>
+        <translation>Sets para los que se ha encontrado al menos una imagen válida</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="293"/>
         <source>Sets for which no valid images could be found</source>
-        <translation type="unfinished"></translation>
+        <translation>Sets para los que no se ha encontrado ninguna imagen válida</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="303"/>
         <source>Files which couldn&apos;t be matched to any set (and are thus obsolete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos que no se pudieron asociar a ningún set (obsoletos)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="314"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="208"/>
         <source>Logos</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon(s) scanned</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n icono escaneado</numerusform>
+            <numerusform>%n iconos escaneado</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon file(s) missing</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Falta %n archivo de icono</numerusform>
+            <numerusform>Faltan %n archivos de icono</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5069,202 +5069,202 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n bad file(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n archivo erróneo</numerusform>
+            <numerusform>%n archivos erróneo</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="329"/>
         <source>Average scanning speed = %n icon(s) per second</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Velocidad media de escaneo = %n icono por segundo</numerusform>
+            <numerusform>Velocidad media de escaneo = %n iconos por segundo</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n image(s) scanned</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n imagen escaneada</numerusform>
+            <numerusform>%n imagenes escaneadas</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n valid icon file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n icono válido encontrado</numerusform>
+            <numerusform>%n iconos válidos encontrados</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n valid image file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n imagen válida encontrado</numerusform>
+            <numerusform>%n imágenes válidas encontrado</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n image file(s) missing</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Falta %n archivo de imagen</numerusform>
+            <numerusform>Faltan %n archivos de imágenes</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="332"/>
         <location filename="../../imagechecker.cpp" line="348"/>
         <source>Average scanning speed = %n image(s) per second</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Velocidad media de escaneo = %n imagen por segundo</numerusform>
+            <numerusform>Velocidad media de escaneo = %n imágenes por segundo</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="339"/>
         <location filename="../../imagechecker.cpp" line="427"/>
         <source>Pass #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pase #%1</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="355"/>
         <source>%1 check ended -- elapsed time = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>comprobación %1 finalizada - tiempo transcurrido = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="355"/>
         <location filename="../../imagechecker.cpp" line="402"/>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>Icon</source>
-        <translation type="unfinished">Icono</translation>
+        <translation>Icono</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="355"/>
         <location filename="../../imagechecker.cpp" line="402"/>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="402"/>
         <source>%1 check started</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobación %1 iniciada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="558"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; found</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: Icono para &apos;%2&apos; encontrado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="562"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: Icono para &apos;%2&apos; ausente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="609"/>
         <source>Choose file to store the image checker log</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el archivo para guardar el log de la comprobación de imágenes</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="609"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos los archivos (*)</translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="614"/>
         <location filename="../../imagechecker.cpp" line="615"/>
         <source>saving image checker log to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>guardando log de comprobación de imagen a &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="618"/>
         <location filename="../../imagechecker.cpp" line="619"/>
         <source>done (saving image checker log to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (guardando log de comprobación de imagen a &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="621"/>
         <location filename="../../imagechecker.cpp" line="622"/>
         <source>WARNING: can&apos;t open file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">ATENCIÓN: no se puede abrir el archivo &apos;%1&apos; para su escritura, por favor comprueba los permisos</translation>
+        <translation>ATENCIÓN: no se puede abrir el archivo &apos;%1&apos; para su escritura, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="703"/>
         <location filename="../../imagechecker.cpp" line="765"/>
         <source>Running ZIP tool to remove obsolete files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando la herramienta ZIP para eliminar los archivos obsoletos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="718"/>
         <source>Obsolete image file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen obsoleta &apos;%1&apos; eliminada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="723"/>
         <source>Obsolete image file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>La imagen obsoleta &apos;%1&apos; no puede ser eliminada, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="780"/>
         <source>Obsolete icon file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Icono obsoleto &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="785"/>
         <source>Obsolete icon file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>El icono obsoleto &apos;%1&apos; no puede ser eliminado, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="829"/>
         <source>Checking for obsolete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando archivos obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="865"/>
         <location filename="../../imagechecker.cpp" line="877"/>
         <source>Reading ZIP directory recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Leyendo directorio ZIP recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="870"/>
         <source>Reading image directory &apos;%1&apos; recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Leyendo directorio de imágenes &apos;%1&apos; recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="882"/>
         <source>Reading icon directory &apos;%1&apos; recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Leyendo directorio de iconos &apos;%1&apos; recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de %1 &apos;%2 obsoleto</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="1013"/>
         <source>%n obsolete file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n archivo obsoleto encontrado</numerusform>
+            <numerusform>%n archivos obsoletos encontrados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1037"/>
         <source>Bad:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mal:</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="888"/>
         <source>%n directory entries to check</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n entrada de directorio a comprobar</numerusform>
+            <numerusform>%n entradas de directorios a comprobar</numerusform>
         </translation>
     </message>
 </context>
@@ -5274,24 +5274,24 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="69"/>
         <location filename="../../imagechecker.cpp" line="83"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="72"/>
         <location filename="../../imagechecker.cpp" line="86"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="75"/>
         <location filename="../../imagechecker.cpp" line="89"/>
         <source> GB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="78"/>
         <source> TB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="98"/>
@@ -5317,7 +5317,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="122"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -7037,7 +7036,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2727"/>
         <location filename="../../qmc2main.ui" line="2730"/>
         <source>Clear image cache</source>
-        <translation>Borrar caché de imágenes</translation>
+        <translation type="unfinished">Borrar caché de imágenes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2733"/>
@@ -8590,7 +8589,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="2125"/>
         <location filename="../../qmc2main.cpp" line="2147"/>
         <source>please wait for image check to finish and try again</source>
-        <translation>por favor espera a que finalice la comprobación de imágenes y vuelve a intentarlo</translation>
+        <translation type="unfinished">por favor espera a que finalice la comprobación de imágenes y vuelve a intentarlo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2055"/>
@@ -8669,7 +8668,7 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="2350"/>
         <source>image cache cleared</source>
-        <translation>Borrada caché de imágenes</translation>
+        <translation type="unfinished">Borrada caché de imágenes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2361"/>
@@ -9278,7 +9277,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="6395"/>
         <source>destroying image checker</source>
-        <translation>destruyendo comprobador de imágenes</translation>
+        <translation type="unfinished">destruyendo comprobador de imágenes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6400"/>
@@ -9860,7 +9859,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../mawsqdlsetup.ui" line="45"/>
         <source>Automatically download flyer images</source>
-        <translation>Descargar automáticamente las imágenes de flyer</translation>
+        <translation type="unfinished">Descargar automáticamente las imágenes de flyer</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="48"/>
@@ -10480,7 +10479,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="309"/>
         <source>Show game&apos;s description at the bottom of any images</source>
-        <translation>Mostrar la descripción del juego al pie de cualquier imágen</translation>
+        <translation type="unfinished">Mostrar la descripción del juego al pie de cualquier imagen</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="312"/>
@@ -10603,7 +10602,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="591"/>
         <source>Fall back to the parent&apos;s image if an indivual image is missing but there&apos;s one for the parent</source>
-        <translation>Usar la imágen del set padre si falta la imagen individual pero existe una para el padre</translation>
+        <translation type="unfinished">Usar la imagen del set padre si falta la imagen individual pero existe una para el padre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="594"/>
@@ -13075,7 +13074,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="1001"/>
         <source>image cache size set to %1 MB</source>
-        <translation>Fijar el tamaño de la caché de imagenes en %1 MB</translation>
+        <translation type="unfinished">Fijar el tamaño de la caché de imágenes en %1 MB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1326"/>
