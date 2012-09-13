@@ -697,7 +697,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="505"/>
         <source>Select the layout you want to edit / use</source>
-        <translation type="unfinished">Seleccionar el diseño que quieras editar / usar</translation>
+        <translation>Seleccionar el diseño que quieras editar / usar</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="518"/>
@@ -5296,54 +5296,55 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="98"/>
         <source>Thread[%1]: started</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: iniciada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="104"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: archivo ZIP &apos;%2&apos; abierto con éxito</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="106"/>
         <source>Thread[%1]: failed opening ZIP file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: fallo al abrir el archivo ZIP &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="112"/>
         <source>Thread[%1]: waiting for work</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: esperando trabajo</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="122"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Instancia[%1]: procesando unidad de trabajo con %n entrada</numerusform>
+            <numerusform>Instancia[%1]: procesando unidad de trabajo con %n entradas</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="134"/>
         <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: Imagen para &apos;%2&apos; encontrada, cargado desde &apos;%3&apos;, tamaño = %4x%5, bytes = %6</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="139"/>
         <source>Thread[%1]: image for &apos;%2&apos; loaded from &apos;%3&apos; is bad, error = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: imagen para &apos;%2&apos; cargada desde &apos;%3&apos; tiene fallos, error = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="142"/>
         <source>Thread[%1]: image for &apos;%2&apos; is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: imagen para &apos;%2&apos; ausente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="170"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: archivo ZIP &apos;%2&apos; cerrado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="173"/>
         <source>Thread[%1]: ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: finalizado</translation>
     </message>
 </context>
 <context>
@@ -5351,27 +5352,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagewidget.cpp" line="45"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagen al portapapeles</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="51"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar la ruta del archivo al portapapeles</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="60"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar el slot de caché</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="71"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir el archivo &apos;%1&apos;, por favor comprueba los permisos de acceso para %2</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="113"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Esperando datos...</translation>
+        <translation>Esperando datos...</translation>
     </message>
 </context>
 <context>
@@ -5830,7 +5831,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="320"/>
         <source>BIOS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="329"/>
@@ -5998,7 +5999,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="302"/>
         <source>Open e&amp;xternally...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir e&amp;xternamente...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="353"/>
@@ -6012,7 +6013,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="467"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="626"/>
@@ -6068,7 +6069,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1737"/>
         <location filename="../../messdevcfg.cpp" line="1787"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración predeterminada</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="754"/>
@@ -6090,7 +6091,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1518"/>
         <location filename="../../messdevcfg.cpp" line="2440"/>
         <source>N/A</source>
-        <translation type="unfinished">N/D</translation>
+        <translation>N/D</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1432"/>
@@ -7036,7 +7037,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2727"/>
         <location filename="../../qmc2main.ui" line="2730"/>
         <source>Clear image cache</source>
-        <translation type="unfinished">Borrar caché de imágenes</translation>
+        <translation>Borrar caché de imágenes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2733"/>
@@ -7080,7 +7081,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2771"/>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2783"/>
@@ -7128,87 +7129,87 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3826"/>
         <source>Tag visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiqueta visible</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3829"/>
         <location filename="../../qmc2main.ui" line="3832"/>
         <source>Set tag mark for all visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Poner la marca de etiqueta en todos los sets visibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3847"/>
         <source>Untag visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Desetiquetar visibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3850"/>
         <location filename="../../qmc2main.ui" line="3853"/>
         <source>Unset all tag marks of visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Quitar la marca de etiqueta en todos los sets visibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3868"/>
         <source>Invert visible tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir las etiquetas visibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3871"/>
         <location filename="../../qmc2main.ui" line="3874"/>
         <source>Invert all tag marks of visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir todas las etiquetas de los sets visibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3835"/>
         <source>Ctrl+Shift+X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2623"/>
         <source>A&amp;bout...</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;cerca de...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2632"/>
         <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3856"/>
         <source>Ctrl+Shift+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3877"/>
         <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3889"/>
         <source>Browser window...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ventana del navegador...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3892"/>
         <location filename="../../qmc2main.ui" line="3895"/>
         <source>Open a new empty browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir una nueva ventana en blanco del navegador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>Check &amp;images / icons...</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobar &amp;imágenes / iconos...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2109"/>
         <source>Do&amp;wnloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Desca&amp;rgas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2563"/>
         <location filename="../../qmc2main.ui" line="2566"/>
         <source>Check images and icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobar imágenes e iconos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2839"/>
@@ -7766,7 +7767,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3604"/>
         <source>Ctrl+Shift+J</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3616"/>
@@ -7851,34 +7852,34 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3721"/>
         <source>Toggle tag / cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / cursor abajo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3724"/>
         <location filename="../../qmc2main.ui" line="3727"/>
         <source>Toggle tag mark / move cursor one item down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar marca de etiquetado / mover el cursor una posición abajo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3730"/>
         <source>Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3742"/>
         <source>Toggle tag / cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / cursor arriba</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3745"/>
         <location filename="../../qmc2main.ui" line="3748"/>
         <source>Toggle tag mark / move cursor one item up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar marca de etiquetado / mover el cursor una posición arriba</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3751"/>
         <source>Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3763"/>
@@ -8569,7 +8570,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="1817"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración predeterminada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2040"/>
@@ -8589,7 +8590,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="2125"/>
         <location filename="../../qmc2main.cpp" line="2147"/>
         <source>please wait for image check to finish and try again</source>
-        <translation type="unfinished">por favor espera a que finalice la comprobación de imágenes y vuelve a intentarlo</translation>
+        <translation>por favor espera a que finalice la comprobación de imágenes y vuelve a intentarlo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2055"/>
@@ -8668,7 +8669,7 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="2350"/>
         <source>image cache cleared</source>
-        <translation type="unfinished">Borrada caché de imágenes</translation>
+        <translation>Borrada caché de imágenes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2361"/>
@@ -8766,14 +8767,14 @@ Se sobrescribirá los datos existentes en caché.
         <location filename="../../qmc2main.cpp" line="614"/>
         <location filename="../../qmc2main.cpp" line="1288"/>
         <source>Category / Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoría / Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1778"/>
         <location filename="../../qmc2main.cpp" line="1835"/>
         <location filename="../../qmc2main.cpp" line="1882"/>
         <source>default</source>
-        <translation type="unfinished">predeterminado</translation>
+        <translation>predeterminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1779"/>
@@ -8783,7 +8784,7 @@ Se sobrescribirá los datos existentes en caché.
         <location filename="../../qmc2main.cpp" line="1883"/>
         <location filename="../../qmc2main.cpp" line="1886"/>
         <source>N/A</source>
-        <translation type="unfinished">N/D</translation>
+        <translation>N/D</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2453"/>
@@ -8939,12 +8940,12 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="4492"/>
         <source>?</source>
-        <translation type="unfinished">¿?</translation>
+        <translation>¿?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4887"/>
         <source>please wait for sorting to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espera a que finalice la clasificación y vuelve a intentarlo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5086"/>
@@ -9277,7 +9278,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="6395"/>
         <source>destroying image checker</source>
-        <translation type="unfinished">destruyendo comprobador de imágenes</translation>
+        <translation>destruyendo comprobador de imágenes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6400"/>
@@ -9816,19 +9817,21 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="10827"/>
         <source>WARNING: the ROM path is either not specified or the directory doesn&apos;t exist (or isn&apos;t accessible)</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: la ruta ROM no ha sido especificada o el directorio no existe (o no es accesible)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10828"/>
         <source>Check ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobar la ruta ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10829"/>
         <source>The ROM path is either not specified or the directory couldn&apos;t be found (or isn&apos;t accessible).
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>La ruta ROM no ha sido especificada o el directorio no ha sido encontrado (o es inaccesible)
+
+Por favor comprueba la opción &apos;rompath&apos; en la configuración global del emulador para arreglarlo, ¡de lo contrario las ROMs no estarán disponibles para el emulador!</translation>
     </message>
 </context>
 <context>
@@ -9836,7 +9839,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../marquee.h" line="16"/>
         <source>marquee</source>
-        <translation type="unfinished"></translation>
+        <translation>marquesina</translation>
     </message>
 </context>
 <context>
@@ -9859,7 +9862,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../mawsqdlsetup.ui" line="45"/>
         <source>Automatically download flyer images</source>
-        <translation type="unfinished">Descargar automáticamente las imágenes de flyer</translation>
+        <translation>Descargar automáticamente las imágenes de flyer</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="48"/>
@@ -10479,7 +10482,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="309"/>
         <source>Show game&apos;s description at the bottom of any images</source>
-        <translation type="unfinished">Mostrar la descripción del juego al pie de cualquier imagen</translation>
+        <translation>Mostrar la descripción del juego al pie de cualquier imagen</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="312"/>
@@ -10602,7 +10605,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="591"/>
         <source>Fall back to the parent&apos;s image if an indivual image is missing but there&apos;s one for the parent</source>
-        <translation type="unfinished">Usar la imagen del set padre si falta la imagen individual pero existe una para el padre</translation>
+        <translation>Usar la imagen del set padre si falta la imagen individual pero existe una para el padre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="594"/>
@@ -10814,12 +10817,12 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="835"/>
         <source>Force QMC2&apos;s working directory to be the same as the executable&apos;s path</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzar que el directorio de trabajo de QMC2 sea el mismo que la ruta del ejecutable</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="838"/>
         <source>Set working directory from executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer el directorio de trabajo del ejecutable</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1001"/>
@@ -11290,57 +11293,57 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="2299"/>
         <source>Enable the use of category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar el uso de category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2302"/>
         <source>Use category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2319"/>
         <source>Path to category.ini (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta a category.ini (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2332"/>
         <source>Browse path to category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la ruta a category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2343"/>
         <source>System notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2350"/>
         <source>Enable the use of a template for (empty) system notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar el uso de una plantilla para las notas de sistema (vacías)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2353"/>
         <source>System notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Plantilla de notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2366"/>
         <source>HTML file used as a template for system-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo HTML usado como plantilla para las notas de sistema (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2379"/>
         <source>Folder used to store personal notes about any systems (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta usada para almacenar notas personales sobre cualquier título de sistema (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2392"/>
         <source>Browse system notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la carpeta de notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2409"/>
         <source>Browse system notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la plantilla de notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2427"/>
@@ -12526,39 +12529,39 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="305"/>
         <source>Scaled logo</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo escalado</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="306"/>
         <location filename="../../options.cpp" line="2307"/>
         <location filename="../../options.cpp" line="3438"/>
         <source>Logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio de logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="307"/>
         <source>Switch between specifying a logo directory or a ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de logos o un archivo ZIP</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="308"/>
         <source>Logo directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio de logos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="309"/>
         <source>ZIP-compressed logo file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido ZIP de logos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Browse logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al directorio de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="311"/>
         <source>Browse ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo comprimido ZIP de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="321"/>
@@ -12626,7 +12629,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="349"/>
         <source>Check images and icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobar imágenes e iconos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="350"/>
@@ -12841,12 +12844,12 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="415"/>
         <source>Toggle tag / cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / cursor abajo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="416"/>
         <source>Toggle tag / cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar etiqueta / cursor arriba</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="417"/>
@@ -12866,17 +12869,17 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="420"/>
         <source>Tag visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar sets visibles</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="421"/>
         <source>Untag visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Desetiquetar sets visibles</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="422"/>
         <source>Invert visible tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir las etiquetas visibles</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="424"/>
@@ -12896,7 +12899,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="430"/>
         <source>View machines by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categorías</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="432"/>
@@ -13074,7 +13077,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="1001"/>
         <source>image cache size set to %1 MB</source>
-        <translation type="unfinished">Fijar el tamaño de la caché de imágenes en %1 MB</translation>
+        <translation>Fijar el tamaño de la caché de imágenes en %1 MB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1326"/>
@@ -13089,7 +13092,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.cpp" line="1331"/>
         <source>View machines by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver máquinas por categoría (sin filtrar)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1488"/>
@@ -13173,7 +13176,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1740"/>
         <source>?</source>
-        <translation type="unfinished">¿?</translation>
+        <translation>¿?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1787"/>
@@ -13225,7 +13228,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2017"/>
         <source>FATAL: can&apos;t open logo file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir el archivo de logo, por favor comprueba los permisos de acceso para %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2019"/>
@@ -13337,7 +13340,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="2307"/>
         <location filename="../../options.cpp" line="3438"/>
         <source>Logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2628"/>
@@ -13355,7 +13358,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="2726"/>
         <location filename="../../options.cpp" line="2727"/>
         <source>Launch foreign ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar ID externa &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2757"/>
@@ -13438,7 +13441,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2852"/>
         <source>Choose logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar directorio de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2854"/>
@@ -13612,7 +13615,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3258"/>
         <source>Choose category.ini file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo category.ini</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3483"/>
@@ -13642,7 +13645,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3544"/>
         <source>Choose ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo comprimido ZIP de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3546"/>
@@ -13688,12 +13691,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3635"/>
         <source>Choose system notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar carpeta de notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3649"/>
         <source>Choose system notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar plantilla de notas de sistema</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3840"/>
@@ -13721,7 +13724,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../pcb.h" line="16"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -13729,7 +13732,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../preview.h" line="16"/>
         <source>preview</source>
-        <translation type="unfinished">previsualización</translation>
+        <translation>previsualización</translation>
     </message>
 </context>
 <context>
@@ -14280,7 +14283,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="3396"/>
         <source>Info:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1906"/>
@@ -14303,7 +14306,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="32"/>
         <source>Specify sets to analyze</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar sets a analizar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="42"/>
@@ -14424,7 +14427,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="237"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Introducir texto de búsqueda</translation>
+        <translation>Introducir texto de búsqueda</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="244"/>
@@ -14529,7 +14532,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="455"/>
         <source>Calculate CRC-32 checksum</source>
-        <translation>Calcular suma de comprobación CRC-32</translation>
+        <translation>Calcular suma de verificación CRC-32</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="458"/>
@@ -14559,12 +14562,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="494"/>
         <source>Automatically expand checksums</source>
-        <translation>Expandir automáticamente las sumas de comprobación</translation>
+        <translation>Expandir automáticamente las sumas de verificación</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="497"/>
         <source>Expand checksums</source>
-        <translation>Expandir sumas de comprobación</translation>
+        <translation>Expandir sumas de verificación</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="504"/>
@@ -14824,7 +14827,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1061"/>
         <source>Rewrite sets only when they are &apos;good&apos; (otherwise, &apos;bad&apos; sets will be included)</source>
-        <translation type="unfinished">Organizar solo sets marcados &apos;bien&apos; (o incluir también sets marcados &apos;mal&apos;)</translation>
+        <translation>Organizar solo sets marcados &apos;bien&apos; (o incluir también sets marcados &apos;mal&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1064"/>
@@ -14904,17 +14907,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1241"/>
         <source>Checksum to be searched</source>
-        <translation>Suma de comprobación a buscar</translation>
+        <translation>Suma de verificación a buscar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1244"/>
         <source>Enter checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Introducir suma de verificación</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1257"/>
         <source>Search for the checksum now</source>
-        <translation>Buscar la suma de comprobación ahora</translation>
+        <translation>Buscar la suma de verificación ahora</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1260"/>
@@ -14945,7 +14948,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1314"/>
         <source>Search results for the current checksum</source>
-        <translation>Buscar resultados para la suma de comprobación actual</translation>
+        <translation>Buscar resultados para la suma de verificación actual</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1339"/>
@@ -15002,7 +15005,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1417"/>
         <source>Select the checksum type</source>
-        <translation>Seleccionar el tipo de suma de comprobación</translation>
+        <translation>Seleccionar el tipo de suma de verificación</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1435"/>
@@ -15017,7 +15020,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1450"/>
         <source>Specify sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar sets</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1463"/>
@@ -15027,22 +15030,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1489"/>
         <source>Perform proposed actions on all selected sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutar las acciones propuestas en los sets seleccionados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1492"/>
         <source>Perform actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutar acciones</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1583"/>
         <source>Automatically select sure matches and perform proposed actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Automáticamente seleccionar coincidencias exactas y ejecutar acciones propuestas</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1506"/>
         <source>Search results (checksum matches)</source>
-        <translation>Buscar resultados (coincidencia de suma de comprobación)</translation>
+        <translation>Buscar resultados (coincidencia de suma de verificación)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1531"/>
@@ -15062,7 +15065,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1546"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1569"/>
@@ -15241,7 +15244,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="155"/>
         <source>Search checksum</source>
-        <translation>Buscar suma de comprobación</translation>
+        <translation>Buscar suma de verificación</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="164"/>
@@ -15499,7 +15502,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2503"/>
         <location filename="../../romalyzer.cpp" line="2699"/>
         <source>good</source>
-        <translation type="unfinished">bien</translation>
+        <translation>bien</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="954"/>
@@ -15509,7 +15512,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="968"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has incorrect / unexpected checksums</source>
-        <translation>ATENCIÓN: archivo %1 &apos;%2&apos; cargado desde &apos;%3&apos; tiene una suma de comprobación incorrecta / inesperada</translation>
+        <translation>ATENCIÓN: archivo %1 &apos;%2&apos; cargado desde &apos;%3&apos; tiene una suma de verificación incorrecta / inesperada</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="998"/>
@@ -15522,27 +15525,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1014"/>
         <source>good / not found / skipped</source>
-        <translation type="unfinished">bien / no encontrado / ignorado</translation>
+        <translation>bien / no encontrado / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1016"/>
         <source>good / not found</source>
-        <translation type="unfinished">bien / no encontrado</translation>
+        <translation>bien / no encontrado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1020"/>
         <source>good / no dump / skipped</source>
-        <translation type="unfinished">bien / sin dump / ignorado</translation>
+        <translation>bien / sin dump / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1022"/>
         <source>good / no dump</source>
-        <translation type="unfinished">bien / sin dump</translation>
+        <translation>bien / sin dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1026"/>
         <source>good / skipped</source>
-        <translation type="unfinished">bien / ignorado</translation>
+        <translation>bien / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1034"/>
@@ -15785,12 +15788,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1512"/>
         <location filename="../../romalyzer.cpp" line="1520"/>
         <source>CHD manager: using CHD v%1 header checksums for CHD verification</source>
-        <translation>Gestor CHD: usando sumas de comprobación de cabecera de CHD v%1 para la verificación de CHD</translation>
+        <translation>Gestor CHD: usando sumas de verificación de cabecera de CHD v%1 para la verificación de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1414"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
-        <translation>Gestor CHD: no hay sumas de comprobación de cabecera disponibles para la verificación de CHD</translation>
+        <translation>Gestor CHD: no hay sumas de verificación de cabecera disponibles para la verificación de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1442"/>
@@ -15836,7 +15839,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1528"/>
         <source>CHD manager: WARNING: no header checksums available for CHD verification</source>
-        <translation>Gestor CHD: ATENCIÓN: no hay sumas de comprobación de cabecera disponibles para la verificación de CHD</translation>
+        <translation>Gestor CHD: ATENCIÓN: no hay sumas de verificación de cabecera disponibles para la verificación de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1535"/>
@@ -15848,12 +15851,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1559"/>
         <location filename="../../romalyzer.cpp" line="1567"/>
         <source>using CHD v%1 header checksums for CHD verification</source>
-        <translation>usando sumas de comprobación de cabecera de CHD v%1 para la verificación de CHD</translation>
+        <translation>usando sumas de verificación de cabecera de CHD v%1 para la verificación de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1575"/>
         <source>WARNING: no header checksums available for CHD verification</source>
-        <translation>ATENCIÓN: no hay sumas de comprobación de cabecera disponibles para la verificación de CHD</translation>
+        <translation>ATENCIÓN: no hay sumas de verificación de cabecera disponibles para la verificación de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1583"/>
@@ -16023,7 +16026,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2176"/>
         <source>Checksum search</source>
-        <translation>Búsqueda de suma de comprobación</translation>
+        <translation>Búsqueda de suma de verificación</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2321"/>
@@ -17233,13 +17236,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="106"/>
         <location filename="../../softwarelist.ui" line="109"/>
         <source>Toggle automatic adjustment of the snapname parameter (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el ajustado automático del parámetro snapmame (mantener pulsado para menú)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="129"/>
         <location filename="../../softwarelist.ui" line="132"/>
         <source>Select the software for which the snapname should be adjusted</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el software para el que snapmame debe ser ajustado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="147"/>
@@ -17252,7 +17255,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1473"/>
         <location filename="../../softwarelist.cpp" line="2209"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración predeterminada</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="181"/>
@@ -17492,18 +17495,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="164"/>
         <source>Adjust pattern...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar patrón...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="290"/>
         <source>Snapname adjustment pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Patrón de ajuste de snapmame</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="291"/>
         <source>Enter the pattern used for snapname adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
-        <translation type="unfinished"></translation>
+        <translation>Introducir el patrón usado para el ajuste de snapmame:
+(Macros permitidos: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="319"/>
@@ -17513,14 +17517,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="386"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="431"/>
         <location filename="../../softwarelist.cpp" line="439"/>
         <location filename="../../softwarelist.cpp" line="445"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
-        <translation type="unfinished">ERROR: recuperados datos XML inválidos para &apos;%1&apos;</translation>
+        <translation>ERROR: recuperados datos XML inválidos para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="665"/>
@@ -18118,17 +18122,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="2748"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagen al portapapeles</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2754"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar la ruta del archivo al portapapeles</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2763"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar el slot de caché</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2980"/>
@@ -18141,17 +18145,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="3469"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagen al portapapeles</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3475"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar la ruta del archivo al portapapeles</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3484"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar el slot de caché</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3557"/>
@@ -18187,7 +18191,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../title.h" line="16"/>
         <source>title</source>
-        <translation type="unfinished">título</translation>
+        <translation>título</translation>
     </message>
 </context>
 <context>
@@ -18200,7 +18204,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../toolbarcustomizer.ui" line="26"/>
         <source>Available tool-bar actions</source>
-        <translation type="unfinished">Acciones disponibles</translation>
+        <translation>Acciones disponibles</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="32"/>
@@ -18220,7 +18224,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../toolbarcustomizer.ui" line="74"/>
         <source>Active tool-bar actions</source>
-        <translation type="unfinished">Acciones activas</translation>
+        <translation>Acciones activas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="80"/>
@@ -18296,7 +18300,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../toolbarcustomizer.cpp" line="80"/>
         <location filename="../../toolbarcustomizer.cpp" line="108"/>
         <source>Tool-bar search box</source>
-        <translation type="unfinished">Búsqueda de barra de herramientas</translation>
+        <translation>Búsqueda de barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="104"/>
@@ -18906,7 +18910,7 @@ Aunque puede que sean los restos de una caida previa.
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="375"/>
         <source>Valid placeholder macros:</source>
-        <translation type="unfinished"></translation>
+        <translation>Macros de sustitución válidos:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="573"/>
