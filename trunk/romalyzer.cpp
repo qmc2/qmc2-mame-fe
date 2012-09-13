@@ -68,7 +68,7 @@ QCache<QString, int> romalyzerXmlGamePositionCache;
 */
 
 ROMAlyzer::ROMAlyzer(QWidget *parent)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   : QDialog(parent, Qt::Dialog)
 #else
   : QDialog(parent, Qt::Dialog | Qt::SubWindow)
@@ -174,7 +174,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   setParent(qmc2MainWindow, Qt::Dialog);
 #endif
 }

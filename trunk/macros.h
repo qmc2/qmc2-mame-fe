@@ -3,16 +3,15 @@
 
 #include <Qt>
 
-#if QT_VERSION >= 0x050000
-#if defined(Q_OS_X11)
-#define Q_WS_X11
-#endif
-#if defined(Q_OS_MAC)
-#define Q_WS_MAC
-#endif
-#if defined(Q_OS_WIN32)
-#define Q_WS_WIN
-#endif
+// global OS macros for supported target operating systems
+#if defined(Q_OS_UNIX) || defined(Q_OS_LINUX)
+#define QMC2_OS_UNIX
+#elif defined(Q_OS_MAC)
+#define QMC2_OS_MAC
+#elif defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
+#define QMC2_OS_WIN
+#else
+#error "Target OS is not supported -- QMC2 currently supports Linux/UNIX, Windows and Mac OS X!"
 #endif
 
 #if !defined(Q_OS_WIN)
@@ -49,7 +48,7 @@
 #define MIN(a, b)				(((a) < (b)) ? (a) : (b))
 
 // determine file existance
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
 #include <unistd.h>
 #define EXISTS(fn)				(access(fn, F_OK) == 0)
 #endif
@@ -613,7 +612,7 @@
 
 // Mac OS X uses "~/Library/Application Support/app" rather than "~/.app"
 #define QMC2_SYSCONF_PATH			(QString(XSTR(SYSCONFDIR)).replace(QChar(':'), QLatin1String(" ")) + "/qmc2")
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
 #define QMC2_DOT_PATH				(QDir::homePath() + "/Library/Application Support/qmc2")
 #define QMC2_DEFAULT_DATA_PATH			(QDir::homePath() + "/Library/Application Support/qmc2")
 #else

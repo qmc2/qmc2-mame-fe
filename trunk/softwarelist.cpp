@@ -1,5 +1,5 @@
 #include <QtGui>
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
 #include <QTest>
 #endif
 #if QT_VERSION >= 0x050000
@@ -98,7 +98,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonToggleSoftwareInfo->setIconSize(iconSize);
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
 	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
 	toolButtonPlayEmbedded->setVisible(false);
@@ -125,7 +125,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playActivated()));
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 	s = tr("Play selected software (embedded)");
 	action = softwareListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -355,7 +355,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 #elif defined(QMC2_UME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -405,7 +405,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
 		QTextStream ts(&qmc2TempXml);
 		xmlBuffer = ts.readAll();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		xmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		qmc2TempXml.close();
@@ -488,7 +488,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 		for (int j = 0; j < slotNames.count(); j++)
 			swlArgs << QString("-%1").arg(slotNames[j]) << slotOptions[j];
 		for (int j = 0; j < instances.count(); j++) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace('/', '\\');
 #else
 			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace("~", "$HOME");
@@ -941,7 +941,7 @@ bool SoftwareList::load()
 			if ( loadProc->waitForStarted() && !qmc2StopParser ) {
 				while ( !loadFinishedFlag && !qmc2StopParser ) {
 					qApp->processEvents();
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
 					QTest::qWait(10);
 #else
 					loadProc->waitForFinished(10);
@@ -1267,7 +1267,7 @@ void SoftwareList::loadReadyReadStandardOutput()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardOutput()"));
 #endif
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 	QString s = swlLastLine + QString::fromAscii(proc->readAllStandardOutput());
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #else
@@ -2014,7 +2014,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -2045,7 +2045,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -2076,7 +2076,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -2218,7 +2218,7 @@ QStringList &SoftwareList::arguments()
 		for (int i = 0; i < slotNames.count(); i++)
 			swlArgs << QString("-%1").arg(slotNames[i]) << slotOptions[i];
 		for (int i = 0; i < instances.count(); i++) {
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace('/', '\\');
 #else
 			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace("~", "$HOME");
@@ -3396,7 +3396,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 	if ( qName == "info" ) {
 		infoItem = new SoftwareItem((QTreeWidget *)NULL);
 		infoItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Info:") + " " + attributes.value("name"));
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, QString::fromUtf8(attributes.value("value").toAscii()));
 #else
 		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, attributes.value("value"));

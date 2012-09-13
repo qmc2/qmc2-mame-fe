@@ -235,7 +235,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
 #endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
-#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
   qmc2Options->toolButtonBrowseMESSVariantExe->setEnabled(enable);
   qmc2Options->toolButtonBrowseMESSVariantExe->setEnabled(enable);
 #endif
@@ -503,7 +503,7 @@ void Gamelist::load()
   commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
 
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -571,7 +571,7 @@ void Gamelist::load()
     qApp->processEvents();
     qmc2TempVersion.close();
     qmc2TempVersion.remove();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
     s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
     QStringList versionLines = s.split("\n");
@@ -2693,7 +2693,7 @@ void Gamelist::loadReadyReadStandardOutput()
   // this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
   qApp->processEvents();
 
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   QString s =  QString::fromUtf8(loadProc->readAllStandardOutput());
 #else
   QString s = loadProc->readAllStandardOutput();
@@ -3149,7 +3149,7 @@ void Gamelist::verifyReadyReadStandardOutput()
   int i;
   QString romName, romState, romStateLong; 
   QString s = verifyLastLine + verifyProc->readAllStandardOutput();
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
   QStringList lines = s.split("\n");

@@ -174,7 +174,7 @@ void ImageCheckerThread::run()
 }
 
 ImageChecker::ImageChecker(QWidget *parent)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
 	: QDialog(parent, Qt::Dialog)
 #else
 	: QDialog(parent, Qt::Dialog | Qt::SubWindow)

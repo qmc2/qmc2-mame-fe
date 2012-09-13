@@ -1102,7 +1102,7 @@ void EmulatorOptions::checkTemplateMap()
   QStringList args;
   QProcess commandProc;
   commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -1154,7 +1154,7 @@ void EmulatorOptions::checkTemplateMap()
     QString s = ts.readAll();
     qmc2Temp.close();
     qmc2Temp.remove();
-#if !defined(Q_WS_WIN)
+#if !defined(QMC2_OS_WIN)
     QStringList sl = s.split("\n");
 #else
     QStringList sl = s.split("\r\n");

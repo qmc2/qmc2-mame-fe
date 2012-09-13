@@ -1,7 +1,7 @@
 #include "embedderopt.h"
 #include "embedder.h"
 
-#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 #include <QCache>
 
 #include "gamelist.h"

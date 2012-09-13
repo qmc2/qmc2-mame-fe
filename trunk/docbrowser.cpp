@@ -9,7 +9,7 @@ extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
 DocBrowser::DocBrowser(QWidget *parent)
-#if defined(Q_WS_WIN)
+#if defined(QMC2_OS_WIN)
   : QDialog(parent, Qt::Dialog)
 #else
   : QDialog(parent, Qt::Dialog | Qt::SubWindow)
@@ -32,7 +32,7 @@ DocBrowser::DocBrowser(QWidget *parent)
 
   connect(browser, SIGNAL(titleChanged(QString &)), this, SLOT(titleChanged(QString &)));
 
-#if defined(Q_WS_MAC)
+#if defined(QMC2_OS_MAC)
   setParent(qmc2MainWindow, Qt::Dialog);
 #endif
 }

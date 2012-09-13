@@ -1,7 +1,9 @@
 #ifndef _WINDOWS_TOOL_H_
 #define _WINDOWS_TOOL_H_
 
-#if defined(Q_WS_WIN)
+#include "macros.h"
+
+#if defined(QMC2_OS_WIN)
 
 #include <QtGui>
 #include <windows.h>
