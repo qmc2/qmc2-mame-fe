@@ -11082,7 +11082,8 @@ int main(int argc, char *argv[])
 
 #if QT_VERSION < 0x050000
   // this effectively enables support for unicode characters in C strings
-  QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
+  QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
 
   // create & show greeting string
