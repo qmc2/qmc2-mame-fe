@@ -28,10 +28,6 @@
 #include <QMainWindow>
 #include "highlighter.h"
 
-#if QT_VERSION < 0x040500
-#error You must use Qt >= 4.5.0!
-#endif
-
 class Ui_HTMLEditorMainWindow;
 class Ui_InsertHtmlDialog;
 class Ui_TablePropertyDialog;
