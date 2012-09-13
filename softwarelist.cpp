@@ -1,4 +1,5 @@
 #include <QtGui>
+#include "macros.h"
 #if defined(QMC2_OS_MAC)
 #include <QTest>
 #endif
@@ -10,7 +11,6 @@
 
 #include "softwarelist.h"
 #include "gamelist.h"
-#include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
