@@ -1967,9 +1967,11 @@ void MainWindow::on_vSplitter_splitterMoved(int pos, int index)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_vSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
 #endif
 
-  if ( qmc2SystemNotesEditor )
-	  if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() )
-		  qmc2SystemNotesEditor->resize(tabSystemNotes->size());
+	if ( qmc2SystemNotesEditor )
+		if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() ) {
+			qmc2SystemNotesEditor->move(0, 0);
+			qmc2SystemNotesEditor->resize(tabSystemNotes->size());
+		}
 }
 
 void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
@@ -2009,8 +2011,10 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
       labelGameStatus->setVisible(false);
 
   if ( qmc2SystemNotesEditor )
-	  if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() )
+	  if ( qmc2SystemNotesEditor->size() != tabSystemNotes->size() ) {
+		  qmc2SystemNotesEditor->move(0, 0);
 		  qmc2SystemNotesEditor->resize(tabSystemNotes->size());
+	  }
 }
 
 void MainWindow::on_actionToFavorites_triggered(bool)
@@ -4472,6 +4476,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      tabWidgetGameDetail->insertTab(tabIndex, tabSystemNotes, QIcon(QString::fromUtf8(":/data/img/notes.png")), tr("&Notes"));
 		      tabWidgetGameDetail->setCurrentIndex(tabIndex);
 		      tabWidgetGameDetail->setUpdatesEnabled(true);
+		      qmc2SystemNotesEditor->move(0, 0);
 		      qmc2SystemNotesEditor->resize(tabSystemNotes->size());
 	      } else {
 		      qmc2SystemNotesEditor->save();
