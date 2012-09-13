@@ -4,7 +4,7 @@
 #include <Qt>
 
 // global OS macros for supported target operating systems
-#if defined(Q_OS_UNIX) || defined(Q_OS_LINUX)
+#if (defined(Q_OS_UNIX) || defined(Q_OS_LINUX)) && !defined(Q_OS_MAC)
 #define QMC2_OS_UNIX
 #elif defined(Q_OS_MAC)
 #define QMC2_OS_MAC
