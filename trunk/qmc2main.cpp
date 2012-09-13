@@ -437,6 +437,11 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2ActiveViews << treeWidgetGamelist << treeWidgetHierarchy << treeWidgetCategoryView;
 #endif
 
+#if defined(QMC2_OS_MAC)
+  // we cannot use a native menu-bar on Mac OS X since we have multiple and this conflicts with it
+  menuBar()->setNativeMenuBar(false);
+#endif
+
   // enable menu tear-off
   foreach (QMenu *menu, menuBar()->findChildren<QMenu *>())
 	  menu->setTearOffEnabled(true);
