@@ -31,6 +31,7 @@ inf: informational only
   <li>fix: minor: corrected progress-text updates when certain operations are running 'in parallel' (i.e. loading the software-list while a full ROM audit is active)</li>
   <li>fix: avoid crash when no game/machine is selected and a 'play' action is triggered</li>
   <li>fix: MiniWebBrowser: corrected document history handling with regard to the availability of back- and forward-actions</li>
+  <li>fix: set locale- and c-string-encoding to UTF-8 globally and handle XML data specifically on Windows to cleanly support international characters sets</li>
   <li>imp: adjusted the ghost-image used for videos (wrong text removed)</li>
   <li>imp: depending on the installed codecs, an unused YouTube widget may still cause load on the system, so it's now already destroyed when it's no longer required</li>
   <li>imp: updated redistributed Qt translations from Qt 4.8.2</li>
