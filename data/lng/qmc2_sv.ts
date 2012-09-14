@@ -133,8 +133,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../about.cpp" line="82"/>
-        <source>Windows 8</source>
-        <translation type="unfinished"></translation>
+        <source>Windows 8 (Windows 6.2)</source>
+        <translation type="unfinished">Windows 2000 (Windows 5.0) {8 ?} {6.2)?}</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="84"/>

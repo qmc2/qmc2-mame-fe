@@ -185,6 +185,11 @@ p, li { white-space: pre-wrap; }
         <translation>Windows 7 albo Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
+        <location filename="../../about.cpp" line="82"/>
+        <source>Windows 8 (Windows 6.2)</source>
+        <translation type="unfinished">Windows 2000 (Windows 5.0) {8 ?} {6.2)?}</translation>
+    </message>
+    <message>
         <location filename="../../about.cpp" line="199"/>
         <source>Free: %1 MB</source>
         <translation>Wolna: %1 MB</translation>
@@ -283,11 +288,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../about.cpp" line="79"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
         <translation>Windows Vista albo Windows Server 2008 (Windows 6.0)</translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="82"/>
-        <source>Windows 8</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="84"/>

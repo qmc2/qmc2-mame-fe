@@ -176,6 +176,11 @@ p, li { white-space: pre-wrap; }
         <translation>Windows 7 oder Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
+        <location filename="../../about.cpp" line="82"/>
+        <source>Windows 8 (Windows 6.2)</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../../about.cpp" line="178"/>
         <source>Emulator:</source>
         <translation>Emulator:</translation>
@@ -254,11 +259,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../about.cpp" line="79"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
         <translation>Windows Vista oder Windows Server 2008 (Windows 6.0)</translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="82"/>
-        <source>Windows 8</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="84"/>
