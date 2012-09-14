@@ -1746,8 +1746,20 @@ void MainWindow::on_actionPlay_triggered(bool)
 
   args << gameName;
 
-  if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
-    args << qmc2SoftwareList->arguments();
+  if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) ) {
+	  QStringList swlArgs = qmc2SoftwareList->arguments();
+	  if ( swlArgs.count() > 1 ) { 
+		  if ( swlArgs[0] == "-snapname" ) {
+			  args.removeLast();
+			  args << swlArgs[0] << swlArgs[1];
+			  args << gameName;
+			  for (int a = 2; a < swlArgs.count(); a++)
+				  args << swlArgs[a];
+		  } else
+			  args << swlArgs;
+	  } else
+	  	args << swlArgs;
+  }
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
   else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_DEVICE_INDEX) ) {
 	  switch ( qmc2MESSDeviceConfigurator->tabWidgetDeviceSetup->currentIndex() ) {
