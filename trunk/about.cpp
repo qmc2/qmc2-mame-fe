@@ -79,7 +79,7 @@ About::About(QWidget *parent)
     case QSysInfo::WV_6_0: winVersion = tr("Windows Vista or Windows Server 2008 (Windows 6.0)"); break;
     case QSysInfo::WV_6_1: winVersion = tr("Windows 7 or Windows Server 2008 R2 (Windows 6.1)"); break;
 #if QT_VERSION >= 0x040803
-    case QSysInfo::WV_6_2: winVersion = tr("Windows 8"); break;
+    case QSysInfo::WV_6_2: winVersion = tr("Windows 8 (Windows 6.2)"); break;
 #endif
     default: winVersion = tr("Windows (unknown)"); break;
   }

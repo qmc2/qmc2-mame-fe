@@ -134,7 +134,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../about.cpp" line="82"/>
-        <source>Windows 8</source>
+        <source>Windows 8 (Windows 6.2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

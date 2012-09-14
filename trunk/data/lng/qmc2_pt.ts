@@ -59,11 +59,6 @@
         <translation>Windows 7 ou Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="82"/>
-        <source>Windows 8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../about.cpp" line="84"/>
         <source>Windows (unknown)</source>
         <translation>Windows (desconhecido)</translation>
@@ -211,6 +206,11 @@
         <location filename="../../about.cpp" line="71"/>
         <source>Mac (unknown)</source>
         <translation>Mac (desconhecido)</translation>
+    </message>
+    <message>
+        <location filename="../../about.cpp" line="82"/>
+        <source>Windows 8 (Windows 6.2)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="190"/>
