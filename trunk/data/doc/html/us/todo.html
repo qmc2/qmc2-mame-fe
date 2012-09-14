@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.37, 01-SEP-2012</h3>
+<h3>TODO - v0.37, 14-SEP-2012</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -17,7 +17,7 @@
   <li>X11 only: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly.</li>
   <li>Both the 'set repair' and 'set rewriter' functions (ROMAlyzer features) only work on ZIPs! As of yet, there's no support for CHDs or ROM sets stored as unzipped files in individual sub-directores.</li>
   <li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either 'north' or 'south'.</li>
-  <li>Windows only: There are known issues for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash (of the emulator) and screen-shots aren't taken correctly from within the GUI (black image).</li>
+  <li>Windows only: There's a known issue for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash of the emulator. To work around this, you have to <i>release</i> the emulator first; you can re-embed it later from the emulator control panel.</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
