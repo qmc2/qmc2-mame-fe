@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.37, 12-SEP-2012</h3>
+<h3>README - v0.37, 14-SEP-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -244,7 +244,24 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 (<i>release\qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
 <p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
 The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
-<p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>imageformats\*.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtXmlPatterns4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i> and <i>SDL.dll</i>.</p>
+<p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include:
+<pre>
+imageformats\*.dll
+phonon_backend\phonon_ds94.dll
+phonon4.dll
+QtCore4.dll
+QtGui4.dll
+QtNetwork4.dll
+QtOpenGL4.dll
+QtSql4.dll
+QtTest4.dll
+QtXml4.dll
+QtXmlPatterns4.dll
+QtWebKit4.dll
+sqldrivers\qsqlite4.dll
+SDL.dll
+</pre>
+</p>
 <p>Note that variant launching on Windows generally assumes that both QMC2 variants (qmc2-mame.exe &amp; qmc2-mess.exe) can be found in the <b>same</b> directory. It will usually not search in any other path than the one it was launched from initially! However, due to popular demand by our Windows users, we've added support to allow for customizing this as well. See <a href="faq.html#A2.11">Q2.11</a> in the FAQ for more information!</p>
 <p>The <a href="credits.html">QMC2-dev team</a> is releasing binary packages for Win32 in exactly this way since v0.2.b8 (only final versions, though). These official packages also include an installer for the VC runtime DLLs (<i>vcredist\vcredist_x86.exe</i>).</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
