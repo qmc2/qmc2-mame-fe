@@ -1667,7 +1667,6 @@ void MainWindow::on_actionPlay_triggered(bool)
   EmulatorOptions *demoOpts = NULL;
   if ( !qmc2DemoGame.isEmpty() ) {
     demoOpts = new EmulatorOptions("MAME/Configuration/" + gameName, 0);
-    demoOpts->hide();
     demoOpts->load();
     emuOptions = demoOpts;
   }
@@ -4292,6 +4291,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         // emulator options
         qmc2EmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/" + gameName, configWidget);
         qmc2EmulatorOptions->load();
+	qmc2EmulatorOptions->show();
 
 #if defined(QMC2_EMUTYPE_MAME)
         qmc2EmulatorOptions->addChoices("bios", getXmlChoices(gameName, "biosset", "name"));
@@ -11155,6 +11155,7 @@ int main(int argc, char *argv[])
   QVBoxLayout *layout = new QVBoxLayout;
   qmc2GlobalEmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/Global", qmc2Options->tabGlobalConfiguration);
   qmc2GlobalEmulatorOptions->load();
+  qmc2GlobalEmulatorOptions->show();
   layout->addWidget(qmc2GlobalEmulatorOptions);
   layout->setContentsMargins(left, top, right, bottom);
   QHBoxLayout *buttonLayout = new QHBoxLayout();

@@ -387,6 +387,9 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::EmulatorOptions(QString group = %1, QWidget *parent = %2").arg(group).arg((qulonglong)parent));
 #endif
 
+  // hidden initiallay, you must explicitly show it!
+  hide();
+
   // initialize
   templateVersion = tr("unknown");
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
