@@ -1573,13 +1573,6 @@ void MainWindow::on_actionPlay_triggered(bool)
 #endif
     return;
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  if ( treeWidgetGamelist->selectedItems().isEmpty() && qmc2DemoGame.isEmpty() )
-#else
-  if ( treeWidgetGamelist->selectedItems().isEmpty() )
-#endif
-    return;
-
   QString gameName;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
