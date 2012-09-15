@@ -800,6 +800,7 @@
       <description lang="us" text="Display UI mouse cursor"/>
       <description lang="de" text="UI Mousecurcor anzeigen"/>
       <description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
+      <description lang="es" text="Mostrar el cursor del ratón en la interfaz gráfica"/>
     </option>
   </section>
   <section name="configuration">

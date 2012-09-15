@@ -7063,7 +7063,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2744"/>
         <location filename="../../qmc2main.ui" line="2747"/>
         <source>Recreate template configuration map</source>
-        <translation>Volver a crearel mapa de configuración de la plantilla</translation>
+        <translation type="unfinished">Volver a crear el mapa de configuración de la plantilla</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2750"/>
