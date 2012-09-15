@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.37, 01-SEP-2012</h3>
+<h3>FAQ - v0.37, 15-SEP-2012</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.7+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -20,9 +20,9 @@
 <p><div class="menuitem"><a href="#A1.6">Q1.6: How do I know about the available make targets and build configuration options?</a></div></p>
 <p><div class="menuitem"><a href="#A1.7">Q1.7: Build and installation instructions for specific distributions</a></div></p>
 <p><div class="menusubitem"><a href="#A1.7.1">Q1.7.1: Ubuntu 10.10, 11.04, 11.10 and 12.04 (including derived Ubuntu editions)</a></div></p>
-<p><div class="menusubitem"><a href="#A1.7.2">Q1.7.2: openSUSE 11.4, 12.1, Factory and Tumbleweed</a></div></p>
-<p><div class="menusubitem"><a href="#A1.7.3">Q1.7.3: Fedora release 14, 15 and 16</a></div></p>
-<p><div class="menusubitem"><a href="#A1.7.4">Q1.7.4: Mac OS X 10.6 and 10.7</a></div></p>
+<p><div class="menusubitem"><a href="#A1.7.2">Q1.7.2: openSUSE 11.4, 12.1, 12.2, Factory and Tumbleweed</a></div></p>
+<p><div class="menusubitem"><a href="#A1.7.3">Q1.7.3: Fedora release 14, 15, 16, 17, 18 and 19</a></div></p>
+<p><div class="menusubitem"><a href="#A1.7.4">Q1.7.4: Mac OS X 10.6, 10.7 and 10.8</a></div></p>
 <p><div class="menuitem"><a href="#A1.8">Q1.8: The build fails due to compiler errors regarding the <i>accessibleName</i> property used in emuopt.cpp</a></div></p>
 <p><div class="menuitem"><a href="#A1.9">Q1.9: The standard icons of QMC2 are boring. Can I use alternate icon sets?</a></div></p>
 <p><div class="menuitem"><a href="#A1.10">Q1.10: How do I create an alternate icon set for QMC2?</a></div></p>
@@ -151,11 +151,12 @@ $ cd qmc2</pre>
 <pre>$ cd ~/src/qmc2
 $ svn update</pre>
 <p>3) Build and install QMC2 with distribution-specific configuration turned on</p>
-<pre>$ make DISTCFG=1
-$ sudo make install DISTCFG=1</pre>
+<pre>$ make DISTCFG=1 [EMU=&lt;emulator&gt;] &amp;&amp; sudo make install DISTCFG=1 [EMU=&lt;emulator&gt;]</pre>
+<p>4) Clean up the source tree before building another variant:</p>
+<pre>$ make clean [EMU=&lt;emulator&gt;]</pre>
 <hr>
-<p><a name="A1.7.2"></a><b>Q1.7.2: openSUSE 11.4, 12.1, Factory and Tumbleweed</b></p>
-<p>To build and install QMC2 from source (SVN) on openSUSE 11.4, 12.1, Factory and Tumbleweed using their provided Qt packages, follow these steps:</p>
+<p><a name="A1.7.2"></a><b>Q1.7.2: openSUSE 11.4, 12.1, 12.2, Factory and Tumbleweed</b></p>
+<p>To build and install QMC2 from source (SVN) on openSUSE 11.4, 12.1, 12.2, Factory and Tumbleweed using their provided Qt packages, follow these steps:</p>
 <p>1) Install the required packages (including their dependencies)</p>
 <pre>$ su -
 Password:
@@ -170,18 +171,20 @@ $ cd qmc2</pre>
 <pre>$ cd ~/src/qmc2
 $ svn update</pre>
 <p>3) Build and install QMC2 with distribution-specific configuration turned on</p>
-<pre>$ make DISTCFG=1
+<pre>$ make DISTCFG=1 [EMU=&lt;emulator&gt;]
 $ su
 Password:
-# make install DISTCFG=1
+# make install DISTCFG=1 [EMU=&lt;emulator&gt;]
 # logout</pre>
+<p>4) Clean up the source tree before building another variant:</p>
+<pre>$ make clean [EMU=&lt;emulator&gt;]</pre>
 <p>Notes:</p>
 <ul>
 <li>Some KDE4 styles that come with openSUSE cause troubles such as single-click activation of games/machines. Select a different GUI style or change the style settings!</li>
 </ul>
 <hr>
-<p><a name="A1.7.3"></a><b>Q1.7.3: Fedora release 14, 15 and 16</b></p>
-<p>To build and install QMC2 from source (SVN) on Fedora release 14, 15 and 16 using their provided Qt 4.7 packages, follow these steps:</p>
+<p><a name="A1.7.3"></a><b>Q1.7.3: Fedora release 14, 15, 16, 17, 18 and 19</b></p>
+<p>To build and install QMC2 from source (SVN) on Fedora release 14, 15, 16, 17, 18 and 19 using their provided Qt packages, follow these steps:</p>
 <p>1) Install the required packages (including their dependencies)</p>
 <pre>$ su -
 Password:
@@ -195,19 +198,21 @@ $ cd qmc2</pre>
 <pre>$ cd ~/src/qmc2
 $ svn update</pre>
 <p>3) Build and install QMC2 with distribution-specific configuration turned on</p>
-<pre>$ make DISTCFG=1
+<pre>$ make DISTCFG=1 [EMU=&lt;emulator&gt;]
 $ su
 Password:
-# make install DISTCFG=1
+# make install DISTCFG=1 [EMU=&lt;emulator&gt;]
 # logout</pre>
+<p>4) Clean up the source tree before building another variant:</p>
+<pre>$ make clean [EMU=&lt;emulator&gt;]</pre>
 <hr>
-<p><a name="A1.7.4"></a><b>Q1.7.4: Mac OS X 10.6 and 10.7</b></p>
-<p>To build and install QMC2 from source (SVN) on Mac OS X 10.6 (<i>Snow Leopard</i>), and 10.7 (<i>Lion</i>) follow these steps:</p>
-<p>1) Install the required packages</p>
+<p><a name="A1.7.4"></a><b>Q1.7.4: Mac OS X 10.6, 10.7 and 10.8</b></p>
+<p>To build and install QMC2 from source (SVN) on Mac OS X 10.6 (<i>Snow Leopard</i>), 10.7 (<i>Lion</i>) and 10.8 (<i>Mountain Lion</i>) follow these steps:</p>
+<p>1) Install the required packages / frameworks</p>
 <ul>
-	<li>XCode 3.2: install Xcode from the Mac OS X install DVD and update it to the latest version -- note that XCode 4.x is <b>not</b> supported yet, so on Lion you must keep the old XCode release and/or <i>switch</i> to it; see <a href="http://stackoverflow.com/questions/10052921/how-to-install-xcode-3-2-x-on-lion" target="_blank">here</a> (2nd answer) for XCode 3.2.6 installation instructions on Lion if you need to (re)install it</li>
-	<li>SDL 1.2 framework: <a href="http://www.libsdl.org/release/SDL-1.2.15.dmg">http://www.libsdl.org/release/SDL-1.2.15.dmg</a></li>
-	<li>Qt 4.7 or 4.8 framework: <a href="http://download.qt.nokia.com/qt/source/qt-mac-opensource-4.7.4.dmg">http://download.qt.nokia.com/qt/source/qt-mac-opensource-4.7.4.dmg</a> or <a href="http://download.qt.nokia.com/qt/source/qt-mac-opensource-4.8.1.dmg">http://download.qt.nokia.com/qt/source/qt-mac-opensource-4.8.1.dmg</a></li>
+	<li>XCode: install Xcode from the Mac OS X install DVD and/or download/update it to the latest version -- note that we do <b>no longer</b> support building QMC2 through XCode itself (since this doesn't work in case of XCode 4.x), but command line tools (make, gcc/g++ etc.) and libraries that come with it are still required!</li>
+	<li>SDL 1.2 framework: download and install the latest version of the SDL framework (<a href="http://www.libsdl.org/release/SDL-1.2.15.dmg">http://www.libsdl.org/release/SDL-1.2.15.dmg</a>)</li>
+	<li>Qt 4.8 framework: download the latest Qt source code (<a href="http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.3.tar.gz">http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.3.tar.gz</a>) and <b>build/install your own self-compiled version of the Qt framework!</b> You shouldn't use the official binary packages because 'qmake' then forces you to build your Qt apps through XCode again, which won't work (at least this was the case in Qt 4.8.0 - 4.8.2, so we decided to get rid of XCode in our build rules)!</li>
 </ul>
 <p>2) Either check out the source code from SVN</p>
 <pre>$ mkdir ~/src; cd ~/src
@@ -217,7 +222,9 @@ $ cd qmc2</pre>
 <pre>$ cd ~/src/qmc2
 $ svn update</pre>
 <p>3) Build and install QMC2 (the make rules will autodetect that this is Mac OS X)</p>
-<pre>$ make &amp;&amp; make install</pre>
+<pre>$ make [EMU=&lt;emulator&gt;] &amp;&amp; sudo make install [EMU=&lt;emulator&gt;]</pre>
+<p>4) Clean up the source tree before building another variant:</p>
+<pre>$ sudo make clean [EMU=&lt;emulator&gt;]</pre>
 <hr>
 <p><a name="A1.8"></a><b>Q1.8: The build fails due to compiler errors regarding the <i>accessibleName</i> property used in emuopt.cpp</b></p>
 <p>If you see compiler errors similar to the following, please make sure that <i>Qt Accessibilty</i> has been enabled in your version / build of Qt!</p>
