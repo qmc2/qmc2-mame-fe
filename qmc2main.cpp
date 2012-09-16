@@ -6954,7 +6954,7 @@ void MainWindow::loadGameInfoDB()
     progressBarGamelist->setRange(0, gameInfoDB.size());
     qApp->processEvents();
     QTextStream ts(&gameInfoDB);
-    ts.setCodec(QTextCodec::codecForName("ISO 8859-1"));
+    ts.setCodec(QTextCodec::codecForName("UTF-8"));
     int recordsProcessed = 0;
     while ( !ts.atEnd() && !qmc2StopParser ) {
       QString singleLine = ts.readLine();
@@ -7132,7 +7132,7 @@ void MainWindow::loadEmuInfoDB()
     progressBarGamelist->setRange(0, emuInfoDB.size());
     qApp->processEvents();
     QTextStream ts(&emuInfoDB);
-    ts.setCodec(QTextCodec::codecForName("ISO 8859-1"));
+    ts.setCodec(QTextCodec::codecForName("UTF-8"));
     int recordsProcessed = 0;
     while ( !ts.atEnd() && !qmc2StopParser ) {
       QString singleLine = ts.readLine();
