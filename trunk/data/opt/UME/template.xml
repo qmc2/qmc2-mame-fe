@@ -684,6 +684,10 @@
       <description lang="pt" text="Habilitar suporte para steadykeys"/>
       <description lang="es" text="Habilitar soporte para steadykeys"/>
     </option>
+    <option default="false" name="ui_active" type="bool">
+      <description lang="us" text="Enable user interface on top of emulated keyboard (if present)"/>
+      <description lang="de" text="User-Interface gemeinsam mit emulierter Tastatur aktivieren (wenn vorhanden)"/>
+    </option>
     <option default="false" name="offscreen_reload" type="bool">
       <description lang="us" text="Convert lightgun button 2 into offscreen reload"/>
       <description lang="de" text="Lightgun Button 2 zu 'Offscreen Reload' konvertieren"/>
