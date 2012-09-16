@@ -713,114 +713,114 @@ Proceed?</source>
     <message>
         <location filename="../projectwidget.ui" line="23"/>
         <source>Select project type</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el tipo de proyecto</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="30"/>
         <source>Display information about a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar información sobre un archivo CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="39"/>
         <source>Verify the integrity of a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar la integridad de un archivo CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="48"/>
         <source>Copy data from one CHD to another</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar datos de un CHD a otro</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="57"/>
         <source>Create a raw CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear un CHD a partir de un archivo</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="66"/>
         <source>Create an HD CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear un HD CHD a partir de un archivo</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="75"/>
         <source>Create a CD CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear un CD CHD a partir de un archivo</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="84"/>
         <source>Create an LD CHD from an input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear un LD CHD a partir de un archivo</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="93"/>
         <source>Extract a raw file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer un archivo desde un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="102"/>
         <source>Extract an HD file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer un archivo HD desde un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="111"/>
         <source>Extract a CD file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer un archivo CD desde un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="120"/>
         <source>Extract an LD AVI file from a CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer un archivo LD AVI desde un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="129"/>
         <source>Dump meta-data from a CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer meta-datos de un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="138"/>
         <source>Add meta-data to a CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadir meta-datos a un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="147"/>
         <source>Remove meta-data from a CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar meta-datos de un CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="165"/>
         <source>Project status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado del proyecto / progreso</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="171"/>
         <location filename="../projectwidget.cpp" line="650"/>
         <location filename="../projectwidget.cpp" line="763"/>
         <source>Idle</source>
-        <translation type="unfinished"></translation>
+        <translation>Parado</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="184"/>
         <source>Run this project</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutar este proyecto</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="204"/>
         <source>Terminate the running process</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminar el proceso en curso</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="221"/>
         <source>Tools menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menú de herramientas</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="302"/>
         <source>Output additional information (--verbose)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar información adicional (--verbose)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="305"/>
         <source>Verbose output</source>
-        <translation type="unfinished"></translation>
+        <translation>Información adicional</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="318"/>
@@ -831,7 +831,7 @@ Proceed?</source>
         <location filename="../projectwidget.ui" line="3154"/>
         <location filename="../projectwidget.ui" line="3257"/>
         <source>CHD input file (--input)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo CHD (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="321"/>
@@ -842,7 +842,7 @@ Proceed?</source>
         <location filename="../projectwidget.ui" line="3157"/>
         <location filename="../projectwidget.ui" line="3260"/>
         <source>CHD input file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="331"/>
@@ -857,7 +857,17 @@ Displays information about a CHD file.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --verbose, -v: output additional information
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Info&lt;/b&gt;
+&lt;/p&gt;
+Muestra información sobre un archivo CHD.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--verbose, -v: mostrar información adicional
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="422"/>

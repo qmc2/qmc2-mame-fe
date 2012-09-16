@@ -94,7 +94,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="69"/>
         <source>Mac OS X 10.8</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="71"/>
@@ -134,7 +134,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="82"/>
         <source>Windows 8 (Windows 6.2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="84"/>
@@ -7063,7 +7063,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2744"/>
         <location filename="../../qmc2main.ui" line="2747"/>
         <source>Recreate template configuration map</source>
-        <translation type="unfinished">Volver a crear el mapa de configuración de la plantilla</translation>
+        <translation>Volver a crear el mapa de configuración de la plantilla</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2750"/>
