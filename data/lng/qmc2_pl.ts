@@ -172,12 +172,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="66"/>
         <source>Mac OS X 10.7</source>
-        <translation type="unfinished">Mac OS X 10.7</translation>
+        <translation>Mac OS X 10.7</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="71"/>
         <source>Mac (unknown)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mac (nieznany)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="80"/>
@@ -187,7 +187,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="82"/>
         <source>Windows 8 (Windows 6.2)</source>
-        <translation type="unfinished">Windows 2000 (Windows 5.0) {8 ?} {6.2)?}</translation>
+        <translation>Windows 8 (Windows 6.2)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="199"/>
@@ -262,7 +262,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="69"/>
         <source>Mac OS X 10.8</source>
-        <translation type="unfinished">Mac OS X 10.8</translation>
+        <translation>Mac OS X 10.8</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="75"/>
@@ -1490,7 +1490,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.h" line="16"/>
         <source>cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>automat</translation>
     </message>
 </context>
 <context>
@@ -1498,7 +1498,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.h" line="16"/>
         <source>controller</source>
-        <translation type="unfinished"></translation>
+        <translation>kontoler</translation>
     </message>
 </context>
 <context>
@@ -1938,14 +1938,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../../detailsetup.cpp" line="144"/>
         <location filename="../../detailsetup.cpp" line="226"/>
         <source>&amp;Notes</source>
-        <translation type="unfinished">No&amp;tatki</translation>
+        <translation>No&amp;tatki</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="64"/>
         <location filename="../../detailsetup.cpp" line="145"/>
         <location filename="../../detailsetup.cpp" line="227"/>
         <source>System notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notatki o systemie</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="107"/>
@@ -2068,12 +2068,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="133"/>
         <source>Lo&amp;go</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo&amp;go</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="134"/>
         <source>Logo image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz logo</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="506"/>
@@ -2135,12 +2135,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../filesystemmodel.h" line="37"/>
         <source>Drives / Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Sterowniki / foldery</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="39"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Foldery</translation>
     </message>
 </context>
 <context>
@@ -2438,7 +2438,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1135"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie UME w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1195"/>
@@ -2482,7 +2482,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1313"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz szukany ciąg</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1399"/>
@@ -2557,7 +2557,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1463"/>
         <source>exporting %1 UME configuration to %2</source>
-        <translation type="unfinished"></translation>
+        <translation>eksportowanie konfiguracji UME %1 do %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1514"/>
@@ -2572,7 +2572,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1518"/>
         <source>done (exporting %1 UME configuration to %2, elapsed time = %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (eksportowanie konfiguracji UME %1 do %2, miniony czas = %3)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1561"/>
@@ -2607,7 +2607,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1626"/>
         <source>importing %1 UME configuration from %2</source>
-        <translation type="unfinished"></translation>
+        <translation>importowanie konfiguracji UME %1 z %2</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1715"/>
@@ -2632,7 +2632,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1729"/>
         <source>done (importing %1 UME configuration from %2, elapsed time = %3)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (importowanie konfiguracji UME %1 z %2, miniony czas = %3)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1461"/>
@@ -2713,7 +2713,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.h" line="16"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation>ulotka</translation>
     </message>
 </context>
 <context>
@@ -2861,12 +2861,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="537"/>
         <location filename="../../gamelist.cpp" line="658"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie UME w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="545"/>
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: uruchamianie &apos;%1&apos; nie powiodło się, plik &apos;%2&apos; nie istnieje</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="585"/>
@@ -2876,7 +2876,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="615"/>
         <source>FATAL: selected executable file is not UME</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: wybrany plik wykonywalny to nie UME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="625"/>
@@ -2897,15 +2897,15 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="706"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid UME binary</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się ustalić wersji emulatora, łańcuch identyfikacji typu to &apos;%1&apos; -- proszę poinformować programistów w przypadku pewności, że jest to prawidłowy plik binarny UME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="716"/>
         <source>%n supported (non-device) set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n obsługiwany zestaw (bez urządzeń)</numerusform>
+            <numerusform>%n obsługiwany zestawy (bez urządzeń)</numerusform>
+            <numerusform>%n obsługiwany zestawów (bez urządzeń)</numerusform>
         </translation>
     </message>
     <message>
@@ -2937,7 +2937,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1114"/>
         <location filename="../../gamelist.cpp" line="1125"/>
         <source>Updating</source>
-        <translation type="unfinished">Aktualizacja</translation>
+        <translation>Aktualizacja</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1118"/>
@@ -3601,22 +3601,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="3594"/>
         <source>loading category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie category.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3600"/>
         <source>Category.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Category.ini - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3626"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>BŁĄD: nie można otworzyć &apos;%1&apos; do odczytu -- dane category.ini niedostępne</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3635"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (wczytywanie category.ini, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3785"/>
@@ -3651,10 +3651,10 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="3636"/>
         <source>%n category record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>załadowano %n rekord informacji o kategoriach</numerusform>
+            <numerusform>załadowano %n rekordy informacji o kategoriach</numerusform>
+            <numerusform>załadowano %n rekordów informacji o kategoriach</numerusform>
         </translation>
     </message>
     <message>
@@ -4085,12 +4085,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1808"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: atrybut nazwy pusty w %1 linii XML (zestaw zostanie zignorowany) -- proszę poinformować deweloperów MAME załączając problematyczne wyjście parametru -listxml</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1810"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: atrybut nazwy pusty w %1 linii XML (zestaw zostanie zignorowany) -- proszę poinformować deweloperów MESS załączając problematyczne wyjście parametru -listxml</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2261"/>
@@ -4322,34 +4322,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="259"/>
         <source>New from &amp;template</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy na podstawie &amp;szablonu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="262"/>
         <source>New from template</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy z szablonu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="265"/>
         <location filename="../../htmleditor/htmleditor.ui" line="268"/>
         <source>Generates a new document using the template</source>
-        <translation type="unfinished"></translation>
+        <translation>Tworzy nowy dokument na podstawie szablonu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="277"/>
         <source>&amp;Revert</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cofnij</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="280"/>
         <source>Revert changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="283"/>
         <location filename="../../htmleditor/htmleditor.ui" line="286"/>
         <source>Revert changes from saved file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany z zapisanego pliku</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="295"/>
@@ -4390,18 +4390,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>Open in browser...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz w przeglądarce...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Open in new browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz w nowym oknie przeglądarki</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="353"/>
         <location filename="../../htmleditor/htmleditor.ui" line="356"/>
         <source>Open the document in a new browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz dokument w nowym oknie przeglądarki</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="365"/>
@@ -4776,25 +4776,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="84"/>
         <source>&amp;Load...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wczytaj...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="85"/>
         <source>Load notes from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytaj notatki z pliku</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="86"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="87"/>
         <source>Load notes from an HTML file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytaj notatki z pliku HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="88"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="89"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="90"/>
         <source>Save current notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz bieżące notatki</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="295"/>
@@ -4805,12 +4805,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="295"/>
         <source>Select file to load</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik do wczytania</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="295"/>
         <source>Select file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik do otwarcia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="362"/>
@@ -5075,16 +5075,12 @@ p, li { white-space: pre-wrap; }
         <source>%n icon(s) scanned</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon file(s) missing</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5095,16 +5091,12 @@ p, li { white-space: pre-wrap; }
         <source>%n bad file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="329"/>
         <source>Average scanning speed = %n icon(s) per second</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5114,16 +5106,12 @@ p, li { white-space: pre-wrap; }
         <source>%n image(s) scanned</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n valid icon file(s) found</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5133,8 +5121,6 @@ p, li { white-space: pre-wrap; }
         <source>%n valid image file(s) found</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5143,8 +5129,6 @@ p, li { white-space: pre-wrap; }
         <source>%n image file(s) missing</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5152,8 +5136,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="348"/>
         <source>Average scanning speed = %n image(s) per second</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5282,8 +5264,6 @@ p, li { white-space: pre-wrap; }
         <source>%n obsolete file(s) found</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -5296,8 +5276,6 @@ p, li { white-space: pre-wrap; }
         <source>%n directory entries to check</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -5307,50 +5285,50 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="69"/>
         <location filename="../../imagechecker.cpp" line="83"/>
         <source> KB</source>
-        <translation type="unfinished"> KB</translation>
+        <translation> KB</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="72"/>
         <location filename="../../imagechecker.cpp" line="86"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="75"/>
         <location filename="../../imagechecker.cpp" line="89"/>
         <source> GB</source>
-        <translation type="unfinished"> GB</translation>
+        <translation> GB</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="78"/>
         <source> TB</source>
-        <translation type="unfinished"> TB</translation>
+        <translation> TB</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="98"/>
         <source>Thread[%1]: started</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: uruchomiono</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="104"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: plik ZIP &apos;%2&apos; pomyślnie otwarty</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="106"/>
         <source>Thread[%1]: failed opening ZIP file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: otwieranie pliku ZIP &apos;%2&apos; nie powiodło się</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="112"/>
         <source>Thread[%1]: waiting for work</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: oczekiwanie na pracę</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="122"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Wątek[%1]: przetwarzanie jednostki pracy z %n wpisami</numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
@@ -5358,27 +5336,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="134"/>
         <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: znaleziono obraz należący do &apos;%2&apos;, wczytano z &apos;%3&apos;, rozmiar = %4x%5, bajtów = 6</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="139"/>
         <source>Thread[%1]: image for &apos;%2&apos; loaded from &apos;%3&apos; is bad, error = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: obraz należący do &apos;%2&apos;, wczytany z &apos;%3&apos; jest nieprawidłowy, błąd = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="142"/>
         <source>Thread[%1]: image for &apos;%2&apos; is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: nie można odnaleźć obrazu należącego do %2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="170"/>
         <source>Thread[%1]: ZIP file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: zamknięto plik ZIP &apos;%2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="173"/>
         <source>Thread[%1]: ended</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: ukończono</translation>
     </message>
 </context>
 <context>
@@ -5386,27 +5364,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagewidget.cpp" line="45"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj obraz do schowka</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="51"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj ścieżkę pliku do schowka</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="60"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież slot bufora</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="71"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć pliku %1, proszę sprawdzić uprawnienia dostępu dla %2</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="113"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Oczekiwanie na dane...</translation>
+        <translation>Oczekiwanie na dane...</translation>
     </message>
 </context>
 <context>
@@ -5822,7 +5800,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="320"/>
         <source>BIOS</source>
-        <translation type="unfinished">BIOS</translation>
+        <translation>BIOS</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="329"/>
@@ -6039,7 +6017,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="302"/>
         <source>Open e&amp;xternally...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz &amp;zewnętrznie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="353"/>
@@ -6053,7 +6031,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="467"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie emulatora w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="512"/>
@@ -6115,7 +6093,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1737"/>
         <location filename="../../messdevcfg.cpp" line="1787"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna konfiguracja</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="754"/>
@@ -6137,7 +6115,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1518"/>
         <location filename="../../messdevcfg.cpp" line="2440"/>
         <source>N/A</source>
-        <translation type="unfinished">niedostępne</translation>
+        <translation>niedostępne</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1857"/>
@@ -9451,8 +9429,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9883,7 +9859,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../marquee.h" line="16"/>
         <source>marquee</source>
-        <translation type="unfinished"></translation>
+        <translation>plansza tytułowa</translation>
     </message>
 </context>
 <context>
@@ -13768,7 +13744,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../pcb.h" line="16"/>
         <source>PCB</source>
-        <translation type="unfinished">Płytka drukowana</translation>
+        <translation>Płytka drukowana</translation>
     </message>
 </context>
 <context>
@@ -13776,7 +13752,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../preview.h" line="16"/>
         <source>preview</source>
-        <translation type="unfinished">podgląd</translation>
+        <translation>podgląd</translation>
     </message>
 </context>
 <context>
@@ -14002,7 +13978,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../qmc2main.cpp" line="11111"/>
         <source>U.M.E. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation>U.M.E. Catalog / Launcher II wersja </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11117"/>
@@ -14029,7 +14005,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../qmc2main.cpp" line="11170"/>
         <location filename="../../qmc2main.cpp" line="11171"/>
         <source>Export global UME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj globalną konfigurację UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11175"/>
@@ -14041,7 +14017,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../qmc2main.cpp" line="11181"/>
         <location filename="../../qmc2main.cpp" line="11182"/>
         <source>Import global UME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj globalną konfigurację UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11191"/>
@@ -14053,7 +14029,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../qmc2main.cpp" line="11195"/>
         <location filename="../../qmc2main.cpp" line="11205"/>
         <source>&lt;inipath&gt;/ume.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;ścieżka ini&gt;/ume.ini</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11197"/>
@@ -14332,7 +14308,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3398"/>
         <source>Info:</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje:</translation>
     </message>
 </context>
 <context>
@@ -14775,12 +14751,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="32"/>
         <source>Specify sets to analyze</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż zestawy do analizy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="237"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz szukany ciąg</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1201"/>
@@ -14795,7 +14771,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1244"/>
         <source>Enter checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz sumę kontrolną</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1257"/>
@@ -14857,7 +14833,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1450"/>
         <source>Specify sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż zestawy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1463"/>
@@ -14968,12 +14944,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1489"/>
         <source>Perform proposed actions on all selected sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonaj sugerowane akcje na wszystkich wybranych zestawach</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1492"/>
         <source>Perform actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonaj akcje</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1541"/>
@@ -14983,12 +14959,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1546"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1583"/>
         <source>Automatically select sure matches and perform proposed actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz pewne dopasowania automatycznie i wykonaj sugerowane akcje</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1719"/>
@@ -15458,7 +15434,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="892"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACJA: %1 plik &apos;%2&apos; ma nazwany zestaw scalony (&apos;%3&apos;) ale żadnego zestawu macierzystego -- zignorowano, ale powinno to zostać zgłoszone deweloperom UME jako możliwy błąd XML odpowiedniego sterownika</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1020"/>
@@ -16821,7 +16797,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romstatusexport.cpp" line="496"/>
         <location filename="../../romstatusexport.cpp" line="723"/>
         <source>SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLUME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="202"/>
@@ -16935,7 +16911,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romstatusexport.cpp" line="502"/>
         <location filename="../../romstatusexport.cpp" line="729"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation>UME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="340"/>
@@ -17278,7 +17254,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.ui" line="124"/>
         <location filename="../../softwarelist.ui" line="127"/>
         <source>Select the software for which the snapname should be adjusted</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz oprogramowanie, dla którego nazwa zrzutu ekranu powinna zostać dopasowana</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="140"/>
@@ -17346,14 +17322,14 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.ui" line="101"/>
         <location filename="../../softwarelist.ui" line="104"/>
         <source>Toggle automatic adjustment of the snapname parameter (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz automatyczne dopasowywanie parametru nazwy zrzutu ekranu (przytrzymaj dla menu)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="147"/>
         <location filename="../../softwarelist.cpp" line="1475"/>
         <location filename="../../softwarelist.cpp" line="2211"/>
         <source>Default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna konfiguracja</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="174"/>
@@ -17549,18 +17525,19 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="164"/>
         <source>Adjust pattern...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostosuj wzór...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="290"/>
         <source>Snapname adjustment pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Wzór dostosowywania nazw zrzutów ekranu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="291"/>
         <source>Enter the pattern used for snapname adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
-        <translation type="unfinished"></translation>
+        <translation>Podaj wzór używany do dopasowywania nazw zrzutów ekranu:
+(Dozwolone makra: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="319"/>
@@ -17570,14 +17547,14 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="386"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie emulatora w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="431"/>
         <location filename="../../softwarelist.cpp" line="439"/>
         <location filename="../../softwarelist.cpp" line="445"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
-        <translation type="unfinished">FATALNIE: uzyskano nieprawidłowe dane XML dla &apos;%1&apos;</translation>
+        <translation>FATALNIE: uzyskano nieprawidłowe dane XML dla &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="665"/>
@@ -17640,7 +17617,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="870"/>
         <source>ERROR: the file name for the UME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>BŁĄD: nazwa pliku bufora listy oprogramowania UME jest pusta -- proszę to poprawić, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="887"/>
@@ -17665,7 +17642,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="900"/>
         <source>ERROR: can&apos;t open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>BŁĄD: nie można otworzyć bufora listy oprogramowania UME do zapisu, ścieżka = %1 -- proszę sprawdzić/poprawić uprawnienia, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="992"/>
@@ -17715,7 +17692,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="1244"/>
         <source>WARNING: the external process called to load the UME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1250"/>
@@ -17735,7 +17712,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="1312"/>
         <source>WARNING: the currently selected UME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1328"/>
@@ -17750,7 +17727,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="1332"/>
         <source>WARNING: the external process called to load the UME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1655"/>
@@ -18175,17 +18152,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="2750"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2756"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2765"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2982"/>
@@ -18198,17 +18175,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3475"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3481"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3490"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież slot bufora</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3563"/>
@@ -18244,7 +18221,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../title.h" line="16"/>
         <source>title</source>
-        <translation type="unfinished">ekran tytułowy</translation>
+        <translation>ekran tytułowy</translation>
     </message>
 </context>
 <context>
@@ -18441,7 +18418,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../videoitemwidget.cpp" line="191"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="193"/>
@@ -18636,7 +18613,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../welcome.cpp" line="41"/>
         <source>SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLUME</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="43"/>
@@ -18651,7 +18628,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../welcome.cpp" line="50"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation>UME</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="52"/>
@@ -18887,7 +18864,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="185"/>
         <location filename="../../youtubevideoplayer.cpp" line="234"/>
         <source>Copy video URL (no country filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj URL filmu (brak filtru państw)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="137"/>
@@ -18906,7 +18883,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="150"/>
         <location filename="../../youtubevideoplayer.cpp" line="204"/>
         <source>Local movie file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalny plik wideo...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="156"/>
@@ -18963,19 +18940,19 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="375"/>
         <source>Valid placeholder macros:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawidłowe makra:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="573"/>
         <location filename="../../youtubevideoplayer.cpp" line="585"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="574"/>
         <location filename="../../youtubevideoplayer.cpp" line="586"/>
         <source>Choose movie file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik filmu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="755"/>
@@ -18990,7 +18967,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="786"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: lokalny plik wideo &apos;%1&apos; jest już załączony, zignorowano</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="790"/>
