@@ -26,7 +26,7 @@
     <message>
         <location filename="../../about.cpp" line="69"/>
         <source>Mac OS X 10.8</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="75"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../../about.cpp" line="82"/>
         <source>Windows 8 (Windows 6.2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="190"/>
