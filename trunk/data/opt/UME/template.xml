@@ -679,6 +679,7 @@
     <option default="false" name="ui_active" type="bool">
       <description lang="us" text="Enable user interface on top of emulated keyboard (if present)"/>
       <description lang="de" text="User-Interface gemeinsam mit emulierter Tastatur aktivieren (wenn vorhanden)"/>
+      <description lang="es" text="Habilitar la interfaz del usuario sobre el teclado emulado (si está presente)"/>
     </option>
     <option default="false" name="offscreen_reload" type="bool">
       <description lang="us" text="Convert lightgun button 2 into offscreen reload"/>
