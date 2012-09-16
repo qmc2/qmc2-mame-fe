@@ -1735,8 +1735,8 @@
     </option>
   </section>
   <!--
-       This section is completely ignored for now because it's a compile-time-optional feature right at the moment...
-       If you enable it in the emulator, remove all ignore="true" attributes from the <section> and <option>'s nodes!
+       This section is completely ignored for now because it's a compile-time-optional feature at the moment...
+       If you enable it in the emulator, remove all ignore="true" attributes from the <section> and <option> nodes!
   -->
   <section ignore.Darwin="true" ignore="true" name="sdl_lightgun_mapping">
     <description lang="us" text="SDL lightgun mapping"/>
