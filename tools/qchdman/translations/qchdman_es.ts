@@ -69,22 +69,22 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="37"/>
         <source>&amp;Project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Proyecto</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="41"/>
         <source>Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Reciente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ventana</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="63"/>
@@ -831,7 +831,7 @@ Proceed?</source>
         <location filename="../projectwidget.ui" line="3154"/>
         <location filename="../projectwidget.ui" line="3257"/>
         <source>CHD input file (--input)</source>
-        <translation>Archivo CHD (--input)</translation>
+        <translation>Archivo CHD de entrada (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="321"/>
@@ -877,7 +877,7 @@ Muestra información sobre un archivo CHD.
         <location filename="../projectwidget.ui" line="3100"/>
         <location filename="../projectwidget.ui" line="3334"/>
         <source>Parent CHD input file (--inputparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de entrada CHD padre (--inputparent)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="425"/>
@@ -887,7 +887,7 @@ Muestra información sobre un archivo CHD.
         <location filename="../projectwidget.ui" line="3103"/>
         <location filename="../projectwidget.ui" line="3337"/>
         <source>Parent CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de entrada CHD padre</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="449"/>
@@ -902,7 +902,17 @@ Verifies a CHD&apos;s integrity.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Verificar&lt;/b&gt;
+&lt;/p&gt;
+Verifica la integridad de un CHD.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de entrada
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="527"/>
@@ -911,7 +921,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="2518"/>
         <location filename="../projectwidget.ui" line="2810"/>
         <source>Starting byte offset within the input (--inputstartbyte)</source>
-        <translation type="unfinished"></translation>
+        <translation>Byte de comienzo en el archivo de entrada (--inputstartbyte)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="530"/>
@@ -952,7 +962,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="3235"/>
         <location filename="../projectwidget.ui" line="3353"/>
         <source>auto</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="552"/>
@@ -961,7 +971,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="1890"/>
         <location filename="../projectwidget.ui" line="2202"/>
         <source>Size in bytes of each hunk (--hunksize)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño en bytes de cada trozo (--hunksize)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="571"/>
@@ -970,7 +980,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="2450"/>
         <location filename="../projectwidget.ui" line="2742"/>
         <source>Input hunks</source>
-        <translation type="unfinished"></translation>
+        <translation>Trozos de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="578"/>
@@ -979,7 +989,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="2625"/>
         <location filename="../projectwidget.ui" line="2917"/>
         <source>Input bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>Bytes de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="591"/>
@@ -988,7 +998,7 @@ Verifies a CHD&apos;s integrity.
         <location filename="../projectwidget.ui" line="2477"/>
         <location filename="../projectwidget.ui" line="2769"/>
         <source>Effective length of input in bytes (--inputbytes)</source>
-        <translation type="unfinished"></translation>
+        <translation>Longitud efectiva de la entrada en bytes (--inputbytes)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="852"/>
@@ -1013,12 +1023,32 @@ Copies data from one CHD to another of the same type.
 --hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Copiar&lt;/b&gt;
+&lt;/p&gt;
+Copia datos de un CHD a otro del mismo tipo.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de entrada&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de salida&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limita el número de procesos a usar durante la compresión&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: byte de comienzo en el archivo de entrada &lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: trozo de comienzo en el archivo de entrada&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: longitud efectiva de la entrada en bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: longitud efectiva de la entrada en trozos&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: tamaño de cada trozo en bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: qué codecs de compresión utilizar (hasta 4)
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1233"/>
         <source>Size in bytes of each unit (--unitsize)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño en bytes de cada unidad (--unitsize)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1249"/>
@@ -1043,7 +1073,27 @@ Creates a new raw CHD from an input file.
 --unitsize, -us &amp;lt;bytes&amp;gt;: size of each unit in bytes (required)&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateRaw&lt;/b&gt;
+&lt;/p&gt;
+Crea un nuevo CHD desde un archivo de entrada.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de salida&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limita el número de procesos a usar durante la compresión&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: byte de comienzo en el archivo de entrada &lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: trozo de comienzo en el archivo de entrada&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: longitud efectiva de la entrada en bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: longitud efectiva de la entrada en trozos&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: tamaño de cada trozo en bytes (necesario)&lt;br&gt;
+--unitsize, -us &amp;lt;bytes&amp;gt;: Tamaño de cada unidad en bytes (necesario)&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: qué codecs de compresión utilizar (hasta 4)
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1308"/>
@@ -1070,42 +1120,64 @@ Creates a new HD CHD from an input file.
 --sectorsize, -ss &amp;lt;bytes&amp;gt;: size of each hard disk sector in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateHD&lt;/b&gt;
+&lt;/p&gt;
+Creates a new HD CHD from an input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de salida&lt;br&gt;
+--ident, -id &amp;lt;filename&amp;gt;: nombre de archivo de identidad para proveer información CHS&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limita el número de procesos a usar durante la compresión&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: byte de comienzo en el archivo de entrada &lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: trozo de comienzo en el archivo de entrada&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: longitud efectiva de la entrada en bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: longitud efectiva de la entrada en trozos&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: tamaño de cada trozo en bytes (necesario)&lt;br&gt;
+--chs, -chs &amp;lt;cylinders,heads,sectors&amp;gt;: especifica los valores CHS directamente&lt;br&gt;
+--sectorsize, -ss &amp;lt;bytes&amp;gt;: tamaño de cada sector del disco duro en bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: qué codecs de compresión utilizar (hasta 4)
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1527"/>
         <source>Size in bytes of each hard disk sector (--sectorsize)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño en bytes de cada sector del disco duro (--sectorsize)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1598"/>
         <source>Ident file to provide CHS information (--ident)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de identificación para proveer información CHS (--ident)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1814"/>
         <source>Cyls / Heads / Sectors</source>
-        <translation type="unfinished"></translation>
+        <translation>Cilindros / Cabezales / Sectores</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1828"/>
         <source>Calculated hard disk capacity (if applicable)</source>
-        <translation type="unfinished"></translation>
+        <translation>Capacidad del disco duro calculada (si es aplicable)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1844"/>
         <source>Set disk geometry from predefined templates</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer la geometría del disco desde plantillas predefinidas</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2045"/>
         <source>CD input file (--input)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo CD de entrada (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2048"/>
         <source>CD input file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo CD de entrada (necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2074"/>
@@ -1125,41 +1197,56 @@ Creates a CD CHD from an input file.
 --hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateCD&lt;/b&gt;
+&lt;/p&gt;
+Crea un CD CHD desde un archivo de entrada.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre del archivo padre para el CHD de salida&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limita el número de procesos a utilizar durante la compresión&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: tamaño de cada trozo en bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: qué codecs de compresión utilizar (hasta 4)
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2170"/>
         <location filename="../projectwidget.ui" line="3350"/>
         <source>Effective length of input in frames (--inputframes)</source>
-        <translation type="unfinished"></translation>
+        <translation>Longitud efectiva de la entrada en frames (--inputframes)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2272"/>
         <location filename="../projectwidget.ui" line="3383"/>
         <source>Input frames</source>
-        <translation type="unfinished"></translation>
+        <translation>Frames de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2329"/>
         <source>LD input file (--input)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo LD de entrada (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2332"/>
         <source>LD input file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo LD de entrada (necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2359"/>
         <location filename="../projectwidget.ui" line="3232"/>
         <source>Starting frame within the input (--inputstartframe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Frame de comienzo en el archivo de entrada (--inputstartframe)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2378"/>
         <location filename="../projectwidget.ui" line="3281"/>
         <source>Input start frame</source>
-        <translation type="unfinished"></translation>
+        <translation>Frame de comienzo de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2388"/>
@@ -1181,7 +1268,24 @@ Creates a laser-disc CHD from an input file.
 --hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateLD&lt;/b&gt;
+&lt;/p&gt;
+Crea un laser disc CHD desde un archivo de entrada.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre del archivo padre para el CHD de salida&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limita el número de procesos a utilizar durante la compresión&lt;br&gt;
+--inputstartframe, -isf &amp;lt;offset&amp;gt;: frame de comienzo en la entrada&lt;br&gt;
+--inputframes, -if &amp;lt;length&amp;gt;: longitud efectiva de la entrada en frames&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: tamaño de cada trozo en bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: qué codecs de compresión utilizar (hasta 4)
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2681"/>
@@ -1202,7 +1306,23 @@ Extracts a raw file from a CHD input file.
 --inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
 --inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractRaw&lt;/b&gt;
+&lt;/p&gt;
+Extracts a raw file from a CHD input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre del archivo padre para el CHD de salida&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: byte de comienzo en el archivo de entrada &lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: trozo de comienzo en el archivo de entrada&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: longitud efectiva de la entrada en bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: longitud efectiva de la entrada en trozos&lt;br&gt;
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2973"/>
@@ -1223,7 +1343,23 @@ Extracts an HD file from a CHD input file.
 --inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
 --inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractHD&lt;/b&gt;
+&lt;/p&gt;
+Extrae un archivo HD de un archivo de entrada CHD.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: nombre del archivo padre para el CHD de salida&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: byte de comienzo en el archivo de entrada &lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: trozo de comienzo en el archivo de entrada&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: longitud efectiva de la entrada en bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: longitud efectiva de la entrada en trozos&lt;br&gt;
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3167"/>
@@ -1242,7 +1378,20 @@ Extracts a CD file from a CHD input file.
 --force, -f: force overwriting an existing file
 &lt;/p&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractCD&lt;/b&gt;
+&lt;/p&gt;
+Extrae un archivo CD de un archivo de entrada CHD.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de entrada&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--outputbin, -ob &amp;lt;filename&amp;gt;: nombre de archivo de salida para los datos binarios&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="504"/>
@@ -1251,7 +1400,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="1909"/>
         <location filename="../projectwidget.ui" line="2189"/>
         <source>Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Compresión</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="624"/>
@@ -1260,7 +1409,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2572"/>
         <location filename="../projectwidget.ui" line="2864"/>
         <source>Input start byte</source>
-        <translation type="unfinished"></translation>
+        <translation>Byte de comienzo de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="651"/>
@@ -1269,7 +1418,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="1950"/>
         <location filename="../projectwidget.ui" line="2227"/>
         <source>Parent CHD output file (--outputparent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida CHD padre (--outputparent)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="654"/>
@@ -1278,7 +1427,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="1953"/>
         <location filename="../projectwidget.ui" line="2230"/>
         <source>Parent CHD output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida CHD padre</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="667"/>
@@ -1287,7 +1436,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="1966"/>
         <location filename="../projectwidget.ui" line="2140"/>
         <source>CHD output file (--output)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo CHD de salida (--output)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="670"/>
@@ -1296,7 +1445,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="1969"/>
         <location filename="../projectwidget.ui" line="2143"/>
         <source>CHD output file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo CHD de salida (necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="677"/>
@@ -1305,7 +1454,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="1986"/>
         <location filename="../projectwidget.ui" line="2295"/>
         <source>Hunk size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño del trozo</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="684"/>
@@ -1314,7 +1463,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2007"/>
         <location filename="../projectwidget.ui" line="2316"/>
         <source>Number of CPUs</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de CPUs</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="691"/>
@@ -1323,7 +1472,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2657"/>
         <location filename="../projectwidget.ui" line="2949"/>
         <source>Input start hunk</source>
-        <translation type="unfinished"></translation>
+        <translation>Trozo de comienzo de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="511"/>
@@ -1336,7 +1485,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="3138"/>
         <location filename="../projectwidget.ui" line="3288"/>
         <source>Force overwriting output files (--force)</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzar la sobrescritura de los archivos de salida (--force)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="514"/>
@@ -1349,7 +1498,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="3141"/>
         <location filename="../projectwidget.ui" line="3291"/>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescribir archivos existentes</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="734"/>
@@ -1358,7 +1507,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2020"/>
         <location filename="../projectwidget.ui" line="2243"/>
         <source>Limit the number of processors to use during compression (--numprocessors)</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitar el número de procesos a usar durante la compresión (--numprocessors)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="759"/>
@@ -1367,7 +1516,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2638"/>
         <location filename="../projectwidget.ui" line="2930"/>
         <source>Starting hunk offset within the input (--inputstarthunk)</source>
-        <translation type="unfinished"></translation>
+        <translation>Trozo de comienzo en el archivo de entrada (--inputstarthunk)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="784"/>
@@ -1376,7 +1525,7 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2553"/>
         <location filename="../projectwidget.ui" line="2845"/>
         <source>Effective length of input in hunks (--inputhunks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Longitud efectiva de la entrada en trozos (--inputhunks)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="809"/>
@@ -1385,103 +1534,103 @@ Extracts a CD file from a CHD input file.
         <location filename="../projectwidget.ui" line="2061"/>
         <location filename="../projectwidget.ui" line="2285"/>
         <source>Select up to 4 compression codecs to use (--compression)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar hasta 4 codecs de compresión a usar (--compression)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1045"/>
         <location filename="../projectwidget.ui" line="1236"/>
         <source>(required)</source>
-        <translation type="unfinished"></translation>
+        <translation>(necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1103"/>
         <location filename="../projectwidget.ui" line="1730"/>
         <source>Input file (--input)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de entrada (--input)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1106"/>
         <source>Input file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de entrada (necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1226"/>
         <source>Unit size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño de la unidad</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1585"/>
         <source>Sector size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño del sector</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1601"/>
         <source>Ident file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de identidad</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1680"/>
         <source>Sectors  (--chs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sectores  (--chs)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1705"/>
         <source>Heads  (--chs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cabezales  (--chs)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1733"/>
         <source>Input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1746"/>
         <source>Cylinders (--chs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cilindros (--chs)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1821"/>
         <source>Disk capacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Capacidad del disco</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1854"/>
         <source>From template</source>
-        <translation type="unfinished"></translation>
+        <translation>Desde plantilla</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2502"/>
         <location filename="../projectwidget.ui" line="2794"/>
         <location filename="../projectwidget.ui" line="3040"/>
         <source>Output file (--output)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida (--output)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="2505"/>
         <location filename="../projectwidget.ui" line="2797"/>
         <location filename="../projectwidget.ui" line="3043"/>
         <source>Output file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida (necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3070"/>
         <source>Binary output file (--outputbin)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida binario (--outputbin)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3073"/>
         <source>Binary output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida binario</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3318"/>
         <source>LD output file (--output)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida LD (--output)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3321"/>
         <source>LD output file (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida LD (necesario)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3393"/>
@@ -1500,17 +1649,31 @@ Extracts a laser-disc AVI file from a CHD input file.
 --inputstartframe, -isf &amp;lt;offset&amp;gt;: starting frame within the input&lt;br&gt;
 --inputframes, -if &amp;lt;length&amp;gt;: effective length of input in frames
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN ExtractLD&lt;/b&gt;
+&lt;/p&gt;
+Extrae un archivo AVI de laser disc de un archivo de entrada CHD.
+&lt;p&gt;
+&lt;b&gt;Parámetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: nombre del archivo de entrada (necesario)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: nombre del archivo de salida (necesario)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: nombre de archivo padre para el CHD de entrada&lt;br&gt;
+--force, -f: fuerza la sustitución de un archivo existente&lt;br&gt;
+--inputstartframe, -isf &amp;lt;offset&amp;gt;: frame de inicio en el archivo de entrada&lt;br&gt;
+--inputframes, -if &amp;lt;length&amp;gt;: longitud efectiva de la entrada en frames
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3454"/>
         <source>Project log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log del proyecto</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="31"/>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="98"/>
@@ -1529,7 +1692,7 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1868"/>
         <location filename="../projectwidget.cpp" line="1974"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>predeterminado</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="103"/>
@@ -1537,201 +1700,201 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1866"/>
         <location filename="../projectwidget.cpp" line="1972"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>ninguno</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="118"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="119"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="120"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar como...</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="122"/>
         <source>Clone to</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonar a</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="139"/>
         <source>Morph to</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar a</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="156"/>
         <source>Copy stdout to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar stdout al portapapeles</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="157"/>
         <source>Copy stderr to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar stderr al portapapeles</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="158"/>
         <source>Copy command to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar comando al portapapeles</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="330"/>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="338"/>
         <source>Verify</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="346"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="376"/>
         <source>CreateRaw</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="406"/>
         <source>CreateHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="450"/>
         <source>CreateCD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="470"/>
         <source>CreateLD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="494"/>
         <source>ExtractRaw</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="514"/>
         <source>ExtractHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="534"/>
         <source>ExtractCD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="548"/>
         <source>ExtractLD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="564"/>
         <source>DumpMeta</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="569"/>
         <source>AddMeta</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="574"/>
         <source>DelMeta</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="595"/>
         <source>starting process</source>
-        <translation type="unfinished"></translation>
+        <translation>iniciando proceso</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="606"/>
         <source>Starting</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="612"/>
         <source>terminating process</source>
-        <translation type="unfinished"></translation>
+        <translation>terminando proceso</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="622"/>
         <location filename="../projectwidget.cpp" line="624"/>
         <source>process started: PID = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>proceso iniciado: PID = %1</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="627"/>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="633"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="636"/>
         <source>terminated</source>
-        <translation type="unfinished"></translation>
+        <translation>terminado</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="638"/>
         <location filename="../projectwidget.cpp" line="735"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>caído</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="665"/>
         <source>stdout</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="684"/>
         <source>stderr</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="732"/>
         <source>failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al iniciar</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="741"/>
         <source>timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>agotado tiempo de espera</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="744"/>
         <source>write error</source>
-        <translation type="unfinished"></translation>
+        <translation>error de escritura</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="747"/>
         <source>read error</source>
-        <translation type="unfinished"></translation>
+        <translation>error de lectura</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1837"/>
         <location filename="../projectwidget.cpp" line="751"/>
         <location filename="../projectwidget.cpp" line="972"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>desconocido</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="756"/>
         <source>process error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>error de proceso: %1</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="777"/>
@@ -1758,7 +1921,7 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1175"/>
         <location filename="../projectwidget.cpp" line="1197"/>
         <source>CHD files (*.chd)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos CHD (*.chd)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="778"/>
@@ -1769,7 +1932,7 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1132"/>
         <location filename="../projectwidget.cpp" line="1176"/>
         <source>Choose CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="800"/>
@@ -1779,7 +1942,7 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1154"/>
         <location filename="../projectwidget.cpp" line="1198"/>
         <source>Choose parent CHD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de entrada CHD padre</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="822"/>
@@ -1788,7 +1951,7 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="994"/>
         <location filename="../projectwidget.cpp" line="1032"/>
         <source>Choose CHD output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de salida CHD</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="844"/>
@@ -1797,94 +1960,94 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1005"/>
         <location filename="../projectwidget.cpp" line="1043"/>
         <source>Choose parent CHD output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de salida CHD padre</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="860"/>
         <location filename="../projectwidget.cpp" line="898"/>
         <source>Choose input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="931"/>
         <source>Choose ident file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de identidad</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos compatibles (*.cue *.toc *.gdi *.nrg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>CUE files (*.cue)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos CUE (*.cue)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>TOC files (*.toc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos TOC (*.toc)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>GDI files (*.gdi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos GDI (*.gdi)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>NRG files (*.nrg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos NRG (*.nrg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="983"/>
         <source>Choose CD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona un archivo CD de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1020"/>
         <location filename="../projectwidget.cpp" line="1186"/>
         <source>AVI files (*.avi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos AVI (*.avi)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1021"/>
         <source>Choose LD input file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona un archivo LD de entrada</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1069"/>
         <location filename="../projectwidget.cpp" line="1102"/>
         <source>Raw disk image (*.img)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco sin formato (*.img)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1069"/>
         <location filename="../projectwidget.cpp" line="1103"/>
         <source>Mac disk image (*.dmg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco Mac (*.dmg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1069"/>
         <location filename="../projectwidget.cpp" line="1104"/>
         <source>Apple IIgs disk image (*.2mg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco Apple IIgs (*.2mg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1069"/>
         <location filename="../projectwidget.cpp" line="1105"/>
         <source>FM-Towns disk image (*.h0 *.h1 *.h2 *.h3 *.h4)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco FM Towns (*.h0 *.h1 *.h2 *.h3 *.h4)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1069"/>
         <location filename="../projectwidget.cpp" line="1106"/>
         <source>IDE64 disk image (*.hdd)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco IDE64 (*.hdd)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1070"/>
@@ -1892,33 +2055,33 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1143"/>
         <location filename="../projectwidget.cpp" line="1187"/>
         <source>Choose output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de salida</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1107"/>
         <source>X68k SASI disk image (*.hdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco X68k SASI (*.hdf)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1108"/>
         <source>X68k SCSI disk image (*.hds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen de disco X68k SCSI (*.hds)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1164"/>
         <source>Binary CD files (*.bin)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos CD binarios (*.bin)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1165"/>
         <source>Choose binary output file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecciona archivo de salida binario</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1297"/>
         <location filename="../projectwidget.cpp" line="1643"/>
         <source>Choose file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="777"/>
@@ -1957,48 +2120,48 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="1297"/>
         <location filename="../projectwidget.cpp" line="1643"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="642"/>
         <source>process finished: exitCode = %1, exitStatus = %2, execTime = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>proceso finalizado: exitCode = %1, exitStatus = %2, execTime = %3</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1621"/>
         <source>Failed loading project &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo cargando proyecto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1628"/>
         <location filename="../projectwidget.cpp" line="1642"/>
         <source>Noname-%1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1655"/>
         <source>Qt CHDMAN project file -- please do not edit manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de proyecto Qt CHDMAN -- por favor no editar manualmente</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1817"/>
         <source>Project &apos;%1&apos; saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Proyecto &apos;%1&apos; guardado</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1820"/>
         <source>Failed saving project &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo guardando proyecto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1935"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
-        <translation type="unfinished"></translation>
+        <translation>clonar a &apos;%1&apos; todavía no está soportado</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="2041"/>
         <source>morphing to &apos;%1&apos; is not supported yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar a &apos;%1&apos; todavía no está soportado</translation>
     </message>
 </context>
 <context>
