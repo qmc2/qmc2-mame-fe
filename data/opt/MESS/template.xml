@@ -651,14 +651,6 @@
       <description lang="fr" text="Autorise l'utilisation du Double pistolet a visée infra-rouge"/>
       <description lang="pt" text="Habilitar pistola laser dupla"/>
     </option>
-    <option default="true" name="hide_cursor" type="bool">
-      <description lang="es" text="Ocultar el cursor en pantalla completa o si el ratón está activado"/>
-      <description lang="us" text="Hide cursor in full screen or if mouse is enabled"/>
-      <description lang="de" text="Zeiger verstecken, wenn im Vollbild-Modus oder Maus-Eingabe aktiviert ist"/>
-      <description lang="pl" text="Ukrywanie kursora w trybie pełnoekranowym oraz gdy mysz jest włączona"/>
-      <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>
-      <description lang="pt" text="Esconder cursor em tela cheia ou se o mouse estiver habilitado"/>
-    </option>
     <option default="false" name="multikeyboard" type="bool">
       <description lang="es" text="Habilitar entradas por separado con más de un teclado (si están presentes)"/>
       <description lang="us" text="Enable separate input from each keyboard device (if present)"/>
