@@ -1734,7 +1734,11 @@
       <description lang="pt" text="libGL.so alternativo à utilizar; 'auto' para usar o padrão do sistema"/>
     </option>
   </section>
-  <section ignore.Darwin="true" name="sdl_lightgun_mapping">
+  <!--
+       This section is completely ignored for now because it's a compile-time-optional feature right at the moment...
+       If you enable it in the emulator, remove all ignore="true" attributes from the <section> and <option>'s nodes!
+  -->
+  <section ignore.Darwin="true" ignore="true" name="sdl_lightgun_mapping">
     <description lang="pl" text="Mapowanie pistoletu świetlnego SDL"/>
     <description lang="us" text="SDL lightgun mapping"/>
     <description lang="de" text="SDL Lichtpistolen-Zuweisungen"/>
