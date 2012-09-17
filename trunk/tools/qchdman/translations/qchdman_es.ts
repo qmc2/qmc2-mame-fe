@@ -6,62 +6,62 @@
     <message>
         <location filename="../aboutdialog.ui" line="14"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="92"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="23"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaz de usuario gráfica basada en Qt para CHDMAN, la herramienta de gestión CHD de MAME/MESS</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
         <source>All Rights Reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los derechos reservados.</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="25"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
-        <translation type="unfinished"></translation>
+        <translation> </translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="28"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>See the</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>GNU General Public License</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>for more details.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="31"/>
         <source>Qt CHDMAN GUI is part of the</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt CHDMAN GUI es parte del</translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="31"/>
         <source>QMC2 project</source>
-        <translation type="unfinished"></translation>
+        <translation>proyecto QMC2</translation>
     </message>
 </context>
 <context>
@@ -89,340 +89,340 @@
     <message>
         <location filename="../mainwindow.ui" line="63"/>
         <source>View mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo vista</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="81"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ayuda</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="96"/>
         <source>Create a new project</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear un nuevo proyecto</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="99"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="104"/>
         <source>Load...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="107"/>
         <source>Load existing project from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar un proyecto existente desde un archivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="110"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="118"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="121"/>
         <source>Save project to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar el proyecto a un archivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="124"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="132"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar como...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="135"/>
         <source>Save project under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar el proyecto con un nombre diferente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="138"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Salir</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="146"/>
         <source>Quit GUI</source>
-        <translation type="unfinished"></translation>
+        <translation>Salir GUI</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="149"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="157"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Siguiente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
         <source>Select next project window</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ventana de proyecto siguiente</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="163"/>
         <source>Ctrl+Alt+N</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="171"/>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Anterior</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Select previous project window</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ventana de proyecto anterior</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="177"/>
         <source>Ctrl+Alt+P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Tile</source>
-        <translation type="unfinished"></translation>
+        <translation>Mosaico</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>Tile project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Ventanas de proyecto en mosaico</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Ctrl+Alt+T</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="199"/>
         <source>Cascade</source>
-        <translation type="unfinished"></translation>
+        <translation>Cascada</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Cascade project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Ventanas de proyecto en cascada</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="205"/>
         <source>Ctrl+Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="213"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="216"/>
         <source>Close active project window</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar la ventana de proyecto activa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar todo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="227"/>
         <source>Close all project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar todas las ventanas de proyecto</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="232"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
         <source>About this program</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de este programa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
         <source>About Qt...</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de Qt...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="243"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de Qt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="248"/>
         <source>Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opciones...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="251"/>
         <source>General preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Opciones generales</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="254"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="259"/>
         <source>No recent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin archivos recientes</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="267"/>
         <source>Windowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ventana</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="270"/>
         <source>View projects in windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver los proyectos en modo ventana</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="273"/>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="281"/>
         <source>Tabbed</source>
-        <translation type="unfinished"></translation>
+        <translation>Pestañas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="284"/>
         <source>View projects in tabbed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver proyectos en modo pestañas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="287"/>
         <source>Ctrl+Shift+T</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="295"/>
         <source>Save all</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar todo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="298"/>
         <source>Save all projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar todos los proyectos</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
         <source>Ctrl+Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="69"/>
         <source>avhu (A/V Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="70"/>
         <source>cdfl (CD FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="71"/>
         <source>cdlz (CD LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="72"/>
         <source>cdzl (CD Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>flac (FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="74"/>
         <source>huff (Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>lzma (LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="76"/>
         <source>zlib (Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
         <source>Choose file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="417"/>
         <location filename="../mainwindow.cpp" line="431"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="420"/>
         <location filename="../mainwindow.cpp" line="434"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="423"/>
         <location filename="../mainwindow.cpp" line="437"/>
         <source> GB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="426"/>
         <source> TB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="446"/>
         <source>Running projects: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Proyectos en ejecución: %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="512"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Proyecto &apos;%1&apos; no existe</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="593"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="595"/>
@@ -431,7 +431,11 @@
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hay un proyecto en ejecución
+
+¡Cerrar esta ventana eliminará el proceso externo!
+
+¿Continuar?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="596"/>
@@ -440,7 +444,11 @@ Proceed?</source>
 Closing their windows will kill the external processes!
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hay %1 proyectos en ejecución
+
+¡Cerrar esta ventana eliminará los procesos externos!
+
+¿Continuar?</translation>
     </message>
 </context>
 <context>
@@ -448,264 +456,264 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Opciones</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="35"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="42"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="49"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="75"/>
         <source>GUI</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="174"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipografía</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="181"/>
         <source>Application font</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipografía de la aplicación</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="194"/>
         <location filename="../preferencesdialog.ui" line="234"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="201"/>
         <source>Application font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño de tipografía de la aplicación</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="214"/>
         <location filename="../preferencesdialog.ui" line="221"/>
         <source>Log font</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipografía del log</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="241"/>
         <source>Log font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño de tipografía del log</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="253"/>
         <source>Display project help texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar los textos de ayuda del proyecto</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="260"/>
         <source>Maximize new project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximizar las ventanas de proyecto nuevas</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="263"/>
         <source>Maximize project windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximizar las ventanas de proyecto</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="359"/>
         <source>&lt;b&gt;Paths to program binaries&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ruta a los binarios del programa&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="510"/>
         <source>Non-CHD input</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada no-CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="366"/>
         <source>&lt;b&gt;Preferred folders for input &amp;amp; output files&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Carpetas preferidas para archivos de entrada y &amp;amp; salida&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="517"/>
         <source>CHD output</source>
-        <translation type="unfinished"></translation>
+        <translation>Salida CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="524"/>
         <source>Non-CHD output</source>
-        <translation type="unfinished"></translation>
+        <translation>Salida no-CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="379"/>
         <source>Preferred folder to use for non-CHD output files</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta preferida para archivos de salida no-CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="392"/>
         <source>Preferred folder to use for CHD output files</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta preferida para archivos de salida CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="405"/>
         <source>Preferred folder to search for non-CHD input files</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta preferida para buscar archivos de entrada no-CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="418"/>
         <source>Preferred folder to search for CHD input files</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta preferida para buscar archivos de entrada CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="161"/>
         <source>Select the GUI style</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el estilo de la interfaz</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="88"/>
         <source>Select the GUI language (requires a restart to take effect!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el idioma de la interfaz (¡es necesario reiniciar para que haga efecto!)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="95"/>
         <source>German (de)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alemán (de)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="100"/>
         <source>Spanish (es)</source>
-        <translation type="unfinished"></translation>
+        <translation>Español (es)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="105"/>
         <source>Greek (el)</source>
-        <translation type="unfinished"></translation>
+        <translation>Griego (el)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="110"/>
         <source>French (fr)</source>
-        <translation type="unfinished"></translation>
+        <translation>Francés (fr)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="115"/>
         <source>Italian (it)</source>
-        <translation type="unfinished"></translation>
+        <translation>Italiano (it)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="120"/>
         <source>Polish (pl)</source>
-        <translation type="unfinished"></translation>
+        <translation>Polaco (pl)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="125"/>
         <source>Portuguese (pt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Portugués (pt)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="130"/>
         <source>Romanian (ro)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rumano (ro)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="135"/>
         <source>Swedish (sv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sueco (sv)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inglés (us)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="81"/>
         <source>Lanuage</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="250"/>
         <source>Make sure project help texts are shown</source>
-        <translation type="unfinished"></translation>
+        <translation>Asegurarse que los textos de ayuda del proyecto son mostrados</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="270"/>
         <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar los diálogos nativos de la aplicación o los propios de Qt</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="273"/>
         <source>Use native file dialogs</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar diálogos nativos</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="280"/>
         <source>Include the names of the I/O channels (stdout / stderr) when logging CHDMAN output</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir los nombres de los canales I/O (stdout / stderr) en el log de la salida de CHDMAN</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="283"/>
         <source>Log channel names</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir los nombres de los canales en el log</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="306"/>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Rutas</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="503"/>
         <source>CHD input</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada CHD</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="312"/>
         <source>CHDMAN binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Binario CHDMAN</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="325"/>
         <source>Path to the CHDMAN binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta al binario de CHDMAN</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="88"/>
         <source>Choose CHDMAN binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar binario de CHDMAN</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="88"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="95"/>
         <source>Choose preferred CHD input path</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ruta de entrada CHD preferida</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="102"/>
         <source>Choose preferred non-CHD input path</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ruta de entrada no-CHD preferida</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="109"/>
         <source>Choose preferred CHD output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ruta de salida CHD preferida</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="116"/>
         <source>Choose preferred non-CHD output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ruta de salida no-CHD preferida</translation>
     </message>
 </context>
 <context>
@@ -2169,18 +2177,18 @@ Extrae un archivo AVI de laser disc de un archivo de entrada CHD.
     <message>
         <location filename="../projectwindow.cpp" line="20"/>
         <source>Noname-%1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="83"/>
         <location filename="../projectwindow.cpp" line="104"/>
         <source>terminating process</source>
-        <translation type="unfinished"></translation>
+        <translation>terminando proceso</translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="100"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="101"/>
@@ -2189,7 +2197,11 @@ Extrae un archivo AVI de laser disc de un archivo de entrada CHD.
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>El proyecto &apos;%1&apos; se está ejecutando.
+
+¡Cerrar esta ventana eliminará el proceso externo!
+
+¿Continuar?</translation>
     </message>
 </context>
 </TS>
