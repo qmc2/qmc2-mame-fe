@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.37
+Version:        0.38
 Release:        1
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
@@ -116,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlume.desktop
 
 %changelog
+* Tue Sep 17 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-1
+- updated spec to QMC2 0.38
+
 * Tue May 22 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.37-1
 - updated spec to QMC2 0.37, added new UME emulator target
 
