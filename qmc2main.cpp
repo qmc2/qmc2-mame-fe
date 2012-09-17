@@ -4627,10 +4627,15 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 			      else
 				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-		      } else
+			      qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "OK";
+		      } else {
 			      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
-	      } else
+			      qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "NO_DATA";
+		      }
+	      } else {
 		      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
+		      qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "NO_DATA";
+	      }
 
 	      if ( qmc2GameInfoDB.contains(gameName) || qmc2GameInfoDB.contains(qmc2ParentMap[gameName]) ) {
 		      QByteArray *newGameInfo = qmc2GameInfoDB[gameName];
@@ -4650,11 +4655,17 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			      else
 				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 #endif
-		      } else
+			      qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"] = "OK";
+		      } else {
 			      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = tr("No data available");
-	      } else
+			      qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"] = "NO_DATA";
+		      }
+	      } else {
 		      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = tr("No data available");
+		      qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"] = "NO_DATA";
+	      }
 	      qmc2SystemNotesEditor->templateMap["$MACHINE_INFO$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO$"];
+	      qmc2SystemNotesEditor->templateMap["$MACHINE_INFO_STATUS$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"];
 
 	      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
 
