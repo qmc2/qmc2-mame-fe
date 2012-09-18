@@ -46,7 +46,7 @@ QCache<QString, int> romalyzerXmlGamePositionCache;
   QByteArray ba("This is a test -- 123 :)!");
   ulong crc = crc32(0, NULL, 0);
   crc = crc32(crc, (const Bytef *)ba.data(), ba.size());
-  printf("CRC-32 = 0x%x\n", crc);
+  printf("CRC-32 = %x\n", crc);
 */
 
 /*
@@ -1600,6 +1600,15 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               progressBarFileIO->update();
               qApp->processEvents();
             }
+
+	    ulong crc = crc32(0, NULL, 0);
+	    crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
+	    QFileInfo fi(filePath);
+            QStringList sl;
+            //    fromName         fromPath    toName           fromZip
+            sl << fi.fileName() << filePath << fi.fileName() << "file";
+            setRewriterFileMap.insert(QString::number(crc, 16), sl); 
+
             if ( calcSHA1 )
               *sha1Str = sha1Hash.result().toHex();
             if ( calcMD5 )
@@ -1714,8 +1723,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 if ( fn != "QMC2_DUMMY_FILENAME" ) fromName = fn;
                 if ( !wantedCRC.isEmpty() ) {
                   QStringList sl;
-                  //    fromName    fromPath    toName
-                  sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+                  //    fromName    fromPath    toName                                      fromZip
+                  sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
                   setRewriterFileMap.insert(wantedCRC, sl); 
                 } else {
                   ulong crc = crc32(0, NULL, 0);
@@ -1723,8 +1732,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   QString fallbackCRC = QString::number(crc, 16).rightJustified(8, '0');
                   if ( !fallbackCRC.isEmpty() ) {
                     QStringList sl;
-                    //    fromName    fromPath    toName
-                    sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+                    //    fromName    fromPath    toName                                      fromZip
+                    sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "zip";
                     setRewriterFileMap.insert(fallbackCRC, sl); 
                     if ( groupBoxSetRewriter->isChecked() )
                       log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(fileName).arg(filePath).arg(fallbackCRC));
@@ -2358,27 +2367,45 @@ void ROMAlyzer::runSetRewriter()
 	while ( it.hasNext() && loadOkay ) {
 		progressBar->setValue(++count);
 		it.next();
+
 		QString fileCRC = it.key();
 		QString fileName = it.value()[0];
 		QString filePath = it.value()[1];
 		QString outputFileName = it.value()[2];
+		bool fromZip = (it.value()[3] == "zip");
+
 		if ( checkBoxSetRewriterUniqueCRCs->isChecked() ) {
 			if ( uniqueCRCs.contains(fileCRC) ) {
 				log(tr("set rewriter: skipping '%1' with CRC '%2' from '%3' as '%4'").arg(fileName).arg(fileCRC).arg(filePath).arg(outputFileName));
 				continue;
 			}
 		}
+
 		log(tr("set rewriter: loading '%1' with CRC '%2' from '%3' as '%4'").arg(fileName).arg(fileCRC).arg(filePath).arg(outputFileName));
+
 		QByteArray fileData;
-		if ( readZipFileData(filePath, fileCRC, &fileData) ) {
-			outputDataMap[outputFileName] = fileData;
-			uniqueCRCs << fileCRC;
+		if ( fromZip ) {
+			if ( readZipFileData(filePath, fileCRC, &fileData) ) {
+				outputDataMap[outputFileName] = fileData;
+				uniqueCRCs << fileCRC;
+			} else {
+				if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
+					loadOkay = false;
+				} else
+					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
+			}
 		} else {
-			if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
-				log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
-				loadOkay = false;
-			} else
-				log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
+			if ( readFileData(filePath, fileCRC, &fileData) ) {
+				outputDataMap[outputFileName] = fileData;
+				uniqueCRCs << fileCRC;
+			} else {
+				if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
+					loadOkay = false;
+				} else
+					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
+			}
 		}
 	}
 	progressBar->reset();
@@ -2561,6 +2588,34 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 
 	progressBarFileIO->reset();
 	return success;
+}
+
+// reads the file 'fileName' with the expected CRC 'crc' and returns its data in 'data'
+bool ROMAlyzer::readFileData(QString fileName, QString crc, QByteArray *data)
+{
+	QFile romFile(fileName);
+	data->clear();
+	if ( romFile.open(QIODevice::ReadOnly) ) {
+		quint64 sizeLeft = romFile.size();
+  		char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+		int len = 0;
+		progressBarFileIO->setRange(0, sizeLeft);
+		progressBarFileIO->reset();
+		while ( (len = romFile.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+			QByteArray readData((const char *)ioBuffer, len);
+			data->append(readData);
+			sizeLeft -= len;
+			progressBarFileIO->setValue(romFile.size() - sizeLeft);
+			progressBarFileIO->update();
+			if ( data->length() % QMC2_128K == 0 || data->length() == romFile.size() ) qApp->processEvents();
+		}
+		romFile.close();
+		progressBarFileIO->reset();
+		ulong calculatedCrc = crc32(0, NULL, 0);
+		calculatedCrc = crc32(calculatedCrc, (const Bytef *)data->data(), data->size());
+		return ( QString::number(calculatedCrc, 16) == crc );
+	} else
+		return false;
 }
 
 // reads the file with the CRC 'crc' in the ZIP 'fileName' and returns its data in 'data'
