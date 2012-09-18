@@ -4502,6 +4502,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap.clear();
 	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
 	      qmc2SystemNotesEditor->templateMap["$ID$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	      qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = qmc2ParentMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
 	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU);
 	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR);
 	      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY);
