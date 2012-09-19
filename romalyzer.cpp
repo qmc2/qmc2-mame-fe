@@ -2420,7 +2420,7 @@ void ROMAlyzer::runSetRewriter()
 					if ( !childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ) {
 						QList<QStringList> fileEntries = setRewriterFileMap.values(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 						foreach (QStringList fileEntry, fileEntries) {
-							if ( fileEntry.count() == 3 ) { // valid entry?
+							if ( fileEntry.count() == 4 ) { // valid entry?
 								QString localName = fileEntry[2];
 								if ( outputDataMap.contains(localName) && hasValidParent ) {
 									log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
