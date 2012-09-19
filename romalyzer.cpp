@@ -2443,6 +2443,7 @@ void ROMAlyzer::runSetRewriter()
 			}
 		} else {
 			log(tr("set rewriter: INFORMATION: no output data available, thus not rewriting set '%1' to '%2'").arg(setRewriterSetName).arg(outPath));
+			setRewriterItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")).pixmap(treeWidgetChecksums->iconSize(), QIcon::Disabled, QIcon::On)));
 			loadOkay = false;
 		}
 	}
