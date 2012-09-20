@@ -1079,11 +1079,7 @@ void ROMAlyzer::analyze()
 
       i++;
       log(tr("done (analyzing '%1')").arg(gameName));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      log(tr("%n game(s) left", "", analyzerList.count() - i));
-#elif defined(QMC2_EMUTYPE_MESS)
-      log(tr("%n machine(s) left", "", analyzerList.count() - i));
-#endif
+      log(tr("%n set(s) remaining", "", analyzerList.count() - i));
     }
   }
 
