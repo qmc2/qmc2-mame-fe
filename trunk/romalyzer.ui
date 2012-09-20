@@ -1135,11 +1135,8 @@
           </item>
           <item row="3" column="3" colspan="4">
            <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
             <property name="toolTip">
-             <string>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</string>
+             <string>Produce sets in individual sub-directories (not recommended)</string>
             </property>
             <property name="text">
              <string>Directories</string>
@@ -1865,7 +1862,7 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
+     <x>79</x>
      <y>640</y>
     </hint>
     <hint type="destinationlabel">
@@ -1881,12 +1878,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>99</y>
+     <x>105</x>
+     <y>282</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>99</y>
+     <x>180</x>
+     <y>282</y>
     </hint>
    </hints>
   </connection>
@@ -1897,12 +1894,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>110</y>
+     <x>469</x>
+     <y>570</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>110</y>
+     <x>581</x>
+     <y>570</y>
     </hint>
    </hints>
   </connection>
@@ -1913,12 +1910,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>104</y>
+     <x>169</x>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>104</y>
+     <x>257</x>
+     <y>428</y>
     </hint>
    </hints>
   </connection>
@@ -1929,12 +1926,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>104</y>
+     <x>169</x>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>104</y>
+     <x>353</x>
+     <y>427</y>
     </hint>
    </hints>
   </connection>
@@ -1945,12 +1942,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>88</x>
-     <y>93</y>
+     <x>103</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>111</x>
-     <y>93</y>
+     <x>238</x>
+     <y>135</y>
     </hint>
    </hints>
   </connection>
@@ -1962,11 +1959,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>30</x>
-     <y>85</y>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>52</x>
-     <y>85</y>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -1993,12 +1990,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>75</y>
+     <x>53</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>402</x>
-     <y>76</y>
+     <x>78</x>
+     <y>63</y>
     </hint>
    </hints>
   </connection>
