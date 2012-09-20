@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.38, 17-SEP-2012</h3>
+<h3>README - v0.38, 20-SEP-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -394,15 +394,15 @@ and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_b
 <ul>
   <li>Imitates the emulator's way of finding ROMs, using their CRCs to identify the individual ROM files (in ZIPs).</li>
   <li>Uses the XML game/machine data to compare (expected) checksums and sizes as well as to know which ROM &amp; CHD files are required, if they need to be merged from other sets etc.</li>
-  <li>ZIP-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-archives with invalid file integrity) -- note that ZIPs are required to have no sub-directory structure, otherwise the result may vary (this is unsupported).</li>
+  <li>ZIP-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-archives with invalid file integrity) -- note that ZIPs are required to have no sub-directory structure, otherwise the results may vary (this is unsupported but <i>should</i> work).</li>
   <li>ROMs which are stored in game/machine-directories (not ZIP-archived) will be loaded to calculate their hashes.</li>
   <li>All required hash algorithms are supported: CRC(-32), SHA1 and MD5.</li>
   <li>CHD verification is accomplished through the comparison of the header checksums with the expected hash values; you can optionally enable deeper file integrity verifications through the CHD manager (<i>chdman</i>) which is thus required to use this feature (slow).</li>
-  <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME/MESS release (the minimum required version is 0.145u1!). QMC2 assumes that CHD version 5 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
+  <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME/MESS/UME release (the minimum required version is 0.145u1!). QMC2 assumes that CHD version 5 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
   <li>For best performance, choose a temporary working directory for the CHD manager which is on the same file system as the CHDs you're analysing (i.e. your ROM path). The reason for this is that in the final step we simply rename/move the updated chdman's output to replace the old CHD.</li>
   <li>If QMC2 is unable to replace an updated CHD (for instance due to missing write permission on the ROM path) it will keep the updated file in the CHD manager's temporary working directory and you'll need to copy/move it manually.</li>
-  <li>ROM and CHD files will never be fully loaded into memory while analyzing, only small blocks (or hunks) of data are read for hash calculation and dropped directly afterwards. However, the 'set rewriter' (see below!) <b>will</b> load all (uncompressed) data of a set into memory -- so if you want to use that function, a system with at least 4 GB RAM is recommended (it actually only depends on the largest ROM set available in MAME/MESS, not counting any CHDs here). </li>
-  <li>Long ROMAlyzer runs can be paused / resumed or interrupted at nearly any time. Interruptions take place immediatly, and any running external process (like <i>chdman</i> for example) will be terminated. Pausing the analysis is <i>nicer</i> and takes place asynchronously, waiting for the current set to finish its analysis.</li>
+  <li>ROM and CHD files will never be fully loaded into memory while analyzing, only small blocks (or hunks) of data are read for hash calculation and dropped directly afterwards. However, the 'set rewriter' (see below!) <b>will</b> load all (uncompressed) data of a set into memory -- so if you want to use that function, a system with at least 4 GB RAM is recommended (it actually only depends on the largest ROM set available in MAME/MESS/UME, not counting any CHDs here). </li>
+  <li>Long ROMAlyzer runs can be paused / resumed or interrupted at nearly any time. Except when a set is currently rewritten, interruptions take place immediatly, and any running external process (like <i>chdman</i> for example) will be terminated. Pausing the analysis is <i>nicer</i> and takes place asynchronously, waiting for the current set to finish its analysis.</li>
   <li>ROM sets that use <i>merged</i> files will also be checked for their <i>merge-states</i>. Possible states include:
     <ul>
       <li>OK (green) -- all merged files are at their expected places and are taken from the parent set</li>
@@ -415,7 +415,7 @@ and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_b
     <ul>
       <li><b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i>!</b></li>
       <li><b>NEVER use one of your primary ROM paths as the output directory for the <i>set rewriter</i>!</b></li>
-      <li>When you have update ROMs, you can point the set rewriter to them (see 'additional ROM path'). You can enter a semicolon-separated list like MAME's/MESS's <i>rompath</i> parameter accepts it to specify multiple paths!</b></li>
+      <li>When you have update ROMs, you can point the set rewriter to them (see 'additional ROM path'). You can enter a semicolon-separated list in the way as MAME/MESS/UME's <i>rompath</i> parameter accepts it to specify multiple paths!</b></li>
       <li>When the source data is bad and/or incomplete, the results will not be better. First get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up!</li>
     </ul>
   <li>Take a look at the ROMAlyzer's log for a more detailed analysis report.</li>

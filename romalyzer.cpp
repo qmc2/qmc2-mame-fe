@@ -2345,7 +2345,11 @@ void ROMAlyzer::runSetRewriter()
 	}
 
 	if ( !outPath.endsWith("/") ) outPath += "/";
-	outPath += setRewriterSetName + ".zip";
+
+	if ( radioButtonSetRewriterZipArchives->isChecked() )
+		outPath += setRewriterSetName + ".zip";
+	else
+		outPath += setRewriterSetName;
 
 	QLocale locale;
 
@@ -2435,11 +2439,20 @@ void ROMAlyzer::runSetRewriter()
 		if ( !outputDataMap.isEmpty() ) {
 			log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			labelStatus->setText(tr("Writing '%1' - %2").arg(setRewriterSetName).arg(locale.toString(setRewriterSetCount)));
-			if ( writeAllZipData(outPath, &outputDataMap, true, progressBar) )
-				log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
-			else {
-				log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-				loadOkay = false;
+			if ( radioButtonSetRewriterZipArchives->isChecked() ) {
+				if ( writeAllZipData(outPath, &outputDataMap, true, progressBar) )
+					log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
+				else {
+					log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+					loadOkay = false;
+				}
+			} else {
+				if ( writeAllFileData(outPath, &outputDataMap, true, progressBar) ) {
+					log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
+				} else {
+					log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+					loadOkay = false;
+				}
 			}
 		} else {
 			log(tr("set rewriter: INFORMATION: no output data available, thus not rewriting set '%1' to '%2'").arg(setRewriterSetName).arg(outPath));
@@ -2665,6 +2678,64 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 		success = false;
 
 	progressBarFileIO->reset();
+	return success;
+}
+
+// creates the directory 'dirName' (overwrites any existing files in it w/o creating backups!)
+// and stores the data found in 'fileDataMap' into individual files
+// - 'fileDataMap' maps file names to their data
+bool ROMAlyzer::writeAllFileData(QString dirName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
+{
+	bool success = true;
+
+	if ( pBar ) {
+		pBar->setRange(0, fileDataMap->count());
+		pBar->reset();
+	}
+
+	QDir d(dirName);
+	if ( !d.exists() )
+		success = d.mkdir(dirName);
+
+	QMapIterator<QString, QByteArray> it(*fileDataMap);
+	int count = 0;
+	while ( it.hasNext() && success ) {
+		if ( pBar ) pBar->setValue(++count);
+		it.next();
+		QString file = dirName + "/" + it.key();
+		QFile f(file);
+		QByteArray data = it.value();
+		if ( writeLog )
+			log(tr("set rewriter: writing '%1' (size: %2)").arg(file).arg(humanReadable(data.length())));
+		if ( f.open(QIODevice::WriteOnly) ) {
+			quint64 bytesWritten = 0;
+			progressBarFileIO->setInvertedAppearance(true);
+			progressBarFileIO->setRange(0, data.length());
+			progressBarFileIO->reset();
+			qApp->processEvents();
+			while ( bytesWritten < (quint64)data.length() && success ) {
+				quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+				if ( bytesWritten + bufferLength > (quint64)data.length() )
+					bufferLength = data.length() - bytesWritten;
+				qint64 len = f.write(data.mid(bytesWritten, bufferLength));
+				success = (len >= 0);
+				if ( success ) {
+					bytesWritten += len;
+					progressBarFileIO->setValue(bytesWritten);
+					progressBarFileIO->update();
+					progressBar->update();
+					if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() ) qApp->processEvents();
+				} else if ( writeLog )
+					log(tr("set rewriter: WARNING: failed to write '%1'").arg(file));
+			}
+			f.close();
+		} else
+			success = false;
+	}
+
+	if ( pBar ) pBar->reset();
+	progressBarFileIO->reset();
+	progressBarFileIO->setInvertedAppearance(false);
 	return success;
 }
 
