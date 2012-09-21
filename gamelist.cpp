@@ -32,6 +32,9 @@
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #include "messdevcfg.h"
 #endif
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+#include "demomode.h"
+#endif
 #include "softwarelist.h"
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
@@ -104,6 +107,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern QMap<QString, QString> qmc2VersionMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+extern DemoModeDialog *qmc2DemoModeDialog;
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
@@ -323,6 +327,11 @@ void Gamelist::load()
   QString gameName;
   if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )
 	  gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  if ( qmc2DemoModeDialog )
+	  qmc2DemoModeDialog->saveCategoryFilter();
+#endif
 
   qmc2ReloadActive = qmc2EarlyReloadActive = true;
   qmc2StopParser = false;
@@ -721,7 +730,9 @@ void Gamelist::load()
     return;
   }
 
+  qmc2CategoryMap.clear();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  qmc2VersionMap.clear();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni").toBool() ) {
     loadCatverIni();
     mergeCategories = true;
@@ -732,6 +743,11 @@ void Gamelist::load()
     loadCategoryIni();
 #endif
   mergeCategories = false;
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  if ( qmc2DemoModeDialog )
+	  QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(updateCategoryFilter()));
+#endif
 
   gamelistBuffer.clear();
 

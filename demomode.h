@@ -24,6 +24,8 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
     void startNextEmu();
     void setStatus(QString);
     void clearStatus() { setStatus(QString()); }
+    void updateCategoryFilter();
+    void saveCategoryFilter();
 
   protected:
     void closeEvent(QCloseEvent *);
