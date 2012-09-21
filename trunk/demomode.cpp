@@ -17,6 +17,7 @@ extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
 extern QSettings *qmc2Config;
+extern QMap<QString, QString> qmc2CategoryMap;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)
   : QDialog(parent)
@@ -49,6 +50,8 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
   spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
   spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
+
+  QTimer::singleShot(0, this, SLOT(updateCategoryFilter()));
 }
 
 DemoModeDialog::~DemoModeDialog()
@@ -79,6 +82,8 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   if ( demoModeRunning )
     pushButtonRunDemo->animateClick();
 
+  saveCategoryFilter();
+
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SelectC", toolButtonSelectC->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SelectM", toolButtonSelectM->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SelectI", toolButtonSelectI->isChecked());
@@ -94,6 +99,57 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry", saveGeometry());
+}
+
+void DemoModeDialog::saveCategoryFilter()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::saveCategoryFilter()");
+#endif
+
+	QStringList excludedCategories;
+
+	if ( listWidgetCategoryFilter->count() == 1 ) {
+		excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
+		if ( listWidgetCategoryFilter->item(0)->checkState() == Qt::Checked )
+			excludedCategories.removeAll(tr("?"));
+	} else {
+		for (int i = 0; i < listWidgetCategoryFilter->count(); i++) {
+			QListWidgetItem *item = listWidgetCategoryFilter->item(i);
+			if ( item->checkState() == Qt::Unchecked )
+				excludedCategories << item->text();
+		}
+	}
+
+	if ( !excludedCategories.isEmpty() )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", excludedCategories);
+	else
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories");
+}
+
+void DemoModeDialog::updateCategoryFilter()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::updateCategoryFilter()");
+#endif
+
+	QStringList categoryNames = qmc2CategoryMap.values();
+	categoryNames.removeDuplicates();
+	qSort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
+	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
+	listWidgetCategoryFilter->setUpdatesEnabled(false);
+	listWidgetCategoryFilter->clear();
+	QListWidgetItem *item = new QListWidgetItem(tr("?"), listWidgetCategoryFilter);
+	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+	item->setCheckState(excludedCategories.contains(tr("?")) ? Qt::Unchecked : Qt::Checked);
+	foreach (QString category, categoryNames) {
+		if ( !category.isEmpty() ) {
+			item = new QListWidgetItem(category, listWidgetCategoryFilter);
+			item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+			item->setCheckState(excludedCategories.contains(category) ? Qt::Unchecked : Qt::Checked);
+		}
+	}
+	listWidgetCategoryFilter->setUpdatesEnabled(true);
 }
 
 void DemoModeDialog::on_pushButtonRunDemo_clicked()
@@ -129,6 +185,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
       return;
     }
+    saveCategoryFilter();
     selectedGames.clear();
     if ( checkBoxTagged->isChecked() ) {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
@@ -139,8 +196,13 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			    selectedGames << game;
 	    }
     } else {
+	    QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-	      if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) ) continue;
+              QString category = qmc2CategoryMap[game];
+              if ( category.isEmpty() )
+                category = tr("?");
+              if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
+                continue;
 	      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 	      if ( !gameItem ) continue;
 	      switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
