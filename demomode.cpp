@@ -50,6 +50,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
   spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
   spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
+  comboBoxDriverStatus->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/DriverStatus", QMC2_DEMO_MODE_DRV_STATUS_GOOD).toInt());
 
   QTimer::singleShot(0, this, SLOT(updateCategoryFilter()));
 }
@@ -97,6 +98,7 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged",checkBoxTagged->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/DriverStatus", comboBoxDriverStatus->currentIndex());
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry", saveGeometry());
 }
@@ -197,36 +199,49 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 	    }
     } else {
 	    QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
+	    int minDrvStatus = comboBoxDriverStatus->currentIndex();
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-              QString category = qmc2CategoryMap[game];
-              if ( category.isEmpty() )
-                category = tr("?");
-              if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
-                continue;
-	      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
-	      if ( !gameItem ) continue;
-	      switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
-		case QMC2_ROMSTATE_CHAR_C:
-		  if ( toolButtonSelectC->isChecked() ) selectedGames << game;
-		  break;
-
-		case QMC2_ROMSTATE_CHAR_M:
-		  if ( toolButtonSelectM->isChecked() ) selectedGames << game;
-		  break;
-
-		case QMC2_ROMSTATE_CHAR_I:
-		  if ( toolButtonSelectI->isChecked() ) selectedGames << game;
-		  break;
-
-		case QMC2_ROMSTATE_CHAR_N:
-		  if ( toolButtonSelectN->isChecked() ) selectedGames << game;
-		  break;
-
-		case QMC2_ROMSTATE_CHAR_U:
-		default:
-		  if ( toolButtonSelectU->isChecked() ) selectedGames << game;
-		  break;
-	      }
+		    QString category = qmc2CategoryMap[game];
+		    if ( category.isEmpty() )
+			    category = tr("?");
+		    if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
+			    continue;
+		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+		    if ( !gameItem )
+			    continue;
+		    if ( minDrvStatus < QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT ) {
+			    QString drvStatus = gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
+			    if ( minDrvStatus == QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY ) {
+				    if ( drvStatus != tr("good") && drvStatus != tr("preliminary") )
+					    continue;
+			    } else {
+				    if ( drvStatus != tr("good") )
+					    continue;
+			    }
+		    }
+		    switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+			    case QMC2_ROMSTATE_CHAR_C:
+				    if ( toolButtonSelectC->isChecked() )
+					    selectedGames << game;
+				    break;
+			    case QMC2_ROMSTATE_CHAR_M:
+				    if ( toolButtonSelectM->isChecked() )
+					    selectedGames << game;
+				    break;
+			    case QMC2_ROMSTATE_CHAR_I:
+				    if ( toolButtonSelectI->isChecked() )
+					    selectedGames << game;
+				    break;
+			    case QMC2_ROMSTATE_CHAR_N:
+				    if ( toolButtonSelectN->isChecked() )
+					    selectedGames << game;
+				    break;
+			    case QMC2_ROMSTATE_CHAR_U:
+			    default:
+				    if ( toolButtonSelectU->isChecked() )
+					    selectedGames << game;
+				    break;
+		    }
 	    }
     }
     if ( selectedGames.count() > 0 )
