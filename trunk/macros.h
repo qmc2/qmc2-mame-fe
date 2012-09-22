@@ -747,6 +747,11 @@
 #define QMC2_IMGCHK_INDEX_ICON			8
 #endif
 
+// demo mode: driver maturity states
+#define QMC2_DEMO_MODE_DRV_STATUS_GOOD		0
+#define QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY	1
+#define QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT	2
+
 // number of images per work-unit
 #define QMC2_IMGCHK_WORKUNIT_SIZE		50
 
