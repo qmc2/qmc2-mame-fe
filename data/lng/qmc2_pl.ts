@@ -1609,7 +1609,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.cpp" line="144"/>
         <location filename="../../demomode.cpp" line="203"/>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="181"/>
@@ -1718,7 +1718,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="26"/>
         <source>Category filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr kategorii</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="33"/>
@@ -1733,7 +1733,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="165"/>
         <source>Select / deselect the categories you want to include / exclude</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz kategorie które mają być uwzględnione</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="175"/>
@@ -1759,12 +1759,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.ui" line="224"/>
         <location filename="../../demomode.ui" line="279"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="240"/>
         <source>Options</source>
-        <translation type="unfinished">Opcje</translation>
+        <translation>Opcje</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="266"/>
@@ -4934,116 +4934,116 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.ui" line="22"/>
         <source>Image type</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaj obrazu</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="35"/>
         <source>Select image type to be checked</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz rodzaj obrazu do sprawdzenia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="39"/>
         <location filename="../../imagechecker.cpp" line="205"/>
         <location filename="../../imagechecker.cpp" line="213"/>
         <source>Previews</source>
-        <translation type="unfinished">Podglądy</translation>
+        <translation>Podglądy</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="48"/>
         <location filename="../../imagechecker.cpp" line="206"/>
         <location filename="../../imagechecker.cpp" line="214"/>
         <source>Flyers</source>
-        <translation type="unfinished">Ulotki</translation>
+        <translation>Ulotki</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="57"/>
         <location filename="../../imagechecker.cpp" line="207"/>
         <location filename="../../imagechecker.cpp" line="215"/>
         <source>Cabinets</source>
-        <translation type="unfinished">Automaty</translation>
+        <translation>Automaty</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="66"/>
         <location filename="../../imagechecker.cpp" line="216"/>
         <source>Controllers</source>
-        <translation type="unfinished">Kontrolery</translation>
+        <translation>Kontrolery</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="75"/>
         <location filename="../../imagechecker.cpp" line="217"/>
         <source>Marquees</source>
-        <translation type="unfinished">Plansze tytułowe</translation>
+        <translation>Plansze tytułowe</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="84"/>
         <location filename="../../imagechecker.cpp" line="218"/>
         <source>Titles</source>
-        <translation type="unfinished">Ekrany tytułowe</translation>
+        <translation>Ekrany tytułowe</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="93"/>
         <location filename="../../imagechecker.cpp" line="209"/>
         <location filename="../../imagechecker.cpp" line="219"/>
         <source>PCBs</source>
-        <translation type="unfinished">Płytki drukowane</translation>
+        <translation>Płytki drukowane</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="102"/>
         <location filename="../../imagechecker.cpp" line="211"/>
         <location filename="../../imagechecker.cpp" line="221"/>
         <source>Icons</source>
-        <translation type="unfinished">Ikony</translation>
+        <translation>Ikony</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="114"/>
         <source>Threads</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątki</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="127"/>
         <source>Number of parallel threads used when checking images</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba równoległych wątków podczas sprawdzania obrazów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="143"/>
         <source>Select sets in master list when selected in the found- or missing-lists below</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz zestawy na liście głównej kiedy zostaną wybrane na listach znalezionych i nieznalezionych poniżej</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="160"/>
         <source>Current status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Bieżący stan / postęp</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="166"/>
         <location filename="../../imagechecker.cpp" line="359"/>
         <source>Idle</source>
-        <translation type="unfinished">Bezczynny</translation>
+        <translation>Bezczynny</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="179"/>
         <source>Start / stop checking images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpocznij / zatrzymaj sprawdzanie obrazów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="199"/>
         <source>Clear check results and log</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść wyniki sprawdzania i dziennik</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="219"/>
         <source>Save the current log contents to a file</source>
-        <translation type="unfinished">Zapisz bieżącą zawartość dziennika do pliku</translation>
+        <translation>Zapisz bieżącą zawartość dziennika do pliku</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="239"/>
         <source>Remove obsolete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń przestarzałe pliki</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="256"/>
         <source>Check results</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki sprawdzania</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="262"/>
@@ -5052,7 +5052,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="587"/>
         <location filename="../../imagechecker.cpp" line="1035"/>
         <source>Found:</source>
-        <translation type="unfinished"></translation>
+        <translation>Znalezione:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="269"/>
@@ -5062,7 +5062,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="1037"/>
         <location filename="../../imagechecker.cpp" line="1039"/>
         <source>Missing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Brakujące:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="276"/>
@@ -5072,49 +5072,49 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="791"/>
         <location filename="../../imagechecker.cpp" line="1040"/>
         <source>Obsolete:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestarzałe:</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="283"/>
         <source>Sets for which at least one valid image was found</source>
-        <translation type="unfinished"></translation>
+        <translation>Zestawy, dla których znaleziono co najmniej jeden poprawny obraz</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="293"/>
         <source>Sets for which no valid images could be found</source>
-        <translation type="unfinished"></translation>
+        <translation>Zestawy, dla których nie znaleziono żadnych poprawnych obrazów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="303"/>
         <source>Files which couldn&apos;t be matched to any set (and are thus obsolete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki, których nie udało się dopasować do żadnego zestawu (i tym samym są przestarzałe)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="314"/>
         <source>Log</source>
-        <translation type="unfinished">Dziennik</translation>
+        <translation>Dziennik</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="208"/>
         <source>Logos</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon(s) scanned</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Przeskanowano %n ikonę</numerusform>
+            <numerusform>Przeskanowano %n ikony</numerusform>
+            <numerusform>Przeskanowano %n ikon</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n icon file(s) missing</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Brakuje %n ikony</numerusform>
+            <numerusform>Brakuje %n ikon</numerusform>
+            <numerusform>Brakuje %n ikon</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -5122,211 +5122,211 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n bad file(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n niepoprawny plik</numerusform>
+            <numerusform>%n niepoprawny pliki</numerusform>
+            <numerusform>%n niepoprawny plików</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="329"/>
         <source>Average scanning speed = %n icon(s) per second</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Średnia szybkość skanowania = %n ikona na sekundę</numerusform>
+            <numerusform>Średnia szybkość skanowania = %n ikony na sekundę</numerusform>
+            <numerusform>Średnia szybkość skanowania = %n ikon na sekundę</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n image(s) scanned</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Przeskanowano %n obraz</numerusform>
+            <numerusform>Przeskanowano %n obrazy</numerusform>
+            <numerusform>Przeskanowano %n obrazów</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="328"/>
         <source>%n valid icon file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Znaleziono %n poprawną ikonę</numerusform>
+            <numerusform>Znaleziono %n poprawne ikony</numerusform>
+            <numerusform>Znaleziono %n poprawnych ikon</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n valid image file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Znaleziono %n poprawny obraz</numerusform>
+            <numerusform>Znaleziono %n poprawne obrazy</numerusform>
+            <numerusform>Znaleziono %n poprawnych obrazów</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="331"/>
         <location filename="../../imagechecker.cpp" line="347"/>
         <source>%n image file(s) missing</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Brakuje %n obrazu</numerusform>
+            <numerusform>Brakuje %n obrazów</numerusform>
+            <numerusform>Brakuje %n obrazów</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="332"/>
         <location filename="../../imagechecker.cpp" line="348"/>
         <source>Average scanning speed = %n image(s) per second</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Średnia szybkość skanowania = %n obraz na sekundę</numerusform>
+            <numerusform>Średnia szybkość skanowania = %n obrazy na sekundę</numerusform>
+            <numerusform>Średnia szybkość skanowania = %n obrazów na sekundę</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="339"/>
         <location filename="../../imagechecker.cpp" line="427"/>
         <source>Pass #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Przebieg nr %1</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="355"/>
         <source>%1 check ended -- elapsed time = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 sprawdzenie ukończono -- miniony czas = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="355"/>
         <location filename="../../imagechecker.cpp" line="402"/>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>Icon</source>
-        <translation type="unfinished">Ikona</translation>
+        <translation>Ikona</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="355"/>
         <location filename="../../imagechecker.cpp" line="402"/>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="402"/>
         <source>%1 check started</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 sprawdzenie rozpoczęto</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="558"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; found</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: Ikona dla &apos;%2&apos; znaleziona</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="562"/>
         <source>Thread[%1]: Icon for &apos;%2&apos; is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Wątek[%1]: Brakuje ikony dla &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="609"/>
         <source>Choose file to store the image checker log</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę wybrać plik do zapisania dziennika sprawdzania obrazów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="609"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="614"/>
         <location filename="../../imagechecker.cpp" line="615"/>
         <source>saving image checker log to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie dziennika sprawdzania obrazów do &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="618"/>
         <location filename="../../imagechecker.cpp" line="619"/>
         <source>done (saving image checker log to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (zapisywanie dziennika sprawdzania obrazów do &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="621"/>
         <location filename="../../imagechecker.cpp" line="622"/>
         <source>WARNING: can&apos;t open file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">UWAGA: nie można otworzyć pliku &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
+        <translation>UWAGA: nie można otworzyć pliku &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="703"/>
         <location filename="../../imagechecker.cpp" line="765"/>
         <source>Running ZIP tool to remove obsolete files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchamianie narzędzia ZIP w celu usunięcia przestarzałych plików, polecenie = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="718"/>
         <source>Obsolete image file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto przestarzały plik obrazu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="723"/>
         <source>Obsolete image file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestarzały plik obrazu &apos;%1&apos; nie może zostać usunięty, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="780"/>
         <source>Obsolete icon file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto przestarzały plik ikony &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="785"/>
         <source>Obsolete icon file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestarzały plik ikony &apos;%1&apos; nie może zostać usunięty, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="829"/>
         <source>Checking for obsolete files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzanie w poszukiwaniu przestarzałych plików</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="865"/>
         <location filename="../../imagechecker.cpp" line="877"/>
         <source>Reading ZIP directory recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Rekursywne czytanie katalogu ZIP</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="870"/>
         <source>Reading image directory &apos;%1&apos; recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Rekursywne czytanie katalogu obrazów &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="882"/>
         <source>Reading icon directory &apos;%1&apos; recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Rekursywne czytanie katalogu ikon &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 plik &apos;%2&apos; jest przestarzały</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="1013"/>
         <source>%n obsolete file(s) found</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>znaleziono %n przestarzały plik</numerusform>
+            <numerusform>znaleziono %n przestarzałe pliki</numerusform>
+            <numerusform>znaleziono %n przestarzałych plików</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1037"/>
         <source>Bad:</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawne:</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="888"/>
         <source>%n directory entries to check</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n wpis w katalogu do sprawdzenia</numerusform>
+            <numerusform>%n wpisy w katalogu do sprawdzenia</numerusform>
+            <numerusform>%n wpisów w katalogu do sprawdzenia</numerusform>
         </translation>
     </message>
 </context>
@@ -6558,18 +6558,18 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3259"/>
         <source>QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 dla SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3262"/>
         <location filename="../../qmc2main.ui" line="3265"/>
         <source>Launch QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom QMC2 dla SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3268"/>
         <source>Ctrl+Alt+3</source>
-        <translation type="unfinished">Ctrl+Alt+3</translation>
+        <translation>Ctrl+Alt+3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3331"/>
@@ -6607,7 +6607,7 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3604"/>
         <source>Ctrl+Shift+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+J</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3658"/>
@@ -6660,34 +6660,34 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3721"/>
         <source>Toggle tag / cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie / kursor w dół</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3724"/>
         <location filename="../../qmc2main.ui" line="3727"/>
         <source>Toggle tag mark / move cursor one item down</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie / przesuń kursor o jeden element w dół</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3730"/>
         <source>Shift+Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Down</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3742"/>
         <source>Toggle tag / cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie / kursor w górę</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3745"/>
         <location filename="../../qmc2main.ui" line="3748"/>
         <source>Toggle tag mark / move cursor one item up</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie / przesuń kursor o jeden element w górę</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3751"/>
         <source>Shift+Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+Up</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3763"/>
@@ -6740,61 +6740,61 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3826"/>
         <source>Tag visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz widoczne</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3829"/>
         <location filename="../../qmc2main.ui" line="3832"/>
         <source>Set tag mark for all visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz wszystkie widoczne zestawy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3847"/>
         <source>Untag visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Odznacz widoczne</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3850"/>
         <location filename="../../qmc2main.ui" line="3853"/>
         <source>Unset all tag marks of visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Odznacz wszystkie widoczne zestawy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3868"/>
         <source>Invert visible tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie widocznych</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3871"/>
         <location filename="../../qmc2main.ui" line="3874"/>
         <source>Invert all tag marks of visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie wszystkich widocznych zestawów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3835"/>
         <source>Ctrl+Shift+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+X</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3856"/>
         <source>Ctrl+Shift+Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Y</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3877"/>
         <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3889"/>
         <source>Browser window...</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno przeglądarki...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3892"/>
         <location filename="../../qmc2main.ui" line="3895"/>
         <source>Open a new empty browser window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz nowe, puste okno przeglądarki</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2899"/>
@@ -6804,17 +6804,17 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2623"/>
         <source>A&amp;bout...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;O programie...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2632"/>
         <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+B</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2771"/>
         <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+J</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3340"/>
@@ -7044,7 +7044,7 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2109"/>
         <source>Do&amp;wnloads</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;obierania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2605"/>
@@ -7444,13 +7444,13 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="507"/>
         <source>QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 dla UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="508"/>
         <location filename="../../qmc2main.cpp" line="509"/>
         <source>Launch QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom QMC2 dla UME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="587"/>
@@ -7461,13 +7461,13 @@ Czy wybrać inną nazwę?</translation>
         <location filename="../../qmc2main.cpp" line="601"/>
         <location filename="../../qmc2main.cpp" line="602"/>
         <source>About U.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>O U.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="615"/>
         <location filename="../../qmc2main.cpp" line="616"/>
         <source>About M.E.S.S. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>O M.E.S.S. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="695"/>
@@ -7503,7 +7503,7 @@ Czy wybrać inną nazwę?</translation>
         <location filename="../../qmc2main.cpp" line="619"/>
         <location filename="../../qmc2main.cpp" line="1293"/>
         <source>Category / Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria / Maszyna</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1590"/>
@@ -7520,7 +7520,7 @@ Czy wybrać inną nazwę?</translation>
         <location filename="../../qmc2main.cpp" line="1844"/>
         <location filename="../../qmc2main.cpp" line="1891"/>
         <source>default</source>
-        <translation type="unfinished">domyślny</translation>
+        <translation>domyślny</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1788"/>
@@ -7530,7 +7530,7 @@ Czy wybrać inną nazwę?</translation>
         <location filename="../../qmc2main.cpp" line="1892"/>
         <location filename="../../qmc2main.cpp" line="1895"/>
         <source>N/A</source>
-        <translation type="unfinished">niedostępne</translation>
+        <translation>niedostępny</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2053"/>
@@ -7729,17 +7729,17 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4512"/>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4925"/>
         <source>please wait for sorting to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>proszę poczekać za zakończenie sortowania i spróbować ponownie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6348"/>
         <source>saving current game&apos;s device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie konfiguracji urządzeń bieżącej gry</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6428"/>
@@ -7749,29 +7749,29 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6458"/>
         <source>destroying tool-bar customization</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie dostosowywania paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7881"/>
         <source>WARNING: can&apos;t create SDLUME output notifier FIFO, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można otworzyć FIFO powiadamiacza wyjścia SDLUME, ścieżka = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7919"/>
         <source>SDLUME output notifier FIFO created</source>
-        <translation type="unfinished"></translation>
+        <translation>Utworzono FIFO powiadamiacza wyjścia SDLUME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7923"/>
         <location filename="../../qmc2main.cpp" line="7926"/>
         <source>WARNING: can&apos;t open SDLUME output notifier FIFO for reading, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można otworzyć FIFO powiadamiacza wyjścia SDLUME do odczytu, ścieżka = %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8045"/>
         <location filename="../../qmc2main.cpp" line="8118"/>
         <source>unhandled UME output notification: game = %1, class = %2, what = %3, state = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>nieobsługiwane powiadomienie wyjścia UME: gra = %1, klasa = %2, co = %3, stan = %4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9943"/>
@@ -7822,19 +7822,21 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="10865"/>
         <source>WARNING: the ROM path is either not specified or the directory doesn&apos;t exist (or isn&apos;t accessible)</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: ścieżka ROM-ów nie została podana lub folder nie istnieje (albo nie jest dostępny)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10866"/>
         <source>Check ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź ścieżkę ROM-ów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10867"/>
         <source>The ROM path is either not specified or the directory couldn&apos;t be found (or isn&apos;t accessible).
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka ROM-ów nie została podana lub nie udało się odnaleźć folderu (albo nie jest on dostępny).
+
+W celu naprawy proszę sprawdzić opcję &apos;rompath&apos; w globalnej konfiguracji emulatora, w przeciwnym wypadku ROM-y nie będą dla niego dostępne!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="789"/>
@@ -8409,13 +8411,13 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>Check &amp;images / icons...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź obrazy / &amp;ikony...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2563"/>
         <location filename="../../qmc2main.ui" line="2566"/>
         <source>Check images and icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź obrazy i ikony</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3016"/>
@@ -9480,8 +9482,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9649,7 +9649,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1826"/>
         <source>Default configuration</source>
-        <translation type="unfinished">Domyślna konfiguracja</translation>
+        <translation>Domyślna konfiguracja</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2079"/>
@@ -11345,22 +11345,22 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="810"/>
         <source>Customize the tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostosuj pasek narzędzi</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="813"/>
         <source>Tool-bar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasek narzędzi...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="835"/>
         <source>Force QMC2&apos;s working directory to be the same as the executable&apos;s path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuś, aby katalog roboczy QMC2 był taki sam jak pliku wykonywalnego</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="838"/>
         <source>Set working directory from executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog roboczy na podstawie pliku wykonywalnego</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2259"/>
@@ -11385,57 +11385,57 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2299"/>
         <source>Enable the use of category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz korzystanie z category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2302"/>
         <source>Use category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2319"/>
         <source>Path to category.ini (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do category.ini (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2332"/>
         <source>Browse path to category.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do category.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2343"/>
         <source>System notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2350"/>
         <source>Enable the use of a template for (empty) system notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Korzystanie z szablonu do (pustych) notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2353"/>
         <source>System notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Szablon notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2366"/>
         <source>HTML file used as a template for system-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik HTML używany jako szablon notatek o systemie (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2379"/>
         <source>Folder used to store personal notes about any systems (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder używany do zapisu osobistych notatek o systemie (zapis)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2392"/>
         <source>Browse system notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż folder notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2409"/>
         <source>Browse system notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż szablon notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2513"/>
@@ -11591,17 +11591,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4675"/>
         <source>UME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternatywny plik wykonywalny UME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4688"/>
         <source>Specify the exe file for the UME variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę wskazać alternatywny plik wykonywalny UME (lub zostawić puste jeśli wszystkie warianty są zainstalowane w tym samym katalogu)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4701"/>
         <source>Browse UME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż alternatywny plik wykonywalny UME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4761"/>
@@ -11846,12 +11846,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="405"/>
         <source>Launch QMC2 for UME</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom QMC2 dla UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="409"/>
         <source>Launch QMC2 for SDLUME</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom QMC2 dla SDLUME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="412"/>
@@ -11871,12 +11871,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="415"/>
         <source>Toggle tag / cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie / kursor w dół</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="416"/>
         <source>Toggle tag / cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie / kursor w górę</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="417"/>
@@ -11896,22 +11896,22 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="420"/>
         <source>Tag visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz widoczne zestawy</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="421"/>
         <source>Untag visible sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Odznacz widoczne zestawy</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="422"/>
         <source>Invert visible tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwróć zaznaczenie widocznych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="430"/>
         <source>View machines by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj maszyny według kategorii</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="432"/>
@@ -12023,7 +12023,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="1331"/>
         <source>View machines by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj maszyny według kategorii (niefiltrowane)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1553"/>
@@ -12068,7 +12068,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="1740"/>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1787"/>
@@ -12100,7 +12100,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2017"/>
         <source>FATAL: can&apos;t open logo file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć pliku logo, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2044"/>
@@ -12229,7 +12229,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2852"/>
         <source>Choose logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2883"/>
@@ -12260,7 +12260,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2946"/>
         <source>Choose UME variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz alternatywny plik wykonywalny UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2961"/>
@@ -12289,13 +12289,14 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2999"/>
         <source>UME variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Parametry wariantu UME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3000"/>
         <source>Specify command line arguments passed to the UME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę podać parametry wiersza poleceń do przekazania wariantowi UME
+(puste oznacza: &apos;te same, które nam przekazano&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3016"/>
@@ -12353,7 +12354,7 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="2307"/>
         <location filename="../../options.cpp" line="3438"/>
         <source>Logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2628"/>
@@ -12371,7 +12372,7 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="2726"/>
         <location filename="../../options.cpp" line="2727"/>
         <source>Launch foreign ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom zewnętrzne ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3167"/>
@@ -12396,7 +12397,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="3258"/>
         <source>Choose category.ini file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik category.ini</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3483"/>
@@ -12416,7 +12417,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="3544"/>
         <source>Choose ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz skompresowany plik ZIP logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3559"/>
@@ -12457,12 +12458,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="3635"/>
         <source>Choose system notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz folder notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3649"/>
         <source>Choose system notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz szablon notatek o systemie</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3840"/>
@@ -13235,39 +13236,39 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="305"/>
         <source>Scaled logo</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalowane logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="306"/>
         <location filename="../../options.cpp" line="2307"/>
         <location filename="../../options.cpp" line="3438"/>
         <source>Logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="307"/>
         <source>Switch between specifying a logo directory or a ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz pomiędzy określeniem katalogu logo a skompresowanym plikiem ZIP logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="308"/>
         <source>Logo directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog logo (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="309"/>
         <source>ZIP-compressed logo file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skompresowany plik ZIP logo (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Browse logo directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż katalog logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="311"/>
         <source>Browse ZIP-compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż skompresowany plik ZIP logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="321"/>
@@ -13325,7 +13326,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="349"/>
         <source>Check images and icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź obrazy i ikony</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="354"/>
@@ -14814,7 +14815,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1139"/>
         <source>Produce sets in individual sub-directories (not recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tworzenie setów w oddzielnych podkatalogach (niezalecane)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1198"/>
@@ -15508,10 +15509,10 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1082"/>
         <source>%n set(s) remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>pozostał %n zestaw</numerusform>
+            <numerusform>pozostały %n zestawy</numerusform>
+            <numerusform>pozostało %n zestawów</numerusform>
         </translation>
     </message>
     <message>
@@ -15651,12 +15652,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="2705"/>
         <source>set rewriter: writing &apos;%1&apos; (size: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>przepisywanie setów na nowo: zapisywanie &apos;%1&apos; (rozmiar: %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2725"/>
         <source>set rewriter: WARNING: failed to write &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>przepisywanie setów na nowo: UWAGA: nie udało się zapisać &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2834"/>
@@ -18287,114 +18288,114 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../toolbarcustomizer.ui" line="14"/>
         <source>Customize tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostosuj pasek narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="26"/>
         <source>Available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostępne akcje paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="32"/>
         <source>List of available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dostępnych akcji paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="48"/>
         <source>Activate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywuj wybrane akcje paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="51"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywuj</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="74"/>
         <source>Active tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywne akcje paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="80"/>
         <source>List of active tool-bar actions and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista aktywnych akcji paska narzędzi i ich kolejność</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="96"/>
         <source>Deactivate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezaktywuj wybrane akcje paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="113"/>
         <source>Move selected action up</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń wybraną akcję w górę</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="133"/>
         <source>Move selected action down</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń wybraną akcję w dół</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="153"/>
         <source>Insert a separator line</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw linię separatora</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="156"/>
         <source>Separator</source>
-        <translation type="unfinished">Separator pola</translation>
+        <translation>Separator</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="170"/>
         <source>Reset tool-bar actions to default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć akcje paska narzędzi do domyślnej konfiguracji</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="173"/>
         <source>Default</source>
-        <translation type="unfinished">Domyślny</translation>
+        <translation>Domyślny</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="202"/>
         <source>Apply tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj ustawienia paska narzędzi i zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="205"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="219"/>
         <source>Apply tool-bar setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj ustawienia paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="222"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Zastosuj</translation>
+        <translation>&amp;Zastosuj</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="236"/>
         <source>Cancel tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj ustawienia paska narzędzi i zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="239"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Anuluj</translation>
+        <translation>&amp;Anuluj</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="80"/>
         <location filename="../../toolbarcustomizer.cpp" line="108"/>
         <source>Tool-bar search box</source>
-        <translation type="unfinished"></translation>
+        <translation>Pole szukania paska narzędzi</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="104"/>
         <location filename="../../toolbarcustomizer.cpp" line="290"/>
         <source>-- Separator --</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Separator --</translation>
     </message>
 </context>
 <context>
