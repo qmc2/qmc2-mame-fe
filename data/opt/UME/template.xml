@@ -677,6 +677,7 @@
       <description lang="es" text="Habilitar soporte para steadykeys"/>
     </option>
     <option default="false" name="ui_active" type="bool">
+      <description lang="pl" text="Włącz interfejs użytkownika razem z emulowaną klawiaturą (jeśli dostępna)"/>
       <description lang="us" text="Enable user interface on top of emulated keyboard (if present)"/>
       <description lang="de" text="User-Interface gemeinsam mit emulierter Tastatur aktivieren (wenn vorhanden)"/>
       <description lang="es" text="Habilitar la interfaz del usuario sobre el teclado emulado (si está presente)"/>
