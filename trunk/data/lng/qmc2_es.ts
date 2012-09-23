@@ -1592,205 +1592,220 @@ p, li { white-space: pre-wrap; }
         <translation>Modo demostración</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="235"/>
+        <location filename="../../demomode.ui" line="145"/>
         <source>ROM state filter</source>
         <translation>Filtro de estado de ROM</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="60"/>
+        <location filename="../../demomode.ui" line="183"/>
         <source>Select ROM state C (correct)?</source>
         <translation>¿Seleccionar estado de ROM C (correcto)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="83"/>
+        <location filename="../../demomode.ui" line="206"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation>¿Seleccionar estado de ROM M (mayormente correcto)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="106"/>
+        <location filename="../../demomode.ui" line="229"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation>¿Seleccionar estado de ROM I (incorrecto)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="126"/>
+        <location filename="../../demomode.ui" line="249"/>
         <source>Select ROM state N (not found)?</source>
         <translation>¿Seleccionar estado de ROM N (no encontrado)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="146"/>
+        <location filename="../../demomode.ui" line="269"/>
         <source>Select ROM state U (unknown)?</source>
         <translation>¿Seleccionar estado de ROM D (desconocido)?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="42"/>
+        <location filename="../../demomode.ui" line="125"/>
         <source>Seconds to run</source>
         <translation>Segundos en ejecución</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="20"/>
+        <location filename="../../demomode.ui" line="49"/>
         <source>Number of seconds to run an emulator in demo mode</source>
         <translation>Número de segundos para ejecutar un emulador en modo demostración</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="277"/>
+        <location filename="../../demomode.ui" line="26"/>
         <source>Category filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="284"/>
+        <location filename="../../demomode.ui" line="132"/>
         <source>Driver status</source>
         <translation type="unfinished">Estado del driver</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="291"/>
+        <location filename="../../demomode.ui" line="165"/>
+        <source>Name filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="285"/>
         <source>Choose the driver maturity states for sets to be included in the demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="295"/>
-        <location filename="../../demomode.cpp" line="219"/>
-        <location filename="../../demomode.cpp" line="222"/>
+        <location filename="../../demomode.ui" line="289"/>
+        <location filename="../../demomode.cpp" line="231"/>
+        <location filename="../../demomode.cpp" line="234"/>
         <source>good</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="300"/>
+        <location filename="../../demomode.ui" line="294"/>
         <source>good + preliminary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="305"/>
+        <location filename="../../demomode.ui" line="299"/>
         <source>good + preliminary + imperfect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="330"/>
+        <location filename="../../demomode.ui" line="320"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
         <translation>Iniciar emuladores a pantalla completa (o usar una ventana)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="333"/>
+        <location filename="../../demomode.ui" line="323"/>
         <source>Full screen</source>
         <translation>Pantalla completa</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="369"/>
+        <location filename="../../demomode.ui" line="382"/>
         <source>Launch sets sequentially rather than randomly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="372"/>
+        <location filename="../../demomode.ui" line="385"/>
         <source>Sequential</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="264"/>
+        <location filename="../../demomode.ui" line="398"/>
+        <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="313"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="346"/>
+        <location filename="../../demomode.ui" line="336"/>
         <source>Maximize emulators when in windowed mode</source>
         <translation>Maximizar los emuladores en el modo ventana</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="349"/>
+        <location filename="../../demomode.ui" line="339"/>
         <source>Maximized</source>
         <translation>Maximizado</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="359"/>
+        <location filename="../../demomode.ui" line="349"/>
         <source>Embed windowed emulators</source>
         <translation>Empotrar la ventana del emulador</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="362"/>
+        <location filename="../../demomode.ui" line="352"/>
         <source>Embedded</source>
         <translation>Empotrado</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="313"/>
+        <location filename="../../demomode.ui" line="359"/>
         <source>Use only tagged games</source>
         <translation>Usar solo juegos etiquetados</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="316"/>
+        <location filename="../../demomode.ui" line="362"/>
         <source>Tagged</source>
         <translation>Etiquetado</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="23"/>
-        <location filename="../../demomode.ui" line="200"/>
+        <location filename="../../demomode.ui" line="52"/>
+        <location filename="../../demomode.ui" line="103"/>
         <source> s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="323"/>
+        <location filename="../../demomode.ui" line="375"/>
         <source>Options</source>
         <translation type="unfinished">Opciones</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="248"/>
+        <location filename="../../demomode.ui" line="71"/>
         <source>Close this dialog (and stop running demo)</source>
         <translation>Cerrar esta ventana (y parar la demostración)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="251"/>
+        <location filename="../../demomode.ui" line="74"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="187"/>
-        <location filename="../../demomode.cpp" line="169"/>
+        <location filename="../../demomode.ui" line="39"/>
+        <location filename="../../demomode.cpp" line="174"/>
         <source>Run demo now</source>
         <translation>Ejecutar la demostración ahora</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="190"/>
-        <location filename="../../demomode.cpp" line="168"/>
+        <location filename="../../demomode.ui" line="42"/>
+        <location filename="../../demomode.cpp" line="173"/>
         <source>Run &amp;demo</source>
         <translation>Ejecutar &amp;demo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="222"/>
+        <location filename="../../demomode.ui" line="158"/>
         <source>Pause (seconds)</source>
         <translation>Pausa (segundos)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="197"/>
+        <location filename="../../demomode.ui" line="100"/>
         <source>Number of seconds to pause between emulator runs</source>
         <translation>Número de segundos de pausa entre un emulador y otro</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="119"/>
-        <location filename="../../demomode.cpp" line="146"/>
-        <location filename="../../demomode.cpp" line="148"/>
-        <location filename="../../demomode.cpp" line="210"/>
+        <location filename="../../demomode.cpp" line="124"/>
+        <location filename="../../demomode.cpp" line="151"/>
+        <location filename="../../demomode.cpp" line="153"/>
+        <location filename="../../demomode.cpp" line="222"/>
         <source>?</source>
         <translation type="unfinished">¿?</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="166"/>
+        <location filename="../../demomode.cpp" line="171"/>
         <source>demo mode stopped</source>
         <translation>modo demo parado</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="186"/>
+        <location filename="../../demomode.cpp" line="191"/>
         <source>please wait for reload to finish and try again</source>
         <translation>por favor espera a que finalice la recarga y vuelve a intentarlo</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="190"/>
+        <location filename="../../demomode.cpp" line="195"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>por favor espera a que finalice la verificación de las ROM y vuelve a intentarlo</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="219"/>
+        <location filename="../../demomode.cpp" line="215"/>
+        <source>WARNING: demo mode: the name filter regular expression is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.cpp" line="231"/>
         <source>preliminary</source>
         <translation type="unfinished">preliminar</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="252"/>
+        <location filename="../../demomode.cpp" line="264"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>modo demo comenzado -- %n juego seleccionados por filtro</numerusform>
@@ -1798,22 +1813,22 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="254"/>
+        <location filename="../../demomode.cpp" line="266"/>
         <source>demo mode cannot start -- no games selected by filter</source>
         <translation>no se puede iniciar el modo demo -- no hay juegos seleccionados por filtro</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="259"/>
+        <location filename="../../demomode.cpp" line="271"/>
         <source>Stop &amp;demo</source>
         <translation>Parar &amp;demo</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="260"/>
+        <location filename="../../demomode.cpp" line="272"/>
         <source>Stop demo now</source>
         <translation>Parar demo ahora</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="329"/>
+        <location filename="../../demomode.cpp" line="341"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>comenzando emulacion en modo demo para &apos;%1&apos;</translation>
     </message>
