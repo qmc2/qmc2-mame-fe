@@ -138,6 +138,7 @@ void ImageCheckerThread::run()
 						if ( !readerError.isEmpty() ) {
 							emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
 							badList << gameName;
+							badFileList << fileName;
 						} else
 							emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 						missingCount++;
@@ -146,20 +147,22 @@ void ImageCheckerThread::run()
 
 					// it can happen that the work-unit grows above the 'limit' so we need to report our intermediate results in order to update the GUI
 					if ( foundList.count() > QMC2_IMGCHK_WORKUNIT_SIZE || missingList.count() > QMC2_IMGCHK_WORKUNIT_SIZE ) {
-						emit resultsReady(foundList, missingList, badList);
+						emit resultsReady(foundList, missingList, badList, badFileList);
 						foundList.clear();
 						missingList.clear();
 						badList.clear();
+						badFileList.clear();
 					}
 				}
 				workUnit.clear();
 				workUnitMutex.unlock();
 
 				if ( !foundList.isEmpty() || !missingList.isEmpty() ) {
-					emit resultsReady(foundList, missingList, badList);
+					emit resultsReady(foundList, missingList, badList, badFileList);
 					foundList.clear();
 					missingList.clear();
 					badList.clear();
+					badFileList.clear();
 				}
 			}
 		}
@@ -192,6 +195,11 @@ ImageChecker::ImageChecker(QWidget *parent)
 	foundCount = missingCount = badCount = passNumber = 0;
 	labelFound->setText(tr("Found:") + " 0");
 	labelMissing->setText(tr("Missing:") + " 0");
+	toolButtonBad->setText(tr("Bad:") + " 0");
+	toolButtonBad->setChecked(false);
+	toolButtonBad->setEnabled(false);
+	toolButtonRemoveBad->setEnabled(false);
+	toolButtonRemoveObsolete->setEnabled(false);
 	labelObsolete->setText(tr("Obsolete:") + " 0");
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(updateResults()));
 
@@ -249,6 +257,8 @@ void ImageChecker::adjustIconSizes()
 	toolButtonClear->setIconSize(iconSize);
 	toolButtonSaveLog->setIconSize(iconSize);
 	toolButtonRemoveObsolete->setIconSize(iconSize);
+	toolButtonBad->setIconSize(iconSize);
+	toolButtonRemoveBad->setIconSize(iconSize);
 	listWidgetFound->setIconSize(iconSize);
 	listWidgetMissing->setIconSize(iconSize);
 	listWidgetObsolete->setIconSize(iconSize);
@@ -256,6 +266,26 @@ void ImageChecker::adjustIconSizes()
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
+}
+
+void ImageChecker::on_toolButtonBad_toggled(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::on_toolButtonBad_toggled(bool checked = %1)").arg(checked ? "true" : "false"));
+#endif
+
+	int row = listWidgetMissing->currentItem() ? listWidgetMissing->currentRow() : 0;
+	for (int i = listWidgetMissing->count() - 1; i >= 0; i--) {
+		QListWidgetItem *item = listWidgetMissing->item(i);
+		if ( checked )
+			item->setHidden(item->icon().isNull());
+		else
+			item->setHidden(false);
+	}
+	listWidgetMissing->blockSignals(true);
+	listWidgetMissing->setCurrentRow(row);
+	listWidgetMissing->blockSignals(false);
+	listWidgetMissing->scrollToItem(listWidgetMissing->item(row), QAbstractItemView::PositionAtCenter);
 }
 
 void ImageChecker::on_listWidgetFound_itemSelectionChanged()
@@ -360,6 +390,8 @@ void ImageChecker::startStop()
 			updateTimer.stop();
 			enableWidgets(true);
 			avgScanSpeed = 0.0;
+			toolButtonBad->setEnabled(badCount > 0);
+			toolButtonRemoveBad->setEnabled(badCount > 0);
 			passNumber = foundCount = missingCount = badCount = 0;
 		}
 	} else {
@@ -405,7 +437,7 @@ void ImageChecker::startStop()
 			for (int t = 0; t < spinBoxThreads->value(); t++) {
 				ImageCheckerThread *thread = new ImageCheckerThread(t, imageWidget, this);
 				connect(thread, SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
-				connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &, const QStringList &)));
+				connect(thread, SIGNAL(resultsReady(const QStringList &, const QStringList &, const QStringList &, const QStringList &)), this, SLOT(resultsReady(const QStringList &, const QStringList &, const QStringList &, const QStringList &)));
 				threadMap[t] = thread;
 				thread->start();
 			}
@@ -417,6 +449,11 @@ void ImageChecker::startStop()
 		labelFound->setText(tr("Found:") + " 0");
 		listWidgetMissing->clear();
 		labelMissing->setText(tr("Missing:") + " 0");
+		toolButtonBad->setText(tr("Bad:") + " 0");
+		toolButtonBad->setChecked(false);
+		toolButtonBad->setEnabled(false);
+		toolButtonRemoveBad->setEnabled(false);
+		toolButtonRemoveObsolete->setEnabled(false);
 		listWidgetObsolete->clear();
 		labelObsolete->setText(tr("Obsolete:") + " 0");
 		progressBar->setRange(0, qmc2GamelistItemMap.count());
@@ -428,6 +465,7 @@ void ImageChecker::startStop()
 		bufferedFoundList.clear();
 		bufferedMissingList.clear();
 		bufferedBadList.clear();
+		bufferedBadFileList.clear();
 		QTimer::singleShot(0, this, SLOT(feedWorkerThreads()));
 		updateTimer.start(QMC2_CHECK_UPDATE_FAST);
 		checkTimer.start();
@@ -587,6 +625,11 @@ void ImageChecker::on_toolButtonClear_clicked()
 	labelFound->setText(tr("Found:") + " 0");
 	listWidgetMissing->clear();
 	labelMissing->setText(tr("Missing:") + " 0");
+	toolButtonBad->setText(tr("Bad:") + " 0");
+	toolButtonBad->setChecked(false);
+	toolButtonBad->setEnabled(false);
+	toolButtonRemoveBad->setEnabled(false);
+	toolButtonRemoveObsolete->setEnabled(false);
 	listWidgetObsolete->clear();
 	labelObsolete->setText(tr("Obsolete:") + " 0");
 	plainTextEditLog->clear();
@@ -620,6 +663,132 @@ void ImageChecker::on_toolButtonSaveLog_clicked()
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
 			log(tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
+		}
+	}
+}
+
+void ImageChecker::on_toolButtonRemoveBad_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonRemoveBad_clicked()");
+#endif
+
+	ImageWidget *imageWidget;
+	switch ( currentImageType ) {
+		case QMC2_IMGCHK_INDEX_PREVIEW:
+			imageWidget = qmc2Preview;
+			break;
+		case QMC2_IMGCHK_INDEX_FLYER:
+			imageWidget = qmc2Flyer;
+			break;
+		case QMC2_IMGCHK_INDEX_CABINET:
+			imageWidget = qmc2Cabinet;
+			break;
+		case QMC2_IMGCHK_INDEX_MARQUEE:
+			imageWidget = qmc2Marquee;
+			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		case QMC2_IMGCHK_INDEX_CONTROLLER:
+			imageWidget = qmc2Controller;
+			break;
+		case QMC2_IMGCHK_INDEX_TITLE:
+			imageWidget = qmc2Title;
+			break;
+#endif
+		case QMC2_IMGCHK_INDEX_PCB:
+			imageWidget = qmc2PCB;
+			break;
+		case QMC2_IMGCHK_INDEX_ICON:
+		default:
+			imageWidget = NULL;
+			break;
+	}
+
+	if ( imageWidget ) {
+		QStringList pathsToRemove;
+		QList<int> badImageRows;
+		for (int i = 0; i < listWidgetMissing->count(); i++) {
+			QListWidgetItem *item = listWidgetMissing->item(i);
+			if ( !item->icon().isNull() ) {
+				badImageRows << i;
+				pathsToRemove << item->whatsThis();
+			}
+		}
+
+		int itemCount = 0;
+		if ( imageWidget->useZip() ) {
+			// zipped images
+#if defined(Q_OS_WIN)
+			QString command = "cmd.exe";
+			QStringList args;
+			args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+			     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#else
+			QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+			QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#endif
+			QString fullCommandString = command;
+			for (int i = 0; i < args.count(); i++) {
+				if ( args[i] == "$ARCHIVE$" ) {
+#if defined(Q_OS_WIN)
+					QString zipFile = imageWidget->imageZip();
+					args[i] = zipFile.replace('/', '\\');
+#else
+					args[i] = imageWidget->imageZip();
+#endif
+				} else if ( args[i] == "$FILELIST$" ) {
+					args.removeAt(i);
+					args << pathsToRemove;
+				}
+			}
+			foreach (QString s, args) {
+				if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+					s = "\"" + s + "\"";
+				fullCommandString += " " + s;
+			}
+			log(tr("Running ZIP tool to remove bad image files, command = '%1'").arg(fullCommandString));
+			unzClose(imageWidget->imageFile);
+			ToolExecutor zipRemovalTool(this, command, args);
+			zipRemovalTool.exec();
+			imageWidget->imageFile = unzOpen(imageWidget->imageZip().toLocal8Bit());
+			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
+				listWidgetMissing->setUpdatesEnabled(false);
+				for (int i = badImageRows.count() - 1; i >= 0; i--) {
+					QListWidgetItem *itemToDelete = listWidgetMissing->takeItem(badImageRows[i]);
+					if ( itemToDelete )
+						delete itemToDelete;
+				}
+				listWidgetMissing->setUpdatesEnabled(true);
+				if ( toolButtonBad->isChecked() ) on_toolButtonBad_toggled(false);
+				toolButtonRemoveBad->setEnabled(false);
+				toolButtonBad->setEnabled(false);
+				toolButtonBad->setChecked(false);
+			} else
+				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+		} else {
+			// unzipped images
+			listWidgetMissing->setUpdatesEnabled(false);
+			int filesRemoved = 0;
+			for (int i = badImageRows.count() - 1; i >= 0; i--) {
+				QString fileName = pathsToRemove[i];
+				QFile f(fileName);
+				if ( f.remove() ) {
+					log(tr("Bad image file '%1' removed").arg(fileName));
+					filesRemoved++;
+					QListWidgetItem *itemToDelete = listWidgetMissing->takeItem(badImageRows[i]);
+					if ( itemToDelete )
+						delete itemToDelete;
+				} else
+					log(tr("Bad image file '%1' cannot be removed, please check permissions").arg(fileName));
+				if ( itemCount++ % 25 )
+					qApp->processEvents();
+			}
+			listWidgetMissing->setUpdatesEnabled(true);
+			int filesRemaining = badImageRows.count() - filesRemoved;
+			toolButtonBad->setText(tr("Bad:") + " " + QString::number(filesRemaining));
+			if ( filesRemaining <= 0 && toolButtonBad->isChecked() ) on_toolButtonBad_toggled(false);
+			toolButtonBad->setEnabled(filesRemaining > 0);
+			toolButtonRemoveBad->setEnabled(filesRemaining > 0);
 		}
 	}
 }
@@ -705,10 +874,13 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			ToolExecutor zipRemovalTool(this, command, args);
 			zipRemovalTool.exec();
 			imageWidget->imageFile = unzOpen(imageWidget->imageZip().toLocal8Bit());
-			listWidgetObsolete->setUpdatesEnabled(false);
-			listWidgetObsolete->clear();
-			checkObsoleteFiles();
-			listWidgetObsolete->setUpdatesEnabled(true);
+			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
+				listWidgetObsolete->setUpdatesEnabled(false);
+				listWidgetObsolete->clear();
+				checkObsoleteFiles();
+				listWidgetObsolete->setUpdatesEnabled(true);
+			} else
+				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 		} else {
 			// unzipped images
 			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
@@ -767,10 +939,13 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			ToolExecutor zipRemovalTool(this, command, args);
 			zipRemovalTool.exec();
 			qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toAscii());
-			listWidgetObsolete->setUpdatesEnabled(false);
-			listWidgetObsolete->clear();
-			checkObsoleteFiles();
-			listWidgetObsolete->setUpdatesEnabled(true);
+			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
+				listWidgetObsolete->setUpdatesEnabled(false);
+				listWidgetObsolete->clear();
+				checkObsoleteFiles();
+				listWidgetObsolete->setUpdatesEnabled(true);
+			} else
+				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 		} else {
 			// unzipped icons
 			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
@@ -799,6 +974,8 @@ void ImageChecker::on_comboBoxImageType_currentIndexChanged(int index)
 #endif
 
 	spinBoxThreads->setEnabled(index != QMC2_IMGCHK_INDEX_ICON);
+	toolButtonBad->setVisible(index != QMC2_IMGCHK_INDEX_ICON);
+	toolButtonRemoveBad->setVisible(index != QMC2_IMGCHK_INDEX_ICON);
 }
 
 void ImageChecker::log(const QString &message)
@@ -806,15 +983,16 @@ void ImageChecker::log(const QString &message)
 	plainTextEditLog->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
-void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList, const QStringList &badList)
+void ImageChecker::resultsReady(const QStringList &foundList, const QStringList &missingList, const QStringList &badList, const QStringList &badFileList)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::resultsReady(const QStringList &foundList = ..., const QStringList &missingList = ..., const QStringList &badList = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::resultsReady(const QStringList &foundList = ..., const QStringList &missingList = ..., const QStringList &badList = ..., const QStringList &badFileList = ...)");
 #endif
 
 	bufferedFoundList += foundList;
 	bufferedMissingList += missingList;
 	bufferedBadList += badList;
+	bufferedBadFileList += badFileList;
 	progressBar->setValue(progressBar->value() + foundList.count() + missingList.count());
 	progressBar->update();
 }
@@ -1027,16 +1205,18 @@ void ImageChecker::updateResults()
 	bufferedObsoleteList.clear();
 	if ( !bufferedBadList.isEmpty() ) {
 		QString searchRegExp = "(" + bufferedBadList.join("|") + ")";
-		foreach (QListWidgetItem *item, listWidgetMissing->findItems(searchRegExp, Qt::MatchRegExp))
+		foreach (QListWidgetItem *item, listWidgetMissing->findItems(searchRegExp, Qt::MatchRegExp)) {
 			item->setIcon(QIcon(QString::fromUtf8(":/data/img/warning.png")));
+			item->setWhatsThis(bufferedBadFileList[bufferedBadList.indexOf(item->text())]);
+		}
 		badCount += bufferedBadList.count();
-		bufferedBadList.clear();
 	}
+	bufferedBadList.clear();
+	bufferedBadFileList.clear();
 	labelFound->setText(tr("Found:") + " " + QString::number(listWidgetFound->count()));
+	labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
 	if ( badCount > 0 )
-		labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()) + " (" + tr("Bad:") + " " + QString::number(badCount) + ")");
-	else
-		labelMissing->setText(tr("Missing:") + " " + QString::number(listWidgetMissing->count()));
+		toolButtonBad->setText(tr("Bad:") + " " + QString::number(badCount));
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
 
 	qApp->processEvents();

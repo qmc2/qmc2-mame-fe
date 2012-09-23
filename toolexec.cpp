@@ -18,6 +18,9 @@ ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args,
   setupUi(this);
   setAttribute(Qt::WA_ShowWithoutActivating);
 
+  toolExitCode = -1;
+  toolExitStatus = QProcess::CrashExit;
+
   QFont f;
   f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   QFont logFont = f;
@@ -77,6 +80,8 @@ void ToolExecutor::toolFinished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::toolFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
 #endif
 
+  toolExitCode = exitCode;
+  toolExitStatus = exitStatus;
   textBrowserToolOutput->append(tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
