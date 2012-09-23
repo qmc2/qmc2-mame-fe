@@ -33,6 +33,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   checkBoxEmbedded->setVisible(false);
 #endif
 
+  adjustIconSizes();
   clearStatus();
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
@@ -365,6 +366,8 @@ void DemoModeDialog::adjustIconSizes()
   toolButtonSelectN->setIconSize(iconSize);
   toolButtonSelectU->setIconSize(iconSize);
   toolButtonClearNameFilter->setIconSize(iconSize);
+
+  pushButtonRunDemo->setMinimumHeight(fm.height() * 3);
 
   adjustSize();
 }
