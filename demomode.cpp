@@ -52,6 +52,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
   spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
   comboBoxDriverStatus->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/DriverStatus", QMC2_DEMO_MODE_DRV_STATUS_GOOD).toInt());
+  lineEditNameFilter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/NameFilter", QString()).toString());
 
   QTimer::singleShot(0, this, SLOT(updateCategoryFilter()));
 }
@@ -101,6 +102,10 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/DriverStatus", comboBoxDriverStatus->currentIndex());
+  if ( lineEditNameFilter->text().isEmpty() )
+    qmc2Config->remove(QMC2_FRONTEND_PREFIX + "DemoMode/NameFilter");
+  else
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/NameFilter", lineEditNameFilter->text());
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry", saveGeometry());
 }
@@ -204,7 +209,14 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     } else {
 	    QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
 	    int minDrvStatus = comboBoxDriverStatus->currentIndex();
+	    QString nameFilter = lineEditNameFilter->text();
+	    QRegExp nameFilterRegExp(nameFilter);
+	    if ( !nameFilter.isEmpty() && !nameFilterRegExp.isValid() )
+		    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: demo mode: the name filter regular expression is invalid"));
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
+		    if ( !nameFilter.isEmpty() )
+			    if ( game.indexOf(nameFilterRegExp) < 0 )
+				    continue;
 		    QString category = qmc2CategoryMap[game];
 		    if ( category.isEmpty() )
 			    category = tr("?");
@@ -352,6 +364,7 @@ void DemoModeDialog::adjustIconSizes()
   toolButtonSelectI->setIconSize(iconSize);
   toolButtonSelectN->setIconSize(iconSize);
   toolButtonSelectU->setIconSize(iconSize);
+  toolButtonClearNameFilter->setIconSize(iconSize);
 
   adjustSize();
 }
