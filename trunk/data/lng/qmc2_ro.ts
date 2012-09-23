@@ -1592,7 +1592,7 @@ p, li { white-space: pre-wrap; }
         <translation>Modul demo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="229"/>
+        <location filename="../../demomode.ui" line="235"/>
         <source>ROM state filter</source>
         <translation>Filtru de stare ROM</translation>
     </message>
@@ -1632,155 +1632,165 @@ p, li { white-space: pre-wrap; }
         <translation>Numar de secunde de a rula un emulator in modul demo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="271"/>
+        <location filename="../../demomode.ui" line="277"/>
         <source>Category filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="278"/>
+        <location filename="../../demomode.ui" line="284"/>
         <source>Driver status</source>
         <translation type="unfinished">Status driver</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="285"/>
+        <location filename="../../demomode.ui" line="291"/>
         <source>Choose the driver maturity states for sets to be included in the demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="289"/>
-        <location filename="../../demomode.cpp" line="215"/>
-        <location filename="../../demomode.cpp" line="218"/>
+        <location filename="../../demomode.ui" line="295"/>
+        <location filename="../../demomode.cpp" line="219"/>
+        <location filename="../../demomode.cpp" line="222"/>
         <source>good</source>
         <translation type="unfinished">bun</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="294"/>
+        <location filename="../../demomode.ui" line="300"/>
         <source>good + preliminary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="299"/>
+        <location filename="../../demomode.ui" line="305"/>
         <source>good + preliminary + imperfect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="324"/>
+        <location filename="../../demomode.ui" line="330"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
         <translation>Porneste emulatoarele in modulul ecran complet(in caz contrar foloseste modulul fereastra)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="327"/>
+        <location filename="../../demomode.ui" line="333"/>
         <source>Full screen</source>
         <translation>Ecran complet</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="258"/>
+        <location filename="../../demomode.ui" line="369"/>
+        <source>Launch sets sequentially rather than randomly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="372"/>
+        <source>Sequential</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="264"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="340"/>
+        <location filename="../../demomode.ui" line="346"/>
         <source>Maximize emulators when in windowed mode</source>
         <translation>Maximizeaza emulatoarele in modulul fereastra</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="343"/>
+        <location filename="../../demomode.ui" line="349"/>
         <source>Maximized</source>
         <translation>Maximizat</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="353"/>
+        <location filename="../../demomode.ui" line="359"/>
         <source>Embed windowed emulators</source>
         <translation>Incorporeaza emulatoare in fereastra</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="356"/>
+        <location filename="../../demomode.ui" line="362"/>
         <source>Embedded</source>
         <translation>Incorporat</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="307"/>
+        <location filename="../../demomode.ui" line="313"/>
         <source>Use only tagged games</source>
         <translation>Foloseste doar jocuri tag-uite</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="310"/>
+        <location filename="../../demomode.ui" line="316"/>
         <source>Tagged</source>
         <translation>Tag-uit</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="23"/>
-        <location filename="../../demomode.ui" line="194"/>
+        <location filename="../../demomode.ui" line="200"/>
         <source> s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="317"/>
+        <location filename="../../demomode.ui" line="323"/>
         <source>Options</source>
         <translation type="unfinished">Optiuni</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="242"/>
+        <location filename="../../demomode.ui" line="248"/>
         <source>Close this dialog (and stop running demo)</source>
         <translation>Inchide acest dialog(si opreste rularea demo-ului)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="245"/>
+        <location filename="../../demomode.ui" line="251"/>
         <source>&amp;Close</source>
         <translation>&amp;Inchide</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="181"/>
-        <location filename="../../demomode.cpp" line="167"/>
+        <location filename="../../demomode.ui" line="187"/>
+        <location filename="../../demomode.cpp" line="169"/>
         <source>Run demo now</source>
         <translation>Porneste demo acum</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="184"/>
-        <location filename="../../demomode.cpp" line="166"/>
+        <location filename="../../demomode.ui" line="190"/>
+        <location filename="../../demomode.cpp" line="168"/>
         <source>Run &amp;demo</source>
         <translation>Porneste &amp;demo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="216"/>
+        <location filename="../../demomode.ui" line="222"/>
         <source>Pause (seconds)</source>
         <translation>Pauza (secunde)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="191"/>
+        <location filename="../../demomode.ui" line="197"/>
         <source>Number of seconds to pause between emulator runs</source>
         <translation>Numar de secunde sa pauzez intre rularile de emulatoare</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="117"/>
-        <location filename="../../demomode.cpp" line="144"/>
+        <location filename="../../demomode.cpp" line="119"/>
         <location filename="../../demomode.cpp" line="146"/>
-        <location filename="../../demomode.cpp" line="206"/>
+        <location filename="../../demomode.cpp" line="148"/>
+        <location filename="../../demomode.cpp" line="210"/>
         <source>?</source>
         <translation type="unfinished">?</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="164"/>
+        <location filename="../../demomode.cpp" line="166"/>
         <source>demo mode stopped</source>
         <translation>mod demo oprit</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="183"/>
+        <location filename="../../demomode.cpp" line="186"/>
         <source>please wait for reload to finish and try again</source>
         <translation>va rog asteptati sa se termine reincarcarea si incercati din nou</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="187"/>
+        <location filename="../../demomode.cpp" line="190"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>va rog asteptati verificarea ROM sa se termine si incercati din nou</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="215"/>
+        <location filename="../../demomode.cpp" line="219"/>
         <source>preliminary</source>
         <translation type="unfinished">preliminar</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="248"/>
+        <location filename="../../demomode.cpp" line="252"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>mod demo pornit - %n joc(uri) selectate de filtru</numerusform>
@@ -1789,22 +1799,22 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="250"/>
+        <location filename="../../demomode.cpp" line="254"/>
         <source>demo mode cannot start -- no games selected by filter</source>
         <translation>mod demo nu poate porni - niciun joc nu este selectat de filtru</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="254"/>
+        <location filename="../../demomode.cpp" line="259"/>
         <source>Stop &amp;demo</source>
         <translation>Opreste &amp;demo</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="255"/>
+        <location filename="../../demomode.cpp" line="260"/>
         <source>Stop demo now</source>
         <translation>Opreste demo acum</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="318"/>
+        <location filename="../../demomode.cpp" line="329"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>porneste emularea in mod demo pentru &apos;%1&apos;</translation>
     </message>
