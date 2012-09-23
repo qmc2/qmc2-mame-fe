@@ -12,6 +12,8 @@ class ToolExecutor : public QDialog, public Ui::ToolExecutor
     QString toolCommand;
     QStringList toolArgs;
     QProcess *toolProc;
+    int toolExitCode;
+    QProcess::ExitStatus toolExitStatus;
 
     ToolExecutor(QWidget *, QString &, QStringList &, QString workDir = QString());
     ~ToolExecutor();
