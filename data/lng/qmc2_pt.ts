@@ -1609,7 +1609,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.cpp" line="146"/>
         <location filename="../../demomode.cpp" line="206"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="183"/>
@@ -1624,7 +1624,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="215"/>
         <source>preliminary</source>
-        <translation type="unfinished">preliminar</translation>
+        <translation>preliminar</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="248"/>
@@ -1722,34 +1722,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="271"/>
         <source>Category filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de categoria</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="278"/>
         <source>Driver status</source>
-        <translation type="unfinished">Estado do driver</translation>
+        <translation>Estado do driver</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="285"/>
         <source>Choose the driver maturity states for sets to be included in the demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha os estados de maturidade dos drivers para os conjuntos a serem incluídos na demonstração</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="289"/>
         <location filename="../../demomode.cpp" line="215"/>
         <location filename="../../demomode.cpp" line="218"/>
         <source>good</source>
-        <translation type="unfinished">bom</translation>
+        <translation>bom</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="294"/>
         <source>good + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bom + preliminar</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="299"/>
         <source>good + preliminary + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bom + preliminar + imperfeito</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="324"/>
@@ -1764,7 +1764,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="258"/>
         <source>Select / deselect the categories you want to include / exclude</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar / deselecionar as categorias que você quer incluir / excluir</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="340"/>
@@ -1790,12 +1790,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.ui" line="23"/>
         <location filename="../../demomode.ui" line="194"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="317"/>
         <source>Options</source>
-        <translation type="unfinished">Opções</translation>
+        <translation>Opções</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="242"/>
@@ -15056,9 +15056,9 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1082"/>
         <source>%n set(s) remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n conjunto restante</numerusform>
+            <numerusform>%n conjuntos restantes</numerusform>
         </translation>
     </message>
     <message>
@@ -15468,12 +15468,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2705"/>
         <source>set rewriter: writing &apos;%1&apos; (size: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: escrevendo &apos;%1&apos; (tamanho: %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2725"/>
         <source>set rewriter: WARNING: failed to write &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: falha ao escrever &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2834"/>
@@ -16254,7 +16254,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1139"/>
         <source>Produce sets in individual sub-directories (not recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Produzir conjuntos em sub-diretórios individuais (não recomendado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1198"/>
