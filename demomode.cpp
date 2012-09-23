@@ -48,6 +48,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   checkBoxEmbedded->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", false).toBool());
 #endif
   checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
+  checkBoxSequential->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", false).toBool());
   spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
   spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
   comboBoxDriverStatus->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/DriverStatus", QMC2_DEMO_MODE_DRV_STATUS_GOOD).toInt());
@@ -93,9 +94,10 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/FullScreen", checkBoxFullScreen->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Maximized", checkBoxMaximized->isChecked());
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded",checkBoxEmbedded->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", checkBoxEmbedded->isChecked());
 #endif
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged",checkBoxTagged->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", checkBoxTagged->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", checkBoxSequential->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/DriverStatus", comboBoxDriverStatus->currentIndex());
@@ -165,8 +167,9 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     demoModeRunning = false;
     pushButtonRunDemo->setText(tr("Run &demo"));
     pushButtonRunDemo->setToolTip(tr("Run demo now"));
-    qmc2DemoGame = "";
+    qmc2DemoGame.clear();
     qmc2DemoArgs.clear();
+    seqNum = -1;
     if ( emuProcess ) {
       emuProcess->terminate();
       emuProcess = NULL;
@@ -188,6 +191,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
       return;
     }
     saveCategoryFilter();
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", checkBoxSequential->isChecked());
     selectedGames.clear();
     if ( checkBoxTagged->isChecked() ) {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
@@ -251,6 +255,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 	    return;
     }
     demoModeRunning = true;
+    seqNum = -1;
     pushButtonRunDemo->setText(tr("Stop &demo"));
     pushButtonRunDemo->setToolTip(tr("Stop demo now"));
     qmc2MainWindow->actionCheckROMs->setEnabled(false);
@@ -295,35 +300,41 @@ void DemoModeDialog::emuFinished(int exitCode, QProcess::ExitStatus exitStatus)
 void DemoModeDialog::startNextEmu()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::startNextEmu()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::startNextEmu()");
 #endif
 
-  if ( !demoModeRunning )
-    return;
+	if ( !demoModeRunning )
+		return;
 
-  qmc2DemoArgs.clear();
-  qmc2DemoArgs << "-str" << QString::number(spinBoxSecondsToRun->value());
-  emuProcess = NULL;
-  if ( checkBoxFullScreen->isChecked() ) {
-    qmc2DemoArgs << "-nowindow";
-  } else {
-    qmc2DemoArgs << "-window";
-    if ( checkBoxMaximized )
-      qmc2DemoArgs << "-maximize";
-    else
-      qmc2DemoArgs << "-nomaximize";
-  }
-  qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-  QString gameDescription = qmc2GamelistDescriptionMap[qmc2DemoGame];
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
-  setStatus(gameDescription);
+	qmc2DemoArgs.clear();
+	qmc2DemoArgs << "-str" << QString::number(spinBoxSecondsToRun->value());
+	emuProcess = NULL;
+	if ( checkBoxFullScreen->isChecked() )
+		qmc2DemoArgs << "-nowindow";
+	else {
+		qmc2DemoArgs << "-window";
+		if ( checkBoxMaximized )
+			qmc2DemoArgs << "-maximize";
+		else
+			qmc2DemoArgs << "-nomaximize";
+	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", false).toBool() ) {
+		seqNum++;
+		if ( seqNum > selectedGames.count() - 1 )
+			seqNum = 0;
+		qmc2DemoGame = selectedGames[seqNum];
+	} else
+		qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
+	QString gameDescription = qmc2GamelistDescriptionMap[qmc2DemoGame];
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
+	setStatus(gameDescription);
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
-  if ( checkBoxEmbedded->isChecked() && !checkBoxFullScreen->isChecked() )
-    QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered(bool)));
-  else
-    QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered(bool)));
+	if ( checkBoxEmbedded->isChecked() && !checkBoxFullScreen->isChecked() )
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered(bool)));
+	else
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered(bool)));
 #else
-  QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered(bool)));
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered(bool)));
 #endif
 }
 

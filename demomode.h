@@ -12,6 +12,7 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
     QStringList selectedGames;
     QProcess *emuProcess;
     bool demoModeRunning;
+    int seqNum;
 
     DemoModeDialog(QWidget *parent = 0);
     ~DemoModeDialog();
