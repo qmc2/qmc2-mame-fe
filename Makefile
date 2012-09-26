@@ -642,6 +642,18 @@ QMC2_EMULATOR = SDLUME
 endif
 endif
 
+ifneq '$(ARCH)' 'Windows'
+ifeq '$(QMC2_EMULATOR)' 'MAME'
+QMC2_EMULATOR = SDLMAME
+endif
+ifeq '$(QMC2_EMULATOR)' 'MESS'
+QMC2_EMULATOR = SDLMESS
+endif
+ifeq '$(QMC2_EMULATOR)' 'UME'
+QMC2_EMULATOR = SDLUME
+endif
+endif
+
 # associate icon files
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
