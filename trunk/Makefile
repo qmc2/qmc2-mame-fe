@@ -509,7 +509,7 @@ endif
 #
 ifndef MKSPEC
 ifeq '$(MINGW)' '1'
-MKSPEC = win32-g++
+MKSPEC = win32-g++-4.6
 else
 MKSPEC =
 endif
