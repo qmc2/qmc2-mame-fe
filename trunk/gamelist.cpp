@@ -512,9 +512,7 @@ void Gamelist::load()
   commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
 
-#if defined(QMC2_OS_WIN)
-  commandProc.setStandardErrorFile("NUL");
-#else
+#if !defined(QMC2_OS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
 #endif
 
