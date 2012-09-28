@@ -17278,7 +17278,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../samplechecker.cpp" line="250"/>
         <source>check pass 1: checking sample status</source>
-        <translation>Schritt 1: prüfe Sample-Status</translation>
+        <translation>Schritt 1: Prüfe Sample-Status</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="301"/>
@@ -17319,12 +17319,12 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../samplechecker.cpp" line="379"/>
         <source>Checking for obsolete files / folders</source>
-        <translation>Suche nach obsoleten Dateien / Ordnern</translation>
+        <translation>Suche nach überflüssigen Dateien / Ordnern</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="382"/>
         <source>check pass 2: checking for obsolete files / folders</source>
-        <translation>Schritt 2: suche nach obsoleten Dateien / Ordnern</translation>
+        <translation>Schritt 2: Suche nach überflüssigen Dateien / Ordnern</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="415"/>
