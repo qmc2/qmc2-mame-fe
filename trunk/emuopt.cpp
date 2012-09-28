@@ -1105,7 +1105,9 @@ void EmulatorOptions::checkTemplateMap()
   QStringList args;
   QProcess commandProc;
   commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
-#if !defined(QMC2_OS_WIN)
+#if defined(QMC2_OS_WIN)
+  commandProc.setStandardErrorFile("NUL");
+#else
   commandProc.setStandardErrorFile("/dev/null");
 #endif
 

@@ -512,7 +512,9 @@ void Gamelist::load()
   commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
 #endif
 
-#if !defined(QMC2_OS_WIN)
+#if defined(QMC2_OS_WIN)
+  commandProc.setStandardErrorFile("NUL");
+#else
   commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -639,9 +641,6 @@ void Gamelist::load()
   // supported games/machines
   args.clear();
   args << "-listfull";
-#if defined(QMC2_AUDIT_WILDCARD)
-  args << "*";
-#endif
   qApp->processEvents();
   commandProcStarted = false;
   retries = 0;
@@ -910,9 +909,6 @@ void Gamelist::load()
     command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
     args.clear();
     args << "-listxml";
-#if defined(QMC2_AUDIT_WILDCARD)
-    args << "*";
-#endif
 
     listXMLCache.open(QIODevice::WriteOnly | QIODevice::Text);
     if ( !listXMLCache.isOpen() ) {
@@ -1040,10 +1036,6 @@ void Gamelist::verify(bool currentOnly)
   args << "-verifyroms";
   if ( verifyCurrentOnly )
     args << checkedItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-#if defined(QMC2_AUDIT_WILDCARD)
-  else
-    args << "*";
-#endif
 
   verifyProc = new QProcess(this);
   connect(verifyProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(verifyError(QProcess::ProcessError)));
