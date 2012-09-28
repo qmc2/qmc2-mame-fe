@@ -153,16 +153,16 @@ void SampleChecker::verify()
 	toolButtonSamplesRemoveObsolete->setEnabled(false);
 	sampleMap.clear();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("preparing sample-check: parsing XML data for relevant sample information"));
-	progressBar->setRange(0, qmc2Gamelist->xmlLines.count());
+	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
+	progressBar->setRange(0, xmlLinesCount);
 	progressBar->setValue(0);
 	progressBar->setFormat(tr("Parsing XML data"));
-	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
 	QString currentGameName, currentSampleOf;
 	bool hasSamples = false;
 	int sampleCount = 0;
 	QMap<QString, int> sampleCountMap;
 	for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
-		progressBar->setValue(gameListPos);
+		progressBar->setValue(gameListPos + 1);
 		if ( gameListPos % QMC2_CHECK_UPDATE_FAST == 0 || gameListPos == xmlLinesCount - 1)
 			qApp->processEvents();
 		QString line = qmc2Gamelist->xmlLines[gameListPos];
@@ -175,40 +175,40 @@ void SampleChecker::verify()
 				currentGameName = line.mid(startIndex, endIndex - startIndex);
 			hasSamples = false;
 			sampleCount = 0;
-		}
-		startIndex = line.indexOf("sampleof=\"");
-		if ( startIndex >= 0 ) {
-			startIndex += 10;
-			endIndex = line.indexOf("\"", startIndex);
-			if ( endIndex >= 0 ) {
-				currentSampleOf = line.mid(startIndex, endIndex - startIndex);
-				if ( currentSampleOf == currentGameName )
-					currentSampleOf.clear();
+			startIndex = line.indexOf("sampleof=\"");
+			if ( startIndex >= 0 ) {
+				startIndex += 10;
+				endIndex = line.indexOf("\"", startIndex);
+				if ( endIndex >= 0 ) {
+					currentSampleOf = line.mid(startIndex, endIndex - startIndex);
+					if ( currentSampleOf == currentGameName )
+						currentSampleOf.clear();
+				}
+				hasSamples = true;
 			}
-			hasSamples = true;
-		}
-		if ( line.indexOf("<sample name=\"") >= 0 ) {
+		} else if ( line.indexOf("<sample name=\"") >= 0 ) {
 			hasSamples |= true;
 			sampleCount++;
-		}
-		startIndex = line.indexOf("</game>");
-		if ( startIndex >= 0 ) {
-			if ( !currentGameName.isEmpty() && hasSamples ) {
-				if ( currentSampleOf.isEmpty() ) {
-					sampleMap[currentGameName] = currentGameName;
-					sampleCountMap[currentGameName] = sampleCount;
-				} else {
-					if ( qmc2GamelistItemMap.contains(currentSampleOf) ) {
-						sampleMap[currentGameName] = currentSampleOf;
+		} else {
+			startIndex = line.indexOf("</game>");
+			if ( startIndex >= 0 ) {
+				if ( !currentGameName.isEmpty() && hasSamples ) {
+					if ( currentSampleOf.isEmpty() ) {
+						sampleMap[currentGameName] = currentGameName;
 						sampleCountMap[currentGameName] = sampleCount;
-					} else
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
+					} else {
+						if ( qmc2GamelistItemMap.contains(currentSampleOf) ) {
+							sampleMap[currentGameName] = currentSampleOf;
+							sampleCountMap[currentGameName] = sampleCount;
+						} else
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
+					}
 				}
+				currentGameName.clear();
+				currentSampleOf.clear();
+				hasSamples = false;
+				sampleCount = 0;
 			}
-			currentGameName.clear();
-			currentSampleOf.clear();
-			hasSamples = false;
-			sampleCount = 0;
 		}
 	}
 
@@ -252,6 +252,8 @@ void SampleChecker::verify()
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QString emuWorkDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
 	for (int i = 0; i < sampleSets.count() && !qmc2StopParser; i++) {
+		progressBar->setValue(i + 1);
+		QString sampleSet = sampleSets[i];
 		QProcess commandProc;
 #if defined(QMC2_SDLMESS)
 		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
@@ -279,7 +281,7 @@ void SampleChecker::verify()
 		QStringList args;
 		if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath") )
 			args << "-samplepath" << qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath").toString().replace("~", "$HOME");
-		args << "-verifysamples" << sampleSets[i];
+		args << "-verifysamples" << sampleSet;
 
 		bool commandProcStarted = false;
 		int retries = 0;
@@ -327,24 +329,23 @@ void SampleChecker::verify()
 				if ( !bufferLines.isEmpty() ) {
 					QString bufferLine = bufferLines[0].simplified().replace("\"", "");
 					if ( bufferLine.endsWith("is good") ) {
-						listWidgetSamplesGood->addItem(sampleSets[i]);
+						listWidgetSamplesGood->addItem(sampleSet);
 						labelSamplesGood->setText(tr("Good: %1").arg(listWidgetSamplesGood->count()));
 					} else if ( bufferLine.endsWith("is bad") || bufferLine.endsWith(", 0 were OK.") ) {
-						listWidgetSamplesBad->addItem(sampleSets[i]);
+						listWidgetSamplesBad->addItem(sampleSet);
 						labelSamplesBad->setText(tr("Bad: %1").arg(listWidgetSamplesBad->count()));
 					} else if ( bufferLine.endsWith("not found!") ) {
-						listWidgetSamplesMissing->addItem(sampleSets[i]);
+						listWidgetSamplesMissing->addItem(sampleSet);
 						labelSamplesMissing->setText(tr("Missing: %1").arg(listWidgetSamplesMissing->count()));
 					} else
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received unknown output when checking the sample status of '%1': '%2'").arg(sampleSets[i]).arg(bufferLine));
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received unknown output when checking the sample status of '%1': '%2'").arg(sampleSet).arg(bufferLine));
 					qApp->processEvents();
 				} else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received no output when checking the sample status of '%1'").arg(sampleSets[i]));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received no output when checking the sample status of '%1'").arg(sampleSet));
 			} else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received no output when checking the sample status of '%1'").arg(sampleSets[i]));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received no output when checking the sample status of '%1'").arg(sampleSet));
 		}
 		sampleTemp.remove();
-		progressBar->setValue(i + 1);
 	}
 
 	if ( !qmc2StopParser )
@@ -495,9 +496,9 @@ void SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()
 			} else
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("obsolete file '%1' cannot be removed, please check permissions").arg(fi.absoluteFilePath()));
 		}
-		if ( count++ % QMC2_CHECK_UPDATE_MIDDLE == 0 ) {
+		if ( count++ % QMC2_CHECK_UPDATE_MEDIUM == 0 ) {
 			listWidgetSamplesObsolete->setUpdatesEnabled(true);
-			listWidgetSamplesObsolete->viewport()->update();
+			listWidgetSamplesObsolete->update();
 			qApp->processEvents();
 			listWidgetSamplesObsolete->setUpdatesEnabled(false);
 		}
