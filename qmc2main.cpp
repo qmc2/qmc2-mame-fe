@@ -43,7 +43,7 @@
 #include "about.h"
 #include "welcome.h"
 #include "imagechecker.h"
-#include "sampcheck.h"
+#include "samplechecker.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
 #include "detailsetup.h"

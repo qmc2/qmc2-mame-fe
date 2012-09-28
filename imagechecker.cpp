@@ -893,7 +893,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 						delete itemToDelete;
 				} else
 					log(tr("Obsolete image file '%1' cannot be removed, please check permissions").arg(fileName));
-				if ( itemCount++ % 25 )
+				if ( itemCount++ % 25 == 0 )
 					qApp->processEvents();
 			}
 		}
@@ -958,7 +958,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 						delete itemToDelete;
 				} else
 					log(tr("Obsolete icon file '%1' cannot be removed, please check permissions").arg(fileName));
-				if ( itemCount++ % 25 )
+				if ( itemCount++ % 25 == 0 )
 					qApp->processEvents();
 			}
 		}

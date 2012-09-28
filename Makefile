@@ -369,17 +369,6 @@ ifndef VARIANT_LAUNCHER
 VARIANT_LAUNCHER = 1
 endif
 
-# >>> AUDIT_WILDCARD <<<
-#
-# Use wildcards (1) on 'full audit' calls (i.e. 'mame -listxml *') or not (0)?
-#
-# You normally don't need to enable this! It has been added for a single user's
-# strangely behaving system where this fixed his issues :)...
-#
-ifndef AUDIT_WILDCARD
-AUDIT_WILDCARD = 0
-endif
-
 # >>> BROWSER_EXTRAS <<<
 #
 # Enable (1) or disable (0) extra browser features such as QtWebKit's 'Web
@@ -748,10 +737,6 @@ endif
 
 ifeq '$(VARIANT_LAUNCHER)' '1'
 DEFINES += QMC2_VARIANT_LAUNCHER
-endif
-
-ifeq '$(AUDIT_WILDCARD)' '1'
-DEFINES += QMC2_AUDIT_WILDCARD
 endif
 
 ifeq '$(BROWSER_EXTRAS)' '1'
@@ -1406,7 +1391,6 @@ config:
 	@echo "ARCADE_OPENGL        Enable use of OpenGL for arcade mode (0, 1)  $(ARCADE_OPENGL)"
 	@echo "ARCH                 Target system's OS / architecture name       $(ARCH)"
 	@echo "AUDIOEFFECTDIALOGS   Enable audio-effect dialogs (0, 1)           $(AUDIOEFFECTDIALOGS)"
-	@echo "AUDIT_WILDCARD       Use wildcards on full audit calls (0, 1)     $(AUDIT_WILDCARD)"
 	@echo "AWK                  UNIX command awk                             $(AWK)"
 	@echo "BASENAME             UNIX command basename                        $(BASENAME)"
 	@echo "BINDIR               Binary directory for installation            $(BINDIR)"

@@ -60,6 +60,9 @@
 #endif
 #include "htmleditor/htmleditor.h"
 #include "customidsetup.h"
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+#include "samplechecker.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -158,6 +161,9 @@ extern QSplashScreen *qmc2SplashScreen;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 extern bool qmc2SortingActive;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+extern SampleChecker *qmc2SampleChecker;
+#endif
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -729,6 +735,10 @@ void Options::apply()
     qmc2DocBrowser->browser->toolButtonHome->setIconSize(iconSize);
     qmc2DocBrowser->browser->toolButtonLoad->setIconSize(iconSize);
   }
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  if ( qmc2SampleChecker )
+	  QTimer::singleShot(0, qmc2SampleChecker, SLOT(adjustIconSizes()));
+#endif
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioPreviousTrack->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioNextTrack->setIconSize(iconSize);

@@ -394,7 +394,9 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 #elif defined(QMC2_UME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
-#if !defined(QMC2_OS_WIN)
+#if defined(QMC2_OS_WIN)
+	commandProc.setStandardErrorFile("NUL");
+#else
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
 
@@ -589,8 +591,9 @@ bool MESSDeviceConfigurator::readSystemSlots()
 #elif defined(QMC2_UME)
 	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
 #endif
-
-#if !defined(QMC2_OS_WIN)
+#if defined(QMC2_OS_WIN)
+	commandProc.setStandardErrorFile("NUL");
+#else
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
 

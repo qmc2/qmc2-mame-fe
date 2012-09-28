@@ -330,7 +330,7 @@ bool Welcome::checkConfig()
 	  }
 #endif
 	  if ( oldMinor < 37 || (oldSvnRevision < 4160 && oldSvnRevision > 0) ) {
-		  // rename HtmlEditor/* keys
+		  // rename "HtmlEditor/*" keys
 		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom") ) {
 			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/SoftwareNotes/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom", 100).toInt());
 			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom");
@@ -355,6 +355,10 @@ bool Welcome::checkConfig()
 			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/SoftwareNotes/WidgetState", startupConfig->value(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
 			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState");
 		  }
+	  }
+	  if ( oldMinor < 38 || (oldSvnRevision < 4304 && oldSvnRevision > 0) ) {
+		  // remove no longer used "SampleChecker/SelectGame" key
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame");
 	  }
   }
 

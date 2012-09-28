@@ -292,6 +292,7 @@
 
 // update lists every how many milliseconds (for image & sample checkers)?
 #define QMC2_CHECK_UPDATE			1000
+#define QMC2_CHECK_UPDATE_MIDDLE		500
 #define QMC2_CHECK_UPDATE_FAST			250
 
 // maximium length of a single filename/path in a ZIP archive
