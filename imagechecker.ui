@@ -326,10 +326,7 @@
        <item row="1" column="2">
         <widget class="QListWidget" name="listWidgetObsolete">
          <property name="toolTip">
-          <string>Files which couldn't be matched to any set (and are thus obsolete)</string>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
+          <string>Files / folders which couldn't be matched to any set (and are thus obsolete)</string>
          </property>
         </widget>
        </item>
@@ -354,7 +351,7 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Remove obsolete files</string>
+            <string>Remove obsolete files / folders</string>
            </property>
            <property name="icon">
             <iconset resource="qmc2.qrc">

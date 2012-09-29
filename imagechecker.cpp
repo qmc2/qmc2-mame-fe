@@ -189,6 +189,10 @@ ImageChecker::ImageChecker(QWidget *parent)
 
 	setupUi(this);
 
+	progressBar->setFormat(tr("Idle"));
+	progressBar->setRange(-1, -1);
+	progressBar->setValue(-1);
+
 	startStopClicked = isRunning = false;
 	currentImageType = QMC2_IMGCHK_INDEX_NONE;
 	avgScanSpeed = 0.0;
@@ -364,9 +368,11 @@ void ImageChecker::startStop()
 				avgScanSpeed = 0.0;
 				foundCount = missingCount = 0;
 			}
+			/*
 			progressBar->setRange(0, qmc2GamelistItemMap.count());
 			progressBar->setValue(0);
 			progressBar->setFormat(tr("Pass #%1").arg(passNumber));
+			*/
 			bufferedObsoleteList.clear();
 			QTimer::singleShot(0, this, SLOT(checkObsoleteFiles()));
 			updateTimer.start(QMC2_CHECK_UPDATE_FAST);
@@ -387,6 +393,8 @@ void ImageChecker::startStop()
 			progressBar->setRange(0, 100);
 			progressBar->setValue(0);
 			progressBar->setFormat(tr("Idle"));
+			progressBar->setRange(-1, -1);
+			progressBar->setValue(-1);
 			updateTimer.stop();
 			enableWidgets(true);
 			avgScanSpeed = 0.0;
@@ -400,29 +408,37 @@ void ImageChecker::startStop()
 		plainTextEditLog->clear();
 		ImageWidget *imageWidget;
 		currentImageType = comboBoxImageType->currentIndex();
+		QString imageType;
 		switch ( currentImageType ) {
 			case QMC2_IMGCHK_INDEX_PREVIEW:
 				imageWidget = qmc2Preview;
+				imageType = tr("preview");
 				break;
 			case QMC2_IMGCHK_INDEX_FLYER:
 				imageWidget = qmc2Flyer;
+				imageType = tr("flyer");
 				break;
 			case QMC2_IMGCHK_INDEX_CABINET:
 				imageWidget = qmc2Cabinet;
+				imageType = tr("cabinet");
 				break;
 			case QMC2_IMGCHK_INDEX_MARQUEE:
 				imageWidget = qmc2Marquee;
+				imageType = tr("marquee");
 				break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			case QMC2_IMGCHK_INDEX_CONTROLLER:
 				imageWidget = qmc2Controller;
+				imageType = tr("controller");
 				break;
 			case QMC2_IMGCHK_INDEX_TITLE:
 				imageWidget = qmc2Title;
+				imageType = tr("title");
 				break;
 #endif
 			case QMC2_IMGCHK_INDEX_PCB:
 				imageWidget = qmc2PCB;
+				imageType = tr("PCB");
 				break;
 			case QMC2_IMGCHK_INDEX_ICON:
 			default:
@@ -461,7 +477,7 @@ void ImageChecker::startStop()
 		avgScanSpeed = 0.0;
 		foundCount = missingCount = badCount = 0;
 		passNumber = 1;
-		progressBar->setFormat(tr("Pass #%1").arg(passNumber));
+		progressBar->setFormat(imageWidget ? tr("Checking %1 images").arg(imageType) : tr("Checking icons"));
 		bufferedFoundList.clear();
 		bufferedMissingList.clear();
 		bufferedBadList.clear();
@@ -830,11 +846,15 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			break;
 	}
 
+	toolButtonRemoveObsolete->setEnabled(false);
 	int itemCount = 0;
 	if ( imageWidget ) {
 		// images
 		if ( imageWidget->useZip() ) {
 			// zipped images
+			progressBar->setFormat(tr("Executing ZIP tool"));
+			progressBar->setRange(0, 0);
+			progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
 			QString command = "cmd.exe";
 			QStringList args;
@@ -883,17 +903,32 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 		} else {
 			// unzipped images
+			progressBar->setFormat(tr("Removing obsolete files / folders"));
+			progressBar->setRange(0, listWidgetObsolete->count());
 			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
-				QString fileName = item->text();
-				QFile f(fileName);
-				if ( f.remove() ) {
-					log(tr("Obsolete image file '%1' removed").arg(fileName));
-					QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
-					if ( itemToDelete )
-						delete itemToDelete;
-				} else
-					log(tr("Obsolete image file '%1' cannot be removed, please check permissions").arg(fileName));
-				if ( itemCount++ % 25 == 0 )
+				progressBar->setValue(++itemCount);
+				QString path = item->text();
+				QFileInfo fi(path);
+				if ( fi.isDir() ) {
+					QDir d(path);
+					if ( d.rmdir(path) ) {
+						log(tr("Obsolete image folder '%1' removed").arg(d.absolutePath()));
+						QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+						if ( itemToDelete )
+							delete itemToDelete;
+					} else
+						log(tr("Obsolete image folder '%1' cannot be removed, please check permissions").arg(d.absolutePath()));
+				} else {
+					QFile f(path);
+					if ( f.remove() ) {
+						log(tr("Obsolete image file '%1' removed").arg(fi.absoluteFilePath()));
+						QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+						if ( itemToDelete )
+							delete itemToDelete;
+					} else
+						log(tr("Obsolete image file '%1' cannot be removed, please check permissions").arg(fi.absoluteFilePath()));
+				}
+				if ( itemCount % QMC2_CHECK_UPDATE_MEDIUM == 0 )
 					qApp->processEvents();
 			}
 		}
@@ -901,6 +936,9 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		// icons
 		if ( qmc2UseIconFile ) {
 			// zipped icons
+			progressBar->setFormat(tr("Executing ZIP tool"));
+			progressBar->setRange(0, 0);
+			progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
 			QString command = "cmd.exe";
 			QStringList args;
@@ -948,23 +986,41 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 		} else {
 			// unzipped icons
+			progressBar->setFormat(tr("Removing obsolete files / folders"));
+			progressBar->setRange(0, listWidgetObsolete->count());
 			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
-				QString fileName = item->text();
-				QFile f(fileName);
-				if ( f.remove() ) {
-					log(tr("Obsolete icon file '%1' removed").arg(fileName));
-					QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
-					if ( itemToDelete )
-						delete itemToDelete;
-				} else
-					log(tr("Obsolete icon file '%1' cannot be removed, please check permissions").arg(fileName));
-				if ( itemCount++ % 25 == 0 )
+				progressBar->setValue(++itemCount);
+				QString path = item->text();
+				QFileInfo fi(path);
+				if ( fi.isDir() ) {
+					QDir d(path);
+					if ( d.rmdir(path) ) {
+						log(tr("Obsolete icon folder '%1' removed").arg(d.absolutePath()));
+						QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+						if ( itemToDelete )
+							delete itemToDelete;
+					} else
+						log(tr("Obsolete icon folder '%1' cannot be removed, please check permissions").arg(d.absolutePath()));
+				} else {
+					QFile f(path);
+					if ( f.remove() ) {
+						log(tr("Obsolete icon file '%1' removed").arg(path));
+						QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+						if ( itemToDelete )
+							delete itemToDelete;
+					} else
+						log(tr("Obsolete icon file '%1' cannot be removed, please check permissions").arg(path));
+				}
+				if ( itemCount % QMC2_CHECK_UPDATE_MEDIUM == 0 )
 					qApp->processEvents();
 			}
 		}
 	}
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
 	toolButtonRemoveObsolete->setEnabled(listWidgetObsolete->count() > 0);
+	progressBar->setFormat(tr("Idle"));
+	progressBar->setRange(-1, -1);
+	progressBar->setValue(-1);
 }
 
 void ImageChecker::on_comboBoxImageType_currentIndexChanged(int index)
@@ -1035,8 +1091,13 @@ void ImageChecker::checkObsoleteFiles()
 			break;
 	}
 
+	progressBar->setFormat(tr("Checking for obsolete files / folder"));
+	progressBar->setRange(0, 0);
+	progressBar->setValue(-1);
+
 	QStringList fileList;
 	QStringList dirList;
+
 	if ( imageWidget ) {
 		// images
 		if ( imageWidget->useZip() ) {
@@ -1072,7 +1133,7 @@ void ImageChecker::checkObsoleteFiles()
 	foreach (QByteArray format, QImageReader::supportedImageFormats())
 		imageFormats << QString(format).toLower();
 	foreach (QString path, fileList) {
-		progressBar->setValue(itemCount);
+		progressBar->setValue(itemCount++);
 		if ( qmc2StopParser || !isRunning )
 			break;
 		QFileInfo fi(path);
@@ -1123,15 +1184,26 @@ void ImageChecker::checkObsoleteFiles()
 					QString pathCopy = path;
 					pathCopy.remove(dirPath);
 					fi.setFile(pathCopy);
+					if ( pathCopy.endsWith(QDir::separator()) ) {
+						pathCopy.remove(pathCopy.length() - 1, 1);
 #if defined(Q_OS_WIN)
-					if ( pathCopy == fi.filePath() && fi.completeSuffix().toLower() == "png" )
-						if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+						if ( qmc2GamelistItemMap.contains(pathCopy.toLower()) )
 							isValidPath = true;
 #else
-					if ( pathCopy == fi.filePath() && fi.completeSuffix() == "png" )
-						if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+						if ( qmc2GamelistItemMap.contains(pathCopy) )
 							isValidPath = true;
 #endif
+					} else {
+#if defined(Q_OS_WIN)
+						if ( pathCopy == fi.fileName() && fi.completeSuffix().toLower() == "png" )
+							if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+								isValidPath = true;
+#else
+						if ( pathCopy == fi.fileName() && fi.completeSuffix() == "png" )
+							if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+								isValidPath = true;
+#endif
+					}
 
 					if ( !isValidPath ) {
 						QString subPath = fi.dir().dirName();
@@ -1173,13 +1245,18 @@ void ImageChecker::checkObsoleteFiles()
 		}
 
 		if ( !isValidPath ) {
-			path = QDir::toNativeSeparators(path);
-			log(tr("%1 file '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
-			bufferedObsoleteList << path;
+			QFileInfo fi(path);
+			if ( fi.isDir() ) {
+				log(tr("%1 folder '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
+				bufferedObsoleteList << fi.dir().absolutePath() + QDir::separator();
+			} else {
+				log(tr("%1 file '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
+				bufferedObsoleteList << fi.absoluteFilePath();
+			}
 			obsoleteCount++;
 		}
 
-		if ( itemCount++ % 25 == 0 )
+		if ( itemCount % QMC2_CHECK_UPDATE_FAST == 0 )
 			qApp->processEvents();
 	}
 
@@ -1342,15 +1419,13 @@ void ImageChecker::recursiveFileList(const QString &sDir, QStringList &fileNames
 #endif
 
 	QDir dir(sDir);
-	QFileInfoList list = dir.entryInfoList();
-	int i;
-	for (i = 0; i < list.count(); i++) {
-		QFileInfo info = list[i];
-		QString path = info.filePath();
+	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
+		QString path = QDir::toNativeSeparators(info.filePath());
 		if ( info.isDir() ) {
 			// directory recursion
 			if ( info.fileName() != ".." && info.fileName() != "." ) {
 				recursiveFileList(path, fileNames);
+				fileNames << path + QDir::separator();
 				qApp->processEvents();
 			}
 		} else
