@@ -3607,24 +3607,25 @@ void Gamelist::loadCategoryIni()
 	else
 		qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
 	qmc2MainWindow->progressBarGamelist->reset();
 	qApp->processEvents();
 
 	QFile categoryIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString());
 	int entryCounter = 0;
 	if ( categoryIniFile.open(QFile::ReadOnly) ) {
+		qmc2MainWindow->progressBarGamelist->setRange(0, categoryIniFile.size());
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
 		while ( !tsCategoryIni.atEnd() ) {
 			QString categoryLine = tsCategoryIni.readLine().simplified().trimmed();
+			qmc2MainWindow->progressBarGamelist->setValue(categoryIniFile.pos());
 			if ( categoryLine.isEmpty() )
 				continue;
-			if ( categoryLine.indexOf(QRegExp("^\\[.*\\]$")) == 0 ) {
+			if ( categoryLine.indexOf(QRegExp("^\\[.*\\]$")) == 0 )
 				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
-			} else if ( !categoryName.isEmpty() ) {
-				qmc2MainWindow->progressBarGamelist->setValue(++entryCounter);
+			else if ( !categoryName.isEmpty() ) {
 				qmc2CategoryMap.insert(categoryLine, categoryName);
+				entryCounter++;
 			}
 		}
 		categoryIniFile.close();
@@ -3797,17 +3798,17 @@ void Gamelist::loadCatverIni()
     qmc2MainWindow->progressBarGamelist->setFormat(tr("Catver.ini - %p%"));
   else
     qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-  qmc2MainWindow->progressBarGamelist->setRange(0, 2 * numTotalGames); // we can't assume that catver.ini has exactly this number of games, though!
   qmc2MainWindow->progressBarGamelist->reset();
   qApp->processEvents();
 
   QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
-  int entryCounter = 0;
   if ( catverIniFile.open(QFile::ReadOnly) ) {
+    qmc2MainWindow->progressBarGamelist->setRange(0, catverIniFile.size());
     QTextStream tsCatverIni(&catverIniFile);
     bool isVersion = false, isCategory = false;
     while ( !tsCatverIni.atEnd() ) {
       QString catverLine = tsCatverIni.readLine().simplified().trimmed();
+      qmc2MainWindow->progressBarGamelist->setValue(catverIniFile.pos());
       if ( catverLine.isEmpty() )
         continue;
       if ( catverLine.contains("[Category]") ) {
@@ -3819,7 +3820,6 @@ void Gamelist::loadCatverIni()
       } else {
         QStringList tokens = catverLine.split("=");
         if ( tokens.count() >= 2 ) {
-          qmc2MainWindow->progressBarGamelist->setValue(++entryCounter);
           if ( isCategory )
             qmc2CategoryMap.insert(tokens[0], tokens[1]);
           else if ( isVersion ) {
