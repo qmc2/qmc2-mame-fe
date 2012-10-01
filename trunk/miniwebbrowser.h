@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QCache>
 #include "ui_miniwebbrowser.h"
+#include "iconlineedit.h"
 #include "macros.h"
 
 class MiniWebBrowser;
@@ -74,8 +75,10 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
          firstTimeLoadProgress,
          firstTimeLoadFinished;
     QTimer statusTimer;
+    QTimer searchTimer;
     BrowserWidget *webViewBrowser;
     QString currentTitle;
+    IconLineEdit *iconLineEditSearch;
 
     MiniWebBrowser(QWidget *parent = 0);
     ~MiniWebBrowser();
@@ -86,9 +89,14 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_toolButtonLoad_clicked();
     void on_toolButtonBack_clicked();
     void on_toolButtonForward_clicked();
+    void on_toolButtonNext_clicked();
+    void on_toolButtonPrevious_clicked();
+    void on_toolButtonCaseSensitive_clicked();
+    void on_toolButtonHighlight_clicked();
     void on_spinBoxZoom_valueChanged(int);
     void changeTitle(QString &);
     void checkBackAndForward();
+    void startSearchTimer() { searchTimer.start(QMC2_SEARCH_DELAY); }
 
     // page actions
     void processPageActionDownloadRequested(const QNetworkRequest &);
@@ -107,6 +115,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void webViewBrowser_statusBarVisibilityChangeRequested(bool);
     void webViewBrowser_frameCreated(QWebFrame *);
     void statusTimeout();
+    void adjustIconSizes();
 
   protected:
     void resizeEvent(QResizeEvent *);
