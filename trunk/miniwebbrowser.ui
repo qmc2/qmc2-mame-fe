@@ -421,22 +421,5 @@
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>toolButtonToggleSearchBar</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>frameSearch</receiver>
-   <slot>setShown(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>231</x>
-     <y>13</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>440</x>
-     <y>281</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
