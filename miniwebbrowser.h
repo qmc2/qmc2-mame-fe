@@ -93,6 +93,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_toolButtonPrevious_clicked();
     void on_toolButtonCaseSensitive_clicked();
     void on_toolButtonHighlight_clicked();
+    void on_toolButtonToggleSearchBar_clicked();
     void on_spinBoxZoom_valueChanged(int);
     void changeTitle(QString &);
     void checkBackAndForward();

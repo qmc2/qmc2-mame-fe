@@ -253,6 +253,20 @@ void MiniWebBrowser::on_toolButtonPrevious_clicked()
 		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebPage::HighlightAllOccurrences);
 }
 
+void MiniWebBrowser::on_toolButtonToggleSearchBar_clicked()
+{
+	if ( toolButtonToggleSearchBar->isChecked() )
+		frameSearch->show();
+	else {
+		frameSearch->hide();
+		toolButtonHighlight->setChecked(false);
+		toolButtonCaseSensitive->setChecked(false);
+		iconLineEditSearch->clear();
+		on_toolButtonPrevious_clicked();
+		on_toolButtonNext_clicked();
+	}
+}
+
 void MiniWebBrowser::checkBackAndForward()
 {
 	toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
