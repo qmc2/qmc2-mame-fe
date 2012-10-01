@@ -1624,7 +1624,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="216"/>
         <source>WARNING: demo mode: the name filter regular expression is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: modo demonstração: a expressão regular do filtro de nome é inválida</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="232"/>
@@ -1737,7 +1737,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="105"/>
         <source>Name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de nome</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="191"/>
@@ -1774,17 +1774,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="226"/>
         <source>Launch sets sequentially rather than randomly</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar conjuntos sequencialmente ao invés de randomicamente</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="229"/>
         <source>Sequential</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequencial</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="52"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique uma expressão de filtro de nome (ID) (Sintaxe de expressões regulares do Qt!) -- deixe em branco para não filtrar por nome</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="65"/>
@@ -5085,17 +5085,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.ui" line="267"/>
         <source>Show only bad images</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar somente imagens ruins</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="296"/>
         <source>Remove bad image files</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover arquivos de imagem ruins</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="354"/>
         <source>Remove obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <source>Remove obsolete files</source>
@@ -5127,7 +5127,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.ui" line="329"/>
         <source>Files / folders which couldn&apos;t be matched to any set (and are thus obsolete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos / pastas que não combinam com nenhum conjunto (e portanto, obsoletos)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="338"/>
@@ -5269,37 +5269,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="415"/>
         <source>preview</source>
-        <translation type="unfinished"></translation>
+        <translation>previsualização</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="419"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="423"/>
         <source>cabinet</source>
-        <translation type="unfinished">gabinete</translation>
+        <translation>gabinete</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="427"/>
         <source>marquee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="432"/>
         <source>controller</source>
-        <translation type="unfinished">controle</translation>
+        <translation>controle</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="436"/>
         <source>title</source>
-        <translation type="unfinished">título</translation>
+        <translation>título</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="441"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="450"/>
@@ -5309,12 +5309,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="480"/>
         <source>Checking %1 images</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificando %1 imagens</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="480"/>
         <source>Checking icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificando ícones</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="612"/>
@@ -5357,44 +5357,44 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="765"/>
         <source>Running ZIP tool to remove bad image files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando ferramenta ZIP para remover arquivos de imagem ruins, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="783"/>
         <location filename="../../imagechecker.cpp" line="903"/>
         <location filename="../../imagechecker.cpp" line="986"/>
         <source>WARNING: ZIP tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ferramenta ZIP não terminou corretamente: código de saída = %1, estado de saída = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="783"/>
         <location filename="../../imagechecker.cpp" line="903"/>
         <location filename="../../imagechecker.cpp" line="986"/>
         <source>normal</source>
-        <translation type="unfinished">normal</translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="783"/>
         <location filename="../../imagechecker.cpp" line="903"/>
         <location filename="../../imagechecker.cpp" line="986"/>
         <source>crashed</source>
-        <translation type="unfinished">quebrado</translation>
+        <translation>quebrado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="792"/>
         <source>Bad image file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem ruim &apos;%1&apos; removida</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="798"/>
         <source>Bad image file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem ruim &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="855"/>
         <location filename="../../imagechecker.cpp" line="939"/>
         <source>Executing ZIP tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando ferramenta ZIP</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="892"/>
@@ -5406,17 +5406,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imagechecker.cpp" line="906"/>
         <location filename="../../imagechecker.cpp" line="989"/>
         <source>Removing obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Removendo arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="915"/>
         <source>Obsolete image folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de imagem obsoleta &apos;%1&apos; removida</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="920"/>
         <source>Obsolete image folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de imagem obsoleta &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="924"/>
@@ -5431,12 +5431,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="998"/>
         <source>Obsolete icon folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de ícone obsoleta &apos;%1&apos; removida</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1003"/>
         <source>Obsolete icon folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de ícone obsoleta &apos;%1&apos; não pode ser removida, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1007"/>
@@ -5456,7 +5456,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="1094"/>
         <source>Checking for obsolete files / folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurando por arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1104"/>
@@ -5477,7 +5477,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imagechecker.cpp" line="1250"/>
         <source>%1 folder &apos;%2&apos; is obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de %1 &apos;%2&apos; é obsoleta</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1253"/>
@@ -8096,7 +8096,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="10074"/>
         <location filename="../../qmc2main.cpp" line="10114"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
-        <translation>por favor espere a atividade atual terminar e tente novamente (essa opração em lote só pode ser executada exclusivamente)</translation>
+        <translation>por favor espere a atividade atual terminar e tente novamente (essa operação em lote só pode ser executada exclusivamente)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10120"/>
@@ -17270,7 +17270,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.ui" line="52"/>
         <source>Current status and check progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado atual e checagem de progresso</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="58"/>
@@ -17279,7 +17279,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../samplechecker.cpp" line="367"/>
         <location filename="../../samplechecker.cpp" line="509"/>
         <source>Idle</source>
-        <translation type="unfinished">Ocioso</translation>
+        <translation>Ocioso</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="73"/>
@@ -17297,7 +17297,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../samplechecker.ui" line="99"/>
         <location filename="../../samplechecker.cpp" line="150"/>
         <source>Missing: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltantes: 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="114"/>
@@ -17308,7 +17308,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.ui" line="130"/>
         <source>Remove obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="412"/>
@@ -17333,63 +17333,63 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="155"/>
         <source>preparing sample-check: parsing XML data for relevant sample information</source>
-        <translation type="unfinished"></translation>
+        <translation>preparando checagem de sample: analisando dados do XML para informações de sample relevantes</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="159"/>
         <source>Parsing XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisando dados do XML</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="204"/>
         <source>WARNING: XML bug: the game &apos;%1&apos; is referencing a non-existing sample-set (sampleof=&quot;%2&quot;) -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: o jogo &apos;%1&apos; referencia um conjunto de sample inexistente (sampleof=&quot;%2&quot;) -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="237"/>
         <source>WARNING: XML bug: the following games are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: os jogos a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="239"/>
         <source>WARNING: XML bug: the following game is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: o jogo a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>found %n individual sample set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>encontrado %n conjunto de sample individual</numerusform>
+            <numerusform>encontrados %n conjuntos de samples individuais</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>e</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>%n system(s) using samples</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n sistema usando samples</numerusform>
+            <numerusform>%n sistemas usando samples</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="249"/>
         <source>Checking sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificando estado da sample</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="250"/>
         <source>check pass 1: checking sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>passo 1 da verificação: verificando estado da sample</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="303"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="333"/>
@@ -17404,63 +17404,63 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="339"/>
         <source>Missing: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltantes: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="341"/>
         <source>WARNING: received unknown output when checking the sample status of &apos;%1&apos;: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: saída desconhecida recebida verificando o estado da sample de &apos;%1&apos;: &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="344"/>
         <location filename="../../samplechecker.cpp" line="346"/>
         <source>WARNING: received no output when checking the sample status of &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: nenhuma saída recebida verificando o estado da sample de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="362"/>
         <source>%1 good, %2 bad, %3 missing, %4 obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 bom, %2 ruim, %3 faltante, %4 obsoleto</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="380"/>
         <source>Checking for obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurando por arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="383"/>
         <source>check pass 2: checking for obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>passo 2 da verificação: verificando por arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="416"/>
         <source>WARNING: sample path &apos;%1&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: caminho da sample &apos;%1&apos; não existe</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="460"/>
         <source>Removing obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Removendo arquivos / pastas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="474"/>
         <source>obsolete folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>pasta obsoleta &apos;%1&apos; removida</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="482"/>
         <source>obsolete folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>pasta obsoleta &apos;%1&apos; não pode ser removida, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="489"/>
         <source>obsolete file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo obsoleto &apos;%1&apos; removido</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="497"/>
         <source>obsolete file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo obsoleto &apos;%1&apos; não pode ser removido, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="430"/>
@@ -17470,7 +17470,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="436"/>
         <source>please wait for current activity to finish and try again (the sample-checker can only run exclusively)</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere a atividade atual terminar e tente novamente (o verificador de samples só pode ser executada exclusivamente)</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="440"/>
