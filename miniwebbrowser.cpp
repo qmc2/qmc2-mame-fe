@@ -47,15 +47,18 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   labelStatus->hide();
   progressBar->hide();
 
-  QFontMetrics fm(qApp->font());
-  QSize iconSize(fm.height() - 2, fm.height() - 2);
+  gridLayoutFrameSearch->removeWidget(lineEditSearch);
+  delete lineEditSearch;
+  iconLineEditSearch = new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, this);
+  connect(iconLineEditSearch, SIGNAL(returnPressed()), toolButtonNext, SLOT(animateClick()));
+  connect(iconLineEditSearch, SIGNAL(textEdited(const QString &)), this, SLOT(startSearchTimer()));
+  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_toolButtonNext_clicked()));
+  gridLayoutFrameSearch->addWidget(iconLineEditSearch, 0, 0);
+  iconLineEditSearch->setToolTip(tr("Enter search string"));
+  iconLineEditSearch->setPlaceholderText(tr("Enter search string"));
+  frameSearch->hide();
 
-  toolButtonBack->setIconSize(iconSize);
-  toolButtonForward->setIconSize(iconSize);
-  toolButtonReload->setIconSize(iconSize);
-  toolButtonStop->setIconSize(iconSize);
-  toolButtonHome->setIconSize(iconSize);
-  toolButtonLoad->setIconSize(iconSize);
+  comboBoxURL->lineEdit()->setPlaceholderText(tr("Enter URL"));
 
   firstTimeLoadStarted = true;
   firstTimeLoadProgress = true;
@@ -178,6 +181,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   // "activate" the combo box on pressing return
   connect(comboBoxURL->lineEdit(), SIGNAL(returnPressed()), this, SLOT(on_comboBoxURL_activated()));
+
+  QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
 }
 
 MiniWebBrowser::~MiniWebBrowser()
@@ -187,6 +192,65 @@ MiniWebBrowser::~MiniWebBrowser()
 #endif
 
 	hideEvent(NULL);
+}
+
+void MiniWebBrowser::adjustIconSizes()
+{
+	QFont f;
+	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+	QFontMetrics fm(f);
+	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
+	QSize iconSizeMiddle = iconSize + QSize(2, 2);
+	QSize iconSizeLarge = iconSize + QSize(4, 4);
+
+	toolButtonBack->setIconSize(iconSize);
+	toolButtonForward->setIconSize(iconSize);
+	toolButtonReload->setIconSize(iconSize);
+	toolButtonStop->setIconSize(iconSize);
+	toolButtonHome->setIconSize(iconSize);
+	toolButtonLoad->setIconSize(iconSize);
+	toolButtonNext->setIconSize(iconSize);
+	toolButtonPrevious->setIconSize(iconSize);
+	toolButtonToggleSearchBar->setIconSize(iconSize);
+	iconLineEditSearch->setIconSize(iconSize);
+	toolButtonCaseSensitive->setIconSize(iconSize);
+	toolButtonHighlight->setIconSize(iconSize);
+}
+
+void MiniWebBrowser::on_toolButtonCaseSensitive_clicked()
+{
+	on_toolButtonPrevious_clicked();
+	on_toolButtonNext_clicked();
+}
+
+void MiniWebBrowser::on_toolButtonHighlight_clicked()
+{
+	on_toolButtonPrevious_clicked();
+	on_toolButtonNext_clicked();
+}
+
+void MiniWebBrowser::on_toolButtonNext_clicked()
+{
+	searchTimer.stop();
+	webViewBrowser->page()->findText("", QWebPage::HighlightAllOccurrences);
+	QWebPage::FindFlags flags = QWebPage::FindWrapsAroundDocument;
+	if ( toolButtonCaseSensitive->isChecked() )
+		flags |= QWebPage::FindCaseSensitively;
+	webViewBrowser->page()->findText(iconLineEditSearch->text(), flags);
+	if ( toolButtonHighlight->isChecked() )
+		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebPage::HighlightAllOccurrences);
+}
+
+void MiniWebBrowser::on_toolButtonPrevious_clicked()
+{
+	searchTimer.stop();
+	webViewBrowser->page()->findText("", QWebPage::HighlightAllOccurrences);
+	QWebPage::FindFlags flags = QWebPage::FindWrapsAroundDocument | QWebPage::FindBackward;
+	if ( toolButtonCaseSensitive->isChecked() )
+		flags |= QWebPage::FindCaseSensitively;
+	webViewBrowser->page()->findText(iconLineEditSearch->text(), flags);
+	if ( toolButtonHighlight->isChecked() )
+		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebPage::HighlightAllOccurrences);
 }
 
 void MiniWebBrowser::checkBackAndForward()

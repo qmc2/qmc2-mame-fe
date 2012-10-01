@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
-    <height>224</height>
+    <width>542</width>
+    <height>318</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,166 +18,9 @@
    <property name="margin">
     <number>0</number>
    </property>
-   <item row="0" column="0">
-    <widget class="QToolButton" name="toolButtonBack">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Go back</string>
-     </property>
-     <property name="statusTip">
-      <string>Go back</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QToolButton" name="toolButtonForward">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Go forward</string>
-     </property>
-     <property name="statusTip">
-      <string>Go forward</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/forward.png</normaloff>:/data/img/forward.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QToolButton" name="toolButtonReload">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Reload current URL</string>
-     </property>
-     <property name="statusTip">
-      <string>Reload current URL</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="QToolButton" name="toolButtonStop">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Stop loading of current URL</string>
-     </property>
-     <property name="statusTip">
-      <string>Stop loading of current URL</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="4">
-    <widget class="QToolButton" name="toolButtonHome">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Go home (first page)</string>
-     </property>
-     <property name="statusTip">
-      <string>Go home (first page)</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="6">
-    <widget class="QComboBox" name="comboBoxURL">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Enter current URL</string>
-     </property>
-     <property name="statusTip">
-      <string>Enter current URL</string>
-     </property>
-     <property name="editable">
-      <bool>true</bool>
-     </property>
-     <property name="insertPolicy">
-      <enum>QComboBox::NoInsert</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="7">
-    <widget class="QToolButton" name="toolButtonLoad">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Load URL</string>
-     </property>
-     <property name="statusTip">
-      <string>Load URL</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="8">
+   <item row="0" column="0" colspan="2">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="labelStatus">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -190,7 +33,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="3" column="1">
       <widget class="QProgressBar" name="progressBar">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -213,6 +56,332 @@
       </widget>
      </item>
      <item row="0" column="0" colspan="2">
+      <widget class="QFrame" name="frameUrl">
+       <layout class="QGridLayout" name="gridLayoutFrameUrl">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="toolButtonReload">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Reload current URL</string>
+          </property>
+          <property name="statusTip">
+           <string>Reload current URL</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="toolButtonForward">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Go forward</string>
+          </property>
+          <property name="statusTip">
+           <string>Go forward</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/forward.png</normaloff>:/data/img/forward.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QToolButton" name="toolButtonHome">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Go home (first page)</string>
+          </property>
+          <property name="statusTip">
+           <string>Go home (first page)</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="toolButtonBack">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Go back</string>
+          </property>
+          <property name="statusTip">
+           <string>Go back</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="8">
+         <widget class="QToolButton" name="toolButtonLoad">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Load URL</string>
+          </property>
+          <property name="statusTip">
+           <string>Load URL</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QToolButton" name="toolButtonStop">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Stop loading of current URL</string>
+          </property>
+          <property name="statusTip">
+           <string>Stop loading of current URL</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QSpinBox" name="spinBoxZoom">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Set zoom factor</string>
+          </property>
+          <property name="statusTip">
+           <string>Set zoom factor</string>
+          </property>
+          <property name="suffix">
+           <string> %</string>
+          </property>
+          <property name="minimum">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <number>800</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="7">
+         <widget class="QComboBox" name="comboBoxURL">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Enter current URL</string>
+          </property>
+          <property name="statusTip">
+           <string>Enter current URL</string>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="maxVisibleItems">
+           <number>20</number>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::NoInsert</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QToolButton" name="toolButtonToggleSearchBar">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Toggle display of the search bar</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QFrame" name="frameSearch">
+       <layout class="QGridLayout" name="gridLayoutFrameSearch">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item row="0" column="3">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="lineEditSearch">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Enter search string</string>
+          </property>
+          <property name="placeholderText">
+           <string>Enter search string</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QToolButton" name="toolButtonCaseSensitive">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Case-sensitive</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/characters.png</normaloff>:/data/img/characters.png</iconset>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="toolButtonPrevious">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Find previous occurrence</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/previous-sail.png</normaloff>:/data/img/previous-sail.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="toolButtonNext">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Find next occurrence</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QToolButton" name="toolButtonHighlight">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Highlight matches</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/highlight.png</normaloff>:/data/img/highlight.png</iconset>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
       <widget class="QFrame" name="frameBrowser">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -232,37 +401,6 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="5">
-    <widget class="QSpinBox" name="spinBoxZoom">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Set zoom factor</string>
-     </property>
-     <property name="statusTip">
-      <string>Set zoom factor</string>
-     </property>
-     <property name="suffix">
-      <string> %</string>
-     </property>
-     <property name="minimum">
-      <number>10</number>
-     </property>
-     <property name="maximum">
-      <number>800</number>
-     </property>
-     <property name="singleStep">
-      <number>10</number>
-     </property>
-     <property name="value">
-      <number>100</number>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
@@ -272,12 +410,33 @@
   <tabstop>toolButtonReload</tabstop>
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonHome</tabstop>
-  <tabstop>toolButtonLoad</tabstop>
   <tabstop>spinBoxZoom</tabstop>
+  <tabstop>toolButtonToggleSearchBar</tabstop>
   <tabstop>comboBoxURL</tabstop>
+  <tabstop>toolButtonLoad</tabstop>
+  <tabstop>lineEditSearch</tabstop>
+  <tabstop>toolButtonPrevious</tabstop>
+  <tabstop>toolButtonNext</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>toolButtonToggleSearchBar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>frameSearch</receiver>
+   <slot>setShown(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>13</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>440</x>
+     <y>281</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

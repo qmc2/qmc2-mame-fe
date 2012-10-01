@@ -568,8 +568,16 @@ void Options::apply()
     f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   qApp->setFont(f);
   QFontMetrics fm(f);
-  foreach (QWidget *widget, QApplication::allWidgets())
-    widget->setFont(f);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+  QSize iconSizeMiddle = iconSize + QSize(2, 2);
+  QSize iconSizeLarge = iconSize + QSize(4, 4);
+
+  foreach (QWidget *widget, QApplication::allWidgets()) {
+	  widget->setFont(f);
+	  if ( widget->objectName() == "MiniWebBrowser" )
+		  QTimer::singleShot(0, (MiniWebBrowser *)widget, SLOT(adjustIconSizes()));
+  }
+
   if ( qmc2SplashScreen ) {
     QFont splashFont = f;
     splashFont.setBold(true);
@@ -582,9 +590,6 @@ void Options::apply()
   qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
   lineEditLogFont->setFont(logFont);
 
-  QSize iconSize(fm.height() - 2, fm.height() - 2);
-  QSize iconSizeMiddle = iconSize + QSize(2, 2);
-  QSize iconSizeLarge = iconSize + QSize(4, 4);
   ((IconLineEdit *)qmc2MainWindow->comboBoxSearch->lineEdit())->setIconSize(iconSizeMiddle);
   ((IconLineEdit *)qmc2MainWindow->comboBoxToolbarSearch->lineEdit())->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
@@ -708,30 +713,14 @@ void Options::apply()
   }
   if ( qmc2ImageChecker )
 	  qmc2ImageChecker->adjustIconSizes();
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2MAWSLookup ) {
-    qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
-    qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);
-    qmc2MAWSLookup->toolButtonReload->setIconSize(iconSize);
-    qmc2MAWSLookup->toolButtonStop->setIconSize(iconSize);
-    qmc2MAWSLookup->toolButtonHome->setIconSize(iconSize);
-    qmc2MAWSLookup->toolButtonLoad->setIconSize(iconSize);
-#if defined(QMC2_EMUTYPE_MAME)
     if ( qmc2MainWindow->toolButtonMAWSQuickLinks )
-      qmc2MainWindow->toolButtonMAWSQuickLinks->setIconSize(iconSize);
-#endif
+	    qmc2MainWindow->toolButtonMAWSQuickLinks->setIconSize(iconSize);
+    if ( qmc2MawsQuickDownloadSetup )
+	    QTimer::singleShot(0, qmc2MawsQuickDownloadSetup, SLOT(adjustIconSizes()));
   }
-#if defined(QMC2_EMUTYPE_MAME)
-  if ( qmc2MawsQuickDownloadSetup )
-    QTimer::singleShot(0, qmc2MawsQuickDownloadSetup, SLOT(adjustIconSizes()));
 #endif
-  if ( qmc2DocBrowser ) {
-    qmc2DocBrowser->browser->toolButtonBack->setIconSize(iconSize);
-    qmc2DocBrowser->browser->toolButtonForward->setIconSize(iconSize);
-    qmc2DocBrowser->browser->toolButtonReload->setIconSize(iconSize);
-    qmc2DocBrowser->browser->toolButtonStop->setIconSize(iconSize);
-    qmc2DocBrowser->browser->toolButtonHome->setIconSize(iconSize);
-    qmc2DocBrowser->browser->toolButtonLoad->setIconSize(iconSize);
-  }
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2SampleChecker )
 	  QTimer::singleShot(0, qmc2SampleChecker, SLOT(adjustIconSizes()));
@@ -800,16 +789,6 @@ void Options::apply()
     if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
     if ( qmc2SoftwareNotesEditor ) qmc2SoftwareNotesEditor->adjustIconSizes();
     if ( qmc2SystemNotesEditor ) qmc2SystemNotesEditor->adjustIconSizes();
-#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-    if ( qmc2ProjectMESS ) {
-      qmc2ProjectMESS->toolButtonBack->setIconSize(iconSize);
-      qmc2ProjectMESS->toolButtonForward->setIconSize(iconSize);
-      qmc2ProjectMESS->toolButtonReload->setIconSize(iconSize);
-      qmc2ProjectMESS->toolButtonStop->setIconSize(iconSize);
-      qmc2ProjectMESS->toolButtonHome->setIconSize(iconSize);
-      qmc2ProjectMESS->toolButtonLoad->setIconSize(iconSize);
-    }
-#endif
   }
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);

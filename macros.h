@@ -766,6 +766,7 @@
 #define QMC2_ALIGN_RIGHT			2
 
 // debugging macros
+#define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
 #define QMC2_PRINT_STR(s)			printf("%s = [%s]\n", #s, (const char *)s.toLocal8Bit())
 #define QMC2_PRINT_PTR(p)			printf("%s = [%p]\n", #p, p)
 #define QMC2_PRINT_INT(i)			printf("%s = [%ld]\n", #i, i)
