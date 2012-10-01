@@ -305,9 +305,7 @@ Options::Options(QWidget *parent)
   spinBoxResponsiveness->setToolTip(tr("Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)"));
   spinBoxUpdateDelay->setToolTip(tr("Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?"));
   checkBoxSortOnline->setToolTip(tr("Sort machine list while reloading (slower)"));
-  checkBoxScaledController->setVisible(false);
   checkBoxScaledTitle->setVisible(false);
-  radioButtonControllerSelect->setVisible(false);
   checkBoxScaledMarquee->setText(tr("Scaled logo"));
   radioButtonMarqueeSelect->setText(tr("Logo directory"));
   radioButtonMarqueeSelect->setToolTip(tr("Switch between specifying a logo directory or a ZIP-compressed logo file"));
@@ -316,7 +314,6 @@ Options::Options(QWidget *parent)
   toolButtonBrowseMarqueeDirectory->setToolTip(tr("Browse logo directory"));
   toolButtonBrowseMarqueeFile->setToolTip(tr("Browse ZIP-compressed logo file"));
   radioButtonTitleSelect->setVisible(false);
-  stackedWidgetController->setVisible(false);
   stackedWidgetTitle->setVisible(false);
   labelMAWSCacheDirectory->setVisible(false);
   lineEditMAWSCacheDirectory->setVisible(false);

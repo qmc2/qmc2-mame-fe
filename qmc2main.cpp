@@ -3901,11 +3901,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         }
         break;
 
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       case QMC2_TITLE_INDEX: {
           QPainter pTitle(qmc2Title);
           qmc2Title->drawCenteredImage(0, &pTitle);
         }
         break;
+#endif
 
       case QMC2_PCB_INDEX: {
           QPainter pPCB(qmc2PCB);

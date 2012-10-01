@@ -217,6 +217,7 @@ ImageChecker::ImageChecker(QWidget *parent)
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PREVIEW, QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_FLYER, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")), tr("Flyers"));
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CABINET, QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinets"));
+	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_CONTROLLER, QIcon(QString::fromUtf8(":/data/img/joystick.png")), tr("Controllers"));
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_LOGO, QIcon(QString::fromUtf8(":/data/img/marquee.png")), tr("Logos"));
 	comboBoxImageType->insertItem(QMC2_IMGCHK_INDEX_PCB, QIcon(QString::fromUtf8(":/data/img/circuit.png")), tr("PCBs"));
 	comboBoxImageType->insertSeparator(QMC2_IMGCHK_INDEX_SEPARATOR);
@@ -426,11 +427,11 @@ void ImageChecker::startStop()
 				imageWidget = qmc2Marquee;
 				imageType = tr("marquee");
 				break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			case QMC2_IMGCHK_INDEX_CONTROLLER:
 				imageWidget = qmc2Controller;
 				imageType = tr("controller");
 				break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 			case QMC2_IMGCHK_INDEX_TITLE:
 				imageWidget = qmc2Title;
 				imageType = tr("title");
@@ -522,11 +523,11 @@ void ImageChecker::enableWidgets(bool enable)
 			qmc2Options->stackedWidgetMarquee->setEnabled(enable);
 			qmc2Options->radioButtonMarqueeSelect->setEnabled(enable);
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			qmc2Options->stackedWidgetController->setEnabled(enable);
 			qmc2Options->radioButtonControllerSelect->setEnabled(enable);
 			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			qmc2Options->stackedWidgetTitle->setEnabled(enable);
 			qmc2Options->radioButtonTitleSelect->setEnabled(enable);
@@ -703,10 +704,10 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 		case QMC2_IMGCHK_INDEX_MARQUEE:
 			imageWidget = qmc2Marquee;
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageWidget = qmc2Controller;
 			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageWidget = qmc2Title;
 			break;
@@ -829,10 +830,10 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		case QMC2_IMGCHK_INDEX_MARQUEE:
 			imageWidget = qmc2Marquee;
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageWidget = qmc2Controller;
 			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageWidget = qmc2Title;
 			break;
@@ -1074,10 +1075,10 @@ void ImageChecker::checkObsoleteFiles()
 		case QMC2_IMGCHK_INDEX_MARQUEE:
 			imageWidget = qmc2Marquee;
 			break;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_CONTROLLER:
 			imageWidget = qmc2Controller;
 			break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGCHK_INDEX_TITLE:
 			imageWidget = qmc2Title;
 			break;

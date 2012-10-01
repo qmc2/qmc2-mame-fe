@@ -295,33 +295,6 @@ bool Welcome::checkConfig()
   int oldSvnRevision = startupConfig->value("SVN_Revision").toInt();
   if ( versionList.count() > 1 ) {
 	  oldMinor = versionList[1].toInt();
-	  if ( oldMinor < 34 || (oldSvnRevision < 3158 && oldSvnRevision > 0) ) {
-		  // GLC format change (V5) in QMC2 0.34 / new tag column since SVN r3158 -- any saved header states for game-/machine-list views must be invalidated!
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/GamelistHeaderState");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/HierarchyHeaderState");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/GamelistHeaderState");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/HierarchyHeaderState");
-#if defined(QMC2_EMUTYPE_MAME)
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/CategoryViewHeaderState");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/VersionViewHeaderState");
-#endif
-		  // remove settings that are no longer used
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/GamelistColumnWidths");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/HierarchyColumnWidths");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/GamelistColumnWidths");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/HierarchyColumnWidths");
-	  }
-	  if ( oldMinor < 36 || (oldSvnRevision < 3546 && oldSvnRevision > 0) ) {
-		  // remove no longer existing short-cut map for Ctrl+C
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Shortcuts/Ctrl+C");
-	  }
-	  if ( oldMinor < 36 || (oldSvnRevision < 3882 && oldSvnRevision > 0) ) {
-		  // replace "MESSWiki/Zoom" with "ProjectMESS/Zoom"
-		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "MESSWiki/Zoom") ) {
-			  startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "ProjectMESS/Zoom", startupConfig->value(QMC2_FRONTEND_PREFIX_MESS + "MESSWiki/Zoom").toInt());
-			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "MESSWiki/Zoom");
-		  }
-	  }
 #if defined(QMC2_EMUTYPE_MESS)
 	  if ( oldMinor < 37 || (oldSvnRevision < 3983 && oldSvnRevision > 0) ) {
 		  // add F7 standard-shortcut for all MESS targets
