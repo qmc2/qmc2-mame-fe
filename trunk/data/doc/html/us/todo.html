@@ -5,12 +5,11 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.38, 21-SEP-2012</h3>
+<h3>TODO - v0.38, 01-OCT-2012</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
-  <li>The icon sizes of all menu actions are not adjusted to the actual font size -- this is a Qt restriction, and I have not yet found a way to work around this restriction... however, it's just a minor/cosmetic issue.</li>
-  <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised().</li>
+  <li>On X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised().</li>
   <li>MAME/MESS output notifiers are not supported on Windows yet.</li>
   <li>The built-in <i>MiniWebBrowser</i> has a fairly restrictive set of features which is tailored to the uses of QMC2. It's not even <i>meant</i> to be a full-featured browser, even though it meanwhile supports most of the typical browser-functions.</li>
   <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it).</li>
@@ -38,7 +37,6 @@
   <li>Add support for persistent cookies to the MiniWebBrowser</li>
   <li>Add extended (reg-exp) filtering for any textual data in any available game/machine list column</li>
   <li>Add support for state-checking &amp; -caching of software-list entries</li>
-  <li>Add a <i>driver</i> column to all game/machine-lists</li>
   <li>Add support for <b>multiple</b> images per image category</li>
   <li>Add support for 3D arcade cabinet models from the <a href="http://www.mameworld.info/3darcade/" target="_blank">3D Arcade</a> project</li>
   <li>Add support for 7z-compressed ROMs to the ROMAlyzer and file-chooser</li>
