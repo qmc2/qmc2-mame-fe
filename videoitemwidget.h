@@ -34,7 +34,7 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 		void *myVideoPlayer;
 		int itemType;
 
-		VideoItemWidget(QString, QString, QString, const ImagePixmap &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, QString, ImagePixmap *vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		VideoItemWidget(QString, QString, QString, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		~VideoItemWidget();
 

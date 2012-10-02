@@ -791,8 +791,6 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 		return;
 	}
 
-	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
-
 	ImagePixmap *imagePixmap = qmc2ImagePixmapCache.object("yt_" + id);
 	bool pixmapFound = (imagePixmap != NULL);
 	if ( !pixmapFound ) {
@@ -812,10 +810,10 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 	}
 
 	QListWidgetItem *listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
+	listWidgetItem->setSizeHint(QSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4));
 	VideoItemWidget *videoItemWidget;
 	if ( pixmapFound )
-		videoItemWidget = new VideoItemWidget(id, title, author, *imagePixmap, itemType, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, itemType, this, this);
 	else
 		videoItemWidget = new VideoItemWidget(id, title, author, itemType, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
@@ -1630,7 +1628,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 				}
 			}
 		} else {
-			viw->setImage(new ImagePixmap(*imagePixmap));
+			viw->setImage(imagePixmap);
 			continue;
 		}
 		
