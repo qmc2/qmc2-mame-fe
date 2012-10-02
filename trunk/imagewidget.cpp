@@ -141,7 +141,7 @@ void ImageWidget::refresh()
 
 	if ( !cacheKey.isEmpty() ) {
 		qmc2ImagePixmapCache.remove(cacheKey);
-		repaint();
+		update();
 	}
 }
 
