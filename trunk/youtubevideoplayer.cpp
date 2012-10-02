@@ -263,7 +263,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	lineEditSearchString->setPlaceholderText(tr("Enter search string"));
 
 	QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
-	QTimer::singleShot(100, this, SLOT(init()));
+	QTimer::singleShot(250, this, SLOT(init()));
 }
 
 YouTubeVideoPlayer::~YouTubeVideoPlayer()
@@ -1111,8 +1111,9 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	}
 	videoInfoBuffer.clear();
 	viError = viFinished = false;
-	videoInfoRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1").arg(videoID));
-	//videoInfoRequest.setRawHeader("User-Agent", "QMC2's YouTube Player");
+	videoInfoRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1&key=%2").arg(videoID).arg(QMC2_GOOGLE_DEV_KEY));
+	videoInfoRequest.setRawHeader("User-Agent", "QMC2 - MAME/MESS/UME Catalog / Launcher II");
+	videoInfoRequest.setRawHeader("X-GData-Key", QString("key=%1").arg(QMC2_GOOGLE_DEV_KEY).toLatin1());
 	if ( videoInfoManager ) {
 		disconnect(videoInfoManager);
 		delete videoInfoManager;
@@ -1136,7 +1137,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	}
 
 	if ( viFinished && !viError ) {
-		QStringList videoInfoList = videoInfoBuffer.split("&");
+		QStringList videoInfoList = videoInfoBuffer.split("&", QString::SkipEmptyParts);
 #ifdef QMC2_DEBUG
 		printf("\nFull info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
 #endif
@@ -1205,29 +1206,45 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 		currentVideoAuthor = author;
 		currentVideoTitle = title;
 
-		QMap <QString, QUrl> formatToUrlMap;
+		QMap<QString, QUrl> formatToUrlMap;
 		foreach (QString videoInfo, videoInfoList) {
+			if ( forcedExit )
+				break;
 			if ( videoInfo.startsWith("url_encoded_fmt_stream_map=") ) {
 				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^url_encoded_fmt_stream_map="), "").split(QRegExp("url%3D"), QString::SkipEmptyParts);
 				foreach (QString fmtUrl, fmtUrlMap) {
-					QString encodedUrlString = QUrl::fromEncoded(fmtUrl.toLatin1()).toString().remove(QRegExp("\\,$")).remove(QRegExp("\\&fallback_host\\=.*$"));
+					if ( forcedExit )
+						break;
+					QString encodedUrlString = QUrl::fromEncoded(fmtUrl.toLatin1()).toString().remove(QRegExp("\\,$"));
 					QUrl decodedUrl;
 				    	decodedUrl.setEncodedUrl(encodedUrlString.toLatin1());
 					QString urlString = decodedUrl.toString();
-					QString itagValue;
+					QString itagValue, signature;
 					int start = urlString.indexOf("&itag=");
 					if ( start > 0 ) {
 						start += 6;
 						itagValue = urlString.mid(start, urlString.indexOf("&", start) - start);
 					}
+					start = urlString.indexOf("&sig=");
+					if ( start > 0 ) {
+						start += 5;
+						signature = urlString.mid(start, urlString.indexOf("&", start) - start);
+					}
+					if ( !itagValue.isEmpty() ) {
+						encodedUrlString.remove(QRegExp("\\&fallback_host\\=.*$"));
+						encodedUrlString += "&signature=" +  signature;
+						decodedUrl.setEncodedUrl(encodedUrlString.toLatin1());
 #ifdef QMC2_DEBUG
-					printf("decodedUrl[itag = %s] = %s\n", (const char *)itagValue.toLatin1(), (const char *)decodedUrl.toString().toLatin1());
+						printf("decodedUrl[itag = %s] = %s\n", (const char *)itagValue.toLatin1(), (const char *)decodedUrl.toString().toLatin1());
 #endif
-					if ( !itagValue.isEmpty() )
 						formatToUrlMap[itagValue] = decodedUrl;
+					}
 				}
 			}
 		}
+
+		if ( forcedExit )
+			return QString();
 
 		for (int i = 0; i < comboBoxPreferredFormat->count(); i++) {
 			if ( formatToUrlMap.contains(indexToFormat(i)) ) {
@@ -1257,10 +1274,11 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 		return QString();
 	} else if ( timeoutOccurred ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: timeout occurred"));
-		videoOverlayWidget->showMessage(tr("Video info error: timeout occurred"), 4000);
+		videoOverlayWidget->showMessage(tr("video info error: timeout occurred"), 4000);
 		return QString();
 	}
 
+	videoOverlayWidget->showMessage(tr("video info error: unknown reason"), 4000);
 	return QString();
 }
 
@@ -1579,8 +1597,10 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	listWidgetSearchResults->clear();
 	savedSearchString = lineEditSearchString->text();
 	QString queryString = savedSearchString.simplified();
-	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>
-	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString));
+	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>&key=<developer-key>
+	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3&key=%4").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString).arg(QMC2_GOOGLE_DEV_KEY));
+	searchRequest.setRawHeader("User-Agent", "QMC2 - MAME/MESS/UME Catalog / Launcher II");
+	searchRequest.setRawHeader("X-GData-Key", QString("key=%1").arg(QMC2_GOOGLE_DEV_KEY).toLatin1());
 	if ( searchRequestManager ) {
 		disconnect(searchRequestManager);
 		delete searchRequestManager;
@@ -1639,8 +1659,9 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		}
 		videoImageBuffer.clear();
 		vimgError = vimgFinished = false;
-		videoImageRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1").arg(viw->videoID));
-		//videoImageRequest.setRawHeader("User-Agent", "QMC2's YouTube Player");
+		videoImageRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1&key=%2").arg(viw->videoID).arg(QMC2_GOOGLE_DEV_KEY));
+		videoImageRequest.setRawHeader("User-Agent", "QMC2 - MAME/MESS/UME Catalog / Launcher II");
+		videoImageRequest.setRawHeader("X-GData-Key", QString("key=%1").arg(QMC2_GOOGLE_DEV_KEY).toLatin1());
 		if ( videoImageManager ) {
 			disconnect(videoImageManager);
 			delete videoImageManager;
@@ -1662,7 +1683,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 			}
 		}
 		if ( !forcedExit && vimgFinished && !vimgError ) {
-			QStringList videoInfoList = videoImageBuffer.split("&");
+			QStringList videoInfoList = videoImageBuffer.split("&", QString::SkipEmptyParts);
 			QString thumbnail_url;
 			foreach (QString vInfo, videoInfoList) {
 				if ( forcedExit )
