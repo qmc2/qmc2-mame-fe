@@ -765,6 +765,9 @@
 #define QMC2_ALIGN_MIDDLE			1
 #define QMC2_ALIGN_RIGHT			2
 
+// Google developer key
+#define QMC2_GOOGLE_DEV_KEY			"AI39si7D4n3EI-m_1eeFsfbmD8fG7Sqb9gpkgjyliWrSVs4M4hUPZsLnE_Z7XQUMSPK4GuV9A3wbzKkcSBxOTniTe-d8Y1dOlw"
+
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
 #define QMC2_PRINT_STR(s)			printf("%s = [%s]\n", #s, (const char *)s.toLocal8Bit())

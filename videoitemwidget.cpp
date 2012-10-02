@@ -123,7 +123,7 @@ void VideoItemWidget::setImage(const ImagePixmap &vImage, bool valid)
 	videoImageValid = valid;
 	videoImage = vImage;
 	videoImage.imagePath = vImage.imagePath;
-	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	labelVideoImage->setPixmap(((QPixmap)videoImage).scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
 	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
@@ -139,7 +139,7 @@ void VideoItemWidget::setImage(ImagePixmap *vImage, bool valid)
 	videoImageValid = valid;
 	videoImage = *vImage;
 	videoImage.imagePath = vImage->imagePath;
-	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	labelVideoImage->setPixmap(((QPixmap)videoImage).scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
 	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
