@@ -46,7 +46,7 @@ class ImagePixmap : public QPixmap
 
 		ImagePixmap &operator=(const QPixmap &other)
 		{
-			QPixmap::operator=((QPixmap &)other);
+			QPixmap::operator=(other);
 			const ImagePixmap *otherImagePixmap = dynamic_cast<const ImagePixmap *>(&other);
 			if ( otherImagePixmap )
 				imagePath = otherImagePixmap->imagePath;
