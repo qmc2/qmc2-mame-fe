@@ -11,11 +11,11 @@
 extern MainWindow *qmc2MainWindow;
 #endif
 
-VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, const ImagePixmap &vImage, int vType, void *vPlayer, QWidget *parent)
+VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, ImagePixmap *vImage, int vType, void *vPlayer, QWidget *parent)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., const ImagePixmap &vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., ImagePixmap *vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
@@ -138,7 +138,7 @@ void VideoItemWidget::setImage(ImagePixmap *vImage, bool valid)
 
 	videoImageValid = valid;
 	videoImage = *vImage;
-	delete vImage;
+	videoImage.imagePath = vImage->imagePath;
 	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
 	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
