@@ -3859,7 +3859,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex = " + QString::number(currentIndex) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex = %1)").arg(currentIndex));
 #endif
 
   if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
