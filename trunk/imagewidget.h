@@ -21,15 +21,13 @@ class ImagePixmap : public QPixmap
 			imagePath.clear();
 		}
 
-		ImagePixmap(const ImagePixmap &other)
+		ImagePixmap(const ImagePixmap &other) : QPixmap((QPixmap &)other)
 		{
-			QPixmap::operator=((QPixmap &)other);
 			imagePath = other.imagePath;
 		}
 
-		ImagePixmap(const QPixmap &other)
+		ImagePixmap(const QPixmap &other) : QPixmap(other)
 		{
-			QPixmap::operator=(other);
 			const ImagePixmap *otherImagePixmap = dynamic_cast<const ImagePixmap *>(&other);
 			if ( otherImagePixmap )
 				imagePath = otherImagePixmap->imagePath;
