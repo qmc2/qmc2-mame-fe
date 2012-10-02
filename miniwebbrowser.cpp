@@ -182,7 +182,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   // "activate" the combo box on pressing return
   connect(comboBoxURL->lineEdit(), SIGNAL(returnPressed()), this, SLOT(on_comboBoxURL_activated()));
 
-  QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
+  adjustIconSizes();
 }
 
 MiniWebBrowser::~MiniWebBrowser()
