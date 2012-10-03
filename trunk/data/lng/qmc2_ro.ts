@@ -3071,7 +3071,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1704"/>
         <location filename="../../gamelist.cpp" line="1991"/>
         <location filename="../../gamelist.cpp" line="2281"/>
-        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3142"/>
         <source>Waiting for data...</source>
         <translation>Astept date...</translation>
     </message>
@@ -3242,8 +3242,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1023"/>
-        <location filename="../../gamelist.cpp" line="2827"/>
-        <location filename="../../gamelist.cpp" line="3173"/>
+        <location filename="../../gamelist.cpp" line="2833"/>
+        <location filename="../../gamelist.cpp" line="3187"/>
         <source>ROM check - %p%</source>
         <translation>verificare ROM - %p%</translation>
     </message>
@@ -3836,16 +3836,28 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1895"/>
         <location filename="../../gamelist.cpp" line="1909"/>
         <location filename="../../gamelist.cpp" line="2221"/>
-        <location filename="../../gamelist.cpp" line="2605"/>
-        <location filename="../../gamelist.cpp" line="2606"/>
-        <location filename="../../gamelist.cpp" line="2607"/>
-        <location filename="../../gamelist.cpp" line="2608"/>
-        <location filename="../../gamelist.cpp" line="2609"/>
-        <location filename="../../gamelist.cpp" line="2610"/>
+        <location filename="../../gamelist.cpp" line="2351"/>
+        <location filename="../../gamelist.cpp" line="2352"/>
+        <location filename="../../gamelist.cpp" line="2353"/>
+        <location filename="../../gamelist.cpp" line="2354"/>
+        <location filename="../../gamelist.cpp" line="2355"/>
+        <location filename="../../gamelist.cpp" line="2356"/>
         <location filename="../../gamelist.cpp" line="2611"/>
         <location filename="../../gamelist.cpp" line="2612"/>
-        <location filename="../../gamelist.cpp" line="3696"/>
-        <location filename="../../gamelist.cpp" line="3897"/>
+        <location filename="../../gamelist.cpp" line="2613"/>
+        <location filename="../../gamelist.cpp" line="2614"/>
+        <location filename="../../gamelist.cpp" line="2615"/>
+        <location filename="../../gamelist.cpp" line="2616"/>
+        <location filename="../../gamelist.cpp" line="2617"/>
+        <location filename="../../gamelist.cpp" line="2618"/>
+        <location filename="../../gamelist.cpp" line="3107"/>
+        <location filename="../../gamelist.cpp" line="3108"/>
+        <location filename="../../gamelist.cpp" line="3109"/>
+        <location filename="../../gamelist.cpp" line="3110"/>
+        <location filename="../../gamelist.cpp" line="3111"/>
+        <location filename="../../gamelist.cpp" line="3112"/>
+        <location filename="../../gamelist.cpp" line="3710"/>
+        <location filename="../../gamelist.cpp" line="3911"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -3891,29 +3903,29 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
-        <location filename="../../gamelist.cpp" line="3114"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>sortez lista jocuri dupa %1 in ordinea %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
         <location filename="../../gamelist.cpp" line="2269"/>
-        <location filename="../../gamelist.cpp" line="3114"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>ascending</source>
         <translation>ascendent</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
         <location filename="../../gamelist.cpp" line="2269"/>
-        <location filename="../../gamelist.cpp" line="3114"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>descending</source>
         <translation>descendent</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2269"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>sortez lista masini dupa %1 in ordinea %2</translation>
     </message>
@@ -3998,198 +4010,198 @@ p, li { white-space: pre-wrap; }
         <translation>AVERTIZARE: lista cache cu masini este invechita, invalidez lista cache cu masini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2351"/>
-        <location filename="../../gamelist.cpp" line="3100"/>
+        <location filename="../../gamelist.cpp" line="2357"/>
+        <location filename="../../gamelist.cpp" line="3113"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation>Informatii stare ROM: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2363"/>
+        <location filename="../../gamelist.cpp" line="2369"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
         <translation>AVERTIZARE: verificare stare cache ROM incompleta sau invechita, declansez o verificare ROM automata</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2366"/>
+        <location filename="../../gamelist.cpp" line="2372"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
         <translation>AVERTIZARE: verificare stare cache ROM incompleta sau invechita, va rog reverificati ROM-urile</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2386"/>
+        <location filename="../../gamelist.cpp" line="2392"/>
         <source>ROM state filter already active</source>
         <translation>filtru de stare ROM deja activ</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2391"/>
+        <location filename="../../gamelist.cpp" line="2397"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>va rog asteptati finalizarea verificarii ROM si incercati din nou</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2396"/>
+        <location filename="../../gamelist.cpp" line="2402"/>
         <source>please wait for reload to finish and try again</source>
         <translation>va rog asteptati ca reincarcarea sa se termine si incercati din nou</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2405"/>
+        <location filename="../../gamelist.cpp" line="2411"/>
         <source>applying ROM state filter</source>
         <translation>aplic filtru de stare ROM</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2408"/>
+        <location filename="../../gamelist.cpp" line="2414"/>
         <source>State filter - %p%</source>
         <translation>Stare filtru - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2465"/>
+        <location filename="../../gamelist.cpp" line="2471"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
         <translation>terminat (aplic filtru de stare ROM, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2479"/>
+        <location filename="../../gamelist.cpp" line="2485"/>
         <source>saving game list</source>
         <translation>salvez lista de jocuri</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2480"/>
+        <location filename="../../gamelist.cpp" line="2486"/>
         <source>done (saving game list)</source>
         <translation>terminat (salvez lista de jocuri)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2482"/>
+        <location filename="../../gamelist.cpp" line="2488"/>
         <source>saving machine list</source>
         <translation>salvez lista de masini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2483"/>
+        <location filename="../../gamelist.cpp" line="2489"/>
         <source>done (saving machine list)</source>
         <translation>terminat (salvez lista de masini)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2493"/>
+        <location filename="../../gamelist.cpp" line="2499"/>
         <source>loading favorites</source>
         <translation>incarc favorite</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2513"/>
+        <location filename="../../gamelist.cpp" line="2519"/>
         <source>done (loading favorites)</source>
         <translation>terminat (incarc favorite)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2526"/>
+        <location filename="../../gamelist.cpp" line="2532"/>
         <source>saving favorites</source>
         <translation>salvez favorite</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2537"/>
+        <location filename="../../gamelist.cpp" line="2543"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
         <translation>FATAL: nu pot deschide fisier favorite pentru scriere, cale = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2539"/>
+        <location filename="../../gamelist.cpp" line="2545"/>
         <source>done (saving favorites)</source>
         <translation>terminat (salvez favorite)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2548"/>
+        <location filename="../../gamelist.cpp" line="2554"/>
         <source>loading play history</source>
         <translation>incarc istoric jocuri</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2567"/>
+        <location filename="../../gamelist.cpp" line="2573"/>
         <source>done (loading play history)</source>
         <translation>terminat (incarc istoric jocuri)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2580"/>
+        <location filename="../../gamelist.cpp" line="2586"/>
         <source>saving play history</source>
         <translation>salvez istoric jocuri</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2591"/>
+        <location filename="../../gamelist.cpp" line="2597"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
         <translation>FATAL: nu pot deschide fisier istoric jocuri pentru scriere, cale = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2594"/>
+        <location filename="../../gamelist.cpp" line="2600"/>
         <source>done (saving play history)</source>
         <translation>terminat (salvez istoric jocuri)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2605"/>
+        <location filename="../../gamelist.cpp" line="2611"/>
         <source>L:</source>
         <translation>L:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2606"/>
+        <location filename="../../gamelist.cpp" line="2612"/>
         <source>C:</source>
         <translation>C:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2607"/>
+        <location filename="../../gamelist.cpp" line="2613"/>
         <source>M:</source>
         <translation>M:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2608"/>
+        <location filename="../../gamelist.cpp" line="2614"/>
         <source>I:</source>
         <translation>I:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2609"/>
+        <location filename="../../gamelist.cpp" line="2615"/>
         <source>N:</source>
         <translation>N:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2610"/>
+        <location filename="../../gamelist.cpp" line="2616"/>
         <source>U:</source>
         <translation>U:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2611"/>
+        <location filename="../../gamelist.cpp" line="2617"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2612"/>
+        <location filename="../../gamelist.cpp" line="2618"/>
         <source>T:</source>
         <translation>T:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2635"/>
-        <location filename="../../gamelist.cpp" line="2819"/>
+        <location filename="../../gamelist.cpp" line="2641"/>
+        <location filename="../../gamelist.cpp" line="2825"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>AVERTIZARE: apel audit emulator nu s-a terminat curat - codExit = %1, Stareexit = %2</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2635"/>
-        <location filename="../../gamelist.cpp" line="2819"/>
+        <location filename="../../gamelist.cpp" line="2641"/>
+        <location filename="../../gamelist.cpp" line="2825"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2635"/>
-        <location filename="../../gamelist.cpp" line="2819"/>
+        <location filename="../../gamelist.cpp" line="2641"/>
+        <location filename="../../gamelist.cpp" line="2825"/>
         <source>crashed</source>
         <translation>picat</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2640"/>
+        <location filename="../../gamelist.cpp" line="2646"/>
         <source>done (loading XML game list data and (re)creating cache, elapsed time = %1)</source>
         <translation>terminat (incarc date lista XML cu jocuri si (re)creez cache, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2642"/>
+        <location filename="../../gamelist.cpp" line="2648"/>
         <source>done (loading XML machine list data and (re)creating cache, elapsed time = %1)</source>
         <translation>terminat (incarc lista XML cu masini si (re)creez cache, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2881"/>
-        <location filename="../../gamelist.cpp" line="3049"/>
-        <location filename="../../gamelist.cpp" line="3370"/>
+        <location filename="../../gamelist.cpp" line="2887"/>
+        <location filename="../../gamelist.cpp" line="3055"/>
+        <location filename="../../gamelist.cpp" line="3384"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
         <translation>AVERTIZARE: nu pot gasi harta de intrare iteme pentru &apos;%1&apos; - stare ROM nu poate fi determinata</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="2890"/>
+        <location filename="../../gamelist.cpp" line="2896"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4198,7 +4210,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3056"/>
+        <location filename="../../gamelist.cpp" line="3062"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4207,50 +4219,50 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3092"/>
+        <location filename="../../gamelist.cpp" line="3098"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>terminat (verific stare ROM pentru &apos;%1&apos;, timp scurs = %2)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3095"/>
+        <location filename="../../gamelist.cpp" line="3101"/>
         <source>done (verifying ROM status for all games, elapsed time = %1)</source>
         <translation>terminat (verific stare ROM pentru toate jocurile, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3097"/>
+        <location filename="../../gamelist.cpp" line="3103"/>
         <source>done (verifying ROM status for all machines, elapsed time = %1)</source>
         <translation>terminat (verific stare ROM pentru toate masinile, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3114"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>ROM state</source>
         <translation>stare ROM</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3385"/>
+        <location filename="../../gamelist.cpp" line="3399"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>Stare ROM pentru &apos;%1&apos; este &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3460"/>
+        <location filename="../../gamelist.cpp" line="3474"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation>pre-caching iconite din arhiva ZIP</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3466"/>
-        <location filename="../../gamelist.cpp" line="3538"/>
+        <location filename="../../gamelist.cpp" line="3480"/>
+        <location filename="../../gamelist.cpp" line="3552"/>
         <source>Icon cache - %p%</source>
         <translation>Cache iconite - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3513"/>
+        <location filename="../../gamelist.cpp" line="3527"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>terminat (salvez iconite din fisier ZIP in cache, timp scurs = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3514"/>
-        <location filename="../../gamelist.cpp" line="3572"/>
+        <location filename="../../gamelist.cpp" line="3528"/>
+        <location filename="../../gamelist.cpp" line="3586"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n iconite incarcate</numerusform>
@@ -4259,67 +4271,67 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3527"/>
+        <location filename="../../gamelist.cpp" line="3541"/>
         <source>pre-caching icons from directory</source>
         <translation>pre-caching iconite din director</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3571"/>
+        <location filename="../../gamelist.cpp" line="3585"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>terminat (salvez inconite dn director in cache, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3600"/>
+        <location filename="../../gamelist.cpp" line="3614"/>
         <source>loading category.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3606"/>
+        <location filename="../../gamelist.cpp" line="3620"/>
         <source>Category.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3633"/>
+        <location filename="../../gamelist.cpp" line="3647"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3642"/>
+        <location filename="../../gamelist.cpp" line="3656"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3792"/>
+        <location filename="../../gamelist.cpp" line="3806"/>
         <source>loading catver.ini</source>
         <translation>incarc catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3798"/>
+        <location filename="../../gamelist.cpp" line="3812"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3835"/>
+        <location filename="../../gamelist.cpp" line="3849"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>EROAREL nu po deschide &apos;%1&apos; pentru citire - niciun catver.ini valabil</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3844"/>
+        <location filename="../../gamelist.cpp" line="3858"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>terminat (incarc catver.ini, timp scurs = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3845"/>
+        <location filename="../../gamelist.cpp" line="3859"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>%1 categorie / %2 inregistrari versiune incarcate</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3677"/>
+        <location filename="../../gamelist.cpp" line="3691"/>
         <source>Category view - %p%</source>
         <translation>Vedere pe categorii - %p%</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3643"/>
+        <location filename="../../gamelist.cpp" line="3657"/>
         <source>%n category record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -4328,7 +4340,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3878"/>
+        <location filename="../../gamelist.cpp" line="3892"/>
         <source>Version view - %p%</source>
         <translation>Vedere versiune - %p%</translation>
     </message>
@@ -10566,15 +10578,15 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation>Inspecteaza</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="623"/>
+        <location filename="../../miniwebbrowser.cpp" line="637"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>EROARE: raspuns retea invalid si/sau eroare de retea</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="657"/>
-        <location filename="../../miniwebbrowser.cpp" line="662"/>
-        <location filename="../../miniwebbrowser.cpp" line="664"/>
-        <location filename="../../miniwebbrowser.cpp" line="667"/>
+        <location filename="../../miniwebbrowser.cpp" line="671"/>
+        <location filename="../../miniwebbrowser.cpp" line="676"/>
+        <location filename="../../miniwebbrowser.cpp" line="678"/>
+        <location filename="../../miniwebbrowser.cpp" line="681"/>
         <source>MiniWebBrowser</source>
         <translation type="unfinished">MiniBrowserWeb</translation>
     </message>
@@ -14275,28 +14287,28 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>versiune</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3195"/>
+        <location filename="../../gamelist.cpp" line="3209"/>
         <source>correct</source>
         <translation>corect</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3230"/>
+        <location filename="../../gamelist.cpp" line="3244"/>
         <source>incorrect</source>
         <translation>incorect</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3265"/>
+        <location filename="../../gamelist.cpp" line="3279"/>
         <source>mostly correct</source>
         <translation>majoritatea corecte</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3300"/>
+        <location filename="../../gamelist.cpp" line="3314"/>
         <source>not found</source>
         <translation>negasit</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3335"/>
-        <location filename="../../gamelist.cpp" line="3372"/>
+        <location filename="../../gamelist.cpp" line="3349"/>
+        <location filename="../../gamelist.cpp" line="3386"/>
         <location filename="../../romalyzer.cpp" line="3271"/>
         <location filename="../../romalyzer.cpp" line="3304"/>
         <location filename="../../romalyzer.cpp" line="3316"/>
@@ -14586,7 +14598,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1906"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1925"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>video player: eroare XML: eroare fatala la linia %1, coloana %2: %3</translation>
     </message>
@@ -19198,11 +19210,11 @@ Iesit acum, aceptati o singura data sau ignorati complet?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="111"/>
-        <location filename="../../youtubevideoplayer.cpp" line="944"/>
-        <location filename="../../youtubevideoplayer.cpp" line="968"/>
-        <location filename="../../youtubevideoplayer.cpp" line="988"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1037"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1056"/>
+        <location filename="../../youtubevideoplayer.cpp" line="942"/>
+        <location filename="../../youtubevideoplayer.cpp" line="966"/>
+        <location filename="../../youtubevideoplayer.cpp" line="986"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1035"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1054"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Nivel curent de umplere buffer: %1%</translation>
     </message>
@@ -19252,7 +19264,7 @@ Iesit acum, aceptati o singura data sau ignorati complet?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="172"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1534"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1550"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Ecran complet (reveniti cu cheie de comutare)</translation>
     </message>
@@ -19335,114 +19347,123 @@ Iesit acum, aceptati o singura data sau ignorati complet?</translation>
         <translation>player video: un videoclip cu ID-ul &apos;%1&apos; este eja atasat, ignorat</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="969"/>
+        <location filename="../../youtubevideoplayer.cpp" line="967"/>
         <source>Buffering: %1%</source>
         <translation>Tamponare: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="990"/>
+        <location filename="../../youtubevideoplayer.cpp" line="988"/>
         <source>Loading</source>
         <translation>Incarcare</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1007"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1005"/>
         <source>Playing</source>
         <translation>Redare</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1018"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1016"/>
         <source>Paused</source>
         <translation>Pauza</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1021"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1019"/>
         <source>video player: playback error: %1</source>
         <translation>player video: eroare de redare: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1022"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1020"/>
         <source>Video playback error: %1</source>
         <translation>Eroare redare video: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1104"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1102"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Preluez informatii pentru video cu ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1191"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1190"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>player video: informatii eroare vieo: ID &apos;%1&apos;, stare = &apos;%2&apos; errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1192"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1299"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1711"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1191"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1315"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1730"/>
         <source>Video info error: %1</source>
         <translation>Eroare informati video: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1261"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1276"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>player vieo: eroare informatii video: expirare a avut loc</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1262"/>
-        <source>Video info error: timeout occurred</source>
-        <translation>Eroare informatii video: expirare</translation>
+        <location filename="../../youtubevideoplayer.cpp" line="1277"/>
+        <source>video info error: timeout occurred</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1298"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1281"/>
+        <source>video info error: unknown reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video info error: timeout occurred</source>
+        <translation type="obsolete">Eroare informatii video: expirare</translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="1314"/>
         <source>video player: video info error: %1</source>
         <translation>player video: eroare informatii vieeo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1532"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1548"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Ecran complet (apasati %1 ca sa reveniti)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1710"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1729"/>
         <source>video player: video image info error: %1</source>
         <translation>player video: eroare informatii imagine vieo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1742"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1761"/>
         <source>video player: search request error: %1</source>
         <translation>player video: eroare cerere de cautare: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1770"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1789"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>player video: eroare cautare: nu pot analiza date XML</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1803"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1822"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>player video: nu pot determina ID-ul videoclipului de la URL-ul raspuns &apos;%1&apos; - va rog informati dezvoltatorii</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1809"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1828"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>player video: nu pot asocia imaginea returnata de la video cu ID &apos;%1&apos; - va rog informati dezvoltatorii</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1826"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1845"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>player video: nu pot salva imaginea de la video cu ID &apos;%1&apos; la directorul cache Youtube &apos;%2&apos; - va rog verificati permisiunile</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1828"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1847"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>player video: nu pot salva imaginea pentru videoclipul cu ID-ul &apos;%1&apos;, directorul cache Youtube &apos;%2&apos; nu exista, va rog corectati</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1830"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1849"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>player video: descarcare esuata pentru imagine videoclip cu ID &apos;%1&apos;, imaginea recuperata nu este valida</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1832"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1851"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>player video: descarcare esuata pentru imagine videoclip cu ID-ul &apos;%1&apos;, errorText = &apos;%2&apos;</translation>
     </message>

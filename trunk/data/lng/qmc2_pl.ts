@@ -2941,7 +2941,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1704"/>
         <location filename="../../gamelist.cpp" line="1991"/>
         <location filename="../../gamelist.cpp" line="2281"/>
-        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3142"/>
         <source>Waiting for data...</source>
         <translation>Oczekiwanie na dane...</translation>
     </message>
@@ -3410,18 +3410,18 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2351"/>
-        <location filename="../../gamelist.cpp" line="3100"/>
+        <location filename="../../gamelist.cpp" line="2357"/>
+        <location filename="../../gamelist.cpp" line="3113"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation>Informacje o stanie ROM-ów: W: %1 P:%2 Wp:%3 Np:%4 Nz:%5 Nn:%6</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2363"/>
+        <location filename="../../gamelist.cpp" line="2369"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
         <translation>UWAGA: bufor stanów ROM-ów jest niekompletny lub nieaktualny, uruchamianie automatycznego sprawdzenia ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2366"/>
+        <location filename="../../gamelist.cpp" line="2372"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
         <translation>UWAGA: bufor stanów ROM-ów jest niekompletny lub nieaktualny, proszę ponownie sprawdzić ROM-y</translation>
     </message>
@@ -3477,32 +3477,44 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1895"/>
         <location filename="../../gamelist.cpp" line="1909"/>
         <location filename="../../gamelist.cpp" line="2221"/>
-        <location filename="../../gamelist.cpp" line="2605"/>
-        <location filename="../../gamelist.cpp" line="2606"/>
-        <location filename="../../gamelist.cpp" line="2607"/>
-        <location filename="../../gamelist.cpp" line="2608"/>
-        <location filename="../../gamelist.cpp" line="2609"/>
-        <location filename="../../gamelist.cpp" line="2610"/>
+        <location filename="../../gamelist.cpp" line="2351"/>
+        <location filename="../../gamelist.cpp" line="2352"/>
+        <location filename="../../gamelist.cpp" line="2353"/>
+        <location filename="../../gamelist.cpp" line="2354"/>
+        <location filename="../../gamelist.cpp" line="2355"/>
+        <location filename="../../gamelist.cpp" line="2356"/>
         <location filename="../../gamelist.cpp" line="2611"/>
         <location filename="../../gamelist.cpp" line="2612"/>
-        <location filename="../../gamelist.cpp" line="3696"/>
-        <location filename="../../gamelist.cpp" line="3897"/>
+        <location filename="../../gamelist.cpp" line="2613"/>
+        <location filename="../../gamelist.cpp" line="2614"/>
+        <location filename="../../gamelist.cpp" line="2615"/>
+        <location filename="../../gamelist.cpp" line="2616"/>
+        <location filename="../../gamelist.cpp" line="2617"/>
+        <location filename="../../gamelist.cpp" line="2618"/>
+        <location filename="../../gamelist.cpp" line="3107"/>
+        <location filename="../../gamelist.cpp" line="3108"/>
+        <location filename="../../gamelist.cpp" line="3109"/>
+        <location filename="../../gamelist.cpp" line="3110"/>
+        <location filename="../../gamelist.cpp" line="3111"/>
+        <location filename="../../gamelist.cpp" line="3112"/>
+        <location filename="../../gamelist.cpp" line="3710"/>
+        <location filename="../../gamelist.cpp" line="3911"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
         <location filename="../../gamelist.cpp" line="2269"/>
-        <location filename="../../gamelist.cpp" line="3114"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>ascending</source>
         <translation>rosnącym</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
         <location filename="../../gamelist.cpp" line="2269"/>
-        <location filename="../../gamelist.cpp" line="3114"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>descending</source>
         <translation>malejącym</translation>
     </message>
@@ -3513,117 +3525,117 @@ p, li { white-space: pre-wrap; }
         <translation>przywracanie wyboru gry</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2386"/>
+        <location filename="../../gamelist.cpp" line="2392"/>
         <source>ROM state filter already active</source>
         <translation>filtr stanów ROM-ów jest już aktywny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2391"/>
+        <location filename="../../gamelist.cpp" line="2397"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>proszę poczekać za zakończenie weryfikacji ROM-ów i spróbować ponownie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2396"/>
+        <location filename="../../gamelist.cpp" line="2402"/>
         <source>please wait for reload to finish and try again</source>
         <translation>proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2405"/>
+        <location filename="../../gamelist.cpp" line="2411"/>
         <source>applying ROM state filter</source>
         <translation>zastosowywanie filtra stanów ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2408"/>
+        <location filename="../../gamelist.cpp" line="2414"/>
         <source>State filter - %p%</source>
         <translation>Filtr stanów - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2465"/>
+        <location filename="../../gamelist.cpp" line="2471"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
         <translation>ukończono (zastosowywanie filtra stanów ROM-ów, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2493"/>
+        <location filename="../../gamelist.cpp" line="2499"/>
         <source>loading favorites</source>
         <translation>wczytywanie ulubionych</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2513"/>
+        <location filename="../../gamelist.cpp" line="2519"/>
         <source>done (loading favorites)</source>
         <translation>ukończono (wczytywanie ulubionych)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2526"/>
+        <location filename="../../gamelist.cpp" line="2532"/>
         <source>saving favorites</source>
         <translation>zapisywanie ulubionych</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2537"/>
+        <location filename="../../gamelist.cpp" line="2543"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
         <translation>FATALNIE: nie można otworzyć pliku ulubionych do zapisu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2539"/>
+        <location filename="../../gamelist.cpp" line="2545"/>
         <source>done (saving favorites)</source>
         <translation>ukończono (zapisywanie ulubionych)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2548"/>
+        <location filename="../../gamelist.cpp" line="2554"/>
         <source>loading play history</source>
         <translation>wczytywanie historii gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2567"/>
+        <location filename="../../gamelist.cpp" line="2573"/>
         <source>done (loading play history)</source>
         <translation>ukończono (wczytywanie historii gier)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2580"/>
+        <location filename="../../gamelist.cpp" line="2586"/>
         <source>saving play history</source>
         <translation>zapisywanie historii gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2591"/>
+        <location filename="../../gamelist.cpp" line="2597"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
         <translation>FATALNIE: nie można otworzyć pliku historii do zapisu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2594"/>
+        <location filename="../../gamelist.cpp" line="2600"/>
         <source>done (saving play history)</source>
         <translation>ukończono (zapisywanie historii gier)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2605"/>
+        <location filename="../../gamelist.cpp" line="2611"/>
         <source>L:</source>
         <translation>W:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2606"/>
+        <location filename="../../gamelist.cpp" line="2612"/>
         <source>C:</source>
         <translation>P:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2607"/>
+        <location filename="../../gamelist.cpp" line="2613"/>
         <source>M:</source>
         <translation>Wp:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2608"/>
+        <location filename="../../gamelist.cpp" line="2614"/>
         <source>I:</source>
         <translation>Np:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2609"/>
+        <location filename="../../gamelist.cpp" line="2615"/>
         <source>N:</source>
         <translation>Nz:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2610"/>
+        <location filename="../../gamelist.cpp" line="2616"/>
         <source>U:</source>
         <translation>Nn:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2611"/>
+        <location filename="../../gamelist.cpp" line="2617"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
@@ -3635,109 +3647,109 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1023"/>
-        <location filename="../../gamelist.cpp" line="2827"/>
-        <location filename="../../gamelist.cpp" line="3173"/>
+        <location filename="../../gamelist.cpp" line="2833"/>
+        <location filename="../../gamelist.cpp" line="3187"/>
         <source>ROM check - %p%</source>
         <translation>Sprawdzanie ROM-ów - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2612"/>
+        <location filename="../../gamelist.cpp" line="2618"/>
         <source>T:</source>
         <translation>Z:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3092"/>
+        <location filename="../../gamelist.cpp" line="3098"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>ukończono (weryfikowanie stanu ROM-ów dla &apos;%1&apos;, miniony czas = %2)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3095"/>
+        <location filename="../../gamelist.cpp" line="3101"/>
         <source>done (verifying ROM status for all games, elapsed time = %1)</source>
         <translation>ukończono (weryfikowanie stanu ROM-ów dla wszystkich gier, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3114"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>ROM state</source>
         <translation>Stan ROM-u</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3385"/>
+        <location filename="../../gamelist.cpp" line="3399"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>Stan ROM-u dla &apos;%1&apos; to &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3460"/>
+        <location filename="../../gamelist.cpp" line="3474"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation>pre-buforowanie ikon z archiwum ZIP</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3513"/>
+        <location filename="../../gamelist.cpp" line="3527"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>ukończono (pre-buforowanie ikon z archiwum ZIP, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3527"/>
+        <location filename="../../gamelist.cpp" line="3541"/>
         <source>pre-caching icons from directory</source>
         <translation>pre-buforowanie ikon z katalogu</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3571"/>
+        <location filename="../../gamelist.cpp" line="3585"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>ukończono (pre-buforowanie ikon z katalogu, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3600"/>
+        <location filename="../../gamelist.cpp" line="3614"/>
         <source>loading category.ini</source>
         <translation>Wczytywanie category.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3606"/>
+        <location filename="../../gamelist.cpp" line="3620"/>
         <source>Category.ini - %p%</source>
         <translation>Category.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3633"/>
+        <location filename="../../gamelist.cpp" line="3647"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation>BŁĄD: nie można otworzyć &apos;%1&apos; do odczytu -- dane category.ini niedostępne</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3642"/>
+        <location filename="../../gamelist.cpp" line="3656"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie category.ini, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3792"/>
+        <location filename="../../gamelist.cpp" line="3806"/>
         <source>loading catver.ini</source>
         <translation>wczytywanie catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3798"/>
+        <location filename="../../gamelist.cpp" line="3812"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3835"/>
+        <location filename="../../gamelist.cpp" line="3849"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>UWAGA: nie można otworzyć &apos;%1&apos; do odczytu -- dane catver.ini niedostępne</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3844"/>
+        <location filename="../../gamelist.cpp" line="3858"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie catver.ini, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3845"/>
+        <location filename="../../gamelist.cpp" line="3859"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>wczytano %1 rekordów kategorii / %2 wersji</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3677"/>
+        <location filename="../../gamelist.cpp" line="3691"/>
         <source>Category view - %p%</source>
         <translation>Widok kategorii - %p%</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3643"/>
+        <location filename="../../gamelist.cpp" line="3657"/>
         <source>%n category record(s) loaded</source>
         <translation>
             <numerusform>załadowano %n rekord informacji o kategoriach</numerusform>
@@ -3746,7 +3758,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3878"/>
+        <location filename="../../gamelist.cpp" line="3892"/>
         <source>Version view - %p%</source>
         <translation>Widok wersji - %p%</translation>
     </message>
@@ -3760,8 +3772,8 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3514"/>
-        <location filename="../../gamelist.cpp" line="3572"/>
+        <location filename="../../gamelist.cpp" line="3528"/>
+        <location filename="../../gamelist.cpp" line="3586"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n ikona załadowana</numerusform>
@@ -3770,8 +3782,8 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3466"/>
-        <location filename="../../gamelist.cpp" line="3538"/>
+        <location filename="../../gamelist.cpp" line="3480"/>
+        <location filename="../../gamelist.cpp" line="3552"/>
         <source>Icon cache - %p%</source>
         <translation>Bufor ikon - %p%</translation>
     </message>
@@ -4182,13 +4194,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
-        <location filename="../../gamelist.cpp" line="3114"/>
+        <location filename="../../gamelist.cpp" line="3128"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>sortowanie listy gier według %1 w porządku %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2269"/>
-        <location filename="../../gamelist.cpp" line="3116"/>
+        <location filename="../../gamelist.cpp" line="3130"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>sortowanie listy maszyn według %1 w porządku %2</translation>
     </message>
@@ -4229,37 +4241,37 @@ p, li { white-space: pre-wrap; }
         <translation>UWAGA: bufor listy maszyn jest nieaktualny, unieważnianie bufora listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2479"/>
+        <location filename="../../gamelist.cpp" line="2485"/>
         <source>saving game list</source>
         <translation>zapisywanie listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2480"/>
+        <location filename="../../gamelist.cpp" line="2486"/>
         <source>done (saving game list)</source>
         <translation>ukończono (zapisywanie listy gier)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2482"/>
+        <location filename="../../gamelist.cpp" line="2488"/>
         <source>saving machine list</source>
         <translation>zapisywanie listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2483"/>
+        <location filename="../../gamelist.cpp" line="2489"/>
         <source>done (saving machine list)</source>
         <translation>ukończono (zapisywanie listy maszyn)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2640"/>
+        <location filename="../../gamelist.cpp" line="2646"/>
         <source>done (loading XML game list data and (re)creating cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie listy gier XML i tworzenie (odtwarzanie) bufora, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2642"/>
+        <location filename="../../gamelist.cpp" line="2648"/>
         <source>done (loading XML machine list data and (re)creating cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie listy maszyn XML i tworzenie (odtwarzanie) bufora, miniony czas = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="2890"/>
+        <location filename="../../gamelist.cpp" line="2896"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation>
             <numerusform>sprawdzanie rzeczywistego statusu %n zestawu nie wspomnianego podczas analizy</numerusform>
@@ -4268,7 +4280,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3056"/>
+        <location filename="../../gamelist.cpp" line="3062"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation>
             <numerusform>ukończono (sprawdzanie rzeczywistego statusu %n zestawu nie wspomnianego podczas analizy)</numerusform>
@@ -4277,7 +4289,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3097"/>
+        <location filename="../../gamelist.cpp" line="3103"/>
         <source>done (verifying ROM status for all machines, elapsed time = %1)</source>
         <translation>ukończono (weryfikowanie stanu ROM-ów dla wszystkich maszyn, miniony czas = %1)</translation>
     </message>
@@ -4308,27 +4320,27 @@ p, li { white-space: pre-wrap; }
         <translation>Opcja</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2881"/>
-        <location filename="../../gamelist.cpp" line="3049"/>
-        <location filename="../../gamelist.cpp" line="3370"/>
+        <location filename="../../gamelist.cpp" line="2887"/>
+        <location filename="../../gamelist.cpp" line="3055"/>
+        <location filename="../../gamelist.cpp" line="3384"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
         <translation>UWAGA: nie można znaleźć wpisu o mapie elementów dla &apos;%1&apos; - stan ROM-u nieustalony</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2635"/>
-        <location filename="../../gamelist.cpp" line="2819"/>
+        <location filename="../../gamelist.cpp" line="2641"/>
+        <location filename="../../gamelist.cpp" line="2825"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>UWAGA: wywołanie audytu emulatora nie zakończyło się czysto -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2635"/>
-        <location filename="../../gamelist.cpp" line="2819"/>
+        <location filename="../../gamelist.cpp" line="2641"/>
+        <location filename="../../gamelist.cpp" line="2825"/>
         <source>normal</source>
         <translation>normalny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2635"/>
-        <location filename="../../gamelist.cpp" line="2819"/>
+        <location filename="../../gamelist.cpp" line="2641"/>
+        <location filename="../../gamelist.cpp" line="2825"/>
         <source>crashed</source>
         <translation>przestał działać</translation>
     </message>
@@ -10581,15 +10593,15 @@ Ponowić próbę osadzania?</translation>
         <translation>Zbadaj</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="623"/>
+        <location filename="../../miniwebbrowser.cpp" line="637"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>UWAGA: niepoprawna odpowiedź sieci lub błąd sieci</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="657"/>
-        <location filename="../../miniwebbrowser.cpp" line="662"/>
-        <location filename="../../miniwebbrowser.cpp" line="664"/>
-        <location filename="../../miniwebbrowser.cpp" line="667"/>
+        <location filename="../../miniwebbrowser.cpp" line="671"/>
+        <location filename="../../miniwebbrowser.cpp" line="676"/>
+        <location filename="../../miniwebbrowser.cpp" line="678"/>
+        <location filename="../../miniwebbrowser.cpp" line="681"/>
         <source>MiniWebBrowser</source>
         <translation>MiniWebBrowser</translation>
     </message>
@@ -14375,28 +14387,28 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>stan sterownika</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3195"/>
+        <location filename="../../gamelist.cpp" line="3209"/>
         <source>correct</source>
         <translation>poprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3230"/>
+        <location filename="../../gamelist.cpp" line="3244"/>
         <source>incorrect</source>
         <translation>niepoprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3265"/>
+        <location filename="../../gamelist.cpp" line="3279"/>
         <source>mostly correct</source>
         <translation>w większości poprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3300"/>
+        <location filename="../../gamelist.cpp" line="3314"/>
         <source>not found</source>
         <translation>nieznaleziony</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3335"/>
-        <location filename="../../gamelist.cpp" line="3372"/>
+        <location filename="../../gamelist.cpp" line="3349"/>
+        <location filename="../../gamelist.cpp" line="3386"/>
         <location filename="../../romalyzer.cpp" line="3271"/>
         <location filename="../../romalyzer.cpp" line="3304"/>
         <location filename="../../romalyzer.cpp" line="3316"/>
@@ -14508,7 +14520,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Funkcje Phonona włączone - używanie Phonon w wersji %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1906"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1925"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>odtwarzacz filmów: błąd XML: fatalny błąd w linii %1, kolumna %2: %3</translation>
     </message>
@@ -19220,11 +19232,11 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="111"/>
-        <location filename="../../youtubevideoplayer.cpp" line="944"/>
-        <location filename="../../youtubevideoplayer.cpp" line="968"/>
-        <location filename="../../youtubevideoplayer.cpp" line="988"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1037"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1056"/>
+        <location filename="../../youtubevideoplayer.cpp" line="942"/>
+        <location filename="../../youtubevideoplayer.cpp" line="966"/>
+        <location filename="../../youtubevideoplayer.cpp" line="986"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1035"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1054"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Obecny poziom zapełnienia bufora: %1%</translation>
     </message>
@@ -19274,7 +19286,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="172"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1534"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1550"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Pełny ekran (powrót za pomocą klawisza przełączającego)</translation>
     </message>
@@ -19357,114 +19369,123 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <translation>odtwarzacz filmów: film o ID &apos;%1&apos; jest już załączony, zignorowano</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="969"/>
+        <location filename="../../youtubevideoplayer.cpp" line="967"/>
         <source>Buffering: %1%</source>
         <translation>Buforowanie: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="990"/>
+        <location filename="../../youtubevideoplayer.cpp" line="988"/>
         <source>Loading</source>
         <translation>Wczytywanie</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1007"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1005"/>
         <source>Playing</source>
         <translation>Odtwarzanie</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1018"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1016"/>
         <source>Paused</source>
         <translation>Wstrzymano</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1021"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1019"/>
         <source>video player: playback error: %1</source>
         <translation>odtwarzacz filmów: błąd odtwarzania: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1022"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1020"/>
         <source>Video playback error: %1</source>
         <translation>Błąd odtwarzania filmu: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1104"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1102"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Uzyskiwanie informacji o filmie o ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1191"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1190"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>odtwarzacz filmów: błąd informacji o filmie: ID = &apos;%1&apos;, stan = &apos;%2&apos;, kod błędu = &apos;%3, tekst błędu = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1192"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1299"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1711"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1191"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1315"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1730"/>
         <source>Video info error: %1</source>
         <translation>Błąd informacji o filmie: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1261"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1276"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>odtwarzacz filmów: błąd informacji o filmie: przekroczono czas</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1262"/>
-        <source>Video info error: timeout occurred</source>
-        <translation>Błąd informacji o filmie: upłynął limit czasu</translation>
+        <location filename="../../youtubevideoplayer.cpp" line="1277"/>
+        <source>video info error: timeout occurred</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1298"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1281"/>
+        <source>video info error: unknown reason</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video info error: timeout occurred</source>
+        <translation type="obsolete">Błąd informacji o filmie: upłynął limit czasu</translation>
+    </message>
+    <message>
+        <location filename="../../youtubevideoplayer.cpp" line="1314"/>
         <source>video player: video info error: %1</source>
         <translation>odtwarzacz filmów: błąd informacji o filmie: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1532"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1548"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Pełny ekran (powrót za pomocą %1)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1710"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1729"/>
         <source>video player: video image info error: %1</source>
         <translation>odtwarzacz filmów: błąd informacji o obrazie: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1742"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1761"/>
         <source>video player: search request error: %1</source>
         <translation>odtwarzacz filmów: błąd zapytania: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1770"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1789"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>odtwarzacz filmów: błąd szukania: nie można parsować danych XML</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1803"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1822"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>odtwarzacz filmów: nie można ustalić ID filmu na podstawie zwróconego URL &apos;%1&apos; -- proszę powiadomić programistów</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1809"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1828"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>odtwarzacz filmów: nie można powiązać zwróconego obrazu z ID filmu &apos;%1&apos; -- proszę powiadomić programistów</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1826"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1845"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>odtwarzacz filmów: nie można zapisać obrazu dla ID filmu &apos;%1&apos; w katalogu bufora YouTube &apos;%2&apos; -- proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1828"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1847"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>odtwarzacz filmów: nie można zapisać obrazu dla ID filmu &apos;%1&apos;, katalog bufora YouTube &apos;%2&apos; nie istnieje -- proszę poprawić</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1830"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1849"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>odtwarzacz filmów: pobieranie obrazu nieudane dla ID filmu &apos;%1&apos;, uzyskany obraz jest nieprawidłowy</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1832"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1851"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>odtwarzacz filmów: pobieranie obrazu nieudane dla ID filmu &apos;%1&apos;, tekst błędu = &apos;%2&apos;</translation>
     </message>
