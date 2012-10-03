@@ -2348,7 +2348,13 @@ void Gamelist::parse()
       f.remove();
     }
   }
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(numTotalGames + numDevices).arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
+  QString sL = numTotalGames + numDevices >= 0 ? QString::number(numTotalGames + numDevices) : tr("?");
+  QString sC = numCorrectGames >= 0 ? QString::number(numCorrectGames) : tr("?");
+  QString sM = numMostlyCorrectGames >= 0 ? QString::number(numMostlyCorrectGames) : tr("?");
+  QString sI = numIncorrectGames >= 0 ? QString::number(numIncorrectGames) : tr("?");
+  QString sN = numNotFoundGames >= 0 ? QString::number(numNotFoundGames) : tr("?");
+  QString sU = numUnknownGames >= 0 ? QString::number(numUnknownGames) : tr("?");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
   qmc2MainWindow->progressBarGamelist->reset();
 
   qmc2ReloadActive = false;
@@ -3097,12 +3103,20 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all machines, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(numTotalGames + numDevices).arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
+
+  QString sL = numTotalGames + numDevices >= 0 ? QString::number(numTotalGames + numDevices) : tr("?");
+  QString sC = numCorrectGames >= 0 ? QString::number(numCorrectGames) : tr("?");
+  QString sM = numMostlyCorrectGames >= 0 ? QString::number(numMostlyCorrectGames) : tr("?");
+  QString sI = numIncorrectGames >= 0 ? QString::number(numIncorrectGames) : tr("?");
+  QString sN = numNotFoundGames >= 0 ? QString::number(numNotFoundGames) : tr("?");
+  QString sU = numUnknownGames >= 0 ? QString::number(numUnknownGames) : tr("?");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
   qmc2MainWindow->progressBarGamelist->reset();
-  qmc2VerifyActive = false;
+
   if ( verifyProc )
     delete verifyProc;
   verifyProc = NULL;
+  qmc2VerifyActive = false;
 
   if ( romCache.isOpen() ) {
     tsRomCache.flush();
