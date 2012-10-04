@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.38, 01-OCT-2012</h3>
+<h3>README - v0.38, 04-OCT-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -125,26 +125,26 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
     </tr>
     <tr>
       <td style="vertical-align: top;">All: Qt 4.7.0+ (Qt 4.8.3+ recommended)</td>
-      <td style="vertical-align: top;"><a href="http://download.qt.nokia.com/qt/source/" target="_blank">http://download.qt.nokia.com/qt/source/</a></td>
+      <td style="vertical-align: top;"><a href="http://releases.qt-project.org/qt4/source/" target="_blank">http://releases.qt-project.org/qt4/source/</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">UNIX &amp; Mac OS X: GNU make 3.80+</td>
       <td style="vertical-align: top;"><a href="http://ftp.gnu.org/gnu/make/" target="_blank">http://ftp.gnu.org/gnu/make/</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Mac OS X: Xcode 3.2.x</td>
+      <td style="vertical-align: top;">Mac OS X: Xcode 3.2+</td>
       <td style="vertical-align: top;"><a href="http://developer.apple.com/technologies/xcode.html" target="_blank">http://developer.apple.com/technologies/xcode.html</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Windows: VC++ 2010</td>
-      <td style="vertical-align: top;"><a href="http://www.microsoft.com/Express/download/default.aspx" target="_blank">http://www.microsoft.com/Express/download/default.aspx</a></td>
+      <td style="vertical-align: top;"><a href="http://www.microsoft.com/visualstudio/eng/products/visual-studio-2010-express" target="_blank">http://www.microsoft.com/visualstudio/eng/products/visual-studio-2010-express</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Windows: MinGW<br>MAME dev-tools<br>QMC2 add-on</td>
-      <td style="vertical-align: top;"><br><a href="http://mamedev.org/tools" target="_blank">http://mamedev.org/tools</a><br><a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon</a></td>
+      <td style="vertical-align: top;">Windows: MinGW<br>MAME dev-tools<br>Qt add-on</td>
+      <td style="vertical-align: top;"><br><a href="http://mamedev.org/tools" target="_blank">http://mamedev.org/tools</a><br><a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon" target="_blank">http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">All: MAME/MESS/UME 0.146+</td>
+      <td style="vertical-align: top;">All: MAME/MESS/UME 0.147+</td>
       <td style="vertical-align: top;"><a href="http://mamedev.org/release.html" target="_blank">http://mamedev.org/release.html</a><br>
                                        <a href="http://www.mess.org/download.php" target="_blank">http://www.mess.org/download.php</a></td>
     </tr>
@@ -162,11 +162,11 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
                                        <a href="http://www.libsdl.org/release/SDL-1.2.15.dmg">http://www.libsdl.org/release/SDL-1.2.15.dmg</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;"><u>Video codecs (optional)</u><br>Linux: usually included<br>Windows: W7 Codec Pack<br>Mac OS X: Perian</td>
+      <td style="vertical-align: top;"><u>Video codecs (optional)</u><br>Linux: usually included<br>Windows: W7 Codec Pack<br>Mac OS X: QuickTime 7</td>
       <td style="vertical-align: top;">Required at run-time:<br>
                                        Linux Phonon back-ends like xine, gstreamer or VLC should include everything you need.<br>
                                        <a href="http://www.windows7codecs.com/" target="_blank">http://www.windows7codecs.com/</a><br>
-				       <a href="http://www.perian.org/" target="_blank">http://www.perian.org/</a></td>
+				       Qt comes with a back-end plugin for QuickTime 7: <a href="http://www.apple.com/quicktime/download/" target="_blank">http://www.apple.com/quicktime/download/</a></td>
     </tr>
   </tbody>
 </table>
@@ -272,7 +272,7 @@ Arguments in detail:
 <ul>
   <li><i>-qmc2_config_path</i>: See <a href="#config_path">configuration path</a> below!</li>
   <li><i>-cc</i>: When this CLI option is specified, all emulator caches will be cleared (removed) before the application actually starts up. This is useful whenever the emulator version doesn't change and QMC2 can't figure out that it's time to update the caches because of this (so this mainly applies to those users that are often updating their MAME/MESS/UME installation from the <a href="http://mamedev.org/?p=373" target="_blank">public SVN repository</a>).</li>
-  <li><i>qt4_arguments</i>: See the <a href="http://doc.qt.nokia.com/4.8/qapplication.html#QApplication" target="_blank">QApplication class reference</a> for details on what Qt 4 arguments are available (note, however, that some of these arguments are useless since QMC2 will overwrite them with its saved ini-settings).</li>
+  <li><i>qt4_arguments</i>: See the <a href="http://qt-project.org/doc/qt-4.8/qapplication.html#QApplication" target="_blank">QApplication class reference</a> for details on what Qt 4 arguments are available (note, however, that some of these arguments are useless since QMC2 will overwrite them with its saved ini-settings).</li>
 </ul>
 </p>
 <p><a name="config_path"></a><b>Configuration path</b></p>
@@ -439,7 +439,7 @@ and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_b
    path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!
    <b>Update:</b> since version 0.2.b16 we support the specification of the <i>working directory</i> that's used when the emulator is launched in play- or demo-mode;
    we strongly recommend to set this option as it cleanly works around this issue.</p>
-<p>Read more about Qt style sheets here: <a href="http://doc.qt.nokia.com/4.8/stylesheet.html" target="_blank">http://doc.qt.nokia.com/4.8/stylesheet.html</a></p>
+<p>Read more about Qt style sheets here: <a href="http://qt-project.org/doc/4.8/stylesheet.html" target="_blank">http://qt-project.org/doc/4.8/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
@@ -867,8 +867,7 @@ jwz@jwz.org</p>
 Copyright &copy; 1984 Columbia Pictures Industries, Inc. All rights reserved.
 </p>
 <p><i>HTML editor from Qt Labs / graphics-dojo</i><br>
-Copyright &copy; 2011 The Qt Project / Qt by Nokia. All rights reserved.<br>
-<a href="http://labs.qt.nokia.com" target="_blank">http://labs.qt.nokia.com</a><br>
+Copyright &copy; 2011 The Qt Project. All rights reserved.<br>
 <a href="http://qt.gitorious.org/qt-labs/graphics-dojo" target="_blank">http://qt.gitorious.org/qt-labs/graphics-dojo</a>
 </p>
 <h3><a name="12."></a>12. Legal notice</h3>
