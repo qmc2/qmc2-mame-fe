@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.38, 01-OCT-2012</h3>
+<h3>FAQ - v0.38, 04-OCT-2012</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.7+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -58,9 +58,9 @@
 <p>First of all, don't worry. Regardless if an older version of Qt is already installed or not, you can use several versions in parallel. This includes self-compiled versions as in the following example.
 You only need to take care of the <i>QMAKE</i> make option as described in the build instructions of <a href="readme.html#2.">readme.html</a>.</p>
 <p>If you need to build Qt 4 from source, please follow these steps (on X11 platforms):</p>
-<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> -- for example <a href="http://download.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.7.4.tar.gz" target="_blank">http://download.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.7.4.tar.gz</a>.</p>
+<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://releases.qt-project.org/qt4/source/" target="_blank">http://releases.qt-project.org/qt4/source/</a> -- for example <a href="http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.3.tar.gz" target="_blank">http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.3.tar.gz</a>.</p>
 <p>2) Extract this tar-ball to a directory where you are going to build it, then configure and build it completely:</p>
-<pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-everywhere-opensource-src-4.7.4.tar.gz | tar xfv -<br># cd qt-everywhere-opensource-src-4.7.4<br># ./configure -platform linux-g++ -fast -opensource -prefix /usr/local/lib/qt-4.7.4<br># make</pre>
+<pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-everywhere-opensource-src-4.8.3.tar.gz | tar xfv -<br># cd qt-everywhere-opensource-src-4.8.3<br># ./configure -platform linux-g++ -fast -opensource -prefix /usr/local/lib/qt-4.8.3<br># make</pre>
 <p>Exchange the values for <span style="font-style: italic;">-platform</span> and <span style="font-style: italic;">-prefix</span> with things that fit your needs. The example is for a 32-bit Linux distribution, building Qt 4 on a 64-bit Linux system requires <i>-platform linux-g++-64</i>! See the available <i>make specs</i> in the Qt source (directory <i>mkspecs/</i>) for other platforms.</p>
 <p>3) Install the library (it will be installed to the prefix-directory specified on the configure command line!):</p>
 <pre># make install</pre>
