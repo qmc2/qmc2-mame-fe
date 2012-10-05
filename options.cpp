@@ -15,6 +15,7 @@
 #include <QScrollBar>
 #include <QInputDialog>
 #include <QSplashScreen>
+#include <QNetworkAccessManager>
 #include <QCache>
 
 #include "options.h"
@@ -40,6 +41,7 @@
 #include "iconlineedit.h"
 #include "mawsqdlsetup.h"
 #include "imagewidget.h"
+#include "cookiejar.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -164,6 +166,7 @@ extern bool qmc2SortingActive;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern SampleChecker *qmc2SampleChecker;
 #endif
+extern QNetworkAccessManager *qmc2NetworkAccessManager;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -666,8 +669,8 @@ void Options::apply()
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
   toolButtonBrowseOptionsTemplateFile->setIconSize(iconSize);
   toolButtonBrowseListXMLCache->setIconSize(iconSize);
+  toolButtonBrowseCookieDatabase->setIconSize(iconSize);
   toolButtonBrowseZipTool->setIconSize(iconSize);
-  toolButtonBrowseFileRemovalTool->setIconSize(iconSize);
   toolButtonBrowseRomTool->setIconSize(iconSize);
   toolButtonBrowseRomToolWorkingDirectory->setIconSize(iconSize);
   pushButtonRedefineKeySequence->setIconSize(iconSize);
@@ -883,7 +886,8 @@ void Options::on_pushButtonApply_clicked()
        needReopenPCBFile = false,
        needReopenSoftwareSnapFile = false,
        needReload = false,
-       needManualReload = false;
+       needManualReload = false,
+       needChangeCookieJar = false;
 
   // General
   config->setValue("Version", QString(XSTR(QMC2_VERSION)));
@@ -1484,11 +1488,18 @@ void Options::on_pushButtonApply_clicked()
   }
 #endif
 
-  // Tools / Proxy
+  // Network / Proxy
+  CookieJar *cj = NULL;
+  bool restoreCookies = config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool();
+  config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", checkBoxRestoreCookies->isChecked());
+  needChangeCookieJar = restoreCookies != checkBoxRestoreCookies->isChecked();
+  if ( restoreCookies )
+	  cj = (CookieJar *)qmc2NetworkAccessManager->cookieJar();
+  QString cookieDatabase = config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", QString()).toString();
+  config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", lineEditCookieDatabase->text());
+  needChangeCookieJar |= cookieDatabase != lineEditCookieDatabase->text();
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", lineEditZipTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", lineEditZipToolRemovalArguments->text());
-  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", lineEditFileRemovalTool->text());
-  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", lineEditFileRemovalToolArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomTool", lineEditRomTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", lineEditRomToolArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", lineEditRomToolWorkingDirectory->text());
@@ -1505,8 +1516,16 @@ void Options::on_pushButtonApply_clicked()
                                          spinBoxHTTPProxyPort->value(),
                                          lineEditHTTPProxyUserID->text().isEmpty() ? QString() : lineEditHTTPProxyUserID->text(),
                                          lineEditHTTPProxyPassword->text().isEmpty() ? QString() : lineEditHTTPProxyPassword->text()));
-  } else {
+  } else
       QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::NoProxy));
+
+  if ( needChangeCookieJar ) {
+	  if ( cj )
+		  cj->db.close();
+	  if ( checkBoxRestoreCookies->isChecked() )
+		  qmc2NetworkAccessManager->setCookieJar(new CookieJar(qmc2NetworkAccessManager));
+	  else
+		  qmc2NetworkAccessManager->setCookieJar(new QNetworkCookieJar(qmc2NetworkAccessManager));
   }
 
   if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
@@ -2493,18 +2512,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   }
 #endif
 
-  // Tools / Proxy
-#if defined (QMC2_OS_WIN)
+  // Network / Proxy
+  checkBoxRestoreCookies->setChecked(config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool());
+  lineEditCookieDatabase->setText(config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", userScopePath + "/qmc2-" + QMC2_EMU_NAME_VARIANT.toLower() + "-cookies.db").toString());
   lineEditZipTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
   lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
-  lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "del").toString());
-  lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "$FILELIST$").toString());
-#else
-  lineEditZipTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
-  lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
-  lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "rm").toString());
-  lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "-f -v $FILELIST$").toString());
-#endif
   lineEditRomTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
   lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ \"$DESCRIPTION$\"").toString());
   lineEditRomToolWorkingDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
@@ -2732,6 +2744,18 @@ void Options::applyDelayed()
 #endif
   qApp->processEvents();
   qmc2VariantSwitchReady = true;
+}
+
+void Options::on_pushButtonClearCookieDatabase_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonClearCookieDatabase_clicked()");
+#endif
+
+	if ( qmc2NetworkAccessManager ) {
+		CookieJar *cj = (CookieJar *)qmc2NetworkAccessManager->cookieJar();
+		cj->recreateDatabase();
+	}
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
@@ -3017,6 +3041,18 @@ void Options::on_toolButtonBrowseListXMLCache_clicked()
   raise();
 }
 
+void Options::on_toolButtonBrowseCookieDatabase_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCookieDatabase_clicked()");
+#endif
+
+	QString s = QFileDialog::getSaveFileName(this, tr("Choose cookie database file"), lineEditCookieDatabase->text(), tr("All files (*)"));
+	if ( !s.isNull() )
+		lineEditCookieDatabase->setText(s);
+	raise();
+}
+
 void Options::on_toolButtonBrowseZipTool_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -3026,18 +3062,6 @@ void Options::on_toolButtonBrowseZipTool_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose zip tool"), lineEditZipTool->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditZipTool->setText(s);
-  raise();
-}
-
-void Options::on_toolButtonBrowseFileRemovalTool_clicked()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFileRemovalTool_clicked()");
-#endif
-
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose file removal tool"), lineEditFileRemovalTool->text(), tr("All files (*)"));
-  if ( !s.isNull() )
-    lineEditFileRemovalTool->setText(s);
   raise();
 }
 

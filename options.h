@@ -140,6 +140,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseSystemNotesFolder_clicked();
     void on_toolButtonBrowseSystemNotesTemplate_clicked();
     void on_toolButtonBrowseExecutableFile_clicked();
+    void on_toolButtonBrowseCookieDatabase_clicked();
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
     void on_toolButtonBrowseMAMEVariantExe_clicked();
     void on_toolButtonBrowseMESSVariantExe_clicked();
@@ -163,7 +164,6 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseFont_clicked();
     void on_toolButtonBrowseLogFont_clicked();
     void on_toolButtonBrowseZipTool_clicked();
-    void on_toolButtonBrowseFileRemovalTool_clicked();
     void on_toolButtonBrowseRomTool_clicked();
     void on_toolButtonBrowseRomToolWorkingDirectory_clicked();
     void on_radioButtonPreviewSelect_clicked();
@@ -190,6 +190,7 @@ class Options : public QDialog, public Ui::Options
     void on_tableWidgetRegisteredEmulators_itemClicked(QTableWidgetItem *) { on_tableWidgetRegisteredEmulators_itemSelectionChanged(); }
     void on_lineEditAdditionalEmulatorName_textChanged(const QString &);
     void on_lineEditAdditionalEmulatorArguments_textChanged(const QString &);
+    void on_pushButtonClearCookieDatabase_clicked();
 
     // joystick setup callbacks
 #if QMC2_JOYSTICK == 1
