@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>492</width>
-    <height>421</height>
+    <width>486</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -868,7 +868,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>443</width>
+                <width>437</width>
                 <height>674</height>
                </rect>
               </property>
@@ -2444,7 +2444,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>508</width>
-                <height>273</height>
+                <height>489</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3121,8 +3121,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>454</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3240,8 +3240,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>227</height>
+                <width>454</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3681,7 +3681,7 @@
          </widget>
          <widget class="QWidget" name="tabFrontendTools">
           <attribute name="title">
-           <string>Proxy / &amp;Tools</string>
+           <string>Network / &amp;Tools</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_19">
            <property name="margin">
@@ -3700,14 +3700,14 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>351</width>
-                <height>461</height>
+                <width>454</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="1" column="0" colspan="2">
+                 <item row="2" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBoxZipTool">
                    <property name="title">
                     <string>Zip tool</string>
@@ -3767,72 +3767,6 @@
                       </property>
                       <property name="toolTip">
                        <string>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="2" column="0" colspan="2">
-                  <widget class="QGroupBox" name="groupBoxFileRemovalTool">
-                   <property name="title">
-                    <string>File removal tool</string>
-                   </property>
-                   <layout class="QGridLayout">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="labelFileRemovalTool">
-                      <property name="text">
-                       <string>Command</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QLineEdit" name="lineEditFileRemovalTool">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="toolTip">
-                       <string>External file removal tool, i.e. &quot;rm&quot; (read and execute)</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <widget class="QToolButton" name="toolButtonBrowseFileRemovalTool">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="toolTip">
-                       <string>Browse for file removal tool</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="qmc2.qrc">
-                        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="labelFileRemovalToolArguments">
-                      <property name="text">
-                       <string>Arguments</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1" colspan="2">
-                     <widget class="QLineEdit" name="lineEditFileRemovalToolArguments">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="toolTip">
-                       <string>File removal tool argument list (i. e. &quot;-f -v $FILELIST$&quot;)</string>
                       </property>
                      </widget>
                     </item>
@@ -4091,6 +4025,79 @@
                        <string>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</string>
                       </property>
                      </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="0" colspan="2">
+                  <widget class="QGroupBox" name="groupBox">
+                   <property name="title">
+                    <string>Browser settings</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="1" column="2">
+                     <widget class="QToolButton" name="toolButtonBrowseCookieDatabase">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Browse cookie database</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="qmc2.qrc">
+                        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="lineEditCookieDatabase">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Cookie database file (write)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="labelCookieDatabase">
+                      <property name="text">
+                       <string>Cookie database</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0" colspan="3">
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QCheckBox" name="checkBoxRestoreCookies">
+                        <property name="toolTip">
+                         <string>Save and restore cookies used on web pages?</string>
+                        </property>
+                        <property name="text">
+                         <string>Save and restore cookies</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButtonClearCookieDatabase">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="toolTip">
+                         <string>Remove all cookies by recreating the database</string>
+                        </property>
+                        <property name="text">
+                         <string>Clear cookie database</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                    </layout>
                   </widget>
@@ -5289,12 +5296,13 @@
   <tabstop>spinBoxHTTPProxyPort</tabstop>
   <tabstop>lineEditHTTPProxyUserID</tabstop>
   <tabstop>lineEditHTTPProxyPassword</tabstop>
+  <tabstop>checkBoxRestoreCookies</tabstop>
+  <tabstop>pushButtonClearCookieDatabase</tabstop>
+  <tabstop>lineEditCookieDatabase</tabstop>
+  <tabstop>toolButtonBrowseCookieDatabase</tabstop>
   <tabstop>lineEditZipTool</tabstop>
   <tabstop>toolButtonBrowseZipTool</tabstop>
   <tabstop>lineEditZipToolRemovalArguments</tabstop>
-  <tabstop>lineEditFileRemovalTool</tabstop>
-  <tabstop>toolButtonBrowseFileRemovalTool</tabstop>
-  <tabstop>lineEditFileRemovalToolArguments</tabstop>
   <tabstop>lineEditRomTool</tabstop>
   <tabstop>toolButtonBrowseRomTool</tabstop>
   <tabstop>lineEditRomToolWorkingDirectory</tabstop>
@@ -5364,8 +5372,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>607</x>
-     <y>819</y>
+     <x>417</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -5380,8 +5388,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>679</x>
-     <y>819</y>
+     <x>480</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -5400,8 +5408,8 @@
      <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>413</x>
-     <y>87</y>
+     <x>334</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -5416,8 +5424,8 @@
      <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>102</y>
+     <x>202</x>
+     <y>109</y>
     </hint>
    </hints>
   </connection>
@@ -5432,8 +5440,8 @@
      <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>216</y>
+     <x>129</x>
+     <y>190</y>
     </hint>
    </hints>
   </connection>
@@ -5444,7 +5452,7 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>133</x>
+     <x>129</x>
      <y>81</y>
     </hint>
     <hint type="destinationlabel">
@@ -5460,11 +5468,11 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
+     <x>137</x>
      <y>191</y>
     </hint>
     <hint type="destinationlabel">
-     <x>199</x>
+     <x>202</x>
      <y>192</y>
     </hint>
    </hints>
@@ -5480,8 +5488,8 @@
      <y>544</y>
     </hint>
     <hint type="destinationlabel">
-     <x>525</x>
-     <y>555</y>
+     <x>456</x>
+     <y>548</y>
     </hint>
    </hints>
   </connection>
@@ -5496,8 +5504,8 @@
      <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>525</x>
-     <y>580</y>
+     <x>456</x>
+     <y>573</y>
     </hint>
    </hints>
   </connection>
@@ -5512,8 +5520,8 @@
      <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>525</x>
-     <y>428</y>
+     <x>456</x>
+     <y>421</y>
     </hint>
    </hints>
   </connection>
@@ -5524,12 +5532,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>525</x>
-     <y>428</y>
+     <x>456</x>
+     <y>421</y>
     </hint>
     <hint type="destinationlabel">
-     <x>239</x>
-     <y>419</y>
+     <x>222</x>
+     <y>421</y>
     </hint>
    </hints>
   </connection>
@@ -5540,12 +5548,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>345</x>
-     <y>463</y>
+     <x>341</x>
+     <y>472</y>
     </hint>
     <hint type="destinationlabel">
      <x>425</x>
      <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRestoreCookies</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>pushButtonClearCookieDatabase</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>225</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>315</x>
+     <y>225</y>
     </hint>
    </hints>
   </connection>

@@ -86,6 +86,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customidsetup.cpp \
 			toolbarcustomizer.cpp \
 			iconlineedit.cpp \
+			cookiejar.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -161,6 +162,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customidsetup.h \
 			toolbarcustomizer.h \
 			iconlineedit.h \
+			cookiejar.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

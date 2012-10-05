@@ -56,6 +56,7 @@
 #include "softwarelist.h"
 #include "toolbarcustomizer.h"
 #include "iconlineedit.h"
+#include "cookiejar.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -1473,6 +1474,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   // setup the global network access manager
   qmc2NetworkAccessManager = new QNetworkAccessManager(this);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool() )
+	  qmc2NetworkAccessManager->setCookieJar(new CookieJar(qmc2NetworkAccessManager));
 
   // URL replacement regexp
   QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*");
