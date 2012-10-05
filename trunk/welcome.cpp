@@ -333,7 +333,7 @@ bool Welcome::checkConfig()
 		  // remove no longer used "SampleChecker/SelectGame" key
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame");
 	  }
-	  if ( oldMinor < 38 || (oldSvnRevision < 4326 && oldSvnRevision > 0) ) {
+	  if ( oldMinor < 38 || (oldSvnRevision < 4327 && oldSvnRevision > 0) ) {
 		  // remove no longer used "Tools/FileRemovalTool*" keys
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments");
