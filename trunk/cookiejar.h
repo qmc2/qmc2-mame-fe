@@ -18,6 +18,7 @@ class CookieJar : public QNetworkCookieJar
 		~CookieJar();
 
 		virtual QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
+		virtual bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
 
 		bool saveCookies();
 		bool loadCookies(QList<QNetworkCookie> &, QString, QString) const;
