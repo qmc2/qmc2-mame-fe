@@ -74,6 +74,18 @@ QList<QNetworkCookie> CookieJar::cookiesForUrl(const QUrl &url) const
 	return QList<QNetworkCookie>();
 }
 
+bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
+{
+	QString domain = url.host();
+	QString path = url.path();
+	QString defaultPath = path.left(path.lastIndexOf(QLatin1Char('/')) + 1);
+	if ( defaultPath.isEmpty() )
+		defaultPath = QLatin1Char('/');
+	for (int i = 0; i < cookieList.count(); i++)
+		cookieMap.insertMulti(domain + defaultPath, cookieList[i]);
+	return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
+}
+
 bool CookieJar::saveCookies()
 {
 	QSqlQuery query(db);
