@@ -83,7 +83,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
 	return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
 
-bool CookieJar::saveCookies()
+void CookieJar::saveCookies()
 {
 	QSqlQuery query(db);
 	QDateTime now = QDateTime::currentDateTime();
