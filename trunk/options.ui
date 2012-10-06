@@ -4034,7 +4034,7 @@
                    <property name="title">
                     <string>Browser settings</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout">
+                   <layout class="QGridLayout" name="gridLayout_97">
                     <item row="1" column="2">
                      <widget class="QToolButton" name="toolButtonBrowseCookieDatabase">
                       <property name="sizePolicy">
