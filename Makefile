@@ -870,10 +870,6 @@ ifeq '$(PHONON)' '1'
 QT_CONF += QT+=phonon
 endif
 
-ifeq '$(DATABASE)' '1'
-QT_CONF += QT+=sql
-endif
-
 # setup use of CCACHE or DISTCC (if applicable)
 ifdef QMAKE_CXX_COMPILER
 undef QMAKE_CXX_COMPILER

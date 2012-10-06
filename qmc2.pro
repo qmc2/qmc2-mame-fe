@@ -3,7 +3,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
 		CONFIG += qtestlib
-		QT += xml webkit network
+		QT += xml webkit network sql
 		TEMPLATE = app
 		INCLUDEPATH += minizip/ zlib/
 		FORMS += qmc2main.ui \
