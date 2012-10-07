@@ -11,7 +11,7 @@ class CookieJar : public QNetworkCookieJar
 	Q_OBJECT
 
        	public:
-		QSqlDatabase db;
+		mutable QSqlDatabase db;
 		mutable QMultiMap<QString, QNetworkCookie> cookieMap;
 
 		CookieJar(QObject *parent = 0);
