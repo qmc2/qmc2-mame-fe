@@ -24,10 +24,8 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 	query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='qmc2_cookies'");
 	if ( !query.next() ) {
 		query.finish();
-		if ( !query.exec("CREATE TABLE qmc2_cookies (id INTEGER PRIMARY KEY, domain TEXT, name TEXT, value TEXT, path TEXT, expiry INTEGER, secure INTEGER, http_only INTEGER, CONSTRAINT qmc2_uniqueid UNIQUE (name, domain, path))") ) {
+		if ( !query.exec("CREATE TABLE qmc2_cookies (id INTEGER PRIMARY KEY, domain TEXT, name TEXT, value TEXT, path TEXT, expiry INTEGER, secure INTEGER, http_only INTEGER, CONSTRAINT qmc2_uniqueid UNIQUE (name, domain, path))") )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
-			return;
-		}
 	}
 }
 
@@ -41,6 +39,9 @@ CookieJar::~CookieJar()
 
 void CookieJar::recreateDatabase()
 {
+	if ( !db.open() )
+		return;
+
 	QSqlQuery query(db);
 	query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='qmc2_cookies'");
 	if ( query.next() ) {
@@ -85,6 +86,9 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
 
 void CookieJar::saveCookies()
 {
+	if ( !db.open() )
+		return;
+
 	QSqlQuery query(db);
 	QDateTime now = QDateTime::currentDateTime();
 	QList<QString> activeCookies;
@@ -154,6 +158,10 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 		cookieList = cookieMap.values(domain + path);
 		return !cookieList.isEmpty();
 	}
+
+	if ( !db.open() )
+		return false;
+
 	QSqlQuery query(db);
 	query.prepare("SELECT domain, name, value, path, expiry, secure, http_only FROM qmc2_cookies WHERE domain=:domain AND path=:path");
 	query.bindValue(":domain", domain);
