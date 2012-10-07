@@ -295,13 +295,11 @@ bool Welcome::checkConfig()
   int oldSvnRevision = startupConfig->value("SVN_Revision").toInt();
   if ( versionList.count() > 1 ) {
 	  oldMinor = versionList[1].toInt();
-#if defined(QMC2_EMUTYPE_MESS)
 	  if ( oldMinor < 37 || (oldSvnRevision < 3983 && oldSvnRevision > 0) ) {
 		  // add F7 standard-shortcut for all MESS targets
 		  if ( !startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7") )
 			   startupConfig->setValue(QMC2_FRONTEND_PREFIX_MESS + "Shortcuts/F7", "F7");
 	  }
-#endif
 	  if ( oldMinor < 37 || (oldSvnRevision < 4160 && oldSvnRevision > 0) ) {
 		  // rename "HtmlEditor/*" keys
 		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "HtmlEditor/Zoom") ) {
