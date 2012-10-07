@@ -369,11 +369,6 @@ void ImageChecker::startStop()
 				avgScanSpeed = 0.0;
 				foundCount = missingCount = 0;
 			}
-			/*
-			progressBar->setRange(0, qmc2GamelistItemMap.count());
-			progressBar->setValue(0);
-			progressBar->setFormat(tr("Pass #%1").arg(passNumber));
-			*/
 			bufferedObsoleteList.clear();
 			QTimer::singleShot(0, this, SLOT(checkObsoleteFiles()));
 			updateTimer.start(QMC2_CHECK_UPDATE_FAST);

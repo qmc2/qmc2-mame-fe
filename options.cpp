@@ -42,6 +42,7 @@
 #include "mawsqdlsetup.h"
 #include "imagewidget.h"
 #include "cookiejar.h"
+#include "cookiemanager.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -2756,6 +2757,16 @@ void Options::on_pushButtonClearCookieDatabase_clicked()
 		CookieJar *cj = (CookieJar *)qmc2NetworkAccessManager->cookieJar();
 		cj->recreateDatabase();
 	}
+}
+
+void Options::on_pushButtonManageCookies_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonManageCookies_clicked()");
+#endif
+
+	CookieManager cm(this);
+	cm.exec();
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
