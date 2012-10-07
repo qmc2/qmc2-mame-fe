@@ -81,6 +81,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
 	for (int i = 0; i < cookieList.count(); i++) {
 		QNetworkCookie cookie = cookieList[i];
 		cookie.setDomain(domain);
+		cookie.setPath(defaultPath);
 		cookieMap.insertMulti(domain + defaultPath, cookie);
 	}
 	return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
