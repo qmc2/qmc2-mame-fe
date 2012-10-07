@@ -331,12 +331,15 @@ bool Welcome::checkConfig()
 	  }
 	  if ( oldMinor < 38 || (oldSvnRevision < 4304 && oldSvnRevision > 0) ) {
 		  // remove no longer used "SampleChecker/SelectGame" key
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame");
 	  }
 	  if ( oldMinor < 38 || (oldSvnRevision < 4327 && oldSvnRevision > 0) ) {
 		  // remove no longer used "Tools/FileRemovalTool*" keys
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool");
-		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments");
 	  }
   }
 
