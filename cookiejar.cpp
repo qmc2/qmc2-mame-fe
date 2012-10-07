@@ -64,12 +64,11 @@ QList<QNetworkCookie> CookieJar::cookiesForUrl(const QUrl &url) const
 	QString defaultPath = path.left(path.lastIndexOf(QLatin1Char('/')) + 1);
 	if ( defaultPath.isEmpty() )
 		defaultPath = QLatin1Char('/');
-	if ( !domain.isEmpty() ) {
-		QList<QNetworkCookie> cookieList;
-		if ( loadCookies(cookieList, domain, defaultPath) )
-			return cookieList;
-	}
-	return QList<QNetworkCookie>();
+	QList<QNetworkCookie> cookieList;
+	if ( loadCookies(cookieList, domain, defaultPath) )
+		return cookieList;
+	else
+		return QNetworkCookieJar::cookiesForUrl(url);
 }
 
 bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
@@ -79,8 +78,11 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
 	QString defaultPath = path.left(path.lastIndexOf(QLatin1Char('/')) + 1);
 	if ( defaultPath.isEmpty() )
 		defaultPath = QLatin1Char('/');
-	for (int i = 0; i < cookieList.count(); i++)
-		cookieMap.insertMulti(domain + defaultPath, cookieList[i]);
+	for (int i = 0; i < cookieList.count(); i++) {
+		QNetworkCookie cookie = cookieList[i];
+		cookie.setDomain(domain);
+		cookieMap.insertMulti(domain + defaultPath, cookie);
+	}
 	return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
 
@@ -91,9 +93,15 @@ void CookieJar::saveCookies()
 
 	QSqlQuery query(db);
 	QDateTime now = QDateTime::currentDateTime();
-	QList<QString> activeCookies;
-	foreach (QNetworkCookie cookie, allCookies()) {
-		activeCookies << cookie.domain() + cookie.path() + cookie.name();
+
+	QMapIterator<QString, QNetworkCookie> it(cookieMap);
+	QStringList cookieKeysProcessed;
+	while ( it.hasNext() ) {
+		it.next();
+		QNetworkCookie cookie = it.value();
+		QString cookieKey = cookie.domain() + cookie.path() + cookie.name();
+		if ( cookieKeysProcessed.contains(cookieKey) )
+			continue;
 		query.prepare("SELECT domain, name, path FROM qmc2_cookies WHERE domain=:domain AND path=:path AND name=:name");
 		query.bindValue(":domain", cookie.domain());
 		query.bindValue(":path", cookie.path());
@@ -101,7 +109,7 @@ void CookieJar::saveCookies()
 		if ( query.exec() ) {
 			if ( query.next() ) {
 				query.finish();
-				if ( cookie.expirationDate() < now ) {
+				if ( cookie.value().isEmpty() ) {
 					query.prepare("DELETE FROM qmc2_cookies WHERE domain=:domain AND path=:path AND name=:name");
 					query.bindValue(":domain", cookie.domain());
 					query.bindValue(":path", cookie.path());
@@ -109,6 +117,16 @@ void CookieJar::saveCookies()
 					if ( !query.exec() )
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 					query.finish();
+					cookieKeysProcessed << cookieKey;
+				} else if ( cookie.expirationDate() < now ) {
+					query.prepare("DELETE FROM qmc2_cookies WHERE domain=:domain AND path=:path AND name=:name");
+					query.bindValue(":domain", cookie.domain());
+					query.bindValue(":path", cookie.path());
+					query.bindValue(":name", cookie.name());
+					if ( !query.exec() )
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+					query.finish();
+					cookieKeysProcessed << cookieKey;
 				} else if ( !cookie.isSessionCookie() ) {
 					query.prepare("UPDATE qmc2_cookies SET value=:value, expiry=" + QString::number(cookie.expirationDate().toTime_t()) + " WHERE domain=:domain AND path=:path AND name=:name");
 					query.bindValue(":value", cookie.value());
@@ -118,10 +136,11 @@ void CookieJar::saveCookies()
 					if ( !query.exec() )
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update cookie in database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 					query.finish();
+					cookieKeysProcessed << cookieKey;
 				}
 			} else {
 				query.finish();
-				if ( cookie.expirationDate() > now ) {
+				if ( cookie.expirationDate() > now && !cookie.isSessionCookie() ) {
 					query.prepare("INSERT INTO qmc2_cookies (domain, name, value, path, expiry, secure, http_only) VALUES (:domain, :name, :value, :path, " + QString::number(cookie.expirationDate().toTime_t()) + ", " + QString(cookie.isSecure() ? "1" : "0") + ", " + QString(cookie.isHttpOnly() ? "1" : "0") + ")");
 					query.bindValue(":value", cookie.value());
 					query.bindValue(":domain", cookie.domain());
@@ -130,30 +149,18 @@ void CookieJar::saveCookies()
 					if ( !query.exec() )
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add cookie to database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 					query.finish();
+					cookieKeysProcessed << cookieKey;
 				}
 			}
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to query cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 	}
-	QMapIterator<QString, QNetworkCookie> it(cookieMap);
-	while ( it.hasNext() ) {
-		it.next();
-		QString key = it.key();
-		QNetworkCookie cookie = it.value();
-		if ( !activeCookies.contains(cookie.domain() + cookie.path() + cookie.name()) ) {
-			query.prepare("DELETE FROM qmc2_cookies WHERE domain=:domain AND path=:path AND name=:name");
-			query.bindValue(":domain", cookie.domain());
-			query.bindValue(":path", cookie.path());
-			query.bindValue(":name", cookie.name());
-			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
-			query.finish();
-		}
-	}
 }
 
 bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, QString path) const
 {
+	cookieList.clear();
+
 	if ( cookieMap.contains(domain + path) ) {
 		cookieList = cookieMap.values(domain + path);
 		return !cookieList.isEmpty();
@@ -170,32 +177,30 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch cookies from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 		return false;
 	}
-	if ( query.next() ) {
-		QDateTime now = QDateTime::currentDateTime();
-		QDateTime dt;
-		do {
-			QNetworkCookie cookie;
-			cookie.setDomain(query.value(0).toString());
-			cookie.setName(query.value(1).toByteArray());
-			cookie.setValue(query.value(2).toByteArray());
-			cookie.setPath(query.value(3).toString());
-			dt.setTime_t((uint) query.value(4).toULongLong());
-			cookie.setExpirationDate(dt);
-			cookie.setSecure(query.value(5).toBool());
-			cookie.setHttpOnly(query.value(6).toBool());
-			if ( dt < now ) {
-				QSqlQuery delquery(db);
-				delquery.prepare("DELETE FROM qmc2_cookies WHERE domain=:domain AND path=:path AND name=:name");
-				delquery.bindValue(":domain", cookie.domain());
-				delquery.bindValue(":path", cookie.path());
-				delquery.bindValue(":name", cookie.name());
-				if ( !delquery.exec() )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(delquery.lastQuery()).arg(db.lastError().text()));
-			} else {
-				cookieList << cookie;
-				cookieMap.insertMulti(domain + path, cookie);
-			}
-		} while ( query.next() );
+	QDateTime now = QDateTime::currentDateTime();
+	QDateTime dt;
+	while ( query.next() ) {
+		QNetworkCookie cookie;
+		cookie.setDomain(query.value(0).toString());
+		cookie.setName(query.value(1).toByteArray());
+		cookie.setValue(query.value(2).toByteArray());
+		cookie.setPath(query.value(3).toString());
+		dt.setTime_t((uint) query.value(4).toULongLong());
+		cookie.setExpirationDate(dt);
+		cookie.setSecure(query.value(5).toBool());
+		cookie.setHttpOnly(query.value(6).toBool());
+		if ( dt < now ) {
+			QSqlQuery delquery(db);
+			delquery.prepare("DELETE FROM qmc2_cookies WHERE domain=:domain AND path=:path AND name=:name");
+			delquery.bindValue(":domain", cookie.domain());
+			delquery.bindValue(":path", cookie.path());
+			delquery.bindValue(":name", cookie.name());
+			if ( !delquery.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove expired cookie from database: query = '%1', error = '%2'").arg(delquery.lastQuery()).arg(db.lastError().text()));
+		} else {
+			cookieList << cookie;
+			cookieMap.insertMulti(domain + path, cookie);
+		}
 	}
-	return false;
+	return !cookieList.isEmpty();
 }
