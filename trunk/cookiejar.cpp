@@ -39,7 +39,7 @@ CookieJar::~CookieJar()
 
 void CookieJar::recreateDatabase()
 {
-	if ( !db.open() )
+	if ( !db.isOpen() )
 		return;
 
 	QSqlQuery query(db);
@@ -86,7 +86,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
 
 void CookieJar::saveCookies()
 {
-	if ( !db.open() )
+	if ( !db.isOpen() )
 		return;
 
 	QSqlQuery query(db);
@@ -159,7 +159,7 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 		return !cookieList.isEmpty();
 	}
 
-	if ( !db.open() )
+	if ( !db.isOpen() )
 		return false;
 
 	QSqlQuery query(db);
