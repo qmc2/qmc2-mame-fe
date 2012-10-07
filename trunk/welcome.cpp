@@ -331,15 +331,27 @@ bool Welcome::checkConfig()
 	  }
 	  if ( oldMinor < 38 || (oldSvnRevision < 4304 && oldSvnRevision > 0) ) {
 		  // remove no longer used "SampleChecker/SelectGame" key
-		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame") )
-		  	startupConfig->remove(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "SampleChecker/SelectGame") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "SampleChecker/SelectGame");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame");
 	  }
 	  if ( oldMinor < 38 || (oldSvnRevision < 4327 && oldSvnRevision > 0) ) {
 		  // remove no longer used "Tools/FileRemovalTool*" keys
-		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool") )
-		  	startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool");
-		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments") )
-		  	startupConfig->remove(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalToolArguments") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalToolArguments");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalTool") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalTool");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalToolArguments") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalToolArguments");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalTool") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalTool");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments") )
+		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments");
 	  }
   }
 
