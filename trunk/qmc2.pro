@@ -36,6 +36,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			audioeffects.ui \
 			customidsetup.ui \
 			toolbarcustomizer.ui \
+			cookiemanager.ui \
 			arcade/arcadesetupdialog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
@@ -87,6 +88,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			toolbarcustomizer.cpp \
 			iconlineedit.cpp \
 			cookiejar.cpp \
+			cookiemanager.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -163,6 +165,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			toolbarcustomizer.h \
 			iconlineedit.h \
 			cookiejar.h \
+			cookiemanager.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
