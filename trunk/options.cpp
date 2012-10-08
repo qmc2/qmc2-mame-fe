@@ -132,7 +132,7 @@ extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern QMap<QString, QString> qmc2JoystickFunctionMap;
 extern KeyPressFilter *qmc2KeyPressFilter;
-extern QMap<QString, int> qmc2QtKeyMap;
+extern QMap<QString, QKeySequence> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
@@ -379,7 +379,11 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
+#if defined(QMC2_OS_MAC)
+  qmc2ShortcutMap["Ctrl+,"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
+#else
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
+#endif
   qmc2ShortcutMap["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
@@ -464,15 +468,19 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["-"] = QPair<QString, QAction *>(tr("Minus (-)"), NULL);
   qmc2ShortcutMap["Down"] = QPair<QString, QAction *>(tr("Cursor down"), NULL);
   qmc2ShortcutMap["End"] = QPair<QString, QAction *>(tr("End"), NULL);
+  qmc2ShortcutMap["Enter"] = QPair<QString, QAction *>(tr("Enter key"), NULL);
   qmc2ShortcutMap["Esc"] = QPair<QString, QAction *>(tr("Escape"), NULL);
   qmc2ShortcutMap["Left"] = QPair<QString, QAction *>(tr("Cursor left"), NULL);
   qmc2ShortcutMap["Home"] = QPair<QString, QAction *>(tr("Home"), NULL);
   qmc2ShortcutMap["PgDown"] = QPair<QString, QAction *>(tr("Page down"), NULL);
   qmc2ShortcutMap["PgUp"] = QPair<QString, QAction *>(tr("Page up"), NULL);
-  qmc2ShortcutMap["Return"] = QPair<QString, QAction *>(tr("Enter key"), NULL);
+  qmc2ShortcutMap["Return"] = QPair<QString, QAction *>(tr("Return key"), NULL);
   qmc2ShortcutMap["Right"] = QPair<QString, QAction *>(tr("Cursor right"), NULL);
   qmc2ShortcutMap["Tab"] = QPair<QString, QAction *>(tr("Tabulator"), NULL);
   qmc2ShortcutMap["Up"] = QPair<QString, QAction *>(tr("Cursor up"), NULL);
+#if defined(QMC2_OS_MAC)
+  qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Activate item"), NULL);
+#endif
 
   if ( !config->isWritable() ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: configuration is not writeable, please check access permissions for ") + config->fileName());

@@ -253,7 +253,7 @@ unzFile qmc2IconFile = NULL;
 QStringList qmc2BiosROMs;
 QStringList qmc2DeviceROMs;
 KeyPressFilter *qmc2KeyPressFilter = NULL;
-QMap<QString, int> qmc2QtKeyMap;
+QMap<QString, QKeySequence> qmc2QtKeyMap;
 #if QMC2_JOYSTICK == 1
 Joystick *qmc2Joystick = NULL;
 #endif
@@ -6777,7 +6777,7 @@ void MainWindow::viewByVersion()
 
 bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
 {
-  if (event->type() == QEvent::KeyPress) {
+  if ( event->type() == QEvent::KeyPress || event->type() == QEvent::KeyRelease ) {
     QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 
 #ifdef QMC2_DEBUG
@@ -6786,7 +6786,7 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
     
     if ( keyEvent->text() == QString("QMC2_EMULATED_KEY") ) {
 #ifdef QMC2_DEBUG
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulated key event"));
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulated key event, key-sequence = '%1'").arg(QKeySequence(keyEvent->key()).toString()));
 #endif
       return false;
     }
@@ -6826,9 +6826,15 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulating key event for '%1'").arg(matchedKeySeq));
 #endif
         // emulate a key event for the mapped key
-        QKeySequence emulatedKeySequence(matchedKeySeq);
-        QKeyEvent *emulatedKeyEvent = new QKeyEvent(QEvent::KeyPress, emulatedKeySequence[0], Qt::NoModifier, QString("QMC2_EMULATED_KEY"));
-        qApp->postEvent(object, emulatedKeyEvent);
+        if ( qmc2QtKeyMap.contains(matchedKeySeq) ) {
+          QKeySequence mappedKeySequence(qmc2QtKeyMap[matchedKeySeq]);
+          QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), mappedKeySequence[0], Qt::NoModifier, QString("QMC2_EMULATED_KEY"));
+          qApp->postEvent(object, emulatedKeyEvent);
+        } else {
+          QKeySequence emulatedKeySequence(matchedKeySeq);
+          QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), emulatedKeySequence[0], Qt::NoModifier, QString("QMC2_EMULATED_KEY"));
+          qApp->postEvent(object, emulatedKeyEvent);
+	}
         return true;
       } else {
 #ifdef QMC2_DEBUG
@@ -10939,7 +10945,11 @@ void prepareShortcuts()
 #endif
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
+#if defined(QMC2_OS_MAC)
+  qmc2ShortcutMap["Ctrl+,"].second = qmc2MainWindow->actionOptions;
+#else
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
+#endif
   qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
   qmc2ShortcutMap["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
@@ -11004,31 +11014,37 @@ void prepareShortcuts()
 
   // special keys
   qmc2ShortcutMap["+"].second = NULL;
-  qmc2QtKeyMap["+"] = Qt::Key_Plus;
+  qmc2QtKeyMap["+"] = QKeySequence("+", QKeySequence::PortableText);
   qmc2ShortcutMap["-"].second = NULL;
-  qmc2QtKeyMap["-"] = Qt::Key_Minus;
+  qmc2QtKeyMap["-"] = QKeySequence("-", QKeySequence::PortableText);
   qmc2ShortcutMap["Down"].second = NULL;
-  qmc2QtKeyMap["Down"] = Qt::Key_Down;
+  qmc2QtKeyMap["Down"] = QKeySequence("Down", QKeySequence::PortableText);
   qmc2ShortcutMap["End"].second = NULL;
-  qmc2QtKeyMap["End"] = Qt::Key_End;
+  qmc2QtKeyMap["End"] = QKeySequence("End", QKeySequence::PortableText);
   qmc2ShortcutMap["Esc"].second = NULL;
-  qmc2QtKeyMap["Esc"] = Qt::Key_Escape;
+  qmc2QtKeyMap["Esc"] = QKeySequence("Esc", QKeySequence::PortableText);
   qmc2ShortcutMap["Left"].second = NULL;
-  qmc2QtKeyMap["Left"] = Qt::Key_Left;
+  qmc2QtKeyMap["Left"] = QKeySequence("Left", QKeySequence::PortableText);
   qmc2ShortcutMap["Home"].second = NULL;
-  qmc2QtKeyMap["Home"] = Qt::Key_Home;
+  qmc2QtKeyMap["Home"] = QKeySequence("Home", QKeySequence::PortableText);
   qmc2ShortcutMap["PgDown"].second = NULL;
-  qmc2QtKeyMap["PgDown"] = Qt::Key_PageDown;
+  qmc2QtKeyMap["PgDown"] = QKeySequence("PgDown", QKeySequence::PortableText);
   qmc2ShortcutMap["PgUp"].second = NULL;
-  qmc2QtKeyMap["PgUp"] = Qt::Key_PageUp;
+  qmc2QtKeyMap["PgUp"] = QKeySequence("PgUp", QKeySequence::PortableText);
   qmc2ShortcutMap["Return"].second = NULL;
-  qmc2QtKeyMap["Return"] = Qt::Key_Return;
+  qmc2QtKeyMap["Return"] = QKeySequence("Return", QKeySequence::PortableText);
+  qmc2ShortcutMap["Enter"].second = NULL;
+  qmc2QtKeyMap["Enter"] = QKeySequence("Enter", QKeySequence::PortableText);
   qmc2ShortcutMap["Right"].second = NULL;
-  qmc2QtKeyMap["Right"] = Qt::Key_Right;
+  qmc2QtKeyMap["Right"] = QKeySequence("Right", QKeySequence::PortableText);
   qmc2ShortcutMap["Tab"].second = NULL;
-  qmc2QtKeyMap["Tab"] = Qt::Key_Tab;
+  qmc2QtKeyMap["Tab"] = QKeySequence("Tab", QKeySequence::PortableText);
   qmc2ShortcutMap["Up"].second = NULL;
-  qmc2QtKeyMap["Up"] = Qt::Key_Up;
+  qmc2QtKeyMap["Up"] = QKeySequence("Up", QKeySequence::PortableText);
+#if defined(QMC2_OS_MAC)
+  qmc2ShortcutMap["Ctrl+O"].second = NULL;
+  qmc2QtKeyMap["Ctrl+O"] = QKeySequence("Ctrl+O", QKeySequence::PortableText);
+#endif
 
   qmc2Options->setupShortcutActions();
 }
