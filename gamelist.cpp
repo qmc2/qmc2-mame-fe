@@ -284,6 +284,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->treeWidgetJoystickMappings->clearSelection();
   qmc2Options->treeWidgetJoystickMappings->setEnabled(enable);
   qmc2Options->toolButtonBrowseCookieDatabase->setEnabled(enable);
+  qmc2Options->pushButtonManageCookies->setEnabled(enable ? qmc2Options->checkBoxRestoreCookies->isChecked() : false);
   qmc2Options->toolButtonBrowseZipTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseRomTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
