@@ -93,10 +93,17 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
   if ( keySequence != 0 && keySequence != Qt::Key_unknown ) {
     animTimer.stop();
     keySequence += seqModifiers;
+    if ( seqModifiers & Qt::KeypadModifier )
+	    keySequence -= Qt::KeypadModifier;
     QString keySeqString(QKeySequence(keySequence).toString());
-    if ( onlyOneKey ) keySequence -= seqModifiers;
+    if ( onlyOneKey )
+	    keySequence -= seqModifiers;
     currentKeySequence = keySeqString;
-    QStringList words = keySeqString.split("+");
+    QStringList words;
+    if ( keySeqString == "+" )
+	    words << "+";
+    else
+	    words = keySeqString.split("+", QString::SkipEmptyParts);
     keySeqString.clear();
     if ( onlyOneKey ) {
       keySeqString = QObject::tr(words[0].toLatin1());
@@ -158,10 +165,17 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
     seqModifiers = event->modifiers();
     animTimer.stop();
     keySequence += seqModifiers;
+    if ( seqModifiers & Qt::KeypadModifier )
+	    keySequence -= Qt::KeypadModifier;
     QString keySeqString(QKeySequence(keySequence).toString());
-    if ( onlyOneKey ) keySequence -= seqModifiers;
+    if ( onlyOneKey )
+	    keySequence -= seqModifiers;
     currentKeySequence = keySeqString;
-    QStringList words = keySeqString.split("+");
+    QStringList words;
+    if ( keySeqString == "+" )
+	    words << "+";
+    else
+	    words = keySeqString.split("+", QString::SkipEmptyParts);
     keySeqString.clear();
     if ( onlyOneKey ) {
       keySeqString = QObject::tr(words[0].toLatin1());
