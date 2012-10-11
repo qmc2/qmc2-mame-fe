@@ -103,7 +103,7 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
     if ( keySeqString == "+" )
 	    words << "+";
     else
-	    words = keySeqString.split("+", QString::SkipEmptyParts);
+	    words = keySeqString.split("+");
     keySeqString.clear();
     if ( onlyOneKey ) {
       keySeqString = QObject::tr(words[0].toLatin1());
@@ -175,7 +175,7 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
     if ( keySeqString == "+" )
 	    words << "+";
     else
-	    words = keySeqString.split("+", QString::SkipEmptyParts);
+	    words = keySeqString.split("+");
     keySeqString.clear();
     if ( onlyOneKey ) {
       keySeqString = QObject::tr(words[0].toLatin1());
