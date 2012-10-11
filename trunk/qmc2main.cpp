@@ -6826,15 +6826,32 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulating key event for '%1'").arg(matchedKeySeq));
 #endif
         // emulate a key event for the mapped key
-        if ( qmc2QtKeyMap.contains(matchedKeySeq) ) {
-          QKeySequence mappedKeySequence(qmc2QtKeyMap[matchedKeySeq]);
-          QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), mappedKeySequence[0], Qt::NoModifier, QString("QMC2_EMULATED_KEY"));
-          qApp->postEvent(object, emulatedKeyEvent);
-        } else {
+        int key = qmc2QtKeyMap[matchedKeySeq];
+        if ( qmc2QtKeyMap.contains(matchedKeySeq) )
+          key = qmc2QtKeyMap[matchedKeySeq];
+        else {
           QKeySequence emulatedKeySequence(matchedKeySeq);
-          QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), emulatedKeySequence[0], Qt::NoModifier, QString("QMC2_EMULATED_KEY"));
-          qApp->postEvent(object, emulatedKeyEvent);
-	}
+          key = emulatedKeySequence[0];
+        }
+        Qt::KeyboardModifiers mods = Qt::NoModifier;
+        if ( key & Qt::ShiftModifier ) {
+          key -= Qt::ShiftModifier;
+          mods |= Qt::ShiftModifier;
+        }
+        if ( key & Qt::ControlModifier ) {
+          key -= Qt::ControlModifier;
+          mods |= Qt::ControlModifier;
+        }
+        if ( key & Qt::AltModifier ) {
+          key -= Qt::AltModifier;
+          mods |= Qt::AltModifier;
+        }
+        if ( key & Qt::MetaModifier ) {
+          key -= Qt::MetaModifier;
+          mods |= Qt::MetaModifier;
+        }
+        QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods, QString("QMC2_EMULATED_KEY"));
+        qApp->postEvent(object, emulatedKeyEvent);
         return true;
       } else {
 #ifdef QMC2_DEBUG
