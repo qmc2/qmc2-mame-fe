@@ -1194,6 +1194,7 @@ endif
 	@$(RSYNC) --exclude '*svn*' ./data/sws "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/swn "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/gmn "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) --exclude '*svn*' ./data/js "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@if [ -f "$(GLOBAL_QMC2_INI)" ] ; then \
 	  echo "Preserving system-wide configuration in $(GLOBAL_QMC2_INI)" ; \
 	  echo "Installing new system-wide configuration as $(GLOBAL_QMC2_INI).new" ; \
