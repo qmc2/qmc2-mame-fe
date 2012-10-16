@@ -23,6 +23,7 @@
 
 #include <QtGui>
 #include <QtWebKit>
+#include <QHBoxLayout>
 #if QT_VERSION >= 0x050000
 #include <QToolButton>
 #include <QFileDialog>
@@ -90,10 +91,23 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 		ui->actionFileSave->setStatusTip(tr("Save current notes"));
 	}
 
-	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), this);
-	ui->tabWidget->setCornerWidget(checkBoxHideMenu);
+	groupBoxCornerWidget = new QGroupBox(this);
+	groupBoxCornerWidget->setFlat(true);
+	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), groupBoxCornerWidget);
+	checkBoxHideMenu->setToolTip(tr("Hide the editor's menu-bar"));
+	checkBoxHideMenu->setStatusTip(tr("Hide the editor's menu-bar"));
 	connect(checkBoxHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
 	checkBoxHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
+	checkBoxReadOnly = new QCheckBox(tr("Read only"), groupBoxCornerWidget);
+	checkBoxReadOnly->setToolTip(tr("Make editor's contents read-only"));
+	connect(checkBoxReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
+	checkBoxReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
+	QHBoxLayout *layout = new QHBoxLayout;
+	layout->addWidget(checkBoxHideMenu);
+	layout->addWidget(checkBoxReadOnly);
+	layout->setContentsMargins(0, 0, 0, 0);
+	groupBoxCornerWidget->setLayout(layout);
+	ui->tabWidget->setCornerWidget(groupBoxCornerWidget);
 
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
 
@@ -206,7 +220,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->pageAction(QWebPage::Reload)->setVisible(false);
 
 	ui->webView->setFocus();
-	ui->webView->page()->setContentEditable(true);
+	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 
 	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), 100).toInt());
 
@@ -221,9 +236,16 @@ HtmlEditor::~HtmlEditor()
 {
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName), saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), checkBoxHideMenu->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), checkBoxReadOnly->isChecked());
 
 	delete ui;
 	delete ui_dialog;
+}
+
+void HtmlEditor::setContentEditable(bool readonly)
+{
+	ui->webView->page()->setContentEditable(!readonly);
+	ui->plainTextEdit->setReadOnly(readonly);
 }
 
 void HtmlEditor::checkRevertStatus()
@@ -255,7 +277,8 @@ void HtmlEditor::hideTearOffMenus()
 
 void HtmlEditor::fileNew()
 {
-	ui->webView->page()->setContentEditable(true);
+	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 
 	if ( !isEmbeddedEditor )
 		setCurrentFileName(QString());
@@ -829,7 +852,8 @@ bool HtmlEditor::load(const QString &f)
 		loadedContent = data;
 
 	ui->webView->setHtml(data);
-	ui->webView->page()->setContentEditable(true);
+	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 
 	if ( fileName.isEmpty() )
 		setCurrentFileName(f);
@@ -904,7 +928,8 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	// finally load the generated HTML and it as the new 'empty content'
 	ui->webView->setHtml(data);
 	ui->webView->setUpdatesEnabled(true);
-	ui->webView->page()->setContentEditable(true);
+	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 
 	emptyContent = data;
 

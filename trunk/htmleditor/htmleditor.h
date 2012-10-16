@@ -27,6 +27,7 @@
 
 #include <QMainWindow>
 #include <QCheckBox>
+#include <QGroupBox>
 #include "highlighter.h"
 
 class Ui_HTMLEditorMainWindow;
@@ -46,7 +47,9 @@ public:
     QString myEditorName;
     bool isEmbeddedEditor;
     QString loadedContent;
+    QGroupBox *groupBoxCornerWidget;
     QCheckBox *checkBoxHideMenu;
+    QCheckBox *checkBoxReadOnly;
 
     HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
@@ -117,6 +120,7 @@ public slots:
     void hideTearOffMenus();
     void enableFileNewFromTemplateAction(bool enable = true);
     void checkRevertStatus();
+    void setContentEditable(bool);
 
 private:
     Ui_HTMLEditorMainWindow *ui;

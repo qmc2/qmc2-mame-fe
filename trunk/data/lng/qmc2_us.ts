@@ -4920,165 +4920,181 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HtmlEditor</name>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="81"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="82"/>
         <source>HTML</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="399"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="422"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="400"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="423"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="401"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="424"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="402"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="425"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="301"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="368"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="403"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="324"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="391"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="426"/>
         <source>All files (*)</source>
         <translation>All files (*)</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="80"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="81"/>
         <source>WYSIWYG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="84"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="85"/>
         <source>&amp;Load...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="85"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="86"/>
         <source>Load notes from file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="86"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="87"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="88"/>
         <source>Load notes from an HTML file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="88"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="89"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="90"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="91"/>
         <source>Save current notes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="93"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="96"/>
         <source>Hide menu</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="301"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="368"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="97"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="98"/>
+        <source>Hide the editor&apos;s menu-bar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="101"/>
+        <source>Read only</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="102"/>
+        <source>Make editor&apos;s contents read-only</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="324"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="391"/>
         <source>HTML files (*.html *.htm)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="301"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="324"/>
         <source>Select file to load</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="301"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="324"/>
         <source>Select file to open</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="368"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="391"/>
         <source>Save a copy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="405"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="428"/>
         <source>Open image...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="419"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="442"/>
         <source>Insert image from URL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="419"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="463"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="442"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="486"/>
         <source>Enter URL:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="463"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="486"/>
         <source>Create link</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="687"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="710"/>
         <source>Font</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="687"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="710"/>
         <source>Select font:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="696"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="719"/>
         <source>XS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="696"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="719"/>
         <source>S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="696"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="698"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="719"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="721"/>
         <source>M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="696"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="719"/>
         <source>L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="696"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="719"/>
         <source>XL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="696"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="719"/>
         <source>XXL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="698"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="721"/>
         <source>Font size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="698"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="721"/>
         <source>Font size:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="794"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="817"/>
         <source>Zoom: %1%</source>
         <translation></translation>
     </message>
