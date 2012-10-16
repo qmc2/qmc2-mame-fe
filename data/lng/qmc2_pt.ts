@@ -1506,45 +1506,45 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiejar.cpp" line="20"/>
         <source>WARNING: failed to open cookie database: error = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir o banco de dados de cookies: erro = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="28"/>
         <location filename="../../cookiejar.cpp" line="55"/>
         <source>WARNING: failed to create cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar o banco de dados de cookies: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="50"/>
         <source>WARNING: failed to remove cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover o banco de dados de cookies: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="119"/>
         <location filename="../../cookiejar.cpp" line="128"/>
         <location filename="../../cookiejar.cpp" line="200"/>
         <source>WARNING: failed to remove expired cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover o cookie expirado do banco de dados: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="138"/>
         <source>WARNING: failed to update cookie in database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar o cookie no banco de dados: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="151"/>
         <source>WARNING: failed to add cookie to database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar o cookie ao banco de dados: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="157"/>
         <source>WARNING: failed to query cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao consultar o banco de dados de cookies: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="178"/>
         <source>WARNING: failed to fetch cookies from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar cookies do banco de dados: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -1552,67 +1552,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiemanager.ui" line="14"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciar cookies</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="20"/>
         <source>Stored cookies in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookies no banco de dados</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="48"/>
         <source>Remove</source>
-        <translation type="unfinished">Remover</translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="78"/>
         <source>Close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar diálogo</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="81"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="29"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="30"/>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Domínio</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="31"/>
         <source>Path</source>
-        <translation type="unfinished">Caminho</translation>
+        <translation>Caminho</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="32"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation>Valor</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="33"/>
         <source>Expiry date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data de expiração</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="34"/>
         <source>Secure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguro?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="35"/>
         <source>HTTP only?</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente HTTP?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="78"/>
         <source>WARNING: failed to remove cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover o cookie do banco de dados: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -5002,28 +5002,28 @@ p, li { white-space: pre-wrap; }
         <location filename="../../htmleditor/htmleditor.cpp" line="105"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="106"/>
         <source>Page load progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso do carregamento da página</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="109"/>
         <source>Hide menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder menu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="110"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="111"/>
         <source>Hide the editor&apos;s menu-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder a barra de menus do editor</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="115"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente leitura</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="116"/>
         <source>Make editor&apos;s contents read-only</source>
-        <translation type="unfinished"></translation>
+        <translation>Conteúdo do editor em modo somente leitura</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="366"/>
@@ -10525,7 +10525,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="61"/>
         <source>Enter URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Insira a URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="96"/>
@@ -10669,7 +10669,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../miniwebbrowser.ui" line="264"/>
         <source>Toggle display of the search bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar mostrar a barra de busca</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="300"/>
@@ -10677,27 +10677,27 @@ Tentar novamente?</translation>
         <location filename="../../miniwebbrowser.cpp" line="57"/>
         <location filename="../../miniwebbrowser.cpp" line="58"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre o texto de busca</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="316"/>
         <source>Case-sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensível à caixa</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="336"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar ocorrência anterior</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="353"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar próxima ocorrência</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="370"/>
         <source>Highlight matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Destacar correspondências</translation>
     </message>
 </context>
 <context>
@@ -11271,7 +11271,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="477"/>
         <source>Return key</source>
-        <translation type="unfinished"></translation>
+        <translation>Tecla de retorno</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="478"/>
@@ -11291,7 +11291,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="482"/>
         <source>Activate item</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar item</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="486"/>
@@ -11923,7 +11923,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3069"/>
         <source>Choose cookie database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo do banco de dados de cookies</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3182"/>
@@ -13253,22 +13253,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4083"/>
         <source>Restore cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4099"/>
         <source>Manage cookies stored in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciar banco de dados de cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4102"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciar cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4115"/>
         <source>Clear database</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar banco de dados</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4316"/>
@@ -13740,7 +13740,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3684"/>
         <source>Network / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Rede / &amp;Ferramentas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3713"/>
@@ -13839,32 +13839,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4035"/>
         <source>Browser settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do navegador</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4047"/>
         <source>Browse cookie database</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar banco de dados de cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4064"/>
         <source>Cookie database file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo do banco de dados de cookies (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4071"/>
         <source>Cookie database</source>
-        <translation type="unfinished"></translation>
+        <translation>Banco de dados de cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4080"/>
         <source>Save and restore cookies used on web pages?</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar e restaurar cookies utilizados nas páginas web?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4112"/>
         <source>Remove all cookies by recreating the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover todos os cookies recriando o banco de dados</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4138"/>
@@ -14726,17 +14726,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="2668"/>
         <source>yes</source>
-        <translation type="unfinished">sim</translation>
+        <translation>sim</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2670"/>
         <source>no</source>
-        <translation type="unfinished">não</translation>
+        <translation>não</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2672"/>
         <source>partially</source>
-        <translation type="unfinished"></translation>
+        <translation>parcialmente</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3360"/>
@@ -17960,7 +17960,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="227"/>
         <location filename="../../softwarelist.cpp" line="252"/>
         <source>Supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Suportado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="402"/>
@@ -19569,12 +19569,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1277"/>
         <source>video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>erro na informação do vídeo: estouro de tempo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1281"/>
         <source>video info error: unknown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>erro na informação do vídeo: razão desconhecida</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1314"/>
