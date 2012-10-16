@@ -24,6 +24,7 @@
 #include <QtGui>
 #include <QtWebKit>
 #include <QHBoxLayout>
+#include <QTest>
 #if QT_VERSION >= 0x050000
 #include <QToolButton>
 #include <QFileDialog>
@@ -51,6 +52,7 @@
 
 // external global variables
 extern QSettings *qmc2Config;
+extern bool qmc2CleaningUp;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(true), wysiwygDirty(true), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -66,6 +68,9 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 #if defined(QMC2_OS_MAC)
 	ui->menubar->setNativeMenuBar(false);
 #endif
+
+	loadActive = false;
+	loadSuccess = true;
 
 	// hide new-from-template and file-revert actions initially
 	ui->actionFileNewFromTemplate->setVisible(false);
@@ -91,23 +96,36 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 		ui->actionFileSave->setStatusTip(tr("Save current notes"));
 	}
 
+	loadProgress = new QProgressBar(this);
+	loadProgress->setRange(0, 100);
+	loadProgress->setValue(0);
+	loadProgress->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+	loadProgress->setFixedHeight(loadProgress->sizeHint().height() / 2);
+	loadProgress->setFormat("");
+	loadProgress->setToolTip(tr("Page load progress"));
+	loadProgress->setStatusTip(tr("Page load progress"));
 	groupBoxCornerWidget = new QGroupBox(this);
 	groupBoxCornerWidget->setFlat(true);
 	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), groupBoxCornerWidget);
 	checkBoxHideMenu->setToolTip(tr("Hide the editor's menu-bar"));
 	checkBoxHideMenu->setStatusTip(tr("Hide the editor's menu-bar"));
+	checkBoxHideMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
 	connect(checkBoxHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
 	checkBoxHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
 	checkBoxReadOnly = new QCheckBox(tr("Read only"), groupBoxCornerWidget);
 	checkBoxReadOnly->setToolTip(tr("Make editor's contents read-only"));
+	checkBoxReadOnly->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
 	connect(checkBoxReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
 	checkBoxReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
 	QHBoxLayout *layout = new QHBoxLayout;
+	layout->addWidget(loadProgress);
 	layout->addWidget(checkBoxHideMenu);
 	layout->addWidget(checkBoxReadOnly);
 	layout->setContentsMargins(0, 0, 0, 0);
 	groupBoxCornerWidget->setLayout(layout);
+	groupBoxCornerWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Minimum);
 	ui->tabWidget->setCornerWidget(groupBoxCornerWidget);
+	loadProgress->setVisible(false);
 
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
 
@@ -135,6 +153,13 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
 #endif
 	ui->webView->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, false);
+
+	connect(ui->webView, SIGNAL(loadStarted()), this, SLOT(setLoadActive()));
+	connect(ui->webView, SIGNAL(loadFinished(bool)), this, SLOT(setLoadInactive()));
+	connect(ui->webView, SIGNAL(loadFinished(bool)), this, SLOT(setLoadSuccess(bool)));
+	connect(ui->webView, SIGNAL(loadStarted()), this, SLOT(loadStarted()));
+	connect(ui->webView, SIGNAL(loadProgress(int)), this, SLOT(loadProgressed(int)));
+	connect(ui->webView, SIGNAL(loadFinished(bool)), this, SLOT(loadFinished(bool)));
 
 	// popup the 'insert image' menu when the tool-bar button is pressed
 	QToolButton *tb = (QToolButton *)ui->formatToolBar->widgetForAction(ui->menuInsertImage->menuAction());
@@ -242,6 +267,23 @@ HtmlEditor::~HtmlEditor()
 	delete ui_dialog;
 }
 
+void HtmlEditor::loadStarted()
+{
+	loadProgress->setVisible(true);
+	loadProgress->setValue(0);
+}
+
+void HtmlEditor::loadProgressed(int value)
+{
+	loadProgress->setVisible(true);
+	loadProgress->setValue(value);
+}
+
+void HtmlEditor::loadFinished(bool)
+{
+	loadProgress->setVisible(false);
+}
+
 void HtmlEditor::setContentEditable(bool readonly)
 {
 	ui->webView->page()->setContentEditable(!readonly);
@@ -345,7 +387,17 @@ void HtmlEditor::fileOpenInBrowser()
 		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
 		wysiwygDirty = false;
 	}
-	webBrowser->webViewBrowser->setHtml(ui->webView->page()->mainFrame()->toHtml());
+	QString data = ui->webView->page()->mainFrame()->toHtml();
+	while ( data.contains("<script>") ) {
+		int startIndex = data.indexOf("<script>");
+		int endIndex = data.indexOf("</script>", startIndex);
+		if ( endIndex > startIndex ) {
+			endIndex += 9;
+			data.remove(startIndex, endIndex - startIndex);
+		} else
+			data.remove(startIndex, 8);
+	}
+	webBrowser->webViewBrowser->setHtml(data);
 	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
 		webBrowser->homeUrl = QUrl::fromUserInput(fileName);
 		webBrowser->comboBoxURL->lineEdit()->setText(webBrowser->homeUrl.toString());
@@ -848,6 +900,16 @@ bool HtmlEditor::load(const QString &f)
 	QString data = file.readAll();
 	file.close();
 
+	while ( data.contains("<script>") ) {
+		int startIndex = data.indexOf("<script>");
+		int endIndex = data.indexOf("</script>", startIndex);
+		if ( endIndex > startIndex ) {
+			endIndex += 9;
+			data.remove(startIndex, endIndex - startIndex);
+		} else 
+			data.remove(startIndex, 8);
+	}
+
 	if ( f == fileName )
 		loadedContent = data;
 
@@ -876,8 +938,6 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	if ( f.isEmpty() )
 		return false;
 
-	emptyContent.clear();
-
 	if ( !QFile::exists(f) ) {
 		fileNew();
 		return false;
@@ -886,6 +946,11 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	QFile file(f);
 	if ( !file.open(QFile::ReadOnly) )
 		return false;
+
+	ui->webView->stop();
+	loadActive = false;
+	emptyContent.clear();
+	loadedContent.clear();
 
 	ui->actionFileNewFromTemplate->setVisible(true);
 
@@ -909,34 +974,23 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		data.replace(it.key(), replacementString);
 	}
 
-	// pre-execute JavaScript (if any)
-	ui->webView->setUpdatesEnabled(false);
-	ui->webView->setHtml(data);
-
-	// remove all <script>'s from the content
-	data = ui->webView->page()->mainFrame()->toHtml();
-	while ( data.contains("<script>") ) {
-		int startIndex = data.indexOf("<script>");
-		int endIndex = data.indexOf("</script>", startIndex);
-		if ( endIndex > startIndex ) {
-			endIndex += 9;
-			data.remove(startIndex, endIndex - startIndex);
-		} else
-			data.remove(startIndex, 8);
-	}
-
-	// finally load the generated HTML and it as the new 'empty content'
-	ui->webView->setHtml(data);
-	ui->webView->setUpdatesEnabled(true);
-	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
-	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
-
+	// pre-execute JavaScript (if any) and wait for asynchronous loads to finish...
+	loadActive = true;
+	stopLoading = false;
 	emptyContent = data;
-
-	if ( fileName.isEmpty() )
-		setCurrentFileName(f);
-
-	adjustHTML();
+	ui->webView->setHtml(data);
+	while ( loadActive && !qmc2CleaningUp && !stopLoading )
+		QTest::qWait(1);
+	if ( !qmc2CleaningUp && !stopLoading ) {
+		ui->webView->setHtml(data);
+		ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
+		ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
+		if ( fileName.isEmpty() )
+			setCurrentFileName(f);
+		emptyContent = ui->webView->page()->mainFrame()->toHtml();
+		adjustHTML();
+	} else
+		emptyContent = "QMC2_INVALID";
 
 	return true;
 }
@@ -948,6 +1002,9 @@ void HtmlEditor::enableFileNewFromTemplateAction(bool enable)
 
 bool HtmlEditor::save()
 {
+	if ( emptyContent == "QMC2_INVALID" )
+		return true;
+
 	if ( !ui->webView->page()->isModified() && !ui->plainTextEdit->document()->isModified() && !localModified )
 		return true;
 
@@ -965,6 +1022,7 @@ bool HtmlEditor::save()
 		QFile f(fileName);
 		if ( f.exists() )
 			f.remove();
+		localModified = false;
 		return true;
 	}
 
@@ -985,6 +1043,7 @@ bool HtmlEditor::save()
 	ts << loadedContent;
 	ts.flush();
 	f.close();
+	localModified = false;
 
 	return true;
 }

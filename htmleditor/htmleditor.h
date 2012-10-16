@@ -28,6 +28,7 @@
 #include <QMainWindow>
 #include <QCheckBox>
 #include <QGroupBox>
+#include <QProgressBar>
 #include "highlighter.h"
 
 class Ui_HTMLEditorMainWindow;
@@ -50,6 +51,10 @@ public:
     QGroupBox *groupBoxCornerWidget;
     QCheckBox *checkBoxHideMenu;
     QCheckBox *checkBoxReadOnly;
+    QProgressBar *loadProgress;
+    bool loadActive;
+    bool stopLoading;
+    bool loadSuccess;
 
     HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
@@ -65,6 +70,9 @@ private:
     bool queryCommandState(const QString&);
 
 public slots:
+    void loadStarted();
+    void loadProgressed(int);
+    void loadFinished(bool);
     void fileNew();
     void fileNewFromTemplate();
     void fileRevert();
@@ -121,6 +129,9 @@ public slots:
     void enableFileNewFromTemplateAction(bool enable = true);
     void checkRevertStatus();
     void setContentEditable(bool);
+    void setLoadActive() { loadActive = true; }
+    void setLoadInactive() { loadActive = false; }
+    void setLoadSuccess(bool success) { loadSuccess = success; }
 
 private:
     Ui_HTMLEditorMainWindow *ui;
