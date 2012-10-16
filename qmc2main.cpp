@@ -4478,6 +4478,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastSystemNotesItem ) {
+	      qmc2LastSystemNotesItem = qmc2CurrentItem;
 	      if ( !qmc2SystemNotesEditor ) {
 		      tabWidgetGameDetail->setUpdatesEnabled(false);
 		      int tabIndex = tabWidgetGameDetail->indexOf(tabSystemNotes);
@@ -4686,7 +4687,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      }
 
 	      qmc2SystemNotesEditor->setCurrentFileName(fileName);
-	      qmc2LastSystemNotesItem = qmc2CurrentItem;
       }
       break;
 
