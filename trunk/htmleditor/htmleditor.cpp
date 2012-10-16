@@ -96,34 +96,32 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 		ui->actionFileSave->setStatusTip(tr("Save current notes"));
 	}
 
+	groupBoxCornerWidget = new QGroupBox(this);
+	groupBoxCornerWidget->setFlat(true);
 	loadProgress = new QProgressBar(this);
 	loadProgress->setRange(0, 100);
 	loadProgress->setValue(0);
-	loadProgress->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	loadProgress->setFixedHeight(loadProgress->sizeHint().height() / 2);
+	loadProgress->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
 	loadProgress->setFormat("");
 	loadProgress->setToolTip(tr("Page load progress"));
 	loadProgress->setStatusTip(tr("Page load progress"));
-	groupBoxCornerWidget = new QGroupBox(this);
-	groupBoxCornerWidget->setFlat(true);
 	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), groupBoxCornerWidget);
 	checkBoxHideMenu->setToolTip(tr("Hide the editor's menu-bar"));
 	checkBoxHideMenu->setStatusTip(tr("Hide the editor's menu-bar"));
-	checkBoxHideMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+	checkBoxHideMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	connect(checkBoxHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
 	checkBoxHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
 	checkBoxReadOnly = new QCheckBox(tr("Read only"), groupBoxCornerWidget);
 	checkBoxReadOnly->setToolTip(tr("Make editor's contents read-only"));
-	checkBoxReadOnly->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+	checkBoxReadOnly->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	connect(checkBoxReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
 	checkBoxReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
 	QHBoxLayout *layout = new QHBoxLayout;
-	layout->addWidget(loadProgress);
-	layout->addWidget(checkBoxHideMenu);
-	layout->addWidget(checkBoxReadOnly);
 	layout->setContentsMargins(0, 0, 0, 0);
+	layout->addWidget(loadProgress, 1, Qt::AlignRight | Qt::AlignVCenter);
+	layout->addWidget(checkBoxHideMenu, 0, Qt::AlignRight | Qt::AlignVCenter);
+	layout->addWidget(checkBoxReadOnly, 0, Qt::AlignRight | Qt::AlignVCenter);
 	groupBoxCornerWidget->setLayout(layout);
-	groupBoxCornerWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Minimum);
 	ui->tabWidget->setCornerWidget(groupBoxCornerWidget);
 	loadProgress->setVisible(false);
 
@@ -1076,4 +1074,5 @@ void HtmlEditor::adjustIconSizes()
 	QSize iconSize = QSize(fm.height(), fm.height());
 	ui->formatToolBar->setIconSize(iconSize);
 	ui->standardToolBar->setIconSize(iconSize);
+	loadProgress->setFixedHeight(fm.height() - 4);
 }
