@@ -90,6 +90,11 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 		ui->actionFileSave->setStatusTip(tr("Save current notes"));
 	}
 
+	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), this);
+	ui->tabWidget->setCornerWidget(checkBoxHideMenu);
+	connect(checkBoxHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
+	checkBoxHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
+
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
 
 	highlighter = new Highlighter(ui->plainTextEdit->document());
@@ -215,6 +220,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 HtmlEditor::~HtmlEditor()
 {
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName), saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), checkBoxHideMenu->isChecked());
 
 	delete ui;
 	delete ui_dialog;

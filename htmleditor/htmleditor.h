@@ -26,6 +26,7 @@
 #define HTML_EDITOR_H
 
 #include <QMainWindow>
+#include <QCheckBox>
 #include "highlighter.h"
 
 class Ui_HTMLEditorMainWindow;
@@ -45,6 +46,7 @@ public:
     QString myEditorName;
     bool isEmbeddedEditor;
     QString loadedContent;
+    QCheckBox *checkBoxHideMenu;
 
     HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
