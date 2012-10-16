@@ -44,6 +44,7 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		SoftwareItem *softwareItem;
 		QString softwareListName;
 		QString softwareName;
+		QString softwareSupported;
 		QString softwareTitle;
 		QString softwarePublisher;
 		QString softwareYear;
