@@ -235,6 +235,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 	connect(ui->webView, SIGNAL(linkClicked(QUrl)), SLOT(openLink(QUrl)));
 	ui->webView->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
+	ui->webView->pageAction(QWebPage::DownloadImageToDisk)->setVisible(false);
 	ui->webView->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
 	ui->webView->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
 	ui->webView->pageAction(QWebPage::OpenLink)->setVisible(false);
