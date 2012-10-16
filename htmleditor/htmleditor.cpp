@@ -55,7 +55,7 @@ extern QSettings *qmc2Config;
 extern bool qmc2CleaningUp;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
-	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(true), wysiwygDirty(true), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
+	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
 {
 	ui->setupUi(this);
 
@@ -388,7 +388,9 @@ void HtmlEditor::fileOpenInBrowser()
 		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
 		wysiwygDirty = false;
 	}
+
 	QString data = ui->webView->page()->mainFrame()->toHtml();
+
 	while ( data.contains("<script>") ) {
 		int startIndex = data.indexOf("<script>");
 		int endIndex = data.indexOf("</script>", startIndex);
@@ -398,6 +400,7 @@ void HtmlEditor::fileOpenInBrowser()
 		} else
 			data.remove(startIndex, 8);
 	}
+
 	webBrowser->webViewBrowser->setHtml(data);
 	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
 		webBrowser->homeUrl = QUrl::fromUserInput(fileName);
@@ -810,7 +813,6 @@ void HtmlEditor::adjustActions()
 void HtmlEditor::adjustWYSIWYG()
 {
 	wysiwygDirty = true;
-
 	if ( ui->tabWidget->currentIndex() == 0 )
 		changeTab(0);
 }
@@ -818,7 +820,6 @@ void HtmlEditor::adjustWYSIWYG()
 void HtmlEditor::adjustHTML()
 {
 	htmlDirty = true;
-
 	if ( ui->tabWidget->currentIndex() == 1 )
 		changeTab(1);
 }
@@ -835,7 +836,9 @@ void HtmlEditor::changeTab(int index)
 
 		case 1:
 			if ( htmlDirty ) {
+				ui->plainTextEdit->blockSignals(true);
 				ui->plainTextEdit->setPlainText(ui->webView->page()->mainFrame()->toHtml());
+				ui->plainTextEdit->blockSignals(false);
 				htmlDirty = false;
 			}
 			break;
