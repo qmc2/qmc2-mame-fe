@@ -376,6 +376,11 @@
            <string>List</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>Supported</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>
@@ -385,8 +390,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>64</height>
+        <width>557</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -463,6 +468,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Supported</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Device configuration</string>
           </property>
          </column>
@@ -475,8 +485,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>90</height>
+        <width>557</width>
+        <height>195</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -568,6 +578,11 @@
          <column>
           <property name="text">
            <string>List</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Supported</string>
           </property>
          </column>
         </widget>

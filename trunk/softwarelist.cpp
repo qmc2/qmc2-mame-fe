@@ -203,6 +203,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setChecked(!treeWidgetKnownSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_INTERFACE));
 	action = menuKnownSoftwareHeader->addAction(tr("List"), this, SLOT(actionKnownSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_LIST);
 	action->setChecked(!treeWidgetKnownSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
+	action = menuKnownSoftwareHeader->addAction(tr("Supported"), this, SLOT(actionKnownSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_SUPPORTED);
+	action->setChecked(!treeWidgetKnownSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_SUPPORTED));
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &)));
 
@@ -221,6 +223,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action = menuFavoriteSoftwareHeader->addAction(tr("Interface"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_INTERFACE);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_INTERFACE));
 	action = menuFavoriteSoftwareHeader->addAction(tr("List"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_LIST);
+	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
+	action = menuFavoriteSoftwareHeader->addAction(tr("Supported"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_SUPPORTED);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
 #if defined(QMC2_EMUTYPE_MESS) | defined(QMC2_EMUTYPE_UME)
 	action = menuFavoriteSoftwareHeader->addAction(tr("Device configuration"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_DEVICECFG);
@@ -244,6 +248,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action = menuSearchResultsHeader->addAction(tr("Interface"), this, SLOT(actionSearchResultsHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_INTERFACE);
 	action->setChecked(!treeWidgetSearchResults->isColumnHidden(QMC2_SWLIST_COLUMN_INTERFACE));
 	action = menuSearchResultsHeader->addAction(tr("List"), this, SLOT(actionSearchResultsHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_LIST);
+	action->setChecked(!treeWidgetSearchResults->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
+	action = menuSearchResultsHeader->addAction(tr("Supported"), this, SLOT(actionSearchResultsHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_SUPPORTED);
 	action->setChecked(!treeWidgetSearchResults->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &)));
@@ -1048,6 +1054,7 @@ bool SoftwareList::load()
 				item->setText(QMC2_SWLIST_COLUMN_PART, swItem->text(QMC2_SWLIST_COLUMN_PART));
 				item->setText(QMC2_SWLIST_COLUMN_INTERFACE, swItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 				item->setText(QMC2_SWLIST_COLUMN_LIST, swItem->text(QMC2_SWLIST_COLUMN_LIST));
+				item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, swItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 				SoftwareItem *subItem = new SoftwareItem(item);
 				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
@@ -1542,6 +1549,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 			item->setText(QMC2_SWLIST_COLUMN_PART, si->text(QMC2_SWLIST_COLUMN_PART));
 			item->setText(QMC2_SWLIST_COLUMN_INTERFACE, si->text(QMC2_SWLIST_COLUMN_INTERFACE));
 			item->setText(QMC2_SWLIST_COLUMN_LIST, si->text(QMC2_SWLIST_COLUMN_LIST));
+			item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, si->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 			if ( comboBoxDeviceConfiguration->currentIndex() > 0 )
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, comboBoxDeviceConfiguration->currentText());
@@ -2159,6 +2167,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 		item->setText(QMC2_SWLIST_COLUMN_PART, matchItem->text(QMC2_SWLIST_COLUMN_PART));
 		item->setText(QMC2_SWLIST_COLUMN_INTERFACE, matchItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 		item->setText(QMC2_SWLIST_COLUMN_LIST, matchItem->text(QMC2_SWLIST_COLUMN_LIST));
+		item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, matchItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 	}
 
 	if ( autoSelectSearchItem ) {
@@ -2545,6 +2554,7 @@ void SoftwareList::loadFavoritesFromFile()
 								item->setText(QMC2_SWLIST_COLUMN_PART, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_PART));
 								item->setText(QMC2_SWLIST_COLUMN_INTERFACE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 								item->setText(QMC2_SWLIST_COLUMN_LIST, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_LIST));
+								item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 								if ( words.count() > 2 )
 									item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, words[2]);
@@ -2653,11 +2663,19 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
 	} else if ( qName == "software" ) {
 		softwareName = attributes.value("name");
+		softwareSupported = attributes.value("supported");
+		if ( softwareSupported.isEmpty() || softwareSupported == "yes" )
+			softwareSupported = QObject::tr("yes");
+		else if ( softwareSupported == "no" )
+			softwareSupported = QObject::tr("no");
+		else
+			softwareSupported = QObject::tr("partially");
 		softwareItem = new SoftwareItem(parentTreeWidget);
 		SoftwareItem *subItem = new SoftwareItem(softwareItem);
 		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
+		softwareItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, softwareSupported);
 	} else if ( qName == "part" ) {
 		softwarePart = attributes.value("name");
 		QString parts = softwareItem->text(QMC2_SWLIST_COLUMN_PART);

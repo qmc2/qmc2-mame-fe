@@ -210,7 +210,8 @@
 #define QMC2_SWLIST_COLUMN_PART			4
 #define QMC2_SWLIST_COLUMN_INTERFACE		5
 #define QMC2_SWLIST_COLUMN_LIST			6
-#define QMC2_SWLIST_COLUMN_DEVICECFG		7 // used only in 'favorites'
+#define QMC2_SWLIST_COLUMN_SUPPORTED		7
+#define QMC2_SWLIST_COLUMN_DEVICECFG		8 // used only in 'favorites'
 
 // logical column indizes of the audio effect list
 #define QMC2_AUDIOEFFECT_COLUMN_NAME		0
