@@ -3689,10 +3689,11 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SNAPSHOT$"] = "file://" + QDir::fromNativeSeparators(qmc2SoftwareSnapshot->currentSnapshotPixmap.imagePath);
 #endif
 				qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
+				qmc2SoftwareNotesEditor->stopLoading = true;
 
-				if ( QFile::exists(fileName) ) {
+				if ( QFile::exists(fileName) )
 					QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrent()));
-				} else {
+				else {
 					if ( useSoftwareNotesTemplate )
 						QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrentTemplate()));
 					else
@@ -4674,10 +4675,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$MACHINE_INFO_STATUS$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"];
 
 	      qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
-
-	      if ( QFile::exists(fileName) ) {
+	      qmc2SystemNotesEditor->stopLoading = true;
+	      if ( QFile::exists(fileName) )
 		      QTimer::singleShot(25, qmc2SystemNotesEditor, SLOT(loadCurrent()));
-	      } else {
+	      else {
 		      if ( useSystemNotesTemplate )
 			      QTimer::singleShot(25, qmc2SystemNotesEditor, SLOT(loadCurrentTemplate()));
 		      else
