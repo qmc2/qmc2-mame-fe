@@ -96,6 +96,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 		ui->actionFileSave->setStatusTip(tr("Save current notes"));
 	}
 
+	// the 'corner-widget'
 	groupBoxCornerWidget = new QGroupBox(this);
 	groupBoxCornerWidget->setFlat(true);
 	loadProgress = new QProgressBar(this);
@@ -108,21 +109,21 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), groupBoxCornerWidget);
 	checkBoxHideMenu->setToolTip(tr("Hide the editor's menu-bar"));
 	checkBoxHideMenu->setStatusTip(tr("Hide the editor's menu-bar"));
-	checkBoxHideMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	checkBoxHideMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
 	connect(checkBoxHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
 	checkBoxHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
 	checkBoxReadOnly = new QCheckBox(tr("Read only"), groupBoxCornerWidget);
 	checkBoxReadOnly->setToolTip(tr("Make editor's contents read-only"));
-	checkBoxReadOnly->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	checkBoxReadOnly->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
 	connect(checkBoxReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
 	checkBoxReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
-	QHBoxLayout *layout = new QHBoxLayout;
+	QHBoxLayout *layout = new QHBoxLayout(groupBoxCornerWidget);
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(loadProgress, 1, Qt::AlignRight | Qt::AlignVCenter);
 	layout->addWidget(checkBoxHideMenu, 0, Qt::AlignRight | Qt::AlignVCenter);
 	layout->addWidget(checkBoxReadOnly, 0, Qt::AlignRight | Qt::AlignVCenter);
 	groupBoxCornerWidget->setLayout(layout);
-	ui->tabWidget->setCornerWidget(groupBoxCornerWidget);
+	ui->tabWidget->setCornerWidget(groupBoxCornerWidget, Qt::BottomRightCorner);
 	loadProgress->setVisible(false);
 
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
@@ -981,8 +982,10 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	stopLoading = false;
 	emptyContent = data;
 	ui->webView->setHtml(data);
-	while ( loadActive && !qmc2CleaningUp && !stopLoading )
+	while ( loadActive && !qmc2CleaningUp && !stopLoading ) {
 		QTest::qWait(1);
+		qApp->processEvents();
+	}
 	if ( !qmc2CleaningUp && !stopLoading ) {
 		ui->webView->setHtml(data);
 		ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
