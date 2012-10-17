@@ -703,7 +703,8 @@ QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 	if ( type == QWebPage::WebModalDialog )
 		webBrowser->setWindowModality(Qt::ApplicationModal);
 	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
-	webBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value());
+	if ( parentBrowser )
+		webBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value());
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
 		webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
 	else {
@@ -718,7 +719,8 @@ QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
 void BrowserWidget::wheelEvent(QWheelEvent *e)
 {
 	if ( e->modifiers() & Qt::ControlModifier ) {
-		parentBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value() + parentBrowser->spinBoxZoom->singleStep() * (e->delta() > 0 ? 1 : e->delta() < 0 ? -1 : 0));
+		if ( parentBrowser )
+			parentBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value() + parentBrowser->spinBoxZoom->singleStep() * (e->delta() > 0 ? 1 : e->delta() < 0 ? -1 : 0));
 		e->accept();
 	} else {
 		e->ignore();

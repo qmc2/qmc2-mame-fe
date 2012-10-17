@@ -59,6 +59,12 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 {
 	ui->setupUi(this);
 
+	// replace the standard QWebView with the MiniWebBrowser's tweaked one
+	ui->verticalLayoutWYSIWYG->removeWidget(ui->webView);
+	delete ui->webView;
+	ui->webView = new BrowserWidget(ui->tabWYSIWYG, NULL);
+	ui->verticalLayoutWYSIWYG->addWidget(ui->webView);
+
 	myEditorName = editorName;
 	isEmbeddedEditor = embedded;
 
