@@ -769,6 +769,9 @@
 // Google developer key
 #define QMC2_GOOGLE_DEV_KEY			"AI39si7D4n3EI-m_1eeFsfbmD8fG7Sqb9gpkgjyliWrSVs4M4hUPZsLnE_Z7XQUMSPK4GuV9A3wbzKkcSBxOTniTe-d8Y1dOlw"
 
+// delay between full screen switches (avoids problems when the menu-bar is hidden)
+#define QMC2_FULLSCREEN_SWITCH_DELAY		250
+
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
 #define QMC2_PRINT_STR(s)			printf("%s = %s\n", #s, (const char *)s.toLocal8Bit())

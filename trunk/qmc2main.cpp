@@ -2635,6 +2635,8 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionFullscreenToggle_triggered(bool)");
 #endif
 
+  static quint64 lastFullScreenSwitchTime = 0;
+
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget )
 	  if ( qmc2YouTubeWidget->videoPlayer->videoWidget()->isFullScreen() ) {
@@ -2660,6 +2662,12 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
         actionFullscreenToggle->setChecked(false);
       return;
     }
+
+  // avoid switching too quickly...
+  quint64 now = QDateTime::currentDateTime().toMSecsSinceEpoch();
+  if ( now - lastFullScreenSwitchTime < QMC2_FULLSCREEN_SWITCH_DELAY )
+    return;
+  lastFullScreenSwitchTime = now;
 
   if ( !qmc2EarlyStartup ) {
     // saftey checks
@@ -6827,7 +6835,7 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulating key event for '%1'").arg(matchedKeySeq));
 #endif
         // emulate a key event for the mapped key
-        int key = qmc2QtKeyMap[matchedKeySeq];
+        int key;
         if ( qmc2QtKeyMap.contains(matchedKeySeq) )
           key = qmc2QtKeyMap[matchedKeySeq];
         else {
