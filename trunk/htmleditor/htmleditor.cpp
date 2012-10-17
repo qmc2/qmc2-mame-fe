@@ -1046,7 +1046,7 @@ bool HtmlEditor::save()
 		return false;
 
 	QTextStream ts(&f);
-	ts << loadedContent;
+	ts << noScript(loadedContent);
 	ts.flush();
 	f.close();
 	localModified = false;
