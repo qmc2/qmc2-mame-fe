@@ -36,7 +36,7 @@
        <attribute name="title">
         <string>WYSIWYG</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayoutWYSIWYG">
         <property name="margin">
          <number>0</number>
         </property>
@@ -55,7 +55,7 @@
        <attribute name="title">
         <string>HTML</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="verticalLayoutHTML">
         <property name="margin">
          <number>0</number>
         </property>
