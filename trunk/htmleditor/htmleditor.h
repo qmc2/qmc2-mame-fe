@@ -60,6 +60,7 @@ public:
     ~HtmlEditor();
 
     static QUrl guessUrlFromString(const QString &string);
+    QString &noScript(QString &);
 
 protected:
     virtual void closeEvent(QCloseEvent *e);

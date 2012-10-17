@@ -323,6 +323,20 @@ void HtmlEditor::hideTearOffMenus()
 			menu->hideTearOffMenu();
 }
 
+QString &HtmlEditor::noScript(QString &data)
+{
+	while ( data.contains("<script>") ) {
+		int startIndex = data.indexOf("<script>");
+		int endIndex = data.indexOf("</script>", startIndex);
+		if ( endIndex > startIndex ) {
+			endIndex += 9;
+			data.remove(startIndex, endIndex - startIndex);
+		} else 
+			data.remove(startIndex, 8);
+	}
+	return data;
+}
+
 void HtmlEditor::fileNew()
 {
 	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
@@ -395,18 +409,7 @@ void HtmlEditor::fileOpenInBrowser()
 	}
 
 	QString data = ui->webView->page()->mainFrame()->toHtml();
-
-	while ( data.contains("<script>") ) {
-		int startIndex = data.indexOf("<script>");
-		int endIndex = data.indexOf("</script>", startIndex);
-		if ( endIndex > startIndex ) {
-			endIndex += 9;
-			data.remove(startIndex, endIndex - startIndex);
-		} else
-			data.remove(startIndex, 8);
-	}
-
-	webBrowser->webViewBrowser->setHtml(data);
+	webBrowser->webViewBrowser->setHtml(noScript(data));
 	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
 		webBrowser->homeUrl = QUrl::fromUserInput(fileName);
 		webBrowser->comboBoxURL->lineEdit()->setText(webBrowser->homeUrl.toString());
@@ -437,7 +440,7 @@ bool HtmlEditor::fileSave()
 		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
 		QTextStream ts(&file);
-		ts << content;
+		ts << noScript(content);
 		ts.flush();
 		file.close();
 		success = true;
@@ -469,7 +472,7 @@ bool HtmlEditor::fileSaveAs()
 		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
 		QTextStream ts(&file);
-		ts << content;
+		ts << noScript(content);
 		ts.flush();
 		file.close();
 		success = true;
@@ -909,15 +912,7 @@ bool HtmlEditor::load(const QString &f)
 	QString data = file.readAll();
 	file.close();
 
-	while ( data.contains("<script>") ) {
-		int startIndex = data.indexOf("<script>");
-		int endIndex = data.indexOf("</script>", startIndex);
-		if ( endIndex > startIndex ) {
-			endIndex += 9;
-			data.remove(startIndex, endIndex - startIndex);
-		} else 
-			data.remove(startIndex, 8);
-	}
+	noScript(data);
 
 	if ( f == fileName )
 		loadedContent = data;
