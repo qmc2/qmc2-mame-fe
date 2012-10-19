@@ -4516,7 +4516,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
 	      qmc2SystemNotesEditor->templateMap.clear();
 	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
-	      qmc2SystemNotesEditor->templateMap["$ID$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	      qmc2SystemNotesEditor->templateMap["$ID$"] = gameName;
 	      qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = qmc2ParentMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
 	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU);
 	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR);
@@ -4530,6 +4530,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_RTYPES);
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = Gamelist::reverseTranslation[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT)];
+	      qmc2SystemNotesEditor->templateMap["$ROM_STATUS$"] = qmc2Gamelist->romStatus(gameName, true);
+	      qmc2SystemNotesEditor->templateMap["$ROM_STATUS_UT$"] = qmc2Gamelist->romStatus(gameName, false);
 	      qmc2SystemNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	      qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 	      QString filePath;

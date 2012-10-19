@@ -15,6 +15,8 @@
 	$ROM_TYPES$		Types of dumps included in the set (ROM/CHD)
 	$DRIVER_STATUS$		The maturity status of the driver (translated)
 	$DRIVER_STATUS_UT$	The maturity status of the driver (untranslated)
+	$ROM_STATUS$		The set's ROM status (translated)
+	$ROM_STATUS_UT$		The set's ROM status (untranslated)
 
 	Image macros:
 
@@ -89,7 +91,25 @@
 		</tr>
 	</tbody>
 </table>
-<h3>System images</h3>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td nowrap align="left"><h3>System images</h3></td>
+		<td nowrap align="right">
+			<script>
+				if ( "$ROM_STATUS_UT$" == "correct" )
+					document.write("ROM status: <font style=\"color: #00cc00;\">$ROM_STATUS$</font>");
+				else if ( "$ROM_STATUS_UT$" == "incorrect" )
+					document.write("ROM status: <font style=\"color: #f90000;\">$ROM_STATUS$</font>");
+				else if ( "$ROM_STATUS_UT$" == "mostly correct" )
+					document.write("ROM status: <font style=\"color: #a2c743;\">$ROM_STATUS$</font>");
+				else if ( "$ROM_STATUS_UT$" == "not found" )
+					document.write("ROM status: <font style=\"color: #7f7f7f;\">$ROM_STATUS$</font>");
+				else
+					document.write("ROM status: <font style=\"color: #0000f9;\">$ROM_STATUS$</font>");
+			</script>
+		</td>
+	</tr>
+</table>
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
