@@ -275,19 +275,25 @@ HtmlEditor::~HtmlEditor()
 
 void HtmlEditor::loadStarted()
 {
+	ui->tabWidget->cornerWidget()->setUpdatesEnabled(false);
 	loadProgress->setVisible(true);
 	loadProgress->setValue(0);
+	ui->tabWidget->cornerWidget()->setUpdatesEnabled(true);
 }
 
 void HtmlEditor::loadProgressed(int value)
 {
+	ui->tabWidget->cornerWidget()->setUpdatesEnabled(false);
 	loadProgress->setVisible(true);
 	loadProgress->setValue(value);
+	ui->tabWidget->cornerWidget()->setUpdatesEnabled(true);
 }
 
 void HtmlEditor::loadFinished(bool)
 {
+	ui->tabWidget->cornerWidget()->setUpdatesEnabled(false);
 	loadProgress->setVisible(false);
+	ui->tabWidget->cornerWidget()->setUpdatesEnabled(true);
 }
 
 void HtmlEditor::setContentEditable(bool readonly)
