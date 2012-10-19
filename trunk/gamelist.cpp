@@ -3994,6 +3994,56 @@ void Gamelist::createVersionView()
 }
 #endif
 
+QString Gamelist::romStatus(QString systemName, bool translated)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::romStatus(QString systemName = %1, bool translated = %2)").arg(systemName).arg(translated));
+#endif
+
+	QTreeWidgetItem *sysItem = qmc2GamelistItemMap[systemName];
+	if ( sysItem ) {
+		switch ( sysItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+			case QMC2_ROMSTATE_CHAR_C:
+				if ( translated )
+					return tr("correct");
+				else
+					return "correct";
+				break;
+			case QMC2_ROMSTATE_CHAR_M:
+				if ( translated )
+					return tr("mostly correct");
+				else
+					return "mostly correct";
+				break;
+			case QMC2_ROMSTATE_CHAR_I:
+				if ( translated )
+					return tr("incorrect");
+				else
+					return "incorrect";
+				break;
+			case QMC2_ROMSTATE_CHAR_N:
+				if ( translated )
+					return tr("not found");
+				else
+					return "not found";
+				break;
+			case QMC2_ROMSTATE_CHAR_U:
+				if ( translated )
+					return tr("unknown");
+				else
+					return "unknown";
+			default:
+				break;
+		}
+	} else {
+		if ( translated )
+			return tr("unknown");
+		else
+			return "unknown";
+	}
+
+}
+
 QString Gamelist::lookupDriverName(QString systemName)
 {
 #ifdef QMC2_DEBUG

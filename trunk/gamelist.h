@@ -64,6 +64,8 @@ class Gamelist : public QObject
     bool mergeCategories;
 
     QString lookupDriverName(QString);
+    QString romStatus(QString, bool translated = false);
+
     Gamelist(QObject *parent = 0);
     ~Gamelist();
 
