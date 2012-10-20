@@ -1,5 +1,6 @@
 #include <QTableView>
 #include <QSettings>
+#include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QNetworkAccessManager>
@@ -66,6 +67,7 @@ void CookieManager::on_pushButtonRemove_clicked()
 	CookieJar *cj = (CookieJar *)qmc2NetworkAccessManager->cookieJar();
 	if ( cj->db.isOpen() ) {
 		QSqlQuery query(cj->db);
+		cj->db.driver()->beginTransaction();
 		foreach (QModelIndex index, tableViewCookies->selectionModel()->selectedRows()) {
 			QByteArray name = index.data().toByteArray();
 			QString domain = index.sibling(index.row(), 1).data().toString();
@@ -78,6 +80,7 @@ void CookieManager::on_pushButtonRemove_clicked()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie from database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(cj->db.lastError().text()));
 			query.finish();
 		}
+		cj->db.driver()->commitTransaction();
 	}
 	sqlTableModel->setQuery("SELECT name, domain, path, value, expiry, secure, http_only FROM qmc2_cookies", cj->db);
 }
