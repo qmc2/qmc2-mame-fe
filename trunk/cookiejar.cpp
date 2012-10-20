@@ -1,5 +1,6 @@
 #include <QDir>
 #include <QSettings>
+#include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMultiMap>
@@ -97,6 +98,7 @@ void CookieJar::saveCookies()
 
 	QMapIterator<QString, QNetworkCookie> it(cookieMap);
 	QStringList cookieKeysProcessed;
+	db.driver()->beginTransaction();
 	while ( it.hasNext() ) {
 		it.next();
 		QNetworkCookie cookie = it.value();
@@ -156,6 +158,7 @@ void CookieJar::saveCookies()
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to query cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 	}
+	db.driver()->commitTransaction();
 }
 
 bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, QString path) const
@@ -180,6 +183,7 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 	}
 	QDateTime now = QDateTime::currentDateTime();
 	QDateTime dt;
+	db.driver()->beginTransaction();
 	while ( query.next() ) {
 		QNetworkCookie cookie;
 		cookie.setDomain(query.value(0).toString());
@@ -203,5 +207,6 @@ bool CookieJar::loadCookies(QList<QNetworkCookie> &cookieList, QString domain, Q
 			cookieMap.insertMulti(domain + path, cookie);
 		}
 	}
+	db.driver()->commitTransaction();
 	return !cookieList.isEmpty();
 }
