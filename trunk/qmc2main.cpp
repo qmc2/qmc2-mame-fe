@@ -3666,11 +3666,11 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(useSoftwareNotesTemplate);
 
 				qmc2SoftwareNotesEditor->templateMap.clear();
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE));
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER);
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR));
 	      			qmc2SoftwareNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	      			qmc2SoftwareNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 				if ( !qmc2SoftwareSnapshot ) {
@@ -4515,14 +4515,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
 
 	      qmc2SystemNotesEditor->templateMap.clear();
-	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
 	      qmc2SystemNotesEditor->templateMap["$ID$"] = gameName;
 	      qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = qmc2ParentMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU);
-	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR);
-	      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY);
+	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU));
+	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR));
+	      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION);
+	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION));
 #else
 	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = tr("?");
 #endif
