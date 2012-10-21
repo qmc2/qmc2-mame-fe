@@ -23,9 +23,13 @@
 
 	Using JavaScript:
 
-	Note that you can also use simple JavaScript in this template. The resulting HTML will not
-	contain any scripts but only the content they may produce! See data/gmn/template.html for
-	an example.
+	Note that you can also use JavaScript in this template. However, all code contained in <script>...</script>
+	blocks will be filtered whenever needed! If you want your JavaScript code to survive the filtering, use
+	<script language="JavaScript">...</script> instead, but any code that produces/changes the document's
+	content MUST be filtered and can thus not be used in this way!
+
+	See http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Notes-templates
+	for more details!
 -->
 <html>
 <head>
