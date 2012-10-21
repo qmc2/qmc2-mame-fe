@@ -172,8 +172,9 @@ Gamelist::Gamelist(QObject *parent)
     reverseTranslation[tr("supported")] = "supported";
     reverseTranslation[tr("unsupported")] = "unsupported";
     reverseTranslation[tr("imperfect")] = "imperfect";
-    reverseTranslation[tr("yes")] = "yes";
-    reverseTranslation[tr("no")] = "no";
+    reverseTranslation[QObject::tr("yes")] = "yes";
+    reverseTranslation[QObject::tr("no")] = "no";
+    reverseTranslation[QObject::tr("partially")] = "partially";
   }
 
   if ( qmc2UseIconFile ) {
