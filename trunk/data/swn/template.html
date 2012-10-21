@@ -9,8 +9,8 @@
 	$SOFTWARE_LIST$		Software-list this software is from
 	$SOFTWARE_PUBLISHER$	Publisher of this software
 	$SOFTWARE_YEAR$		Year this software was published
-	$SOFTWARE_SUPPORTED$	Software support status ('yes' or 'no' / translated)
-	$SOFTWARE_SUPPORTED_UT$	Software support status ('yes' or 'no' / untranslated)
+	$SOFTWARE_SUPPORTED$	Software support status ('yes', 'no' or 'partially' / translated)
+	$SOFTWARE_SUPPORTED_UT$	Software support status ('yes', 'no' or 'partially' / untranslated)
 
 	Image macros:
 
@@ -44,6 +44,16 @@
 <tr><td bgcolor="lightgrey">SW-List</td><td>$SOFTWARE_LIST$</td></tr>
 <tr><td bgcolor="lightgrey">Publisher</td><td>$SOFTWARE_PUBLISHER$</td></tr>
 <tr><td bgcolor="lightgrey">Year</td><td>$SOFTWARE_YEAR$</td></tr>
+<tr><td bgcolor="lightgrey">Supported</td>
+	<script>
+		if ( "$SOFTWARE_SUPPORTED_UT$" == "yes" )
+			document.write("<td style=\"color: #00cc00;\">$SOFTWARE_SUPPORTED$</td>");
+		else if ( "$SOFTWARE_SUPPORTED_UT$" == "no" )
+			document.write("<td style=\"color: #f90000;\">$SOFTWARE_SUPPORTED$</td>");
+		else
+			document.write("<td style=\"color: #a2c743;\">$SOFTWARE_SUPPORTED$</td>");
+	</script>
+</tr>
 </tbody>
 </table>
 <h3>Snapshot</h3>
