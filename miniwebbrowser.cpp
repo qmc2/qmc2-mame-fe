@@ -160,7 +160,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrintElementBackgrounds, false);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, false);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, false);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageEnabled, true);
 #if defined(QMC2_BROWSER_PREFETCH_DNS_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
 #else

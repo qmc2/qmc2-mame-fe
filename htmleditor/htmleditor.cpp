@@ -158,6 +158,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
 #endif
 	ui->webView->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, false);
+	ui->webView->page()->settings()->setAttribute(QWebSettings::LocalStorageEnabled, true);
 
 	connect(ui->webView, SIGNAL(loadStarted()), this, SLOT(setLoadActive()));
 	connect(ui->webView, SIGNAL(loadFinished(bool)), this, SLOT(setLoadInactive()));
@@ -988,13 +989,13 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	loadActive = true;
 	stopLoading = false;
 	emptyContent = data;
-	ui->webView->setHtml(data);
+	ui->webView->setHtml(data, QUrl::fromLocalFile(f));
 	while ( loadActive && !qmc2CleaningUp && !stopLoading ) {
 		QTest::qWait(1);
 		qApp->processEvents();
 	}
 	if ( !qmc2CleaningUp && !stopLoading ) {
-		ui->webView->setHtml(data);
+		ui->webView->setHtml(data, QUrl::fromLocalFile(f));
 		ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
 		ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 		if ( fileName.isEmpty() )

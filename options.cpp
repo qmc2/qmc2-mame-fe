@@ -16,6 +16,7 @@
 #include <QInputDialog>
 #include <QSplashScreen>
 #include <QNetworkAccessManager>
+#include <QWebSettings>
 #include <QCache>
 
 #include "options.h"
@@ -205,6 +206,8 @@ Options::Options(QWidget *parent)
     userScopeDir.mkdir(userScopePath);
 
   config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
+
+  QWebSettings::enablePersistentStorage(userScopePath);
 
   setupUi(this);
 
