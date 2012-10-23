@@ -6326,6 +6326,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
       qmc2SoftwareNotesEditor->save();
       qmc2SoftwareNotesEditor->close();
       delete qmc2SoftwareNotesEditor;
+      qmc2SoftwareNotesEditor = NULL;
     }
     if ( qmc2SoftwareList->fullyLoaded ) {
       log(QMC2_LOG_FRONTEND, tr("saving current game's favorite software"));
