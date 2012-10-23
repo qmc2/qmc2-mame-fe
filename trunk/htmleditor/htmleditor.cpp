@@ -992,7 +992,8 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	ui->webView->setHtml(data, QUrl::fromLocalFile(f));
 	while ( loadActive && !qmc2CleaningUp && !stopLoading ) {
 		QTest::qWait(1);
-		qApp->processEvents();
+		if ( !qmc2CleaningUp && !stopLoading )
+			qApp->processEvents(QEventLoop::AllEvents, 100);
 	}
 	if ( !qmc2CleaningUp && !stopLoading ) {
 		ui->webView->setHtml(data, QUrl::fromLocalFile(f));
@@ -1000,10 +1001,8 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 		if ( fileName.isEmpty() )
 			setCurrentFileName(f);
-		if ( !qmc2CleaningUp && !stopLoading ) {
-			emptyContent = ui->webView->page()->mainFrame()->toHtml();
-			adjustHTML();
-		}
+		emptyContent = ui->webView->page()->mainFrame()->toHtml();
+		adjustHTML();
 	} else
 		emptyContent = "QMC2_INVALID";
 
