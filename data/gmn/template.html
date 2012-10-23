@@ -72,9 +72,9 @@
 	<script language="JavaScript">
 		function toggleFancyImages(enable) {
 			if ( enable ) {
-				localStorage['Example/SystemNotesTemplate/FancyImages'] = 'true';
+				localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = 'true';
 			} else {
-				localStorage['Example/SystemNotesTemplate/FancyImages'] = 'false';
+				localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = 'false';
 			}
 			qmc2NotesEditorObject.loadCurrentTemplate();
 		}
@@ -123,7 +123,7 @@
 		<td width="33%" nowrap align="left"><h3>System images</h3></td>
 		<td width="33%" nowrap align="center">
 			<script>
-				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' )
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' )
 					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images?</label>");
 				else
 					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images?</label>");
@@ -154,7 +154,7 @@
 		</tr>
 		<tr>
 			<script>
-				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' ) {
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\"></td>");
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\"></td>");
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\"></td>");
@@ -172,7 +172,7 @@
 		</tr>
 		<tr>
 			<script>
-				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' ) {
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\"></td>");
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\"></td>");
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\"></td>");
@@ -188,7 +188,7 @@
 		</tr>
 		<tr>
 			<script>
-				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' ) {
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\"></td>");
 				} else {
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$TITLE_IMAGE$\"></td>");
