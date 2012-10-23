@@ -44,6 +44,7 @@ inf: informational only
   <li>new: MiniWebBrowser: added support for persistent cookies (stored in / retrieved from an SQLite database)</li>
   <li>new: added <a href="http://wiki.mozilla.org/PDF.js" target="_blank">PDF.js</a> -- a JavaScript / HTML5 PDF rendering library</li>
   <li>new: added support for HTML5 'localStorage' to the MiniWebBrowser and notes-templates (this allows templates to store and retrieve local settings)</li>
+  <li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- specifically, calling 'qmc2NotesEditorObject.loadCurrentTemplate();' will reload the template itself, for example to react on changed settings (see data/gmn/template.html for an example)</li>
 </ul>
 <p><b>v0.37, 17-SEP-2012:</b></p>
 <ul>

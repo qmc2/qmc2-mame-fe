@@ -133,6 +133,7 @@ public slots:
     void setLoadActive() { loadActive = true; }
     void setLoadInactive() { loadActive = false; }
     void setLoadSuccess(bool success) { loadSuccess = success; }
+    void javaScriptWindowObjectCleared();
 
 private:
     Ui_HTMLEditorMainWindow *ui;

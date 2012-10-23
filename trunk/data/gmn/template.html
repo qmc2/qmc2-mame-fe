@@ -57,6 +57,28 @@
 -->
 <html>
 <head>
+	<style type="text/css">
+		.imageMaxHeight300 {
+			max-height: 300px;
+			max-width: 100%;
+			height: expression(this.height > 300 ? "300px" : true);
+			opacity: 0;
+			-moz-transition: opacity 1s;
+			-webkit-transition: opacity 1s;
+			-o-transition: opacity 1s;
+			transition: opacity 1s;
+		}
+	</style>
+	<script language="JavaScript">
+		function toggleFancyImages(enable) {
+			if ( enable ) {
+				localStorage['Example/SystemNotesTemplate/FancyImages'] = 'true';
+			} else {
+				localStorage['Example/SystemNotesTemplate/FancyImages'] = 'false';
+			}
+			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+	</script>
 </head>
 <body>
 <h2>$DESCRIPTION$</h2>
@@ -98,8 +120,16 @@
 </table>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<td nowrap align="left"><h3>System images</h3></td>
-		<td nowrap align="right">
+		<td width="33%" nowrap align="left"><h3>System images</h3></td>
+		<td width="33%" nowrap align="center">
+			<script>
+				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' )
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images?</label>");
+				else
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images?</label>");
+			</script>
+		</td>
+		<td width="33%" nowrap align="right">
 			<script>
 				if ( "$ROM_STATUS_UT$" == "correct" )
 					document.write("ROM status: <font style=\"color: #00cc00;\">$ROM_STATUS$</font>");
@@ -118,14 +148,22 @@
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
-			<td width="33%" valign="top" bgcolor="lightgrey">Cabinet image</td>
-			<td width="33%" valign="top" bgcolor="lightgrey">Runtime preview</td>
-			<td width="33%" valign="top" bgcolor="lightgrey">Flyer image</td>
+			<td width="33%" valign="top" align="center" bgcolor="lightgrey">Cabinet image</td>
+			<td width="33%" valign="top" align="center" bgcolor="lightgrey">Runtime preview</td>
+			<td width="33%" valign="top" align="center" bgcolor="lightgrey">Flyer image</td>
 		</tr>
 		<tr>
-			<td width="33%" valign="top"><img width="100%" src="$CABINET_IMAGE$"></td>
-			<td width="33%" valign="top"><img width="100%" src="$PREVIEW_IMAGE$"></td>
-			<td width="33%" valign="top"><img width="100%" src="$FLYER_IMAGE$"></td>
+			<script>
+				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' ) {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\"></td>");
+				} else {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$CABINET_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$PREVIEW_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$FLYER_IMAGE$\"></td>");
+				}
+			</script>
 		</tr>
 		<tr>
 			<td width="33%" valign="top" bgcolor="lightgrey">Controller image</td>
@@ -133,15 +171,29 @@
 			<td width="33%" valign="top" bgcolor="lightgrey">PCB image</td>
 		</tr>
 		<tr>
-			<td width="33%" valign="top"><img width="100%" src="$CONTROLLER_IMAGE$"></td>
-			<td width="33%" valign="top"><img width="100%" src="$MARQUEE_IMAGE$"></td>
-			<td width="33%" valign="top"><img width="100%" src="$PCB_IMAGE$"></td>
+			<script>
+				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' ) {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\"></td>");
+				} else {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$CONTROLLER_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$MARQUEE_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$PCB_IMAGE$\"></td>");
+				}
+			</script>
 		</tr>
 		<tr>
 			<td width="33%" valign="top" bgcolor="lightgrey">Title screen</td>
 		</tr>
 		<tr>
-			<td width="33%" valign="top"><img width="100%" src="$TITLE_IMAGE$"></td>
+			<script>
+				if ( localStorage['Example/SystemNotesTemplate/FancyImages'] == 'true' ) {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\"></td>");
+				} else {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$TITLE_IMAGE$\"></td>");
+				}
+			</script>
 		</tr>
 	</tbody>
 </table>

@@ -255,6 +255,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
 	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 
+	connect(ui->webView->page()->mainFrame(), SIGNAL(javaScriptWindowObjectCleared()), this, SLOT(javaScriptWindowObjectCleared()));
+
 	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), 100).toInt());
 
 	adjustIconSizes();
@@ -1007,6 +1009,11 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		emptyContent = "QMC2_INVALID";
 
 	return true;
+}
+
+void HtmlEditor::javaScriptWindowObjectCleared()
+{
+	ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("qmc2NotesEditorObject", this);
 }
 
 void HtmlEditor::enableFileNewFromTemplateAction(bool enable)
