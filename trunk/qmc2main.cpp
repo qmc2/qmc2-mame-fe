@@ -6312,6 +6312,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 
   if ( qmc2SystemNotesEditor ) {
+    qmc2SystemNotesEditor->stopLoading = true;
     qmc2SystemNotesEditor->save();
     qmc2SystemNotesEditor->close();
     delete qmc2SystemNotesEditor;
@@ -6321,6 +6322,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2SoftwareList ) {
     if ( qmc2SoftwareNotesEditor ) {
+      qmc2SoftwareNotesEditor->stopLoading = true;
       qmc2SoftwareNotesEditor->save();
       qmc2SoftwareNotesEditor->close();
       delete qmc2SoftwareNotesEditor;
