@@ -1000,8 +1000,10 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
 		if ( fileName.isEmpty() )
 			setCurrentFileName(f);
-		emptyContent = ui->webView->page()->mainFrame()->toHtml();
-		adjustHTML();
+		if ( !qmc2CleaningUp && !stopLoading ) {
+			emptyContent = ui->webView->page()->mainFrame()->toHtml();
+			adjustHTML();
+		}
 	} else
 		emptyContent = "QMC2_INVALID";
 
