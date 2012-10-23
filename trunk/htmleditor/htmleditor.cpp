@@ -995,7 +995,7 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	while ( loadActive && !qmc2CleaningUp && !stopLoading ) {
 		QTest::qWait(1);
 		if ( !qmc2CleaningUp && !stopLoading )
-			qApp->processEvents(QEventLoop::AllEvents, 100);
+			qApp->processEvents(QEventLoop::AllEvents, 1);
 	}
 	if ( !qmc2CleaningUp && !stopLoading ) {
 		ui->webView->setHtml(data, QUrl::fromLocalFile(f));
