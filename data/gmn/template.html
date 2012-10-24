@@ -135,7 +135,7 @@
 			var shadowImageStyle = "";
 			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/DropShadow'] == 'true' ) {
 				if ( imgurl != "$GHOST_IMAGE$" )
-					shadowImageStyle = "style=\"width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);\"";
+					shadowImageStyle = "style=\"max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);\"";
 			}
 			return shadowImageStyle;
 		}
