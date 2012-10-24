@@ -74,6 +74,39 @@
 		}
 	</style>
 	<script language="JavaScript">
+		var trMap = {};
+		trMap['de' + 'Fixed header'] = 'Header fixieren';
+		trMap['de' + 'Use a fixed header (not scrolling away)?'] = 'Fixierten Header verwenden (der nicht wegscrollt)?';
+		trMap['de' + 'Name/ID'] = 'Name/ID';
+		trMap['de' + 'Manufacturer'] = 'Hersteller';
+		trMap['de' + 'Year'] = 'Jahr';
+		trMap['de' + 'Category'] = 'Kategorie';
+		trMap['de' + 'Players'] = 'Spieler';
+		trMap['de' + 'ROM types'] = 'ROM Typen';
+		trMap['de' + 'Driver status'] = 'Treiberstatus';
+		trMap['de' + 'Version'] = 'Version';
+		trMap['de' + 'Fancy images'] = 'Bildeffekte';
+		trMap['de' + 'Use fancy images (fading in / limited height)?'] = 'Bildeffekte aktivieren (einblenden / beschränkte Höhe)?';
+		trMap['de' + 'Link images'] = 'Bilder verlinken';
+		trMap['de' + 'Create clickable links for each image?'] = 'Klickbare Links für jedes Bild erzeugen?';
+		trMap['de' + 'System images'] = 'System Bilder';
+		trMap['de' + 'ROM status'] = 'ROM Status';
+		trMap['de' + 'Cabinet image'] = 'Gehäuse';
+		trMap['de' + 'Runtime preview'] = 'Vorschau';
+		trMap['de' + 'Flyer image'] = 'Flyer';
+		trMap['de' + 'Controller image'] = 'Controller';
+		trMap['de' + 'Marquee/Logo image'] = 'Marquee/Logo';
+		trMap['de' + 'PCB image'] = 'PCB Foto';
+		trMap['de' + 'Title screen'] = 'Titelbild';
+		trMap['de' + 'Comments'] = 'Kommentare';
+		trMap['de' + 'System info'] = 'System Infos';
+		trMap['de' + 'Emulator info'] = 'Emulator Infos';
+		function tr(text) {
+			var trText = trMap['$GUI_LANGUAGE$' + text];
+			if ( trText == undefined )
+				trText = text;
+			return trText;
+		}
 		function toggleFancyImages(enable) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = enable ? 'true' : 'false';
 			qmc2NotesEditorObject.loadCurrentTemplate();
@@ -112,9 +145,9 @@
 </head>
 <script>
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
-		document.write("<body onload=\"fitWindow()\" onresize=\"fitWindow()\"><div id=\"header_div\">");
+		document.write("<body onload=\"fitWindow(); loadTranslations();\" onresize=\"fitWindow();\"><div id=\"header_div\">");
 	else
-		document.write("<body>");
+		document.write("<body onload=\"loadTranslations();\">");
 </script>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
@@ -122,9 +155,9 @@
 		<td width="30%" nowrap align="right">
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
-					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"Use a fixed header (not scrolling away)?\"/><label for=\"cbHeaderFixed\">Fixed header</label>");
+					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>");
 				else
-					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"Use a fixed header (not scrolling away)?\"/><label for=\"cbHeaderFixed\">Fixed header</label>");
+					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>");
 			</script>
 		</td>
 	</tr>
@@ -132,10 +165,10 @@
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
-			<td width="25%" valign="top" bgcolor="lightgrey">Name/ID</td>
-			<td width="25%" valign="top" bgcolor="lightgrey">Manufacturer</td>
-			<td width="25%" valign="top" bgcolor="lightgrey">Year</td>
-			<td width="25%" valign="top" bgcolor="lightgrey">Category</td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Name/ID'));</script></td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Manufacturer'));</script></td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Year'));</script></td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Category'));</script></td>
 		</tr>
 		<tr>
 			<td width="25%" valign="top">$ID$</td>
@@ -144,10 +177,11 @@
 			<td width="25%" valign="top">$CATEGORY$</td>
 		</tr>
 		<tr>
-			<td width="25%" valign="top" bgcolor="lightgrey">Players</td>
-			<td width="25%" valign="top" bgcolor="lightgrey">ROM types</td>
-			<td width="25%" valign="top" bgcolor="lightgrey">Driver status</td>
-			<td width="25%" valign="top" bgcolor="lightgrey">Version</td></tr>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Players'));</script></td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('ROM types'));</script></td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Driver status'));</script></td>
+			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Version'));</script></td>
+		</tr>
 		<tr>
 			<td width="25%" valign="top">$PLAYERS$</td>
 			<td width="25%" valign="top">$ROM_TYPES$</td>
@@ -172,32 +206,32 @@
 </script>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<td width="33%" nowrap align="left"><h3>System images</h3></td>
+		<td width="33%" nowrap align="left"><h3><script>document.write(tr('System images'));</script></h3></td>
 		<td width="33%" nowrap align="center">
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' )
-					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images</label>");
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"" + tr('Use fancy images (fading in / limited height)?') + "\"/><label for=\"cbFancyImages\">" + tr('Fancy images') + "</label>");
 				else
-					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images</label>");
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"" + tr('Use fancy images (fading in / limited height)?') + "\"/><label for=\"cbFancyImages\">" + tr('Fancy images') + "</label>");
 				document.write("&nbsp;");
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] == 'true' )
-					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" checked=\"checked\" onclick=\"toggleLinkImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbLinkImages\">Link images</label>");
+					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" checked=\"checked\" onclick=\"toggleLinkImages(this.checked);\" title=\"" + tr('Create clickable links for each image?') + "\"/><label for=\"cbLinkImages\">" + tr('Link images') + "</label>");
 				else
-					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" onclick=\"toggleLinkImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbLinkImages\">Link images</label>");
+					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" onclick=\"toggleLinkImages(this.checked);\" title=\"" + tr('Create clickable links for each image?') + "\"/><label for=\"cbLinkImages\">" + tr('Link images') + "</label>");
 			</script>
 		</td>
 		<td width="33%" nowrap align="right">
 			<script>
 				if ( "$ROM_STATUS_UT$" == "correct" )
-					document.write("ROM status: <font style=\"color: #00cc00;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #00cc00;\">$ROM_STATUS$</font>");
 				else if ( "$ROM_STATUS_UT$" == "incorrect" )
-					document.write("ROM status: <font style=\"color: #f90000;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #f90000;\">$ROM_STATUS$</font>");
 				else if ( "$ROM_STATUS_UT$" == "mostly correct" )
-					document.write("ROM status: <font style=\"color: #a2c743;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #a2c743;\">$ROM_STATUS$</font>");
 				else if ( "$ROM_STATUS_UT$" == "not found" )
-					document.write("ROM status: <font style=\"color: #7f7f7f;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #7f7f7f;\">$ROM_STATUS$</font>");
 				else
-					document.write("ROM status: <font style=\"color: #0000f9;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #0000f9;\">$ROM_STATUS$</font>");
 			</script>
 		</td>
 	</tr>
@@ -205,9 +239,9 @@
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
-			<td width="33%" valign="top" align="center" bgcolor="lightgrey">Cabinet image</td>
-			<td width="33%" valign="top" align="center" bgcolor="lightgrey">Runtime preview</td>
-			<td width="33%" valign="top" align="center" bgcolor="lightgrey">Flyer image</td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Cabinet image'));</script></td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Runtime preview'));</script></td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Flyer image'));</script></td>
 		</tr>
 		<tr>
 			<script>
@@ -223,9 +257,9 @@
 			</script>
 		</tr>
 		<tr>
-			<td width="33%" valign="top" bgcolor="lightgrey">Controller image</td>
-			<td width="33%" valign="top" bgcolor="lightgrey">Marquee/Logo image</td>
-			<td width="33%" valign="top" bgcolor="lightgrey">PCB image</td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Controller image'));</script></td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Marquee/Logo image'));</script></td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('PCB image'));</script></td>
 		</tr>
 		<tr>
 			<script>
@@ -241,7 +275,7 @@
 			</script>
 		</tr>
 		<tr>
-			<td width="33%" valign="top" bgcolor="lightgrey">Title screen</td>
+			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Title screen'));</script></td>
 		</tr>
 		<tr>
 			<script>
@@ -254,11 +288,11 @@
 		</tr>
 	</tbody>
 </table>
-<h3>Comments</h3>
+<h3><script>document.write(tr('Comments'));</script></h3>
 <p><br></p>
-<h3>System info</h3>
+<h3><script>document.write(tr('System info'));</script></h3>
 <p>$GAME_INFO$</p>
-<h3>Emulator info</h3>
+<h3><script>document.write(tr('Emulator info'));</script></h3>
 <p>$EMU_INFO$</p>
 <script>
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
