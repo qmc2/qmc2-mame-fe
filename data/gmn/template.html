@@ -58,10 +58,14 @@
 <html>
 <head>
 	<style type="text/css">
+		html {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
 		.imageMaxHeight300 {
 			max-height: 300px;
 			max-width: 100%;
-			height: expression(this.height > 300 ? "300px" : true);
 			opacity: 0;
 			-moz-transition: opacity 1s;
 			-webkit-transition: opacity 1s;
@@ -71,17 +75,50 @@
 	</style>
 	<script language="JavaScript">
 		function toggleFancyImages(enable) {
-			if ( enable ) {
-				localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = 'true';
-			} else {
-				localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = 'false';
-			}
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = enable ? 'true' : 'false';
 			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+		function toggleHeaderFixed(enable) {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] = enable ? 'true' : 'false';
+			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+		function scrollBarWidth() {
+			document.body.style.overflow = 'hidden';
+			var width = document.body.clientWidth;
+			document.body.style.overflow = 'scroll';
+			width -= document.body.clientWidth;
+			if ( !width )
+				width = document.body.offsetWidth - document.body.clientWidth;
+			document.body.style.overflow = '';
+			return width;
+		}
+		function fitWindow() {
+			var header_obj = document.getElementById('header_div');
+			var content_obj = document.getElementById('content_div');
+			var content_height = window.innerHeight - header_obj.clientHeight - scrollBarWidth();
+			content_obj.style.height = content_height;
 		}
 	</script>
 </head>
-<body>
-<h2>$DESCRIPTION$</h2>
+<script>
+	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
+		document.write("<body onload=\"fitWindow()\" onresize=\"fitWindow()\"><div id=\"header_div\">");
+	else
+		document.write("<body>");
+</script>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td width="70%" nowrap align="left"><h2>$DESCRIPTION$</h2></td>
+		<td width="30%" nowrap align="right">
+			<script>
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
+					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"Use a fixed header (not scrolling away)?\"/><label for=\"cbHeaderFixed\">Fixed header</label>");
+				else
+					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"Use a fixed header (not scrolling away)?\"/><label for=\"cbHeaderFixed\">Fixed header</label>");
+			</script>
+		</td>
+	</tr>
+</table>
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
@@ -118,15 +155,20 @@
 		</tr>
 	</tbody>
 </table>
+<hr>
+<script>
+	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
+		document.write("</div><div id=\"content_div\" style=\"overflow: auto;\">");
+</script>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
 		<td width="33%" nowrap align="left"><h3>System images</h3></td>
 		<td width="33%" nowrap align="center">
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' )
-					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images?</label>");
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images</label>");
 				else
-					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images?</label>");
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images</label>");
 			</script>
 		</td>
 		<td width="33%" nowrap align="right">
@@ -203,5 +245,9 @@
 <p>$GAME_INFO$</p>
 <h3>Emulator info</h3>
 <p>$EMU_INFO$</p>
+<script>
+	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
+		document.write("</div>");
+</script>
 </body>
 </html>
