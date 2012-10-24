@@ -82,6 +82,16 @@
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] = enable ? 'true' : 'false';
 			qmc2NotesEditorObject.loadCurrentTemplate();
 		}
+		function toggleLinkImages(enable) {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] = enable ? 'true' : 'false';
+			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+		function linkImage(text, url) {
+			var linkText = text;
+			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] == 'true' )
+				linkText = "<a href=\"" + url + "\" target=\"_blank\">" + text + "</a>";
+			return linkText;
+		}
 		function scrollBarWidth() {
 			document.body.style.overflow = 'hidden';
 			var width = document.body.clientWidth;
@@ -169,6 +179,11 @@
 					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images</label>");
 				else
 					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbFancyImages\">Fancy images</label>");
+				document.write("&nbsp;");
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] == 'true' )
+					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" checked=\"checked\" onclick=\"toggleLinkImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbLinkImages\">Link images</label>");
+				else
+					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" onclick=\"toggleLinkImages(this.checked);\" title=\"Use fancy images (fading in / limited height)?\"/><label for=\"cbLinkImages\">Link images</label>");
 			</script>
 		</td>
 		<td width="33%" nowrap align="right">
@@ -197,13 +212,13 @@
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				} else {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$CABINET_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$PREVIEW_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$FLYER_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
@@ -215,13 +230,13 @@
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				} else {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$CONTROLLER_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$MARQUEE_IMAGE$\"></td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$PCB_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
@@ -231,9 +246,9 @@
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img class=\"imageMaxHeight300\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 				} else {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img width=\"100%\" src=\"$TITLE_IMAGE$\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
