@@ -30,6 +30,8 @@
 #include <QIcon>
 #include <QTreeWidgetItem>
 #include <QByteArray>
+#include <QColorDialog>
+#include <QFileDialog>
 #if QT_VERSION >= 0x050000
 #include <QToolButton>
 #include <QFileDialog>
@@ -1032,6 +1034,24 @@ QString HtmlEditor::getIconData()
 		pm.save(&buffer, "PNG");
 	}
 	return QString(iconData.toBase64());
+}
+
+QString HtmlEditor::getColor(QString currentColor)
+{
+	QColor color = QColorDialog::getColor(QColor(currentColor), this, tr("Select color"), QColorDialog::ShowAlphaChannel | QColorDialog::DontUseNativeDialog);
+	if ( color.isValid() )
+		return color.name();
+	else
+		return currentColor;
+}
+
+QString HtmlEditor::getImage(QString currentImage)
+{
+	QString imageFile = QFileDialog::getOpenFileName(this, tr("Choose image file"), currentImage, tr("All files (*)"));
+	if ( !imageFile.isEmpty() )
+		return imageFile;
+	else
+		return currentImage;
 }
 
 void HtmlEditor::enableFileNewFromTemplateAction(bool enable)

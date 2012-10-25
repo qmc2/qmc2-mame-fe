@@ -122,7 +122,6 @@ public slots:
     bool load(const QString &f);
     bool loadCurrent();
     bool loadTemplate(const QString &f);
-    bool loadCurrentTemplate();
     bool save();
     void setCurrentFileName(const QString &fileName);
     void setCurrentTemplateName(const QString &templateName);
@@ -134,7 +133,12 @@ public slots:
     void setLoadInactive() { loadActive = false; }
     void setLoadSuccess(bool success) { loadSuccess = success; }
     void javaScriptWindowObjectCleared();
+
+    // helper functions (not only) for template use
+    bool loadCurrentTemplate();
     QString getIconData();
+    QString getColor(QString currentColor = QString());
+    QString getImage(QString currentImage = QString());
 
 private:
     Ui_HTMLEditorMainWindow *ui;

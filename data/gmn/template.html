@@ -102,6 +102,12 @@
 		trMap['de' + 'Drop shadow'] = 'Schatten';
 		trMap['de' + 'Drop shadow on images?'] = 'Bildschatten einblenden?';
 		trMap['de' + 'Icon'] = 'Icon';
+		trMap['de' + 'BG mode: default'] = 'HG Modus: Standard';
+		trMap['de' + 'BG mode: color'] = 'HG Modus: Farbe';
+		trMap['de' + 'BG mode: image (tiled)'] = 'HG Modus: Bild (gekachelt)';
+		trMap['de' + 'BG mode: image (scaled)'] = 'HG Modus: Bild (skaliert)';
+		trMap['de' + 'Select background color'] = 'Hintergrund-Farbe auswählen';
+		trMap['de' + 'Select background image'] = 'Hintergrund-Bild auswählen';
 		function tr(text) {
 			var trText = trMap['$GUI_LANGUAGE$' + text];
 			if ( trText == undefined )
@@ -122,6 +128,10 @@
 		}
 		function toggleLinkImages(enable) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] = enable ? 'true' : 'false';
+			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+		function changeBackgroundMode(mode) {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] = mode;
 			qmc2NotesEditorObject.loadCurrentTemplate();
 		}
 		function linkImage(text, url) {
@@ -156,20 +166,44 @@
 		}
 		function iconTag() {
 			var data = qmc2NotesEditorObject.getIconData();
-			var fontHeight = document.getElementById('cbLinkImages').clientHeight;
+			var iconHeight = document.getElementById('cbLinkImages').clientHeight;
 			if ( data == '' )
-				imgTag = tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + fontHeight + ";\" src=\"$GHOST_IMAGE$\"/>&nbsp;";
+				imgTag = tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + iconHeight + ";\" src=\"$GHOST_IMAGE$\"/>&nbsp;";
 			else
-				imgTag = tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + fontHeight + ";\" src=\"data:image/png;base64," + data + "\"/>&nbsp;";
+				imgTag = tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + iconHeight + ";\" src=\"data:image/png;base64," + data + "\"/>&nbsp;";
 			return imgTag;
+		}
+		function selectColor() {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor']);
+			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] == 'color' )
+				qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+		function selectImage() {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage'] = qmc2NotesEditorObject.getImage(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage']);
+			var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
+			if ( mode == 'image-tiled' || mode == 'image-scaled' )
+				qmc2NotesEditorObject.loadCurrentTemplate();
 		}
 	</script>
 </head>
 <script>
+	var styleTag = "style=\"";
+	var color = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor'];
+	var image = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage'];
+	var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
+	if ( color != '' && mode == 'color' )
+		styleTag += "background-color: " + color + ";";
+	if ( image != '' ) {
+		if ( mode == 'image-tiled' )
+			styleTag += "background-image: url('" + image + "'); background-repeat: repeat;";
+		else if ( mode == 'image-scaled' )
+			styleTag += "background-image: url('" + image + "'); background-repeat: none; background-size: 100% 100%;";
+	}
+	styleTag += "\"";
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
-		document.write("<body onload=\"fitWindow(); loadTranslations();\" onresize=\"fitWindow();\"><div id=\"header_div\">");
+		document.write("<body " + styleTag + " onload=\"fitWindow();\" onresize=\"fitWindow();\"><div id=\"header_div\">");
 	else
-		document.write("<body onload=\"loadTranslations();\">");
+		document.write("<body " + styleTag + ">");
 </script>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
@@ -177,9 +211,20 @@
 		<td width="30%" nowrap align="right">
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
-					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>");
+					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>&nbsp;");
 				else
-					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>");
+					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" style=\"vertical-align: middle;\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>&nbsp;");
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] == 'image-tiled' )
+					document.write("<select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\">" + tr('BG mode: default') + "</option><option value=\"color\">" + tr('BG mode: color') + "</option><option value=\"image-tiled\" selected=\"selected\">" + tr('BG mode: image (tiled)') + "</option><option value=\"image-scaled\">" + tr('BG mode: image (scaled)') + "</option></select>");
+				else if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] == 'image-scaled' )
+					document.write("<select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\">" + tr('BG mode: default') + "</option><option value=\"color\">" + tr('BG mode: color') + "</option><option value=\"image-tiled\">" + tr('BG mode: image (tiled)') + "</option><option value=\"image-scaled\" selected=\"selected\">" + tr('BG mode: image (scaled)') + "</option></select>");
+				else if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] == 'color' )
+					document.write("<select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\">" + tr('BG mode: default') + "</option><option value=\"color\" selected=\"selected\">" + tr('BG mode: color') + "</option><option value=\"image-tiled\">" + tr('BG mode: image (tiled)') + "</option><option value=\"image-scaled\">" + tr('BG mode: image (scaled)') + "</option></select>");
+				else
+					document.write("<select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\" selected=\"selected\">" + tr('BG mode: default') + "</option><option value=\"color\">" + tr('BG mode: color') + "</option><option value=\"image-tiled\">" + tr('BG mode: image (tiled)') + "</option><option value=\"image-scaled\">" + tr('BG mode: image (scaled)') + "</option></select>");
+				var butHeight = document.getElementById('selBackgroundMode').clientHeight;
+				document.write("<button name=\"pbColor\" type=\"button\" id=\"pbColor\" style=\"background-image: url('images/color.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectColor()\" title=\"" + tr('Select background color') + "\"/>");
+				document.write("<button name=\"pbImage\" type=\"button\" id=\"pbImage\" style=\"background-image: url('images/image.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectImage()\" title=\"" + tr('Select background image') + "\"/>");
 			</script>
 		</td>
 	</tr>
@@ -232,19 +277,19 @@
 		<td width="33%" nowrap align="center">
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' )
-					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"" + tr('Use fancy images (rounded corners / fading in / limited height)?') + "\"/><label for=\"cbFancyImages\">" + tr('Fancy images') + "</label>");
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleFancyImages(this.checked);\" title=\"" + tr('Use fancy images (rounded corners / fading in / limited height)?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbFancyImages\">" + tr('Fancy images') + "</label>");
 				else
-					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" onclick=\"toggleFancyImages(this.checked);\" title=\"" + tr('Use fancy images (rounded corners / fading in / limited height)?') + "\"/><label for=\"cbFancyImages\">" + tr('Fancy images') + "</label>");
+					document.write("<input name=\"cbFancyImages\" type=\"checkbox\" id=\"cbFancyImages\" style=\"vertical-align: middle;\" onclick=\"toggleFancyImages(this.checked);\" title=\"" + tr('Use fancy images (rounded corners / fading in / limited height)?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbFancyImages\">" + tr('Fancy images') + "</label>");
 				document.write("&nbsp;");
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/DropShadow'] == 'true' )
-					document.write("<input name=\"cbDropShadow\" type=\"checkbox\" id=\"cbDropShadow\" checked=\"checked\" onclick=\"toggleDropShadow(this.checked);\" title=\"" + tr('Drop shadow on images?') + "\"/><label for=\"cbDropShadow\">" + tr('Drop shadow') + "</label>");
+					document.write("<input name=\"cbDropShadow\" type=\"checkbox\" id=\"cbDropShadow\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleDropShadow(this.checked);\" title=\"" + tr('Drop shadow on images?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbDropShadow\">" + tr('Drop shadow') + "</label>");
 				else
-					document.write("<input name=\"cbDropShadow\" type=\"checkbox\" id=\"cbDropShadow\" onclick=\"toggleDropShadow(this.checked);\" title=\"" + tr('Drop shadow on images?') + "\"/><label for=\"cbDropShadow\">" + tr('Drop shadow') + "</label>");
+					document.write("<input name=\"cbDropShadow\" type=\"checkbox\" id=\"cbDropShadow\" style=\"vertical-align: middle;\" onclick=\"toggleDropShadow(this.checked);\" title=\"" + tr('Drop shadow on images?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbDropShadow\">" + tr('Drop shadow') + "</label>");
 				document.write("&nbsp;");
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] == 'true' )
-					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" checked=\"checked\" onclick=\"toggleLinkImages(this.checked);\" title=\"" + tr('Create clickable links for each image?') + "\"/><label for=\"cbLinkImages\">" + tr('Link images') + "</label>");
+					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleLinkImages(this.checked);\" title=\"" + tr('Create clickable links for each image?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbLinkImages\">" + tr('Link images') + "</label>");
 				else
-					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" onclick=\"toggleLinkImages(this.checked);\" title=\"" + tr('Create clickable links for each image?') + "\"/><label for=\"cbLinkImages\">" + tr('Link images') + "</label>");
+					document.write("<input name=\"cbLinkImages\" type=\"checkbox\" id=\"cbLinkImages\" style=\"vertical-align: middle;\" onclick=\"toggleLinkImages(this.checked);\" title=\"" + tr('Create clickable links for each image?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbLinkImages\">" + tr('Link images') + "</label>");
 			</script>
 		</td>
 		<td width="33%" nowrap align="right">
