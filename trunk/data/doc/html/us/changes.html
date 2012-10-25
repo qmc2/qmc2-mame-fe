@@ -44,7 +44,7 @@ inf: informational only
   <li>new: MiniWebBrowser: added support for persistent cookies (stored in / retrieved from an SQLite database)</li>
   <li>new: added <a href="http://wiki.mozilla.org/PDF.js" target="_blank">PDF.js</a> -- a JavaScript / HTML5 PDF rendering library</li>
   <li>new: added support for HTML5 'localStorage' to the MiniWebBrowser and notes-templates (this allows templates to store and retrieve local settings)</li>
-  <li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- right now, there are two slots you can use: 'qmc2NotesEditorObject.loadCurrentTemplate()' will reload the template itself (for example to react on changed settings), and 'qmc2NotesEditorObject.getIconData()' will return the base64-encoded icon data which you can use in &lt;img&gt; tags (see data/gmn/template.html for an example</li>
+  <li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- right now, there are four slots you can use: 'qmc2NotesEditorObject.loadCurrentTemplate()' will reload the template itself (for example to react on changed settings), 'qmc2NotesEditorObject.getIconData()' will return the base64-encoded icon data which you can use in &lt;img&gt; tags, 'qmc2NotesEditorObject.getColor()' will open a color-dialog and returns a named color, and finally 'qmc2NotesEditorObject.getImage()' will open a file-dialog to select an image file (see data/gmn/template.html for an example</li>
 </ul>
 <p><b>v0.37, 17-SEP-2012:</b></p>
 <ul>
