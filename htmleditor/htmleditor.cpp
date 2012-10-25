@@ -25,6 +25,11 @@
 #include <QtWebKit>
 #include <QHBoxLayout>
 #include <QTest>
+#include <QMap>
+#include <QPixmap>
+#include <QIcon>
+#include <QTreeWidgetItem>
+#include <QByteArray>
 #if QT_VERSION >= 0x050000
 #include <QToolButton>
 #include <QFileDialog>
@@ -53,6 +58,8 @@
 // external global variables
 extern QSettings *qmc2Config;
 extern bool qmc2CleaningUp;
+extern QMap<QString, QIcon> qmc2IconMap;
+extern QTreeWidgetItem *qmc2CurrentItem;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -1014,6 +1021,17 @@ bool HtmlEditor::loadTemplate(const QString &f)
 void HtmlEditor::javaScriptWindowObjectCleared()
 {
 	ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("qmc2NotesEditorObject", this);
+}
+
+QString HtmlEditor::getIconData()
+{
+	QByteArray iconData;
+	if ( qmc2CurrentItem ) {
+		QPixmap pm = qmc2IconMap[qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)].pixmap(64, 64);
+		QBuffer buffer(&iconData);
+		pm.save(&buffer, "PNG");
+	}
+	return QString(iconData.toBase64());
 }
 
 void HtmlEditor::enableFileNewFromTemplateAction(bool enable)

@@ -134,6 +134,7 @@ public slots:
     void setLoadInactive() { loadActive = false; }
     void setLoadSuccess(bool success) { loadSuccess = success; }
     void javaScriptWindowObjectCleared();
+    QString getIconData();
 
 private:
     Ui_HTMLEditorMainWindow *ui;

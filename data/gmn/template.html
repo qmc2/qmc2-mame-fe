@@ -101,6 +101,7 @@
 		trMap['de' + 'Emulator info'] = 'Emulator Infos';
 		trMap['de' + 'Drop shadow'] = 'Schatten';
 		trMap['de' + 'Drop shadow on images?'] = 'Bildschatten einblenden?';
+		trMap['de' + 'Icon'] = 'Icon';
 		function tr(text) {
 			var trText = trMap['$GUI_LANGUAGE$' + text];
 			if ( trText == undefined )
@@ -152,6 +153,10 @@
 			var content_obj = document.getElementById('content_div');
 			var content_height = window.innerHeight - header_obj.clientHeight - scrollBarWidth();
 			content_obj.style.height = content_height;
+		}
+		function iconData() {
+			var data = qmc2NotesEditorObject.getIconData();
+			return data;
 		}
 	</script>
 </head>
@@ -239,16 +244,18 @@
 		</td>
 		<td width="33%" nowrap align="right">
 			<script>
+				var fontInfo = document.getElementById('cbLinkImages');
+				document.write(tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + fontInfo.clientHeight + ";\" src=\"data:image/png;base64," + iconData() + "\"/>&nbsp;");
 				if ( "$ROM_STATUS_UT$" == "correct" )
-					document.write(tr('ROM status') + ": <font style=\"color: #00cc00;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #00cc00;\">$ROM_STATUS$</font>&nbsp;");
 				else if ( "$ROM_STATUS_UT$" == "incorrect" )
-					document.write(tr('ROM status') + ": <font style=\"color: #f90000;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #f90000;\">$ROM_STATUS$</font>&nbsp;");
 				else if ( "$ROM_STATUS_UT$" == "mostly correct" )
-					document.write(tr('ROM status') + ": <font style=\"color: #a2c743;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #a2c743;\">$ROM_STATUS$</font>&nbsp;");
 				else if ( "$ROM_STATUS_UT$" == "not found" )
-					document.write(tr('ROM status') + ": <font style=\"color: #7f7f7f;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #7f7f7f;\">$ROM_STATUS$</font>&nbsp;");
 				else
-					document.write(tr('ROM status') + ": <font style=\"color: #0000f9;\">$ROM_STATUS$</font>");
+					document.write(tr('ROM status') + ": <font style=\"color: #0000f9;\">$ROM_STATUS$</font>&nbsp;");
 			</script>
 		</td>
 	</tr>
