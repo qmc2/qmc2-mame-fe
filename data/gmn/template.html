@@ -154,9 +154,14 @@
 			var content_height = window.innerHeight - header_obj.clientHeight - scrollBarWidth();
 			content_obj.style.height = content_height;
 		}
-		function iconData() {
+		function iconTag() {
 			var data = qmc2NotesEditorObject.getIconData();
-			return data;
+			var fontHeight = document.getElementById('cbLinkImages').clientHeight;
+			if ( data == '' )
+				imgTag = tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + fontHeight + ";\" src=\"$GHOST_IMAGE$\"/>&nbsp;";
+			else
+				imgTag = tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + fontHeight + ";\" src=\"data:image/png;base64," + data + "\"/>&nbsp;";
+			return imgTag;
 		}
 	</script>
 </head>
@@ -244,8 +249,7 @@
 		</td>
 		<td width="33%" nowrap align="right">
 			<script>
-				var fontInfo = document.getElementById('cbLinkImages');
-				document.write(tr('Icon') + ": <img style=\"border: 0; vertical-align: bottom; max-height: " + fontInfo.clientHeight + ";\" src=\"data:image/png;base64," + iconData() + "\"/>&nbsp;");
+				document.write(iconTag());
 				if ( "$ROM_STATUS_UT$" == "correct" )
 					document.write(tr('ROM status') + ": <font style=\"color: #00cc00;\">$ROM_STATUS$</font>&nbsp;");
 				else if ( "$ROM_STATUS_UT$" == "incorrect" )
