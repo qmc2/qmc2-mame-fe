@@ -76,6 +76,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QMenu *slotContextMenu;
 		QMenu *dirChooserContextMenu;
 		QMenu *fileChooserContextMenu;
+		QAction *actionRenameConfiguration;
 		QAction *actionRemoveConfiguration;
 		QByteArray fileChooserHeaderState;
 		QByteArray dirChooserHeaderState;
@@ -101,6 +102,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QMap<QString, QMap<QString, QString> > nestedSlotOptionMap;
 		QStringList allSlots;
 		QMap<QString, QString> slotDeviceNames;
+		QListWidgetItem *configurationRenameItem;
+		QString oldConfigurationName;
 
 		MESSDeviceConfigurator(QString, QWidget *);
 		~MESSDeviceConfigurator();
@@ -150,6 +153,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		// other callbacks
 		void actionSelectDefaultDeviceDirectory_triggered();
 		void actionSelectFile_triggered();
+		void actionRenameConfiguration_activated();
 		void actionRemoveConfiguration_activated();
 		void treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
 		void treeViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
@@ -172,6 +176,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		// misc
 		void editorDataChanged(const QString &);
 		void setupFileChooser();
+		void configurationItemChanged(QListWidgetItem *);
 
 	protected:
 		void closeEvent(QCloseEvent *);

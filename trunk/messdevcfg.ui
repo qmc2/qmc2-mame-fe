@@ -663,6 +663,9 @@
          <property name="statusTip">
           <string>List of available device configurations</string>
          </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
          <property name="sortingEnabled">
           <bool>true</bool>
          </property>

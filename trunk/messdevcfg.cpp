@@ -165,6 +165,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 #endif
 	dirModel = NULL;
 	fileModel = NULL;
+	configurationRenameItem = NULL;
 	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = false;
 	updateSlots = true;
 
@@ -225,6 +226,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	treeWidgetDeviceSetup->setIconSize(iconSize);
 	treeWidgetSlotOptions->setIconSize(iconSize);
 
+	connect(listWidgetDeviceConfigurations, SIGNAL(itemChanged(QListWidgetItem *)), this, SLOT(configurationItemChanged(QListWidgetItem *)));
+
 	// configuration menu
 	configurationMenu = new QMenu(toolButtonConfiguration);
 	QString s = tr("Select default device directory");
@@ -249,6 +252,12 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 	deviceConfigurationListMenu->addSeparator();
+	s = tr("Rename configuration");
+	action = deviceConfigurationListMenu->addAction(tr("Re&name configuration"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rename.png")));
+	actionRenameConfiguration = action;
+	connect(action, SIGNAL(triggered()), this, SLOT(actionRenameConfiguration_activated()));
 	s = tr("Remove configuration");
 	action = deviceConfigurationListMenu->addAction(tr("&Remove configuration"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -1321,6 +1330,7 @@ bool MESSDeviceConfigurator::load()
 	qmc2Config->endGroup();
 
 	QListWidgetItem *selectedItem = NULL;
+	listWidgetDeviceConfigurations->setSortingEnabled(false);
 	foreach (QString configName, configurationList) {
 		configurationMap[configName].first = qmc2Config->value(group + QString("/%1/Instances").arg(configName)).toStringList();
 		configurationMap[configName].second = qmc2Config->value(group + QString("/%1/Files").arg(configName)).toStringList();
@@ -1329,8 +1339,11 @@ bool MESSDeviceConfigurator::load()
 		slotBiosMap[configName].first << qmc2Config->value(group + QString("/%1/Slots").arg(configName), QStringList()).toStringList();
 		slotBiosMap[configName].second = qmc2Config->value(group + QString("/%1/SlotBIOSs").arg(configName), QStringList()).toStringList();
 		QListWidgetItem *item = new QListWidgetItem(configName, listWidgetDeviceConfigurations);
+		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
 		if ( currentConfigName == configName ) selectedItem = item;
 	}
+	listWidgetDeviceConfigurations->setSortingEnabled(true);
+	listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
 
 	qmc2FileEditStartPath = qmc2Config->value(group + "/DefaultDeviceDirectory").toString();
 
@@ -1435,7 +1448,12 @@ void MESSDeviceConfigurator::on_toolButtonCloneConfiguration_clicked()
 	configurationMap.insert(targetName, configurationMap[sourceName]);
 	slotMap.insert(targetName, slotMap[sourceName]);
 	slotBiosMap.insert(targetName, slotBiosMap[sourceName]);
-	listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
+	listWidgetDeviceConfigurations->setSortingEnabled(false);
+	int row = listWidgetDeviceConfigurations->count();
+	listWidgetDeviceConfigurations->insertItem(row, targetName);
+	listWidgetDeviceConfigurations->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
+	listWidgetDeviceConfigurations->setSortingEnabled(true);
+	listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
 
 	dontIgnoreNameChange = true;
 	lineEditConfigurationName->setText(targetName);
@@ -1529,7 +1547,13 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 		slotBiosMap[cfgName].second = slotBIOSs;
 	} else {
 		// add new device configuration
-		listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), cfgName);
+		listWidgetDeviceConfigurations->setSortingEnabled(false);
+		int row = listWidgetDeviceConfigurations->count();
+		listWidgetDeviceConfigurations->insertItem(row, cfgName);
+		listWidgetDeviceConfigurations->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
+		listWidgetDeviceConfigurations->setSortingEnabled(true);
+		listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
+
 		dontIgnoreNameChange = true;
 		on_toolButtonSaveConfiguration_clicked();
 	}
@@ -1573,6 +1597,44 @@ void MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
 		if ( prevItem )
 			listWidgetDeviceConfigurations->setCurrentItem(prevItem);
 	}
+}
+
+void MESSDeviceConfigurator::actionRenameConfiguration_activated()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::actionRenameConfiguration_activated()");
+#endif
+
+	configurationRenameItem = NULL;
+	QList<QListWidgetItem *> sl = listWidgetDeviceConfigurations->selectedItems();
+	if ( sl.count() > 0 ) {
+		configurationRenameItem = sl[0];
+		oldConfigurationName = configurationRenameItem->text();
+		listWidgetDeviceConfigurations->editItem(configurationRenameItem);
+	}
+}
+
+void MESSDeviceConfigurator::configurationItemChanged(QListWidgetItem *item)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::configurationItemChanged(QListWidgetItem *item = %1)").arg((qulonglong)item));
+#endif
+
+	if ( item && configurationRenameItem == item && item->text() != oldConfigurationName ) {
+		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(item->text(), Qt::MatchExactly);
+		if ( matchedItemList.count() > 1 ) {
+			item->setText(oldConfigurationName);
+		} else {
+			configurationMap.insert(item->text(), configurationMap[oldConfigurationName]);
+			configurationMap.remove(oldConfigurationName);
+			slotMap.insert(item->text(), slotMap[oldConfigurationName]);
+			slotMap.remove(oldConfigurationName);
+			slotBiosMap.insert(item->text(), slotBiosMap[oldConfigurationName]);
+			slotBiosMap.remove(oldConfigurationName);
+		}
+	}
+	configurationRenameItem = NULL;
+	oldConfigurationName.clear();
 }
 
 void MESSDeviceConfigurator::actionRemoveConfiguration_activated()
@@ -1783,10 +1845,13 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenu
 
 	QListWidgetItem *item = listWidgetDeviceConfigurations->itemAt(point);
 	if ( item ) {
-		if ( item->text() == tr("Default configuration") )
+		if ( item->text() == tr("Default configuration") ) {
+			actionRenameConfiguration->setVisible(false);
 			actionRemoveConfiguration->setVisible(false);
-		else
+		} else {
+			actionRenameConfiguration->setVisible(true);
 			actionRemoveConfiguration->setVisible(true);
+		}
 		listWidgetDeviceConfigurations->setCurrentItem(item);
 		listWidgetDeviceConfigurations->setItemSelected(item, true);
 		deviceConfigurationListMenu->move(listWidgetDeviceConfigurations->viewport()->mapToGlobal(point));
@@ -2458,7 +2523,12 @@ void MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 					slotBiosMap[targetName].first = slotNames;
 					slotBiosMap[targetName].second = slotBIOSs;
 
-					listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
+					listWidgetDeviceConfigurations->setSortingEnabled(false);
+					int row = listWidgetDeviceConfigurations->count();
+					listWidgetDeviceConfigurations->insertItem(row, targetName);
+					listWidgetDeviceConfigurations->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
+					listWidgetDeviceConfigurations->setSortingEnabled(true);
+					listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
 					goOn = false;
 				}
 			} else
