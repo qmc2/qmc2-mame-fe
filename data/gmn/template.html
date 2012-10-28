@@ -63,7 +63,7 @@
 			width: 100%;
 			margin: 0;
 		}
-		.fancyStyle {
+		.fancyImageStyle {
 			max-height: 300px;
 			max-width: 100%;
 			opacity: 0;
@@ -108,6 +108,9 @@
 		trMap['de' + 'BG mode: image (scaled)'] = 'HG Modus: Bild (skaliert)';
 		trMap['de' + 'Select background color'] = 'Hintergrund-Farbe auswählen';
 		trMap['de' + 'Select background image'] = 'Hintergrund-Bild auswählen';
+		trMap['de' + 'Text FG/BG'] = 'Text VG/HG';
+		trMap['de' + 'Select text foreground color'] = 'Text Vordergrund-Farbe auswählen';
+		trMap['de' + 'Select text background color'] = 'Text Hintergrund-Farbe auswählen';
 		function tr(text) {
 			var trText = trMap['$GUI_LANGUAGE$' + text];
 			if ( trText == undefined )
@@ -184,16 +187,31 @@
 			if ( mode == 'image-tiled' || mode == 'image-scaled' )
 				qmc2NotesEditorObject.loadCurrentTemplate();
 		}
+		function selectTextFgColor() {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor']);
+			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
+		function selectTextBgColor() {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor']);
+			qmc2NotesEditorObject.loadCurrentTemplate();
+		}
 	</script>
 </head>
 <script>
 	var styleTag = "style=\"";
 	var color = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor'];
-	var image = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage'];
 	var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
-	if ( color != '' && mode == 'color' )
+	if ( color != undefined && mode == 'color' )
 		styleTag += "background-color: " + color + ";";
-	if ( image != '' ) {
+	var textfgcolor = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor'];
+	if ( textfgcolor == undefined )
+		textfgcolor = "#000000";
+	styleTag += "color: " + textfgcolor + ";";
+	var textbgcolor = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'];
+	if ( textbgcolor == undefined )
+		textbgcolor = "#d3d3d3";
+	var image = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage'];
+	if ( image != undefined ) {
 		if ( mode == 'image-tiled' )
 			styleTag += "background-image: url('" + image + "'); background-repeat: repeat;";
 		else if ( mode == 'image-scaled' )
@@ -223,8 +241,11 @@
 				else
 					document.write("<select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\" selected=\"selected\">" + tr('BG mode: default') + "</option><option value=\"color\">" + tr('BG mode: color') + "</option><option value=\"image-tiled\">" + tr('BG mode: image (tiled)') + "</option><option value=\"image-scaled\">" + tr('BG mode: image (scaled)') + "</option></select>");
 				var butHeight = document.getElementById('selBackgroundMode').clientHeight;
-				document.write("<button name=\"pbColor\" type=\"button\" id=\"pbColor\" style=\"background-image: url('images/color.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectColor()\" title=\"" + tr('Select background color') + "\"/>");
-				document.write("<button name=\"pbImage\" type=\"button\" id=\"pbImage\" style=\"background-image: url('images/image.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectImage()\" title=\"" + tr('Select background image') + "\"/>");
+				document.write("<button name=\"pbColor\" type=\"button\" id=\"pbColor\" style=\"background-image: url('images/color.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectColor()\" title=\"" + tr('Select background color') + "\"></button>");
+				document.write("<button name=\"pbImage\" type=\"button\" id=\"pbImage\" style=\"background-image: url('images/image.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectImage()\" title=\"" + tr('Select background image') + "\"></button>");
+				document.write("&nbsp;<span style=\"vertical-align: middle;\">" + tr('Text FG/BG') + ":</span>&nbsp;");
+				document.write("<button name=\"pbTextFgColor\" type=\"button\" id=\"pbTextFgColor\" style=\"background-image: url('images/color.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectTextFgColor()\" title=\"" + tr('Select text foreground color') + "\"></button>");
+				document.write("<button name=\"pbTextBgColor\" type=\"button\" id=\"pbTextBgColor\" style=\"background-image: url('images/color.png'); background-size: 100%; vertical-align: middle; width: " + butHeight + "px; height: " + butHeight + "px;\" onclick=\"selectTextBgColor()\" title=\"" + tr('Select text background color') + "\"></button>");
 			</script>
 		</td>
 	</tr>
@@ -232,10 +253,12 @@
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Name/ID'));</script></td>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Manufacturer'));</script></td>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Year'));</script></td>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Category'));</script></td>
+			<script>
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Name/ID') + "</td>");
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Manufacturer') + "</td>");
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Year') + "</td>");
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Category') + "</td>");
+			</script>
 		</tr>
 		<tr>
 			<td width="25%" valign="top">$ID$</td>
@@ -244,10 +267,12 @@
 			<td width="25%" valign="top">$CATEGORY$</td>
 		</tr>
 		<tr>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Players'));</script></td>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('ROM types'));</script></td>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Driver status'));</script></td>
-			<td width="25%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Version'));</script></td>
+			<script>
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Players') + "</td>");
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('ROM types') + "</td>");
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Driver status') + "</td>");
+				document.write("<td width=\"25%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Version') + "</td>");
+			</script>
 		</tr>
 		<tr>
 			<td width="25%" valign="top">$PLAYERS$</td>
@@ -312,50 +337,56 @@
 <table border="0" cellspacing="5" width="100%">
 	<tbody>
 		<tr>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Cabinet image'));</script></td>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Runtime preview'));</script></td>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Flyer image'));</script></td>
+			<script>
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Cabinet image') + "</td>");
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Runtime preview') + "</td>");
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Flyer image') + "</td>");
+			</script>
 		</tr>
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$CABINET_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$PREVIEW_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$FLYER_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$CABINET_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$PREVIEW_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$FLYER_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				} else {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$CABINET_IMAGE$') + "width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$PREVIEW_IMAGE$') + "width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$FLYER_IMAGE$') + "width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$CABINET_IMAGE$') + "width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$PREVIEW_IMAGE$') + "width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$FLYER_IMAGE$') + "width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
 		<tr>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Controller image'));</script></td>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Marquee/Logo image'));</script></td>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('PCB image'));</script></td>
+			<script>
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Controller image') + "</td>");
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Marquee/Logo image') + "</td>");
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('PCB image') + "</td>");
+			</script>
 		</tr>
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$CONTROLLER_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$MARQUEE_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$PCB_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$CONTROLLER_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$MARQUEE_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$PCB_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				} else {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$CONTROLLER_IMAGE$') + "width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$MARQUEE_IMAGE$') + "width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$PCB_IMAGE$') + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$CONTROLLER_IMAGE$') + "width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$MARQUEE_IMAGE$') + "width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$PCB_IMAGE$') + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
 		<tr>
-			<td width="33%" valign="top" bgcolor="lightgrey"><script>document.write(tr('Title screen'));</script></td>
+			<script>
+				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td>");
+			</script>
 		</tr>
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "class=\"fancyStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 				} else {
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
