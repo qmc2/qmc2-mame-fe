@@ -1038,7 +1038,7 @@ QString HtmlEditor::getIconData()
 
 QString HtmlEditor::getColor(QString currentColor)
 {
-	QColor color = QColorDialog::getColor(QColor(currentColor), this, tr("Select color"), QColorDialog::ShowAlphaChannel | QColorDialog::DontUseNativeDialog);
+	QColor color = QColorDialog::getColor(QColor(currentColor), this, tr("Select color"), QColorDialog::DontUseNativeDialog);
 	if ( color.isValid() )
 		return color.name();
 	else
