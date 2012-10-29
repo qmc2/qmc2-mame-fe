@@ -1632,6 +1632,7 @@ void MESSDeviceConfigurator::configurationItemChanged(QListWidgetItem *item)
 			slotBiosMap.insert(item->text(), slotBiosMap[oldConfigurationName]);
 			slotBiosMap.remove(oldConfigurationName);
 		}
+		lineEditConfigurationName->setText(item->text());
 	}
 	configurationRenameItem = NULL;
 	oldConfigurationName.clear();
