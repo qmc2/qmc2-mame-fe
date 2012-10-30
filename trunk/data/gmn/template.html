@@ -376,20 +376,15 @@
 				}
 			</script>
 		</tr>
-		<tr>
-			<script>
-				document.write("<td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td>");
-			</script>
-		</tr>
-		<tr>
-			<script>
-				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
-				} else {
-					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
-				}
-			</script>
-		</tr>
+		<script>
+			if ( "$EMULATOR_VARIANT$" != "SDLMESS" && "$EMULATOR_VARIANT$" != "MESS" ) {
+				document.write("<tr><td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td></tr>");
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' )
+					document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td></tr>");
+				else
+					document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow('$TITLE_IMAGE$') + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td></tr>");
+			}
+		</script>
 	</tbody>
 </table>
 <h3><script>document.write(tr('Comments'));</script></h3>
