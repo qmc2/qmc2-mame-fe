@@ -3067,6 +3067,7 @@ void MainWindow::on_actionDocumentation_triggered(bool)
 
   if ( !qmc2DocBrowser ) {
     qmc2DocBrowser = new DocBrowser(this);
+    qmc2DocBrowser->browser->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", 100).toInt());
     QString searchPath;
     searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() +
                  "doc/html/" +
@@ -6432,6 +6433,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
   if ( qmc2DocBrowser ) {
     log(QMC2_LOG_FRONTEND, tr("destroying MiniWebBrowser"));
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", qmc2DocBrowser->browser->spinBoxZoom->value());
     delete qmc2DocBrowser;
   }
 #if defined(QMC2_EMUTYPE_MAME)
