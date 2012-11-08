@@ -35,7 +35,7 @@ inf: informational only
   <li>imp: HTML editor: the menu-bar can be hidden now, and the editor's contents can be made read-only (i.e. to avoid unintended changes)</li>
   <li>imp: system- and software-notes: template loading allows asynchronous URL retrieval now (i.e. remote image URLs), indicating the current progress while loading</li>
   <li>imp: HTML editor: replaced the standard QWebView with the MiniWebBrowser's tweaked internal web-view to support JavaScript actions that open new windows</li>
-  <li>imp: software-notes: template macro additions ($SOFTWARE_SUPPORTED$, $SOFTWARE_SUPPORTED_UT$)</li>
+  <li>imp: software-notes: template macro additions ($SOFTWARE_SUPPORTED$, $SOFTWARE_SUPPORTED_UT$, $SOFTWARE_INFO$, $SOFTWARE_INFO_STATUS$)</li>
   <li>imp: the documentation browser's zoom-setting is restored now as well</li>
   <li>new: ROMAlyzer: the set rewriter now also loads repro-data from regular files (when they are stored in expected folders and have the correct file names / CRCs), it can also optionally reproduce sets in individual sub-directories (see 'reproduction type' in ROMAlyzer settings)</li>
   <li>new: demo-mode: added filtering by category, driver-status and set-names when selecting eligible sets for the demo</li>
@@ -47,6 +47,7 @@ inf: informational only
   <li>new: added support for HTML5 'localStorage' to the MiniWebBrowser and notes-templates (this allows templates to store and retrieve local settings)</li>
   <li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- right now, there are four slots you can use: 'qmc2NotesEditorObject.loadCurrentTemplate()' will reload the template itself (for example to react on changed settings), 'qmc2NotesEditorObject.getIconData()' will return the base64-encoded icon data which you can use in &lt;img&gt; tags, 'qmc2NotesEditorObject.getColor()' will open a color-dialog and returns a named color, and finally 'qmc2NotesEditorObject.getImage()' will open a file-dialog to select an image file (see data/gmn/template.html for an example</li>
   <li>new: MESS device configurator: allow in-place renaming of stored device configurations (see context menu)</li>
+  <li>new: added support for a 'software info DB' using MAME history.dat's new (MAME &amp; MESS) software infos, available in all variants -- thanks to <a href="http://www.arcade-history.com" target="_blank">Alexis Bousiges</a> for his efforts and kind cooperation on this matter (note that there's currently not much software info, Alexis has just begun adding this data)</li>
 </ul>
 <p><b>v0.37, 17-SEP-2012:</b></p>
 <ul>

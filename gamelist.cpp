@@ -220,6 +220,9 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
   qmc2Options->toolButtonCompressEmuInfoDB->setEnabled(enable);
   qmc2Options->checkBoxProcessEmuInfoDB->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSoftwareInfoDB->setEnabled(enable);
+  qmc2Options->toolButtonCompressSoftwareInfoDB->setEnabled(enable);
+  qmc2Options->checkBoxProcessSoftwareInfoDB->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
 #endif
