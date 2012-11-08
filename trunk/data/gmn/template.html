@@ -177,12 +177,12 @@
 			return imgTag;
 		}
 		function selectColor() {
-			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor']);
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor']);
 			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] == 'color' )
 				qmc2NotesEditorObject.loadCurrentTemplate();
 		}
 		function selectImage() {
-			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage'] = qmc2NotesEditorObject.getImage(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage']);
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage'] = qmc2NotesEditorObject.getImage(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage']);
 			var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
 			if ( mode == 'image-tiled' || mode == 'image-scaled' )
 				qmc2NotesEditorObject.loadCurrentTemplate();
@@ -199,7 +199,7 @@
 </head>
 <script>
 	var styleTag = "style=\"";
-	var color = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudColor'];
+	var color = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor'];
 	var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
 	if ( color != undefined && mode == 'color' )
 		styleTag += "background-color: " + color + ";";
@@ -210,7 +210,7 @@
 	var textbgcolor = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'];
 	if ( textbgcolor == undefined )
 		textbgcolor = "#d3d3d3";
-	var image = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroudImage'];
+	var image = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage'];
 	if ( image != undefined ) {
 		if ( mode == 'image-tiled' )
 			styleTag += "background-image: url('" + image + "'); background-repeat: repeat;";
