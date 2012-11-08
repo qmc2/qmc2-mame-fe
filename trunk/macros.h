@@ -696,9 +696,11 @@
 #define QMC2_SWINFO_SNAPSHOT_PAGE		0
 #define QMC2_SWINFO_PROJECTMESS_PAGE		1
 #define QMC2_SWINFO_NOTES_PAGE			2
+#define QMC2_SWINFO_INFO_PAGE			3
 #elif defined(QMC2_EMUTYPE_MAME)
 #define QMC2_SWINFO_SNAPSHOT_PAGE		0
 #define QMC2_SWINFO_NOTES_PAGE			1
+#define QMC2_SWINFO_INFO_PAGE			2
 #endif
 
 // size-threshold for displaying "loading software-list xxx, please wait..." when loading software-lists

@@ -2282,6 +2282,42 @@
               <string>&amp;Notes</string>
              </attribute>
             </widget>
+            <widget class="QWidget" name="tabSoftwareInfo">
+             <attribute name="icon">
+              <iconset resource="qmc2.qrc">
+               <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
+             </attribute>
+             <attribute name="title">
+              <string>Software info</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <property name="margin">
+               <number>2</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QTextBrowser" name="textBrowserSoftwareInfo">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Detailed software information</string>
+                </property>
+                <property name="statusTip">
+                 <string>Detailed software information</string>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                </property>
+                <property name="openExternalLinks">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
          </layout>

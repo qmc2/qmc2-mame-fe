@@ -422,6 +422,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void viewParentClones();
     void loadGameInfoDB();
     void loadEmuInfoDB();
+    void loadSoftwareInfoDB();
 #if defined(QMC2_YOUTUBE_ENABLED)
     void loadYouTubeVideoInfoMap();
 #endif
