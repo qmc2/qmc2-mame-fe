@@ -940,7 +940,7 @@ void ROMAlyzer::analyze()
 		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
 		    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
 		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
-		    if ( eligibleForDatabaseUpload && zipped ) item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
+		    if ( eligibleForDatabaseUpload ) item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 		  }
 	        on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 	      }
@@ -2882,9 +2882,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					loadOkay = false;
 				}
 			} else {
-				// FIXME: no support for regular files yet
-				log(tr("checksum wizard: sorry, no support for regular files yet"));
-				loadOkay = false;
+				if ( !readFileData(sourcePath, sourceCRC, &templateData) ) {
+					log(tr("checksum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
+					loadOkay = false;
+				}
 			}
 		} else {
 			// FIXME: no support for CHDs yet (probably not necessary)
