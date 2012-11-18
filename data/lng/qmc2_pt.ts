@@ -3635,22 +3635,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="4012"/>
         <source>correct</source>
-        <translation type="unfinished">correto</translation>
+        <translation>correto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4018"/>
         <source>mostly correct</source>
-        <translation type="unfinished">maioria correto</translation>
+        <translation>maioria correto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4024"/>
         <source>incorrect</source>
-        <translation type="unfinished">incorreto</translation>
+        <translation>incorreto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4030"/>
         <source>not found</source>
-        <translation type="unfinished">não encontrado</translation>
+        <translation>não encontrado</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="467"/>
@@ -5149,12 +5149,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1041"/>
         <source>Select color</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar cor</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1050"/>
         <source>Choose image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolhar arquivo de imagem</translation>
     </message>
 </context>
 <context>
@@ -6185,12 +6185,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="255"/>
         <source>Rename configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Renomear configuração</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="256"/>
         <source>Re&amp;name configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Re&amp;nomear configuração</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="261"/>
@@ -7967,7 +7967,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6576"/>
         <source>destroying software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo BD de informação de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6591"/>
@@ -8175,35 +8175,35 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="7369"/>
         <source>loading software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando BD de informações de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7394"/>
         <source>Software info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de software - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7473"/>
         <source>WARNING: can&apos;t open software info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir BD de informação de software %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7476"/>
         <source>done (loading software info DB, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando BD de informações de software, tempo = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="7477"/>
         <source>%n software info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de software carregado</numerusform>
+            <numerusform>%n registros de informação de software carregados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7479"/>
         <source>invalidating software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>invalidando BD de informações de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7764"/>
@@ -9351,13 +9351,13 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2291"/>
         <source>Software info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2306"/>
         <location filename="../../qmc2main.ui" line="2309"/>
         <source>Detailed software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de software detalhada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2446"/>
@@ -11488,7 +11488,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1745"/>
         <source>invalidating software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>invalidando BD de informações de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1762"/>
@@ -12064,7 +12064,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3310"/>
         <source>Choose software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o BD de informação de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3323"/>
@@ -13612,27 +13612,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2422"/>
         <source>Load software information database (from history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base de dados de informações de software (de history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2425"/>
         <source>Software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>BD de Informações de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2442"/>
         <source>Use in-memory compression for software info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compressão em memória para o BD de informações de software (um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2464"/>
         <source>Software information database - history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banco de dados de informações de software - history.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2477"/>
         <source>Browse software information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por base de dados de informações de software (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2581"/>
@@ -16045,7 +16045,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2886"/>
         <source>checksum wizard: FATAL: can&apos;t load repro template data from &apos;%1&apos; with expected CRC &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: impossível carregar dados do modelo de reprodução de &apos;%1&apos; com CRC esperado &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3040"/>
