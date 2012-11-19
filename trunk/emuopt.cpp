@@ -871,6 +871,10 @@ void EmulatorOptions::createMap()
         } else {
           childItem->setText(1, emulatorOption.dvalue);
         }
+      } else {
+        childItem = new QTreeWidgetItem(optionItem);
+        childItem->setText(0, tr("Default"));
+        childItem->setText(1, tr("<EMPTY>"));
       }
       if ( !emulatorOption.description.isEmpty() ) {
         optionDescription = emulatorOption.description;
