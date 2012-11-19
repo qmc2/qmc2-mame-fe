@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EmulatorOptionActions</class>
+ <widget class="QWidget" name="EmulatorOptionActions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>86</width>
+    <height>25</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QToolButton" name="toolButtonReset">
+     <property name="toolTip">
+      <string>Reset to default value</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QToolButton" name="toolButtonRevert">
+     <property name="toolTip">
+      <string>Revert to stored value</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QToolButton" name="toolButtonStore">
+     <property name="toolTip">
+      <string>Store value</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>toolButtonReset</tabstop>
+  <tabstop>toolButtonRevert</tabstop>
+  <tabstop>toolButtonStore</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections/>
+</ui>
