@@ -4398,8 +4398,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/%1.ini").arg(gameName)), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonCurrentEmulatorOptionsImportFromFile_clicked()));
         connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()));
         qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuCurrentEmulatorOptionsImportFromFile);
-        qmc2EmulatorOptions->resizeColumnToContents(0);
-        qmc2EmulatorOptions->pseudoConstructor();
         qmc2LastConfigItem = qmc2CurrentItem;
 
         // select the emulator to be used, if applicable
@@ -6436,9 +6434,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2EmulatorOptions;
   }
   log(QMC2_LOG_FRONTEND, tr("destroying global emulator options"));
-  //delete qmc2GlobalEmulatorOptions; <- doing so will end up in heavy CPU load and a close-timeout at exit for Qt 4.3+
-  //                              <- qmc2GlobalEmulatorOptions->setParent(0) fixes this (this is strange but true :)
-  qmc2GlobalEmulatorOptions->pseudoDestructor();
+  qmc2GlobalEmulatorOptions->saveHeaderState();
   qmc2GlobalEmulatorOptions->setParent(0);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   log(QMC2_LOG_FRONTEND, tr("destroying game list"));
@@ -11482,7 +11478,6 @@ int main(int argc, char *argv[])
 #endif
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
-  qmc2GlobalEmulatorOptions->pseudoConstructor();
 
   // is CLI option -cc is set, clear all emulator caches before starting up
   if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )

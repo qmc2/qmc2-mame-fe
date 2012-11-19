@@ -98,18 +98,19 @@ class EmulatorOptions : public QTreeWidget
     static int verticalScrollPosition;
     bool loadActive;
     bool changed;
+    bool isGlobal;
 
     EmulatorOptions(QString, QWidget *parent = 0);
     ~EmulatorOptions();
 
-    void pseudoConstructor();
-    void pseudoDestructor();
     QString readDescription(QXmlStreamReader *, QString, bool *);
     QStringList readChoices(QXmlStreamReader *);
 
   public slots:
     void load(bool overwrite = false);
     void save();
+    void restoreHeaderState();
+    void saveHeaderState();
     void addChoices(QString, QStringList);
     void createTemplateMap();
     void checkTemplateMap();
@@ -117,6 +118,7 @@ class EmulatorOptions : public QTreeWidget
     void searchTimeout();
     void exportToIni(bool global, QString useFileName = QString());
     void importFromIni(bool global, QString useFileName = QString());
+    void adjustIconSizes();
 
   protected:
     virtual void keyPressEvent(QKeyEvent *);
