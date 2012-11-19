@@ -2468,6 +2468,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>EmulatorOptionActions</name>
+    <message>
+        <location filename="../../emuoptactions.ui" line="23"/>
+        <source>Reset to default value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../emuoptactions.ui" line="34"/>
+        <source>Revert to stored value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../emuoptactions.ui" line="45"/>
+        <source>Store value</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EmulatorOptionDelegate</name>
     <message>
         <location filename="../../emuopt.cpp" line="157"/>
@@ -2490,9 +2508,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../emuopt.cpp" line="975"/>
         <location filename="../../emuopt.cpp" line="976"/>
         <location filename="../../emuopt.cpp" line="977"/>
-        <location filename="../../emuopt.cpp" line="1079"/>
-        <location filename="../../emuopt.cpp" line="1081"/>
-        <location filename="../../emuopt.cpp" line="1083"/>
+        <location filename="../../emuopt.cpp" line="1082"/>
+        <location filename="../../emuopt.cpp" line="1084"/>
+        <location filename="../../emuopt.cpp" line="1086"/>
         <source>unknown</source>
         <translation>desconocido</translation>
     </message>
@@ -2607,87 +2625,87 @@ p, li { white-space: pre-wrap; }
         <translation>ERROR: fallo XML leyendo plantilla: %1 en archivo &apos;%2&apos; en la línea %3, columna %4</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1070"/>
+        <location filename="../../emuopt.cpp" line="1073"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
         <translation>info plantilla: emulador = %1, versión = %2, formato = %3</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1077"/>
+        <location filename="../../emuopt.cpp" line="1080"/>
         <source>FATAL: can&apos;t open options template file</source>
         <translation>ERROR: no se puede abrir el archivo de opciones de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1080"/>
+        <location filename="../../emuopt.cpp" line="1083"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
         <translation>ATENCIÓN: no se pudo determinar el tipo de emulador de la plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1082"/>
+        <location filename="../../emuopt.cpp" line="1085"/>
         <source>WARNING: couldn&apos;t determine template version</source>
         <translation>ATENCIÓN: no se pudo determinar la versión de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1084"/>
+        <location filename="../../emuopt.cpp" line="1087"/>
         <source>WARNING: couldn&apos;t determine template format</source>
         <translation>ATENCIÓN: no se pudo determinar el formato de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1094"/>
+        <location filename="../../emuopt.cpp" line="1097"/>
         <source>please wait for reload to finish and try again</source>
         <translation>por favor espera a que finalice la recarga y vuelve a intentarlo</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1103"/>
+        <location filename="../../emuopt.cpp" line="1106"/>
         <source>checking template configuration map against selected emulator</source>
         <translation>comprobando el mapa de configuración de plantilla con el emulador seleccionado</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1131"/>
+        <location filename="../../emuopt.cpp" line="1134"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MAME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1133"/>
+        <location filename="../../emuopt.cpp" line="1136"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MESS en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1135"/>
+        <location filename="../../emuopt.cpp" line="1138"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de UME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1195"/>
+        <location filename="../../emuopt.cpp" line="1198"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation>ERROR: no se puede crear el archivo temporal, por favor comprueba el ejecutable del emulador y los permisos</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1212"/>
-        <location filename="../../emuopt.cpp" line="1221"/>
-        <location filename="../../emuopt.cpp" line="1230"/>
-        <location filename="../../emuopt.cpp" line="1239"/>
-        <location filename="../../emuopt.cpp" line="1251"/>
-        <location filename="../../emuopt.cpp" line="1268"/>
+        <location filename="../../emuopt.cpp" line="1218"/>
+        <location filename="../../emuopt.cpp" line="1227"/>
+        <location filename="../../emuopt.cpp" line="1242"/>
+        <location filename="../../emuopt.cpp" line="1257"/>
+        <location filename="../../emuopt.cpp" line="1269"/>
+        <location filename="../../emuopt.cpp" line="1286"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
         <translation>el emulador utiliza un valor predeterminado diferente para la opción &apos;%1&apos; (&apos;%2&apos; contra &apos;%3&apos;); opción admitida es &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1275"/>
+        <location filename="../../emuopt.cpp" line="1293"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
         <translation>opción de plantilla &apos;%1&apos; es de tipo desconocido para el emulador</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1285"/>
+        <location filename="../../emuopt.cpp" line="1303"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
         <translation>opción del emulador &apos;%1&apos; con valor predeterminado &apos;%2&apos; es desconocida para la plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1289"/>
+        <location filename="../../emuopt.cpp" line="1307"/>
         <source>done (checking template configuration map against selected emulator)</source>
         <translation>hecho (comprobando el mapa de configuración de plantilla con el emulador seleccionado)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../emuopt.cpp" line="1290"/>
+        <location filename="../../emuopt.cpp" line="1308"/>
         <source>check results: %n difference(s)</source>
         <translation>
             <numerusform>comprobar resultados: %n diferencia</numerusform>
@@ -2695,165 +2713,165 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1313"/>
+        <location filename="../../emuopt.cpp" line="1331"/>
         <source>Enter search string</source>
         <translation>Introducir texto de búsqueda</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1399"/>
+        <location filename="../../emuopt.cpp" line="1417"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
         <translation>ATENCIÓN: ini-export: ninguna ruta ini con permisos encontrada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1403"/>
-        <location filename="../../emuopt.cpp" line="1565"/>
+        <location filename="../../emuopt.cpp" line="1421"/>
+        <location filename="../../emuopt.cpp" line="1583"/>
         <source>Path selection</source>
         <translation>Selección de ruta</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1404"/>
+        <location filename="../../emuopt.cpp" line="1422"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
         <translation>Múltiples rutas ini encontradas. Selecciona la(s) ruta(s) a las que exportar:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1423"/>
+        <location filename="../../emuopt.cpp" line="1441"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
         <translation>ATENCIÓN: ini-export: ninguna ruta seleccionada (o ruta inválida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1437"/>
-        <location filename="../../emuopt.cpp" line="1599"/>
+        <location filename="../../emuopt.cpp" line="1455"/>
+        <location filename="../../emuopt.cpp" line="1617"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1453"/>
+        <location filename="../../emuopt.cpp" line="1471"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
         <translation>ERROR: no se puede abrir el archivo de exportado para escritura, ruta = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1459"/>
+        <location filename="../../emuopt.cpp" line="1477"/>
         <source>exporting %1 MAME configuration to %2</source>
         <translation>exportando configuración MAME %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1459"/>
-        <location filename="../../emuopt.cpp" line="1461"/>
-        <location filename="../../emuopt.cpp" line="1463"/>
-        <location filename="../../emuopt.cpp" line="1514"/>
-        <location filename="../../emuopt.cpp" line="1516"/>
-        <location filename="../../emuopt.cpp" line="1518"/>
-        <location filename="../../emuopt.cpp" line="1622"/>
-        <location filename="../../emuopt.cpp" line="1624"/>
-        <location filename="../../emuopt.cpp" line="1626"/>
-        <location filename="../../emuopt.cpp" line="1725"/>
-        <location filename="../../emuopt.cpp" line="1727"/>
-        <location filename="../../emuopt.cpp" line="1729"/>
+        <location filename="../../emuopt.cpp" line="1477"/>
+        <location filename="../../emuopt.cpp" line="1479"/>
+        <location filename="../../emuopt.cpp" line="1481"/>
+        <location filename="../../emuopt.cpp" line="1532"/>
+        <location filename="../../emuopt.cpp" line="1534"/>
+        <location filename="../../emuopt.cpp" line="1536"/>
+        <location filename="../../emuopt.cpp" line="1640"/>
+        <location filename="../../emuopt.cpp" line="1642"/>
+        <location filename="../../emuopt.cpp" line="1644"/>
+        <location filename="../../emuopt.cpp" line="1743"/>
+        <location filename="../../emuopt.cpp" line="1745"/>
+        <location filename="../../emuopt.cpp" line="1747"/>
         <source>global</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1459"/>
-        <location filename="../../emuopt.cpp" line="1463"/>
-        <location filename="../../emuopt.cpp" line="1514"/>
-        <location filename="../../emuopt.cpp" line="1518"/>
-        <location filename="../../emuopt.cpp" line="1622"/>
-        <location filename="../../emuopt.cpp" line="1626"/>
-        <location filename="../../emuopt.cpp" line="1725"/>
-        <location filename="../../emuopt.cpp" line="1729"/>
+        <location filename="../../emuopt.cpp" line="1477"/>
+        <location filename="../../emuopt.cpp" line="1481"/>
+        <location filename="../../emuopt.cpp" line="1532"/>
+        <location filename="../../emuopt.cpp" line="1536"/>
+        <location filename="../../emuopt.cpp" line="1640"/>
+        <location filename="../../emuopt.cpp" line="1644"/>
+        <location filename="../../emuopt.cpp" line="1743"/>
+        <location filename="../../emuopt.cpp" line="1747"/>
         <source>game-specific</source>
         <translation>específico-de-juego</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1461"/>
+        <location filename="../../emuopt.cpp" line="1479"/>
         <source>exporting %1 MESS configuration to %2</source>
         <translation>exportando configuración MESS %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1461"/>
-        <location filename="../../emuopt.cpp" line="1516"/>
-        <location filename="../../emuopt.cpp" line="1624"/>
-        <location filename="../../emuopt.cpp" line="1727"/>
+        <location filename="../../emuopt.cpp" line="1479"/>
+        <location filename="../../emuopt.cpp" line="1534"/>
+        <location filename="../../emuopt.cpp" line="1642"/>
+        <location filename="../../emuopt.cpp" line="1745"/>
         <source>machine-specific</source>
         <translation>específico-de-máquina</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1463"/>
+        <location filename="../../emuopt.cpp" line="1481"/>
         <source>exporting %1 UME configuration to %2</source>
         <translation>exportando configuración UME %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1514"/>
+        <location filename="../../emuopt.cpp" line="1532"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración MAME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1516"/>
+        <location filename="../../emuopt.cpp" line="1534"/>
         <source>done (exporting %1 MESS configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración MESS %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1518"/>
+        <location filename="../../emuopt.cpp" line="1536"/>
         <source>done (exporting %1 UME configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración UME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1561"/>
+        <location filename="../../emuopt.cpp" line="1579"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
         <translation>ATENCIÓN: ini-import: ninguna ruta de ini legible encontrada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1566"/>
+        <location filename="../../emuopt.cpp" line="1584"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
         <translation>Múltiples rutas ini encontradas. Selecciona la(s) ruta(s) a las que importar:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1585"/>
+        <location filename="../../emuopt.cpp" line="1603"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
         <translation>ATENCIÓN: ini-import: ninguna ruta seleccionada (o ruta inválida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1616"/>
+        <location filename="../../emuopt.cpp" line="1634"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
         <translation>ERROR: no se puede abrir el archivo de importado para su lectura, ruta = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1622"/>
+        <location filename="../../emuopt.cpp" line="1640"/>
         <source>importing %1 MAME configuration from %2</source>
         <translation>importando configuración MAME %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1624"/>
+        <location filename="../../emuopt.cpp" line="1642"/>
         <source>importing %1 MESS configuration from %2</source>
         <translation>importando configuración MESS %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1626"/>
+        <location filename="../../emuopt.cpp" line="1644"/>
         <source>importing %1 UME configuration from %2</source>
         <translation>importando configuración UME %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1715"/>
+        <location filename="../../emuopt.cpp" line="1733"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
         <translation>ATENCIÓN: opción desconocida &apos;%1&apos; en la línea %2 (%3) ignorada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1718"/>
+        <location filename="../../emuopt.cpp" line="1736"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
         <translation>ATENCIÓN: sintaxis inválida en la línea %1 (%2) ignorada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1725"/>
+        <location filename="../../emuopt.cpp" line="1743"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración MAME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1727"/>
+        <location filename="../../emuopt.cpp" line="1745"/>
         <source>done (importing %1 MESS configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración MESS %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1729"/>
+        <location filename="../../emuopt.cpp" line="1747"/>
         <source>done (importing %1 UME configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración UME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
@@ -6589,8 +6607,8 @@ Do you want to choose a different name?</source>
     <name>MainWindow</name>
     <message>
         <location filename="../../qmc2main.ui" line="15"/>
-        <location filename="../../macros.h" line="493"/>
-        <location filename="../../macros.h" line="502"/>
+        <location filename="../../macros.h" line="494"/>
+        <location filename="../../macros.h" line="503"/>
         <source>M.A.M.E. Catalog / Launcher II</source>
         <translation></translation>
     </message>
@@ -8371,15 +8389,15 @@ Do you want to choose a different name?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="496"/>
-        <location filename="../../macros.h" line="505"/>
+        <location filename="../../macros.h" line="497"/>
+        <location filename="../../macros.h" line="506"/>
         <location filename="../../qmc2main.cpp" line="618"/>
         <source>M.E.S.S. Catalog / Launcher II</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="499"/>
-        <location filename="../../macros.h" line="508"/>
+        <location filename="../../macros.h" line="500"/>
+        <location filename="../../macros.h" line="509"/>
         <location filename="../../qmc2main.cpp" line="604"/>
         <source>U.M.E. Catalog / Launcher II</source>
         <translation></translation>
@@ -14343,148 +14361,148 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>ATENCIÓN: ProcessManager::start(): el directorio de trabajo especificado &apos;%1&apos; no existe -- ignorado</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="92"/>
-        <location filename="../../procmgr.cpp" line="94"/>
+        <location filename="../../procmgr.cpp" line="108"/>
+        <location filename="../../procmgr.cpp" line="110"/>
         <source>starting emulator #%1, command = %2</source>
         <translation>iniciando emulador #%1, comando = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="124"/>
+        <location filename="../../procmgr.cpp" line="140"/>
         <source>terminating emulator #%1, PID = %2</source>
         <translation>terminando emulador #%1, PID = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="148"/>
+        <location filename="../../procmgr.cpp" line="164"/>
         <source>WARNING: ProcessManager::terminate(ushort index = %1): trying to terminate a null process</source>
         <translation>ATENCIÓN: ProcessManager::terminate(ushort index = %1): intentando terminar un proceso nulo</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="157"/>
+        <location filename="../../procmgr.cpp" line="173"/>
         <source>killing emulator #%1, PID = %2</source>
         <translation>matando emulador #%1, PID = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="171"/>
+        <location filename="../../procmgr.cpp" line="187"/>
         <source>WARNING: ProcessManager::kill(ushort index = %1): trying to kill a null process</source>
         <translation>ATENCIÓN: ProcessManager::kill(ushort index = %1): intentando matar un proceso nulo</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="188"/>
+        <location filename="../../procmgr.cpp" line="204"/>
         <source>stdout[#%1]:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="206"/>
+        <location filename="../../procmgr.cpp" line="222"/>
         <source>stderr[#%1]:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="236"/>
+        <location filename="../../procmgr.cpp" line="252"/>
         <source>WARNING: ProcessManager::finished(...): trying to remove a null item</source>
         <translation>ATENCIÓN: ProcessManager::finished(...): intentando eliminar un objeto nulo</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="239"/>
+        <location filename="../../procmgr.cpp" line="255"/>
         <source>emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4</source>
         <translation>emulador #%1 finalizado, código de salida = %2, estado de salida = %3, emuladores restantes = %4</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="239"/>
+        <location filename="../../procmgr.cpp" line="255"/>
         <source>normal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="239"/>
+        <location filename="../../procmgr.cpp" line="255"/>
         <source>crashed</source>
         <translation>caído</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="286"/>
+        <location filename="../../procmgr.cpp" line="302"/>
         <source>emulator #%1 started, PID = %2, running emulators = %3</source>
         <translation>emulador #%1 iniciado, PID = %2, emuladores en ejecución = %3</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="325"/>
+        <location filename="../../procmgr.cpp" line="341"/>
         <source>FATAL: failed to start emulator #%1</source>
         <translation>ERROR: falló al iniciar emulador #%1</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="330"/>
+        <location filename="../../procmgr.cpp" line="346"/>
         <source>WARNING: emulator #%1 crashed</source>
         <translation>ATENCIÓN: emulador #%1 falló</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="334"/>
+        <location filename="../../procmgr.cpp" line="350"/>
         <source>WARNING: failed to write to emulator #%1</source>
         <translation>ATENCIÓN: fallo al escribir al emulador #%1</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="338"/>
+        <location filename="../../procmgr.cpp" line="354"/>
         <source>WARNING: failed to read from emulator #%1</source>
         <translation>ATENCIÓN: fallo al leer del emulador #%1</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="342"/>
+        <location filename="../../procmgr.cpp" line="358"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
         <translation>ATENCIÓN: error sin tratar del emulador #%1, código de error = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="360"/>
+        <location filename="../../procmgr.cpp" line="376"/>
         <source>no error</source>
         <translation>sin error</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="361"/>
+        <location filename="../../procmgr.cpp" line="377"/>
         <source>failed validity checks</source>
         <translation>comprobaciones de validez fallidas</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="362"/>
+        <location filename="../../procmgr.cpp" line="378"/>
         <source>missing files</source>
         <translation>archivos ausentes</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="363"/>
+        <location filename="../../procmgr.cpp" line="379"/>
         <source>fatal error</source>
         <translation>error fatal</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="364"/>
+        <location filename="../../procmgr.cpp" line="380"/>
         <source>device initialization error</source>
         <translation>error de iniciación de dispositivo</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="366"/>
+        <location filename="../../procmgr.cpp" line="382"/>
         <source>game doesn&apos;t exist</source>
         <translation>el juego no existe</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="368"/>
+        <location filename="../../procmgr.cpp" line="384"/>
         <source>machine doesn&apos;t exist</source>
         <translation>la máquina no existe</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="370"/>
+        <location filename="../../procmgr.cpp" line="386"/>
         <source>invalid configuration</source>
         <translation>configuración inválida</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="371"/>
+        <location filename="../../procmgr.cpp" line="387"/>
         <source>identified all non-ROM files</source>
         <translation>identificados todos los archivos no-ROM</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="372"/>
+        <location filename="../../procmgr.cpp" line="388"/>
         <source>identified some files but not all</source>
         <translation>identificados algunos archivos pero no todos</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="373"/>
+        <location filename="../../procmgr.cpp" line="389"/>
         <source>identified no files</source>
         <translation>ningún archivo identificado</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="374"/>
+        <location filename="../../procmgr.cpp" line="390"/>
         <source>unknown error</source>
         <translation>error desconocido</translation>
     </message>

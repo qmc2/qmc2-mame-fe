@@ -37,6 +37,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customidsetup.ui \
 			toolbarcustomizer.ui \
 			cookiemanager.ui \
+			emuoptactions.ui \
 			arcade/arcadesetupdialog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
@@ -89,6 +90,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			iconlineedit.cpp \
 			cookiejar.cpp \
 			cookiemanager.cpp \
+			emuoptactions.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -166,6 +168,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			iconlineedit.h \
 			cookiejar.h \
 			cookiemanager.h \
+			emuoptactions.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

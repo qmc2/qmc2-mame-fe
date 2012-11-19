@@ -222,6 +222,7 @@
 // logical column indizes in emulator options
 #define QMC2_EMUOPT_COLUMN_OPTION		0
 #define QMC2_EMUOPT_COLUMN_VALUE		1
+#define QMC2_EMUOPT_COLUMN_ACTION		2
 
 // logical column indizes in download manager
 #define QMC2_DOWNLOAD_COLUMN_STATUS		0
