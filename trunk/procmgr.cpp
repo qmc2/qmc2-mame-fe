@@ -84,7 +84,11 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
     int i;
     for (i = 0; i < arguments.count(); i++) {
       QString arg = arguments[i];
+#if defined(QMC2_OS_WIN)
+      if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/)")) ) arg = "\"" + arg + "\"";
+#else
       if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\))")) ) arg = "\"" + arg + "\"";
+#endif
       lastCommand += " " + arg;
     }
 #if defined(QMC2_OS_WIN)
