@@ -81,19 +81,31 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 
   if ( autoConnect ) {
     lastCommand = command;
-    int i;
-    for (i = 0; i < arguments.count(); i++) {
+#if defined(QMC2_OS_WIN)
+    bool snapnameActive = false;
+#endif
+    for (int i = 0; i < arguments.count(); i++) {
       QString arg = arguments[i];
 #if defined(QMC2_OS_WIN)
-      if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/)")) ) arg = "\"" + arg + "\"";
+      if ( arg == "-snapname" )
+	      snapnameActive = true;
+      if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/)")) ) {
+	      arg = "\"" + arg + "\"";
+	      if ( snapnameActive ) {
+		      if ( arg.contains("/") )
+			      arg.replace("/", "$QMC2FWSL$");
+		      snapnameActive = false;
+	      }
+      }
 #else
-      if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\))")) ) arg = "\"" + arg + "\"";
+      if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+	      arg = "\"" + arg + "\"";
 #endif
       lastCommand += " " + arg;
     }
 #if defined(QMC2_OS_WIN)
     QString emuCommandLine = lastCommand;
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(emuCommandLine.replace('/', '\\')));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(emuCommandLine.replace('/', '\\').replace("$QMC2FWSL$", "/")));
 #else
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(lastCommand));
 #endif
