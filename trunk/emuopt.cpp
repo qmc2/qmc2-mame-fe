@@ -327,7 +327,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
     float2Editor->doubleSpinBox0->interpretText();
     float2Editor->doubleSpinBox1->interpretText();
     QLocale cLoc(QLocale::C);
-    QString v = cLoc.toString(float2Editor->doubleSpinBox0->value()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value());
+    QString v = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
     model->setData(index, v);
   } else if ( editor->accessibleName() == "float3Editor" ) {
     optionType = QMC2_EMUOPT_TYPE_FLOAT3;
@@ -336,7 +336,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
     float3Editor->doubleSpinBox1->interpretText();
     float3Editor->doubleSpinBox2->interpretText();
     QLocale cLoc(QLocale::C);
-    QString v = cLoc.toString(float3Editor->doubleSpinBox0->value()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value());
+    QString v = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
     model->setData(index, v);
   } else if ( editor->accessibleName() == "fileEditor" ) {
     optionType = QMC2_EMUOPT_TYPE_FILE;
