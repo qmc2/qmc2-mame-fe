@@ -21,6 +21,7 @@ inf: informational only
   <li>fix: the key-sequence scanner now also scans num-pad keys</li>
   <li>fix: system-notes: template loading didn't work correctly initially</li>
   <li>fix: corrected full-screen switching when the menu-bar is hidden</li>
+  <li>fix: Windows: corrected HLSL multi-part float handling</li>
   <li>imp: system-notes: template macro additions ($PARENT_ID$, $ROM_STATUS$ and $ROM_STATUS_UT$)</li>
   <li>imp: updated MESS/UME variant logos / splash-screens and all app-icons -- thanks to <a href="credits.html#JacKc">Jacques Châtelet (JacKc)</a></li>
   <li>imp: demo-mode: added an option to launch emulators sequentially rather than randomly</li>
@@ -37,6 +38,7 @@ inf: informational only
   <li>imp: HTML editor: replaced the standard QWebView with the MiniWebBrowser's tweaked internal web-view to support JavaScript actions that open new windows</li>
   <li>imp: software-notes: template macro additions ($SOFTWARE_SUPPORTED$, $SOFTWARE_SUPPORTED_UT$, $SOFTWARE_INFO$, $SOFTWARE_INFO_STATUS$)</li>
   <li>imp: the documentation browser's zoom-setting is restored now as well</li>
+  <li>imp: added ability to store an option's short-name in the emulator configuration template (i.e. <i>&lt;option default="roms" name="rompath" shortname="rp" type="directory"&gt;)</i></li>
   <li>new: ROMAlyzer: the set rewriter and checksum wizard now also load repro-data from regular files (when they are stored in expected folders and have the correct file names / CRCs), the set rewriter can also reproduce sets in individual sub-directories (see 'reproduction type' in ROMAlyzer settings)</li>
   <li>new: demo-mode: added filtering by category, driver-status and set-names when selecting eligible sets for the demo</li>
   <li>new: image-checker: <i>bad</i> image files (subset of the <i>missing</i> ones) can now be filtered and removed by means of the GUI (so searching for bad image files in the log and manually removing them is no longer required)</li>

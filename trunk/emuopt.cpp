@@ -414,7 +414,7 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   headerItem()->setText(0, tr("Option / Attribute"));
   headerItem()->setText(1, tr("Value"));
   header()->setClickable(false);
-  if ( templateMap.count() == 0 )
+  if ( templateMap.isEmpty() )
     createTemplateMap();
   createMap();
 }
@@ -796,7 +796,7 @@ void EmulatorOptions::createMap()
   sectionItemMap.clear();
   QString sectionTitle;
 
-  foreach ( sectionTitle, templateMap.keys() ) {
+  foreach (sectionTitle, templateMap.keys()) {
     QTreeWidgetItem *sectionItem = new QTreeWidgetItem(this);
     sectionItemMap[sectionTitle] = sectionItem;
     sectionItem->setText(0, sectionTitle);
@@ -1029,6 +1029,9 @@ void EmulatorOptions::createTemplateMap()
             bool ignore = false;
 	    bool visible = true;
 	    int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
+            QString shortName;
+            if ( attributes.hasAttribute("shortname") )
+              shortName = attributes.value("shortname").toString();
 	    if ( attributes.hasAttribute("ignore") )
               ignore = attributes.value("ignore") == "true";
             if ( attributes.hasAttribute("visible") )
@@ -1051,7 +1054,7 @@ void EmulatorOptions::createTemplateMap()
 	      optionPart.clear();
 	      if ( type == "file" && attributes.hasAttribute("part") )
                 optionPart = attributes.value("part").toString();
-              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible));
+              templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible));
 #ifdef QMC2_DEBUG
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::createTemplateMap(): elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
                                   arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
