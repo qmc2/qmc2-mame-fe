@@ -20,6 +20,7 @@
 #include "floateditwidget.h"
 #include "direditwidget.h"
 #include "comboeditwidget.h"
+#include "emuoptactions.h"
 #include "macros.h"
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 #include "demomode.h"
@@ -51,7 +52,6 @@ int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
 int optionDecimals = QMC2_EMUOPT_DFLT_DECIMALS;
 QStringList optionChoices;
 QString optionPart = "";
-EmulatorOptions *emulatorOptions = NULL;
 
 EmulatorOptionDelegate::EmulatorOptionDelegate(QObject *parent)
   : QStyledItemDelegate(parent)
@@ -395,27 +395,41 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
   lineEditSearch = NULL;
   if ( !group.contains("Global") ) {
-    emulatorOptions = NULL;
+    isGlobal = false;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     setStatusTip(tr("Game specific emulator configuration"));
 #elif defined(QMC2_EMUTYPE_MESS)
     setStatusTip(tr("Machine specific emulator configuration"));
 #endif
   } else {
-    emulatorOptions = this;
+    isGlobal = true;
     setStatusTip(tr("Global emulator configuration"));
   }
   loadActive = changed = false;
   settingsGroup = group;
   delegate = new EmulatorOptionDelegate(this);
-  setColumnCount(2);  
+  setColumnCount(3);  
   setItemDelegateForColumn(QMC2_EMUOPT_COLUMN_VALUE, delegate);
   setAlternatingRowColors(true);
   headerItem()->setText(0, tr("Option / Attribute"));
   headerItem()->setText(1, tr("Value"));
+  headerItem()->setText(2, tr("Actions"));
   header()->setClickable(false);
+  header()->setStretchLastSection(true);
+  header()->setMovable(false);
+  header()->setResizeMode(QHeaderView::Interactive);
+
+  restoreHeaderState();
+
+#if !defined(QMC2_WIP_ENABLED)
+  setColumnHidden(2, true);
+#else
+  setColumnHidden(2, false);
+#endif
+
   if ( templateMap.isEmpty() )
     createTemplateMap();
+
   createMap();
 }
 
@@ -425,38 +439,37 @@ EmulatorOptions::~EmulatorOptions()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::~EmulatorOptions()");
 #endif
 
+  saveHeaderState();
+
   if ( delegate )
     delete delegate;
 }
 
-void EmulatorOptions::pseudoConstructor()
+void EmulatorOptions::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::pseudoConstructor()");
-#endif
-
-  if ( emulatorOptions == this ) {
-    header()->resizeSections(QHeaderView::Custom);
-    header()->resizeSection(0, qmc2Config->value(settingsGroup + "/OptionColumnWidth", 200).toInt());
-    header()->restoreState(qmc2Config->value(settingsGroup + "/HeaderState").toByteArray());
-  }
-
-  header()->setMovable(false);
+	QTreeWidgetItemIterator it(this);
+	while ( *it ) {
+		EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(*it, QMC2_EMUOPT_COLUMN_ACTIONS);
+		if ( emuOptActions )
+			emuOptActions->adjustIconSizes();
+		++it;
+	}
 }
 
-void EmulatorOptions::pseudoDestructor()
+void EmulatorOptions::restoreHeaderState()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::pseudoDestructor()");
-#endif
+	if ( isGlobal )
+		header()->restoreState(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/HeaderState", QByteArray()).toByteArray());
+	else
+		header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/EmuOptDetail/HeaderState", QByteArray()).toByteArray());
+}
 
-  if ( emulatorOptions == this ) {
-    if ( header()->sectionSize(0) != 200 )
-      qmc2Config->setValue(settingsGroup + "/OptionColumnWidth", header()->sectionSize(0));
-    else
-      qmc2Config->remove(settingsGroup + "/OptionColumnWidth");
-    qmc2Config->setValue(settingsGroup + "/HeaderState", header()->saveState());
-  }
+void EmulatorOptions::saveHeaderState()
+{
+	if ( isGlobal )
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/HeaderState", header()->saveState());
+	else
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/EmuOptDetail/HeaderState", header()->saveState());
 }
 
 void EmulatorOptions::load(bool overwrite)
@@ -886,7 +899,9 @@ void EmulatorOptions::createMap()
         childItem->setText(1, emulatorOption.description);
       } else
         optionDescription = "";
-      openPersistentEditor(optionItem, 1);
+      openPersistentEditor(optionItem, QMC2_EMUOPT_COLUMN_VALUE);
+      EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, this);
+      setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, emuOptActions);
     }
   } 
 }
@@ -1663,7 +1678,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
           // lookup option in map
           QString sectionTitle, sectionTitleFound = "";
           int optionPos, optionPosFound = -1;
-          foreach ( sectionTitle, optionsMap.keys() ) {
+          foreach (sectionTitle, optionsMap.keys()) {
             for (optionPos = 0; optionPos < optionsMap[sectionTitle].count() && optionPosFound == -1; optionPos++ ) {
               if ( optionsMap[sectionTitle][optionPos].name == option ) {
                 sectionTitleFound = sectionTitle;

@@ -351,6 +351,15 @@ bool Welcome::checkConfig()
 		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments") )
 		  	startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments");
 	  }
+	  if ( oldMinor < 38 || (oldSvnRevision < 4420 && oldSvnRevision > 0) ) {
+		  // remove no longer used "Configuration/Global/OptionColumnWidth" keys
+		  if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth") )
+		  	startupConfig->remove(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth");
+		  if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MESS + "Configuration/Global/OptionColumnWidth") )
+		  	startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS + "Configuration/Global/OptionColumnWidth");
+		  if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth") )
+		  	startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth");
+	  }
   }
 
   configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

@@ -1,6 +1,7 @@
 #ifndef _EMUOPTACTIONS_H_
 #define _EMUOPTACTIONS_H_
 
+#include <QTreeWidgetItem>
 #include "ui_emuoptactions.h"
 
 class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
@@ -8,7 +9,9 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 	Q_OBJECT
 
        	public:
-		EmulatorOptionActions(QWidget *parent = 0);
+		QTreeWidgetItem *myItem;
+
+		EmulatorOptionActions(QTreeWidgetItem *, QWidget *parent = 0);
 		~EmulatorOptionActions();
 
 	public slots:

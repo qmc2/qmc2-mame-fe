@@ -7,10 +7,17 @@
 
 extern MainWindow *qmc2MainWindow;
 
-EmulatorOptionActions::EmulatorOptionActions(QWidget *parent)
+EmulatorOptionActions::EmulatorOptionActions(QTreeWidgetItem *item, QWidget *parent)
 	: QWidget(parent)
 {
 	setupUi(this);
+
+	// FIXME
+	toolButtonReset->setEnabled(false);
+	toolButtonRevert->setEnabled(false);
+	toolButtonStore->setEnabled(false);
+
+	myItem = item;
 	adjustIconSizes();
 }
 
