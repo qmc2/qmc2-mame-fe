@@ -326,8 +326,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
     FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
     float2Editor->doubleSpinBox0->interpretText();
     float2Editor->doubleSpinBox1->interpretText();
-    QLocale cLoc(QLocale::C);
-    QString v = cLoc.toString(float2Editor->doubleSpinBox0->value()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value());
+    QString v = float2Editor->doubleSpinBox0->textFromValue(float2Editor->doubleSpinBox0->value()) + "," + float2Editor->doubleSpinBox1->textFromValue(float2Editor->doubleSpinBox1->value());
     model->setData(index, v);
   } else if ( editor->accessibleName() == "float3Editor" ) {
     optionType = QMC2_EMUOPT_TYPE_FLOAT3;
@@ -335,8 +334,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
     float3Editor->doubleSpinBox0->interpretText();
     float3Editor->doubleSpinBox1->interpretText();
     float3Editor->doubleSpinBox2->interpretText();
-    QLocale cLoc(QLocale::C);
-    QString v = cLoc.toString(float3Editor->doubleSpinBox0->value()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value());
+    QString v = float3Editor->doubleSpinBox0->textFromValue(float3Editor->doubleSpinBox0->value()) + "," + float3Editor->doubleSpinBox1->textFromValue(float3Editor->doubleSpinBox1->value()) + "," + float3Editor->doubleSpinBox2->textFromValue(float3Editor->doubleSpinBox2->value());
     model->setData(index, v);
   } else if ( editor->accessibleName() == "fileEditor" ) {
     optionType = QMC2_EMUOPT_TYPE_FILE;
