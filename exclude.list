@@ -3432,6 +3432,9 @@ qmc2/.svn/text-base/embedder.h.svn-base
 qmc2/.svn/text-base/embedderopt.cpp.svn-base
 qmc2/.svn/text-base/embedderopt.h.svn-base
 qmc2/.svn/text-base/embedderopt.ui.svn-base
+qmc2/.svn/text-base/emuoptactions.cpp.svn-base
+qmc2/.svn/text-base/emuoptactions.h.svn-base
+qmc2/.svn/text-base/emuoptactions.ui.svn-base
 qmc2/.svn/text-base/emuopt.cpp.svn-base
 qmc2/.svn/text-base/emuopt.h.svn-base
 qmc2/.svn/text-base/exclude.list.svn-base
