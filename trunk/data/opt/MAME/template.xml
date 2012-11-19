@@ -1682,7 +1682,7 @@
       <description lang="pt" text="Habilitar pós processamento HLSL do espaço YIQ"/>
       <description lang="es" text="Activar post-procesado HLSL YIQ-space"/>
     </option>
-    <option default="3.59754545" name="yiq_cc" type="float">
+    <option decimals="8" default="3.59754545" name="yiq_cc" type="float">
       <description lang="us" text="Color carrier frequency for NTSC signal processing"/>
       <description lang="de" text="Farbträger-Frequenz für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Fréquence de couleurs pour le traitement du signal NTSC"/>
