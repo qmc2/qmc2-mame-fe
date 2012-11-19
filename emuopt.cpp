@@ -1199,6 +1199,9 @@ void EmulatorOptions::checkTemplateMap()
   foreach (QString sectionTitle, optionsMap.keys()) {
     EmulatorOption option;
     QString assumedType = "unknown";
+    QStringList floatParts;
+    QStringList floatPartsDefault;
+    bool isDifferent;
     int i;
     for (i = 0; i < optionsMap[sectionTitle].count(); i++) {
       option = optionsMap[sectionTitle][i];
@@ -1225,7 +1228,13 @@ void EmulatorOptions::checkTemplateMap()
 
           case QMC2_EMUOPT_TYPE_FLOAT2:
             assumedType = "float2";
-            if ( option.dvalue != emuOptions[option.name] ) {
+	    floatParts = emuOptions[option.name].split(",", QString::SkipEmptyParts);
+	    floatPartsDefault = option.dvalue.split(",", QString::SkipEmptyParts);
+	    isDifferent = false;
+	    for (int i = 0; i < floatPartsDefault.count() && !isDifferent; i++)
+		    if ( floatParts[i].toDouble() != floatPartsDefault[i].toDouble() )
+			    isDifferent = true;
+            if ( isDifferent ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
                                                      .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(assumedType));
@@ -1234,7 +1243,13 @@ void EmulatorOptions::checkTemplateMap()
 
           case QMC2_EMUOPT_TYPE_FLOAT3:
             assumedType = "float3";
-            if ( option.dvalue != emuOptions[option.name] ) {
+	    floatParts = emuOptions[option.name].split(",", QString::SkipEmptyParts);
+	    floatPartsDefault = option.dvalue.split(",", QString::SkipEmptyParts);
+	    isDifferent = false;
+	    for (int i = 0; i < floatPartsDefault.count() && !isDifferent; i++)
+		    if ( floatParts[i].toDouble() != floatPartsDefault[i].toDouble() )
+			    isDifferent = true;
+            if ( isDifferent ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
                                                      .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(assumedType));
