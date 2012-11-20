@@ -1621,6 +1621,11 @@ void Options::on_pushButtonApply_clicked()
     }
   }
 
+  QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(updateAllEmuOptActions()));
+
+  if ( qmc2EmulatorOptions )
+	  QTimer::singleShot(0, qmc2EmulatorOptions, SLOT(updateAllEmuOptActions()));
+
   // Files and directories
 #if defined(QMC2_EMUTYPE_MAME)
   needReload |= config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();

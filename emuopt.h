@@ -126,6 +126,7 @@ class EmulatorOptions : public QTreeWidget
     void importFromIni(bool global, QString useFileName = QString());
     void adjustIconSizes();
     void updateEmuOptActions(QWidget *, QTreeWidgetItem *);
+    void updateAllEmuOptActions();
 
   protected:
     virtual void keyPressEvent(QKeyEvent *);
