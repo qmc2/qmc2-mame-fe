@@ -452,14 +452,24 @@ EmulatorOptions::~EmulatorOptions()
     delete delegate;
 }
 
+void EmulatorOptions::updateAllEmuOptActions()
+{
+	QTreeWidgetItemIterator it(this);
+	while ( *it ) {
+		EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(*it, QMC2_EMUOPT_COLUMN_ACTIONS);
+		QWidget *w = itemWidget(*it, QMC2_EMUOPT_COLUMN_VALUE);
+		if ( emuOptActions && w )
+			updateEmuOptActions(w, *it);
+		++it;
+	}
+}
+
 void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item)
 {
 	EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(item, QMC2_EMUOPT_COLUMN_ACTIONS);
 	if ( emuOptActions ) {
-		//QMC2_PRINT_PTR(emuOptActions);
 		QString optionName, optionType, defaultValue, globalValue, currentValue, storedValue;
 		optionName = item->text(0);
-		//QMC2_PRINT_STR(optionName);
 		for (int i = 0; i < item->childCount(); i++) {
 			QTreeWidgetItem *subItem = item->child(i);
 			if ( subItem->text(0) == tr("Default") )
@@ -469,7 +479,6 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 		}
 		if ( optionType == "bool" )
 			defaultValue = defaultValue == tr("true") ? "true" : "false";
-		//QMC2_PRINT_STR(optionType);
 		QString key;
 		if ( qmc2Config->group() == settingsGroup ) {
 			qmc2Config->endGroup();
@@ -488,62 +497,48 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 		}
 		if ( globalValue.isEmpty() )
 			globalValue = tr("<EMPTY>");
-		//QMC2_PRINT_STR(globalValue);
 		if ( qmc2Config->contains(key) ) {
 			storedValue = qmc2Config->value(key, QString()).toString();
 			if ( storedValue.isEmpty() )
 				storedValue = tr("<EMPTY>");
 		} else
 			storedValue = "<UNSET>";
-		//QMC2_PRINT_STR(storedValue);
 
-		int optType = QMC2_EMUOPT_TYPE_UNKNOWN;
 		QLocale cLoc(QLocale::C);
 		if ( editor->accessibleName() == "checkBoxEditor" ) {
-			optType = QMC2_EMUOPT_TYPE_BOOL;
 			QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
 			if ( checkBoxEditor->isChecked() )
 				currentValue = "true";
 			else
 				currentValue = "false";
 		} else if ( editor->accessibleName() == "spinBoxEditor" ) {
-			optType = QMC2_EMUOPT_TYPE_INT;
 			QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
 			currentValue = QString::number(spinBox->value());
 		} else if ( editor->accessibleName() == "doubleSpinBoxEditor" ) {
-			optType = QMC2_EMUOPT_TYPE_FLOAT;
 			QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
 			currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
 			defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
 		} else if ( editor->accessibleName() == "float2Editor" ) {
-			optType = QMC2_EMUOPT_TYPE_FLOAT2;
 			FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
 			currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
 		} else if ( editor->accessibleName() == "float3Editor" ) {
-			optType = QMC2_EMUOPT_TYPE_FLOAT3;
 			FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
 			currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
 		} else if ( editor->accessibleName() == "fileEditor" ) {
-			optType = QMC2_EMUOPT_TYPE_FILE;
 			FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
 			currentValue = fileEditor->lineEditFile->text();
 		} else if ( editor->accessibleName() == "directoryEditor" ) {
-			optType = QMC2_EMUOPT_TYPE_DIRECTORY;
 			DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
 			currentValue = directoryEditor->lineEditDirectory->text();
 		} else if ( editor->accessibleName() == "comboEditor" ) {
-			optType = QMC2_EMUOPT_TYPE_COMBO;
 			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
 			currentValue = comboEditor->comboBoxValue->lineEdit()->text();
 		} else {
-			optType = QMC2_EMUOPT_TYPE_STRING;
 			QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
 			currentValue = lineEdit->text();
 		}
 		if ( currentValue.isEmpty() )
 			currentValue = tr("<EMPTY>");
-		//QMC2_PRINT_STR(defaultValue);
-		//QMC2_PRINT_STR(currentValue);
 
 		if ( isGlobal ) {
 			if ( currentValue == defaultValue )
