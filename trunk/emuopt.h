@@ -111,6 +111,7 @@ class EmulatorOptions : public QTreeWidget
     QStringList readChoices(QXmlStreamReader *);
 
     QTreeWidgetItem *index2item(const QModelIndex &index) const { return itemFromIndex(index); }
+    QModelIndex item2index(QTreeWidgetItem *item, int column) const { return indexFromItem(item, column); }
 
   public slots:
     void load(bool overwrite = false);

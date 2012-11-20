@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.38, 19-NOV-2012</h3>
+<h3>CHANGES - v0.38, 20-NOV-2012</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.38, 19-NOV-2012:</b></p>
+<p><b>v0.38, 20-NOV-2012:</b></p>
 <ul>
   <li>fix: corrected progress-bar updates when loading <i>catver.ini</i> or <i>category.ini</i></li>
   <li>fix: corrected remapping of key-sequences using the Command key on Mac OS X</li>
@@ -50,6 +50,7 @@ inf: informational only
   <li>new: system- and software-notes templates: exposing the notes-editor object to JavaScript allowing templates to call editor slots directly (!) -- right now, there are four slots you can use: 'qmc2NotesEditorObject.loadCurrentTemplate()' will reload the template itself (for example to react on changed settings), 'qmc2NotesEditorObject.getIconData()' will return the base64-encoded icon data which you can use in &lt;img&gt; tags, 'qmc2NotesEditorObject.getColor()' will open a color-dialog and returns a named color, and finally 'qmc2NotesEditorObject.getImage()' will open a file-dialog to select an image file (see data/gmn/template.html for an example)</li>
   <li>new: MESS device configurator: allow in-place renaming of stored device configurations (see context menu)</li>
   <li>new: added support for a 'software info DB' using MAME history.dat's new (MAME &amp; MESS) software infos, available in all variants -- thanks to <a href="http://www.arcade-history.com" target="_blank">Alexis Bousiges</a> for his efforts and kind cooperation on this matter (note that there's currently not much software info, Alexis has just begun adding this data)</li>
+  <li>new: added ability to reset, revert and/or store <i>individual</i> emulator options by adding a column with respective action tool-buttons that are enabled/disabled according to the option's current ini-state</li>
 </ul>
 <p><b>v0.37, 17-SEP-2012:</b></p>
 <ul>

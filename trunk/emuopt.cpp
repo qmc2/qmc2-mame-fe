@@ -425,14 +425,11 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   header()->setStretchLastSection(true);
   header()->setMovable(false);
   header()->setResizeMode(QHeaderView::Interactive);
-
   restoreHeaderState();
 
-#if !defined(QMC2_WIP_ENABLED)
-  setColumnHidden(2, true);
-#else
+  setColumnHidden(0, false);
+  setColumnHidden(1, false);
   setColumnHidden(2, false);
-#endif
 
   if ( templateMap.isEmpty() )
     createTemplateMap();
@@ -563,7 +560,7 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 			else
 				emuOptActions->enableResetAction();
 			if ( currentValue != storedValue ) {
-				if ( (currentValue == globalValue && storedValue == "<UNSET>") || (globalValue == "<UNSET>" && storedValue == "<UNSET>") ) {
+				if ( (currentValue == globalValue && storedValue == "<UNSET>") || (currentValue == defaultValue && globalValue == "<UNSET>" && storedValue == "<UNSET>") ) {
 					emuOptActions->disableRevertAction();
 					emuOptActions->disableStoreAction();
 				} else {
@@ -1033,7 +1030,10 @@ void EmulatorOptions::createMap()
       } else
         optionDescription = "";
       openPersistentEditor(optionItem, QMC2_EMUOPT_COLUMN_VALUE);
-      EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, this);
+      QString sysName;
+      if ( !isGlobal )
+	      sysName = settingsGroup.split("/").last();
+      EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, isGlobal, sysName, this);
       setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, emuOptActions);
     }
   } 
