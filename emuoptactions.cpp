@@ -12,11 +12,6 @@ EmulatorOptionActions::EmulatorOptionActions(QTreeWidgetItem *item, QWidget *par
 {
 	setupUi(this);
 
-	// FIXME
-	toolButtonReset->setEnabled(false);
-	toolButtonRevert->setEnabled(false);
-	toolButtonStore->setEnabled(false);
-
 	myItem = item;
 	adjustIconSizes();
 }

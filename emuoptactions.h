@@ -19,6 +19,13 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 		void on_toolButtonRevert_clicked();
 		void on_toolButtonStore_clicked();
 
+		void enableResetAction() { toolButtonReset->setEnabled(true); }
+		void disableResetAction() { toolButtonReset->setEnabled(false); }
+		void enableRevertAction() { toolButtonRevert->setEnabled(true); }
+		void disableRevertAction() { toolButtonRevert->setEnabled(false); }
+		void enableStoreAction() { toolButtonStore->setEnabled(true); }
+		void disableStoreAction() { toolButtonStore->setEnabled(false); }
+
 		void adjustIconSizes();
 };
 
