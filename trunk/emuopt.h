@@ -20,6 +20,7 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
   Q_OBJECT
 
   public:
+    QTreeWidget *myTreeWidget;
     EmulatorOptionDelegate(QObject *parent = 0);
 
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
@@ -32,6 +33,9 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
 
   public slots:
     void dataChanged();
+
+  signals:
+    void editorDataChanged(QWidget *, QTreeWidgetItem *) const;
 };
 
 class EmulatorOption
@@ -106,6 +110,8 @@ class EmulatorOptions : public QTreeWidget
     QString readDescription(QXmlStreamReader *, QString, bool *);
     QStringList readChoices(QXmlStreamReader *);
 
+    QTreeWidgetItem *index2item(const QModelIndex &index) const { return itemFromIndex(index); }
+
   public slots:
     void load(bool overwrite = false);
     void save();
@@ -119,6 +125,7 @@ class EmulatorOptions : public QTreeWidget
     void exportToIni(bool global, QString useFileName = QString());
     void importFromIni(bool global, QString useFileName = QString());
     void adjustIconSizes();
+    void updateEmuOptActions(QWidget *, QTreeWidgetItem *);
 
   protected:
     virtual void keyPressEvent(QKeyEvent *);

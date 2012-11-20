@@ -210,6 +210,10 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
     bool value = index.model()->data(index, Qt::EditRole).toBool();
     QCheckBox *checkBoxEditor = static_cast<QCheckBox *>(editor);
     checkBoxEditor->setChecked(value);
+    if ( value )
+	    checkBoxEditor->setText("(" + tr("enabled") + ")");
+    else
+	    checkBoxEditor->setText("(" + tr("disabled") + ")");
   } else if ( editor->accessibleName() == "spinBoxEditor" ) {
     int value = index.model()->data(index, Qt::EditRole).toInt();
     QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
@@ -294,6 +298,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
     lineEdit->setText(value);
     lineEdit->setCursorPosition(cPos);
   }
+  emit editorDataChanged(editor, ((EmulatorOptions*)myTreeWidget)->index2item(index));
 }
 
 void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
@@ -408,6 +413,8 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   loadActive = changed = false;
   settingsGroup = group;
   delegate = new EmulatorOptionDelegate(this);
+  delegate->myTreeWidget = this;
+  connect(delegate, SIGNAL(editorDataChanged(QWidget *, QTreeWidgetItem *)), this, SLOT(updateEmuOptActions(QWidget *, QTreeWidgetItem *)));
   setColumnCount(3);  
   setItemDelegateForColumn(QMC2_EMUOPT_COLUMN_VALUE, delegate);
   setAlternatingRowColors(true);
@@ -443,6 +450,137 @@ EmulatorOptions::~EmulatorOptions()
 
   if ( delegate )
     delete delegate;
+}
+
+void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item)
+{
+	EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(item, QMC2_EMUOPT_COLUMN_ACTIONS);
+	if ( emuOptActions ) {
+		//QMC2_PRINT_PTR(emuOptActions);
+		QString optionName, optionType, defaultValue, globalValue, currentValue, storedValue;
+		optionName = item->text(0);
+		//QMC2_PRINT_STR(optionName);
+		for (int i = 0; i < item->childCount(); i++) {
+			QTreeWidgetItem *subItem = item->child(i);
+			if ( subItem->text(0) == tr("Default") )
+				defaultValue = subItem->text(1);
+			else if ( subItem->text(0) == tr("Type") )
+				optionType = subItem->text(1);
+		}
+		if ( optionType == "bool" )
+			defaultValue = defaultValue == tr("true") ? "true" : "false";
+		//QMC2_PRINT_STR(optionType);
+		QString key;
+		if ( qmc2Config->group() == settingsGroup ) {
+			qmc2Config->endGroup();
+			if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName) )
+				globalValue = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName, QString()).toString();
+			else
+				globalValue = "<UNSET>";
+			qmc2Config->beginGroup(settingsGroup);
+			key = optionName;
+		} else {
+			if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName) )
+				globalValue = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName, QString()).toString();
+			else
+				globalValue = "<UNSET>";
+			key = settingsGroup + "/" + optionName;
+		}
+		if ( globalValue.isEmpty() )
+			globalValue = tr("<EMPTY>");
+		//QMC2_PRINT_STR(globalValue);
+		if ( qmc2Config->contains(key) ) {
+			storedValue = qmc2Config->value(key, QString()).toString();
+			if ( storedValue.isEmpty() )
+				storedValue = tr("<EMPTY>");
+		} else
+			storedValue = "<UNSET>";
+		//QMC2_PRINT_STR(storedValue);
+
+		int optType = QMC2_EMUOPT_TYPE_UNKNOWN;
+		QLocale cLoc(QLocale::C);
+		if ( editor->accessibleName() == "checkBoxEditor" ) {
+			optType = QMC2_EMUOPT_TYPE_BOOL;
+			QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
+			if ( checkBoxEditor->isChecked() )
+				currentValue = "true";
+			else
+				currentValue = "false";
+		} else if ( editor->accessibleName() == "spinBoxEditor" ) {
+			optType = QMC2_EMUOPT_TYPE_INT;
+			QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+			currentValue = QString::number(spinBox->value());
+		} else if ( editor->accessibleName() == "doubleSpinBoxEditor" ) {
+			optType = QMC2_EMUOPT_TYPE_FLOAT;
+			QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
+			currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
+			defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
+		} else if ( editor->accessibleName() == "float2Editor" ) {
+			optType = QMC2_EMUOPT_TYPE_FLOAT2;
+			FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
+			currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
+		} else if ( editor->accessibleName() == "float3Editor" ) {
+			optType = QMC2_EMUOPT_TYPE_FLOAT3;
+			FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
+			currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
+		} else if ( editor->accessibleName() == "fileEditor" ) {
+			optType = QMC2_EMUOPT_TYPE_FILE;
+			FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
+			currentValue = fileEditor->lineEditFile->text();
+		} else if ( editor->accessibleName() == "directoryEditor" ) {
+			optType = QMC2_EMUOPT_TYPE_DIRECTORY;
+			DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
+			currentValue = directoryEditor->lineEditDirectory->text();
+		} else if ( editor->accessibleName() == "comboEditor" ) {
+			optType = QMC2_EMUOPT_TYPE_COMBO;
+			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
+			currentValue = comboEditor->comboBoxValue->lineEdit()->text();
+		} else {
+			optType = QMC2_EMUOPT_TYPE_STRING;
+			QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+			currentValue = lineEdit->text();
+		}
+		if ( currentValue.isEmpty() )
+			currentValue = tr("<EMPTY>");
+		//QMC2_PRINT_STR(defaultValue);
+		//QMC2_PRINT_STR(currentValue);
+
+		if ( isGlobal ) {
+			if ( currentValue == defaultValue )
+				emuOptActions->disableResetAction();
+			else
+				emuOptActions->enableResetAction();
+			if ( currentValue != storedValue ) {
+				if ( currentValue == defaultValue && storedValue == "<UNSET>" ) {
+					emuOptActions->disableRevertAction();
+					emuOptActions->disableStoreAction();
+				} else {
+					emuOptActions->enableRevertAction();
+					emuOptActions->enableStoreAction();
+				}
+			} else {
+				emuOptActions->disableRevertAction();
+				emuOptActions->disableStoreAction();
+			}
+		} else {
+			if ( (currentValue == globalValue && globalValue != "<UNSET>") || (currentValue == defaultValue && globalValue == "<UNSET>" && storedValue == "<UNSET>") )
+				emuOptActions->disableResetAction();
+			else
+				emuOptActions->enableResetAction();
+			if ( currentValue != storedValue ) {
+				if ( (currentValue == globalValue && storedValue == "<UNSET>") || (globalValue == "<UNSET>" && storedValue == "<UNSET>") ) {
+					emuOptActions->disableRevertAction();
+					emuOptActions->disableStoreAction();
+				} else {
+					emuOptActions->enableRevertAction();
+					emuOptActions->enableStoreAction();
+				}
+			} else {
+				emuOptActions->disableRevertAction();
+				emuOptActions->disableStoreAction();
+			}
+		}
+	}
 }
 
 void EmulatorOptions::adjustIconSizes()
