@@ -10,8 +10,16 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 
        	public:
 		QTreeWidgetItem *myItem;
+		QString optionType;
+		QString optionName;
+		QString defaultValue;
+		QString globalValue;
+		QString storedValue;
+		QString currentValue;
+		bool isGlobal;
+		QString systemName;
 
-		EmulatorOptionActions(QTreeWidgetItem *, QWidget *parent = 0);
+		EmulatorOptionActions(QTreeWidgetItem *, bool, QString, QWidget *parent = 0);
 		~EmulatorOptionActions();
 
 	public slots:
