@@ -190,6 +190,20 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	toolButtonChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
 	toolButtonChooserFilter->blockSignals(false);
 	toolButtonChooserProcessZIPs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", false).toBool());
+	QString folderMode = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FolderMode", "folders-off").toString();
+	if ( folderMode == "folders-first" ) {
+		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-first.png")));
+		includeFolders = true;
+		foldersFirst = true;
+	} else if ( folderMode == "folders-on" ) {
+		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
+		includeFolders = true;
+		foldersFirst = false;
+	} else {
+		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-off.png")));
+		includeFolders = false;
+		foldersFirst = false;
+	}
 
 	QList<int> splitterSizes;
 	QSize splitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter").toSize();
@@ -222,6 +236,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	toolButtonChooserFilter->setIconSize(iconSize);
 	toolButtonChooserProcessZIPs->setIconSize(iconSize);
 	toolButtonChooserSaveConfiguration->setIconSize(iconSize);
+	toolButtonFolderMode->setIconSize(iconSize);
 	comboBoxDeviceInstanceChooser->setIconSize(iconSize);
 	treeWidgetDeviceSetup->setIconSize(iconSize);
 	treeWidgetSlotOptions->setIconSize(iconSize);
@@ -292,14 +307,23 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
+	actionChooserPlay = action;
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
+	actionChooserPlayEmbedded = action;
 #endif
 #if defined(QMC2_ALTERNATE_FSM)
+	fileChooserContextMenu->addSeparator();
+	action = fileChooserContextMenu->addAction(tr("&Open folder"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_openFolder()));
+	actionChooserOpenFolder = action;
+
 	fileChooserContextMenu->addSeparator();
 	action = fileChooserContextMenu->addAction(tr("&Open archive"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -313,6 +337,25 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_openFileExternally()));
 	actionChooserOpenExternally = action;
+
+	// folder mode menu
+	folderModeMenu = new QMenu(this);
+	s = tr("Hide folders");
+	action = folderModeMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-off.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(folderModeMenu_foldersOff()));
+	s = tr("Show folders");
+	action = folderModeMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(folderModeMenu_foldersOn()));
+	s = tr("Show folders first");
+	action = folderModeMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-first.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(folderModeMenu_foldersFirst()));
+	toolButtonFolderMode->setMenu(folderModeMenu);
 
 	if ( messDevIconMap.isEmpty() ) {
 		messDevIconMap["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
@@ -361,6 +404,12 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DirChooserHeaderState", dirChooserHeaderState);
 	if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
+	if ( includeFolders && foldersFirst )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FolderMode", "folders-first");
+	else if ( includeFolders )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FolderMode", "folders-on");
+	else
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FolderMode", "folders-off");
 }
 
 bool MESSDeviceConfigurator::checkParentSlot(QTreeWidgetItem *item, QString &slotName)
@@ -2029,7 +2078,11 @@ void MESSDeviceConfigurator::setupFileChooser()
 
 	dirModel = new DirectoryModel(this);
 	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive);
+#if defined(QMC2_OS_WIN)
 	dirModel->setRootPath(dirModel->myComputer().toString());
+#else
+	dirModel->setRootPath("/");
+#endif
 	treeViewDirChooser->setModel(dirModel);
 	treeViewDirChooser->setCurrentIndex(dirModel->index(path));
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--) treeViewDirChooser->setColumnHidden(i, true);
@@ -2060,6 +2113,8 @@ void MESSDeviceConfigurator::setupFileChooser()
 	lcdNumberFileCounter->update();
 	fileModel = new FileSystemModel(this);
 	fileModel->setCurrentPath(path, false);
+	fileModel->setIncludeFolders(includeFolders);
+	fileModel->setFoldersFirst(foldersFirst);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
 	treeViewFileChooser->setModel(fileModel);
@@ -2192,6 +2247,48 @@ void MESSDeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 #endif
 }
 
+void MESSDeviceConfigurator::folderModeMenu_foldersOff()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::folderModeMenu_foldersOff()");
+#endif
+
+	toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-off.png")));
+	includeFolders = false;
+	foldersFirst = false;
+	fileModel->setIncludeFolders(includeFolders);
+	fileModel->setFoldersFirst(foldersFirst);
+	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+}
+
+void MESSDeviceConfigurator::folderModeMenu_foldersOn()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::folderModeMenu_foldersOn()");
+#endif
+
+	toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
+	includeFolders = true;
+	foldersFirst = false;
+	fileModel->setIncludeFolders(includeFolders);
+	fileModel->setFoldersFirst(foldersFirst);
+	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+}
+
+void MESSDeviceConfigurator::folderModeMenu_foldersFirst()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::folderModeMenu_foldersFirst()");
+#endif
+
+	toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-first.png")));
+	includeFolders = true;
+	foldersFirst = true;
+	fileModel->setIncludeFolders(includeFolders);
+	fileModel->setFoldersFirst(foldersFirst);
+	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+}
+
 void MESSDeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QString &text)
 {
 #ifdef QMC2_DEBUG
@@ -2235,13 +2332,27 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 #endif
 
 	modelIndexFileModel = treeViewFileChooser->indexAt(p);
+	actionChooserPlay->setVisible(true);
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+	actionChooserPlayEmbedded->setVisible(true);
+#endif
 	if ( modelIndexFileModel.isValid() ) {
 		if ( fileModel->isZip(modelIndexFileModel) ) {
 			actionChooserToggleArchive->setText(treeViewFileChooser->isExpanded(modelIndexFileModel) ? tr("&Close archive") : tr("&Open archive"));
 			actionChooserToggleArchive->setVisible(true);
 		} else
 			actionChooserToggleArchive->setVisible(false);
-		actionChooserOpenExternally->setVisible(!fileModel->isZipContent(modelIndexFileModel));
+		if ( fileModel->isFolder(modelIndexFileModel) ) {
+			actionChooserPlay->setVisible(false);
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+			actionChooserPlayEmbedded->setVisible(false);
+#endif
+			actionChooserOpenFolder->setVisible(true);
+			actionChooserOpenExternally->setVisible(false);
+		} else {
+			actionChooserOpenFolder->setVisible(false);
+			actionChooserOpenExternally->setVisible(!fileModel->isZipContent(modelIndexFileModel));
+		}
 		fileChooserContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeViewFileChooser->viewport()->mapToGlobal(p), fileChooserContextMenu));
 		fileChooserContextMenu->show();
 	}
@@ -2261,6 +2372,8 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 			fileModel->openZip(index);
 			fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 		}
+	} else if ( fileModel->isFolder(index) ) {
+		treeViewFileChooser_openFolder();
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
@@ -2306,6 +2419,25 @@ void MESSDeviceConfigurator::treeViewFileChooser_openFileExternally()
 
 	if ( selected.count() > 0 )
 		QDesktopServices::openUrl(QUrl::fromUserInput(fileModel->fileName(selected[0])));
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_openFolder()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_openFolder()");
+#endif
+
+	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
+
+	if ( selected.count() > 0 ) {
+		QModelIndex index = selected[0];
+		QString folderPath = fileModel->absolutePath(index);
+		QModelIndex dirIndex = dirModel->index(folderPath);
+		if ( dirIndex.isValid() )
+			treeViewDirChooser->setCurrentIndex(dirIndex);
+		else
+			treeViewDirChooser->setCurrentIndex(dirModel->index(dirModel->rootPath()));
+	}
 }
 
 void MESSDeviceConfigurator::treeViewFileChooser_expandRequested()

@@ -63,6 +63,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool isLoading;
 		bool fileChooserSetup;
 		bool isManualSlotOptionChange;
+		bool includeFolders;
+		bool foldersFirst;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QString messMachineName;
 		QString currentConfigName;
@@ -76,6 +78,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QMenu *slotContextMenu;
 		QMenu *dirChooserContextMenu;
 		QMenu *fileChooserContextMenu;
+		QMenu *folderModeMenu;
 		QAction *actionRenameConfiguration;
 		QAction *actionRemoveConfiguration;
 		QByteArray fileChooserHeaderState;
@@ -90,6 +93,11 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QFileSystemModel *fileModel;
 #endif
 		QAction *actionChooserOpenExternally;
+		QAction *actionChooserOpenFolder;
+		QAction *actionChooserPlay;
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+		QAction *actionChooserPlayEmbedded;
+#endif
 		DirectoryModel *dirModel;
 		QModelIndex modelIndexFileModel;
 		QModelIndex modelIndexDirModel;
@@ -169,9 +177,13 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void comboBoxChooserFilterPattern_editTextChanged_delayed();
 		void treeViewFileChooser_toggleArchive();
 		void treeViewFileChooser_expandRequested();
+		void treeViewFileChooser_openFolder();
 #endif
 		void treeViewFileChooser_openFileExternally();
 		void slotOptionChanged(int);
+		void folderModeMenu_foldersOff();
+		void folderModeMenu_foldersOn();
+		void folderModeMenu_foldersFirst();
 
 		// misc
 		void editorDataChanged(const QString &);

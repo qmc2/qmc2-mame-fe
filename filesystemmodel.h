@@ -58,14 +58,16 @@ class DirectoryScannerThread : public QThread
 		bool stopScanning;
 		bool quitFlag;
 		bool isReady;
+		bool includeFolders;
 		QString dirPath;
 		QStringList dirEntries;
 		QStringList nameFilters;
 
-		DirectoryScannerThread(QString path, QObject *parent = 0) : QThread(parent)
+		DirectoryScannerThread(QString path, QObject *parent = 0, bool withFolders = false) : QThread(parent)
 		{
 			isReady = isScanning = stopScanning = quitFlag = false;
 			dirPath = path;
+			includeFolders = withFolders;
 			start();
 		}
 
@@ -95,7 +97,7 @@ class DirectoryScannerThread : public QThread
 					isScanning = true;
 					stopScanning = false;
 					dirEntries.clear();
-					QDirIterator dirIterator(dirPath, nameFilters, QDir::Files);
+					QDirIterator dirIterator(dirPath, nameFilters, includeFolders ? QDir::Files | QDir::Dirs | QDir::NoDot : QDir::Files);
 					while ( dirIterator.hasNext() && !stopScanning && !quitFlag ) {
 						dirIterator.next();
 						dirEntries << dirIterator.fileName();
@@ -152,6 +154,7 @@ class FileSystemItem : public QObject
 				mAbsDirPath = parent->absoluteDirPath();
 				mAbsFilePath = mAbsDirPath + QString("/") + path;
 				mFileInfo = QFileInfo(mAbsFilePath);
+				mIsFolder = mFileInfo.isDir();
 				mIsArchiveMember = archiveMember;
 				mUncompressedSize = uncompressedSize;
 				mEntryDate = entryDate;
@@ -161,11 +164,11 @@ class FileSystemItem : public QObject
 					mAbsFilePath = parent->absoluteFilePath() + "\\" + path;
 					mFileInfo = QFileInfo(path);
 				} else
-					mIsArchive = mFileName.toLower().endsWith(".zip");
+					mIsArchive = mFileName.toLower().endsWith(".zip") && !mIsFolder;
 			} else {
 				mAbsDirPath = path;
 				mFileInfo = QFileInfo();
-				mIsArchiveMember = mIsArchive = false;
+				mIsArchiveMember = mIsArchive = mIsFolder = false;
 			}
 		}
 
@@ -238,12 +241,17 @@ class FileSystemItem : public QObject
 			return mIsArchive;
 		}
 
+		bool isFolder() const
+		{
+			return mIsFolder;
+		}
+
 		void addFile(FileSystemItem *file)
 		{
 			mFiles.append(file);
 		}
 
-		void sort(Qt::SortOrder sortOrder = Qt::AscendingOrder, int column = NAME)
+		void sort(Qt::SortOrder sortOrder = Qt::AscendingOrder, int column = NAME, bool foldersFirst = false)
 		{
 			switch ( column ) {
 				case SIZE: {
@@ -269,6 +277,14 @@ class FileSystemItem : public QObject
 
 			if ( sortOrder == Qt::DescendingOrder )
 				for (int k = 0; k < mFiles.size() / 2; k++) mFiles.swap(k, mFiles.size() - (1 + k));
+
+			if ( foldersFirst ) {
+				int lastInsertIndex = 0;
+				for (int k = 0; k < mFiles.size(); k++) {
+					if ( mFiles[k]->isFolder() )
+						mFiles.insert(lastInsertIndex++, mFiles.takeAt(k));
+				}
+			}
 		}
 
 	private:
@@ -280,6 +296,7 @@ class FileSystemItem : public QObject
 		QString mFileName;
 		bool mIsArchive;
 		bool mIsArchiveMember;
+		bool mIsFolder;
 		quint64 mUncompressedSize;
 		QDateTime mEntryDate;
 };
@@ -292,14 +309,16 @@ class FileSystemModel : public QAbstractItemModel
 		enum Column {NAME, SIZE, DATE, LASTCOLUMN};
 		DirectoryScannerThread *dirScanner;
 
-		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
+		FileSystemModel(QObject *parent, bool includeFolders = false, bool foldersFirst = false) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
-			mHeaders << tr("Name") << tr("Size") /*<< tr("Type")*/ << tr("Date modified");
+			mHeaders << tr("Name") << tr("Size") << tr("Date modified");
 			mRootItem = new FileSystemItem("");
 			mCurrentPath = "";
 			mFileCount = mStaleCount = 0;
 			mBreakZipScan = false;
-			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath());
+			mIncludeFolders = includeFolders;
+			mFoldersFirst = foldersFirst;
+			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath(), this, mIncludeFolders);
 			connect(dirScanner, SIGNAL(entriesAvailable(const QStringList &)), this, SLOT(scannerEntriesAvailable(const QStringList &)));
 			connect(dirScanner, SIGNAL(finished()), this, SLOT(scannerFinished()));
 		}
@@ -466,7 +485,7 @@ class FileSystemModel : public QAbstractItemModel
 		{
 			emit layoutAboutToBeChanged();
 			reset();
-			mRootItem->sort(order, column);
+			mRootItem->sort(order, column, mFoldersFirst);
 			emit layoutChanged();
 		}
 
@@ -554,6 +573,17 @@ class FileSystemModel : public QAbstractItemModel
 			mNameFilters = filters;
 		}
 
+		void setIncludeFolders(bool includeFolders)
+		{
+			mIncludeFolders = includeFolders;
+			dirScanner->includeFolders = includeFolders;
+		}
+
+		void setFoldersFirst(bool foldersFirst)
+		{
+			mFoldersFirst = foldersFirst;
+		}
+
 		virtual bool insertRows(int row, int /*count*/, const QModelIndex &parent = QModelIndex())
 		{
 			FileSystemItem *parentItem = getItem(parent);
@@ -633,6 +663,15 @@ class FileSystemModel : public QAbstractItemModel
 				return item->absoluteDirPath() + QDir::toNativeSeparators("/") + item->fileName();
 			else
 				return QString();
+		}
+
+		bool isFolder(const QModelIndex &index)
+		{
+			FileSystemItem *item = getItem(index);
+			if ( item )
+				return item->isFolder();
+			else
+				return false;
 		}
 
 		bool isZip(const QModelIndex &index)
@@ -740,6 +779,8 @@ class FileSystemModel : public QAbstractItemModel
 		int mFileCount;
 		int mStaleCount;
 		bool mBreakZipScan;
+		bool mIncludeFolders;
+		bool mFoldersFirst;
 
 	signals:
 		void finished();
