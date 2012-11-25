@@ -2186,7 +2186,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSel
 	if ( selected.indexes().count() > 0 ) {
 		toolButtonChooserPlay->setEnabled(true);
 		toolButtonChooserPlayEmbedded->setEnabled(true);
-		toolButtonChooserSaveConfiguration->setEnabled(true);
+		toolButtonChooserSaveConfiguration->setEnabled(!fileModel->isFolder(selected.indexes().first()));
 		if ( toolButtonChooserAutoSelect->isChecked() ) {
 #if !defined(QMC2_ALTERNATE_FSM)
 			QString instance = extensionInstanceMap[fileModel->fileInfo(selected.indexes().first()).suffix().toLower()];
