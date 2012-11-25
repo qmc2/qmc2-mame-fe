@@ -2565,14 +2565,14 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <name>EmulatorOptions</name>
     <message>
         <location filename="../../emuopt.cpp" line="399"/>
-        <location filename="../../emuopt.cpp" line="1001"/>
-        <location filename="../../emuopt.cpp" line="1077"/>
-        <location filename="../../emuopt.cpp" line="1130"/>
-        <location filename="../../emuopt.cpp" line="1131"/>
-        <location filename="../../emuopt.cpp" line="1132"/>
-        <location filename="../../emuopt.cpp" line="1237"/>
-        <location filename="../../emuopt.cpp" line="1239"/>
-        <location filename="../../emuopt.cpp" line="1241"/>
+        <location filename="../../emuopt.cpp" line="998"/>
+        <location filename="../../emuopt.cpp" line="1074"/>
+        <location filename="../../emuopt.cpp" line="1127"/>
+        <location filename="../../emuopt.cpp" line="1128"/>
+        <location filename="../../emuopt.cpp" line="1129"/>
+        <location filename="../../emuopt.cpp" line="1234"/>
+        <location filename="../../emuopt.cpp" line="1236"/>
+        <location filename="../../emuopt.cpp" line="1238"/>
         <source>unknown</source>
         <translation>desconocido</translation>
     </message>
@@ -2607,184 +2607,184 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="477"/>
-        <location filename="../../emuopt.cpp" line="962"/>
+        <location filename="../../emuopt.cpp" line="474"/>
+        <location filename="../../emuopt.cpp" line="959"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="965"/>
+        <location filename="../../emuopt.cpp" line="962"/>
         <source>bool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="969"/>
+        <location filename="../../emuopt.cpp" line="966"/>
         <source>int</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="973"/>
+        <location filename="../../emuopt.cpp" line="970"/>
         <source>float</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="977"/>
+        <location filename="../../emuopt.cpp" line="974"/>
         <source>float2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="981"/>
+        <location filename="../../emuopt.cpp" line="978"/>
         <source>float3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="985"/>
+        <location filename="../../emuopt.cpp" line="982"/>
         <source>file</source>
         <translation>archivo</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="989"/>
+        <location filename="../../emuopt.cpp" line="986"/>
         <source>directory</source>
         <translation>directorio</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="993"/>
+        <location filename="../../emuopt.cpp" line="990"/>
         <source>choice</source>
         <translation>elección</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="997"/>
+        <location filename="../../emuopt.cpp" line="994"/>
         <source>string</source>
         <translation>valor</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1006"/>
+        <location filename="../../emuopt.cpp" line="1003"/>
         <source>Short name</source>
         <translation>Nombre corto</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="475"/>
-        <location filename="../../emuopt.cpp" line="1011"/>
-        <location filename="../../emuopt.cpp" line="1022"/>
+        <location filename="../../emuopt.cpp" line="472"/>
+        <location filename="../../emuopt.cpp" line="1008"/>
+        <location filename="../../emuopt.cpp" line="1019"/>
         <source>Default</source>
         <translation>Predeterminado</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="481"/>
-        <location filename="../../emuopt.cpp" line="1014"/>
+        <location filename="../../emuopt.cpp" line="478"/>
+        <location filename="../../emuopt.cpp" line="1011"/>
         <source>true</source>
         <translation>verdadero</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1016"/>
+        <location filename="../../emuopt.cpp" line="1013"/>
         <source>false</source>
         <translation>falso</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="499"/>
-        <location filename="../../emuopt.cpp" line="503"/>
-        <location filename="../../emuopt.cpp" line="541"/>
-        <location filename="../../emuopt.cpp" line="1023"/>
+        <location filename="../../emuopt.cpp" line="496"/>
+        <location filename="../../emuopt.cpp" line="500"/>
+        <location filename="../../emuopt.cpp" line="538"/>
+        <location filename="../../emuopt.cpp" line="1020"/>
         <source>&lt;EMPTY&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1031"/>
+        <location filename="../../emuopt.cpp" line="1028"/>
         <source>Description</source>
         <translation>Descripción</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1125"/>
+        <location filename="../../emuopt.cpp" line="1122"/>
         <source>creating template configuration map</source>
         <translation>creando mapa de configuración de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1162"/>
+        <location filename="../../emuopt.cpp" line="1159"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation>ERROR: fallo XML leyendo plantilla: %1 en archivo &apos;%2&apos; en la línea %3, columna %4</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1228"/>
+        <location filename="../../emuopt.cpp" line="1225"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
         <translation>info plantilla: emulador = %1, versión = %2, formato = %3</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1235"/>
+        <location filename="../../emuopt.cpp" line="1232"/>
         <source>FATAL: can&apos;t open options template file</source>
         <translation>ERROR: no se puede abrir el archivo de opciones de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1238"/>
+        <location filename="../../emuopt.cpp" line="1235"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
         <translation>ATENCIÓN: no se pudo determinar el tipo de emulador de la plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1240"/>
+        <location filename="../../emuopt.cpp" line="1237"/>
         <source>WARNING: couldn&apos;t determine template version</source>
         <translation>ATENCIÓN: no se pudo determinar la versión de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1242"/>
+        <location filename="../../emuopt.cpp" line="1239"/>
         <source>WARNING: couldn&apos;t determine template format</source>
         <translation>ATENCIÓN: no se pudo determinar el formato de plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1252"/>
+        <location filename="../../emuopt.cpp" line="1249"/>
         <source>please wait for reload to finish and try again</source>
         <translation>por favor espera a que finalice la recarga y vuelve a intentarlo</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1261"/>
+        <location filename="../../emuopt.cpp" line="1258"/>
         <source>checking template configuration map against selected emulator</source>
         <translation>comprobando el mapa de configuración de plantilla con el emulador seleccionado</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1289"/>
+        <location filename="../../emuopt.cpp" line="1286"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MAME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1291"/>
+        <location filename="../../emuopt.cpp" line="1288"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MESS en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1293"/>
+        <location filename="../../emuopt.cpp" line="1290"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de UME en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1353"/>
+        <location filename="../../emuopt.cpp" line="1350"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation>ERROR: no se puede crear el archivo temporal, por favor comprueba el ejecutable del emulador y los permisos</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1373"/>
-        <location filename="../../emuopt.cpp" line="1382"/>
-        <location filename="../../emuopt.cpp" line="1397"/>
-        <location filename="../../emuopt.cpp" line="1412"/>
-        <location filename="../../emuopt.cpp" line="1424"/>
-        <location filename="../../emuopt.cpp" line="1441"/>
+        <location filename="../../emuopt.cpp" line="1370"/>
+        <location filename="../../emuopt.cpp" line="1379"/>
+        <location filename="../../emuopt.cpp" line="1394"/>
+        <location filename="../../emuopt.cpp" line="1409"/>
+        <location filename="../../emuopt.cpp" line="1421"/>
+        <location filename="../../emuopt.cpp" line="1438"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
         <translation>el emulador utiliza un valor predeterminado diferente para la opción &apos;%1&apos; (&apos;%2&apos; contra &apos;%3&apos;); opción admitida es &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1448"/>
+        <location filename="../../emuopt.cpp" line="1445"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
         <translation>opción de plantilla &apos;%1&apos; es de tipo desconocido para el emulador</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1458"/>
+        <location filename="../../emuopt.cpp" line="1455"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
         <translation>opción del emulador &apos;%1&apos; con valor predeterminado &apos;%2&apos; es desconocida para la plantilla</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1462"/>
+        <location filename="../../emuopt.cpp" line="1459"/>
         <source>done (checking template configuration map against selected emulator)</source>
         <translation>hecho (comprobando el mapa de configuración de plantilla con el emulador seleccionado)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../emuopt.cpp" line="1463"/>
+        <location filename="../../emuopt.cpp" line="1460"/>
         <source>check results: %n difference(s)</source>
         <translation>
             <numerusform>comprobar resultados: %n diferencia</numerusform>
@@ -2792,165 +2792,165 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1486"/>
+        <location filename="../../emuopt.cpp" line="1483"/>
         <source>Enter search string</source>
         <translation>Introducir texto de búsqueda</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1572"/>
+        <location filename="../../emuopt.cpp" line="1569"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
         <translation>ATENCIÓN: ini-export: ninguna ruta ini con permisos encontrada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1576"/>
-        <location filename="../../emuopt.cpp" line="1738"/>
+        <location filename="../../emuopt.cpp" line="1573"/>
+        <location filename="../../emuopt.cpp" line="1735"/>
         <source>Path selection</source>
         <translation>Selección de ruta</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1577"/>
+        <location filename="../../emuopt.cpp" line="1574"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
         <translation>Múltiples rutas ini encontradas. Selecciona la(s) ruta(s) a las que exportar:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1596"/>
+        <location filename="../../emuopt.cpp" line="1593"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
         <translation>ATENCIÓN: ini-export: ninguna ruta seleccionada (o ruta inválida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1610"/>
-        <location filename="../../emuopt.cpp" line="1772"/>
+        <location filename="../../emuopt.cpp" line="1607"/>
+        <location filename="../../emuopt.cpp" line="1769"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1626"/>
+        <location filename="../../emuopt.cpp" line="1623"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
         <translation>ERROR: no se puede abrir el archivo de exportado para escritura, ruta = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1632"/>
+        <location filename="../../emuopt.cpp" line="1629"/>
         <source>exporting %1 MAME configuration to %2</source>
         <translation>exportando configuración MAME %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1632"/>
-        <location filename="../../emuopt.cpp" line="1634"/>
-        <location filename="../../emuopt.cpp" line="1636"/>
-        <location filename="../../emuopt.cpp" line="1687"/>
-        <location filename="../../emuopt.cpp" line="1689"/>
-        <location filename="../../emuopt.cpp" line="1691"/>
-        <location filename="../../emuopt.cpp" line="1795"/>
-        <location filename="../../emuopt.cpp" line="1797"/>
-        <location filename="../../emuopt.cpp" line="1799"/>
-        <location filename="../../emuopt.cpp" line="1898"/>
-        <location filename="../../emuopt.cpp" line="1900"/>
-        <location filename="../../emuopt.cpp" line="1902"/>
+        <location filename="../../emuopt.cpp" line="1629"/>
+        <location filename="../../emuopt.cpp" line="1631"/>
+        <location filename="../../emuopt.cpp" line="1633"/>
+        <location filename="../../emuopt.cpp" line="1684"/>
+        <location filename="../../emuopt.cpp" line="1686"/>
+        <location filename="../../emuopt.cpp" line="1688"/>
+        <location filename="../../emuopt.cpp" line="1792"/>
+        <location filename="../../emuopt.cpp" line="1794"/>
+        <location filename="../../emuopt.cpp" line="1796"/>
+        <location filename="../../emuopt.cpp" line="1895"/>
+        <location filename="../../emuopt.cpp" line="1897"/>
+        <location filename="../../emuopt.cpp" line="1899"/>
         <source>global</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1632"/>
-        <location filename="../../emuopt.cpp" line="1636"/>
-        <location filename="../../emuopt.cpp" line="1687"/>
-        <location filename="../../emuopt.cpp" line="1691"/>
-        <location filename="../../emuopt.cpp" line="1795"/>
-        <location filename="../../emuopt.cpp" line="1799"/>
-        <location filename="../../emuopt.cpp" line="1898"/>
-        <location filename="../../emuopt.cpp" line="1902"/>
+        <location filename="../../emuopt.cpp" line="1629"/>
+        <location filename="../../emuopt.cpp" line="1633"/>
+        <location filename="../../emuopt.cpp" line="1684"/>
+        <location filename="../../emuopt.cpp" line="1688"/>
+        <location filename="../../emuopt.cpp" line="1792"/>
+        <location filename="../../emuopt.cpp" line="1796"/>
+        <location filename="../../emuopt.cpp" line="1895"/>
+        <location filename="../../emuopt.cpp" line="1899"/>
         <source>game-specific</source>
         <translation>específico-de-juego</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1634"/>
+        <location filename="../../emuopt.cpp" line="1631"/>
         <source>exporting %1 MESS configuration to %2</source>
         <translation>exportando configuración MESS %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1634"/>
-        <location filename="../../emuopt.cpp" line="1689"/>
-        <location filename="../../emuopt.cpp" line="1797"/>
-        <location filename="../../emuopt.cpp" line="1900"/>
+        <location filename="../../emuopt.cpp" line="1631"/>
+        <location filename="../../emuopt.cpp" line="1686"/>
+        <location filename="../../emuopt.cpp" line="1794"/>
+        <location filename="../../emuopt.cpp" line="1897"/>
         <source>machine-specific</source>
         <translation>específico-de-máquina</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1636"/>
+        <location filename="../../emuopt.cpp" line="1633"/>
         <source>exporting %1 UME configuration to %2</source>
         <translation>exportando configuración UME %1 a %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1687"/>
+        <location filename="../../emuopt.cpp" line="1684"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración MAME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1689"/>
+        <location filename="../../emuopt.cpp" line="1686"/>
         <source>done (exporting %1 MESS configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración MESS %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1691"/>
+        <location filename="../../emuopt.cpp" line="1688"/>
         <source>done (exporting %1 UME configuration to %2, elapsed time = %3)</source>
         <translation>hecho (exportando configuración UME %1 a %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1734"/>
+        <location filename="../../emuopt.cpp" line="1731"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
         <translation>ATENCIÓN: ini-import: ninguna ruta de ini legible encontrada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1739"/>
+        <location filename="../../emuopt.cpp" line="1736"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
         <translation>Múltiples rutas ini encontradas. Selecciona la(s) ruta(s) a las que importar:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1758"/>
+        <location filename="../../emuopt.cpp" line="1755"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
         <translation>ATENCIÓN: ini-import: ninguna ruta seleccionada (o ruta inválida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1789"/>
+        <location filename="../../emuopt.cpp" line="1786"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
         <translation>ERROR: no se puede abrir el archivo de importado para su lectura, ruta = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1795"/>
+        <location filename="../../emuopt.cpp" line="1792"/>
         <source>importing %1 MAME configuration from %2</source>
         <translation>importando configuración MAME %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1797"/>
+        <location filename="../../emuopt.cpp" line="1794"/>
         <source>importing %1 MESS configuration from %2</source>
         <translation>importando configuración MESS %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1799"/>
+        <location filename="../../emuopt.cpp" line="1796"/>
         <source>importing %1 UME configuration from %2</source>
         <translation>importando configuración UME %1 de %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1888"/>
+        <location filename="../../emuopt.cpp" line="1885"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
         <translation>ATENCIÓN: opción desconocida &apos;%1&apos; en la línea %2 (%3) ignorada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1891"/>
+        <location filename="../../emuopt.cpp" line="1888"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
         <translation>ATENCIÓN: sintaxis inválida en la línea %1 (%2) ignorada</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1898"/>
+        <location filename="../../emuopt.cpp" line="1895"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración MAME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1900"/>
+        <location filename="../../emuopt.cpp" line="1897"/>
         <source>done (importing %1 MESS configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración MESS %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1902"/>
+        <location filename="../../emuopt.cpp" line="1899"/>
         <source>done (importing %1 UME configuration from %2, elapsed time = %3)</source>
         <translation>hecho (importando configuración UME %1 de %2, tiempo transcurrido = %3)</translation>
     </message>
@@ -2967,40 +2967,40 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="297"/>
+        <location filename="../../filesystemmodel.h" line="314"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="297"/>
+        <location filename="../../filesystemmodel.h" line="314"/>
         <source>Size</source>
         <translation>Tamaño</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="297"/>
+        <location filename="../../filesystemmodel.h" line="314"/>
         <source>Date modified</source>
         <translation>Fecha de modificación</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="481"/>
-        <location filename="../../filesystemmodel.h" line="495"/>
+        <location filename="../../filesystemmodel.h" line="500"/>
+        <location filename="../../filesystemmodel.h" line="514"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="484"/>
-        <location filename="../../filesystemmodel.h" line="498"/>
+        <location filename="../../filesystemmodel.h" line="503"/>
+        <location filename="../../filesystemmodel.h" line="517"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="487"/>
-        <location filename="../../filesystemmodel.h" line="501"/>
+        <location filename="../../filesystemmodel.h" line="506"/>
+        <location filename="../../filesystemmodel.h" line="520"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="490"/>
+        <location filename="../../filesystemmodel.h" line="509"/>
         <source> TB</source>
         <translation></translation>
     </message>
@@ -6242,8 +6242,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1979"/>
-        <location filename="../../messdevcfg.cpp" line="1984"/>
+        <location filename="../../messdevcfg.cpp" line="2028"/>
+        <location filename="../../messdevcfg.cpp" line="2033"/>
         <source>Active device configuration</source>
         <translation>Configuración de dispositivo activo</translation>
     </message>
@@ -6387,48 +6387,53 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="479"/>
-        <location filename="../../messdevcfg.ui" line="482"/>
+        <source>Folder mode selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.ui" line="499"/>
+        <location filename="../../messdevcfg.ui" line="502"/>
         <source>Enter search string (case-insensitive)</source>
         <translation>Introducir texto de búsqueda (no diferencia mayúsculas / minúsculas)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="498"/>
-        <location filename="../../messdevcfg.ui" line="501"/>
+        <location filename="../../messdevcfg.ui" line="518"/>
+        <location filename="../../messdevcfg.ui" line="521"/>
         <source>Clear search string</source>
         <translation>Borrar texto de búsqueda</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="518"/>
-        <location filename="../../messdevcfg.ui" line="521"/>
+        <location filename="../../messdevcfg.ui" line="538"/>
+        <location filename="../../messdevcfg.ui" line="541"/>
         <source>Number of files scanned</source>
         <translation>Numero de archivos escaneados</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="540"/>
-        <location filename="../../messdevcfg.ui" line="543"/>
+        <location filename="../../messdevcfg.ui" line="560"/>
+        <location filename="../../messdevcfg.ui" line="563"/>
         <source>Reload directory contents</source>
         <translation>Actualizar el contenido del directorio</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="560"/>
-        <location filename="../../messdevcfg.ui" line="563"/>
+        <location filename="../../messdevcfg.ui" line="580"/>
+        <location filename="../../messdevcfg.ui" line="583"/>
         <source>Play the selected configuration</source>
         <translation>Ejecutar la configuración seleccionada</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="580"/>
-        <location filename="../../messdevcfg.ui" line="583"/>
+        <location filename="../../messdevcfg.ui" line="600"/>
+        <location filename="../../messdevcfg.ui" line="603"/>
         <source>Play the selected configuration (embedded)</source>
         <translation>Ejecutar la configuración seleccionada (empotrado)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="649"/>
+        <location filename="../../messdevcfg.ui" line="669"/>
         <source>Available device configurations</source>
         <translation>Configuraciones de dispositivo disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="661"/>
-        <location filename="../../messdevcfg.ui" line="664"/>
+        <location filename="../../messdevcfg.ui" line="681"/>
+        <location filename="../../messdevcfg.ui" line="684"/>
         <source>List of available device configurations</source>
         <translation>Lista de configuraciones de dispositivo disponibles</translation>
     </message>
@@ -6439,7 +6444,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="174"/>
-        <location filename="../../messdevcfg.cpp" line="610"/>
+        <location filename="../../messdevcfg.cpp" line="659"/>
         <source>Reading slot info, please wait...</source>
         <translation>Leyendo la información del slot, por favor espera...</translation>
     </message>
@@ -6449,216 +6454,236 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation>Introducir el nombre de la configuración</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="233"/>
+        <location filename="../../messdevcfg.cpp" line="248"/>
         <source>Select default device directory</source>
         <translation>Seleccionar el directorio predeterminado del dispositivo</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="234"/>
+        <location filename="../../messdevcfg.cpp" line="249"/>
         <source>&amp;Default device directory for &apos;%1&apos;...</source>
         <translation>&amp;Directorio predeterminado de dispositivo para &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="242"/>
-        <location filename="../../messdevcfg.cpp" line="290"/>
+        <location filename="../../messdevcfg.cpp" line="257"/>
+        <location filename="../../messdevcfg.cpp" line="305"/>
         <source>Play selected game</source>
         <translation>Jugar al juego seleccionado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="243"/>
-        <location filename="../../messdevcfg.cpp" line="291"/>
+        <location filename="../../messdevcfg.cpp" line="258"/>
+        <location filename="../../messdevcfg.cpp" line="306"/>
         <source>&amp;Play</source>
         <translation>&amp;Jugar</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="248"/>
-        <location filename="../../messdevcfg.cpp" line="296"/>
+        <location filename="../../messdevcfg.cpp" line="263"/>
+        <location filename="../../messdevcfg.cpp" line="312"/>
         <source>Play selected machine (embedded)</source>
         <translation>Jugar a la máquina seleccionada (empotrado)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="249"/>
-        <location filename="../../messdevcfg.cpp" line="297"/>
+        <location filename="../../messdevcfg.cpp" line="264"/>
+        <location filename="../../messdevcfg.cpp" line="313"/>
         <source>Play &amp;embedded</source>
         <translation>Jugar &amp;empotrado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="255"/>
+        <location filename="../../messdevcfg.cpp" line="270"/>
         <source>Rename configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="256"/>
+        <location filename="../../messdevcfg.cpp" line="271"/>
         <source>Re&amp;name configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="261"/>
+        <location filename="../../messdevcfg.cpp" line="276"/>
         <source>Remove configuration</source>
         <translation>Borrar configuración</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="262"/>
+        <location filename="../../messdevcfg.cpp" line="277"/>
         <source>&amp;Remove configuration</source>
         <translation>&amp;Borrar configuración</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="270"/>
+        <location filename="../../messdevcfg.cpp" line="285"/>
         <source>Select a file to be mapped to this device instance</source>
         <translation>Seleccionar un archivo para asociar a este dispositivo</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="271"/>
+        <location filename="../../messdevcfg.cpp" line="286"/>
         <source>Select file...</source>
         <translation>Seleccionar archivo...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="282"/>
+        <location filename="../../messdevcfg.cpp" line="297"/>
         <source>Use as default directory</source>
         <translation>Usar como directorio predeterminado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="304"/>
-        <location filename="../../messdevcfg.cpp" line="2240"/>
+        <location filename="../../messdevcfg.cpp" line="321"/>
+        <source>&amp;Open folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="328"/>
+        <location filename="../../messdevcfg.cpp" line="2341"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="311"/>
+        <location filename="../../messdevcfg.cpp" line="335"/>
         <source>Open e&amp;xternally...</source>
         <translation>Abrir e&amp;xternamente...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="362"/>
-        <location filename="../../messdevcfg.cpp" line="1021"/>
-        <location filename="../../messdevcfg.cpp" line="1249"/>
-        <location filename="../../messdevcfg.cpp" line="1991"/>
-        <location filename="../../messdevcfg.cpp" line="2445"/>
+        <location filename="../../messdevcfg.cpp" line="343"/>
+        <source>Hide folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="348"/>
+        <source>Show folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="353"/>
+        <source>Show folders first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="405"/>
+        <location filename="../../messdevcfg.cpp" line="1070"/>
+        <location filename="../../messdevcfg.cpp" line="1298"/>
+        <location filename="../../messdevcfg.cpp" line="2040"/>
+        <location filename="../../messdevcfg.cpp" line="2577"/>
         <source>No devices available</source>
         <translation>No hay dispositivos disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="476"/>
+        <location filename="../../messdevcfg.cpp" line="525"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="634"/>
+        <location filename="../../messdevcfg.cpp" line="683"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>ERROR: no se puede iniciar el ejecutable de MESS en un tiempo razonable, abandonando</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="521"/>
-        <location filename="../../messdevcfg.cpp" line="529"/>
-        <location filename="../../messdevcfg.cpp" line="535"/>
+        <location filename="../../messdevcfg.cpp" line="570"/>
+        <location filename="../../messdevcfg.cpp" line="578"/>
+        <location filename="../../messdevcfg.cpp" line="584"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation>ERROR: recuperados datos XML inválidos para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="613"/>
+        <location filename="../../messdevcfg.cpp" line="662"/>
         <source>loading available system slots</source>
         <translation>cargando slots de sistema disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="635"/>
+        <location filename="../../messdevcfg.cpp" line="684"/>
         <source>Failed to read slot info</source>
         <translation>Fallo all leer la información de slot</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="640"/>
+        <location filename="../../messdevcfg.cpp" line="689"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation>ATENCIÓN: el comando externo utilizado para leer los slots de sistema disponibles falló, las opciones de slot pueden no estar completas</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="722"/>
+        <location filename="../../messdevcfg.cpp" line="771"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
         <translation>hecho (cargando slots de sistema disponibles, tiempo transcurrido = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="928"/>
+        <location filename="../../messdevcfg.cpp" line="977"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>ERROR: fallo al procesar los datos XML para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="762"/>
-        <location filename="../../messdevcfg.cpp" line="770"/>
-        <location filename="../../messdevcfg.cpp" line="1286"/>
-        <location filename="../../messdevcfg.cpp" line="1296"/>
+        <location filename="../../messdevcfg.cpp" line="811"/>
+        <location filename="../../messdevcfg.cpp" line="819"/>
+        <location filename="../../messdevcfg.cpp" line="1335"/>
+        <location filename="../../messdevcfg.cpp" line="1345"/>
         <source>not used</source>
         <translation>sin usar</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="176"/>
-        <location filename="../../messdevcfg.cpp" line="916"/>
-        <location filename="../../messdevcfg.cpp" line="1360"/>
-        <location filename="../../messdevcfg.cpp" line="1411"/>
-        <location filename="../../messdevcfg.cpp" line="1693"/>
-        <location filename="../../messdevcfg.cpp" line="1799"/>
-        <location filename="../../messdevcfg.cpp" line="1849"/>
+        <location filename="../../messdevcfg.cpp" line="965"/>
+        <location filename="../../messdevcfg.cpp" line="1409"/>
+        <location filename="../../messdevcfg.cpp" line="1460"/>
+        <location filename="../../messdevcfg.cpp" line="1742"/>
+        <location filename="../../messdevcfg.cpp" line="1848"/>
+        <location filename="../../messdevcfg.cpp" line="1898"/>
         <source>Default configuration</source>
         <translation>Configuración predeterminada</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="762"/>
-        <location filename="../../messdevcfg.cpp" line="777"/>
-        <location filename="../../messdevcfg.cpp" line="1095"/>
-        <location filename="../../messdevcfg.cpp" line="1121"/>
-        <location filename="../../messdevcfg.cpp" line="1286"/>
-        <location filename="../../messdevcfg.cpp" line="1305"/>
-        <location filename="../../messdevcfg.cpp" line="1772"/>
+        <location filename="../../messdevcfg.cpp" line="811"/>
+        <location filename="../../messdevcfg.cpp" line="826"/>
+        <location filename="../../messdevcfg.cpp" line="1144"/>
+        <location filename="../../messdevcfg.cpp" line="1170"/>
+        <location filename="../../messdevcfg.cpp" line="1335"/>
+        <location filename="../../messdevcfg.cpp" line="1354"/>
+        <location filename="../../messdevcfg.cpp" line="1821"/>
         <source>default</source>
         <translation>predeterminado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1086"/>
-        <location filename="../../messdevcfg.cpp" line="1104"/>
-        <location filename="../../messdevcfg.cpp" line="1148"/>
-        <location filename="../../messdevcfg.cpp" line="1511"/>
-        <location filename="../../messdevcfg.cpp" line="1525"/>
-        <location filename="../../messdevcfg.cpp" line="1535"/>
-        <location filename="../../messdevcfg.cpp" line="2505"/>
+        <location filename="../../messdevcfg.cpp" line="1135"/>
+        <location filename="../../messdevcfg.cpp" line="1153"/>
+        <location filename="../../messdevcfg.cpp" line="1197"/>
+        <location filename="../../messdevcfg.cpp" line="1560"/>
+        <location filename="../../messdevcfg.cpp" line="1574"/>
+        <location filename="../../messdevcfg.cpp" line="1584"/>
+        <location filename="../../messdevcfg.cpp" line="2637"/>
         <source>N/A</source>
         <translation>N/D</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1444"/>
-        <location filename="../../messdevcfg.cpp" line="1446"/>
+        <location filename="../../messdevcfg.cpp" line="1493"/>
+        <location filename="../../messdevcfg.cpp" line="1495"/>
         <source>%1. copy of </source>
         <translation>%1 copia de</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1825"/>
-        <location filename="../../messdevcfg.cpp" line="2460"/>
+        <location filename="../../messdevcfg.cpp" line="1874"/>
+        <location filename="../../messdevcfg.cpp" line="2592"/>
         <source>%1. variant of </source>
         <translation>%1 variante de</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1922"/>
+        <location filename="../../messdevcfg.cpp" line="1971"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Seleccionar directorio de dispositivo predeterminado para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2240"/>
+        <location filename="../../messdevcfg.cpp" line="2341"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Cerrar archivo</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2462"/>
+        <location filename="../../messdevcfg.cpp" line="2594"/>
         <source>Choose a unique configuration name</source>
         <translation>Seleccionar un nombre no existente para la configuración</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2462"/>
+        <location filename="../../messdevcfg.cpp" line="2594"/>
         <source>Unique configuration name:</source>
         <translation>Nombre único de la configuración:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2465"/>
+        <location filename="../../messdevcfg.cpp" line="2597"/>
         <source>Name conflict</source>
         <translation>Conflicto de nombre</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2465"/>
+        <location filename="../../messdevcfg.cpp" line="2597"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>

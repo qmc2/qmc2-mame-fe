@@ -468,6 +468,26 @@
                </widget>
               </item>
               <item>
+               <widget class="QToolButton" name="toolButtonFolderMode">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Folder mode selection</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/folders-off.png</normaloff>:/data/img/folders-off.png</iconset>
+                </property>
+                <property name="popupMode">
+                 <enum>QToolButton::InstantPopup</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QComboBox" name="comboBoxChooserFilterPattern">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -693,6 +713,7 @@
   <tabstop>toolButtonChooserAutoSelect</tabstop>
   <tabstop>toolButtonChooserFilter</tabstop>
   <tabstop>toolButtonChooserProcessZIPs</tabstop>
+  <tabstop>toolButtonFolderMode</tabstop>
   <tabstop>comboBoxChooserFilterPattern</tabstop>
   <tabstop>toolButtonChooserClearFilterPattern</tabstop>
   <tabstop>toolButtonChooserReload</tabstop>
