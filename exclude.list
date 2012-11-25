@@ -363,6 +363,9 @@ qmc2/data/img/circles/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/find.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/flip.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/folders-first.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/folders-off.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/folders-on.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/ghost.png.svn-base
@@ -589,6 +592,9 @@ qmc2/data/img/circles/.svn/text-base/filter.png.svn-base
 qmc2/data/img/circles/.svn/text-base/find.png.svn-base
 qmc2/data/img/circles/.svn/text-base/flat.png.svn-base
 qmc2/data/img/circles/.svn/text-base/flip.png.svn-base
+qmc2/data/img/circles/.svn/text-base/folders-first.png.svn-base
+qmc2/data/img/circles/.svn/text-base/folders-off.png.svn-base
+qmc2/data/img/circles/.svn/text-base/folders-on.png.svn-base
 qmc2/data/img/circles/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/circles/.svn/text-base/forward.png.svn-base
 qmc2/data/img/circles/.svn/text-base/ghost.png.svn-base
@@ -825,6 +831,9 @@ qmc2/data/img/classic/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/find.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/flip.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/folders-first.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/folders-off.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/folders-on.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/ghost.png.svn-base
@@ -1051,6 +1060,9 @@ qmc2/data/img/classic/.svn/text-base/filter.png.svn-base
 qmc2/data/img/classic/.svn/text-base/find.png.svn-base
 qmc2/data/img/classic/.svn/text-base/flat.png.svn-base
 qmc2/data/img/classic/.svn/text-base/flip.png.svn-base
+qmc2/data/img/classic/.svn/text-base/folders-first.png.svn-base
+qmc2/data/img/classic/.svn/text-base/folders-off.png.svn-base
+qmc2/data/img/classic/.svn/text-base/folders-on.png.svn-base
 qmc2/data/img/classic/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/classic/.svn/text-base/forward.png.svn-base
 qmc2/data/img/classic/.svn/text-base/ghost.png.svn-base
@@ -1278,6 +1290,9 @@ qmc2/data/img/crazy-black/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/find.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/flip.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/folders-first.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/folders-off.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/folders-on.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/ghost.png.svn-base
@@ -1504,6 +1519,9 @@ qmc2/data/img/crazy-black/.svn/text-base/filter.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/find.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/flat.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/flip.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/folders-first.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/folders-off.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/folders-on.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/forward.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/ghost.png.svn-base
@@ -1735,6 +1753,9 @@ qmc2/data/img/crazy/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/find.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/flip.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/folders-first.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/folders-off.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/folders-on.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/ghost.png.svn-base
@@ -1961,6 +1982,9 @@ qmc2/data/img/crazy/.svn/text-base/filter.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/find.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/flat.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/flip.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/folders-first.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/folders-off.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/folders-on.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/forward.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/ghost.png.svn-base
@@ -2192,6 +2216,9 @@ qmc2/data/img/cubes/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/find.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/flip.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/folders-first.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/folders-off.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/folders-on.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/ghost.png.svn-base
@@ -2418,6 +2445,9 @@ qmc2/data/img/cubes/.svn/text-base/filter.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/find.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/flat.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/flip.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/folders-first.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/folders-off.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/folders-on.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/forward.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/ghost.png.svn-base
@@ -2654,6 +2684,9 @@ qmc2/data/img/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/.svn/prop-base/find.png.svn-base
 qmc2/data/img/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/.svn/prop-base/flip.png.svn-base
+qmc2/data/img/.svn/prop-base/folders-first.png.svn-base
+qmc2/data/img/.svn/prop-base/folders-off.png.svn-base
+qmc2/data/img/.svn/prop-base/folders-on.png.svn-base
 qmc2/data/img/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/.svn/prop-base/ghost.png.svn-base
@@ -2880,6 +2913,9 @@ qmc2/data/img/.svn/text-base/filter.png.svn-base
 qmc2/data/img/.svn/text-base/find.png.svn-base
 qmc2/data/img/.svn/text-base/flat.png.svn-base
 qmc2/data/img/.svn/text-base/flip.png.svn-base
+qmc2/data/img/.svn/text-base/folders-first.png.svn-base
+qmc2/data/img/.svn/text-base/folders-off.png.svn-base
+qmc2/data/img/.svn/text-base/folders-on.png.svn-base
 qmc2/data/img/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/.svn/text-base/forward.png.svn-base
 qmc2/data/img/.svn/text-base/ghost.png.svn-base
