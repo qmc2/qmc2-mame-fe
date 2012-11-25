@@ -2472,69 +2472,71 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuoptactions.ui" line="72"/>
         <source>Reset to default value</source>
-        <translation type="unfinished"></translation>
+        <translation>Reiniciar valores para o padrão</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="52"/>
         <source>Revert to stored value</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverter para os valores salvos</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="32"/>
         <source>Store value</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar valores</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="24"/>
         <source>Default</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="26"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="38"/>
         <source>Reset to global value</source>
-        <translation type="unfinished"></translation>
+        <translation>Reiniciar para valor global</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="113"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmar</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>An open game-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma configuração de emulador específica de jogo aberta foi detectada.
+Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global ou não aplicar?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="117"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma configuração de emulador específica de máquina aberta foi detectada.
+Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global ou não aplicar?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>&amp;Local</source>
-        <translation type="unfinished">&amp;Local</translation>
+        <translation>&amp;Local</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>&amp;Overwrite</source>
-        <translation type="unfinished">&amp;Sobrescrever</translation>
+        <translation>&amp;Sobrescrever</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>Do&amp;n&apos;t apply</source>
-        <translation type="unfinished">&amp;Não aplicar</translation>
+        <translation>&amp;Não aplicar</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="30"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;VAZIO&gt;</translation>
     </message>
 </context>
 <context>
@@ -2553,12 +2555,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="214"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>habilitado</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="216"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>desabilitado</translation>
     </message>
 </context>
 <context>
@@ -2621,7 +2623,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="423"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ações</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="962"/>
@@ -2686,7 +2688,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="538"/>
         <location filename="../../emuopt.cpp" line="1020"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;VAZIO&gt;</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1028"/>
@@ -6317,7 +6319,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="321"/>
         <source>&amp;Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abrir pasta</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="328"/>
@@ -6333,17 +6335,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="343"/>
         <source>Hide folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder pastas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="348"/>
         <source>Show folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar pastas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="353"/>
         <source>Show folders first</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar pastas primeiro</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="405"/>
@@ -6642,7 +6644,7 @@ Você quer escolher um nome diferente?</translation>
     <message>
         <location filename="../../messdevcfg.ui" line="479"/>
         <source>Folder mode selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de seleção de pastas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="499"/>
