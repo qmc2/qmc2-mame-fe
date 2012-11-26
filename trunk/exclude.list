@@ -3099,6 +3099,12 @@ qmc2/data/js/pdfjs/images/.svn/prop-base/toolbarButton-zoomIn.png.svn-base
 qmc2/data/js/pdfjs/images/.svn/prop-base/toolbarButton-zoomOut.png.svn-base
 qmc2/data/js/pdfjs/images/.svn/text-base/annotation-check.svg.svn-base
 qmc2/data/js/pdfjs/images/.svn/text-base/annotation-comment.svg.svn-base
+qmc2/data/js/pdfjs/images/.svn/text-base/annotation-help.svg.svn-base
+qmc2/data/js/pdfjs/images/.svn/text-base/annotation-insert.svg.svn-base
+qmc2/data/js/pdfjs/images/.svn/text-base/annotation-key.svg.svn-base
+qmc2/data/js/pdfjs/images/.svn/text-base/annotation-newparagraph.svg.svn-base
+qmc2/data/js/pdfjs/images/.svn/text-base/annotation-note.svg.svn-base
+qmc2/data/js/pdfjs/images/.svn/text-base/annotation-paragraph.svg.svn-base
 qmc2/data/js/pdfjs/images/.svn/text-base/annotation-text.svg.svn-base
 qmc2/data/js/pdfjs/images/.svn/text-base/findbarButton-next.png.svn-base
 qmc2/data/js/pdfjs/images/.svn/text-base/findbarButton-next-rtl.png.svn-base
@@ -3126,6 +3132,7 @@ qmc2/data/js/pdfjs/images/.svn/text-base/toolbarButton-zoomOut.png.svn-base
 qmc2/data/js/pdfjs/.svn
 qmc2/data/js/pdfjs/.svn/text-base/compatibility.js.svn-base
 qmc2/data/js/pdfjs/.svn/text-base/debugger.js.svn-base
+qmc2/data/js/pdfjs/.svn/text-base/firefoxcom.js.svn-base
 qmc2/data/js/pdfjs/.svn/text-base/l10n.js.svn-base
 qmc2/data/js/pdfjs/.svn/text-base/locale.properties.svn-base
 qmc2/data/js/pdfjs/.svn/text-base/pdf.js.svn-base
