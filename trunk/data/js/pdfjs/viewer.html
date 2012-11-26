@@ -20,16 +20,61 @@ limitations under the License.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>PDF.js viewer</title>
 
+<!--#if FIREFOX || MOZCENTRAL-->
+<!--#include viewer-snippet-firefox-extension.html-->
+<!--#endif-->
+
     <link rel="stylesheet" href="viewer.css"/>
-
-    <script type="text/javascript" src="compatibility.js"></script>
-
-    <!-- This snippet is used in production, see Makefile -->
+<!--#if !PRODUCTION-->
     <link rel="resource" type="application/l10n" href="locale.properties"/>
-    <script type="text/javascript" src="l10n.js"></script>
-    <script type="text/javascript" src="pdf.js"></script>
+<!--#endif-->
+
+<!--#if !(FIREFOX || MOZCENTRAL || CHROME)-->
+    <script type="text/javascript" src="compatibility.js"></script>
+<!--#endif-->
+
+<!--#if !PRODUCTION-->
+    <script type="text/javascript" src="../external/webL10n/l10n.js"></script>
+<!--#endif-->
+
+<!--#if !PRODUCTION-->
+    <script type="text/javascript" src="../src/core.js"></script>
+    <script type="text/javascript" src="../src/util.js"></script>
+    <script type="text/javascript" src="../src/api.js"></script>
+    <script type="text/javascript" src="../src/metadata.js"></script>
+    <script type="text/javascript" src="../src/canvas.js"></script>
+    <script type="text/javascript" src="../src/obj.js"></script>
+    <script type="text/javascript" src="../src/function.js"></script>
+    <script type="text/javascript" src="../src/charsets.js"></script>
+    <script type="text/javascript" src="../src/cidmaps.js"></script>
+    <script type="text/javascript" src="../src/colorspace.js"></script>
+    <script type="text/javascript" src="../src/crypto.js"></script>
+    <script type="text/javascript" src="../src/evaluator.js"></script>
+    <script type="text/javascript" src="../src/fonts.js"></script>
+    <script type="text/javascript" src="../src/glyphlist.js"></script>
+    <script type="text/javascript" src="../src/image.js"></script>
+    <script type="text/javascript" src="../src/metrics.js"></script>
+    <script type="text/javascript" src="../src/parser.js"></script>
+    <script type="text/javascript" src="../src/pattern.js"></script>
+    <script type="text/javascript" src="../src/stream.js"></script>
+    <script type="text/javascript" src="../src/worker.js"></script>
+    <script type="text/javascript" src="../external/jpgjs/jpg.js"></script>
+    <script type="text/javascript" src="../src/jpx.js"></script>
+    <script type="text/javascript" src="../src/jbig2.js"></script>
+    <script type="text/javascript" src="../src/bidi.js"></script>
+    <script type="text/javascript">PDFJS.workerSrc = '../src/worker_loader.js';</script>
+<!--#endif-->
+
+<!--#if GENERIC || CHROME-->
+<!--#include viewer-snippet.html-->
+<!--#endif-->
+
+<!--#if B2G-->
+<!--#include viewer-snippet-b2g.html-->
+<!--#endif-->
+
     <script type="text/javascript" src="debugger.js"></script>
-    <!-- <script type="text/javascript" src="viewer.js"></script> -->
+    <!--<script type="text/javascript" src="viewer.js"></script>-->
     <script type="text/javascript">$PDF_VIEWER_JS$</script>
   </head>
 
@@ -37,13 +82,15 @@ limitations under the License.
     <div id="outerContainer">
 
       <div id="sidebarContainer">
-        <div id="toolbarSidebar" class="splitToolbarButton toggled">
-          <button id="viewThumbnail" class="toolbarButton group toggled" title="Show Thumbnails" tabindex="1" data-l10n-id="thumbs">
-             <span data-l10n-id="thumbs_label">Thumbnails</span>
-          </button>
-          <button id="viewOutline" class="toolbarButton group" title="Show Document Outline" tabindex="2" data-l10n-id="outline">
-             <span data-l10n-id="outline_label">Document Outline</span>
-          </button>
+        <div id="toolbarSidebar">
+          <div class="splitToolbarButton toggled">
+            <button id="viewThumbnail" class="toolbarButton group toggled" title="Show Thumbnails" tabindex="1" data-l10n-id="thumbs">
+               <span data-l10n-id="thumbs_label">Thumbnails</span>
+            </button>
+            <button id="viewOutline" class="toolbarButton group" title="Show Document Outline" tabindex="2" data-l10n-id="outline">
+               <span data-l10n-id="outline_label">Document Outline</span>
+            </button>
+          </div>
         </div>
         <div id="sidebarContent">
           <div id="thumbnailView">
@@ -195,4 +242,3 @@ limitations under the License.
     <div id="printContainer"></div>
   </body>
 </html>
-
