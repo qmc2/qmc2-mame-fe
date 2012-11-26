@@ -1813,11 +1813,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 							}
 						}
 					}
-#if !defined(QMC2_ALTERNATE_FSM)
-					QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(indexList[0]).absoluteFilePath();
-#else
 					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
-#endif
 #if defined(QMC2_OS_WIN)
 					args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else

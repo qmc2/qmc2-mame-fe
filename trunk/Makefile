@@ -553,20 +553,6 @@ ifndef YOUTUBE
 YOUTUBE = 1
 endif
 
-# >>> ALTERNATE_FSM <<<
-#
-# Enable (1) or disable (0) the use of QMC2's own performance optimized file
-# system model.
-#
-# If disabled, Qt's QFileSystemModel is used instead, but it is known to be very
-# slow on Windows so it's absolutely necessary there. However, our own FS model
-# is working nicely on Linux and Mac OS X as well, so it's the default on all
-# supported OSs.
-#
-ifndef ALTERNATE_FSM
-ALTERNATE_FSM = 1
-endif
-
 # >>> XCODE3 <<<
 #
 # When this option is set to 1, assume that XCode 3 is used in case of Mac OS X,
@@ -777,10 +763,6 @@ endif
 
 ifeq '$(AUDIOEFFECTDIALOGS)' '0'
 DEFINES += QMC2_NOEFFECTDIALOGS
-endif
-
-ifeq '$(ALTERNATE_FSM)' '1'
-DEFINES += QMC2_ALTERNATE_FSM
 endif
 
 ifeq '$(WIP)' '1'
@@ -1384,7 +1366,6 @@ config:
 	@echo "Current build configuration:"
 	@echo ""
 	@echo "### Option ###       ### Description ###                          ### Value ###" 
-	@echo "ALTERNATE_FSM        Enable use of alt. file system model (0, 1)  $(ALTERNATE_FSM)"
 	@echo "ARCADE_OPENGL        Enable use of OpenGL for arcade mode (0, 1)  $(ARCADE_OPENGL)"
 	@echo "ARCH                 Target system's OS / architecture name       $(ARCH)"
 	@echo "AUDIOEFFECTDIALOGS   Enable audio-effect dialogs (0, 1)           $(AUDIOEFFECTDIALOGS)"
