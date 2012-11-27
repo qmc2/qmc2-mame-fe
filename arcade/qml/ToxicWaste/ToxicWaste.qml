@@ -23,7 +23,7 @@ Rectangle {
 
     ListView {
         id: list_view1
-        x: 224
+        x: parent.Center.x - width/2
         y: 0
         width: 400
         height: parent.height / scale - 20
@@ -45,9 +45,11 @@ Rectangle {
                     smooth: true
                     source: "images/gameitem_bg.png"
                     height: item_delegate.height
+                    opacity: 0.7
                     Text {
                         id: gameitem_text
                         text: name
+                        color: "black"
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.bold: true
