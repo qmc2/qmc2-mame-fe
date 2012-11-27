@@ -38,7 +38,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			toolbarcustomizer.ui \
 			cookiemanager.ui \
 			emuoptactions.ui \
-			arcade/arcadesetupdialog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -94,14 +93,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
-			arcade/arcadeview.cpp \
-			arcade/arcadeitem.cpp \
-			arcade/arcademenuitem.cpp \
-			arcade/arcadescene.cpp \
-			arcade/arcademenuscene.cpp \
-			arcade/arcadesettings.cpp \
-			arcade/arcadescreenshotsaverthread.cpp \
-			arcade/arcadesetupdialog.cpp \
 			htmleditor/htmleditor.cpp \
 			htmleditor/highlighter.cpp \
 			zlib/adler32.c \
@@ -173,14 +164,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			minizip/ioapi.h \
 			minizip/unzip.h \
 			minizip/zip.h \
-			arcade/arcadeview.h \
-			arcade/arcadeitem.h \
-			arcade/arcademenuitem.h \
-			arcade/arcadescene.h \
-			arcade/arcademenuscene.h \
-			arcade/arcadesettings.h \
-			arcade/arcadescreenshotsaverthread.h \
-			arcade/arcadesetupdialog.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h
 		PRECOMPILED_HEADER = qmc2_prefix.h

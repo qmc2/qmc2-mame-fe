@@ -67,8 +67,6 @@
 #include "audioeffects.h"
 #endif
 #include "toolexec.h"
-#include "arcade/arcadeview.h"
-#include "arcade/arcadesetupdialog.h"
 #if defined(QMC2_OS_UNIX)
 #include "keyseqscan.h"
 #endif
@@ -112,8 +110,6 @@ ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 DetailSetup *qmc2DetailSetup = NULL;
 ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
 QWidget *qmc2DetailSetupParent = NULL;
-ArcadeView *qmc2ArcadeView = NULL;
-ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
 SoftwareSnap *qmc2SoftwareSnap = NULL;
 SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
@@ -288,7 +284,6 @@ QColor MainWindow::qmc2StatusColorBlue = QColor("#0000f9");
 QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
 
 // extern global variables
-extern bool exitArcade;
 extern QMap<QString, QStringList> systemSoftwareListMap;
 extern QMap<QString, QStringList> systemSoftwareFilterMap;
 extern QMap<QString, QString> softwareListXmlDataCache;
@@ -513,7 +508,7 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2UME->setStatusTip(tr("Launch QMC2 for UME"));
 #endif
 
-  // FIXME: remove this WIP clause when arcade mode is ready (probably never ;)?)
+  // FIXME: remove this WIP clause when arcade mode is ready
 #if !defined(QMC2_WIP_ENABLED)
   menu_Display->removeAction(menuArcade->menuAction());
   actionArcadeToggle->setVisible(false);
@@ -2657,18 +2652,6 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 	  }
 #endif
 
-  if ( qmc2ArcadeView )
-    if ( qmc2ArcadeView->isActiveWindow() ) {
-      qmc2ArcadeView->raise();
-      qApp->processEvents();
-      qmc2ArcadeView->toggleFullscreen();
-      if ( windowState() & Qt::WindowFullScreen )
-        actionFullscreenToggle->setChecked(true);
-      else
-        actionFullscreenToggle->setChecked(false);
-      return;
-    }
-
   // avoid switching too quickly...
   quint64 now = QDateTime::currentDateTime().toMSecsSinceEpoch();
   if ( now - lastFullScreenSwitchTime < QMC2_FULLSCREEN_SWITCH_DELAY )
@@ -2838,12 +2821,6 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
       if ( qmc2SampleChecker )
         if ( qmc2SampleChecker->isVisible() )
           qmc2SampleChecker->showMinimized();
-      if ( qmc2ArcadeView )
-        if ( qmc2ArcadeView->isVisible() )
-          qmc2ArcadeView->close();
-      if ( qmc2ArcadeSetupDialog )
-        if ( qmc2ArcadeSetupDialog->isVisible() )
-          qmc2ArcadeSetupDialog->showMinimized();
       if ( qmc2DocBrowser )
         if ( qmc2DocBrowser->isVisible() )
           qmc2DocBrowser->showMinimized();
@@ -2939,12 +2916,6 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
       if ( qmc2SampleChecker )
         if ( qmc2SampleChecker->isVisible() )
           qmc2SampleChecker->showMinimized();
-      if ( qmc2ArcadeView )
-        if ( qmc2ArcadeView->isVisible() )
-          qmc2ArcadeView->close();
-      if ( qmc2ArcadeSetupDialog )
-        if ( qmc2ArcadeSetupDialog->isVisible() )
-          qmc2ArcadeSetupDialog->showMinimized();
       if ( qmc2DocBrowser )
         if ( qmc2DocBrowser->isVisible() )
           qmc2DocBrowser->showMinimized();
@@ -3040,12 +3011,6 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
       if ( qmc2SampleChecker )
         if ( qmc2SampleChecker->isVisible() )
           qmc2SampleChecker->showMinimized();
-      if ( qmc2ArcadeView )
-        if ( qmc2ArcadeView->isVisible() )
-          qmc2ArcadeView->close();
-      if ( qmc2ArcadeSetupDialog )
-        if ( qmc2ArcadeSetupDialog->isVisible() )
-          qmc2ArcadeSetupDialog->showMinimized();
       if ( qmc2DocBrowser )
         if ( qmc2DocBrowser->isVisible() )
           qmc2DocBrowser->showMinimized();
@@ -3119,53 +3084,30 @@ void MainWindow::on_actionAboutQt_triggered(bool)
 void MainWindow::on_actionArcadeSetup_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeSetup_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeSetup_triggered(bool)");
 #endif
 
-  log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
-
-  if ( !qmc2ArcadeSetupDialog )
-    qmc2ArcadeSetupDialog = new ArcadeSetupDialog(this);
-
-  qmc2ArcadeSetupDialog->show();
-  qmc2ArcadeSetupDialog->raise();
+	// FIXME
+	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 }
 
 void MainWindow::on_actionArcadeToggle_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeToggle_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeToggle_triggered(bool)");
 #endif
 
-  if ( qmc2DestroyingArcadeView )
-    return;
-
-  if ( !qmc2ArcadeView ) {
-    log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
-    qmc2ArcadeView = new ArcadeView(0);
-  }
-
-  if ( qmc2ArcadeView->isVisible() ) {
-    qmc2DestroyingArcadeView = true;
-    qmc2ArcadeView->close();
-    QTimer::singleShot(0, this, SLOT(destroyArcadeView()));
-  } else {
-    qmc2ArcadeView->show();
-    qmc2ArcadeView->raise();
-  }
+	// FIXME
+	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 }
 
 void MainWindow::destroyArcadeView()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::destroyArcadeView()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::destroyArcadeView()");
 #endif
 
-  if ( qmc2ArcadeView ) {
-    delete qmc2ArcadeView;
-    qmc2ArcadeView = NULL;
-    qmc2DestroyingArcadeView = false;
-  }
+	// FIXME
 }
 
 void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
@@ -6338,17 +6280,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
   // download manager widget
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
 
-  if ( qmc2ArcadeView ) {
-    log(QMC2_LOG_FRONTEND, tr("destroying arcade view"));
-    qmc2ArcadeView->close();
-    delete qmc2ArcadeView;
-  }
-  if ( qmc2ArcadeSetupDialog ) {
-    log(QMC2_LOG_FRONTEND, tr("destroying arcade setup dialog"));
-    qmc2ArcadeSetupDialog->close();
-    delete qmc2ArcadeSetupDialog;
-  }
-
   if ( qmc2SoftwareSnap ) {
     qmc2SoftwareSnap->close();
     delete qmc2SoftwareSnap;
@@ -9070,25 +9001,21 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 void MainWindow::on_actionArcadeShowFPS_toggled(bool on)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_actionArcadeShowFPS_toggled(bool on = %1)").arg(on));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_actionArcadeShowFPS_toggled(bool on = %1)").arg(on));
 #endif
 
-  if ( qmc2ArcadeView )
-    qmc2ArcadeView->menuScene->toggleFps();
+	// FIXME
+	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 }
 
 void MainWindow::on_actionArcadeTakeScreenshot_triggered()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_actionArcadeTakeScreenshot_triggered()"));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_actionArcadeTakeScreenshot_triggered()"));
 #endif
 
-  if ( qmc2ArcadeView ) {
-    if ( !exitArcade )
-      qmc2ArcadeView->takeScreenshot();
-    else
-      log(QMC2_LOG_FRONTEND, tr("ArcadeView is not currently active, can't take screen shot"));
-  }
+	// FIXME
+	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 }
 
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
