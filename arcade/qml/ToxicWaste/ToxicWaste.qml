@@ -34,27 +34,25 @@ Rectangle {
         flickableDirection: Flickable.AutoFlickDirection
         smooth: true
         delegate: Item {
-            id: item_delegate1
+            id: item_delegate
             x: 5
             height: 64
-            Row {
-                id: row1
-                spacing: 10
-
+            Item {
                 Image {
-                    id: gameitem_bg
+                    id: gameitem_image
                     fillMode: Image.PreserveAspectFit
                     smooth: true
-                    opacity: 60
                     source: "images/gameitem_bg.png"
-                    height: item_delegate1.height
-                }
-
-                Text {
-                    text: name
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.leftMargin: 20
-                    font.bold: true
+                    height: item_delegate.height
+                    Text {
+                        id: gameitem_text
+                        text: name
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.bold: true
+                        font.italic: true
+                        font.pixelSize: parent.height - 40
+                    }
                 }
             }
         }
