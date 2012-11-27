@@ -26,7 +26,8 @@ Rectangle {
         x: 224
         y: 0
         width: 400
-        height: parent.height - 20
+        height: parent.height / scale - 20
+        scale: parent.width / 800
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 10
