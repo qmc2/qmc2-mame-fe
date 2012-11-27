@@ -53,8 +53,7 @@
 #define EXISTS(fn)				(access(fn, F_OK) == 0)
 #endif
 
-// this is strange, but it's the only solution I found
-// to make a string out of a non-string constant
+// this is strange, but it's the only solution I found to make a string out of a non-string constant
 #define STR(s)					#s
 #define XSTR(s)					STR(s)
 
@@ -62,7 +61,7 @@
 #define QMC2_LOG_FRONTEND			1
 #define QMC2_LOG_EMULATOR			2
 
-// index positions of game list tabs
+// index positions of game list tabs (left)
 #define QMC2_GAMELIST_INDEX			0
 #define QMC2_MACHINELIST_INDEX			QMC2_GAMELIST_INDEX
 #define QMC2_SEARCH_INDEX			1
@@ -71,7 +70,6 @@
 #define QMC2_EMBED_INDEX			4
 
 // index positions of all game/machine details (upper right)
-// (FIXME: also used for image checker tabs)
 #define QMC2_PREVIEW_INDEX			0
 #define QMC2_FLYER_INDEX			1
 #define QMC2_GAMEINFO_INDEX			2
@@ -95,9 +93,6 @@
 #define QMC2_SYSTEM_NOTES_INDEX			13
 #endif
 
-// current format version of the GLC (game list cache)
-#define QMC2_GLC_VERSION			5
-
 // index positions of special front end tabs (lower right)
 #define QMC2_FRONTENDLOG_INDEX			0
 #define QMC2_EMULATORLOG_INDEX			1
@@ -105,7 +100,10 @@
 #define QMC2_AUDIOPLAYER_INDEX			3
 #define QMC2_DOWNLOADS_INDEX			4
 
-// column to add game icon in game list
+// current format version of the GLC (game list cache)
+#define QMC2_GLC_VERSION			5
+
+// column used for the game/machine icon
 #define QMC2_ICON_INDEX				2
 
 // index positions of game/machine list view selector
@@ -139,7 +137,7 @@
 #define QMC2_GAMELIST_COLUMNS			11
 #define QMC2_MACHINELIST_COLUMNS		10
 
-// when parsing entries in the game/machine list, process GUI events after every this many XML lines
+// when parsing entries in the game/machine list, process GUI events every this many XML lines
 #define QMC2_PARSE_GAMELIST_RSP			100000
 
 // logical column indizes in the emulator control panel
@@ -202,7 +200,7 @@
 #define QMC2_SWSNAP_POS_BELOW_RIGHT		5
 #define QMC2_SWSNAP_POS_DISABLE_SNAPS		6
 
-// logical column indizes of the MESS software lists
+// logical column indizes for software lists
 #define QMC2_SWLIST_COLUMN_TITLE		0
 #define QMC2_SWLIST_COLUMN_NAME			1
 #define QMC2_SWLIST_COLUMN_PUBLISHER		2
@@ -213,7 +211,7 @@
 #define QMC2_SWLIST_COLUMN_SUPPORTED		7
 #define QMC2_SWLIST_COLUMN_DEVICECFG		8 // used only in 'favorites'
 
-// logical column indizes of the audio effect list
+// logical column indizes for the audio effect list
 #define QMC2_AUDIOEFFECT_COLUMN_NAME		0
 #define QMC2_AUDIOEFFECT_COLUMN_DESC		1
 #define QMC2_AUDIOEFFECT_COLUMN_ENABLE		2
@@ -244,8 +242,9 @@
 #define QMC2_SDLMESS_OUTPUT_FIFO		QMC2_SDLMAME_OUTPUT_FIFO
 #define QMC2_SDLUME_OUTPUT_FIFO			QMC2_SDLMAME_OUTPUT_FIFO
 
-// index positions of game list view stack
+// index positions of the game/machine list view stack
 #define QMC2_VIEWGAMELIST_INDEX			0
+#define QMC2_VIEWMACHINELIST_INDEX		QMC2_VIEWGAMELIST_INDEX
 #define QMC2_VIEWHIERARCHY_INDEX		1
 #define QMC2_VIEWCATEGORY_INDEX			2
 #define QMC2_VIEWVERSION_INDEX			3	

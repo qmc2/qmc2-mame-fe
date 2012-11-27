@@ -360,6 +360,14 @@ bool Welcome::checkConfig()
 		  if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth") )
 		  	startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth");
 	  }
+	  if ( oldMinor < 38 || (oldSvnRevision < 4433 && oldSvnRevision > 0) ) {
+		  // remove all old "Arcade" keys (will be replaced by new ones!)
+		  if ( startupConfig->childGroups().contains("Arcade") ) {
+			  startupConfig->beginGroup("Arcade");
+			  startupConfig->remove("");
+			  startupConfig->endGroup();
+		  }
+	  }
   }
 
   configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

@@ -254,24 +254,6 @@ ifndef OPENGL
 OPENGL = 0
 endif
 
-# >>> ARCADE_OPENGL <<<
-#
-# Enable (1) or disable (0) OpenGL support for the 'arcade mode'.
-#
-# Requires OpenGL if enabled (hardware acceleration recommended).
-#
-# In contrast to the other OpenGL features (see OPENGL above), this is really
-# useful! If you disable it, the pure software renderer will be used (which is
-# remarkably slower).
-#
-# Note that the arcade mode is still a 'work in progress' (see WIP below) and is
-# thus disabled by default. So if you don't enable WIP as well, this option will
-# be ignored.
-#
-ifndef ARCADE_OPENGL
-ARCADE_OPENGL = 1
-endif
-
 # >>> WIP <<<
 #
 # Enable (1) or disable (0) unfinished 'work in progress' code.
@@ -705,7 +687,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
+DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
@@ -842,10 +824,6 @@ endif
 
 ifeq '$(OPENGL)' '1'
 QT_CONF += QT+=opengl
-else
-ifeq '$(ARCADE_OPENGL)' '1'
-QT_CONF += QT+=opengl
-endif
 endif
 
 ifeq '$(PHONON)' '1'
@@ -1366,7 +1344,6 @@ config:
 	@echo "Current build configuration:"
 	@echo ""
 	@echo "### Option ###       ### Description ###                          ### Value ###" 
-	@echo "ARCADE_OPENGL        Enable use of OpenGL for arcade mode (0, 1)  $(ARCADE_OPENGL)"
 	@echo "ARCH                 Target system's OS / architecture name       $(ARCH)"
 	@echo "AUDIOEFFECTDIALOGS   Enable audio-effect dialogs (0, 1)           $(AUDIOEFFECTDIALOGS)"
 	@echo "AWK                  UNIX command awk                             $(AWK)"
