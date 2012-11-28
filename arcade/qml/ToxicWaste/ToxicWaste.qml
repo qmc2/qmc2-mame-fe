@@ -40,6 +40,7 @@ Rectangle {
         flickableDirection: Flickable.AutoFlickDirection
         smooth: true
         delegate: Item {
+            property string gameid: id
             id: item_delegate
             height: 64
             Item {
@@ -60,11 +61,30 @@ Rectangle {
                         font.italic: true
                         font.pixelSize: parent.height - 40
                     }
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        acceptedButtons: Qt.LeftButton
+                        onEntered: ToxicWaste.itemEntered(gameitem_text, gameitem_image)
+                        onExited: ToxicWaste.itemExited(gameitem_text, gameitem_image)
+                        onClicked: ToxicWaste.itemClicked(item_delegate.gameid, gameitem_text.text)
+                        onDoubleClicked: ToxicWaste.itemDoubleClicked(item_delegate.gameid, gameitem_text.text)
+                    }
                 }
             }
         }
         model: ListModel {
             id: gamelist_model
         }
+    }
+
+    Text {
+        id: gamename_text
+        x: 22
+        y: 22
+        width: 188
+        height: 135
+        text: ""
+        font.pixelSize: 12
     }
 }
