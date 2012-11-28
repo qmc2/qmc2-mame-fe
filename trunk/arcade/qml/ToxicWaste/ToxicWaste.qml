@@ -1,6 +1,8 @@
 import QtQuick 1.1
+import "ToxicWaste.js" as ToxicWaste
 
 Rectangle {
+    Component.onCompleted: ToxicWaste.init()
     id: toxic_waste_main
     width: 800
     height: 600
@@ -62,54 +64,7 @@ Rectangle {
             }
         }
         model: ListModel {
-            ListElement {
-                name: "Item 1"
-            }
-            ListElement {
-                name: "Item 2"
-            }
-            ListElement {
-                name: "Item 3"
-            }
-            ListElement {
-                name: "Item 4"
-            }
-            ListElement {
-                name: "Item 5"
-            }
-            ListElement {
-                name: "Item 6"
-            }
-            ListElement {
-                name: "Item 7"
-            }
-            ListElement {
-                name: "Item 8"
-            }
-            ListElement {
-                name: "Item 9"
-            }
-            ListElement {
-                name: "Item 10"
-            }
-            ListElement {
-                name: "Item 11"
-            }
-            ListElement {
-                name: "Item 12"
-            }
-            ListElement {
-                name: "Item 13"
-            }
-            ListElement {
-                name: "Item 14"
-            }
-            ListElement {
-                name: "Item 15"
-            }
-            ListElement {
-                name: "Item 16"
-            }
+            id: gamelist_model
         }
     }
 }

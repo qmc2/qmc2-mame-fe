@@ -22,4 +22,5 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    qml/ToxicWaste/ToxicWaste.qml
+    qml/ToxicWaste/ToxicWaste.qml \
+    qml/ToxicWaste/ToxicWaste.js
