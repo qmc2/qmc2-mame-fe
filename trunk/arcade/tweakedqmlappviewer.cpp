@@ -22,5 +22,5 @@ void TweakedQmlApplicationViewer::fpsReady()
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 {
     numFrames++;
-	QmlApplicationViewer::paintEvent(e);
+    QmlApplicationViewer::paintEvent(e);
 }
