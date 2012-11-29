@@ -2,6 +2,7 @@ import QtQuick 1.1
 import "ToxicWaste.js" as ToxicWaste
 
 Rectangle {
+    property int fps: 0
     Component.onCompleted: ToxicWaste.init()
     id: toxic_waste_main
     width: 800
@@ -80,11 +81,22 @@ Rectangle {
 
     Text {
         id: gamename_text
-        x: 22
-        y: 22
-        width: 188
-        height: 135
+        x: 10
+        y: 10
+        width: 200
+        height: 100
         text: ""
-        font.pixelSize: 12
+        font.pixelSize: 10
+    }
+
+    Text {
+        id: fps_text
+        x: 10
+        y: parent.height - 20
+        color: "#ffffff"
+        text: qsTr("FPS") + ": " + parent.fps.toString()
+        font.bold: false
+        style: Text.Normal
+        font.pixelSize: 10
     }
 }
