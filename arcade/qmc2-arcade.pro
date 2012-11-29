@@ -15,7 +15,8 @@ QML_IMPORT_PATH =
 # CONFIG += qdeclarative-boostable
 
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    tweakedqmlappviewer.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -24,3 +25,6 @@ qtcAddDeployment()
 OTHER_FILES += \
     qml/ToxicWaste/ToxicWaste.qml \
     qml/ToxicWaste/ToxicWaste.js
+
+HEADERS += \
+    tweakedqmlappviewer.h
