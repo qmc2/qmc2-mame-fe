@@ -3,13 +3,14 @@ import "ToxicWaste.js" as ToxicWaste
 
 Rectangle {
     property int fps: 0
+    property bool fpsVisible: true
     Component.onCompleted: ToxicWaste.init()
     id: toxic_waste_main
-    width: 800
-    height: 600
+    width: ToxicWaste.baseWidth()
+    height: ToxicWaste.baseHeight()
     gradient: Gradient {
         GradientStop {
-            position: 0
+            position: 0.0
             color: "#3aa82b"
         }
         GradientStop {
@@ -17,14 +18,16 @@ Rectangle {
             color: "#ffffff"
         }
         GradientStop {
-            position: 1
+            position: 1.0
             color: "#000000"
         }
-    }
+    }  
     ListView {
         id: gamelist_view
-        scale: parent.width / 800
+        scale: ToxicWaste.scaleFactor()
         height: parent.height / scale - 20
+        flickDeceleration: 1500
+        maximumFlickVelocity: 3000
         highlightRangeMode: ListView.NoHighlightRange
         snapMode: ListView.NoSnap
         interactive: true
@@ -53,6 +56,7 @@ Rectangle {
                     height: item_delegate.height
                     opacity: 0.7
                     Text {
+                        property bool fontResized: false
                         id: gameitem_text
                         text: name
                         color: "black"
@@ -78,25 +82,29 @@ Rectangle {
             id: gamelist_model
         }
     }
-
     Text {
         id: gamename_text
-        x: 10
-        y: 10
-        width: 200
-        height: 100
+        anchors.top: parent.top
+        anchors.topMargin: 5
+        anchors.left: parent.left
+        anchors.leftMargin: 5
+        transformOrigin: Text.TopLeft
+        color: "black"
         text: ""
         font.pixelSize: 10
+        scale: ToxicWaste.scaleFactor()
     }
-
     Text {
         id: fps_text
-        x: 10
-        y: parent.height - 20
-        color: "#ffffff"
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
+        anchors.left: parent.left
+        anchors.leftMargin: 5
+        transformOrigin: Text.BottomLeft
+        color: "lightgrey"
         text: qsTr("FPS") + ": " + parent.fps.toString()
-        font.bold: false
-        style: Text.Normal
         font.pixelSize: 10
+        scale: ToxicWaste.scaleFactor()
+        visible: parent.fpsVisible
     }
 }
