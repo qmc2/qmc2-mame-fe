@@ -24,7 +24,8 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     qml/ToxicWaste/ToxicWaste.qml \
-    qml/ToxicWaste/ToxicWaste.js
+    qml/ToxicWaste/ToxicWaste.js \
+    qml/ToxicWaste/BackgroundAnimation.qml
 
 HEADERS += \
     tweakedqmlappviewer.h

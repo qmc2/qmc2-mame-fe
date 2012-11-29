@@ -4,8 +4,9 @@ import "ToxicWaste.js" as ToxicWaste
 Rectangle {
     property int fps: 0
     property bool fpsVisible: true
+    property bool showBackgroundAnimation: true
     Component.onCompleted: ToxicWaste.init()
-    id: toxic_waste_main
+    id: toxicWasteMain
     width: ToxicWaste.baseWidth()
     height: ToxicWaste.baseHeight()
     gradient: Gradient {
@@ -21,14 +22,13 @@ Rectangle {
             position: 1.0
             color: "#000000"
         }
-    }  
+    }
     ListView {
-        id: gamelist_view
+        id: gamelistView
         scale: ToxicWaste.scaleFactor()
         height: parent.height / scale - 20
         flickDeceleration: 1500
         maximumFlickVelocity: 3000
-        highlightRangeMode: ListView.NoHighlightRange
         snapMode: ListView.NoSnap
         interactive: true
         keyNavigationWraps: false
@@ -36,6 +36,7 @@ Rectangle {
         anchors.horizontalCenterOffset: 0
         x: parent.width / scale / 2 - width / 2
         y: 10
+        z: 1
         width: 304
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
@@ -43,47 +44,59 @@ Rectangle {
         orientation: ListView.Vertical
         flickableDirection: Flickable.AutoFlickDirection
         smooth: true
+        preferredHighlightBegin: 0
+        preferredHighlightEnd: 0
+        highlightRangeMode: ListView.StrictlyEnforceRange
+        highlightFollowsCurrentItem: true
         delegate: Item {
-            property string gameid: id
-            id: item_delegate
+            property string gameId: id
+            id: gamelistItemDelegate
             height: 64
-            Item {
-                Image {
-                    id: gameitem_image
-                    fillMode: Image.PreserveAspectFit
-                    smooth: true
-                    source: "images/gameitem_bg.png"
-                    height: item_delegate.height
-                    opacity: 0.7
-                    Text {
-                        property bool fontResized: false
-                        id: gameitem_text
-                        text: name
-                        color: "black"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        font.bold: true
-                        font.italic: true
-                        font.pixelSize: parent.height - 40
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        acceptedButtons: Qt.LeftButton
-                        onEntered: ToxicWaste.itemEntered(gameitem_text, gameitem_image)
-                        onExited: ToxicWaste.itemExited(gameitem_text, gameitem_image)
-                        onClicked: ToxicWaste.itemClicked(item_delegate.gameid, gameitem_text.text)
-                        onDoubleClicked: ToxicWaste.itemDoubleClicked(item_delegate.gameid, gameitem_text.text)
-                    }
+            Image {
+                id: gamelistItemImage
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                source: "images/gameitem_bg.png"
+                height: gamelistItemDelegate.height
+                opacity: 0.7
+                Text {
+                    property bool fontResized: false
+                    id: gamelistItemText
+                    text: name
+                    color: "black"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.bold: true
+                    font.italic: true
+                    font.pixelSize: parent.height - 40
+                    elide: Text.ElideMiddle
+                }
+                MouseArea {
+                    id: gamelistItemMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    acceptedButtons: Qt.LeftButton
+                    onEntered: ToxicWaste.itemEntered(gamelistItemText, gamelistItemImage)
+                    onExited: ToxicWaste.itemExited(gamelistItemText, gamelistItemImage)
+                    onClicked: ToxicWaste.itemClicked(gamelistView.currentIndex, gamelistItemDelegate.gameId, gamelistItemText.text)
+                    onDoubleClicked: ToxicWaste.itemDoubleClicked(gamelistView.currentIndex, gamelistItemDelegate.gameId, gamelistItemText.text)
+                }
+            }
+            states: State {
+                name: "active"
+                StateChangeScript {
+                    name: "stateChangeScript"
+                    script: ToxicWaste.setCurrentItem(gamelistItemText, gamelistItemImage)
                 }
             }
         }
         model: ListModel {
-            id: gamelist_model
+            id: gamelistModel
         }
+        //onCurrentItemChanged: ToxicWaste.itemEntered(ToxicWaste.currentItemText, ToxicWaste.currentItemImage)
     }
     Text {
-        id: gamename_text
+        id: gamenameText
         anchors.top: parent.top
         anchors.topMargin: 5
         anchors.left: parent.left
@@ -93,9 +106,10 @@ Rectangle {
         text: ""
         font.pixelSize: 10
         scale: ToxicWaste.scaleFactor()
+        z: 1
     }
     Text {
-        id: fps_text
+        id: fpsText
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 5
         anchors.left: parent.left
@@ -106,5 +120,63 @@ Rectangle {
         font.pixelSize: 10
         scale: ToxicWaste.scaleFactor()
         visible: parent.fpsVisible
+        z: 1
     }
+    Rectangle {
+        id: confirmQuitDialog
+        smooth: true
+        radius: 10
+        scale: ToxicWaste.scaleFactor()
+        x: parent.width / 2 - width / 2
+        y: parent.height / 2 - height / 2
+        width: 200
+        height: 100
+        border.color: "black"
+        border.width: 2
+        color: "#c0f08c"
+        opacity: 0.0
+        state: "hidden"
+        z: 2
+        Text {
+            text: qsTr("Really quit?")
+            anchors.horizontalCenterOffset: 0
+            anchors.top: parent.top
+            anchors.topMargin: 5
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: 12
+        }
+        states: [
+            State {
+                name: "hidden"
+                PropertyChanges { target: confirmQuitDialog; opacity: 0.0 }
+            },
+            State {
+                name: "shown"
+                PropertyChanges { target: confirmQuitDialog; opacity: 1.0 }
+            }
+        ]
+        transitions: Transition {
+            from: "hidden"
+            to: "shown"
+            reversible: true
+            PropertyAnimation { property: "opacity"; duration: 250 }
+        }
+    }
+    BackgroundAnimation {
+        visible: parent.showBackgroundAnimation
+        z: 0
+    }
+    focus: true
+    Keys.onPressed: {
+        switch ( event.key ) {
+        case Qt.Key_Escape:
+            if ( confirmQuitDialog.state == "hidden" )
+                confirmQuitDialog.state = "shown";
+            else
+                confirmQuitDialog.state = "hidden";
+            event.accepted = true;
+            break;
+        }
+    }
+    Keys.forwardTo: [gamelistView]
 }

@@ -1,10 +1,12 @@
-var last_item_text;
-var last_item_image;
+var lastItemText;
+var lastItemImage;
+var currentItemText;
+var currentItemImage;
 
 function init() {
-    gamelist_model.clear();
+    gamelistModel.clear();
     for (var i = 1; i < 101; i++)
-        gamelist_model.append({"name": "Item " + i, "id": i});
+        gamelistModel.append({"name": "Item " + i, "id": i});
 }
 
 function baseWidth() {
@@ -16,34 +18,42 @@ function baseHeight() {
 }
 
 function scaleFactor() {
-    var factor = toxic_waste_main.width / baseWidth();
+    var factor = toxicWasteMain.width / baseWidth();
     return factor;
 }
 
-function itemEntered(item_text, item_image) {
-    if ( !item_text.fontResized ) {
-        if ( last_item_text != undefined )
-            itemExited(last_item_text, last_item_image);
-        last_item_text = item_text;
-        last_item_image = item_image;
-        item_text.fontResized = true;
-        item_text.font.pixelSize += 5;
-        item_image.opacity = 1;
+function itemEntered(itemText, itemImage) {
+    if ( !itemText.fontResized ) {
+        if ( lastItemText != undefined )
+            itemExited(lastItemText, lastItemImage);
+        lastItemText = itemText;
+        lastItemImage = itemImage;
+        itemText.fontResized = true;
+        itemText.font.pixelSize += 5;
+        itemImage.opacity = 1;
     }
 }
 
-function itemExited(item_text, item_image) {
-    if ( item_text.fontResized ) {
-        item_text.fontResized = false;
-        item_text.font.pixelSize -= 5;
-        item_image.opacity = 0.7;
+function itemExited(itemText, itemImage) {
+    if ( itemText.fontResized ) {
+        itemText.fontResized = false;
+        itemText.font.pixelSize -= 5;
+        itemImage.opacity = 0.7;
     }
 }
 
-function itemClicked(id, name) {
-    gamename_text.text = name + " clicked!"
+function itemClicked(index, id, name) {
+    gamelistView.positionViewAtIndex(index, ListView.Contain);
+    gamenameText.text = name + " clicked!"
 }
 
-function itemDoubleClicked(id, name) {
-    gamename_text.text = name + " double-clicked!"
+function itemDoubleClicked(index, id, name) {
+    gamelistView.positionViewAtIndex(index, ListView.Contain);
+    gamenameText.text = name + " double-clicked!"
+}
+
+function setCurrentItem(itemText, itemImage) {
+    currentItemText = itemText;
+    currentItemImage = itemImage;
+    itemEntered(itemText, itemImage);
 }
