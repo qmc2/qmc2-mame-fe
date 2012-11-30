@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import Qt.labs.shaders 1.0
 import "ToxicWaste.js" as ToxicWaste
 
 Rectangle {
@@ -9,6 +10,7 @@ Rectangle {
     id: toxicWasteMain
     width: ToxicWaste.baseWidth()
     height: ToxicWaste.baseHeight()
+    z: 0
     gradient: Gradient {
         GradientStop {
             position: 0.0
@@ -36,7 +38,7 @@ Rectangle {
         anchors.horizontalCenterOffset: 0
         x: parent.width / scale / 2 - width / 2
         y: 10
-        z: 1
+        z: 3
         width: 304
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
@@ -125,7 +127,7 @@ Rectangle {
         text: ""
         font.pixelSize: 10
         scale: ToxicWaste.scaleFactor()
-        z: 1
+        z: 3
     }
     Text {
         id: fpsText
@@ -139,7 +141,7 @@ Rectangle {
         font.pixelSize: 10
         scale: ToxicWaste.scaleFactor()
         visible: parent.fpsVisible
-        z: 1
+        z: 3
     }
     Rectangle {
         id: confirmQuitDialog
@@ -155,7 +157,7 @@ Rectangle {
         color: "#c0f08c"
         opacity: 0.0
         state: "hidden"
-        z: 2
+        z: 4
         Text {
             text: qsTr("Really quit?")
             anchors.horizontalCenterOffset: 0
@@ -184,7 +186,36 @@ Rectangle {
     BackgroundAnimation {
         id: backgroundAnim
         visible: parent.showBackgroundAnimation
-        z: 0
+        z: 2
+    }
+    ShaderEffectSource {
+        id: effectSource
+        anchors.fill: parent
+        sourceItem: Image {
+            source: "images/shadereffectsource.png"
+            anchors.fill: parent
+        }
+        live: false
+        hideSource: true
+    }
+    RadialWaveEffect {
+        id: layer
+        anchors.fill: parent;
+        source: effectSource
+        wave: 0.0
+        waveOriginX: 0.5
+        waveOriginY: 0.5
+        waveWidth: 0.01
+        z: 1
+        NumberAnimation on wave {
+            id: waveAnim
+            running: true
+            loops: Animation.Infinite
+            easing.type: Easing.Linear
+            from: 0.0000;
+            to: 2.0000;
+            duration: 3000
+        }
     }
     focus: true
     Keys.onPressed: {
