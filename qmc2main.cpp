@@ -7336,7 +7336,7 @@ void MainWindow::loadSoftwareInfoDB()
 			if ( singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$")) && !singleLineSimplified.startsWith("$info=") ) {
 				QStringList infoWords = singleLineSimplified.mid(1).split("=", QString::SkipEmptyParts);
 				if ( infoWords.count() == 2 ) {
-					QString systemName = infoWords[0];
+					QStringList systemNames = infoWords[0].split(",", QString::SkipEmptyParts);
 					QStringList gameWords = infoWords[1].split(",", QString::SkipEmptyParts);
 
 					while ( !singleLineSimplified.startsWith("$bio") && !ts.atEnd() ) {
@@ -7386,7 +7386,8 @@ void MainWindow::loadSoftwareInfoDB()
 								swInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(swInfoString));
 #endif
 							foreach (QString gameName, gameWords)
-								qmc2SoftwareInfoDB[systemName + ":" + gameName] = swInfo;
+								foreach (QString systemName, systemNames)
+									qmc2SoftwareInfoDB[systemName + ":" + gameName] = swInfo;
 						}
 					}
 				}
