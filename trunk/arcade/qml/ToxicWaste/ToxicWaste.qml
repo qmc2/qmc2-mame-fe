@@ -55,7 +55,6 @@ Rectangle {
             border.width: 2
             width: 304
             height: 64
-            scale: ToxicWaste.scaleFactor()
             anchors.horizontalCenter: parent.horizontalCenter
             opacity: 0.7
             y: 10
