@@ -6,57 +6,71 @@ Item {
     anchors.fill: parent
     Rectangle {
         id: rectOne
-        width: 50
+        width: 50 * ToxicWaste.scaleFactor()
         height: parent.height
+        y: 0
+        x: -width
         opacity: 0.2
-        scale: ToxicWaste.scaleFactor()
         gradient: Gradient {
             GradientStop { position: 0.0; color: "red" }
             GradientStop { position: 0.5; color: "yellow" }
             GradientStop { position: 1.0; color: "green" }
         }
         SequentialAnimation on x {
-            id: anim
-            running: true
-            loops: Animation.Infinite
+            id: animOne
             NumberAnimation {
                 to: toxicWasteMain.width
-                duration: 2000
+                duration: 2500
                 easing.type: Easing.InOutCubic
             }
             NumberAnimation {
-                to: 0 - rectOne.width
-                duration: 2000
+                to: -rectOne.width
+                duration: 2500
                 easing.type: Easing.InOutCubic
+            }
+            ScriptAction {
+                script: {
+                    animOne.stop();
+                    animOne.start();
+                }
             }
         }
     }
     Rectangle {
         id: rectTwo
-        width: 100
+        width: 100 * ToxicWaste.scaleFactor()
         height: parent.height
+        y: 0
+        x: -width
         opacity: 0.2
-        scale: ToxicWaste.scaleFactor()
         gradient: Gradient {
             GradientStop { position: 0.0; color: "yellow" }
             GradientStop { position: 0.5; color: "green" }
             GradientStop { position: 1.0; color: "red" }
         }
         SequentialAnimation on x {
+            id: animTwo
+            property int pauseDuration: 120
             PauseAnimation {
-                duration: 100
+                duration: animTwo.pauseDuration
             }
             SequentialAnimation {
-                loops: Animation.Infinite
                 NumberAnimation {
                     to: toxicWasteMain.width
-                    duration: 2000
+                    duration: 2500
                     easing.type: Easing.InOutCubic
                 }
                 NumberAnimation {
-                    to: 0 - rectTwo.width
-                    duration: 2000
+                    to: -rectTwo.width
+                    duration: 2500
                     easing.type: Easing.InOutCubic
+                }
+                ScriptAction {
+                    script: {
+                        animTwo.stop();
+                        animTwo.pauseDuration = 0;
+                        animTwo.start();
+                    }
                 }
             }
         }
