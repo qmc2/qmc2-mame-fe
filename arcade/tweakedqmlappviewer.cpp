@@ -5,6 +5,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
 {
     numFrames = 0;
+    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);
 }
