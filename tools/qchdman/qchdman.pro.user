@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.6.0, 2012-11-26T18:15:10. -->
+<!-- Written by Qt Creator 2.6.0, 2012-11-30T12:07:48. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -102,7 +102,7 @@
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 4.8.2 Release</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Qt 4.8.3 Release</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Release</value>
     <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
     <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">/home/rene/src/qmc2/tools/qchdman</value>
@@ -153,7 +153,7 @@
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 4.8.2 Debug</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Qt 4.8.3 Debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Debug</value>
     <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
     <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">/home/rene/src/qmc2/tools/qchdman</value>

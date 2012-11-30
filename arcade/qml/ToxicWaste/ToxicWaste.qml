@@ -45,7 +45,22 @@ Rectangle {
         flickableDirection: Flickable.AutoFlickDirection
         smooth: true
         preferredHighlightBegin: 0
-        preferredHighlightEnd: 0
+        preferredHighlightEnd: 64
+        highlight: Rectangle {
+            id: itemHighlighter
+            smooth: true
+            color: "#c0f08c"
+            radius: 50
+            border.color: "black"
+            border.width: 2
+            width: 304
+            height: 64
+            scale: ToxicWaste.scaleFactor()
+            anchors.horizontalCenter: parent.horizontalCenter
+            opacity: 0.7
+            y: 10
+            z: 0
+        }
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightFollowsCurrentItem: true
         delegate: Item {
@@ -78,8 +93,14 @@ Rectangle {
                     acceptedButtons: Qt.LeftButton
                     onEntered: ToxicWaste.itemEntered(gamelistItemText, gamelistItemImage)
                     onExited: ToxicWaste.itemExited(gamelistItemText, gamelistItemImage)
-                    onClicked: ToxicWaste.itemClicked(gamelistView.currentIndex, gamelistItemDelegate.gameId, gamelistItemText.text)
-                    onDoubleClicked: ToxicWaste.itemDoubleClicked(gamelistView.currentIndex, gamelistItemDelegate.gameId, gamelistItemText.text)
+                    onClicked: {
+                        gamelistView.currentIndex = index;
+                        ToxicWaste.itemClicked(gamelistItemDelegate.gameId, gamelistItemText.text);
+                    }
+                    onDoubleClicked: {
+                        gamelistView.currentIndex = index;
+                        ToxicWaste.itemClicked(gamelistItemDelegate.gameId, gamelistItemText.text);
+                    }
                 }
             }
             states: State {
@@ -93,7 +114,6 @@ Rectangle {
         model: ListModel {
             id: gamelistModel
         }
-        //onCurrentItemChanged: ToxicWaste.itemEntered(ToxicWaste.currentItemText, ToxicWaste.currentItemImage)
     }
     Text {
         id: gamenameText
@@ -163,6 +183,7 @@ Rectangle {
         }
     }
     BackgroundAnimation {
+        id: backgroundAnim
         visible: parent.showBackgroundAnimation
         z: 0
     }
