@@ -42,13 +42,11 @@ function itemExited(itemText, itemImage) {
     }
 }
 
-function itemClicked(index, id, name) {
-    gamelistView.positionViewAtIndex(index, ListView.Contain);
+function itemClicked(id, name) {
     gamenameText.text = name + " clicked!"
 }
 
-function itemDoubleClicked(index, id, name) {
-    gamelistView.positionViewAtIndex(index, ListView.Contain);
+function itemDoubleClicked(id, name) {
     gamenameText.text = name + " double-clicked!"
 }
 
