@@ -101,11 +101,11 @@ Rectangle {
                     hoverEnabled: true
                     acceptedButtons: Qt.LeftButton
                     onEntered: {
-                        if ( confirmQuitDialog.state == "hidden" )
+                        if ( confirmQuitDialog.state == "hidden" && preferencesDialog.state == "hidden" )
                             ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
                     }
                     onExited: {
-                        if ( confirmQuitDialog.state == "hidden" )
+                        if ( confirmQuitDialog.state == "hidden" && preferencesDialog.state == "hidden" )
                             ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
                     }
                     onClicked: {
@@ -146,7 +146,7 @@ Rectangle {
         color: "#c0f08c"
         opacity: 0.0
         state: "hidden"
-        z: 4
+        z: 5
         Text {
             text: qsTr("Really quit?")
             anchors.top: parent.top
@@ -178,6 +178,78 @@ Rectangle {
             State {
                 name: "shown"
                 PropertyChanges { target: confirmQuitDialog; opacity: 1.0 }
+            }
+        ]
+        transitions: Transition {
+            from: "hidden"
+            to: "shown"
+            reversible: true
+            PropertyAnimation { property: "opacity"; duration: 250 }
+        }
+    }
+    Rectangle {
+        id: preferencesDialog
+        smooth: true
+        radius: 10
+        scale: ToxicWaste.scaleFactor()
+        x: parent.width / 2 - width / 2
+        y: parent.height / 2 - height / 2
+        width: 260
+        height: 120
+        border.color: "black"
+        border.width: 2
+        color: "#c0f08c"
+        opacity: 0.0
+        state: "hidden"
+        z: 4
+        Text {
+            id: headerText
+            text: qsTr("Preferences")
+            anchors.top: parent.top
+            anchors.topMargin: 10
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: 0
+            font.pixelSize: 12
+            font.bold: true
+        }
+        Grid {
+            anchors.top: headerText.bottom
+            anchors.topMargin: 10
+            anchors.bottom: okButton.top
+            anchors.bottomMargin: 10
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 10
+            rows: 1
+            columns: 2
+            Text {
+                text: qsTr("Show background animation?")
+                font.pixelSize: 12
+            }
+            Text {
+                text: "yes / no"
+                font.pixelSize: 12
+            }
+        }
+        Button {
+            id: okButton
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("Close")
+            onClicked: {
+                preferencesDialog.state = "hidden";
+            }
+        }
+        states: [
+            State {
+                name: "hidden"
+                PropertyChanges { target: preferencesDialog; opacity: 0.0 }
+            },
+            State {
+                name: "shown"
+                PropertyChanges { target: preferencesDialog; opacity: 1.0 }
             }
         ]
         transitions: Transition {
@@ -309,6 +381,26 @@ Rectangle {
                 }
             ]
         }
+        Image {
+            id: preferencesButton
+            anchors.top: parent.top
+            anchors.topMargin: 5
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.right: fullScreenToggleButton.left
+            anchors.rightMargin: 5
+            source: "images/preferences.png"
+            smooth: true
+            fillMode: Image.PreserveAspectFit
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: parent.opacity = 0.5
+                onExited: parent.opacity = 1.0
+                onClicked: { parent.opacity = 1.0; preferencesDialog.state = "shown"; }
+            }
+        }
+
     }
     focus: true
     Keys.onPressed: {
