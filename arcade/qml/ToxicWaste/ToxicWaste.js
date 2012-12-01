@@ -1,7 +1,5 @@
 var lastItemText;
-var lastItemImage;
-var currentItemText;
-var currentItemImage;
+var lastitemBackground;
 
 function init() {
     gamelistModel.clear();
@@ -22,26 +20,31 @@ function scaleFactor() {
     return factor;
 }
 
-function itemEntered(itemText, itemImage) {
+function itemEntered(itemText, itemBackground) {
     if ( !itemText.fontResized ) {
         if ( lastItemText != undefined )
-            itemExited(lastItemText, lastItemImage);
+            itemExited(lastItemText, lastitemBackground);
         lastItemText = itemText;
-        lastItemImage = itemImage;
+        lastitemBackground = itemBackground;
         itemText.fontResized = true;
         itemText.font.pixelSize += 5;
-        itemImage.opacity = 1;
+        itemBackground.opacity = 1;
     }
 }
 
-function itemExited(itemText, itemImage) {
+function itemExited(itemText, itemBackground) {
     if ( itemText.fontResized ) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
-        itemImage.opacity = 0.7;
+        itemBackground.opacity = 0.7;
     }
 }
 
-function itemClicked(id, name) {
-    gamenameText.text = name + " clicked!"
+function itemClicked(itemText, itemBackground) {
+    gamenameText.text = itemText.text + " clicked!"
+    if ( itemText.fontResized ) {
+        itemText.fontResized = false;
+        itemText.font.pixelSize -= 5;
+        itemBackground.opacity = 0.7;
+    }
 }

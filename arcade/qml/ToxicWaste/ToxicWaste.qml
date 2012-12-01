@@ -51,14 +51,14 @@ Rectangle {
         highlight: Rectangle {
             id: itemHighlighter
             smooth: true
-            color: "#c0f08c"
+            color: "white"
             radius: 50
             border.color: "black"
             border.width: 2
             width: 304
             height: 64
             anchors.horizontalCenter: parent.horizontalCenter
-            opacity: 0.7
+            opacity: 1.0
             y: 10
             z: 0
         }
@@ -67,12 +67,12 @@ Rectangle {
         delegate: Item {
             property string gameId: id
             id: gamelistItemDelegate
+            width: 304
             height: 64
             Rectangle {
                 id: gamelistItemBackground
                 smooth: true
-                height: gamelistItemDelegate.height
-                width: 304
+                anchors.fill: parent
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "lightgrey" }
                     GradientStop { position: 0.5; color: "white" }
@@ -80,6 +80,8 @@ Rectangle {
                 }
                 opacity: 0.7
                 radius: 50
+                border.color: "black"
+                border.width: 2
                 Text {
                     property bool fontResized: false
                     id: gamelistItemText
@@ -105,7 +107,7 @@ Rectangle {
                     }
                     onClicked: {
                         gamelistView.currentIndex = index;
-                        ToxicWaste.itemClicked(gamelistItemDelegate.gameId, gamelistItemText.text);
+                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground);
                     }
                 }
             }
