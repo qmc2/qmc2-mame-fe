@@ -1,4 +1,5 @@
 #include <QGraphicsObject>
+#include <QDeclarativeContext>
 #include "tweakedqmlappviewer.h"
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
@@ -6,6 +7,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 {
     numFrames = 0;
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+    rootContext()->setContextProperty("viewer", this);
 
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);
