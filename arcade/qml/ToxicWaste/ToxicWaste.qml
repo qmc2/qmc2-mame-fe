@@ -6,6 +6,7 @@ Rectangle {
     property int fps: 0
     property bool fpsVisible: true
     property bool showBackgroundAnimation: true
+    property bool fullScreen: false
     Component.onCompleted: ToxicWaste.init()
     id: toxicWasteMain
     width: ToxicWaste.baseWidth()
@@ -100,10 +101,12 @@ Rectangle {
                     hoverEnabled: true
                     acceptedButtons: Qt.LeftButton
                     onEntered: {
-                        ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
+                        if ( confirmQuitDialog.state == "hidden" )
+                            ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
                     }
                     onExited: {
-                        ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
+                        if ( confirmQuitDialog.state == "hidden" )
+                            ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
                     }
                     onClicked: {
                         gamelistView.currentIndex = index;
@@ -129,20 +132,6 @@ Rectangle {
         scale: ToxicWaste.scaleFactor()
         z: 3
     }
-    Text {
-        id: fpsText
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
-        anchors.left: parent.left
-        anchors.leftMargin: 5
-        transformOrigin: Text.BottomLeft
-        color: "lightgrey"
-        text: qsTr("FPS") + ": " + parent.fps.toString()
-        font.pixelSize: 10
-        scale: ToxicWaste.scaleFactor()
-        visible: parent.fpsVisible
-        z: 3
-    }
     Rectangle {
         id: confirmQuitDialog
         smooth: true
@@ -150,8 +139,8 @@ Rectangle {
         scale: ToxicWaste.scaleFactor()
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
-        width: 200
-        height: 100
+        width: 120
+        height: 80
         border.color: "black"
         border.width: 2
         color: "#c0f08c"
@@ -160,11 +149,26 @@ Rectangle {
         z: 4
         Text {
             text: qsTr("Really quit?")
-            anchors.horizontalCenterOffset: 0
             anchors.top: parent.top
-            anchors.topMargin: 5
+            anchors.topMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: 0
             font.pixelSize: 12
+        }
+        Row {
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 10
+            Button {
+                text: qsTr("Yes")
+                onClicked: Qt.quit()
+            }
+            Button {
+                text: qsTr("No")
+                onClicked: confirmQuitDialog.state = "hidden"
+            }
         }
         states: [
             State {
@@ -185,6 +189,9 @@ Rectangle {
     }
     BackgroundAnimation {
         id: backgroundAnim
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.left: parent.left
         visible: parent.showBackgroundAnimation
         z: 2
     }
@@ -217,6 +224,92 @@ Rectangle {
             duration: 3000
         }
     }
+    Rectangle {
+        id: menuAndStatusBar
+        x: 0
+        z: 4
+        width: 800
+        height: 24
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
+        transformOrigin: Rectangle.Bottom
+        opacity: 0.3
+        smooth: true
+        scale: ToxicWaste.scaleFactor()
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "lightgrey" }
+            GradientStop { position: 1.0; color: "black" }
+        }
+        Text {
+            id: fpsText
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+            color: "white"
+            text: qsTr("FPS") + ": " + toxicWasteMain.fps.toString()
+            visible: toxicWasteMain.fpsVisible
+        }
+        Image {
+            id: exitButton
+            anchors.top: parent.top
+            anchors.topMargin: 5
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.right: parent.right
+            anchors.rightMargin: 5
+            source: "images/exit.png"
+            smooth: true
+            fillMode: Image.PreserveAspectFit
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: parent.opacity = 0.5
+                onExited: parent.opacity = 1.0
+                onClicked: { parent.opacity = 1.0; confirmQuitDialog.state = "shown"; }
+            }
+        }
+        Image {
+            id: fullScreenToggleButton
+            anchors.top: parent.top
+            anchors.topMargin: 5
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.right: exitButton.left
+            anchors.rightMargin: 5
+            source: "images/fullscreen.png"
+            state: toxicWasteMain.fullScreen ? "fullscreen" : "windowed"
+            smooth: true
+            fillMode: Image.PreserveAspectFit
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: parent.opacity = 0.5
+                onExited: parent.opacity = 1.0
+                onClicked: {
+                    if ( fullScreenToggleButton.state == "windowed" ) {
+                        fullScreenToggleButton.state = "fullscreen"
+                        toxicWasteMain.fullScreen = true;
+                    } else {
+                        fullScreenToggleButton.state = "windowed"
+                        toxicWasteMain.fullScreen = false;
+                    }
+                    parent.opacity = 1.0;
+                }
+            }
+            states: [
+                State {
+                    name: "fullscreen"
+                    PropertyChanges { target: fullScreenToggleButton; source: "images/windowed.png" }
+                },
+                State {
+                    name: "windowed"
+                    PropertyChanges { target: fullScreenToggleButton; source: "images/fullscreen.png" }
+                }
+            ]
+        }
+    }
     focus: true
     Keys.onPressed: {
         switch ( event.key ) {
@@ -230,4 +323,10 @@ Rectangle {
         }
     }
     Keys.forwardTo: [gamelistView]
+    onFullScreenChanged: {
+        if ( fullScreen )
+            viewer.showFullScreen();
+        else
+            viewer.showNormal();
+    }
 }

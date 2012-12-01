@@ -16,8 +16,7 @@ function baseHeight() {
 }
 
 function scaleFactor() {
-    var factor = toxicWasteMain.width / baseWidth();
-    return factor;
+    return toxicWasteMain.width / baseWidth();
 }
 
 function itemEntered(itemText, itemBackground) {
