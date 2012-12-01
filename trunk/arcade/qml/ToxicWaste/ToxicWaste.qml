@@ -68,13 +68,18 @@ Rectangle {
             property string gameId: id
             id: gamelistItemDelegate
             height: 64
-            Image {
-                id: gamelistItemImage
-                fillMode: Image.PreserveAspectFit
+            Rectangle {
+                id: gamelistItemBackground
                 smooth: true
-                source: "images/gameitem_bg.png"
                 height: gamelistItemDelegate.height
+                width: 304
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "lightgrey" }
+                    GradientStop { position: 0.5; color: "white" }
+                    GradientStop { position: 1.0; color: "lightgrey" }
+                }
                 opacity: 0.7
+                radius: 50
                 Text {
                     property bool fontResized: false
                     id: gamelistItemText
@@ -92,23 +97,16 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     acceptedButtons: Qt.LeftButton
-                    onEntered: ToxicWaste.itemEntered(gamelistItemText, gamelistItemImage)
-                    onExited: ToxicWaste.itemExited(gamelistItemText, gamelistItemImage)
+                    onEntered: {
+                        ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
+                    }
+                    onExited: {
+                        ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
+                    }
                     onClicked: {
                         gamelistView.currentIndex = index;
                         ToxicWaste.itemClicked(gamelistItemDelegate.gameId, gamelistItemText.text);
                     }
-                    onDoubleClicked: {
-                        gamelistView.currentIndex = index;
-                        ToxicWaste.itemClicked(gamelistItemDelegate.gameId, gamelistItemText.text);
-                    }
-                }
-            }
-            states: State {
-                name: "active"
-                StateChangeScript {
-                    name: "stateChangeScript"
-                    script: ToxicWaste.setCurrentItem(gamelistItemText, gamelistItemImage)
                 }
             }
         }

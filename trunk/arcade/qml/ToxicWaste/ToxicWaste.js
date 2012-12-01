@@ -45,13 +45,3 @@ function itemExited(itemText, itemImage) {
 function itemClicked(id, name) {
     gamenameText.text = name + " clicked!"
 }
-
-function itemDoubleClicked(id, name) {
-    gamenameText.text = name + " double-clicked!"
-}
-
-function setCurrentItem(itemText, itemImage) {
-    currentItemText = itemText;
-    currentItemImage = itemImage;
-    itemEntered(itemText, itemImage);
-}
