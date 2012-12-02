@@ -194,8 +194,8 @@ Rectangle {
         scale: ToxicWaste.scaleFactor()
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
-        width: 260
-        height: 120
+        width: 228
+        height: 100
         border.color: "black"
         border.width: 2
         color: "#c0f08c"
@@ -212,24 +212,18 @@ Rectangle {
             font.pixelSize: 12
             font.bold: true
         }
-        Grid {
+        CheckBox {
             anchors.top: headerText.bottom
             anchors.topMargin: 10
-            anchors.bottom: okButton.top
-            anchors.bottomMargin: 10
-            anchors.horizontalCenterOffset: 0
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 10
-            rows: 1
-            columns: 2
-            Text {
-                text: qsTr("Show background animation?")
-                font.pixelSize: 12
-            }
-            Text {
-                text: "yes / no"
-                font.pixelSize: 12
-            }
+            anchors.bottom: headerText.bottom
+            anchors.bottomMargin: -26
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: toxicWasteMain.showBackgroundAnimation
+            text: qsTr("Show background animation?")
+            onClicked: toxicWasteMain.showBackgroundAnimation = checked
         }
         Button {
             id: okButton
@@ -238,9 +232,7 @@ Rectangle {
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Close")
-            onClicked: {
-                preferencesDialog.state = "hidden";
-            }
+            onClicked: preferencesDialog.state = "hidden"
         }
         states: [
             State {
