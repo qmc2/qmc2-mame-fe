@@ -3,7 +3,7 @@ var lastitemBackground;
 
 function init() {
     gamelistModel.clear();
-    for (var i = 1; i < 101; i++)
+    for (var i = 1; i < 501; i++)
         gamelistModel.append({"name": "Item " + i, "id": i});
 }
 
@@ -15,8 +15,12 @@ function baseHeight() {
     return 600;
 }
 
-function scaleFactor() {
+function scaleFactorX() {
     return toxicWasteMain.width / baseWidth();
+}
+
+function scaleFactorY() {
+    return toxicWasteMain.height / baseHeight();
 }
 
 function itemEntered(itemText, itemBackground) {

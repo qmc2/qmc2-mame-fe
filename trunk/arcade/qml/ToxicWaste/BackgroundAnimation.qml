@@ -6,7 +6,7 @@ Item {
     anchors.fill: parent
     Rectangle {
         id: rectOne
-        width: 50 * ToxicWaste.scaleFactor()
+        width: 50 * ToxicWaste.scaleFactorX()
         height: parent.height
         y: 0
         x: -width
@@ -37,7 +37,7 @@ Item {
     }
     Rectangle {
         id: rectTwo
-        width: 100 * ToxicWaste.scaleFactor()
+        width: 100 * ToxicWaste.scaleFactorX()
         height: parent.height
         y: 0
         x: -width
