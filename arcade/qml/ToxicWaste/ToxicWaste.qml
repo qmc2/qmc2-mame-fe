@@ -195,7 +195,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 228
-        height: 100
+        height: 126
         border.color: "black"
         border.width: 2
         color: "#c0f08c"
@@ -213,6 +213,7 @@ Rectangle {
             font.bold: true
         }
         CheckBox {
+            id: showBgAnimCheckBox
             anchors.top: headerText.bottom
             anchors.topMargin: 10
             anchors.bottom: headerText.bottom
@@ -224,6 +225,20 @@ Rectangle {
             checked: toxicWasteMain.showBackgroundAnimation
             text: qsTr("Show background animation?")
             onClicked: toxicWasteMain.showBackgroundAnimation = checked
+        }
+        CheckBox {
+            id: showFpsCheckBox
+            anchors.top: showBgAnimCheckBox.bottom
+            anchors.topMargin: 10
+            anchors.bottom: showBgAnimCheckBox.bottom
+            anchors.bottomMargin: -26
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: toxicWasteMain.fpsVisible
+            text: qsTr("Show FPS counter?")
+            onClicked: toxicWasteMain.fpsVisible = checked
         }
         Button {
             id: okButton

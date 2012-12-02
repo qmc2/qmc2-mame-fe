@@ -4,11 +4,13 @@ qmc2/arcade/qmlapplicationviewer/.svn/text-base/qmlapplicationviewer.h.svn-base
 qmc2/arcade/qmlapplicationviewer/.svn/text-base/qmlapplicationviewer.pri.svn-base
 qmc2/arcade/qml/.svn
 qmc2/arcade/qml/ToxicWaste/images/.svn
+qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/checkmark.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/exit.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/fullscreen.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/preferences.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/shadereffectsource.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/windowed.png.svn-base
+qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/checkmark.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/exit.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/fullscreen.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/preferences.png.svn-base
@@ -17,6 +19,7 @@ qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/windowed.png.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/BackgroundAnimation.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/Button.qml.svn-base
+qmc2/arcade/qml/ToxicWaste/.svn/text-base/CheckBox.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/RadialWaveEffect.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/ToxicWaste.js.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/ToxicWaste.qml.svn-base
