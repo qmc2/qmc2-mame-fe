@@ -28,19 +28,18 @@ Rectangle {
     }
     ListView {
         id: gamelistView
-        scale: ToxicWaste.scaleFactor()
-        height: parent.height / scale - 20
-        flickDeceleration: 1500
-        maximumFlickVelocity: 3000
+        scale: ToxicWaste.scaleFactorX()
+        flickDeceleration: 2000
+        maximumFlickVelocity: 4000
         snapMode: ListView.NoSnap
         interactive: true
         keyNavigationWraps: false
         anchors.verticalCenterOffset: 0
         anchors.horizontalCenterOffset: 0
         x: parent.width / scale / 2 - width / 2
-        y: 10
         z: 3
         width: 304
+        height: parent.height / scale - 20
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 10
@@ -48,7 +47,7 @@ Rectangle {
         flickableDirection: Flickable.AutoFlickDirection
         smooth: true
         preferredHighlightBegin: 0
-        preferredHighlightEnd: 64
+        preferredHighlightEnd: 0
         highlight: Rectangle {
             id: itemHighlighter
             smooth: true
@@ -118,6 +117,41 @@ Rectangle {
         model: ListModel {
             id: gamelistModel
         }
+        function firstVisibleItem() { return indexAt(contentX + 10, contentY + 10); }
+        function lastVisibleItem() { return indexAt(contentX + width - 10, contentY + height - 10); }
+        function itemsPerPage() { return Math.floor(height / 74); }
+        Keys.onPressed: {
+            switch ( event.key ) {
+            case Qt.Key_PageUp:
+                if ( currentIndex - itemsPerPage() > 0 ) {
+                    incrementCurrentIndex();
+                    contentY = contentY - height + 62;
+                    if ( currentIndex > 0 )
+                        decrementCurrentIndex();
+                } else
+                    currentIndex = 0;
+                event.accepted = true;
+                break;
+            case Qt.Key_PageDown:
+                if ( currentIndex + itemsPerPage() < model.count - 1 ) {
+                    decrementCurrentIndex();
+                    contentY = contentY + height - 62;
+                    if ( currentIndex < model.count - 1 )
+                        incrementCurrentIndex();
+                } else
+                    currentIndex = model.count - 1;
+                event.accepted = true;
+                break;
+            case Qt.Key_End:
+                positionViewAtEnd();
+                event.accepted = true;
+                break;
+            case Qt.Key_Home:
+                positionViewAtBeginning();
+                event.accepted = true;
+                break;
+            }
+        }
     }
     Text {
         id: gamenameText
@@ -129,14 +163,14 @@ Rectangle {
         color: "black"
         text: ""
         font.pixelSize: 10
-        scale: ToxicWaste.scaleFactor()
+        scale: ToxicWaste.scaleFactorX()
         z: 3
     }
     Rectangle {
         id: confirmQuitDialog
         smooth: true
         radius: 10
-        scale: ToxicWaste.scaleFactor()
+        scale: ToxicWaste.scaleFactorX()
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 120
@@ -191,7 +225,7 @@ Rectangle {
         id: preferencesDialog
         smooth: true
         radius: 10
-        scale: ToxicWaste.scaleFactor()
+        scale: ToxicWaste.scaleFactorX()
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 228
@@ -315,7 +349,7 @@ Rectangle {
         transformOrigin: Rectangle.Bottom
         opacity: 0.3
         smooth: true
-        scale: ToxicWaste.scaleFactor()
+        scale: ToxicWaste.scaleFactorX()
         gradient: Gradient {
             GradientStop { position: 0.0; color: "lightgrey" }
             GradientStop { position: 1.0; color: "black" }
