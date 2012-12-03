@@ -1325,7 +1325,7 @@ ifneq '$(ARCH)' 'Windows'
 	@echo "dist            Create source distribution archives (tar.gz and tar.bz2)"
 	@echo "exclude-list    Recreate SVN exclude-list (only used by developers)"
 endif
-	@echo "help | ?        Show make command line help and current build configuration"
+	@echo "help | ?        Show this help"
 ifneq '$(ARCH)' 'Windows'
 	@echo "install         Install QMC2 binaries and data files for system-wide use"
 endif
