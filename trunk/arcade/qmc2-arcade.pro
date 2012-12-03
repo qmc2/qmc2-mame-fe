@@ -16,7 +16,8 @@ QML_IMPORT_PATH =
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    tweakedqmlappviewer.cpp
+    tweakedqmlappviewer.cpp \
+    imageprovider.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -28,4 +29,5 @@ OTHER_FILES += \
     qml/ToxicWaste/BackgroundAnimation.qml
 
 HEADERS += \
-    tweakedqmlappviewer.h
+    tweakedqmlappviewer.h \
+    imageprovider.h

@@ -1,6 +1,9 @@
 #include <QGraphicsObject>
 #include <QDeclarativeContext>
+#include <QDeclarativeEngine>
+
 #include "tweakedqmlappviewer.h"
+#include "imageprovider.h"
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
@@ -8,6 +11,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     numFrames = 0;
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     rootContext()->setContextProperty("viewer", this);
+    engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
 
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);
