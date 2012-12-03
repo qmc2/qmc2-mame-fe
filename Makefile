@@ -960,6 +960,10 @@ tools-clean: qchdman-clean
 tools-install: qchdman-install
 endif
 
+arcade: arcade-bin
+arcade-bin:
+	@$(CD) arcade && $(QMAKE) && $(MAKE)
+
 arcade-clean:
 	@$(CD) arcade && $(QMAKE) && $(MAKE) distclean
 
@@ -1335,6 +1339,8 @@ ifeq '$(ARCH)' 'Darwin'
 else
 	@echo "configure       Create qmake output and stop, alias: qmake"
 endif
+	@echo "arcade          Build arcade-mode binary (qmc2-arcade)"
+	@echo "arcade-clean    Cleanup up arcade-mode build"
 	@echo "tools           Build tools: qchdman"
 	@echo "tools-clean     Clean up tools: qchdman-clean"
 ifneq '$(ARCH)' 'Windows'
