@@ -960,6 +960,9 @@ tools-clean: qchdman-clean
 tools-install: qchdman-install
 endif
 
+arcade-clean:
+	@$(CD) arcade && $(QMAKE) && $(MAKE) distclean
+
 ifeq '$(QUIET)' '1'
 ifeq '$(ARCH)' 'Windows'
 rcgen: qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc
@@ -1173,7 +1176,7 @@ endif
 
 endif
 
-distclean: clean tools-clean
+distclean: clean tools-clean arcade-clean
 
 clean: $(QMAKEFILE)
 	@echo "Cleaning up build of QMC2 v$(VERSION)"
