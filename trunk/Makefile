@@ -1340,7 +1340,7 @@ else
 	@echo "configure       Create qmake output and stop, alias: qmake"
 endif
 	@echo "arcade          Build arcade-mode binary (qmc2-arcade)"
-	@echo "arcade-clean    Cleanup up arcade-mode build"
+	@echo "arcade-clean    Clean up arcade-mode build"
 	@echo "tools           Build tools: qchdman"
 	@echo "tools-clean     Clean up tools: qchdman-clean"
 ifneq '$(ARCH)' 'Windows'
