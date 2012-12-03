@@ -128,6 +128,8 @@ Rectangle {
                     contentY = contentY - height + 62;
                     if ( currentIndex > 0 )
                         decrementCurrentIndex();
+                    else
+                        currentIndex = 0;
                 } else
                     currentIndex = 0;
                 event.accepted = true;
@@ -138,6 +140,8 @@ Rectangle {
                     contentY = contentY + height - 62;
                     if ( currentIndex < model.count - 1 )
                         incrementCurrentIndex();
+                    else
+                        currentIndex = model.count - 1;
                 } else
                     currentIndex = model.count - 1;
                 event.accepted = true;
