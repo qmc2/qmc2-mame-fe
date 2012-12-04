@@ -485,9 +485,14 @@ Rectangle {
     }
     Keys.forwardTo: [gamelistView]
     onFullScreenChanged: {
-        if ( fullScreen )
-            viewer.switchToFullScreen();
-        else
-            viewer.switchToWindowed();
+        if ( !ToxicWaste.initializing ) {
+            if ( fullScreen ) {
+                viewer.switchToFullScreen();
+                fullScreenToggleButton.state = "fullscreen";
+            } else {
+                viewer.switchToWindowed();
+                fullScreenToggleButton.state = "windowed";
+            }
+        }
     }
 }

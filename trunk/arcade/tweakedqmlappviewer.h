@@ -12,7 +12,6 @@ public:
     int numFrames;
     QTimer frameCheckTimer;
     QByteArray savedGeometry;
-    bool initialSwitch;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();
@@ -21,8 +20,8 @@ public slots:
     void fpsReady();
     void loadSettings();
     void saveSettings();
-    void switchToFullScreen();
-    void switchToWindowed();
+    void switchToFullScreen(bool initially = false);
+    void switchToWindowed(bool initially = false);
 
 protected:
     void paintEvent(QPaintEvent *);

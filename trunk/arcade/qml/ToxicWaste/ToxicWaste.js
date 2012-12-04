@@ -1,5 +1,6 @@
 var lastItemText;
 var lastitemBackground;
+var initializing = true;
 
 function init() {
     viewer.loadSettings();
@@ -7,6 +8,8 @@ function init() {
     gamelistModel.clear();
     for (var i = 1; i < 501; i++)
         gamelistModel.append({"name": "Item " + i, "id": i});
+
+    initializing = false;
 }
 
 function baseWidth() {
