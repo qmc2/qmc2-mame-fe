@@ -22,8 +22,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
     viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE);
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+
+    if ( globalConfig->fullScreen() )
+        viewer->switchToFullScreen();
+    else
+        viewer->switchToWindowed();
+
     viewer->setMainQmlFile(QLatin1String("qml/ToxicWaste/ToxicWaste.qml"));
-    viewer->show();
 
     int returnCode = app->exec();
 
