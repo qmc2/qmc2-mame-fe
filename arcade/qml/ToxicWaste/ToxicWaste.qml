@@ -26,26 +26,23 @@ Rectangle {
     height: ToxicWaste.baseHeight()
     z: 0
     gradient: Gradient {
-        GradientStop {
-            position: 0.0
-            color: "#3aa82b"
-        }
-        GradientStop {
-            position: 0.75
-            color: "#ffffff"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#000000"
-        }
+        GradientStop { position: 0.00; color: "#3aa82b" }
+        GradientStop { position: 0.75; color: "#ffffff" }
+        GradientStop { position: 1.00; color: "#000000" }
+    }
+    Image {
+        id: toxicImage
+        anchors.fill: parent
+        fillMode: Image.Stretch
+        source: "images/toxic.png"
+        z: 2
+        smooth: true
     }
     Rectangle {
         id: overlayRect
         height: parent.height
         width: parent.width/2
         z: 3
-//        anchors.verticalCenter: parent.verticalCenter
-//        anchors.verticalCenterOffset: 0
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.bottom: parent.bottom
@@ -53,6 +50,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: 50 * ToxicWaste.scaleFactorX()
         color: "#00000000"
+        opacity: 0.8
         Flipable {
             id: overlayFlip
             property bool flipped: false
@@ -63,13 +61,30 @@ Rectangle {
                 fillMode: Image.Stretch
                 anchors.centerIn: parent
                 anchors.fill: parent
+                smooth: true
             }
-            back: Image {
-                id: overlayImageBack
-                source: "images/overlay.png"
-                fillMode: Image.Stretch
+            back: Rectangle {
+                id: overlayRectBack
                 anchors.centerIn: parent
                 anchors.fill: parent
+                border.color: "black"
+                border.width: 2
+                radius: 10
+                smooth: true
+                gradient: Gradient {
+                    GradientStop { position: 0.00; color: "#ffffff" }
+                    GradientStop { position: 0.50; color: "#c0f08c" }
+                }
+                Text {
+                    id: title
+                    text: qsTr("Let's flip :)")
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.top
+                    anchors.topMargin: 10 * scale
+                    font.pixelSize: 12
+                    font.bold: true
+                    scale: ToxicWaste.scaleFactorX()
+                }
             }
             transform: Rotation {
                 id: overlayRotation
@@ -84,7 +99,7 @@ Rectangle {
                 when: overlayFlip.flipped
             }
             transitions: Transition {
-                NumberAnimation { target: overlayRotation; property: "angle"; duration: 1000 }
+                NumberAnimation { target: overlayRotation; property: "angle"; duration: 500 }
             }
             MouseArea {
                 anchors.fill: parent
@@ -103,7 +118,7 @@ Rectangle {
         z: 3
         width: 280
         height: parent.height / scale - 20
-        anchors.horizontalCenterOffset: 248 * scale
+        anchors.horizontalCenterOffset: 240 * scale
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         spacing: 10
