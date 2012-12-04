@@ -44,9 +44,9 @@ Rectangle {
         width: parent.width/2
         z: 3
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 10 * ToxicWaste.scaleFactorX()
         anchors.left: parent.left
         anchors.leftMargin: 50 * ToxicWaste.scaleFactorX()
         color: "#00000000"
