@@ -1,0 +1,29 @@
+#ifndef ARCADESETTINGS_H
+#define ARCADESETTINGS_H
+
+#include <QSettings>
+
+class ArcadeSettings : public QSettings
+{
+    Q_OBJECT
+public:
+    QString arcadeTheme;
+
+    ArcadeSettings(QString);
+    ~ArcadeSettings();
+    
+signals:
+    
+public slots:
+    void setApplicationVersion(QString version);
+    QString applicationVersion();
+
+    void setFpsVisible(bool);
+    bool fpsVisible();
+    void setShowBackgroundAnimation(bool);
+    bool showBackgroundAnimation();
+    void setFullScreen(bool);
+    bool fullScreen();
+};
+
+#endif

@@ -17,6 +17,8 @@ public:
 
 public slots:
     void fpsReady();
+    void loadSettings();
+    void saveSettings();
 
 protected:
     void paintEvent(QPaintEvent *);

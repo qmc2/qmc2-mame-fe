@@ -1,3 +1,5 @@
+VERSION = 0.1
+
 # Add more folders to ship with the application, here
 folder_01.source = qml/ToxicWaste
 folder_01.target = qml
@@ -17,7 +19,8 @@ QML_IMPORT_PATH =
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     tweakedqmlappviewer.cpp \
-    imageprovider.cpp
+    imageprovider.cpp \
+    arcadesettings.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -30,4 +33,8 @@ OTHER_FILES += \
 
 HEADERS += \
     tweakedqmlappviewer.h \
-    imageprovider.h
+    imageprovider.h \
+    arcadesettings.h \
+    macros.h
+
+DEFINES += QMC2_ARCADE_VERSION=$$VERSION
