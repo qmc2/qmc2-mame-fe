@@ -49,7 +49,6 @@ function itemExited(itemText, itemBackground) {
 }
 
 function itemClicked(itemText, itemBackground) {
-    gamenameText.text = itemText.text + " clicked!"
     if ( itemText.fontResized ) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
