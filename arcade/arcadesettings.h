@@ -2,6 +2,7 @@
 #define ARCADESETTINGS_H
 
 #include <QSettings>
+#include <QSize>
 
 class ArcadeSettings : public QSettings
 {

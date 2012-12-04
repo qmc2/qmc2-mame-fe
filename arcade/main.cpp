@@ -20,15 +20,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
     TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
+
+    viewer->setMainQmlFile(QLatin1String("qml/ToxicWaste/ToxicWaste.qml"));
     viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE);
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
 
     if ( globalConfig->fullScreen() )
-        viewer->switchToFullScreen();
+        viewer->switchToFullScreen(true);
     else
-        viewer->switchToWindowed();
-
-    viewer->setMainQmlFile(QLatin1String("qml/ToxicWaste/ToxicWaste.qml"));
+        viewer->switchToWindowed(true);
 
     int returnCode = app->exec();
 

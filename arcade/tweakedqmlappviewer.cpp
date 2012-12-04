@@ -1,12 +1,12 @@
 #include <QGraphicsObject>
 #include <QDeclarativeContext>
 #include <QDeclarativeEngine>
+#include <QApplication>
 
 #include "tweakedqmlappviewer.h"
 #include "imageprovider.h"
 #include "arcadesettings.h"
-
-//#include <stdio.h>
+#include "macros.h"
 
 extern ArcadeSettings *globalConfig;
 
@@ -14,7 +14,6 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
 {
     numFrames = 0;
-    initialSwitch = true;
 
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
@@ -66,23 +65,22 @@ void TweakedQmlApplicationViewer::saveSettings()
     }
 }
 
-void TweakedQmlApplicationViewer::switchToFullScreen()
+void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 {
-    if ( initialSwitch )
+    if ( initially )
         savedGeometry = globalConfig->viewerGeometry();
     else
         savedGeometry = saveGeometry();
     showFullScreen();
-    initialSwitch = false;
 }
 
-void TweakedQmlApplicationViewer::switchToWindowed()
+void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
 {
-    if ( initialSwitch )
+    if ( initially )
         savedGeometry = globalConfig->viewerGeometry();
     restoreGeometry(savedGeometry);
+    hide();
     showNormal();
-    initialSwitch = false;
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
