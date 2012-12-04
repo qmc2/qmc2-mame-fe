@@ -12,6 +12,7 @@ public:
     int numFrames;
     QTimer frameCheckTimer;
     QByteArray savedGeometry;
+    bool savedMaximized;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();

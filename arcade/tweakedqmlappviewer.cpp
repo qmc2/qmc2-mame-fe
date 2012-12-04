@@ -52,10 +52,13 @@ void TweakedQmlApplicationViewer::loadSettings()
 void TweakedQmlApplicationViewer::saveSettings()
 {
     // save global arcade settings
-    if ( isFullScreen() )
+    if ( isFullScreen() ) {
         globalConfig->setViewerGeometry(savedGeometry);
-    else
+        globalConfig->setViewerMaximized(savedMaximized);
+    } else {
         globalConfig->setViewerGeometry(saveGeometry());
+        globalConfig->setViewerMaximized(isMaximized());
+    }
 
     // save theme-specific arcade settings
     if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
@@ -67,20 +70,28 @@ void TweakedQmlApplicationViewer::saveSettings()
 
 void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 {
-    if ( initially )
+    if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
-    else
+        savedMaximized = globalConfig->viewerMaximized();
+    } else {
         savedGeometry = saveGeometry();
+        savedMaximized = isMaximized();
+    }
     showFullScreen();
 }
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
 {
-    if ( initially )
+    if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
+        savedMaximized = globalConfig->viewerMaximized();
+    }
     restoreGeometry(savedGeometry);
     hide();
-    showNormal();
+    if ( savedMaximized )
+        showMaximized();
+    else
+        showNormal();
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
