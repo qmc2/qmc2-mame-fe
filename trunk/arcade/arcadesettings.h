@@ -16,11 +16,15 @@ public:
 signals:
     
 public slots:
-    void setApplicationVersion(QString version);
+    // global settings
+    void setApplicationVersion(QString);
     QString applicationVersion();
-    void setViewerGeometry(QByteArray geom);
+    void setViewerGeometry(QByteArray);
     QByteArray viewerGeometry();
+    void setViewerMaximized(bool);
+    bool viewerMaximized();
 
+    // theme-specific settings
     void setFpsVisible(bool);
     bool fpsVisible();
     void setShowBackgroundAnimation(bool);

@@ -34,6 +34,16 @@ QByteArray ArcadeSettings::viewerGeometry()
     return value("Arcade/ViewerGeometry", QByteArray()).toByteArray();
 }
 
+void ArcadeSettings::setViewerMaximized(bool maximized)
+{
+    setValue("Arcade/ViewerMaximized", maximized);
+}
+
+bool ArcadeSettings::viewerMaximized()
+{
+    return value("Arcade/ViewerMaximized", false).toBool();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);
