@@ -24,6 +24,16 @@ QString ArcadeSettings::applicationVersion()
     return value("Arcade/Version", QMC2_ARCADE_APP_VERSION).toString();
 }
 
+void ArcadeSettings::setViewerGeometry(QByteArray geom)
+{
+    setValue("Arcade/ViewerGeometry", geom);
+}
+
+QByteArray ArcadeSettings::viewerGeometry()
+{
+    return value("Arcade/ViewerGeometry", QByteArray()).toByteArray();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);

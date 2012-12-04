@@ -17,6 +17,8 @@ signals:
 public slots:
     void setApplicationVersion(QString version);
     QString applicationVersion();
+    void setViewerGeometry(QByteArray geom);
+    QByteArray viewerGeometry();
 
     void setFpsVisible(bool);
     bool fpsVisible();

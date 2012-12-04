@@ -47,14 +47,12 @@ Rectangle {
         snapMode: ListView.NoSnap
         interactive: true
         keyNavigationWraps: false
-        anchors.verticalCenterOffset: 0
-        anchors.horizontalCenterOffset: 0
-        x: parent.width / scale / 2 - width / 2
         z: 3
         width: 280
         height: parent.height / scale - 20
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenterOffset: 248 * scale
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
         spacing: 10
         orientation: ListView.Vertical
         flickableDirection: Flickable.AutoFlickDirection
@@ -71,7 +69,6 @@ Rectangle {
             width: 280
             height: 72
             opacity: 1.0
-            y: 10
             z: 0
         }
         highlightRangeMode: ListView.StrictlyEnforceRange
@@ -111,13 +108,13 @@ Rectangle {
                     anchors.fill: parent
                     hoverEnabled: true
                     acceptedButtons: Qt.LeftButton
-                    onEntered: {
-                        if ( confirmQuitDialog.state == "hidden" && preferencesDialog.state == "hidden" )
-                            ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
-                    }
-                    onExited: {
-                        if ( confirmQuitDialog.state == "hidden" && preferencesDialog.state == "hidden" )
-                            ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
+                    onContainsMouseChanged: {
+                        if ( mapToItem(menuAndStatusBar, mouseX, mouseY).y < 0 ) {
+                            if ( containsMouse )
+                                ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
+                            else
+                                ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
+                        }
                     }
                     onClicked: {
                         gamelistView.currentIndex = index;
@@ -330,7 +327,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
         transformOrigin: Rectangle.Bottom
-        opacity: 0.3
+        opacity: 0.5
         smooth: true
         scale: ToxicWaste.scaleFactorX()
         gradient: Gradient {
@@ -424,7 +421,6 @@ Rectangle {
                 onClicked: { parent.opacity = 1.0; preferencesDialog.state = "shown"; }
             }
         }
-
     }
     BackgroundAnimation {
         id: backgroundAnim
@@ -482,13 +478,16 @@ Rectangle {
                 confirmQuitDialog.state = "hidden";
             event.accepted = true;
             break;
+        case Qt.Key_F11:
+            fullScreen = !fullScreen;
+            break;
         }
     }
     Keys.forwardTo: [gamelistView]
     onFullScreenChanged: {
         if ( fullScreen )
-            viewer.showFullScreen();
+            viewer.switchToFullScreen();
         else
-            viewer.showNormal();
+            viewer.switchToWindowed();
     }
 }
