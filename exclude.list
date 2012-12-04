@@ -24,8 +24,11 @@ qmc2/arcade/qml/ToxicWaste/.svn/text-base/RadialWaveEffect.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/ToxicWaste.js.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/ToxicWaste.qml.svn-base
 qmc2/arcade/.svn
+qmc2/arcade/.svn/text-base/arcadesettings.cpp.svn-base
+qmc2/arcade/.svn/text-base/arcadesettings.h.svn-base
 qmc2/arcade/.svn/text-base/imageprovider.cpp.svn-base
 qmc2/arcade/.svn/text-base/imageprovider.h.svn-base
+qmc2/arcade/.svn/text-base/macros.h.svn-base
 qmc2/arcade/.svn/text-base/main.cpp.svn-base
 qmc2/arcade/.svn/text-base/qmc2-arcade.pro.svn-base
 qmc2/arcade/.svn/text-base/qmc2-arcade.pro.user.svn-base
