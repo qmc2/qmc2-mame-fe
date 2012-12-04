@@ -308,52 +308,6 @@ Rectangle {
             PropertyAnimation { property: "opacity"; duration: 250 }
         }
     }
-    BackgroundAnimation {
-        id: backgroundAnim
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.left: parent.left
-        opacity: parent.showBackgroundAnimation ? 1.0 : 0.0
-        onVisibleChanged: {
-            if ( visible )
-                opacity = 1.0
-            else
-                opacity = 0.0
-        }
-        Behavior on opacity {
-            NumberAnimation { properties: "opacity"; duration: 1000 }
-        }
-        z: 2
-    }
-    ShaderEffectSource {
-        id: effectSource
-        anchors.fill: parent
-        sourceItem: Image {
-            source: "images/shadereffectsource.png"
-            anchors.fill: parent
-        }
-        live: false
-        hideSource: true
-    }
-    RadialWaveEffect {
-        id: layer
-        anchors.fill: parent;
-        source: effectSource
-        wave: 0.0
-        waveOriginX: 0.5
-        waveOriginY: 0.5
-        waveWidth: 0.01
-        z: 1
-        NumberAnimation on wave {
-            id: waveAnim
-            running: true
-            loops: Animation.Infinite
-            easing.type: Easing.Linear
-            from: 0.0000;
-            to: 2.0000;
-            duration: 3000
-        }
-    }
     Rectangle {
         id: menuAndStatusBar
         x: 0
@@ -459,6 +413,52 @@ Rectangle {
             }
         }
 
+    }
+    BackgroundAnimation {
+        id: backgroundAnim
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.left: parent.left
+        opacity: parent.showBackgroundAnimation ? 1.0 : 0.0
+        onVisibleChanged: {
+            if ( visible )
+                opacity = 1.0
+            else
+                opacity = 0.0
+        }
+        Behavior on opacity {
+            NumberAnimation { properties: "opacity"; duration: 1000 }
+        }
+        z: 2
+    }
+    ShaderEffectSource {
+        id: effectSource
+        anchors.fill: parent
+        sourceItem: Image {
+            source: "images/shadereffectsource.png"
+            anchors.fill: parent
+        }
+        live: false
+        hideSource: true
+    }
+    RadialWaveEffect {
+        id: layer
+        anchors.fill: parent;
+        source: effectSource
+        wave: 0.0
+        waveOriginX: 0.5
+        waveOriginY: 0.5
+        waveWidth: 0.01
+        z: 1
+        NumberAnimation on wave {
+            id: waveAnim
+            running: true
+            loops: Animation.Infinite
+            easing.type: Easing.Linear
+            from: 0.0000;
+            to: 2.0000;
+            duration: 3000
+        }
     }
     focus: true
     Keys.onPressed: {

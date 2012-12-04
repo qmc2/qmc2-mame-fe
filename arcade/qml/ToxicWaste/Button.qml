@@ -29,15 +29,17 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: {
-            buttonContainer.clicked()
+            buttonContainer.clicked();
+            gradientStop1.color = activePalette.light;
+            gradientStop2.color = activePalette.button;
         }
         onEntered: {
             gradientStop1.color = !mouseArea.pressed ? activePalette.button : activePalette.dark;
             gradientStop2.color = !mouseArea.pressed ? activePalette.light : activePalette.button;
         }
         onExited: {
-            gradientStop1.color = !mouseArea.pressed ? activePalette.light : activePalette.button
-            gradientStop2.color = !mouseArea.pressed ? activePalette.button : activePalette.dark
+            gradientStop1.color = !mouseArea.pressed ? activePalette.light : activePalette.button;
+            gradientStop2.color = !mouseArea.pressed ? activePalette.button : activePalette.dark;
         }
     }
     Text {

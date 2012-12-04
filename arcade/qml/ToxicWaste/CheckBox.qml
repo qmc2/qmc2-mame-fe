@@ -32,7 +32,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                checkboxContainer.checked = !checkboxContainer.checked
+                checkboxContainer.checked = !checkboxContainer.checked;
                 checkboxContainer.clicked();
             }
         }
