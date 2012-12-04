@@ -39,6 +39,59 @@ Rectangle {
             color: "#000000"
         }
     }
+    Rectangle {
+        id: overlayRect
+        height: parent.height
+        width: parent.width/2
+        z: 3
+//        anchors.verticalCenter: parent.verticalCenter
+//        anchors.verticalCenterOffset: 0
+        anchors.top: parent.top
+        anchors.topMargin: 10
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        anchors.left: parent.left
+        anchors.leftMargin: 50 * ToxicWaste.scaleFactorX()
+        color: "#00000000"
+        Flipable {
+            id: overlayFlip
+            property bool flipped: false
+            anchors.fill: parent
+            front: Image {
+                id: overlayImageFront
+                source: "images/overlay.png"
+                fillMode: Image.Stretch
+                anchors.centerIn: parent
+                anchors.fill: parent
+            }
+            back: Image {
+                id: overlayImageBack
+                source: "images/overlay.png"
+                fillMode: Image.Stretch
+                anchors.centerIn: parent
+                anchors.fill: parent
+            }
+            transform: Rotation {
+                id: overlayRotation
+                origin.x: overlayFlip.width/2
+                origin.y: overlayFlip.height/2
+                axis.x: 0; axis.y: 1; axis.z: 0
+                angle: 0
+            }
+            states: State {
+                name: "back"
+                PropertyChanges { target: overlayRotation; angle: 180 }
+                when: overlayFlip.flipped
+            }
+            transitions: Transition {
+                NumberAnimation { target: overlayRotation; property: "angle"; duration: 1000 }
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: overlayFlip.flipped = !overlayFlip.flipped
+            }
+        }
+    }
     ListView {
         id: gamelistView
         scale: ToxicWaste.scaleFactorX()
@@ -169,19 +222,6 @@ Rectangle {
                 break;
             }
         }
-    }
-    Text {
-        id: gamenameText
-        anchors.top: parent.top
-        anchors.topMargin: 5
-        anchors.left: parent.left
-        anchors.leftMargin: 5
-        transformOrigin: Text.TopLeft
-        color: "black"
-        text: ""
-        font.pixelSize: 10
-        scale: ToxicWaste.scaleFactorX()
-        z: 3
     }
     Rectangle {
         id: confirmQuitDialog
