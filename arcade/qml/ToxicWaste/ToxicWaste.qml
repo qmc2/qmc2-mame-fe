@@ -4,10 +4,23 @@ import "ToxicWaste.js" as ToxicWaste
 
 Rectangle {
     property int fps: 0
-    property bool fpsVisible: true
-    property bool showBackgroundAnimation: true
+
+    // restored properties
+    property bool fpsVisible: false
+    property bool showBackgroundAnimation: false
     property bool fullScreen: false
-    Component.onCompleted: ToxicWaste.init()
+    property string version: ""
+
+    // delayed init
+    Timer {
+        id: initTimer
+        interval: 50
+        running: false
+        repeat: false
+        onTriggered: ToxicWaste.init()
+    }
+    Component.onCompleted: initTimer.start()
+
     id: toxicWasteMain
     width: ToxicWaste.baseWidth()
     height: ToxicWaste.baseHeight()
@@ -38,7 +51,7 @@ Rectangle {
         anchors.horizontalCenterOffset: 0
         x: parent.width / scale / 2 - width / 2
         z: 3
-        width: 304
+        width: 280
         height: parent.height / scale - 20
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
@@ -52,12 +65,11 @@ Rectangle {
             id: itemHighlighter
             smooth: true
             color: "white"
-            radius: 50
+            radius: 10
             border.color: "black"
             border.width: 2
-            width: 304
-            height: 64
-            anchors.horizontalCenter: parent.horizontalCenter
+            width: 280
+            height: 72
             opacity: 1.0
             y: 10
             z: 0
@@ -67,8 +79,8 @@ Rectangle {
         delegate: Item {
             property string gameId: id
             id: gamelistItemDelegate
-            width: 304
-            height: 64
+            width: 280
+            height: 72
             Rectangle {
                 id: gamelistItemBackground
                 smooth: true
@@ -79,7 +91,7 @@ Rectangle {
                     GradientStop { position: 1.0; color: "lightgrey" }
                 }
                 opacity: 0.7
-                radius: 50
+                radius: 10
                 border.color: "black"
                 border.width: 2
                 Text {
@@ -119,13 +131,13 @@ Rectangle {
         }
         function firstVisibleItem() { return indexAt(contentX + 10, contentY + 10); }
         function lastVisibleItem() { return indexAt(contentX + width - 10, contentY + height - 10); }
-        function itemsPerPage() { return Math.floor(height / 74); }
+        function itemsPerPage() { return Math.floor(height / 82); }
         Keys.onPressed: {
             switch ( event.key ) {
             case Qt.Key_PageUp:
                 if ( currentIndex - itemsPerPage() > 0 ) {
                     incrementCurrentIndex();
-                    contentY = contentY - height + 62;
+                    contentY = contentY - height + 70;
                     if ( currentIndex > 0 )
                         decrementCurrentIndex();
                     else {
@@ -139,11 +151,11 @@ Rectangle {
             case Qt.Key_PageDown:
                 if ( currentIndex + itemsPerPage() < model.count - 1 ) {
                     decrementCurrentIndex();
-                    contentY = contentY + height - 62;
+                    contentY = contentY + height - 70;
                     if ( currentIndex < model.count - 1 )
                         incrementCurrentIndex();
                     else {
-                        contentY = contentHeight - 74;
+                        contentY = contentHeight - 82;
                         currentIndex = model.count - 1;
                     }
                 } else

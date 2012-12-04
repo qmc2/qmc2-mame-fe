@@ -2,6 +2,8 @@ var lastItemText;
 var lastitemBackground;
 
 function init() {
+    viewer.loadSettings();
+
     gamelistModel.clear();
     for (var i = 1; i < 501; i++)
         gamelistModel.append({"name": "Item " + i, "id": i});
