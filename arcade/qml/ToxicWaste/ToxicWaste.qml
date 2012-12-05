@@ -37,6 +37,7 @@ Rectangle {
         source: "images/toxic.png"
         z: 2
         smooth: true
+        opacity: 0.7
     }
     Rectangle {
         id: overlayRect
