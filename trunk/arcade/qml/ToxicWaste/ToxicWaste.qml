@@ -257,6 +257,9 @@ Rectangle {
         opacity: 0.0
         state: "hidden"
         z: 5
+        MouseArea {
+            anchors.fill: parent
+        }
         Text {
             text: qsTr("Really quit?")
             anchors.top: parent.top
@@ -312,6 +315,9 @@ Rectangle {
         opacity: 0.0
         state: "hidden"
         z: 4
+        MouseArea {
+            anchors.fill: parent
+        }
         Text {
             id: headerText
             text: qsTr("Preferences")
