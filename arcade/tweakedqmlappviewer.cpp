@@ -74,10 +74,13 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
     } else {
+        grabKeyboard();
         savedGeometry = saveGeometry();
         savedMaximized = isMaximized();
     }
     showFullScreen();
+    if ( !initially )
+        releaseKeyboard();
 }
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
@@ -85,13 +88,16 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
-    }
+    } else
+        grabKeyboard();
     restoreGeometry(savedGeometry);
     hide();
     if ( savedMaximized )
         showMaximized();
     else
         showNormal();
+    if ( !initially )
+        releaseKeyboard();
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
