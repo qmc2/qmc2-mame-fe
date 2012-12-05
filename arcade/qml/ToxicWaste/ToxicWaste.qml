@@ -33,7 +33,7 @@ Rectangle {
     Image {
         id: toxicImage
         anchors.fill: parent
-        fillMode: Image.Stretch
+        fillMode: Image.PreserveAspectFit
         source: "images/toxic.png"
         z: 2
         smooth: true
@@ -50,7 +50,6 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: 50 * ToxicWaste.scaleFactorX()
         color: "#00000000"
-        opacity: 0.8
         Flipable {
             id: overlayFlip
             property bool flipped: false
@@ -58,7 +57,7 @@ Rectangle {
             front: Image {
                 id: overlayImageFront
                 source: "images/overlay.png"
-                fillMode: Image.Stretch
+                fillMode: Image.PreserveAspectFit
                 anchors.centerIn: parent
                 anchors.fill: parent
                 smooth: true
