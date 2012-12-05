@@ -55,3 +55,13 @@ function itemClicked(itemText, itemBackground) {
         itemBackground.opacity = 0.7;
     }
 }
+
+function overlayOffset(h) {
+    var offset;
+    h = h * overlayImageFront.scale;
+    if ( h < toxicWasteMain.height )
+        offset = 0;
+    else
+        offset = -toxicWasteMain.height/2 + h/2;
+    return offset;
+}
