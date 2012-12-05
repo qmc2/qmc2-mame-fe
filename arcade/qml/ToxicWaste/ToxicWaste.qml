@@ -58,8 +58,12 @@ Rectangle {
                 id: overlayImageFront
                 source: "images/overlay.png"
                 fillMode: Image.PreserveAspectFit
-                anchors.centerIn: parent
-                anchors.fill: parent
+                width: 380
+                scale: ToxicWaste.scaleFactorX()
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: ToxicWaste.overlayOffset(height)
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenterOffset: 0
                 smooth: true
             }
             back: Rectangle {
