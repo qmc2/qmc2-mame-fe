@@ -52,12 +52,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 
+    // avalibale emulator modes & themes
     emulatorModeNames << QObject::tr("MAME") << QObject::tr("MESS") << QObject::tr("UME");
     arcadeThemes << "ToxicWaste";
     mameThemes << "ToxicWaste";
-    //messThemes << "..."
+    // messThemes << "..."
     umeThemes << "ToxicWaste";
 
+    // process command line arguments
     if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID )
         return showHelp();
 
@@ -95,29 +97,35 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         break;
     }
 
-    QMC2_LOG_STR(QString(QString("%1 %2 (%3)").arg(QMC2_ARCADE_APP_TITLE).arg(QMC2_ARCADE_APP_VERSION).arg(QString("Qt ") + qVersion()) + ", " + QObject::tr("running in %1 emulator mode").arg(emulatorModeNames[emulatorMode])));
+    // log banner message
+    QMC2_LOG_STR(QString(QString("%1 %2 (%3)").
+                         arg(QMC2_ARCADE_APP_TITLE).
+                         arg(QMC2_ARCADE_APP_VERSION).
+                         arg(QString("Qt ") + qVersion() + ", " +
+                             QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
+                             QObject::tr("theme: %1").arg(theme))));
 
+    // settings management
     QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
-
-    QMC2_LOG_STR(QObject::tr("Loading arcade theme %1").arg(theme));
-
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
+    // setup the main QML app viewer window
     TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
-
-    viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE);
+    viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     viewer->setMainQmlFile(QString("qml/%1/%1.qml").arg(theme).toLatin1());
 
+    // set up display mode initially...
     if ( globalConfig->fullScreen() )
         viewer->switchToFullScreen(true);
     else
         viewer->switchToWindowed(true);
 
+    // ... and run the application
     int returnCode = app->exec();
 
     delete viewer;

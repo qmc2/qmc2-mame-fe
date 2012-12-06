@@ -10,6 +10,8 @@
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
+extern int emulatorMode;
+extern QStringList emulatorModeNames;
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
@@ -41,6 +43,8 @@ void TweakedQmlApplicationViewer::fpsReady()
 
 void TweakedQmlApplicationViewer::loadSettings()
 {
+    QMC2_LOG_STR(tr("Loading global and theme-specific settings"));
+
     // load global arcade settings
     rootObject()->setProperty("version", globalConfig->applicationVersion());
 
@@ -50,10 +54,14 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("showBackgroundAnimation", globalConfig->showBackgroundAnimation());
         rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
     }
+
+    QMC2_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("games") : tr("machines")));
 }
 
 void TweakedQmlApplicationViewer::saveSettings()
 {
+    QMC2_LOG_STR(tr("Saving global and theme-specific settings"));
+
     // save global arcade settings
     if ( isFullScreen() ) {
         globalConfig->setViewerGeometry(savedGeometry);
@@ -73,6 +81,7 @@ void TweakedQmlApplicationViewer::saveSettings()
 
 void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 {
+    QMC2_LOG_STR(tr("Activating full-screen mode"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
@@ -88,6 +97,7 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
 {
+    QMC2_LOG_STR(tr("Activating windowed mode"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
@@ -122,6 +132,8 @@ QString TweakedQmlApplicationViewer::romStateText(int status)
 
 void TweakedQmlApplicationViewer::loadGamelist()
 {
+    QMC2_LOG_STR(tr("Loading and filtering %1").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("game list") : tr("machine list")));
+
     // FIXME: this is only test-data...
     srand(time(NULL));
     for (int i = 0; i < 500; i++)
@@ -130,6 +142,8 @@ void TweakedQmlApplicationViewer::loadGamelist()
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
+
+    QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n set(s) loaded", "", gameList.count())));
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
