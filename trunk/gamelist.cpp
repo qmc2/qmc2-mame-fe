@@ -1017,11 +1017,7 @@ void Gamelist::verify(bool currentOnly)
       tsRomCache.reset();
       tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
     }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all machines"));
-#endif
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all sets"));
     numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numNotFoundGames = numUnknownGames = 0;
     qmc2MainWindow->labelGamelistStatus->setText(status());
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -3101,13 +3097,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
   elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
   if ( verifyCurrentOnly )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_GAMELIST_COLUMN_GAME)).arg(elapsedTime.toString("mm:ss.zzz")));
-  else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all games, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all machines, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#endif
-  }
+  else
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 
   QString sL = numTotalGames + numDevices >= 0 ? QString::number(numTotalGames + numDevices) : tr("?");
   QString sC = numCorrectGames >= 0 ? QString::number(numCorrectGames) : tr("?");
