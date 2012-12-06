@@ -80,8 +80,8 @@ Rectangle {
                     GradientStop { position: 0.50; color: "#c0f08c" }
                 }
                 Text {
-                    id: title
-                    text: qsTr("Let's flip :)")
+                    id: itemDescription
+                    text: ToxicWaste.gameCardHeader()
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
                     anchors.topMargin: 10 * scale

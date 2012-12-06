@@ -23,6 +23,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     rootContext()->setContextProperty("viewer", this);
 
     // FIXME: only test data...
+    srand(time(NULL));
     for (int i = 0; i < 500; i++)
         gameList.append(new GameObject(QString("%1").arg(i + 1), QString("Item %1").arg(i + 1), rand() % 5));
 
@@ -107,6 +108,23 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         showNormal();
     if ( !initially )
         releaseKeyboard();
+}
+
+QString TweakedQmlApplicationViewer::romStateText(int status)
+{
+    switch ( status ) {
+    case QMC2_ARCADE_ROMSTATE_C:
+        return tr("correct");
+    case QMC2_ARCADE_ROMSTATE_M:
+        return tr("mostly correct");
+    case QMC2_ARCADE_ROMSTATE_I:
+        return tr("incorrect");
+    case QMC2_ARCADE_ROMSTATE_N:
+        return tr("not found");
+    case QMC2_ARCADE_ROMSTATE_U:
+    default:
+        return tr("unknown");
+    }
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
