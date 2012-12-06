@@ -1982,10 +1982,8 @@ Extrae un archivo AVI de laser disc de un archivo de entrada CHD.
         <translation>Selecciona archivo de identidad</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="982"/>
-        <location filename="../projectwidget.cpp" line="1142"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg)</source>
-        <translation>Archivos compatibles (*.cue *.toc *.gdi *.nrg)</translation>
+        <translation type="obsolete">Archivos compatibles (*.cue *.toc *.gdi *.nrg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
@@ -2010,6 +2008,18 @@ Extrae un archivo AVI de laser disc de un archivo de entrada CHD.
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>NRG files (*.nrg)</source>
         <translation>Archivos NRG (*.nrg)</translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="982"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <source>Compatible files (*.cue *.toc *.gdi *.nrg *.iso)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="982"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <source>ISO files (*.iso)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="983"/>

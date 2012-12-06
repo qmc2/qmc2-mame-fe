@@ -979,7 +979,7 @@ void ProjectWidget::on_toolButtonBrowseCreateCDInputFile_clicked()
     QString folder = ui->lineEditCreateCDInputFile->text();
     if ( folder.isEmpty() )
         folder = mainWindow->preferredInputFolder;
-    QString filter = tr("Compatible files (*.cue *.toc *.gdi *.nrg)") + ";;" + tr("CUE files (*.cue)") + ";;" + tr("TOC files (*.toc)") + ";;" + tr("GDI files (*.gdi)") + ";;" + tr("NRG files (*.nrg)") + ";;" + tr("All files (*)");
+    QString filter = tr("Compatible files (*.cue *.toc *.gdi *.nrg *.iso)") + ";;" + tr("CUE files (*.cue)") + ";;" + tr("TOC files (*.toc)") + ";;" + tr("GDI files (*.gdi)") + ";;" + tr("NRG files (*.nrg)") + ";;" + tr("ISO files (*.iso)") + ";;" + tr("All files (*)");
     QString s = QFileDialog::getOpenFileName(this, tr("Choose CD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditCreateCDInputFile->setText(s);
@@ -1139,7 +1139,7 @@ void ProjectWidget::on_toolButtonBrowseExtractCDOutputFile_clicked()
     QString folder = ui->lineEditExtractCDOutputFile->text();
     if ( folder.isEmpty() )
         folder = mainWindow->preferredOutputFolder;
-    QString filter = tr("Compatible files (*.cue *.toc *.gdi *.nrg)") + ";;" + tr("CUE files (*.cue)") + ";;" + tr("TOC files (*.toc)") + ";;" + tr("GDI files (*.gdi)") + ";;" + tr("NRG files (*.nrg)") + ";;" + tr("All files (*)");
+    QString filter = tr("Compatible files (*.cue *.toc *.gdi *.nrg *.iso)") + ";;" + tr("CUE files (*.cue)") + ";;" + tr("TOC files (*.toc)") + ";;" + tr("GDI files (*.gdi)") + ";;" + tr("NRG files (*.nrg)") + ";;" + tr("ISO files (*.iso)") + ";;" + tr("All files (*)");
     QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditExtractCDOutputFile->setText(s);
