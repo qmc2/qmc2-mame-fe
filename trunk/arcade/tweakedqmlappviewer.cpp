@@ -6,6 +6,7 @@
 #include "tweakedqmlappviewer.h"
 #include "imageprovider.h"
 #include "arcadesettings.h"
+#include "gameobject.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
@@ -20,6 +21,14 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 
     // this gives access to the viewer object from JavaScript
     rootContext()->setContextProperty("viewer", this);
+
+    // FIXME: only test data...
+    for (int i = 0; i < 500; i++)
+        gameList.append(new GameObject(QString("%1").arg(i + 1), QString("Item %1").arg(i + 1), rand() % 5));
+
+    // propagate gameList to QML
+    rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
+    rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);

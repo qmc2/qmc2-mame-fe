@@ -22,6 +22,13 @@
 #endif
 #define QMC2_ARCADE_DYN_DOT_PATH    (qApp->arguments().indexOf("-config_path") >= 0 && qApp->arguments().indexOf("-config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-config_path") + 1]: QMC2_ARCADE_DOT_PATH)
 
+// ROM states
+#define QMC2_ARCADE_ROMSTATE_C      0
+#define QMC2_ARCADE_ROMSTATE_M      1
+#define QMC2_ARCADE_ROMSTATE_I      2
+#define QMC2_ARCADE_ROMSTATE_N      3
+#define QMC2_ARCADE_ROMSTATE_U      4
+
 // debuggung macros
 #define QMC2_PRINT_TXT(t)           printf("%s\n", #t)
 #define QMC2_PRINT_STR(s)           printf("%s = %s\n", #s, (const char *)s.toLocal8Bit())

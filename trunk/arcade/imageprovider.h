@@ -6,8 +6,8 @@
 class ImageProvider : public QDeclarativeImageProvider
 {
 public:
-    ImageProvider(QDeclarativeImageProvider::ImageType);
-    ~ImageProvider();
+    explicit ImageProvider(QDeclarativeImageProvider::ImageType);
+    virtual ~ImageProvider();
 
     QImage requestImage(const QString &, QSize *, const QSize &);
     QPixmap requestPixmap(const QString &, QSize *, const QSize &);

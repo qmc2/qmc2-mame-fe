@@ -166,7 +166,7 @@ Rectangle {
                 Text {
                     property bool fontResized: false
                     id: gamelistItemText
-                    text: name
+                    text: model.modelData.description
                     color: "black"
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -195,9 +195,7 @@ Rectangle {
                 }
             }
         }
-        model: ListModel {
-            id: gamelistModel
-        }
+        model: gameListModel
         function firstVisibleItem() { return indexAt(contentX + 10, contentY + 10); }
         function lastVisibleItem() { return indexAt(contentX + width - 10, contentY + height - 10); }
         function itemsPerPage() { return Math.floor(height / 82); }
@@ -218,17 +216,17 @@ Rectangle {
                 event.accepted = true;
                 break;
             case Qt.Key_PageDown:
-                if ( currentIndex + itemsPerPage() < model.count - 1 ) {
+                if ( currentIndex + itemsPerPage() < gameListModelCount - 1 ) {
                     decrementCurrentIndex();
                     contentY = contentY + height - 70;
-                    if ( currentIndex < model.count - 1 )
+                    if ( currentIndex < gameListModelCount - 1 )
                         incrementCurrentIndex();
                     else {
                         contentY = contentHeight - 82;
-                        currentIndex = model.count - 1;
+                        currentIndex = gameListModelCount - 1;
                     }
                 } else
-                    currentIndex = model.count - 1;
+                    currentIndex = gameListModelCount - 1;
                 event.accepted = true;
                 break;
             case Qt.Key_End:
