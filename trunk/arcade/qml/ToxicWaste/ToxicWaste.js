@@ -60,3 +60,8 @@ function overlayOffset(h) {
         offset = -toxicWasteMain.height/2 + h/2;
     return offset;
 }
+
+function gameCardHeader() {
+    var gameObject = gameListModel[gamelistView.currentIndex];
+    return gameObject.description + " (ID: " + gameObject.id + ", STATUS: " + viewer.romStateText(gameObject.romState) + ")";
+}

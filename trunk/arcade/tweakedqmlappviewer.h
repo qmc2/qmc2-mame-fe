@@ -24,6 +24,7 @@ public slots:
     void saveSettings();
     void switchToFullScreen(bool initially = false);
     void switchToWindowed(bool initially = false);
+    QString romStateText(int status);
 
 protected:
     void paintEvent(QPaintEvent *);
