@@ -1,5 +1,3 @@
-#include <QDir>
-
 #include "arcadesettings.h"
 #include "macros.h"
 
