@@ -46,10 +46,13 @@
 #define QMC2_ARCADE_CLI_EMU_MESS    (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "mess" : false)
 #define QMC2_ARCADE_CLI_EMU_UME     (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "ume" : false)
 #define QMC2_ARCADE_CLI_EMU_UNK     (!QMC2_ARCADE_CLI_EMU_MAME && !QMC2_ARCADE_CLI_EMU_MESS && !QMC2_ARCADE_CLI_EMU_UME)
+#define QMC2_ARCADE_CLI_EMU_INV     (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-emu") + 1)
 // -theme <theme> ([ToxicWaste])
 #define QMC2_ARCADE_CLI_THEME       (qApp->arguments().indexOf("-theme") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-theme") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-theme") + 1] : "ToxicWaste")
+#define QMC2_ARCADE_CLI_THEME_INV   (qApp->arguments().indexOf("-theme") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-theme") + 1)
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP        (qApp->arguments().indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
+#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV)
 
 // debugging / logging macros
 #define QMC2_PRINT_TXT(t)           printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #t)
