@@ -1982,10 +1982,8 @@ Extrai um LD CHD de um arquivo de entrada.
         <translation>Escolha arquivo de identação</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="982"/>
-        <location filename="../projectwidget.cpp" line="1142"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg)</source>
-        <translation>Arquivos compatíveis (*.cue *.toc *.gdi *.nrg)</translation>
+        <translation type="obsolete">Arquivos compatíveis (*.cue *.toc *.gdi *.nrg)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
@@ -2010,6 +2008,18 @@ Extrai um LD CHD de um arquivo de entrada.
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>NRG files (*.nrg)</source>
         <translation>Arquivos NRG (*.nrg)</translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="982"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <source>Compatible files (*.cue *.toc *.gdi *.nrg *.iso)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="982"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <source>ISO files (*.iso)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="983"/>

@@ -1803,12 +1803,6 @@ Extracts a laser-disc AVI file from a CHD input file.
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
-        <source>Compatible files (*.cue *.toc *.gdi *.nrg)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.cpp" line="982"/>
-        <location filename="../projectwidget.cpp" line="1142"/>
         <source>CUE files (*.cue)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1828,6 +1822,18 @@ Extracts a laser-disc AVI file from a CHD input file.
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>NRG files (*.nrg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="982"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <source>Compatible files (*.cue *.toc *.gdi *.nrg *.iso)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="982"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <source>ISO files (*.iso)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -20,5 +20,6 @@ QImage ImageProvider::requestImage(const QString &, QSize *, const QSize &)
 
 QPixmap ImageProvider::requestPixmap(const QString &, QSize *, const QSize &)
 {
+    // FIXME
     return QPixmap();
 }
