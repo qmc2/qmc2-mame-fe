@@ -10,8 +10,8 @@ class ArcadeSettings : public QSettings
 public:
     QString arcadeTheme;
 
-    ArcadeSettings(QString);
-    ~ArcadeSettings();
+    explicit ArcadeSettings(QString);
+    virtual ~ArcadeSettings();
     
 signals:
     

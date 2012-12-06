@@ -20,7 +20,8 @@ QML_IMPORT_PATH =
 SOURCES += main.cpp \
     tweakedqmlappviewer.cpp \
     imageprovider.cpp \
-    arcadesettings.cpp
+    arcadesettings.cpp \
+    gameobject.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -35,6 +36,7 @@ HEADERS += \
     tweakedqmlappviewer.h \
     imageprovider.h \
     arcadesettings.h \
-    macros.h
+    macros.h \
+    gameobject.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION

@@ -13,6 +13,7 @@ public:
     QTimer frameCheckTimer;
     QByteArray savedGeometry;
     bool savedMaximized;
+    QList<QObject *> gameList;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();

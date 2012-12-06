@@ -4,11 +4,6 @@ var initializing = true;
 
 function init() {
     viewer.loadSettings();
-
-    gamelistModel.clear();
-    for (var i = 1; i < 501; i++)
-        gamelistModel.append({"name": "Item " + i, "id": i});
-
     initializing = false;
 }
 
