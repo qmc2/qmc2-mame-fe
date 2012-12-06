@@ -1,8 +1,10 @@
 #ifndef TWEAKEDQMLAPPVIEWER_H
 #define TWEAKEDQMLAPPVIEWER_H
 
-#include "qmlapplicationviewer.h"
 #include <QTimer>
+#include <QMap>
+
+#include "qmlapplicationviewer.h"
 
 class TweakedQmlApplicationViewer : public QmlApplicationViewer
 {
@@ -14,6 +16,7 @@ public:
     QByteArray savedGeometry;
     bool savedMaximized;
     QList<QObject *> gameList;
+    QMap<QString, int> romStateMap;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();
@@ -25,6 +28,7 @@ public slots:
     void switchToFullScreen(bool initially = false);
     void switchToWindowed(bool initially = false);
     QString romStateText(int status);
+    void loadGamelist();
 
 protected:
     void paintEvent(QPaintEvent *);

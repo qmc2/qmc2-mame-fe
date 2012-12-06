@@ -63,5 +63,5 @@ function overlayOffset(h) {
 
 function gameCardHeader() {
     var gameObject = gameListModel[gamelistView.currentIndex];
-    return gameObject.description + " (ID: " + gameObject.id + ", STATUS: " + viewer.romStateText(gameObject.romState) + ")";
+    return gameObject.description + " (id: " + gameObject.id + ", romState: " + viewer.romStateText(gameObject.romState) + ")";
 }
