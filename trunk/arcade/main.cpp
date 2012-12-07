@@ -40,15 +40,6 @@ void qtMessageHandler(QtMsgType type, const char *msg)
 
 int showHelp()
 {
-#if defined(QMC2_ARCADE_OS_WIN)
-    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <console>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
-                                      "Option           Values ([...] = default)\n"
-                                      "---------------  --------------------------------------\n"
-                                      "-emu             [mame], mess or ume\n"
-                                      "-theme           [ToxicWaste]\n"
-                                      "-console         terminal, window or [window-minimized]\n"
-                                      "-graphicssystem  [raster] or opengl\n");
-#else
     QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <console>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
                                       "Option           Values ([...] = default)\n"
                                       "---------------  --------------------------------------\n"
@@ -56,7 +47,7 @@ int showHelp()
                                       "-theme           [ToxicWaste]\n"
                                       "-console         [terminal], window or window-minimized\n"
                                       "-graphicssystem  [raster] or opengl\n");
-#endif
+
     QMC2_LOG_STR_NO_TIME(helpMessage);
     return 1;
 }
