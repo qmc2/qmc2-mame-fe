@@ -1,5 +1,4 @@
 #include <QApplication>
-#include <QDeclarativeContext>
 
 #include "arcadesettings.h"
 #include "tweakedqmlappviewer.h"
@@ -118,11 +117,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
     viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer->loadGamelist();
     viewer->setMainQmlFile(QString("qml/%1/%1.qml").arg(theme).toLatin1());
-
-    // this gives access to the viewer object from JavaScript
-    viewer->rootContext()->setContextProperty("viewer", viewer);
 
     // set up display mode initially...
     if ( globalConfig->fullScreen() )
