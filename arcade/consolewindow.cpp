@@ -10,6 +10,7 @@ ConsoleWindow::ConsoleWindow(QWidget *parent) :
     setLineWrapMode(QPlainTextEdit::NoWrap);
     setReadOnly(true);
     setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + tr("Console"));
+    setFont(QFont("Courier", 10));
 }
 
 ConsoleWindow::~ConsoleWindow()

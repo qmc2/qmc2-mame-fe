@@ -38,18 +38,16 @@ void qtMessageHandler(QtMsgType type, const char *msg)
     QMC2_LOG_STR(msgString);
 }
 
-int showHelp()
+void showHelp()
 {
     QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <console>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
-                                      "Option           Values ([...] = default)\n"
-                                      "---------------  --------------------------------------\n"
-                                      "-emu             [mame], mess or ume\n"
+                                      "Option           Values ([..] = default)\n"
+                                      "---------------  ------------------------------------\n"
+                                      "-emu             [mame], mess, ume\n"
                                       "-theme           [ToxicWaste]\n"
-                                      "-console         [terminal], window or window-minimized\n"
-                                      "-graphicssystem  [raster] or opengl\n");
-
+                                      "-console         [terminal], window, window-minimized\n"
+                                      "-graphicssystem  [raster], native, opengl, ...\n");
     QMC2_LOG_STR_NO_TIME(helpMessage);
-    return 1;
 }
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -77,51 +75,67 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             consoleWindow->show();
     }
 
+    bool runApp = true;
+
     // process command line arguments
-    if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID )
-        return showHelp();
+    if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
+        showHelp();
+        if ( !consoleWindow )
+            return 1;
+        else
+            runApp = false;
+    }
 
     QString theme = QMC2_ARCADE_CLI_THEME;
 
-    if ( !arcadeThemes.contains(theme) ) {
+    if ( !arcadeThemes.contains(theme) && runApp ) {
         QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
-        return 1;
+        if ( !consoleWindow )
+            return 1;
+        else
+            runApp = false;
     }
 
-    if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
+    if ( !QMC2_ARCADE_CLI_EMU_UNK && runApp ) {
         emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
-        if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK )
-            return showHelp();
+        if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK ) {
+            showHelp();
+            if ( !consoleWindow )
+                return 1;
+            else
+                runApp = false;
+        }
     }
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-        if ( !mameThemes.contains(theme) ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
-            return 1;
+        if ( !mameThemes.contains(theme) && runApp ) {
+            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
+            if ( !consoleWindow )
+                return 1;
+            else
+                runApp = false;
         }
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
-        if ( !messThemes.contains(theme) ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
-            return 1;
+        if ( !messThemes.contains(theme) && runApp ) {
+            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
+            if ( !consoleWindow )
+                return 1;
+            else
+                runApp = false;
         }
         break;
     case QMC2_ARCADE_EMUMODE_UME:
-        if ( !umeThemes.contains(theme) ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
-            return 1;
+        if ( !umeThemes.contains(theme) && runApp ) {
+            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
+            if ( !consoleWindow )
+                return 1;
+            else
+                runApp = false;
         }
         break;
     }
-
-    // log banner message
-    QMC2_LOG_STR(QString(QString("%1 %2 (%3)").
-                         arg(QMC2_ARCADE_APP_TITLE).
-                         arg(QMC2_ARCADE_APP_VERSION).
-                         arg(QString("Qt ") + qVersion() + ", " +
-                             QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
-                             QObject::tr("theme: %1").arg(theme))));
 
     // settings management
     QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
@@ -131,30 +145,51 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
-    if ( consoleWindow )
-        consoleWindow->loadSettings();
+    int returnCode;
+    if ( runApp ) {
+        // log banner message
+        QMC2_LOG_STR(QString(QString("%1 %2 (%3)").
+                             arg(QMC2_ARCADE_APP_TITLE).
+                             arg(QMC2_ARCADE_APP_VERSION).
+                             arg(QString("Qt ") + qVersion() + ", " +
+                                 QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
+                                 QObject::tr("theme: %1").arg(theme))));
 
-    // setup the main QML app viewer window
-    TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
-    viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
-    viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer->setMainQmlFile(QString("qml/%1/%1.qml").arg(theme).toLatin1());
+        if ( consoleWindow )
+            consoleWindow->loadSettings();
 
-    // set up display mode initially...
-    if ( globalConfig->fullScreen() )
-        viewer->switchToFullScreen(true);
-    else
-        viewer->switchToWindowed(true);
+        // setup the main QML app viewer window
+        TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
+        viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
+        viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+        viewer->setMainQmlFile(QString("qml/%1/%1.qml").arg(theme).toLatin1());
 
-    // ... and run the application
-    int returnCode = app->exec();
+        // set up display mode initially...
+        if ( globalConfig->fullScreen() )
+            viewer->switchToFullScreen(true);
+        else
+            viewer->switchToWindowed(true);
 
-    // clean up
-    delete viewer;
+        // ... and run the application
+        returnCode = app->exec();
+
+        // clean up
+        delete viewer;
+    } else {
+        if ( consoleWindow ) {
+            consoleWindow->loadSettings();
+            consoleWindow->showNormal();
+            consoleWindow->raise();
+            app->exec();
+        }
+        returnCode = 1;
+    }
+
     if ( consoleWindow ) {
         consoleWindow->saveSettings();
         delete consoleWindow;
     }
+
     delete globalConfig;
 
     return returnCode;
