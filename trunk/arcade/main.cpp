@@ -162,7 +162,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-        viewer->setMainQmlFile(QString("qml/%1/%1.qml").arg(theme).toLatin1());
+        QString qmlFile(QString("qml/%1/%1.qml").arg(theme));
+        QMC2_LOG_STR(QObject::tr("Starting QML viewer using '%1' as main file").arg(qmlFile));
+        viewer->setMainQmlFile(qmlFile.toLocal8Bit());
 
         // set up display mode initially...
         if ( globalConfig->fullScreen() )
@@ -178,6 +180,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     } else {
         if ( consoleWindow ) {
             consoleWindow->loadSettings();
+            QString consoleMessage(QObject::tr("Couldn't start QML viewer - please close the console window to exit"));
+            QMC2_LOG_STR_NO_TIME(QString("-").repeated(consoleMessage.length()));
+            QMC2_LOG_STR_NO_TIME(consoleMessage);
+            QMC2_LOG_STR_NO_TIME(QString("-").repeated(consoleMessage.length()));
             consoleWindow->showNormal();
             consoleWindow->raise();
             app->exec();

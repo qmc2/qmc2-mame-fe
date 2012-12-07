@@ -22,8 +22,8 @@ Rectangle {
     Component.onCompleted: initTimer.start()
 
     id: toxicWasteMain
-    width: ToxicWaste.baseWidth()
-    height: ToxicWaste.baseHeight()
+    width: ToxicWaste.baseWidth
+    height: ToxicWaste.baseHeight
     z: 0
     gradient: Gradient {
         GradientStop { position: 0.00; color: "#3aa82b" }
