@@ -9,6 +9,10 @@
 #include "gameobject.h"
 #include "macros.h"
 
+#if defined(Q_OS_WIN)
+#include <time.h>
+#endif
+
 extern ArcadeSettings *globalConfig;
 extern int emulatorMode;
 extern QStringList emulatorModeNames;
