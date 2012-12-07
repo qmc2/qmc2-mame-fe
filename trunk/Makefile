@@ -966,6 +966,11 @@ arcade-bin:
 
 arcade-clean:
 	@$(CD) arcade && $(QMAKE) && $(MAKE) distclean
+ifeq '$(ARCH)' 'Windows'
+	@$(RMDIR) /s /q arcade\release
+	@$(RMDIR) /s /q arcade\debug
+	@$(RM) arcade\object_script.qmc2-arcade.Release arcade\object_script.qmc2-arcade.Debug
+endif
 
 ifeq '$(QUIET)' '1'
 ifeq '$(ARCH)' 'Windows'
