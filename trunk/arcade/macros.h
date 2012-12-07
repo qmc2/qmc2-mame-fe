@@ -1,6 +1,19 @@
 #ifndef MACROS_H
 #define MACROS_H
 
+#include <Qt>
+
+// global OS macros for supported target operating systems
+#if (defined(Q_OS_UNIX) || defined(Q_OS_LINUX)) && !defined(Q_OS_MAC)
+#define QMC2_ARCADE_OS_UNIX
+#elif defined(Q_OS_MAC)
+#define QMC2_ARCADE_OS_MAC
+#elif defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
+#define QMC2_ARCADE_OS_WIN
+#else
+#error "Target OS is not supported -- QMC2 Arcade currently supports Linux/UNIX, Windows and Mac OS X!"
+#endif
+
 #include <QStringList>
 #include <QString>
 #include <QRegExp>

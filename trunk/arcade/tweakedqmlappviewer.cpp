@@ -9,10 +9,6 @@
 #include "gameobject.h"
 #include "macros.h"
 
-#if defined(Q_OS_WIN)
-#include <time.h>
-#endif
-
 extern ArcadeSettings *globalConfig;
 extern int emulatorMode;
 extern QStringList emulatorModeNames;
@@ -105,7 +101,9 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
     }
+#if defined(QMC2_ARCADE_OS_UNIX)
     hide();
+#endif
     restoreGeometry(savedGeometry);
     if ( savedMaximized )
         showMaximized();
@@ -136,7 +134,6 @@ void TweakedQmlApplicationViewer::loadGamelist()
     QMC2_LOG_STR(tr("Loading and filtering %1").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("game list") : tr("machine list")));
 
     // FIXME: this is only test-data...
-    srand(time(NULL));
     for (int i = 0; i < 500; i++)
         gameList.append(new GameObject(QString("%1").arg(i + 1), QString("Item %1").arg(i + 1), rand() % 5));
 
