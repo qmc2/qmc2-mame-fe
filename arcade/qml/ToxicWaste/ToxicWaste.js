@@ -1,3 +1,5 @@
+var baseWidth = 800;
+var baseHeight = 600;
 var lastItemText;
 var lastitemBackground;
 var initializing = true;
@@ -7,20 +9,12 @@ function init() {
     initializing = false;
 }
 
-function baseWidth() {
-    return 800;
-}
-
-function baseHeight() {
-    return 600;
-}
-
 function scaleFactorX() {
-    return toxicWasteMain.width / baseWidth();
+    return toxicWasteMain.width / baseWidth;
 }
 
 function scaleFactorY() {
-    return toxicWasteMain.height / baseHeight();
+    return toxicWasteMain.height / baseHeight;
 }
 
 function itemEntered(itemText, itemBackground) {

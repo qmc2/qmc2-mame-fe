@@ -155,15 +155,17 @@ void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
     QmlApplicationViewer::paintEvent(e);
 }
 
-void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *)
+void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *e)
 {
-    QMC2_LOG_STR(tr("Exiting gracefully"));
+    QMC2_LOG_STR(tr("Stopping QML viewer"));
+
     if ( consoleWindow ) {
-        QString consoleMessage(tr("The QML viewer has finished - please close this window to exit!"));
+        QString consoleMessage(tr("QML viewer stopped - please close the console window to exit"));
         QMC2_LOG_STR(QString("-").repeated(consoleMessage.length()));
         QMC2_LOG_STR(consoleMessage);
         QMC2_LOG_STR(QString("-").repeated(consoleMessage.length()));
         consoleWindow->showNormal();
         consoleWindow->raise();
     }
+    e->accept();
 }
