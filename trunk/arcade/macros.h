@@ -48,10 +48,16 @@
 #define QMC2_ARCADE_ROMSTATE_U      4
 
 // emulator modes
-#define QMC2_ARCADE_MODE_MAME       0
-#define QMC2_ARCADE_MODE_MESS       1
-#define QMC2_ARCADE_MODE_UME        2
-#define QMC2_ARCADE_MODE_UNK        3
+#define QMC2_ARCADE_EMUMODE_UNK     -1
+#define QMC2_ARCADE_EMUMODE_MAME    0
+#define QMC2_ARCADE_EMUMODE_MESS    1
+#define QMC2_ARCADE_EMUMODE_UME     2
+
+// console modes
+#define QMC2_ARCADE_CONSOLE_UNK     -1
+#define QMC2_ARCADE_CONSOLE_TERM    0
+#define QMC2_ARCADE_CONSOLE_WIN     1
+#define QMC2_ARCADE_CONSOLE_WINMIN  2
 
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)
@@ -63,9 +69,14 @@
 // -theme <theme> ([ToxicWaste])
 #define QMC2_ARCADE_CLI_THEME       (qApp->arguments().indexOf("-theme") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-theme") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-theme") + 1] : "ToxicWaste")
 #define QMC2_ARCADE_CLI_THEME_INV   (qApp->arguments().indexOf("-theme") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-theme") + 1)
+// -console <mode> ([terminal], window, window-minimized)
+#define QMC2_ARCADE_CLI_CONS        (qApp->arguments().indexOf("-console") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-console") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-console") + 1] : "terminal")
+#define QMC2_ARCADE_CLI_CONS_INV    (qApp->arguments().indexOf("-console") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-console") + 1)
+
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP        (qApp->arguments().indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
-#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV)
+// argument validation
+#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV)
 
 // debugging / logging macros
 #define QMC2_PRINT_TXT(t)           printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #t)
@@ -76,9 +87,9 @@
 #define QMC2_PRINT_HEX(x)           printf("%s: %s = %x\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #x, x)
 #define QMC2_PRINT_BOOL(b)          printf("%s: %s = %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #b, b ? "true" : "false")
 #define QMC2_PRINT_STRLST(l)        for (int i = 0; i < l.count(); i++) printf("%s: %s[%ld] = %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #l, i, (const char *)l[i].toLocal8Bit())
-#define QMC2_LOG_STR(s)             printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout);
-#define QMC2_LOG_STR_NO_TIME(s)     printf("%s\n", (const char *)s.toLocal8Bit()); fflush(stdout);
-#define QMC2_LOG_CSTR(s)            printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s); fflush(stdout);
-#define QMC2_LOG_CSTR_NO_TIME(s)    printf("%s\n", (const char *)s); fflush(stdout);
+#define QMC2_LOG_STR(s)             if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
+#define QMC2_LOG_STR_NO_TIME(s)     if ( !consoleWindow ) { printf("%s\n", (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(s); }
+#define QMC2_LOG_CSTR(s)            if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s)); }
+#define QMC2_LOG_CSTR_NO_TIME(s)    if ( !consoleWindow ) { printf("%s\n", (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QString(s)); }
 
 #endif
