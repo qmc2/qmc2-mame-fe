@@ -160,5 +160,7 @@ void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *)
     QMC2_LOG_STR(tr("Exiting gracefully"));
     if ( consoleWindow ) {
         QMC2_LOG_STR(tr("QML viewer finished (please close this window to exit)"));
+        consoleWindow->showNormal();
+        consoleWindow->raise();
     }
 }
