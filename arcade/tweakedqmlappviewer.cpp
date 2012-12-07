@@ -25,6 +25,11 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
 
+    // this gives access to the viewer object from JavaScript
+    rootContext()->setContextProperty("viewer", this);
+
+    loadGamelist();
+
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);
 }
@@ -36,7 +41,8 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 
 void TweakedQmlApplicationViewer::fpsReady()
 {
-    rootObject()->setProperty("fps", numFrames);
+    if ( rootObject() )
+        rootObject()->setProperty("fps", numFrames);
     numFrames = 0;
 }
 
