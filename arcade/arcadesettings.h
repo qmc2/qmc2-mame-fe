@@ -23,6 +23,8 @@ public slots:
     QByteArray viewerGeometry();
     void setViewerMaximized(bool);
     bool viewerMaximized();
+    void setConsoleGeometry(QByteArray);
+    QByteArray consoleGeometry();
 
     // theme-specific settings
     void setFpsVisible(bool);

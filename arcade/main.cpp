@@ -2,10 +2,13 @@
 
 #include "arcadesettings.h"
 #include "tweakedqmlappviewer.h"
+#include "consolewindow.h"
 #include "macros.h"
 
 ArcadeSettings *globalConfig = NULL;
-int emulatorMode = QMC2_ARCADE_MODE_MAME;
+ConsoleWindow *consoleWindow = NULL;
+int emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
+int consoleMode = QMC2_ARCADE_CONSOLE_TERM;
 QStringList emulatorModeNames;
 QStringList arcadeThemes;
 QStringList mameThemes;
@@ -37,10 +40,23 @@ void qtMessageHandler(QtMsgType type, const char *msg)
 
 int showHelp()
 {
-    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
-                                      "Where <emulator> = mame (default), mess or ume\n"
-                                      "      <theme>    = ToxicWaste (default)\n"
-                                      "      <engine>   = raster (default) or opengl\n");
+#if defined(QMC2_ARCADE_OS_WIN)
+    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <console>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
+                                      "Option           Values ([...] = default)\n"
+                                      "---------------  --------------------------------------\n"
+                                      "-emu             [mame], mess or ume\n"
+                                      "-theme           [ToxicWaste]\n"
+                                      "-console         terminal, window or [window-minimized]\n"
+                                      "-graphicssystem  [raster] or opengl\n");
+#else
+    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <console>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
+                                      "Option           Values ([...] = default)\n"
+                                      "---------------  --------------------------------------\n"
+                                      "-emu             [mame], mess or ume\n"
+                                      "-theme           [ToxicWaste]\n"
+                                      "-console         [terminal], window or window-minimized\n"
+                                      "-graphicssystem  [raster] or opengl\n");
+#endif
     QMC2_LOG_STR_NO_TIME(helpMessage);
     return 1;
 }
@@ -59,6 +75,17 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // messThemes << "..."
     umeThemes << "ToxicWaste";
 
+    QString console = QMC2_ARCADE_CLI_CONS;
+
+    if ( console == "window" || console == "window-minimized" ) {
+        consoleMode = console == "window" ? QMC2_ARCADE_CONSOLE_WIN : QMC2_ARCADE_CONSOLE_WINMIN;
+        consoleWindow = new ConsoleWindow(0);
+        if ( consoleMode == QMC2_ARCADE_CONSOLE_WINMIN )
+            consoleWindow->showMinimized();
+        else
+            consoleWindow->show();
+    }
+
     // process command line arguments
     if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID )
         return showHelp();
@@ -71,27 +98,27 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     }
 
     if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
-        emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_MODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_MODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_MODE_UME : QMC2_ARCADE_MODE_UNK;
-        if ( emulatorMode == QMC2_ARCADE_MODE_UNK )
+        emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
+        if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK )
             return showHelp();
     }
 
     switch ( emulatorMode ) {
-    case QMC2_ARCADE_MODE_MAME:
+    case QMC2_ARCADE_EMUMODE_MAME:
         if ( !mameThemes.contains(theme) ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_MODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
+            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
             return 1;
         }
         break;
-    case QMC2_ARCADE_MODE_MESS:
+    case QMC2_ARCADE_EMUMODE_MESS:
         if ( !messThemes.contains(theme) ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_MODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
+            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
             return 1;
         }
         break;
-    case QMC2_ARCADE_MODE_UME:
+    case QMC2_ARCADE_EMUMODE_UME:
         if ( !umeThemes.contains(theme) ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_MODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
+            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
             return 1;
         }
         break;
@@ -113,6 +140,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
+    if ( consoleWindow )
+        consoleWindow->loadSettings();
+
     // setup the main QML app viewer window
     TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
     viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
@@ -128,10 +158,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // ... and run the application
     int returnCode = app->exec();
 
+    // clean up
     delete viewer;
+    if ( consoleWindow ) {
+        consoleWindow->saveSettings();
+        delete consoleWindow;
+    }
     delete globalConfig;
-
-    QMC2_LOG_STR(QObject::tr("Exiting gracefully"));
 
     return returnCode;
 }

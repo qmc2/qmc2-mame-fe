@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     tweakedqmlappviewer.cpp \
     imageprovider.cpp \
     arcadesettings.cpp \
-    gameobject.cpp
+    gameobject.cpp \
+    consolewindow.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -37,6 +38,7 @@ HEADERS += \
     imageprovider.h \
     arcadesettings.h \
     macros.h \
-    gameobject.h
+    gameobject.h \
+    consolewindow.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION

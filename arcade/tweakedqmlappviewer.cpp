@@ -7,10 +7,13 @@
 #include "imageprovider.h"
 #include "arcadesettings.h"
 #include "gameobject.h"
+#include "consolewindow.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
+extern ConsoleWindow *consoleWindow;
 extern int emulatorMode;
+extern int consoleMode;
 extern QStringList emulatorModeNames;
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
@@ -56,7 +59,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
     }
 
-    QMC2_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("games") : tr("machines")));
+    QMC2_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
 }
 
 void TweakedQmlApplicationViewer::saveSettings()
@@ -92,6 +95,7 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
     }
     showFullScreen();
     grabKeyboard();
+    raise();
 }
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
@@ -110,6 +114,7 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
     else
         showNormal();
     grabKeyboard();
+    raise();
 }
 
 QString TweakedQmlApplicationViewer::romStateText(int status)
@@ -131,7 +136,7 @@ QString TweakedQmlApplicationViewer::romStateText(int status)
 
 void TweakedQmlApplicationViewer::loadGamelist()
 {
-    QMC2_LOG_STR(tr("Loading and filtering %1").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("game list") : tr("machine list")));
+    QMC2_LOG_STR(tr("Loading and filtering %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")));
 
     // FIXME: this is only test-data...
     for (int i = 0; i < 500; i++)
@@ -141,11 +146,19 @@ void TweakedQmlApplicationViewer::loadGamelist()
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_MODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n set(s) loaded", "", gameList.count())));
+    QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n set(s) loaded", "", gameList.count())));
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 {
     numFrames++;
     QmlApplicationViewer::paintEvent(e);
+}
+
+void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *)
+{
+    QMC2_LOG_STR(tr("Exiting gracefully"));
+    if ( consoleWindow ) {
+        QMC2_LOG_STR(tr("QML viewer finished (please close this window to exit)"));
+    }
 }
