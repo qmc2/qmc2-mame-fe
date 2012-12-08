@@ -134,3 +134,93 @@ QString ArcadeSettings::previewFolder()
 {
     return value(QString("%1/FilesAndDirectories/PreviewDirectory").arg(emulatorPrefix)).toString();
 }
+
+bool ArcadeSettings::flyersZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseFlyerFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::flyerZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/FlyerFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::flyerFolder()
+{
+    return value(QString("%1/FilesAndDirectories/FlyerDirectory").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::cabinetsZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseCabinetFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::cabinetZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/CabinetFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::cabinetFolder()
+{
+    return value(QString("%1/FilesAndDirectories/CabinetDirectory").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::controllersZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseControllerFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::controllerZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/ControllerFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::controllerFolder()
+{
+    return value(QString("%1/FilesAndDirectories/ControllerDirectory").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::marqueesZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseMarqueeFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::marqueeZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/MarqueeFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::marqueeFolder()
+{
+    return value(QString("%1/FilesAndDirectories/MarqueeDirectory").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::titlesZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseTitleFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::titleZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/TitleFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::titleFolder()
+{
+    return value(QString("%1/FilesAndDirectories/TitleDirectory").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::pcbsZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UsePCBFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::pcbZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/PCBFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::pcbFolder()
+{
+    return value(QString("%1/FilesAndDirectories/PCBDirectory").arg(emulatorPrefix)).toString();
+}
