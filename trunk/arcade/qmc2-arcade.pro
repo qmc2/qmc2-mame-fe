@@ -42,3 +42,6 @@ HEADERS += \
     consolewindow.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
+
+RESOURCES += \
+    qmc2-arcade.qrc

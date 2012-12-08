@@ -119,3 +119,18 @@ QString ArcadeSettings::romStateCacheFile()
 {
     return value(QString("%1/FilesAndDirectories/ROMStateCacheFile").arg(emulatorPrefix)).toString();
 }
+
+bool ArcadeSettings::previewsZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UsePreviewFile").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::previewZipFile()
+{
+    return value(QString("%1/FilesAndDirectories/PreviewFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::previewFolder()
+{
+    return value(QString("%1/FilesAndDirectories/PreviewDirectory").arg(emulatorPrefix)).toString();
+}
