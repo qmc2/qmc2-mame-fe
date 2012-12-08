@@ -28,6 +28,7 @@ public slots:
     void switchToFullScreen(bool initially = false);
     void switchToWindowed(bool initially = false);
     QString romStateText(int status);
+    int romStateCharToInt(char status);
     void loadGamelist();
 
 protected:

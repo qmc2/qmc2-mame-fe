@@ -49,7 +49,9 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10 * ToxicWaste.scaleFactorX()
         anchors.left: parent.left
-        anchors.leftMargin: 50 * ToxicWaste.scaleFactorX()
+        anchors.leftMargin: 20 * ToxicWaste.scaleFactorX()
+        anchors.right: parent.right
+        anchors.rightMargin: 320 * ToxicWaste.scaleFactorX()
         color: "#00000000"
         Flipable {
             id: overlayFlip
@@ -69,7 +71,6 @@ Rectangle {
             }
             back: Rectangle {
                 id: overlayRectBack
-                anchors.centerIn: parent
                 anchors.fill: parent
                 border.color: "black"
                 border.width: 2
@@ -82,12 +83,13 @@ Rectangle {
                 Text {
                     id: itemDescription
                     text: ToxicWaste.gameCardHeader()
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    anchors.topMargin: 10 * scale
-                    font.pixelSize: 12
-                    font.bold: true
-                    scale: ToxicWaste.scaleFactorX()
+                    font.pixelSize: 12 * ToxicWaste.scaleFactorX()
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignTop
+                    wrapMode: Text.WordWrap
+                    elide: Text.ElideNone
                 }
             }
             transform: Rotation {
@@ -168,12 +170,16 @@ Rectangle {
                     id: gamelistItemText
                     text: model.modelData.description
                     color: "black"
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
                     font.bold: true
                     font.italic: true
-                    font.pixelSize: parent.height - 40
-                    elide: Text.ElideMiddle
+                    font.pixelSize: parent.height / 3
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    smooth: true
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
                 }
                 MouseArea {
                     id: gamelistItemMouseArea

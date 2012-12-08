@@ -32,6 +32,12 @@
 #define QMC2_ARCADE_APP_TITLE       QObject::tr("QMC2 Arcade")
 #define QMC2_ARCADE_APP_NAME        QMC2_ARCADE_ORG_NAME
 
+// relevant game list cache data columns
+#define QMC2_ARCADE_GLC_ID          0
+#define QMC2_ARCADE_GLC_DESCRIPTION 1
+#define QMC2_ARCADE_GLC_BIOS        5
+#define QMC2_ARCADE_GLC_DEVICE      10
+
 // dot-path related
 #if defined(Q_OS_MAC)
 #define QMC2_ARCADE_DOT_PATH        (QDir::homePath() + "/Library/Application Support/qmc2")
