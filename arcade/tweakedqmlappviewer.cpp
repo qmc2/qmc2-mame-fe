@@ -60,6 +60,9 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
         rootObject()->setProperty("showBackgroundAnimation", globalConfig->showBackgroundAnimation());
         rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
+        rootObject()->setProperty("secondaryImageType", globalConfig->secondaryImageType());
+        rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
+        rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
     }
 
     QMC2_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
@@ -83,6 +86,9 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
         globalConfig->setShowBackgroundAnimation(rootObject()->property("showBackgroundAnimation").toBool());
         globalConfig->setFullScreen(rootObject()->property("fullScreen").toBool());
+        globalConfig->setSecondaryImageType(rootObject()->property("secondaryImageType").toString());
+        globalConfig->setCabinetFlipped(rootObject()->property("cabinetFlipped").toBool());
+        globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
     }
 }
 

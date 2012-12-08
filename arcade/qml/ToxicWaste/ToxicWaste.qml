@@ -9,6 +9,9 @@ Rectangle {
     property bool fpsVisible: false
     property bool showBackgroundAnimation: false
     property bool fullScreen: false
+    property string secondaryImageType: "preview"
+    property bool cabinetFlipped: false
+    property int lastIndex: 0
     property string version: ""
 
     // delayed init
@@ -52,7 +55,6 @@ Rectangle {
         anchors.rightMargin: 320 * ToxicWaste.scaleFactorX()
         Flipable {
             id: overlayFlip
-            property bool flipped: false
             anchors.fill: parent
             front: Item {
                 anchors.fill: parent
@@ -116,7 +118,6 @@ Rectangle {
                 }
                 Rectangle {
                     id: imageViewerRect
-                    property string imageType: "preview"
                     anchors.top: itemDescription.bottom
                     anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -129,7 +130,7 @@ Rectangle {
                     border.width: 2
                     Image {
                         id: imageViewer
-                        source: ToxicWaste.imageUrl(imageViewerRect.imageType)
+                        source: ToxicWaste.imageUrl(toxicWasteMain.secondaryImageType)
                         smooth: true
                         anchors.fill: parent
                         anchors.centerIn: parent
@@ -151,7 +152,7 @@ Rectangle {
                         smooth: true
                         Text {
                             id: imageTypeText
-                            text: ToxicWaste.gameImageType(imageViewerRect.imageType)
+                            text: ToxicWaste.gameImageType(toxicWasteMain.secondaryImageType)
                             color: "black"
                             font.bold: true
                             font.pixelSize: 12 * ToxicWaste.scaleFactorX()
@@ -175,7 +176,7 @@ Rectangle {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
-                                onClicked: imageViewerRect.imageType = ToxicWaste.nextImageType(imageViewerRect.imageType);
+                                onClicked: toxicWasteMain.secondaryImageType = ToxicWaste.nextImageType(toxicWasteMain.secondaryImageType);
                             }
                         }
                         Image {
@@ -193,7 +194,7 @@ Rectangle {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
-                                onClicked: imageViewerRect.imageType = ToxicWaste.previousImageType(imageViewerRect.imageType);
+                                onClicked: toxicWasteMain.secondaryImageType = ToxicWaste.previousImageType(toxicWasteMain.secondaryImageType);
                             }
                         }
                     }
@@ -216,14 +217,14 @@ Rectangle {
             states: State {
                 name: "back"
                 PropertyChanges { target: overlayRotation; angle: 180 }
-                when: overlayFlip.flipped
+                when: toxicWasteMain.cabinetFlipped
             }
             transitions: Transition {
                 NumberAnimation { target: overlayRotation; property: "angle"; duration: 500 }
             }
             MouseArea {
                 anchors.fill: parent
-                onClicked: overlayFlip.flipped = !overlayFlip.flipped
+                onClicked: toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped
                 z: -1
             }
         }
@@ -248,6 +249,7 @@ Rectangle {
         smooth: true
         preferredHighlightBegin: 0
         preferredHighlightEnd: 0
+        currentIndex: toxicWasteMain.lastIndex
         highlight: Rectangle {
             id: itemHighlighter
             smooth: true
@@ -360,6 +362,7 @@ Rectangle {
                 break;
             }
         }
+        onCurrentIndexChanged: toxicWasteMain.lastIndex = currentIndex;
     }
     Rectangle {
         id: confirmQuitDialog

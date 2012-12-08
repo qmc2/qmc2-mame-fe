@@ -16,7 +16,6 @@ public:
     QByteArray savedGeometry;
     bool savedMaximized;
     QList<QObject *> gameList;
-    QMap<QString, int> romStateMap;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();

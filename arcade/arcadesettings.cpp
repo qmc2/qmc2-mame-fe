@@ -110,6 +110,36 @@ bool ArcadeSettings::fullScreen()
     return value(QString("Arcade/%1/fullScreen").arg(arcadeTheme), false).toBool();
 }
 
+void ArcadeSettings::setSecondaryImageType(QString imageType)
+{
+    setValue(QString("Arcade/%1/secondaryImageType").arg(arcadeTheme), imageType);
+}
+
+QString ArcadeSettings::secondaryImageType()
+{
+    return value(QString("Arcade/%1/secondaryImageType").arg(arcadeTheme), "preview").toString();
+}
+
+void ArcadeSettings::setCabinetFlipped(bool flipped)
+{
+    setValue(QString("Arcade/%1/cabinetFlipped").arg(arcadeTheme), flipped);
+}
+
+bool ArcadeSettings::cabinetFlipped()
+{
+    return value(QString("Arcade/%1/cabinetFlipped").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setLastIndex(int index)
+{
+    setValue(QString("Arcade/%1/lastIndex").arg(arcadeTheme), index);
+}
+
+int ArcadeSettings::lastIndex()
+{
+    return value(QString("Arcade/%1/lastIndex").arg(arcadeTheme), 0).toInt();
+}
+
 QString ArcadeSettings::gameListCacheFile()
 {
     return value(QString("%1/FilesAndDirectories/GamelistCacheFile").arg(emulatorPrefix)).toString();
