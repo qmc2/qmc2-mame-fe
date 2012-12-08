@@ -39,10 +39,8 @@ Rectangle {
         smooth: true
         opacity: 0.7
     }
-    Rectangle {
-        id: overlayRect
-        height: parent.height
-        width: parent.width/2
+    Item {
+        id: overlayItem
         z: 3
         anchors.top: parent.top
         anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
@@ -52,22 +50,46 @@ Rectangle {
         anchors.leftMargin: 20 * ToxicWaste.scaleFactorX()
         anchors.right: parent.right
         anchors.rightMargin: 320 * ToxicWaste.scaleFactorX()
-        color: "#00000000"
         Flipable {
             id: overlayFlip
             property bool flipped: false
             anchors.fill: parent
-            front: Image {
-                id: overlayImageFront
-                source: "images/overlay.png"
-                fillMode: Image.PreserveAspectFit
-                width: 380
-                scale: ToxicWaste.scaleFactorX()
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: ToxicWaste.overlayOffset(height)
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.horizontalCenterOffset: 0
-                smooth: true
+            front: Item {
+                anchors.fill: parent
+                Image {
+                    id: overlayImageFront
+                    source: "images/overlay.png"
+                    fillMode: Image.PreserveAspectFit
+                    width: 380
+                    scale: ToxicWaste.scaleFactorX()
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.verticalCenterOffset: ToxicWaste.overlayOffset(height)
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.horizontalCenterOffset: 0
+                    smooth: true
+                }
+                Rectangle {
+                    id: previewRect
+                    width: 235
+                    height: 173
+                    opacity: 1.0
+                    anchors.verticalCenter: overlayImageFront.verticalCenter
+                    anchors.verticalCenterOffset: -160 * ToxicWaste.scaleFactorX()
+                    anchors.horizontalCenter: overlayImageFront.horizontalCenter
+                    anchors.horizontalCenterOffset: 2 * ToxicWaste.scaleFactorX()
+                    scale: ToxicWaste.scaleFactorX()
+                    color: "#202020"
+                    smooth: true
+                    z: -1
+                    Image {
+                        id: previewImage
+                        source: "image://qmc2/prv/" + gameListModel[gamelistView.currentIndex].id
+                        smooth: true
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        fillMode: Image.PreserveAspectFit
+                    }
+                }
             }
             back: Rectangle {
                 id: overlayRectBack
@@ -161,7 +183,7 @@ Rectangle {
                     GradientStop { position: 0.5; color: "white" }
                     GradientStop { position: 1.0; color: "lightgrey" }
                 }
-                opacity: 0.7
+                opacity: 0.8
                 radius: 10
                 border.color: "black"
                 border.width: 2

@@ -6,6 +6,7 @@
 class ConsoleWindow : public QPlainTextEdit
 {
     Q_OBJECT
+
 public:
     explicit ConsoleWindow(QWidget *parent = 0);
     virtual ~ConsoleWindow();

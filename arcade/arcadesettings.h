@@ -7,6 +7,7 @@
 class ArcadeSettings : public QSettings
 {
     Q_OBJECT
+
 public:
     QString arcadeTheme;
     QString frontEndPrefix;
@@ -39,6 +40,9 @@ public slots:
     // main frontend / emulator settings (from QMC2, readonly)
     QString gameListCacheFile();
     QString romStateCacheFile();
+    bool previewsZipped();
+    QString previewZipFile();
+    QString previewFolder();
 };
 
 #endif

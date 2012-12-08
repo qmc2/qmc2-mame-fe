@@ -33,7 +33,7 @@ function itemExited(itemText, itemBackground) {
     if ( itemText.fontResized ) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
-        itemBackground.opacity = 0.7;
+        itemBackground.opacity = 0.8;
     }
 }
 
@@ -41,7 +41,7 @@ function itemClicked(itemText, itemBackground) {
     if ( itemText.fontResized ) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
-        itemBackground.opacity = 0.7;
+        itemBackground.opacity = 0.8;
     }
 }
 
