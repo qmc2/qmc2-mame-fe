@@ -36,6 +36,12 @@ public slots:
     bool showBackgroundAnimation();
     void setFullScreen(bool);
     bool fullScreen();
+    void setSecondaryImageType(QString);
+    QString secondaryImageType();
+    void setCabinetFlipped(bool);
+    bool cabinetFlipped();
+    void setLastIndex(int);
+    int lastIndex();
 
     // main frontend / emulator settings (from QMC2, readonly)
     QString gameListCacheFile();

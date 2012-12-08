@@ -6,6 +6,7 @@ var initializing = true;
 
 function init() {
     viewer.loadSettings();
+    gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
     initializing = false;
 }
 
