@@ -36,6 +36,66 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
                 if ( !image.load(fileName) )
                     image.load(QLatin1String(":/images/ghost.png"));
             }
+        } else if ( imageType == "fly" ) {
+            if ( globalConfig->flyersZipped() ) {
+                // FIXME: add support for zipped flyers
+                QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): zipped flyers are not supported yet"));
+                image.load(QLatin1String(":/images/ghost.png"));
+            } else {
+                fileName = QFileInfo(globalConfig->flyerFolder() + "/" + gameId + ".png").absoluteFilePath();
+                if ( !image.load(fileName) )
+                    image.load(QLatin1String(":/images/ghost.png"));
+            }
+        } else if ( imageType == "cab" ) {
+            if ( globalConfig->cabinetsZipped() ) {
+                // FIXME: add support for zipped cabinets
+                QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): zipped cabinets are not supported yet"));
+                image.load(QLatin1String(":/images/ghost.png"));
+            } else {
+                fileName = QFileInfo(globalConfig->cabinetFolder() + "/" + gameId + ".png").absoluteFilePath();
+                if ( !image.load(fileName) )
+                    image.load(QLatin1String(":/images/ghost.png"));
+            }
+        } else if ( imageType == "ctl" ) {
+            if ( globalConfig->controllersZipped() ) {
+                // FIXME: add support for zipped controllers
+                QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): zipped controllers are not supported yet"));
+                image.load(QLatin1String(":/images/ghost.png"));
+            } else {
+                fileName = QFileInfo(globalConfig->controllerFolder() + "/" + gameId + ".png").absoluteFilePath();
+                if ( !image.load(fileName) )
+                    image.load(QLatin1String(":/images/ghost.png"));
+            }
+        } else if ( imageType == "mrq" ) {
+            if ( globalConfig->marqueesZipped() ) {
+                // FIXME: add support for zipped marquees
+                QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): zipped marquees are not supported yet"));
+                image.load(QLatin1String(":/images/ghost.png"));
+            } else {
+                fileName = QFileInfo(globalConfig->marqueeFolder() + "/" + gameId + ".png").absoluteFilePath();
+                if ( !image.load(fileName) )
+                    image.load(QLatin1String(":/images/ghost.png"));
+            }
+        } else if ( imageType == "ttl" ) {
+            if ( globalConfig->titlesZipped() ) {
+                // FIXME: add support for zipped titles
+                QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): zipped titles are not supported yet"));
+                image.load(QLatin1String(":/images/ghost.png"));
+            } else {
+                fileName = QFileInfo(globalConfig->titleFolder() + "/" + gameId + ".png").absoluteFilePath();
+                if ( !image.load(fileName) )
+                    image.load(QLatin1String(":/images/ghost.png"));
+            }
+        } else if ( imageType == "pcb" ) {
+            if ( globalConfig->pcbsZipped() ) {
+                // FIXME: add support for zipped PCBs
+                QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): zipped PCBs are not supported yet"));
+                image.load(QLatin1String(":/images/ghost.png"));
+            } else {
+                fileName = QFileInfo(globalConfig->pcbFolder() + "/" + gameId + ".png").absoluteFilePath();
+                if ( !image.load(fileName) )
+                    image.load(QLatin1String(":/images/ghost.png"));
+            }
         } else {
             QMC2_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): invalid image type '%1' requested").arg(imageType));
             image.load(QLatin1String(":/images/ghost.png"));

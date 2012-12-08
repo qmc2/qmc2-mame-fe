@@ -96,7 +96,7 @@ Rectangle {
                 anchors.fill: parent
                 border.color: "black"
                 border.width: 2
-                radius: 10
+                radius: 4
                 smooth: true
                 gradient: Gradient {
                     GradientStop { position: 0.00; color: "#ffffff" }
@@ -106,12 +106,104 @@ Rectangle {
                     id: itemDescription
                     text: ToxicWaste.gameCardHeader()
                     font.pixelSize: 12 * ToxicWaste.scaleFactorX()
-                    anchors.fill: parent
-                    anchors.margins: 10
+                    anchors.top: parent.top
+                    anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: parent.width - 20 * ToxicWaste.scaleFactorX()
                     horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignTop
+                    verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
-                    elide: Text.ElideNone
+                }
+                Rectangle {
+                    id: imageViewerRect
+                    property string imageType: "preview"
+                    anchors.top: itemDescription.bottom
+                    anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: 400 * ToxicWaste.scaleFactorX()
+                    height: 300 * ToxicWaste.scaleFactorX()
+                    smooth: true
+                    radius: 10
+                    color: "#202020"
+                    border.color: "black"
+                    border.width: 2
+                    Image {
+                        id: imageViewer
+                        source: ToxicWaste.imageUrl(imageViewerRect.imageType)
+                        smooth: true
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        fillMode: Image.PreserveAspectFit
+                    }
+                    Rectangle {
+                        id: itemTypeSelector
+                        gradient: Gradient {
+                            GradientStop { position: 0.00; color: "black" }
+                            GradientStop { position: 0.75; color: "white" }
+                            GradientStop { position: 1.00; color: "black" }
+                        }
+                        radius: 15 * ToxicWaste.scaleFactorX()
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: imageViewer.bottom
+                        anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
+                        height: 30 * ToxicWaste.scaleFactorX()
+                        width: 200 * ToxicWaste.scaleFactorX()
+                        smooth: true
+                        Text {
+                            id: imageTypeText
+                            text: ToxicWaste.gameImageType(imageViewerRect.imageType)
+                            color: "black"
+                            font.bold: true
+                            font.pixelSize: 12 * ToxicWaste.scaleFactorX()
+                            anchors.fill: parent
+                            anchors.centerIn: parent
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            smooth: true
+                        }
+                        Image {
+                            id: nextImageButton
+                            opacity: 0.5
+                            source: "images/arrow.png"
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.horizontalCenterOffset: 100 * ToxicWaste.scaleFactorX() - width/2
+                            anchors.verticalCenter: parent.verticalCenter
+                            height: parent.height - 2
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
+                                onClicked: imageViewerRect.imageType = ToxicWaste.nextImageType(imageViewerRect.imageType);
+                            }
+                        }
+                        Image {
+                            id: previousImageButton
+                            opacity: 0.5
+                            source: "images/arrow.png"
+                            mirror: true
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.horizontalCenterOffset: -100 * ToxicWaste.scaleFactorX() + width/2
+                            anchors.verticalCenter: parent.verticalCenter
+                            height: parent.height - 2
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
+                                onClicked: imageViewerRect.imageType = ToxicWaste.previousImageType(imageViewerRect.imageType);
+                            }
+                        }
+                    }
+                    Rectangle {
+                        anchors.fill: imageViewer
+                        color: "transparent"
+                        border.color: "black"
+                        border.width: 4 * ToxicWaste.scaleFactorX()
+                        radius: 4 * ToxicWaste.scaleFactorX()
+                    }
                 }
             }
             transform: Rotation {
@@ -132,6 +224,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: overlayFlip.flipped = !overlayFlip.flipped
+                z: -1
             }
         }
     }

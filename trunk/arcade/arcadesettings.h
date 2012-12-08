@@ -43,6 +43,24 @@ public slots:
     bool previewsZipped();
     QString previewZipFile();
     QString previewFolder();
+    bool flyersZipped();
+    QString flyerZipFile();
+    QString flyerFolder();
+    bool cabinetsZipped();
+    QString cabinetZipFile();
+    QString cabinetFolder();
+    bool controllersZipped();
+    QString controllerZipFile();
+    QString controllerFolder();
+    bool marqueesZipped();
+    QString marqueeZipFile();
+    QString marqueeFolder();
+    bool titlesZipped();
+    QString titleZipFile();
+    QString titleFolder();
+    bool pcbsZipped();
+    QString pcbZipFile();
+    QString pcbFolder();
 };
 
 #endif

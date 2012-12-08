@@ -57,5 +57,122 @@ function overlayOffset(h) {
 
 function gameCardHeader() {
     var gameObject = gameListModel[gamelistView.currentIndex];
-    return "<h2>" + gameObject.description + "</h2>" + "<p>id: " + gameObject.id + "<br>romState: " + viewer.romStateText(gameObject.romState) + "</p>";
+    return "<h2>" + gameObject.description + "</h2>" + "<p>"+ qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p>";
+}
+
+function nextImageType(imageType) {
+    var nextType;
+    switch ( imageType ) {
+    case "flyer":
+        nextType = "cabinet";
+        break;
+    case "cabinet":
+        nextType = "controller";
+        break;
+    case "controller":
+        nextType = "marquee";
+        break;
+    case "marquee":
+        nextType = "title";
+        break;
+    case "title":
+        nextType = "pcb";
+        break;
+    case "pcb":
+        nextType = "preview";
+        break;
+    case "preview":
+    default:
+        nextType = "flyer";
+        break;
+    }
+    return nextType;
+}
+
+function previousImageType(imageType) {
+    var previousType;
+    switch ( imageType ) {
+    case "flyer":
+        previousType = "preview";
+        break;
+    case "cabinet":
+        previousType = "flyer";
+        break;
+    case "controller":
+        previousType = "cabinet";
+        break;
+    case "marquee":
+        previousType = "controller";
+        break;
+    case "title":
+        previousType = "marquee";
+        break;
+    case "pcb":
+        previousType = "title";
+        break;
+    case "preview":
+    default:
+        previousType = "pcb";
+        break;
+    }
+    return previousType;
+}
+
+function gameImageType(imageType) {
+    var typeName;
+    switch ( imageType ) {
+    case "flyer":
+        typeName = qsTr("Flyer image");
+        break;
+    case "cabinet":
+        typeName = qsTr("Cabinet image");
+        break;
+    case "controller":
+        typeName = qsTr("Controller image");
+        break;
+    case "marquee":
+        typeName = qsTr("Marquee image");
+        break;
+    case "title":
+        typeName = qsTr("Title image");
+        break;
+    case "pcb":
+        typeName = qsTr("PCB image");
+        break;
+    case "preview":
+    default:
+        typeName = qsTr("Preview image");
+        break;
+    }
+    return typeName;
+}
+
+function imageUrl(imageType) {
+    var imgUrl = "image://qmc2/";
+    switch ( imageType ) {
+    case "flyer":
+        imgUrl += "fly/";
+        break;
+    case "cabinet":
+        imgUrl += "cab/";
+        break;
+    case "controller":
+        imgUrl += "ctl/";
+        break;
+    case "marquee":
+        imgUrl += "mrq/";
+        break;
+    case "title":
+        imgUrl += "ttl/";
+        break;
+    case "pcb":
+        imgUrl += "pcb/";
+        break;
+    case "preview":
+    default:
+        imgUrl += "prv/";
+        break;
+    }
+    imgUrl += gameListModel[gamelistView.currentIndex].id;
+    return imgUrl;
 }
