@@ -1,3 +1,6 @@
+qmc2/arcade/images/.svn
+qmc2/arcade/images/.svn/prop-base/ghost.png.svn-base
+qmc2/arcade/images/.svn/text-base/ghost.png.svn-base
 qmc2/arcade/qmlapplicationviewer/.svn
 qmc2/arcade/qmlapplicationviewer/.svn/text-base/qmlapplicationviewer.cpp.svn-base
 qmc2/arcade/qmlapplicationviewer/.svn/text-base/qmlapplicationviewer.h.svn-base
@@ -40,6 +43,7 @@ qmc2/arcade/.svn/text-base/macros.h.svn-base
 qmc2/arcade/.svn/text-base/main.cpp.svn-base
 qmc2/arcade/.svn/text-base/qmc2-arcade.pro.svn-base
 qmc2/arcade/.svn/text-base/qmc2-arcade.pro.user.svn-base
+qmc2/arcade/.svn/text-base/qmc2-arcade.qrc.svn-base
 qmc2/arcade/.svn/text-base/tweakedqmlappviewer.cpp.svn-base
 qmc2/arcade/.svn/text-base/tweakedqmlappviewer.h.svn-base
 qmc2/arch/Darwin/.svn
