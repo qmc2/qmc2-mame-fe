@@ -1,10 +1,38 @@
 #include "arcadesettings.h"
 #include "macros.h"
 
+extern int emulatorMode;
+
 ArcadeSettings::ArcadeSettings(QString theme)
     : QSettings(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_APP_NAME)
 {
     arcadeTheme = theme;
+    switch ( emulatorMode ) {
+    case QMC2_ARCADE_EMUMODE_MAME:
+#if defined(QMC2_OS_WIN)
+        frontEndPrefix = "Frontend/qmc2-mame";
+#else
+        frontEndPrefix = "Frontend/qmc2-sdlmame";
+#endif
+        emulatorPrefix = "MAME";
+        break;
+    case QMC2_ARCADE_EMUMODE_MESS:
+#if defined(QMC2_OS_WIN)
+        frontEndPrefix = "Frontend/qmc2-mess";
+#else
+        frontEndPrefix = "Frontend/qmc2-sdlmess";
+#endif
+        emulatorPrefix = "MESS";
+        break;
+    case QMC2_ARCADE_EMUMODE_UME:
+#if defined(QMC2_OS_WIN)
+        frontEndPrefix = "Frontend/qmc2-ume";
+#else
+        frontEndPrefix = "Frontend/qmc2-sdlume";
+#endif
+        emulatorPrefix = "UME";
+        break;
+    }
 }
 
 ArcadeSettings::~ArcadeSettings()
@@ -80,4 +108,14 @@ void ArcadeSettings::setFullScreen(bool fullScreen)
 bool ArcadeSettings::fullScreen()
 {
     return value(QString("Arcade/%1/fullScreen").arg(arcadeTheme), false).toBool();
+}
+
+QString ArcadeSettings::gameListCacheFile()
+{
+    return value(QString("%1/FilesAndDirectories/GamelistCacheFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::romStateCacheFile()
+{
+    return value(QString("%1/FilesAndDirectories/ROMStateCacheFile").arg(emulatorPrefix)).toString();
 }

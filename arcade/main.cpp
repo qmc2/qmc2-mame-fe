@@ -14,9 +14,13 @@ QStringList arcadeThemes;
 QStringList mameThemes;
 QStringList messThemes;
 QStringList umeThemes;
+bool runApp = true;
 
 void qtMessageHandler(QtMsgType type, const char *msg)
 {
+    if ( !runApp )
+        return;
+
     QString msgString;
 
     switch ( type ) {
@@ -35,6 +39,7 @@ void qtMessageHandler(QtMsgType type, const char *msg)
     default:
         return;
     }
+
     QMC2_LOG_STR(msgString);
 }
 
@@ -74,8 +79,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         else
             consoleWindow->show();
     }
-
-    bool runApp = true;
 
     // process command line arguments
     if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
@@ -180,7 +183,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     } else {
         if ( consoleWindow ) {
             consoleWindow->loadSettings();
-            QString consoleMessage(QObject::tr("Couldn't start QML viewer - please close the console window to exit"));
+            QString consoleMessage(QObject::tr("QML viewer not started - please close the console window to exit"));
             QMC2_LOG_STR_NO_TIME(QString("-").repeated(consoleMessage.length()));
             QMC2_LOG_STR_NO_TIME(consoleMessage);
             QMC2_LOG_STR_NO_TIME(QString("-").repeated(consoleMessage.length()));

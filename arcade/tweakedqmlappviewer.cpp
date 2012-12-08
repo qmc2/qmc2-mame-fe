@@ -2,6 +2,9 @@
 #include <QDeclarativeContext>
 #include <QDeclarativeEngine>
 #include <QApplication>
+#include <QFileInfo>
+#include <QFile>
+#include <QTextStream>
 
 #include "tweakedqmlappviewer.h"
 #include "imageprovider.h"
@@ -85,7 +88,7 @@ void TweakedQmlApplicationViewer::saveSettings()
 
 void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 {
-    QMC2_LOG_STR(tr("Activating full-screen mode"));
+    QMC2_LOG_STR(tr("Activating full-screen display"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
@@ -100,7 +103,7 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
 {
-    QMC2_LOG_STR(tr("Activating windowed mode"));
+    QMC2_LOG_STR(tr("Activating windowed display"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
@@ -134,19 +137,68 @@ QString TweakedQmlApplicationViewer::romStateText(int status)
     }
 }
 
+int TweakedQmlApplicationViewer::romStateCharToInt(char status)
+{
+    switch ( status ) {
+    case 'C':
+        return QMC2_ARCADE_ROMSTATE_C;
+    case 'M':
+        return QMC2_ARCADE_ROMSTATE_M;
+    case 'I':
+        return QMC2_ARCADE_ROMSTATE_I;
+    case 'N':
+        return QMC2_ARCADE_ROMSTATE_N;
+    case 'U':
+    default:
+        return QMC2_ARCADE_ROMSTATE_U;
+    }
+}
+
 void TweakedQmlApplicationViewer::loadGamelist()
 {
     QMC2_LOG_STR(tr("Loading and filtering %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")));
 
-    // FIXME: this is only test-data...
-    for (int i = 0; i < 500; i++)
-        gameList.append(new GameObject(QString("%1").arg(i + 1), QString("Item %1").arg(i + 1), rand() % 5));
+    QMap<QString, char> rscMap;
+    QFile romStateCache(globalConfig->romStateCacheFile());
+    if ( romStateCache.exists() ) {
+        if ( romStateCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+            QTextStream tsRomCache(&romStateCache);
+            while ( !tsRomCache.atEnd() ) {
+                QString line = tsRomCache.readLine();
+                if ( !line.isEmpty() && !line.startsWith("#") ) {
+                    QStringList words = line.split(" ");
+                    rscMap[words[0]] = words[1].at(0).toLatin1();
+                }
+            }
+        } else
+            QMC2_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").arg(globalConfig->romStateCacheFile()));
+    } else
+        QMC2_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").arg(globalConfig->romStateCacheFile()));
+
+    QFile gameListCache(globalConfig->gameListCacheFile());
+    if ( gameListCache.exists() ) {
+        if ( gameListCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+            QTextStream tsGameListCache(&gameListCache);
+            tsGameListCache.readLine();
+            tsGameListCache.readLine();
+            // FIXME: add sorting and filtering based on settings made in QMC2!
+            while ( !tsGameListCache.atEnd() ) {
+                QStringList words = tsGameListCache.readLine().split("\t");
+                if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
+                    QString gameId = words[QMC2_ARCADE_GLC_ID];
+                    gameList.append(new GameObject(gameId, words[QMC2_ARCADE_GLC_DESCRIPTION], romStateCharToInt(rscMap[gameId])));
+                }
+            }
+        } else
+            QMC2_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(globalConfig->gameListCacheFile()));
+    } else
+        QMC2_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(globalConfig->gameListCacheFile()));
 
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n set(s) loaded", "", gameList.count())));
+    QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())));
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)

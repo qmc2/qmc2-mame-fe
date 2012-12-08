@@ -9,6 +9,8 @@ class ArcadeSettings : public QSettings
     Q_OBJECT
 public:
     QString arcadeTheme;
+    QString frontEndPrefix;
+    QString emulatorPrefix;
 
     explicit ArcadeSettings(QString);
     virtual ~ArcadeSettings();
@@ -33,6 +35,10 @@ public slots:
     bool showBackgroundAnimation();
     void setFullScreen(bool);
     bool fullScreen();
+
+    // main frontend / emulator settings (from QMC2, readonly)
+    QString gameListCacheFile();
+    QString romStateCacheFile();
 };
 
 #endif
