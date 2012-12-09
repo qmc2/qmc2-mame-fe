@@ -29,6 +29,8 @@ public slots:
     QString romStateText(int status);
     int romStateCharToInt(char status);
     void loadGamelist();
+    void launchEmulator(QString id);
+    int findIndex(QString pattern, int startIndex = 0);
 
 protected:
     void paintEvent(QPaintEvent *);

@@ -6,7 +6,8 @@ var initializing = true;
 
 function init() {
     viewer.loadSettings();
-    gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
+    if ( lastIndex < gameListModelCount )
+        gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
     initializing = false;
 }
 
@@ -176,4 +177,27 @@ function imageUrl(imageType) {
     }
     imgUrl += gameListModel[gamelistView.currentIndex].id;
     return imgUrl;
+}
+
+function launchButtonSource() {
+    var buttonSource = "images/launch_";
+    switch ( gameListModel[gamelistView.currentIndex].romState ) {
+    case 0:
+        buttonSource += "correct.png";
+        break;
+    case 1:
+        buttonSource += "mostlycorrect.png";
+        break;
+    case 2:
+        buttonSource += "incorrect.png";
+        break;
+    case 3:
+        buttonSource += "notfound.png";
+        break;
+    case 4:
+    default:
+        buttonSource += "unknown.png";
+        break;
+    }
+    return buttonSource;
 }
