@@ -254,3 +254,8 @@ QString ArcadeSettings::pcbFolder()
 {
     return value(QString("%1/FilesAndDirectories/PCBDirectory").arg(emulatorPrefix)).toString();
 }
+
+QString ArcadeSettings::optionsTemplateFile()
+{
+    return value(QString("%1/FilesAndDirectories/OptionsTemplateFile").arg(emulatorPrefix)).toString();
+}

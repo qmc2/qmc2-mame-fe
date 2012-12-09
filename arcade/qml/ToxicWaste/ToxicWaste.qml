@@ -808,6 +808,11 @@ Rectangle {
         case Qt.Key_F11:
             fullScreen = !fullScreen;
             break;
+        default:
+            if ( ToxicWaste.validateKey(event.text) ) {
+                searchTextInput.text += event.text;
+                searchTextInput.focus = true;
+            }
         }
     }
     Keys.forwardTo: [gamelistView]

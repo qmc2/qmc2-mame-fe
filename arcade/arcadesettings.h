@@ -43,7 +43,7 @@ public slots:
     void setLastIndex(int);
     int lastIndex();
 
-    // main frontend / emulator settings (from QMC2, readonly)
+    // main frontend / emulator settings (from QMC2, read-only)
     QString gameListCacheFile();
     QString romStateCacheFile();
     bool previewsZipped();
@@ -67,6 +67,7 @@ public slots:
     bool pcbsZipped();
     QString pcbZipFile();
     QString pcbFolder();
+    QString optionsTemplateFile();
 };
 
 #endif

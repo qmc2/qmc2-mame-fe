@@ -6,10 +6,13 @@
 // global OS macros for supported target operating systems
 #if (defined(Q_OS_UNIX) || defined(Q_OS_LINUX)) && !defined(Q_OS_MAC)
 #define QMC2_ARCADE_OS_UNIX
+#define QMC2_ARCADE_OS_NAME         QString("UNIX")
 #elif defined(Q_OS_MAC)
 #define QMC2_ARCADE_OS_MAC
+#define QMC2_ARCADE_OS_NAME         QString("Darwin")
 #elif defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
 #define QMC2_ARCADE_OS_WIN
+#define QMC2_ARCADE_OS_NAME         QString("Windows")
 #else
 #error "Target OS is not supported -- QMC2 Arcade currently supports Linux/UNIX, Windows and Mac OS X!"
 #endif
@@ -64,6 +67,19 @@
 #define QMC2_ARCADE_CONSOLE_TERM    0
 #define QMC2_ARCADE_CONSOLE_WIN     1
 #define QMC2_ARCADE_CONSOLE_WINMIN  2
+
+// emulator option types
+#define QMC2_ARCADE_EMUOPT_UNKNOWN  0
+#define QMC2_ARCADE_EMUOPT_BOOL     1
+#define QMC2_ARCADE_EMUOPT_INT      2
+#define QMC2_ARCADE_EMUOPT_FLOAT    3
+#define QMC2_ARCADE_EMUOPT_FLOAT1   QMC2_ARCADE_EMUOPT_FLOAT
+#define QMC2_ARCADE_EMUOPT_STRING   4
+#define QMC2_ARCADE_EMUOPT_FILE     5
+#define QMC2_ARCADE_EMUOPT_FOLDER   6
+#define QMC2_ARCADE_EMUOPT_COMBO    7
+#define QMC2_ARCADE_EMUOPT_FLOAT2   8
+#define QMC2_ARCADE_EMUOPT_FLOAT3   9
 
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)

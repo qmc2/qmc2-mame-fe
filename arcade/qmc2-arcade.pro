@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     imageprovider.cpp \
     arcadesettings.cpp \
     gameobject.cpp \
-    consolewindow.cpp
+    consolewindow.cpp \
+    processmanager.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -39,7 +40,9 @@ HEADERS += \
     arcadesettings.h \
     macros.h \
     gameobject.h \
-    consolewindow.h
+    consolewindow.h \
+    processmanager.h \
+    emulatoroptions.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 

@@ -201,3 +201,10 @@ function launchButtonSource() {
     }
     return buttonSource;
 }
+
+function validateKey(k) {
+    if ( /[^a-zA-Z0-9\*\?$]/.test(k) || k == "" )
+       return false;
+    else
+        return true;
+}
