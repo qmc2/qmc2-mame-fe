@@ -222,10 +222,12 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     int foundIndex = startIndex;
     bool indexFound = false;
 
+    QRegExp patternRegExp(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
+
     for (int i = startIndex + 1; i < gameList.count() && !indexFound; i++) {
         QString description = ((GameObject *)gameList[i])->description();
         QString id = ((GameObject *)gameList[i])->id();
-        if ( description.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 || id.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 ) {
+        if ( description.indexOf(patternRegExp, 0) >= 0 || id.indexOf(patternRegExp, 0) >= 0 ) {
             foundIndex = i;
             indexFound = true;
         }
@@ -234,7 +236,7 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     for (int i = 0; i < startIndex && !indexFound; i++) {
         QString description = ((GameObject *)gameList[i])->description();
         QString id = ((GameObject *)gameList[i])->id();
-        if ( description.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 || id.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 ) {
+        if ( description.indexOf(patternRegExp, 0) >= 0 || id.indexOf(patternRegExp, 0) >= 0 ) {
             foundIndex = i;
             indexFound = true;
         }
