@@ -719,9 +719,7 @@ Rectangle {
                             PauseAnimation { duration: 500 }
                         }
                     }
-                    onAccepted: {
-                        gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
-                    }
+                    onAccepted: gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
                     onFocusChanged: {
                         if ( !focus )
                             toxicWasteMain.focus = true;
