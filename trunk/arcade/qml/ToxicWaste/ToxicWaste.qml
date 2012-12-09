@@ -176,7 +176,10 @@ Rectangle {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
-                                onClicked: toxicWasteMain.secondaryImageType = ToxicWaste.nextImageType(toxicWasteMain.secondaryImageType);
+                                onClicked: {
+                                    toxicWasteMain.secondaryImageType = ToxicWaste.nextImageType(toxicWasteMain.secondaryImageType);
+                                    searchTextInput.focus = false;
+                                }
                             }
                         }
                         Image {
@@ -194,7 +197,10 @@ Rectangle {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
-                                onClicked: toxicWasteMain.secondaryImageType = ToxicWaste.previousImageType(toxicWasteMain.secondaryImageType);
+                                onClicked: {
+                                    toxicWasteMain.secondaryImageType = ToxicWaste.previousImageType(toxicWasteMain.secondaryImageType);
+                                    searchTextInput.focus = false;
+                                }
                             }
                         }
                     }
@@ -224,8 +230,36 @@ Rectangle {
             }
             MouseArea {
                 anchors.fill: parent
-                onClicked: toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped
+                onClicked: {
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    searchTextInput.focus = false;
+                }
                 z: -1
+            }
+        }
+    }
+    Image {
+        id: launchButton
+        source: ToxicWaste.launchButtonSource()
+        anchors.horizontalCenter: toxicWasteMain.horizontalCenter
+        anchors.horizontalCenterOffset: -toxicWasteMain.width/2 + 32 * ToxicWaste.scaleFactorX()
+        anchors.verticalCenter: toxicWasteMain.verticalCenter
+        anchors.verticalCenterOffset: toxicWasteMain.height/2 - 56 * ToxicWaste.scaleFactorX()
+        width: 64
+        height: 64
+        opacity: 0.7
+        scale: ToxicWaste.scaleFactorX()
+        z: 4
+        smooth: true
+        fillMode: Image.PreserveAspectFit
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: parent.opacity = 1.0
+            onExited: parent.opacity = 0.7
+            onClicked: {
+                viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                searchTextInput.focus = false;
             }
         }
     }
@@ -314,6 +348,7 @@ Rectangle {
                     onClicked: {
                         gamelistView.currentIndex = index;
                         ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground);
+                        searchTextInput.focus = false;
                     }
                 }
             }
@@ -359,6 +394,11 @@ Rectangle {
             case Qt.Key_Home:
                 positionViewAtBeginning();
                 event.accepted = true;
+                break;
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+                if ( !searchTextInput.focus )
+                    viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
                 break;
             }
         }
@@ -420,6 +460,10 @@ Rectangle {
             to: "shown"
             reversible: true
             PropertyAnimation { property: "opacity"; duration: 250 }
+        }
+        onOpacityChanged: {
+            if ( opacity > 0 )
+                searchTextInput.focus = false;
         }
     }
     Rectangle {
@@ -547,7 +591,11 @@ Rectangle {
                 hoverEnabled: true
                 onEntered: parent.opacity = 0.5
                 onExited: parent.opacity = 1.0
-                onClicked: { parent.opacity = 1.0; confirmQuitDialog.state = "shown"; }
+                onClicked: {
+                    parent.opacity = 1.0;
+                    confirmQuitDialog.state = "shown";
+                    searchTextInput.focus = false;
+                }
             }
         }
         Image {
@@ -576,6 +624,7 @@ Rectangle {
                         toxicWasteMain.fullScreen = false;
                     }
                     parent.opacity = 1.0;
+                    searchTextInput.focus = false;
                 }
             }
             states: [
@@ -605,7 +654,100 @@ Rectangle {
                 hoverEnabled: true
                 onEntered: parent.opacity = 0.5
                 onExited: parent.opacity = 1.0
-                onClicked: { parent.opacity = 1.0; preferencesDialog.state = "shown"; }
+                onClicked: {
+                    parent.opacity = 1.0;
+                    preferencesDialog.state = "shown";
+                    searchTextInput.focus = false;
+                }
+            }
+        }
+        Item {
+            id: searchBox
+            anchors.centerIn: parent
+            width: 229 / ToxicWaste.scaleFactorX()
+            height: 24
+            scale: ToxicWaste.scaleFactorX()
+            Image {
+                id: searchImage
+                source: "images/find.png"
+                height: 20 / ToxicWaste.scaleFactorX()
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                anchors.verticalCenter: parent.verticalCenter
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.opacity = 0.5
+                    onExited: parent.opacity = 1.0
+                    onClicked: {
+                        parent.opacity = 1.0;
+                        gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
+                        searchTextInput.focus = false;
+                    }
+                }
+            }
+            Rectangle {
+                id: searchTextInputBox
+                height: searchImage.height
+                width: 200 / ToxicWaste.scaleFactorX()
+                radius: height
+                smooth: true
+                anchors.left: searchImage.right
+                anchors.leftMargin: 5 / ToxicWaste.scaleFactorX()
+                anchors.verticalCenter: searchImage.verticalCenter
+                TextInput {
+                    id: searchTextInput
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 2
+                    anchors.right: parent.right
+                    anchors.rightMargin: 2
+                    font.pointSize: parent.height
+                    smooth: true
+                    cursorDelegate: Rectangle {
+                        id: searchTextCursorDelegate
+                        color: "black"
+                        width: 1
+                        height: 10
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: parent.activeFocus
+                        SequentialAnimation on opacity {
+                            loops: Animation.Infinite;
+                            PropertyAnimation { from: 0.0; to: 1.0; duration: 250 }
+                            PauseAnimation { duration: 500 }
+                            PropertyAnimation { from: 1.0; to: 0.0; duration: 250 }
+                            PauseAnimation { duration: 500 }
+                        }
+                    }
+                    onAccepted: {
+                        gamelistView.positionViewAtIndex(viewer.findIndex(searchTextInput.text, gamelistView.currentIndex), ListView.Beginning);
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                }
+            }
+            Image {
+                id: clearImage
+                source: "images/clear.png"
+                height: 28 / ToxicWaste.scaleFactorX()
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: searchTextInputBox.right
+                anchors.leftMargin: 5 / ToxicWaste.scaleFactorX()
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: parent.opacity = 0.5
+                    onExited: parent.opacity = 1.0
+                    onClicked: {
+                        parent.opacity = 1.0;
+                        searchTextInput.text = "";
+                        searchTextInput.focus = false;
+                    }
+                }
             }
         }
     }

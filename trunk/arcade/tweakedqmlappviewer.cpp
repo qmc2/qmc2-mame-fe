@@ -207,6 +207,42 @@ void TweakedQmlApplicationViewer::loadGamelist()
     QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())));
 }
 
+void TweakedQmlApplicationViewer::launchEmulator(QString id)
+{
+    QMC2_LOG_STR(tr("Launching emulator for %1 ID '%2'").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game") : tr("machine")).arg(id));
+
+    // FIXME
+}
+
+int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
+{
+    if ( pattern.isEmpty() )
+        return startIndex;
+
+    int foundIndex = startIndex;
+    bool indexFound = false;
+
+    for (int i = startIndex + 1; i < gameList.count() && !indexFound; i++) {
+        QString description = ((GameObject *)gameList[i])->description();
+        QString id = ((GameObject *)gameList[i])->id();
+        if ( description.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 || id.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 ) {
+            foundIndex = i;
+            indexFound = true;
+        }
+    }
+
+    for (int i = 0; i < startIndex && !indexFound; i++) {
+        QString description = ((GameObject *)gameList[i])->description();
+        QString id = ((GameObject *)gameList[i])->id();
+        if ( description.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 || id.indexOf(pattern, 0, Qt::CaseInsensitive) >= 0 ) {
+            foundIndex = i;
+            indexFound = true;
+        }
+    }
+
+    return foundIndex;
+}
+
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 {
     numFrames++;
