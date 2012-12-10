@@ -16,9 +16,13 @@ public:
     int startEmulator(QString);
     void createTemplateList();
 
+    QString fileErrorToString(QFile::FileError);
+    QString processErrorToString(QProcess::ProcessError);
+    QString processStateToString(QProcess::ProcessState);
+
 signals:
-    void emulatorStarted(QProcess *);
-    void emulatorFinished(QProcess *);
+    void emulatorStarted(int);
+    void emulatorFinished(int);
 
 public slots:
     void error(QProcess::ProcessError);
