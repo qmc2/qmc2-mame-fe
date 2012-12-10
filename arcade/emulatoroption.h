@@ -45,6 +45,9 @@ public:
         dvalue = dv;
         value = v;
     }
+    static bool lessThan(const EmulatorOption &o1, const EmulatorOption &o2) {
+        return o1.name < o2.name;
+    }
 };
 
 #endif

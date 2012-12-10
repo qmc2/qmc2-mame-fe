@@ -40,7 +40,7 @@ void qtMessageHandler(QtMsgType type, const char *msg)
         return;
     }
 
-    QMC2_LOG_STR(msgString);
+    QMC2_ARCADE_LOG_STR(msgString);
 }
 
 void showHelp()
@@ -52,7 +52,7 @@ void showHelp()
                                       "-theme           [ToxicWaste]\n"
                                       "-console         [terminal], window, window-minimized\n"
                                       "-graphicssystem  [raster], native, opengl, ...\n");
-    QMC2_LOG_STR_NO_TIME(helpMessage);
+    QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -92,7 +92,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QString theme = QMC2_ARCADE_CLI_THEME;
 
     if ( !arcadeThemes.contains(theme) && runApp ) {
-        QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
+        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
         if ( !consoleWindow )
             return 1;
         else
@@ -113,7 +113,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
         if ( !mameThemes.contains(theme) && runApp ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
+            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else
@@ -122,7 +122,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
         if ( !messThemes.contains(theme) && runApp ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
+            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else
@@ -131,7 +131,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         break;
     case QMC2_ARCADE_EMUMODE_UME:
         if ( !umeThemes.contains(theme) && runApp ) {
-            QMC2_LOG_STR_NO_TIME(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
+            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else
@@ -151,7 +151,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     int returnCode;
     if ( runApp ) {
         // log banner message
-        QMC2_LOG_STR(QString(QString("%1 %2 (%3)").
+        QMC2_ARCADE_LOG_STR(QString(QString("%1 %2 (%3)").
                              arg(QMC2_ARCADE_APP_TITLE).
                              arg(QMC2_ARCADE_APP_VERSION).
                              arg(QString("Qt ") + qVersion() + ", " +
@@ -166,7 +166,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
         QString qmlFile(QString("qml/%1/%1.qml").arg(theme));
-        QMC2_LOG_STR(QObject::tr("Starting QML viewer using '%1' as main file").arg(qmlFile));
+        QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using '%1' as main file").arg(qmlFile));
         viewer->setMainQmlFile(qmlFile.toLocal8Bit());
 
         // set up display mode initially...
@@ -184,9 +184,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         if ( consoleWindow ) {
             consoleWindow->loadSettings();
             QString consoleMessage(QObject::tr("QML viewer not started - please close the console window to exit"));
-            QMC2_LOG_STR_NO_TIME(QString("-").repeated(consoleMessage.length()));
-            QMC2_LOG_STR_NO_TIME(consoleMessage);
-            QMC2_LOG_STR_NO_TIME(QString("-").repeated(consoleMessage.length()));
+            QMC2_ARCADE_LOG_STR_NT(QString("-").repeated(consoleMessage.length()));
+            QMC2_ARCADE_LOG_STR_NT(consoleMessage);
+            QMC2_ARCADE_LOG_STR_NT(QString("-").repeated(consoleMessage.length()));
             consoleWindow->showNormal();
             consoleWindow->raise();
             app->exec();

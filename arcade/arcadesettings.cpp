@@ -259,3 +259,13 @@ QString ArcadeSettings::optionsTemplateFile()
 {
     return value(QString("%1/FilesAndDirectories/OptionsTemplateFile").arg(emulatorPrefix)).toString();
 }
+
+QString ArcadeSettings::emulatorExecutablePath()
+{
+    return value(QString("%1/FilesAndDirectories/ExecutableFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::emulatorWorkingDirectory()
+{
+    return value(QString("%1/FilesAndDirectories/WorkingDirectory").arg(emulatorPrefix)).toString();
+}
