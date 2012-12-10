@@ -1,4 +1,5 @@
 #include <QXmlStreamReader>
+#include <QFileInfo>
 
 #include "processmanager.h"
 #include "arcadesettings.h"
@@ -101,8 +102,8 @@ int ProcessManager::startEmulator(QString id)
 
 void ProcessManager::createTemplateList()
 {
-    QString templateFilePath = globalConfig->optionsTemplateFile();
-    QMC2_ARCADE_LOG_STR(tr("Loading configuration template from '%1'").arg(templateFilePath));
+    QString templateFilePath = QFileInfo(globalConfig->optionsTemplateFile()).absoluteFilePath();
+    QMC2_ARCADE_LOG_STR(tr("Loading configuration template from '%1'").arg(QDir::toNativeSeparators(templateFilePath)));
     mTemplateList.clear();
     QFile templateFile(templateFilePath);
     if ( templateFile.open(QFile::ReadOnly) ) {
@@ -111,7 +112,7 @@ void ProcessManager::createTemplateList()
             xmlReader.readNext();
             if ( xmlReader.hasError() ) {
                 QMC2_ARCADE_LOG_STR(tr("FATAL: XML error reading template: '%1' in file '%2' at line %3, column %4").
-                             arg(xmlReader.errorString()).arg(templateFilePath).arg(xmlReader.lineNumber()).arg(xmlReader.columnNumber()));
+                             arg(xmlReader.errorString()).arg(QDir::toNativeSeparators(templateFilePath)).arg(xmlReader.lineNumber()).arg(xmlReader.columnNumber()));
             } else {
                 if ( xmlReader.isStartElement() ) {
                     QString elementType = xmlReader.name().toString();
@@ -141,7 +142,7 @@ void ProcessManager::createTemplateList()
         }
         templateFile.close();
         qSort(mTemplateList.begin(), mTemplateList.end(), EmulatorOption::lessThan);
-        QMC2_ARCADE_LOG_STR(QString(tr("Done (loading configuration template from '%1')").arg(templateFilePath) + " - " + tr("%n option(s) loaded", "", mTemplateList.count())));
+        QMC2_ARCADE_LOG_STR(QString(tr("Done (loading configuration template from '%1')").arg(QDir::toNativeSeparators(templateFilePath)) + " - " + tr("%n option(s) loaded", "", mTemplateList.count())));
     } else
         QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open the configuration template file: reason = %1").arg(fileErrorToString(templateFile.error())));
 }

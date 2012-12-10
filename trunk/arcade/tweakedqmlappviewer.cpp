@@ -171,7 +171,8 @@ void TweakedQmlApplicationViewer::loadGamelist()
                  arg(globalConfig->gameListCacheFile()));
 
     QMap<QString, char> rscMap;
-    QFile romStateCache(globalConfig->romStateCacheFile());
+    QString romStateCachePath = QFileInfo(globalConfig->romStateCacheFile()).absoluteFilePath();
+    QFile romStateCache(romStateCachePath);
     if ( romStateCache.exists() ) {
         if ( romStateCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
             QTextStream tsRomCache(&romStateCache);
@@ -184,12 +185,13 @@ void TweakedQmlApplicationViewer::loadGamelist()
             }
         } else
             QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").
-                         arg(QDir::toNativeSeparators(globalConfig->romStateCacheFile())));
+                         arg(QDir::toNativeSeparators(romStateCachePath)));
     } else
         QMC2_ARCADE_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").
-                     arg(QDir::toNativeSeparators(globalConfig->romStateCacheFile())));
+                     arg(QDir::toNativeSeparators(romStateCachePath)));
 
-    QFile gameListCache(globalConfig->gameListCacheFile());
+    QString gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
+    QFile gameListCache(gameListCachePath);
     if ( gameListCache.exists() ) {
         if ( gameListCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
             QTextStream tsGameListCache(&gameListCache);
@@ -205,11 +207,11 @@ void TweakedQmlApplicationViewer::loadGamelist()
         } else
             QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").
                          arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                         arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
+                         arg(QDir::toNativeSeparators(gameListCachePath)));
     } else
         QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").
                      arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                     arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
+                     arg(QDir::toNativeSeparators(gameListCachePath)));
 
     // FIXME: Add sorting and filtering based on settings made in QMC2! For now, just sort by description in descending order.
     qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
@@ -218,9 +220,9 @@ void TweakedQmlApplicationViewer::loadGamelist()
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from %2)").
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from '%2'')").
                          arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).
-                         arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
+                         arg(QDir::toNativeSeparators(gameListCachePath)));
 }
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
