@@ -972,6 +972,15 @@ ifeq '$(ARCH)' 'Windows'
 	@$(RM) arcade\object_script.qmc2-arcade.Release arcade\object_script.qmc2-arcade.Debug
 endif
 
+arcade-install: arcade
+ifeq '$(ARCH)' 'Windows'
+else
+ifeq '$(ARCH)' 'Darwin'
+else
+	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
+endif
+endif
+
 ifeq '$(QUIET)' '1'
 ifeq '$(ARCH)' 'Windows'
 rcgen: qmc2-mame.rc qmc2-mess.rc qmc2-ume.rc

@@ -1,5 +1,27 @@
 <RCC>
     <qresource prefix="/">
         <file>images/ghost.png</file>
+        <file>qml/ToxicWaste/BackgroundAnimation.qml</file>
+        <file>qml/ToxicWaste/Button.qml</file>
+        <file>qml/ToxicWaste/CheckBox.qml</file>
+        <file>qml/ToxicWaste/RadialWaveEffect.qml</file>
+        <file>qml/ToxicWaste/ToxicWaste.js</file>
+        <file>qml/ToxicWaste/ToxicWaste.qml</file>
+        <file>qml/ToxicWaste/images/arrow.png</file>
+        <file>qml/ToxicWaste/images/checkmark.png</file>
+        <file>qml/ToxicWaste/images/clear.png</file>
+        <file>qml/ToxicWaste/images/exit.png</file>
+        <file>qml/ToxicWaste/images/find.png</file>
+        <file>qml/ToxicWaste/images/fullscreen.png</file>
+        <file>qml/ToxicWaste/images/launch_correct.png</file>
+        <file>qml/ToxicWaste/images/launch_incorrect.png</file>
+        <file>qml/ToxicWaste/images/launch_mostlycorrect.png</file>
+        <file>qml/ToxicWaste/images/launch_notfound.png</file>
+        <file>qml/ToxicWaste/images/launch_unknown.png</file>
+        <file>qml/ToxicWaste/images/overlay.png</file>
+        <file>qml/ToxicWaste/images/preferences.png</file>
+        <file>qml/ToxicWaste/images/shadereffectsource.png</file>
+        <file>qml/ToxicWaste/images/toxic.png</file>
+        <file>qml/ToxicWaste/images/windowed.png</file>
     </qresource>
 </RCC>

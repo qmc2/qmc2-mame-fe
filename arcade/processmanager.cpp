@@ -89,8 +89,6 @@ int ProcessManager::startEmulator(QString id)
         connect(proc, SIGNAL(started()), this, SLOT(started()));
         connect(proc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(stateChanged(QProcess::ProcessState)));
 
-        QMC2_ARCADE_LOG_STR(tr("Starting emulator #%1 using command '%2'").arg(mCurrentProcessId).arg(globalConfig->emulatorExecutablePath() + " " + args.join(" ")));
-
         if ( !globalConfig->emulatorWorkingDirectory().isEmpty() )
             proc->setWorkingDirectory(globalConfig->emulatorWorkingDirectory());
 

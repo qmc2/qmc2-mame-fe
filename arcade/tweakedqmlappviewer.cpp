@@ -29,8 +29,6 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
-
-    // this gives access to the viewer object from JavaScript
     rootContext()->setContextProperty("viewer", this);
 
     loadGamelist();
@@ -183,10 +181,10 @@ void TweakedQmlApplicationViewer::loadGamelist()
             }
         } else
             QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").
-                         arg(globalConfig->romStateCacheFile()));
+                         arg(QDir::toNativeSeparators(globalConfig->romStateCacheFile())));
     } else
         QMC2_ARCADE_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").
-                     arg(globalConfig->romStateCacheFile()));
+                     arg(QDir::toNativeSeparators(globalConfig->romStateCacheFile())));
 
     QFile gameListCache(globalConfig->gameListCacheFile());
     if ( gameListCache.exists() ) {
@@ -205,11 +203,11 @@ void TweakedQmlApplicationViewer::loadGamelist()
         } else
             QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").
                          arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                         arg(globalConfig->gameListCacheFile()));
+                         arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
     } else
         QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").
                      arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                     arg(globalConfig->gameListCacheFile()));
+                     arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
 
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
@@ -217,7 +215,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
 
     QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from %2)").
                          arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).
-                         arg(globalConfig->gameListCacheFile()));
+                         arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
 }
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
