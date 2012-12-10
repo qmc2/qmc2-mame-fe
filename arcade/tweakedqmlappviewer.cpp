@@ -192,7 +192,6 @@ void TweakedQmlApplicationViewer::loadGamelist()
             QTextStream tsGameListCache(&gameListCache);
             tsGameListCache.readLine();
             tsGameListCache.readLine();
-            // FIXME: add sorting and filtering based on settings made in QMC2!
             while ( !tsGameListCache.atEnd() ) {
                 QStringList words = tsGameListCache.readLine().split("\t");
                 if ( words[QMC2_ARCADE_GLC_DEVICE] != "1" ) {
@@ -208,6 +207,9 @@ void TweakedQmlApplicationViewer::loadGamelist()
         QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").
                      arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
                      arg(QDir::toNativeSeparators(globalConfig->gameListCacheFile())));
+
+    // FIXME: Add sorting and filtering based on settings made in QMC2! For now, just sort by description in descending order.
+    qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
 
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));

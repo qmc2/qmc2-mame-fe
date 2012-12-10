@@ -15,6 +15,10 @@ public:
     explicit GameObject(QString, QString, int, QObject *parent = 0);
     virtual ~GameObject();
 
+    static bool lessThan(const QObject *g1, const QObject *g2) {
+        return ((GameObject *)g1)->mDescription.toLower() < ((GameObject *)g2)->mDescription.toLower();
+    }
+
 signals:
     void idChanged();
     void descriptionChanged();
