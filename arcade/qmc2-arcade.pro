@@ -42,7 +42,7 @@ HEADERS += \
     gameobject.h \
     consolewindow.h \
     processmanager.h \
-    emulatoroptions.h
+    emulatoroption.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 
