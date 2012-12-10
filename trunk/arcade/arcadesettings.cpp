@@ -132,12 +132,12 @@ bool ArcadeSettings::cabinetFlipped()
 
 void ArcadeSettings::setLastIndex(int index)
 {
-    setValue(QString("Arcade/%1/lastIndex").arg(arcadeTheme), index);
+    setValue(QString("Arcade/%1/lastIndex").arg(emulatorPrefix), index);
 }
 
 int ArcadeSettings::lastIndex()
 {
-    return value(QString("Arcade/%1/lastIndex").arg(arcadeTheme), 0).toInt();
+    return value(QString("Arcade/%1/lastIndex").arg(emulatorPrefix), 0).toInt();
 }
 
 QString ArcadeSettings::gameListCacheFile()
