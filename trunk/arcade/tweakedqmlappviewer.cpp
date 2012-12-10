@@ -166,11 +166,13 @@ int TweakedQmlApplicationViewer::romStateCharToInt(char status)
 
 void TweakedQmlApplicationViewer::loadGamelist()
 {
+    QMap<QString, char> rscMap;
+    QString gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
+
     QMC2_ARCADE_LOG_STR(tr("Loading and filtering %1 from '%2'").
                  arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                 arg(globalConfig->gameListCacheFile()));
+                 arg(QDir::toNativeSeparators(gameListCachePath)));
 
-    QMap<QString, char> rscMap;
     QString romStateCachePath = QFileInfo(globalConfig->romStateCacheFile()).absoluteFilePath();
     QFile romStateCache(romStateCachePath);
     if ( romStateCache.exists() ) {
@@ -190,7 +192,6 @@ void TweakedQmlApplicationViewer::loadGamelist()
         QMC2_ARCADE_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").
                      arg(QDir::toNativeSeparators(romStateCachePath)));
 
-    QString gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
     QFile gameListCache(gameListCachePath);
     if ( gameListCache.exists() ) {
         if ( gameListCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
