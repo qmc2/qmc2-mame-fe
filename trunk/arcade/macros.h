@@ -3,10 +3,19 @@
 
 #include <Qt>
 
+// make a string out of a non-string constant
+#define STR(s)                      #s
+#define XSTR(s)                     STR(s)
+
 // global OS macros for supported target operating systems
 #if (defined(Q_OS_UNIX) || defined(Q_OS_LINUX)) && !defined(Q_OS_MAC)
 #define QMC2_ARCADE_OS_UNIX
+#if defined(Q_OS_LINUX)
+#define QMC2_ARCADE_OS_LINUX
+#define QMC2_ARCADE_OS_NAME         QString("Linux")
+#else
 #define QMC2_ARCADE_OS_NAME         QString("UNIX")
+#endif
 #elif defined(Q_OS_MAC)
 #define QMC2_ARCADE_OS_MAC
 #define QMC2_ARCADE_OS_NAME         QString("Darwin")
@@ -23,10 +32,6 @@
 #include <QTime>
 #include <QDir>
 #include <stdio.h>
-
-// make a string out of a non-string constant
-#define STR(s)                      #s
-#define XSTR(s)                     STR(s)
 
 // application and ini related
 #define QMC2_ARCADE_ORG_DOMAIN      QString("qmc2.arcadehits.net")

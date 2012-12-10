@@ -144,6 +144,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
+#if !defined(QMC2_ARCADE_OS_WIN)
+    QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QString("%1/qmc2").arg(XSTR(QMC2_ARCADE_SYSCONF_PATH)));
+    QMC2_ARCADE_LOG_STR(QString("%1/qmc2").arg(XSTR(QMC2_ARCADE_SYSCONF_PATH)));
+#endif
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
@@ -165,9 +169,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-        QString qmlFile(QString("qml/%1/%1.qml").arg(theme));
-        QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using '%1' as main file").arg(qmlFile));
-        viewer->setMainQmlFile(qmlFile.toLocal8Bit());
+        QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
+        viewer->setSource(QString("qrc:/qml/%1/%1.qml").arg(theme));
 
         // set up display mode initially...
         if ( globalConfig->fullScreen() )
