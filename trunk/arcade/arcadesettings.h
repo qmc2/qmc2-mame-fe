@@ -68,6 +68,8 @@ public slots:
     QString pcbZipFile();
     QString pcbFolder();
     QString optionsTemplateFile();
+    QString emulatorExecutablePath();
+    QString emulatorWorkingDirectory();
 };
 
 #endif

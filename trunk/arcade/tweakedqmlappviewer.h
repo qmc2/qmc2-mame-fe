@@ -5,6 +5,7 @@
 #include <QMap>
 
 #include "qmlapplicationviewer.h"
+#include "processmanager.h"
 
 class TweakedQmlApplicationViewer : public QmlApplicationViewer
 {
@@ -16,6 +17,7 @@ public:
     QByteArray savedGeometry;
     bool savedMaximized;
     QList<QObject *> gameList;
+    ProcessManager *processManager;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();

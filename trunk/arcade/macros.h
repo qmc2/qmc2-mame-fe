@@ -100,18 +100,10 @@
 // argument validation
 #define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV)
 
-// debugging / logging macros
-#define QMC2_PRINT_TXT(t)           printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #t)
-#define QMC2_PRINT_STR(s)           printf("%s: %s = %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #s, (const char *)s.toLocal8Bit())
-#define QMC2_PRINT_CSTR(s)          printf("%s: %s = %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #s, (const char *)s)
-#define QMC2_PRINT_PTR(p)           printf("%s: %s = %p\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #p, p)
-#define QMC2_PRINT_INT(i)           printf("%s: %s = %ld\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #i, i)
-#define QMC2_PRINT_HEX(x)           printf("%s: %s = %x\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #x, x)
-#define QMC2_PRINT_BOOL(b)          printf("%s: %s = %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #b, b ? "true" : "false")
-#define QMC2_PRINT_STRLST(l)        for (int i = 0; i < l.count(); i++) printf("%s: %s[%ld] = %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), #l, i, (const char *)l[i].toLocal8Bit())
-#define QMC2_LOG_STR(s)             if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
-#define QMC2_LOG_STR_NO_TIME(s)     if ( !consoleWindow ) { printf("%s\n", (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(s); }
-#define QMC2_LOG_CSTR(s)            if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s)); }
-#define QMC2_LOG_CSTR_NO_TIME(s)    if ( !consoleWindow ) { printf("%s\n", (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QString(s)); }
+// console logging macros
+#define QMC2_ARCADE_LOG_STR(s)      if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
+#define QMC2_ARCADE_LOG_STR_NT(s)   if ( !consoleWindow ) { printf("%s\n", (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(s); }
+#define QMC2_ARCADE_LOG_CSTR(s)     if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s)); }
+#define QMC2_ARCADE_LOG_CSTR_NT(s)  if ( !consoleWindow ) { printf("%s\n", (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QString(s)); }
 
 #endif

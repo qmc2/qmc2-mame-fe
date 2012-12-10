@@ -24,6 +24,9 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 {
     numFrames = 0;
 
+    processManager = new ProcessManager(this);
+    processManager->createTemplateList();
+
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
 
@@ -50,7 +53,7 @@ void TweakedQmlApplicationViewer::fpsReady()
 
 void TweakedQmlApplicationViewer::loadSettings()
 {
-    QMC2_LOG_STR(tr("Loading global and theme-specific settings"));
+    QMC2_ARCADE_LOG_STR(tr("Loading global and theme-specific settings"));
 
     // load global arcade settings
     rootObject()->setProperty("version", globalConfig->applicationVersion());
@@ -65,12 +68,12 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
     }
 
-    QMC2_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
+    QMC2_ARCADE_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
 }
 
 void TweakedQmlApplicationViewer::saveSettings()
 {
-    QMC2_LOG_STR(tr("Saving global and theme-specific settings"));
+    QMC2_ARCADE_LOG_STR(tr("Saving global and theme-specific settings"));
 
     // save global arcade settings
     if ( isFullScreen() ) {
@@ -94,7 +97,7 @@ void TweakedQmlApplicationViewer::saveSettings()
 
 void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 {
-    QMC2_LOG_STR(tr("Activating full-screen display"));
+    QMC2_ARCADE_LOG_STR(tr("Activating full-screen display"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
@@ -109,7 +112,7 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
 {
-    QMC2_LOG_STR(tr("Activating windowed display"));
+    QMC2_ARCADE_LOG_STR(tr("Activating windowed display"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
@@ -162,7 +165,9 @@ int TweakedQmlApplicationViewer::romStateCharToInt(char status)
 
 void TweakedQmlApplicationViewer::loadGamelist()
 {
-    QMC2_LOG_STR(tr("Loading and filtering %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")));
+    QMC2_ARCADE_LOG_STR(tr("Loading and filtering %1 from '%2'").
+                 arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
+                 arg(globalConfig->gameListCacheFile()));
 
     QMap<QString, char> rscMap;
     QFile romStateCache(globalConfig->romStateCacheFile());
@@ -177,9 +182,11 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 }
             }
         } else
-            QMC2_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").arg(globalConfig->romStateCacheFile()));
+            QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open ROM state cache file '%1', please check permissions").
+                         arg(globalConfig->romStateCacheFile()));
     } else
-        QMC2_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").arg(globalConfig->romStateCacheFile()));
+        QMC2_ARCADE_LOG_STR(tr("WARNING: The ROM state cache file '%1' doesn't exist, please run main front-end executable to create it").
+                     arg(globalConfig->romStateCacheFile()));
 
     QFile gameListCache(globalConfig->gameListCacheFile());
     if ( gameListCache.exists() ) {
@@ -196,22 +203,27 @@ void TweakedQmlApplicationViewer::loadGamelist()
                 }
             }
         } else
-            QMC2_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(globalConfig->gameListCacheFile()));
+            QMC2_ARCADE_LOG_STR(tr("FATAL: Can't open %1 cache file '%2', please check permissions").
+                         arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
+                         arg(globalConfig->gameListCacheFile()));
     } else
-        QMC2_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).arg(globalConfig->gameListCacheFile()));
+        QMC2_ARCADE_LOG_STR(tr("FATAL: The %1 cache file '%2' doesn't exist, please run main front-end executable to create it").
+                     arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
+                     arg(globalConfig->gameListCacheFile()));
 
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_LOG_STR(QString(tr("Done (loading and filtering %1)").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())));
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from %2)").
+                         arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).
+                         arg(globalConfig->gameListCacheFile()));
 }
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
 {
-    QMC2_LOG_STR(tr("Launching emulator for %1 ID '%2'").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game") : tr("machine")).arg(id));
-
-    // FIXME
+    QMC2_ARCADE_LOG_STR(tr("Launching emulator for %1 ID '%2'").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game") : tr("machine")).arg(id));
+    processManager->startEmulator(id);
 }
 
 int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
@@ -253,13 +265,13 @@ void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 
 void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *e)
 {
-    QMC2_LOG_STR(tr("Stopping QML viewer"));
+    QMC2_ARCADE_LOG_STR(tr("Stopping QML viewer"));
 
     if ( consoleWindow ) {
         QString consoleMessage(tr("QML viewer stopped - please close the console window to exit"));
-        QMC2_LOG_STR(QString("-").repeated(consoleMessage.length()));
-        QMC2_LOG_STR(consoleMessage);
-        QMC2_LOG_STR(QString("-").repeated(consoleMessage.length()));
+        QMC2_ARCADE_LOG_STR(QString("-").repeated(consoleMessage.length()));
+        QMC2_ARCADE_LOG_STR(consoleMessage);
+        QMC2_ARCADE_LOG_STR(QString("-").repeated(consoleMessage.length()));
         consoleWindow->showNormal();
         consoleWindow->raise();
     }
