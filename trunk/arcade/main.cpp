@@ -144,10 +144,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
-#if !defined(QMC2_ARCADE_OS_WIN)
-    QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QString("%1/qmc2").arg(XSTR(QMC2_ARCADE_SYSCONF_PATH)));
-    QMC2_ARCADE_LOG_STR(QString("%1/qmc2").arg(XSTR(QMC2_ARCADE_SYSCONF_PATH)));
-#endif
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
@@ -181,7 +177,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         // ... and run the application
         returnCode = app->exec();
 
-        // clean up
         delete viewer;
     } else {
         if ( consoleWindow ) {

@@ -28,11 +28,11 @@ public slots:
     void saveSettings();
     void switchToFullScreen(bool initially = false);
     void switchToWindowed(bool initially = false);
-    QString romStateText(int status);
-    int romStateCharToInt(char status);
+    QString romStateText(int);
+    int romStateCharToInt(char);
     void loadGamelist();
-    void launchEmulator(QString id);
-    int findIndex(QString pattern, int startIndex = 0);
+    void launchEmulator(QString);
+    int findIndex(QString, int startIndex = 0);
 
 protected:
     void paintEvent(QPaintEvent *);
