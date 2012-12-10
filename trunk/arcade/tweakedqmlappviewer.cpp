@@ -221,7 +221,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from '%2'')").
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from '%2')").
                          arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).
                          arg(QDir::toNativeSeparators(gameListCachePath)));
 }
