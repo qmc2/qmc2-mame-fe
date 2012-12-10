@@ -236,7 +236,12 @@ void ProcessManager::readyReadStandardOutput()
     QProcess *proc = (QProcess *)sender();
     int procID = mProcessMap.key(proc);
     QString data = proc->readAllStandardOutput();
-    foreach (QString line, data.split("\n")) {
+#if defined(QMC2_ARCADE_OS_WIN)
+    QString separator = "\n\r";
+#else
+    QString separator = "\n";
+#endif
+    foreach (QString line, data.split(separator)) {
         if ( !line.isEmpty() ) {
             QMC2_ARCADE_LOG_STR(tr("Emulator #%1 stdout: %2").arg(procID).arg(line));
         }
@@ -248,7 +253,12 @@ void ProcessManager::readyReadStandardError()
     QProcess *proc = (QProcess *)sender();
     int procID = mProcessMap.key(proc);
     QString data = proc->readAllStandardError();
-    foreach (QString line, data.split("\n")) {
+#if defined(QMC2_ARCADE_OS_WIN)
+    QString separator = "\n\r";
+#else
+    QString separator = "\n";
+#endif
+    foreach (QString line, data.split(separator)) {
         if ( !line.isEmpty() ) {
             QMC2_ARCADE_LOG_STR(tr("Emulator #%1 stderr: %2").arg(procID).arg(line));
         }
