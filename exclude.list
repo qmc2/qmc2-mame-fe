@@ -51,7 +51,7 @@ qmc2/arcade/.svn/text-base/arcadesettings.cpp.svn-base
 qmc2/arcade/.svn/text-base/arcadesettings.h.svn-base
 qmc2/arcade/.svn/text-base/consolewindow.cpp.svn-base
 qmc2/arcade/.svn/text-base/consolewindow.h.svn-base
-qmc2/arcade/.svn/text-base/emulatoroptions.h.svn-base
+qmc2/arcade/.svn/text-base/emulatoroption.h.svn-base
 qmc2/arcade/.svn/text-base/gameobject.cpp.svn-base
 qmc2/arcade/.svn/text-base/gameobject.h.svn-base
 qmc2/arcade/.svn/text-base/imageprovider.cpp.svn-base
