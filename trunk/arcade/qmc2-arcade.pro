@@ -48,3 +48,19 @@ DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 
 RESOURCES += \
     qmc2-arcade.qrc
+
+evil_hack_to_fool_lupdate {
+    SOURCES += qml/ToxicWaste/ToxicWaste.qml \
+               qml/ToxicWaste/ToxicWaste.js
+}
+
+TRANSLATIONS += translations/qmc2-arcade_de.ts \
+    translations/qmc2-arcade_es.ts \
+    translations/qmc2-arcade_el.ts \
+    translations/qmc2-arcade_it.ts \
+    translations/qmc2-arcade_fr.ts \
+    translations/qmc2-arcade_pl.ts \
+    translations/qmc2-arcade_pt.ts \
+    translations/qmc2-arcade_ro.ts \
+    translations/qmc2-arcade_sv.ts \
+    translations/qmc2-arcade_us.ts

@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QTranslator>
 #include <QIcon>
 
 #include "arcadesettings.h"
@@ -53,14 +54,14 @@ void showHelp()
         consoleWindow->show();
     }
 #endif
-    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
-                                      "Option           Meaning             Possible values ([..] = default)\n"
-                                      "---------------  ------------------  ------------------------------------\n"
-                                      "-emu             Emulator mode       [mame], mess, ume\n"
-                                      "-theme           Theme selection     [ToxicWaste]\n"
-                                      "-console         Console type        [terminal], window, window-minimized\n"
-                                      "-graphicssystem  Graphics engine     [raster], native, opengl\n"
-                                      "-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+    QString helpMessage = QString("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
+                                  "Option           Meaning             Possible values ([..] = default)\n"
+                                  "---------------  ------------------  ------------------------------------\n"
+                                  "-emu             Emulator mode       [mame], mess, ume\n"
+                                  "-theme           Theme selection     [ToxicWaste]\n"
+                                  "-console         Console type        [terminal], window, window-minimized\n"
+                                  "-graphicssystem  Graphics engine     [raster], native, opengl\n"
+                                  "-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
@@ -156,6 +157,15 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
+
+    // load translator
+    QString language = globalConfig->language();
+    if ( !globalConfig->languageMap.contains(language) )
+        language = "us";
+    QTranslator qmc2ArcadeTranslator;
+    if ( qmc2ArcadeTranslator.load(QString("qmc2-arcade_%1").arg(language), ":/translations") )
+        app->installTranslator(&qmc2ArcadeTranslator);
+
 
     int returnCode;
     if ( runApp ) {

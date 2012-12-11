@@ -33,11 +33,38 @@ ArcadeSettings::ArcadeSettings(QString theme)
         emulatorPrefix = "UME";
         break;
     }
+    languageMap["de"] = QLocale::German;
+    languageMap["es"] = QLocale::Spanish;
+    languageMap["fr"] = QLocale::French;
+    languageMap["el"] = QLocale::Greek;
+    languageMap["it"] = QLocale::Italian;
+    languageMap["pl"] = QLocale::Polish;
+    languageMap["pt"] = QLocale::Portuguese;
+    languageMap["ro"] = QLocale::Romanian;
+    languageMap["sv"] = QLocale::Swedish;
+    languageMap["us"] = QLocale::English;
 }
 
 ArcadeSettings::~ArcadeSettings()
 {
     sync();
+}
+
+QString ArcadeSettings::languageToString(QLocale::Language lang)
+{
+    QString langStr = languageMap.key(lang);
+    if ( !langStr.isEmpty() )
+        return langStr;
+    else
+        return "us";
+}
+
+QLocale::Language ArcadeSettings::languageFromString(QString lang)
+{
+    if ( languageMap.contains(lang) )
+        return languageMap[lang];
+    else
+        return QLocale::English;
 }
 
 void ArcadeSettings::setApplicationVersion(QString version)
@@ -268,4 +295,9 @@ QString ArcadeSettings::emulatorExecutablePath()
 QString ArcadeSettings::emulatorWorkingDirectory()
 {
     return value(QString("%1/FilesAndDirectories/WorkingDirectory").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::language()
+{
+    return value(QString("%1/GUI/Language").arg(frontEndPrefix)).toString();
 }

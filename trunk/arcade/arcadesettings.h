@@ -2,6 +2,7 @@
 #define ARCADESETTINGS_H
 
 #include <QSettings>
+#include <QLocale>
 #include <QSize>
 
 class ArcadeSettings : public QSettings
@@ -12,10 +13,14 @@ public:
     QString arcadeTheme;
     QString frontEndPrefix;
     QString emulatorPrefix;
+    QMap<QString, QLocale::Language> languageMap;
 
     explicit ArcadeSettings(QString);
     virtual ~ArcadeSettings();
     
+    QString languageToString(QLocale::Language);
+    QLocale::Language languageFromString(QString);
+
 signals:
     
 public slots:
@@ -70,6 +75,7 @@ public slots:
     QString optionsTemplateFile();
     QString emulatorExecutablePath();
     QString emulatorWorkingDirectory();
+    QString language();
 };
 
 #endif
