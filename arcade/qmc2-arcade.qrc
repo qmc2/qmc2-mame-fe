@@ -33,5 +33,6 @@
         <file>translations/qmc2-arcade_ro.qm</file>
         <file>translations/qmc2-arcade_sv.qm</file>
         <file>translations/qmc2-arcade_us.qm</file>
+        <file>images/qmc2-arcade.png</file>
     </qresource>
 </RCC>

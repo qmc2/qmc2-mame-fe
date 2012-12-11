@@ -182,7 +182,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         // setup the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
-        //viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
+        viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
