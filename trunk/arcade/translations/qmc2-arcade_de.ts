@@ -359,7 +359,7 @@
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="426"/>
         <source>Really quit?</source>
-        <translation>Wirklich beenden?</translation>
+        <translation>Beenden?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="440"/>
@@ -379,12 +379,12 @@
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="508"/>
         <source>Show background animation?</source>
-        <translation>Hintergrundanimation anzeigen?</translation>
+        <translation>Zeige Hintergrund-Animation?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="522"/>
         <source>Show FPS counter?</source>
-        <translation>FPS Zähler anzeigen?</translation>
+        <translation>Zeige FPS Zähler?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="531"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="72"/>
         <source>games</source>
-        <translation>Spiele</translation>
+        <translation>Spielen</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="72"/>
