@@ -46,6 +46,13 @@ void qtMessageHandler(QtMsgType type, const char *msg)
 
 void showHelp()
 {
+#if defined(QMC2_ARCADE_OS_WIN)
+    // we need the console window to display the help text on Windows because we have no terminal connection
+    if ( !consoleWindow ) {
+        consoleWindow = new ConsoleWindow(0);
+        consoleWindow->show();
+    }
+#endif
     QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
                                       "Option           Meaning             Possible values ([..] = default)\n"
                                       "---------------  ------------------  ------------------------------------\n"
