@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QIcon>
 
 #include "arcadesettings.h"
 #include "tweakedqmlappviewer.h"
@@ -45,13 +46,14 @@ void qtMessageHandler(QtMsgType type, const char *msg)
 
 void showHelp()
 {
-    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <console>] [-graphicssystem <engine>] [-h|-?|-help]\n\n"
-                                      "Option           Values ([..] = default)\n"
-                                      "---------------  ------------------------------------\n"
-                                      "-emu             [mame], mess, ume\n"
-                                      "-theme           [ToxicWaste]\n"
-                                      "-console         [terminal], window, window-minimized\n"
-                                      "-graphicssystem  [raster], native, opengl, ...\n");
+    QString helpMessage = QObject::tr("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
+                                      "Option           Meaning             Possible values ([..] = default)\n"
+                                      "---------------  ------------------  ------------------------------------\n"
+                                      "-emu             Emulator mode       [mame], mess, ume\n"
+                                      "-theme           Theme selection     [ToxicWaste]\n"
+                                      "-console         Console type        [terminal], window, window-minimized\n"
+                                      "-graphicssystem  Graphics engine     [raster], native, opengl\n"
+                                      "-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
@@ -163,6 +165,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         // setup the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
+        //viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));

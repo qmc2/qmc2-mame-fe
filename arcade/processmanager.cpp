@@ -238,7 +238,7 @@ void ProcessManager::readyReadStandardOutput()
     int procID = mProcessMap.key(proc);
     QString data = proc->readAllStandardOutput();
 #if defined(QMC2_ARCADE_OS_WIN)
-    QString separator = "\n\r";
+    QString separator = "\r\n";
 #else
     QString separator = "\n";
 #endif
@@ -255,7 +255,7 @@ void ProcessManager::readyReadStandardError()
     int procID = mProcessMap.key(proc);
     QString data = proc->readAllStandardError();
 #if defined(QMC2_ARCADE_OS_WIN)
-    QString separator = "\n\r";
+    QString separator = "\r\n";
 #else
     QString separator = "\n";
 #endif
