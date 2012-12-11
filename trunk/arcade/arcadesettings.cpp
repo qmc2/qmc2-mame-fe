@@ -9,7 +9,7 @@ ArcadeSettings::ArcadeSettings(QString theme)
     arcadeTheme = theme;
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
-#if defined(QMC2_OS_WIN)
+#if defined(QMC2_ARCADE_OS_WIN)
         frontEndPrefix = "Frontend/qmc2-mame";
 #else
         frontEndPrefix = "Frontend/qmc2-sdlmame";
@@ -17,7 +17,7 @@ ArcadeSettings::ArcadeSettings(QString theme)
         emulatorPrefix = "MAME";
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
-#if defined(QMC2_OS_WIN)
+#if defined(QMC2_ARCADE_OS_WIN)
         frontEndPrefix = "Frontend/qmc2-mess";
 #else
         frontEndPrefix = "Frontend/qmc2-sdlmess";
@@ -25,7 +25,7 @@ ArcadeSettings::ArcadeSettings(QString theme)
         emulatorPrefix = "MESS";
         break;
     case QMC2_ARCADE_EMUMODE_UME:
-#if defined(QMC2_OS_WIN)
+#if defined(QMC2_ARCADE_OS_WIN)
         frontEndPrefix = "Frontend/qmc2-ume";
 #else
         frontEndPrefix = "Frontend/qmc2-sdlume";
