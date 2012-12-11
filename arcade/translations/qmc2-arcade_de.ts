@@ -306,7 +306,7 @@
     <message>
         <location filename="../main.cpp" line="204"/>
         <source>QML viewer not started - please close the console window to exit</source>
-        <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um zu Beenden</translation>
+        <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
 </context>
 <context>
@@ -536,7 +536,7 @@
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="277"/>
         <source>QML viewer stopped - please close the console window to exit</source>
-        <translation>QML Anzeige gestoppt - bitte Konsolenfenster schließen um zu Beenden</translation>
+        <translation>QML Anzeige gestoppt - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
 </context>
 </TS>
