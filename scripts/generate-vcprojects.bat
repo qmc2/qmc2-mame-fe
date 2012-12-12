@@ -156,6 +156,10 @@ set find4_vc10=%QT_PATH_ESCAPED%\\lib\\qtmaind.lib;
 set repl4_vc10=
 set find4_vc10_x64=%QT_PATH_64_ESCAPED%\\lib\\qtmaind.lib;
 set repl4_vc10_x64=
+set find5_vc10=qmc2-arcade0
+set repl5_vc10=qmc2-arcade
+set find5_vc10_x64=qmc2-arcade0
+set repl5_vc10_x64=qmc2-arcade
 
 echo Adjusting VC++ project files, please wait...
 
@@ -277,7 +281,7 @@ set new_file=%old_file%.new
 if exist %new_file% del %new_file%
 
 if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_arcade_vc2008
-%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" %old_file% > %new_file%
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" -e "s/%find5_vc10%/%repl5_vc10%/g" %old_file% > %new_file%
 goto :qmc2_arcade_ready
 :qmc2_arcade_vc2008
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
@@ -295,7 +299,7 @@ set new_file=%old_file%.new
 if exist %new_file% del %new_file%
 
 if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_arcade_64_vc2008
-%SED_COMMAND% -e "s/%find0_vc10_x64%/%repl0_vc10_x64%/g" -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10_x64%/%repl3_vc10_x64%/g" -e "s/%find4_vc10_x64%/%repl4_vc10_x64%/g" %old_file% > %new_file%
+%SED_COMMAND% -e "s/%find0_vc10_x64%/%repl0_vc10_x64%/g" -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10_x64%/%repl3_vc10_x64%/g" -e "s/%find4_vc10_x64%/%repl4_vc10_x64%/g" -e "s/%find5_vc10_x64%/%repl5_vc10_x64%/g" %old_file% > %new_file%
 goto :qmc2_arcade_64_ready
 :qmc2_arcade_64_vc2008
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
