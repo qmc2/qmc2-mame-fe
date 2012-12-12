@@ -29,9 +29,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
-#if defined(QMC2_ARCADE_OS_WIN)
-    engine()->addImportPath("./imports");
-#endif
+    engine()->addImportPath(QDir::fromNativeSeparators(XSTR(QMC2_ARCADE_QML_IMPORT_PATH)));
     rootContext()->setContextProperty("viewer", this);
 
     loadGamelist();
