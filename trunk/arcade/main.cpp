@@ -174,16 +174,17 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     int returnCode;
     if ( runApp ) {
         // log banner message
-        QMC2_ARCADE_LOG_STR(QString(QString("%1 %2 (%3)").
-                             arg(QMC2_ARCADE_APP_TITLE).
+        QString bannerMessage = QString("%1 %2 (%3)").
+                                arg(QMC2_ARCADE_APP_TITLE).
 #if defined(QMC2_ARCADE_SVN_REV)
-                             arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
+                                arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
 #else
-                             arg(QMC2_ARCADE_APP_VERSION).
+                                arg(QMC2_ARCADE_APP_VERSION).
 #endif
-                             arg(QString("Qt ") + qVersion() + ", " +
-                                 QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
-                                 QObject::tr("theme: %1").arg(theme))));
+                                arg(QString("Qt ") + qVersion() + ", " +
+                                    QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
+                                    QObject::tr("theme: %1").arg(theme));
+        QMC2_ARCADE_LOG_STR(bannerMessage);
 
         if ( consoleWindow )
             consoleWindow->loadSettings();
