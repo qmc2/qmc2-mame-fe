@@ -2487,18 +2487,14 @@
     </property>
     <widget class="QMenu" name="menuArcade">
      <property name="title">
-      <string>&amp;Arcade</string>
+      <string>&amp;QMC2 Arcade</string>
      </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/arcadecabinet.png</normaloff>:/data/img/arcadecabinet.png</iconset>
+       <normaloff>:/data/img/qmc2-arcade.png</normaloff>:/data/img/qmc2-arcade.png</iconset>
      </property>
-     <addaction name="actionArcadeToggle"/>
+     <addaction name="actionLaunchArcade"/>
      <addaction name="actionArcadeSetup"/>
-     <addaction name="separator"/>
-     <addaction name="actionArcadeTakeScreenshot"/>
-     <addaction name="separator"/>
-     <addaction name="actionArcadeShowFPS"/>
     </widget>
     <addaction name="actionFullscreenToggle"/>
     <addaction name="separator"/>
@@ -2557,8 +2553,7 @@
    <addaction name="actionROMAlyzer"/>
    <addaction name="actionExportROMStatus"/>
    <addaction name="separator"/>
-   <addaction name="actionFullscreenToggle"/>
-   <addaction name="actionArcadeToggle"/>
+   <addaction name="actionLaunchArcade"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="separator"/>
@@ -2986,22 +2981,22 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionArcadeToggle">
+  <action name="actionLaunchArcade">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
+     <normaloff>:/data/img/qmc2-arcade.png</normaloff>:/data/img/qmc2-arcade.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Toggle arcade</string>
+    <string>&amp;Launch...</string>
    </property>
    <property name="toolTip">
-    <string>Toggle arcade mode</string>
+    <string>Launch arcade mode</string>
    </property>
    <property name="statusTip">
-    <string>Toggle arcade mode</string>
+    <string>Launch arcade mode</string>
    </property>
    <property name="whatsThis">
     <string/>
@@ -3302,47 +3297,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+3</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
-  <action name="actionArcadeShowFPS">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Show FPS</string>
-   </property>
-   <property name="toolTip">
-    <string>Toggle FPS display</string>
-   </property>
-   <property name="statusTip">
-    <string>Toggle FPS display</string>
-   </property>
-   <property name="shortcut">
-    <string>Meta+F</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
-  <action name="actionArcadeTakeScreenshot">
-   <property name="icon">
-    <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
-   </property>
-   <property name="text">
-    <string>Screen shot</string>
-   </property>
-   <property name="toolTip">
-    <string>Save a screen shot from the current arcade scene</string>
-   </property>
-   <property name="statusTip">
-    <string>Take screen shot from arcade scene</string>
-   </property>
-   <property name="shortcut">
-    <string>Meta+F12</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

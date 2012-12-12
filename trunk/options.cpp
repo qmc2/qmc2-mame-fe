@@ -450,11 +450,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
   qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
-#if defined(QMC2_WIP_ENABLED)
-  qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Toggle arcade mode"), NULL);
-  qmc2ShortcutMap["Meta+F"] = QPair<QString, QAction *>(tr("Show FPS (arcade mode)"), NULL);
-  qmc2ShortcutMap["Meta+F12"] = QPair<QString, QAction *>(tr("Take snapshot (arcade mode)"), NULL);
-#endif
+  qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), NULL);
 #if QMC2_USE_PHONON_API
   qmc2ShortcutMap["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);

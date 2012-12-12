@@ -10,6 +10,19 @@
     </message>
 </context>
 <context>
+    <name>Joystick</name>
+    <message>
+        <location filename="../joystick.cpp" line="20"/>
+        <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../joystick.cpp" line="52"/>
+        <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProcessManager</name>
     <message>
         <location filename="../processmanager.cpp" line="106"/>
@@ -256,56 +269,56 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="76"/>
+        <location filename="../main.cpp" line="80"/>
         <source>MAME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="76"/>
+        <location filename="../main.cpp" line="80"/>
         <source>MESS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="76"/>
+        <location filename="../main.cpp" line="80"/>
         <source>UME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="105"/>
+        <location filename="../main.cpp" line="109"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="126"/>
-        <location filename="../main.cpp" line="135"/>
-        <location filename="../main.cpp" line="144"/>
+        <location filename="../main.cpp" line="130"/>
+        <location filename="../main.cpp" line="139"/>
+        <location filename="../main.cpp" line="148"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="126"/>
-        <location filename="../main.cpp" line="135"/>
-        <location filename="../main.cpp" line="144"/>
+        <location filename="../main.cpp" line="130"/>
+        <location filename="../main.cpp" line="139"/>
+        <location filename="../main.cpp" line="148"/>
         <source>(none)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="177"/>
+        <location filename="../main.cpp" line="185"/>
         <source>emulator: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="178"/>
+        <location filename="../main.cpp" line="186"/>
         <source>theme: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="188"/>
+        <location filename="../main.cpp" line="196"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="204"/>
+        <location filename="../main.cpp" line="212"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation type="unfinished"></translation>
     </message>
