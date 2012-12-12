@@ -115,6 +115,19 @@ set QMC2_UME_DEFINES="DEFINES+=QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BUI
 echo done
 
 REM ##############################################
+REM # RC + VC PROJECT GENERATION FOR QMC2-ARCADE #
+REM ##############################################
+
+echo Generating RC and VC++ project files for qmc2-arcade, please wait...
+
+set QMC2_ARCADE_DEFINES="DEFINES+=SVN_REV=%SVN_REV%"
+
+%QT_PATH%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% %QMC2_ARCADE_DEFINES% -o arcade\qmc2-arcade.%VCPROJ_EXTENSION% arcade\qmc2-arcade.pro > NUL 2> NUL
+%QT_PATH_64%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH_64% LIBS+=%SDLMAIN_LIB_PATH_64% %QMC2_ARCADE_DEFINES% -o arcade\qmc2-arcade-x64.%VCPROJ_EXTENSION% arcade\qmc2-arcade.pro > NUL 2> NUL
+
+echo done
+
+REM ##############################################
 REM # REPLACE SOME SETTINGS IN THE PROJECT FILES #
 REM ##############################################
 
@@ -250,6 +263,42 @@ goto :qmc2_ume_64_ready
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
 
 :qmc2_ume_64_ready
+
+if exist %old_file% del %old_file%
+rename %new_file% %old_file%
+
+REM ### qmc2-arcade ###
+
+set old_file=arcade\qmc2-arcade.%VCPROJ_EXTENSION%
+set new_file=%old_file%.new
+
+if exist %new_file% del %new_file%
+
+if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_arcade_vc2008
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" %old_file% > %new_file%
+goto :qmc2_arcade_ready
+:qmc2_arcade_vc2008
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
+
+:qmc2_arcade_ready
+
+if exist %old_file% del %old_file%
+rename %new_file% %old_file%
+
+REM ### qmc2-arcade-x64 ###
+
+set old_file=arcade\qmc2-arcade-x64.%VCPROJ_EXTENSION%
+set new_file=%old_file%.new
+
+if exist %new_file% del %new_file%
+
+if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_arcade_64_vc2008
+%SED_COMMAND% -e "s/%find0_vc10_x64%/%repl0_vc10_x64%/g" -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10_x64%/%repl3_vc10_x64%/g" -e "s/%find4_vc10_x64%/%repl4_vc10_x64%/g" %old_file% > %new_file%
+goto :qmc2_arcade_64_ready
+:qmc2_arcade_64_vc2008
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
+
+:qmc2_arcade_64_ready
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
