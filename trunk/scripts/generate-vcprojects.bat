@@ -269,7 +269,9 @@ rename %new_file% %old_file%
 
 REM ### qmc2-arcade ###
 
-set old_file=arcade\qmc2-arcade.%VCPROJ_EXTENSION%
+cd arcade
+
+set old_file=qmc2-arcade.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
@@ -287,7 +289,7 @@ rename %new_file% %old_file%
 
 REM ### qmc2-arcade-x64 ###
 
-set old_file=arcade\qmc2-arcade-x64.%VCPROJ_EXTENSION%
+set old_file=qmc2-arcade-x64.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
@@ -302,5 +304,7 @@ goto :qmc2_arcade_64_ready
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
+
+cd ..
 
 echo done
