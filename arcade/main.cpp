@@ -66,7 +66,7 @@ void showHelp()
 }
 
 #if defined(QMC2_ARCADE_OS_WIN)
-#idef main
+#ifdef main
 #undef main
 #endif
 #endif
