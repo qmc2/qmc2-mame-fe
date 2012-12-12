@@ -38,7 +38,10 @@ SOURCES += main.cpp \
     ../zlib/deflate.c \
     ../zlib/crc32.c \
     ../zlib/compress.c \
-    ../zlib/adler32.c
+    ../zlib/adler32.c \
+    ../minizip/zip.c \
+    ../minizip/unzip.c \
+    ../minizip/ioapi.c
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -69,7 +72,11 @@ HEADERS += \
     ../zlib/inffast.h \
     ../zlib/gzguts.h \
     ../zlib/deflate.h \
-    ../zlib/crc32.h
+    ../zlib/crc32.h \
+    ../minizip/zip.h \
+    ../minizip/unzip.h \
+    ../minizip/ioapi.h \
+    ../minizip/crypt.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 
@@ -94,6 +101,14 @@ TRANSLATIONS += translations/qmc2-arcade_de.ts \
 
 win32 {
     RC_FILE = qmc2-arcade.rc
+}
+
+greaterThan(SVN_REV, 0) {
+    DEFINES += QMC2_ARCADE_SVN_REV=$$SVN_REV
+}
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets
 }
 
 INCLUDEPATH += ../zlib

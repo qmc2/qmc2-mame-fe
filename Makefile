@@ -960,12 +960,20 @@ tools-clean: qchdman-clean
 tools-install: qchdman-install
 endif
 
+ifeq '$(DEBUG)' '0'
+ARCADE_CONF += CONFIG+=warn_off CONFIG+=release
+ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_RELEASE QMC2_ARCADE_SVN_REV=$(SVN_REV)
+else
+ARCADE_CONF += CONFIG+=warn_on CONFIG+=debug
+ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_DEBUG QMC2_ARCADE_SVN_REV=$(SVN_REV)
+endif
+
 arcade: arcade-bin
 arcade-bin:
-	@$(CD) arcade && $(QMAKE) && $(MAKE)
+	@$(CD) arcade && $(QMAKE) $(ARCADE_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE)
 
 arcade-clean:
-	@$(CD) arcade && $(QMAKE) && $(MAKE) distclean
+	@$(CD) arcade && $(QMAKE) $(ARCADE_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE) distclean
 ifeq '$(ARCH)' 'Windows'
 	@$(RMDIR) /s /q arcade\release
 	@$(RMDIR) /s /q arcade\debug
@@ -978,6 +986,10 @@ else
 ifeq '$(ARCH)' 'Darwin'
 else
 	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
+	@echo "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
+	@$(MKDIR) $(GLOBAL_DATADIR)/applications
+	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
+	@$(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/qmc2-arcade.desktop.template > $(GLOBAL_DATADIR)/applications/qmc2-arcade.desktop
 endif
 endif
 

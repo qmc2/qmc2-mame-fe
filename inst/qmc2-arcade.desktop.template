@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=QMC2 Arcade
+GenericName=QMC2 Arcade Mode
+Comment=QMC2 Arcade Mode
+Comment[de]=QMC2 Arcade Modus
+Exec=qmc2-arcade
+Icon=DATADIR/qmc2/img/qmc2-arcade.png
+Terminal=false
+Categories=Game;Emulator;
