@@ -23,7 +23,22 @@ SOURCES += main.cpp \
     arcadesettings.cpp \
     gameobject.cpp \
     consolewindow.cpp \
-    processmanager.cpp
+    processmanager.cpp \
+    ../zlib/zutil.c \
+    ../zlib/uncompr.c \
+    ../zlib/trees.c \
+    ../zlib/inftrees.c \
+    ../zlib/inflate.c \
+    ../zlib/inffast.c \
+    ../zlib/infback.c \
+    ../zlib/gzwrite.c \
+    ../zlib/gzread.c \
+    ../zlib/gzlib.c \
+    ../zlib/gzclose.c \
+    ../zlib/deflate.c \
+    ../zlib/crc32.c \
+    ../zlib/compress.c \
+    ../zlib/adler32.c
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -32,7 +47,8 @@ qtcAddDeployment()
 OTHER_FILES += \
     qml/ToxicWaste/ToxicWaste.qml \
     qml/ToxicWaste/ToxicWaste.js \
-    qml/ToxicWaste/BackgroundAnimation.qml
+    qml/ToxicWaste/BackgroundAnimation.qml \
+    ../zlib/README.zlib
 
 HEADERS += \
     tweakedqmlappviewer.h \
@@ -42,7 +58,18 @@ HEADERS += \
     gameobject.h \
     consolewindow.h \
     processmanager.h \
-    emulatoroption.h
+    emulatoroption.h \
+    ../zlib/zutil.h \
+    ../zlib/zlib.h \
+    ../zlib/zconf.h \
+    ../zlib/trees.h \
+    ../zlib/inftrees.h \
+    ../zlib/inflate.h \
+    ../zlib/inffixed.h \
+    ../zlib/inffast.h \
+    ../zlib/gzguts.h \
+    ../zlib/deflate.h \
+    ../zlib/crc32.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 
@@ -68,3 +95,5 @@ TRANSLATIONS += translations/qmc2-arcade_de.ts \
 win32 {
     RC_FILE = qmc2-arcade.rc
 }
+
+INCLUDEPATH += ../zlib
