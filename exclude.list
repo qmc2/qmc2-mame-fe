@@ -62,6 +62,9 @@ qmc2/arcade/.svn/text-base/gameobject.cpp.svn-base
 qmc2/arcade/.svn/text-base/gameobject.h.svn-base
 qmc2/arcade/.svn/text-base/imageprovider.cpp.svn-base
 qmc2/arcade/.svn/text-base/imageprovider.h.svn-base
+qmc2/arcade/.svn/text-base/Info.plist.in.svn-base
+qmc2/arcade/.svn/text-base/joystick.cpp.svn-base
+qmc2/arcade/.svn/text-base/joystick.h.svn-base
 qmc2/arcade/.svn/text-base/macros.h.svn-base
 qmc2/arcade/.svn/text-base/main.cpp.svn-base
 qmc2/arcade/.svn/text-base/processmanager.cpp.svn-base
