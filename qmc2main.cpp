@@ -508,12 +508,6 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2UME->setStatusTip(tr("Launch QMC2 for UME"));
 #endif
 
-  // FIXME: remove this WIP clause when arcade mode is ready
-#if !defined(QMC2_WIP_ENABLED)
-  menu_Display->removeAction(menuArcade->menuAction());
-  actionArcadeToggle->setVisible(false);
-#endif
-
   labelGameStatus->setVisible(false);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
@@ -3091,10 +3085,10 @@ void MainWindow::on_actionArcadeSetup_triggered(bool)
 	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 }
 
-void MainWindow::on_actionArcadeToggle_triggered(bool)
+void MainWindow::on_actionLaunchArcade_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeToggle_triggered(bool)");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionLaunchArcade_triggered(bool)");
 #endif
 
 	// FIXME
@@ -11151,11 +11145,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
   qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
-#if defined(QMC2_WIP_ENABLED)
-  qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionArcadeToggle;
-  qmc2ShortcutMap["Meta+F"].second = qmc2MainWindow->actionArcadeShowFPS;
-  qmc2ShortcutMap["Meta+F12"].second = qmc2MainWindow->actionArcadeTakeScreenshot;
-#endif
+  qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionLaunchArcade;
 #if QMC2_USE_PHONON_API
   qmc2ShortcutMap["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
   qmc2ShortcutMap["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;

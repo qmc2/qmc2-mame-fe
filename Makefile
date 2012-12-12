@@ -962,11 +962,18 @@ endif
 
 ifeq '$(DEBUG)' '0'
 ARCADE_CONF += CONFIG+=warn_off CONFIG+=release
-ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_RELEASE QMC2_ARCADE_SVN_REV=$(SVN_REV)
+ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_RELEASE QMC2_ARCADE_SVN_REV=$(SVN_REV) QMC2_ARCADE_JOYSTICK=$(JOYSTICK)
 else
 ARCADE_CONF += CONFIG+=warn_on CONFIG+=debug
-ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_DEBUG QMC2_ARCADE_SVN_REV=$(SVN_REV)
+ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_DEBUG QMC2_ARCADE_SVN_REV=$(SVN_REV) QMC2_ARCADE_JOYSTICK=$(JOYSTICK)
 endif
+ifeq '$(MINGW)' '1'
+ARCADE_DEFINES += QMC2_ARCADE_MINGW
+endif
+ifeq '$(ARCH)' 'Darwin'
+ARCADE_DEFINES += QMC2_ARCADE_MAC_UNIVERSAL
+endif
+ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
 
 arcade: arcade-bin
 arcade-bin:
@@ -979,12 +986,29 @@ ifeq '$(ARCH)' 'Windows'
 	@$(RMDIR) /s /q arcade\debug
 	@$(RM) arcade\object_script.qmc2-arcade.Release arcade\object_script.qmc2-arcade.Debug
 endif
+ifeq '$(ARCH)' 'Darwin'
+	@$(RM) arcade/Info.plist
+endif
 
-arcade-install: arcade
+ifeq '$(ARCH)' 'Darwin'
+ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
+arcade/Info.plist: arcade/Info.plist.in
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(ARCADE_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qmc2-arcade.icns/g' < $< > $@
+arcade/qmc2-arcade.app/Contents/Resources/qt.conf: arcade/Info.plist
+	@$(MACDEPLOYQT) arcade/qmc2-arcade.app
+arcade-macdeployqt: arcade/qmc2-arcade.app/Contents/Resources/qt.conf
+endif
+
 ifeq '$(ARCH)' 'Windows'
 else
 ifeq '$(ARCH)' 'Darwin'
+arcade-install: arcade arcade-macdeployqt
+	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade.app" "/Applications/qmc2"
+	@$(CHMOD) a+rx "/Applications/qmc2/qmc2-arcade.app"
+	@$(RSYNC) arcade/images/qmc2-arcade.icns /Applications/qmc2/qmc2-arcade.app/Contents/Resources/
+	@$(RSYNC) arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
 else
+arcade-install: arcade
 	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
 	@echo "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications

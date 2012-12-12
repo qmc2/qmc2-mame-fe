@@ -24,6 +24,7 @@ SOURCES += main.cpp \
     gameobject.cpp \
     consolewindow.cpp \
     processmanager.cpp \
+    joystick.cpp \
     ../zlib/zutil.c \
     ../zlib/uncompr.c \
     ../zlib/trees.c \
@@ -62,6 +63,7 @@ HEADERS += \
     consolewindow.h \
     processmanager.h \
     emulatoroption.h \
+    joystick.h \
     ../zlib/zutil.h \
     ../zlib/zlib.h \
     ../zlib/zconf.h \
@@ -99,12 +101,34 @@ TRANSLATIONS += translations/qmc2-arcade_de.ts \
     translations/qmc2-arcade_sv.ts \
     translations/qmc2-arcade_us.ts
 
-win32 {
-    RC_FILE = qmc2-arcade.rc
-}
-
 greaterThan(SVN_REV, 0) {
     DEFINES += QMC2_ARCADE_SVN_REV=$$SVN_REV
+}
+
+isEmpty(QMC2_ARCADE_JOYSTICK): QMC2_ARCADE_JOYSTICK = 1
+greaterThan(QMC2_ARCADE_JOYSTICK, 0) {
+    DEFINES += QMC2_ARCADE_ENABLE_JOYSTICK
+}
+
+macx {
+    OBJECTIVE_SOURCES += ../SDLMain_tmpl.m
+    HEADERS += ../SDLMain_tmpl.h
+    LIBS += -framework SDL -framework Cocoa
+    ICON = images/qmc2-arcade.icns
+    contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
+    QMAKE_INFO_PLIST = Info.plist
+} else {
+    !win32 {
+        LIBS += -lSDL
+    } else {
+        contains(DEFINES, QMC2_ARCADE_MINGW) {
+                CONFIG += windows
+                LIBS += -lSDLmain -lSDL.dll -lSDL
+        } else {
+                CONFIG += embed_manifest_exe windows
+        }
+        RC_FILE = qmc2-arcade.rc
+    }
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {

@@ -65,6 +65,10 @@ void showHelp()
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
+#if defined(QMC2_ARCADE_MINGW)
+#undef main
+#endif
+
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     qsrand(QDateTime::currentDateTime().toTime_t());
@@ -172,7 +176,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         // log banner message
         QMC2_ARCADE_LOG_STR(QString(QString("%1 %2 (%3)").
                              arg(QMC2_ARCADE_APP_TITLE).
+#if defined(QMC2_ARCADE_SVN_REV)
+                             arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
+#else
                              arg(QMC2_ARCADE_APP_VERSION).
+#endif
                              arg(QString("Qt ") + qVersion() + ", " +
                                  QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
                                  QObject::tr("theme: %1").arg(theme))));
@@ -180,7 +188,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         if ( consoleWindow )
             consoleWindow->loadSettings();
 
-        // setup the main QML app viewer window
+        // set up the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
         viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
