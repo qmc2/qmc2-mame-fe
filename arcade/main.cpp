@@ -65,8 +65,10 @@ void showHelp()
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
-#if defined(QMC2_ARCADE_MINGW)
+#if defined(QMC2_ARCADE_OS_WIN)
+#idef main
 #undef main
+#endif
 #endif
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
