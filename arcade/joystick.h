@@ -8,6 +8,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QStringList>
+#include "macros.h"
 #if defined(QMC2_ARCADE_OS_WIN)
 #if defined(QMC2_ARCADE_MINGW)
 #include <SDL/SDL.h>
