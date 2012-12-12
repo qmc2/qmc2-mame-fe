@@ -6,6 +6,7 @@
 #include "tweakedqmlappviewer.h"
 #include "consolewindow.h"
 #include "macros.h"
+#include "joystick.h"
 
 ArcadeSettings *globalConfig = NULL;
 ConsoleWindow *consoleWindow = NULL;
@@ -66,12 +67,17 @@ void showHelp()
 }
 
 #if defined(QMC2_ARCADE_OS_WIN)
-#ifdef main
+#if defined(TCOD_VISUAL_STUDIO)
+int SDL_main(int argc, char *argv[]) {
+    return main(argc, argv);
+}
+#endif
+#if defined(QMC2_ARCADE_MINGW)
 #undef main
 #endif
 #endif
 
-Q_DECL_EXPORT int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     qsrand(QDateTime::currentDateTime().toTime_t());
     qInstallMsgHandler(qtMessageHandler);
