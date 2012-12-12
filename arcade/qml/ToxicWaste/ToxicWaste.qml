@@ -799,10 +799,14 @@ Rectangle {
     Keys.onPressed: {
         switch ( event.key ) {
         case Qt.Key_Escape:
-            if ( confirmQuitDialog.state == "hidden" )
-                confirmQuitDialog.state = "shown";
-            else
-                confirmQuitDialog.state = "hidden";
+            if ( searchTextInput.focus )
+                searchTextInput.focus = false;
+            else {
+                if ( confirmQuitDialog.state == "hidden" )
+                    confirmQuitDialog.state = "shown";
+                else
+                    confirmQuitDialog.state = "hidden";
+            }
             event.accepted = true;
             break;
         case Qt.Key_F11:
