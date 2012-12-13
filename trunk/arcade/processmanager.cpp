@@ -32,7 +32,6 @@ int ProcessManager::startEmulator(QString id)
     if ( id.isEmpty() )
         return -1;
     else {
-        // FIXME
         QProcess *proc = new QProcess(this);
         QStringList args;
 
@@ -93,9 +92,9 @@ int ProcessManager::startEmulator(QString id)
         if ( !globalConfig->emulatorWorkingDirectory().isEmpty() )
             proc->setWorkingDirectory(globalConfig->emulatorWorkingDirectory());
 
+        mProcessMap.insert(mCurrentProcessId, proc);
         proc->start(globalConfig->emulatorExecutablePath(), args);
 
-        mProcessMap.insert(mCurrentProcessId, proc);
         return mCurrentProcessId++;
     }
 }

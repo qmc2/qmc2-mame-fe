@@ -358,6 +358,12 @@ Rectangle {
         function firstVisibleItem() { return indexAt(contentX + 10, contentY + 10); }
         function lastVisibleItem() { return indexAt(contentX + width - 10, contentY + height - 10); }
         function itemsPerPage() { return Math.floor(height / 82); }
+        Timer {
+            id: launchButtonFlashTimer
+            running: false
+            onTriggered: launchButton.opacity = 0.5
+            interval: 100
+        }
         Keys.onPressed: {
             switch ( event.key ) {
             case Qt.Key_PageUp:
@@ -398,8 +404,11 @@ Rectangle {
                 break;
             case Qt.Key_Enter:
             case Qt.Key_Return:
-                if ( !searchTextInput.focus )
+                if ( !searchTextInput.focus ) {
+                    launchButton.opacity = 1.0;
                     viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                    launchButtonFlashTimer.start();
+                }
                 break;
             }
         }

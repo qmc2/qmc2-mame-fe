@@ -248,7 +248,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
 
 void TweakedQmlApplicationViewer::launchEmulator(QString id)
 {
-    QMC2_ARCADE_LOG_STR(tr("Launching emulator for %1 ID '%2'").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game") : tr("machine")).arg(id));
+    QMC2_ARCADE_LOG_STR(tr("Starting emulator #%1 for %2 ID '%3'").arg(processManager->highestProcessID()).arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game") : tr("machine")).arg(id));
     processManager->startEmulator(id);
 }
 
