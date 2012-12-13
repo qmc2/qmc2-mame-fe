@@ -18,6 +18,7 @@ public:
     bool savedMaximized;
     QList<QObject *> gameList;
     ProcessManager *processManager;
+    bool windowModeSwitching;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();
@@ -26,6 +27,7 @@ public slots:
     void fpsReady();
     void loadSettings();
     void saveSettings();
+    void goFullScreen();
     void switchToFullScreen(bool initially = false);
     void switchToWindowed(bool initially = false);
     QString romStateText(int);

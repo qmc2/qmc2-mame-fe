@@ -23,6 +23,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
 {
     numFrames = 0;
+    windowModeSwitching = false;
 
     processManager = new ProcessManager(this);
     processManager->createTemplateList();
@@ -65,6 +66,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("secondaryImageType", globalConfig->secondaryImageType());
         rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
+        rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
     }
 
     QMC2_ARCADE_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
@@ -91,11 +93,23 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setSecondaryImageType(rootObject()->property("secondaryImageType").toString());
         globalConfig->setCabinetFlipped(rootObject()->property("cabinetFlipped").toBool());
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
+        globalConfig->setMenuHidden(rootObject()->property("menuHidden").toBool());
     }
+}
+
+void TweakedQmlApplicationViewer::goFullScreen()
+{
+    showFullScreen();
+    raise();
+    qApp->processEvents();
+    windowModeSwitching = false;
 }
 
 void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
 {
+    if ( windowModeSwitching )
+        return;
+    windowModeSwitching = true;
     QMC2_ARCADE_LOG_STR(tr("Activating full-screen display"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
@@ -104,14 +118,21 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
         savedGeometry = saveGeometry();
         savedMaximized = isMaximized();
     }
+#if defined(QMC2_ARCADE_OS_UNIX)
+    hide();
+    qApp->processEvents();
+    QTimer::singleShot(100, this, SLOT(goFullScreen()));
+#else
     showFullScreen();
-    grabKeyboard();
-    raise();
-    releaseKeyboard();
+    windowModeSwitching = false;
+#endif
 }
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
 {
+    if ( windowModeSwitching )
+        return;
+    windowModeSwitching = true;
     QMC2_ARCADE_LOG_STR(tr("Activating windowed display"));
     if ( initially ) {
         savedGeometry = globalConfig->viewerGeometry();
@@ -125,9 +146,8 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         showMaximized();
     else
         showNormal();
-    grabKeyboard();
     raise();
-    releaseKeyboard();
+    windowModeSwitching = false;
 }
 
 QString TweakedQmlApplicationViewer::romStateText(int status)
