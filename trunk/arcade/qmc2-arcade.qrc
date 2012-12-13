@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>images/ghost.png</file>
+        <file>images/qmc2-arcade.png</file>
         <file>qml/ToxicWaste/BackgroundAnimation.qml</file>
         <file>qml/ToxicWaste/Button.qml</file>
         <file>qml/ToxicWaste/CheckBox.qml</file>
@@ -13,6 +14,7 @@
         <file>qml/ToxicWaste/images/exit.png</file>
         <file>qml/ToxicWaste/images/find.png</file>
         <file>qml/ToxicWaste/images/fullscreen.png</file>
+        <file>qml/ToxicWaste/images/hide_show_menu.png</file>
         <file>qml/ToxicWaste/images/launch_correct.png</file>
         <file>qml/ToxicWaste/images/launch_incorrect.png</file>
         <file>qml/ToxicWaste/images/launch_mostlycorrect.png</file>
@@ -33,7 +35,5 @@
         <file>translations/qmc2-arcade_ro.qm</file>
         <file>translations/qmc2-arcade_sv.qm</file>
         <file>translations/qmc2-arcade_us.qm</file>
-        <file>images/qmc2-arcade.png</file>
-        <file>qml/ToxicWaste/images/hide_show_menu.png</file>
     </qresource>
 </RCC>
