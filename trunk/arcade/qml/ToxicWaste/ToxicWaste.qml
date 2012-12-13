@@ -12,6 +12,7 @@ Rectangle {
     property string secondaryImageType: "preview"
     property bool cabinetFlipped: false
     property int lastIndex: 0
+    property bool menuHidden: false
     property string version: ""
 
     // delayed init
@@ -111,7 +112,7 @@ Rectangle {
                     anchors.top: parent.top
                     anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width - 20 * ToxicWaste.scaleFactorX()
+                    width: parent.width - 76 * ToxicWaste.scaleFactorX()
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
@@ -245,7 +246,7 @@ Rectangle {
         height: 64
         opacity: 0.7
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: toxicWasteMain.height/2 - (toxicWasteMain.height - menuAndStatusBar.y + 32) * ToxicWaste.scaleFactorX()
+        anchors.verticalCenterOffset: 32 * ToxicWaste.scaleFactorX() - toxicWasteMain.height/2
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 32 * ToxicWaste.scaleFactorX() - toxicWasteMain.width/2
         scale: ToxicWaste.scaleFactorX()
@@ -548,6 +549,43 @@ Rectangle {
             PropertyAnimation { property: "opacity"; duration: 250 }
         }
     }
+    Image {
+        id: showHideMenuBarButton
+        source: "images/hide_show_menu.png"
+        height: 20 * ToxicWaste.scaleFactorX()
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: parent.height/2 - (menuAndStatusBar.height/2) * ToxicWaste.scaleFactorX()
+        anchors.horizontalCenter: parent.left
+        anchors.horizontalCenterOffset: width/2 + 2 * ToxicWaste.scaleFactorX()
+        fillMode: Image.PreserveAspectFit
+        opacity: 0.5
+        rotation: toxicWasteMain.menuHidden ? 0 : 180
+        smooth: true
+        z: 5
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: parent.opacity = 1.0
+            onExited: parent.opacity = 0.5
+            onClicked: {
+                parent.opacity = 0.5;
+                if ( parent.rotation == 0 ) {
+                    parent.rotation = 180;
+                    toxicWasteMain.menuHidden = false;
+                } else {
+                    parent.rotation = 0;
+                    toxicWasteMain.menuHidden = true;
+                }
+                searchTextInput.focus = false;
+            }
+        }
+    }
+    onMenuHiddenChanged: {
+        if ( menuHidden )
+            menuAndStatusBar.anchors.bottomMargin -= 64;
+        else
+            menuAndStatusBar.anchors.bottomMargin += 64;
+    }
     Rectangle {
         id: menuAndStatusBar
         x: 0
@@ -570,7 +608,7 @@ Rectangle {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 5
             anchors.left: parent.left
-            anchors.leftMargin: 5
+            anchors.leftMargin: (showHideMenuBarButton.width + 2)/ToxicWaste.scaleFactorX() + 5
             color: "white"
             text: qsTr("FPS") + ": " + toxicWasteMain.fps.toString()
             visible: toxicWasteMain.fpsVisible
@@ -816,6 +854,14 @@ Rectangle {
             if ( ToxicWaste.validateKey(event.text) ) {
                 searchTextInput.text += event.text;
                 searchTextInput.focus = true;
+            } else if ( ToxicWaste.validateSpecialKey(event.text) ) {
+                searchTextInput.focus = true;
+                switch ( event.text ) {
+                case "\b":
+                    if ( searchTextInput.text.length > 0)
+                        searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
+                    break;
+                }
             }
         }
     }

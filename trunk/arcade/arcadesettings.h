@@ -47,6 +47,8 @@ public slots:
     bool cabinetFlipped();
     void setLastIndex(int);
     int lastIndex();
+    void setMenuHidden(bool);
+    bool menuHidden();
 
     // main frontend / emulator settings (from QMC2, read-only)
     QString gameListCacheFile();

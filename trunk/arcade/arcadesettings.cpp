@@ -167,6 +167,16 @@ int ArcadeSettings::lastIndex()
     return value(QString("Arcade/%1/lastIndex").arg(emulatorPrefix), 0).toInt();
 }
 
+void ArcadeSettings::setMenuHidden(bool hidden)
+{
+    setValue(QString("Arcade/%1/menuHidden").arg(arcadeTheme), hidden);
+}
+
+bool ArcadeSettings::menuHidden()
+{
+    return value(QString("Arcade/%1/menuHidden").arg(arcadeTheme), false).toBool();
+}
+
 QString ArcadeSettings::gameListCacheFile()
 {
     return value(QString("%1/FilesAndDirectories/GamelistCacheFile").arg(emulatorPrefix)).toString();

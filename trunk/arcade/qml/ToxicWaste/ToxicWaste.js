@@ -204,7 +204,14 @@ function launchButtonSource() {
 
 function validateKey(k) {
     if ( /[^a-zA-Z0-9\*\?$]/.test(k) || k == "" )
-       return false;
+        return false;
+    else
+        return true;
+}
+
+function validateSpecialKey(k) {
+    if ( /[^\b$]/.test(k) || k == "" )
+        return false;
     else
         return true;
 }
