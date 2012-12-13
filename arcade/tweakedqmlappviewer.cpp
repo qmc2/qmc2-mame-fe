@@ -107,6 +107,7 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
     showFullScreen();
     grabKeyboard();
     raise();
+    releaseKeyboard();
 }
 
 void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
@@ -126,6 +127,7 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         showNormal();
     grabKeyboard();
     raise();
+    releaseKeyboard();
 }
 
 QString TweakedQmlApplicationViewer::romStateText(int status)
