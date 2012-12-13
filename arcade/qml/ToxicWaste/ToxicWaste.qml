@@ -404,7 +404,7 @@ Rectangle {
                 break;
             case Qt.Key_Enter:
             case Qt.Key_Return:
-                if ( !searchTextInput.focus ) {
+                if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) ) {
                     launchButton.opacity = 1.0;
                     viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
                     launchButtonFlashTimer.start();
@@ -858,6 +858,14 @@ Rectangle {
             break;
         case Qt.Key_F11:
             fullScreen = !fullScreen;
+            event.accepted = true;
+            break;
+        case Qt.Key_Enter:
+        case Qt.Key_Return:
+            if ( event.modifiers & Qt.AltModifier ) {
+                fullScreen = !fullScreen;
+                event.accepted = true;
+            }
             break;
         default:
             if ( ToxicWaste.validateKey(event.text) ) {
