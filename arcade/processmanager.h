@@ -19,6 +19,7 @@ public:
     QString fileErrorToString(QFile::FileError);
     QString processErrorToString(QProcess::ProcessError);
     QString processStateToString(QProcess::ProcessState);
+    int highestProcessID() { return mCurrentProcessId; }
 
 signals:
     void emulatorStarted(int);
