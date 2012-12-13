@@ -241,13 +241,13 @@ Rectangle {
     Image {
         id: launchButton
         source: ToxicWaste.launchButtonSource()
-        anchors.horizontalCenter: toxicWasteMain.horizontalCenter
-        anchors.horizontalCenterOffset: -toxicWasteMain.width/2 + 32 * ToxicWaste.scaleFactorX()
-        anchors.verticalCenter: toxicWasteMain.verticalCenter
-        anchors.verticalCenterOffset: toxicWasteMain.height/2 - 56 * ToxicWaste.scaleFactorX()
         width: 64
         height: 64
         opacity: 0.7
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: toxicWasteMain.height/2 - (toxicWasteMain.height - menuAndStatusBar.y + 32) * ToxicWaste.scaleFactorX()
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: 32 * ToxicWaste.scaleFactorX() - toxicWasteMain.width/2
         scale: ToxicWaste.scaleFactorX()
         z: 4
         smooth: true
