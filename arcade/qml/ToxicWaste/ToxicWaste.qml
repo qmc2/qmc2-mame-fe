@@ -29,10 +29,13 @@ Rectangle {
     width: ToxicWaste.baseWidth
     height: ToxicWaste.baseHeight
     z: 0
-    gradient: Gradient {
-        GradientStop { position: 0.00; color: "#3aa82b" }
-        GradientStop { position: 0.75; color: "#ffffff" }
-        GradientStop { position: 1.00; color: "#000000" }
+    Image {
+       id: backGroundImage
+       anchors.fill: parent
+       fillMode: Image.PreserveAspectFit
+       source: "images/shadereffectsource.png"
+       smooth: true
+       z: 0
     }
     Image {
         id: toxicImage
@@ -103,7 +106,7 @@ Rectangle {
                 smooth: true
                 gradient: Gradient {
                     GradientStop { position: 0.00; color: "#ffffff" }
-                    GradientStop { position: 0.50; color: "#c0f08c" }
+                    GradientStop { position: 0.50; color: "#007bff" }
                 }
                 Text {
                     id: itemDescription
@@ -239,28 +242,35 @@ Rectangle {
             }
         }
     }
-    Image {
-        id: launchButton
-        source: ToxicWaste.launchButtonSource()
-        width: 64
-        height: 64
-        opacity: 0.7
+    Rectangle {
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: 32 * ToxicWaste.scaleFactorX() - toxicWasteMain.height/2
+        anchors.verticalCenterOffset: 29 * ToxicWaste.scaleFactorX() - toxicWasteMain.height/2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: 32 * ToxicWaste.scaleFactorX() - toxicWasteMain.width/2
+        anchors.horizontalCenterOffset: 29 * ToxicWaste.scaleFactorX() - toxicWasteMain.width/2
         scale: ToxicWaste.scaleFactorX()
+        width: 48
+        height: 48
         z: 4
+        color: "darkgrey"
+        radius: 26
         smooth: true
-        fillMode: Image.PreserveAspectFit
-        MouseArea {
+        Image {
+            id: launchButton
+            source: ToxicWaste.launchButtonSource()
+            opacity: 0.8
+            smooth: true
             anchors.fill: parent
-            hoverEnabled: true
-            onEntered: parent.opacity = 1.0
-            onExited: parent.opacity = 0.7
-            onClicked: {
-                viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
-                searchTextInput.focus = false;
+            fillMode: Image.PreserveAspectFit
+            z: 4
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: parent.opacity = 1.0
+                onExited: parent.opacity = 0.8
+                onClicked: {
+                    viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                    searchTextInput.focus = false;
+                }
             }
         }
     }
@@ -361,7 +371,7 @@ Rectangle {
         Timer {
             id: launchButtonFlashTimer
             running: false
-            onTriggered: launchButton.opacity = 0.5
+            onTriggered: launchButton.opacity = 0.8
             interval: 100
         }
         Keys.onPressed: {
