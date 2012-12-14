@@ -76,13 +76,13 @@ Rectangle {
                 }
                 Rectangle {
                     id: previewRect
-                    width: 235
+                    width: 230
                     height: 170
                     opacity: 1.0
                     anchors.verticalCenter: overlayImageFront.verticalCenter
                     anchors.verticalCenterOffset: -157 * ToxicWaste.scaleFactorX()
                     anchors.horizontalCenter: overlayImageFront.horizontalCenter
-                    anchors.horizontalCenterOffset: ToxicWaste.scaleFactorX()
+                    anchors.horizontalCenterOffset: 0
                     scale: ToxicWaste.scaleFactorX()
                     color: "#202020"
                     smooth: true
