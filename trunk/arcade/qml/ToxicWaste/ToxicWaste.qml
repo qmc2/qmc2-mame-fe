@@ -435,7 +435,7 @@ Rectangle {
         height: 80
         border.color: "black"
         border.width: 2
-        color: "#c0f08c"
+        color: "#007bff"
         opacity: 0.0
         state: "hidden"
         z: 5
@@ -449,6 +449,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: 0
             font.pixelSize: 12
+            color: "white"
         }
         Row {
             anchors.bottom: parent.bottom
@@ -497,7 +498,7 @@ Rectangle {
         height: 126
         border.color: "black"
         border.width: 2
-        color: "#c0f08c"
+        color: "#007bff"
         opacity: 0.0
         state: "hidden"
         z: 4
@@ -513,6 +514,7 @@ Rectangle {
             anchors.horizontalCenterOffset: 0
             font.pixelSize: 12
             font.bold: true
+            color: "white"
         }
         CheckBox {
             id: showBgAnimCheckBox
