@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.38
-Release:        1
+Release:        2
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -29,6 +29,8 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlmess
 tar -xjf %{SOURCE0}
 mv %{name} sdlume
+tar -xjf %{SOURCE0}
+mv %{name} arcade
 
 %build
 pushd sdlmess
@@ -50,6 +52,13 @@ make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
+popd
+
+pushd arcade
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    JOYSTICK=1 WIP=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
 popd
 
 %install
@@ -80,6 +89,13 @@ make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
+pushd arcade
+make arcade-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    JOYSTICK=1 WIP=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
+popd
+
 # manually install doc files in order to avoid "files-duplicate" warning
 install -dp -m 0755 $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}
 cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
@@ -91,11 +107,13 @@ cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
 %suse_update_desktop_file %{name}-sdlmame Game ArcadeGame
 %suse_update_desktop_file %{name}-sdlmess Game ArcadeGame
 %suse_update_desktop_file %{name}-sdlume Game ArcadeGame
+%suse_update_desktop_file %{name}-arcade Game ArcadeGame
 
 # make sure the executable permissions are set correctly
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlume
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-arcade
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 %clean
@@ -111,11 +129,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/qmc2-sdlmame
 %{_bindir}/qmc2-sdlmess
 %{_bindir}/qmc2-sdlume
+%{_bindir}/qmc2-arcade
 %{_datadir}/applications/qmc2-sdlmame.desktop
 %{_datadir}/applications/qmc2-sdlmess.desktop
 %{_datadir}/applications/qmc2-sdlume.desktop
+%{_datadir}/applications/qmc2-arcade.desktop
 
 %changelog
+* Tue Dec 14 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-2
+- added build rules for 'QMC2 Arcade'
+
 * Tue Sep 17 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-1
 - updated spec to QMC2 0.38
 
