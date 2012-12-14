@@ -41,6 +41,7 @@ Rectangle {
         id: checkboxText
         text: parent.text
         font.pixelSize: 12
+        color: "white"
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
     }
