@@ -508,6 +508,8 @@ Rectangle {
             else {
                 buttonNo.focus = false;
                 buttonYes.focus = false;
+                if ( preferencesDialog.state == "shown" )
+                    closeButton.focus = true;
             }
         }
         states: [
@@ -572,7 +574,19 @@ Rectangle {
             anchors.rightMargin: 10
             checked: toxicWasteMain.showBackgroundAnimation
             text: qsTr("Show background animation?")
-            onClicked: toxicWasteMain.showBackgroundAnimation = checked
+            onClicked: {
+                toxicWasteMain.showBackgroundAnimation = checked;
+                toxicWasteMain.ignoreLaunch = true;
+                resetIgnoreLaunchTimer.restart();
+            }
+            onFocusChanged: {
+                if ( !focus )
+                    toxicWasteMain.focus = true;
+            }
+            KeyNavigation.tab: showFpsCheckBox
+            KeyNavigation.backtab: closeButton
+            KeyNavigation.right: showFpsCheckBox
+            KeyNavigation.left: closeButton
         }
         CheckBox {
             id: showFpsCheckBox
@@ -586,7 +600,19 @@ Rectangle {
             anchors.rightMargin: 10
             checked: toxicWasteMain.fpsVisible
             text: qsTr("Show FPS counter?")
-            onClicked: toxicWasteMain.fpsVisible = checked
+            onClicked: {
+                toxicWasteMain.fpsVisible = checked;
+                toxicWasteMain.ignoreLaunch = true;
+                resetIgnoreLaunchTimer.restart();
+            }
+            onFocusChanged: {
+                if ( !focus )
+                    toxicWasteMain.focus = true;
+            }
+            KeyNavigation.tab: closeButton
+            KeyNavigation.backtab: showBgAnimCheckBox
+            KeyNavigation.right: closeButton
+            KeyNavigation.left: showBgAnimCheckBox
         }
         Button {
             id: closeButton
@@ -604,8 +630,20 @@ Rectangle {
                 if ( !focus )
                     toxicWasteMain.focus = true;
             }
+            KeyNavigation.tab: showBgAnimCheckBox
+            KeyNavigation.backtab: showFpsCheckBox
+            KeyNavigation.right: showBgAnimCheckBox
+            KeyNavigation.left: showFpsCheckBox
         }
-        onStateChanged: closeButton.focus = (state == "shown")
+        onStateChanged: {
+            if ( state == "shown" && confirmQuitDialog.state == "hidden" )
+                closeButton.focus = true;
+            else {
+                closeButton.focus = false;
+                showBgAnimCheckBox.focus = false;
+                showFpsCheckBox = false;
+            }
+        }
         states: [
             State {
                 name: "hidden"
