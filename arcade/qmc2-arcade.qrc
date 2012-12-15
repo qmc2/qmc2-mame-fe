@@ -35,5 +35,8 @@
         <file>translations/qmc2-arcade_ro.qm</file>
         <file>translations/qmc2-arcade_sv.qm</file>
         <file>translations/qmc2-arcade_us.qm</file>
+        <file>qml/ToxicWaste/images/green_bubble.png</file>
+        <file>qml/ToxicWaste/images/blue_bubble.png</file>
+        <file>qml/ToxicWaste/images/purple_bubble.png</file>
     </qresource>
 </RCC>

@@ -2,73 +2,124 @@ import QtQuick 1.1
 import "ToxicWaste.js" as ToxicWaste
 
 Item {
-    id: mask
+    id: animationItem
     anchors.fill: parent
-    Rectangle {
-        id: rectOne
-        width: 50 * ToxicWaste.scaleFactorX()
-        height: parent.height
-        y: 0
-        x: -width
-        opacity: 0.2
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "white" }
-            GradientStop { position: 1.0; color: "black" }
-        }
+    property bool running: false
+
+    function randomize(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    Image {
+        id: purpleBubble
+        source: "images/purple_bubble.png"
+        scale: ToxicWaste.scaleFactorX()
+        x: randomize(purpleBubble.width, toxicWasteMain.width - purpleBubble.width)
+        y: randomize(purpleBubble.height, toxicWasteMain.height - purpleBubble.height)
+        smooth: true
         SequentialAnimation on x {
-            id: animOne
-            NumberAnimation {
-                to: toxicWasteMain.width
-                duration: 2500
-                easing.type: Easing.InOutCubic
-            }
-            NumberAnimation {
-                to: -rectOne.width
-                duration: 2500
-                easing.type: Easing.InOutCubic
-            }
+            id: purpleBubbleAnimationX
+            running: animationItem.running
+            NumberAnimation { id: pn1x; easing.type: Easing.InOutBounce; to: randomize(purpleBubble.width, toxicWasteMain.width - purpleBubble.width); duration: randomize(1000, 10000) }
+            NumberAnimation { id: pn2x; easing.type: Easing.InOutBounce; to: randomize(purpleBubble.width, toxicWasteMain.width - purpleBubble.width); duration: randomize(1000, 10000) }
             ScriptAction {
                 script: {
-                    animOne.stop();
-                    animOne.start();
+                    pn1x.to = randomize(purpleBubble.width, toxicWasteMain.width - purpleBubble.width);
+                    pn1x.duration = randomize(1000, 10000);
+                    pn2x.to = randomize(purpleBubble.width, toxicWasteMain.width - purpleBubble.width);
+                    pn2x.duration = randomize(1000, 10000);
+                    purpleBubbleAnimationX.restart();
+                }
+            }
+        }
+        SequentialAnimation on y {
+            id: purpleBubbleAnimationY
+            running: animationItem.running
+            NumberAnimation { id: pn1y; easing.type: Easing.InOutBounce; to: randomize(purpleBubble.height, toxicWasteMain.height - purpleBubble.height); duration: randomize(1000, 10000) }
+            NumberAnimation { id: pn2y; easing.type: Easing.InOutBounce; to: randomize(purpleBubble.height, toxicWasteMain.height - purpleBubble.height); duration: randomize(1000, 10000) }
+            ScriptAction {
+                script: {
+                    pn1y.to = randomize(purpleBubble.height, toxicWasteMain.height - purpleBubble.height);
+                    pn1y.duration = randomize(1000, 10000);
+                    pn2y.to = randomize(purpleBubble.height, toxicWasteMain.height - purpleBubble.height);
+                    pn2y.duration = randomize(1000, 10000);
+                    purpleBubbleAnimationY.restart();
                 }
             }
         }
     }
-    Rectangle {
-        id: rectTwo
-        width: 100 * ToxicWaste.scaleFactorX()
-        height: parent.height
-        y: 0
-        x: -width
-        opacity: 0.2
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "black" }
-            GradientStop { position: 1.0; color: "white" }
-        }
+    Image {
+        id: blueBubble
+        source: "images/blue_bubble.png"
+        scale: ToxicWaste.scaleFactorX()
+        x: randomize(toxicWasteMain.width - blueBubble.width)
+        y: randomize(toxicWasteMain.height - blueBubble.height)
+        smooth: true
         SequentialAnimation on x {
-            id: animTwo
-            property int pauseDuration: 120
-            PauseAnimation {
-                duration: animTwo.pauseDuration
+            id: blueBubbleAnimationX
+            running: animationItem.running
+            NumberAnimation { id: bn1x; easing.type: Easing.InOutQuad; to: randomize(blueBubble.width, toxicWasteMain.width - blueBubble.width); duration: randomize(1000, 10000) }
+            NumberAnimation { id: bn2x; easing.type: Easing.InOutElastic; to: randomize(blueBubble.width, toxicWasteMain.width - blueBubble.width); duration: randomize(1000, 10000) }
+            ScriptAction {
+                script: {
+                    bn1x.to = randomize(blueBubble.width, toxicWasteMain.width - blueBubble.width);
+                    bn1x.duration = randomize(1000, 10000);
+                    bn2x.to = randomize(blueBubble.width, toxicWasteMain.width - blueBubble.width);
+                    bn2x.duration = randomize(1000, 10000);
+                    blueBubbleAnimationX.restart();
+                }
             }
-            SequentialAnimation {
-                NumberAnimation {
-                    to: toxicWasteMain.width
-                    duration: 2500
-                    easing.type: Easing.InOutCubic
+        }
+        SequentialAnimation on y {
+            id: blueBubbleAnimationY
+            running: animationItem.running
+            NumberAnimation { id: bn1y; easing.type: Easing.InOutQuad; to: randomize(blueBubble.height, toxicWasteMain.height - blueBubble.height); duration: randomize(1000, 10000) }
+            NumberAnimation { id: bn2y; easing.type: Easing.InOutElastic; to: randomize(blueBubble.height, toxicWasteMain.height - blueBubble.height); duration: randomize(1000, 10000) }
+            ScriptAction {
+                script: {
+                    bn1y.to = randomize(blueBubble.height, toxicWasteMain.height - blueBubble.height);
+                    bn1y.duration = randomize(1000, 10000);
+                    bn2y.to = randomize(blueBubble.height, toxicWasteMain.height - blueBubble.height);
+                    bn2y.duration = randomize(1000, 10000);
+                    blueBubbleAnimationY.restart();
                 }
-                NumberAnimation {
-                    to: -rectTwo.width
-                    duration: 2500
-                    easing.type: Easing.InOutCubic
+            }
+        }
+    }
+    Image {
+        id: greenBubble
+        source: "images/green_bubble.png"
+        scale: ToxicWaste.scaleFactorX()
+        x: randomize(toxicWasteMain.width - greenBubble.width)
+        y: randomize(toxicWasteMain.height - greenBubble.height)
+        smooth: true
+        SequentialAnimation on x {
+            id: greenBubbleAnimationX
+            running: animationItem.running
+            NumberAnimation { id: gn1x; easing.type: Easing.InOutBounce; to: randomize(greenBubble.width, toxicWasteMain.width - greenBubble.width); duration: randomize(1000, 10000) }
+            NumberAnimation { id: gn2x; easing.type: Easing.InOutElastic; to: randomize(greenBubble.width, toxicWasteMain.width - greenBubble.width); duration: randomize(1000, 10000) }
+            ScriptAction {
+                script: {
+                    gn1x.to = randomize(greenBubble.width, toxicWasteMain.width - greenBubble.width);
+                    gn1x.duration = randomize(1000, 10000);
+                    gn2x.to = randomize(greenBubble.width, toxicWasteMain.width - greenBubble.width);
+                    gn2x.duration = randomize(1000, 10000);
+                    greenBubbleAnimationX.restart();
                 }
-                ScriptAction {
-                    script: {
-                        animTwo.stop();
-                        animTwo.pauseDuration = 0;
-                        animTwo.start();
-                    }
+            }
+        }
+        SequentialAnimation on y {
+            id: greenBubbleAnimationY
+            running: animationItem.running
+            NumberAnimation { id: gn1y; easing.type: Easing.InOutBounce; to: randomize(greenBubble.height, toxicWasteMain.height - greenBubble.height); duration: randomize(1000, 10000) }
+            NumberAnimation { id: gn2y; easing.type: Easing.InOutElastic; to: randomize(greenBubble.height, toxicWasteMain.height - greenBubble.height); duration: randomize(1000, 10000) }
+            ScriptAction {
+                script: {
+                    gn1y.to = randomize(greenBubble.height, toxicWasteMain.height - greenBubble.height);
+                    gn1y.duration = randomize(1000, 10000);
+                    gn2y.to = randomize(greenBubble.height, toxicWasteMain.height - greenBubble.height);
+                    gn2y.duration = randomize(1000, 10000);
+                    greenBubbleAnimationY.restart();
                 }
             }
         }
