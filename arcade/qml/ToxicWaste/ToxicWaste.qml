@@ -367,6 +367,14 @@ Rectangle {
                                 ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
                         }
                     }
+                    onDoubleClicked: {
+                        gamelistView.currentIndex = index;
+                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground);
+                        searchTextInput.focus = false;
+                        launchButton.opacity = 1.0;
+                        viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                        launchButtonFlashTimer.start();
+                    }
                     onClicked: {
                         gamelistView.currentIndex = index;
                         ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground);
