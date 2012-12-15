@@ -6,11 +6,18 @@ Rectangle {
     property bool checked: false
     signal clicked
     smooth: true
-    color: "#00000000"
+    color: "transparent"
+    onActiveFocusChanged: {
+        if ( activeFocus )
+            checkboxMark.border.width = 2;
+        else
+            checkboxMark.border.width = 1;
+    }
+    onClicked: checked = !checked
     Rectangle {
         id: checkboxMark
         border.color: "black"
-        border.width: 2
+        border.width: 1
         smooth: true
         anchors.left: checkboxContainer.left
         anchors.leftMargin: 0
@@ -26,6 +33,7 @@ Rectangle {
             source: "images/checkmark.png"
             smooth: true
             anchors.fill: parent
+            anchors.margins: 1
             fillMode: Image.PreserveAspectFit
             visible: checkboxContainer.checked
         }
@@ -44,5 +52,15 @@ Rectangle {
         color: "white"
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
+    }
+    Keys.onPressed: {
+        switch ( event.key ) {
+        case Qt.Key_Enter:
+        case Qt.Key_Return:
+        case Qt.Key_Space:
+            if ( !(event.modifiers & Qt.AltModifier) )
+                clicked();
+            break;
+        }
     }
 }

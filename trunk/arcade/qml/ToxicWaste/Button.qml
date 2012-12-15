@@ -54,6 +54,7 @@ Rectangle {
         switch ( event.key ) {
         case Qt.Key_Enter:
         case Qt.Key_Return:
+        case Qt.Key_Space:
             if ( !(event.modifiers & Qt.AltModifier) )
                 clicked();
             break;
