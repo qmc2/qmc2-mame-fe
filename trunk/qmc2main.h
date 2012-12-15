@@ -332,11 +332,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void romStateFilterN_toggled(bool);
     void romStateFilterU_toggled(bool);
 
-    // arcade mode actions and functions
-    void on_actionArcadeShowFPS_toggled(bool);
-    void on_actionArcadeTakeScreenshot_triggered();
-    void destroyArcadeView();
-
     // tab widget position callbacks
     void menuTabWidgetGamelist_North_activated();
     void menuTabWidgetGamelist_South_activated();

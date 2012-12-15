@@ -3095,15 +3095,6 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 }
 
-void MainWindow::destroyArcadeView()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::destroyArcadeView()");
-#endif
-
-	// FIXME
-}
-
 void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
@@ -8992,26 +8983,6 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 	qmc2GameMenu->show();
 }
 #endif
-
-void MainWindow::on_actionArcadeShowFPS_toggled(bool on)
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_actionArcadeShowFPS_toggled(bool on = %1)").arg(on));
-#endif
-
-	// FIXME
-	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
-}
-
-void MainWindow::on_actionArcadeTakeScreenshot_triggered()
-{
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_actionArcadeTakeScreenshot_triggered()"));
-#endif
-
-	// FIXME
-	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
-}
 
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 {

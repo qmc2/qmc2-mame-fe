@@ -2,6 +2,10 @@
 #define IMAGEPROVIDER_H
 
 #include <QDeclarativeImageProvider>
+#include <QMap>
+#include <QString>
+
+#include "../minizip/unzip.h"
 
 class ImageProvider : public QDeclarativeImageProvider
 {
@@ -11,6 +15,14 @@ public:
 
     QImage requestImage(const QString &, QSize *, const QSize &);
     QPixmap requestPixmap(const QString &, QSize *, const QSize &);
+
+private:
+    QImage loadZippedImage(QString, QString);
+    QString imageTypeToZipFile(QString);
+    QString imageTypeToLongName(QString);
+    bool isZippedImageType(QString);
+    QMap<QString, unzFile> mZipFileMap;
+    QStringList mImageTypes;
 };
 
 #endif
