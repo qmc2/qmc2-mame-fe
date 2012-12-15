@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QMap>
 #include <QProcess>
+
 #include "emulatoroption.h"
 
 class ProcessManager : public QObject

@@ -218,48 +218,48 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="32"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped previews are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="46"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped flyers are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="60"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped cabinets are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="74"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped controllers are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="88"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped marquees are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="102"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped titles are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="116"/>
-        <source>WARNING: ImageProvider::requestImage(): zipped PCBs are not supported yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../imageprovider.cpp" line="128"/>
+        <location filename="../imageprovider.cpp" line="125"/>
         <source>WARNING: ImageProvider::requestImage(): invalid image type &apos;%1&apos; requested</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="132"/>
+        <location filename="../imageprovider.cpp" line="129"/>
         <source>WARNING: ImageProvider::requestImage(): invalid image ID &apos;%1&apos; requested</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="193"/>
+        <source>preview</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="195"/>
+        <source>flyer</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="197"/>
+        <source>cabinet</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="199"/>
+        <source>controller</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="201"/>
+        <source>marquee</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="203"/>
+        <source>title</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="205"/>
+        <source>PCB</source>
         <translation></translation>
     </message>
     <message>
@@ -370,42 +370,42 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="436"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="457"/>
         <source>Really quit?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="450"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="473"/>
         <source>Yes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="454"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="489"/>
         <source>No</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="499"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="556"/>
         <source>Preferences</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="518"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="576"/>
         <source>Show background animation?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="532"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="602"/>
         <source>Show FPS counter?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="541"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="623"/>
         <source>Close</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="622"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="725"/>
         <source>FPS</source>
         <translation></translation>
     </message>

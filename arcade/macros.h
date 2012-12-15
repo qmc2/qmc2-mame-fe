@@ -86,6 +86,9 @@
 #define QMC2_ARCADE_EMUOPT_FLOAT2   8
 #define QMC2_ARCADE_EMUOPT_FLOAT3   9
 
+// ZIP read buffer size
+#define QMC2_ARCADE_ZIP_BUFSIZE     64*1024
+
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)
 #define QMC2_ARCADE_CLI_EMU_MAME    (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "mame" : false)
