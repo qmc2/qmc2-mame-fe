@@ -3,7 +3,10 @@ import Qt.labs.shaders 1.0
 import "ToxicWaste.js" as ToxicWaste
 
 Rectangle {
+    id: toxicWasteMain
+
     property int fps: 0
+    property bool ignoreLaunch: false
 
     // restored properties
     property bool fpsVisible: false
@@ -23,14 +26,22 @@ Rectangle {
         repeat: false
         onTriggered: ToxicWaste.init()
     }
+
     Component.onCompleted: initTimer.start()
 
-    id: toxicWasteMain
+    Timer {
+        id: resetIgnoreLaunchTimer
+        interval: 100
+        running: false
+        repeat: false
+        onTriggered: toxicWasteMain.ignoreLaunch = false
+    }
+
     width: ToxicWaste.baseWidth
     height: ToxicWaste.baseHeight
     z: 0
     Image {
-       id: backGroundImage
+       id: backgroundImage
        anchors.fill: parent
        fillMode: Image.PreserveAspectFit
        source: "images/shadereffectsource.png"
@@ -414,7 +425,7 @@ Rectangle {
                 break;
             case Qt.Key_Enter:
             case Qt.Key_Return:
-                if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) ) {
+                if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) && !toxicWasteMain.ignoreLaunch ) {
                     launchButton.opacity = 1.0;
                     viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
                     launchButtonFlashTimer.start();
@@ -458,12 +469,45 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 10
             Button {
+                id: buttonYes
                 text: qsTr("Yes")
-                onClicked: Qt.quit()
+                onClicked: {
+                    toxicWasteMain.ignoreLaunch = true;
+                    Qt.quit();
+                }
+                onFocusChanged: {
+                    if ( !focus )
+                        toxicWasteMain.focus = true;
+                }
+                KeyNavigation.tab: buttonNo
+                KeyNavigation.backtab: buttonNo
+                KeyNavigation.left: buttonNo
+                KeyNavigation.right: buttonNo
             }
             Button {
+                id: buttonNo
                 text: qsTr("No")
-                onClicked: confirmQuitDialog.state = "hidden"
+                onClicked: {
+                    toxicWasteMain.ignoreLaunch = true;
+                    confirmQuitDialog.state = "hidden";
+                    resetIgnoreLaunchTimer.restart();
+                }
+                onFocusChanged: {
+                    if ( !focus )
+                        toxicWasteMain.focus = true;
+                }
+                KeyNavigation.tab: buttonYes
+                KeyNavigation.backtab: buttonYes
+                KeyNavigation.left: buttonYes
+                KeyNavigation.right: buttonYes
+            }
+        }
+        onStateChanged: {
+            if ( state == "shown" )
+                buttonNo.focus = true;
+            else {
+                buttonNo.focus = false;
+                buttonYes.focus = false;
             }
         }
         states: [
@@ -545,14 +589,23 @@ Rectangle {
             onClicked: toxicWasteMain.fpsVisible = checked
         }
         Button {
-            id: okButton
+            id: closeButton
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Close")
-            onClicked: preferencesDialog.state = "hidden"
+            onClicked: {
+                toxicWasteMain.ignoreLaunch = true;
+                preferencesDialog.state = "hidden";
+                resetIgnoreLaunchTimer.restart();
+            }
+            onFocusChanged: {
+                if ( !focus )
+                    toxicWasteMain.focus = true;
+            }
         }
+        onStateChanged: closeButton.focus = (state == "shown")
         states: [
             State {
                 name: "hidden"

@@ -21,6 +21,7 @@ Rectangle {
             color: !mouseArea.pressed ? activePalette.button : activePalette.dark
         }
     }
+    onActiveFocusChanged: activeFocus ? border.width = 2 : border.width = 1
     SystemPalette {
         id: activePalette
     }
@@ -48,5 +49,13 @@ Rectangle {
         text: parent.text
         color: activePalette.buttonText
         font.pixelSize: 12
+    }
+    Keys.onPressed: {
+        switch ( event.key ) {
+        case Qt.Key_Enter:
+        case Qt.Key_Return:
+            clicked();
+            break;
+        }
     }
 }
