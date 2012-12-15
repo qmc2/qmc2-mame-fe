@@ -12,7 +12,7 @@ Item {
         x: -width
         opacity: 0.2
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "khaki" }
+            GradientStop { position: 0.0; color: "white" }
             GradientStop { position: 1.0; color: "black" }
         }
         SequentialAnimation on x {
@@ -44,7 +44,7 @@ Item {
         opacity: 0.2
         gradient: Gradient {
             GradientStop { position: 0.0; color: "black" }
-            GradientStop { position: 1.0; color: "khaki" }
+            GradientStop { position: 1.0; color: "white" }
         }
         SequentialAnimation on x {
             id: animTwo
