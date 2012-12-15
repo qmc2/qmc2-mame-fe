@@ -21,7 +21,7 @@ Item {
             id: purpleBubbleAnimationX
             running: animationItem.running
             NumberAnimation { id: pn1x; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(1000, 10000) }
-            NumberAnimation { id: pn2x; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(1000, 10000) }
+            NumberAnimation { id: pn2x; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(1000, 10000) }
             ScriptAction {
                 script: {
                     pn1x.to = randomize(0, toxicWasteMain.width - purpleBubble.width);
@@ -35,7 +35,7 @@ Item {
         SequentialAnimation on y {
             id: purpleBubbleAnimationY
             running: animationItem.running
-            NumberAnimation { id: pn1y; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(1000, 10000) }
+            NumberAnimation { id: pn1y; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(1000, 10000) }
             NumberAnimation { id: pn2y; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(1000, 10000) }
             ScriptAction {
                 script: {
@@ -58,7 +58,7 @@ Item {
         SequentialAnimation on x {
             id: blueBubbleAnimationX
             running: animationItem.running
-            NumberAnimation { id: bn1x; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(1000, 10000) }
+            NumberAnimation { id: bn1x; easing.type: Easing.InOutExpo; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(1000, 10000) }
             NumberAnimation { id: bn2x; easing.type: Easing.InOutElastic; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(1000, 10000) }
             ScriptAction {
                 script: {
@@ -74,7 +74,7 @@ Item {
             id: blueBubbleAnimationY
             running: animationItem.running
             NumberAnimation { id: bn1y; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(1000, 10000) }
-            NumberAnimation { id: bn2y; easing.type: Easing.InOutElastic; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(1000, 10000) }
+            NumberAnimation { id: bn2y; easing.type: Easing.InOutExpo; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(1000, 10000) }
             ScriptAction {
                 script: {
                     bn1y.to = randomize(0, toxicWasteMain.height - blueBubble.height);

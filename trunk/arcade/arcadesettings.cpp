@@ -127,6 +127,16 @@ bool ArcadeSettings::showBackgroundAnimation()
     return value(QString("Arcade/%1/showBackgroundAnimation").arg(arcadeTheme), false).toBool();
 }
 
+void ArcadeSettings::setAnimateInForeground(bool foreground)
+{
+    setValue(QString("Arcade/%1/animateInForeground").arg(arcadeTheme), foreground);
+}
+
+bool ArcadeSettings::animateInForeground()
+{
+    return value(QString("Arcade/%1/animateInForeground").arg(arcadeTheme), false).toBool();
+}
+
 void ArcadeSettings::setFullScreen(bool fullScreen)
 {
     setValue(QString("Arcade/%1/fullScreen").arg(arcadeTheme), fullScreen);

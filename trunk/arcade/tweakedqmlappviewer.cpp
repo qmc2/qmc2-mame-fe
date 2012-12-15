@@ -62,6 +62,7 @@ void TweakedQmlApplicationViewer::loadSettings()
     if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
         rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
         rootObject()->setProperty("showBackgroundAnimation", globalConfig->showBackgroundAnimation());
+        rootObject()->setProperty("animateInForeground", globalConfig->animateInForeground());
         rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
         rootObject()->setProperty("secondaryImageType", globalConfig->secondaryImageType());
         rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
@@ -89,6 +90,7 @@ void TweakedQmlApplicationViewer::saveSettings()
     if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
         globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
         globalConfig->setShowBackgroundAnimation(rootObject()->property("showBackgroundAnimation").toBool());
+        globalConfig->setAnimateInForeground(rootObject()->property("animateInForeground").toBool());
         globalConfig->setFullScreen(rootObject()->property("fullScreen").toBool());
         globalConfig->setSecondaryImageType(rootObject()->property("secondaryImageType").toString());
         globalConfig->setCabinetFlipped(rootObject()->property("cabinetFlipped").toBool());

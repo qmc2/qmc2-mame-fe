@@ -11,6 +11,7 @@ Rectangle {
     // restored properties
     property bool fpsVisible: false
     property bool showBackgroundAnimation: false
+    property bool animateInForeground: false
     property bool fullScreen: false
     property string secondaryImageType: "preview"
     property bool cabinetFlipped: false
@@ -549,7 +550,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 228
-        height: 126
+        height: 152
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -591,16 +592,42 @@ Rectangle {
                 if ( !focus )
                     toxicWasteMain.focus = true;
             }
-            KeyNavigation.tab: showFpsCheckBox
+            KeyNavigation.tab: animInFgCheckBox
             KeyNavigation.backtab: closeButton
-            KeyNavigation.right: showFpsCheckBox
+            KeyNavigation.right: animInFgCheckBox
             KeyNavigation.left: closeButton
         }
         CheckBox {
-            id: showFpsCheckBox
+            id: animInFgCheckBox
             anchors.top: showBgAnimCheckBox.bottom
             anchors.topMargin: 10
             anchors.bottom: showBgAnimCheckBox.bottom
+            anchors.bottomMargin: -26
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: toxicWasteMain.animateInForeground
+            text: qsTr("Animate in foreground?")
+            onClicked: {
+                toxicWasteMain.animateInForeground = checked;
+                toxicWasteMain.ignoreLaunch = true;
+                resetIgnoreLaunchTimer.restart();
+            }
+            onFocusChanged: {
+                if ( !focus )
+                    toxicWasteMain.focus = true;
+            }
+            KeyNavigation.tab: showFpsCheckBox
+            KeyNavigation.backtab: showBgAnimCheckBox
+            KeyNavigation.right: showFpsCheckBox
+            KeyNavigation.left: showBgAnimCheckBox
+        }
+        CheckBox {
+            id: showFpsCheckBox
+            anchors.top: animInFgCheckBox.bottom
+            anchors.topMargin: 10
+            anchors.bottom: animInFgCheckBox.bottom
             anchors.bottomMargin: -26
             anchors.left: parent.left
             anchors.leftMargin: 10
@@ -618,9 +645,9 @@ Rectangle {
                     toxicWasteMain.focus = true;
             }
             KeyNavigation.tab: closeButton
-            KeyNavigation.backtab: showBgAnimCheckBox
+            KeyNavigation.backtab: animInFgCheckBox
             KeyNavigation.right: closeButton
-            KeyNavigation.left: showBgAnimCheckBox
+            KeyNavigation.left: animInFgCheckBox
         }
         Button {
             id: closeButton
@@ -919,7 +946,7 @@ Rectangle {
         Behavior on opacity {
             NumberAnimation { properties: "opacity"; duration: 1000 }
         }
-        z: 2
+        z: toxicWasteMain.animateInForeground ? 5 : 2
     }
     ShaderEffectSource {
         id: effectSource

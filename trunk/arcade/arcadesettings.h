@@ -39,6 +39,8 @@ public slots:
     bool fpsVisible();
     void setShowBackgroundAnimation(bool);
     bool showBackgroundAnimation();
+    void setAnimateInForeground(bool);
+    bool animateInForeground();
     void setFullScreen(bool);
     bool fullScreen();
     void setSecondaryImageType(QString);
