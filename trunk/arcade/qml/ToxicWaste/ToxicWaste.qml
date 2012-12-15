@@ -909,9 +909,6 @@ Rectangle {
     }
     BackgroundAnimation {
         id: backgroundAnim
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.left: parent.left
         opacity: parent.showBackgroundAnimation ? 1.0 : 0.0
         onVisibleChanged: {
             if ( visible )

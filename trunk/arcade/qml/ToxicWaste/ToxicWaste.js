@@ -9,6 +9,7 @@ function init() {
     if ( lastIndex < gameListModelCount )
         gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
     initializing = false;
+    backgroundAnim.running = true;
 }
 
 function scaleFactorX() {
