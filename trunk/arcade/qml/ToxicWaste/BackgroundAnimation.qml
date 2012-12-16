@@ -77,6 +77,7 @@ Item {
             smooth: true
             ParticleMotionWander {
                 xvariance: 30
+                yvariance: 30
                 pace: 100
             }
         }
@@ -131,6 +132,7 @@ Item {
             smooth: true
             ParticleMotionWander {
                 xvariance: 30
+                yvariance: 30
                 pace: 100
             }
         }
@@ -184,6 +186,7 @@ Item {
             smooth: true
             ParticleMotionWander {
                 xvariance: 30
+                yvariance: 30
                 pace: 100
             }
         }
