@@ -10,6 +10,19 @@ Item {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
+    states: [
+        State {
+            name: "running"
+            when: opacity > 0.0
+            PropertyChanges { target: animationItem; running: true }
+        },
+        State {
+            name: "stopped"
+            when: opacity == 0.0
+            PropertyChanges { target: animationItem; running: false }
+        }
+    ]
+
     Image {
         id: purpleBubble
         source: "images/purple_bubble.png"
