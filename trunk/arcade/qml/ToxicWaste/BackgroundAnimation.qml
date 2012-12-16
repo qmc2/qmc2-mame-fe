@@ -1,4 +1,5 @@
 import QtQuick 1.1
+import Qt.labs.particles 1.0
 import "ToxicWaste.js" as ToxicWaste
 
 Item {
@@ -8,6 +9,10 @@ Item {
 
     function randomize(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function randomizeFloat(min, max) {
+        return Math.random() * (max - min) + min;
     }
 
     states: [
@@ -57,6 +62,24 @@ Item {
                 }
             }
         }
+        Particles {
+            y: purpleBubble.height/2
+            x: purpleBubble.width/2
+            source: "images/purple_bubble.png"
+            scale: 0.5
+            lifeSpan: 8000
+            lifeSpanDeviation: 4000
+            count: 5
+            angle: 0
+            angleDeviation: 360
+            velocity: 30
+            velocityDeviation: 10
+            smooth: true
+            ParticleMotionWander {
+                xvariance: 30
+                pace: 100
+            }
+        }
     }
     Image {
         id: blueBubble
@@ -92,6 +115,25 @@ Item {
                 }
             }
         }
+        Particles {
+            id: blueBubbleParticles
+            y: blueBubble.height/2
+            x: blueBubble.width/2
+            source: "images/blue_bubble.png"
+            scale: 0.5
+            lifeSpan: 8000
+            lifeSpanDeviation: 4000
+            count: 5
+            angle: 0
+            angleDeviation: 360
+            velocity: 30
+            velocityDeviation: 10
+            smooth: true
+            ParticleMotionWander {
+                xvariance: 30
+                pace: 100
+            }
+        }
     }
     Image {
         id: greenBubble
@@ -125,6 +167,24 @@ Item {
                     gn2y.duration = randomize(3000, 8000);
                     greenBubbleAnimation.restart();
                 }
+            }
+        }
+        Particles {
+            y: greenBubble.height/2
+            x: greenBubble.width/2
+            source: "images/green_bubble.png"
+            scale: 0.5
+            lifeSpan: 8000
+            lifeSpanDeviation: 4000
+            count: 5
+            angle: 0
+            angleDeviation: 360
+            velocity: 30
+            velocityDeviation: 10
+            smooth: true
+            ParticleMotionWander {
+                xvariance: 30
+                pace: 100
             }
         }
     }
