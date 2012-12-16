@@ -22,24 +22,24 @@ Item {
             running: animationItem.running
             ParallelAnimation {
                 SequentialAnimation {
-                    NumberAnimation { id: pn1x; target: purpleBubble; property: "x"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(3000, 10000) }
-                    NumberAnimation { id: pn2x; target: purpleBubble; property: "x"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(3000, 10000) }
+                    NumberAnimation { id: pn1x; target: purpleBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(3000, 8000) }
+                    NumberAnimation { id: pn2x; target: purpleBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(3000, 8000) }
                 }
                 SequentialAnimation {
-                    NumberAnimation { id: pn1y; target: purpleBubble; property: "y"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(3000, 10000) }
-                    NumberAnimation { id: pn2y; target: purpleBubble; property: "y"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(3000, 10000) }
+                    NumberAnimation { id: pn1y; target: purpleBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(3000, 8000) }
+                    NumberAnimation { id: pn2y; target: purpleBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(3000, 8000) }
                 }
             }
             ScriptAction {
                 script: {
                     pn1x.to = randomize(0, toxicWasteMain.width - purpleBubble.width);
-                    pn1x.duration = randomize(3000, 10000);
+                    pn1x.duration = randomize(3000, 8000);
                     pn2x.to = randomize(0, toxicWasteMain.width - purpleBubble.width);
-                    pn2x.duration = randomize(3000, 10000);
+                    pn2x.duration = randomize(3000, 8000);
                     pn1y.to = randomize(0, toxicWasteMain.height - purpleBubble.height);
-                    pn1y.duration = randomize(3000, 10000);
+                    pn1y.duration = randomize(3000, 8000);
                     pn2y.to = randomize(0, toxicWasteMain.height - purpleBubble.height);
-                    pn2y.duration = randomize(3000, 10000);
+                    pn2y.duration = randomize(3000, 8000);
                     purpleBubbleAnimation.restart();
                 }
             }
@@ -57,24 +57,24 @@ Item {
             running: animationItem.running
             ParallelAnimation {
                 SequentialAnimation {
-                    NumberAnimation { id: bn1x; target: blueBubble; property: "x"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(3000, 10000) }
-                    NumberAnimation { id: bn2x; target: blueBubble; property: "x"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(3000, 10000) }
+                    NumberAnimation { id: bn1x; target: blueBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(3000, 8000) }
+                    NumberAnimation { id: bn2x; target: blueBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(3000, 8000) }
                 }
                 SequentialAnimation {
-                    NumberAnimation { id: bn1y; target: blueBubble; property: "y"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(3000, 10000) }
-                    NumberAnimation { id: bn2y; target: blueBubble; property: "y"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(3000, 10000) }
+                    NumberAnimation { id: bn1y; target: blueBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(3000, 8000) }
+                    NumberAnimation { id: bn2y; target: blueBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(3000, 8000) }
                 }
             }
             ScriptAction {
                 script: {
                     bn1x.to = randomize(0, toxicWasteMain.width - blueBubble.width);
-                    bn1x.duration = randomize(3000, 10000);
+                    bn1x.duration = randomize(3000, 8000);
                     bn2x.to = randomize(0, toxicWasteMain.width - blueBubble.width);
-                    bn2x.duration = randomize(3000, 10000);
+                    bn2x.duration = randomize(3000, 8000);
                     bn1y.to = randomize(0, toxicWasteMain.height - blueBubble.height);
-                    bn1y.duration = randomize(3000, 10000);
+                    bn1y.duration = randomize(3000, 8000);
                     bn2y.to = randomize(0, toxicWasteMain.height - blueBubble.height);
-                    bn2y.duration = randomize(3000, 10000);
+                    bn2y.duration = randomize(3000, 8000);
                     blueBubbleAnimation.restart();
                 }
             }
@@ -92,24 +92,24 @@ Item {
             running: animationItem.running
             ParallelAnimation {
                 SequentialAnimation {
-                    NumberAnimation { id: gn1x; target: greenBubble; property: "x"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - greenBubble.width); duration: randomize(3000, 10000) }
-                    NumberAnimation { id: gn2x; target: greenBubble; property: "x"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.width - greenBubble.width); duration: randomize(3000, 10000) }
+                    NumberAnimation { id: gn1x; target: greenBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - greenBubble.width); duration: randomize(3000, 8000) }
+                    NumberAnimation { id: gn2x; target: greenBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - greenBubble.width); duration: randomize(3000, 8000) }
                 }
                 SequentialAnimation {
-                    NumberAnimation { id: gn1y; target: greenBubble; property: "y"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - greenBubble.height); duration: randomize(3000, 10000) }
-                    NumberAnimation { id: gn2y; target: greenBubble; property: "y"; easing.type: Easing.InOutBounce; to: randomize(0, toxicWasteMain.height - greenBubble.height); duration: randomize(3000, 10000) }
+                    NumberAnimation { id: gn1y; target: greenBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - greenBubble.height); duration: randomize(3000, 8000) }
+                    NumberAnimation { id: gn2y; target: greenBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - greenBubble.height); duration: randomize(3000, 8000) }
                 }
             }
             ScriptAction {
                 script: {
                     gn1x.to = randomize(0, toxicWasteMain.width - greenBubble.width);
-                    gn1x.duration = randomize(3000, 10000);
+                    gn1x.duration = randomize(3000, 8000);
                     gn2x.to = randomize(0, toxicWasteMain.width - greenBubble.width);
-                    gn2x.duration = randomize(3000, 10000);
+                    gn2x.duration = randomize(3000, 8000);
                     gn1y.to = randomize(0, toxicWasteMain.height - greenBubble.height);
-                    gn1y.duration = randomize(3000, 10000);
+                    gn1y.duration = randomize(3000, 8000);
                     gn2y.to = randomize(0, toxicWasteMain.height - greenBubble.height);
-                    gn2y.duration = randomize(3000, 10000);
+                    gn2y.duration = randomize(3000, 8000);
                     greenBubbleAnimation.restart();
                 }
             }
