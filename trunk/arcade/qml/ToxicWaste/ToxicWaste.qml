@@ -38,6 +38,13 @@ Rectangle {
         onTriggered: toxicWasteMain.ignoreLaunch = false
     }
 
+    Timer {
+        id: launchButtonFlashTimer
+        running: false
+        onTriggered: launchButton.opacity = 0.8
+        interval: 100
+    }
+
     width: ToxicWaste.baseWidth
     height: ToxicWaste.baseHeight
     z: 0
@@ -388,12 +395,6 @@ Rectangle {
         function firstVisibleItem() { return indexAt(contentX + 10, contentY + 10); }
         function lastVisibleItem() { return indexAt(contentX + width - 10, contentY + height - 10); }
         function itemsPerPage() { return Math.floor(height / 82); }
-        Timer {
-            id: launchButtonFlashTimer
-            running: false
-            onTriggered: launchButton.opacity = 0.8
-            interval: 100
-        }
         Keys.onPressed: {
             switch ( event.key ) {
             case Qt.Key_PageUp:
@@ -728,9 +729,10 @@ Rectangle {
         }
     }
     onMenuHiddenChanged: {
-        if ( menuHidden )
+        if ( menuHidden ) {
             menuAndStatusBar.anchors.bottomMargin -= 64;
-        else
+            searchTextInput.focus = false;
+        } else
             menuAndStatusBar.anchors.bottomMargin += 64;
     }
     Rectangle {
@@ -849,8 +851,8 @@ Rectangle {
         Item {
             id: searchBox
             anchors.centerIn: parent
-            width: 229 / ToxicWaste.scaleFactorX()
-            height: 24
+            width: 230 / ToxicWaste.scaleFactorX()
+            height: 24 / ToxicWaste.scaleFactorX()
             scale: ToxicWaste.scaleFactorX()
             Image {
                 id: searchImage
@@ -985,6 +987,8 @@ Rectangle {
             }
             event.accepted = true;
             break;
+        case Qt.Key_F1:
+            break;
         case Qt.Key_F11:
             fullScreen = !fullScreen;
             event.accepted = true;
@@ -997,16 +1001,43 @@ Rectangle {
             }
             break;
         default:
-            if ( ToxicWaste.validateKey(event.text) ) {
-                searchTextInput.text += event.text;
-                searchTextInput.focus = true;
-            } else if ( ToxicWaste.validateSpecialKey(event.text) ) {
-                searchTextInput.focus = true;
-                switch ( event.text ) {
-                case "\b":
-                    if ( searchTextInput.text.length > 0)
-                        searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
+            if ( event.modifiers & Qt.ControlModifier) {
+                switch ( event.key ) {
+                case Qt.Key_P:
+                    if ( !toxicWasteMain.ignoreLaunch ) {
+                        launchButton.opacity = 1.0;
+                        viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
+                        launchButtonFlashTimer.start();
+                    }
+                    event.accepted = true;
                     break;
+                case Qt.Key_O:
+                    preferencesDialog.state = preferencesDialog.state == "shown" ? "hidden" : "shown";
+                    event.accepted = true;
+                    break;
+                case Qt.Key_M:
+                    toxicWasteMain.menuHidden = !toxicWasteMain.menuHidden;
+                    event.accepted = true;
+                    break;
+                case Qt.Key_X:
+                    if ( confirmQuitDialog.state == "hidden" )
+                        confirmQuitDialog.state = "shown";
+                    else
+                        confirmQuitDialog.state = "hidden";
+                    break;
+                }
+            } else if ( !toxicWasteMain.menuHidden ) {
+                if ( ToxicWaste.validateKey(event.text) ) {
+                    searchTextInput.text += event.text;
+                    searchTextInput.focus = true;
+                } else if ( ToxicWaste.validateSpecialKey(event.text) ) {
+                    searchTextInput.focus = true;
+                    switch ( event.text ) {
+                    case "\b":
+                        if ( searchTextInput.text.length > 0)
+                            searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
+                        break;
+                    }
                 }
             }
         }
