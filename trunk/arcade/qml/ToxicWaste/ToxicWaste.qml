@@ -937,12 +937,6 @@ Rectangle {
     BackgroundAnimation {
         id: backgroundAnim
         opacity: parent.showBackgroundAnimation ? 1.0 : 0.0
-        onVisibleChanged: {
-            if ( visible )
-                opacity = 1.0
-            else
-                opacity = 0.0
-        }
         Behavior on opacity {
             NumberAnimation { properties: "opacity"; duration: 1000 }
         }
