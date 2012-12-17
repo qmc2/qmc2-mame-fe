@@ -13,6 +13,8 @@ ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type)
     : QDeclarativeImageProvider(type)
 {
     mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb";
+    mImageCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);
+    mPixmapCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);
     foreach (QString imageType, mImageTypes) {
         if ( isZippedImageType(imageType) ) {
             mZipFileMap[imageType] = unzOpen((const char *)imageTypeToZipFile(imageType).toLocal8Bit());
@@ -36,19 +38,22 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
     if ( idWords.count() > 1 ) {
         QString imageType = idWords[0];
         QString gameId = idWords[1];
-        QString fileName;
-        if ( isZippedImageType(imageType) ) {
-            return loadZippedImage(imageType, gameId);
-        } else {
+        QString cacheKey = imageType + "-" + gameId;
+        if ( mImageCache.contains(cacheKey) )
+            image = *mImageCache.object(cacheKey);
+        else if ( isZippedImageType(imageType) )
+            image = loadZippedImage(imageType, gameId);
+        else {
             QStringList imageFolders = imageFolder(imageType).split(";", QString::SkipEmptyParts);
             if ( !imageFolders.isEmpty() ) {
                 foreach (QString folder, imageFolders) {
-                    fileName = QFileInfo(folder + "/" + gameId + ".png").absoluteFilePath();
+                    QString fileName = QFileInfo(folder + "/" + gameId + ".png").absoluteFilePath();
                     if ( !image.load(fileName) )
                         image.load(QLatin1String(":/images/ghost.png"));
                     else
                         break;
                 }
+                mImageCache.insert(cacheKey, new QImage(image));
             } else {
                 QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): invalid image type '%1' requested").arg(imageType));
                 image.load(QLatin1String(":/images/ghost.png"));
@@ -74,19 +79,22 @@ QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize
     if ( idWords.count() > 1 ) {
         QString imageType = idWords[0];
         QString gameId = idWords[1];
-        QString fileName;
-        if ( isZippedImageType(imageType) ) {
-            return loadZippedPixmap(imageType, gameId);
-        } else {
+        QString cacheKey = imageType + "-" + gameId;
+        if ( mPixmapCache.contains(cacheKey) )
+            image = *mPixmapCache.object(cacheKey);
+        else if ( isZippedImageType(imageType) )
+            image = loadZippedPixmap(imageType, gameId);
+        else {
             QStringList imageFolders = imageFolder(imageType).split(";", QString::SkipEmptyParts);
             if ( !imageFolders.isEmpty() ) {
                 foreach (QString folder, imageFolders) {
-                    fileName = QFileInfo(folder + "/" + gameId + ".png").absoluteFilePath();
+                    QString fileName = QFileInfo(folder + "/" + gameId + ".png").absoluteFilePath();
                     if ( !image.load(fileName) )
                         image.load(QLatin1String(":/images/ghost.png"));
                     else
                         break;
                 }
+                mPixmapCache.insert(cacheKey, new QPixmap(image));
             } else {
                 QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::requestImage(): invalid image type '%1' requested").arg(imageType));
                 image.load(QLatin1String(":/images/ghost.png"));
@@ -107,6 +115,9 @@ QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize
 
 QImage ImageProvider::loadZippedImage(QString imageType, QString id)
 {
+    QString cacheKey = imageType + "-" + id;
+    if ( mImageCache.contains(cacheKey) )
+        return *mImageCache.object(cacheKey);
     QImage zippedImage;
     QString imageFileName = id + ".png";
     unzFile imageFile = mZipFileMap[imageType];
@@ -120,8 +131,10 @@ QImage ImageProvider::loadZippedImage(QString imageType, QString id)
                     imageData += imageBuffer[i];
             }
             unzCloseCurrentFile(imageFile);
-        }
-        zippedImage.loadFromData(imageData, "PNG");
+            zippedImage.loadFromData(imageData, "PNG");
+        } else
+            zippedImage.load(QLatin1String(":/images/ghost.png"));
+        mImageCache.insert(cacheKey, new QImage(zippedImage));
     } else
         zippedImage.load(QLatin1String(":/images/ghost.png"));
     return zippedImage;
@@ -129,6 +142,9 @@ QImage ImageProvider::loadZippedImage(QString imageType, QString id)
 
 QPixmap ImageProvider::loadZippedPixmap(QString imageType, QString id)
 {
+    QString cacheKey = imageType + "-" + id;
+    if ( mPixmapCache.contains(cacheKey) )
+        return *mPixmapCache.object(cacheKey);
     QPixmap zippedImage;
     QString imageFileName = id + ".png";
     unzFile imageFile = mZipFileMap[imageType];
@@ -142,8 +158,10 @@ QPixmap ImageProvider::loadZippedPixmap(QString imageType, QString id)
                     imageData += imageBuffer[i];
             }
             unzCloseCurrentFile(imageFile);
-        }
-        zippedImage.loadFromData(imageData, "PNG");
+            zippedImage.loadFromData(imageData, "PNG");
+        } else
+            zippedImage.load(QLatin1String(":/images/ghost.png"));
+        mPixmapCache.insert(cacheKey, new QPixmap(zippedImage));
     } else
         zippedImage.load(QLatin1String(":/images/ghost.png"));
     return zippedImage;
