@@ -1024,6 +1024,13 @@ Rectangle {
                         confirmQuitDialog.state = "shown";
                     else
                         confirmQuitDialog.state = "hidden";
+                    event.accepted = true;
+                    break;
+                case Qt.Key_F:
+                    if ( !toxicWasteMain.menuHidden ) {
+                        searchTextInput.text = "";
+                        searchTextInput.focus = true;
+                    }
                     break;
                 }
             } else if ( !toxicWasteMain.menuHidden ) {
