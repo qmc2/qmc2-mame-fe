@@ -18,9 +18,11 @@ public:
 
 private:
     QImage loadZippedImage(QString, QString);
+    QPixmap loadZippedPixmap(QString, QString);
     QString imageTypeToZipFile(QString);
     QString imageTypeToLongName(QString);
     bool isZippedImageType(QString);
+    QString imageFolder(QString);
     QMap<QString, unzFile> mZipFileMap;
     QStringList mImageTypes;
 };
