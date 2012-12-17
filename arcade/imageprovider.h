@@ -3,6 +3,7 @@
 
 #include <QDeclarativeImageProvider>
 #include <QMap>
+#include <QCache>
 #include <QString>
 
 #include "../minizip/unzip.h"
@@ -23,8 +24,10 @@ private:
     QString imageTypeToLongName(QString);
     bool isZippedImageType(QString);
     QString imageFolder(QString);
-    QMap<QString, unzFile> mZipFileMap;
     QStringList mImageTypes;
+    QMap<QString, unzFile> mZipFileMap;
+    QCache<QString, QImage> mImageCache;
+    QCache<QString, QPixmap> mPixmapCache;
 };
 
 #endif

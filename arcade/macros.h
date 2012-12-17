@@ -89,6 +89,9 @@
 // ZIP read buffer size
 #define QMC2_ARCADE_ZIP_BUFSIZE     64*1024
 
+// number of image- & pixmap-cache slots
+#define QMC2_ARCADE_IMGCACHE_SIZE   100
+
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)
 #define QMC2_ARCADE_CLI_EMU_MAME    (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "mame" : false)
