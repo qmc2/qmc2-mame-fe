@@ -51,6 +51,8 @@ public slots:
     int lastIndex();
     void setMenuHidden(bool);
     bool menuHidden();
+    void setShowShaderEffect(bool);
+    bool showShaderEffect();
 
     // main frontend / emulator settings (from QMC2, read-only)
     QString gameListCacheFile();
