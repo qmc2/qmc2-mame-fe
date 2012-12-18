@@ -114,6 +114,8 @@ qmc2/arcade/translations/.svn/text-base/qmc2-arcade_sv.ts.svn-base
 qmc2/arcade/translations/.svn/text-base/qmc2-arcade_us.qm.svn-base
 qmc2/arcade/translations/.svn/text-base/qmc2-arcade_us.ts.svn-base
 qmc2/arch/Darwin/.svn
+qmc2/arch/Darwin/.svn/prop-base/arcade_macdeployimports.sh.svn-base
+qmc2/arch/Darwin/.svn/text-base/arcade_macdeployimports.sh.svn-base
 qmc2/arch/Darwin/.svn/text-base/Info.plist.in.svn-base
 qmc2/arch/Linux/.svn
 qmc2/arch/Linux/.svn/prop-base/Debian_5.0.cfg.svn-base
