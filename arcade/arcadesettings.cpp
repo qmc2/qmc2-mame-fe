@@ -187,6 +187,16 @@ bool ArcadeSettings::menuHidden()
     return value(QString("Arcade/%1/menuHidden").arg(arcadeTheme), false).toBool();
 }
 
+void ArcadeSettings::setShowShaderEffect(bool show)
+{
+    setValue(QString("Arcade/%1/showShaderEffect").arg(arcadeTheme), show);
+}
+
+bool ArcadeSettings::showShaderEffect()
+{
+    return value(QString("Arcade/%1/showShaderEffect").arg(arcadeTheme), false).toBool();
+}
+
 QString ArcadeSettings::gameListCacheFile()
 {
     return value(QString("%1/FilesAndDirectories/GamelistCacheFile").arg(emulatorPrefix)).toString();

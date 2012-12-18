@@ -70,6 +70,7 @@ Item {
             fadeInDuration: 250
             fadeOutDuration: 500
             smooth: true
+            z: 1
             ParticleMotionWander {
                 xvariance: 30
                 yvariance: 30
@@ -120,6 +121,7 @@ Item {
             fadeInDuration: 250
             fadeOutDuration: 500
             smooth: true
+            z: 1
             ParticleMotionWander {
                 xvariance: 30
                 yvariance: 30
@@ -170,6 +172,7 @@ Item {
             fadeInDuration: 250
             fadeOutDuration: 500
             smooth: true
+            z: 1
             ParticleMotionWander {
                 xvariance: 30
                 yvariance: 30

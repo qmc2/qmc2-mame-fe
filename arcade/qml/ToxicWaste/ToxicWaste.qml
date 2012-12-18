@@ -11,6 +11,7 @@ Rectangle {
     // restored properties
     property bool fpsVisible: false
     property bool showBackgroundAnimation: false
+    property bool showShaderEffect: false
     property bool animateInForeground: false
     property bool fullScreen: false
     property string secondaryImageType: "preview"
@@ -551,7 +552,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 228
-        height: 152
+        height: 178
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -625,10 +626,36 @@ Rectangle {
             KeyNavigation.left: showBgAnimCheckBox
         }
         CheckBox {
-            id: showFpsCheckBox
+            id: showShaderEffectCheckBox
             anchors.top: animInFgCheckBox.bottom
             anchors.topMargin: 10
             anchors.bottom: animInFgCheckBox.bottom
+            anchors.bottomMargin: -26
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: toxicWasteMain.showShaderEffect
+            text: qsTr("Show shader effect?")
+            onClicked: {
+                toxicWasteMain.showShaderEffect = checked;
+                toxicWasteMain.ignoreLaunch = true;
+                resetIgnoreLaunchTimer.restart();
+            }
+            onFocusChanged: {
+                if ( !focus )
+                    toxicWasteMain.focus = true;
+            }
+            KeyNavigation.tab: showFpsCheckBox
+            KeyNavigation.backtab: animInFgCheckBox
+            KeyNavigation.right: showFpsCheckBox
+            KeyNavigation.left: animInFgCheckBox
+        }
+        CheckBox {
+            id: showFpsCheckBox
+            anchors.top: showShaderEffectCheckBox.bottom
+            anchors.topMargin: 10
+            anchors.bottom: showShaderEffectCheckBox.bottom
             anchors.bottomMargin: -26
             anchors.left: parent.left
             anchors.leftMargin: 10
@@ -956,7 +983,7 @@ Rectangle {
     }
     RadialWaveEffect {
         id: layer
-        anchors.fill: parent;
+        anchors.fill: parent
         source: effectSource
         wave: 0.0
         waveOriginX: 0.5
@@ -965,7 +992,7 @@ Rectangle {
         z: 1
         NumberAnimation on wave {
             id: waveAnim
-            running: true
+            running: toxicWasteMain.showShaderEffect
             loops: Animation.Infinite
             easing.type: Easing.Linear
             from: 0.0000;
