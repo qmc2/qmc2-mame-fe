@@ -285,6 +285,11 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     return foundIndex;
 }
 
+void TweakedQmlApplicationViewer::log(QString message)
+{
+    QMC2_ARCADE_LOG_STR(message);
+}
+
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 {
     numFrames++;

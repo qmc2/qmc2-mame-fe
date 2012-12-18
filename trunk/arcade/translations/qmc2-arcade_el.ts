@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="el_GR">
 <context>
+    <name>BackgroundAnimation</name>
+    <message>
+        <location filename="../qml/ToxicWaste/BackgroundAnimation.qml" line="14"/>
+        <source>Starting animation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/BackgroundAnimation.qml" line="16"/>
+        <source>Animation stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConsoleWindow</name>
     <message>
         <location filename="../consolewindow.cpp" line="12"/>
@@ -218,47 +231,49 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="125"/>
+        <location filename="../imageprovider.cpp" line="58"/>
+        <location filename="../imageprovider.cpp" line="99"/>
         <source>WARNING: ImageProvider::requestImage(): invalid image type &apos;%1&apos; requested</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="129"/>
+        <location filename="../imageprovider.cpp" line="63"/>
+        <location filename="../imageprovider.cpp" line="104"/>
         <source>WARNING: ImageProvider::requestImage(): invalid image ID &apos;%1&apos; requested</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="193"/>
+        <location filename="../imageprovider.cpp" line="196"/>
         <source>preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="195"/>
+        <location filename="../imageprovider.cpp" line="198"/>
         <source>flyer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="197"/>
+        <location filename="../imageprovider.cpp" line="200"/>
         <source>cabinet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="199"/>
+        <location filename="../imageprovider.cpp" line="202"/>
         <source>controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="201"/>
+        <location filename="../imageprovider.cpp" line="204"/>
         <source>marquee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="203"/>
+        <location filename="../imageprovider.cpp" line="206"/>
         <source>title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="205"/>
+        <location filename="../imageprovider.cpp" line="208"/>
         <source>PCB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -325,92 +340,92 @@
 <context>
     <name>ToxicWaste</name>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="63"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="62"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="63"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="62"/>
         <source>ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="128"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="127"/>
         <source>Flyer image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="131"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="130"/>
         <source>Cabinet image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="134"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="133"/>
         <source>Controller image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="137"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="136"/>
         <source>Marquee image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="140"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="139"/>
         <source>Title image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="143"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="142"/>
         <source>PCB image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="147"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.js" line="146"/>
         <source>Preview image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="466"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="467"/>
         <source>Really quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="482"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="483"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="498"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="499"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="565"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="566"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="585"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="586"/>
         <source>Show background animation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="611"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="612"/>
         <source>Animate in foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="637"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="638"/>
         <source>Show FPS counter?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="658"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="659"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="760"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="762"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -547,12 +562,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="296"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="301"/>
         <source>Stopping QML viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="299"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="304"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation type="unfinished"></translation>
     </message>

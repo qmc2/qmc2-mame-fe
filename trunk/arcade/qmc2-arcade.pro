@@ -87,7 +87,8 @@ RESOURCES += \
 
 evil_hack_to_fool_lupdate {
     SOURCES += qml/ToxicWaste/ToxicWaste.qml \
-               qml/ToxicWaste/ToxicWaste.js
+               qml/ToxicWaste/BackgroundAnimation.qml \
+               qml/ToxicWaste/ToxicWaste.js \
 }
 
 TRANSLATIONS += translations/qmc2-arcade_de.ts \

@@ -35,6 +35,7 @@ public slots:
     void loadGamelist();
     void launchEmulator(QString);
     int findIndex(QString, int startIndex = 0);
+    void log(QString);
 
 protected:
     void paintEvent(QPaintEvent *);
