@@ -120,6 +120,7 @@ macx {
     ICON = images/qmc2-arcade.icns
     contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
     QMAKE_INFO_PLIST = Info.plist
+    QT += opengl
 } else {
     !win32 {
         LIBS += -lSDL

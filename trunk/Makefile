@@ -1008,6 +1008,7 @@ arcade/Info.plist: arcade/Info.plist.in
 	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(ARCADE_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qmc2-arcade.icns/g' < $< > $@
 arcade/qmc2-arcade.app/Contents/Resources/qt.conf: arcade/Info.plist
 	@$(MACDEPLOYQT) arcade/qmc2-arcade.app
+	@arch/Darwin/arcade_macdeployimports.sh
 arcade-macdeployqt: arcade/qmc2-arcade.app/Contents/Resources/qt.conf
 endif
 
