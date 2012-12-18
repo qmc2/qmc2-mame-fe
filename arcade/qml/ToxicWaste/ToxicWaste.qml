@@ -938,7 +938,7 @@ Rectangle {
     }
     BackgroundAnimation {
         id: backgroundAnim
-        opacity: parent.showBackgroundAnimation ? 1.0 : 0.0
+        opacity: toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0
         Behavior on opacity {
             NumberAnimation { properties: "opacity"; duration: 1000 }
         }
