@@ -31,8 +31,10 @@ Item {
         id: purpleBubble
         source: "images/purple_bubble.png"
         scale: ToxicWaste.scaleFactorX()
-        x: randomize(0, toxicWasteMain.width - purpleBubble.width)
-        y: randomize(0, toxicWasteMain.height - purpleBubble.height)
+        Component.onCompleted: {
+            x = randomize(0, toxicWasteMain.width - purpleBubble.width)
+            y = randomize(0, toxicWasteMain.height - purpleBubble.height)
+        }
         smooth: true
         SequentialAnimation {
             id: purpleBubbleAnimation
@@ -79,8 +81,10 @@ Item {
         id: blueBubble
         source: "images/blue_bubble.png"
         scale: ToxicWaste.scaleFactorX()
-        x: randomize(0, toxicWasteMain.width - blueBubble.width)
-        y: randomize(0, toxicWasteMain.height - blueBubble.height)
+        Component.onCompleted: {
+            x = randomize(0, toxicWasteMain.width - blueBubble.width)
+            y = randomize(0, toxicWasteMain.height - blueBubble.height)
+        }
         smooth: true
         SequentialAnimation {
             id: blueBubbleAnimation
@@ -127,8 +131,10 @@ Item {
         id: greenBubble
         source: "images/green_bubble.png"
         scale: ToxicWaste.scaleFactorX()
-        x: randomize(0, toxicWasteMain.width - greenBubble.width)
-        y: randomize(0, toxicWasteMain.height - greenBubble.height)
+        Component.onCompleted: {
+            x = randomize(0, toxicWasteMain.width - greenBubble.width)
+            y = randomize(0, toxicWasteMain.height - greenBubble.height)
+        }
         smooth: true
         SequentialAnimation {
             id: greenBubbleAnimation
