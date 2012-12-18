@@ -40,8 +40,8 @@ Item {
             id: purpleBubbleAnimation
             running: animationItem.running
             ParallelAnimation {
-                NumberAnimation { id: px; target: purpleBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(3000, 8000) }
-                NumberAnimation { id: py; target: purpleBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(3000, 8000) }
+                NumberAnimation { id: px; target: purpleBubble; property: "x"; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.width - purpleBubble.width); duration: randomize(3000, 8000) }
+                NumberAnimation { id: py; target: purpleBubble; property: "y"; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.height - purpleBubble.height); duration: randomize(3000, 8000) }
             }
             ScriptAction {
                 script: {
@@ -90,8 +90,8 @@ Item {
             id: blueBubbleAnimation
             running: animationItem.running
             ParallelAnimation {
-                NumberAnimation { id: bx; target: blueBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(3000, 8000) }
-                NumberAnimation { id: by; target: blueBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(3000, 8000) }
+                NumberAnimation { id: bx; target: blueBubble; property: "x"; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.width - blueBubble.width); duration: randomize(3000, 8000) }
+                NumberAnimation { id: by; target: blueBubble; property: "y"; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.height - blueBubble.height); duration: randomize(3000, 8000) }
             }
             ScriptAction {
                 script: {
@@ -140,8 +140,8 @@ Item {
             id: greenBubbleAnimation
             running: animationItem.running
             ParallelAnimation {
-                NumberAnimation { id: gx; target: greenBubble; property: "x"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.width - greenBubble.width); duration: randomize(3000, 8000) }
-                NumberAnimation { id: gy; target: greenBubble; property: "y"; easing.type: Easing.InOutSine; to: randomize(0, toxicWasteMain.height - greenBubble.height); duration: randomize(3000, 8000) }
+                NumberAnimation { id: gx; target: greenBubble; property: "x"; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.width - greenBubble.width); duration: randomize(3000, 8000) }
+                NumberAnimation { id: gy; target: greenBubble; property: "y"; easing.type: Easing.InOutQuad; to: randomize(0, toxicWasteMain.height - greenBubble.height); duration: randomize(3000, 8000) }
             }
             ScriptAction {
                 script: {
