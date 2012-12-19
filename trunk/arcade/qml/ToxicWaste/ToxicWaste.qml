@@ -918,6 +918,7 @@ Rectangle {
                     anchors.rightMargin: 2
                     font.pointSize: parent.height
                     smooth: true
+                    focus: false
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
                         color: "black"
@@ -926,7 +927,8 @@ Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: parent.activeFocus
                         SequentialAnimation on opacity {
-                            loops: Animation.Infinite;
+                            loops: Animation.Infinite
+                            running: searchTextInput.focus
                             PropertyAnimation { from: 0.0; to: 1.0; duration: 250 }
                             PauseAnimation { duration: 500 }
                             PropertyAnimation { from: 1.0; to: 0.0; duration: 250 }
