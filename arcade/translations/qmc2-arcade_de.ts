@@ -434,6 +434,16 @@
         <source>FPS</source>
         <translation>FPS</translation>
     </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1003"/>
+        <source>Starting shader effect</source>
+        <translation>Starte Shader-Effekt</translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1005"/>
+        <source>Shader effect stopped</source>
+        <translation>Shader-Effekt gestoppt</translation>
+    </message>
 </context>
 <context>
     <name>TweakedQmlApplicationViewer</name>

@@ -998,6 +998,12 @@ Rectangle {
             from: 0.0000;
             to: 2.0000;
             duration: 3000
+            onRunningChanged: {
+                if ( running )
+                    viewer.log(qsTr("Starting shader effect"));
+                else
+                    viewer.log(qsTr("Shader effect stopped"));
+            }
         }
     }
     focus: true
