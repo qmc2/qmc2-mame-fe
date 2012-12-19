@@ -928,10 +928,10 @@ Rectangle {
                         visible: parent.activeFocus
                         SequentialAnimation on opacity {
                             loops: Animation.Infinite
-                            running: searchTextInput.focus
-                            PropertyAnimation { from: 0.0; to: 1.0; duration: 250 }
+                            running: searchTextCursorDelegate.visible
+                            PropertyAction { target: parent; property: "opacity"; value: 1.0 }
                             PauseAnimation { duration: 500 }
-                            PropertyAnimation { from: 1.0; to: 0.0; duration: 250 }
+                            PropertyAction { target: parent; property: "opacity"; value: 0.0 }
                             PauseAnimation { duration: 500 }
                         }
                     }
