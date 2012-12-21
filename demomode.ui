@@ -166,6 +166,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="toolTip">
+      <string>Clear name filter</string>
+     </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
