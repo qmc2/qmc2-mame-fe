@@ -2553,9 +2553,10 @@
    <addaction name="actionROMAlyzer"/>
    <addaction name="actionExportROMStatus"/>
    <addaction name="separator"/>
-   <addaction name="actionLaunchArcade"/>
-   <addaction name="separator"/>
    <addaction name="actionOptions"/>
+   <addaction name="actionFullscreenToggle"/>
+   <addaction name="separator"/>
+   <addaction name="actionLaunchArcade"/>
    <addaction name="separator"/>
    <addaction name="actionLaunchQMC2MAME"/>
    <addaction name="actionLaunchQMC2MESS"/>
