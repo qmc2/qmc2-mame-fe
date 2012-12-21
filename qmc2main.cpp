@@ -441,6 +441,12 @@ MainWindow::MainWindow(QWidget *parent)
   menuBar()->setNativeMenuBar(false);
 #endif
 
+#if defined(QMC2_EMUTYPE_MESS) // FIXME: we have no MESS arcade theme yet!
+  menuArcade->menuAction()->setVisible(false);
+  actionLaunchArcade->setVisible(false);
+  actionArcadeSetup->setVisible(false);
+#endif
+
   // enable menu tear-off
   foreach (QMenu *menu, menuBar()->findChildren<QMenu *>())
 	  menu->setTearOffEnabled(true);
@@ -11116,7 +11122,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
   qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
   qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionLaunchArcade;
+#endif
 #if QMC2_USE_PHONON_API
   qmc2ShortcutMap["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
   qmc2ShortcutMap["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;

@@ -19,11 +19,15 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	resetToDefault = false;
 	firstRefresh = true;
 
+	int consecutiveSeparators = 0;
 	foreach (QAction *action, qmc2MainWindow->toolbar->actions()) {
-		if ( action->isSeparator() )
-			defaultToolBarActions << "--";
-		else if ( action->isVisible() && !action->icon().isNull() )
+		if ( action->isSeparator() ) {
+			if ( consecutiveSeparators++ < 1 )
+				defaultToolBarActions << "--";
+		} else if ( action->isVisible() && !action->icon().isNull() ) {
 			defaultToolBarActions << action->objectName();
+			consecutiveSeparators = 0;
+		}
 	}
 	defaultToolBarActions << qmc2MainWindow->widgetActionToolbarSearch->objectName();
 	separatorAction = new QAction(this);

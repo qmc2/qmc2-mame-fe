@@ -2982,9 +2982,6 @@
    </property>
   </action>
   <action name="actionLaunchArcade">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset resource="qmc2.qrc">
      <normaloff>:/data/img/qmc2-arcade.png</normaloff>:/data/img/qmc2-arcade.png</iconset>
