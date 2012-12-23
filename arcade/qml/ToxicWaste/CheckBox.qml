@@ -49,6 +49,7 @@ Rectangle {
         color: "white"
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
+        smooth: true
     }
     Keys.onPressed: {
         switch ( event.key ) {
