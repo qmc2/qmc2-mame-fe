@@ -929,9 +929,9 @@ Rectangle {
                         SequentialAnimation on opacity {
                             loops: Animation.Infinite
                             running: searchTextCursorDelegate.visible
-                            PropertyAction { target: parent; property: "opacity"; value: 1.0 }
+                            PropertyAction { target: searchTextCursorDelegate; property: "opacity"; value: 1.0 }
                             PauseAnimation { duration: 500 }
-                            PropertyAction { target: parent; property: "opacity"; value: 0.0 }
+                            PropertyAction { target: searchTextCursorDelegate; property: "opacity"; value: 0.0 }
                             PauseAnimation { duration: 500 }
                         }
                     }
