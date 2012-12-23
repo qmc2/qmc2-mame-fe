@@ -49,6 +49,7 @@ Rectangle {
         text: parent.text
         color: activePalette.buttonText
         font.pixelSize: 12
+        smooth: true
     }
     Keys.onPressed: {
         switch ( event.key ) {

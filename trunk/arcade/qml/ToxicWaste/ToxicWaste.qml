@@ -472,6 +472,7 @@ Rectangle {
             anchors.horizontalCenterOffset: 0
             font.pixelSize: 12
             color: "white"
+            smooth: true
         }
         Row {
             anchors.bottom: parent.bottom
@@ -572,6 +573,7 @@ Rectangle {
             font.pixelSize: 12
             font.bold: true
             color: "white"
+            smooth: true
         }
         CheckBox {
             id: showBgAnimCheckBox
@@ -598,6 +600,7 @@ Rectangle {
             KeyNavigation.backtab: closeButton
             KeyNavigation.right: animInFgCheckBox
             KeyNavigation.left: closeButton
+            smooth: true
         }
         CheckBox {
             id: animInFgCheckBox
@@ -624,6 +627,7 @@ Rectangle {
             KeyNavigation.backtab: showBgAnimCheckBox
             KeyNavigation.right: showFpsCheckBox
             KeyNavigation.left: showBgAnimCheckBox
+            smooth: true
         }
         CheckBox {
             id: showShaderEffectCheckBox
@@ -650,6 +654,7 @@ Rectangle {
             KeyNavigation.backtab: animInFgCheckBox
             KeyNavigation.right: showFpsCheckBox
             KeyNavigation.left: animInFgCheckBox
+            smooth: true
         }
         CheckBox {
             id: showFpsCheckBox
@@ -676,6 +681,7 @@ Rectangle {
             KeyNavigation.backtab: animInFgCheckBox
             KeyNavigation.right: closeButton
             KeyNavigation.left: animInFgCheckBox
+            smooth: true
         }
         Button {
             id: closeButton
