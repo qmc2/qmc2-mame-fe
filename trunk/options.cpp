@@ -52,7 +52,7 @@
 #include "messdevcfg.h"
 #endif
 #include "softwarelist.h"
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 #include "embedder.h"
 #include "embedderopt.h"
 #endif
@@ -232,7 +232,7 @@ Options::Options(QWidget *parent)
   checkBoxExitOnVariantLaunch->setVisible(false);
 #endif
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
 
@@ -389,7 +389,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
@@ -565,7 +565,7 @@ void Options::apply()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
 #endif
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
     qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
     qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -825,7 +825,7 @@ void Options::apply()
 
   qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   int i;
   for (i = 0; i < qmc2MainWindow->tabWidgetEmbeddedEmulators->count(); i++) {
     Embedder *embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(i);
@@ -2527,7 +2527,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     int i;
     for (i = 0; i < words.count(); i++) {
       if ( i > 0 ) itemText += "+";
-      itemText += QObject::tr(words[i].toAscii());
+      itemText += QObject::tr(words[i].toLocal8Bit());
     }
     item->setText(1, itemText);
     QString customSC = config->value(QString(QMC2_FRONTEND_PREFIX + "Shortcuts/%1").arg(itShortcut), itShortcut).toString();
@@ -2537,7 +2537,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
       customSC = "";
       for (i = 0; i < words.count(); i++) {
         if ( i > 0 ) customSC += "+";
-        customSC += QObject::tr(words[i].toAscii());
+        customSC += QObject::tr(words[i].toLocal8Bit());
       }
       item->setText(2, customSC);
     }
@@ -2792,7 +2792,7 @@ void Options::applyDelayed()
   checkPlaceholderStatus();
   
   // hide / show the menu bar
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #else
@@ -3758,7 +3758,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
     int i;
     for (i = 0; i < words.count(); i++) {
       if ( i > 0 ) nativeShortcut += "+";
-      nativeShortcut += QObject::tr(words[i].toAscii());
+      nativeShortcut += QObject::tr(words[i].toLocal8Bit());
     }
 
     bool found = false;
@@ -3769,7 +3769,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
       QString itShortcut = "";
       for (i = 0; i < words.count(); i++) {
         if ( i > 0 ) itShortcut += "+";
-        itShortcut += QObject::tr(words[i].toAscii());
+        itShortcut += QObject::tr(words[i].toLocal8Bit());
       }
 
       if ( itShortcut == nativeShortcut ) {
@@ -3830,7 +3830,7 @@ void Options::on_pushButtonResetShortcut_clicked()
     int i;
     for (i = 0; i < words.count(); i++) {
       if ( i > 0 ) nativeShortcut += "+";
-      nativeShortcut += QObject::tr(words[i].toAscii());
+      nativeShortcut += QObject::tr(words[i].toLocal8Bit());
     }
 
     bool found = false;
@@ -3841,7 +3841,7 @@ void Options::on_pushButtonResetShortcut_clicked()
       QString itShortcut = "";
       for (i = 0; i < words.count(); i++) {
         if ( i > 0 ) itShortcut += "+";
-        itShortcut += QObject::tr(words[i].toAscii());
+        itShortcut += QObject::tr(words[i].toLocal8Bit());
       }
 
       if ( itShortcut == nativeShortcut ) {

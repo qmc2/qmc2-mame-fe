@@ -2741,7 +2741,7 @@ bool SoftwareListXmlHandler::characters(const QString &str)
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::characters(const QString &str = ...)"));
 #endif
 
-	currentText += QString::fromUtf8(str.toAscii());
+	currentText += QString::fromUtf8(str.toLocal8Bit());
 	return true;
 }
 
@@ -2995,7 +2995,7 @@ void SoftwareSnap::loadSnapshot()
 		if ( qmc2UseSoftwareSnapFile ) {
 			// try loading image from ZIP
 			if ( !snapFile ) {
-				snapFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+				snapFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toLocal8Bit());
 				if ( snapFile == NULL )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
 			}
@@ -3003,7 +3003,7 @@ void SoftwareSnap::loadSnapshot()
 				bool fileOk = true;
 				QByteArray imageData;
 				QString pathInZip = listName + "/" + entryName + ".png";
-				if ( unzLocateFile(snapFile, (const char *)pathInZip.toAscii(), 0) == UNZ_OK ) {
+				if ( unzLocateFile(snapFile, (const char *)pathInZip.toLocal8Bit(), 0) == UNZ_OK ) {
 					if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
 						char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 						int len;
@@ -3415,7 +3415,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 		infoItem = new SoftwareItem((QTreeWidget *)NULL);
 		infoItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Info:") + " " + attributes.value("name"));
 #if defined(QMC2_OS_WIN)
-		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, QString::fromUtf8(attributes.value("value").toAscii()));
+		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, QString::fromUtf8(attributes.value("value").toLocal8Bit()));
 #else
 		infoItem->setText(QMC2_SWLIST_COLUMN_NAME, attributes.value("value"));
 #endif
@@ -3576,7 +3576,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 	if ( qmc2UseSoftwareSnapFile ) {
 		// try loading image from ZIP
 		if ( !qmc2SoftwareSnap->snapFile ) {
-			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toLocal8Bit());
 			if ( qmc2SoftwareSnap->snapFile == NULL )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
 		}
@@ -3584,7 +3584,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 		if ( qmc2SoftwareSnap->snapFile ) {
 			QByteArray imageData;
 			QString pathInZip = listName + "/" + entryName + ".png";
-			if ( unzLocateFile(qmc2SoftwareSnap->snapFile, (const char *)pathInZip.toAscii(), 0) == UNZ_OK ) {
+			if ( unzLocateFile(qmc2SoftwareSnap->snapFile, (const char *)pathInZip.toLocal8Bit(), 0) == UNZ_OK ) {
 				if ( unzOpenCurrentFile(qmc2SoftwareSnap->snapFile) == UNZ_OK ) {
 					char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 					int len;

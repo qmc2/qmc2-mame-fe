@@ -19,7 +19,11 @@ QStringList messThemes;
 QStringList umeThemes;
 bool runApp = true;
 
+#if QT_VERSION < 0x050000
 void qtMessageHandler(QtMsgType type, const char *msg)
+#else
+void qtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
+#endif
 {
     if ( !runApp )
         return;
@@ -80,7 +84,11 @@ int SDL_main(int argc, char *argv[]) {
 int main(int argc, char *argv[])
 {
     qsrand(QDateTime::currentDateTime().toTime_t());
+#if QT_VERSION < 0x050000
     qInstallMsgHandler(qtMessageHandler);
+#else
+    qInstallMessageHandler(qtMessageHandler);
+#endif
 
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 

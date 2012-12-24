@@ -276,6 +276,8 @@ endif
 # Built-in Phonon features include the MP3 audio player and the YouTube video
 # widget.
 #
+# For Qt 5, this will be disabled automatically (has no Phonon module)!
+#
 ifndef PHONON
 PHONON = 1
 endif
@@ -669,7 +671,11 @@ QMAKEV = $(shell echo `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
 endif
 endif
 
-ifeq '$(QMAKEV)' '2'
+ifeq '$(QMAKEV)' '3'
+PHONON=0
+endif
+
+ifneq '$(QMAKEV)' '1'
 
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')

@@ -33,12 +33,14 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #if QT_VERSION >= 0x050000
+#include <QDesktopWidget>
 #include <QToolButton>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QColorDialog>
 #include <QToolTip>
+#include <QtWebKitWidgets/QWebFrame>
 #endif
 
 #include "macros.h"

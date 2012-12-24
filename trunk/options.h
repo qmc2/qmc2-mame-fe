@@ -97,7 +97,7 @@ class Options : public QDialog, public Ui::Options
     ~Options();
 
     void apply();
-    void restoreCurrentConfig(bool useDefaultSettings = FALSE);
+    void restoreCurrentConfig(bool useDefaultSettings = false);
 
   public slots:
     // callback functions

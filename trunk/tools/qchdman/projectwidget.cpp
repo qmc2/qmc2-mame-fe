@@ -1,6 +1,8 @@
 #include <QtGui>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QScrollBar>
+#include <QStatusBar>
 
 #if defined(Q_OS_WIN)
 #include <windows.h>

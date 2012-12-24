@@ -2075,9 +2075,15 @@ void MESSDeviceConfigurator::setupFileChooser()
 	treeViewDirChooser->setCurrentIndex(dirModel->index(path));
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--) treeViewDirChooser->setColumnHidden(i, true);
 	treeViewDirChooser->setSortingEnabled(true);
+
+#if QT_VERSION < 0x050000
 	treeViewDirChooser->header()->setMovable(false);
-	treeViewDirChooser->header()->setStretchLastSection(true);
 	treeViewDirChooser->header()->setResizeMode(QHeaderView::Stretch);
+#else
+	treeViewDirChooser->header()->setSectionsMovable(false);
+	treeViewDirChooser->header()->setSectionResizeMode(QHeaderView::Stretch);
+#endif
+	treeViewDirChooser->header()->setStretchLastSection(true);
   	treeViewDirChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DirChooserHeaderState").toByteArray());
 	treeViewDirChooser->sortByColumn(0, treeViewDirChooser->header()->sortIndicatorOrder());
 	treeViewDirChooser->updateGeometry();

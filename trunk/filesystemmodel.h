@@ -89,7 +89,7 @@ class DirectoryScannerThread : public QThread
 				waitCondition.wait(&waitMutex);
 				waitMutex.unlock();
 #if defined(QMC2_DEBUG)
-				printf("DirectoryScannerThread: starting scan of %s\n", (const char *)dirPath.toAscii());
+				printf("DirectoryScannerThread: starting scan of %s\n", (const char *)dirPath.toLocal8Bit());
 #endif
 				if ( !stopScanning && !quitFlag ) {
 					waitMutex.lock();
@@ -105,7 +105,7 @@ class DirectoryScannerThread : public QThread
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
-								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
+								printf("DirectoryScannerThread: %s\n", (const char *)entry.toLocal8Bit());
 #endif
 							dirEntries.clear();
 						}
@@ -115,7 +115,7 @@ class DirectoryScannerThread : public QThread
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
-								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
+								printf("DirectoryScannerThread: %s\n", (const char *)entry.toLocal8Bit());
 #endif
 						}
 						emit finished();
@@ -124,7 +124,7 @@ class DirectoryScannerThread : public QThread
 					waitMutex.unlock();
 				}
 #if defined(QMC2_DEBUG)
-				printf("DirectoryScannerThread: finished scan of %s\n", (const char *)dirPath.toAscii());
+				printf("DirectoryScannerThread: finished scan of %s\n", (const char *)dirPath.toLocal8Bit());
 #endif
 			}
 #if defined(QMC2_DEBUG)
@@ -484,7 +484,9 @@ class FileSystemModel : public QAbstractItemModel
 		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder)
 		{
 			emit layoutAboutToBeChanged();
+#if QT_VERSION < 0x050000
 			reset();
+#endif
 			mRootItem->sort(order, column, mFoldersFirst);
 			emit layoutChanged();
 		}
@@ -618,7 +620,7 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !fileItem || fileItem == mRootItem || fileItem->fileCount() > 0 )
 				return;
 
-			unzFile zipFile = unzOpen((const char *)fileItem->absoluteFilePath().toAscii());
+			unzFile zipFile = unzOpen((const char *)fileItem->absoluteFilePath().toLocal8Bit());
 
 			if ( zipFile ) {
 		  		char zipFileName[QMC2_ZIP_BUFFER_SIZE];

@@ -236,7 +236,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 					    continue;
 			    }
 		    }
-		    switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+		    switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
 			    case QMC2_ROMSTATE_CHAR_C:
 				    if ( toolButtonSelectC->isChecked() )
 					    selectedGames << game;

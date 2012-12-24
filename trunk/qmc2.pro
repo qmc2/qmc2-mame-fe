@@ -2,7 +2,11 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 	greaterThan(QT_MINOR_VERSION, 6)|greaterThan(QT_MAJOR_VERSION, 4) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
-		CONFIG += qtestlib
+		greaterThan(QT_MAJOR_VERSION, 4) {
+			QT += testlib widgets webkitwidgets
+		} else {
+			CONFIG += qtestlib
+		}
 		QT += xml webkit network sql
 		TEMPLATE = app
 		INCLUDEPATH += minizip/ zlib/
@@ -182,11 +186,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			data/lng/qmc2_us.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
-
-		# QtWidgets is a separate module in Qt 5
-		greaterThan(QT_MAJOR_VERSION, 4) {
-			QT += widgets
-		}
 
 		# platform specific stuff
 		macx {
