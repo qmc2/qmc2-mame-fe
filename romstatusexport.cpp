@@ -246,7 +246,7 @@ void ROMStatusExporter::exportToASCII()
     it.next();
 
     QString translatedState;
-    switch ( it.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+    switch ( it.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
       case QMC2_ROMSTATE_CHAR_C:
         if ( !toolButtonExportC->isChecked() )
           continue;
@@ -375,7 +375,7 @@ void ROMStatusExporter::exportToASCII()
       ts << s.left(maxNameColumnWidth - 3).leftJustified(maxNameColumnWidth, '.', true) << "  ";
     else
       ts << s.leftJustified(maxNameColumnWidth, ' ', true) << "  ";
-    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
       case QMC2_ROMSTATE_CHAR_C:
         s = tr("correct");
         break;
@@ -586,7 +586,7 @@ void ROMStatusExporter::exportToCSV()
     else
       itExport.previous();
 
-    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
       case QMC2_ROMSTATE_CHAR_C:
         if ( toolButtonExportC->isChecked() ) {
           ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
@@ -832,7 +832,7 @@ void ROMStatusExporter::exportToHTML()
     else
       itExport.previous();
 
-    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
       case QMC2_ROMSTATE_CHAR_C:
         if ( toolButtonExportC->isChecked() ) {
           ts << "<tr>\n"

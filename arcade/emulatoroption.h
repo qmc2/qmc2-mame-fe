@@ -13,7 +13,7 @@ public:
         name = n;
         shortname = sn;
         type = QMC2_ARCADE_EMUOPT_UNKNOWN;
-        switch ( t.at(0).toAscii() ) {
+        switch ( t.at(0).toLatin1() ) {
         case 'b':
             type = QMC2_ARCADE_EMUOPT_BOOL;
             break;

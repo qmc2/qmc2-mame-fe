@@ -421,10 +421,16 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   headerItem()->setText(0, tr("Option / Attribute"));
   headerItem()->setText(1, tr("Value"));
   headerItem()->setText(2, tr("Actions"));
+#if QT_VERSION < 0x050000
   header()->setClickable(false);
-  header()->setStretchLastSection(true);
   header()->setMovable(false);
   header()->setResizeMode(QHeaderView::Interactive);
+#else
+  header()->setSectionsClickable(false);
+  header()->setSectionsMovable(false);
+  header()->setSectionResizeMode(QHeaderView::Interactive);
+#endif
+  header()->setStretchLastSection(true);
   restoreHeaderState();
 
   setColumnHidden(0, false);

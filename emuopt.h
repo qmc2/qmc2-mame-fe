@@ -55,7 +55,7 @@ class EmulatorOption
       name = n;
       shortname = sn;
       type = QMC2_EMUOPT_TYPE_UNKNOWN;
-      switch ( t.at(0).toAscii() ) {
+      switch ( t.at(0).toLatin1() ) {
         case 'b': type = QMC2_EMUOPT_TYPE_BOOL; break;
         case 'i': type = QMC2_EMUOPT_TYPE_INT; break;
         case 'f': if ( t == "float" || t == "float1" ) type = QMC2_EMUOPT_TYPE_FLOAT;

@@ -4,6 +4,7 @@
 #include <QString>
 #include <QSqlDatabase>
 #include <QMultiMap>
+#include <QNetworkCookie>
 #include <QNetworkCookieJar>
 
 class CookieJar : public QNetworkCookieJar

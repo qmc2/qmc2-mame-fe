@@ -972,7 +972,7 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			unzClose(qmc2IconFile);
 			ToolExecutor zipRemovalTool(this, command, args);
 			zipRemovalTool.exec();
-			qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toAscii());
+			qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toLocal8Bit());
 			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
 				listWidgetObsolete->setUpdatesEnabled(false);
 				listWidgetObsolete->clear();

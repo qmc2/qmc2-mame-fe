@@ -24,6 +24,7 @@
 #if QT_VERSION >= 0x050000
 #include <QInputDialog>
 #include <QDesktopWidget>
+#include <QtWebKitWidgets/QWebFrame>
 #endif
 
 #include "macros.h"
@@ -517,7 +518,7 @@ MainWindow::MainWindow(QWidget *parent)
   labelGameStatus->setVisible(false);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   embedderCornerWidget = new QWidget(tabWidgetEmbeddedEmulators);
   embedderCornerLayout = new QHBoxLayout(embedderCornerWidget);
   embedderCornerLayout->setContentsMargins(0, 0, 0, 0);
@@ -1458,13 +1459,26 @@ MainWindow::MainWindow(QWidget *parent)
   // connect header click signals
   connect(treeWidgetGamelist->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetGamelist_headerSectionClicked(int)));
   connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetHierarchy_headerSectionClicked(int)));
+#if QT_VERSION < 0x050000
   treeWidgetGamelist->header()->setClickable(true);
   treeWidgetHierarchy->header()->setClickable(true);
+#else
+  treeWidgetGamelist->header()->setSectionsClickable(true);
+  treeWidgetHierarchy->header()->setSectionsClickable(true);
+#endif
   connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetCategoryView_headerSectionClicked(int)));
+#if QT_VERSION < 0x050000
   treeWidgetCategoryView->header()->setClickable(true);
+#else
+  treeWidgetCategoryView->header()->setSectionsClickable(true);
+#endif
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetVersionView_headerSectionClicked(int)));
+#if QT_VERSION < 0x050000
   treeWidgetVersionView->header()->setClickable(true);
+#else
+  treeWidgetVersionView->header()->setSectionsClickable(true);
+#endif
 #endif
 
   // connections for dock/undock buttons
@@ -1981,7 +1995,7 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_hSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
 #endif
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   if ( tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || (tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
     hSplitterSizes = hSplitter->sizes();
   } else if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
@@ -3442,7 +3456,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       }
       break;
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
     case QMC2_EMBED_INDEX: {
         actionToggleTagCursorDown->setVisible(false);
         actionToggleTagCursorUp->setVisible(false);
@@ -3606,11 +3620,17 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(useSoftwareNotesTemplate);
 
 				qmc2SoftwareNotesEditor->templateMap.clear();
+#if QT_VERSION < 0x050000
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE));
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR));
+#else
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE).toHtmlEscaped();
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER).toHtmlEscaped();
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR).toHtmlEscaped();
+#endif
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = Gamelist::reverseTranslation[qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED)];
 	      			qmc2SoftwareNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
@@ -3945,7 +3965,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     labelGameStatus->setVisible(false);
 
   // setup status indicator color
-  switch ( qmc2CurrentItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+  switch ( qmc2CurrentItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
     case QMC2_ROMSTATE_CHAR_C:
       labelGameStatus->setPalette(qmc2StatusColorGreen);
       break;
@@ -4491,14 +4511,25 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
 
 	      qmc2SystemNotesEditor->templateMap.clear();
+#if QT_VERSION < 0x050000
 	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
-	      qmc2SystemNotesEditor->templateMap["$ID$"] = gameName;
-	      qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = qmc2ParentMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
 	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU));
 	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 	      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+#else
+	      qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME).toHtmlEscaped();
+	      qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_MANU).toHtmlEscaped();
+	      qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_YEAR).toHtmlEscaped();
+	      qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_CATEGORY).toHtmlEscaped();
+#endif
+	      qmc2SystemNotesEditor->templateMap["$ID$"] = gameName;
+	      qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = qmc2ParentMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+#if QT_VERSION < 0x050000
 	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION));
+#else
+	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_VERSION).toHtmlEscaped();
+#endif
 #else
 	      qmc2SystemNotesEditor->templateMap["$VERSION$"] = tr("?");
 #endif
@@ -5058,7 +5089,7 @@ void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint 
   }
 }
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 void MainWindow::action_embedEmulator_triggered()
 {
 #ifdef QMC2_DEBUG
@@ -5290,7 +5321,7 @@ void MainWindow::action_embedEmulator_triggered()
   }
 }
 
-#if defined(QMC2_OS_UNIX)
+#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
 void MainWindow::action_embedderScanPauseKey_triggered()
 {
 	qApp->removeEventFilter(qmc2KeyPressFilter);
@@ -6207,7 +6238,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
       }
     }
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
     if ( toolButtonEmbedderMaximizeToggle->isChecked() && tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
       qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
     else
@@ -6224,7 +6255,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
     if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
       qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
     else
@@ -6504,7 +6535,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
   if ( qmc2ProcessManager->procMap.count() > 0 ) {
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
     for (int j = 0; j < tabWidgetEmbeddedEmulators->count(); j++) {
       Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
       if ( embedder )
@@ -6545,7 +6576,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), false);
 
+#if QT_VERSION < 0x050000
   qInstallMsgHandler(0);
+#else
+  qInstallMessageHandler(0);
+#endif
   delete qmc2KeyPressFilter;
   delete qmc2Options;
   e->accept();
@@ -6823,7 +6858,7 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
         // emulate a key event for the mapped key
         int key;
         if ( qmc2QtKeyMap.contains(matchedKeySeq) )
-          key = qmc2QtKeyMap[matchedKeySeq];
+          key = qmc2QtKeyMap[matchedKeySeq][0];
         else {
           QKeySequence emulatedKeySequence(matchedKeySeq);
           key = emulatedKeySequence[0];
@@ -8168,7 +8203,7 @@ void MainWindow::processFifoData()
           if ( msgClass == "MAME" ) {
             if ( msgWhat == "START" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
-#if defined(QMC2_OS_UNIX)
+#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
 	      Embedder *embedder = NULL;
 	      int embedderIndex = -1;
 	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -8184,7 +8219,7 @@ void MainWindow::processFifoData()
 #endif
             } else if ( msgWhat == "STOP" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("stopped"));
-#if defined(QMC2_OS_UNIX)
+#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
 	      Embedder *embedder = NULL;
 	      int embedderIndex = -1;
 	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -8220,7 +8255,7 @@ void MainWindow::processFifoData()
               else
                 il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
             } else if ( msgWhat == "pause" ) {
-#if defined(QMC2_OS_UNIX)
+#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
 	      Embedder *embedder = NULL;
 	      int embedderIndex = -1;
 	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -9133,7 +9168,7 @@ void MainWindow::mawsLoadFinished(bool ok)
         if ( mawsCacheFile.open(QIODevice::WriteOnly) ) {
           mawsCacheFile.write("# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n");
 	  QString timeStamp = "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\n";
-	  mawsCacheFile.write((const char  *)timeStamp.toAscii());
+	  mawsCacheFile.write((const char  *)timeStamp.toLocal8Bit());
 #if defined(QMC2_WC_COMPRESSION_ENABLED)
           mawsCacheFile.write(mawsData);
 #else
@@ -11015,7 +11050,11 @@ void MainWindow::checkRomPath()
 	}
 }
 
+#if QT_VERSION < 0x050000
 void myQtMessageHandler(QtMsgType type, const char *msg)
+#else
+void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
+#endif
 {
   if ( qmc2SuppressQtMessages )
     return;
@@ -11183,7 +11222,11 @@ int main(int argc, char *argv[])
   qsrand(QDateTime::currentDateTime().toTime_t());
 
   // install message handler
+#if QT_VERSION < 0x050000
   qInstallMsgHandler(myQtMessageHandler);
+#else
+  qInstallMessageHandler(myQtMessageHandler);
+#endif
 
   // prepare application and resources
   QApplication qmc2App(argc, argv);

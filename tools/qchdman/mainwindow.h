@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QMainWindow>
+#include <QLabel>
+#endif
 
 #include "preferencesdialog.h"
 #include "projectwindow.h"

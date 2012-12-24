@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <QMessageBox>
+#include <QMenu>
 
 #include "projectwindow.h"
 #include "projectwidget.h"

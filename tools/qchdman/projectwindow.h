@@ -2,6 +2,9 @@
 #define PROJECTWINDOW_H
 
 #include <QMdiSubWindow>
+#if QT_VERSION >= 0x050000
+#include <QComboBox>
+#endif
 #include "projectwidget.h"
 #include "macros.h"
 

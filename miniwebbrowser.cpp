@@ -1,6 +1,3 @@
-#include <QWebHistory>
-#include <QWebFrame>
-#include <QWebInspector>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
@@ -8,6 +5,14 @@
 #include <QDesktopWidget>
 #include <QSettings>
 #include <QDir>
+#if QT_VERSION >= 0x050000
+#include <QtWebKitWidgets/QWebFrame>
+#include <QtWebKitWidgets/QWebInspector>
+#else
+#include <QWebFrame>
+#include <QWebInspector>
+#endif
+#include <QWebHistory>
 
 #include "miniwebbrowser.h"
 #include "macros.h"

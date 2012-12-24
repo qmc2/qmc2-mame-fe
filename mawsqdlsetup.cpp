@@ -80,24 +80,24 @@ void MawsQuickDownloadSetup::on_pushButtonCancel_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_pushButtonCancel_clicked()");
 #endif
 
-  checkBoxAutoIcons->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadIcons", FALSE).toBool());
+  checkBoxAutoIcons->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadIcons", false).toBool());
   lineEditIconDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
-  checkBoxAutoFlyers->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadFlyers", FALSE).toBool());
+  checkBoxAutoFlyers->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadFlyers", false).toBool());
   lineEditFlyerDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
-  checkBoxAutoCabinets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadCabinets", FALSE).toBool());
+  checkBoxAutoCabinets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadCabinets", false).toBool());
   lineEditCabinetDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
-  checkBoxAutoControllers->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadControllers", FALSE).toBool());
+  checkBoxAutoControllers->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadControllers", false).toBool());
   lineEditControllerDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
-  checkBoxAutoMarquees->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadMarquees", FALSE).toBool());
+  checkBoxAutoMarquees->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadMarquees", false).toBool());
   lineEditMarqueeDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
-  checkBoxAutoPCBs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPCBs", FALSE).toBool());
+  checkBoxAutoPCBs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPCBs", false).toBool());
   lineEditPCBDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
-  checkBoxAutoPreviews->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", FALSE).toBool());
+  checkBoxAutoPreviews->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", false).toBool());
   lineEditPreviewDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
   int i = comboBoxPreferredPreviewCollection->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredPreviewCollection", tr("AntoPISA progettoSNAPS")).toString());
   if ( i >= 0 )
     comboBoxPreferredPreviewCollection->setCurrentIndex(i);
-  checkBoxAutoTitles->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", FALSE).toBool());
+  checkBoxAutoTitles->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", false).toBool());
   lineEditTitleDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   i = comboBoxPreferredTitleCollection->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredTitleCollection", tr("AntoPISA progettoSNAPS")).toString());
   if ( i >= 0 )
