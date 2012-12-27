@@ -3,7 +3,7 @@
 
 #include "ui_arcademodesetup.h"
 
-class ArcadeModeSetup : public QWidget, public Ui::ArcadeModeSetup
+class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 {
 	Q_OBJECT
 
@@ -12,6 +12,7 @@ class ArcadeModeSetup : public QWidget, public Ui::ArcadeModeSetup
 		~ArcadeModeSetup();
 
 	public slots:
+		void adjustIconSizes();
 };
 
 #endif
