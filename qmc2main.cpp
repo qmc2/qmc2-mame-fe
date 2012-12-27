@@ -829,7 +829,7 @@ MainWindow::MainWindow(QWidget *parent)
   QString s;
 
   qmc2EmulatorMenu = new QMenu(0);
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   s = tr("Embed emulator widget");
   action = qmc2EmulatorMenu->addAction(tr("&Embed"));
   action->setToolTip(s); action->setStatusTip(s);
