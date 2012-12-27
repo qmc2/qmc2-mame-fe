@@ -96,6 +96,7 @@ void ROMStatusExporter::adjustIconSizes()
   toolButtonExportU->setIconSize(iconSize);
   pushButtonClose->setIconSize(iconSize);
   pushButtonExport->setIconSize(iconSize);
+  comboBoxSortOrder->setIconSize(iconSize);
 }
 
 void ROMStatusExporter::closeEvent(QCloseEvent *e)

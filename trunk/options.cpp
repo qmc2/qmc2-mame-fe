@@ -67,6 +67,7 @@
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 #include "samplechecker.h"
 #endif
+#include "arcademodesetup.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -142,6 +143,7 @@ extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern QWidget *qmc2DetailSetupParent;
+extern ArcadeModeSetup *qmc2ArcadeModeSetup;
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
 #endif
@@ -742,6 +744,8 @@ void Options::apply()
   if ( qmc2SampleChecker )
 	  QTimer::singleShot(0, qmc2SampleChecker, SLOT(adjustIconSizes()));
 #endif
+  if ( qmc2ArcadeModeSetup )
+	  QTimer::singleShot(0, qmc2ArcadeModeSetup, SLOT(adjustIconSizes()));
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioPreviousTrack->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioNextTrack->setIconSize(iconSize);

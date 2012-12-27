@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>ArcadeModeSetup</class>
- <widget class="QWidget" name="ArcadeModeSetup">
+ <widget class="QDialog" name="ArcadeModeSetup">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>348</width>
-    <height>303</height>
+    <height>338</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -281,6 +281,93 @@
          </property>
         </widget>
        </item>
+       <item row="5" column="0" colspan="3">
+        <widget class="QLabel" name="labelCategoryFilter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Category filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelDriverStatus">
+         <property name="text">
+          <string>Driver status</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QToolButton" name="toolButtonClearNameFilter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Clear name filter</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="3">
+        <widget class="QListWidget" name="listWidgetCategoryFilter">
+         <property name="toolTip">
+          <string>Select / deselect the categories you want to include / exclude</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBoxSortCriteria">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Select sort criteria</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ROM state</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Year</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Manufacturer</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Name (ID)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ROM types</string>
+          </property>
+         </item>
+        </widget>
+       </item>
        <item row="0" column="1" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
@@ -394,14 +481,27 @@
          </item>
         </layout>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelDriverStatus">
-         <property name="text">
-          <string>Driver status</string>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="lineEditNameFilter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" colspan="2">
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelNameFilter">
+         <property name="text">
+          <string>Name filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
         <widget class="QComboBox" name="comboBoxDriverStatus">
          <property name="toolTip">
           <string>Choose the driver maturity states for sets to be included</string>
@@ -423,61 +523,49 @@
          </item>
         </widget>
        </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelSortCriteria">
+         <property name="text">
+          <string>Sort criteria</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="labelNameFilter">
+        <widget class="QLabel" name="labelSortOrder">
          <property name="text">
-          <string>Name filter</string>
+          <string>Sort order</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEditNameFilter">
+       <item row="2" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBoxSortOrder">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
+          <string>Select sort order</string>
          </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QToolButton" name="toolButtonClearNameFilter">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Clear name filter</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="3">
-        <widget class="QLabel" name="labelCategoryFilter">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Category filter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="3">
-        <widget class="QListWidget" name="listWidgetCategoryFilter">
-         <property name="toolTip">
-          <string>Select / deselect the categories you want to include / exclude</string>
-         </property>
+         <item>
+          <property name="text">
+           <string>Ascending</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Descending</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
@@ -552,6 +640,8 @@
   <tabstop>toolButtonSelectI</tabstop>
   <tabstop>toolButtonSelectN</tabstop>
   <tabstop>toolButtonSelectU</tabstop>
+  <tabstop>comboBoxSortCriteria</tabstop>
+  <tabstop>comboBoxSortOrder</tabstop>
   <tabstop>comboBoxDriverStatus</tabstop>
   <tabstop>lineEditNameFilter</tabstop>
   <tabstop>toolButtonClearNameFilter</tabstop>
@@ -570,12 +660,44 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>267</x>
-     <y>103</y>
+     <x>103</x>
+     <y>45</y>
     </hint>
     <hint type="destinationlabel">
-     <x>204</x>
-     <y>98</y>
+     <x>73</x>
+     <y>45</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonOk</sender>
+   <signal>clicked()</signal>
+   <receiver>ArcadeModeSetup</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>146</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>86</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>ArcadeModeSetup</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>206</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>279</x>
+     <y>316</y>
     </hint>
    </hints>
   </connection>

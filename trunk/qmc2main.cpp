@@ -78,6 +78,7 @@
 #include "windows_tools.h"
 #endif
 #include "htmleditor/htmleditor.h"
+#include "arcademodesetup.h"
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -114,6 +115,7 @@ QWidget *qmc2DetailSetupParent = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
 SoftwareSnap *qmc2SoftwareSnap = NULL;
 SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
+ArcadeModeSetup *qmc2ArcadeModeSetup = NULL;
 QString qmc2DriverName = "";
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
@@ -3101,8 +3103,10 @@ void MainWindow::on_actionArcadeSetup_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeSetup_triggered(bool)");
 #endif
 
-	// FIXME
-	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
+	if ( !qmc2ArcadeModeSetup )
+		qmc2ArcadeModeSetup = new ArcadeModeSetup(this);
+	qmc2ArcadeModeSetup->show();
+	qmc2ArcadeModeSetup->raise();
 }
 
 void MainWindow::on_actionLaunchArcade_triggered(bool)
