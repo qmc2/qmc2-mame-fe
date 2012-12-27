@@ -1358,7 +1358,7 @@ clean: all
 install: all
 bin: all
 all:
-	@echo "Error: Wrong qmake version. Version 2 (Qt 4) required!"
+	@echo "Error: Wrong qmake version. Version 2 (Qt 4) or 3 (Qt 5) required!"
 endif
 
 ifneq '$(ARCH)' 'Windows'
