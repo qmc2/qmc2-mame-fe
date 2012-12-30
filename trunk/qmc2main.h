@@ -8,6 +8,7 @@
 #include <QTime>
 #include <QNetworkReply>
 #include <QWidgetAction>
+#include <QProxyStyle>
 #include "ui_qmc2main.h"
 #include "ui_options.h"
 #include "macros.h"
@@ -15,6 +16,17 @@
 #include "qmc2_phonon.h"
 #endif
 #include "imagewidget.h"
+
+class ProxyStyle : public QProxyStyle
+{
+	public:
+		int styleHint(StyleHint hint, const QStyleOption *option = 0, const QWidget *widget = 0, QStyleHintReturn *returnData = 0) const {
+			if ( hint == QStyle::SH_ItemView_ActivateItemOnSingleClick )
+				return 0;
+			else
+				return QProxyStyle::styleHint(hint, option, widget, returnData);
+		}
+};
 
 class KeyPressFilter : public QObject
 {
@@ -82,6 +94,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool isActiveState;
     QTimer searchTimer;
     QTimer updateTimer;
+    ProxyStyle *proxyStyle;
     ImagePixmap qmc2GhostImagePixmap;
     QPushButton *pushButtonGlobalEmulatorOptionsExportToFile;
     QMenu *selectMenuGlobalEmulatorOptionsExportToFile;
