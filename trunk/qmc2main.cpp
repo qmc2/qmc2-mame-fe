@@ -6686,11 +6686,14 @@ void MainWindow::setupStyle(QString styleName)
   } else
     newStyle = QStyleFactory::create(qmc2DefaultStyle);
 
+#if QT_VERSION >= 0x050000
   if ( !proxyStyle )
 	  proxyStyle = new ProxyStyle;
-
   proxyStyle->setBaseStyle(newStyle);
   QApplication::setStyle(proxyStyle);
+#else
+  QApplication::setStyle(newStyle);
+#endif
   qApp->processEvents();
 
   if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive

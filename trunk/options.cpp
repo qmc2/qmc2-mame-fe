@@ -2219,7 +2219,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   comboBoxStyle->addItem(QObject::tr("Default"));
   comboBoxStyle->addItems(QStyleFactory::keys());
   QString myStyle = QObject::tr((const char *)config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString().toUtf8());
-  comboBoxStyle->setCurrentIndex(comboBoxStyle->findText(myStyle, Qt::MatchFixedString));
+  int styleIndex = comboBoxStyle->findText(myStyle, Qt::MatchFixedString);
+  if ( styleIndex < 0 )
+	  styleIndex = 0;
+  comboBoxStyle->setCurrentIndex(styleIndex);
   lineEditStyleSheet->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
   lineEditFont->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   QFont f;
