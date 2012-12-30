@@ -318,7 +318,7 @@ void ProcessManager::started()
 #endif
 #endif
 
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   if ( qmc2StartEmbedded ) {
     qmc2MainWindow->treeWidgetEmulators->clearSelection();
     procItem->setSelected(true);

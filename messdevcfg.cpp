@@ -146,7 +146,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
 	setEnabled(false);
 
-#if !defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)
+#if (!defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)) || QT_VERSION >= 0x050000
 	toolButtonChooserPlayEmbedded->setVisible(false);
 #endif
 
@@ -250,7 +250,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -299,7 +299,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 	actionChooserPlay = action;
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -1706,7 +1706,7 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QLi
 #endif
 
 	switch ( qmc2DefaultLaunchMode ) {
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		case QMC2_LAUNCH_MODE_EMBEDDED:
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 			break;
@@ -2285,7 +2285,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 
 	modelIndexFileModel = treeViewFileChooser->indexAt(p);
 	actionChooserPlay->setVisible(true);
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	actionChooserPlayEmbedded->setVisible(true);
 #endif
 	if ( modelIndexFileModel.isValid() ) {
@@ -2296,7 +2296,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 			actionChooserToggleArchive->setVisible(false);
 		if ( fileModel->isFolder(modelIndexFileModel) ) {
 			actionChooserPlay->setVisible(false);
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			actionChooserPlayEmbedded->setVisible(false);
 #endif
 			actionChooserOpenFolder->setVisible(true);
@@ -2328,7 +2328,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 		treeViewFileChooser_openFolder();
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
-#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 				break;
