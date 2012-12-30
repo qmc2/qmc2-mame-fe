@@ -114,9 +114,9 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	}
 
 	// the 'corner-widget'
-	groupBoxCornerWidget = new QGroupBox(this);
+	groupBoxCornerWidget = new QGroupBox(ui->tabWidget);
 	groupBoxCornerWidget->setFlat(true);
-	loadProgress = new QProgressBar(this);
+	loadProgress = new QProgressBar(groupBoxCornerWidget);
 	loadProgress->setRange(0, 100);
 	loadProgress->setValue(0);
 	loadProgress->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
