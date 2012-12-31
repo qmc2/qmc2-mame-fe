@@ -393,8 +393,6 @@ void Gamelist::load()
 #endif
   if ( qmc2SystemNotesEditor ) {
 	  qmc2SystemNotesEditor->save();
-	  QLayout *vbl = qmc2MainWindow->tabSystemNotes->layout();
-	  if ( vbl ) delete vbl;
 	  qmc2SystemNotesEditor->close();
 	  qmc2SystemNotesEditor->hide();
 	  delete qmc2SystemNotesEditor;
