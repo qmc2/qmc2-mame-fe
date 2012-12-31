@@ -382,7 +382,7 @@ void ImageChecker::startStop()
 			isRunning = false;
 			qmc2ImageCheckActive = false;
 			toolButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
-			QTime elapsedTime;
+			QTime elapsedTime(0, 0, 0, 0);
 			elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
 			log(tr("%1 check ended -- elapsed time = %2").arg(currentImageType == QMC2_IMGCHK_INDEX_ICON ? tr("Icon") : tr("Image")).arg(elapsedTime.toString("mm:ss.zzz")));
 			updateResults();

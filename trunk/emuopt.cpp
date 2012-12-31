@@ -1629,7 +1629,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open export file for writing, path = %1").arg(fileName));
       continue;
     }
-    QTime elapsedTime;
+    QTime elapsedTime(0, 0, 0, 0);
     miscTimer.start();
 #if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MAME configuration to %2").arg(global ? tr("global") : tr("game-specific")).arg(fileName));
@@ -1792,7 +1792,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open import file for reading, path = %1").arg(fileName));
       continue;
     }
-    QTime elapsedTime;
+    QTime elapsedTime(0, 0, 0, 0);
     miscTimer.start();
 #if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MAME configuration from %2").arg(global ? tr("global") : tr("game-specific")). arg(fileName));

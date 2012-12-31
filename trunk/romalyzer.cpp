@@ -593,7 +593,7 @@ void ROMAlyzer::analyze()
   lineEditGames->setEnabled(false);
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
   tabSetRenamer->setEnabled(false);
-  QTime analysisTimer, elapsedTime;
+  QTime analysisTimer, elapsedTime(0, 0, 0, 0);
   romalyzerXmlGamePositionCache.clear();
   romalyzerXmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
   analysisTimer.start();

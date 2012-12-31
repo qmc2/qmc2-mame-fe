@@ -218,7 +218,7 @@ void SampleChecker::verify()
 		progressBar->setValue(-1);
 		pushButtonSamplesCheck->setText(tr("&Check samples"));
 		pushButtonSamplesCheck->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
-		QTime elapsedTime;
+		QTime elapsedTime(0, 0, 0, 0);
 		elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying samples, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 		qmc2SampleCheckActive = false;
@@ -356,7 +356,7 @@ void SampleChecker::verify()
 	listWidgetSamplesMissing->sortItems(Qt::AscendingOrder);
 	toolButtonSamplesRemoveObsolete->setEnabled(listWidgetSamplesObsolete->count() > 0);
 
-	QTime elapsedTime;
+	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying samples, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 good, %2 bad, %3 missing, %4 obsolete").arg(listWidgetSamplesGood->count()).arg(listWidgetSamplesBad->count()).arg(listWidgetSamplesMissing->count()).arg(listWidgetSamplesObsolete->count()));
