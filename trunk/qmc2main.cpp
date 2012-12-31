@@ -2692,15 +2692,19 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", true);
       } else {
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry", saveGeometry());
+#if QT_VERSION < 0x050000
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position", pos());
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size", size());
+#endif
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false);
       }
     } else {
+#if QT_VERSION < 0x050000
       if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size") )
         resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size").toSize());
       if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position") )
         move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position").toPoint());
+#endif
       if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
         restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
     }
@@ -2729,10 +2733,12 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false).toBool() ) {
         showMaximized();
       } else {
+#if QT_VERSION < 0x050000
         if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size") )
           resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size").toSize());
         if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position") )
           move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position").toPoint());
+#endif
         if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
           restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
         showNormal();
@@ -4024,9 +4030,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 #endif
 
-  if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_SYSTEM_NOTES_INDEX )
-	  if ( qmc2SystemNotesEditor )
+  if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_SYSTEM_NOTES_INDEX ) {
+	  if ( qmc2SystemNotesEditor ) {
 		  qmc2SystemNotesEditor->hideTearOffMenus();
+		  qmc2SystemNotesEditor->hide();
+	  }
+  } else if ( qmc2SystemNotesEditor )
+	  qmc2SystemNotesEditor->show();
 
   QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
   qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), tr("Default")).toString() == tr("Default");
