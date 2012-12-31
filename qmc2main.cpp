@@ -4487,19 +4487,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSystemNotesItem ) {
 	      qmc2LastSystemNotesItem = qmc2CurrentItem;
 	      if ( !qmc2SystemNotesEditor ) {
-		      tabWidgetGameDetail->setUpdatesEnabled(false);
 		      int tabIndex = tabWidgetGameDetail->indexOf(tabSystemNotes);
+		      tabWidgetGameDetail->setUpdatesEnabled(false);
 		      tabWidgetGameDetail->removeTab(tabIndex);
-		      if ( tabSystemNotes )
-			      delete tabSystemNotes;
-		      tabSystemNotes = NULL;
 		      qmc2SystemNotesEditor = new HtmlEditor("SystemNotes", true);
 		      tabWidgetGameDetail->insertTab(tabIndex, qmc2SystemNotesEditor, QIcon(QString::fromUtf8(":/data/img/notes.png")), tr("&Notes"));
-		      qmc2SystemNotesEditor->show();
 		      tabWidgetGameDetail->setCurrentIndex(tabIndex);
 		      tabWidgetGameDetail->setUpdatesEnabled(true);
 		      qmc2SystemNotesEditor->move(0, 0);
 		      qmc2SystemNotesEditor->resize(qmc2SystemNotesEditor->parentWidget()->size());
+		      qmc2SystemNotesEditor->show();
 	      } else {
 		      qmc2SystemNotesEditor->save();
 		      qmc2SystemNotesEditor->loadedContent.clear();
@@ -6826,10 +6823,17 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
 #endif
     
     if ( keyEvent->text() == QString("QMC2_EMULATED_KEY") ) {
+      QString emulatedSequence = QKeySequence(keyEvent->key() | keyEvent->modifiers()).toString();
 #ifdef QMC2_DEBUG
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulated key event, key-sequence = '%1'").arg(QKeySequence(keyEvent->key()).toString()));
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulated key event, key-sequence = '%1'").arg(emulatedSequence));
 #endif
-      return false;
+      QPair<QString, QAction *> actionPair = qmc2ShortcutMap[emulatedSequence];
+      if ( actionPair.second ) {
+	      if ( event->type() == QEvent::KeyPress )
+		      actionPair.second->trigger();
+	      return true;
+      } else
+	      return false;
     }
 
     int myKeySeq = 0;
@@ -6869,10 +6873,10 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
         // emulate a key event for the mapped key
         int key;
         if ( qmc2QtKeyMap.contains(matchedKeySeq) )
-          key = qmc2QtKeyMap[matchedKeySeq][0];
+          key = qmc2QtKeyMap[matchedKeySeq][0] | qmc2QtKeyMap[matchedKeySeq][1] | qmc2QtKeyMap[matchedKeySeq][2] | qmc2QtKeyMap[matchedKeySeq][3];
         else {
           QKeySequence emulatedKeySequence(matchedKeySeq);
-          key = emulatedKeySequence[0];
+          key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
         }
         Qt::KeyboardModifiers mods = Qt::NoModifier;
         if ( key & Qt::ShiftModifier ) {
@@ -6997,7 +7001,7 @@ void MainWindow::loadGameInfoDB()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadGameInfoDB()");
 #endif
 
-  QTime gameInfoElapsedTime,
+  QTime gameInfoElapsedTime(0, 0, 0, 0),
         gameInfoTimer;
 
   qmc2LoadingGameInfoDB = true;
@@ -7184,7 +7188,7 @@ void MainWindow::loadEmuInfoDB()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadEmuInfoDB()");
 #endif
 
-  QTime emuInfoElapsedTime,
+  QTime emuInfoElapsedTime(0, 0, 0, 0),
         emuInfoTimer;
 
   qmc2LoadingEmuInfoDB = true;
@@ -7321,7 +7325,7 @@ void MainWindow::loadSoftwareInfoDB()
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadSoftwareInfoDB()");
 #endif
-	QTime swInfoElapsedTime,
+	QTime swInfoElapsedTime(0, 0, 0, 0),
 	      swInfoTimer;
 
 	qmc2LoadingSoftwareInfoDB = true;

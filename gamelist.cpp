@@ -498,7 +498,7 @@ void Gamelist::load()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
 
   QStringList args;
-  QTime elapsedTime;
+  QTime elapsedTime(0, 0, 0, 0);
   parseTimer.start();
   QString command;
 
@@ -784,7 +784,7 @@ void Gamelist::load()
       }
     }
     if ( xmlCacheOkay ) {
-      QTime xmlElapsedTime;
+      QTime xmlElapsedTime(0, 0, 0, 0);
       parseTimer.start();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML game list data from cache"));
@@ -1426,7 +1426,7 @@ void Gamelist::parse()
   bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
   bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
 
-  QTime elapsedTime;
+  QTime elapsedTime(0, 0, 0, 0);
   qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
   romCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
   romCache.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -1466,7 +1466,7 @@ void Gamelist::parse()
     qApp->processEvents();
   }
 
-  QTime processGamelistElapsedTimer;
+  QTime processGamelistElapsedTimer(0, 0, 0, 0);
   parseTimer.start();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing game list"));
@@ -1552,7 +1552,7 @@ void Gamelist::parse()
 #endif
       else
         qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-      QTime gameDataCacheElapsedTime;
+      QTime gameDataCacheElapsedTime(0, 0, 0, 0);
       miscTimer.start();
       numGames = numUnknownGames = numDevices = 0;
       qmc2MainWindow->progressBarGamelist->reset();
@@ -2407,7 +2407,7 @@ void Gamelist::filter()
     return;
   }
 
-  QTime elapsedTime;
+  QTime elapsedTime(0, 0, 0, 0);
   qmc2StopParser = false;
   parseTimer.start();
   qmc2FilterActive = true;
@@ -2644,7 +2644,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
 
-  QTime elapsedTime;
+  QTime elapsedTime(0, 0, 0, 0);
   elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML game list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -3096,7 +3096,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     }
   }
 
-  QTime elapsedTime;
+  QTime elapsedTime(0, 0, 0, 0);
   elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
   if ( verifyCurrentOnly )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_GAMELIST_COLUMN_GAME)).arg(elapsedTime.toString("mm:ss.zzz")));
@@ -3467,7 +3467,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
     QByteArray imageData;
     int len, i;
     if ( !qmc2IconsPreloaded ) {
-      QTime preloadTimer, elapsedTime;
+      QTime preloadTimer, elapsedTime(0, 0, 0, 0);
       int iconCount = 0;
       preloadTimer.start();
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
@@ -3535,7 +3535,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
   } else {
     // use icon directory
     if ( !qmc2IconsPreloaded ) {
-      QTime preloadTimer, elapsedTime;
+      QTime preloadTimer, elapsedTime(0, 0, 0, 0);
       preloadTimer.start();
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from directory"));
       int iconCount = 0;
@@ -3608,7 +3608,7 @@ void Gamelist::loadCategoryIni()
 	if ( !mergeCategories )
 		qmc2CategoryMap.clear();
 
-	QTime loadTimer, elapsedTime;
+	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading category.ini"));
 	qApp->processEvents();
@@ -3800,7 +3800,7 @@ void Gamelist::loadCatverIni()
   qmc2CategoryMap.clear();
   qmc2VersionMap.clear();
 
-  QTime loadTimer, elapsedTime;
+  QTime loadTimer, elapsedTime(0, 0, 0, 0);
   loadTimer.start();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
   qApp->processEvents();

@@ -828,7 +828,7 @@ bool SoftwareList::load()
 #endif
 				if ( swlCacheOkay ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data from cache"));
-					QTime elapsedTime;
+					QTime elapsedTime(0, 0, 0, 0);
 					loadTimer.start();
 
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -1252,7 +1252,7 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 #endif
 		validData = false;
 	}
-	QTime elapsedTime;
+	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 

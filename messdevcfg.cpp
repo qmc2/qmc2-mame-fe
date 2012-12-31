@@ -617,7 +617,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::readSystemSlots()");
 #endif
 
-	QTime elapsedTime;
+	QTime elapsedTime(0, 0, 0, 0);
 	QTime loadTimer;
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
