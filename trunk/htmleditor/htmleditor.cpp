@@ -116,6 +116,22 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	// the 'corner-widget'
 	groupBoxCornerWidget = new QGroupBox(ui->tabWidget);
 	groupBoxCornerWidget->setFlat(true);
+	toolButtonSettings = new QToolButton(groupBoxCornerWidget);
+	toolButtonSettings->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+	toolButtonSettings->setPopupMode(QToolButton::MenuButtonPopup);
+	toolButtonSettings->setToolButtonStyle(Qt::ToolButtonIconOnly);
+	toolButtonSettings->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+	menuSettings = new QMenu(toolButtonSettings);
+	actionHideMenu = menuSettings->addAction(tr("Hide menu"));
+	actionHideMenu->setCheckable(true);
+	connect(actionHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
+	actionHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
+	actionReadOnly = menuSettings->addAction(tr("Read only"));
+	actionReadOnly->setCheckable(true);
+	connect(actionReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
+	actionReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
+	toolButtonSettings->setMenu(menuSettings);
+	connect(toolButtonSettings, SIGNAL(clicked()), toolButtonSettings, SLOT(showMenu()));
 	loadProgress = new QProgressBar(groupBoxCornerWidget);
 	loadProgress->setRange(0, 100);
 	loadProgress->setValue(0);
@@ -123,25 +139,14 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	loadProgress->setFormat("");
 	loadProgress->setToolTip(tr("Page load progress"));
 	loadProgress->setStatusTip(tr("Page load progress"));
-	checkBoxHideMenu = new QCheckBox(tr("Hide menu"), groupBoxCornerWidget);
-	checkBoxHideMenu->setToolTip(tr("Hide the editor's menu-bar"));
-	checkBoxHideMenu->setStatusTip(tr("Hide the editor's menu-bar"));
-	checkBoxHideMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
-	connect(checkBoxHideMenu, SIGNAL(toggled(bool)), ui->menubar, SLOT(setHidden(bool)));
-	checkBoxHideMenu->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), false).toBool());
-	checkBoxReadOnly = new QCheckBox(tr("Read only"), groupBoxCornerWidget);
-	checkBoxReadOnly->setToolTip(tr("Make editor's contents read-only"));
-	checkBoxReadOnly->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
-	connect(checkBoxReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
-	checkBoxReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
 	QHBoxLayout *layout = new QHBoxLayout(groupBoxCornerWidget);
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(loadProgress, 1, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(checkBoxHideMenu, 0, Qt::AlignRight | Qt::AlignVCenter);
-	layout->addWidget(checkBoxReadOnly, 0, Qt::AlignRight | Qt::AlignVCenter);
-	groupBoxCornerWidget->setLayout(layout);
-	ui->tabWidget->setCornerWidget(groupBoxCornerWidget, Qt::BottomRightCorner);
+	layout->addWidget(toolButtonSettings, 0, Qt::AlignRight | Qt::AlignVCenter);
 	loadProgress->setVisible(false);
+	groupBoxCornerWidget->setLayout(layout);
+	groupBoxCornerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	ui->tabWidget->setCornerWidget(groupBoxCornerWidget, Qt::BottomRightCorner);
 
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
 
@@ -263,8 +268,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->pageAction(QWebPage::Reload)->setVisible(false);
 
 	ui->webView->setFocus();
-	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
-	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
+	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
 	connect(ui->webView->page()->mainFrame(), SIGNAL(javaScriptWindowObjectCleared()), this, SLOT(javaScriptWindowObjectCleared()));
 
@@ -280,8 +285,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 HtmlEditor::~HtmlEditor()
 {
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName), saveState());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), checkBoxHideMenu->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), checkBoxReadOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), actionHideMenu->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), actionReadOnly->isChecked());
 
 	delete ui;
 	delete ui_dialog;
@@ -359,8 +364,8 @@ QString &HtmlEditor::noScript(QString &data)
 
 void HtmlEditor::fileNew()
 {
-	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
-	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
+	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
 	if ( !isEmbeddedEditor )
 		setCurrentFileName(QString());
@@ -938,8 +943,8 @@ bool HtmlEditor::load(const QString &f)
 		loadedContent = data;
 
 	ui->webView->setHtml(data);
-	ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
-	ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
+	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
 	if ( fileName.isEmpty() )
 		setCurrentFileName(f);
@@ -1010,8 +1015,8 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	}
 	if ( !qmc2CleaningUp && !stopLoading ) {
 		ui->webView->setHtml(data, QUrl::fromLocalFile(f));
-		ui->webView->page()->setContentEditable(!checkBoxReadOnly->isChecked());
-		ui->plainTextEdit->setReadOnly(checkBoxReadOnly->isChecked());
+		ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+		ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 		if ( fileName.isEmpty() )
 			setCurrentFileName(f);
 		emptyContent = ui->webView->page()->mainFrame()->toHtml();
@@ -1134,4 +1139,5 @@ void HtmlEditor::adjustIconSizes()
 	ui->formatToolBar->setIconSize(iconSize);
 	ui->standardToolBar->setIconSize(iconSize);
 	loadProgress->setFixedHeight(fm.height() - 4);
+	toolButtonSettings->setIconSize(iconSize);
 }
