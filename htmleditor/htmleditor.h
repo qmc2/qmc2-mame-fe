@@ -29,6 +29,9 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QProgressBar>
+#include <QToolButton>
+#include <QMenu>
+#include <QAction>
 #include "highlighter.h"
 
 class Ui_HTMLEditorMainWindow;
@@ -49,8 +52,10 @@ public:
     bool isEmbeddedEditor;
     QString loadedContent;
     QGroupBox *groupBoxCornerWidget;
-    QCheckBox *checkBoxHideMenu;
-    QCheckBox *checkBoxReadOnly;
+    QMenu *menuSettings;
+    QToolButton *toolButtonSettings;
+    QAction *actionHideMenu;
+    QAction *actionReadOnly;
     QProgressBar *loadProgress;
     bool loadActive;
     bool stopLoading;
