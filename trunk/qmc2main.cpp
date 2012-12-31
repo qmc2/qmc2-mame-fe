@@ -4035,8 +4035,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  qmc2SystemNotesEditor->hideTearOffMenus();
 		  qmc2SystemNotesEditor->hide();
 	  }
-  } else if ( qmc2SystemNotesEditor )
+  } else if ( qmc2SystemNotesEditor ) {
 	  qmc2SystemNotesEditor->show();
+	  qmc2SystemNotesEditor->raise();
+  }
 
   QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
   qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), tr("Default")).toString() == tr("Default");
@@ -4507,6 +4509,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      qmc2SystemNotesEditor->move(0, 0);
 		      qmc2SystemNotesEditor->resize(qmc2SystemNotesEditor->parentWidget()->size());
 		      qmc2SystemNotesEditor->show();
+		      qmc2SystemNotesEditor->raise();
 	      } else {
 		      qmc2SystemNotesEditor->save();
 		      qmc2SystemNotesEditor->loadedContent.clear();
