@@ -71,7 +71,7 @@ void CustomIDSetup::adjustFontAndIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	setFont(f);
 	QFontMetrics fm(f);
-	QSize iconSize(fm.height() + 2, fm.height() + 2);
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	toolButtonAddID->setIconSize(iconSize);
 	toolButtonRemoveID->setIconSize(iconSize);
 	toolButtonSort->setIconSize(iconSize);
