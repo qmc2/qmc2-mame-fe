@@ -3877,6 +3877,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
      return;
   }
 
+  if ( qmc2CleaningUp )
+    return;
+
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex = %1)").arg(currentIndex));
 #endif
