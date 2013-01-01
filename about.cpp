@@ -150,7 +150,7 @@ void About::showEvent(QShowEvent *e)
 #else
           " ???" +
 #endif
-          "<br>" + tr("Copyright") + " &copy; 2006 - 2012 R. Reucher, " + tr("Germany") + "</p>";
+          "<br>" + tr("Copyright") + " &copy; 2006 - 2013 R. Reucher, " + tr("Germany") + "</p>";
   labelTitle->setText(titleString);
 
   QString projectInfoString =
