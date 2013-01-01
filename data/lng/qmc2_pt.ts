@@ -321,252 +321,252 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="14"/>
         <source>Arcade mode setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração do modo arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="24"/>
         <source>Global settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações globais</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="30"/>
         <source>Select arcade theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o tema do arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="48"/>
         <source>Graphics system</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema gráfico</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="55"/>
         <source>Select the graphics system used to render the scene (when available, OpenGL is strongly recommended!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o sistema gráfico usado para renderizar a cena (quando disponível, OpenGL é fortemente recomendado!)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="83"/>
         <source>Working directory</source>
-        <translation type="unfinished">Diretório de trabalho</translation>
+        <translation>Diretório de trabalho</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="96"/>
         <source>Arcade theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema do arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="109"/>
         <source>Working directory used when executing QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de trabalho usado ao executar o Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="116"/>
         <source>Select type of console</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o tipo de console</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="144"/>
         <source>Browse working directory used when executing QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o diretório de trabalho usado ao executar o Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="161"/>
         <source>Browse QMC2 Arcade executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo executável do Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="178"/>
         <source>Console type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de console</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="191"/>
         <source>QMC2 Arcade executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo executável do Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="217"/>
         <source>Executable file</source>
-        <translation type="unfinished">Arquivo executável</translation>
+        <translation>Arquivo executável</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="230"/>
         <source>Configuration path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho da configuração</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="243"/>
         <source>Configuration path for QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho da configuração para o Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="256"/>
         <source>Browse configuration path for QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho da configuração para o Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="268"/>
         <source>Game list filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="280"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">Filtro de estado da ROM</translation>
+        <translation>Filtro de estado da ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="337"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar critério de ordenação</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="341"/>
         <source>Description</source>
-        <translation type="unfinished">Descrição</translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="346"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado da ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="351"/>
         <source>Year</source>
-        <translation type="unfinished">Ano</translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="356"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricante</translation>
+        <translation>Fabricante</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="361"/>
         <source>Name (ID)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome (ID)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="366"/>
         <source>ROM types</source>
-        <translation type="unfinished">Tipos de ROM</translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="385"/>
         <source>Select ROM state C (correct)?</source>
-        <translation type="unfinished">Selecionar estado de ROM C (correto)?</translation>
+        <translation>Selecionar estado de ROM C (correto)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="408"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation type="unfinished">Selecionar estado de ROM M (maioria correto)?</translation>
+        <translation>Selecionar estado de ROM M (maioria correto)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="431"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation type="unfinished">Selecionar estado de ROM I (incorreto)?</translation>
+        <translation>Selecionar estado de ROM I (incorreto)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="451"/>
         <source>Select ROM state N (not found)?</source>
-        <translation type="unfinished">Selecionar estado de ROM (não encontrado)?</translation>
+        <translation>Selecionar estado de ROM N (não encontrado)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="471"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation type="unfinished">Selecionar estado de ROM D (desconhecido)?</translation>
+        <translation>Selecionar estado de ROM D (desconhecido)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="300"/>
         <source>Driver status</source>
-        <translation type="unfinished">Estado do driver</translation>
+        <translation>Estado do driver</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="507"/>
         <source>Choose the driver maturity states for sets to be included</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher os estados de maturidade dos drivers para conjuntos a serem incluídos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="511"/>
         <source>good</source>
-        <translation type="unfinished">bom</translation>
+        <translation>bom</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="516"/>
         <source>good + preliminary</source>
-        <translation type="unfinished">bom + preliminar</translation>
+        <translation>bom + preliminar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="521"/>
         <source>good + preliminary + imperfect</source>
-        <translation type="unfinished">bom + preliminar + imperfeito</translation>
+        <translation>bom + preliminar + imperfeito</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="500"/>
         <source>Name filter</source>
-        <translation type="unfinished">Filtro de nome</translation>
+        <translation>Filtro de nome</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="493"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
-        <translation type="unfinished">Especifique uma expressão de filtro de nome (ID) (Sintaxe de expressões regulares do Qt!) -- deixe em branco para não filtrar por nome</translation>
+        <translation>Especifique uma expressão de filtro de nome (ID) (Sintaxe de expressões regulares do Qt!) -- deixe em branco para não filtrar por nome</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="313"/>
         <source>Clear name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar filtro de nome</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="293"/>
         <source>Category filter</source>
-        <translation type="unfinished">Filtro de categoria</translation>
+        <translation>Filtro de categoria</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="324"/>
         <source>Select / deselect the categories you want to include / exclude</source>
-        <translation type="unfinished">Selecionar / deselecionar as categorias que você quer incluir / excluir</translation>
+        <translation>Selecionar / deselecionar as categorias que você quer incluir / excluir</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="529"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Critério de ordenação</translation>
+        <translation>Critério de ordenação</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="536"/>
         <source>Sort order</source>
-        <translation type="unfinished">Ordem</translation>
+        <translation>Ordem</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="549"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Selecione a ordem</translation>
+        <translation>Selecione a ordem</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="553"/>
         <source>Ascending</source>
-        <translation type="unfinished">Ascendente</translation>
+        <translation>Ascendente</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="562"/>
         <source>Descending</source>
-        <translation type="unfinished">Descendente</translation>
+        <translation>Descendente</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="575"/>
         <source>Keys</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="580"/>
         <source>Joystick</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="601"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="608"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
 </context>
 <context>
@@ -937,7 +937,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="170"/>
         <source>Clear name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar filtro de nome</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="222"/>
@@ -2885,7 +2885,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="3104"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando estado da ROM para todos os conjuntos, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4006"/>
@@ -3177,7 +3177,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="1023"/>
         <source>verifying ROM status for all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando estado da ROM para todos os conjuntos</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1474"/>
@@ -8494,13 +8494,13 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2490"/>
         <source>&amp;QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Arcade &amp;QMC2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2994"/>
         <location filename="../../qmc2main.ui" line="2997"/>
         <source>Launch arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar o modo arcade</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3328"/>
@@ -8868,7 +8868,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="2991"/>
         <source>&amp;Launch...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iniciar...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3003"/>
@@ -10563,7 +10563,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="456"/>
         <source>Launch arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar o modo arcade</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="481"/>
