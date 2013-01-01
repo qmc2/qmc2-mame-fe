@@ -125,7 +125,7 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
       <td style="vertical-align: top; background-color: #ab967e; font-weight: bold;">Where to get</td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">All: Qt 4.7.0+ (Qt 4.8.3+ recommended)</td>
+      <td style="vertical-align: top;">All: Qt 4.7.0+ (Qt 4.8.4+ recommended)</td>
       <td style="vertical-align: top;"><a href="http://releases.qt-project.org/qt4/source/" target="_blank">http://releases.qt-project.org/qt4/source/</a></td>
     </tr>
     <tr>
@@ -141,8 +141,8 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
       <td style="vertical-align: top;"><a href="http://www.microsoft.com/visualstudio/eng/products/visual-studio-2010-express" target="_blank">http://www.microsoft.com/visualstudio/eng/products/visual-studio-2010-express</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Windows: MinGW<br>MAME dev-tools<br>Qt add-on</td>
-      <td style="vertical-align: top;"><br><a href="http://mamedev.org/tools" target="_blank">http://mamedev.org/tools</a><br><a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon" target="_blank">http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon</a></td>
+      <td style="vertical-align: top;">Windows: MinGW<br>MAME dev-tools</td>
+      <td style="vertical-align: top;"><br><a href="http://mamedev.org/tools" target="_blank">http://mamedev.org/tools</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">All: MAME/MESS/UME 0.147+</td>
@@ -180,7 +180,7 @@ if applicable, see <a href="#8.">section 8.</a> for more details.</p>
 <pre>$ make</pre>
 <p>The default build configuration assumes that the <i>qmake</i> command is part of your search path for executable files (see the PATH environment variable).
 If you want/need to use a different qmake (i.e. to use a separately installed Qt version), you have to specify <i>QMAKE=&lt;path-to-qmake&gt;</i> on the make command line. For example:</p>
-<pre>$ make QMAKE=/usr/local/lib/qt-4.8.3/bin/qmake</pre>
+<pre>$ make QMAKE=/usr/local/lib/qt-4.8.4/bin/qmake</pre>
 <p>If you have an SMP system, you may want to run make in job-server mode. This is completely safe and usually much faster:</p>
 <pre>$ make -j3</pre>
 <p><font size="-1">(replace "3" with "#CPUs + 1")</font></p>
@@ -236,7 +236,7 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 </ol>
 <p>Using the MinGW (GCC) compiler:</p>
 <ol>
-  <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qt_mame_dev_addon" target="_blank">Qt add-on</a> package for your platform (the Qt add-on extends the MAME dev-tools with Qt 4.8.2+, see <b>README.Qt-add-on</b> for installation instructions!).</li>
+  <li>Get and install the latest <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a>.</li>
   <li>Call 'make' as usual, that is like on UNIX or Mac OS X.</li>
   <li>If you want to run make in jobserver-mode (to utilize multiple CPUs during compilation), you have to run 'make configure' followed by 'make -j &lt;#CPUs + 1&gt; -f Makefile.qmake.Release'.</li>
 </ol>
