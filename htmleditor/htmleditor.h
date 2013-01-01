@@ -26,8 +26,7 @@
 #define HTML_EDITOR_H
 
 #include <QMainWindow>
-#include <QCheckBox>
-#include <QGroupBox>
+#include <QFrame>
 #include <QProgressBar>
 #include <QToolButton>
 #include <QMenu>
@@ -51,7 +50,7 @@ public:
     QString myEditorName;
     bool isEmbeddedEditor;
     QString loadedContent;
-    QGroupBox *groupBoxCornerWidget;
+    QFrame *frameCornerWidget;
     QMenu *menuSettings;
     QToolButton *toolButtonSettings;
     QAction *actionHideMenu;
