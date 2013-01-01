@@ -114,9 +114,9 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	}
 
 	// the 'corner-widget'
-	groupBoxCornerWidget = new QGroupBox(ui->tabWidget);
-	groupBoxCornerWidget->setFlat(true);
-	toolButtonSettings = new QToolButton(groupBoxCornerWidget);
+	frameCornerWidget = new QFrame(ui->tabWidget);
+	frameCornerWidget->setFrameShape(QFrame::NoFrame);
+	toolButtonSettings = new QToolButton(frameCornerWidget);
 	toolButtonSettings->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	toolButtonSettings->setPopupMode(QToolButton::MenuButtonPopup);
 	toolButtonSettings->setToolButtonStyle(Qt::ToolButtonIconOnly);
@@ -132,21 +132,21 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	actionReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
 	toolButtonSettings->setMenu(menuSettings);
 	connect(toolButtonSettings, SIGNAL(clicked()), toolButtonSettings, SLOT(showMenu()));
-	loadProgress = new QProgressBar(groupBoxCornerWidget);
+	loadProgress = new QProgressBar(frameCornerWidget);
 	loadProgress->setRange(0, 100);
 	loadProgress->setValue(0);
 	loadProgress->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
 	loadProgress->setFormat("");
 	loadProgress->setToolTip(tr("Page load progress"));
 	loadProgress->setStatusTip(tr("Page load progress"));
-	QHBoxLayout *layout = new QHBoxLayout(groupBoxCornerWidget);
+	QHBoxLayout *layout = new QHBoxLayout(frameCornerWidget);
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(loadProgress, 1, Qt::AlignRight | Qt::AlignVCenter);
 	layout->addWidget(toolButtonSettings, 0, Qt::AlignRight | Qt::AlignVCenter);
 	loadProgress->setVisible(false);
-	groupBoxCornerWidget->setLayout(layout);
-	groupBoxCornerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	ui->tabWidget->setCornerWidget(groupBoxCornerWidget, Qt::BottomRightCorner);
+	frameCornerWidget->setLayout(layout);
+	frameCornerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	ui->tabWidget->setCornerWidget(frameCornerWidget, Qt::BottomRightCorner);
 
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
 
