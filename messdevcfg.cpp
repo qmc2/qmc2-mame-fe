@@ -2093,9 +2093,9 @@ void MESSDeviceConfigurator::setupFileChooser()
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	fileModel = new FileSystemModel(this);
-	fileModel->setCurrentPath(path, false);
 	fileModel->setIncludeFolders(includeFolders);
 	fileModel->setFoldersFirst(foldersFirst);
+	fileModel->setCurrentPath(path, false);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
 	treeViewFileChooser->setModel(fileModel);
@@ -2462,7 +2462,14 @@ void MESSDeviceConfigurator::fileModel_finished()
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
+#if QT_VERSION >= 0x050000
+	// a sorting-enabled tree-view that's already sorted will not be resorted in case of Qt 5 (that's good, but we need to do it here in order to support "folders first")
+	treeViewFileChooser->setSortingEnabled(false);
 	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+	treeViewFileChooser->setSortingEnabled(true);
+#else
+	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+#endif
 	toolButtonChooserReload->setEnabled(true);
 	if ( comboBoxChooserFilterPatternHadFocus )
 		comboBoxChooserFilterPattern->setFocus();
