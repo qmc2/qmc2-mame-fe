@@ -324,11 +324,6 @@ p, li { white-space: pre-wrap; }
         <translation>Configuração do modo arcade</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="24"/>
-        <source>Global settings</source>
-        <translation>Configurações globais</translation>
-    </message>
-    <message>
         <location filename="../../arcademodesetup.ui" line="30"/>
         <source>Select arcade theme</source>
         <translation>Selecione o tema do arcade</translation>
@@ -409,162 +404,207 @@ p, li { white-space: pre-wrap; }
         <translation>Filtro da lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="280"/>
+        <location filename="../../arcademodesetup.ui" line="336"/>
+        <source>Browse the output file used as the filtered game list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="600"/>
         <source>ROM state filter</source>
         <translation>Filtro de estado da ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="337"/>
+        <location filename="../../arcademodesetup.ui" line="290"/>
         <source>Select sort criteria</source>
         <translation>Selecionar critério de ordenação</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="341"/>
+        <location filename="../../arcademodesetup.ui" line="294"/>
         <source>Description</source>
         <translation>Descrição</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="346"/>
+        <location filename="../../arcademodesetup.ui" line="299"/>
         <source>ROM state</source>
         <translation>Estado da ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="351"/>
+        <location filename="../../arcademodesetup.ui" line="304"/>
         <source>Year</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="356"/>
+        <location filename="../../arcademodesetup.ui" line="309"/>
         <source>Manufacturer</source>
         <translation>Fabricante</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="361"/>
+        <location filename="../../arcademodesetup.ui" line="314"/>
         <source>Name (ID)</source>
         <translation>Nome (ID)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="366"/>
+        <location filename="../../arcademodesetup.ui" line="319"/>
         <source>ROM types</source>
         <translation>Tipos de ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="385"/>
+        <location filename="../../arcademodesetup.ui" line="460"/>
         <source>Select ROM state C (correct)?</source>
         <translation>Selecionar estado de ROM C (correto)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="408"/>
+        <location filename="../../arcademodesetup.ui" line="486"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation>Selecionar estado de ROM M (maioria correto)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="431"/>
+        <location filename="../../arcademodesetup.ui" line="512"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation>Selecionar estado de ROM I (incorreto)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="451"/>
+        <location filename="../../arcademodesetup.ui" line="535"/>
         <source>Select ROM state N (not found)?</source>
         <translation>Selecionar estado de ROM N (não encontrado)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="471"/>
+        <location filename="../../arcademodesetup.ui" line="558"/>
         <source>Select ROM state U (unknown)?</source>
         <translation>Selecionar estado de ROM D (desconhecido)?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="300"/>
+        <location filename="../../arcademodesetup.ui" line="347"/>
         <source>Driver status</source>
         <translation>Estado do driver</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="507"/>
+        <location filename="../../arcademodesetup.ui" line="424"/>
         <source>Choose the driver maturity states for sets to be included</source>
         <translation>Escolher os estados de maturidade dos drivers para conjuntos a serem incluídos</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="511"/>
+        <location filename="../../arcademodesetup.ui" line="428"/>
         <source>good</source>
         <translation>bom</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="516"/>
+        <location filename="../../arcademodesetup.ui" line="433"/>
         <source>good + preliminary</source>
         <translation>bom + preliminar</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="521"/>
+        <location filename="../../arcademodesetup.ui" line="438"/>
         <source>good + preliminary + imperfect</source>
         <translation>bom + preliminar + imperfeito</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="500"/>
+        <location filename="../../arcademodesetup.ui" line="274"/>
         <source>Name filter</source>
         <translation>Filtro de nome</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="493"/>
+        <location filename="../../arcademodesetup.ui" line="407"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
         <translation>Especifique uma expressão de filtro de nome (ID) (Sintaxe de expressões regulares do Qt!) -- deixe em branco para não filtrar por nome</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="313"/>
+        <location filename="../../arcademodesetup.ui" line="583"/>
         <source>Clear name filter</source>
         <translation>Limpar filtro de nome</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="293"/>
+        <location filename="../../arcademodesetup.ui" line="620"/>
         <source>Category filter</source>
         <translation>Filtro de categoria</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="324"/>
+        <location filename="../../arcademodesetup.ui" line="391"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation>Selecionar / deselecionar as categorias que você quer incluir / excluir</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="529"/>
+        <location filename="../../arcademodesetup.ui" line="607"/>
         <source>Sort criteria</source>
         <translation>Critério de ordenação</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="536"/>
+        <location filename="../../arcademodesetup.ui" line="414"/>
         <source>Sort order</source>
         <translation>Ordem</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="549"/>
+        <location filename="../../arcademodesetup.ui" line="24"/>
+        <source>General settings</source>
+        <translation type="unfinished">Configurações gerais</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="363"/>
         <source>Select sort order</source>
         <translation>Selecione a ordem</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="553"/>
+        <location filename="../../arcademodesetup.ui" line="367"/>
         <source>Ascending</source>
         <translation>Ascendente</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="562"/>
+        <location filename="../../arcademodesetup.ui" line="376"/>
         <source>Descending</source>
         <translation>Descendente</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="575"/>
+        <location filename="../../arcademodesetup.ui" line="627"/>
+        <source>Use a filtered version of the game list (otherwise use the full list)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="630"/>
+        <source>Use filtered list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="653"/>
+        <source>Output file used as the filtered game list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="663"/>
+        <source>Filter / export progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="669"/>
+        <source>Idle</source>
+        <translation type="unfinished">Ocioso</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="685"/>
+        <source>Export a filtered version of the game list according to the filter / sort settings specified below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="688"/>
+        <source>Export</source>
+        <translation type="unfinished">Exportar</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="700"/>
         <source>Keys</source>
         <translation>Teclas</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="580"/>
+        <location filename="../../arcademodesetup.ui" line="705"/>
         <source>Joystick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="601"/>
+        <location filename="../../arcademodesetup.ui" line="726"/>
         <source>&amp;Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="608"/>
+        <location filename="../../arcademodesetup.ui" line="733"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
@@ -5492,7 +5532,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../messdevcfg.cpp" line="1058"/>
         <location filename="../../messdevcfg.cpp" line="1286"/>
         <location filename="../../messdevcfg.cpp" line="2028"/>
-        <location filename="../../messdevcfg.cpp" line="2521"/>
+        <location filename="../../messdevcfg.cpp" line="2528"/>
         <source>No devices available</source>
         <translation>Nenhum dispositivo disponível</translation>
     </message>
@@ -5581,7 +5621,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../messdevcfg.cpp" line="1548"/>
         <location filename="../../messdevcfg.cpp" line="1562"/>
         <location filename="../../messdevcfg.cpp" line="1572"/>
-        <location filename="../../messdevcfg.cpp" line="2576"/>
+        <location filename="../../messdevcfg.cpp" line="2583"/>
         <source>N/A</source>
         <translation></translation>
     </message>
@@ -5593,7 +5633,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1862"/>
-        <location filename="../../messdevcfg.cpp" line="2531"/>
+        <location filename="../../messdevcfg.cpp" line="2538"/>
         <source>%1. variant of </source>
         <translation>%1. variação de</translation>
     </message>
@@ -5608,22 +5648,22 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <translation>&amp;Fechar arquivo compactado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2533"/>
+        <location filename="../../messdevcfg.cpp" line="2540"/>
         <source>Choose a unique configuration name</source>
         <translation>Escolha um nome de configuração único</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2533"/>
+        <location filename="../../messdevcfg.cpp" line="2540"/>
         <source>Unique configuration name:</source>
         <translation>Nome de configuração único:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2536"/>
+        <location filename="../../messdevcfg.cpp" line="2543"/>
         <source>Name conflict</source>
         <translation>Conflito de nome</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="2536"/>
+        <location filename="../../messdevcfg.cpp" line="2543"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>

@@ -13,6 +13,7 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 
 	public slots:
 		void adjustIconSizes();
+		void on_checkBoxUseFilteredList_toggled(bool);
 };
 
 #endif
