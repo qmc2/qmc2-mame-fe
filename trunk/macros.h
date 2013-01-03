@@ -508,6 +508,9 @@
 #define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II")
 
 // separation for QMC2 variants
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/MAME/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/MESS/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/UME/")
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
@@ -517,9 +520,6 @@
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MAME
-#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-sdlmame/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-sdlmess/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-sdlume/")
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMAME_NAME)
 #define QMC2_EMU_NAME				QString("MAME")
@@ -534,9 +534,6 @@
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MESS
-#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-sdlmame/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-sdlmess/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-sdlume/")
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMESS_NAME)
 #define QMC2_EMU_NAME				QString("MESS")
@@ -551,9 +548,6 @@
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_UME
-#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-sdlmame/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-sdlmess/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-sdlume/")
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLUME_NAME)
 #define QMC2_EMU_NAME				QString("UME")
@@ -568,9 +562,6 @@
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MAME
-#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-mame/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-mess/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-ume/")
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MAME_NAME)
 #define QMC2_EMU_NAME				QString("MAME")
@@ -585,9 +576,6 @@
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MESS
-#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-mame/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-mess/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-ume/")
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MESS_NAME)
 #define QMC2_EMU_NAME				QString("MESS")
@@ -602,9 +590,6 @@
 #define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
 #define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_UME
-#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-mame/")
-#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-mess/")
-#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-ume/")
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_UME_NAME)
 #define QMC2_EMU_NAME				QString("UME")
@@ -752,10 +737,13 @@
 #define QMC2_IMGCHK_INDEX_ICON			8
 #endif
 
-// demo mode: driver maturity states
+// demo / arcade mode: driver maturity states
 #define QMC2_DEMO_MODE_DRV_STATUS_GOOD		0
 #define QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY	1
 #define QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT	2
+#define QMC2_ARCADE_DRV_STATUS_GOOD		QMC2_DEMO_MODE_DRV_STATUS_GOOD
+#define QMC2_ARCADE_DRV_STATUS_PRELIMINARY	QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY
+#define QMC2_ARCADE_DRV_STATUS_IMPERFECT	QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT
 
 // number of images per work-unit
 #define QMC2_IMGCHK_WORKUNIT_SIZE		50
