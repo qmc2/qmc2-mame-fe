@@ -11,6 +11,9 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 extern QMap<QString, QString> qmc2CategoryMap;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+extern QMap<QString, QString> qmc2VersionMap;
+#endif
 
 ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	: QDialog(parent)
@@ -24,6 +27,13 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 #endif
 
 	adjustIconSizes();
+
+	if ( !qmc2CategoryMap.isEmpty() )
+		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	if ( !qmc2VersionMap.isEmpty() )
+		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+#endif
 
 	QString defaultPath;
 	int index;
