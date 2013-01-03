@@ -477,6 +477,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="443"/>
+        <location filename="../../arcademodesetup.cpp" line="308"/>
+        <location filename="../../arcademodesetup.cpp" line="311"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
@@ -567,6 +569,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="684"/>
+        <location filename="../../arcademodesetup.cpp" line="372"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -601,47 +604,96 @@ p, li { white-space: pre-wrap; }
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="32"/>
+        <location filename="../../arcademodesetup.cpp" line="43"/>
         <source>Category</source>
         <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="35"/>
+        <location filename="../../arcademodesetup.cpp" line="46"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="144"/>
-        <location filename="../../arcademodesetup.cpp" line="146"/>
-        <location filename="../../arcademodesetup.cpp" line="164"/>
+        <location filename="../../arcademodesetup.cpp" line="155"/>
+        <location filename="../../arcademodesetup.cpp" line="157"/>
+        <location filename="../../arcademodesetup.cpp" line="175"/>
+        <location filename="../../arcademodesetup.cpp" line="299"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="221"/>
+        <location filename="../../arcademodesetup.cpp" line="232"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation>Ausführbare Datei für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="221"/>
-        <location filename="../../arcademodesetup.cpp" line="242"/>
+        <location filename="../../arcademodesetup.cpp" line="232"/>
+        <location filename="../../arcademodesetup.cpp" line="253"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="228"/>
+        <location filename="../../arcademodesetup.cpp" line="239"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation>Arbeitsverzeichnis für Ausführung von QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="235"/>
+        <location filename="../../arcademodesetup.cpp" line="246"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation>Konfigurationspfad für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="242"/>
+        <location filename="../../arcademodesetup.cpp" line="253"/>
         <source>Choose filtered list file for export</source>
         <translation>Datei für Export der gefilterten Liste auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="263"/>
+        <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
+        <translation>FATAL: Arcade-Modus: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="287"/>
+        <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
+        <translation>WARNUNG: Arcade-Modus: der reguläre Ausdruck für den Namensfilter ist ungültig</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="289"/>
+        <source>Filtering</source>
+        <translation>Filtere</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="308"/>
+        <source>preliminary</source>
+        <translation>vorläufig</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="341"/>
+        <source>Sorting</source>
+        <translation>Sortiere</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="349"/>
+        <source>Exporting</source>
+        <translation>Exportiere</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="364"/>
+        <source>ROM</source>
+        <translation>ROM</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="365"/>
+        <source>CHD</source>
+        <translation>CHD</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../arcademodesetup.cpp" line="374"/>
+        <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
+        <translation>
+            <numerusform>Arcade-Modus: %n gefiltertes Set nach &apos;%1&apos; exportiert</numerusform>
+            <numerusform>Arcade-Modus: %n gefilterte Sets nach &apos;%1&apos; exportiert</numerusform>
+        </translation>
     </message>
 </context>
 <context>
