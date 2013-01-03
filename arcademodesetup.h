@@ -2,6 +2,7 @@
 #define _ARCADEMODESETUP_H_
 
 #include "ui_arcademodesetup.h"
+#include "gamelist.h"
 
 class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 {
@@ -12,6 +13,7 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		~ArcadeModeSetup();
 
 		bool isWritableFile(QString);
+		static bool lessThan(const GamelistItem *, const GamelistItem *);
 
 	public slots:
 		void adjustIconSizes();
