@@ -2961,7 +2961,7 @@
   <action name="actionArcadeSetup">
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+     <normaloff>:/data/img/qmc2-arcade-setup.png</normaloff>:/data/img/qmc2-arcade-setup.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Setup...</string>

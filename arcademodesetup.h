@@ -11,9 +11,20 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		ArcadeModeSetup(QWidget *parent = 0);
 		~ArcadeModeSetup();
 
+		bool isWritableFile(QString);
+
 	public slots:
 		void adjustIconSizes();
+		void saveSettings();
+		void updateCategoryFilter();
+		void saveCategoryFilter();
 		void on_checkBoxUseFilteredList_toggled(bool);
+		void on_pushButtonExport_clicked();
+		void on_toolButtonBrowseExecutableFile_clicked();
+		void on_toolButtonBrowseWorkingDirectory_clicked();
+		void on_toolButtonBrowseConfigurationPath_clicked();
+		void on_toolButtonBrowseFilteredListFile_clicked();
+		void on_lineEditFilteredListFile_textChanged(QString);
 };
 
 #endif

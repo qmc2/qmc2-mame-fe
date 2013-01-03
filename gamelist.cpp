@@ -324,6 +324,8 @@ void Gamelist::enableWidgets(bool enable)
 #endif
   }
   qmc2MainWindow->pushButtonSelectRomFilter->setEnabled(enable);
+  qmc2MainWindow->actionLaunchArcade->setEnabled(enable);
+  qmc2MainWindow->actionArcadeSetup->setEnabled(enable);
 }
 
 void Gamelist::load()
