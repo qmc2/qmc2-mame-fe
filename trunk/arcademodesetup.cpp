@@ -33,8 +33,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 
 	// FIXME: keyboard- & joystick-mappings are not supported yet
 #if !defined(QMC2_WIP_ENABLED) 
-	tabWidget->removeTab(tabKeys);
-	tabWidget->removeTab(tabJoystick);
+	tabWidget->removeTab(tabWidget->indexOf(tabKeys));
+	tabWidget->removeTab(tabWidget->indexOf(tabJoystick));
 #endif
 
 	adjustIconSizes();
