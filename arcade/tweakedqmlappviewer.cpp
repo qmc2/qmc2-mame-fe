@@ -68,7 +68,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
         rootObject()->setProperty("secondaryImageType", globalConfig->secondaryImageType());
         rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
-        rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
+        rootObject()->setProperty("lastIndex", globalConfig->lastIndex() < gameList.count() ? globalConfig->lastIndex() : 0);
         rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
     }
 
@@ -191,12 +191,26 @@ int TweakedQmlApplicationViewer::romStateCharToInt(char status)
 
 void TweakedQmlApplicationViewer::loadGamelist()
 {
-    QMap<QString, char> rscMap;
-    QString gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
+    QString gameListCachePath;
+    bool listAlreadySorted = false;
 
-    QMC2_ARCADE_LOG_STR(tr("Loading and filtering %1 from '%2'").
-                 arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
-                 arg(QDir::toNativeSeparators(gameListCachePath)));
+    if ( globalConfig->useFilteredList() ) {
+        gameListCachePath = QFileInfo(globalConfig->filteredListFile()).absoluteFilePath();
+        if ( !QFileInfo(gameListCachePath).exists() || !QFileInfo(gameListCachePath).isReadable() ) {
+            QMC2_ARCADE_LOG_STR(tr("WARNING: filtered list file '%1' doesn't exist or isn't accessible, falling back to the full %2").
+                                arg(gameListCachePath).
+                                arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")));
+            gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
+        } else
+            listAlreadySorted = true;
+    } else
+        gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
+
+    QMap<QString, char> rscMap;
+
+    QMC2_ARCADE_LOG_STR(tr("Loading %1 from '%2'").
+                        arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
+                        arg(QDir::toNativeSeparators(gameListCachePath)));
 
     QString romStateCachePath = QFileInfo(globalConfig->romStateCacheFile()).absoluteFilePath();
     QFile romStateCache(romStateCachePath);
@@ -239,14 +253,14 @@ void TweakedQmlApplicationViewer::loadGamelist()
                      arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
                      arg(QDir::toNativeSeparators(gameListCachePath)));
 
-    // FIXME: Add sorting and filtering based on settings made in QMC2! For now, just sort by description in descending order.
-    qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
+    if ( !listAlreadySorted )
+        qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
 
     // propagate gameList to QML
     rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
     rootContext()->setContextProperty("gameListModelCount", gameList.count());
 
-    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading and filtering %1 from '%2')").
+    QMC2_ARCADE_LOG_STR(QString(tr("Done (loading %1 from '%2')").
                          arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")) + " - " + tr("%n non-device set(s) loaded", "", gameList.count())).
                          arg(QDir::toNativeSeparators(gameListCachePath)));
 }
