@@ -3117,8 +3117,37 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionLaunchArcade_triggered(bool)");
 #endif
 
-	// FIXME
-	log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString().isEmpty() ) {
+		log(QMC2_LOG_FRONTEND, tr("INFORMATION: the arcade mode has to be set up first, launching the respective dialog instead"));
+		on_actionArcadeSetup_triggered(false);
+		return;
+	}
+
+	QStringList args;
+#if defined(QMC2_EMUTYPE_MAME)
+	args << "-emu" << "mame";
+#elif defined(QMC2_EMUTYPE_MESS)
+	args << "-emu" << "mess";
+#elif defined(QMC2_EMUTYPE_UME)
+	args << "-emu" << "ume";
+#endif
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/Theme").toString().isEmpty() )
+		args << "-theme" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/Theme").toString();
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType").toString().isEmpty() )
+		args << "-console" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType").toString();
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem").toString().isEmpty() )
+		args << "-graphicssystem" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem").toString();
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath").toString().isEmpty() )
+		args << "-config_path" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath").toString();
+
+	QString commandString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString();
+	foreach (QString arg, args)
+		commandString += " " + arg;
+
+	log(QMC2_LOG_FRONTEND, tr("arcade mode: launching QMC2 Arcade, command = '%1'").arg(commandString));
+
+	if ( !QProcess::startDetached(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString(), args, qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory").toString()) )
+		log(QMC2_LOG_FRONTEND, tr("WARNING: failed launching QMC2 Arcade"));
 }
 
 void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
