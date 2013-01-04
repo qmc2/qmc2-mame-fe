@@ -107,6 +107,26 @@ QByteArray ArcadeSettings::consoleGeometry()
     return value("Arcade/ConsoleGeometry", QByteArray()).toByteArray();
 }
 
+void ArcadeSettings::setUseFilteredList(bool use)
+{
+    setValue(QString("Arcade/%1/UseFilteredList").arg(emulatorPrefix), use);
+}
+
+bool ArcadeSettings::useFilteredList()
+{
+    return value(QString("Arcade/%1/UseFilteredList").arg(emulatorPrefix), false).toBool();
+}
+
+void ArcadeSettings::setFilteredListFile(QString fileName)
+{
+    setValue(QString("Arcade/%1/FilteredListFile").arg(emulatorPrefix), fileName);
+}
+
+QString ArcadeSettings::filteredListFile()
+{
+    return value(QString("Arcade/%1/FilteredListFile").arg(emulatorPrefix), QString()).toString();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);

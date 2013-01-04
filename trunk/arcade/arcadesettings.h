@@ -33,6 +33,10 @@ public slots:
     bool viewerMaximized();
     void setConsoleGeometry(QByteArray);
     QByteArray consoleGeometry();
+    void setUseFilteredList(bool);
+    bool useFilteredList();
+    void setFilteredListFile(QString);
+    QString filteredListFile();
 
     // theme-specific settings
     void setFpsVisible(bool);
