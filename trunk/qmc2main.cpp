@@ -3138,9 +3138,9 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem").toString().isEmpty() )
 		args << "-graphicssystem" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem").toString();
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath").toString().isEmpty() )
-		args << "-config_path" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath").toString();
+		args << "-config_path" << QDir::toNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath").toString());
 
-	QString commandString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString();
+	QString commandString = QDir::toNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString());
 	foreach (QString arg, args)
 		commandString += " " + arg;
 
