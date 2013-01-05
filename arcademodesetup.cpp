@@ -46,7 +46,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 #endif
 
-	QString defaultPath;
+	QString defaultPath, tmpString;
 	int index;
 
 	// internal settings
@@ -63,7 +63,11 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 #else
 	lineEditExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "/" + "qmc2-arcade").toString());
 #endif
-	defaultPath = QFileInfo(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString()).absolutePath();
+	tmpString = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
+	if ( !tmpString.isEmpty() )
+		defaultPath = QFileInfo(tmpString).absolutePath();
+	else
+		defaultPath.clear();
 	lineEditWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory", defaultPath).toString());
 	lineEditConfigurationPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath", QMC2_DYNAMIC_DOT_PATH).toString());
 	index = comboBoxGraphicsSystem->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem", "raster").toString());
