@@ -1241,13 +1241,11 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 						if ( start >= 0 ) {
 							start += 5;
 							itagValue = decodedUrlString.mid(start, decodedUrlString.indexOf("&", start) - start);
-							QMC2_PRINT_STR(itagValue);
 						}
 						start = decodedUrlString.indexOf("sig=");
 						if ( start >= 0 ) {
 							start += 4;
 							signature = decodedUrlString.mid(start, decodedUrlString.indexOf("&", start) - start);
-							QMC2_PRINT_STR(signature);
 						}
 						if ( !signature.isEmpty() )
 							streamUrlString += "&signature=" + signature;
