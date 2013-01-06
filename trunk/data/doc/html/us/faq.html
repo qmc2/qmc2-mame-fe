@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.38, 04-JAN-2013</h3>
+<h3>FAQ - v0.38, 06-JAN-2013</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.7+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -75,7 +75,7 @@ You only need to take care of the <i>QMAKE</i> make option as described in the b
 <p>We are using <i>Subversion</i> (SVN) for the code repository during development.</p>
 <p>To <i>checkout</i> the latest revision of the source code, use the following command sequence (you have to checkout the code only <u>once</u>!):</p>
 <pre>$ mkdir -p ~/src && cd ~/src
-$ svn co https://qmc2.svn.sourceforge.net/svnroot/qmc2/trunk qmc2
+$ svn co svn://svn.code.sf.net/p/qmc2/code/trunk qmc2
 $ cd qmc2 && make ...
 $ su
 Password:
@@ -147,7 +147,7 @@ which are specific to your distribution and different from the global OS configu
 <pre>$ sudo apt-get install subversion g++ libqt4-dev libsdl-dev libphonon-dev libxmu-dev rsync</pre>
 <p>2) Either check out the source code from SVN</p>
 <pre>$ mkdir ~/src; cd ~/src
-$ svn co https://qmc2.svn.sourceforge.net/svnroot/qmc2/trunk qmc2
+$ svn co svn://svn.code.sf.net/p/qmc2/code/trunk qmc2
 $ cd qmc2</pre>
 <p>or update the source code to the latest SVN revision</p>
 <pre>$ cd ~/src/qmc2
@@ -167,7 +167,7 @@ Password:
 Note: the <i>libkde4-devel</i> package is only needed if you want to use the Phonon features (built-in audio player). If you don't want to use it, make sure to add <i>PHONON=0</i> on the make command line in step 3) and all Phonon features will be cut off from the build!
 <p>2) Either check out the source code from SVN</p>
 <pre>$ mkdir ~/src; cd ~/src
-$ svn co https://qmc2.svn.sourceforge.net/svnroot/qmc2/trunk qmc2
+$ svn co svn://svn.code.sf.net/p/qmc2/code/trunk qmc2
 $ cd qmc2</pre>
 <p>or update the source code to the latest SVN revision</p>
 <pre>$ cd ~/src/qmc2
@@ -194,7 +194,7 @@ Password:
 # logout</pre>
 <p>2) Either check out the source code from SVN</p>
 <pre>$ mkdir ~/src; cd ~/src
-$ svn co https://qmc2.svn.sourceforge.net/svnroot/qmc2/trunk qmc2
+$ svn co svn://svn.code.sf.net/p/qmc2/code/trunk qmc2
 $ cd qmc2</pre>
 <p>or update the source code to the latest SVN revision</p>
 <pre>$ cd ~/src/qmc2
@@ -218,7 +218,7 @@ Password:
 </ul>
 <p>2) Either check out the source code from SVN</p>
 <pre>$ mkdir ~/src; cd ~/src
-$ svn co https://qmc2.svn.sourceforge.net/svnroot/qmc2/trunk qmc2
+$ svn co svn://svn.code.sf.net/p/qmc2/code/trunk qmc2
 $ cd qmc2</pre>
 <p>or update the source code to the latest SVN revision</p>
 <pre>$ cd ~/src/qmc2
