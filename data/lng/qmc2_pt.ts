@@ -406,17 +406,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="304"/>
         <source>Tag</source>
-        <translation type="unfinished">Etiqueta</translation>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="329"/>
         <source>Players</source>
-        <translation type="unfinished">Jogadores</translation>
+        <translation>Jogadores</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="351"/>
         <source>Browse the output file used as the filtered game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo de saída usado como a lista de jogos filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="615"/>
@@ -549,7 +549,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="24"/>
         <source>General settings</source>
-        <translation type="unfinished">Configurações gerais</translation>
+        <translation>Configurações gerais</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="378"/>
@@ -569,38 +569,38 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="642"/>
         <source>Use a filtered version of the game list (otherwise use the full list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar uma versão filtrada da lista de jogos (caso contrário usar a lista completa)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="645"/>
         <source>Use filtered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar lista filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="668"/>
         <source>Output file used as the filtered game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de saída usado como a lista de jogos filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="678"/>
         <source>Filter / export progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso da filtragem / exportação</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="684"/>
         <location filename="../../arcademodesetup.cpp" line="372"/>
         <source>Idle</source>
-        <translation type="unfinished">Ocioso</translation>
+        <translation>Ocioso</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="700"/>
         <source>Export a filtered version of the game list according to the filter / sort settings specified below</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar uma versão filtrada da lista de jogos de acordo com as configurações de filtro / ordernação especificadas abaixo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="703"/>
         <source>Export</source>
-        <translation type="unfinished">Exportar</translation>
+        <translation>Exportar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="715"/>
@@ -625,12 +625,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="43"/>
         <source>Category</source>
-        <translation type="unfinished">Categoria</translation>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="46"/>
         <source>Version</source>
-        <translation type="unfinished">Versão</translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="155"/>
@@ -638,80 +638,80 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="175"/>
         <location filename="../../arcademodesetup.cpp" line="299"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="232"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo executável do Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="232"/>
         <location filename="../../arcademodesetup.cpp" line="253"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="239"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de trabalho do Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="246"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o caminho da configuração para o Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="253"/>
         <source>Choose filtered list file for export</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo da lista filtrada para exportação</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="263"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: modo arcade: impossível abrir &apos;%1&apos; para escrita</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="287"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: modo arcade: a expressão regular de filtro de nome é inválida</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="289"/>
         <source>Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrando</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="308"/>
         <source>preliminary</source>
-        <translation type="unfinished">preliminar</translation>
+        <translation>preliminar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="341"/>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenando</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="349"/>
         <source>Exporting</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportando</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="364"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="365"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <location filename="../../arcademodesetup.cpp" line="374"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>modo arcade: %n conjunto filtrado exportado para &apos;%1&apos;</numerusform>
+            <numerusform>modo arcade: %n conjuntos filtrados exportados para &apos;%1&apos;</numerusform>
         </translation>
     </message>
 </context>
@@ -7306,17 +7306,17 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3121"/>
         <source>INFORMATION: the arcade mode has to be set up first, launching the respective dialog instead</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMAÇÃO: o modo arcade precisa ser configurado primeiro, iniciando o diálogo respectivo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3147"/>
         <source>arcade mode: launching QMC2 Arcade, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>modo arcade: executando o Arcade QMC2, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3150"/>
         <source>WARNING: failed launching QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao iniciar o Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3611"/>
