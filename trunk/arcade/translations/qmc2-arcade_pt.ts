@@ -6,12 +6,12 @@
     <message>
         <location filename="../qml/ToxicWaste/BackgroundAnimation.qml" line="14"/>
         <source>Starting animation</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando animação</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/BackgroundAnimation.qml" line="16"/>
         <source>Animation stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Animação parada</translation>
     </message>
 </context>
 <context>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../consolewindow.cpp" line="12"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Console</translation>
     </message>
 </context>
 <context>
@@ -27,12 +27,12 @@
     <message>
         <location filename="../joystick.cpp" line="20"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: não foi possível inicializar o suporte a joystick do SDL</translation>
     </message>
     <message>
         <location filename="../joystick.cpp" line="52"/>
         <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: não foi possível abrir o joystick do SDL #%1</translation>
     </message>
 </context>
 <context>
@@ -40,192 +40,192 @@
     <message>
         <location filename="../processmanager.cpp" line="105"/>
         <source>Loading configuration template from &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando modelo de configuração de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="113"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: erro de XML lendo o modelo: &apos;%1&apos; no arquivo &apos;%2&apos; na linha %3, coluna %4</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="144"/>
         <source>Done (loading configuration template from &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Feito (carregando modelo de configuração de &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../processmanager.cpp" line="144"/>
         <source>%n option(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n opção carregada</numerusform>
+            <numerusform>%n opções carregadas</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="146"/>
         <source>FATAL: Can&apos;t open the configuration template file: reason = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: Não foi possível abrir o arquivo do modelo de configuração: motivo = %1</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="153"/>
         <source>No error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum erro ocorrido</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="155"/>
         <source>An error occurred when reading from the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro durante a leitura do arquivo</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="157"/>
         <source>An error occurred when writing to the file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro durante a escrita para o arquivo</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="159"/>
         <source>A fatal error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro fatal</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="161"/>
         <source>A resource error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro de recurso</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="163"/>
         <source>The file could not be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não pode ser aberto</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="165"/>
         <source>The operation was aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>A operação foi abortada</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="167"/>
         <location filename="../processmanager.cpp" line="195"/>
         <source>A timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um estouro de tempo</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="169"/>
         <source>An unspecified error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro não especificado</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="171"/>
         <source>The file could not be removed</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não pode ser removido</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="173"/>
         <source>The file could not be renamed</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não pode ser renomeado</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="175"/>
         <source>The position in the file could not be changed</source>
-        <translation type="unfinished"></translation>
+        <translation>A posição no arquivo não pode ser alterada</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="177"/>
         <source>The file could not be resized</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não pode ser redimensionado</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="179"/>
         <source>The file could not be accessed</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não pode ser acessado</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="181"/>
         <source>The file could not be copied</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo não pode ser copiado</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="183"/>
         <location filename="../processmanager.cpp" line="202"/>
         <source>An unknown error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro desconhecido</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="191"/>
         <source>The process failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>O processo falhou ao iniciar</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="193"/>
         <source>The process crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>O processo teve um erro catastrófico</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="197"/>
         <source>An error occurred when attempting to write to the process</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro durante tentativa de escrever para o processo</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="199"/>
         <source>An error occurred when attempting to read from the process</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro durante tentativa de ler do processo </translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="210"/>
         <source>Not running</source>
-        <translation type="unfinished"></translation>
+        <translation>Não executando</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="212"/>
         <source>Starting</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="214"/>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="216"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconhecido</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="224"/>
         <source>Emulator #%1 error: reason = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro no emulador #%1: motivo = %2</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="231"/>
         <source>Emulator #%1 finished: exitCode = %2, exitStatus = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulador #%1 terminado: código de saída = %2, condição de saída = %3</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="231"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="231"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>falha catastrófica</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="246"/>
         <source>Emulator #%1 stdout: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Saída padrão do Emulador #%1: %2</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="263"/>
         <source>Emulator #%1 stderr: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Saída de erro padrão do Emulador #%1: %2</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="272"/>
         <source>Emulator #%1 started</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulator #%1 iniciado</translation>
     </message>
     <message>
         <location filename="../processmanager.cpp" line="280"/>
         <source>Emulator #%1 state changed: newState = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado do emulator #%1 alterado: novo estado = %2</translation>
     </message>
 </context>
 <context>
@@ -234,107 +234,107 @@
         <location filename="../imageprovider.cpp" line="58"/>
         <location filename="../imageprovider.cpp" line="99"/>
         <source>WARNING: ImageProvider::requestImage(): invalid image type &apos;%1&apos; requested</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ImageProvider::requestImage(): tipo de imagem inválido &apos;%1&apos; requisitado</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="63"/>
         <location filename="../imageprovider.cpp" line="104"/>
         <source>WARNING: ImageProvider::requestImage(): invalid image ID &apos;%1&apos; requested</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ImageProvider::requestImage(): ID de imagem inválido &apos;%1&apos; requisitado</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="196"/>
         <source>preview</source>
-        <translation type="unfinished"></translation>
+        <translation>pré-visualização</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="198"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="200"/>
         <source>cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>gabinete</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="202"/>
         <source>controller</source>
-        <translation type="unfinished"></translation>
+        <translation>controle</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="204"/>
         <source>marquee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="206"/>
         <source>title</source>
-        <translation type="unfinished"></translation>
+        <translation>título</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="208"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../macros.h" line="40"/>
         <source>QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Arcade QMC2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="96"/>
         <source>MAME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="96"/>
         <source>MESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="96"/>
         <source>UME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="125"/>
         <source>%1 is not valid theme - available themes: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 não é um tema válido - temas disponíveis: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="146"/>
         <location filename="../main.cpp" line="155"/>
         <location filename="../main.cpp" line="164"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 não é um tema de %2 válido - temas %2 disponíveis: %3</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="146"/>
         <location filename="../main.cpp" line="155"/>
         <location filename="../main.cpp" line="164"/>
         <source>(none)</source>
-        <translation type="unfinished"></translation>
+        <translation>(nenhum)</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="201"/>
         <source>emulator: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador: %1</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="202"/>
         <source>theme: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>tema: %1</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="213"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando visualizador QML usando o tema &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="229"/>
         <source>QML viewer not started - please close the console window to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador QML não iniciado - por favor feche a janela do console para sair</translation>
     </message>
 </context>
 <context>
@@ -342,107 +342,107 @@
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="62"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="62"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado da ROM</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="127"/>
         <source>Flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem do flyer</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="130"/>
         <source>Cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem do gabinete</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="133"/>
         <source>Controller image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem do controle</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="136"/>
         <source>Marquee image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem de marquee</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="139"/>
         <source>Title image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem de título</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="142"/>
         <source>PCB image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem do PCB</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.js" line="146"/>
         <source>Preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagem da pré-visualização</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="468"/>
         <source>Really quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sair realmente?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="485"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="501"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Não</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="568"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferências</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="589"/>
         <source>Show background animation?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar animação do plano de fundo?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="616"/>
         <source>Animate in foreground?</source>
-        <translation type="unfinished"></translation>
+        <translation>Animar o primeiro plano?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="643"/>
         <source>Show shader effect?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar efeito de shader?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="670"/>
         <source>Show FPS counter?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar contador de FPS?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="692"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="795"/>
         <source>FPS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1011"/>
         <source>Starting shader effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando efeito de shader</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1013"/>
         <source>Shader effect stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Efeito de shader parado</translation>
     </message>
 </context>
 <context>
@@ -450,72 +450,72 @@
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="57"/>
         <source>Loading global and theme-specific settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando configurações globais e específicas de tema</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="75"/>
         <source>Ready to launch %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pronto para iniciar %1</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="75"/>
         <source>games</source>
-        <translation type="unfinished"></translation>
+        <translation>jogos</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="75"/>
         <source>machines</source>
-        <translation type="unfinished"></translation>
+        <translation>máquinas</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="80"/>
         <source>Saving global and theme-specific settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvando configurações globais e específicas de tema</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="118"/>
         <source>Activating full-screen display</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativando exibição em tela cheia</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="141"/>
         <source>Activating windowed display</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativando exibição em janela</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="162"/>
         <source>correct</source>
-        <translation type="unfinished"></translation>
+        <translation>correto</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="164"/>
         <source>mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>maioria correto</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="166"/>
         <source>incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>incorreto</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="168"/>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>não encontrada</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="171"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>desconhecido</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="200"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o arquivo de lista filtrada &apos;%1&apos; não existe ou não está acessível, revertendo para a %2 completa</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="263"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Feito (carregando %1 de &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="202"/>
@@ -524,7 +524,7 @@
         <location filename="../tweakedqmlappviewer.cpp" line="253"/>
         <location filename="../tweakedqmlappviewer.cpp" line="264"/>
         <source>game list</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de jogos</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="202"/>
@@ -533,65 +533,65 @@
         <location filename="../tweakedqmlappviewer.cpp" line="253"/>
         <location filename="../tweakedqmlappviewer.cpp" line="264"/>
         <source>machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de máquinas</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="211"/>
         <source>Loading %1 from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="228"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: Não foi possível abrir o arquivo de cache de estado das ROMs &apos;%1&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="231"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: O arquivo de cache de estado das ROMs &apos;%1&apos; não existe, por favor execute o front-end principal para criá-lo</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="248"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: Não foi possível abrir o arquivo de cache %1 &apos;%2&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="252"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: O arquivo de cache %1 &apos;%2&apos; não existe, por favor execute o front-end principal para criá-lo</translation>
     </message>
     <message numerus="yes">
         <location filename="../tweakedqmlappviewer.cpp" line="264"/>
         <source>%n non-device set(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n conjunto de não dispositivos carregado</numerusform>
+            <numerusform>%n conjuntos de não dispositivos carregados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="270"/>
         <source>game</source>
-        <translation type="unfinished"></translation>
+        <translation>jogo</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="270"/>
         <source>machine</source>
-        <translation type="unfinished"></translation>
+        <translation>máquina</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="270"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando emulador #%1 para o ID %2 &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="318"/>
         <source>Stopping QML viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Parando o visualizador QML</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="321"/>
         <source>QML viewer stopped - please close the console window to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador QML parado - por favor feche a janela do console para sair</translation>
     </message>
 </context>
 </TS>
