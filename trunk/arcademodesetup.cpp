@@ -58,7 +58,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 #if defined(QMC2_OS_WIN)
 	lineEditExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "\\" + "qmc2-arcade.exe").toString());
 #elif defined(QMC2_OS_MAC)
-	defaultPath = QFileInfo(QCoreApplication::applicationDirPath() + "../../qmc2-arcade/Contents/MacOS/qmc2-arcade").absoluteFilePath();
+	defaultPath = QFileInfo(QCoreApplication::applicationDirPath() + "../../../../qmc2-arcade.app/Contents/MacOS/qmc2-arcade").absoluteFilePath();
 	lineEditExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", defaultPath).toString());
 #else
 	lineEditExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "/" + "qmc2-arcade").toString());
