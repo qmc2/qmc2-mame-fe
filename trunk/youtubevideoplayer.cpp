@@ -1211,51 +1211,32 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 			if ( forcedExit )
 				break;
 			if ( videoInfo.startsWith("url_encoded_fmt_stream_map=") ) {
-				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^url_encoded_fmt_stream_map="), "").split(QRegExp("url%3D"), QString::SkipEmptyParts);
+				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^url_encoded_fmt_stream_map="), "").split("%2C", QString::SkipEmptyParts);
 				foreach (QString fmtUrl, fmtUrlMap) {
 					if ( forcedExit )
 						break;
-#ifdef QMC2_DEBUG
-					QMC2_PRINT_STR(fmtUrl);
-#endif
-					QString encodedUrlString = QUrl::fromEncoded(fmtUrl.toLatin1()).toString();
-					QString itagValue, signature, streamUrlString;
-					foreach (QString urlPart, encodedUrlString.split("&", QString::SkipEmptyParts)) {
-#ifdef QMC2_DEBUG
-						QMC2_PRINT_STR(urlPart);
-#endif
-						if ( urlPart.startsWith("http") )
-							streamUrlString = urlPart;
-						else foreach (QString subPart, urlPart.split(",", QString::SkipEmptyParts)) {
-							if ( subPart.startsWith("sig=") )
-								signature = subPart.split("=")[1];
-							else if ( subPart.startsWith("itag") )
-								itagValue = subPart.split("=")[1];
+					QString sig, itag, url;
+					foreach (QString urlPart, QUrl::fromEncoded(fmtUrl.toLatin1()).toString().split("&", QString::SkipEmptyParts)) {
+						if ( urlPart.startsWith("url=") ) {
+							url = urlPart.split("=")[1];
+						} else {
+							foreach (QString subPart, urlPart.split(",", QString::SkipEmptyParts)) {
+								if ( subPart.startsWith("sig=") )
+									sig = subPart.split("=")[1];
+								if ( subPart.startsWith("itag=") )
+									itag = subPart.split("=")[1];
+							}
 						}
 					}
-					if ( !streamUrlString.isEmpty() ) {
+					if ( !itag.isEmpty() ) {
 						QUrl decodedUrl;
-						decodedUrl.setEncodedUrl(streamUrlString.toLatin1());
-						QString decodedUrlString = decodedUrl.toString();
-						int start = decodedUrlString.indexOf("itag=");
-						if ( start >= 0 ) {
-							start += 5;
-							itagValue = decodedUrlString.mid(start, decodedUrlString.indexOf("&", start) - start);
-						}
-						start = decodedUrlString.indexOf("sig=");
-						if ( start >= 0 ) {
-							start += 4;
-							signature = decodedUrlString.mid(start, decodedUrlString.indexOf("&", start) - start);
-						}
-						if ( !signature.isEmpty() )
-							streamUrlString += "&signature=" + signature;
-						decodedUrl.setEncodedUrl(streamUrlString.toLatin1());
-						if ( !itagValue.isEmpty() ) {
+						if ( !sig.isEmpty() )
+							url += "&signature=" + sig;
+						decodedUrl.setEncodedUrl(url.toLatin1());
 #ifdef QMC2_DEBUG
-							printf("decodedUrl[itag = %s] = %s\n", (const char *)itagValue.toLatin1(), (const char *)decodedUrl.toString().toLatin1());
+						printf("decodedUrl[%s] = %s\n", (const char *)itag.toLatin1(), (const char *)decodedUrl.toString().toLatin1());
 #endif
-							formatToUrlMap[itagValue] = decodedUrl;
-						}
+						formatToUrlMap[itag] = decodedUrl;
 					}
 				}
 			}
