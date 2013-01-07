@@ -187,7 +187,6 @@ qmc2/arch/.svn/text-base/NetBSD.cfg.svn-base
 qmc2/arch/.svn/text-base/SunOS.cfg.svn-base
 qmc2/arch/.svn/text-base/Windows.cfg.svn-base
 qmc2/arch/Windows/.svn
-qmc2/arch/Windows/.svn/prop-base/which.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/dirname.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/osrel.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/rcgen.bat.svn-base
@@ -851,15 +850,6 @@ qmc2/data/img/circles/.svn/text-base/world.png.svn-base
 qmc2/data/img/circles/.svn/text-base/yes.png.svn-base
 qmc2/data/img/circles/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/circles/.svn/text-base/zip.png.svn-base
-qmc2/data/img/circles/.svn/tmp/svn-4AlkdG
-qmc2/data/img/circles/.svn/tmp/svn-g85hDO
-qmc2/data/img/circles/.svn/tmp/svn-i2cMYm
-qmc2/data/img/circles/.svn/tmp/svn-plxMuW
-qmc2/data/img/circles/.svn/tmp/svn-RANuFc
-qmc2/data/img/circles/.svn/tmp/svn-rwU9kV
-qmc2/data/img/circles/.svn/tmp/svn-Uf2rIt
-qmc2/data/img/circles/.svn/tmp/svn-v7cH8Y
-qmc2/data/img/circles/.svn/tmp/svn-ZGDR7e
 qmc2/data/img/classic/.svn
 qmc2/data/img/classic/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/activity_red.png.svn-base
@@ -1778,10 +1768,6 @@ qmc2/data/img/crazy-black/.svn/text-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/zip.png.svn-base
-qmc2/data/img/crazy-black/.svn/tmp/svn-CJaeyb
-qmc2/data/img/crazy-black/.svn/tmp/svn-CyUitt
-qmc2/data/img/crazy-black/.svn/tmp/svn-kPDfGB
-qmc2/data/img/crazy-black/.svn/tmp/svn-l4wEdh
 qmc2/data/img/crazy/.svn
 qmc2/data/img/crazy/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/activity_red.png.svn-base
@@ -2241,10 +2227,6 @@ qmc2/data/img/crazy/.svn/text-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/zip.png.svn-base
-qmc2/data/img/crazy/.svn/tmp/svn-2TfQZG
-qmc2/data/img/crazy/.svn/tmp/svn-iW2bOA
-qmc2/data/img/crazy/.svn/tmp/svn-oPnEbc
-qmc2/data/img/crazy/.svn/tmp/svn-ZvtcqO
 qmc2/data/img/cubes/.svn
 qmc2/data/img/cubes/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/activity_red.png.svn-base
@@ -2704,15 +2686,6 @@ qmc2/data/img/cubes/.svn/text-base/world.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/yes.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/zip.png.svn-base
-qmc2/data/img/cubes/.svn/tmp/svn-0adPGk
-qmc2/data/img/cubes/.svn/tmp/svn-4B713f
-qmc2/data/img/cubes/.svn/tmp/svn-9E40uZ
-qmc2/data/img/cubes/.svn/tmp/svn-ii1pmm
-qmc2/data/img/cubes/.svn/tmp/svn-KA3KcO
-qmc2/data/img/cubes/.svn/tmp/svn-Ln8lix
-qmc2/data/img/cubes/.svn/tmp/svn-Mv6pWH
-qmc2/data/img/cubes/.svn/tmp/svn-p9oNGk
-qmc2/data/img/cubes/.svn/tmp/svn-RKysOS
 qmc2/data/img/.svn
 qmc2/data/img/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/.svn/prop-base/activity_red.png.svn-base
@@ -3425,6 +3398,8 @@ qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/03qmc-contents.xml.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/03qmc.xml.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/04qmc-contents.xml.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/04qmc.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/05qmc-contents.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/05qmc.xml.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/index.xml.svn-base
 qmc2/pkg-specs/Mac OS X/.svn
 qmc2/pkg-specs/openSUSE/.svn
