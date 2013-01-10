@@ -56,9 +56,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://sourceforge.net/projects/qmc2&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Lista de correo de desarrollo de QMC2:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qmc2-devel@lists.sourceforge.net (subscripción)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qmc2-devel@lists.sourceforge.net (suscripción)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Subscripción a la lista:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Suscripción a la lista:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -189,12 +189,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="159"/>
         <source>subscription required</source>
-        <translation>subscripción necesaria</translation>
+        <translation>suscripción necesaria</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="160"/>
         <source>List subscription:</source>
-        <translation>Subscripción a la lista:</translation>
+        <translation>Suscripción a la lista:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="161"/>
@@ -321,316 +321,316 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="14"/>
         <source>Arcade mode setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración modo arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="30"/>
         <source>Select arcade theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar modo arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="48"/>
         <source>Graphics system</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema de gráficos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="55"/>
         <source>Select the graphics system used to render the scene (when available, OpenGL is strongly recommended!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el sistema de graficos utilizado para mostrar la escena (si está disponible, OpenGL es lo recomendado)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="83"/>
         <source>Working directory</source>
-        <translation type="unfinished">Directorio de trabajo</translation>
+        <translation>Directorio de trabajo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="96"/>
         <source>Arcade theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema de arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="109"/>
         <source>Working directory used when executing QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio de trabajo a utilizar cuando se ejecute QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="116"/>
         <source>Select type of console</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el tipo de consola</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="144"/>
         <source>Browse working directory used when executing QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al directorio de trabajo utilizado cuando se ejecute QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="161"/>
         <source>Browse QMC2 Arcade executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo ejecutable QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="178"/>
         <source>Console type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de consola</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="191"/>
         <source>QMC2 Arcade executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo ejecutable QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="217"/>
         <source>Executable file</source>
-        <translation type="unfinished">Archivo ejecutable</translation>
+        <translation>Archivo ejecutable</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="230"/>
         <source>Configuration path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de configuración</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="243"/>
         <source>Configuration path for QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de configuración para QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="256"/>
         <source>Browse configuration path for QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la ruta de configuración para QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="268"/>
         <source>Game list filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de lista de juegos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="304"/>
         <source>Tag</source>
-        <translation type="unfinished">Etiqueta</translation>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="329"/>
         <source>Players</source>
-        <translation type="unfinished">Jugadores</translation>
+        <translation>Jugadores</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="351"/>
         <source>Browse the output file used as the filtered game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo de salida utilizado como lista de juegos filtrados</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="615"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">Filtro de estado de ROM</translation>
+        <translation>Filtro de estado de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="290"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished">Seleccionar el criterio de ordenación</translation>
+        <translation>Seleccionar el criterio de ordenación</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="294"/>
         <source>Description</source>
-        <translation type="unfinished">Descripción</translation>
+        <translation>Descripción</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="299"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="309"/>
         <source>Year</source>
-        <translation type="unfinished">Año</translation>
+        <translation>Año</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="314"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricante</translation>
+        <translation>Fabricante</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="319"/>
         <source>Name (ID)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre (ID)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="324"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="475"/>
         <source>Select ROM state C (correct)?</source>
-        <translation type="unfinished">¿Seleccionar estado de ROM C (correcto)?</translation>
+        <translation>¿Seleccionar estado de ROM C (correcto)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="501"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation type="unfinished">¿Seleccionar estado de ROM M (mayormente correcto)?</translation>
+        <translation>¿Seleccionar estado de ROM M (mayormente correcto)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="527"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation type="unfinished">¿Seleccionar estado de ROM I (incorrecto)?</translation>
+        <translation>¿Seleccionar estado de ROM I (incorrecto)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="550"/>
         <source>Select ROM state N (not found)?</source>
-        <translation type="unfinished">¿Seleccionar estado de ROM N (no encontrado)?</translation>
+        <translation>¿Seleccionar estado de ROM N (no encontrado)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="573"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation type="unfinished">¿Seleccionar estado de ROM D (desconocido)?</translation>
+        <translation>¿Seleccionar estado de ROM D (desconocido)?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="334"/>
         <location filename="../../arcademodesetup.ui" line="362"/>
         <source>Driver status</source>
-        <translation type="unfinished">Estado del driver</translation>
+        <translation>Estado del driver</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="439"/>
         <source>Choose the driver maturity states for sets to be included</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar los estados de madurez del driver de los sets a incluir</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="443"/>
         <location filename="../../arcademodesetup.cpp" line="308"/>
         <location filename="../../arcademodesetup.cpp" line="311"/>
         <source>good</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="448"/>
         <source>good + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + preliminar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="453"/>
         <source>good + preliminary + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + preliminar + imperfecto</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="274"/>
         <source>Name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de nombre</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="422"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar un filtro por nombre (ID) (¡sintáxis de expresiones de Qt!) -- dejar vacío para no filtrar por nombre</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="598"/>
         <source>Clear name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar el filtro de nombre</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="635"/>
         <source>Category filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de categorías</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="406"/>
         <source>Select / deselect the categories you want to include / exclude</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar / deseleccionar las categorías que quieres incluir / excluir</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="622"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Criterio de ordenación</translation>
+        <translation>Criterio de ordenación</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="429"/>
         <source>Sort order</source>
-        <translation type="unfinished">Orden</translation>
+        <translation>Orden</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="24"/>
         <source>General settings</source>
-        <translation type="unfinished">Configuración general</translation>
+        <translation>Configuración general</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="378"/>
         <source>Select sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el orden</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="382"/>
         <source>Ascending</source>
-        <translation type="unfinished">Ascendente</translation>
+        <translation>Ascendente</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="391"/>
         <source>Descending</source>
-        <translation type="unfinished">Descendente</translation>
+        <translation>Descendente</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="642"/>
         <source>Use a filtered version of the game list (otherwise use the full list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar una versión filtrada de la lista de juegos (si no usar la lista completa)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="645"/>
         <source>Use filtered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar lista filtrada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="668"/>
         <source>Output file used as the filtered game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de salida a usar como lista de juegos filtrados</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="678"/>
         <source>Filter / export progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progreso de filtrado /exportación</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="684"/>
         <location filename="../../arcademodesetup.cpp" line="372"/>
         <source>Idle</source>
-        <translation type="unfinished">Parado</translation>
+        <translation>Parado</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="700"/>
         <source>Export a filtered version of the game list according to the filter / sort settings specified below</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar una versión filtrada de la lista de juegos de acuerdo con la configuración de filtrado / orden especificada abajo</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="703"/>
         <source>Export</source>
-        <translation type="unfinished">Exportar</translation>
+        <translation>Exportar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="715"/>
         <source>Keys</source>
-        <translation type="unfinished"></translation>
+        <translation>Teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="720"/>
         <source>Joystick</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="741"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Aceptar</translation>
+        <translation>&amp;Aceptar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="748"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="43"/>
         <source>Category</source>
-        <translation type="unfinished">Categoría</translation>
+        <translation>Categoría</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="46"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="155"/>
@@ -638,80 +638,80 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="175"/>
         <location filename="../../arcademodesetup.cpp" line="299"/>
         <source>?</source>
-        <translation type="unfinished">¿?</translation>
+        <translation>¿?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="232"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el archivo ejecutable de QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="232"/>
         <location filename="../../arcademodesetup.cpp" line="253"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos los archivos (*)</translation>
+        <translation>Todos los archivos (*)</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="239"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el directorio de trabajo de QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="246"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar la ruta de configuración de QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="253"/>
         <source>Choose filtered list file for export</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el archivo de lista filtrada para exportar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="263"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: modo arcade: no se puede abrir &apos;%1&apos; para su escritura</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="287"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: modo arcade: la expresión regular de filtro de nombre es inválida</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="289"/>
         <source>Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrando</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="308"/>
         <source>preliminary</source>
-        <translation type="unfinished">preliminar</translation>
+        <translation>preliminar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="341"/>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenando</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="349"/>
         <source>Exporting</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportando</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="364"/>
         <source>ROM</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="365"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <location filename="../../arcademodesetup.cpp" line="374"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>modo arcade: exportado %n set filtrado a &apos;%1&apos;</numerusform>
+            <numerusform>modo arcade: exportados %n sets filtrados a &apos;%1&apos;</numerusform>
         </translation>
     </message>
 </context>
@@ -808,45 +808,45 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiejar.cpp" line="21"/>
         <source>WARNING: failed to open cookie database: error = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al abrir la base de datos de cookies: error = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="29"/>
         <location filename="../../cookiejar.cpp" line="56"/>
         <source>WARNING: failed to create cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al crear la base de datos de cookies: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="51"/>
         <source>WARNING: failed to remove cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al eliminar la base de datos de cookies: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="121"/>
         <location filename="../../cookiejar.cpp" line="130"/>
         <location filename="../../cookiejar.cpp" line="204"/>
         <source>WARNING: failed to remove expired cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al eliminar cookie expirada de la base de datos: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="140"/>
         <source>WARNING: failed to update cookie in database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al actualizar la cookie en la base de datos: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="153"/>
         <source>WARNING: failed to add cookie to database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN fallo al añadir la cookie a la base de datos: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="159"/>
         <source>WARNING: failed to query cookie database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al comprobar la base de datos de cookies: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../cookiejar.cpp" line="181"/>
         <source>WARNING: failed to fetch cookies from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al comprobar cookies de la base de datos: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -854,67 +854,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiemanager.ui" line="14"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrar cookies almacenadas</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="20"/>
         <source>Stored cookies in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Cookies almacenadas en la base de datos</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="48"/>
         <source>Remove</source>
-        <translation type="unfinished">Eliminar</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="78"/>
         <source>Close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar ventana</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="81"/>
         <source>Close</source>
-        <translation type="unfinished">Cerrar</translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="34"/>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="35"/>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Dominio</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="36"/>
         <source>Path</source>
-        <translation type="unfinished">Ruta</translation>
+        <translation>Ruta</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="37"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation>Valor</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="38"/>
         <source>Expiry date</source>
-        <translation type="unfinished"></translation>
+        <translation>Expira</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="39"/>
         <source>Secure?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Segura?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="40"/>
         <source>HTTP only?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Sólo HTTP?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="84"/>
         <source>WARNING: failed to remove cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo al eliminar cookie de la base de datos: petición = &apos;%1&apos;, error = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -1010,7 +1010,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="170"/>
         <source>Clear name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar el filtro de nombre</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="222"/>
@@ -1055,39 +1055,39 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="141"/>
         <source>Category filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de categorías</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="128"/>
         <source>Driver status</source>
-        <translation type="unfinished">Estado del driver</translation>
+        <translation>Estado del driver</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="105"/>
         <source>Name filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de nombre</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="194"/>
         <source>Choose the driver maturity states for sets to be included in the demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar los estados de madurez del driver de los sets a incluir en la demo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="198"/>
         <location filename="../../demomode.cpp" line="232"/>
         <location filename="../../demomode.cpp" line="235"/>
         <source>good</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="203"/>
         <source>good + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + preliminar</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="208"/>
         <source>good + preliminary + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + preliminar + imperfecto</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="20"/>
@@ -1102,22 +1102,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="229"/>
         <source>Launch sets sequentially rather than randomly</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar los sets de forma secuencial en vez de aleatoriamente</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="232"/>
         <source>Sequential</source>
-        <translation type="unfinished"></translation>
+        <translation>Secuencial</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="52"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar un filtro por nombre (ID) (¡sintáxis de expresiones de Qt!) -- dejar vacío para no filtrar por nombre</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="65"/>
         <source>Select / deselect the categories you want to include / exclude</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar / deseleccionar las categorías que quieres incluir / excluir</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="36"/>
@@ -1153,12 +1153,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.ui" line="151"/>
         <location filename="../../demomode.ui" line="355"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="390"/>
         <source>Options</source>
-        <translation type="unfinished">Opciones</translation>
+        <translation>Opciones</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="118"/>
@@ -1198,7 +1198,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.cpp" line="154"/>
         <location filename="../../demomode.cpp" line="223"/>
         <source>?</source>
-        <translation type="unfinished">¿?</translation>
+        <translation>¿?</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="172"/>
@@ -1218,12 +1218,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="216"/>
         <source>WARNING: demo mode: the name filter regular expression is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: modo demo: la expresión regular de filtro de nombre es inválida</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="232"/>
         <source>preliminary</source>
-        <translation type="unfinished">preliminar</translation>
+        <translation>preliminar</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="265"/>
@@ -1779,69 +1779,71 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuoptactions.ui" line="72"/>
         <source>Reset to default value</source>
-        <translation type="unfinished"></translation>
+        <translation>Volver al valor por defecto</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="52"/>
         <source>Revert to stored value</source>
-        <translation type="unfinished"></translation>
+        <translation>Volver al valor guardado</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="32"/>
         <source>Store value</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar valor</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="24"/>
         <source>Default</source>
-        <translation type="unfinished">Predeterminado</translation>
+        <translation>Predeterminado</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="26"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="38"/>
         <source>Reset to global value</source>
-        <translation type="unfinished"></translation>
+        <translation>Volver al valor global</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="113"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmar</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>An open game-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha detectado una configuración de emulador específica de juego abierta.
+¿Usar el valor local para la opción &apos;%1&apos;, sobreescribir con el valor global o no aplicar?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="117"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha detectado una configuración de emulador específica de máquina abierta.
+¿Usar el valor local para la opción &apos;%1&apos;, sobreescribir con el valor global o no aplicar?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>&amp;Local</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>&amp;Overwrite</source>
-        <translation type="unfinished">S&amp;obrescribir</translation>
+        <translation>S&amp;obrescribir</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>Do&amp;n&apos;t apply</source>
-        <translation type="unfinished">&amp;No aplicar</translation>
+        <translation>&amp;No aplicar</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="30"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1860,12 +1862,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="214"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>activado</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="216"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>desactivado</translation>
     </message>
 </context>
 <context>
@@ -1911,7 +1913,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="423"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Acciones</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="480"/>
@@ -1993,7 +1995,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="544"/>
         <location filename="../../emuopt.cpp" line="1026"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1034"/>
@@ -3067,27 +3069,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="3106"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (verificando estado de ROM para todos los sets, (tiempo transcurrido = &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4008"/>
         <source>correct</source>
-        <translation type="unfinished">correcto</translation>
+        <translation>correcto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4014"/>
         <source>mostly correct</source>
-        <translation type="unfinished">mayormente correcto</translation>
+        <translation>mayormente correcto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4020"/>
         <source>incorrect</source>
-        <translation type="unfinished">incorrecto</translation>
+        <translation>incorrecto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4026"/>
         <source>not found</source>
-        <translation type="unfinished">no encontrado</translation>
+        <translation>no encontrado</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="472"/>
@@ -3395,7 +3397,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="1025"/>
         <source>verifying ROM status for all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando estado de ROM para todos los sets</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1744"/>
@@ -4391,17 +4393,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../htmleditor/htmleditor.cpp" line="140"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="141"/>
         <source>Page load progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progreso de carga de página</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="125"/>
         <source>Hide menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocultar menú</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="129"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Sólo lectura</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="411"/>
@@ -4532,12 +4534,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1048"/>
         <source>Select color</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar color</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1057"/>
         <source>Choose image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de imagen</translation>
     </message>
 </context>
 <context>
@@ -4657,17 +4659,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.ui" line="267"/>
         <source>Show only bad images</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar sólo imágenes incorrectas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="296"/>
         <source>Remove bad image files</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar archivos de imágenes incorrectas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="354"/>
         <source>Remove obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar archivos /carpetas obsoletas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="236"/>
@@ -4695,7 +4697,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.ui" line="329"/>
         <source>Files / folders which couldn&apos;t be matched to any set (and are thus obsolete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos / carpetas que no se han podido incluir en ningún set (por tanto obsoletas)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="338"/>
@@ -4829,37 +4831,37 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="411"/>
         <source>preview</source>
-        <translation type="unfinished">previsualización</translation>
+        <translation>previsualización</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="415"/>
         <source>flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="419"/>
         <source>cabinet</source>
-        <translation type="unfinished">Cabina</translation>
+        <translation>Cabina</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="423"/>
         <source>marquee</source>
-        <translation type="unfinished">marquesina</translation>
+        <translation>marquesina</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="427"/>
         <source>controller</source>
-        <translation type="unfinished">Mando</translation>
+        <translation>Mando</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="432"/>
         <source>title</source>
-        <translation type="unfinished">título</translation>
+        <translation>título</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="437"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="446"/>
@@ -4869,12 +4871,13 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="476"/>
         <source>Checking %1 images</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Comprobando %1 imágenes</translatorcomment>
+        <translation>Comprobando %1 imagen</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="476"/>
         <source>Checking icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobando iconos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="608"/>
@@ -4917,44 +4920,44 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="761"/>
         <source>Running ZIP tool to remove bad image files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando herramienta ZIP para eliminar los archivos de imagen incorrectos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="779"/>
         <location filename="../../imagechecker.cpp" line="899"/>
         <location filename="../../imagechecker.cpp" line="982"/>
         <source>WARNING: ZIP tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: La herramienta ZIP no finalizó correctamente: exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="779"/>
         <location filename="../../imagechecker.cpp" line="899"/>
         <location filename="../../imagechecker.cpp" line="982"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="779"/>
         <location filename="../../imagechecker.cpp" line="899"/>
         <location filename="../../imagechecker.cpp" line="982"/>
         <source>crashed</source>
-        <translation type="unfinished">caído</translation>
+        <translation>caído</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="788"/>
         <source>Bad image file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de imagen incorrecta &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="794"/>
         <source>Bad image file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de imagen incorrecta &apos;%1&apos; no puede ser eliminado, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="851"/>
         <location filename="../../imagechecker.cpp" line="935"/>
         <source>Executing ZIP tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando herramienta ZIP</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="888"/>
@@ -4966,17 +4969,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="902"/>
         <location filename="../../imagechecker.cpp" line="985"/>
         <source>Removing obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminando archivos / carpetas obsoletas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="911"/>
         <source>Obsolete image folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de imagen obsoleta &apos;%1&apos; eliminada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="916"/>
         <source>Obsolete image folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de imagen obsoleta &apos;%1&apos; no puede ser eliminada, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="920"/>
@@ -4991,12 +4994,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="994"/>
         <source>Obsolete icon folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de iconos obsoleta &apos;%1&apos; eliminada</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>Obsolete icon folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de iconos obsoleta &apos;%1&apos; no puede ser eliminada, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1003"/>
@@ -5016,7 +5019,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="1090"/>
         <source>Checking for obsolete files / folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando archivos / carpetas obsoletas</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1100"/>
@@ -5037,12 +5040,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="1246"/>
         <source>%1 folder &apos;%2&apos; is obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de %1 &apos;%2&apos; obsoleta</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1249"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
-        <translation>Archivo de %1 &apos;%2 obsoleto</translation>
+        <translation>Archivo de %1 &apos;%2&apos; obsoleto</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="1264"/>
@@ -5674,7 +5677,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.ui" line="479"/>
         <source>Folder mode selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selección de modo carpeta</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="499"/>
@@ -5776,12 +5779,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="261"/>
         <source>Rename configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración de renombrado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="262"/>
         <source>Re&amp;name configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración re&amp;nombrado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="267"/>
@@ -5811,7 +5814,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="311"/>
         <source>&amp;Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abrir carpeta</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="318"/>
@@ -5827,17 +5830,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="333"/>
         <source>Hide folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocultar carpetas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="338"/>
         <source>Show folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar carpetas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="343"/>
         <source>Show folders first</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar carpetas primero</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="393"/>
@@ -6962,13 +6965,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2490"/>
         <source>&amp;QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2994"/>
         <location filename="../../qmc2main.ui" line="2997"/>
         <source>Launch arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar modo arcade</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3814"/>
@@ -7052,13 +7055,13 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2291"/>
         <source>Software info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2306"/>
         <location filename="../../qmc2main.ui" line="2309"/>
         <source>Detailed software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Información detallada de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2595"/>
@@ -7165,7 +7168,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2991"/>
         <source>&amp;Launch...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lanzar...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3003"/>
@@ -8672,7 +8675,7 @@ Se sobrescribirá los datos existentes en caché.
         <location filename="../../qmc2main.cpp" line="3046"/>
         <location filename="../../qmc2main.cpp" line="3048"/>
         <source>WARNING: failed to launch variant &apos;%1&apos;</source>
-        <translation>ATENCIÓN: falló al lanzar variante &apos;%1&apos;</translation>
+        <translation>ATENCIÓN: fallo al lanzar variante &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3314"/>
@@ -8750,17 +8753,17 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="3121"/>
         <source>INFORMATION: the arcade mode has to be set up first, launching the respective dialog instead</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACIÓN: el modo arcade tiene que ser configurado primero, lanzando el diálogo de configuración</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3147"/>
         <source>arcade mode: launching QMC2 Arcade, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>modo arcade: lanzando QMC2 Arcade, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3150"/>
         <source>WARNING: failed launching QMC2 Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: fallo lanzando QMC2 Arcade</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4577"/>
@@ -9143,7 +9146,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="6564"/>
         <source>destroying software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>destruyendo BD info software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6579"/>
@@ -9366,35 +9369,35 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="7375"/>
         <source>loading software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando BD info de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7400"/>
         <source>Software info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Info de software - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7480"/>
         <source>WARNING: can&apos;t open software info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: no se puede abrir la BD de info de software %1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7483"/>
         <source>done (loading software info DB, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando BD info de software, tiempo transcurrido = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="7484"/>
         <source>%n software info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de info de software cargado</numerusform>
+            <numerusform>%n registros de info de software cargados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7486"/>
         <source>invalidating software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>invalidando BD de info de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7771"/>
@@ -10051,7 +10054,7 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../miniwebbrowser.ui" line="264"/>
         <source>Toggle display of the search bar</source>
-        <translation type="unfinished"></translation>
+        <translation>(des) activar la barra de búsqueda</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="300"/>
@@ -10059,32 +10062,32 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
         <location filename="../../miniwebbrowser.cpp" line="62"/>
         <location filename="../../miniwebbrowser.cpp" line="63"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Introducir texto de búsqueda</translation>
+        <translation>Introducir texto de búsqueda</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="316"/>
         <source>Case-sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Diferencia entre mayúsculas y minúsculas</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="336"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrar coincidencia anterior</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="353"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrar siguiente coincidencia</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="370"/>
         <source>Highlight matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Resaltar coincidencias</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="66"/>
         <source>Enter URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Introducir URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="101"/>
@@ -11234,27 +11237,27 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.ui" line="2422"/>
         <source>Load software information database (from history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la base de datos de información del software (desde history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2425"/>
         <source>Software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>BD info de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2442"/>
         <source>Use in-memory compression for software info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compresión en memoria para la BD de info de software (algo más lento pero consume mucha menos memoria; relación de compresión sobre 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2464"/>
         <source>Software information database - history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de información de software - history.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2477"/>
         <source>Browse software information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la base de datos de información de software (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2495"/>
@@ -11837,7 +11840,7 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.ui" line="3752"/>
         <source>Network / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Red / Herramien&amp;tas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3781"/>
@@ -11989,52 +11992,52 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.ui" line="4103"/>
         <source>Browser settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración del navegador</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4115"/>
         <source>Browse cookie database</source>
-        <translation type="unfinished"></translation>
+        <translation>Inspeccionar la base de datos de cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4132"/>
         <source>Cookie database file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de base de datos de cookies (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4139"/>
         <source>Cookie database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4148"/>
         <source>Save and restore cookies used on web pages?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Guardar y restaurar las cookies utilizadas en las páginas web?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4151"/>
         <source>Restore cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar cookies</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4167"/>
         <source>Manage cookies stored in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrar las cookies almacenadas en la base de datos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4170"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrar cookies guardadas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4183"/>
         <source>Clear database</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar la base de datos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4180"/>
         <source>Remove all cookies by recreating the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar todas las cookies volviendo a crear la base de datos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4206"/>
@@ -12071,7 +12074,7 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.ui" line="4323"/>
         <source>Emulator log file (write)</source>
-        <translation>Archivo log del emulador (escribir)</translation>
+        <translation>Archivo log del emulador (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4336"/>
@@ -12964,12 +12967,12 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.cpp" line="454"/>
         <source>Launch arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanzar modo arcade</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="479"/>
         <source>Return key</source>
-        <translation type="unfinished"></translation>
+        <translation>Tecla de retorno</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="480"/>
@@ -12989,7 +12992,7 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.cpp" line="484"/>
         <source>Activate item</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar objeto</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="488"/>
@@ -13091,7 +13094,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1754"/>
         <source>invalidating software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>invalidando BD de info de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1771"/>
@@ -13479,7 +13482,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3119"/>
         <source>Choose cookie database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo de base de datos de cookies</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3131"/>
@@ -13556,7 +13559,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3322"/>
         <source>Choose software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar BD info de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3335"/>
@@ -13762,7 +13765,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../procmgr.cpp" line="341"/>
         <source>FATAL: failed to start emulator #%1</source>
-        <translation>ERROR: falló al iniciar emulador #%1</translation>
+        <translation>ERROR: fallo al iniciar emulador #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="346"/>
@@ -14207,17 +14210,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="2668"/>
         <source>yes</source>
-        <translation type="unfinished">sí</translation>
+        <translation>sí</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2670"/>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2672"/>
         <source>partially</source>
-        <translation type="unfinished"></translation>
+        <translation>parcialmente</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3360"/>
@@ -15011,7 +15014,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1139"/>
         <source>Produce sets in individual sub-directories (not recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear sets in sub-directorios individuales (no recomendado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1528"/>
@@ -15554,9 +15557,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1082"/>
         <source>%n set(s) remaining</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n set restante</numerusform>
+            <numerusform>%n sets restantes</numerusform>
         </translation>
     </message>
     <message>
@@ -16088,12 +16091,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2705"/>
         <source>set rewriter: writing &apos;%1&apos; (size: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>organizador de sets: creando &apos;%1&apos; (tamaño: %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2725"/>
         <source>set rewriter: WARNING: failed to write &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>organizador de sets: ATENCIÓN: fallo al crear &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2775"/>
@@ -16147,7 +16150,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2886"/>
         <source>checksum wizard: FATAL: can&apos;t load repro template data from &apos;%1&apos; with expected CRC &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>asistente de verificación: ERROR: no se puede cargar los datos de plantilla repro de &apos;%1&apos; con el CRC esperado &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3040"/>
@@ -16996,7 +16999,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../samplechecker.ui" line="52"/>
         <source>Current status and check progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado actual y comprobación de progreso</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="58"/>
@@ -17005,7 +17008,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../samplechecker.cpp" line="367"/>
         <location filename="../../samplechecker.cpp" line="509"/>
         <source>Idle</source>
-        <translation type="unfinished">Parado</translation>
+        <translation>Parado</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="73"/>
@@ -17023,7 +17026,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../samplechecker.ui" line="99"/>
         <location filename="../../samplechecker.cpp" line="150"/>
         <source>Missing: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausente: 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="114"/>
@@ -17034,7 +17037,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../samplechecker.ui" line="130"/>
         <source>Remove obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar archivos / carpetas obsoletas</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="29"/>
@@ -17069,63 +17072,63 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../samplechecker.cpp" line="155"/>
         <source>preparing sample-check: parsing XML data for relevant sample information</source>
-        <translation type="unfinished"></translation>
+        <translation>preparando comprobación de muestras: procesando datos XML para información de muestras relevante</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="159"/>
         <source>Parsing XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesando datos XML</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="204"/>
         <source>WARNING: XML bug: the game &apos;%1&apos; is referencing a non-existing sample-set (sampleof=&quot;%2&quot;) -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: error de XML: el juego &apos;%1&apos; hace referencia a un set de muestras inexistente (sampleof=&quot;%2&quot;) -- por favor informa a los desarrolladores de MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="237"/>
         <source>WARNING: XML bug: the following games are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: error de XML: los juegos siguientes hacen referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="239"/>
         <source>WARNING: XML bug: the following game is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: error de XML: el juego siguiente hace referencia a un set de muestras que no es necesario (sampleof=&quot;%1&quot;): %2 -- por favor informa a los desarrolladores de MAME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>found %n individual sample set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>encontrado %n set de muestras individual</numerusform>
+            <numerusform>encontrados %n sets de muestras individuales</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>y</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>%n system(s) using samples</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n sistema usando muestras</numerusform>
+            <numerusform>%n sistemas usando muestras</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="249"/>
         <source>Checking sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobando el estado de las muestras</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="250"/>
         <source>check pass 1: checking sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>pase de comprobación 1: comprobando el estado de las muestras</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="303"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
+        <translation>ERROR: no se puede iniciar el ejecutable del emulador en un tiempo razonable, abandonando</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="333"/>
@@ -17140,63 +17143,63 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../samplechecker.cpp" line="339"/>
         <source>Missing: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausente: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="341"/>
         <source>WARNING: received unknown output when checking the sample status of &apos;%1&apos;: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: salida desconocida recibida al comprobar el estado de la muestra de &apos;%1&apos;: &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="344"/>
         <location filename="../../samplechecker.cpp" line="346"/>
         <source>WARNING: received no output when checking the sample status of &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: no se ha recibido respuesta al comprobar el estado de la muestra de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="362"/>
         <source>%1 good, %2 bad, %3 missing, %4 obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 bueno, %2 malo %3 ausente %4 obsoleto</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="380"/>
         <source>Checking for obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprobando archivos / carpetas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="383"/>
         <source>check pass 2: checking for obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>pase de comprobación 2: buscando archivos / carpetas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="416"/>
         <source>WARNING: sample path &apos;%1&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: la ruta de muestras &apos;%1&apos; no existe</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="460"/>
         <source>Removing obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminando archivos / carpetas obsoletos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="474"/>
         <source>obsolete folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>carpeta obsoleta &apos;%1&apos; eliminada</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="482"/>
         <source>obsolete folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>carpeta obsoleta &apos;%1&apos; no puede ser eliminada, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="489"/>
         <source>obsolete file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>archivo obsoleto &apos;%1&apos; eliminado</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="497"/>
         <source>obsolete file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>archivo obsoleto &apos;%1&apos; no puede ser eliminado, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="430"/>
@@ -17206,7 +17209,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../samplechecker.cpp" line="436"/>
         <source>please wait for current activity to finish and try again (the sample-checker can only run exclusively)</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espera a que la actividad actual finalice y vuelve a intentarlo (el comprobador de muestras sólo se puede ejecutar exclusivamente)</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="440"/>
@@ -17440,7 +17443,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="227"/>
         <location filename="../../softwarelist.cpp" line="252"/>
         <source>Supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Soportado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="402"/>
@@ -19049,7 +19052,7 @@ Aunque puede que sean los restos de una caida previa.
         <location filename="../../youtubevideoplayer.cpp" line="1315"/>
         <location filename="../../youtubevideoplayer.cpp" line="1730"/>
         <source>Video info error: %1</source>
-        <translation>Error de info de vídeo: %1</translation>
+        <translation>error info vídeo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1276"/>
@@ -19059,12 +19062,12 @@ Aunque puede que sean los restos de una caida previa.
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1277"/>
         <source>video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>error info vídeo: tiempo de espera agotado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1281"/>
         <source>video info error: unknown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>error info vídeo: razón desconocida</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1314"/>
