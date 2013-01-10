@@ -1,2 +1,9 @@
 The "gmn" directory is the default place to store personal (rich-text / HTML)
 notes about games/machines.
+
+File                            Description
+------------------------------- ----------------------------------------------
+template.html                   Default system notes template
+
+Ultimate Template.html          Alternative system notes template contributed
+                                by José Marcio Rezende Franco aka Shideravan
