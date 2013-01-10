@@ -196,6 +196,7 @@ qmc2/arch/Windows/svnversion.bat
 qmc2/data/cab/.svn
 qmc2/data/cab/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/cat/.svn
+qmc2/data/cat/.svn/text-base/category.ini.svn-base
 qmc2/data/cat/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/ctl/.svn
 qmc2/data/ctl/.svn/text-base/dirinfo.txt.svn-base
