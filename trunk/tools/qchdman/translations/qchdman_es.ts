@@ -2013,13 +2013,13 @@ Extrae un archivo AVI de laser disc de un archivo de entrada CHD.
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg *.iso)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos compatibles (*.cue *.toc *.nrg *.iso)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="982"/>
         <location filename="../projectwidget.cpp" line="1142"/>
         <source>ISO files (*.iso)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos ISO (*.iso)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="983"/>
