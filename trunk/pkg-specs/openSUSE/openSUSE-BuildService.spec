@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.38
+Version:        0.39
 Release:        2
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
@@ -136,6 +136,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-arcade.desktop
 
 %changelog
+* Tue Jan 12 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-1
+- updated spec to QMC2 0.39
+
 * Tue Dec 14 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-2
 - added build rules for 'QMC2 Arcade'
 
