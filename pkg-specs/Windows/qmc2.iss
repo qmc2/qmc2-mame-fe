@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{DB53A3CB-C0CA-494E-AFD4-11C8B66A7B67}
 AppName=QMC2 - M.A.M.E./M.E.S.S./U.M.E. Catalog Launcher II
-AppVerName=QMC2 0.38
+AppVerName=QMC2 0.39
 AppPublisher=The QMC2 Development Team
 AppPublisherURL=http://qmc2.arcadehits.net/wordpress
 AppSupportURL=http://qmc2.arcadehits.net/wordpress
@@ -17,7 +17,7 @@ DefaultGroupName=QMC2
 AllowNoIcons=yes
 LicenseFile=c:\projects\gpl-2.0.txt
 OutputDir=c:\projects\InstallerOutput
-OutputBaseFilename=qmc2-win32-0.38
+OutputBaseFilename=qmc2-win32-0.39
 Compression=lzma2/max
 SolidCompression=yes
 InfoAfterFile=c:\projects\qmc2\package\doc\install-en.rtf
@@ -44,6 +44,7 @@ Name: "{group}\{cm:UninstallProgram,QMC2}"; Filename: "{uninstallexe}"
 Name: "{group}\QMC2 (M.A.M.E.)"; Filename: "{app}\qmc2-mame.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mame.ico"
 Name: "{group}\QMC2 (M.E.S.S.)"; Filename: "{app}\qmc2-mess.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mess.ico"
 Name: "{group}\QMC2 (U.M.E.)"; Filename: "{app}\qmc2-ume.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\ume.ico"
+Name: "{group}\QMC2 Arcade"; Filename: "{app}\qmc2-arcade.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\qmc2-arcade.ico"
 
 [CustomMessages]
 English.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
