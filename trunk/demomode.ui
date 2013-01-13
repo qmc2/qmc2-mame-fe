@@ -14,99 +14,30 @@
    <string>Demo mode</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="3" colspan="2">
-    <widget class="QCheckBox" name="checkBoxFullScreen">
-     <property name="toolTip">
-      <string>Start emulators in full screen mode (otherwise use windowed mode)</string>
-     </property>
-     <property name="text">
-      <string>Full screen</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3" colspan="2">
-    <widget class="QCheckBox" name="checkBoxMaximized">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="toolTip">
-      <string>Maximize emulators when in windowed mode</string>
-     </property>
-     <property name="text">
-      <string>Maximized</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="lineEditNameFilter">
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelCategoryFilter">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="toolTip">
-      <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
+     <property name="text">
+      <string>Category filter</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" rowspan="15" colspan="3">
-    <widget class="QListWidget" name="listWidgetCategoryFilter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
+   <item row="5" column="4" colspan="2">
+    <widget class="QCheckBox" name="checkBoxSequential">
      <property name="toolTip">
-      <string>Select / deselect the categories you want to include / exclude</string>
-     </property>
-    </widget>
-   </item>
-   <item row="19" column="0" colspan="5">
-    <widget class="QLabel" name="labelDemoStatus">
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3" colspan="2">
-    <widget class="QCheckBox" name="checkBoxTagged">
-     <property name="toolTip">
-      <string>Use only tagged games</string>
+      <string>Launch sets sequentially rather than randomly</string>
      </property>
      <property name="text">
-      <string>Tagged</string>
+      <string>Sequential</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="3" colspan="2">
-    <widget class="QCheckBox" name="checkBoxEmbedded">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="toolTip">
-      <string>Embed windowed emulators</string>
-     </property>
-     <property name="text">
-      <string>Embedded</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="labelNameFilter">
-     <property name="text">
-      <string>Name filter</string>
-     </property>
-    </widget>
-   </item>
-   <item row="17" column="3" rowspan="2" colspan="2">
+   <item row="17" column="4" rowspan="2" colspan="2">
     <widget class="QPushButton" name="pushButtonClose">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
@@ -122,73 +53,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="labelDriverStatus">
-     <property name="text">
-      <string>Driver status</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="3">
-    <widget class="QLabel" name="labelCategoryFilter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Category filter</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="3" colspan="2">
-    <widget class="QSpinBox" name="spinBoxSecondsToRun">
-     <property name="toolTip">
-      <string>Number of seconds to run an emulator in demo mode</string>
-     </property>
-     <property name="suffix">
-      <string> s</string>
-     </property>
-     <property name="maximum">
-      <number>999999</number>
-     </property>
-     <property name="value">
-      <number>60</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QToolButton" name="toolButtonClearNameFilter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Clear name filter</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="3" colspan="2">
-    <widget class="QLabel" name="labelSecondsToRun">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Seconds to run</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1" colspan="2">
+   <item row="1" column="1" colspan="3">
     <widget class="QComboBox" name="comboBoxDriverStatus">
      <property name="toolTip">
       <string>Choose the driver maturity states for sets to be included in the demo</string>
@@ -210,6 +75,32 @@
      </item>
     </widget>
    </item>
+   <item row="9" column="4" colspan="2">
+    <widget class="QSpinBox" name="spinBoxPauseSeconds">
+     <property name="toolTip">
+      <string>Number of seconds to pause between emulator runs</string>
+     </property>
+     <property name="suffix">
+      <string> s</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>9999</number>
+     </property>
+     <property name="value">
+      <number>2</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelNameFilter">
+     <property name="text">
+      <string>Name filter</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="labelROMStatesToSelect">
      <property name="sizePolicy">
@@ -223,17 +114,17 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="3" colspan="2">
-    <widget class="QCheckBox" name="checkBoxSequential">
-     <property name="toolTip">
-      <string>Launch sets sequentially rather than randomly</string>
+   <item row="19" column="0" colspan="6">
+    <widget class="QLabel" name="labelDemoStatus">
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
-     <property name="text">
-      <string>Sequential</string>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="0" column="1" colspan="2">
+   <item row="0" column="1" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
       <number>0</number>
@@ -346,52 +237,14 @@
      </item>
     </layout>
    </item>
-   <item row="9" column="3" colspan="2">
-    <widget class="QSpinBox" name="spinBoxPauseSeconds">
-     <property name="toolTip">
-      <string>Number of seconds to pause between emulator runs</string>
-     </property>
-     <property name="suffix">
-      <string> s</string>
-     </property>
-     <property name="minimum">
-      <number>1</number>
-     </property>
-     <property name="maximum">
-      <number>9999</number>
-     </property>
-     <property name="value">
-      <number>2</number>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="3" colspan="2">
-    <widget class="QLabel" name="labelPause">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelDriverStatus">
      <property name="text">
-      <string>Pause (seconds)</string>
+      <string>Driver status</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="3" colspan="2">
-    <widget class="QLabel" name="labelOptions">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Options</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="3" rowspan="7" colspan="2">
+   <item row="10" column="4" rowspan="7" colspan="2">
     <widget class="QPushButton" name="pushButtonRunDemo">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
@@ -404,6 +257,175 @@
      </property>
      <property name="text">
       <string>Run &amp;demo</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QToolButton" name="toolButtonClearNameFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Clear name filter</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4" colspan="2">
+    <widget class="QLabel" name="labelOptions">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Options</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4" colspan="2">
+    <widget class="QCheckBox" name="checkBoxFullScreen">
+     <property name="toolTip">
+      <string>Start emulators in full screen mode (otherwise use windowed mode)</string>
+     </property>
+     <property name="text">
+      <string>Full screen</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4" colspan="2">
+    <widget class="QCheckBox" name="checkBoxTagged">
+     <property name="toolTip">
+      <string>Use only tagged games</string>
+     </property>
+     <property name="text">
+      <string>Tagged</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="4" colspan="2">
+    <widget class="QSpinBox" name="spinBoxSecondsToRun">
+     <property name="toolTip">
+      <string>Number of seconds to run an emulator in demo mode</string>
+     </property>
+     <property name="suffix">
+      <string> s</string>
+     </property>
+     <property name="maximum">
+      <number>999999</number>
+     </property>
+     <property name="value">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="4" colspan="2">
+    <widget class="QLabel" name="labelSecondsToRun">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Seconds to run</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4" colspan="2">
+    <widget class="QCheckBox" name="checkBoxEmbedded">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Embed windowed emulators</string>
+     </property>
+     <property name="text">
+      <string>Embedded</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="4" colspan="2">
+    <widget class="QLabel" name="labelPause">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Pause (seconds)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4" colspan="2">
+    <widget class="QCheckBox" name="checkBoxMaximized">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Maximize emulators when in windowed mode</string>
+     </property>
+     <property name="text">
+      <string>Maximized</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" rowspan="15" colspan="4">
+    <widget class="QListWidget" name="listWidgetCategoryFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Select / deselect the categories you want to include / exclude</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QToolButton" name="toolButtonDeselectAll">
+     <property name="toolTip">
+      <string>Deselect all categories</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/minus_all.png</normaloff>:/data/img/minus_all.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QToolButton" name="toolButtonSelectAll">
+     <property name="toolTip">
+      <string>Select all categories</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/plus_all.png</normaloff>:/data/img/plus_all.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="lineEditNameFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
      </property>
     </widget>
    </item>
@@ -420,6 +442,8 @@
   <tabstop>lineEditNameFilter</tabstop>
   <tabstop>toolButtonClearNameFilter</tabstop>
   <tabstop>checkBoxFullScreen</tabstop>
+  <tabstop>toolButtonSelectAll</tabstop>
+  <tabstop>toolButtonDeselectAll</tabstop>
   <tabstop>checkBoxMaximized</tabstop>
   <tabstop>listWidgetCategoryFilter</tabstop>
   <tabstop>checkBoxEmbedded</tabstop>
@@ -427,6 +451,7 @@
   <tabstop>spinBoxSecondsToRun</tabstop>
   <tabstop>spinBoxPauseSeconds</tabstop>
   <tabstop>pushButtonClose</tabstop>
+  <tabstop>pushButtonRunDemo</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
@@ -440,11 +465,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>355</x>
-     <y>141</y>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>166</y>
+     <y>112</y>
     </hint>
    </hints>
   </connection>
@@ -455,8 +480,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>435</x>
-     <y>322</y>
+     <x>355</x>
+     <y>317</y>
     </hint>
     <hint type="destinationlabel">
      <x>292</x>
@@ -472,11 +497,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>355</x>
-     <y>141</y>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
-     <y>191</y>
+     <y>139</y>
     </hint>
    </hints>
   </connection>

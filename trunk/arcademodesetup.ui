@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>308</width>
-    <height>360</height>
+    <height>372</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -268,136 +268,7 @@
        <string>Game list filter</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="8" column="0">
-        <widget class="QLabel" name="labelNameFilter">
-         <property name="text">
-          <string>Name filter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBoxSortCriteria">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Select sort criteria</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Description</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>ROM state</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Tag</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Year</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Manufacturer</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Name (ID)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>ROM types</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Players</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Driver status</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QToolButton" name="toolButtonBrowseFilteredListFile">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Browse the output file used as the filtered game list</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="labelDriverStatus">
-         <property name="text">
-          <string>Driver status</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBoxSortOrder">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Select sort order</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Ascending</string>
-          </property>
-          <property name="icon">
-           <iconset resource="qmc2.qrc">
-            <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Descending</string>
-          </property>
-          <property name="icon">
-           <iconset resource="qmc2.qrc">
-            <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="10" column="0" colspan="3">
+       <item row="10" column="0" colspan="4">
         <widget class="QListWidget" name="listWidgetCategoryFilter">
          <property name="enabled">
           <bool>false</bool>
@@ -407,8 +278,8 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
-        <widget class="QLineEdit" name="lineEditNameFilter">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEditFilteredListFile">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -419,18 +290,11 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
+          <string>Output file used as the filtered game list</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="labelSortOrder">
-         <property name="text">
-          <string>Sort order</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1" colspan="2">
+       <item row="7" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxDriverStatus">
          <property name="enabled">
           <bool>false</bool>
@@ -455,7 +319,37 @@
          </item>
         </widget>
        </item>
-       <item row="4" column="1" colspan="2">
+       <item row="5" column="0">
+        <widget class="QLabel" name="labelSortCriteria">
+         <property name="text">
+          <string>Sort criteria</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButtonExport">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Export a filtered version of the game list according to the filter / sort settings specified below</string>
+         </property>
+         <property name="text">
+          <string>Export</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
           <number>0</number>
@@ -583,7 +477,40 @@
          </item>
         </layout>
        </item>
-       <item row="8" column="2">
+       <item row="0" column="3">
+        <widget class="QToolButton" name="toolButtonBrowseFilteredListFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse the output file used as the filtered game list</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelROMStatesToSelect">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>ROM state filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="3">
         <widget class="QToolButton" name="toolButtonClearNameFilter">
          <property name="enabled">
           <bool>false</bool>
@@ -603,37 +530,106 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="labelROMStatesToSelect">
+       <item row="5" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxSortCriteria">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text">
-          <string>ROM state filter</string>
+         <property name="toolTip">
+          <string>Select sort criteria</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ROM state</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tag</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Year</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Manufacturer</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Name (ID)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ROM types</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Players</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Driver status</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="labelSortCriteria">
-         <property name="text">
-          <string>Sort criteria</string>
+       <item row="6" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxSortOrder">
+         <property name="enabled">
+          <bool>false</bool>
          </property>
-        </widget>
-       </item>
-       <item row="9" column="0" colspan="3">
-        <widget class="QLabel" name="labelCategoryFilter">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text">
-          <string>Category filter</string>
+         <property name="toolTip">
+          <string>Select sort order</string>
          </property>
+         <item>
+          <property name="text">
+           <string>Ascending</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Descending</string>
+          </property>
+          <property name="icon">
+           <iconset resource="qmc2.qrc">
+            <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="0" column="0">
@@ -646,30 +642,28 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0" colspan="3">
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+       <item row="8" column="0">
+        <widget class="QLabel" name="labelNameFilter">
+         <property name="text">
+          <string>Name filter</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEditFilteredListFile">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Output file used as the filtered game list</string>
+       <item row="7" column="0">
+        <widget class="QLabel" name="labelDriverStatus">
+         <property name="text">
+          <string>Driver status</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" colspan="2">
+       <item row="6" column="0">
+        <widget class="QLabel" name="labelSortOrder">
+         <property name="text">
+          <string>Sort order</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="3">
         <widget class="QProgressBar" name="progressBarFilter">
          <property name="enabled">
           <bool>false</bool>
@@ -685,26 +679,54 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonExport">
+       <item row="9" column="0">
+        <widget class="QLabel" name="labelCategoryFilter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Category filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="3">
+        <widget class="QToolButton" name="toolButtonDeselectAll">
+         <property name="toolTip">
+          <string>Deselect all categories</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/minus_all.png</normaloff>:/data/img/minus_all.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QToolButton" name="toolButtonSelectAll">
+         <property name="toolTip">
+          <string>Select all categories</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/plus_all.png</normaloff>:/data/img/plus_all.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditNameFilter">
          <property name="enabled">
           <bool>false</bool>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Export a filtered version of the game list according to the filter / sort settings specified below</string>
-         </property>
-         <property name="text">
-          <string>Export</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+          <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
          </property>
         </widget>
        </item>
@@ -789,6 +811,8 @@
   <tabstop>comboBoxDriverStatus</tabstop>
   <tabstop>lineEditNameFilter</tabstop>
   <tabstop>toolButtonClearNameFilter</tabstop>
+  <tabstop>toolButtonSelectAll</tabstop>
+  <tabstop>toolButtonDeselectAll</tabstop>
   <tabstop>listWidgetCategoryFilter</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
@@ -804,12 +828,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>103</x>
-     <y>45</y>
+     <x>295</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>73</x>
-     <y>45</y>
+     <x>157</x>
+     <y>230</y>
     </hint>
    </hints>
   </connection>
@@ -820,8 +844,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>146</x>
-     <y>319</y>
+     <x>142</x>
+     <y>367</y>
     </hint>
     <hint type="destinationlabel">
      <x>86</x>
@@ -836,8 +860,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>206</x>
-     <y>322</y>
+     <x>205</x>
+     <y>367</y>
     </hint>
     <hint type="destinationlabel">
      <x>279</x>

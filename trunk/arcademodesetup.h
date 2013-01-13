@@ -27,6 +27,8 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		void on_toolButtonBrowseConfigurationPath_clicked();
 		void on_toolButtonBrowseFilteredListFile_clicked();
 		void on_lineEditFilteredListFile_textChanged(QString);
+		void on_toolButtonSelectAll_clicked();
+		void on_toolButtonDeselectAll_clicked();
 };
 
 #endif
