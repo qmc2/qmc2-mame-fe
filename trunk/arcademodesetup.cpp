@@ -225,6 +225,8 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 	toolButtonSelectI->setEnabled(enable);
 	toolButtonSelectN->setEnabled(enable);
 	toolButtonSelectU->setEnabled(enable);
+	toolButtonSelectAll->setEnabled(enable);
+	toolButtonDeselectAll->setEnabled(enable);
 	comboBoxSortCriteria->setEnabled(enable);
 	comboBoxSortOrder->setEnabled(enable);
 	comboBoxDriverStatus->setEnabled(enable);
