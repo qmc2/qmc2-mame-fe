@@ -136,6 +136,52 @@ qmc2-sdlmame:
 	dh_md5sums -p$@
 	dh_builddeb -p$@
 
+qmc2-arcade:
+	$(MAKE) DISTCFG=1 clean
+	${MAKE} DISTCFG=1 PREFIX=/usr/ arcade
+	mkdir -p ${CURDIR}/debian/qmc2-arcade/usr/bin
+	${MAKE} DISTCFG=1 PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-arcade arcade-install
+	
+	dh_testdir
+	dh_testroot
+	dh_installdirs -p$@
+	dh_installdocs -p$@
+	dh_installchangelogs -p$@
+	dh_installexamples -p$@
+	dh_installman -p$@
+	dh_link -p$@
+	dh_strip -p$@
+	dh_compress -p$@
+	dh_fixperms -p$@
+	dh_installdeb -p$@
+	dh_shlibdeps -p$@
+	dh_gencontrol -p$@
+	dh_md5sums -p$@
+	dh_builddeb -p$@
+
+qchdman:
+	$(MAKE) DISTCFG=1 clean
+	${MAKE} DISTCFG=1 PREFIX=/usr/ tools
+	mkdir -p ${CURDIR}/debian/qchdman/usr/bin
+	${MAKE} DISTCFG=1 PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qchdman tools-install
+	
+	dh_testdir
+	dh_testroot
+	dh_installdirs -p$@
+	dh_installdocs -p$@
+	dh_installchangelogs -p$@
+	dh_installexamples -p$@
+	dh_installman -p$@
+	dh_link -p$@
+	dh_strip -p$@
+	dh_compress -p$@
+	dh_fixperms -p$@
+	dh_installdeb -p$@
+	dh_shlibdeps -p$@
+	dh_gencontrol -p$@
+	dh_md5sums -p$@
+	dh_builddeb -p$@
+
 qmc2-runonce:
 	dh_testdir
 	dh_testroot
@@ -178,8 +224,8 @@ build-arch:
 
 binary-indep: qmc2-data
 
-binary-arch: qmc2-sdlume qmc2-sdlmame qmc2-sdlmess qmc2-runonce
+binary-arch: qmc2-sdlume qmc2-sdlmame qmc2-sdlmess qmc2-runonce qmc2-arcade qchdman
 
 binary: clean binary-arch binary-indep
 
-.PHONY: build clean binary-indep binary-arch binary install configure qmc2-sdlmess qmc2-sdlmame
+.PHONY: build clean binary-indep binary-arch binary install configure qmc2-sdlmess qmc2-sdlmame qmc2-arcade qchdman
