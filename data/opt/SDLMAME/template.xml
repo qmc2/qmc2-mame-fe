@@ -221,7 +221,7 @@
       <description lang="de" text="Namensgebung für Screenshots/Movies ändern: %g == Spielname, %i == Index (bitte beachten, dass dieser Parameter bei Software-Listen durch QMC2 auch automatisch angepasst werden kann!)"/>
       <description lang="pl" text="Zastąp domyślne nazywanie zrzutów ekranu: %g == nazwa gry, %i == indeks"/>
       <description lang="fr" text="Modifier le nommage des captures par défaut: %g == Snomderom, %i == index"/>
-      <description lang="pt" text="Sobrescrever o nome padrão para nomear um snapshot/filme: %g == nomedojogo, %i == índice"/>
+      <description lang="pt" text="Sobrescrever o nome padrão para nomear um snapshot/filme: %g == nomedojogo, %i == índice (note que no caso de listas de software, o QMC2 pode também ajustar esse parâmetro para você!)"/>
       <choice name="%g/%i"/>
     </option>
     <option default="auto" name="snapsize" type="combo">
