@@ -278,22 +278,6 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEditFilteredListFile">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Output file used as the filtered game list</string>
-         </property>
-        </widget>
-       </item>
        <item row="7" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxDriverStatus">
          <property name="enabled">
@@ -727,6 +711,22 @@
          </property>
          <property name="toolTip">
           <string>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditFilteredListFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Output file used as the filtered game list</string>
          </property>
         </widget>
        </item>
