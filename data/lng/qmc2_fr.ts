@@ -404,145 +404,155 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="304"/>
+        <location filename="../../arcademodesetup.ui" line="559"/>
         <source>Tag</source>
         <translation type="unfinished">Tag</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="329"/>
+        <location filename="../../arcademodesetup.ui" line="584"/>
         <source>Players</source>
         <translation type="unfinished">Joueurs</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="351"/>
+        <location filename="../../arcademodesetup.ui" line="492"/>
         <source>Browse the output file used as the filtered game list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="615"/>
+        <location filename="../../arcademodesetup.ui" line="509"/>
         <source>ROM state filter</source>
         <translation type="unfinished">filtre d&apos;état de ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="290"/>
+        <location filename="../../arcademodesetup.ui" line="545"/>
         <source>Select sort criteria</source>
         <translation type="unfinished">Sélectionner le critère de tri</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="294"/>
+        <location filename="../../arcademodesetup.ui" line="549"/>
         <source>Description</source>
         <translation type="unfinished">Description</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="299"/>
+        <location filename="../../arcademodesetup.ui" line="554"/>
         <source>ROM state</source>
         <translation type="unfinished">statut de ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="309"/>
+        <location filename="../../arcademodesetup.ui" line="564"/>
         <source>Year</source>
         <translation type="unfinished">Année</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="314"/>
+        <location filename="../../arcademodesetup.ui" line="569"/>
         <source>Manufacturer</source>
         <translation type="unfinished">Fabricant</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="319"/>
+        <location filename="../../arcademodesetup.ui" line="574"/>
         <source>Name (ID)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="324"/>
+        <location filename="../../arcademodesetup.ui" line="579"/>
         <source>ROM types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="475"/>
+        <location filename="../../arcademodesetup.ui" line="369"/>
         <source>Select ROM state C (correct)?</source>
         <translation type="unfinished">Sélectionner l&apos;état de ROM C (correct) ?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="501"/>
+        <location filename="../../arcademodesetup.ui" line="395"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation type="unfinished">Sélectionner l&apos;état de ROM M (presque correct) ?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="527"/>
+        <location filename="../../arcademodesetup.ui" line="421"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation type="unfinished">Sélectionner l&apos;état de ROM I (incorrect) ?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="550"/>
+        <location filename="../../arcademodesetup.ui" line="444"/>
         <source>Select ROM state N (not found)?</source>
         <translation type="unfinished">Sélectionner l&apos;état de ROM N (non trouvé) ?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="573"/>
+        <location filename="../../arcademodesetup.ui" line="467"/>
         <source>Select ROM state U (unknown)?</source>
         <translation type="unfinished">Sélectionner l&apos;état de ROM U (inconnu) ?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="334"/>
-        <location filename="../../arcademodesetup.ui" line="362"/>
+        <location filename="../../arcademodesetup.ui" line="589"/>
+        <location filename="../../arcademodesetup.ui" line="655"/>
         <source>Driver status</source>
         <translation type="unfinished">Statut du driver</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="439"/>
+        <location filename="../../arcademodesetup.ui" line="303"/>
         <source>Choose the driver maturity states for sets to be included</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="443"/>
-        <location filename="../../arcademodesetup.cpp" line="308"/>
-        <location filename="../../arcademodesetup.cpp" line="311"/>
+        <location filename="../../arcademodesetup.ui" line="307"/>
+        <location filename="../../arcademodesetup.cpp" line="314"/>
+        <location filename="../../arcademodesetup.cpp" line="317"/>
         <source>good</source>
         <translation type="unfinished">bon</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="448"/>
+        <location filename="../../arcademodesetup.ui" line="312"/>
         <source>good + preliminary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="453"/>
+        <location filename="../../arcademodesetup.ui" line="317"/>
         <source>good + preliminary + imperfect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="274"/>
+        <location filename="../../arcademodesetup.ui" line="648"/>
         <source>Name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="422"/>
+        <location filename="../../arcademodesetup.ui" line="698"/>
+        <source>Deselect all categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="709"/>
+        <source>Select all categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="729"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="598"/>
+        <location filename="../../arcademodesetup.ui" line="525"/>
         <source>Clear name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="635"/>
+        <location filename="../../arcademodesetup.ui" line="691"/>
         <source>Category filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="406"/>
+        <location filename="../../arcademodesetup.ui" line="277"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="622"/>
+        <location filename="../../arcademodesetup.ui" line="325"/>
         <source>Sort criteria</source>
         <translation type="unfinished">Critère de tri</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="429"/>
+        <location filename="../../arcademodesetup.ui" line="662"/>
         <source>Sort order</source>
         <translation type="unfinished">Ordre de tri</translation>
     </message>
@@ -552,73 +562,73 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="378"/>
+        <location filename="../../arcademodesetup.ui" line="613"/>
         <source>Select sort order</source>
         <translation type="unfinished">Sélectionner l&apos;ordre de tri</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="382"/>
+        <location filename="../../arcademodesetup.ui" line="617"/>
         <source>Ascending</source>
         <translation type="unfinished">Ascendant</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="391"/>
+        <location filename="../../arcademodesetup.ui" line="626"/>
         <source>Descending</source>
         <translation type="unfinished">Descendant</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="642"/>
+        <location filename="../../arcademodesetup.ui" line="638"/>
         <source>Use a filtered version of the game list (otherwise use the full list)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="645"/>
+        <location filename="../../arcademodesetup.ui" line="641"/>
         <source>Use filtered list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="668"/>
+        <location filename="../../arcademodesetup.ui" line="293"/>
         <source>Output file used as the filtered game list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="678"/>
+        <location filename="../../arcademodesetup.ui" line="672"/>
         <source>Filter / export progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="684"/>
-        <location filename="../../arcademodesetup.cpp" line="372"/>
+        <location filename="../../arcademodesetup.ui" line="678"/>
+        <location filename="../../arcademodesetup.cpp" line="378"/>
         <source>Idle</source>
         <translation type="unfinished">Idle</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="700"/>
+        <location filename="../../arcademodesetup.ui" line="341"/>
         <source>Export a filtered version of the game list according to the filter / sort settings specified below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="703"/>
+        <location filename="../../arcademodesetup.ui" line="344"/>
         <source>Export</source>
         <translation type="unfinished">Exporter</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="715"/>
+        <location filename="../../arcademodesetup.ui" line="737"/>
         <source>Keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="720"/>
+        <location filename="../../arcademodesetup.ui" line="742"/>
         <source>Joystick</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="741"/>
+        <location filename="../../arcademodesetup.ui" line="763"/>
         <source>&amp;Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="748"/>
+        <location filename="../../arcademodesetup.ui" line="770"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Annuler</translation>
     </message>
@@ -633,81 +643,81 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Version​‎</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="155"/>
-        <location filename="../../arcademodesetup.cpp" line="157"/>
-        <location filename="../../arcademodesetup.cpp" line="175"/>
-        <location filename="../../arcademodesetup.cpp" line="299"/>
+        <location filename="../../arcademodesetup.cpp" line="159"/>
+        <location filename="../../arcademodesetup.cpp" line="161"/>
+        <location filename="../../arcademodesetup.cpp" line="179"/>
+        <location filename="../../arcademodesetup.cpp" line="305"/>
         <source>?</source>
         <translation type="unfinished">?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="232"/>
+        <location filename="../../arcademodesetup.cpp" line="238"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="232"/>
-        <location filename="../../arcademodesetup.cpp" line="253"/>
+        <location filename="../../arcademodesetup.cpp" line="238"/>
+        <location filename="../../arcademodesetup.cpp" line="259"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="239"/>
+        <location filename="../../arcademodesetup.cpp" line="245"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="246"/>
+        <location filename="../../arcademodesetup.cpp" line="252"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="253"/>
+        <location filename="../../arcademodesetup.cpp" line="259"/>
         <source>Choose filtered list file for export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="263"/>
+        <location filename="../../arcademodesetup.cpp" line="269"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="287"/>
+        <location filename="../../arcademodesetup.cpp" line="293"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="289"/>
+        <location filename="../../arcademodesetup.cpp" line="295"/>
         <source>Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="308"/>
+        <location filename="../../arcademodesetup.cpp" line="314"/>
         <source>preliminary</source>
         <translation type="unfinished">préliminaire</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="341"/>
+        <location filename="../../arcademodesetup.cpp" line="347"/>
         <source>Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="349"/>
+        <location filename="../../arcademodesetup.cpp" line="355"/>
         <source>Exporting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="364"/>
+        <location filename="../../arcademodesetup.cpp" line="370"/>
         <source>ROM</source>
         <translation type="unfinished">ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="365"/>
+        <location filename="../../arcademodesetup.cpp" line="371"/>
         <source>CHD</source>
         <translation type="unfinished">CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="374"/>
+        <location filename="../../arcademodesetup.cpp" line="380"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1008,13 +1018,13 @@ p, li { white-space: pre-wrap; }
         <translation>Mode démo stoppé</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="406"/>
+        <location filename="../../demomode.ui" line="259"/>
         <location filename="../../demomode.cpp" line="174"/>
         <source>Run &amp;demo</source>
         <translation>Jouer la &amp;démo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="403"/>
+        <location filename="../../demomode.ui" line="256"/>
         <location filename="../../demomode.cpp" line="175"/>
         <source>Run demo now</source>
         <translation>Jouer la démo maintenant</translation>
@@ -1081,175 +1091,185 @@ p, li { white-space: pre-wrap; }
         <translation>Mode démo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="170"/>
+        <location filename="../../demomode.ui" line="272"/>
         <source>Clear name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="222"/>
+        <location filename="../../demomode.ui" line="113"/>
         <source>ROM state filter</source>
         <translation>filtre d&apos;état de ROM</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="250"/>
+        <location filename="../../demomode.ui" line="141"/>
         <source>Select ROM state C (correct)?</source>
         <translation>Sélectionner l&apos;état de ROM C (correct) ?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="273"/>
+        <location filename="../../demomode.ui" line="164"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation>Sélectionner l&apos;état de ROM M (presque correct) ?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="296"/>
+        <location filename="../../demomode.ui" line="187"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation>Sélectionner l&apos;état de ROM I (incorrect) ?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="316"/>
+        <location filename="../../demomode.ui" line="207"/>
         <source>Select ROM state N (not found)?</source>
         <translation>Sélectionner l&apos;état de ROM N (non trouvé) ?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="336"/>
+        <location filename="../../demomode.ui" line="227"/>
         <source>Select ROM state U (unknown)?</source>
         <translation>Sélectionner l&apos;état de ROM U (inconnu) ?</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="187"/>
+        <location filename="../../demomode.ui" line="341"/>
         <source>Seconds to run</source>
         <translation>Nombre de secondes à jouer</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="148"/>
+        <location filename="../../demomode.ui" line="319"/>
         <source>Number of seconds to run an emulator in demo mode</source>
         <translation>Nombre de secondes à jouer un émulateur en mode démo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="82"/>
+        <location filename="../../demomode.ui" line="309"/>
         <source>Use only tagged games</source>
         <translation>Utilise uniquement les jeux taggés</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="85"/>
+        <location filename="../../demomode.ui" line="312"/>
         <source>Tagged</source>
         <translation>Taggés</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="377"/>
+        <location filename="../../demomode.ui" line="367"/>
         <source>Pause (seconds)</source>
         <translation>Pause (secondes)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="352"/>
+        <location filename="../../demomode.ui" line="81"/>
         <source>Number of seconds to pause between emulator runs</source>
         <translation>Nombre de secondes de pause entre les sessions d&apos;émulateurs</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="141"/>
+        <location filename="../../demomode.ui" line="26"/>
         <source>Category filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="128"/>
+        <location filename="../../demomode.ui" line="243"/>
         <source>Driver status</source>
         <translation type="unfinished">Statut du driver</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="105"/>
+        <location filename="../../demomode.ui" line="100"/>
         <source>Name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="194"/>
+        <location filename="../../demomode.ui" line="59"/>
         <source>Choose the driver maturity states for sets to be included in the demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="198"/>
+        <location filename="../../demomode.ui" line="63"/>
         <location filename="../../demomode.cpp" line="232"/>
         <location filename="../../demomode.cpp" line="235"/>
         <source>good</source>
         <translation type="unfinished">bon</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="203"/>
+        <location filename="../../demomode.ui" line="68"/>
         <source>good + preliminary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="208"/>
+        <location filename="../../demomode.ui" line="73"/>
         <source>good + preliminary + imperfect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="20"/>
+        <location filename="../../demomode.ui" line="296"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
         <translation>Démarrer les émulateurs en plein écran (écrase le mode fenêtré)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="23"/>
+        <location filename="../../demomode.ui" line="299"/>
         <source>Full screen</source>
         <translation>Plein écran</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="229"/>
+        <location filename="../../demomode.ui" line="33"/>
         <source>Launch sets sequentially rather than randomly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="232"/>
+        <location filename="../../demomode.ui" line="36"/>
         <source>Sequential</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="52"/>
+        <location filename="../../demomode.ui" line="400"/>
+        <source>Deselect all categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="411"/>
+        <source>Select all categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="428"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="65"/>
+        <location filename="../../demomode.ui" line="393"/>
         <source>Select / deselect the categories you want to include / exclude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="36"/>
+        <location filename="../../demomode.ui" line="377"/>
         <source>Maximize emulators when in windowed mode</source>
         <translation>Maximiser l&apos;émulation en mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="39"/>
+        <location filename="../../demomode.ui" line="380"/>
         <source>Maximized</source>
         <translation>Maximisé</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="95"/>
+        <location filename="../../demomode.ui" line="351"/>
         <source>Embed windowed emulators</source>
         <translation>Embarquer les émulateurs en fenêtre</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="98"/>
+        <location filename="../../demomode.ui" line="354"/>
         <source>Embedded</source>
         <translation>Embarqué</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="151"/>
-        <location filename="../../demomode.ui" line="355"/>
+        <location filename="../../demomode.ui" line="84"/>
+        <location filename="../../demomode.ui" line="322"/>
         <source> s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="390"/>
+        <location filename="../../demomode.ui" line="289"/>
         <source>Options</source>
         <translation type="unfinished">Options</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="118"/>
+        <location filename="../../demomode.ui" line="49"/>
         <source>Close this dialog (and stop running demo)</source>
         <translation>Fermer cette fenêtre (et stopper la démo)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="121"/>
+        <location filename="../../demomode.ui" line="52"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -14135,7 +14155,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Phonon actif - Utilise Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1925"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1924"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>lecteur vidéo: erreur XML: erreur fatal ligne %1, colonne %2: %3</translation>
     </message>
@@ -18918,7 +18938,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="172"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1550"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1549"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Plein écran (retour avec la touche de bascul)</translation>
     </message>
@@ -19042,78 +19062,78 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1191"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1315"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1730"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1314"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1729"/>
         <source>Video info error: %1</source>
         <translation>Info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1276"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1275"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1277"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1276"/>
         <source>video info error: timeout occurred</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1281"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1280"/>
         <source>video info error: unknown reason</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1314"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1313"/>
         <source>video player: video info error: %1</source>
         <translation>lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1548"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1547"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Plein écran (presser %1 pour revenir)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1729"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1728"/>
         <source>video player: video image info error: %1</source>
         <translation>lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1761"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1760"/>
         <source>video player: search request error: %1</source>
         <translation>lecteur vidéo: erreur de recherche: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1789"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1788"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1822"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1821"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1828"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1827"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1845"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1844"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1847"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1846"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1849"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1848"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1851"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1850"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
     </message>

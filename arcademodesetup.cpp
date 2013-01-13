@@ -206,6 +206,8 @@ void ArcadeModeSetup::adjustIconSizes()
 	toolButtonSelectI->setIconSize(iconSize);
 	toolButtonSelectN->setIconSize(iconSize);
 	toolButtonSelectU->setIconSize(iconSize);
+	toolButtonSelectAll->setIconSize(iconSize);
+	toolButtonDeselectAll->setIconSize(iconSize);
 	comboBoxSortOrder->setIconSize(iconSize);
 	toolButtonClearNameFilter->setIconSize(iconSize);
 
@@ -381,6 +383,22 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 void ArcadeModeSetup::on_lineEditFilteredListFile_textChanged(QString text)
 {
 	pushButtonExport->setEnabled(checkBoxUseFilteredList->isChecked() && isWritableFile(text));
+}
+
+void ArcadeModeSetup::on_toolButtonSelectAll_clicked()
+{
+	for (int i = 0; i < listWidgetCategoryFilter->count(); i++) {
+		QListWidgetItem *item = listWidgetCategoryFilter->item(i);
+		item->setCheckState(Qt::Checked);
+	}
+}
+
+void ArcadeModeSetup::on_toolButtonDeselectAll_clicked()
+{
+	for (int i = 0; i < listWidgetCategoryFilter->count(); i++) {
+		QListWidgetItem *item = listWidgetCategoryFilter->item(i);
+		item->setCheckState(Qt::Unchecked);
+	}
 }
 
 bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *item2)

@@ -365,6 +365,8 @@ void DemoModeDialog::adjustIconSizes()
   toolButtonSelectI->setIconSize(iconSize);
   toolButtonSelectN->setIconSize(iconSize);
   toolButtonSelectU->setIconSize(iconSize);
+  toolButtonSelectAll->setIconSize(iconSize);
+  toolButtonDeselectAll->setIconSize(iconSize);
   toolButtonClearNameFilter->setIconSize(iconSize);
 
   pushButtonRunDemo->setMinimumHeight(fm.height() * 3);
@@ -382,4 +384,20 @@ void DemoModeDialog::setStatus(QString statusString)
 		labelDemoStatus->show();
 	}
 	adjustSize();
+}
+
+void DemoModeDialog::on_toolButtonSelectAll_clicked()
+{
+	for (int i = 0; i < listWidgetCategoryFilter->count(); i++) {
+		QListWidgetItem *item = listWidgetCategoryFilter->item(i);
+		item->setCheckState(Qt::Checked);
+	}
+}
+
+void DemoModeDialog::on_toolButtonDeselectAll_clicked()
+{
+	for (int i = 0; i < listWidgetCategoryFilter->count(); i++) {
+		QListWidgetItem *item = listWidgetCategoryFilter->item(i);
+		item->setCheckState(Qt::Unchecked);
+	}
 }

@@ -27,6 +27,8 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
     void clearStatus() { setStatus(QString()); }
     void updateCategoryFilter();
     void saveCategoryFilter();
+    void on_toolButtonSelectAll_clicked();
+    void on_toolButtonDeselectAll_clicked();
 
   protected:
     void closeEvent(QCloseEvent *);
