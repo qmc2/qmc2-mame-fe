@@ -255,11 +255,13 @@ void SoftwareListExporter::exportToASCII()
 	bool ascendingOrder = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortOrder", 0).toInt() == 0;
 	bool showMoreChars = maxLength > 3;
 	while ( ascendingOrder ? itExport.hasNext() : itExport.hasPrevious() ) {
-		if  ( ascendingOrder ) itExport.next(); else itExport.previous();
-		QList<QTreeWidgetItem *> itemList = exportMap.values(itExport.key());
-		for (int i = 0; i < itemList.count(); i++) {
-			progressBarExport->setValue(++count);
-			QTreeWidgetItem *item = itemList[i];
+		if  ( ascendingOrder )
+			itExport.next();
+		else
+			itExport.previous();
+		QTreeWidgetItem *item = itExport.value();
+		progressBarExport->setValue(++count);
+		if ( item ) {
 			for (int j = 0; j < columnIndexes.count(); j++) {
 				QString s = item->text(columnIndexes[j]);
 				int w = maxColumnWidth[headerNames[j]];
@@ -374,11 +376,13 @@ void SoftwareListExporter::exportToCSV()
 	QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
 	bool ascendingOrder = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortOrder", 0).toInt() == 0;
 	while ( ascendingOrder ? itExport.hasNext() : itExport.hasPrevious() ) {
-		if  ( ascendingOrder ) itExport.next(); else itExport.previous();
-		QList<QTreeWidgetItem *> itemList = exportMap.values(itExport.key());
-		for (int i = 0; i < itemList.count(); i++) {
-			progressBarExport->setValue(++count);
-			QTreeWidgetItem *item = itemList[i];
+		if  ( ascendingOrder )
+			itExport.next();
+		else
+			itExport.previous();
+		QTreeWidgetItem *item = itExport.value();
+		progressBarExport->setValue(++count);
+		if ( item ) {
 			for (int j = 0; j < columnIndexes.count(); j++) {
 				QString s = item->text(columnIndexes[j]);
 				ts << del << s << del << sep;
