@@ -27,9 +27,9 @@ SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 
 	exportListAutoCorrected = false;
 
-	columnNames << tr("Title") << tr("Name") << tr("Publisher") << tr("Year") << tr("Part") << tr("Interface") << tr("List");
-	columnNamesUntranslated << "Title" << "Name" << "Publisher" << "Year" << "Part" << "Interface" << "List";
-	defaultColumnActivation << "true" << "true" << "true" << "true" << "true" << "true" << "true";
+	columnNames << tr("Title") << tr("Name") << tr("Publisher") << tr("Year") << tr("Part") << tr("Interface") << tr("List") << tr("Supported");
+	columnNamesUntranslated << "Title" << "Name" << "Publisher" << "Year" << "Part" << "Interface" << "List" << "Supported";
+	defaultColumnActivation << "true" << "true" << "true" << "true" << "true" << "true" << "true" << "true";
 
 	comboBoxOutputFormat->insertSeparator(QMC2_SWLISTEXPORT_FORMAT_SEP_INDEX);
 	comboBoxOutputFormat->insertItem(QMC2_SWLISTEXPORT_FORMAT_ALL_INDEX, tr("Both formats"));
