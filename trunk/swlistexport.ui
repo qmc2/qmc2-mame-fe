@@ -344,6 +344,11 @@
        <string>List</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Supported</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="11" column="0" colspan="5">
@@ -530,6 +535,11 @@
        <string>List</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Supported</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="5" column="0" colspan="3">
@@ -585,17 +595,6 @@
     </spacer>
    </item>
   </layout>
-  <zorder>stackedWidgetOutputParams</zorder>
-  <zorder>listWidgetColumns</zorder>
-  <zorder>labelSortCriteria</zorder>
-  <zorder>labelSortOrder</zorder>
-  <zorder>labelOutputFormat</zorder>
-  <zorder>comboBoxOutputFormat</zorder>
-  <zorder>comboBoxSortOrder</zorder>
-  <zorder>comboBoxSortCriteria</zorder>
-  <zorder>checkBoxOverwriteBlindly</zorder>
-  <zorder>checkBoxExportToClipboard</zorder>
-  <zorder>checkBoxIncludeColumnHeaders</zorder>
  </widget>
  <tabstops>
   <tabstop>comboBoxOutputFormat</tabstop>

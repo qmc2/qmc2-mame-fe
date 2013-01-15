@@ -404,140 +404,140 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="559"/>
+        <location filename="../../arcademodesetup.ui" line="543"/>
         <source>Tag</source>
         <translation type="unfinished">Tagg</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="584"/>
+        <location filename="../../arcademodesetup.ui" line="568"/>
         <source>Players</source>
         <translation type="unfinished">Spelare</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="492"/>
+        <location filename="../../arcademodesetup.ui" line="476"/>
         <source>Browse the output file used as the filtered game list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="509"/>
+        <location filename="../../arcademodesetup.ui" line="493"/>
         <source>ROM state filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="545"/>
+        <location filename="../../arcademodesetup.ui" line="529"/>
         <source>Select sort criteria</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="549"/>
+        <location filename="../../arcademodesetup.ui" line="533"/>
         <source>Description</source>
         <translation type="unfinished">Beskrivning</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="554"/>
+        <location filename="../../arcademodesetup.ui" line="538"/>
         <source>ROM state</source>
         <translation type="unfinished">ROM-tillstånd</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="564"/>
+        <location filename="../../arcademodesetup.ui" line="548"/>
         <source>Year</source>
         <translation type="unfinished">År</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="569"/>
+        <location filename="../../arcademodesetup.ui" line="553"/>
         <source>Manufacturer</source>
         <translation type="unfinished">Tillverkare</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="574"/>
+        <location filename="../../arcademodesetup.ui" line="558"/>
         <source>Name (ID)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="579"/>
+        <location filename="../../arcademodesetup.ui" line="563"/>
         <source>ROM types</source>
         <translation type="unfinished">ROM-typer</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="369"/>
+        <location filename="../../arcademodesetup.ui" line="353"/>
         <source>Select ROM state C (correct)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="395"/>
+        <location filename="../../arcademodesetup.ui" line="379"/>
         <source>Select ROM state M (mostly correct)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="421"/>
+        <location filename="../../arcademodesetup.ui" line="405"/>
         <source>Select ROM state I (incorrect)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="444"/>
+        <location filename="../../arcademodesetup.ui" line="428"/>
         <source>Select ROM state N (not found)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="467"/>
+        <location filename="../../arcademodesetup.ui" line="451"/>
         <source>Select ROM state U (unknown)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="589"/>
-        <location filename="../../arcademodesetup.ui" line="655"/>
+        <location filename="../../arcademodesetup.ui" line="573"/>
+        <location filename="../../arcademodesetup.ui" line="639"/>
         <source>Driver status</source>
         <translation type="unfinished">Drivrutinsstatus</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="303"/>
+        <location filename="../../arcademodesetup.ui" line="287"/>
         <source>Choose the driver maturity states for sets to be included</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="307"/>
-        <location filename="../../arcademodesetup.cpp" line="314"/>
-        <location filename="../../arcademodesetup.cpp" line="317"/>
+        <location filename="../../arcademodesetup.ui" line="291"/>
+        <location filename="../../arcademodesetup.cpp" line="316"/>
+        <location filename="../../arcademodesetup.cpp" line="319"/>
         <source>good</source>
         <translation type="unfinished">bra</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="312"/>
+        <location filename="../../arcademodesetup.ui" line="296"/>
         <source>good + preliminary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="317"/>
+        <location filename="../../arcademodesetup.ui" line="301"/>
         <source>good + preliminary + imperfect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="648"/>
+        <location filename="../../arcademodesetup.ui" line="632"/>
         <source>Name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="698"/>
+        <location filename="../../arcademodesetup.ui" line="682"/>
         <source>Deselect all categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="709"/>
+        <location filename="../../arcademodesetup.ui" line="693"/>
         <source>Select all categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="729"/>
+        <location filename="../../arcademodesetup.ui" line="713"/>
         <source>Specify a name (ID) filter-expression (Qt regular-expression syntax!) -- leave empty to not filter by name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="525"/>
+        <location filename="../../arcademodesetup.ui" line="509"/>
         <source>Clear name filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="691"/>
+        <location filename="../../arcademodesetup.ui" line="675"/>
         <source>Category filter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -547,12 +547,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="325"/>
+        <location filename="../../arcademodesetup.ui" line="309"/>
         <source>Sort criteria</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="662"/>
+        <location filename="../../arcademodesetup.ui" line="646"/>
         <source>Sort order</source>
         <translation type="unfinished">Sorteringsordning</translation>
     </message>
@@ -562,53 +562,53 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Allmänna inställningar</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="613"/>
+        <location filename="../../arcademodesetup.ui" line="597"/>
         <source>Select sort order</source>
         <translation type="unfinished">Välj sorteringsordning</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="617"/>
+        <location filename="../../arcademodesetup.ui" line="601"/>
         <source>Ascending</source>
         <translation type="unfinished">Stigande</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="626"/>
+        <location filename="../../arcademodesetup.ui" line="610"/>
         <source>Descending</source>
         <translation type="unfinished">Fallande</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="638"/>
+        <location filename="../../arcademodesetup.ui" line="622"/>
         <source>Use a filtered version of the game list (otherwise use the full list)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="641"/>
+        <location filename="../../arcademodesetup.ui" line="625"/>
         <source>Use filtered list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="293"/>
+        <location filename="../../arcademodesetup.ui" line="729"/>
         <source>Output file used as the filtered game list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="672"/>
+        <location filename="../../arcademodesetup.ui" line="656"/>
         <source>Filter / export progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="678"/>
-        <location filename="../../arcademodesetup.cpp" line="378"/>
+        <location filename="../../arcademodesetup.ui" line="662"/>
+        <location filename="../../arcademodesetup.cpp" line="380"/>
         <source>Idle</source>
         <translation type="unfinished">Overksam</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="341"/>
+        <location filename="../../arcademodesetup.ui" line="325"/>
         <source>Export a filtered version of the game list according to the filter / sort settings specified below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.ui" line="344"/>
+        <location filename="../../arcademodesetup.ui" line="328"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
@@ -646,78 +646,78 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="159"/>
         <location filename="../../arcademodesetup.cpp" line="161"/>
         <location filename="../../arcademodesetup.cpp" line="179"/>
-        <location filename="../../arcademodesetup.cpp" line="305"/>
+        <location filename="../../arcademodesetup.cpp" line="307"/>
         <source>?</source>
         <translation type="unfinished">?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="238"/>
+        <location filename="../../arcademodesetup.cpp" line="240"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="238"/>
-        <location filename="../../arcademodesetup.cpp" line="259"/>
+        <location filename="../../arcademodesetup.cpp" line="240"/>
+        <location filename="../../arcademodesetup.cpp" line="261"/>
         <source>All files (*)</source>
         <translation type="unfinished">Alla filer (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="245"/>
+        <location filename="../../arcademodesetup.cpp" line="247"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="252"/>
+        <location filename="../../arcademodesetup.cpp" line="254"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="259"/>
+        <location filename="../../arcademodesetup.cpp" line="261"/>
         <source>Choose filtered list file for export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="269"/>
+        <location filename="../../arcademodesetup.cpp" line="271"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="293"/>
+        <location filename="../../arcademodesetup.cpp" line="295"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="295"/>
+        <location filename="../../arcademodesetup.cpp" line="297"/>
         <source>Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="314"/>
+        <location filename="../../arcademodesetup.cpp" line="316"/>
         <source>preliminary</source>
         <translation type="unfinished">preliminär</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="347"/>
+        <location filename="../../arcademodesetup.cpp" line="349"/>
         <source>Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="355"/>
+        <location filename="../../arcademodesetup.cpp" line="357"/>
         <source>Exporting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="370"/>
+        <location filename="../../arcademodesetup.cpp" line="372"/>
         <source>ROM</source>
         <translation type="unfinished">ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="371"/>
+        <location filename="../../arcademodesetup.cpp" line="373"/>
         <source>CHD</source>
         <translation type="unfinished">CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="380"/>
+        <location filename="../../arcademodesetup.cpp" line="382"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -17936,160 +17936,167 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="314"/>
-        <location filename="../../swlistexport.ui" line="500"/>
+        <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="319"/>
-        <location filename="../../swlistexport.ui" line="505"/>
+        <location filename="../../swlistexport.ui" line="510"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Name</source>
         <translation type="unfinished">Namn</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
-        <location filename="../../swlistexport.ui" line="510"/>
+        <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Publisher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="329"/>
-        <location filename="../../swlistexport.ui" line="515"/>
+        <location filename="../../swlistexport.ui" line="520"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Year</source>
         <translation>År</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
-        <location filename="../../swlistexport.ui" line="520"/>
+        <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="339"/>
-        <location filename="../../swlistexport.ui" line="525"/>
+        <location filename="../../swlistexport.ui" line="530"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Interface</source>
         <translation type="unfinished">Gränssnitt</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
-        <location filename="../../swlistexport.ui" line="530"/>
+        <location filename="../../swlistexport.ui" line="535"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="354"/>
+        <location filename="../../swlistexport.ui" line="349"/>
+        <location filename="../../swlistexport.ui" line="540"/>
+        <location filename="../../swlistexport.cpp" line="30"/>
+        <source>Supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../swlistexport.ui" line="359"/>
         <source>Export now!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="357"/>
+        <location filename="../../swlistexport.ui" line="362"/>
         <source>&amp;Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="368"/>
+        <location filename="../../swlistexport.ui" line="373"/>
         <source>Close software-list export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="371"/>
+        <location filename="../../swlistexport.ui" line="376"/>
         <source>&amp;Close</source>
         <translation>S&amp;täng</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="382"/>
+        <location filename="../../swlistexport.ui" line="387"/>
         <source>Export progress indicator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="388"/>
+        <location filename="../../swlistexport.ui" line="393"/>
         <source>%p%</source>
         <translation>%p%</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="403"/>
+        <location filename="../../swlistexport.ui" line="408"/>
         <source>Sort criteria</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="416"/>
+        <location filename="../../swlistexport.ui" line="421"/>
         <source>Sort order</source>
         <translation type="unfinished">Sorteringsordning</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="429"/>
+        <location filename="../../swlistexport.ui" line="434"/>
         <source>Output format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="442"/>
+        <location filename="../../swlistexport.ui" line="447"/>
         <source>Select output format</source>
         <translation type="unfinished">Välj utdataformat</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="446"/>
+        <location filename="../../swlistexport.ui" line="451"/>
         <source>ASCII</source>
         <translation type="unfinished">ASCII</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="451"/>
+        <location filename="../../swlistexport.ui" line="456"/>
         <source>CSV</source>
         <translation type="unfinished">CSV</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="465"/>
+        <location filename="../../swlistexport.ui" line="470"/>
         <source>Select sort order</source>
         <translation type="unfinished">Välj sorteringsordning</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="469"/>
+        <location filename="../../swlistexport.ui" line="474"/>
         <source>Ascending</source>
         <translation>Stigande</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="478"/>
+        <location filename="../../swlistexport.ui" line="483"/>
         <source>Descending</source>
         <translation type="unfinished">Fallande</translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="496"/>
+        <location filename="../../swlistexport.ui" line="501"/>
         <source>Select sort criteria</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="538"/>
+        <location filename="../../swlistexport.ui" line="548"/>
         <source>Overwrite existing files without asking what to do</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="541"/>
+        <location filename="../../swlistexport.ui" line="551"/>
         <source>Overwrite files blindly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="551"/>
+        <location filename="../../swlistexport.ui" line="561"/>
         <source>Export to the system clipboard instead of a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="554"/>
+        <location filename="../../swlistexport.ui" line="564"/>
         <source>Export to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="564"/>
+        <location filename="../../swlistexport.ui" line="574"/>
         <source>Include column header texts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../swlistexport.ui" line="567"/>
+        <location filename="../../swlistexport.ui" line="577"/>
         <source>Include column headers</source>
         <translation type="unfinished"></translation>
     </message>
