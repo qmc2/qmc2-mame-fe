@@ -143,6 +143,12 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionRemoveFromFavorites->setToolTip(s); actionRemoveFromFavorites->setStatusTip(s);
 	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/remove_from_favorites.png")));
 	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
+	softwareListMenu->addSeparator();
+	s = tr("Clear software selection");
+	actionClearSelection = softwareListMenu->addAction(tr("&Clear selection"));
+	actionClearSelection->setToolTip(s); actionClearSelection->setStatusTip(s);
+	actionClearSelection->setIcon(QIcon(QString::fromUtf8(":/data/img/broom.png")));
+	connect(actionClearSelection, SIGNAL(triggered()), this, SLOT(clearSoftwareSelection()));
 
 	// favorites options menu
 	favoritesOptionsMenu = new QMenu(this);
@@ -298,6 +304,25 @@ void SoftwareList::adjustSnapnamePattern()
 						items, index, true, &ok);
 	if ( ok )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", pattern);
+}
+
+void SoftwareList::clearSoftwareSelection()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::clearSoftwareSelection()");
+#endif
+
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			treeWidgetKnownSoftware->clearSelection();
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidgetFavoriteSoftware->clearSelection();
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidgetSearchResults->clearSelection();
+			break;
+	}
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
