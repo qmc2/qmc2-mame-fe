@@ -160,6 +160,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuAutoPause;
 #endif
     QList<int> hSplitterSizes;
+    QList<int> vSplitterSizes;
+    QList<int> vSplitterSizesSoftwareDetail;
     QRect desktopGeometry;
     QWidget *hSplitterWidget0;
     QWidget *vSplitterWidget0;

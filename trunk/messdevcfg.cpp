@@ -1601,7 +1601,7 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item = %1)").arg(qulonglong)item);
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
 	dontIgnoreNameChange = true;

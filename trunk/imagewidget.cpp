@@ -148,7 +148,7 @@ void ImageWidget::refresh()
 bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::loadImage(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4, bool loadImages = %5)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName)).arg(loadImages);
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageWidget::loadImage(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4, bool loadImages = %5)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName).arg(loadImages));
 #endif
 
 	ImagePixmap pm;
