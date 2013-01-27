@@ -1415,19 +1415,22 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 
 	if ( !treeWidget ) {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
 		return;
 	}
 
-	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
-	checked &= (selectedItems.count() > 0);
+	checked &= (treeWidget->selectedItems().count() > 0);
 
+	QList<int> splitterSizes = qmc2MainWindow->vSplitter->sizes();
 	if ( checked ) {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
 		qmc2MainWindow->tabWidgetSoftwareDetail_updateCurrent();
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizesSoftwareDetail);
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 	}
 }
 
@@ -1807,11 +1810,13 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 		snapForced = true;
 		qmc2SoftwareSnap->myItem = item;
 		snapTimer.start(QMC2_SWSNAP_DELAY);
-		if ( toolButtonToggleSoftwareInfo->isChecked() )
+		if ( toolButtonToggleSoftwareInfo->isChecked() ) {
 			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		else {
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizesSoftwareDetail);
+		} else {
 			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		}
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
@@ -1820,6 +1825,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		cancelSoftwareSnap();
 		currentItem = NULL;
 	}
@@ -1843,11 +1849,13 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 		snapForced = true;
 		qmc2SoftwareSnap->myItem = item;
 		snapTimer.start(QMC2_SWSNAP_DELAY);
-		if ( toolButtonToggleSoftwareInfo->isChecked() )
+		if ( toolButtonToggleSoftwareInfo->isChecked() ) {
 			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		else {
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizesSoftwareDetail);
+		} else {
 			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		}
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
@@ -1856,6 +1864,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		cancelSoftwareSnap();
 		currentItem = NULL;
 	}
@@ -1892,11 +1901,13 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 		snapForced = true;
 		qmc2SoftwareSnap->myItem = item;
 		snapTimer.start(QMC2_SWSNAP_DELAY);
-		if ( toolButtonToggleSoftwareInfo->isChecked() )
+		if ( toolButtonToggleSoftwareInfo->isChecked() ) {
 			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		else {
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizesSoftwareDetail);
+		} else {
 			qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+			qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		}
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
@@ -1905,6 +1916,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		qmc2MainWindow->vSplitter->setSizes(qmc2MainWindow->vSplitterSizes);
 		cancelSoftwareSnap();
 		currentItem = NULL;
 	}

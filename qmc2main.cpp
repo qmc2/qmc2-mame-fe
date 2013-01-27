@@ -761,9 +761,9 @@ MainWindow::MainWindow(QWidget *parent)
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
     log(QMC2_LOG_FRONTEND, tr("restoring main widget layout"));
     menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
-    QList<int> hSplitterSizes, vSplitterSizes;
     QSize hSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter").toSize();
     QSize vSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter").toSize();
+    QSize vSplitterSizeSoftwareDetail = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail").toSize();
     bool hSplitterFlipped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterFlipped", false).toBool();
     bool vSplitterFlipped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", false).toBool();
     bool hSplitterSwapped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterSwapped", false).toBool();
@@ -776,6 +776,10 @@ MainWindow::MainWindow(QWidget *parent)
       vSplitterSizes << vSplitterSize.width() << vSplitterSize.height();
     else
       vSplitterSizes << 100 << 100;
+    if ( vSplitterSizeSoftwareDetail.width() > 0 || vSplitterSizeSoftwareDetail.height() > 0 )
+      vSplitterSizesSoftwareDetail << vSplitterSizeSoftwareDetail.width() << vSplitterSizeSoftwareDetail.height();
+    else
+      vSplitterSizesSoftwareDetail << 100 << 100;
     if ( hSplitterSwapped ) hSplitterSizes.swap(0, 1);
     if ( vSplitterSwapped ) vSplitterSizes.swap(0, 1);
     hSplitter->setSizes(hSplitterSizes);
@@ -819,6 +823,9 @@ MainWindow::MainWindow(QWidget *parent)
     splitterSizes << 100 << 100;
     hSplitter->setSizes(splitterSizes);
     vSplitter->setSizes(splitterSizes);
+    hSplitterSizes = splitterSizes;
+    vSplitterSizes = splitterSizes;
+    vSplitterSizesSoftwareDetail = splitterSizes;
     floatToggleButtonSoftwareDetail->setChecked(true);
   }
 
@@ -1987,6 +1994,17 @@ void MainWindow::on_vSplitter_splitterMoved(int pos, int index)
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->move(0, 0);
 		qmc2SystemNotesEditor->resize(qmc2SystemNotesEditor->parentWidget()->size());
+	}
+
+	QList<int> splitterSizes = vSplitter->sizes();
+	switch ( stackedWidgetSpecial->currentIndex() ) {
+		case QMC2_SPECIAL_SOFTWARE_PAGE:
+			vSplitterSizesSoftwareDetail = splitterSizes;
+			break;
+		case QMC2_SPECIAL_DEFAULT_PAGE:
+		default:
+			vSplitterSizes = splitterSizes;
+			break;
 	}
 }
 
@@ -4026,7 +4044,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
   }
 
-  // 'special widgets': switch back to the default page, if applicable
+  // 'special widgets': switch back to the default page if applicable
   switch ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] )
   {
 	  case QMC2_SOFTWARE_LIST_INDEX:
@@ -6295,7 +6313,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterFlipped", hSplitter->orientation() != Qt::Horizontal);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterSwapped", hSplitter->widget(0) != hSplitterWidget0);
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitterSizes.at(0), vSplitterSizes.at(1)));
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail", QSize(vSplitterSizesSoftwareDetail.at(0), vSplitterSizesSoftwareDetail.at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -11030,23 +11049,30 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 				tabWidgetSoftwareDetail->hide();
 			if ( qmc2SoftwareNotesEditor )
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
+			vSplitter->setSizes(vSplitterSizes);
 			break;
 
 		case QMC2_SPECIAL_SOFTWARE_PAGE:
 			if ( qmc2SoftwareList ) {
 				if ( !floatToggleButtonSoftwareDetail->isChecked() ) {
+					vSplitter->setSizes(vSplitterSizes);
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 					qmc2SoftwareList->detailUpdateTimer.start(qmc2UpdateDelay);
 					tabWidgetSoftwareDetail->showNormal();
 					tabWidgetSoftwareDetail->raise();
-				} else
+				} else {
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-			} else
+					vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+				}
+			} else {
 				stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+				vSplitter->setSizes(vSplitterSizesSoftwareDetail);
+			}
 			break;
 
 		default:
 			stackedWidgetSpecial->setCurrentIndex(index);
+			vSplitter->setSizes(vSplitterSizes);
 			break;
 	}
 }
