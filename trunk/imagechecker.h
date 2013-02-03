@@ -24,7 +24,7 @@ class ImageCheckerThread : public QThread
 		quint64 scanCount;
 		quint64 foundCount;
 		quint64 missingCount;
-		unzFile zip;
+		QMap<QString, unzFile> zipMap;
 		QStringList workUnit;
 		QStringList foundList;
 		QStringList missingList;
@@ -76,7 +76,7 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		~ImageChecker();
 
 		void recursiveFileList(const QString &, QStringList &);
-		void recursiveZipList(unzFile, QStringList &);
+		void recursiveZipList(unzFile, QStringList &, QString prependString = QString());
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();
