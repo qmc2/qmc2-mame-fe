@@ -14,6 +14,7 @@ class Title : public ImageWidget
 		virtual QString imageZip();
 		virtual QString imageDir();
 		virtual QString imageType() { return tr("title"); }
+		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_TITLE; }
 		virtual bool useZip();
 		virtual bool scaledImage();
 };

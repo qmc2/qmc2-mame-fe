@@ -40,15 +40,12 @@ extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern unzFile qmc2IconFile;
 
-//#define QMC2_DEBUG
-
 ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject *parent)
 	: QThread(parent)
 {
 	threadNumber = tNum;
 	imageWidget = imgWidget;
 	isActive = exitThread = false;
-	zip = NULL;
 	scanCount = foundCount = missingCount = 0;
 }
 
@@ -98,13 +95,14 @@ void ImageCheckerThread::run()
 	emit log(tr("Thread[%1]: started").arg(threadNumber));
 
 	if ( imageWidget->useZip() ) {
-		QString zipFileName = imageWidget->imageZip();
-		zip = unzOpen(zipFileName.toLocal8Bit());
-		if ( zip ) {
-			emit log(tr("Thread[%1]: ZIP file '%2' successfully opened").arg(threadNumber).arg(zipFileName));
-		} else {
-			emit log(tr("Thread[%1]: failed opening ZIP file '%2'").arg(threadNumber).arg(zipFileName));
-			exitThread = true;
+		foreach (QString zipFileName, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
+			zipMap[zipFileName] = unzOpen(zipFileName.toLocal8Bit());
+			if ( zipMap[zipFileName] ) {
+				emit log(tr("Thread[%1]: ZIP file '%2' successfully opened").arg(threadNumber).arg(zipFileName));
+			} else {
+				emit log(tr("Thread[%1]: failed opening ZIP file '%2'").arg(threadNumber).arg(zipFileName));
+				exitThread = true;
+			}
 		}
 	}
 
@@ -129,19 +127,51 @@ void ImageCheckerThread::run()
 					QSize imageSize;
 					int byteCount;
 					QString readerError;
-					if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName, &readerError) ) {
-						foundList << gameName;
-						emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
-						foundCount++;
+					bool imageFound = false;
+					if ( imageWidget->useZip() ) {
+						int zlCount = 0;
+						foreach (unzFile zip, zipMap) {
+							zlCount++;
+							readerError.clear();
+							if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName, &readerError) ) {
+								foundList << gameName;
+								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+								foundCount++;
+								break;
+							} else {
+								if ( zlCount < zipMap.count() ) {
+									if ( !readerError.isEmpty() ) {
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
+										badList << gameName;
+										badFileList << zipMap.key(zip) + ": " + fileName;
+									}
+								} else {
+									missingList << gameName;
+									if ( !readerError.isEmpty() ) {
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
+										badList << gameName;
+										badFileList << zipMap.key(zip) + ": " + fileName;
+									} else
+										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+									missingCount++;
+								}
+							}
+						}
 					} else {
-						missingList << gameName;
-						if ( !readerError.isEmpty() ) {
-							emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
-							badList << gameName;
-							badFileList << fileName;
-						} else
-							emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
-						missingCount++;
+						if ( imageWidget->checkImage(gameName, NULL, &imageSize, &byteCount, &fileName, &readerError) ) {
+							foundList << gameName;
+							emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+							foundCount++;
+						} else {
+							missingList << gameName;
+							if ( !readerError.isEmpty() ) {
+								emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
+								badList << gameName;
+								badFileList << fileName;
+							} else
+								emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+							missingCount++;
+						}
 					}
 					scanCount++;
 
@@ -168,9 +198,9 @@ void ImageCheckerThread::run()
 		}
 	}
 
-	if ( zip ) {
+	foreach (unzFile zip, zipMap) {
 		unzClose(zip);
-		emit log(tr("Thread[%1]: ZIP file '%2' closed").arg(threadNumber).arg(imageWidget->imageZip()));
+		emit log(tr("Thread[%1]: ZIP file '%2' closed").arg(threadNumber).arg(zipMap.key(zip)));
 	}
 
 	emit log(tr("Thread[%1]: ended").arg(threadNumber));
@@ -723,60 +753,82 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 			QListWidgetItem *item = listWidgetMissing->item(i);
 			if ( !item->icon().isNull() ) {
 				badImageRows << i;
-				pathsToRemove << item->whatsThis();
+				pathsToRemove << item->whatsThis().split("\t", QString::SkipEmptyParts);
 			}
 		}
 
 		int itemCount = 0;
 		if ( imageWidget->useZip() ) {
 			// zipped images
+			foreach (QString filePath, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
+				progressBar->setFormat(tr("Executing ZIP tool"));
+				progressBar->setRange(0, 0);
+				progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
-			QString command = "cmd.exe";
-			QStringList args;
-			args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
-			     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+				QString command = "cmd.exe";
+				QStringList args;
+				args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+				     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #else
-			QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
-			QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+				QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+				QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #endif
-			QString fullCommandString = command;
-			for (int i = 0; i < args.count(); i++) {
-				if ( args[i] == "$ARCHIVE$" ) {
+				QString fullCommandString = command;
+				QStringList pathsToRemoveLocal;
+				foreach (QString p, pathsToRemove) {
+					if ( p.startsWith(filePath + ": ") ) {
+						p.remove(0, filePath.length() + 2);
+						pathsToRemoveLocal << p;
+					}
+				}
+				for (int i = 0; i < args.count(); i++) {
+					if ( args[i] == "$ARCHIVE$" ) {
 #if defined(Q_OS_WIN)
-					QString zipFile = imageWidget->imageZip();
-					args[i] = zipFile.replace('/', '\\');
+						QString zipFile = filePath;
+						args[i] = zipFile.replace('/', '\\');
 #else
-					args[i] = imageWidget->imageZip();
+						args[i] = filePath;
 #endif
-				} else if ( args[i] == "$FILELIST$" ) {
-					args.removeAt(i);
-					args << pathsToRemove;
+					} else if ( args[i] == "$FILELIST$" ) {
+						args.removeAt(i);
+						args << pathsToRemoveLocal;
+					}
 				}
-			}
-			foreach (QString s, args) {
-				if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
-					s = "\"" + s + "\"";
-				fullCommandString += " " + s;
-			}
-			log(tr("Running ZIP tool to remove bad image files, command = '%1'").arg(fullCommandString));
-			unzClose(imageWidget->imageFile);
-			ToolExecutor zipRemovalTool(this, command, args);
-			zipRemovalTool.exec();
-			imageWidget->imageFile = unzOpen(imageWidget->imageZip().toLocal8Bit());
-			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
-				listWidgetMissing->setUpdatesEnabled(false);
-				for (int i = badImageRows.count() - 1; i >= 0; i--) {
-					QListWidgetItem *itemToDelete = listWidgetMissing->takeItem(badImageRows[i]);
-					if ( itemToDelete )
-						delete itemToDelete;
+				if ( !pathsToRemoveLocal.isEmpty() ) {
+					foreach (QString s, args) {
+						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+							s = "\"" + s + "\"";
+						fullCommandString += " " + s;
+					}
+					log(tr("Running ZIP tool to remove bad image files, command = '%1'").arg(fullCommandString));
+					unzClose(imageWidget->imageFileMap[filePath]);
+					ToolExecutor zipRemovalTool(this, command, args);
+					zipRemovalTool.exec();
+					imageWidget->imageFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
+						listWidgetMissing->setUpdatesEnabled(false);
+						int filesRemoved = 0;
+						for (int i = badImageRows.count() - 1; i >= 0; i--) {
+							QListWidgetItem *itemToDelete = listWidgetMissing->takeItem(badImageRows[i]);
+							if ( itemToDelete ) {
+								filesRemoved++;
+								delete itemToDelete;
+							}
+						}
+						listWidgetMissing->setUpdatesEnabled(true);
+						int filesRemaining = badImageRows.count() - filesRemoved;
+						toolButtonBad->setText(tr("Bad:") + " " + QString::number(filesRemaining));
+						if ( filesRemaining <= 0 && toolButtonBad->isChecked() ) on_toolButtonBad_toggled(false);
+						toolButtonRemoveBad->setEnabled(false);
+						toolButtonBad->setEnabled(false);
+						toolButtonBad->setChecked(false);
+					} else
+						log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 				}
-				listWidgetMissing->setUpdatesEnabled(true);
-				if ( toolButtonBad->isChecked() ) on_toolButtonBad_toggled(false);
-				toolButtonRemoveBad->setEnabled(false);
-				toolButtonBad->setEnabled(false);
-				toolButtonBad->setChecked(false);
-			} else
-				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+				progressBar->setFormat(tr("Idle"));
+				progressBar->setRange(-1, -1);
+				progressBar->setValue(-1);
+			}
 		} else {
 			// unzipped images
 			listWidgetMissing->setUpdatesEnabled(false);
@@ -848,55 +900,65 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		// images
 		if ( imageWidget->useZip() ) {
 			// zipped images
-			progressBar->setFormat(tr("Executing ZIP tool"));
-			progressBar->setRange(0, 0);
-			progressBar->setValue(-1);
+			foreach (QString filePath, imageWidget->imageZip().split(";", QString::SkipEmptyParts)) {
+				progressBar->setFormat(tr("Executing ZIP tool"));
+				progressBar->setRange(0, 0);
+				progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
-			QString command = "cmd.exe";
-			QStringList args;
-			args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
-			     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+				QString command = "cmd.exe";
+				QStringList args;
+				args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+				     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #else
-			QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
-			QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+				QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+				QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #endif
-			QString fullCommandString = command;
-			int i, j;
-			QStringList addArgs;
-			for (i = 0; i < args.count(); i++) {
-				if ( args[i] == "$ARCHIVE$" ) {
+				QString fullCommandString = command;
+				int i, j;
+				QStringList addArgs;
+				for (i = 0; i < args.count(); i++) {
+					if ( args[i] == "$ARCHIVE$" ) {
 #if defined(Q_OS_WIN)
-					QString zipFile = imageWidget->imageZip();
-					args[i] = zipFile.replace('/', '\\');
+						QString zipFile = filePath;
+						args[i] = zipFile.replace('/', '\\');
 #else
-					args[i] = imageWidget->imageZip();
+						args[i] = filePath;
 #endif
-				} else if ( args[i] == "$FILELIST$" ) {
-					QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
-					for (j = 0; j < items.count(); j++) {
-						addArgs << items[j]->text();
+					} else if ( args[i] == "$FILELIST$" ) {
+						QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
+						for (j = 0; j < items.count(); j++) {
+							QString itemText = items[j]->text();
+							if ( itemText.startsWith(filePath + ": ") ) {
+								itemText.remove(0, filePath.length() + 2);
+								addArgs << itemText;
+							}
+						}
+						args.removeAt(i);
+						args << addArgs;
 					}
-					args.removeAt(i);
-					args << addArgs;
 				}
+				if ( !addArgs.isEmpty() ) {
+					foreach (QString s, args) {
+						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+							s = "\"" + s + "\"";
+						fullCommandString += " " + s;
+					}
+					log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+					unzClose(imageWidget->imageFileMap[filePath]);
+					ToolExecutor zipRemovalTool(this, command, args);
+					zipRemovalTool.exec();
+					imageWidget->imageFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
+						log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+				}
+				progressBar->setFormat(tr("Idle"));
+				progressBar->setRange(-1, -1);
+				progressBar->setValue(-1);
 			}
-			foreach (QString s, args) {
-				if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
-					s = "\"" + s + "\"";
-				fullCommandString += " " + s;
-			}
-			log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-			unzClose(imageWidget->imageFile);
-			ToolExecutor zipRemovalTool(this, command, args);
-			zipRemovalTool.exec();
-			imageWidget->imageFile = unzOpen(imageWidget->imageZip().toLocal8Bit());
-			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
-				listWidgetObsolete->setUpdatesEnabled(false);
-				listWidgetObsolete->clear();
-				checkObsoleteFiles();
-				listWidgetObsolete->setUpdatesEnabled(true);
-			} else
-				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+			listWidgetObsolete->setUpdatesEnabled(false);
+			listWidgetObsolete->clear();
+			checkObsoleteFiles();
+			listWidgetObsolete->setUpdatesEnabled(true);
 		} else {
 			// unzipped images
 			progressBar->setFormat(tr("Removing obsolete files / folders"));
@@ -980,6 +1042,10 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 				listWidgetObsolete->setUpdatesEnabled(true);
 			} else
 				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+
+			progressBar->setFormat(tr("Idle"));
+			progressBar->setRange(-1, -1);
+			progressBar->setValue(-1);
 		} else {
 			// unzipped icons
 			progressBar->setFormat(tr("Removing obsolete files / folders"));
@@ -1098,7 +1164,8 @@ void ImageChecker::checkObsoleteFiles()
 		// images
 		if ( imageWidget->useZip() ) {
 			log(tr("Reading ZIP directory recursively"));
-			recursiveZipList(imageWidget->imageFile, fileList);
+			foreach (unzFile imageFile, imageWidget->imageFileMap)
+				recursiveZipList(imageFile, fileList, imageWidget->imageFileMap.key(imageFile) + ": ");
 		} else {
 			dirList = imageWidget->imageDir().split(";", QString::SkipEmptyParts);
 			foreach (QString path, dirList) {
@@ -1138,12 +1205,15 @@ void ImageChecker::checkObsoleteFiles()
 			// images
 			if ( imageWidget->useZip() ) {
 				// zipped images
+				QString pathCopy = path;
+				pathCopy.remove(QRegExp("^.*\\: "));
+				fi.setFile(pathCopy);
 #if defined(Q_OS_WIN)
-				if ( path == fi.filePath() && fi.completeSuffix().toLower() == "png" )
+				if ( pathCopy == fi.filePath() && fi.completeSuffix().toLower() == "png" )
 					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
 						isValidPath = true;
 #else
-				if ( path == fi.filePath() && fi.completeSuffix() == "png" )
+				if ( pathCopy == fi.filePath() && fi.completeSuffix() == "png" )
 					if ( qmc2GamelistItemMap.contains(fi.baseName()) )
 						isValidPath = true;
 #endif
@@ -1241,13 +1311,23 @@ void ImageChecker::checkObsoleteFiles()
 		}
 
 		if ( !isValidPath ) {
+			bool isZip = false;
+			if ( imageWidget )
+				if ( imageWidget->useZip() )
+					isZip = true;
 			QFileInfo fi(path);
 			if ( fi.isDir() ) {
 				log(tr("%1 folder '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
-				bufferedObsoleteList << fi.dir().absolutePath() + QDir::separator();
+				if ( isZip )
+					bufferedObsoleteList << path;
+				else
+					bufferedObsoleteList << fi.dir().absolutePath() + QDir::separator();
 			} else {
 				log(tr("%1 file '%2' is obsolete").arg(imageWidget ? tr("Image") : tr("Icon")).arg(path));
-				bufferedObsoleteList << fi.absoluteFilePath();
+				if ( isZip )
+					bufferedObsoleteList << path;
+				else
+					bufferedObsoleteList << fi.absoluteFilePath();
 			}
 			obsoleteCount++;
 		}
@@ -1280,7 +1360,11 @@ void ImageChecker::updateResults()
 		QString searchRegExp = "(" + bufferedBadList.join("|") + ")";
 		foreach (QListWidgetItem *item, listWidgetMissing->findItems(searchRegExp, Qt::MatchRegExp)) {
 			item->setIcon(QIcon(QString::fromUtf8(":/data/img/warning.png")));
-			item->setWhatsThis(bufferedBadFileList[bufferedBadList.indexOf(item->text())]);
+			QStringList blTemp;
+			for (int i = 0; i < bufferedBadList.count(); i++)
+				if ( bufferedBadList[i] == item->text() )
+					 blTemp << bufferedBadFileList[i];
+			item->setWhatsThis(blTemp.join("\t"));
 		}
 		badCount += bufferedBadList.count();
 	}
@@ -1429,10 +1513,10 @@ void ImageChecker::recursiveFileList(const QString &sDir, QStringList &fileNames
 	}
 }
 
-void ImageChecker::recursiveZipList(unzFile zip, QStringList &fileNames)
+void ImageChecker::recursiveZipList(unzFile zip, QStringList &fileNames, QString prependString)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveZipList(unzFile zip = %1, QStringList &fileNames)").arg((qulonglong)zip));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::recursiveZipList(unzFile zip = %1, QStringList &fileNames, QString prependString = %2)").arg((qulonglong)zip).arg(prependString));
 #endif
 
 	if ( zip ) {
@@ -1446,7 +1530,7 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList &fileNames)
 						qApp->processEvents();
 					if ( unzGetCurrentFileInfo(zip, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
 						if ( unzFileName != NULL )
-							fileNames << unzFileName;
+							fileNames << prependString + unzFileName;
 				} while ( unzGoToNextFile(zip) != UNZ_END_OF_LIST_OF_FILE );
 			}
 		}

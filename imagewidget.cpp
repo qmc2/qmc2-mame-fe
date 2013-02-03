@@ -63,12 +63,14 @@ ImageWidget::ImageWidget(QWidget *parent)
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
-	imageFile = NULL;
-
 	if ( useZip() ) {
-		imageFile = unzOpen((const char *)imageZip().toLocal8Bit());
-		if ( imageFile == NULL )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+			unzFile imageFile = unzOpen((const char *)filePath.toLocal8Bit());
+			if ( imageFile == NULL )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+			else
+				imageFileMap[filePath] = imageFile;
+		}
 	}
 }
 
@@ -78,8 +80,10 @@ ImageWidget::~ImageWidget()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::~ImageWidget()");
 #endif
 
-	if ( useZip() )
-		unzClose(imageFile);
+	if ( useZip() ) {
+		foreach (unzFile imageFile, imageFileMap)
+			unzClose(imageFile);
+	}
 }
 
 QString ImageWidget::cleanDir(QString dirs)
@@ -160,7 +164,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	bool fileOk = true;
 
 	if ( useZip() ) {
-		// try loading image from ZIP
+		// try loading image from ZIP(s)
 		QByteArray imageData;
 		int len, i;
 		QString gameFile = gameName + ".png";
@@ -168,17 +172,25 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 		if ( fileName )
 			*fileName = gameFile;
 
-		if ( unzLocateFile(imageFile, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
-			if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
-				while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-					for (i = 0; i < len; i++)
-						imageData += imageBuffer[i];
-				}
-				unzCloseCurrentFile(imageFile);
+		foreach (unzFile imageFile, imageFileMap) {
+			if ( unzLocateFile(imageFile, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
+				if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
+					while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+						for (i = 0; i < len; i++)
+							imageData += imageBuffer[i];
+					}
+					fileOk = true;
+					unzCloseCurrentFile(imageFile);
+				} else
+					fileOk = false;
 			} else
 				fileOk = false;
-		} else
-			fileOk = false;
+
+			if ( fileOk )
+				break;
+			else
+				imageData.clear();
+		}
 
 		if ( fileOk )
 			fileOk = pm.loadFromData(imageData, "PNG");
@@ -272,7 +284,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 	bool fileOk = true;
 
 	if ( useZip() ) {
-		// try loading image from ZIP
+		// try loading image from ZIP(s)
 		QByteArray imageData;
 		int len, i;
 		QString gameFile = gameName + ".png";
@@ -280,20 +292,39 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 		if ( fileName )
 			*fileName = gameFile;
 
-		if ( zip == NULL )
-			zip = imageFile;
+		if ( zip == NULL ) {
+			foreach (unzFile imageFile, imageFileMap) {
+				if ( unzLocateFile(imageFile, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
+					if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
+						while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+							for (i = 0; i < len; i++)
+								imageData += imageBuffer[i];
+						}
+						fileOk = true;
+						unzCloseCurrentFile(imageFile);
+					} else
+						fileOk = false;
+				} else
+					fileOk = false;
 
-		if ( unzLocateFile(zip, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
-			if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
-				while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-					for (i = 0; i < len; i++)
-						imageData += imageBuffer[i];
-				}
-				unzCloseCurrentFile(zip);
+				if ( fileOk )
+					break;
+				else
+					imageData.clear();
+			}
+		} else {
+			if ( unzLocateFile(zip, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
+				if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
+					while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+						for (i = 0; i < len; i++)
+							imageData += imageBuffer[i];
+					}
+					unzCloseCurrentFile(zip);
+				} else
+					fileOk = false;
 			} else
 				fileOk = false;
-		} else
-			fileOk = false;
+		}
 
 		if ( fileOk ) {
 			QBuffer buffer(&imageData);

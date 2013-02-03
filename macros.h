@@ -713,6 +713,18 @@
 // time to wait before retrying operations when 'critical sections' are active
 #define QMC2_CRITSECT_POLLING_TIME		10
 
+// numeric image types
+#define QMC2_IMGTYPE_NONE			-1
+#define QMC2_IMGTYPE_PREVIEW			0
+#define QMC2_IMGTYPE_FLYER			1
+#define QMC2_IMGTYPE_CABINET			2
+#define QMC2_IMGTYPE_CONTROLLER			3
+#define QMC2_IMGTYPE_MARQUEE			4
+#define QMC2_IMGTYPE_LOGO			QMC2_IMGTYPE_MARQUEE
+#define QMC2_IMGTYPE_TITLE			5
+#define QMC2_IMGTYPE_PCB			6
+#define QMC2_IMGTYPE_SWSNAP			7
+
 // image checker image types
 #define QMC2_IMGCHK_INDEX_NONE			-1
 #if defined(QMC2_EMUTYPE_MESS)
