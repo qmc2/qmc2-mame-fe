@@ -2036,7 +2036,7 @@ void Options::on_pushButtonApply_clicked()
 			  if ( iw->useZip() ) {
 				  iw->imageFileMap.clear();
 				  foreach (QString filePath, iw->imageZip().split(";", QString::SkipEmptyParts)) {
-					  unzFile imageFile = unzOpen((const char *)filePath.toLocal8Bit());
+					  unzFile imageFile = unzOpen(filePath.toLocal8Bit());
 					  if ( imageFile == NULL )
 						  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(iw->imageType()).arg(filePath));
 					  else
@@ -2052,15 +2052,22 @@ void Options::on_pushButtonApply_clicked()
   }
 
   if ( qmc2SoftwareSnap ) {
-    if ( needReopenSoftwareSnapFile ) {
-      if ( qmc2UseSoftwareSnapFile ) {
-        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().toLocal8Bit());
-        if ( qmc2SoftwareSnap->snapFile == NULL )
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString()));
-      } else
-        unzClose(qmc2SoftwareSnap->snapFile);
-    }
-    qmc2SoftwareSnap->update();
+	  if ( needReopenSoftwareSnapFile ) {
+		  if ( qmc2UseSoftwareSnapFile ) {
+			  qmc2SoftwareSnap->snapFileMap.clear();
+			  foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+				  unzFile imageFile = unzOpen(filePath.toLocal8Bit());
+				  if ( imageFile == NULL )
+					  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
+				  else
+					  qmc2SoftwareSnap->snapFileMap[filePath] = imageFile;
+			  }
+		  } else {
+			  foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
+				  unzClose(imageFile);
+		  }
+	  }
+	  qmc2SoftwareSnap->update();
   }
 
   if ( needReopenIconFile ) {
