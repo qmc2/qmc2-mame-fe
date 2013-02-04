@@ -139,6 +139,8 @@ class SoftwareSnapshot : public QWidget
 		SoftwareSnapshot(QWidget *parent = 0);
 		~SoftwareSnapshot();
 
+		QString toBase64();
+
 	public slots:
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
