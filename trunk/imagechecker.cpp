@@ -38,7 +38,7 @@ extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
-extern unzFile qmc2IconFile;
+extern QMap<QString, unzFile> qmc2IconFileMap;
 
 ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject *parent)
 	: QThread(parent)
@@ -995,58 +995,65 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		// icons
 		if ( qmc2UseIconFile ) {
 			// zipped icons
-			progressBar->setFormat(tr("Executing ZIP tool"));
-			progressBar->setRange(0, 0);
-			progressBar->setValue(-1);
+			foreach (QString filePath, qmc2IconFileMap.keys()) {
+				progressBar->setFormat(tr("Executing ZIP tool"));
+				progressBar->setRange(0, 0);
+				progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
-			QString command = "cmd.exe";
-			QStringList args;
-			args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
-			     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+				QString command = "cmd.exe";
+				QStringList args;
+				args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+				     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #else
-			QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
-			QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+				QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+				QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #endif
-			QString fullCommandString = command;
-			int i, j;
-			QStringList addArgs;
-			for (i = 0; i < args.count(); i++) {
-				if ( args[i] == "$ARCHIVE$" ) {
+				QString fullCommandString = command;
+				int i, j;
+				QStringList addArgs;
+				for (i = 0; i < args.count(); i++) {
+					if ( args[i] == "$ARCHIVE$" ) {
 #if defined(Q_OS_WIN)
-					args[i] = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().replace('/', '\\');
+						QString zipFile = filePath;
+						args[i] = zipFile.replace('/', '\\');
 #else
-					args[i] = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString();
+						args[i] = filePath;
 #endif
-				} else if ( args[i] == "$FILELIST$" ) {
-					QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
-					for (j = 0; j < items.count(); j++) {
-						addArgs << items[j]->text();
+					} else if ( args[i] == "$FILELIST$" ) {
+						QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
+						for (j = 0; j < items.count(); j++) {
+							QString itemText = items[j]->text();
+							if ( itemText.startsWith(filePath + ": ") ) {
+								itemText.remove(0, filePath.length() + 2);
+								addArgs << itemText;
+							}
+						}
+						args.removeAt(i);
+						args << addArgs;
 					}
-					args.removeAt(i);
-					args << addArgs;
 				}
+				if ( !addArgs.isEmpty() ) {
+					foreach (QString s, args) {
+						if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+							s = "\"" + s + "\"";
+						fullCommandString += " " + s;
+					}
+					log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+					unzClose(qmc2IconFileMap[filePath]);
+					ToolExecutor zipRemovalTool(this, command, args);
+					zipRemovalTool.exec();
+					qmc2IconFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
+						log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+				}
+				progressBar->setFormat(tr("Idle"));
+				progressBar->setRange(-1, -1);
+				progressBar->setValue(-1);
 			}
-			foreach (QString s, args) {
-				if ( s.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
-					s = "\"" + s + "\"";
-				fullCommandString += " " + s;
-			}
-			log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-			unzClose(qmc2IconFile);
-			ToolExecutor zipRemovalTool(this, command, args);
-			zipRemovalTool.exec();
-			qmc2IconFile = unzOpen((const char *)qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toLocal8Bit());
-			if ( zipRemovalTool.toolExitStatus == QProcess::NormalExit && zipRemovalTool.toolExitCode == 0 ) {
-				listWidgetObsolete->setUpdatesEnabled(false);
-				listWidgetObsolete->clear();
-				checkObsoleteFiles();
-				listWidgetObsolete->setUpdatesEnabled(true);
-			} else
-				log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
-
-			progressBar->setFormat(tr("Idle"));
-			progressBar->setRange(-1, -1);
-			progressBar->setValue(-1);
+			listWidgetObsolete->setUpdatesEnabled(false);
+			listWidgetObsolete->clear();
+			checkObsoleteFiles();
+			listWidgetObsolete->setUpdatesEnabled(true);
 		} else {
 			// unzipped icons
 			progressBar->setFormat(tr("Removing obsolete files / folders"));
@@ -1178,7 +1185,8 @@ void ImageChecker::checkObsoleteFiles()
 		// icons
 		if ( qmc2UseIconFile ) {
 			log(tr("Reading ZIP directory recursively"));
-			recursiveZipList(qmc2IconFile, fileList);
+			foreach (unzFile iconFile, qmc2IconFileMap)
+				recursiveZipList(iconFile, fileList, qmc2IconFileMap.key(iconFile) + ": ");
 		} else {
 			dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
 			foreach (QString path, dirList) {
@@ -1295,6 +1303,9 @@ void ImageChecker::checkObsoleteFiles()
 			// icons
 			if ( qmc2UseIconFile ) {
 				// for zipped icons only the lower-case basenames and image-type suffixes actually count (.ico, .png, ...)
+				QString pathCopy = path;
+				pathCopy.remove(QRegExp("^.*\\: "));
+				fi.setFile(pathCopy);
 				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
 					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
 						isValidPath = true;
@@ -1524,7 +1535,7 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList &fileNames, QString
 		unz_global_info unzGlobalInfo;
 		int i = 0;
 		if ( unzGetGlobalInfo(zip, &unzGlobalInfo) == UNZ_OK ) {
-			if ( unzGoToFirstFile(qmc2IconFile) == UNZ_OK ) {
+			if ( unzGoToFirstFile(zip) == UNZ_OK ) {
 				do {
 					char unzFileName[QMC2_MAX_PATH_LENGTH];
 					if ( i++ % 25 == 0 )

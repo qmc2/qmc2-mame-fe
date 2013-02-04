@@ -250,7 +250,7 @@ int qmc2SortCriteria = QMC2_SORT_BY_DESCRIPTION;
 Qt::SortOrder qmc2SortOrder = Qt::AscendingOrder;
 bool qmc2SortingActive = false;
 QBitArray qmc2Filter;
-unzFile qmc2IconFile = NULL;
+QMap<QString, unzFile> qmc2IconFileMap;
 QStringList qmc2BiosROMs;
 QStringList qmc2DeviceROMs;
 KeyPressFilter *qmc2KeyPressFilter = NULL;
