@@ -132,25 +132,26 @@ void ImageCheckerThread::run()
 						int zlCount = 0;
 						foreach (unzFile zip, zipMap) {
 							zlCount++;
+							QString zipFilePath = zipMap.key(zip);
 							readerError.clear();
 							if ( imageWidget->checkImage(gameName, zip, &imageSize, &byteCount, &fileName, &readerError) ) {
 								foundList << gameName;
-								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 								foundCount++;
 								break;
 							} else {
 								if ( zlCount < zipMap.count() ) {
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(readerError));
 										badList << gameName;
-										badFileList << zipMap.key(zip) + ": " + fileName;
+										badFileList << zipFilePath + ": " + fileName;
 									}
 								} else {
 									missingList << gameName;
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(readerError));
 										badList << gameName;
-										badFileList << zipMap.key(zip) + ": " + fileName;
+										badFileList << zipFilePath + ": " + fileName;
 									} else
 										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
 									missingCount++;
