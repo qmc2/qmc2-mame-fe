@@ -59,7 +59,12 @@
 </tbody>
 </table>
 <h3>Snapshot</h3>
-<img width="50%" src="$SOFTWARE_SNAPSHOT$">
+<script>
+	if ( qmc2NotesEditorObject.isZippedImage('sws') )
+		document.write("<img width=\"50%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('sws') + "\">");
+	else
+		document.write("<img width=\"50%\" src=\"$SOFTWARE_SNAPSHOT$\">");
+</script>
 <h3>Software info</h3>
 $SOFTWARE_INFO$
 <h3>Comments</h3>

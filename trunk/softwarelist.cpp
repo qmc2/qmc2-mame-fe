@@ -3605,6 +3605,19 @@ void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 	drawScaledImage(&currentSnapshotPixmap, &p);
 }
 
+QString SoftwareSnapshot::toBase64()
+{
+	ImagePixmap pm;
+	if ( !currentSnapshotPixmap.isNull() )
+		pm = currentSnapshotPixmap;
+	else
+		pm = qmc2MainWindow->qmc2GhostImagePixmap;
+	QByteArray imageData;
+	QBuffer buffer(&imageData);
+	pm.save(&buffer, "PNG");
+	return QString(imageData.toBase64());
+}
+
 void SoftwareSnapshot::refresh()
 {
 	if ( !myCacheKey.isEmpty() ) {

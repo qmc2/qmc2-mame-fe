@@ -32,6 +32,7 @@
 #include <QByteArray>
 #include <QColorDialog>
 #include <QFileDialog>
+#include <QCache>
 #if QT_VERSION >= 0x050000
 #include <QDesktopWidget>
 #include <QToolButton>
@@ -81,6 +82,9 @@ extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern SoftwareSnapshot *qmc2SoftwareSnapshot;
+extern SoftwareList *qmc2SoftwareList;
+extern bool qmc2UseSoftwareSnapFile;
+extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -1076,7 +1080,7 @@ bool HtmlEditor::isZippedImage(QString imageType)
 		case QMC2_IMGTYPE_MARQUEE: imageWidget = qmc2Marquee; break;
 		case QMC2_IMGTYPE_TITLE: imageWidget = qmc2Title; break;
 		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
-		case QMC2_IMGTYPE_SWSNAP: /* FIXME */ break;
+		case QMC2_IMGTYPE_SWSNAP: return qmc2UseSoftwareSnapFile;
 		default: break;
 	}
 
@@ -1100,13 +1104,30 @@ QString HtmlEditor::getImageData(QString imageType)
 		case QMC2_IMGTYPE_MARQUEE: imageWidget = qmc2Marquee; break;
 		case QMC2_IMGTYPE_TITLE: imageWidget = qmc2Title; break;
 		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
-		case QMC2_IMGTYPE_SWSNAP: /* FIXME */ break;
+		case QMC2_IMGTYPE_SWSNAP:
+			if ( qmc2SoftwareSnapshot ) {
+				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				QString cacheKey = "sws_" + listName + "_" + entryName;
+				ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+				if ( !cpm )
+					qmc2SoftwareSnapshot->loadSnapshot(listName, entryName);
+				else
+					qmc2SoftwareSnapshot->currentSnapshotPixmap = *cpm;
+				return qmc2SoftwareSnapshot->toBase64();
+			}
+			break;
 		default: break;
 	}
 
 	if ( imageWidget ) {
 		QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-		imageWidget->loadImage(gameName, gameName, false, NULL, false);
+		QString cacheKey = imageType + "_" + gameName;
+		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
+		if ( !cpm )
+			imageWidget->loadImage(gameName, gameName, false, NULL, false);
+		else
+			imageWidget->currentPixmap = *cpm;
 		return imageWidget->toBase64();
 	} else
 		return QString();
