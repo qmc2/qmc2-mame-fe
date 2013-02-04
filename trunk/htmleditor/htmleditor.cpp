@@ -47,6 +47,15 @@
 #include "miniwebbrowser.h"
 #include "htmleditor.h"
 #include "highlighter.h"
+#include "imagewidget.h"
+#include "preview.h"
+#include "flyer.h"
+#include "cabinet.h"
+#include "controller.h"
+#include "marquee.h"
+#include "title.h"
+#include "pcb.h"
+#include "softwarelist.h"
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
 #include "ui_tablepropertydialog.h"
@@ -64,6 +73,14 @@ extern QSettings *qmc2Config;
 extern bool qmc2CleaningUp;
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QTreeWidgetItem *qmc2CurrentItem;
+extern Preview *qmc2Preview;
+extern Flyer *qmc2Flyer;
+extern Cabinet *qmc2Cabinet;
+extern Controller *qmc2Controller;
+extern Marquee *qmc2Marquee;
+extern Title *qmc2Title;
+extern PCB *qmc2PCB;
+extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -278,6 +295,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	adjustIconSizes();
 	adjustActions();
 	adjustHTML();
+
+	imageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws";
 
 	localModified = false;
 }
@@ -1041,6 +1060,56 @@ QString HtmlEditor::getIconData()
 		pm.save(&buffer, "PNG");
 	}
 	return QString(iconData.toBase64());
+}
+
+bool HtmlEditor::isZippedImage(QString imageType)
+{
+	if ( !qmc2CurrentItem )
+		return false;
+
+	ImageWidget *imageWidget = NULL;
+	switch ( imageTypes.indexOf(imageType) ) {
+		case QMC2_IMGTYPE_PREVIEW: imageWidget = qmc2Preview; break;
+		case QMC2_IMGTYPE_FLYER: imageWidget = qmc2Flyer; break;
+		case QMC2_IMGTYPE_CABINET: imageWidget = qmc2Cabinet; break;
+		case QMC2_IMGTYPE_CONTROLLER: imageWidget = qmc2Controller; break;
+		case QMC2_IMGTYPE_MARQUEE: imageWidget = qmc2Marquee; break;
+		case QMC2_IMGTYPE_TITLE: imageWidget = qmc2Title; break;
+		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
+		case QMC2_IMGTYPE_SWSNAP: /* FIXME */ break;
+		default: break;
+	}
+
+	if ( imageWidget )
+		return imageWidget->useZip();
+	else
+		return false;
+}
+
+QString HtmlEditor::getImageData(QString imageType)
+{
+	if ( !qmc2CurrentItem )
+		return QString();
+
+	ImageWidget *imageWidget = NULL;
+	switch ( imageTypes.indexOf(imageType) ) {
+		case QMC2_IMGTYPE_PREVIEW: imageWidget = qmc2Preview; break;
+		case QMC2_IMGTYPE_FLYER: imageWidget = qmc2Flyer; break;
+		case QMC2_IMGTYPE_CABINET: imageWidget = qmc2Cabinet; break;
+		case QMC2_IMGTYPE_CONTROLLER: imageWidget = qmc2Controller; break;
+		case QMC2_IMGTYPE_MARQUEE: imageWidget = qmc2Marquee; break;
+		case QMC2_IMGTYPE_TITLE: imageWidget = qmc2Title; break;
+		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
+		case QMC2_IMGTYPE_SWSNAP: /* FIXME */ break;
+		default: break;
+	}
+
+	if ( imageWidget ) {
+		QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+		imageWidget->loadImage(gameName, gameName, false, NULL, false);
+		return imageWidget->toBase64();
+	} else
+		return QString();
 }
 
 QString HtmlEditor::getColor(QString currentColor)

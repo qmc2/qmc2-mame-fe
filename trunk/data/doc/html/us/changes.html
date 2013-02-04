@@ -23,6 +23,7 @@ inf: informational only
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to his latest version as of 26-JAN-2013</li>
   <li>imp: software-lists: save/restore an individual position of the vertical splitter for use with the software-detail widget</li>
   <li>imp: added support for <b>multiple</b> ZIPs per image type, specified as a semicolon-seperated list of ZIP file paths (WIP-info: this does currently not include software-snaps and icons)</li>
+  <li>new: system- and software-notes templates: added two new slots for use with zipped images: 'qmc2NotesEditorObject.isZippedImage()' will determine if an image is from a ZIP, 'qmc2NotesEditorObject.getImageData()' will return the base64-encoded image data which you can use in &lt;img&gt; tags (<b>caution: may be slow and will inflate the HTML enormously -- only use this with the WYSIWIG editor!</b>)</li>
   <li>doc: the QMC2 FAQ has been <b>moved</b> to the <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ" target="_blank">wiki</a></li>
 </ul>
 <p><b>v0.38, 11-JAN-2013:</b></p>
