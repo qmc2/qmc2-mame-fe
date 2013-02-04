@@ -55,6 +55,7 @@ public:
     QToolButton *toolButtonSettings;
     QAction *actionHideMenu;
     QAction *actionReadOnly;
+    QAction *actionShowHTML;
     QProgressBar *loadProgress;
     bool loadActive;
     bool stopLoading;
@@ -138,6 +139,7 @@ public slots:
     void setLoadInactive() { loadActive = false; }
     void setLoadSuccess(bool success) { loadSuccess = success; }
     void javaScriptWindowObjectCleared();
+    void showHtmlTab(bool enable = true);
 
     // helper functions (not only) for template use
     bool loadCurrentTemplate();
