@@ -95,7 +95,7 @@ class SoftwareSnap : public QWidget
 		QString listName;
 		QString entryName;
 		QPoint position;
-		unzFile snapFile;
+		QMap<QString, unzFile> snapFileMap;
 		SoftwareItem *myItem;
 		QTimer snapForcedResetTimer;
 		QMenu *contextMenu;
