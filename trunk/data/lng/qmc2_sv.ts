@@ -4381,6 +4381,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="125"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="329"/>
         <source>HTML</source>
         <translation>HTML</translation>
     </message>
@@ -4408,8 +4409,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="161"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="162"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="165"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="166"/>
         <source>Page load progress</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4424,138 +4425,143 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="434"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="503"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="154"/>
+        <source>Show HTML</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="450"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="519"/>
         <source>HTML files (*.html *.htm)</source>
         <translation>HTML-filer (*.html *.htm)</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="434"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="503"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="538"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1147"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="450"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="519"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="554"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1163"/>
         <source>All files (*)</source>
         <translation>Alla filer (*)</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="434"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="450"/>
         <source>Select file to load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="434"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="450"/>
         <source>Select file to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="503"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="519"/>
         <source>Save a copy</source>
         <translation>Spara en kopia</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="534"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="550"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
         <translation>Vanliga bildformat (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="535"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="551"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
         <translation>Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="536"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="552"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
         <translation>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="537"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="553"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
         <translation>Graphics Interchange Format (GIF) (*.gif);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="540"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="556"/>
         <source>Open image...</source>
         <translation>Öppna bild...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="554"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <source>Insert image from URL</source>
         <translation>Infoga bild från URL</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="554"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="598"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="614"/>
         <source>Enter URL:</source>
         <translation>Ange URL:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="598"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="614"/>
         <source>Create link</source>
         <translation>Skapa länk</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="822"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="838"/>
         <source>Font</source>
         <translation>Typsnitt</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="822"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="838"/>
         <source>Select font:</source>
         <translation>Välj typsnitt:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="831"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="847"/>
         <source>XS</source>
         <translation>XS</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="831"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="847"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="831"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="833"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="847"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="849"/>
         <source>M</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="831"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="847"/>
         <source>L</source>
         <translation>L</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="831"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="847"/>
         <source>XL</source>
         <translation>XL</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="831"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="847"/>
         <source>XXL</source>
         <translation>XXL</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="833"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="849"/>
         <source>Font size</source>
         <translation>Typsnittsstorlek</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="833"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="849"/>
         <source>Font size:</source>
         <translation>Typsnittsstorlek:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="929"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="945"/>
         <source>Zoom: %1%</source>
         <translation>Zoom: %1%</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1138"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1154"/>
         <source>Select color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1147"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1163"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>

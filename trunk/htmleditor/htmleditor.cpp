@@ -151,6 +151,10 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	actionReadOnly->setCheckable(true);
 	connect(actionReadOnly, SIGNAL(toggled(bool)), this, SLOT(setContentEditable(bool)));
 	actionReadOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), false).toBool());
+	actionShowHTML = menuSettings->addAction(tr("Show HTML"));
+	actionShowHTML->setCheckable(true);
+	connect(actionShowHTML, SIGNAL(toggled(bool)), this, SLOT(showHtmlTab(bool)));
+	actionShowHTML->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ShowHtml").arg(myEditorName), true).toBool());
 	toolButtonSettings->setMenu(menuSettings);
 	connect(toolButtonSettings, SIGNAL(clicked()), toolButtonSettings, SLOT(showMenu()));
 	loadProgress = new QProgressBar(frameCornerWidget);
@@ -292,6 +296,9 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
 	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
+	if ( !actionShowHTML->isChecked() )
+		showHtmlTab(false);
+
 	connect(ui->webView->page()->mainFrame(), SIGNAL(javaScriptWindowObjectCleared()), this, SLOT(javaScriptWindowObjectCleared()));
 
 	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), 100).toInt());
@@ -310,9 +317,18 @@ HtmlEditor::~HtmlEditor()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/WidgetState").arg(myEditorName), saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), actionHideMenu->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), actionReadOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ShowHtml").arg(myEditorName), actionShowHTML->isChecked());
 
 	delete ui;
 	delete ui_dialog;
+}
+
+void HtmlEditor::showHtmlTab(bool enable)
+{
+	if ( enable )
+		ui->tabWidget->insertTab(1, ui->tabHTML, tr("HTML"));
+	else
+		ui->tabWidget->removeTab(1);
 }
 
 void HtmlEditor::loadStarted()
