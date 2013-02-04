@@ -1597,6 +1597,9 @@ void MainWindow::on_actionPlay_triggered(bool)
 #endif
     return;
 
+  if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+    return;
+
   QString gameName;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
