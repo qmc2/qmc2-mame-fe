@@ -128,7 +128,7 @@ extern Qt::SortOrder qmc2SortOrder;
 extern QMap<QString, QString> qmc2GamelistNameMap;
 extern QSettings *qmc2Config;
 extern QBitArray qmc2Filter;
-extern unzFile qmc2IconFile;
+extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern QMap<QString, QString> qmc2JoystickFunctionMap;
@@ -2045,6 +2045,7 @@ void Options::on_pushButtonApply_clicked()
 			  } else {
 				  foreach (unzFile imageFile, iw->imageFileMap)
 					  unzClose(imageFile);
+				  iw->imageFileMap.clear();
 			  }
 		  }
 		  iw->update();
@@ -2065,18 +2066,27 @@ void Options::on_pushButtonApply_clicked()
 		  } else {
 			  foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
 				  unzClose(imageFile);
+			  qmc2SoftwareSnap->snapFileMap.clear();
 		  }
 	  }
 	  qmc2SoftwareSnap->update();
   }
 
   if ( needReopenIconFile ) {
-    if ( qmc2UseIconFile ) {
-      qmc2IconFile = unzOpen((const char *)config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().toLocal8Bit());
-      if ( qmc2IconFile == NULL )
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString()));
-    } else
-      unzClose(qmc2IconFile);
+	  if ( qmc2UseIconFile ) {
+		  qmc2IconFileMap.clear();
+		  foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+			  unzFile iconFile = unzOpen(filePath.toLocal8Bit());
+			  if ( iconFile == NULL )
+				  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
+			  else
+				  qmc2IconFileMap[filePath] = iconFile;
+		  }
+	  } else {
+		  foreach (unzFile iconFile, qmc2IconFileMap)
+			  unzClose(iconFile);
+		  qmc2IconFileMap.clear();
+	  }
   }
 
   if ( needReload ) {
