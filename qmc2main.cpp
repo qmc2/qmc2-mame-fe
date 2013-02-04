@@ -1613,11 +1613,6 @@ void MainWindow::on_actionPlay_triggered(bool)
   gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 #endif
 
-  if ( qmc2DeviceROMs.contains(gameName) ) {
-	   log(QMC2_LOG_FRONTEND, tr("sorry, devices cannot run standalone"));
-	   return;
-  }
-
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2DemoGame.isEmpty() ) {
 #endif
@@ -1683,6 +1678,11 @@ void MainWindow::on_actionPlay_triggered(bool)
     }
     launchForeignID = false;
     return;
+  }
+
+  if ( qmc2DeviceROMs.contains(gameName) ) {
+	   log(QMC2_LOG_FRONTEND, tr("sorry, devices cannot run standalone"));
+	   return;
   }
 
   launchForeignID = false;
