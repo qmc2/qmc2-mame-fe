@@ -498,3 +498,16 @@ void ImageWidget::contextMenuEvent(QContextMenuEvent *e)
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }
+
+QString ImageWidget::toBase64()
+{
+	ImagePixmap pm;
+	if ( !currentPixmap.isNull() )
+		pm = currentPixmap;
+	else
+		pm = qmc2MainWindow->qmc2GhostImagePixmap;
+	QByteArray imageData;
+	QBuffer buffer(&imageData);
+	pm.save(&buffer, "PNG");
+	return QString(imageData.toBase64());
+}

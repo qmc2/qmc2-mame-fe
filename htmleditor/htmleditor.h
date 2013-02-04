@@ -59,6 +59,7 @@ public:
     bool loadActive;
     bool stopLoading;
     bool loadSuccess;
+    QStringList imageTypes;
 
     HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
@@ -143,6 +144,8 @@ public slots:
     QString getIconData();
     QString getColor(QString currentColor = QString());
     QString getImage(QString currentImage = QString());
+    bool isZippedImage(QString imageType);
+    QString getImageData(QString imageType);
 
 private:
     Ui_HTMLEditorMainWindow *ui;

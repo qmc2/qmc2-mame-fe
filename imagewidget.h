@@ -75,6 +75,7 @@ class ImageWidget : public QWidget
 
 		QString cleanDir(QString);
 		QString absoluteImagePath() { return currentPixmap.imagePath; }
+		QString toBase64();
 
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }
