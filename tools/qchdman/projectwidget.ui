@@ -3575,7 +3575,7 @@ Extracts a laser-disc AVI file from a CHD input file.
              <widget class="QLabel" name="labelDumpMetaHelp">
               <property name="text">
                <string>&lt;p&gt;
-&lt;b&gt;CHDMAN Dump Meta&lt;/b&gt;
+&lt;b&gt;CHDMAN DumpMeta&lt;/b&gt;
 &lt;/p&gt;
 Dump meta-data from a CHD to stdout or file.
 &lt;p&gt;
@@ -3618,7 +3618,206 @@ Dump meta-data from a CHD to stdout or file.
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageAddMeta"/>
+          <widget class="QWidget" name="pageAddMeta">
+           <layout class="QGridLayout" name="gridLayoutPageAddMeta">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameAddMeta">
+              <layout class="QGridLayout" name="gridLayoutFrameExtractLD_3">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseAddMetaValueFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="lineEditAddMetaTag">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>4-character tag for meta-data (--tag)</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>4</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseAddMetaInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditAddMetaInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD input file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelAddMetaTag">
+                 <property name="text">
+                  <string>Tag (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditAddMetaValueFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>File containing the meta-data (--valuefile)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Meta-data value file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditAddMetaValueText">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Text for the meta-data (--valuetext)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Meta-data value text</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="labelAddMetaIndex">
+                 <property name="text">
+                  <string>Index</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QSpinBox" name="spinBoxAddMetaIndex">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Indexed instance of this meta-data tag (--index)</string>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxAddMetaNoCheckSum">
+                 <property name="toolTip">
+                  <string>Do not include this meta-data information in the overall SHA-1 check-sum (--nochecksum)</string>
+                 </property>
+                 <property name="text">
+                  <string>Don't include in SHA-1 check-sum</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerAddMeta">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>245</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelAddMetaHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN AddMeta&lt;/b&gt;
+&lt;/p&gt;
+Add meta-data to a CHD.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--valuefile, -vf &amp;lt;file&amp;gt;: file containing data to add&lt;br&gt;
+--valuetext, -vt &amp;lt;text&amp;gt;: text for the meta-data&lt;br&gt;
+--tag, -t &amp;lt;tag&amp;gt;: 4-character tag for meta-data (required)&lt;br&gt;
+--index, -ix &amp;lt;index&amp;gt;: indexed instance of this meta-data tag&lt;br&gt;
+--nochecksum, -nocs: do not include this meta-data information in the overall SHA-1 check-sum
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageDelMeta"/>
          </widget>
         </item>
@@ -3779,6 +3978,14 @@ Dump meta-data from a CHD to stdout or file.
   <tabstop>checkBoxDumpMetaForce</tabstop>
   <tabstop>lineEditDumpMetaTag</tabstop>
   <tabstop>spinBoxDumpMetaIndex</tabstop>
+  <tabstop>lineEditAddMetaInputFile</tabstop>
+  <tabstop>toolButtonBrowseAddMetaInputFile</tabstop>
+  <tabstop>lineEditAddMetaValueFile</tabstop>
+  <tabstop>toolButtonBrowseAddMetaValueFile</tabstop>
+  <tabstop>lineEditAddMetaValueText</tabstop>
+  <tabstop>lineEditAddMetaTag</tabstop>
+  <tabstop>spinBoxAddMetaIndex</tabstop>
+  <tabstop>checkBoxAddMetaNoCheckSum</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
   <tabstop>scrollArea</tabstop>
  </tabstops>

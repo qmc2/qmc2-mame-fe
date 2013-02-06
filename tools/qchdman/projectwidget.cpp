@@ -93,6 +93,14 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
             << 0 << 0 << 0 << 0
             << 0 << 0 << 0 << 0
             << ui->lineEditDumpMetaTag << ui->spinBoxDumpMetaIndex;
+    copyGroups[QCHDMAN_PRJ_ADD_META]
+            << ui->lineEditAddMetaInputFile << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << ui->lineEditAddMetaTag << ui->spinBoxAddMetaIndex << ui->lineEditAddMetaValueFile << ui->lineEditAddMetaValueText
+            << ui->checkBoxAddMetaNoCheckSum;
 
     // prepare compression selectors
     copyCompressors.clear();
@@ -317,7 +325,13 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 #endif
         break;
     case QCHDMAN_PRJ_ADD_META:
-        // FIXME
+        widgetHeight = ui->frameAddMeta->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelAddMetaHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelAddMetaHelp->margin();
+#endif
         break;
     case QCHDMAN_PRJ_DEL_META:
         // FIXME
@@ -592,7 +606,18 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_ADD_META:
         projectTypeName = tr("AddMeta");
         arguments << "addmeta";
-        // FIXME
+        if ( !ui->lineEditAddMetaInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditAddMetaInputFile->text();
+        if ( !ui->lineEditAddMetaValueFile->text().isEmpty() )
+            arguments << "--valuefile" << ui->lineEditAddMetaValueFile->text();
+        if ( !ui->lineEditAddMetaValueText->text().isEmpty() )
+            arguments << "--valuetext" << ui->lineEditAddMetaValueText->text();
+        if ( !ui->lineEditAddMetaTag->text().isEmpty() )
+            arguments << "--tag" << ui->lineEditAddMetaTag->text();
+        if ( ui->spinBoxAddMetaIndex->value() > 0 )
+            arguments << "--index" << QString::number(ui->spinBoxAddMetaIndex->value());
+        if ( ui->checkBoxAddMetaNoCheckSum->isChecked() )
+            arguments << "--nochecksum";
         break;
     case QCHDMAN_PRJ_DEL_META:
         projectTypeName = tr("DelMeta");
@@ -1246,6 +1271,28 @@ void ProjectWidget::on_toolButtonBrowseDumpMetaOutputFile_clicked()
         ui->lineEditDumpMetaOutputFile->setText(s);
 }
 
+void ProjectWidget::on_toolButtonBrowseAddMetaInputFile_clicked()
+{
+    QString folder = ui->lineEditAddMetaInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditAddMetaInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseAddMetaValueFile_clicked()
+{
+    QString folder = ui->lineEditAddMetaValueFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredInputFolder;
+    QString filter = tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose meta-data value file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditAddMetaValueFile->setText(s);
+}
+
 void ProjectWidget::init()
 {
     on_comboBoxProjectType_currentIndexChanged(QCHDMAN_PRJ_INFO);
@@ -1657,7 +1704,18 @@ void ProjectWidget::load(const QString &fileName)
                         ui->spinBoxDumpMetaIndex->setValue(line.remove("DumpMetaIndex = ").toInt());
                     break;
                 case QCHDMAN_PRJ_ADD_META:
-                    // FIXME
+                    if ( line.startsWith("AddMetaInputFile = ") )
+                        ui->lineEditAddMetaInputFile->setText(line.remove("AddMetaInputFile = "));
+                    if ( line.startsWith("AddMetaValueFile = ") )
+                        ui->lineEditAddMetaValueFile->setText(line.remove("AddMetaValueFile = "));
+                    if ( line.startsWith("AddMetaValueText = ") )
+                        ui->lineEditAddMetaValueText->setText(line.remove("AddMetaValueText = "));
+                    if ( line.startsWith("AddMetaTag = ") )
+                        ui->lineEditAddMetaTag->setText(line.remove("AddMetaTag = "));
+                    if ( line.startsWith("AddMetaIndex = ") )
+                        ui->spinBoxAddMetaIndex->setValue(line.remove("AddMetaIndex = ").toInt());
+                    if ( line.startsWith("AddMetaNoCheckSum = ") )
+                        ui->checkBoxAddMetaNoCheckSum->setChecked(line.remove("AddMetaNoCheckSum = ").toInt());
                     break;
                 case QCHDMAN_PRJ_DEL_META:
                     // FIXME
@@ -1864,7 +1922,12 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "DumpMetaIndex = " << ui->spinBoxDumpMetaIndex->value() << "\n";
             break;
         case QCHDMAN_PRJ_ADD_META:
-            // FIXME
+            ts << "AddMetaInputFile = " << ui->lineEditAddMetaInputFile->text() << "\n";
+            ts << "AddMetaValueFile = " << ui->lineEditAddMetaValueFile->text() << "\n";
+            ts << "AddMetaValueText = " << ui->lineEditAddMetaValueText->text() << "\n";
+            ts << "AddMetaTag = " << ui->lineEditAddMetaTag->text() << "\n";
+            ts << "AddMetaIndex = " << ui->spinBoxAddMetaIndex->value() << "\n";
+            ts << "AddMetaNoCheckSum = " << ui->checkBoxAddMetaNoCheckSum->isChecked() << "\n";
             break;
         case QCHDMAN_PRJ_DEL_META:
             // FIXME

@@ -141,6 +141,8 @@ public slots:
     void on_toolButtonBrowseDumpMetaOutputFile_clicked();
 
     // AddMeta
+    void on_toolButtonBrowseAddMetaInputFile_clicked();
+    void on_toolButtonBrowseAddMetaValueFile_clicked();
 
     // DelMeta
 
