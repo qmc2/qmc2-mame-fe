@@ -86,6 +86,13 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
             << 0 << 0 << 0 << 0
             << 0 << 0 << 0 << 0
             << 0 << 0 << ui->spinBoxExtractLDInputStartFrame << ui->spinBoxExtractLDInputFrames;
+    copyGroups[QCHDMAN_PRJ_DUMP_META]
+            << ui->lineEditDumpMetaInputFile << ui->lineEditDumpMetaOutputFile << 0 << 0
+            << ui->checkBoxDumpMetaForce << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << ui->lineEditDumpMetaTag << ui->spinBoxDumpMetaIndex;
 
     // prepare compression selectors
     copyCompressors.clear();
@@ -301,7 +308,13 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 #endif
         break;
     case QCHDMAN_PRJ_DUMP_META:
-        // FIXME
+        widgetHeight = ui->frameDumpMeta->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelDumpMetaHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelDumpMetaHelp->margin();
+#endif
         break;
     case QCHDMAN_PRJ_ADD_META:
         // FIXME
@@ -565,7 +578,16 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_DUMP_META:
         projectTypeName = tr("DumpMeta");
         arguments << "dumpmeta";
-        // FIXME
+        if ( !ui->lineEditDumpMetaInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditDumpMetaInputFile->text();
+        if ( !ui->lineEditDumpMetaOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditDumpMetaOutputFile->text();
+        if ( ui->checkBoxDumpMetaForce->isChecked() )
+            arguments << "--force";
+        if ( !ui->lineEditDumpMetaTag->text().isEmpty() )
+            arguments << "--tag" << ui->lineEditDumpMetaTag->text();
+        if ( ui->spinBoxDumpMetaIndex->value() > 0 )
+            arguments << "--index" << QString::number(ui->spinBoxDumpMetaIndex->value());
         break;
     case QCHDMAN_PRJ_ADD_META:
         projectTypeName = tr("AddMeta");
@@ -1202,6 +1224,28 @@ void ProjectWidget::on_toolButtonBrowseExtractLDParentInputFile_clicked()
         ui->lineEditExtractLDParentInputFile->setText(s);
 }
 
+void ProjectWidget::on_toolButtonBrowseDumpMetaInputFile_clicked()
+{
+    QString folder = ui->lineEditDumpMetaInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditDumpMetaInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseDumpMetaOutputFile_clicked()
+{
+    QString folder = ui->lineEditDumpMetaOutputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredOutputFolder;
+    QString filter = tr("All files (*)");
+    QString s = QFileDialog::getSaveFileName(this, tr("Choose output file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditDumpMetaOutputFile->setText(s);
+}
+
 void ProjectWidget::init()
 {
     on_comboBoxProjectType_currentIndexChanged(QCHDMAN_PRJ_INFO);
@@ -1601,7 +1645,16 @@ void ProjectWidget::load(const QString &fileName)
                         ui->spinBoxExtractLDInputFrames->setValue(line.remove("ExtractLDInputFrames = ").toInt());
                     break;
                 case QCHDMAN_PRJ_DUMP_META:
-                    // FIXME
+                    if ( line.startsWith("DumpMetaInputFile = ") )
+                        ui->lineEditDumpMetaInputFile->setText(line.remove("DumpMetaInputFile = "));
+                    if ( line.startsWith("DumpMetaOutputFile = ") )
+                        ui->lineEditDumpMetaOutputFile->setText(line.remove("DumpMetaOutputFile = "));
+                    if ( line.startsWith("DumpMetaForce = ") )
+                        ui->checkBoxDumpMetaForce->setChecked(line.remove("DumpMetaForce = ").toInt());
+                    if ( line.startsWith("DumpMetaTag = ") )
+                        ui->lineEditDumpMetaTag->setText(line.remove("DumpMetaTag = "));
+                    if ( line.startsWith("DumpMetaIndex = ") )
+                        ui->spinBoxDumpMetaIndex->setValue(line.remove("DumpMetaIndex = ").toInt());
                     break;
                 case QCHDMAN_PRJ_ADD_META:
                     // FIXME
@@ -1804,7 +1857,11 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "ExtractLDInputFrames = " << ui->spinBoxExtractLDInputFrames->value() << "\n";
             break;
         case QCHDMAN_PRJ_DUMP_META:
-            // FIXME
+            ts << "DumpMetaInputFile = " << ui->lineEditDumpMetaInputFile->text() << "\n";
+            ts << "DumpMetaOutputFile = " << ui->lineEditDumpMetaOutputFile->text() << "\n";
+            ts << "DumpMetaForce = " << ui->checkBoxDumpMetaForce->isChecked() << "\n";
+            ts << "DumpMetaTag = " << ui->lineEditDumpMetaTag->text() << "\n";
+            ts << "DumpMetaIndex = " << ui->spinBoxDumpMetaIndex->value() << "\n";
             break;
         case QCHDMAN_PRJ_ADD_META:
             // FIXME
