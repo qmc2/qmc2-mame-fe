@@ -145,6 +145,7 @@ public slots:
     void on_toolButtonBrowseAddMetaValueFile_clicked();
 
     // DelMeta
+    void on_toolButtonBrowseDelMetaInputFile_clicked();
 
     // Other
     void init();

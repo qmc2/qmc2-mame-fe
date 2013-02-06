@@ -101,6 +101,13 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
             << 0 << 0 << 0 << 0
             << ui->lineEditAddMetaTag << ui->spinBoxAddMetaIndex << ui->lineEditAddMetaValueFile << ui->lineEditAddMetaValueText
             << ui->checkBoxAddMetaNoCheckSum;
+    copyGroups[QCHDMAN_PRJ_DEL_META]
+            << ui->lineEditDelMetaInputFile << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << 0 << 0 << 0 << 0
+            << ui->lineEditDelMetaTag << ui->spinBoxDelMetaIndex;
 
     // prepare compression selectors
     copyCompressors.clear();
@@ -334,7 +341,13 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 #endif
         break;
     case QCHDMAN_PRJ_DEL_META:
-        // FIXME
+        widgetHeight = ui->frameDelMeta->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelDelMetaHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelDelMetaHelp->margin();
+#endif
         break;
     }
 
@@ -622,7 +635,12 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_DEL_META:
         projectTypeName = tr("DelMeta");
         arguments << "delmeta";
-        // FIXME
+        if ( !ui->lineEditDelMetaInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditDelMetaInputFile->text();
+        if ( !ui->lineEditDelMetaTag->text().isEmpty() )
+            arguments << "--tag" << ui->lineEditDelMetaTag->text();
+        if ( ui->spinBoxDelMetaIndex->value() > 0 )
+            arguments << "--index" << QString::number(ui->spinBoxDelMetaIndex->value());
         break;
     }
 
@@ -1293,6 +1311,17 @@ void ProjectWidget::on_toolButtonBrowseAddMetaValueFile_clicked()
         ui->lineEditAddMetaValueFile->setText(s);
 }
 
+void ProjectWidget::on_toolButtonBrowseDelMetaInputFile_clicked()
+{
+    QString folder = ui->lineEditDelMetaInputFile->text();
+    if ( folder.isEmpty() )
+        folder = mainWindow->preferredCHDInputFolder;
+    QString filter = tr("CHD files (*.chd)") + ";;" + tr("All files (*)");
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), folder, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditDelMetaInputFile->setText(s);
+}
+
 void ProjectWidget::init()
 {
     on_comboBoxProjectType_currentIndexChanged(QCHDMAN_PRJ_INFO);
@@ -1718,7 +1747,12 @@ void ProjectWidget::load(const QString &fileName)
                         ui->checkBoxAddMetaNoCheckSum->setChecked(line.remove("AddMetaNoCheckSum = ").toInt());
                     break;
                 case QCHDMAN_PRJ_DEL_META:
-                    // FIXME
+                    if ( line.startsWith("DelMetaInputFile = ") )
+                        ui->lineEditDelMetaInputFile->setText(line.remove("DelMetaInputFile = "));
+                    if ( line.startsWith("DelMetaTag = ") )
+                        ui->lineEditDelMetaTag->setText(line.remove("DelMetaTag = "));
+                    if ( line.startsWith("DelMetaIndex = ") )
+                        ui->spinBoxDelMetaIndex->setValue(line.remove("DelMetaIndex = ").toInt());
                     break;
                 }
             }
@@ -1930,7 +1964,9 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "AddMetaNoCheckSum = " << ui->checkBoxAddMetaNoCheckSum->isChecked() << "\n";
             break;
         case QCHDMAN_PRJ_DEL_META:
-            // FIXME
+            ts << "DelMetaInputFile = " << ui->lineEditDelMetaInputFile->text() << "\n";
+            ts << "DelMetaTag = " << ui->lineEditDelMetaTag->text() << "\n";
+            ts << "DelMetaIndex = " << ui->spinBoxDelMetaIndex->value() << "\n";
             break;
         }
         saveFile.close();
