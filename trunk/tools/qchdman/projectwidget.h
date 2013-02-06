@@ -137,6 +137,8 @@ public slots:
     void on_toolButtonBrowseExtractLDParentInputFile_clicked();
 
     // DumpMeta
+    void on_toolButtonBrowseDumpMetaInputFile_clicked();
+    void on_toolButtonBrowseDumpMetaOutputFile_clicked();
 
     // AddMeta
 
