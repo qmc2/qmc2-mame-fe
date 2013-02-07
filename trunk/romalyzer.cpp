@@ -168,6 +168,13 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
   actionRewriteSet = action;
 
+  s = tr("Analyse referenced devices");
+  action = romSetContextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(analyzeDeviceRefs()));
+  actionAnalyzeDeviceRefs = action;
+
   s = tr("Copy to clipboard");
   action = romSetContextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
@@ -721,8 +728,12 @@ void ROMAlyzer::analyze()
 	log(tr("done (parsing XML data for '%1')").arg(gameName));
       else
 	log(tr("error (parsing XML data for '%1')").arg(gameName));
+
       if ( qmc2StopParser )
 	break;
+
+      if ( !xmlHandler.deviceReferences.isEmpty() )
+	      item->setWhatsThis(QMC2_ROMALYZER_COLUMN_GAME, xmlHandler.deviceReferences.join(","));
 
       int numWizardFiles = 1;
       if ( wizardSearch )
@@ -2469,6 +2480,22 @@ void ROMAlyzer::runSetRewriter()
 	qApp->processEvents();
 }
 
+void ROMAlyzer::analyzeDeviceRefs()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::analyzeDeviceRefs()");
+#endif
+
+	QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
+	if ( !il.isEmpty() ) {
+		QStringList deviceRefs = il[0]->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
+		if ( !deviceRefs.isEmpty() ) {
+			lineEditGames->setText(deviceRefs.join(" "));
+			QTimer::singleShot(0, this, SLOT(analyze()));
+		}
+	}
+}
+
 void ROMAlyzer::copyToClipboard()
 {
 #ifdef QMC2_DEBUG
@@ -3091,6 +3118,9 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 		} else {
 			actionRewriteSet->setVisible(groupBoxSetRewriter->isChecked());
 			actionRewriteSet->setEnabled(groupBoxSetRewriter->isChecked());
+			QStringList deviceRefs = item->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
+			actionAnalyzeDeviceRefs->setVisible(!deviceRefs.isEmpty());
+			actionAnalyzeDeviceRefs->setEnabled(!deviceRefs.isEmpty());
 			treeWidgetChecksums->setItemSelected(item, true);
 			setRewriterItem = NULL;
 			romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
@@ -3248,6 +3278,7 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
     fileCounter = 0;
     currentText.clear();
     childItems.clear();
+    deviceReferences.clear();
   } else if ( qName == "rom" || qName == "disk" ) {
     fileCounter++;
     childItem = new QTreeWidgetItem(parentItem);
@@ -3277,7 +3308,8 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
     childItem->setText(QMC2_ROMALYZER_COLUMN_CRC, attributes.value("crc"));
     childItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, attributes.value("sha1"));
     childItem->setText(QMC2_ROMALYZER_COLUMN_MD5, attributes.value("md5"));
-  }
+  } else if ( qName == "device_ref" )
+    deviceReferences << attributes.value("name");
 
   return true;
 }

@@ -146,6 +146,7 @@ class ROMAlyzerXmlHandler : public QXmlDefaultHandler
     QTreeWidgetItem *parentItem;
     QTreeWidgetItem *childItem;
     QList<QTreeWidgetItem *> childItems;
+    QStringList deviceReferences;
     bool autoExpand;
     bool autoScroll;
     int emuStatus;
@@ -184,6 +185,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     QMenu *romFileContextMenu;
     QMenu *romSetContextMenu;
     QAction *actionRewriteSet;
+    QAction *actionAnalyzeDeviceRefs;
     QString currentFilesSHA1Checksum;
     QString currentFilesCrcChecksum;
     QStringList wizardSelectedSets;
@@ -257,6 +259,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void runChecksumWizard();
     void runSetRewriter();
     void copyToClipboard();
+    void analyzeDeviceRefs();
 
     // CHD manager process control
     void chdManagerStarted();
