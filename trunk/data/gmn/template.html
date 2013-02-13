@@ -99,6 +99,10 @@
 		trMap['de' + 'Comments'] = 'Kommentare';
 		trMap['de' + 'System info'] = 'System Infos';
 		trMap['de' + 'Emulator info'] = 'Emulator Infos';
+		trMap['de' + 'Software lists'] = 'Software-Listen';
+		trMap['de' + 'Associated software-lists:'] = 'Zugeordnete Software-Listen:';
+		trMap['de' + 'This system has no associated software-lists.'] = 'Dieses System hat keine zugeordneten Software-Listen.';
+		trMap['de' + 'XML query error!'] = 'Fehler bei XML Abfrage!';
 		trMap['de' + 'Drop shadow'] = 'Schatten';
 		trMap['de' + 'Drop shadow on images?'] = 'Bildschatten einblenden?';
 		trMap['de' + 'Icon'] = 'Icon';
@@ -119,23 +123,23 @@
 		}
 		function toggleHeaderFixed(enable) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] = enable ? 'true' : 'false';
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			qmc2NEO.loadCurrentTemplate();
 		}
 		function toggleFancyImages(enable) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] = enable ? 'true' : 'false';
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			qmc2NEO.loadCurrentTemplate();
 		}
 		function toggleDropShadow(enable) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/DropShadow'] = enable ? 'true' : 'false';
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			qmc2NEO.loadCurrentTemplate();
 		}
 		function toggleLinkImages(enable) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] = enable ? 'true' : 'false';
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			qmc2NEO.loadCurrentTemplate();
 		}
 		function changeBackgroundMode(mode) {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] = mode;
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			qmc2NEO.loadCurrentTemplate();
 		}
 		function linkImage(text, url) {
 			var linkText = text;
@@ -166,7 +170,7 @@
 			content_obj.style.height = content_height;
 		}
 		function iconTag() {
-			var data = qmc2NotesEditorObject.getIconData();
+			var data = qmc2NEO.getIconData();
 			var iconHeight = document.getElementById('cbLinkImages').clientHeight;
 			var imgTag;
 			if ( data == '' )
@@ -176,23 +180,23 @@
 			return imgTag;
 		}
 		function selectColor() {
-			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor']);
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor'] = qmc2NEO.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor']);
 			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] == 'color' )
-				qmc2NotesEditorObject.loadCurrentTemplate();
+				qmc2NEO.loadCurrentTemplate();
 		}
 		function selectImage() {
-			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage'] = qmc2NotesEditorObject.getImage(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage']);
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage'] = qmc2NEO.getImage(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundImage']);
 			var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
 			if ( mode == 'image-tiled' || mode == 'image-scaled' )
-				qmc2NotesEditorObject.loadCurrentTemplate();
+				qmc2NEO.loadCurrentTemplate();
 		}
 		function selectTextFgColor() {
-			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor']);
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor'] = qmc2NEO.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor']);
+			qmc2NEO.loadCurrentTemplate();
 		}
 		function selectTextBgColor() {
-			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'] = qmc2NotesEditorObject.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor']);
-			qmc2NotesEditorObject.loadCurrentTemplate();
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'] = qmc2NEO.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor']);
+			qmc2NEO.loadCurrentTemplate();
 		}
 	</script>
 </head>
@@ -345,29 +349,29 @@
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					if ( qmc2NotesEditorObject.isZippedImage('cab') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('cab') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('cab') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('cab') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('prv') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('prv') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('prv') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('prv') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('fly') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('fly') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('fly') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('fly') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				} else {
-					if ( qmc2NotesEditorObject.isZippedImage('cab') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('cab') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('cab') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('cab') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('prv') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('prv') + "\"</td>");
+					if ( qmc2NEO.isZippedImage('prv') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('prv') + "\"</td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('fly') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('fly') + "\"</td>");
+					if ( qmc2NEO.isZippedImage('fly') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('fly') + "\"</td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				}
@@ -383,29 +387,29 @@
 		<tr>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					if ( qmc2NotesEditorObject.isZippedImage('ctl') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('ctl') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('ctl') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ctl') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('mrq') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('mrq') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('mrq') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('mrq') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('pcb') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('pcb') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('pcb') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('pcb') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				} else {
-					if ( qmc2NotesEditorObject.isZippedImage('ctl') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('ctl') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('ctl') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ctl') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('mrq') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('mrq') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('mrq') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('mrq') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
-					if ( qmc2NotesEditorObject.isZippedImage('pcb') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('pcb') + "\"></td>");
+					if ( qmc2NEO.isZippedImage('pcb') )
+						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('pcb') + "\"></td>");
 					else
 						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				}
@@ -415,13 +419,13 @@
 			if ( "$EMULATOR_VARIANT$" != "SDLMESS" && "$EMULATOR_VARIANT$" != "MESS" ) {
 				document.write("<tr><td width=\"33%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Title screen') + "</td></tr>");
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
-					if ( qmc2NotesEditorObject.isZippedImage('ttl') )
-						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('ttl') + "\"></td></tr>");
+					if ( qmc2NEO.isZippedImage('ttl') )
+						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td></tr>");
 					else
 						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td></tr>");
 				} else {
-					if ( qmc2NotesEditorObject.isZippedImage('ttl') )
-						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NotesEditorObject.getImageData('ttl') + "\"></td></tr>");
+					if ( qmc2NEO.isZippedImage('ttl') )
+						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td></tr>");
 					else
 						document.write("<tr><td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td></tr>");
 				}
@@ -435,6 +439,21 @@
 <p>$GAME_INFO$</p>
 <h3><script>document.write(tr('Emulator info'));</script></h3>
 <p>$EMU_INFO$</p>
+<h3><script>document.write(tr('Software lists'));</script></h3>
+<script>
+	if ( qmc2NEO.queryXml('doc($xmlDocument)//machine[@name = \"$ID$\"]/softwarelist/@name/string()') ) {
+		var result = qmc2NEO.getXmlResult();
+		if ( result.length > 0 ) {
+			document.write("<p>" +  tr('Associated software-lists:'));
+			for (var i = 0; i < result.length; i++)
+				document.write((i > 0 ? ", " : " ") + result[i]);
+			document.write("</p>");
+
+		} else
+			document.write("<p>" + tr('This system has no associated software-lists.') +"</p>");
+	} else
+		document.write(tr('XML query error!'));
+</script>
 <script>
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
 		document.write("</div>");

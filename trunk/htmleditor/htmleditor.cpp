@@ -29,7 +29,6 @@
 #include <QPixmap>
 #include <QIcon>
 #include <QTreeWidgetItem>
-#include <QByteArray>
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QCache>
@@ -57,6 +56,8 @@
 #include "title.h"
 #include "pcb.h"
 #include "softwarelist.h"
+#include "gamelist.h"
+#include "qmc2main.h"
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
 #include "ui_tablepropertydialog.h"
@@ -85,6 +86,7 @@ extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 extern SoftwareList *qmc2SoftwareList;
 extern bool qmc2UseSoftwareSnapFile;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
+extern Gamelist *qmc2Gamelist;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -109,6 +111,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 
 	loadActive = false;
 	loadSuccess = true;
+	xmlQueryBuffer = NULL;
+	xmlDocument = NULL;
 
 	// hide new-from-template and file-revert actions initially
 	ui->actionFileNewFromTemplate->setVisible(false);
@@ -318,6 +322,8 @@ HtmlEditor::~HtmlEditor()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), actionHideMenu->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), actionReadOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ShowHtml").arg(myEditorName), actionShowHTML->isChecked());
+
+	closeXmlBuffer();
 
 	delete ui;
 	delete ui_dialog;
@@ -1069,6 +1075,7 @@ bool HtmlEditor::loadTemplate(const QString &f)
 void HtmlEditor::javaScriptWindowObjectCleared()
 {
 	ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("qmc2NotesEditorObject", this);
+	ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("qmc2NEO", this);
 }
 
 QString HtmlEditor::getIconData()
@@ -1165,6 +1172,35 @@ QString HtmlEditor::getImage(QString currentImage)
 		return imageFile;
 	else
 		return currentImage;
+}
+
+bool HtmlEditor::queryXml(QString queryString)
+{
+	if ( xmlQueryBuffer == NULL ) {
+		xmlDocument = new QByteArray(qmc2Gamelist->xmlLines.join("").toLocal8Bit());
+		xmlQueryBuffer = new QBuffer(xmlDocument);
+		xmlQueryBuffer->open(QIODevice::ReadOnly);
+		xmlQuery.bindVariable("xmlDocument", xmlQueryBuffer);
+	}
+	xmlQueryBuffer->seek(0);
+	xmlResult.clear();
+	xmlQuery.setQuery(queryString);
+	if ( xmlQuery.evaluateTo(&xmlResult) ) {
+		qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
+		return true;
+	} else
+		return false;
+}
+
+void HtmlEditor::closeXmlBuffer()
+{
+	if ( xmlQueryBuffer ) {
+		xmlQueryBuffer->close();
+		delete xmlQueryBuffer;
+		delete xmlDocument;
+		xmlQueryBuffer = NULL;
+		xmlDocument = NULL;
+	}
 }
 
 void HtmlEditor::enableFileNewFromTemplateAction(bool enable)
