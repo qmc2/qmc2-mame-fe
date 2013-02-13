@@ -3691,6 +3691,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = Gamelist::reverseTranslation[qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED)];
 	      			qmc2SoftwareNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	      			qmc2SoftwareNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
+	      			qmc2SoftwareNotesEditor->templateMap["$EMULATOR_TYPE$"] = QMC2_EMU_NAME;
 				if ( !qmc2SoftwareSnapshot ) {
 					qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
 					QHBoxLayout *layout = new QHBoxLayout;
@@ -4605,6 +4606,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$ROM_STATUS_UT$"] = qmc2Gamelist->romStatus(gameName, false);
 	      qmc2SystemNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	      qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
+	      qmc2SystemNotesEditor->templateMap["$EMULATOR_TYPE$"] = QMC2_EMU_NAME;
 	      QString filePath;
 	      QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 	      QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
