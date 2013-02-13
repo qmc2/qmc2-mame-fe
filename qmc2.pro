@@ -7,7 +7,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		} else {
 			CONFIG += qtestlib
 		}
-		QT += xml webkit network sql
+		QT += xml xmlpatterns webkit network sql
 		TEMPLATE = app
 		INCLUDEPATH += minizip/ zlib/
 		FORMS += qmc2main.ui \

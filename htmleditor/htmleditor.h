@@ -31,6 +31,10 @@
 #include <QToolButton>
 #include <QMenu>
 #include <QAction>
+#include <QBuffer>
+#include <QByteArray>
+#include <QXmlQuery>
+#include <QStringList>
 #include "highlighter.h"
 
 class Ui_HTMLEditorMainWindow;
@@ -61,6 +65,10 @@ public:
     bool stopLoading;
     bool loadSuccess;
     QStringList imageTypes;
+    QBuffer *xmlQueryBuffer;
+    QByteArray *xmlDocument;
+    QXmlQuery xmlQuery;
+    QStringList xmlResult;
 
     HtmlEditor(QString, bool embedded = false, QWidget *parent = 0);
     ~HtmlEditor();
@@ -140,6 +148,7 @@ public slots:
     void setLoadSuccess(bool success) { loadSuccess = success; }
     void javaScriptWindowObjectCleared();
     void showHtmlTab(bool enable = true);
+    void closeXmlBuffer();
 
     // helper functions (not only) for template use
     bool loadCurrentTemplate();
@@ -148,6 +157,8 @@ public slots:
     QString getImage(QString currentImage = QString());
     bool isZippedImage(QString imageType);
     QString getImageData(QString imageType);
+    bool queryXml(QString queryString);
+    QStringList getXmlResult() { return xmlResult; }
 
 private:
     Ui_HTMLEditorMainWindow *ui;

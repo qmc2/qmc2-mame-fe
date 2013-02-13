@@ -1760,12 +1760,9 @@ void Gamelist::parse()
   xmlLines.clear();
   xmlGamePositionMap.clear();
   qmc2XmlGamePositionMap.clear();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mame build")).split("\n");
-#elif defined(QMC2_EMUTYPE_MESS)
-  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mess build")).split("\n");
-#endif
+  xmlLines = gamelistBuffer.split("\n");
   gamelistBuffer.clear();
+  gamelistBuffer.squeeze();
 
   if ( reparseGamelist && !qmc2StopParser ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -2747,49 +2744,47 @@ void Gamelist::loadReadyReadStandardOutput()
   QStringList sl = s.split("\n");
   int l, lc = sl.count();
   for (l = 0; l < lc; l++) {
-    QString singleXMLLine = sl[l];
-    if ( !singleXMLLine.startsWith("<!") && !singleXMLLine.startsWith("<?") && !singleXMLLine.startsWith("]>") ) {
-      bool newLine = singleXMLLine.endsWith(">");
-      if ( newLine ) {
-        if ( singleXMLLine.endsWith("<description>") )
-          newLine = false;
-        else if ( singleXMLLine.endsWith("<year>") )
-          newLine = false;
-        else if ( singleXMLLine.endsWith("<manufacturer>") )
-          newLine = false;
-        if ( newLine ) {
-          bool found = false;
-          for (i = singleXMLLine.length() - 2; i > 0 && !found; i--)
-            found = ( singleXMLLine[i] == '<' );
-          if ( found && i == 0 )
-            newLine = false;
-        }
-      }
-      bool needsSpace = singleXMLLine.endsWith("\"");
-      if ( needsSpace ) {
-        bool found = false;
-        bool stop = false;
-        for (i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
-          if ( singleXMLLine[i] == '\"' ) {
-            if ( singleXMLLine[i - 1] == '=' )
-              found = true;
-            else
-              stop = true;
-          }
-        }
-        if ( !found )
-          needsSpace = false;
-      }
-      needsSpace |= endsWithSpace;
-      if ( newLine ) {
-        if ( singleXMLLine[singleXMLLine.length() - 1].isSpace() )
-          singleXMLLine.remove(singleXMLLine.length() - 1, 1);
-        needsSpace = false;
-      }
-      gamelistBuffer += singleXMLLine + QString(needsSpace ? " " : "") + QString(newLine ? "\n" : "");
-      if ( listXMLCache.isOpen() )
-        tsListXMLCache << singleXMLLine << QString(needsSpace ? " " : "") << QString(newLine ? "\n" : "");
-    }
+	  QString singleXMLLine = sl[l];
+	  bool newLine = singleXMLLine.endsWith(">");
+	  if ( newLine ) {
+		  if ( singleXMLLine.endsWith("<description>") )
+			  newLine = false;
+		  else if ( singleXMLLine.endsWith("<year>") )
+			  newLine = false;
+		  else if ( singleXMLLine.endsWith("<manufacturer>") )
+			  newLine = false;
+		  if ( newLine ) {
+			  bool found = false;
+			  for (i = singleXMLLine.length() - 2; i > 0 && !found; i--)
+				  found = ( singleXMLLine[i] == '<' );
+			  if ( found && i == 0 )
+				  newLine = false;
+		  }
+	  }
+	  bool needsSpace = singleXMLLine.endsWith("\"");
+	  if ( needsSpace ) {
+		  bool found = false;
+		  bool stop = false;
+		  for (i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
+			  if ( singleXMLLine[i] == '\"' ) {
+				  if ( singleXMLLine[i - 1] == '=' )
+					  found = true;
+				  else
+					  stop = true;
+			  }
+		  }
+		  if ( !found )
+			  needsSpace = false;
+	  }
+	  needsSpace |= endsWithSpace;
+	  if ( newLine ) {
+		  if ( singleXMLLine[singleXMLLine.length() - 1].isSpace() )
+			  singleXMLLine.remove(singleXMLLine.length() - 1, 1);
+		  needsSpace = false;
+	  }
+	  gamelistBuffer += singleXMLLine + QString(needsSpace ? " " : "") + QString(newLine ? "\n" : "");
+	  if ( listXMLCache.isOpen() )
+		  tsListXMLCache << singleXMLLine << QString(needsSpace ? " " : "") << QString(newLine ? "\n" : "");
   }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
