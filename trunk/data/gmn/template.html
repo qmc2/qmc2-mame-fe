@@ -43,6 +43,7 @@
 	General macros:
 
 	$GUI_LANGUAGE$		The GUI's current language setting (us, de, ...)
+	$EMULATOR_TYPE$		The current emulator type (MAME, MESS, UME)
 	$EMULATOR_VARIANT$	The current emulator variant (MAME, MESS, UME, SDLMAME, SDLMESS, SDLUME)
 
 	Using JavaScript:
@@ -439,19 +440,21 @@
 <p>$GAME_INFO$</p>
 <h3><script>document.write(tr('Emulator info'));</script></h3>
 <p>$EMU_INFO$</p>
-<h3><script>document.write(tr('Software lists'));</script></h3>
 <script>
-	if ( qmc2NEO.queryXml('doc($xmlDocument)//machine[@name = \"$ID$\"]/softwarelist/@name/string()') ) {
-		var result = qmc2NEO.getXmlResult();
-		if ( result.length > 0 ) {
-			document.write("<p>" +  tr('Associated software-lists:'));
-			for (var i = 0; i < result.length; i++)
-				document.write((i > 0 ? ", " : " ") + result[i]);
-			document.write("</p>");
+	if ( "$EMULATOR_TYPE$" == "MESS" ) {
+		document.write("<h3>" + tr('Software lists') + "</h3>");
+		if ( qmc2NEO.queryXml("doc($xmlDocument)//machine[@name = \"$ID$\"]/softwarelist/@name/string()") ) {
+			var result = qmc2NEO.getXmlResult();
+			if ( result.length > 0 ) {
+				document.write("<p>" +  tr('Associated software-lists:'));
+				for (var i = 0; i < result.length; i++)
+					document.write((i > 0 ? ", " : " ") + result[i]);
+				document.write("</p>");
+			} else
+				document.write("<p>" + tr('This system has no associated software-lists.') +"</p>");
 		} else
-			document.write("<p>" + tr('This system has no associated software-lists.') +"</p>");
-	} else
-		document.write(tr('XML query error!'));
+			document.write(tr('XML query error!'));
+	}
 </script>
 <script>
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
