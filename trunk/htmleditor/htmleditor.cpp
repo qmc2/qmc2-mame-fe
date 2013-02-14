@@ -329,6 +329,16 @@ HtmlEditor::~HtmlEditor()
 	delete ui_dialog;
 }
 
+void HtmlEditor::clearContent()
+{
+	htmlDirty = wysiwygDirty = false;
+	templateMap.clear();
+	loadedContent.clear();
+	fileName.clear();
+	templateName.clear();
+	ui->webView->setHtml("");
+}
+
 void HtmlEditor::showHtmlTab(bool enable)
 {
 	if ( enable )

@@ -120,6 +120,7 @@ extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
 extern QMap<QString, int> qmc2XmlGamePositionMap;
 extern HtmlEditor *qmc2SystemNotesEditor;
+extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 
 // local global variables
@@ -402,11 +403,16 @@ void Gamelist::load()
 #endif
   if ( qmc2SystemNotesEditor ) {
 	  qmc2SystemNotesEditor->save();
-	  qmc2SystemNotesEditor->close();
-	  qmc2SystemNotesEditor->hide();
-	  delete qmc2SystemNotesEditor;
-	  qmc2SystemNotesEditor = NULL;
+	  qmc2SystemNotesEditor->closeXmlBuffer();
+	  qmc2SystemNotesEditor->clearContent();
   }
+
+  if ( qmc2SoftwareNotesEditor ) {
+	  qmc2SoftwareNotesEditor->save();
+	  qmc2SoftwareNotesEditor->closeXmlBuffer();
+	  qmc2SoftwareNotesEditor->clearContent();
+  }
+
   if ( qmc2SoftwareList ) {
     if ( qmc2SoftwareList->isLoading ) {
       qmc2SoftwareList->interruptLoad = true;
