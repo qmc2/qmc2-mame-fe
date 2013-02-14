@@ -149,6 +149,7 @@ public slots:
     void javaScriptWindowObjectCleared();
     void showHtmlTab(bool enable = true);
     void closeXmlBuffer();
+    void clearContent();
 
     // helper functions (not only) for template use
     bool loadCurrentTemplate();
