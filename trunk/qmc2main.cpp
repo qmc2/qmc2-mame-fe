@@ -1831,6 +1831,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 									args << QString("-%1").arg(slotName) << "\"\"";
 								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
 									args << QString("-%1").arg(slotName) << slotDeviceString;
+								else if ( !biosChoice.isEmpty() )
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 							}
 						}
 					}
@@ -1885,6 +1887,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 									args << QString("-%1").arg(slotName) << "\"\"";
 								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
 									args << QString("-%1").arg(slotName) << slotDeviceString;
+								else if ( !biosChoice.isEmpty() )
+									args << QString("-%1").arg(slotName) << slotDeviceString;
 							}
 						}
 						valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
@@ -1930,6 +1934,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
 									args << QString("-%1").arg(slotName) << "\"\"";
 								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
+									args << QString("-%1").arg(slotName) << slotDeviceString;
+								else if ( !biosChoice.isEmpty() )
 									args << QString("-%1").arg(slotName) << slotDeviceString;
 							}
 						}

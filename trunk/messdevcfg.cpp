@@ -1550,7 +1550,7 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 							slotBIOSs << biosChoice;
 						} else
 							slotBIOSs << QString();
-					} else if (cb->currentIndex() == 0 && defaultIndex > 0 ) {
+					} else if ( cb->currentIndex() == 0 && defaultIndex > 0 ) {
 						slotNames << slotName;
 						slotOptions << "\"\"";
 						slotBIOSs << QString();
@@ -1566,14 +1566,20 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 							slotBIOSs << QString();
 					} else {
 						slotNames << slotName;
-						slotOptions << QString();
 						if ( cbBIOS ) {
+							bool isDefaultBiosChoice = cbBIOS->currentText().endsWith(" / " + tr("default"));
 							QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];
 							if ( biosChoice == tr("N/A") )
 								biosChoice.clear();
 							slotBIOSs << biosChoice;
-						} else
+							if ( !biosChoice.isEmpty() && !isDefaultBiosChoice )
+								slotOptions << cb->currentText().split(" ")[0];
+							else
+								slotOptions << QString();
+						} else  {
+							slotOptions << QString();
 							slotBIOSs << QString();
+						}
 					}
 				}
 			}
