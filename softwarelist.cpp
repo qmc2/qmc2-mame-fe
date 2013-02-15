@@ -514,10 +514,17 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 		QStringList files = qmc2Config->value("Files").toStringList();
 		QStringList slotNames = qmc2Config->value("Slots").toStringList();
 		QStringList slotOptions = qmc2Config->value("SlotOptions").toStringList();
+		QStringList slotBIOSs = qmc2Config->value("SlotBIOSs").toStringList();
 		qmc2Config->endGroup();
 		QStringList swlArgs;
-		for (int j = 0; j < slotNames.count(); j++)
-			swlArgs << QString("-%1").arg(slotNames[j]) << slotOptions[j];
+		for (int j = 0; j < slotNames.count(); j++) {
+			if ( !slotOptions[j].isEmpty() ) {
+				QString slotOpt = slotOptions[j];
+				if ( !slotBIOSs[j].isEmpty() )
+					slotOpt += ",bios=" + slotBIOSs[j];
+				swlArgs << QString("-%1").arg(slotNames[j]) << slotOpt;
+			}
+		}
 		for (int j = 0; j < instances.count(); j++) {
 #if defined(QMC2_OS_WIN)
 			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace('/', '\\');
@@ -541,9 +548,9 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 		i = cachedDeviceLookupPosition;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QString s = "<game name=\"" + systemName + "\"";
-	while ( !(*xmlData)[i].contains(s) ) i++;
-	if ( (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
-	while ( !(*xmlData)[i].contains("</game>") ) {
+	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
+	if ( i < xmlData->count() && (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
+	while ( i < xmlData->count() && !(*xmlData)[i].contains("</game>") ) {
 		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
@@ -571,9 +578,9 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	}
 #elif defined(QMC2_EMUTYPE_MESS)
 	QString s = "<machine name=\"" + systemName + "\"";
-	while ( !(*xmlData)[i].contains(s) ) i++;
-	if ( (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
-	while ( !(*xmlData)[i].contains("</machine>") ) {
+	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
+	if ( i < xmlData->count() && (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
+	while ( i < xmlData->count() && !(*xmlData)[i].contains("</machine>") ) {
 		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
@@ -2259,9 +2266,16 @@ QStringList &SoftwareList::arguments()
 		QStringList files = qmc2Config->value("Files").toStringList();
 		QStringList slotNames = qmc2Config->value("Slots").toStringList();
 		QStringList slotOptions = qmc2Config->value("SlotOptions").toStringList();
+		QStringList slotBIOSs = qmc2Config->value("SlotBIOSs").toStringList();
 		qmc2Config->endGroup();
-		for (int i = 0; i < slotNames.count(); i++)
-			swlArgs << QString("-%1").arg(slotNames[i]) << slotOptions[i];
+		for (int i = 0; i < slotNames.count(); i++) {
+			if ( !slotOptions[i].isEmpty() ) {
+				QString slotOpt = slotOptions[i];
+				if ( !slotBIOSs[i].isEmpty() )
+					slotOpt += ",bios=" + slotBIOSs[i];
+				swlArgs << QString("-%1").arg(slotNames[i]) << slotOpt;
+			}
+		}
 		for (int i = 0; i < instances.count(); i++) {
 #if defined(QMC2_OS_WIN)
 			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace('/', '\\');
