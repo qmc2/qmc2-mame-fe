@@ -38,6 +38,9 @@ Name: "Swedish"; MessagesFile: "compiler:Languages\Swedish.isl"; InfoAfterFile: 
 Source: "c:\projects\qmc2\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
+[Dirs]
+Name: "{app}"; Permissions: everyone-readexec
+
 [Icons]
 Name: "{group}\{cm:ProgramOnTheWeb,QMC2}"; Filename: "http://qmc2.arcadehits.net/wordpress"
 Name: "{group}\{cm:UninstallProgram,QMC2}"; Filename: "{uninstallexe}"
