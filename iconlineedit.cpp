@@ -13,14 +13,12 @@ IconLineEdit::IconLineEdit(QIcon icon, int align, QWidget *parent) : QLineEdit(p
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height(), fm.height());
 	dummyButton->setIconSize(iconSize);
-	dummyButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+	dummyButton->setStyleSheet(QString("QToolButton { border: none; padding: 0px; } QToolButton::menu-indicator { margin: 0px; width: %1px; height: %2px; subcontrol-position: bottom left; }").arg(dummyButton->sizeHint().width() / 3).arg(dummyButton->sizeHint().height() / 3));
 	int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
 	if ( alignment == QMC2_ALIGN_LEFT )
 		setStyleSheet(QString("QLineEdit { padding-left: %1px; } ").arg(dummyButton->sizeHint().width() + frameWidth + 1));
 	else
 		setStyleSheet(QString("QLineEdit { padding-right: %1px; } ").arg(dummyButton->sizeHint().width() + frameWidth + 1));
-	//QSize msz = minimumSizeHint();
-	//setMinimumSize(qMax(msz.width(), dummyButton->sizeHint().height() + frameWidth * 2 + 2), qMax(msz.height(), dummyButton->sizeHint().height() + frameWidth * 2 + 2));
 }
 
 void IconLineEdit::centerIcon()
