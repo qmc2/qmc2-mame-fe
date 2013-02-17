@@ -8,6 +8,7 @@
 #include <QAction>
 #include <QTextStream>
 #include <QXmlDefaultHandler>
+#include <QMenu>
 #if QMC2_OPENGL == 1
 #include <QGLWidget>
 #endif
@@ -171,10 +172,12 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QMenu *menuFavoriteSoftwareHeader;
 		QMenu *menuSearchResultsHeader;
 		QMenu *menuSnapnameAdjustment;
+		QMenu *menuSearchOptions;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QAction *actionSaveFavoritesToFile;
 		QAction *actionClearSelection;
+		QAction *actionNegateSearch;
 		QTimer snapTimer;
 		QTimer searchTimer;
 		QTimer detailUpdateTimer;
@@ -187,6 +190,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool fullyLoaded;
 		bool loadFinishedFlag;
 		bool updatingMountDevices;
+		bool negatedMatch;
 		QStringList successfulLookups;
 		QStringList mountedSoftware;
 		int cachedDeviceLookupPosition;
@@ -270,6 +274,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void updateDetail();
 		void adjustSnapnamePattern();
 		void clearSoftwareSelection();
+		void negateSearchTriggered(bool);
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);

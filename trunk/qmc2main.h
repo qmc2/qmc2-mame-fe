@@ -177,6 +177,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
     QWidgetAction *widgetActionToolbarSearch;
     QComboBox *comboBoxToolbarSearch;
+    QMenu *menuSearchOptions;
+    QMenu *menuToolbarSearchOptions;
+    QAction *actionNegateSearch;
+    QAction *actionToolbarNegateSearch;
+    bool negatedMatch;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -499,6 +504,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void softwareLoadInterrupted();
     void action_foreignIDsMenuItem_triggered();
     void checkRomPath();
+    void negateSearchTriggered(bool);
 
     // float toggle button callbacks for 'special' widgets
     void floatToggleButtonSoftwareDetail_toggled(bool);

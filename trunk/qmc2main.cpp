@@ -419,8 +419,7 @@ MainWindow::MainWindow(QWidget *parent)
  
   qmc2StartupDefaultFont = new QFont(qApp->font());
   desktopGeometry = qApp->desktop()->geometry();
-  isActiveState = false;
-  launchForeignID = false;
+  isActiveState = launchForeignID = negatedMatch = false;
   comboBoxEmuSelector = NULL;
   proxyStyle = NULL;
 
@@ -1366,6 +1365,31 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = false;
   comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
+
+  // search options menus
+  menuSearchOptions = new QMenu(this);
+  menuToolbarSearchOptions = new QMenu(this);
+  s = tr("Negate search");
+  actionNegateSearch = menuSearchOptions->addAction(s);
+  actionToolbarNegateSearch = menuToolbarSearchOptions->addAction(s);
+  actionNegateSearch->setToolTip(s); actionNegateSearch->setStatusTip(s);
+  actionToolbarNegateSearch->setToolTip(s); actionToolbarNegateSearch->setStatusTip(s);
+  actionNegateSearch->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
+  actionToolbarNegateSearch->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
+  actionNegateSearch->setCheckable(true);
+  actionToolbarNegateSearch->setCheckable(true);
+  bool negated = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWindow/NegateSearch", false).toBool();
+  actionNegateSearch->setChecked(negated);
+  actionToolbarNegateSearch->setChecked(negated);
+  negateSearchTriggered(negated);
+  connect(actionNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
+  connect(actionToolbarNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
+  IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
+  IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
+  ileSearch->button()->setPopupMode(QToolButton::InstantPopup);
+  ileToolbarSearch->button()->setPopupMode(QToolButton::InstantPopup);
+  ileSearch->button()->setMenu(menuSearchOptions);
+  ileToolbarSearch->button()->setMenu(menuToolbarSearchOptions);
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
@@ -3194,38 +3218,53 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 
 void MainWindow::comboBoxSearch_editTextChanged_delayed()
 {
-  searchTimer.stop();
+	searchTimer.stop();
 
-  QString pattern = comboBoxSearch->currentText();
+	QString pattern = comboBoxSearch->currentText();
 
-  // easy pattern match
-  if ( !pattern.isEmpty() ) {
-    pattern = "*" + pattern.replace(' ', "* *") + "*";
-    pattern.replace(QString("*^"), "");
-    pattern.replace(QString("$*"), "");
-  }
+	// easy pattern match
+	if ( !pattern.isEmpty() ) {
+		pattern = "*" + pattern.replace(' ', "* *") + "*";
+		pattern.replace(QString("*^"), "");
+		pattern.replace(QString("$*"), "");
+	}
 
-  listWidgetSearch->clear();
-  QList<QTreeWidgetItem *> matches = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
-  QList<QTreeWidgetItem *> matchesByShortName = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_NAME);
+	listWidgetSearch->clear();
+	QList<QTreeWidgetItem *> matches = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
+	QList<QTreeWidgetItem *> matchesByShortName = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_NAME);
 
-  int i;
-  for (i = 0; i < matchesByShortName.count(); i++) {
-    QTreeWidgetItem *item = matchesByShortName[i];
-    if ( !matches.contains(item) ) matches.append(item);
-  }
-  
-  for (i = 0; i < matches.count(); i++) {
-    QListWidgetItem *item = new QListWidgetItem(listWidgetSearch);
-    item->setText(matches.at(i)->text(QMC2_GAMELIST_COLUMN_GAME));
-  }
+	if ( negatedMatch ) {
+		QList<QTreeWidgetItem *> positiveMatches = matches;
+		QList<QTreeWidgetItem *> positiveMatchesByShortName = matchesByShortName;
+		matches.clear();
+		matchesByShortName.clear();
+		foreach (QTreeWidgetItem *item, treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME) )
+			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
+				matches << item;
+		foreach (QTreeWidgetItem *item, treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_NAME) )
+			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
+				matchesByShortName << item;
+	}
 
-  listWidgetSearch->sortItems();
+	int i;
 
-  qmc2Gamelist->numSearchGames = matches.count();
-  labelGamelistStatus->setText(qmc2Gamelist->status());
+	for (i = 0; i < matchesByShortName.count(); i++) {
+		QTreeWidgetItem *item = matchesByShortName[i];
+		if ( !matches.contains(item) )
+			matches.append(item);
+	}
 
-  QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+	for (i = 0; i < matches.count(); i++) {
+		QListWidgetItem *item = new QListWidgetItem(listWidgetSearch);
+		item->setText(matches.at(i)->text(QMC2_GAMELIST_COLUMN_GAME));
+	}
+
+	listWidgetSearch->sortItems();
+
+	qmc2Gamelist->numSearchGames = matches.count();
+	labelGamelistStatus->setText(qmc2Gamelist->status());
+
+	QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 }
 
 void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
@@ -6374,6 +6413,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   // download manager widget
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
+
+  // search box options
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWindow/NegateSearch", actionNegateSearch->isChecked());
 
   if ( qmc2SoftwareSnap ) {
     qmc2SoftwareSnap->close();
@@ -11143,6 +11185,32 @@ void MainWindow::checkRomPath()
 				break;
 		}
 	}
+}
+
+void MainWindow::negateSearchTriggered(bool negate)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::::negateSearchTriggered(bool negate = %1)").arg(negate));
+#endif
+
+	negatedMatch = negate;
+
+	IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
+	IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
+
+	if ( negatedMatch ) {
+		ileSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
+		ileToolbarSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
+	} else {
+		ileSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
+		ileToolbarSearch->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
+	}
+
+	actionNegateSearch->setChecked(negatedMatch);
+	actionToolbarNegateSearch->setChecked(negatedMatch);
+
+	if ( !ileSearch->text().isEmpty() || !ileToolbarSearch->text().isEmpty() )
+		searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
 #if QT_VERSION < 0x050000

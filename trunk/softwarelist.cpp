@@ -67,7 +67,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	loadProc = NULL;
 	exporter = NULL;
 	currentItem = NULL;
-	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = updatingMountDevices = false;
+	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = updatingMountDevices = negatedMatch = false;
 	validData = autoMounted = true;
 	cachedDeviceLookupPosition = 0;
 
@@ -173,6 +173,21 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/configure.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(adjustSnapnamePattern()));
 	toolButtonToggleSnapnameAdjustment->setMenu(menuSnapnameAdjustment);
+
+	// search options menu
+	menuSearchOptions = new QMenu(this);
+	s = tr("Negate search");
+	actionNegateSearch = menuSearchOptions->addAction(s);
+	actionNegateSearch->setToolTip(s); actionNegateSearch->setStatusTip(s);
+	actionNegateSearch->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
+	actionNegateSearch->setCheckable(true);
+	bool negated = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/NegateSearch", false).toBool();
+	actionNegateSearch->setChecked(negated);
+	negateSearchTriggered(negated);
+	connect(actionNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
+	IconLineEdit *ile = ((IconLineEdit *)comboBoxSearch->lineEdit());
+	ile->button()->setPopupMode(QToolButton::InstantPopup);
+	ile->button()->setMenu(menuSearchOptions);
 
 	// restore widget states
 	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/KnownSoftwareHeaderState").toByteArray());
@@ -281,6 +296,7 @@ SoftwareList::~SoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareInfo", toolButtonToggleSoftwareInfo->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", toolButtonCompatFilterToggle->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", toolButtonToggleSnapnameAdjustment->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/NegateSearch", actionNegateSearch->isChecked());
 }
 
 void SoftwareList::adjustSnapnamePattern()
@@ -323,6 +339,23 @@ void SoftwareList::clearSoftwareSelection()
 			treeWidgetSearchResults->clearSelection();
 			break;
 	}
+}
+
+void SoftwareList::negateSearchTriggered(bool negate)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::negateSearchTriggered(bool negate = %1)").arg(negate));
+#endif
+
+	IconLineEdit *ile = ((IconLineEdit *)comboBoxSearch->lineEdit());
+	if ( negate )
+		ile->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find_negate.png")));
+	else
+		ile->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
+	negatedMatch = negate;
+
+	if ( !ile->text().isEmpty() )
+		searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
@@ -2179,6 +2212,19 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 
 	QList<QTreeWidgetItem *> matches = treeWidgetKnownSoftware->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_TITLE);
 	QList<QTreeWidgetItem *> matchesByShortName = treeWidgetKnownSoftware->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_NAME);
+
+	if ( negatedMatch ) {
+		QList<QTreeWidgetItem *> positiveMatches = matches;
+		QList<QTreeWidgetItem *> positiveMatchesByShortName = matchesByShortName;
+		matches.clear();
+		matchesByShortName.clear();
+		foreach (QTreeWidgetItem *item, treeWidgetKnownSoftware->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_TITLE) )
+			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
+				matches << item;
+		foreach (QTreeWidgetItem *item, treeWidgetKnownSoftware->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_NAME) )
+			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
+				matchesByShortName << item;
+	}
 
 	int i;
 

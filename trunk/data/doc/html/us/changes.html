@@ -34,6 +34,7 @@ inf: informational only
   <li>new: system- and software-notes templates: added two new slots for use with zipped images: 'qmc2NEO.isZippedImage()' will determine if an image is from a ZIP, 'qmc2NEO.getImageData()' will return the base64-encoded image data which you can use in &lt;img&gt; tags (<b>caution: may be slow and will inflate the HTML enormously -- only use this with the WYSIWYG editor!</b>)</li>
   <li>new: HTML editor: added an option to show/hide the HTML tab</li>
   <li>new: system- and software-notes templates: added support for querying the XML (from -listxml) using XQuery through the new slots 'qmc2NEO.queryXml()' (will execute an XQuery on the complete XML data, warning: may be slow), 'qmc2NEO.queryLocalXml()' (same as before, restricted to a single game/machine and thus much faster) and 'qmc2NEO.getXmlResult()' (will return the list of result strings as an array)</li>
+  <li>new: search-patterns used to match games/machines or software-lists can now be <i>negated</i> on-the-fly through a setup-menu attached to the search-box's find button</li>
   <li>doc: the QMC2 FAQ has been <b>moved</b> to the <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ" target="_blank">wiki</a></li>
 </ul>
 <p><b>v0.38, 11-JAN-2013:</b></p>
