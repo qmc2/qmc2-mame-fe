@@ -523,6 +523,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #endif
     void comboBoxToolbarSearch_editTextChanged(const QString &);
     void comboBoxToolbarSearch_activated(const QString &);
+    void comboBoxToolbarSearch_activated() { comboBoxToolbarSearch_activated(comboBoxToolbarSearch->currentText()); }
 
   protected:
     void closeEvent(QCloseEvent *);
