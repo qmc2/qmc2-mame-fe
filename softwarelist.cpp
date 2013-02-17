@@ -186,6 +186,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	negateSearchTriggered(negated);
 	connect(actionNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
 	IconLineEdit *ile = ((IconLineEdit *)comboBoxSearch->lineEdit());
+	connect(ile, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
 	ile->button()->setPopupMode(QToolButton::InstantPopup);
 	ile->button()->setMenu(menuSearchOptions);
 
@@ -354,8 +355,7 @@ void SoftwareList::negateSearchTriggered(bool negate)
 		ile->button()->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
 	negatedMatch = negate;
 
-	if ( !ile->text().isEmpty() )
-		searchTimer.start(QMC2_SEARCH_DELAY);
+	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
 QString &SoftwareList::getSoftwareListXmlData(QString listName)
@@ -2197,6 +2197,13 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_editTextChanged_delayed()");
 #endif
 
+	static bool searchActive = false;
+
+	if ( searchActive )
+		return;
+
+	searchActive = true;
+
 	searchTimer.stop();
 
 	QString pattern = comboBoxSearch->currentText();
@@ -2266,6 +2273,8 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	}
 
 	autoSelectSearchItem = false;
+
+	searchActive = false;
 }
 
 void SoftwareList::on_comboBoxSearch_activated(const QString &pattern)

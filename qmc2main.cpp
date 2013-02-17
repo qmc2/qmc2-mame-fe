@@ -1385,7 +1385,9 @@ MainWindow::MainWindow(QWidget *parent)
   connect(actionNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
   connect(actionToolbarNegateSearch, SIGNAL(triggered(bool)), this, SLOT(negateSearchTriggered(bool)));
   IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
+  connect(ileSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
   IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
+  connect(ileToolbarSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
   ileSearch->button()->setPopupMode(QToolButton::InstantPopup);
   ileToolbarSearch->button()->setPopupMode(QToolButton::InstantPopup);
   ileSearch->button()->setMenu(menuSearchOptions);
@@ -3218,6 +3220,13 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 
 void MainWindow::comboBoxSearch_editTextChanged_delayed()
 {
+	static bool searchActive = false;
+
+	if ( searchActive )
+		return;
+
+	searchActive = true;
+
 	searchTimer.stop();
 
 	QString pattern = comboBoxSearch->currentText();
@@ -3265,6 +3274,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 
 	QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+
+	searchActive = false;
 }
 
 void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
@@ -11209,8 +11220,7 @@ void MainWindow::negateSearchTriggered(bool negate)
 	actionNegateSearch->setChecked(negatedMatch);
 	actionToolbarNegateSearch->setChecked(negatedMatch);
 
-	if ( !ileSearch->text().isEmpty() || !ileToolbarSearch->text().isEmpty() )
-		searchTimer.start(QMC2_SEARCH_DELAY);
+	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
 #if QT_VERSION < 0x050000
