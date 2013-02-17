@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.39, 16-FEB-2013</h3>
+<h3>CHANGES - v0.39, 17-FEB-2013</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.39, 16-FEB-2013:</b></p>
+<p><b>v0.39, 17-FEB-2013:</b></p>
 <ul>
   <li>fix: software-list export: traverse the export map correctly</li>
   <li>fix: avoid crash when play was triggered on premature game/machine list data</li>
@@ -33,7 +33,7 @@ inf: informational only
   <li>imp: system- and software-notes templates: template macro additions ($EMULATOR_TYPE$)</li>
   <li>new: system- and software-notes templates: added two new slots for use with zipped images: 'qmc2NEO.isZippedImage()' will determine if an image is from a ZIP, 'qmc2NEO.getImageData()' will return the base64-encoded image data which you can use in &lt;img&gt; tags (<b>caution: may be slow and will inflate the HTML enormously -- only use this with the WYSIWYG editor!</b>)</li>
   <li>new: HTML editor: added an option to show/hide the HTML tab</li>
-  <li>new: system- and software-notes templates: added support for querying the XML (from -listxml) using XQuery through the new slots 'qmc2NEO.queryXml()' (will execute an XQuery which MUST evaluate to strings) and 'qmc2NEO.getXmlResult()' (will return the list of result strings as an array) -- warning: this is slow on big data, so we recommend to only use this with MESS</li>
+  <li>new: system- and software-notes templates: added support for querying the XML (from -listxml) using XQuery through the new slots 'qmc2NEO.queryXml()' (will execute an XQuery on the complete XML data, warning: may be slow), 'qmc2NEO.queryLocalXml()' (same as before, restricted to a single game/machine and thus much faster) and 'qmc2NEO.getXmlResult()' (will return the list of result strings as an array) -- warning: this is slow on big data, so we recommend to only use this with MESS</li>
   <li>doc: the QMC2 FAQ has been <b>moved</b> to the <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ" target="_blank">wiki</a></li>
 </ul>
 <p><b>v0.38, 11-JAN-2013:</b></p>

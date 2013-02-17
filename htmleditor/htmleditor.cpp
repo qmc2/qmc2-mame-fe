@@ -57,6 +57,7 @@
 #include "pcb.h"
 #include "softwarelist.h"
 #include "gamelist.h"
+#include "romalyzer.h"
 #include "qmc2main.h"
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
@@ -1193,6 +1194,21 @@ bool HtmlEditor::queryXml(QString queryString)
 		xmlQuery.bindVariable("xmlDocument", xmlQueryBuffer);
 	}
 	xmlQueryBuffer->seek(0);
+	xmlResult.clear();
+	xmlQuery.setQuery(queryString);
+	if ( xmlQuery.evaluateTo(&xmlResult) ) {
+		qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
+		return true;
+	} else
+		return false;
+}
+
+bool HtmlEditor::queryLocalXml(QString id, QString queryString)
+{
+	QByteArray localXmlDocument(ROMAlyzer::getXmlData(id, true).toLocal8Bit());
+	QBuffer localXmlQueryBuffer(&localXmlDocument);
+	localXmlQueryBuffer.open(QIODevice::ReadOnly);
+	xmlQuery.bindVariable("xmlDocument", &localXmlQueryBuffer);
 	xmlResult.clear();
 	xmlQuery.setQuery(queryString);
 	if ( xmlQuery.evaluateTo(&xmlResult) ) {
