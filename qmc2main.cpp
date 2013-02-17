@@ -1387,7 +1387,7 @@ MainWindow::MainWindow(QWidget *parent)
   IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
   connect(ileSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
   IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
-  connect(ileToolbarSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
+  connect(ileToolbarSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxToolbarSearch_activated()));
   ileSearch->button()->setPopupMode(QToolButton::InstantPopup);
   ileToolbarSearch->button()->setPopupMode(QToolButton::InstantPopup);
   ileSearch->button()->setMenu(menuSearchOptions);
