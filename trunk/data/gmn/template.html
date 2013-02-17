@@ -443,7 +443,7 @@
 <script>
 	if ( "$EMULATOR_TYPE$" == "MESS" ) {
 		document.write("<h3>" + tr('Software lists') + "</h3>");
-		if ( qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine[@name = \"$ID$\"]/softwarelist/@name/string()") ) {
+		if ( qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/softwarelist/@name/string()") ) {
 			var result = qmc2NEO.getXmlResult();
 			if ( result.length > 0 ) {
 				document.write("<p>" +  tr('Associated software-lists:'));
