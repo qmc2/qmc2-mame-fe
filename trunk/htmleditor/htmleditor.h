@@ -159,6 +159,7 @@ public slots:
     bool isZippedImage(QString imageType);
     QString getImageData(QString imageType);
     bool queryXml(QString queryString);
+    bool queryLocalXml(QString id, QString queryString);
     QStringList getXmlResult() { return xmlResult; }
 
 private:

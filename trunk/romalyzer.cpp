@@ -1117,45 +1117,57 @@ void ROMAlyzer::analyze()
   wizardSearch = false;
 }
 
-QString &ROMAlyzer::getXmlData(QString gameName)
+QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getXmlData(QString gameName = %1)").arg(gameName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getXmlData(QString gameName = %1, bool includeDTD = %2)").arg(gameName).arg(includeDTD));
 #endif
 
-  static QString xmlBuffer;
+	static QString xmlBuffer;
 
-  xmlBuffer.clear();
-  int i = 0;
-  int *iCached = romalyzerXmlGamePositionCache[gameName];
-  if ( iCached ) i = *iCached;
-  int xmlLinesCount = qmc2Gamelist->xmlLines.count();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  QString s = "<game name=\"" + gameName + "\"";
-#elif defined(QMC2_EMUTYPE_MESS)
-  QString s = "<machine name=\"" + gameName + "\"";
-#endif
-  while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
-    i++;
-    if ( i > xmlLinesCount ) break;
-  }
-  if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
-    romalyzerXmlGamePositionCache.insert(gameName, new int(i));
-    xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
-#elif defined(QMC2_EMUTYPE_MESS)
-    while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-#endif
-      xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    xmlBuffer += "</game>\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-    xmlBuffer += "</machine>\n";
-#endif
-  }
+	xmlBuffer.clear();
 
-  return xmlBuffer;
+	int i = 0;
+	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
+	if ( includeDTD ) {
+		xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+		while ( i < xmlLinesCount && !qmc2Gamelist->xmlLines[i].startsWith("<!") )
+			i++;
+		while ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].startsWith("<!") )
+			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+	}
+
+	int *iCached = romalyzerXmlGamePositionCache[gameName];
+	if ( iCached )
+		i = *iCached;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	QString s = "<game name=\"" + gameName + "\"";
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString s = "<machine name=\"" + gameName + "\"";
+#endif
+	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
+		i++;
+		if ( i > xmlLinesCount ) break;
+	}
+
+	if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
+		romalyzerXmlGamePositionCache.insert(gameName, new int(i));
+		if ( !includeDTD )
+			xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
+#elif defined(QMC2_EMUTYPE_MESS)
+		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
+#endif
+			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		xmlBuffer += "</game>\n";
+#elif defined(QMC2_EMUTYPE_MESS)
+		xmlBuffer += "</machine>\n";
+#endif
+	}
+
+	return xmlBuffer;
 }
 
 QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath)
