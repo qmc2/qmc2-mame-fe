@@ -1137,6 +1137,7 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
 		if ( i >= xmlLinesCount ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: no DTD section in the XML data -- please clear the XML cache and reload all data"));
+			xmlBuffer.clear();
 			return xmlBuffer;
 		}
 	}
