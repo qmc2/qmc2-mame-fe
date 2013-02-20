@@ -1185,7 +1185,7 @@ QString HtmlEditor::getImage(QString currentImage)
 		return currentImage;
 }
 
-bool HtmlEditor::queryXml(QString queryString)
+bool HtmlEditor::queryXml(QString queryString, bool sort)
 {
 	if ( xmlQueryBuffer == NULL ) {
 		xmlDocument = new QByteArray(qmc2Gamelist->xmlLines.join("").toLocal8Bit());
@@ -1197,13 +1197,14 @@ bool HtmlEditor::queryXml(QString queryString)
 	xmlResult.clear();
 	xmlQuery.setQuery(queryString);
 	if ( xmlQuery.evaluateTo(&xmlResult) ) {
-		qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
+		if ( sort )
+			qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
 		return true;
 	} else
 		return false;
 }
 
-bool HtmlEditor::queryLocalXml(QString id, QString queryString)
+bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort)
 {
 	QByteArray localXmlDocument(ROMAlyzer::getXmlData(id, true).toLocal8Bit());
 	QBuffer localXmlQueryBuffer(&localXmlDocument);
@@ -1212,7 +1213,8 @@ bool HtmlEditor::queryLocalXml(QString id, QString queryString)
 	xmlResult.clear();
 	xmlQuery.setQuery(queryString);
 	if ( xmlQuery.evaluateTo(&xmlResult) ) {
-		qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
+		if ( sort )
+			qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
 		return true;
 	} else
 		return false;
