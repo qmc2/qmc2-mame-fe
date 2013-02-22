@@ -967,7 +967,13 @@ qchdman-install: qchdman qchdman-macdeployqt
 	@$(RSYNC) tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
 else
 qchdman-install: qchdman
+	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
+	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@echo "Installing qchdman.desktop to $(GLOBAL_DATADIR)/applications"
+	@$(MKDIR) $(GLOBAL_DATADIR)/applications
+	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
+	@$(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/qchdman.desktop.template > $(GLOBAL_DATADIR)/applications/qchdman.desktop
 endif
 
 tools: qchdman
@@ -1028,7 +1034,9 @@ arcade-install: arcade arcade-macdeployqt
 	@$(RSYNC) arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
 else
 arcade-install: arcade
+	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
+	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@echo "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications

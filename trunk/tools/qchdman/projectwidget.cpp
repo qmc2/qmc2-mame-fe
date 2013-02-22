@@ -1023,6 +1023,9 @@ void ProjectWidget::on_comboBoxCreateHDFromTemplate_currentIndexChanged(int inde
             ui->spinBoxCreateHDHeads->setValue(geo.heads);
             ui->spinBoxCreateHDSectors->setValue(geo.sectors);
             ui->spinBoxCreateHDSectorSize->setValue(geo.sectorSize);
+            int noneIndex = ui->comboBoxCreateHDCompression->findText(tr("none"));
+            if ( noneIndex >= 0 )
+                ui->comboBoxCreateHDCompression->setCurrentIndex(noneIndex);
         }
         ui->comboBoxCreateHDFromTemplate->setCurrentIndex(0);
     }
