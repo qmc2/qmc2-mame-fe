@@ -48,6 +48,7 @@ Name: "{group}\QMC2 (M.A.M.E.)"; Filename: "{app}\qmc2-mame.exe"; WorkingDir: "{
 Name: "{group}\QMC2 (M.E.S.S.)"; Filename: "{app}\qmc2-mess.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mess.ico"
 Name: "{group}\QMC2 (U.M.E.)"; Filename: "{app}\qmc2-ume.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\ume.ico"
 Name: "{group}\QMC2 Arcade"; Filename: "{app}\qmc2-arcade.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\qmc2-arcade.ico"
+Name: "{group}\Qt CHDMAN GUI"; Filename: "{app}\qchdman.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\qchdman.ico"
 
 [CustomMessages]
 English.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment

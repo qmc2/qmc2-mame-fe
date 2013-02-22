@@ -31,6 +31,8 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlume
 tar -xjf %{SOURCE0}
 mv %{name} arcade
+tar -xjf %{SOURCE0}
+mv %{name} qchdman
 
 %build
 pushd sdlmess
@@ -59,6 +61,13 @@ make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     JOYSTICK=1 WIP=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
+popd
+
+pushd qchdman
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    JOYSTICK=1 WIP=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3 qchdman
 popd
 
 %install
@@ -96,6 +105,13 @@ make arcade-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1
     CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
+pushd qchdman
+make qchdman-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    JOYSTICK=1 WIP=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
+popd
+
 # manually install doc files in order to avoid "files-duplicate" warning
 install -dp -m 0755 $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}
 cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
@@ -108,6 +124,7 @@ cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
 %suse_update_desktop_file %{name}-sdlmess Game ArcadeGame
 %suse_update_desktop_file %{name}-sdlume Game ArcadeGame
 %suse_update_desktop_file %{name}-arcade Game ArcadeGame
+%suse_update_desktop_file qchdman Game ArcadeGame
 
 # make sure the executable permissions are set correctly
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
@@ -115,6 +132,7 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlume
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-arcade
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/qchdman
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -130,12 +148,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/qmc2-sdlmess
 %{_bindir}/qmc2-sdlume
 %{_bindir}/qmc2-arcade
+%{_bindir}/qchdman
 %{_datadir}/applications/qmc2-sdlmame.desktop
 %{_datadir}/applications/qmc2-sdlmess.desktop
 %{_datadir}/applications/qmc2-sdlume.desktop
 %{_datadir}/applications/qmc2-arcade.desktop
+%{_datadir}/applications/qchdman.desktop
 
 %changelog
+* Fri Feb 22 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-2
+- added build rules for 'Qt CHDMAN GUI' (qchdman)
+
 * Tue Jan 12 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-1
 - updated spec to QMC2 0.39
 
