@@ -46,5 +46,10 @@
         <file>translations/qt_pl.qm</file>
         <file>translations/qt_pt.qm</file>
         <file>translations/qt_sv.qm</file>
+        <file>images/remove-step.png</file>
+        <file>images/add-step.png</file>
+        <file>images/parallel-script.png</file>
+        <file>images/sequential-script.png</file>
+        <file>images/script.png</file>
     </qresource>
 </RCC>

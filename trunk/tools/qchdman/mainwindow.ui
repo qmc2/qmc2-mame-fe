@@ -42,6 +42,7 @@
      </property>
     </widget>
     <addaction name="actionProjectNew"/>
+    <addaction name="actionProjectNewScript"/>
     <addaction name="separator"/>
     <addaction name="actionProjectLoad"/>
     <addaction name="menuProjectRecent"/>
@@ -299,6 +300,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+S</string>
+   </property>
+  </action>
+  <action name="actionProjectNewScript">
+   <property name="text">
+    <string>New script</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a new script</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
    </property>
   </action>
  </widget>

@@ -44,7 +44,8 @@ SOURCES += main.cpp\
     projectwindow.cpp \
     projectwidget.cpp \
     preferencesdialog.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    scriptwidget.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \
@@ -52,12 +53,14 @@ HEADERS  += mainwindow.h \
     projectwidget.h \
     settings.h \
     preferencesdialog.h \
-    aboutdialog.h
+    aboutdialog.h \
+    scriptwidget.h
 
 FORMS += mainwindow.ui \
     projectwidget.ui \
     preferencesdialog.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    scriptwidget.ui
 
 RESOURCES += qchdman.qrc
 

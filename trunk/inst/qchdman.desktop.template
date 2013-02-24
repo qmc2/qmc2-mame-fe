@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=qchdman
+GenericName=Qt CHDMAN GUI
+Comment=Qt CHDMAN GUI
+Comment[de]=Qt CHDMAN GUI
+Exec=qchdman
+Icon=DATADIR/qmc2/img/qchdman.png
+Terminal=false
+Categories=Game;Emulator;
