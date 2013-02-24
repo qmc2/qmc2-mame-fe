@@ -41,12 +41,13 @@ public:
     ~MainWindow();
 
     QMdiArea *mdiArea();
-    ProjectWindow *createProjectWindow();
+    ProjectWindow *createProjectWindow(int type = QCHDMAN_MDI_PROJECT);
     QString humanReadable(qreal);
 
 public slots:
-    // File menu
+    // Project menu
     void on_actionProjectNew_triggered(bool checked = true);
+    void on_actionProjectNewScript_triggered(bool checked = true);
     void on_actionProjectLoad_triggered(bool checked = true);
     void on_actionProjectSave_triggered(bool checked = true);
     void on_actionProjectSaveAs_triggered(bool checked = true);

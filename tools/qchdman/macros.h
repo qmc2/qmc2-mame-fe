@@ -49,7 +49,7 @@
 
 // MDI sub-window types
 #define QCHDMAN_MDI_PROJECT         0
-#define QCHDMAN_MDI_JOB             1
+#define QCHDMAN_MDI_SCRIPT             1
 
 // status update timer interval
 #define QCHDMAN_STATUS_INTERVAL     500

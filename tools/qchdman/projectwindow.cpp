@@ -4,6 +4,7 @@
 
 #include "projectwindow.h"
 #include "projectwidget.h"
+#include "scriptwidget.h"
 #include "mainwindow.h"
 #include "macros.h"
 #include "settings.h"
@@ -26,8 +27,12 @@ ProjectWindow::ProjectWindow(QString pn, int type, QWidget *parent) :
         projectWidget = new ProjectWidget(this);
         setWidget(projectWidget);
         setWindowTitle(projectName);
-    } else if ( subWindowType == QCHDMAN_MDI_JOB ) {
-        // FIXME
+        scriptWidget = NULL;
+    } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
+        scriptWidget = new ScriptWidget(this);
+        setWidget(scriptWidget);
+        setWindowTitle(projectName);
+        projectWidget = NULL;
     }
 
     connect(this, SIGNAL(windowStateChanged(Qt::WindowStates, Qt::WindowStates)), this, SLOT(myWindowStateChanged(Qt::WindowStates, Qt::WindowStates)));
@@ -60,7 +65,7 @@ void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowSt
             return;
 
         projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-    } else if ( subWindowType == QCHDMAN_MDI_JOB ) {
+    } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
         // FIXME
     }
 }
@@ -118,7 +123,7 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
             } else
                 closeOk = mainWindow->closeOk;
         }
-    } else if ( subWindowType == QCHDMAN_MDI_JOB ) {
+    } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
         // FIXME
     }
 

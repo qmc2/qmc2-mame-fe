@@ -27,6 +27,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mdiArea->setTabsClosable(true);
 #endif
 
+#if !defined(QCHDMAN_WIP_ENABLED)
+    ui->actionProjectNewScript->setVisible(false);
+#endif
+
     preferencesDialog = new PreferencesDialog(this);
 
     restoreGeometry(globalConfig->mainWindowGeometry());
@@ -264,7 +268,12 @@ QMdiArea *MainWindow::mdiArea()
 
 void MainWindow::on_actionProjectNew_triggered(bool)
 {
-    createProjectWindow();
+    createProjectWindow(QCHDMAN_MDI_PROJECT);
+}
+
+void MainWindow::on_actionProjectNewScript_triggered(bool checked)
+{
+    createProjectWindow(QCHDMAN_MDI_SCRIPT);
 }
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
@@ -286,7 +295,7 @@ void MainWindow::on_actionProjectSave_triggered(bool)
     if ( projectWindow ) {
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             projectWindow->projectWidget->save();
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -300,7 +309,7 @@ void MainWindow::on_actionProjectSaveAs_triggered(bool)
             projectWindow->projectWidget->askFileName = true;
             projectWindow->projectWidget->saveAs();
             projectWindow->projectWidget->askFileName = false;
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -313,7 +322,7 @@ void MainWindow::on_actionProjectSaveAll_triggered(bool)
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             ProjectWidget *projectWidget = (ProjectWidget *)projectWindow->widget();
             projectWidget->save();
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -380,7 +389,7 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
         }
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -399,7 +408,7 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
         ProjectWindow *projectWindow = (ProjectWindow *)w;
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -416,9 +425,9 @@ void MainWindow::on_actionHelpAboutQt_triggered(bool)
     QApplication::aboutQt();
 }
 
-ProjectWindow *MainWindow::createProjectWindow()
+ProjectWindow *MainWindow::createProjectWindow(int type)
 {
-    ProjectWindow *projectWindow = new ProjectWindow(QString(), QCHDMAN_MDI_PROJECT, ui->mdiArea);
+    ProjectWindow *projectWindow = new ProjectWindow(QString(), type, ui->mdiArea);
 
     projectWindow->show();
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
@@ -484,7 +493,7 @@ void MainWindow::applySettings()
                 projectWidget->needsTabbedUiAdjustment = true;
                 projectWidget->needsWindowedUiAdjustment = true;
             }
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -503,7 +512,7 @@ void MainWindow::updateSubWindows()
             projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
             projectWidget->needsTabbedUiAdjustment = true;
             projectWidget->needsWindowedUiAdjustment = true;
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -578,7 +587,7 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
                 projectWindow->projectWidget->needsTabbedUiAdjustment = false;
             }
             projectWindow->projectWidget->needsWindowedUiAdjustment = true;
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     } else {
@@ -588,7 +597,7 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
                 projectWindow->projectWidget->needsWindowedUiAdjustment = false;
             }
             projectWindow->projectWidget->needsTabbedUiAdjustment = true;
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -600,7 +609,7 @@ void MainWindow::resizeEvent(QResizeEvent *)
         ProjectWindow *projectWindow = (ProjectWindow *)w;
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             QTimer::singleShot(0, (ProjectWidget *)w->widget(), SLOT(triggerUpdate()));
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
             // FIXME
         }
     }
@@ -631,9 +640,19 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
-        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
-        if ( projectWidget->chdmanProc && projectWidget->chdmanProc->state() == QProcess::Running )
-            projectWidget->chdmanProc->terminate();
+        switch ( ((ProjectWindow *)w)->subWindowType ) {
+            case QCHDMAN_MDI_PROJECT: {
+                ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
+                if ( projectWidget->chdmanProc && projectWidget->chdmanProc->state() == QProcess::Running )
+                    projectWidget->chdmanProc->terminate();
+            }
+            break;
+            case QCHDMAN_MDI_SCRIPT: {
+                ScriptWidget *scriptWidget = (ScriptWidget *)w->widget();
+                scriptWidget->doCleanUp();
+            }
+            break;
+        }
     }
 
     ui->mdiArea->closeAllSubWindows();

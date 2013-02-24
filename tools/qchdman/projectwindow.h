@@ -6,6 +6,7 @@
 #include <QComboBox>
 #endif
 #include "projectwidget.h"
+#include "scriptwidget.h"
 #include "macros.h"
 
 class ProjectWindow : public QMdiSubWindow
@@ -17,6 +18,7 @@ public:
     int subWindowType;
     QString projectName;
     ProjectWidget *projectWidget;
+    ScriptWidget *scriptWidget;
 
     ProjectWindow(QString pn = QString(), int type = QCHDMAN_MDI_PROJECT, QWidget *parent = 0);
     ~ProjectWindow();
