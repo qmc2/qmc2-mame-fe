@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>685</width>
-    <height>682</height>
+    <width>644</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -123,14 +123,22 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QTreeWidget" name="treeWidgetScript">
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::InternalMove</enum>
+         </property>
          <column>
           <property name="text">
-           <string>Group / Project</string>
+           <string>Name</string>
           </property>
          </column>
          <column>
           <property name="text">
            <string>Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Sub-type</string>
           </property>
          </column>
          <column>
@@ -152,17 +160,23 @@
          <item row="3" column="1">
           <widget class="QToolButton" name="toolButtonAddProject">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Add project</string>
+            <string>Add a new project</string>
+           </property>
+           <property name="text">
+            <string>Project</string>
            </property>
            <property name="icon">
             <iconset resource="qchdman.qrc">
              <normaloff>:/images/add-step.png</normaloff>:/images/add-step.png</iconset>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
@@ -200,40 +214,26 @@
            </item>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="labelProject">
-           <property name="text">
-            <string>Project</string>
-           </property>
-          </widget>
-         </item>
          <item row="1" column="1">
           <widget class="QToolButton" name="toolButtonAddGroup">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Add group</string>
+            <string>Add a new group</string>
+           </property>
+           <property name="text">
+            <string>Group</string>
            </property>
            <property name="icon">
             <iconset resource="qchdman.qrc">
              <normaloff>:/images/add-step.png</normaloff>:/images/add-step.png</iconset>
            </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="labelGroup">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Group</string>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
          </item>
@@ -391,7 +391,7 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Remove group</string>
+            <string>Remove selected group</string>
            </property>
            <property name="icon">
             <iconset resource="qchdman.qrc">
@@ -411,7 +411,7 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Remove project</string>
+            <string>Remove selected project</string>
            </property>
            <property name="icon">
             <iconset resource="qchdman.qrc">

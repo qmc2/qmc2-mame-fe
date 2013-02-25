@@ -51,6 +51,12 @@
 #define QCHDMAN_MDI_PROJECT         0
 #define QCHDMAN_MDI_SCRIPT             1
 
+// script (tree-widget) column indizes
+#define QCHDMAN_SCRCOL_NAME         0
+#define QCHDMAN_SCRCOL_TYPE         1
+#define QCHDMAN_SCRCOL_SUBTYPE      2
+#define QCHDMAN_SCRCOL_TRANSITION   3
+
 // status update timer interval
 #define QCHDMAN_STATUS_INTERVAL     500
 
