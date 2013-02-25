@@ -2431,123 +2431,143 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="169"/>
+        <location filename="../scriptwidget.ui" line="162"/>
+        <source>Arbitrary command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.ui" line="175"/>
+        <source>Add a new command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.ui" line="178"/>
+        <source>Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.ui" line="205"/>
         <source>Add a new project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="172"/>
+        <location filename="../scriptwidget.ui" line="208"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="192"/>
+        <location filename="../scriptwidget.ui" line="228"/>
         <source>Select group execution mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="199"/>
+        <location filename="../scriptwidget.ui" line="235"/>
         <source>Sequential execution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="208"/>
+        <location filename="../scriptwidget.ui" line="244"/>
         <source>Parallel execution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="226"/>
+        <location filename="../scriptwidget.ui" line="262"/>
         <source>Add a new group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="229"/>
+        <location filename="../scriptwidget.ui" line="265"/>
         <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="249"/>
+        <location filename="../scriptwidget.ui" line="285"/>
         <source>Select project type</source>
         <translation type="unfinished">Seleccionar el tipo de proyecto</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="256"/>
+        <location filename="../scriptwidget.ui" line="292"/>
         <source>Display information about a CHD input file</source>
         <translation type="unfinished">Mostrar información sobre un archivo CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="265"/>
+        <location filename="../scriptwidget.ui" line="301"/>
         <source>Verify the integrity of a CHD input file</source>
         <translation type="unfinished">Verificar la integridad de un archivo CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="274"/>
+        <location filename="../scriptwidget.ui" line="310"/>
         <source>Copy data from one CHD to another</source>
         <translation type="unfinished">Copiar datos de un CHD a otro</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="283"/>
+        <location filename="../scriptwidget.ui" line="319"/>
         <source>Create a raw CHD from an input file</source>
         <translation type="unfinished">Crear un CHD a partir de un archivo</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="292"/>
+        <location filename="../scriptwidget.ui" line="328"/>
         <source>Create an HD CHD from an input file</source>
         <translation type="unfinished">Crear un HD CHD a partir de un archivo</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="301"/>
+        <location filename="../scriptwidget.ui" line="337"/>
         <source>Create a CD CHD from an input file</source>
         <translation type="unfinished">Crear un CD CHD a partir de un archivo</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="310"/>
+        <location filename="../scriptwidget.ui" line="346"/>
         <source>Create an LD CHD from an input file</source>
         <translation type="unfinished">Crear un LD CHD a partir de un archivo</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="319"/>
+        <location filename="../scriptwidget.ui" line="355"/>
         <source>Extract a raw file from a CHD input file</source>
         <translation type="unfinished">Extraer un archivo desde un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="328"/>
+        <location filename="../scriptwidget.ui" line="364"/>
         <source>Extract an HD file from a CHD input file</source>
         <translation type="unfinished">Extraer un archivo HD desde un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="337"/>
+        <location filename="../scriptwidget.ui" line="373"/>
         <source>Extract a CD file from a CHD input file</source>
         <translation type="unfinished">Extraer un archivo CD desde un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="346"/>
+        <location filename="../scriptwidget.ui" line="382"/>
         <source>Extract an LD AVI file from a CHD input file</source>
         <translation type="unfinished">Extraer un archivo LD AVI desde un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="355"/>
+        <location filename="../scriptwidget.ui" line="391"/>
         <source>Dump meta-data from a CHD</source>
         <translation type="unfinished">Extraer meta-datos de un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="364"/>
+        <location filename="../scriptwidget.ui" line="400"/>
         <source>Add meta-data to a CHD</source>
         <translation type="unfinished">Añadir meta-datos a un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="373"/>
+        <location filename="../scriptwidget.ui" line="409"/>
         <source>Remove meta-data from a CHD</source>
         <translation type="unfinished">Eliminar meta-datos de un CHD</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="394"/>
+        <location filename="../scriptwidget.ui" line="430"/>
         <source>Remove selected group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="414"/>
+        <location filename="../scriptwidget.ui" line="450"/>
         <source>Remove selected project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.ui" line="470"/>
+        <source>Remove selected command</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
