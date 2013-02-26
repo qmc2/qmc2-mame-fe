@@ -69,8 +69,9 @@ public:
     QElapsedTimer projectTimer;
     QIcon currentIcon;
     QLinearGradient linearGradient;
+    bool isScriptElement;
 
-    explicit ProjectWidget(QWidget *parent = 0);
+    explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false);
     ~ProjectWidget();
 
 public slots:
@@ -176,6 +177,9 @@ public slots:
     void readyReadStandardError();
     void error(QProcess::ProcessError);
     void stateChanged(QProcess::ProcessState);
+
+signals:
+    void progressFormatChanged(QString);
 
 private:
     Ui::ProjectWidget *ui;
