@@ -19,12 +19,13 @@ extern Settings *globalConfig;
 extern MainWindow *mainWindow;
 extern quint64 runningProjects;
 
-ProjectWidget::ProjectWidget(QWidget *parent) :
+ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement) :
     QWidget(parent),
     ui(new Ui::ProjectWidget)
 {
     ui->setupUi(this);
 
+    isScriptElement = scriptElement;
     chdmanProc = NULL;
     terminatedOnDemand = askFileName = false;
     needsTabbedUiAdjustment = needsWindowedUiAdjustment = true;
@@ -352,7 +353,8 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
     }
 
     // adjust window icon
-    parentWidget()->setWindowIcon(currentIcon.isNull() ? mainWindow->iconMap[index] : currentIcon);
+    if ( !isScriptElement )
+        parentWidget()->setWindowIcon(currentIcon.isNull() ? mainWindow->iconMap[index] : currentIcon);
 
     // adjust splitter
     int splitterHeight = ui->splitter->height();
@@ -671,6 +673,7 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     menuMorphActions->setEnabled(false);
     actionLoad->setEnabled(false);
     ui->progressBar->setFormat(tr("Starting"));
+    emit progressFormatChanged(tr("Starting"));
     ui->progressBar->setValue(0);
 }
 
@@ -692,6 +695,7 @@ void ProjectWidget::started()
 #endif
     ui->toolButtonStop->setEnabled(true);
     ui->progressBar->setFormat(tr("Running"));
+    emit progressFormatChanged(tr("Running"));
 }
 
 void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -707,7 +711,8 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     QTime execTime;
     execTime = execTime.addMSecs(projectTimer.elapsed());
     log(tr("process finished: exitCode = %1, exitStatus = %2, execTime = %3").arg(exitCode).arg(statusString).arg(execTime.toString("hh:mm:ss.zzz")));
-    parentWidget()->setWindowIcon(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()]);
+    if ( !isScriptElement )
+        parentWidget()->setWindowIcon(mainWindow->iconMap[ui->comboBoxProjectType->currentIndex()]);
     currentIcon = QIcon();
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
@@ -715,6 +720,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     menuMorphActions->setEnabled(true);
     actionLoad->setEnabled(true);
     ui->progressBar->setFormat(tr("Idle"));
+    emit progressFormatChanged(tr("Idle"));
     ui->progressBar->setValue(0);
 }
 
@@ -785,7 +791,8 @@ void ProjectWidget::readyReadStandardError()
     p.end();
     QIcon icon;
     icon.addPixmap(pm);
-    parentWidget()->setWindowIcon(icon);
+    if ( !isScriptElement )
+        parentWidget()->setWindowIcon(icon);
     currentIcon = icon;
 }
 
@@ -828,6 +835,7 @@ void ProjectWidget::error(QProcess::ProcessError processError)
     menuMorphActions->setEnabled(true);
     actionLoad->setEnabled(true);
     ui->progressBar->setFormat(tr("Idle"));
+    emit progressFormatChanged(tr("Idle"));
     ui->progressBar->setValue(0);
 }
 
@@ -1764,16 +1772,21 @@ void ProjectWidget::load(const QString &fileName)
             on_comboBoxProjectType_currentIndexChanged(projectType);
         }
         loadFile.close();
-        ((ProjectWindow *)parentWidget())->projectName = fName;
-        parentWidget()->setWindowTitle(fName);
-        mainWindow->addRecentFile(fName);
+        if ( !isScriptElement ) {
+            ((ProjectWindow *)parentWidget())->projectName = fName;
+            parentWidget()->setWindowTitle(fName);
+            mainWindow->addRecentFile(fName);
+        }
     } else
         mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(fName), QCHDMAN_STATUS_MSGTIME);
 }
 
 void ProjectWidget::save()
 {
-    QString projectName = ((ProjectWindow *)parentWidget())->projectName;
+    QString projectName;
+
+    if ( !isScriptElement )
+        projectName = ((ProjectWindow *)parentWidget())->projectName;
 
     if ( projectName.startsWith(tr("Noname-%1").arg("")) )
         askFileName = true;
@@ -1788,7 +1801,8 @@ void ProjectWidget::saveAs(const QString &fileName)
     QString projectName = fileName;
 
     if ( projectName.isEmpty() || askFileName ) {
-        projectName = ((ProjectWindow *)parentWidget())->projectName;
+        if ( !isScriptElement )
+            projectName = ((ProjectWindow *)parentWidget())->projectName;
         if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
             QString s = QFileDialog::getSaveFileName(this, tr("Choose file"), projectName, tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
             if ( s.isNull() )
@@ -1973,10 +1987,12 @@ void ProjectWidget::saveAs(const QString &fileName)
             break;
         }
         saveFile.close();
-        ((ProjectWindow *)parentWidget())->projectName = projectName;
-        parentWidget()->setWindowTitle(projectName);
+        if ( !isScriptElement ) {
+            ((ProjectWindow *)parentWidget())->projectName = projectName;
+            parentWidget()->setWindowTitle(projectName);
+            mainWindow->addRecentFile(projectName);
+        }
         mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), QCHDMAN_STATUS_MSGTIME);
-        mainWindow->addRecentFile(projectName);
     } else
         mainWindow->statusBar()->showMessage(tr("Failed saving project '%1'").arg(projectName), QCHDMAN_STATUS_MSGTIME);
 }

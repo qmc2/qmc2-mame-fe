@@ -75,7 +75,11 @@ void ScriptWidget::doCleanUp()
 {
 }
 
-void ScriptWidget::resizeEvent(QResizeEvent *)
+void ScriptWidget::resizeEvent(QResizeEvent *e)
 {
-    ui->tableWidgetInputOutput->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+    static int lastWidth = 0;
+    if ( lastWidth != e->size().width() ) {
+        ui->tableWidgetInputOutput->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+        lastWidth = e->size().width();
+    }
 }
