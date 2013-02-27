@@ -387,11 +387,13 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
             projectWindow->showMaximized();
             qApp->processEvents();
         }
-        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT )
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
-        }
+        else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT )
+            if ( (ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_TABBED && projectWindow == ui->mdiArea->activeSubWindow()) || ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+                QTimer::singleShot(0, projectWindow->scriptWidget, SLOT(doPendingResize()));
+            else
+                projectWindow->scriptWidget->resizePending = true;
     }
 }
 
@@ -406,10 +408,13 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
     applySettings();
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
         ProjectWindow *projectWindow = (ProjectWindow *)w;
-        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT )
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+        else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
+            if ( (ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_TABBED && projectWindow == ui->mdiArea->activeSubWindow()) || ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+                QTimer::singleShot(0, projectWindow->scriptWidget, SLOT(doPendingResize()));
+            else
+                projectWindow->scriptWidget->resizePending = true;
         }
     }
 }
@@ -588,7 +593,8 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
             }
             projectWindow->projectWidget->needsWindowedUiAdjustment = true;
         } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+            if ( projectWindow->scriptWidget->resizePending )
+                projectWindow->scriptWidget->doPendingResize();
         }
     } else {
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
@@ -598,7 +604,7 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
             }
             projectWindow->projectWidget->needsTabbedUiAdjustment = true;
         } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+            // NOP
         }
     }
 }
@@ -610,7 +616,7 @@ void MainWindow::resizeEvent(QResizeEvent *)
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             QTimer::singleShot(0, (ProjectWidget *)w->widget(), SLOT(triggerUpdate()));
         } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+            // NOP
         }
     }
 }

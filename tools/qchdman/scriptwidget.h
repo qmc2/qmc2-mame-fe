@@ -1,7 +1,7 @@
 #ifndef SCRIPTWIDGET_H
 #define SCRIPTWIDGET_H
 
-#include <QWidget>
+#include <QtGui>
 #include "projectwidget.h"
 
 namespace Ui {
@@ -15,6 +15,8 @@ class ScriptWidget : public QWidget
 public:
     explicit ScriptWidget(QWidget *parent = 0);
     ~ScriptWidget();
+
+    bool resizePending;
 
 public slots:
     // Callbacks
@@ -30,6 +32,8 @@ public slots:
 
     // Other
     void doCleanUp();
+    void doPendingResize();
+    void tableWidgetInputOutput_sectionClicked(int);
 
 protected:
     void resizeEvent(QResizeEvent *);
@@ -37,7 +41,7 @@ protected:
 private:
     Ui::ScriptWidget *ui;
     int groupSeqNum, projectSeqNum, commandSeqNum;
-    bool inputOutputTableShownInitially;
+    int lastWidgetWidth;
 };
 
 #endif // SCRIPTWIDGET_H
