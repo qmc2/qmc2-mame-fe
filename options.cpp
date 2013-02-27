@@ -779,6 +779,7 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->toolButtonChooserAutoSelect->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserFilter->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserProcessZIPs->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonChooserMergeMaps->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserSaveConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->treeWidgetDeviceSetup->setIconSize(iconSize);

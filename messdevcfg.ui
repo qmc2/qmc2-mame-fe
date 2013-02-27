@@ -422,6 +422,29 @@
                </widget>
               </item>
               <item>
+               <widget class="QToolButton" name="toolButtonChooserMergeMaps">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Merge file-chooser mapping with current device-mappings</string>
+                </property>
+                <property name="statusTip">
+                 <string>Merge file-chooser mapping with current device-mappings</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/merge_unknown.png</normaloff>:/data/img/merge_unknown.png</iconset>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QToolButton" name="toolButtonChooserFilter">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -711,6 +734,7 @@
   <tabstop>toolButtonChooserSaveConfiguration</tabstop>
   <tabstop>comboBoxDeviceInstanceChooser</tabstop>
   <tabstop>toolButtonChooserAutoSelect</tabstop>
+  <tabstop>toolButtonChooserMergeMaps</tabstop>
   <tabstop>toolButtonChooserFilter</tabstop>
   <tabstop>toolButtonChooserProcessZIPs</tabstop>
   <tabstop>toolButtonFolderMode</tabstop>

@@ -1862,12 +1862,36 @@ void MainWindow::on_actionPlay_triggered(bool)
 							}
 						}
 					}
-					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
+					bool doMapping = true;
+					if ( qmc2MESSDeviceConfigurator->toolButtonChooserMergeMaps->isChecked() ) {
+						QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
+						QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
+						for (int i = 0; i < valuePair.first.count(); i++) {
+							if ( valuePair.first[i] == instance ) {
+								QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
 #if defined(QMC2_OS_WIN)
-					args << QString("-%1").arg(instance) << file.replace('/', '\\');
+								args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
-					args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
+								args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
 #endif
+								doMapping = false;
+							} else {
+#if defined(QMC2_OS_WIN)
+								args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
+#else
+								args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
+#endif
+							}
+						}
+					}
+					if ( doMapping ) {
+						QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
+#if defined(QMC2_OS_WIN)
+						args << QString("-%1").arg(instance) << file.replace('/', '\\');
+#else
+						args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
+#endif
+					}
 				}
 			}
 			break;

@@ -119,6 +119,7 @@
         <file>data/img/merge.png</file>
         <file>data/img/merge_nok.png</file>
         <file>data/img/merge_ok.png</file>
+        <file>data/img/merge_unknown.png</file>
         <file>data/img/minimize.png</file>
         <file>data/img/minus.png</file>
         <file>data/img/minus_all.png</file>
