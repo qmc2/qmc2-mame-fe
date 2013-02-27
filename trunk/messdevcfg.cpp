@@ -181,6 +181,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	toolButtonChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
 	toolButtonChooserFilter->blockSignals(false);
 	toolButtonChooserProcessZIPs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", false).toBool());
+	toolButtonChooserMergeMaps->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserMergeMaps", false).toBool());
 	QString folderMode = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FolderMode", "folders-off").toString();
 	if ( folderMode == "folders-first" ) {
 		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-first.png")));
@@ -226,6 +227,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	toolButtonChooserAutoSelect->setIconSize(iconSize);
 	toolButtonChooserFilter->setIconSize(iconSize);
 	toolButtonChooserProcessZIPs->setIconSize(iconSize);
+	toolButtonChooserMergeMaps->setIconSize(iconSize);
 	toolButtonChooserSaveConfiguration->setIconSize(iconSize);
 	toolButtonFolderMode->setIconSize(iconSize);
 	comboBoxDeviceInstanceChooser->setIconSize(iconSize);
@@ -386,6 +388,7 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", toolButtonChooserFilter->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", toolButtonChooserAutoSelect->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", toolButtonChooserProcessZIPs->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserMergeMaps", toolButtonChooserMergeMaps->isChecked());
 	if ( !fileChooserHeaderState.isEmpty() )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
 	if ( !dirChooserHeaderState.isEmpty() )
