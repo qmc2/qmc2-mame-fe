@@ -119,20 +119,36 @@
        <property name="text">
         <string notr="true">$INPUT1$</string>
        </property>
+       <property name="icon">
+        <iconset resource="qchdman.qrc">
+         <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+       </property>
       </column>
       <column>
        <property name="text">
         <string notr="true">$INPUT2$</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qchdman.qrc">
+         <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
        </property>
       </column>
       <column>
        <property name="text">
         <string notr="true">$OUTPUT1$</string>
        </property>
+       <property name="icon">
+        <iconset resource="qchdman.qrc">
+         <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+       </property>
       </column>
       <column>
        <property name="text">
         <string notr="true">$OUTPUT2$</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qchdman.qrc">
+         <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
        </property>
       </column>
      </widget>
