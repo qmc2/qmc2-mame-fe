@@ -27,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mdiArea->setTabsClosable(true);
 #endif
 
-#if !defined(QCHDMAN_WIP_ENABLED)
-    ui->actionProjectNewScript->setVisible(false);
-#endif
+//#if !defined(QCHDMAN_WIP_ENABLED)
+//    ui->actionProjectNewScript->setVisible(false);
+//#endif
 
     preferencesDialog = new PreferencesDialog(this);
 

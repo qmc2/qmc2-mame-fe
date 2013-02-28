@@ -33,6 +33,8 @@ public slots:
     // Other
     void doCleanUp();
     void doPendingResize();
+    void changeVariableName();
+    void tableWidgetInputOutput_horizontalHeader_customContextMenuRequested(const QPoint &);
     void tableWidgetInputOutput_sectionClicked(int);
 
 protected:
@@ -42,6 +44,9 @@ private:
     Ui::ScriptWidget *ui;
     int groupSeqNum, projectSeqNum, commandSeqNum;
     int lastWidgetWidth;
+    QMenu *ioHeaderMenu;
+    QStringList ioVariableNames;
+    int ioHeaderLogicalIndex;
 };
 
 #endif // SCRIPTWIDGET_H
