@@ -23,12 +23,19 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
 
     ui->tableWidgetInputOutput->horizontalHeader()->setResizeMode(QHeaderView::Interactive);
     ui->tableWidgetInputOutput->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
-    ui->tableWidgetInputOutput->setVisible(false);
+    ui->tableWidgetInputOutput->horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableWidgetInputOutput->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(tableWidgetInputOutput_sectionClicked(int)));
+    ui->tableWidgetInputOutput->setVisible(false);
 
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
+    ioVariableNames << "$INPUT1$" << "$INPUT2$" << "$OUTPUT1$" << "$OUTPUT2$";
+
+    ioHeaderMenu = new QMenu(this);
+    connect(ioHeaderMenu->addAction(QIcon(":/images/edit.png"), tr("Edit variable name")), SIGNAL(triggered(bool)), this, SLOT(changeVariableName()));
+    connect(ui->tableWidgetInputOutput->horizontalHeader(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(tableWidgetInputOutput_horizontalHeader_customContextMenuRequested(const QPoint &)));
 
     groupSeqNum = projectSeqNum = commandSeqNum = lastWidgetWidth = 0;
+    ioHeaderLogicalIndex = -1;
     resizePending = true;
 }
 
@@ -88,7 +95,7 @@ void ScriptWidget::on_toolButtonRemoveCommand_clicked()
 
 void ScriptWidget::tableWidgetInputOutput_sectionClicked(int logicalIndex)
 {
-    QStringList sl = QFileDialog::getOpenFileNames(this, tr("Choose files") + QString(logicalIndex < 2 ? " ($INPUT%1$)" : " ($OUTPUT%1$)").arg(logicalIndex < 2 ? logicalIndex + 1 : logicalIndex - 1),
+    QStringList sl = QFileDialog::getOpenFileNames(this, tr("Choose files") + " (" + ioVariableNames[logicalIndex] + ")",
                                                    logicalIndex < 2 ? mainWindow->preferredInputFolder : mainWindow->preferredOutputFolder, tr("All files (*)"), 0,
                                                    globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !sl.isEmpty() ) {
@@ -108,6 +115,33 @@ void ScriptWidget::doPendingResize()
         ui->tableWidgetInputOutput->horizontalHeader()->resizeSections(QHeaderView::Stretch);
         resizePending = false;
     }
+}
+
+void ScriptWidget::changeVariableName()
+{
+    if ( ioHeaderLogicalIndex >= 0 ) {
+        QString varName = ioVariableNames[ioHeaderLogicalIndex];
+        bool ok;
+        varName = QInputDialog::getText(this, tr("Edit variable name"),
+                                        tr("Enter a new <b>unique</b> variable name (variable names are case-sensitive, any $-characters<br>"
+                                           "will be removed and all white-space characters will be replaced with underscores)") + ":",
+                                        QLineEdit::Normal, varName.remove("$"), &ok);
+        if ( ok ) {
+            varName.replace(QRegExp("\\s"), "_").replace("$", "");
+            varName.prepend("$"); varName.append("$");
+            if ( varName != "$$" && !ioVariableNames.contains(varName) ) {
+                ioVariableNames[ioHeaderLogicalIndex] = varName;
+                ui->tableWidgetInputOutput->setHorizontalHeaderLabels(ioVariableNames);
+            }
+        }
+    }
+}
+
+void ScriptWidget::tableWidgetInputOutput_horizontalHeader_customContextMenuRequested(const QPoint &pos)
+{
+    ioHeaderLogicalIndex = ui->tableWidgetInputOutput->horizontalHeader()->logicalIndexAt(pos);
+    ioHeaderMenu->move(ui->tableWidgetInputOutput->horizontalHeader()->viewport()->mapToGlobal(pos));
+    ioHeaderMenu->show();
 }
 
 void ScriptWidget::resizeEvent(QResizeEvent *e)
