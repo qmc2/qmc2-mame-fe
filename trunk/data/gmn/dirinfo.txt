@@ -5,5 +5,5 @@ File                            Description
 ------------------------------- ----------------------------------------------
 template.html                   Default system notes template
 
-Ultimate Template.html          Alternative system notes template contributed
+Shideravan System Template.html Alternative system notes template contributed
                                 by José Marcio Rezende Franco aka Shideravan
