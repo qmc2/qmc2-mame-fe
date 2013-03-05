@@ -4255,7 +4255,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MESSDeviceConfigurator->save();
           QLayout *vbl = tabDevices->layout();
           if ( vbl ) delete vbl;
-          delete qmc2MESSDeviceConfigurator;
+          qmc2MESSDeviceConfigurator->deleteLater();
           qmc2MESSDeviceConfigurator = NULL;
         }
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
