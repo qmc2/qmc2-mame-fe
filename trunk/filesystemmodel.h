@@ -329,6 +329,7 @@ class FileSystemModel : public QAbstractItemModel
 				dirScanner->stopScanning = true;
 				dirScanner->quitFlag = true;
 				dirScanner->waitCondition.wakeAll();
+				dirScanner->wait();
 				dirScanner->deleteLater();
 				dirScanner = NULL;
 			}
