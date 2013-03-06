@@ -119,14 +119,22 @@ void Welcome::on_pushButtonOkay_clicked()
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseExecutableFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseExecutableFile_clicked()");
 #endif
 
-  QFileInfo fileInfo(lineEditExecutableFile->text());
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absolutePath(), tr("All files (*)"));
-  if ( !s.isNull() )
-    lineEditExecutableFile->setText(s);
-  raise();
+	QString s;
+
+	if ( lineEditExecutableFile->text().isEmpty() )
+		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), QString(), tr("All files (*)"));
+	else {
+		QFileInfo fileInfo(lineEditExecutableFile->text());
+		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absolutePath(), tr("All files (*)"));
+	}
+
+	if ( !s.isEmpty() )
+		lineEditExecutableFile->setText(s);
+
+	raise();
 }
 
 void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
