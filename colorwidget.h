@@ -12,8 +12,12 @@ class ColorWidget : public QWidget, public Ui::ColorWidget
 		~ColorWidget();
 
 	public slots:
+		void adjustIconSizes();
 		void on_toolButtonColor_clicked();
 		void on_toolButtonBrush_clicked();
+
+	protected:
+		void showEvent(QShowEvent *);
 };
 
 #endif

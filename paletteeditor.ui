@@ -102,13 +102,7 @@
      </item>
      <item>
       <property name="text">
-       <string>WindowText</string>
-      </property>
-      <property name="toolTip">
-       <string>General foreground (text) color</string>
-      </property>
-      <property name="text">
-       <string notr="true"/>
+       <string notr="true">WindowText</string>
       </property>
       <property name="toolTip">
        <string>General foreground (text) color</string>
@@ -124,13 +118,10 @@
      </item>
      <item>
       <property name="text">
-       <string>AlternateBase</string>
+       <string notr="true">AlternateBase</string>
       </property>
       <property name="toolTip">
        <string>Alternate background color in views with alternating row colors</string>
-      </property>
-      <property name="text">
-       <string notr="true"/>
       </property>
      </item>
      <item>
@@ -139,12 +130,6 @@
       </property>
       <property name="toolTip">
        <string>Foreground (text) color used with Base</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="toolTip">
-       <string>Foreground (text) color used with Base -- this is usually the same as WindowText, in which case it must provide good contrast with Window and Base</string>
       </property>
      </item>
      <item>
@@ -162,12 +147,6 @@
       <property name="toolTip">
        <string>Background color used for buttons</string>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="toolTip">
-       <string>General button background color</string>
-      </property>
      </item>
      <item>
       <property name="text">
@@ -175,12 +154,6 @@
       </property>
       <property name="toolTip">
        <string>Foreground (text) color used for buttons</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="toolTip">
-       <string>Foreground  (text) color used for buttons</string>
       </property>
      </item>
      <item>
@@ -190,22 +163,13 @@
       <property name="toolTip">
        <string>Background color used for tool-tips</string>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="toolTip">
-       <string>Background color for tool-tips</string>
-      </property>
      </item>
      <item>
       <property name="text">
-       <string>ToolTipText</string>
+       <string notr="true">ToolTipText</string>
       </property>
       <property name="toolTip">
        <string>Foreground (text) color used for tool-tips</string>
-      </property>
-      <property name="text">
-       <string notr="true"/>
       </property>
      </item>
      <item>
@@ -215,22 +179,10 @@
       <property name="toolTip">
        <string>For 3D bevels and shadow effects: Lighter than Button</string>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="toolTip">
-       <string>For 3D bevels: Lighter than Button</string>
-      </property>
      </item>
      <item>
       <property name="text">
        <string notr="true">MidLight</string>
-      </property>
-      <property name="toolTip">
-       <string>For 3D bevels and shadow effects: Between Button and Light</string>
-      </property>
-      <property name="text">
-       <string/>
       </property>
       <property name="toolTip">
        <string>For 3D bevels and shadow effects: Between Button and Light</string>
@@ -270,24 +222,15 @@
      </item>
      <item>
       <property name="text">
-       <string>HighlightText</string>
+       <string notr="true">HighlightText</string>
       </property>
       <property name="toolTip">
        <string>Text color that contrasts with Highlight</string>
       </property>
-      <property name="text">
-       <string notr="true"/>
-      </property>
      </item>
      <item>
       <property name="text">
-       <string>Link</string>
-      </property>
-      <property name="toolTip">
-       <string>Text color used for unvisited hyperlinks</string>
-      </property>
-      <property name="text">
-       <string notr="true"/>
+       <string notr="true">Link</string>
       </property>
       <property name="toolTip">
        <string>Text color used for unvisited hyperlinks</string>

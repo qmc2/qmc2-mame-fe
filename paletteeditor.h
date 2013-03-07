@@ -13,9 +13,13 @@ class PaletteEditor : public QDialog, public Ui::PaletteEditor
 		~PaletteEditor();
 
 	public slots:
-		void on_toolButtonOk_clicked();
-		void on_toolButtonCancel_clicked();
-		void on_toolButtonPreview_clicked();
+		void adjustIconSizes();
+		void on_pushButtonOk_clicked();
+		void on_pushButtonCancel_clicked();
+		void on_pushButtonPreview_clicked();
+
+	protected:
+		void showEvent(QShowEvent *);
 };
 
 #endif
