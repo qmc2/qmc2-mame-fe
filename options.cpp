@@ -39,6 +39,7 @@
 #include "docbrowser.h"
 #include "detailsetup.h"
 #include "toolbarcustomizer.h"
+#include "paletteeditor.h"
 #include "iconlineedit.h"
 #include "mawsqdlsetup.h"
 #include "imagewidget.h"
@@ -141,6 +142,7 @@ extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
 extern ToolBarCustomizer *qmc2ToolBarCustomizer;
+extern PaletteEditor *qmc2PaletteEditor;
 extern QWidget *qmc2DetailSetupParent;
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
@@ -211,6 +213,10 @@ Options::Options(QWidget *parent)
   QWebSettings::enablePersistentStorage(userScopePath);
 
   setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED)
+  pushButtonEditPalette->setVisible(false);
+#endif
 
   qmc2StandardWorkDir = QDir::currentPath();
 
@@ -374,7 +380,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+J"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
   qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
   qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
-#if defined(QMC2_WIP_ENABLED)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
   qmc2ShortcutMap["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
@@ -3846,6 +3852,18 @@ void Options::on_pushButtonCustomizeToolBar_clicked()
 		qmc2ToolBarCustomizer = new ToolBarCustomizer(this);
 
 	qmc2ToolBarCustomizer->exec();
+}
+
+void Options::on_pushButtonEditPalette_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonEditPalette_clicked()");
+#endif
+
+	if ( !qmc2PaletteEditor )
+		qmc2PaletteEditor = new PaletteEditor(this);
+
+	qmc2PaletteEditor->exec();
 }
 
 void Options::checkShortcuts()

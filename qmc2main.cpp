@@ -56,6 +56,7 @@
 #include "demomode.h"
 #include "softwarelist.h"
 #include "toolbarcustomizer.h"
+#include "paletteeditor.h"
 #include "iconlineedit.h"
 #include "cookiejar.h"
 #if QMC2_JOYSTICK == 1
@@ -111,6 +112,7 @@ ROMAlyzer *qmc2ROMAlyzer = NULL;
 ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 DetailSetup *qmc2DetailSetup = NULL;
 ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
+PaletteEditor *qmc2PaletteEditor = NULL;
 QWidget *qmc2DetailSetupParent = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
 SoftwareSnap *qmc2SoftwareSnap = NULL;
@@ -11306,7 +11308,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Shift+J"].second = qmc2MainWindow->actionToFavoritesTagged;
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
-#if defined(QMC2_WIP_ENABLED)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
 #endif
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;

@@ -43,6 +43,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			cookiemanager.ui \
 			emuoptactions.ui \
 			arcademodesetup.ui \
+			paletteeditor.ui \
+			colorwidget.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -96,6 +98,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			cookiemanager.cpp \
 			emuoptactions.cpp \
 			arcademodesetup.cpp \
+			paletteeditor.cpp \
+			colorwidget.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -167,6 +171,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			cookiemanager.h \
 			emuoptactions.h \
 			arcademodesetup.h \
+			paletteeditor.h \
+			colorwidget.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
