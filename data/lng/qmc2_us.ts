@@ -13781,61 +13781,51 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="188"/>
-        <source>For 3D bevels and shadow effects: Between Button and Light</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../paletteeditor.ui" line="196"/>
         <source>For 3D bevels and shadow effects: Darker than Button</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="204"/>
+        <location filename="../../paletteeditor.ui" line="196"/>
         <source>For 3D bevels and shadow effects: Between Button and Dark</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="212"/>
+        <location filename="../../paletteeditor.ui" line="204"/>
         <source>For 3D bevels and shadow effects: Very dark color used for shadows</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="220"/>
+        <location filename="../../paletteeditor.ui" line="212"/>
         <source>Color used to indicate a selected / the current item</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="228"/>
-        <source>Text color that contrasts with Highlight</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../paletteeditor.ui" line="236"/>
+        <location filename="../../paletteeditor.ui" line="220"/>
         <source>Text color used for unvisited hyperlinks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="244"/>
+        <location filename="../../paletteeditor.ui" line="228"/>
         <source>Text color used for already visited hyperlinks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="252"/>
+        <location filename="../../paletteeditor.ui" line="236"/>
         <source>Preview the current palette (without applying it)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="255"/>
+        <location filename="../../paletteeditor.ui" line="239"/>
         <source>&amp;Preview</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="269"/>
+        <location filename="../../paletteeditor.ui" line="253"/>
         <source>When enabled, colors for Inactive and Disabled states are calculated, otherwise you can edit them individually</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="272"/>
+        <location filename="../../paletteeditor.ui" line="256"/>
         <source>Calculate details</source>
         <translation></translation>
     </message>

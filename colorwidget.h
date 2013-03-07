@@ -1,6 +1,7 @@
 #ifndef _COLORWIDGET_H_
 #define _COLORWIDGET_H_
 
+#include <QPalette>
 #include "ui_colorwidget.h"
 
 class ColorWidget : public QWidget, public Ui::ColorWidget
@@ -8,8 +9,13 @@ class ColorWidget : public QWidget, public Ui::ColorWidget
 	Q_OBJECT
 
        	public:
-		ColorWidget(QWidget *parent = 0);
+		ColorWidget(QPalette::ColorGroup, QPalette::ColorRole, QColor, QBrush, QWidget *parent = 0);
 		~ColorWidget();
+
+		QPalette::ColorGroup colorGroup;
+		QPalette::ColorRole colorRole;
+		QBrush activeBrush;
+		QColor activeColor;
 
 	public slots:
 		void adjustIconSizes();

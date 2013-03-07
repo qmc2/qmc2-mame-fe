@@ -6,10 +6,15 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-ColorWidget::ColorWidget(QWidget *parent)
+ColorWidget::ColorWidget(QPalette::ColorGroup group, QPalette::ColorRole role, QColor color, QBrush brush, QWidget *parent)
 	: QWidget(parent)
 {
 	setupUi(this);
+
+	colorGroup = group;
+	colorRole = role;
+	activeColor = color;
+	activeBrush = brush;
 
 #if !defined(QMC2_WIP_ENABLED)
 	toolButtonBrush->setVisible(false);
@@ -41,6 +46,10 @@ void ColorWidget::on_toolButtonBrush_clicked()
 
 void ColorWidget::showEvent(QShowEvent *e)
 {
+	QPalette pal = frameBrush->palette();
+	pal.setColor(QPalette::Window, activeColor);
+	pal.setBrush(QPalette::Window, activeBrush);
+	frameBrush->setPalette(pal);
 	adjustIconSizes();
 	QWidget::showEvent(e);
 }

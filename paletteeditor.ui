@@ -60,8 +60,8 @@
    </item>
    <item row="0" column="0" colspan="5">
     <widget class="QTreeWidget" name="treeWidget">
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectItems</enum>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
      </property>
      <property name="rootIsDecorated">
       <bool>false</bool>
@@ -182,14 +182,6 @@
      </item>
      <item>
       <property name="text">
-       <string notr="true">MidLight</string>
-      </property>
-      <property name="toolTip">
-       <string>For 3D bevels and shadow effects: Between Button and Light</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
        <string notr="true">Dark</string>
       </property>
       <property name="toolTip">
@@ -218,14 +210,6 @@
       </property>
       <property name="toolTip">
        <string>Color used to indicate a selected / the current item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">HighlightText</string>
-      </property>
-      <property name="toolTip">
-       <string>Text color that contrasts with Highlight</string>
       </property>
      </item>
      <item>
