@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PaletteEditor</class>
+ <widget class="QDialog" name="PaletteEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>429</width>
+    <height>316</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Color palette editor</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="toolTip">
+      <string>Cancel palette editing</string>
+     </property>
+     <property name="text">
+      <string>&amp;Cancel</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="pushButtonOk">
+     <property name="toolTip">
+      <string>Apply new palette and close dialog</string>
+     </property>
+     <property name="text">
+      <string>&amp;Ok</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="5">
+    <widget class="QTreeWidget" name="treeWidget">
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectItems</enum>
+     </property>
+     <property name="rootIsDecorated">
+      <bool>false</bool>
+     </property>
+     <property name="itemsExpandable">
+      <bool>false</bool>
+     </property>
+     <property name="expandsOnDoubleClick">
+      <bool>false</bool>
+     </property>
+     <column>
+      <property name="text">
+       <string>Color role</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Active</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Inactive</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Disabled</string>
+      </property>
+     </column>
+     <item>
+      <property name="text">
+       <string notr="true">Window</string>
+      </property>
+      <property name="toolTip">
+       <string>General background color</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>WindowText</string>
+      </property>
+      <property name="toolTip">
+       <string>General foreground (text) color</string>
+      </property>
+      <property name="text">
+       <string notr="true"/>
+      </property>
+      <property name="toolTip">
+       <string>General foreground (text) color</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Base</string>
+      </property>
+      <property name="toolTip">
+       <string>Used mainly as the background color for text entry widgets, but can also be used for other painting - such as the background of combobox drop-down lists and toolbar-handles</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>AlternateBase</string>
+      </property>
+      <property name="toolTip">
+       <string>Alternate background color in views with alternating row colors</string>
+      </property>
+      <property name="text">
+       <string notr="true"/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Text</string>
+      </property>
+      <property name="toolTip">
+       <string>Foreground (text) color used with Base</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="toolTip">
+       <string>Foreground (text) color used with Base -- this is usually the same as WindowText, in which case it must provide good contrast with Window and Base</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">BrightText</string>
+      </property>
+      <property name="toolTip">
+       <string>A text color that is very different from WindowText and contrasts well with e.g. Dark (typically used for text that needs to be drawn where Text or WindowText would give poor contrast, such as on pressed push buttons)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Button</string>
+      </property>
+      <property name="toolTip">
+       <string>Background color used for buttons</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="toolTip">
+       <string>General button background color</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">ButtonText</string>
+      </property>
+      <property name="toolTip">
+       <string>Foreground (text) color used for buttons</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="toolTip">
+       <string>Foreground  (text) color used for buttons</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">ToolTipBase</string>
+      </property>
+      <property name="toolTip">
+       <string>Background color used for tool-tips</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="toolTip">
+       <string>Background color for tool-tips</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ToolTipText</string>
+      </property>
+      <property name="toolTip">
+       <string>Foreground (text) color used for tool-tips</string>
+      </property>
+      <property name="text">
+       <string notr="true"/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Light</string>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Lighter than Button</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels: Lighter than Button</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">MidLight</string>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Between Button and Light</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Between Button and Light</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Dark</string>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Darker than Button</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Mid</string>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Between Button and Dark</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Shadow</string>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Very dark color used for shadows</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">Highlight</string>
+      </property>
+      <property name="toolTip">
+       <string>Color used to indicate a selected / the current item</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>HighlightText</string>
+      </property>
+      <property name="toolTip">
+       <string>Text color that contrasts with Highlight</string>
+      </property>
+      <property name="text">
+       <string notr="true"/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Link</string>
+      </property>
+      <property name="toolTip">
+       <string>Text color used for unvisited hyperlinks</string>
+      </property>
+      <property name="text">
+       <string notr="true"/>
+      </property>
+      <property name="toolTip">
+       <string>Text color used for unvisited hyperlinks</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">LinkVisited</string>
+      </property>
+      <property name="toolTip">
+       <string>Text color used for already visited hyperlinks</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="pushButtonPreview">
+     <property name="toolTip">
+      <string>Preview the current palette (without applying it)</string>
+     </property>
+     <property name="text">
+      <string>&amp;Preview</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/preview.png</normaloff>:/data/img/preview.png</iconset>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QCheckBox" name="checkBoxCalculateDetails">
+     <property name="toolTip">
+      <string>When enabled, colors for Inactive and Disabled states are calculated, otherwise you can edit them individually</string>
+     </property>
+     <property name="text">
+      <string>Calculate details</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>checkBoxCalculateDetails</tabstop>
+  <tabstop>pushButtonPreview</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections/>
+</ui>
