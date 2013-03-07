@@ -128,6 +128,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void preselectNestedSlots();
 		bool load();
 		bool save();
+		void saveSetup();
 
 		// auto-connected callback functions
 		void on_lineEditConfigurationName_textChanged(const QString &);
