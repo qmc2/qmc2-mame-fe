@@ -182,6 +182,14 @@
      </item>
      <item>
       <property name="text">
+       <string notr="true">Midlight</string>
+      </property>
+      <property name="toolTip">
+       <string>For 3D bevels and shadow effects: Between Button and Light</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string notr="true">Dark</string>
       </property>
       <property name="toolTip">
@@ -210,6 +218,14 @@
       </property>
       <property name="toolTip">
        <string>Color used to indicate a selected / the current item</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string notr="true">HighlightedText</string>
+      </property>
+      <property name="toolTip">
+       <string>Text color that contrasts with Highlight</string>
       </property>
      </item>
      <item>
