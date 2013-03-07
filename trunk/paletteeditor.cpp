@@ -14,8 +14,8 @@ PaletteEditor::PaletteEditor(QWidget *parent)
 	setupUi(this);
 
 	colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
-		   << "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Dark" << "Mid"
-		   << "Shadow" << "Highlight" << "Link" << "LinkVisited";
+		   << "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Midlight" << "Dark" << "Mid"
+		   << "Shadow" << "Highlight" << "HighlightedText" << "Link" << "LinkVisited";
 
 	customPalette = qApp->palette();
 
@@ -65,6 +65,8 @@ QPalette::ColorRole PaletteEditor::colorNameToRole(QString colorName)
 			return QPalette::ToolTipText;
 		case QMC2_PALETTEEDITOR_COLIDX_LIGHT:
 			return QPalette::Light;
+		case QMC2_PALETTEEDITOR_COLIDX_MIDLIGHT:
+			return QPalette::Midlight;
 		case QMC2_PALETTEEDITOR_COLIDX_DARK:
 			return QPalette::Dark;
 		case QMC2_PALETTEEDITOR_COLIDX_MID:
@@ -73,6 +75,8 @@ QPalette::ColorRole PaletteEditor::colorNameToRole(QString colorName)
 			return QPalette::Shadow;
 		case QMC2_PALETTEEDITOR_COLIDX_HIGHLIGHT:
 			return QPalette::Highlight;
+		case QMC2_PALETTEEDITOR_COLIDX_HIGHLIGHTEDTEXT:
+			return QPalette::HighlightedText;
 		case QMC2_PALETTEEDITOR_COLIDX_LINK:
 			return QPalette::Link;
 		case QMC2_PALETTEEDITOR_COLIDX_LINKVISITED:
