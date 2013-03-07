@@ -4253,6 +4253,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabDevices->setUpdatesEnabled(false);
         if ( qmc2MESSDeviceConfigurator ) {
           qmc2MESSDeviceConfigurator->save();
+          qmc2MESSDeviceConfigurator->saveSetup();
           QLayout *vbl = tabDevices->layout();
           if ( vbl ) delete vbl;
           qmc2MESSDeviceConfigurator->deleteLater();
@@ -6496,6 +6497,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2MESSDeviceConfigurator ) {
     log(QMC2_LOG_FRONTEND, tr("saving current machine's device configurations"));
     qmc2MESSDeviceConfigurator->save();
+    qmc2MESSDeviceConfigurator->saveSetup();
     delete qmc2MESSDeviceConfigurator;
   }
 #elif defined(QMC2_EMUTYPE_UME)
@@ -6514,6 +6516,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2MESSDeviceConfigurator ) {
     log(QMC2_LOG_FRONTEND, tr("saving current game's device configurations"));
     qmc2MESSDeviceConfigurator->save();
+    qmc2MESSDeviceConfigurator->saveSetup();
     delete qmc2MESSDeviceConfigurator;
   }
 #endif
