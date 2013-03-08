@@ -790,6 +790,7 @@ p, li { white-space: pre-wrap; }
     <name>ColorWidget</name>
     <message>
         <location filename="../../colorwidget.ui" line="45"/>
+        <location filename="../../colorwidget.cpp" line="45"/>
         <source>Choose color</source>
         <translation>Farbe auswählen</translation>
     </message>
@@ -13711,160 +13712,170 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Farbpalette anpassen</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="33"/>
+        <location filename="../../paletteeditor.ui" line="237"/>
         <source>Cancel palette editing</source>
         <translation>Anpassung der Farbpalette abbrechen</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="36"/>
+        <location filename="../../paletteeditor.ui" line="240"/>
         <source>&amp;Cancel</source>
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="47"/>
+        <location filename="../../paletteeditor.ui" line="214"/>
         <source>Apply new palette and close dialog</source>
         <translation>Neue Farbpalette verwenden und Dialog schließen</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="50"/>
+        <location filename="../../paletteeditor.ui" line="217"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="77"/>
+        <location filename="../../paletteeditor.ui" line="33"/>
         <source>Color role</source>
         <translation>Rolle der Farbe</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="82"/>
+        <location filename="../../paletteeditor.ui" line="38"/>
         <location filename="../../paletteeditor.cpp" line="28"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="87"/>
-        <location filename="../../paletteeditor.cpp" line="32"/>
+        <location filename="../../paletteeditor.ui" line="43"/>
+        <location filename="../../paletteeditor.cpp" line="33"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="92"/>
-        <location filename="../../paletteeditor.cpp" line="36"/>
+        <location filename="../../paletteeditor.ui" line="48"/>
+        <location filename="../../paletteeditor.cpp" line="38"/>
         <source>Disabled</source>
         <translation>Nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="100"/>
+        <location filename="../../paletteeditor.ui" line="56"/>
         <source>General background color</source>
         <translation>Allgemeine Hintergrundfarbe</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="108"/>
+        <location filename="../../paletteeditor.ui" line="64"/>
         <source>General foreground (text) color</source>
         <translation>Allgemeine Vordergrund (Text) Farbe</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="116"/>
+        <location filename="../../paletteeditor.ui" line="72"/>
         <source>Used mainly as the background color for text entry widgets, but can also be used for other painting - such as the background of combobox drop-down lists and toolbar-handles</source>
         <translation>Wird hauptsächlich als Hintergrundfarbe für Text-Eingaben verwendet, kann aber auch für andere Dinge benutzt werden - wie zum Beispiel als Hintergrund bei Combo-Box Drop-Down Listen</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="124"/>
+        <location filename="../../paletteeditor.ui" line="80"/>
         <source>Alternate background color in views with alternating row colors</source>
         <translation>Alternative Hintergrundfarbe, die in Views mit alternierenden Zeilen-Farben verwendet wird</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="132"/>
+        <location filename="../../paletteeditor.ui" line="88"/>
         <source>Foreground (text) color used with Base</source>
         <translation>Vordergrund (Text) Farbe zur Verwendung mit Base</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="140"/>
+        <location filename="../../paletteeditor.ui" line="96"/>
         <source>A text color that is very different from WindowText and contrasts well with e.g. Dark (typically used for text that needs to be drawn where Text or WindowText would give poor contrast, such as on pressed push buttons)</source>
         <translation>Eine Textfarbe, die sich sehr von WindowText unterscheidet und guten Kontrast zu z.B. Dark aufweist (typischerweise verwendet, wenn Text oder WindowText zu geringen Kontrast ergeben würden, wie bei gedrückten Buttons)</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="148"/>
+        <location filename="../../paletteeditor.ui" line="104"/>
         <source>Background color used for buttons</source>
         <translation>Hintergrundfarbe für Buttons</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="156"/>
+        <location filename="../../paletteeditor.ui" line="112"/>
         <source>Foreground (text) color used for buttons</source>
         <translation>Vordergrund (Text) Farbe für Buttons</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="164"/>
+        <location filename="../../paletteeditor.ui" line="120"/>
         <source>Background color used for tool-tips</source>
         <translation>Hintergrundfarbe für Tool-Tips</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="172"/>
+        <location filename="../../paletteeditor.ui" line="128"/>
         <source>Foreground (text) color used for tool-tips</source>
         <translation>Vordergrund (Text) Farbe für Tool-Tips</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="180"/>
+        <location filename="../../paletteeditor.ui" line="136"/>
         <source>For 3D bevels and shadow effects: Lighter than Button</source>
         <translation>Für 3D Kanten und Shatten-Effekte: Heller als Button</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="188"/>
+        <location filename="../../paletteeditor.ui" line="144"/>
         <source>For 3D bevels and shadow effects: Between Button and Light</source>
         <translation>Für 3D Kanten und Shatten-Effekte: Zwischen Button und Light</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="196"/>
+        <location filename="../../paletteeditor.ui" line="152"/>
         <source>For 3D bevels and shadow effects: Darker than Button</source>
         <translation>Für 3D Kanten und Shatten-Effekte: Dunkler als Button</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="204"/>
+        <location filename="../../paletteeditor.ui" line="160"/>
         <source>For 3D bevels and shadow effects: Between Button and Dark</source>
         <translation>Für 3D Kanten und Shatten-Effekte: Zwischen Button und Dark</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="212"/>
+        <location filename="../../paletteeditor.ui" line="168"/>
         <source>For 3D bevels and shadow effects: Very dark color used for shadows</source>
         <translation>Für 3D Kanten und Shatten-Effekte: Sehr dunkle Farbe für Schatten</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="220"/>
+        <location filename="../../paletteeditor.ui" line="176"/>
         <source>Color used to indicate a selected / the current item</source>
         <translation>Farbe zur Anzeige eines selektierten / des aktuellen Feldes</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="228"/>
+        <location filename="../../paletteeditor.ui" line="184"/>
         <source>Text color that contrasts with Highlight</source>
         <translation>Textfarbe die zu Highlight einen guten Kontrast ergibt</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="236"/>
+        <location filename="../../paletteeditor.ui" line="192"/>
         <source>Text color used for unvisited hyperlinks</source>
         <translation>Textfarbe für noch nicht besuchte Hyperlinks</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="244"/>
+        <location filename="../../paletteeditor.ui" line="200"/>
         <source>Text color used for already visited hyperlinks</source>
         <translation>Textfarbe für bereits besuchte Hyperlinks</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="252"/>
+        <location filename="../../paletteeditor.ui" line="260"/>
+        <source>Restore palette settings from currently active palette</source>
+        <translation>Angepasste Farbpalette von aktiver Farbpalette wiederherstellen</translation>
+    </message>
+    <message>
+        <location filename="../../paletteeditor.ui" line="263"/>
+        <source>&amp;Restore</source>
+        <translation>&amp;Restaurieren</translation>
+    </message>
+    <message>
+        <location filename="../../paletteeditor.ui" line="306"/>
         <source>Preview the current palette (without applying it)</source>
         <translation>Vorschau der Farbpalette (ohne sie zu verwenden)</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="255"/>
+        <location filename="../../paletteeditor.ui" line="309"/>
         <source>&amp;Preview</source>
         <translation>&amp;Vorschau</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="269"/>
+        <location filename="../../paletteeditor.ui" line="290"/>
         <source>When enabled, colors for Inactive and Disabled states are calculated, otherwise you can edit them individually</source>
         <translation>Wenn aktiviert, werden die Farben für &apos;Inaktiv&apos; und &apos;Nicht verwendet&apos; berechnet, andernfalls können sie individuell angepasst werden</translation>
     </message>
     <message>
-        <location filename="../../paletteeditor.ui" line="272"/>
+        <location filename="../../paletteeditor.ui" line="293"/>
         <source>Calculate details</source>
         <translation>Details berechnen</translation>
     </message>

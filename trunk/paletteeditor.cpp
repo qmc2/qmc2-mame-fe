@@ -17,7 +17,7 @@ PaletteEditor::PaletteEditor(QWidget *parent)
 		   << "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Midlight" << "Dark" << "Mid"
 		   << "Shadow" << "Highlight" << "HighlightedText" << "Link" << "LinkVisited";
 
-	customPalette = qApp->palette();
+	customPalette = activePalette = qApp->palette();
 
 	ColorWidget *cw;
 	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
@@ -25,18 +25,29 @@ PaletteEditor::PaletteEditor(QWidget *parent)
 		QString colorName = item->text(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 		QPalette::ColorRole colorRole = colorNameToRole(colorName);
 		cw = new ColorWidget(QPalette::Active, colorRole, customPalette.color(QPalette::Active, colorRole), customPalette.brush(QPalette::Active, colorRole), this);
-		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Active"));
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " -- " + tr("Active"));
+		connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor))),
+		connect(cw, SIGNAL(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush)), this, SLOT(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush))),
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_ACTIVE, cw);
-		activeColorWidgets[colorName] = cw;
 		cw = new ColorWidget(QPalette::Inactive, colorRole, customPalette.color(QPalette::Inactive, colorRole), customPalette.brush(QPalette::Inactive, colorRole), this);
-		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Inactive"));
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " -- " + tr("Inactive"));
+		connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor))),
+		connect(cw, SIGNAL(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush)), this, SLOT(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush))),
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_INACTIVE, cw);
-		inactiveColorWidgets[colorName] = cw;
 		cw = new ColorWidget(QPalette::Disabled, colorRole, customPalette.color(QPalette::Disabled, colorRole), customPalette.brush(QPalette::Disabled, colorRole), this);
-		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Disabled"));
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " -- " + tr("Disabled"));
+		connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor))),
+		connect(cw, SIGNAL(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush)), this, SLOT(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush))),
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_DISABLED, cw);
-		disabledColorWidgets[colorName] = cw;
 	}
+
+	checkBoxCalculateDetails->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "PaletteEditor/CalculateDetails", true).toBool());
+	toolButtonPreview->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "PaletteEditor/PreviewPalette", false).toBool());
+
+	if ( checkBoxCalculateDetails->isChecked() )
+		on_checkBoxCalculateDetails_toggled(true);
+
+	activePalette = customPalette;
 }
 
 PaletteEditor::~PaletteEditor()
@@ -89,6 +100,52 @@ QPalette::ColorRole PaletteEditor::colorNameToRole(QString colorName)
 	}
 }
 
+QString PaletteEditor::colorRoleToName(QPalette::ColorRole colorRole)
+{
+	switch ( colorRole ) {
+		case QPalette::Window:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_WINDOW];
+		case QPalette::WindowText:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_WINDOWTEXT];
+		case QPalette::Base:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_BASE];
+		case QPalette::AlternateBase:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_ALTERNATEBASE];
+		case QPalette::Text:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_TEXT];
+		case QPalette::BrightText:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_BRIGHTTEXT];
+		case QPalette::Button:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_BUTTON];
+		case QPalette::ButtonText:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_BUTTONTEXT];
+		case QPalette::ToolTipBase:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_TOOLTIPBASE];
+		case QPalette::ToolTipText:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_TOOLTIPTEXT];
+		case QPalette::Light:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_LIGHT];
+		case QPalette::Midlight:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_MIDLIGHT];
+		case QPalette::Dark:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_DARK];
+		case QPalette::Mid:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_MID];
+		case QPalette::Shadow:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_SHADOW];
+		case QPalette::Highlight:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_HIGHLIGHT];
+		case QPalette::HighlightedText:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_HIGHLIGHTEDTEXT];
+		case QPalette::Link:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_LINK];
+		case QPalette::LinkVisited:
+			return colorNames[QMC2_PALETTEEDITOR_COLIDX_LINKVISITED];
+		default:
+			return QString();
+	}
+}
+
 void PaletteEditor::adjustIconSizes()
 {
 	QFont f;
@@ -98,42 +155,219 @@ void PaletteEditor::adjustIconSizes()
 
 	pushButtonOk->setIconSize(iconSize);
 	pushButtonCancel->setIconSize(iconSize);
-	pushButtonPreview->setIconSize(iconSize);
+	pushButtonRestore->setIconSize(iconSize);
+	toolButtonPreview->setIconSize(iconSize);
+}
+
+void PaletteEditor::colorChanged(QPalette::ColorGroup cg, QPalette::ColorRole cr, QColor c)
+{
+	customPalette.setColor(cg, cr, c);
+
+	if ( checkBoxCalculateDetails->isChecked() && cg == QPalette::Active ) {
+		customPalette.setColor(QPalette::Inactive, cr, c);
+		customPalette.setColor(QPalette::Disabled, cr, c.darker(115));
+		QList<QTreeWidgetItem *> il = treeWidget->findItems(colorRoleToName(cr), Qt::MatchExactly, QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+		if ( !il.isEmpty() ) {
+			ColorWidget *cw;
+			cw = (ColorWidget *)treeWidget->itemWidget(il[0], QMC2_PALETTEEDITOR_COLUMN_INACTIVE);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Inactive, cr);
+				QPalette pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+			cw = (ColorWidget *)treeWidget->itemWidget(il[0], QMC2_PALETTEEDITOR_COLUMN_DISABLED);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Disabled, cr);
+				QPalette pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+		}
+	}
+
+	if ( toolButtonPreview->isChecked() )
+		qApp->setPalette(customPalette);
+
+	pushButtonRestore->setEnabled(true);
+}
+
+void PaletteEditor::brushChanged(QPalette::ColorGroup cg, QPalette::ColorRole cr, QBrush b)
+{
+	// FIXME
 }
 
 void PaletteEditor::on_pushButtonOk_clicked()
 {
+	activePalette = customPalette;
+	qApp->setPalette(activePalette);
 	accept();
 }
 
 void PaletteEditor::on_pushButtonCancel_clicked()
 {
+	qApp->setPalette(activePalette);
 	reject();
 }
 
-void PaletteEditor::on_pushButtonPreview_clicked()
+void PaletteEditor::on_toolButtonPreview_toggled(bool checked)
 {
+	if ( checked )
+		qApp->setPalette(customPalette);
+	else
+		qApp->setPalette(activePalette);
+
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "PaletteEditor/PreviewPalette", checked);
+}
+
+void PaletteEditor::on_pushButtonRestore_clicked()
+{
+	customPalette = activePalette;
+	ColorWidget *cw;
+	QPalette pal;
+	for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidget->topLevelItem(i);
+		QString colorName = item->text(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+		QPalette::ColorRole colorRole = colorNameToRole(colorName);
+		QList<QTreeWidgetItem *> il = treeWidget->findItems(colorName, Qt::MatchExactly, QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+		if ( !il.isEmpty() ) {
+			cw = (ColorWidget *)treeWidget->itemWidget(il[0], QMC2_PALETTEEDITOR_COLUMN_ACTIVE);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Active, colorRole);
+				cw->activeBrush = customPalette.brush(QPalette::Active, colorRole);
+				pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				//pal.setBrush(cw->frameBrush->backgroundRole(), cw->activeBrush);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+			cw = (ColorWidget *)treeWidget->itemWidget(il[0], QMC2_PALETTEEDITOR_COLUMN_INACTIVE);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Inactive, colorRole);
+				cw->activeBrush = customPalette.brush(QPalette::Inactive, colorRole);
+				pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				//pal.setBrush(cw->frameBrush->backgroundRole(), cw->activeBrush);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+			cw = (ColorWidget *)treeWidget->itemWidget(il[0], QMC2_PALETTEEDITOR_COLUMN_DISABLED);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Disabled, colorRole);
+				cw->activeBrush = customPalette.brush(QPalette::Disabled, colorRole);
+				pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				//pal.setBrush(cw->frameBrush->backgroundRole(), cw->activeBrush);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+		}
+	}
+
+	if ( toolButtonPreview->isChecked() )
+		qApp->setPalette(customPalette);
+
+	pushButtonRestore->setEnabled(false);
+}
+
+void PaletteEditor::on_checkBoxCalculateDetails_toggled(bool checked)
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "PaletteEditor/CalculateDetails", checked);
+	if ( checked ) {
+		ColorWidget *cw;
+		QPalette pal;
+		for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = treeWidget->topLevelItem(i);
+			QString colorName = item->text(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+			QPalette::ColorRole colorRole = colorNameToRole(colorName);
+			cw = (ColorWidget *)treeWidget->itemWidget(item, QMC2_PALETTEEDITOR_COLUMN_ACTIVE);
+			if ( cw ) {
+				customPalette.setColor(QPalette::Inactive, colorRole, cw->activeColor);
+				//customPalette.setBrush(QPalette::Inactive, colorRole, cw->activeBrush);
+				customPalette.setColor(QPalette::Disabled, colorRole, cw->activeColor.darker(115));
+				//customPalette.setBrush(QPalette::Disabled, colorRole, cw->activeBrush);
+			}
+			cw = (ColorWidget *)treeWidget->itemWidget(item, QMC2_PALETTEEDITOR_COLUMN_INACTIVE);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Inactive, colorRole);
+				cw->activeBrush = customPalette.brush(QPalette::Inactive, colorRole);
+				pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				//pal.setBrush(cw->frameBrush->backgroundRole(), cw->activeBrush);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+			cw = (ColorWidget *)treeWidget->itemWidget(item, QMC2_PALETTEEDITOR_COLUMN_DISABLED);
+			if ( cw ) {
+				cw->activeColor = customPalette.color(QPalette::Disabled, colorRole);
+				cw->activeBrush = customPalette.brush(QPalette::Disabled, colorRole);
+				pal = cw->frameBrush->palette();
+				pal.setColor(cw->frameBrush->backgroundRole(), cw->activeColor);
+				//pal.setBrush(cw->frameBrush->backgroundRole(), cw->activeBrush);
+				cw->frameBrush->setPalette(pal);
+				cw->frameBrush->update();
+			}
+		}
+	}
+
+	resizeEvent(NULL);
+
+	if ( toolButtonPreview->isChecked() )
+		qApp->setPalette(customPalette);
 }
 
 void PaletteEditor::showEvent(QShowEvent *e)
 {
+	pushButtonRestore->setEnabled(activePalette != customPalette);
 	adjustIconSizes();
 	adjustSize();
 	treeWidget->resizeColumnToContents(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 	int w = treeWidget->viewport()->width() - treeWidget->columnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/3);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/3);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/3);
-	adjustSize();
-	QDialog::showEvent(e);
+	if ( checkBoxCalculateDetails->isChecked() ) {
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, true);
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_DISABLED, true);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w);
+	} else {
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, false);
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_DISABLED, false);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/3);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/3);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/3);
+		adjustSize();
+	}
+
+	if ( toolButtonPreview->isChecked() )
+		qApp->setPalette(customPalette);
+
+	if ( e )
+		QDialog::showEvent(e);
 }
 
 void PaletteEditor::resizeEvent(QResizeEvent *e)
 {
 	treeWidget->resizeColumnToContents(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 	int w = treeWidget->viewport()->width() - treeWidget->columnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/3);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/3);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/3);
-	QDialog::resizeEvent(e);
+	if ( checkBoxCalculateDetails->isChecked() ) {
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, true);
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_DISABLED, true);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w);
+	} else {
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, false);
+		treeWidget->setColumnHidden(QMC2_PALETTEEDITOR_COLUMN_DISABLED, false);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/3);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/3);
+		treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/3);
+	}
+
+	if ( e )
+		QDialog::resizeEvent(e);
+}
+
+void PaletteEditor::hideEvent(QHideEvent *e)
+{
+	on_pushButtonCancel_clicked();
+	if ( e )
+		QWidget::hideEvent(e);
 }

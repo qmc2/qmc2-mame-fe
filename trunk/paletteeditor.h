@@ -42,22 +42,26 @@ class PaletteEditor : public QDialog, public Ui::PaletteEditor
 		~PaletteEditor();
 
 		QPalette customPalette;
+		QPalette activePalette;
 		QStringList colorNames;
-		QMap<QString, ColorWidget *> activeColorWidgets;
-		QMap<QString, ColorWidget *> inactiveColorWidgets;
-		QMap<QString, ColorWidget *> disabledColorWidgets;
 
 		QPalette::ColorRole colorNameToRole(QString);
+		QString colorRoleToName(QPalette::ColorRole);
 
 	public slots:
 		void adjustIconSizes();
+		void colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor);
+		void brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush);
 		void on_pushButtonOk_clicked();
 		void on_pushButtonCancel_clicked();
-		void on_pushButtonPreview_clicked();
+		void on_pushButtonRestore_clicked();
+		void on_toolButtonPreview_toggled(bool);
+		void on_checkBoxCalculateDetails_toggled(bool);
 
 	protected:
 		void showEvent(QShowEvent *);
 		void resizeEvent(QResizeEvent *);
+		void hideEvent(QHideEvent *);
 };
 
 #endif
