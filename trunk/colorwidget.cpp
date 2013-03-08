@@ -8,7 +8,7 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-ColorWidget::ColorWidget(QPalette::ColorGroup group, QPalette::ColorRole role, QColor color, QBrush brush, QWidget *parent)
+ColorWidget::ColorWidget(QString gname, QString cname, QPalette::ColorGroup group, QPalette::ColorRole role, QColor color, QBrush brush, QWidget *parent)
 	: QWidget(parent)
 {
 	setupUi(this);
@@ -17,6 +17,8 @@ ColorWidget::ColorWidget(QPalette::ColorGroup group, QPalette::ColorRole role, Q
 	colorRole = role;
 	activeColor = color;
 	activeBrush = brush;
+	colorName = cname;
+	groupName = gname;
 
 #if !defined(QMC2_WIP_ENABLED)
 	toolButtonBrush->setVisible(false);
@@ -42,7 +44,7 @@ void ColorWidget::adjustIconSizes()
 
 void ColorWidget::on_toolButtonColor_clicked()
 {
-	QColor color = QColorDialog::getColor(activeColor, this, tr("Choose color"), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
+	QColor color = QColorDialog::getColor(activeColor, this, tr("Choose color for %1 / %2").arg(colorName).arg(groupName), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
 	if ( color.isValid() ) {
 		activeColor = color;
 		QPalette pal = frameBrush->palette();

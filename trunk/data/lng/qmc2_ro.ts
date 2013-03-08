@@ -810,13 +810,17 @@ p, li { white-space: pre-wrap; }
     <name>ColorWidget</name>
     <message>
         <location filename="../../colorwidget.ui" line="45"/>
-        <location filename="../../colorwidget.cpp" line="45"/>
         <source>Choose color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../colorwidget.ui" line="62"/>
         <source>Choose brush (pattern or image)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../colorwidget.cpp" line="47"/>
+        <source>Choose color for %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -13784,18 +13788,21 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="38"/>
+        <location filename="../../paletteeditor.cpp" line="27"/>
         <location filename="../../paletteeditor.cpp" line="28"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="43"/>
+        <location filename="../../paletteeditor.cpp" line="32"/>
         <location filename="../../paletteeditor.cpp" line="33"/>
         <source>Inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="48"/>
+        <location filename="../../paletteeditor.cpp" line="37"/>
         <location filename="../../paletteeditor.cpp" line="38"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>

@@ -24,18 +24,18 @@ PaletteEditor::PaletteEditor(QWidget *parent)
 		QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 		QString colorName = item->text(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 		QPalette::ColorRole colorRole = colorNameToRole(colorName);
-		cw = new ColorWidget(QPalette::Active, colorRole, customPalette.color(QPalette::Active, colorRole), customPalette.brush(QPalette::Active, colorRole), this);
-		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " -- " + tr("Active"));
+		cw = new ColorWidget(tr("Active"), colorName, QPalette::Active, colorRole, customPalette.color(QPalette::Active, colorRole), customPalette.brush(QPalette::Active, colorRole), this);
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Active"));
 		connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor))),
 		connect(cw, SIGNAL(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush)), this, SLOT(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush))),
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_ACTIVE, cw);
-		cw = new ColorWidget(QPalette::Inactive, colorRole, customPalette.color(QPalette::Inactive, colorRole), customPalette.brush(QPalette::Inactive, colorRole), this);
-		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " -- " + tr("Inactive"));
+		cw = new ColorWidget(tr("Inactive"), colorName, QPalette::Inactive, colorRole, customPalette.color(QPalette::Inactive, colorRole), customPalette.brush(QPalette::Inactive, colorRole), this);
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Inactive"));
 		connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor))),
 		connect(cw, SIGNAL(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush)), this, SLOT(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush))),
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_INACTIVE, cw);
-		cw = new ColorWidget(QPalette::Disabled, colorRole, customPalette.color(QPalette::Disabled, colorRole), customPalette.brush(QPalette::Disabled, colorRole), this);
-		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " -- " + tr("Disabled"));
+		cw = new ColorWidget(tr("Disabled"), colorName, QPalette::Disabled, colorRole, customPalette.color(QPalette::Disabled, colorRole), customPalette.brush(QPalette::Disabled, colorRole), this);
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Disabled"));
 		connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor))),
 		connect(cw, SIGNAL(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush)), this, SLOT(brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush))),
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_DISABLED, cw);
@@ -323,6 +323,7 @@ void PaletteEditor::showEvent(QShowEvent *e)
 	pushButtonRestore->setEnabled(activePalette != customPalette);
 	adjustIconSizes();
 	adjustSize();
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/PaletteEditor/Geometry", QByteArray()).toByteArray());
 	treeWidget->resizeColumnToContents(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 	int w = treeWidget->viewport()->width() - treeWidget->columnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 	if ( checkBoxCalculateDetails->isChecked() ) {
@@ -367,6 +368,7 @@ void PaletteEditor::resizeEvent(QResizeEvent *e)
 
 void PaletteEditor::hideEvent(QHideEvent *e)
 {
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/PaletteEditor/Geometry", saveGeometry());
 	on_pushButtonCancel_clicked();
 	if ( e )
 		QWidget::hideEvent(e);

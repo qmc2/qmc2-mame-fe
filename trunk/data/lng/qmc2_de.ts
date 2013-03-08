@@ -790,7 +790,6 @@ p, li { white-space: pre-wrap; }
     <name>ColorWidget</name>
     <message>
         <location filename="../../colorwidget.ui" line="45"/>
-        <location filename="../../colorwidget.cpp" line="45"/>
         <source>Choose color</source>
         <translation>Farbe auswählen</translation>
     </message>
@@ -798,6 +797,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../../colorwidget.ui" line="62"/>
         <source>Choose brush (pattern or image)</source>
         <translation>Muster oder Bild auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../colorwidget.cpp" line="47"/>
+        <source>Choose color for %1 / %2</source>
+        <translation>Farbe für %1 / %2 auswählen</translation>
     </message>
 </context>
 <context>
@@ -13738,18 +13742,21 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="38"/>
+        <location filename="../../paletteeditor.cpp" line="27"/>
         <location filename="../../paletteeditor.cpp" line="28"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="43"/>
+        <location filename="../../paletteeditor.cpp" line="32"/>
         <location filename="../../paletteeditor.cpp" line="33"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="48"/>
+        <location filename="../../paletteeditor.cpp" line="37"/>
         <location filename="../../paletteeditor.cpp" line="38"/>
         <source>Disabled</source>
         <translation>Nicht verfügbar</translation>
