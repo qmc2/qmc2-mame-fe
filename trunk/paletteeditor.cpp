@@ -25,12 +25,15 @@ PaletteEditor::PaletteEditor(QWidget *parent)
 		QString colorName = item->text(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
 		QPalette::ColorRole colorRole = colorNameToRole(colorName);
 		cw = new ColorWidget(QPalette::Active, colorRole, customPalette.color(QPalette::Active, colorRole), customPalette.brush(QPalette::Active, colorRole), this);
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Active"));
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_ACTIVE, cw);
 		activeColorWidgets[colorName] = cw;
 		cw = new ColorWidget(QPalette::Inactive, colorRole, customPalette.color(QPalette::Inactive, colorRole), customPalette.brush(QPalette::Inactive, colorRole), this);
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Inactive"));
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_INACTIVE, cw);
 		inactiveColorWidgets[colorName] = cw;
 		cw = new ColorWidget(QPalette::Disabled, colorRole, customPalette.color(QPalette::Disabled, colorRole), customPalette.brush(QPalette::Disabled, colorRole), this);
+		cw->frameBrush->setToolTip(item->toolTip(QMC2_PALETTEEDITOR_COLUMN_COLORROLE) + " / " + tr("Disabled"));
 		treeWidget->setItemWidget(item, QMC2_PALETTEEDITOR_COLUMN_DISABLED, cw);
 		disabledColorWidgets[colorName] = cw;
 	}
@@ -92,8 +95,6 @@ void PaletteEditor::adjustIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-	QSize iconSizeMiddle = iconSize + QSize(2, 2);
-	QSize iconSizeLarge = iconSize + QSize(4, 4);
 
 	pushButtonOk->setIconSize(iconSize);
 	pushButtonCancel->setIconSize(iconSize);
@@ -118,21 +119,21 @@ void PaletteEditor::showEvent(QShowEvent *e)
 {
 	adjustIconSizes();
 	adjustSize();
-	int w = treeWidget->viewport()->width();
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE, w/4);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/4);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/4);
-	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/4);
+	treeWidget->resizeColumnToContents(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+	int w = treeWidget->viewport()->width() - treeWidget->columnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/3);
+	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/3);
+	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/3);
 	adjustSize();
 	QDialog::showEvent(e);
 }
 
 void PaletteEditor::resizeEvent(QResizeEvent *e)
 {
-        int w = treeWidget->viewport()->width();
-        treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE, w/4);
-        treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/4);
-        treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/4);
-        treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/4);
+	treeWidget->resizeColumnToContents(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+	int w = treeWidget->viewport()->width() - treeWidget->columnWidth(QMC2_PALETTEEDITOR_COLUMN_COLORROLE);
+	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_ACTIVE, w/3);
+	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_INACTIVE, w/3);
+	treeWidget->setColumnWidth(QMC2_PALETTEEDITOR_COLUMN_DISABLED, w/3);
 	QDialog::resizeEvent(e);
 }
