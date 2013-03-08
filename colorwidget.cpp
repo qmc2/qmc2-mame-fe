@@ -1,4 +1,6 @@
 #include <QSettings>
+#include <QColorDialog>
+
 #include "colorwidget.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -40,18 +42,30 @@ void ColorWidget::adjustIconSizes()
 
 void ColorWidget::on_toolButtonColor_clicked()
 {
+	QColor color = QColorDialog::getColor(activeColor, this, tr("Choose color"), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
+	if ( color.isValid() ) {
+		activeColor = color;
+		QPalette pal = frameBrush->palette();
+		pal.setColor(frameBrush->backgroundRole(), activeColor);
+		frameBrush->setPalette(pal);
+		frameBrush->update();
+		emit colorChanged(colorGroup, colorRole, activeColor);
+	}
 }
 
 void ColorWidget::on_toolButtonBrush_clicked()
 {
+	// FIXME
 }
 
 void ColorWidget::showEvent(QShowEvent *e)
 {
 	QPalette pal = frameBrush->palette();
 	pal.setColor(frameBrush->backgroundRole(), activeColor);
-	pal.setBrush(frameBrush->backgroundRole(), activeBrush);
+	// pal.setBrush(frameBrush->backgroundRole(), activeBrush);
 	frameBrush->setPalette(pal);
 	adjustIconSizes();
-	QWidget::showEvent(e);
+
+	if ( e )
+		QWidget::showEvent(e);
 }

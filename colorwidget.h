@@ -24,6 +24,10 @@ class ColorWidget : public QWidget, public Ui::ColorWidget
 
 	protected:
 		void showEvent(QShowEvent *);
+
+	signals:
+		void colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor);
+		void brushChanged(QPalette::ColorGroup, QPalette::ColorRole, QBrush);
 };
 
 #endif
