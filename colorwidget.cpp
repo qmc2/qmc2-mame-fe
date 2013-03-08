@@ -19,6 +19,8 @@ ColorWidget::ColorWidget(QPalette::ColorGroup group, QPalette::ColorRole role, Q
 #if !defined(QMC2_WIP_ENABLED)
 	toolButtonBrush->setVisible(false);
 #endif
+
+	frameBrush->setAutoFillBackground(true);
 }
 
 ColorWidget::~ColorWidget()
@@ -47,8 +49,8 @@ void ColorWidget::on_toolButtonBrush_clicked()
 void ColorWidget::showEvent(QShowEvent *e)
 {
 	QPalette pal = frameBrush->palette();
-	pal.setColor(QPalette::Window, activeColor);
-	pal.setBrush(QPalette::Window, activeBrush);
+	pal.setColor(frameBrush->backgroundRole(), activeColor);
+	pal.setBrush(frameBrush->backgroundRole(), activeBrush);
 	frameBrush->setPalette(pal);
 	adjustIconSizes();
 	QWidget::showEvent(e);

@@ -787,6 +787,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ColorWidget</name>
+    <message>
+        <location filename="../../colorwidget.ui" line="45"/>
+        <source>Choose color</source>
+        <translation>Farbe auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../colorwidget.ui" line="62"/>
+        <source>Choose brush (pattern or image)</source>
+        <translation>Muster oder Bild auswählen</translation>
+    </message>
+</context>
+<context>
     <name>Controller</name>
     <message>
         <location filename="../../controller.h" line="16"/>
@@ -13724,16 +13737,19 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="82"/>
+        <location filename="../../paletteeditor.cpp" line="28"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="87"/>
+        <location filename="../../paletteeditor.cpp" line="32"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="92"/>
+        <location filename="../../paletteeditor.cpp" line="36"/>
         <source>Disabled</source>
         <translation>Nicht verfügbar</translation>
     </message>

@@ -806,6 +806,19 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ColorWidget</name>
+    <message>
+        <location filename="../../colorwidget.ui" line="45"/>
+        <source>Choose color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../colorwidget.ui" line="62"/>
+        <source>Choose brush (pattern or image)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Controller</name>
     <message>
         <location filename="../../controller.h" line="16"/>
@@ -13743,16 +13756,19 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="82"/>
+        <location filename="../../paletteeditor.cpp" line="28"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="87"/>
+        <location filename="../../paletteeditor.cpp" line="32"/>
         <source>Inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="92"/>
+        <location filename="../../paletteeditor.cpp" line="36"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
