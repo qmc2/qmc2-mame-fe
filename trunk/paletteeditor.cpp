@@ -7,15 +7,14 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern QPalette qmc2CustomPalette;
+
+QStringList PaletteEditor::colorNames;
 
 PaletteEditor::PaletteEditor(QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
-
-	colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
-		   << "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Midlight" << "Dark" << "Mid"
-		   << "Shadow" << "Highlight" << "HighlightedText" << "Link" << "LinkVisited";
 
 	customPalette = activePalette = qApp->palette();
 
@@ -239,7 +238,6 @@ void PaletteEditor::on_pushButtonOk_clicked()
 
 void PaletteEditor::on_pushButtonCancel_clicked()
 {
-	qApp->setPalette(activePalette);
 	reject();
 }
 
@@ -372,6 +370,8 @@ void PaletteEditor::showEvent(QShowEvent *e)
 
 	if ( toolButtonPreview->isChecked() )
 		qApp->setPalette(customPalette);
+	else
+		qApp->setPalette(activePalette);
 
 	if ( e )
 		QDialog::showEvent(e);

@@ -43,10 +43,10 @@ class PaletteEditor : public QDialog, public Ui::PaletteEditor
 
 		QPalette customPalette;
 		QPalette activePalette;
-		QStringList colorNames;
+		static QStringList colorNames;
 
-		QPalette::ColorRole colorNameToRole(QString);
-		QString colorRoleToName(QPalette::ColorRole);
+		static QPalette::ColorRole colorNameToRole(QString);
+		static QString colorRoleToName(QPalette::ColorRole);
 
 	public slots:
 		void adjustIconSizes();
