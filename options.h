@@ -219,6 +219,8 @@ class Options : public QDialog, public Ui::Options
     void applyDelayed();
     void setupCustomIDsClicked();
     void checkPlaceholderStatus();
+    void loadCustomPalette(QString);
+    void saveCustomPalette();
 
   protected:
     void closeEvent(QCloseEvent *);

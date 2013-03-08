@@ -279,6 +279,8 @@ QSplashScreen *qmc2SplashScreen = NULL;
 int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
 QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
+QPalette qmc2CustomPalette;
+QMap<QString, QPalette> qmc2StandardPalettes;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -424,6 +426,10 @@ MainWindow::MainWindow(QWidget *parent)
   isActiveState = launchForeignID = negatedMatch = false;
   comboBoxEmuSelector = NULL;
   proxyStyle = NULL;
+
+  PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
+                            << "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Midlight" << "Dark" << "Mid"
+                            << "Shadow" << "Highlight" << "HighlightedText" << "Link" << "LinkVisited";
 
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
@@ -6822,44 +6828,50 @@ void MainWindow::init()
 void MainWindow::setupStyle(QString styleName)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::setupStyle(QString &styleName = %1").arg(styleName));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::setupStyle(QString &styleName = %1").arg(styleName));
 #endif
 
-  static QPalette customPalette = QApplication::palette();
-
-  QStyle *newStyle;
-  if ( styleName != tr("Default") ) {
-    if ( QStyleFactory::keys().contains(styleName) )
-      newStyle = QStyleFactory::create(styleName);
-    else
-      newStyle = QStyleFactory::create(qmc2DefaultStyle);
-  } else
-    newStyle = QStyleFactory::create(qmc2DefaultStyle);
+	QStyle *newStyle;
+	if ( styleName != tr("Default") ) {
+		if ( QStyleFactory::keys().contains(styleName) )
+			newStyle = QStyleFactory::create(styleName);
+		else
+			newStyle = QStyleFactory::create(qmc2DefaultStyle);
+	} else
+		newStyle = QStyleFactory::create(qmc2DefaultStyle);
 
 #if QT_VERSION >= 0x050000
-  if ( !proxyStyle )
-	  proxyStyle = new ProxyStyle;
-  proxyStyle->setBaseStyle(newStyle);
-  QApplication::setStyle(proxyStyle);
+	if ( !proxyStyle )
+		proxyStyle = new ProxyStyle;
+	proxyStyle->setBaseStyle(newStyle);
+	QApplication::setStyle(proxyStyle);
 #else
-  QApplication::setStyle(newStyle);
+	QApplication::setStyle(newStyle);
 #endif
-  qApp->processEvents();
 
-  if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
-    QPalette newPalette;
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette").toBool() )
-      newPalette = QApplication::style()->standardPalette();
-    else
-      newPalette = customPalette;
-    QApplication::setPalette(newPalette);
-    if ( !qmc2EarlyStartup ) {
-      // work around for an annoying Qt bug...
-      menuBar()->setPalette(newPalette);
-      toolbar->setPalette(newPalette);
-    }
-    qApp->processEvents();
-  }
+	qApp->processEvents();
+
+	if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
+		if ( !qmc2StandardPalettes.contains(styleName) )
+			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
+
+  		qmc2Options->loadCustomPalette(styleName);
+
+		QPalette newPalette;
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool() )
+			newPalette = qmc2StandardPalettes[styleName];
+		else
+			newPalette = qmc2CustomPalette;
+
+		qApp->setPalette(newPalette);
+
+		if ( !qmc2EarlyStartup ) {    // work around for an annoying Qt bug
+			menuBar()->setPalette(newPalette);
+			toolbar->setPalette(newPalette);
+		}
+
+		qApp->processEvents();
+	}
 }
 
 void MainWindow::setupStyleSheet(QString styleSheetName)

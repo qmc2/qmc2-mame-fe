@@ -172,6 +172,8 @@ extern bool qmc2SortingActive;
 extern SampleChecker *qmc2SampleChecker;
 #endif
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
+extern QPalette qmc2CustomPalette;
+extern QMap<QString, QPalette> qmc2StandardPalettes;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -181,6 +183,7 @@ QBrush Options::greyBrush(QColor(128, 128, 128));
 QBrush Options::lightgreyBrush(QColor(200, 200, 200));
 
 QString qmc2StandardWorkDir;
+QString qmc2CurrentStyleName;
 
 Options::Options(QWidget *parent)
 #if defined(QMC2_OS_WIN)
@@ -213,10 +216,6 @@ Options::Options(QWidget *parent)
   QWebSettings::enablePersistentStorage(userScopePath);
 
   setupUi(this);
-
-#if !defined(QMC2_WIP_ENABLED)
-  pushButtonEditPalette->setVisible(false);
-#endif
 
   qmc2StandardWorkDir = QDir::currentPath();
 
@@ -1000,13 +999,11 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->setupStyleSheet(s);
     // style
     s = comboBoxStyle->currentText();
+    qmc2CurrentStyleName = s;
     if ( s == QObject::tr("Default") ) s = "Default";
     config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", s);
-    if ( s != oldStyleName || newStyleSheet ) {
-      qmc2MainWindow->setupStyle(s);
-      oldStyleName = s;
-      qApp->processEvents();
-    }
+    qmc2MainWindow->setupStyle(s);
+    oldStyleName = s;
   }
 
 #if QMC2_JOYSTICK == 1
@@ -3863,7 +3860,19 @@ void Options::on_pushButtonEditPalette_clicked()
 	if ( !qmc2PaletteEditor )
 		qmc2PaletteEditor = new PaletteEditor(this);
 
-	qmc2PaletteEditor->exec();
+	qmc2PaletteEditor->activePalette = qmc2StandardPalettes[qmc2CurrentStyleName];
+
+	if ( qmc2PaletteEditor->exec() == QDialog::Accepted ) {
+		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", false);
+		qmc2CustomPalette = qmc2PaletteEditor->customPalette;
+		saveCustomPalette();
+	} else {
+		checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
+		if ( checkBoxStandardColorPalette->isChecked() )
+			qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
+		else
+			qApp->setPalette(qmc2CustomPalette);
+	}
 }
 
 void Options::checkShortcuts()
@@ -4135,6 +4144,52 @@ void Options::setupCustomIDsClicked()
 				cidSetup.save();
 		}
 	}
+}
+
+void Options::loadCustomPalette(QString styleName)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::loadCustomPalette(QString styleName = %1)").arg(styleName));
+#endif
+
+	qmc2CustomPalette = qmc2StandardPalettes[styleName];
+	QStringList activeColors, inactiveColors, disabledColors;
+	if ( config->contains(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/ActiveColors") )
+		activeColors = config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/ActiveColors").toStringList();
+	for (int i = 0; i < activeColors.count(); i++) {
+		QPalette::ColorRole colorRole = PaletteEditor::colorNameToRole(PaletteEditor::colorNames[i]);
+		qmc2CustomPalette.setColor(QPalette::Active, colorRole, QColor(activeColors[i]));
+	}
+	if ( config->contains(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/InactiveColors") )
+		inactiveColors = config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/InactiveColors").toStringList();
+	for (int i = 0; i < inactiveColors.count(); i++) {
+		QPalette::ColorRole colorRole = PaletteEditor::colorNameToRole(PaletteEditor::colorNames[i]);
+		qmc2CustomPalette.setColor(QPalette::Inactive, colorRole, QColor(inactiveColors[i]));
+	}
+	if ( config->contains(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/DisabledColors") )
+		disabledColors = config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/DisabledColors").toStringList();
+	for (int i = 0; i < disabledColors.count(); i++) {
+		QPalette::ColorRole colorRole = PaletteEditor::colorNameToRole(PaletteEditor::colorNames[i]);
+		qmc2CustomPalette.setColor(QPalette::Disabled, colorRole, QColor(disabledColors[i]));
+	}
+}
+
+void Options::saveCustomPalette()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::saveCustomPalette()");
+#endif
+
+	QStringList activeColors, inactiveColors, disabledColors;
+	for (int i = 0; i < PaletteEditor::colorNames.count(); i++) {
+		QPalette::ColorRole colorRole = PaletteEditor::colorNameToRole(PaletteEditor::colorNames[i]);
+		activeColors << qmc2CustomPalette.color(QPalette::Active, colorRole).name();
+		inactiveColors << qmc2CustomPalette.color(QPalette::Inactive, colorRole).name();
+		disabledColors << qmc2CustomPalette.color(QPalette::Disabled, colorRole).name();
+	}
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/ActiveColors", activeColors);
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/InactiveColors", inactiveColors);
+	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/DisabledColors", disabledColors);
 }
 
 #if QMC2_JOYSTICK == 1
