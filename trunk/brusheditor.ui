@@ -14,6 +14,9 @@
    <string>Brush editor</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
    <item row="1" column="0">
     <spacer name="horizontalSpacer1">
      <property name="orientation">
@@ -45,6 +48,9 @@
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
      </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
    <item row="0" column="0" colspan="4">
@@ -57,8 +63,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>460</width>
-        <height>255</height>
+        <width>468</width>
+        <height>263</height>
        </rect>
       </property>
       <attribute name="label">
@@ -66,7 +72,13 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="lineEditImageFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Image file</string>
          </property>
@@ -94,6 +106,12 @@
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="QFrame" name="frameImagePreview">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Image preview</string>
          </property>
@@ -112,8 +130,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>460</width>
-        <height>125</height>
+        <width>468</width>
+        <height>263</height>
        </rect>
       </property>
       <attribute name="label">
@@ -212,6 +230,12 @@
          <property name="enabled">
           <bool>false</bool>
          </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Pattern texture image file</string>
          </property>
@@ -221,7 +245,7 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QToolButton" name="toolButtonBrowseImageFile_2">
+        <widget class="QToolButton" name="toolButtonBrowseTextureImage">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -242,6 +266,12 @@
        </item>
        <item row="1" column="0" colspan="3">
         <widget class="QFrame" name="framePatternPreview">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Pattern preview</string>
          </property>
@@ -260,8 +290,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>460</width>
-        <height>255</height>
+        <width>468</width>
+        <height>263</height>
        </rect>
       </property>
       <attribute name="label">
@@ -330,7 +360,7 @@
        <item row="0" column="3" rowspan="2">
         <widget class="QFrame" name="frameGradientPreview">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -418,11 +448,11 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEditImageFile</tabstop>
   <tabstop>toolButtonBrowseImageFile</tabstop>
   <tabstop>comboBoxPatternType</tabstop>
   <tabstop>lineEditTextureImage</tabstop>
-  <tabstop>toolButtonBrowseImageFile_2</tabstop>
+  <tabstop>toolButtonBrowseTextureImage</tabstop>
   <tabstop>comboBoxGradientType</tabstop>
   <tabstop>toolButtonAddColorStop</tabstop>
   <tabstop>toolButtonRemoveColorStop</tabstop>
