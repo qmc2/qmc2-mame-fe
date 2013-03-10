@@ -45,6 +45,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcademodesetup.ui \
 			paletteeditor.ui \
 			colorwidget.ui \
+			brusheditor.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -100,6 +101,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcademodesetup.cpp \
 			paletteeditor.cpp \
 			colorwidget.cpp \
+			brusheditor.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -173,6 +175,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcademodesetup.h \
 			paletteeditor.h \
 			colorwidget.h \
+			brusheditor.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
