@@ -2,6 +2,7 @@
 #include <QColorDialog>
 
 #include "colorwidget.h"
+#include "brusheditor.h"
 #include "qmc2main.h"
 #include "macros.h"
 
@@ -58,6 +59,8 @@ void ColorWidget::on_toolButtonColor_clicked()
 void ColorWidget::on_toolButtonBrush_clicked()
 {
 	// FIXME
+	BrushEditor brushEditor(this);
+	brushEditor.exec();
 }
 
 void ColorWidget::showEvent(QShowEvent *e)

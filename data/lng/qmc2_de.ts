@@ -917,7 +917,7 @@ p, li { white-space: pre-wrap; }
         <translation>Muster oder Bild auswählen</translation>
     </message>
     <message>
-        <location filename="../../colorwidget.cpp" line="47"/>
+        <location filename="../../colorwidget.cpp" line="48"/>
         <source>Choose color for %1 / %2</source>
         <translation>Farbe für %1 / %2 auswählen</translation>
     </message>

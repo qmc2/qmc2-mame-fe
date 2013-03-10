@@ -937,7 +937,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../colorwidget.cpp" line="47"/>
+        <location filename="../../colorwidget.cpp" line="48"/>
         <source>Choose color for %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
