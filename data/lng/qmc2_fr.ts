@@ -798,6 +798,124 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BrushEditor</name>
+    <message>
+        <location filename="../../brusheditor.ui" line="14"/>
+        <source>Brush editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="39"/>
+        <source>Cancel brush editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="42"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Annuler</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="65"/>
+        <source>Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="71"/>
+        <source>Image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="74"/>
+        <source>Specify image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="87"/>
+        <source>Browse image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="98"/>
+        <source>Image preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="120"/>
+        <source>Pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="126"/>
+        <source>Pattern type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="216"/>
+        <source>Pattern texture image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="219"/>
+        <source>Specify texture image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="235"/>
+        <source>Browse pattern texture image file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="246"/>
+        <source>Pattern preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="268"/>
+        <source>Gradient</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="274"/>
+        <source>Gradient type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="302"/>
+        <source>Add color-stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="322"/>
+        <source>Remove color-stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="339"/>
+        <source>Gradient preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="368"/>
+        <source>Stop</source>
+        <translation type="unfinished">Stop</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="373"/>
+        <source>Color</source>
+        <translation type="unfinished">Couleur</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="391"/>
+        <source>Accept brush</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="394"/>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Cabinet</name>
     <message>
         <location filename="../../cabinet.h" line="16"/>

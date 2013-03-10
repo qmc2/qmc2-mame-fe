@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BrushEditor</class>
+ <widget class="QDialog" name="BrushEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>478</width>
+    <height>377</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Brush editor</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer1">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>158</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Cancel brush editing</string>
+     </property>
+     <property name="text">
+      <string>&amp;Cancel</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
+    <widget class="QToolBox" name="toolBox">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="pageImage">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>460</width>
+        <height>255</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>Image</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="toolTip">
+          <string>Image file</string>
+         </property>
+         <property name="placeholderText">
+          <string>Specify image file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QToolButton" name="toolButtonBrowseImageFile">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse image file</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QFrame" name="frameImagePreview">
+         <property name="toolTip">
+          <string>Image preview</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pagePattern">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>460</width>
+        <height>125</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>Pattern</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QComboBox" name="comboBoxPatternType">
+         <property name="toolTip">
+          <string>Pattern type</string>
+         </property>
+         <item>
+          <property name="text">
+           <string notr="true">NoBrush</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">SolidPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense1Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense2Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense3Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense4Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense5Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense6Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Dense7Pattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">HorPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">VerPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">CrossPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">BDiagPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">FDiagPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">DiagCrossPattern</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">TexturePattern</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEditTextureImage">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Pattern texture image file</string>
+         </property>
+         <property name="placeholderText">
+          <string>Specify texture image file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonBrowseImageFile_2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Browse pattern texture image file</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QFrame" name="framePatternPreview">
+         <property name="toolTip">
+          <string>Pattern preview</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageGradient">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>460</width>
+        <height>255</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>Gradient</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QComboBox" name="comboBoxGradientType">
+         <property name="toolTip">
+          <string>Gradient type</string>
+         </property>
+         <item>
+          <property name="text">
+           <string notr="true">Linear</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Radial</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Conical</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QToolButton" name="toolButtonAddColorStop">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Add color-stop</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonRemoveColorStop">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Remove color-stop</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3" rowspan="2">
+        <widget class="QFrame" name="frameGradientPreview">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Gradient preview</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QTreeWidget" name="treeWidgetColorStops">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::InternalMove</enum>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="expandsOnDoubleClick">
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>Stop</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Color</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButtonOk">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Accept brush</string>
+     </property>
+     <property name="text">
+      <string>&amp;Ok</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <spacer name="horizontalSpacer2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>157</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>toolButtonBrowseImageFile</tabstop>
+  <tabstop>comboBoxPatternType</tabstop>
+  <tabstop>lineEditTextureImage</tabstop>
+  <tabstop>toolButtonBrowseImageFile_2</tabstop>
+  <tabstop>comboBoxGradientType</tabstop>
+  <tabstop>toolButtonAddColorStop</tabstop>
+  <tabstop>toolButtonRemoveColorStop</tabstop>
+  <tabstop>treeWidgetColorStops</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -779,6 +779,124 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BrushEditor</name>
+    <message>
+        <location filename="../../brusheditor.ui" line="14"/>
+        <source>Brush editor</source>
+        <translation>Brush Editor</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="39"/>
+        <source>Cancel brush editing</source>
+        <translation>Brush-Anpassung abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="42"/>
+        <source>&amp;Cancel</source>
+        <translation>Abbre&amp;chen</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="65"/>
+        <source>Image</source>
+        <translation>Bild</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="71"/>
+        <source>Image file</source>
+        <translation>Bild Datei</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="74"/>
+        <source>Specify image file</source>
+        <translation>Bild Datei angeben</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="87"/>
+        <source>Browse image file</source>
+        <translation>Bild Datei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="98"/>
+        <source>Image preview</source>
+        <translation>Bild-Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="120"/>
+        <source>Pattern</source>
+        <translation>Muster</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="126"/>
+        <source>Pattern type</source>
+        <translation>Muster-Typ</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="216"/>
+        <source>Pattern texture image file</source>
+        <translation>Textur Datei</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="219"/>
+        <source>Specify texture image file</source>
+        <translation>Textur Datei angeben</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="235"/>
+        <source>Browse pattern texture image file</source>
+        <translation>Textur Datei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="246"/>
+        <source>Pattern preview</source>
+        <translation>Muster-Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="268"/>
+        <source>Gradient</source>
+        <translation>Gradient</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="274"/>
+        <source>Gradient type</source>
+        <translation>Gradient-Typ</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="302"/>
+        <source>Add color-stop</source>
+        <translation>Farb-Stop hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="322"/>
+        <source>Remove color-stop</source>
+        <translation>Farb-Stop entfernen</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="339"/>
+        <source>Gradient preview</source>
+        <translation>Gradient-Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="368"/>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="373"/>
+        <source>Color</source>
+        <translation>Farbe</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="391"/>
+        <source>Accept brush</source>
+        <translation>Brush akzeptieren</translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="394"/>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+</context>
+<context>
     <name>Cabinet</name>
     <message>
         <location filename="../../cabinet.h" line="16"/>
