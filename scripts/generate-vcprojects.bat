@@ -127,6 +127,19 @@ set QMC2_ARCADE_DEFINES="DEFINES+=SVN_REV=%SVN_REV%"
 
 echo done
 
+REM ##########################################
+REM # RC + VC PROJECT GENERATION FOR QCHDMAN #
+REM ##########################################
+
+echo Generating RC and VC++ project files for qchdman, please wait...
+
+set QCHDMAN_DEFINES="DEFINES+=SVN_REV=%SVN_REV%"
+
+%QT_PATH%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release %QCHDMAN_DEFINES% -o tools\qchdman\qchdman.%VCPROJ_EXTENSION% tools\qchdman\qchdman.pro > NUL 2> NUL
+%QT_PATH_64%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release %QCHDMAN_DEFINES% -o tools\qchdman\qchdman.%VCPROJ_EXTENSION% tools\qchdman\qchdman.pro > NUL 2> NUL
+
+echo done
+
 REM ##############################################
 REM # REPLACE SOME SETTINGS IN THE PROJECT FILES #
 REM ##############################################
@@ -163,7 +176,9 @@ set repl5_vc10_x64=qmc2-arcade
 
 echo Adjusting VC++ project files, please wait...
 
+REM #################
 REM ### qmc2-mame ###
+REM #################
 
 set old_file=qmc2-mame.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -181,7 +196,9 @@ goto :qmc2_mame_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM #####################
 REM ### qmc2-mame-x64 ###
+REM #####################
 
 set old_file=qmc2-mame-x64.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -199,7 +216,9 @@ goto :qmc2_mame_64_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM #################
 REM ### qmc2-mess ###
+REM #################
 
 set old_file=qmc2-mess.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -217,7 +236,9 @@ goto :qmc2_mess_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM #####################
 REM ### qmc2-mess-x64 ###
+REM #####################
 
 set old_file=qmc2-mess-x64.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -235,7 +256,9 @@ goto :qmc2_mess_64_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM ################
 REM ### qmc2-ume ###
+REM ################
 
 set old_file=qmc2-ume.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -253,7 +276,9 @@ goto :qmc2_ume_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM ####################
 REM ### qmc2-ume-x64 ###
+REM ####################
 
 set old_file=qmc2-ume-x64.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -271,7 +296,9 @@ goto :qmc2_ume_64_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM ###################
 REM ### qmc2-arcade ###
+REM ###################
 
 cd arcade
 
@@ -291,7 +318,9 @@ goto :qmc2_arcade_ready
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
+REM #######################
 REM ### qmc2-arcade-x64 ###
+REM #######################
 
 set old_file=qmc2-arcade-x64.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
@@ -310,5 +339,49 @@ if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
 cd ..
+
+REM ###############
+REM ### qchdman ###
+REM ###############
+
+cd tools\qchdman
+
+set old_file=qchdman.%VCPROJ_EXTENSION%
+set new_file=%old_file%.new
+
+if exist %new_file% del %new_file%
+
+if "%QMAKESPEC%" neq "win32-msvc2010" goto :qchdman_vc2008
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" -e "s/%find5_vc10%/%repl5_vc10%/g" %old_file% > %new_file%
+goto :qchdman_ready
+:qchdman_vc2008
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
+
+:qchdman_ready
+
+if exist %old_file% del %old_file%
+rename %new_file% %old_file%
+
+REM ###################
+REM ### qchdman-x64 ###
+REM ###################
+
+set old_file=qchdman-x64.%VCPROJ_EXTENSION%
+set new_file=%old_file%.new
+
+if exist %new_file% del %new_file%
+
+if "%QMAKESPEC%" neq "win32-msvc2010" goto :qchdman_64_vc2008
+%SED_COMMAND% -e "s/%find0_vc10_x64%/%repl0_vc10_x64%/g" -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10_x64%/%repl3_vc10_x64%/g" -e "s/%find4_vc10_x64%/%repl4_vc10_x64%/g" -e "s/%find5_vc10_x64%/%repl5_vc10_x64%/g" %old_file% > %new_file%
+goto :qchdman_64_ready
+:qchdman_64_vc2008
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
+
+:qchdman_64_ready
+
+if exist %old_file% del %old_file%
+rename %new_file% %old_file%
+
+cd ..\..
 
 echo done
