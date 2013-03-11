@@ -16,6 +16,8 @@ PaletteEditor::PaletteEditor(QWidget *parent)
 {
 	setupUi(this);
 
+	setWindowModality(Qt::ApplicationModal);
+
 	customPalette = activePalette = qApp->palette();
 
 	ColorWidget *cw;
