@@ -166,6 +166,15 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("SRD 30400-50", 822, 2, 51, 512)
             << DiskGeometry("SRD 3O8OC-50", 964, 10, 17, 512);
 
+    hardDiskTemplates["APS Technologies"]
+            << DiskGeometry("MS 4.0", 3124, 19, 144, 512)
+            << DiskGeometry("Q 10800", 2864, 16, 46, 512)
+            << DiskGeometry("Q 2.0", 3850, 10, 109, 512)
+            << DiskGeometry("ST 2000(W)", 6311, 4, 175, 512)
+            << DiskGeometry("ST 23000(W)", 6880, 28, 237, 512)
+            << DiskGeometry("ST 4200", 3992, 19, 110, 512)
+            << DiskGeometry("ST 9.0", 2925, 27, 133, 512);
+
     hardDiskTemplates["Blue Disk"]
             << DiskGeometry("CD 1241-ISA", 976, 8, 31, 512)
             << DiskGeometry("CD 1501-ISA", 989, 8, 37, 512)
@@ -177,9 +186,20 @@ MainWindow::MainWindow(QWidget *parent) :
     hardDiskTemplates["Conner"]
             << DiskGeometry("CP3024", 636, 2, 33, 512)
             << DiskGeometry("CP349", 788, 4, 26, 512)
+            << DiskGeometry("CFA 2161A", 1023, 64, 63, 512)
+            << DiskGeometry("CFS 1275A", 2479, 16, 63, 512)
+            << DiskGeometry("CFS 1621A", 3146, 16, 63, 512)
+            << DiskGeometry("CFP 1080S(E)", 3658, 6, 96, 512)
+            << DiskGeometry("CFP 4217S", 6028, 10, 147, 512)
+            << DiskGeometry("CFP 9117S", 6028, 20, 158, 512)
             << DiskGeometry("CP3184", 832, 6, 33, 512)
             << DiskGeometry("CP3104", 776, 8, 33, 512)
             << DiskGeometry("CFS210A", 685, 16, 38, 512);
+
+    hardDiskTemplates["Data General"]
+            << DiskGeometry("6301", 640, 7, 17, 512)
+            << DiskGeometry("6338", 1024, 8, 17, 512)
+            << DiskGeometry("6339", 965, 15, 17, 512);
 
     hardDiskTemplates["DMA"]
             << DiskGeometry("306", 612, 2, 17, 256);
@@ -201,6 +221,17 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("MT 5760", 1632, 15, 54, 512);
 
     hardDiskTemplates["Maxtor"]
+            << DiskGeometry("72025AP", 3936, 16, 63, 512)
+            << DiskGeometry("72577AV", 4996, 16, 63, 512)
+            << DiskGeometry("82625A6", 5100, 16, 63, 512)
+            << DiskGeometry("83209A5", 6218, 16, 63, 512)
+            << DiskGeometry("83500A4", 7237, 16, 63, 512)
+            << DiskGeometry("84000A6", 7763, 16, 63, 512)
+            << DiskGeometry("85250A6", 10856, 16, 63, 512)
+            << DiskGeometry("86480A8", 13392, 16, 63, 512)
+            << DiskGeometry("87000A8", 14475, 16, 63, 512)
+            << DiskGeometry("88400D8", 16278, 16, 63, 512)
+            << DiskGeometry("MXT 1240S", 2512, 15, 67, 512)
             << DiskGeometry("XT-1065", 918, 7, 17, 512)
             << DiskGeometry("XT-1085", 1024, 8, 17, 512)
             << DiskGeometry("XT-1105", 918, 11, 17, 512)
@@ -211,6 +242,15 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("XT-8380S", 1632, 8, 54, 512)
             << DiskGeometry("XT-8760S", 1632, 15, 54, 512);
 
+    hardDiskTemplates["Olivetti"]
+            << DiskGeometry("HD 362", 612, 4, 17, 512)
+            << DiskGeometry("HD 561-1", 180, 2, 17, 512)
+            << DiskGeometry("HD 561-2", 180, 4, 17, 512)
+            << DiskGeometry("HD 561-3", 180, 6, 17, 512)
+            << DiskGeometry("HD 662/11", 612, 2, 17, 512)
+            << DiskGeometry("HD 662/12", 612, 4, 17, 512)
+            << DiskGeometry("HD 674", 820, 6, 17, 512);
+
     hardDiskTemplates["Quantum"]
             << DiskGeometry("ProDrive 40 S", 834, 3, 35, 512) // SCSI
             << DiskGeometry("ProDrive 105 S", 1019, 6, 35, 512) // SCSI
@@ -219,6 +259,14 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("ProDrive 425 AT", 1021, 16, 51, 512)
             << DiskGeometry("ProDrive LPS 525 AT", 1017, 16, 63, 512);
 
+    hardDiskTemplates["Samsung"]
+            << DiskGeometry("SP 1366D", 26464, 16, 63, 512)
+            << DiskGeometry("SV 1296A/D", 25038, 16, 63, 512)
+            << DiskGeometry("SV 1533D", 29660, 16, 63, 512)
+            << DiskGeometry("SV 1705D", 33187, 16, 63, 512)
+            << DiskGeometry("SV 1824D", 35324, 16, 63, 512)
+            << DiskGeometry("SV 2044D", 39546, 16, 63, 512);
+
     hardDiskTemplates["Seagate"]
             << DiskGeometry("ST-506", 153, 4, 32, 256)
             << DiskGeometry("ST-412", 306, 4, 32, 256)
@@ -226,7 +274,8 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("ST-251", 820, 6, 17, 512)
             << DiskGeometry("ST-9100A", 748, 14, 16, 512)
             << DiskGeometry("ST-3243A", 1024, 12, 34, 512)
-            << DiskGeometry("ST-9655AG", 1024, 16, 64, 512);
+            << DiskGeometry("ST-9655AG", 1024, 16, 64, 512)
+            << DiskGeometry("ST-423451N", 6876, 28, 237, 512);
 
     hardDiskTemplates["Texas Instruments"]
             << DiskGeometry("TI-5", 153, 4, 17, 512)
