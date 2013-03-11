@@ -136,7 +136,7 @@ echo Generating RC and VC++ project files for qchdman, please wait...
 set QCHDMAN_DEFINES="DEFINES+=SVN_REV=%SVN_REV%"
 
 %QT_PATH%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release %QCHDMAN_DEFINES% -o tools\qchdman\qchdman.%VCPROJ_EXTENSION% tools\qchdman\qchdman.pro > NUL 2> NUL
-%QT_PATH_64%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release %QCHDMAN_DEFINES% -o tools\qchdman\qchdman.%VCPROJ_EXTENSION% tools\qchdman\qchdman.pro > NUL 2> NUL
+%QT_PATH_64%\bin\qmake.exe -tp vc CONFIG+=warn_off CONFIG+=release %QCHDMAN_DEFINES% -o tools\qchdman\qchdman-x64.%VCPROJ_EXTENSION% tools\qchdman\qchdman.pro > NUL 2> NUL
 
 echo done
 
