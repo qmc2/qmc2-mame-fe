@@ -3857,10 +3857,23 @@ void Options::on_pushButtonEditPalette_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonEditPalette_clicked()");
 #endif
 
+	QPalette currentPalette = qApp->palette();
 	if ( !qmc2PaletteEditor )
 		qmc2PaletteEditor = new PaletteEditor(this);
-
-	qmc2PaletteEditor->activePalette = qmc2StandardPalettes[qmc2CurrentStyleName];
+	loadCustomPalette(qmc2CurrentStyleName);
+	qmc2PaletteEditor->activePalette = qmc2CustomPalette;
+	bool wasChecked = qmc2PaletteEditor->toolButtonPreview->isChecked();
+	qmc2PaletteEditor->toolButtonPreview->blockSignals(true);
+	qmc2PaletteEditor->toolButtonPreview->setChecked(false);
+	qmc2PaletteEditor->on_pushButtonRestore_clicked();
+	qmc2PaletteEditor->toolButtonPreview->setChecked(wasChecked);
+	qmc2PaletteEditor->toolButtonPreview->blockSignals(false);
+	qmc2PaletteEditor->activePalette = currentPalette;
+	qmc2PaletteEditor->show();
+	if ( qmc2PaletteEditor->toolButtonPreview->isChecked() )
+		qApp->setPalette(qmc2PaletteEditor->customPalette);
+	else
+		qApp->setPalette(currentPalette);
 
 	if ( qmc2PaletteEditor->exec() == QDialog::Accepted ) {
 		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", false);

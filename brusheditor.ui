@@ -14,7 +14,13 @@
    <string>Brush editor</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
     <number>0</number>
    </property>
    <item row="1" column="0">
@@ -64,7 +70,7 @@
         <x>0</x>
         <y>0</y>
         <width>468</width>
-        <height>263</height>
+        <height>259</height>
        </rect>
       </property>
       <attribute name="label">
@@ -131,7 +137,7 @@
         <x>0</x>
         <y>0</y>
         <width>468</width>
-        <height>263</height>
+        <height>127</height>
        </rect>
       </property>
       <attribute name="label">
@@ -291,7 +297,7 @@
         <x>0</x>
         <y>0</y>
         <width>468</width>
-        <height>263</height>
+        <height>195</height>
        </rect>
       </property>
       <attribute name="label">
