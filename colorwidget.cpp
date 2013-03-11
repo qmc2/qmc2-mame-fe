@@ -60,6 +60,7 @@ void ColorWidget::on_toolButtonBrush_clicked()
 {
 	// FIXME
 	BrushEditor brushEditor(this);
+	brushEditor.setWindowTitle(tr("Edit brush for %1 / %2").arg(colorName).arg(groupName));
 	brushEditor.exec();
 }
 

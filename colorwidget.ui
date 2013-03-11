@@ -59,7 +59,7 @@
       </sizepolicy>
      </property>
      <property name="toolTip">
-      <string>Choose brush (pattern or image)</string>
+      <string>Edit brush</string>
      </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
