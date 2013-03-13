@@ -2,7 +2,9 @@
 #define _COLORWIDGET_H_
 
 #include <QPalette>
+#include <QSize>
 #include <QString>
+#include <QFontMetrics>
 #include "ui_colorwidget.h"
 
 class ColorWidget : public QWidget, public Ui::ColorWidget
@@ -19,6 +21,12 @@ class ColorWidget : public QWidget, public Ui::ColorWidget
 		QColor activeColor;
 		QString colorName;
 		QString groupName;
+
+		virtual QSize sizeHint() const
+		{
+			QFontMetrics fm(font());
+			return QSize(50, fm.height() + 6);
+		}
 
 	public slots:
 		void adjustIconSizes();
