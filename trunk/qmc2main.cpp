@@ -1621,18 +1621,18 @@ void MainWindow::on_actionPlay_triggered(bool)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlay_triggered(bool)");
 #endif
 
-  if ( qmc2EarlyReloadActive )
-    return;
+  if ( qmc2EarlyReloadActive || qmc2CriticalSection )
+	  return;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( !qmc2CurrentItem && qmc2DemoGame.isEmpty() )
 #else
   if ( !qmc2CurrentItem )
 #endif
-    return;
+	  return;
 
   if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
-    return;
+	  return;
 
   QString gameName;
 
