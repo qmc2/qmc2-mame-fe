@@ -1621,12 +1621,10 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QList
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
-	dontIgnoreNameChange = true;
-	updateSlots = true;
-	on_lineEditConfigurationName_textChanged(item->text());
-	updateSlots = false;
-	dontIgnoreNameChange = false;
 	item->setSelected(true);
+	dontIgnoreNameChange = updateSlots = true;
+	on_lineEditConfigurationName_textChanged(item->text());
+	dontIgnoreNameChange = updateSlots = false;
 }
 
 void MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
@@ -1740,6 +1738,9 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
 #endif
+
+	if ( qmc2CriticalSection )
+		return;
 
 	qmc2CriticalSection = true;
 
