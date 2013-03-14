@@ -479,7 +479,7 @@
 #if defined(QMC2_FADER_SPEED)
 #define QMC2_AUDIOPLAYER_FADER_TIMEOUT		QMC2_FADER_SPEED
 #else
-#define QMC2_AUDIOPLAYER_FADER_TIMEOUT 		 100
+#define QMC2_AUDIOPLAYER_FADER_TIMEOUT 		100
 #endif
 
 // audio player fader functions
