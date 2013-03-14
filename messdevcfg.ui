@@ -27,33 +27,10 @@
       <enum>Qt::Vertical</enum>
      </property>
      <widget class="QWidget" name="layoutWidget">
-      <layout class="QGridLayout" name="gridLayoutActiveDeviceConfiguration" columnstretch="1,7,0,1,1,1,1">
-       <item row="0" column="2">
-        <widget class="QToolButton" name="toolButtonConfiguration">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Device configuration menu</string>
-         </property>
-         <property name="statusTip">
-          <string>Device configuration menu</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
-         </property>
-         <property name="popupMode">
-          <enum>QToolButton::MenuButtonPopup</enum>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonIconOnly</enum>
-         </property>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayoutActiveDeviceConfiguration">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetNoConstraint</enum>
+       </property>
        <item row="0" column="1">
         <widget class="QLineEdit" name="lineEditConfigurationName">
          <property name="sizePolicy">
@@ -77,7 +54,30 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="7">
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonNewConfiguration">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Create a new device configuration</string>
+         </property>
+         <property name="statusTip">
+          <string>Create a new device configuration</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filenew.png</normaloff>:/data/img/filenew.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="6">
         <widget class="QTabWidget" name="tabWidgetDeviceSetup">
          <property name="currentIndex">
           <number>0</number>
@@ -556,29 +556,6 @@
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QToolButton" name="toolButtonNewConfiguration">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Create a new device configuration</string>
-         </property>
-         <property name="statusTip">
-          <string>Create a new device configuration</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filenew.png</normaloff>:/data/img/filenew.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
         <widget class="QToolButton" name="toolButtonCloneConfiguration">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -601,7 +578,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
+       <item row="0" column="4">
         <widget class="QToolButton" name="toolButtonRemoveConfiguration">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -624,7 +601,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="6">
+       <item row="0" column="5">
         <widget class="QToolButton" name="toolButtonSaveConfiguration">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -658,7 +635,33 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="0" column="1">
+        <widget class="QToolButton" name="toolButtonConfiguration">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Device configuration menu</string>
+         </property>
+         <property name="statusTip">
+          <string>Device configuration menu</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::MenuButtonPopup</enum>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
         <widget class="QListWidget" name="listWidgetDeviceConfigurations">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
