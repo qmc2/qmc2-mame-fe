@@ -1096,6 +1096,33 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 
 	if ( slotsChanged )
 		QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
+	else {
+		// adjust tab orders for device-maps and slot-options
+		QTreeWidgetItem *lastItem = NULL;
+		foreach (QTreeWidgetItem *thisItem, treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard)) {
+			if ( lastItem ) {
+				FileEditWidget *w1 = (FileEditWidget *)treeWidgetDeviceSetup->itemWidget(lastItem, QMC2_DEVCONFIG_COLUMN_FILE);
+				FileEditWidget *w2 = (FileEditWidget *)treeWidgetDeviceSetup->itemWidget(thisItem, QMC2_DEVCONFIG_COLUMN_FILE);
+				treeWidgetDeviceSetup->setTabOrder(w1->lineEditFile, w1->toolButtonBrowse);
+				treeWidgetDeviceSetup->setTabOrder(w1->toolButtonBrowse, w1->toolButtonClear);
+				treeWidgetDeviceSetup->setTabOrder(w1->toolButtonClear, w2->lineEditFile);
+			}
+			lastItem = thisItem;
+		}
+		lastItem = NULL;
+		QTreeWidgetItemIterator it(treeWidgetSlotOptions);
+		while ( *it ) {
+			if ( lastItem ) {
+				QWidget *w11 = treeWidgetSlotOptions->itemWidget(lastItem, QMC2_SLOTCONFIG_COLUMN_OPTION);
+				QWidget *w12 = treeWidgetSlotOptions->itemWidget(lastItem, QMC2_SLOTCONFIG_COLUMN_BIOS);
+				QWidget *w21 = treeWidgetSlotOptions->itemWidget(*it, QMC2_SLOTCONFIG_COLUMN_OPTION);
+				treeWidgetDeviceSetup->setTabOrder(w11, w12);
+				treeWidgetDeviceSetup->setTabOrder(w12, w21);
+			}
+			lastItem = *it;
+			++it;
+		}
+	}
 
 	return true;
 }
