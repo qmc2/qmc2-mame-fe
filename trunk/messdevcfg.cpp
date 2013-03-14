@@ -2029,19 +2029,23 @@ void MESSDeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)
 
 	switch ( index ) {
 		case QMC2_DEVSETUP_TAB_DEVMAPPINGS:
-			frameConfiguration->show();
-			groupBoxAvailableDeviceConfigurations->show();
-			groupBoxActiveDeviceConfiguration->setTitle(tr("Active device configuration"));
-			break;
 		case QMC2_DEVSETUP_TAB_SLOTCONFIG:
-			frameConfiguration->show();
-			groupBoxAvailableDeviceConfigurations->show();
-			groupBoxActiveDeviceConfiguration->setTitle(tr("Active device configuration"));
+			labelActiveDeviceConfiguration->show();
+			lineEditConfigurationName->show();
+			toolButtonNewConfiguration->show();
+			toolButtonCloneConfiguration->show();
+			toolButtonRemoveConfiguration->show();
+			toolButtonSaveConfiguration->show();
+			vSplitter->widget(1)->show();
 			break;
 		case QMC2_DEVSETUP_TAB_FILECHOOSER:
-			frameConfiguration->hide();
-			groupBoxAvailableDeviceConfigurations->hide();
-			groupBoxActiveDeviceConfiguration->setTitle("");
+			labelActiveDeviceConfiguration->hide();
+			lineEditConfigurationName->hide();
+			toolButtonNewConfiguration->hide();
+			toolButtonCloneConfiguration->hide();
+			toolButtonRemoveConfiguration->hide();
+			toolButtonSaveConfiguration->hide();
+			vSplitter->widget(1)->hide();
 			if ( !fileChooserSetup )
 				if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
 	  				QTimer::singleShot(0, this, SLOT(setupFileChooser()));
