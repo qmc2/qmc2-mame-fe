@@ -1621,7 +1621,7 @@ void MainWindow::on_actionPlay_triggered(bool)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlay_triggered(bool)");
 #endif
 
-  if ( qmc2EarlyReloadActive || qmc2CriticalSection )
+  if ( qmc2EarlyReloadActive )
 	  return;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1633,6 +1633,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 
   if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 	  return;
+
+  if ( qmc2CriticalSection ) {
+	  QTimer::singleShot(10, this, SLOT(on_actionPlay_triggered()));
+	  return;
+  }
 
   QString gameName;
 
