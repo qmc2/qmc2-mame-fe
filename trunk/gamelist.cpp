@@ -612,7 +612,7 @@ void Gamelist::load()
 #if defined(QMC2_EMUTYPE_MAME)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
-      if ( versionWords[0] == "M.A.M.E." ) {
+      if ( versionWords[0] == "M.A.M.E." || versionWords[0] == "HB.M.A.M.E." ) {
         emulatorVersion = versionWords[1].remove("v");
         emulatorType = "MAME";
       } else {
