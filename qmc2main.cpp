@@ -11128,6 +11128,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry", tabWidgetSoftwareDetail->saveGeometry());
 			stackedWidgetSpecial->insertWidget(QMC2_SPECIAL_SOFTWARE_PAGE, tabWidgetSoftwareDetail);
 			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+			vSplitter->setSizes(vSplitterSizesSoftwareDetail);
 		}
 	} else {
 		stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
@@ -11143,6 +11144,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			tabWidgetSoftwareDetail->showNormal();
 			tabWidgetSoftwareDetail->raise();
 		}
+		vSplitter->setSizes(vSplitterSizes);
 	}
 }
 
