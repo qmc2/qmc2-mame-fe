@@ -339,17 +339,17 @@
     <message>
         <location filename="../mainwindow.ui" line="307"/>
         <source>New script</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo script</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="310"/>
         <source>Create a new script</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar um novo script</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="313"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
@@ -1438,32 +1438,45 @@ Dump meta-data from a CHD to stdout or file.
 --tag, -t &amp;lt;tag&amp;gt;: 4-character tag for meta-data (required)&lt;br&gt;
 --index, -ix &amp;lt;index&amp;gt;: indexed instance of this meta-data tag
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;DumpMeta do CHDMAN&lt;/b&gt;
+&lt;/p&gt;
+Baixar todos os meta dados de um CHD para a saída padrão ou arquivo.
+&lt;p&gt;
+&lt;b&gt;Parâmetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;arquivo&amp;gt;: nome do arquivo de entrada (obrigatório)&lt;br&gt;
+--output, -o &amp;lt;arquivo&amp;gt;: nome do arquivo de saída&lt;br&gt;
+--force, -f: forçar sobrescrever um arquivo existente&lt;br&gt;
+--tag, -t &amp;lt;etiqueta&amp;gt;: etiqueta de 4 caracteres para o meta-dado (obrigatório)&lt;br&gt;
+--index, -ix &amp;lt;índice&amp;gt;: instância indexada dessa etiqueta de meta-dado
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3708"/>
         <source>File containing the meta-data (--valuefile)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo contendo os meta-dados (--valuefile)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3711"/>
         <source>Meta-data value file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de valor de meta-dados</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3724"/>
         <source>Text for the meta-data (--valuetext)</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto para os meta-dados (--valuetext)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3727"/>
         <source>Meta-data value text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto de valor dos meta-dados</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3766"/>
         <source>Don&apos;t include in SHA-1 check-sum</source>
-        <translation type="unfinished"></translation>
+        <translation>Não incluir na checagem SHA-1</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3789"/>
@@ -1482,7 +1495,21 @@ Add meta-data to a CHD.
 --index, -ix &amp;lt;index&amp;gt;: indexed instance of this meta-data tag&lt;br&gt;
 --nochecksum, -nocs: do not include this meta-data information in the overall SHA-1 check-sum
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;AddMeta do CHDMAN&lt;/b&gt;
+&lt;/p&gt;
+Adicionar meta-dados em um CHD.
+&lt;p&gt;
+&lt;b&gt;Parâmetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;arquivo&amp;gt;: nome do arquivo de entrada (obrigatório)&lt;br&gt;
+--valuefile, -vf &amp;lt;arquivo&amp;gt;: arquivo com os dados à adicionar&lt;br&gt;
+--valuetext, -vt &amp;lt;texto&amp;gt;: texto para os meta-dados&lt;br&gt;
+--tag, -t &amp;lt;etiqueta&amp;gt;: etiqueta de 4 caracteres para o meta-dado (obrigatório)&lt;br&gt;
+--index, -ix &amp;lt;índice&amp;gt;: instância indexada dessa etiqueta de meta-dados&lt;br&gt;
+--nochecksum, -nocs: não incluir essa informação de meta-dados na checagem SHA-1
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="504"/>
@@ -1764,38 +1791,38 @@ Extrai um LD CHD de um arquivo de entrada.
         <location filename="../projectwidget.ui" line="3695"/>
         <location filename="../projectwidget.ui" line="3851"/>
         <source>Tag (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiqueta (obrigatório)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3495"/>
         <location filename="../projectwidget.ui" line="3747"/>
         <location filename="../projectwidget.ui" line="3864"/>
         <source>Indexed instance of this meta-data tag (--index)</source>
-        <translation type="unfinished"></translation>
+        <translation>Instância indexada desta etiqueta de meta-dados (--index)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3534"/>
         <source>Output file (leave empty to use stdout)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de saída (deixe vazio para utilizar a saída padrão)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3541"/>
         <location filename="../projectwidget.ui" line="3734"/>
         <location filename="../projectwidget.ui" line="3894"/>
         <source>Index</source>
-        <translation type="unfinished"></translation>
+        <translation>Índice</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3554"/>
         <location filename="../projectwidget.ui" line="3655"/>
         <location filename="../projectwidget.ui" line="3907"/>
         <source>4-character tag for meta-data (--tag)</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiqueta de 4 caracteres para esse meta-dado (--tag)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3763"/>
         <source>Do not include this meta-data information in the overall SHA-1 check-sum (--nochecksum)</source>
-        <translation type="unfinished"></translation>
+        <translation>Não incluir essa informação de meta-dados na checagem SHA-1 (--nochecksum)</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3920"/>
@@ -1811,7 +1838,18 @@ Remove meta-data from a CHD.
 --tag, -t &amp;lt;tag&amp;gt;: 4-character tag for meta-data (required)&lt;br&gt;
 --index, -ix &amp;lt;index&amp;gt;: indexed instance of this meta-data tag
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;DelMeta do CHDMAN&lt;/b&gt;
+&lt;/p&gt;
+Remover meta-dados de um CHD.
+&lt;p&gt;
+&lt;b&gt;Parâmetros&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;arquivo&amp;gt;: nome do arquivo de entrada (obrigatório)&lt;br&gt;
+--tag, -t &amp;lt;etiqueta&amp;gt;: etiqueta de 4 caracteres para o meta-dado (obrigatório)&lt;br&gt;
+--index, -ix &amp;lt;índice&amp;gt;: instância indexada dessa etiqueta de meta-dados&lt;br&gt;
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="3975"/>
@@ -2156,13 +2194,13 @@ Remove meta-data from a CHD.
         <location filename="../projectwidget.cpp" line="1052"/>
         <location filename="../projectwidget.cpp" line="1212"/>
         <source>Compatible files (*.cue *.toc *.gdi *.nrg *.iso)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos compatíveis (*.cue *.toc *.gdi *.nrg *.iso)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1052"/>
         <location filename="../projectwidget.cpp" line="1212"/>
         <source>ISO files (*.iso)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos ISO (*.iso)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1053"/>
@@ -2242,7 +2280,7 @@ Remove meta-data from a CHD.
     <message>
         <location filename="../projectwidget.cpp" line="1312"/>
         <source>Choose meta-data value file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha arquivo de valor de meta-dados</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1422"/>
@@ -2373,197 +2411,197 @@ Deseja continuar?</translation>
     <message>
         <location filename="../scriptwidget.ui" line="25"/>
         <source>When enabled, specify initial input / output files used for script iteration (otherwise run script once)</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando habilitado, especifique os arquivos de entrada / saída iniciais utilizados para a iteração do script (caso contrário executar o script uma vez)</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="28"/>
         <source>Iterate over input / output files</source>
-        <translation type="unfinished"></translation>
+        <translation>Iterar sobre os arquivos de entrada / saída</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="51"/>
         <source>Script status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado do script / progresso</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="57"/>
         <source>Idle</source>
-        <translation type="unfinished">Ocioso</translation>
+        <translation>Ocioso</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="70"/>
         <source>Run this script</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar este script</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="90"/>
         <source>Terminate the running script</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar o script em execução</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="155"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="160"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="165"/>
         <source>Sub-type</source>
-        <translation type="unfinished"></translation>
+        <translation>Subtipo</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="170"/>
         <source>Transition</source>
-        <translation type="unfinished"></translation>
+        <translation>Transição</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="175"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="191"/>
         <source>Arbitrary command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando arbitrário</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="204"/>
         <source>Add a new command</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar um novo comando</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="207"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="234"/>
         <source>Add a new project</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar um novo projeto</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="237"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projeto</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="257"/>
         <source>Select group execution mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar modo de execução do grupo</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="264"/>
         <source>Sequential execution</source>
-        <translation type="unfinished"></translation>
+        <translation>Execução sequencial</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="273"/>
         <source>Parallel execution</source>
-        <translation type="unfinished"></translation>
+        <translation>Execução paralela</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="291"/>
         <source>Add a new group</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar um novo grupo</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="294"/>
         <source>Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupo</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="314"/>
         <source>Select project type</source>
-        <translation type="unfinished">Selecionar tipo do projeto</translation>
+        <translation>Selecionar tipo do projeto</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="321"/>
         <source>Display information about a CHD input file</source>
-        <translation type="unfinished">Mostrar informação sobre um arquivo de entrada CHD</translation>
+        <translation>Mostrar informação sobre um arquivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="330"/>
         <source>Verify the integrity of a CHD input file</source>
-        <translation type="unfinished">Verificar a integridade de um arquivo de entrada CHD</translation>
+        <translation>Verificar a integridade de um arquivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="339"/>
         <source>Copy data from one CHD to another</source>
-        <translation type="unfinished">Copiar dados de um CHD para outro</translation>
+        <translation>Copiar dados de um CHD para outro</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="348"/>
         <source>Create a raw CHD from an input file</source>
-        <translation type="unfinished">Criar um arquivo CHD de um arquivo de entrada</translation>
+        <translation>Criar um arquivo CHD de um arquivo de entrada</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="357"/>
         <source>Create an HD CHD from an input file</source>
-        <translation type="unfinished">Criar um CHD HD de um arquivo de entrada</translation>
+        <translation>Criar um CHD HD de um arquivo de entrada</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="366"/>
         <source>Create a CD CHD from an input file</source>
-        <translation type="unfinished">Criar um CD CHD de um arquivo de entrada</translation>
+        <translation>Criar um CD CHD de um arquivo de entrada</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="375"/>
         <source>Create an LD CHD from an input file</source>
-        <translation type="unfinished">Criar um LD CHD de um arquivo de entrada</translation>
+        <translation>Criar um LD CHD de um arquivo de entrada</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="384"/>
         <source>Extract a raw file from a CHD input file</source>
-        <translation type="unfinished">Extrair um arquivo de um arquivo de entrada CHD</translation>
+        <translation>Extrair um arquivo de um arquivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="393"/>
         <source>Extract an HD file from a CHD input file</source>
-        <translation type="unfinished">Extrair um arquivo HD de um arquivo de entrada CHD</translation>
+        <translation>Extrair um arquivo HD de um arquivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="402"/>
         <source>Extract a CD file from a CHD input file</source>
-        <translation type="unfinished">Extrair um arquivo CD de um arquivo de entrada CHD</translation>
+        <translation>Extrair um arquivo CD de um arquivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="411"/>
         <source>Extract an LD AVI file from a CHD input file</source>
-        <translation type="unfinished">Extrair um arquivo LD AVI de um arquivo de entrada CHD</translation>
+        <translation>Extrair um arquivo LD AVI de um arquivo de entrada CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="420"/>
         <source>Dump meta-data from a CHD</source>
-        <translation type="unfinished">Extrair metadados de um CHD</translation>
+        <translation>Extrair metadados de um CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="429"/>
         <source>Add meta-data to a CHD</source>
-        <translation type="unfinished">Adicionar metadados em um CHD</translation>
+        <translation>Adicionar metadados em um CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="438"/>
         <source>Remove meta-data from a CHD</source>
-        <translation type="unfinished">Remover metadados de um CHD</translation>
+        <translation>Remover metadados de um CHD</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="459"/>
         <source>Remove selected group</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover grupo selecionado</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="479"/>
         <source>Remove selected project</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover projeto selecionado</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="499"/>
         <source>Remove selected command</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover comando selecionado</translation>
     </message>
 </context>
 </TS>
