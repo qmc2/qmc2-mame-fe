@@ -519,12 +519,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="682"/>
         <source>Deselect all categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Deselecionar todas as categorias</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="693"/>
         <source>Select all categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar todas as categorias</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="713"/>
@@ -802,117 +802,117 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.ui" line="14"/>
         <source>Brush editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor de pincéis</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="48"/>
         <source>Cancel brush editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar edição de pincel</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="51"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="77"/>
         <source>Image</source>
-        <translation type="unfinished">Imagem</translation>
+        <translation>Imagem</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="89"/>
         <source>Image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="92"/>
         <source>Specify image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique o arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="105"/>
         <source>Browse image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="122"/>
         <source>Image preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previsualização da imagem</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="144"/>
         <source>Pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="150"/>
         <source>Pattern type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo do padrão</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="246"/>
         <source>Pattern texture image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de imagem de textura de padrão</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="249"/>
         <source>Specify texture image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar arquivo de imagem de textura</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="265"/>
         <source>Browse pattern texture image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de imagem de textura de padrão </translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="282"/>
         <source>Pattern preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previsualização do padrão</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="304"/>
         <source>Gradient</source>
-        <translation type="unfinished"></translation>
+        <translation>Gradiente</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="310"/>
         <source>Gradient type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de gradiente</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="338"/>
         <source>Add color-stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar parada de cor</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="358"/>
         <source>Remove color-stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover parada de cor</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="375"/>
         <source>Gradient preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previsualização do gradiente</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="404"/>
         <source>Stop</source>
-        <translation type="unfinished">Parar</translation>
+        <translation>Parar</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="409"/>
         <source>Color</source>
-        <translation type="unfinished">Cor</translation>
+        <translation>Cor</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="427"/>
         <source>Accept brush</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceitar pincel</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="430"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -928,22 +928,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../colorwidget.ui" line="45"/>
         <source>Choose color</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a cor</translation>
     </message>
     <message>
         <location filename="../../colorwidget.ui" line="62"/>
         <source>Edit brush</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar pincel</translation>
     </message>
     <message>
         <location filename="../../colorwidget.cpp" line="48"/>
         <source>Choose color for %1 / %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a cor para %1 / %2</translation>
     </message>
     <message>
         <location filename="../../colorwidget.cpp" line="63"/>
         <source>Edit brush for %1 / %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar pincel para %1 / %2</translation>
     </message>
 </context>
 <context>
@@ -1356,12 +1356,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="400"/>
         <source>Deselect all categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Deselecionar todas as categorias</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="411"/>
         <source>Select all categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar todas as categorias</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="428"/>
@@ -4598,7 +4598,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="159"/>
         <source>Show HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="467"/>
@@ -6094,7 +6094,7 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../messdevcfg.ui" line="309"/>
         <location filename="../../messdevcfg.ui" line="312"/>
         <source>Merge file-chooser mapping with current device-mappings</source>
-        <translation type="unfinished"></translation>
+        <translation>Combinar mapeamento da escolha de arquivo com os mapeamentos de dispositivos atual</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="355"/>
@@ -7446,7 +7446,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1380"/>
         <source>Negate search</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar busca</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1723"/>
@@ -9877,7 +9877,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../marquee.h" line="17"/>
         <source>logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../marquee.h" line="19"/>
@@ -11488,7 +11488,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2045"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished">FATAL: impossível abrir arquivo %1, por favor verifique as permissões de acesso para %2</translation>
+        <translation>FATAL: impossível abrir arquivo %1, por favor verifique as permissões de acesso para %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2336"/>
@@ -13047,17 +13047,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="796"/>
         <source>Default palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Paleta padrão</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="803"/>
         <source>Edit the color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar a paleta de cores</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="806"/>
         <source>Edit color palette...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar paleta de cores...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2262"/>
@@ -13853,178 +13853,178 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../paletteeditor.ui" line="14"/>
         <source>Color palette editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor da paleta de cor</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="237"/>
         <source>Cancel palette editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar edição da paleta</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="240"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="214"/>
         <source>Apply new palette and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar nova paleta e fechar diálogo</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="217"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="33"/>
         <source>Color role</source>
-        <translation type="unfinished"></translation>
+        <translation>Papel da cor</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="38"/>
         <location filename="../../paletteeditor.cpp" line="28"/>
         <location filename="../../paletteeditor.cpp" line="29"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativo</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="43"/>
         <location filename="../../paletteeditor.cpp" line="33"/>
         <location filename="../../paletteeditor.cpp" line="34"/>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>Inativo</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="48"/>
         <location filename="../../paletteeditor.cpp" line="38"/>
         <location filename="../../paletteeditor.cpp" line="39"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitado</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="56"/>
         <source>General background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor do plano de fundo padrão</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="64"/>
         <source>General foreground (text) color</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de primeiro plano (texto) padrão</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="72"/>
         <source>Used mainly as the background color for text entry widgets, but can also be used for other painting - such as the background of combobox drop-down lists and toolbar-handles</source>
-        <translation type="unfinished"></translation>
+        <translation>Usado principalmente como a cor de fundo para widets de entrada de texto, mas pode ser usada também para outras pinturas - tais como a cor de fundo de um lista e barras de tarefa</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="80"/>
         <source>Alternate background color in views with alternating row colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor alternativa de plano de fundo em visualizações com cores de linhas alternadas</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="88"/>
         <source>Foreground (text) color used with Base</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de primeiro plano (texto) usada com Base</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="96"/>
         <source>A text color that is very different from WindowText and contrasts well with e.g. Dark (typically used for text that needs to be drawn where Text or WindowText would give poor contrast, such as on pressed push buttons)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma cor de texto que é bem diferente do Texto da Janela e contrasta bem com, por exemplo, preto (tipicamente usada para texto que precisa ser desenhado onde Texto ou Texto da Janela poderia dar um contraste ruim, tais como botões pressionados)</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="104"/>
         <source>Background color used for buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de fundo usado para botões</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="112"/>
         <source>Foreground (text) color used for buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de primeiro plano (texto) usado para  botões</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="120"/>
         <source>Background color used for tool-tips</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de fundo usada para dicas</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="128"/>
         <source>Foreground (text) color used for tool-tips</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de primeiro plano (texto) usada para dicas</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="136"/>
         <source>For 3D bevels and shadow effects: Lighter than Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Para chanfros 3D e efeitos de sombra: Mais claro que Botão</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="144"/>
         <source>For 3D bevels and shadow effects: Between Button and Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Para chanfros 3D e efeitos de sombra: Entre Botão e Claro</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="152"/>
         <source>For 3D bevels and shadow effects: Darker than Button</source>
-        <translation type="unfinished"></translation>
+        <translation>Para chanfros 3D e efeitos de sombra: Mais escuro que Botão</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="160"/>
         <source>For 3D bevels and shadow effects: Between Button and Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Para chanfros 3D e efeitos de sombra: Entre Botão e Escuro</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="168"/>
         <source>For 3D bevels and shadow effects: Very dark color used for shadows</source>
-        <translation type="unfinished"></translation>
+        <translation>Para chanfros 3D e efeitos de sombra: Cor bem escura usada para sombras</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="176"/>
         <source>Color used to indicate a selected / the current item</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor usada para indicar um item selecionado / o item atual</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="184"/>
         <source>Text color that contrasts with Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de texto que contrasta com Realçado</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="192"/>
         <source>Text color used for unvisited hyperlinks</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de texto usado para links não visitados</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="200"/>
         <source>Text color used for already visited hyperlinks</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de texto usado para links já visitados</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="263"/>
         <source>Restore palette settings from currently active palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar configurações de paleta para a paleta ativa atualmente</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="266"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurar</translation>
+        <translation>&amp;Restaurar</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="309"/>
         <source>Preview the current palette (without applying it)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prever a paleta atual (sem aplicá-la)</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="312"/>
         <source>&amp;Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Previsualizar</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="293"/>
         <source>When enabled, colors for Inactive and Disabled states are calculated, otherwise you can edit them individually</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando habilitado, cores para estados Inativo e Desabilitado são calculados. caso contrário você pode editá-los individualmente</translation>
     </message>
     <message>
         <location filename="../../paletteeditor.ui" line="296"/>
         <source>Calculate details</source>
-        <translation type="unfinished"></translation>
+        <translation>Calcular detalhes</translation>
     </message>
 </context>
 <context>
@@ -15258,7 +15258,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="171"/>
         <source>Analyse referenced devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar dispositivos referenciados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="178"/>
@@ -15312,7 +15312,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1139"/>
         <source>WARNING: no DTD section in the XML data -- please clear the XML cache and reload all data</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: sem seção DTD nos dados do XML -- por favor limpe o cache XML e recarregue todos os dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1223"/>
@@ -17904,12 +17904,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="147"/>
         <source>Clear software selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar seleção de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="148"/>
         <source>&amp;Clear selection</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Limpar seleção</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="155"/>
@@ -17929,7 +17929,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="179"/>
         <source>Negate search</source>
-        <translation type="unfinished"></translation>
+        <translation>Negar busca</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="319"/>
@@ -18357,7 +18357,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../swlistexport.ui" line="540"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Supported</source>
-        <translation type="unfinished">Suportado</translation>
+        <translation>Suportado</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="359"/>
