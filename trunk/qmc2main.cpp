@@ -57,6 +57,7 @@
 #include "softwarelist.h"
 #include "toolbarcustomizer.h"
 #include "paletteeditor.h"
+#include "brusheditor.h"
 #include "iconlineedit.h"
 #include "cookiejar.h"
 #if QMC2_JOYSTICK == 1
@@ -430,6 +431,10 @@ MainWindow::MainWindow(QWidget *parent)
   PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
                             << "ButtonText" << "ToolTipBase" << "ToolTipText" << "Light" << "Midlight" << "Dark" << "Mid"
                             << "Shadow" << "Highlight" << "HighlightedText" << "Link" << "LinkVisited";
+
+  BrushEditor::patternNames << "NoBrush" << "SolidPattern" << "Dense1Pattern" << "Dense2Pattern" << "Dense3Pattern" << "Dense4Pattern"
+	  		    << "Dense5Pattern" << "Dense6Pattern" << "Dense7Pattern" << "HorPattern" << "VerPattern" << "CrossPattern"
+			    << "BDiagPattern" << "FDiagPattern" << "DiagCrossPattern" << "TexturePattern";
 
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
