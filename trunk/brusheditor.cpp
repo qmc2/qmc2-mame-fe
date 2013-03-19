@@ -240,5 +240,17 @@ void BrushEditor::showEvent(QShowEvent *e)
 	adjustIconSizes();
 
 	if ( e )
-		QWidget::showEvent(e);
+		QDialog::showEvent(e);
+
+	resizeEvent(NULL);
+}
+
+void BrushEditor::resizeEvent(QResizeEvent *e)
+{
+	int w = treeWidgetColorStops->viewport()->width() / treeWidgetColorStops->columnCount();
+	for (int i = 0; i < treeWidgetColorStops->columnCount(); i++)
+		treeWidgetColorStops->setColumnWidth(i, w);
+
+	if ( e )
+		QDialog::resizeEvent(e);
 }
