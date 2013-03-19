@@ -3,8 +3,11 @@
 #include <QFileDialog>
 #include <QColorDialog>
 #include <QImageReader>
+#include <QDoubleSpinBox>
+#include <QPalette>
 
 #include "brusheditor.h"
+#include "colorwidget.h"
 #include "qmc2main.h"
 #include "macros.h"
 
@@ -122,6 +125,11 @@ void BrushEditor::adjustIconSizes()
 	toolButtonRemoveColorStop->setIconSize(iconSize);
 }
 
+void BrushEditor::updateGradientPreview()
+{
+
+}
+
 void BrushEditor::on_pushButtonOk_clicked()
 {
 	// FIXME
@@ -175,7 +183,15 @@ void BrushEditor::on_toolButtonBrowseTextureImage_clicked()
 
 void BrushEditor::on_toolButtonAddColorStop_clicked()
 {
-	// FIXME
+	QDoubleSpinBox *dsb = new QDoubleSpinBox();
+	dsb->setDecimals(2);
+	dsb->setSingleStep(0.1);
+	dsb->setRange(0.0, 1.0);
+	dsb->setValue(0.0);
+	ColorWidget *cw = new ColorWidget(QString(), QString(), QPalette::Normal, QPalette::NoRole, QColor("black"), QBrush(), 0, false, true);
+	QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidgetColorStops);
+	treeWidgetColorStops->setItemWidget(newItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP, dsb);
+	treeWidgetColorStops->setItemWidget(newItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR, cw);
 }
 
 void BrushEditor::on_toolButtonRemoveColorStop_clicked()

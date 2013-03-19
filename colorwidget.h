@@ -12,7 +12,7 @@ class ColorWidget : public QWidget, public Ui::ColorWidget
 	Q_OBJECT
 
        	public:
-		ColorWidget(QString, QString, QPalette::ColorGroup, QPalette::ColorRole, QColor, QBrush, QWidget *parent = 0);
+		ColorWidget(QString, QString, QPalette::ColorGroup, QPalette::ColorRole, QColor, QBrush, QWidget *parent = 0, bool showBrushButton = true, bool simpleTxt = false);
 		~ColorWidget();
 
 		QPalette::ColorGroup colorGroup;
@@ -21,6 +21,7 @@ class ColorWidget : public QWidget, public Ui::ColorWidget
 		QColor activeColor;
 		QString colorName;
 		QString groupName;
+		bool simpleText;
 
 		virtual QSize sizeHint() const
 		{

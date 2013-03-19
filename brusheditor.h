@@ -24,6 +24,9 @@
 #define QMC2_BRUSHEDITOR_GRADIENT_RADIAL		1
 #define QMC2_BRUSHEDITOR_GRADIENT_CONICAL		2
 
+#define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP		0
+#define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR		1
+
 class BrushEditor : public QDialog, public Ui::BrushEditor
 {
 	Q_OBJECT
@@ -39,6 +42,7 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 
 	public slots:
 		void adjustIconSizes();
+		void updateGradientPreview();
 		void on_pushButtonOk_clicked();
 		void on_pushButtonCancel_clicked();
 		void on_toolButtonBrowseImageFile_clicked();

@@ -9,7 +9,7 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-ColorWidget::ColorWidget(QString gname, QString cname, QPalette::ColorGroup group, QPalette::ColorRole role, QColor color, QBrush brush, QWidget *parent)
+ColorWidget::ColorWidget(QString gname, QString cname, QPalette::ColorGroup group, QPalette::ColorRole role, QColor color, QBrush brush, QWidget *parent, bool showBrushButton, bool simpleTxt)
 	: QWidget(parent)
 {
 	setupUi(this);
@@ -20,9 +20,12 @@ ColorWidget::ColorWidget(QString gname, QString cname, QPalette::ColorGroup grou
 	activeBrush = brush;
 	colorName = cname;
 	groupName = gname;
+	simpleText = simpleTxt;
 
 #if !defined(QMC2_WIP_ENABLED)
 	toolButtonBrush->setVisible(false);
+#else
+	toolButtonBrush->setVisible(showBrushButton);
 #endif
 
 	frameBrush->setAutoFillBackground(true);
@@ -45,7 +48,7 @@ void ColorWidget::adjustIconSizes()
 
 void ColorWidget::on_toolButtonColor_clicked()
 {
-	QColor color = QColorDialog::getColor(activeColor, this, tr("Choose color for %1 / %2").arg(colorName).arg(groupName), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
+	QColor color = QColorDialog::getColor(activeColor, this, simpleText ? tr("Choose color") : tr("Choose color for %1 / %2").arg(colorName).arg(groupName), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
 	if ( color.isValid() ) {
 		activeColor = color;
 		QPalette pal = frameBrush->palette();
@@ -60,7 +63,7 @@ void ColorWidget::on_toolButtonBrush_clicked()
 {
 	// FIXME
 	BrushEditor brushEditor(this);
-	brushEditor.setWindowTitle(tr("Edit brush for %1 / %2").arg(colorName).arg(groupName));
+	brushEditor.setWindowTitle(simpleText ? tr("Edit brush") : tr("Edit brush for %1 / %2").arg(colorName).arg(groupName));
 	brushEditor.exec();
 }
 
