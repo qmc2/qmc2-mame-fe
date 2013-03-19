@@ -55,6 +55,7 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 
 	protected:
 		void showEvent(QShowEvent *);
+		void resizeEvent(QResizeEvent *);
 };
 
 #endif
