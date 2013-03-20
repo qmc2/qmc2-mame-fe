@@ -489,6 +489,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if defined(QMC2_EMUTYPE_MAME)
   tabWidgetSoftwareDetail->removeTab(tabWidgetSoftwareDetail->indexOf(tabProjectMESS));
+  actionClearSlotInfoCache->setVisible(false);
 #endif
 
   // save splitter widgets at index 0 for later comparison
@@ -2661,6 +2662,40 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 	systemSoftwareFilterMap.clear();
 }
 
+void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
+{
+#if !defined(QMC2_EMUTYPE_MAME)
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSlotInfoCache_triggered(bool)");
+#endif
+
+	if ( qmc2ReloadActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+		return;
+	}
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+
+#if defined(QMC2_EMUTYPE_MAME)
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString();
+#elif defined(QMC2_EMUTYPE_UME)
+	QString fileName = qmc2Config->value("UME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString();
+#else
+	return;
+#endif
+
+	QFile f(fileName);
+	if ( f.exists() ) {
+		if ( f.remove() )
+			log(QMC2_LOG_FRONTEND, tr("slot info cache file '%1' forcedly removed upon user request").arg(fileName));
+		else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the slot info cache file '%1', please check permissions").arg(fileName));
+	}
+#endif
+}
+
 void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
@@ -2702,6 +2737,7 @@ void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
 	actionClearROMStateCache->trigger();
 	actionClearGamelistCache->trigger();
 	actionClearXMLCache->trigger();
+	actionClearSlotInfoCache->trigger();
 	actionClearSoftwareListCache->trigger();
 }
 

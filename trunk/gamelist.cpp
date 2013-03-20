@@ -269,6 +269,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseHistoryFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseGamelistCacheFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseROMStateCacheFile->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSlotInfoCacheFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseFlyerFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseIconDirectory->setEnabled(enable);

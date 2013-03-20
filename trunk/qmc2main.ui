@@ -2379,6 +2379,7 @@
      <addaction name="actionClearROMStateCache"/>
      <addaction name="actionClearGamelistCache"/>
      <addaction name="actionClearXMLCache"/>
+     <addaction name="actionClearSlotInfoCache"/>
      <addaction name="actionClearSoftwareListCache"/>
      <addaction name="separator"/>
      <addaction name="actionClearAllEmulatorCaches"/>
@@ -3505,6 +3506,20 @@
    </property>
    <property name="statusTip">
     <string>Forcedly clear (remove) the XML cache</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearSlotInfoCache">
+   <property name="text">
+    <string>Clear slot info cache</string>
+   </property>
+   <property name="toolTip">
+    <string>Forcedly clear (remove) the slot info cache</string>
+   </property>
+   <property name="statusTip">
+    <string>Forcedly clear (remove) the slot info cache</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

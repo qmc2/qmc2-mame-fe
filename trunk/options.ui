@@ -2514,8 +2514,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>506</height>
+                <width>508</width>
+                <height>273</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3192,8 +3192,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>506</height>
+                <width>249</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3311,8 +3311,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>506</height>
+                <width>342</width>
+                <height>227</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3771,8 +3771,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>506</height>
+                <width>374</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4240,8 +4240,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>182</width>
-                <height>409</height>
+                <width>513</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4492,7 +4492,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="0" colspan="3">
+                 <item row="14" column="0" colspan="3">
                   <spacer name="spacer11">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -4505,7 +4505,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="14" column="0" colspan="3">
+                 <item row="15" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout17">
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
@@ -4541,14 +4541,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="10" column="0">
+                 <item row="11" column="0">
                   <widget class="QLabel" name="labelMAWSCacheDirectory">
                    <property name="text">
                     <string>MAWS cache directory</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="1">
+                 <item row="11" column="1">
                   <widget class="QLineEdit" name="lineEditMAWSCacheDirectory">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4561,7 +4561,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="2">
+                 <item row="11" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseMAWSCacheDirectory">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4581,14 +4581,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0">
+                 <item row="12" column="0">
                   <widget class="QLabel" name="labelSoftwareListCache">
                    <property name="text">
                     <string>Software list cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="1">
+                 <item row="12" column="1">
                   <widget class="QLineEdit" name="lineEditSoftwareListCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4601,7 +4601,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="2">
+                 <item row="12" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareListCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4618,14 +4618,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0">
+                 <item row="13" column="0">
                   <widget class="QLabel" name="labelGeneralSoftwareFolder">
                    <property name="text">
                     <string>General software folder</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="1">
+                 <item row="13" column="1">
                   <widget class="QLineEdit" name="lineEditGeneralSoftwareFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -4638,7 +4638,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="2">
+                 <item row="13" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseGeneralSoftwareFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -4796,6 +4796,43 @@
                    </property>
                    <property name="toolTip">
                     <string>Browse UME variant exe</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="0">
+                  <widget class="QLabel" name="labelSlotInfoCacheFile">
+                   <property name="text">
+                    <string>Slot info cache</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="1">
+                  <widget class="QLineEdit" name="lineEditSlotInfoCacheFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Slot info cache file (write)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseSlotInfoCacheFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse slot info cache file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -5427,6 +5464,8 @@
   <tabstop>toolButtonBrowseGamelistCacheFile</tabstop>
   <tabstop>lineEditROMStateCacheFile</tabstop>
   <tabstop>toolButtonBrowseROMStateCacheFile</tabstop>
+  <tabstop>lineEditSlotInfoCacheFile</tabstop>
+  <tabstop>toolButtonBrowseSlotInfoCacheFile</tabstop>
   <tabstop>lineEditMAWSCacheDirectory</tabstop>
   <tabstop>toolButtonBrowseMAWSCacheDirectory</tabstop>
   <tabstop>lineEditSoftwareListCache</tabstop>

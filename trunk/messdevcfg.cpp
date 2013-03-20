@@ -632,86 +632,114 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	QTime loadTimer;
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	QProcess commandProc;
-#if defined(QMC2_SDLMESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
-#endif
-#if !defined(QMC2_OS_WIN)
-	commandProc.setStandardErrorFile("/dev/null");
+	QString slotInfoCachePath;
+#if defined(QMC2_EMUTYPE_MESS)
+	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString();
+#elif defined(QMC2_EMUTYE_UME)
+	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString();
 #endif
 
-	QStringList args;
-	args << "-listslots";
-	
 	setEnabled(false);
 	lineEditConfigurationName->blockSignals(true);
 	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 	lineEditConfigurationName->blockSignals(false);
 
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots"));
 	loadTimer.start();
 
-	qApp->processEvents();
-
+	bool fromCache = true;
 	bool commandProcStarted = false;
-	int retries = 0;
-	commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
-	bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
-	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
-		qApp->processEvents();
-	}
-	if ( started ) {
-		commandProcStarted = true;
-		bool commandProcRunning = (commandProc.state() == QProcess::Running);
-		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
-			qApp->processEvents();
-			commandProcRunning = (commandProc.state() == QProcess::Running);
-		}
-	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
-		lineEditConfigurationName->setText(tr("Failed to read slot info"));
-		return false;
-	}
-
-	if ( commandProc.exitStatus() == QProcess::CrashExit )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete"));
-
-#if defined(QMC2_SDLMESS)
-	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-#elif defined(QMC2_MESS)
-	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-#elif defined(QMC2_SDLMAME)
-	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#elif defined(QMC2_SDLUME)
-	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-#elif defined(QMC2_UME)
-	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
+	QFile slotInfoFile(slotInfoCachePath);
+	if ( !slotInfoFile.exists() ) {
+		fromCache = false;
+		if ( slotInfoFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) ) {
+			QTextStream ts(&slotInfoFile);
+			ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
+#if defined(QMC2_EMUTYPE_MESS)
+			ts << "MESS_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
+#elif defined(QMC2_EMUTYPE_UME)
+			ts << "UME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
 #endif
+			slotInfoFile.close();
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open slot info cache for writing, path = %1").arg(slotInfoCachePath));
+			lineEditConfigurationName->blockSignals(true);
+			lineEditConfigurationName->setText(tr("Failed to read slot info"));
+			lineEditConfigurationName->blockSignals(false);
+			return false;
+		}
+		QProcess commandProc;
+		commandProc.setStandardOutputFile(slotInfoCachePath, QIODevice::Append);
+#if !defined(QMC2_OS_WIN)
+		commandProc.setStandardErrorFile("/dev/null");
+#endif
+		QStringList args;
+		args << "-listslots";
+		
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots and (re-)creating cache"));
+		qApp->processEvents();
 
-	if ( commandProcStarted && qmc2TempSlots.open(QFile::ReadOnly) ) {
-		QTextStream ts(&qmc2TempSlots);
+		int retries = 0;
+		commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
+		bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
+		while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+			started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+			qApp->processEvents();
+		}
+		if ( started ) {
+			commandProcStarted = true;
+			bool commandProcRunning = (commandProc.state() == QProcess::Running);
+			while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+				qApp->processEvents();
+				commandProcRunning = (commandProc.state() == QProcess::Running);
+			}
+		} else {
+#if defined(QMC2_EMUTYPE_MESS)
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
+#elif defined(QMC2_EMUTYE_UME)
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start UME executable within a reasonable time frame, giving up"));
+#endif
+			lineEditConfigurationName->blockSignals(true);
+			lineEditConfigurationName->setText(tr("Failed to read slot info"));
+			lineEditConfigurationName->blockSignals(false);
+			return false;
+		}
+
+		if ( commandProc.exitStatus() == QProcess::CrashExit )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete"));
+	}
+
+	bool retVal = true;
+	if ( (fromCache || commandProcStarted) && slotInfoFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+		QTextStream ts(&slotInfoFile);
 		qApp->processEvents();
 		QString s = ts.readAll();
 		qApp->processEvents();
-		qmc2TempSlots.close();
-		qmc2TempSlots.remove();
-#if defined(QMC2_OS_WIN)
-		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
-#endif
+		slotInfoFile.close();
+
 		QStringList slotLines = s.split("\n");
+		slotLines.removeFirst(); // comment line
+		QStringList versionWords = slotLines[0].split("\t");
+		bool sameVersion = true;
+		if ( versionWords.count() >= 2 ) {
+#if defined(QMC2_EMUTYPE_MESS)
+			if ( versionWords[0] == "MESS_VERSION" ) {
+				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
+			}
+#elif defined(QMC2_EMUTYPE_UME)
+			if ( versionWords[0] == "UME_VERSION" ) {
+				sameVersion = (versionWords[1] == qmc2Gamelist->emulatorVersion);
+			}
+#endif
+		}
+		if ( !sameVersion ) {
+			slotInfoFile.remove();
+			return readSystemSlots();
+		}
+		if ( fromCache ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots from cache"));
+			loadTimer.start();
+		}
+		slotLines.removeFirst(); // version info line
 		if ( slotLines.count() > 1 ) {
 			// we don't want the first two header lines
 			slotLines.removeFirst();
@@ -764,14 +792,19 @@ bool MESSDeviceConfigurator::readSystemSlots()
 				}
 			}
 		}
+	} else {
+		lineEditConfigurationName->blockSignals(true);
+		lineEditConfigurationName->setText(tr("Failed to read slot info"));
+		lineEditConfigurationName->blockSignals(false);
+		retVal = false;
 	}
-
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-
+	if ( fromCache )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots and (re-)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	setEnabled(qmc2UseDefaultEmulator);
-
-	return true;
+	return retVal;
 }
 
 void MESSDeviceConfigurator::slotOptionChanged(int index)
