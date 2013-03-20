@@ -114,6 +114,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseHistoryFile_clicked();
     void on_toolButtonBrowseGamelistCacheFile_clicked();
     void on_toolButtonBrowseROMStateCacheFile_clicked();
+    void on_toolButtonBrowseSlotInfoCacheFile_clicked();
     void on_toolButtonBrowseMAWSCacheDirectory_clicked();
     void on_toolButtonBrowseSoftwareListCache_clicked();
     void on_toolButtonBrowseGeneralSoftwareFolder_clicked();
