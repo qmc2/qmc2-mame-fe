@@ -1531,12 +1531,14 @@ void MESSDeviceConfigurator::on_toolButtonNewConfiguration_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonNewConfiguration_clicked()");
 #endif
 
-	dontIgnoreNameChange = true;
+	dontIgnoreNameChange = updateSlots = true;
+	lineEditConfigurationName->setText(tr("Default configuration"));
+	dontIgnoreNameChange = updateSlots = true;
+	on_lineEditConfigurationName_textChanged(tr("Default configuration"));
+	dontIgnoreNameChange = updateSlots = false;
+	lineEditConfigurationName->blockSignals(true);
 	lineEditConfigurationName->clear();
-	toolButtonCloneConfiguration->setEnabled(false);
-	toolButtonSaveConfiguration->setEnabled(false);
-	toolButtonRemoveConfiguration->setEnabled(false);
-	treeWidgetDeviceSetup->setEnabled(true);
+	lineEditConfigurationName->blockSignals(false);
 	lineEditConfigurationName->setFocus();
 }
 
@@ -1685,6 +1687,9 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QList
 	dontIgnoreNameChange = updateSlots = true;
 	on_lineEditConfigurationName_textChanged(item->text());
 	dontIgnoreNameChange = updateSlots = false;
+	lineEditConfigurationName->blockSignals(true);
+	lineEditConfigurationName->setText(item->text());
+	lineEditConfigurationName->blockSignals(false);
 }
 
 void MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
@@ -1916,6 +1921,13 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 				listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
 			else
 				listWidgetDeviceConfigurations->clearSelection();
+			for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
+				QTreeWidgetItem *item = treeWidgetDeviceSetup->topLevelItem(i);
+				item->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+				FileEditWidget *few = (FileEditWidget*)treeWidgetDeviceSetup->itemWidget(item, QMC2_DEVCONFIG_COLUMN_FILE);
+				if ( few )
+					few->lineEditFile->clear();
+			}
 			toolButtonRemoveConfiguration->setEnabled(false);
 			toolButtonCloneConfiguration->setEnabled(false);
 		}
