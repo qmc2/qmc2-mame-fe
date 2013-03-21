@@ -8,6 +8,7 @@
 
 #include "brusheditor.h"
 #include "colorwidget.h"
+#include "gradientstopactions.h"
 #include "qmc2main.h"
 #include "macros.h"
 
@@ -192,7 +193,6 @@ void BrushEditor::adjustIconSizes()
 	toolButtonPatternColor->setIconSize(iconSize);
 	toolButtonBrowseTextureImage->setIconSize(iconSize);
 	toolButtonAddColorStop->setIconSize(iconSize);
-	toolButtonRemoveColorStop->setIconSize(iconSize);
 }
 
 void BrushEditor::updateGradientPreview()
@@ -220,6 +220,23 @@ void BrushEditor::updateGradientPreview()
 	pal.setBrush(frameGradientPreview->backgroundRole(), QBrush(gradient));
 	frameGradientPreview->setPalette(pal);
 	frameGradientPreview->update();
+}
+
+void  BrushEditor::updateGradientStopActions()
+{
+	for (int i = 0; i < treeWidgetColorStops->topLevelItemCount(); i++) {
+		GradientStopActions *gsa = (GradientStopActions *)treeWidgetColorStops->itemWidget(treeWidgetColorStops->topLevelItem(i), QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);
+		if ( i == 0 ) {
+			gsa->toolButtonUp->setEnabled(false);
+			gsa->toolButtonDown->setEnabled(i < treeWidgetColorStops->topLevelItemCount() - 1);
+		} else if ( i == treeWidgetColorStops->topLevelItemCount() - 1 ) {
+			gsa->toolButtonUp->setEnabled(i > 0);
+			gsa->toolButtonDown->setEnabled(false);
+		} else {
+			gsa->toolButtonUp->setEnabled(true);
+			gsa->toolButtonDown->setEnabled(true);
+		}
+	}
 }
 
 void BrushEditor::on_pushButtonOk_clicked()
@@ -275,24 +292,91 @@ void BrushEditor::on_toolButtonBrowseTextureImage_clicked()
 
 void BrushEditor::on_toolButtonAddColorStop_clicked()
 {
+	QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidgetColorStops);
 	QDoubleSpinBox *dsb = new QDoubleSpinBox();
 	dsb->setDecimals(2);
 	dsb->setSingleStep(0.1);
 	dsb->setRange(0.0, 1.0);
 	dsb->setValue(0.0);
 	ColorWidget *cw = new ColorWidget(QString(), QString(), QPalette::Normal, QPalette::NoRole, QColor("black"), QBrush(), 0, false, true);
-	QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidgetColorStops);
+	GradientStopActions *gsa = new GradientStopActions(newItem);
 	treeWidgetColorStops->setItemWidget(newItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP, dsb);
 	treeWidgetColorStops->setItemWidget(newItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR, cw);
+	treeWidgetColorStops->setItemWidget(newItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS, gsa);
 	connect(dsb, SIGNAL(valueChanged(double)), this, SLOT(updateGradientPreview()));
 	connect(cw, SIGNAL(colorChanged(QPalette::ColorGroup, QPalette::ColorRole, QColor)), this, SLOT(updateGradientPreview()));
+	connect(gsa, SIGNAL(removeRequested(QTreeWidgetItem *)), this, SLOT(gradientStopAction_removeRequested(QTreeWidgetItem *)));
+	connect(gsa, SIGNAL(upRequested(QTreeWidgetItem *)), this, SLOT(gradientStopAction_upRequested(QTreeWidgetItem *)));
+	connect(gsa, SIGNAL(downRequested(QTreeWidgetItem *)), this, SLOT(gradientStopAction_downRequested(QTreeWidgetItem *)));
 
-	updateGradientPreview();
+	QTimer::singleShot(0, this, SLOT(updateGradientStopActions()));
+	QTimer::singleShot(0, this, SLOT(updateGradientPreview()));
 }
 
-void BrushEditor::on_toolButtonRemoveColorStop_clicked()
+void BrushEditor::gradientStopAction_removeRequested(QTreeWidgetItem *item)
 {
-	// FIXME
+	if ( item ) {
+		item = treeWidgetColorStops->takeTopLevelItem(treeWidgetColorStops->indexOfTopLevelItem(item));
+		delete item;
+		QTimer::singleShot(0, this, SLOT(updateGradientStopActions()));
+		QTimer::singleShot(0, this, SLOT(updateGradientPreview()));
+	}
+}
+
+void BrushEditor::gradientStopAction_upRequested(QTreeWidgetItem *item)
+{
+	if ( item ) {
+		int index = treeWidgetColorStops->indexOfTopLevelItem(item);
+		QDoubleSpinBox *thisDsb = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+		ColorWidget *thisCw = (ColorWidget *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
+		QTreeWidgetItem *otherItem = treeWidgetColorStops->topLevelItem(index - 1);
+		QDoubleSpinBox *otherDsb = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(otherItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+		ColorWidget *otherCw = (ColorWidget *)treeWidgetColorStops->itemWidget(otherItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
+		double otherValue = otherDsb->value();
+		QColor otherColor = otherCw->frameBrush->palette().color(otherCw->frameBrush->backgroundRole());
+		double thisValue = thisDsb->value();
+		QColor thisColor = thisCw->frameBrush->palette().color(thisCw->frameBrush->backgroundRole());
+		otherDsb->setValue(thisValue);
+		QPalette pal = otherCw->frameBrush->palette();
+		pal.setColor(otherCw->frameBrush->backgroundRole(), thisColor);
+		otherCw->frameBrush->setPalette(pal);
+		otherCw->frameBrush->update();
+		thisDsb->setValue(otherValue);
+		pal = thisCw->frameBrush->palette();
+		pal.setColor(thisCw->frameBrush->backgroundRole(), otherColor);
+		thisCw->frameBrush->setPalette(pal);
+		thisCw->frameBrush->update();
+		QTimer::singleShot(0, this, SLOT(updateGradientStopActions()));
+		QTimer::singleShot(0, this, SLOT(updateGradientPreview()));
+	}
+}
+
+void BrushEditor::gradientStopAction_downRequested(QTreeWidgetItem *item)
+{
+	if ( item ) {
+		int index = treeWidgetColorStops->indexOfTopLevelItem(item);
+		QDoubleSpinBox *thisDsb = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+		ColorWidget *thisCw = (ColorWidget *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
+		QTreeWidgetItem *otherItem = treeWidgetColorStops->topLevelItem(index + 1);
+		QDoubleSpinBox *otherDsb = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(otherItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+		ColorWidget *otherCw = (ColorWidget *)treeWidgetColorStops->itemWidget(otherItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
+		double otherValue = otherDsb->value();
+		QColor otherColor = otherCw->frameBrush->palette().color(otherCw->frameBrush->backgroundRole());
+		double thisValue = thisDsb->value();
+		QColor thisColor = thisCw->frameBrush->palette().color(thisCw->frameBrush->backgroundRole());
+		otherDsb->setValue(thisValue);
+		QPalette pal = otherCw->frameBrush->palette();
+		pal.setColor(otherCw->frameBrush->backgroundRole(), thisColor);
+		otherCw->frameBrush->setPalette(pal);
+		otherCw->frameBrush->update();
+		thisDsb->setValue(otherValue);
+		pal = thisCw->frameBrush->palette();
+		pal.setColor(thisCw->frameBrush->backgroundRole(), otherColor);
+		thisCw->frameBrush->setPalette(pal);
+		thisCw->frameBrush->update();
+		QTimer::singleShot(0, this, SLOT(updateGradientStopActions()));
+		QTimer::singleShot(0, this, SLOT(updateGradientPreview()));
+	}
 }
 
 void BrushEditor::on_comboBoxPatternType_currentIndexChanged(int index)
@@ -328,12 +412,12 @@ void BrushEditor::on_comboBoxPatternType_currentIndexChanged(int index)
 
 void BrushEditor::on_comboBoxGradientType_currentIndexChanged(int)
 {
-	updateGradientPreview();
+	QTimer::singleShot(0, this, SLOT(updateGradientPreview()));
 }
 
 void BrushEditor::on_comboBoxSpreadType_currentIndexChanged(int)
 {
-	updateGradientPreview();
+	QTimer::singleShot(0, this, SLOT(updateGradientPreview()));
 }
 
 void BrushEditor::on_toolBox_currentChanged(int index)
@@ -360,4 +444,15 @@ void BrushEditor::showEvent(QShowEvent *e)
 
 	if ( e )
 		QDialog::showEvent(e);
+}
+
+void BrushEditor::resizeEvent(QResizeEvent *e)
+{
+	int w = treeWidgetColorStops->viewport()->width() / treeWidgetColorStops->columnCount();
+	for (int i = 0; i < treeWidgetColorStops->columnCount(); i++)
+		treeWidgetColorStops->setColumnWidth(i, w);
+	treeWidgetColorStops->resizeColumnToContents(QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);
+
+	if ( e )
+		QDialog::resizeEvent(e);
 }

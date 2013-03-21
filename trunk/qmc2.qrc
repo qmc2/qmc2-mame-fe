@@ -41,6 +41,7 @@
         <file>data/img/disk2.png</file>
         <file>data/img/dock.png</file>
         <file>data/img/down.png</file>
+        <file>data/img/down_action.png</file>
         <file>data/img/download.png</file>
         <file>data/img/east.png</file>
         <file>data/img/edit.png</file>
@@ -214,6 +215,7 @@
         <file>data/img/untagged_all.png</file>
         <file>data/img/untagged_visible.png</file>
         <file>data/img/up.png</file>
+        <file>data/img/up_action.png</file>
         <file>data/img/url.png</file>
         <file>data/img/version.png</file>
         <file>data/img/view_detail.png</file>

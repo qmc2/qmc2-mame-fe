@@ -30,6 +30,7 @@
 
 #define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP		0
 #define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR		1
+#define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS	2
 
 #define QMC2_BRUSHEDITOR_PAGEINDEX_IMAGE		0
 #define QMC2_BRUSHEDITOR_PAGEINDEX_PATTERN		1
@@ -60,13 +61,16 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 	public slots:
 		void adjustIconSizes();
 		void updateGradientPreview();
+		void updateGradientStopActions();
+		void gradientStopAction_removeRequested(QTreeWidgetItem *);
+		void gradientStopAction_upRequested(QTreeWidgetItem *);
+		void gradientStopAction_downRequested(QTreeWidgetItem *);
 		void on_pushButtonOk_clicked();
 		void on_pushButtonCancel_clicked();
 		void on_toolButtonBrowseImageFile_clicked();
 		void on_toolButtonPatternColor_clicked();
 		void on_toolButtonBrowseTextureImage_clicked();
 		void on_toolButtonAddColorStop_clicked();
-		void on_toolButtonRemoveColorStop_clicked();
 		void on_comboBoxPatternType_currentIndexChanged(int);
 		void on_comboBoxGradientType_currentIndexChanged(int);
 		void on_comboBoxSpreadType_currentIndexChanged(int);
@@ -74,6 +78,7 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 
 	protected:
 		void showEvent(QShowEvent *);
+		void resizeEvent(QResizeEvent *);
 };
 
 #endif
