@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GradientStopActions</class>
+ <widget class="QWidget" name="GradientStopActions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>86</width>
+    <height>25</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="2">
+    <widget class="QToolButton" name="toolButtonDown">
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QToolButton" name="toolButtonUp">
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="3">
+    <widget class="QToolButton" name="toolButtonRemove">
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>toolButtonUp</tabstop>
+  <tabstop>toolButtonDown</tabstop>
+  <tabstop>toolButtonRemove</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections/>
+</ui>
