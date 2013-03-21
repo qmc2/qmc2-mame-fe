@@ -24,8 +24,16 @@
 #define QMC2_BRUSHEDITOR_GRADIENT_RADIAL		1
 #define QMC2_BRUSHEDITOR_GRADIENT_CONICAL		2
 
+#define QMC2_BRUSHEDITOR_GRADIENT_PADSPREAD		0
+#define QMC2_BRUSHEDITOR_GRADIENT_REPEATSPREAD		1
+#define QMC2_BRUSHEDITOR_GRADIENT_REFLECTSPREAD		2
+
 #define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP		0
 #define QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR		1
+
+#define QMC2_BRUSHEDITOR_PAGEINDEX_IMAGE		0
+#define QMC2_BRUSHEDITOR_PAGEINDEX_PATTERN		1
+#define QMC2_BRUSHEDITOR_PAGEINDEX_GRADIENT		2
 
 class BrushEditor : public QDialog, public Ui::BrushEditor
 {
@@ -35,10 +43,19 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 		BrushEditor(QWidget *parent = 0);
 		~BrushEditor();
 
+		bool pageGradientFirstView;
 		static QStringList patternNames;
+		static QStringList gradientTypeNames;
+		static QStringList gradientSpreadNames;
 
 		static Qt::BrushStyle patternNameToStyle(QString);
 		static QString patternStyleToName(Qt::BrushStyle);
+
+		static QGradient::Spread nameToGradientSpread(QString);
+		static QString gradientSpreadToName(QGradient::Spread);
+
+		static QGradient::Type nameToGradientType(QString);
+		static QString gradientTypeToName(QGradient::Type);
 
 	public slots:
 		void adjustIconSizes();
@@ -52,10 +69,11 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 		void on_toolButtonRemoveColorStop_clicked();
 		void on_comboBoxPatternType_currentIndexChanged(int);
 		void on_comboBoxGradientType_currentIndexChanged(int);
+		void on_comboBoxSpreadType_currentIndexChanged(int);
+		void on_toolBox_currentChanged(int);
 
 	protected:
 		void showEvent(QShowEvent *);
-		void resizeEvent(QResizeEvent *);
 };
 
 #endif

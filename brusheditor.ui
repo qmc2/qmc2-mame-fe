@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>470</width>
-    <height>420</height>
+    <height>426</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,7 +70,7 @@
         <x>0</x>
         <y>0</y>
         <width>460</width>
-        <height>302</height>
+        <height>308</height>
        </rect>
       </property>
       <attribute name="label">
@@ -154,8 +154,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>460</width>
-        <height>149</height>
+        <width>235</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="label">
@@ -381,7 +381,7 @@
         <x>0</x>
         <y>0</y>
         <width>460</width>
-        <height>238</height>
+        <height>308</height>
        </rect>
       </property>
       <attribute name="label">
@@ -412,10 +412,29 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearStartPointX"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearStartPointX">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item row="0" column="2" colspan="2">
             <widget class="QLabel" name="labelLinearEndPoint">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
              <property name="text">
               <string>Final end point</string>
              </property>
@@ -425,7 +444,20 @@
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearEndPointX"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearEndPointX">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="labelLinearStartPointX">
@@ -461,13 +493,45 @@
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearEndPointY"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearEndPointY">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearStartPointY"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxLinearStartPointY">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item row="0" column="0" colspan="2">
             <widget class="QLabel" name="labelLinearStartPoint">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
              <property name="text">
               <string>Start point</string>
              </property>
@@ -483,18 +547,27 @@
            <property name="margin">
             <number>0</number>
            </property>
-           <item row="0" column="0" colspan="2">
-            <widget class="QLabel" name="labelRadialCenterPoint">
-             <property name="text">
-              <string>Center point</string>
+           <item row="2" column="2">
+            <widget class="QLabel" name="labelRadialFocalPointY">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+             <property name="text">
+              <string>Y</string>
              </property>
             </widget>
            </item>
            <item row="0" column="2" colspan="2">
             <widget class="QLabel" name="labelRadialFocalPoint">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
              <property name="text">
               <string>Focal point</string>
              </property>
@@ -503,64 +576,14 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="4">
-            <widget class="QLabel" name="labelRadialRadius">
-             <property name="text">
-              <string>Radius</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="labelRadialCenterPointX">
+           <item row="2" column="3">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialFocalPointY">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="text">
-              <string>X</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialCenterPointX">
-             <property name="minimum">
-              <double>-999999999.000000000000000</double>
-             </property>
-             <property name="maximum">
-              <double>999999999.000000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLabel" name="labelRadialFocalPointX">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>X</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialFocalPointX">
-             <property name="minimum">
-              <double>-999999999.000000000000000</double>
-             </property>
-             <property name="maximum">
-              <double>999999999.000000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialRadius">
              <property name="minimum">
               <double>-999999999.000000000000000</double>
              </property>
@@ -582,8 +605,14 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialCenterPointY">
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialCenterPointX">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimum">
               <double>-999999999.000000000000000</double>
              </property>
@@ -592,8 +621,8 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="2">
-            <widget class="QLabel" name="labelRadialFocalPointY">
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelRadialCenterPointX">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -601,17 +630,142 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Y</string>
+              <string>X</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="3">
-            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialFocalPointY">
+           <item row="1" column="3">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialFocalPointX">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimum">
               <double>-999999999.000000000000000</double>
              </property>
              <property name="maximum">
               <double>999999999.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="labelRadialFocalPointX">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>X</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialCenterRadius">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialCenterPointY">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="labelRadialCenterPoint">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text">
+              <string>Center point</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QLabel" name="labelRadialCenterRadius">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Center</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QLabel" name="labelRadialFocalRadius">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Focal</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="5">
+            <widget class="QDoubleSpinBox" name="doubleSpinBoxRadialFocalRadius">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimum">
+              <double>-999999999.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>999999999.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4" colspan="2">
+            <widget class="QLabel" name="labelRadialRadius">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text">
+              <string>Radius</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -624,6 +778,12 @@
            </property>
            <item row="0" column="0" colspan="2">
             <widget class="QLabel" name="labelConicalCenterPoint">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
              <property name="text">
               <string>Center point</string>
              </property>
@@ -634,6 +794,12 @@
            </item>
            <item row="0" column="2">
             <widget class="QLabel" name="labelConicalAngle">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
              <property name="text">
               <string>Angle</string>
              </property>
@@ -657,6 +823,12 @@
            </item>
            <item row="1" column="1">
             <widget class="QDoubleSpinBox" name="doubleSpinBoxConicalCenterPointX">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimum">
               <double>-999999999.000000000000000</double>
              </property>
@@ -667,6 +839,12 @@
            </item>
            <item row="1" column="2">
             <widget class="QDoubleSpinBox" name="doubleSpinBoxConicalAngle">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="suffix">
               <string>°</string>
              </property>
@@ -690,6 +868,12 @@
            </item>
            <item row="2" column="1">
             <widget class="QDoubleSpinBox" name="doubleSpinBoxConicalCenterPointY">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimum">
               <double>-999999999.000000000000000</double>
              </property>
@@ -705,7 +889,7 @@
        <item row="0" column="0">
         <widget class="QComboBox" name="comboBoxGradientType">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -770,7 +954,7 @@
        <item row="0" column="1">
         <widget class="QComboBox" name="comboBoxSpreadType">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -915,9 +1099,10 @@
   <tabstop>doubleSpinBoxLinearEndPointY</tabstop>
   <tabstop>doubleSpinBoxRadialCenterPointX</tabstop>
   <tabstop>doubleSpinBoxRadialFocalPointX</tabstop>
-  <tabstop>doubleSpinBoxRadialRadius</tabstop>
+  <tabstop>doubleSpinBoxRadialCenterRadius</tabstop>
   <tabstop>doubleSpinBoxRadialCenterPointY</tabstop>
   <tabstop>doubleSpinBoxRadialFocalPointY</tabstop>
+  <tabstop>doubleSpinBoxRadialFocalRadius</tabstop>
   <tabstop>doubleSpinBoxConicalCenterPointX</tabstop>
   <tabstop>doubleSpinBoxConicalAngle</tabstop>
   <tabstop>doubleSpinBoxConicalCenterPointY</tabstop>
