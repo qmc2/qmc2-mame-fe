@@ -843,7 +843,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.ui" line="140"/>
         <location filename="../../brusheditor.ui" line="324"/>
-        <location filename="../../brusheditor.ui" line="944"/>
+        <location filename="../../brusheditor.ui" line="491"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
@@ -884,7 +884,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="368"/>
-        <location filename="../../brusheditor.cpp" line="254"/>
+        <location filename="../../brusheditor.cpp" line="274"/>
         <source>Choose pattern color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -894,129 +894,133 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="410"/>
-        <location filename="../../brusheditor.ui" line="491"/>
-        <location filename="../../brusheditor.ui" line="559"/>
-        <location filename="../../brusheditor.ui" line="604"/>
-        <location filename="../../brusheditor.ui" line="865"/>
+        <location filename="../../brusheditor.ui" line="524"/>
+        <source>Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="548"/>
+        <location filename="../../brusheditor.ui" line="629"/>
+        <location filename="../../brusheditor.ui" line="697"/>
+        <location filename="../../brusheditor.ui" line="742"/>
+        <location filename="../../brusheditor.ui" line="1003"/>
         <source>Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="439"/>
+        <location filename="../../brusheditor.ui" line="577"/>
         <source>Final end point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="471"/>
-        <location filename="../../brusheditor.ui" line="484"/>
-        <location filename="../../brusheditor.ui" line="633"/>
-        <location filename="../../brusheditor.ui" line="662"/>
-        <location filename="../../brusheditor.ui" line="820"/>
+        <location filename="../../brusheditor.ui" line="609"/>
+        <location filename="../../brusheditor.ui" line="622"/>
+        <location filename="../../brusheditor.ui" line="771"/>
+        <location filename="../../brusheditor.ui" line="800"/>
+        <location filename="../../brusheditor.ui" line="958"/>
         <source>X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="536"/>
+        <location filename="../../brusheditor.ui" line="674"/>
         <source>Start point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="707"/>
-        <location filename="../../brusheditor.ui" line="788"/>
-        <source>Center point</source>
+        <location filename="../../brusheditor.ui" line="710"/>
+        <source>Focal point (F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="572"/>
-        <source>Focal point</source>
+        <location filename="../../brusheditor.ui" line="845"/>
+        <source>Center point (C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="723"/>
-        <source>Center</source>
+        <location filename="../../brusheditor.ui" line="861"/>
+        <source>C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="736"/>
-        <source>Focal</source>
+        <location filename="../../brusheditor.ui" line="874"/>
+        <source>F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="765"/>
-        <source>Radius</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="804"/>
-        <source>Angle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message utf8="true">
-        <location filename="../../brusheditor.ui" line="849"/>
-        <source>°</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="898"/>
-        <source>Gradient type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="963"/>
-        <source>Spread type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="1011"/>
-        <source>Add color-stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="994"/>
-        <source>Remove color-stop</source>
+        <location filename="../../brusheditor.ui" line="903"/>
+        <source>Radius (C, F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="926"/>
+        <source>Center point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="942"/>
+        <source>Angle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <location filename="../../brusheditor.ui" line="987"/>
+        <source>°</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="400"/>
+        <source>Gradient type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="428"/>
+        <source>Spread type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="456"/>
+        <source>Add color-stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.ui" line="473"/>
         <source>Gradient preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="1032"/>
+        <location filename="../../brusheditor.ui" line="514"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="1037"/>
+        <location filename="../../brusheditor.ui" line="519"/>
         <source>Color</source>
         <translation type="unfinished">Colore</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="1055"/>
+        <location filename="../../brusheditor.ui" line="1040"/>
         <source>Accept brush</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="1058"/>
+        <location filename="../../brusheditor.ui" line="1043"/>
         <source>&amp;Ok</source>
         <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="242"/>
-        <location filename="../../brusheditor.cpp" line="269"/>
+        <location filename="../../brusheditor.cpp" line="262"/>
+        <location filename="../../brusheditor.cpp" line="289"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="242"/>
-        <location filename="../../brusheditor.cpp" line="269"/>
+        <location filename="../../brusheditor.cpp" line="262"/>
+        <location filename="../../brusheditor.cpp" line="289"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="242"/>
-        <location filename="../../brusheditor.cpp" line="269"/>
+        <location filename="../../brusheditor.cpp" line="262"/>
+        <location filename="../../brusheditor.cpp" line="289"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tutti i file (*)</translation>
     </message>
@@ -14478,7 +14482,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4532"/>
-        <location filename="../../qmc2main.cpp" line="11645"/>
+        <location filename="../../qmc2main.cpp" line="11653"/>
         <source>Import from...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14495,113 +14499,113 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11531"/>
+        <location filename="../../qmc2main.cpp" line="11539"/>
         <source>Setting up the GUI, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11579"/>
+        <location filename="../../qmc2main.cpp" line="11587"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11581"/>
-        <location filename="../../qmc2main.cpp" line="11585"/>
+        <location filename="../../qmc2main.cpp" line="11589"/>
+        <location filename="../../qmc2main.cpp" line="11593"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11583"/>
+        <location filename="../../qmc2main.cpp" line="11591"/>
         <source>U.M.E. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11589"/>
+        <location filename="../../qmc2main.cpp" line="11597"/>
         <source>SVN r%1</source>
         <translation type="unfinished">SVN r%1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11611"/>
+        <location filename="../../qmc2main.cpp" line="11619"/>
         <source>OpenGL features enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11615"/>
+        <location filename="../../qmc2main.cpp" line="11623"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11620"/>
+        <location filename="../../qmc2main.cpp" line="11628"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11624"/>
+        <location filename="../../qmc2main.cpp" line="11632"/>
         <source>processing global emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11634"/>
+        <location filename="../../qmc2main.cpp" line="11642"/>
         <source>Export to...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11636"/>
-        <location filename="../../qmc2main.cpp" line="11637"/>
+        <location filename="../../qmc2main.cpp" line="11644"/>
+        <location filename="../../qmc2main.cpp" line="11645"/>
         <source>Export global MAME configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="11639"/>
-        <location filename="../../qmc2main.cpp" line="11640"/>
-        <source>Export global MESS configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="11642"/>
-        <location filename="../../qmc2main.cpp" line="11643"/>
-        <source>Export global UME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11647"/>
         <location filename="../../qmc2main.cpp" line="11648"/>
-        <source>Import global MAME configuration</source>
+        <source>Export global MESS configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11650"/>
         <location filename="../../qmc2main.cpp" line="11651"/>
+        <source>Export global UME configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="11655"/>
+        <location filename="../../qmc2main.cpp" line="11656"/>
+        <source>Import global MAME configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="11658"/>
+        <location filename="../../qmc2main.cpp" line="11659"/>
         <source>Import global MESS configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11653"/>
-        <location filename="../../qmc2main.cpp" line="11654"/>
+        <location filename="../../qmc2main.cpp" line="11661"/>
+        <location filename="../../qmc2main.cpp" line="11662"/>
         <source>Import global UME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11663"/>
-        <location filename="../../qmc2main.cpp" line="11673"/>
+        <location filename="../../qmc2main.cpp" line="11671"/>
+        <location filename="../../qmc2main.cpp" line="11681"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11665"/>
-        <location filename="../../qmc2main.cpp" line="11675"/>
+        <location filename="../../qmc2main.cpp" line="11673"/>
+        <location filename="../../qmc2main.cpp" line="11683"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11667"/>
-        <location filename="../../qmc2main.cpp" line="11677"/>
+        <location filename="../../qmc2main.cpp" line="11675"/>
+        <location filename="../../qmc2main.cpp" line="11685"/>
         <source>&lt;inipath&gt;/ume.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11669"/>
-        <location filename="../../qmc2main.cpp" line="11679"/>
+        <location filename="../../qmc2main.cpp" line="11677"/>
+        <location filename="../../qmc2main.cpp" line="11687"/>
         <source>Select file...</source>
         <translation type="unfinished"></translation>
     </message>
