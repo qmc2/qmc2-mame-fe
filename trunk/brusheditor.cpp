@@ -43,7 +43,9 @@ BrushEditor::BrushEditor(QWidget *parent)
 	connect(doubleSpinBoxConicalCenterPointY, SIGNAL(valueChanged(double)), this, SLOT(updateGradientPreview()));
 	connect(doubleSpinBoxConicalAngle, SIGNAL(valueChanged(double)), this, SLOT(updateGradientPreview()));
 
-	pageGradientFirstView = true;
+	treeWidgetColorStops->header()->setMovable(false);
+	treeWidgetColorStops->header()->setClickable(false);
+	treeWidgetColorStops->header()->setResizeMode(QHeaderView::Fixed);
 }
 
 BrushEditor::~BrushEditor()
@@ -195,6 +197,13 @@ void BrushEditor::adjustIconSizes()
 	toolButtonAddColorStop->setIconSize(iconSize);
 }
 
+void BrushEditor::adjustWidgetSizes()
+{
+	int w = treeWidgetColorStops->viewport()->width() / treeWidgetColorStops->columnCount();
+	for (int i = 0; i < treeWidgetColorStops->columnCount(); i++)
+		treeWidgetColorStops->header()->resizeSection(i, w);
+}
+
 void BrushEditor::updateGradientPreview()
 {
 	QGradient gradient;
@@ -240,6 +249,8 @@ void  BrushEditor::updateGradientStopActions()
 			gsa->toolButtonDown->setEnabled(true);
 		}
 	}
+
+	QTimer::singleShot(0, this, SLOT(adjustWidgetSizes()));
 }
 
 void BrushEditor::on_pushButtonOk_clicked()
@@ -415,12 +426,7 @@ void BrushEditor::on_toolBox_currentChanged(int index)
 		case QMC2_BRUSHEDITOR_PAGEINDEX_PATTERN:
 			break;
 		case QMC2_BRUSHEDITOR_PAGEINDEX_GRADIENT:
-			if ( pageGradientFirstView ) {
-				pageGradientFirstView = false;
-				int w = treeWidgetColorStops->viewport()->width() / treeWidgetColorStops->columnCount();
-				for (int i = 0; i < treeWidgetColorStops->columnCount(); i++)
-					treeWidgetColorStops->setColumnWidth(i, w);
-			}
+			QTimer::singleShot(0, this, SLOT(adjustWidgetSizes()));
 			break;
 	}
 }
@@ -435,10 +441,7 @@ void BrushEditor::showEvent(QShowEvent *e)
 
 void BrushEditor::resizeEvent(QResizeEvent *e)
 {
-	int w = treeWidgetColorStops->viewport()->width() / treeWidgetColorStops->columnCount();
-	for (int i = 0; i < treeWidgetColorStops->columnCount(); i++)
-		treeWidgetColorStops->setColumnWidth(i, w);
-	treeWidgetColorStops->resizeColumnToContents(QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);
+	QTimer::singleShot(0, this, SLOT(adjustWidgetSizes()));
 
 	if ( e )
 		QDialog::resizeEvent(e);

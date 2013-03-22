@@ -154,7 +154,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>434</width>
+        <width>235</width>
         <height>64</height>
        </rect>
       </property>
@@ -500,6 +500,9 @@
        </item>
        <item row="1" column="0" colspan="3">
         <widget class="QTreeWidget" name="treeWidgetColorStops">
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
          <property name="rootIsDecorated">
           <bool>false</bool>
          </property>

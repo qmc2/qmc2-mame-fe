@@ -44,7 +44,6 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 		BrushEditor(QWidget *parent = 0);
 		~BrushEditor();
 
-		bool pageGradientFirstView;
 		static QStringList patternNames;
 		static QStringList gradientTypeNames;
 		static QStringList gradientSpreadNames;
@@ -60,6 +59,7 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 
 	public slots:
 		void adjustIconSizes();
+		void adjustWidgetSizes();
 		void updateGradientPreview();
 		void updateGradientStopActions();
 		void gradientStopAction_removeRequested(QTreeWidgetItem *);
