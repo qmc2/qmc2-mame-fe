@@ -613,6 +613,9 @@
 // -cc: clear (all emulator) caches 
 #define QMC2_CLI_OPT_CLEAR_ALL_CACHES		(qApp->arguments().indexOf("-cc") >= 0)
 
+// -help: show usage help and exit
+#define QMC2_CLI_OPT_HELP			(qApp->arguments().indexOf("-help") >= 0)
+
 // determine if memory infomation can be made available at all
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
 #define QMC2_MEMORY_INFO_ENABLED
