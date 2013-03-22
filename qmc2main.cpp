@@ -11496,9 +11496,9 @@ int main(int argc, char *argv[])
   QApplication qmc2App(argc, argv);
 
   if ( QMC2_CLI_OPT_HELP ) {
-	  printf("Usage: %s [-cc] [-help]\n\n"
-		 "-cc\tClear all caches before starting up\n"
-		 "-help\tShow this help\n", argv[0]);
+	  printf("Usage: %s [-cc] [-h|-?|-help]\n\n"
+		 "-cc          Clear all caches before starting up\n"
+		 "-h|-?|-help  Show this help text and exit\n", argv[0]);
 	  return 1;
   }
 
