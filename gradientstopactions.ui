@@ -19,6 +19,12 @@
    </property>
    <item row="0" column="2">
     <widget class="QToolButton" name="toolButtonDown">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
@@ -27,27 +33,26 @@
    </item>
    <item row="0" column="1">
     <widget class="QToolButton" name="toolButtonUp">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
      </property>
     </widget>
    </item>
-   <item row="0" column="4">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>0</width>
-       <height>10</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="0" column="3">
     <widget class="QToolButton" name="toolButtonRemove">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
