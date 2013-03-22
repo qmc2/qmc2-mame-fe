@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>470</width>
-    <height>426</height>
+    <height>422</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,7 +70,7 @@
         <x>0</x>
         <y>0</y>
         <width>460</width>
-        <height>308</height>
+        <height>304</height>
        </rect>
       </property>
       <attribute name="label">
@@ -154,8 +154,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>460</width>
-        <height>308</height>
+        <width>434</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="label">
@@ -381,7 +381,7 @@
         <x>0</x>
         <y>0</y>
         <width>460</width>
-        <height>308</height>
+        <height>304</height>
        </rect>
       </property>
       <attribute name="label">
@@ -707,7 +707,7 @@
               <enum>QFrame::Raised</enum>
              </property>
              <property name="text">
-              <string>Focal point</string>
+              <string>Focal point (F)</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -842,7 +842,7 @@
               <enum>QFrame::Raised</enum>
              </property>
              <property name="text">
-              <string>Center point</string>
+              <string>Center point (C)</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -858,7 +858,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Center</string>
+              <string>C</string>
              </property>
             </widget>
            </item>
@@ -871,7 +871,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Focal</string>
+              <string>F</string>
              </property>
             </widget>
            </item>
@@ -900,7 +900,7 @@
               <enum>QFrame::Raised</enum>
              </property>
              <property name="text">
-              <string>Radius</string>
+              <string>Radius (C, F)</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
