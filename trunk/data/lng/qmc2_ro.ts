@@ -842,8 +842,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="140"/>
-        <location filename="../../brusheditor.ui" line="324"/>
-        <location filename="../../brusheditor.ui" line="491"/>
+        <location filename="../../brusheditor.ui" line="316"/>
+        <location filename="../../brusheditor.ui" line="441"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
@@ -858,169 +858,151 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="270"/>
-        <source>Pattern texture image file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="273"/>
-        <source>Specify texture image file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="289"/>
-        <source>Browse pattern texture image file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.ui" line="306"/>
+        <location filename="../../brusheditor.ui" line="298"/>
         <source>Pattern preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="346"/>
+        <location filename="../../brusheditor.ui" line="262"/>
         <source>Pattern color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="368"/>
-        <location filename="../../brusheditor.cpp" line="274"/>
+        <location filename="../../brusheditor.ui" line="281"/>
+        <location filename="../../brusheditor.cpp" line="285"/>
         <source>Choose pattern color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="388"/>
+        <location filename="../../brusheditor.ui" line="338"/>
         <source>Gradient</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="524"/>
+        <location filename="../../brusheditor.ui" line="477"/>
         <source>Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="548"/>
-        <location filename="../../brusheditor.ui" line="629"/>
-        <location filename="../../brusheditor.ui" line="697"/>
-        <location filename="../../brusheditor.ui" line="742"/>
-        <location filename="../../brusheditor.ui" line="1003"/>
+        <location filename="../../brusheditor.ui" line="501"/>
+        <location filename="../../brusheditor.ui" line="582"/>
+        <location filename="../../brusheditor.ui" line="650"/>
+        <location filename="../../brusheditor.ui" line="695"/>
+        <location filename="../../brusheditor.ui" line="956"/>
         <source>Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="577"/>
+        <location filename="../../brusheditor.ui" line="530"/>
         <source>Final end point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="609"/>
-        <location filename="../../brusheditor.ui" line="622"/>
-        <location filename="../../brusheditor.ui" line="771"/>
-        <location filename="../../brusheditor.ui" line="800"/>
-        <location filename="../../brusheditor.ui" line="958"/>
+        <location filename="../../brusheditor.ui" line="562"/>
+        <location filename="../../brusheditor.ui" line="575"/>
+        <location filename="../../brusheditor.ui" line="724"/>
+        <location filename="../../brusheditor.ui" line="753"/>
+        <location filename="../../brusheditor.ui" line="911"/>
         <source>X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="674"/>
+        <location filename="../../brusheditor.ui" line="627"/>
         <source>Start point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="710"/>
+        <location filename="../../brusheditor.ui" line="663"/>
         <source>Focal point (F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="845"/>
+        <location filename="../../brusheditor.ui" line="798"/>
         <source>Center point (C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="861"/>
+        <location filename="../../brusheditor.ui" line="814"/>
         <source>C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="874"/>
+        <location filename="../../brusheditor.ui" line="827"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="903"/>
+        <location filename="../../brusheditor.ui" line="856"/>
         <source>Radius (C, F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="926"/>
+        <location filename="../../brusheditor.ui" line="879"/>
         <source>Center point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="942"/>
+        <location filename="../../brusheditor.ui" line="895"/>
         <source>Angle</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../brusheditor.ui" line="987"/>
+        <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="400"/>
+        <location filename="../../brusheditor.ui" line="350"/>
         <source>Gradient type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="428"/>
+        <location filename="../../brusheditor.ui" line="378"/>
         <source>Spread type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="456"/>
+        <location filename="../../brusheditor.ui" line="406"/>
         <source>Add color-stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="473"/>
+        <location filename="../../brusheditor.ui" line="423"/>
         <source>Gradient preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="514"/>
+        <location filename="../../brusheditor.ui" line="467"/>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="519"/>
+        <location filename="../../brusheditor.ui" line="472"/>
         <source>Color</source>
         <translation type="unfinished">Culoare</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="1040"/>
+        <location filename="../../brusheditor.ui" line="993"/>
         <source>Accept brush</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.ui" line="1043"/>
+        <location filename="../../brusheditor.ui" line="996"/>
         <source>&amp;Ok</source>
         <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="262"/>
-        <location filename="../../brusheditor.cpp" line="289"/>
+        <location filename="../../brusheditor.cpp" line="273"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="262"/>
-        <location filename="../../brusheditor.cpp" line="289"/>
+        <location filename="../../brusheditor.cpp" line="273"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="262"/>
-        <location filename="../../brusheditor.cpp" line="289"/>
+        <location filename="../../brusheditor.cpp" line="273"/>
         <source>All files (*)</source>
         <translation type="unfinished">Toate fisierele (*)</translation>
     </message>

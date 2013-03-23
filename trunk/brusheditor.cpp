@@ -83,8 +83,6 @@ Qt::BrushStyle BrushEditor::patternNameToStyle(QString patternName)
 			return Qt::FDiagPattern;
 		case QMC2_BRUSHEDITOR_PATTERN_DIAGCROSSPATTERN:
 			return Qt::DiagCrossPattern;
-		case QMC2_BRUSHEDITOR_PATTERN_TEXTUREPATTERN:
-			return Qt::TexturePattern;
 		case QMC2_BRUSHEDITOR_PATTERN_NOBRUSH:
 		default:
 			return Qt::NoBrush;
@@ -122,8 +120,6 @@ QString BrushEditor::patternStyleToName(Qt::BrushStyle style)
 			return "FDiagPattern";
 		case Qt::DiagCrossPattern:
 			return "DiagCrossPattern";
-		case Qt::TexturePattern:
-			return "TexturePattern";
 		case Qt::NoBrush:
 		default:
 			return "NoBrush";
@@ -193,7 +189,6 @@ void BrushEditor::adjustIconSizes()
 	pushButtonCancel->setIconSize(iconSize);
 	toolButtonBrowseImageFile->setIconSize(iconSize);
 	toolButtonPatternColor->setIconSize(iconSize);
-	toolButtonBrowseTextureImage->setIconSize(iconSize);
 	toolButtonAddColorStop->setIconSize(iconSize);
 }
 
@@ -206,32 +201,37 @@ void BrushEditor::adjustWidgetSizes()
 
 void BrushEditor::updateGradientPreview()
 {
-	QGradient gradient;
-	switch ( comboBoxGradientType->currentIndex() ) {
-		case QMC2_BRUSHEDITOR_GRADIENT_LINEAR:
-			gradient = QLinearGradient(doubleSpinBoxLinearStartPointX->value(), doubleSpinBoxLinearStartPointY->value(), doubleSpinBoxLinearEndPointX->value(), doubleSpinBoxLinearEndPointY->value());
-			break;
-		case QMC2_BRUSHEDITOR_GRADIENT_RADIAL:
-			gradient = QRadialGradient(doubleSpinBoxRadialCenterPointX->value(), doubleSpinBoxRadialCenterPointY->value(), doubleSpinBoxRadialCenterRadius->value(), doubleSpinBoxRadialFocalPointX->value(), doubleSpinBoxRadialFocalPointY->value(), doubleSpinBoxRadialFocalRadius->value());
-			break;
-		case QMC2_BRUSHEDITOR_GRADIENT_CONICAL:
-			gradient = QConicalGradient(doubleSpinBoxConicalCenterPointX->value(), doubleSpinBoxConicalCenterPointY->value(), doubleSpinBoxConicalAngle->value());
-			break;
+	if ( treeWidgetColorStops->topLevelItemCount() > 0 ) {
+		QGradient gradient;
+		switch ( comboBoxGradientType->currentIndex() ) {
+			case QMC2_BRUSHEDITOR_GRADIENT_LINEAR:
+				gradient = QLinearGradient(doubleSpinBoxLinearStartPointX->value(), doubleSpinBoxLinearStartPointY->value(), doubleSpinBoxLinearEndPointX->value(), doubleSpinBoxLinearEndPointY->value());
+				break;
+			case QMC2_BRUSHEDITOR_GRADIENT_RADIAL:
+				gradient = QRadialGradient(doubleSpinBoxRadialCenterPointX->value(), doubleSpinBoxRadialCenterPointY->value(), doubleSpinBoxRadialCenterRadius->value(), doubleSpinBoxRadialFocalPointX->value(), doubleSpinBoxRadialFocalPointY->value(), doubleSpinBoxRadialFocalRadius->value());
+				break;
+			case QMC2_BRUSHEDITOR_GRADIENT_CONICAL:
+				gradient = QConicalGradient(doubleSpinBoxConicalCenterPointX->value(), doubleSpinBoxConicalCenterPointY->value(), doubleSpinBoxConicalAngle->value());
+				break;
+		}
+		gradient.setSpread(nameToGradientSpread(comboBoxSpreadType->currentText()));
+		for (int i = 0; i < treeWidgetColorStops->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = treeWidgetColorStops->topLevelItem(i);
+			QDoubleSpinBox *dsb = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+			item->setData(QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP, Qt::DisplayRole, dsb->textFromValue(dsb->value()));
+			ColorWidget *cw = (ColorWidget *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
+			gradient.setColorAt(dsb->value(), cw->frameBrush->palette().color(cw->frameBrush->backgroundRole()));
+		}
+		treeWidgetColorStops->sortItems(QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP, Qt::AscendingOrder);
+		QTimer::singleShot(0, this, SLOT(updateGradientStopActions()));
+		QPalette pal = frameGradientPreview->palette();
+		pal.setBrush(frameGradientPreview->backgroundRole(), QBrush(gradient));
+		frameGradientPreview->setPalette(pal);
+		frameGradientPreview->update();
+	} else {
+		frameGradientPreview->setPalette(qApp->palette());
+		frameGradientPreview->update();
 	}
-	gradient.setSpread(nameToGradientSpread(comboBoxSpreadType->currentText()));
-	for (int i = 0; i < treeWidgetColorStops->topLevelItemCount(); i++) {
-		QTreeWidgetItem *item = treeWidgetColorStops->topLevelItem(i);
-		QDoubleSpinBox *dsb = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
-		item->setData(QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP, Qt::DisplayRole, dsb->textFromValue(dsb->value()));
-		ColorWidget *cw = (ColorWidget *)treeWidgetColorStops->itemWidget(item, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
-		gradient.setColorAt(dsb->value(), cw->frameBrush->palette().color(cw->frameBrush->backgroundRole()));
-	}
-	treeWidgetColorStops->sortItems(QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP, Qt::AscendingOrder);
-	QTimer::singleShot(0, this, SLOT(updateGradientStopActions()));
-	QPalette pal = frameGradientPreview->palette();
-	pal.setBrush(frameGradientPreview->backgroundRole(), QBrush(gradient));
-	frameGradientPreview->setPalette(pal);
-	frameGradientPreview->update();
 }
 
 void  BrushEditor::updateGradientStopActions()
@@ -288,18 +288,6 @@ void BrushEditor::on_toolButtonPatternColor_clicked()
 		pal.setColor(framePatternColor->backgroundRole(), color);
 		framePatternColor->setPalette(pal);
 		framePatternColor->update();
-		on_comboBoxPatternType_currentIndexChanged(comboBoxPatternType->currentIndex());
-	}
-}
-
-void BrushEditor::on_toolButtonBrowseTextureImage_clicked()
-{
-	QStringList imageFileTypes;
-	foreach (QByteArray imageFormat, QImageReader::supportedImageFormats())
-		imageFileTypes << "*." + QString(imageFormat).toLower();
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), lineEditTextureImage->text(), tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"));
-	if ( !fileName.isEmpty() ) {
-		lineEditTextureImage->setText(fileName);
 		on_comboBoxPatternType_currentIndexChanged(comboBoxPatternType->currentIndex());
 	}
 }
@@ -379,31 +367,8 @@ void BrushEditor::gradientStopAction_downRequested(QTreeWidgetItem *item)
 
 void BrushEditor::on_comboBoxPatternType_currentIndexChanged(int index)
 {
-	switch ( index ) {
-		case QMC2_BRUSHEDITOR_PATTERN_NOBRUSH:
-			framePatternColor->setEnabled(false);
-			toolButtonPatternColor->setEnabled(false);
-			lineEditTextureImage->setEnabled(false);
-			toolButtonBrowseTextureImage->setEnabled(false);
-			break;
-		case QMC2_BRUSHEDITOR_PATTERN_TEXTUREPATTERN:
-			framePatternColor->setEnabled(false);
-			toolButtonPatternColor->setEnabled(false);
-			lineEditTextureImage->setEnabled(true);
-			toolButtonBrowseTextureImage->setEnabled(true);
-			break;
-		default:
-			framePatternColor->setEnabled(true);
-			toolButtonPatternColor->setEnabled(true);
-			lineEditTextureImage->setEnabled(false);
-			toolButtonBrowseTextureImage->setEnabled(false);
-			break;
-	}
 	QPalette pal = framePatternPreview->palette();
-	if ( index == QMC2_BRUSHEDITOR_PATTERN_TEXTUREPATTERN )
-		pal.setBrush(framePatternPreview->backgroundRole(), QBrush(QImage(lineEditTextureImage->text())));
-	else
-		pal.setBrush(framePatternPreview->backgroundRole(), QBrush(framePatternColor->palette().color(framePatternColor->backgroundRole()), patternNameToStyle(comboBoxPatternType->currentText())));
+	pal.setBrush(framePatternPreview->backgroundRole(), QBrush(framePatternColor->palette().color(framePatternColor->backgroundRole()), patternNameToStyle(comboBoxPatternType->currentText())));
 	framePatternPreview->setPalette(pal);
 	framePatternPreview->update();
 }
