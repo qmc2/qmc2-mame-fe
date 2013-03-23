@@ -29,12 +29,9 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
   snapshotViewer = NULL;
 
-#if !defined(QMC2_WIP_ENABLED)
-  tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabMovies));
-#endif
-
   // restore settings
   checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
+  spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", 100).toInt());
 
   adjustIconSizes();
 }
@@ -61,8 +58,17 @@ void EmbedderOptions::adjustIconSizes()
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   toolButtonTakeSnapshot->setIconSize(iconSize);
   toolButtonClearSnapshots->setIconSize(iconSize);
-  QTabBar *tabBar = tabWidgetEmbedderOptions->findChild<QTabBar *>();
-  if ( tabBar ) tabBar->setIconSize(iconSize);
+}
+
+void EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom = %1)").arg(zoom));
+#endif
+
+	quint64 size = QMC2_EMBED_SNAPSHOT_DEFAULT_ITEM_SIZE * (double)zoom / 100.0;
+	listWidgetSnapshots->setIconSize(QSize(size, size));
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", zoom);
 }
 
 void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
@@ -84,7 +90,7 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
     snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::SmoothTransformation);
   else
     snapshotMap[snapshotItem] = clippedPixmap;
-  listWidgetSnapshots->scrollToItem(snapshotItem);
+  listWidgetSnapshots->scrollToItem(snapshotItem, QAbstractItemView::PositionAtBottom);
 }
 
 void EmbedderOptions::on_toolButtonClearSnapshots_clicked()
@@ -99,43 +105,41 @@ void EmbedderOptions::on_toolButtonClearSnapshots_clicked()
 void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item = %1)").arg((qulonglong)item));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
-  Embedder *embedder = (Embedder *)parent();
-  if ( !snapshotViewer ) {
-    snapshotViewer = new SnapshotViewer(item, this);
-    qApp->processEvents();
-  }
-  snapshotViewer->myItem = item;
-  QPixmap pm = snapshotMap[item];
-  QSize halfSize = pm.size();
-  if ( halfSize.width() > embedder->nativeResolution.width() ) {
-    halfSize.scale(halfSize.width() / 2, halfSize.height() / 2, Qt::KeepAspectRatio);
-    pm = pm.scaled(halfSize, Qt::KeepAspectRatio);
-  }
-  snapshotViewer->resize(pm.size());
-  QRect rect = listWidgetSnapshots->visualItemRect(item);
-  rect.translate(4, 2);
-  QPoint pos = listWidgetSnapshots->mapToGlobal(rect.topLeft());
-  if ( pos.x() + snapshotViewer->width() > qmc2MainWindow->desktopGeometry.width() ) {
-    pos = listWidgetSnapshots->mapToGlobal(rect.topRight());
-    pos.setX(pos.x() - snapshotViewer->width());
-  }
-  snapshotViewer->move(pos);
-  QPalette pal = snapshotViewer->palette();
-  QPainter p;
-  p.begin(&pm);
-  p.setPen(QPen(QColor(0, 0, 0, 64), 1));
-  rect = pm.rect();
-  rect.setWidth(rect.width() - 1);
-  rect.setHeight(rect.height() - 1);
-  p.drawRect(rect);
-  p.end();
-  pal.setBrush(QPalette::Window, pm);
-  snapshotViewer->setPalette(pal);
-  snapshotViewer->showNormal();
-  snapshotViewer->raise();
+	Embedder *embedder = (Embedder *)parent();
+	if ( !snapshotViewer ) {
+		snapshotViewer = new SnapshotViewer(item, this);
+		connect(snapshotViewer, SIGNAL(scaleRequested(QListWidgetItem *)), this, SLOT(on_listWidgetSnapshots_itemPressed(QListWidgetItem *)));
+	}
+	snapshotViewer->myItem = item;
+	QPixmap pm = snapshotMap[item];
+	qreal factor = (qreal)snapshotViewer->zoom / 100.0;
+	QSize zoomSize(factor * pm.size().width(), factor * pm.size().height());
+	pm = pm.scaled(zoomSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	snapshotViewer->resize(pm.size());
+	QRect rect = listWidgetSnapshots->visualItemRect(item);
+	rect.translate(4, 2);
+	QPoint pos = listWidgetSnapshots->mapToGlobal(rect.topLeft());
+	if ( pos.x() + snapshotViewer->width() > qmc2MainWindow->desktopGeometry.width() ) {
+		pos = listWidgetSnapshots->mapToGlobal(rect.topRight());
+		pos.setX(pos.x() - snapshotViewer->width());
+	}
+	snapshotViewer->move(pos);
+	QPalette pal = snapshotViewer->palette();
+	QPainter p;
+	p.begin(&pm);
+	p.setPen(QPen(QColor(0, 0, 0, 64), 1));
+	rect = pm.rect();
+	rect.setWidth(rect.width() - 1);
+	rect.setHeight(rect.height() - 1);
+	p.drawRect(rect);
+	p.end();
+	pal.setBrush(QPalette::Window, pm);
+	snapshotViewer->setPalette(pal);
+	snapshotViewer->showNormal();
+	snapshotViewer->raise();
 }
 
 void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
@@ -179,6 +183,26 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   contextMenu->addSeparator();
 #endif
 
+  s = tr("Zoom in (+10%)");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-in.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(zoomIn()));
+
+  s = tr("Zoom out (-10%)");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-out.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(zoomOut()));
+
+  s = tr("Reset zoom (100%)");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-none.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(resetZoom()));
+
+  contextMenu->addSeparator();
+
   s = tr("Save as...");
   action = contextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
@@ -190,6 +214,33 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+
+  zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotZoom", 100).toInt();
+}
+
+void SnapshotViewer::zoomIn()
+{
+	zoom += 10;
+	if ( zoom > 400 )
+		zoom = 400;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotZoom", zoom);
+	emit scaleRequested(myItem);
+}
+
+void SnapshotViewer::zoomOut()
+{
+	zoom -= 10;
+	if ( zoom < 10 )
+		zoom = 10;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotZoom", zoom);
+	emit scaleRequested(myItem);
+}
+
+void SnapshotViewer::resetZoom()
+{
+	zoom = 100;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotZoom", zoom);
+	emit scaleRequested(myItem);
 }
 
 void SnapshotViewer::leaveEvent(QEvent *)

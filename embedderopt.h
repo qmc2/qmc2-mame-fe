@@ -10,46 +10,54 @@
 
 class SnapshotViewer : public QWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QListWidgetItem *myItem;
-    QMenu *contextMenu;
-    QString fileName;
+	public:
+		QListWidgetItem *myItem;
+		QMenu *contextMenu;
+		QString fileName;
+		int zoom;
 
-    SnapshotViewer(QListWidgetItem *item, QWidget *parent = 0);
+		SnapshotViewer(QListWidgetItem *item, QWidget *parent = 0);
 
-  public slots:
-    void useAsPreview();
-    void useAsTitle();
-    void copyToClipboard();
-    void saveAs();
+	public slots:
+		void useAsPreview();
+		void useAsTitle();
+		void copyToClipboard();
+		void saveAs();
+		void zoomIn();
+		void zoomOut();
+		void resetZoom();
 
-  protected:
-    void leaveEvent(QEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void contextMenuEvent(QContextMenuEvent *);
-    void keyPressEvent(QKeyEvent *);
-    void paintEvent(QPaintEvent *);
+	protected:
+		void leaveEvent(QEvent *);
+		void mousePressEvent(QMouseEvent *);
+		void contextMenuEvent(QContextMenuEvent *);
+		void keyPressEvent(QKeyEvent *);
+		void paintEvent(QPaintEvent *);
+
+	signals:
+		void scaleRequested(QListWidgetItem *);
 };
 
 class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QMap<QListWidgetItem *, QPixmap> snapshotMap;
-    SnapshotViewer *snapshotViewer;
+	public:
+		QMap<QListWidgetItem *, QPixmap> snapshotMap;
+		SnapshotViewer *snapshotViewer;
 
-    EmbedderOptions(QWidget *parent = 0);
-    ~EmbedderOptions();
+		EmbedderOptions(QWidget *parent = 0);
+		~EmbedderOptions();
 
-  public slots:
-    void on_toolButtonTakeSnapshot_clicked();
-    void on_toolButtonClearSnapshots_clicked();
-    void on_listWidgetSnapshots_itemPressed(QListWidgetItem *);
-    void on_checkBoxNativeSnapshotResolution_toggled(bool);
-    void adjustIconSizes();
+	public slots:
+		void on_toolButtonTakeSnapshot_clicked();
+		void on_toolButtonClearSnapshots_clicked();
+		void on_listWidgetSnapshots_itemPressed(QListWidgetItem *);
+		void on_checkBoxNativeSnapshotResolution_toggled(bool);
+		void on_spinBoxZoom_valueChanged(int);
+		void adjustIconSizes();
 };
 #endif
 

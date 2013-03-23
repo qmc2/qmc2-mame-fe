@@ -103,6 +103,7 @@ class SoftwareSnap : public QWidget
 		bool ctxMenuRequested;
 		QString myCacheKey;
 		QAction *actionCopyPathToClipboard;
+		int zoom;
 
 		SoftwareSnap(QWidget *parent = 0);
 		~SoftwareSnap();
@@ -113,6 +114,9 @@ class SoftwareSnap : public QWidget
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();
+		void zoomIn();
+		void zoomOut();
+		void resetZoom();
 
 	protected:
 		void paintEvent(QPaintEvent *);
