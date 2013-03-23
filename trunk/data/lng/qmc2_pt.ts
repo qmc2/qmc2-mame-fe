@@ -1988,44 +1988,50 @@ p, li { white-space: pre-wrap; }
         <translation>Opções para embutir</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="31"/>
-        <source>Snapshots</source>
-        <translation>Capturas de tela</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.ui" line="37"/>
+        <location filename="../../embedderopt.ui" line="29"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
         <translation>Capturar a tela do conteúdo atual da janela -- segure para tirar snapshots repetidamente (a cada 100ms)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="40"/>
+        <location filename="../../embedderopt.ui" line="32"/>
         <source>Take snapshot</source>
         <translation>Capturar tela</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="98"/>
+        <location filename="../../embedderopt.ui" line="90"/>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="106"/>
+        <location filename="../../embedderopt.ui" line="109"/>
+        <source>Set zoom factor for snapshot items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="112"/>
+        <source> %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="137"/>
         <source>Clear snapshots</source>
         <translation>Limpar snapshots</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="101"/>
+        <location filename="../../embedderopt.ui" line="140"/>
         <source>Clear</source>
         <translation>Limpar</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="115"/>
+        <location filename="../../embedderopt.ui" line="61"/>
         <source>Scale snapshots to the native resolution</source>
         <translation>Redimensionar capturas de tela para a resolução nativa</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="118"/>
+        <location filename="../../embedderopt.ui" line="64"/>
         <source>Native resolution</source>
         <translation>Resolução nativa</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.ui" line="130"/>
-        <source>Movies</source>
-        <translation>Filmes</translation>
     </message>
 </context>
 <context>
@@ -14655,7 +14661,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="797"/>
         <location filename="../../softwarelist.cpp" line="2531"/>
         <location filename="../../softwarelist.cpp" line="2576"/>
-        <location filename="../../softwarelist.cpp" line="3441"/>
+        <location filename="../../softwarelist.cpp" line="3491"/>
         <source>Auto mount</source>
         <translation>Montar automaticamente</translation>
     </message>
@@ -14665,8 +14671,8 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="2556"/>
         <location filename="../../softwarelist.cpp" line="2562"/>
         <location filename="../../softwarelist.cpp" line="2580"/>
-        <location filename="../../softwarelist.cpp" line="3446"/>
-        <location filename="../../softwarelist.cpp" line="3450"/>
+        <location filename="../../softwarelist.cpp" line="3496"/>
+        <location filename="../../softwarelist.cpp" line="3500"/>
         <source>Not mounted</source>
         <translation>Não montado</translation>
     </message>
@@ -14674,14 +14680,14 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="804"/>
         <location filename="../../softwarelist.cpp" line="2543"/>
         <location filename="../../softwarelist.cpp" line="2584"/>
-        <location filename="../../softwarelist.cpp" line="3452"/>
+        <location filename="../../softwarelist.cpp" line="3502"/>
         <source>Mounted on:</source>
         <translation>Mointado em:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="796"/>
         <location filename="../../softwarelist.cpp" line="2549"/>
-        <location filename="../../softwarelist.cpp" line="3440"/>
+        <location filename="../../softwarelist.cpp" line="3490"/>
         <source>Don&apos;t mount</source>
         <translation>Não montar</translation>
     </message>
@@ -14691,30 +14697,30 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Aguardando por dados...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3405"/>
-        <location filename="../../softwarelist.cpp" line="3407"/>
+        <location filename="../../softwarelist.cpp" line="3455"/>
+        <location filename="../../softwarelist.cpp" line="3457"/>
         <source>Searching</source>
         <translation>Procurando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3419"/>
+        <location filename="../../softwarelist.cpp" line="3469"/>
         <source>Updating</source>
         <translation>Atualizando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3431"/>
+        <location filename="../../softwarelist.cpp" line="3481"/>
         <source>Part:</source>
         <translation>Parte:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="806"/>
-        <location filename="../../softwarelist.cpp" line="3457"/>
+        <location filename="../../softwarelist.cpp" line="3507"/>
         <source>No mount device</source>
         <translation>Nenhum dispositivo montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="807"/>
-        <location filename="../../softwarelist.cpp" line="3458"/>
+        <location filename="../../softwarelist.cpp" line="3508"/>
         <source>Unmanaged</source>
         <translation>Não gerenciado</translation>
     </message>
@@ -14734,34 +14740,34 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>parcialmente</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3483"/>
+        <location filename="../../softwarelist.cpp" line="3533"/>
         <source>Data area:</source>
         <translation>Área de dados:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3486"/>
-        <location filename="../../softwarelist.cpp" line="3498"/>
-        <location filename="../../softwarelist.cpp" line="3512"/>
+        <location filename="../../softwarelist.cpp" line="3536"/>
+        <location filename="../../softwarelist.cpp" line="3548"/>
+        <location filename="../../softwarelist.cpp" line="3562"/>
         <source>Size:</source>
         <translation>Tamanho:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3495"/>
+        <location filename="../../softwarelist.cpp" line="3545"/>
         <source>Disk area:</source>
         <translation>Área do disco:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3515"/>
+        <location filename="../../softwarelist.cpp" line="3565"/>
         <source>CRC:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3530"/>
+        <location filename="../../softwarelist.cpp" line="3580"/>
         <source>SHA1:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3539"/>
+        <location filename="../../softwarelist.cpp" line="3589"/>
         <source>Info:</source>
         <translation>Informação:</translation>
     </message>
@@ -17736,42 +17742,57 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="158"/>
+        <location filename="../../embedderopt.cpp" line="162"/>
         <source>Snapshot viewer</source>
         <translation>Visualizador de snapshots</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="167"/>
+        <location filename="../../embedderopt.cpp" line="171"/>
         <source>Use as preview</source>
         <translation>Usar como preview</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="173"/>
+        <location filename="../../embedderopt.cpp" line="177"/>
         <source>Use as title</source>
         <translation>Usar como título</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="182"/>
+        <location filename="../../embedderopt.cpp" line="186"/>
+        <source>Zoom in (+10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="192"/>
+        <source>Zoom out (-10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="198"/>
+        <source>Reset zoom (100%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="206"/>
         <source>Save as...</source>
         <translation>Salvar como...</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="188"/>
+        <location filename="../../embedderopt.cpp" line="212"/>
         <source>Copy to clipboard</source>
         <translation>Copiar para área de transferência</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="293"/>
+        <location filename="../../embedderopt.cpp" line="344"/>
         <source>Choose PNG file to store image</source>
         <translation>Escolher arquivo PNG para salvar a imagem</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="293"/>
+        <location filename="../../embedderopt.cpp" line="344"/>
         <source>PNG images (*.png)</source>
         <translation>Imagens PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="298"/>
+        <location filename="../../embedderopt.cpp" line="349"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation>FATAL: impossível salvar imagem de snapshot para &apos;%1&apos;</translation>
     </message>
@@ -18732,12 +18753,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2890"/>
+        <source>Zoom in (+10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2896"/>
+        <source>Zoom out (-10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2902"/>
+        <source>Reset zoom (100%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2910"/>
         <source>Refresh cache slot</source>
         <translation>Atualizar slot do cache</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2900"/>
-        <location filename="../../softwarelist.cpp" line="3117"/>
+        <location filename="../../softwarelist.cpp" line="2922"/>
+        <location filename="../../softwarelist.cpp" line="3165"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>
@@ -18745,22 +18781,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3616"/>
+        <location filename="../../softwarelist.cpp" line="3666"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3622"/>
+        <location filename="../../softwarelist.cpp" line="3672"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3631"/>
+        <location filename="../../softwarelist.cpp" line="3681"/>
         <source>Refresh cache slot</source>
         <translation>Atualizar slot do cache</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3719"/>
+        <location filename="../../softwarelist.cpp" line="3769"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>

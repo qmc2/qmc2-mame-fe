@@ -232,6 +232,9 @@
         <file>data/img/yes.png</file>
         <file>data/img/youtube.png</file>
         <file>data/img/zip.png</file>
+        <file>data/img/zoom-in.png</file>
+        <file>data/img/zoom-none.png</file>
+        <file>data/img/zoom-out.png</file>
         <file>htmleditor/images/document-new.png</file>
         <file>htmleditor/images/document-open.png</file>
         <file>htmleditor/images/document-save.png</file>

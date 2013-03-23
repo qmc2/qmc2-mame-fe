@@ -2887,11 +2887,33 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	contextMenu->addSeparator();
 
+	s = tr("Zoom in (+10%)");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-in.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(zoomIn()));
+
+	s = tr("Zoom out (-10%)");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-out.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(zoomOut()));
+
+	s = tr("Reset zoom (100%)");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-none.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(resetZoom()));
+
+	contextMenu->addSeparator();
+
 	s = tr("Refresh cache slot");
 	action = contextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
+
+	zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", 100).toInt();
 
 	if ( qmc2UseSoftwareSnapFile ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
@@ -2913,6 +2935,31 @@ SoftwareSnap::~SoftwareSnap()
 			unzClose(snapFile);
 		snapFileMap.clear();
 	}
+}
+
+void SoftwareSnap::zoomIn()
+{
+	zoom += 10;
+	if ( zoom > 400 )
+		zoom = 400;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", zoom);
+	refresh();
+}
+
+void SoftwareSnap::zoomOut()
+{
+	zoom -= 10;
+	if ( zoom < 10 )
+		zoom = 10;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", zoom);
+	refresh();
+}
+
+void SoftwareSnap::resetZoom()
+{
+	zoom = 100;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", zoom);
+	refresh();
 }
 
 void SoftwareSnap::mousePressEvent(QMouseEvent *e)
@@ -2960,6 +3007,7 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 void SoftwareSnap::paintEvent(QPaintEvent *e)
 {
 	QPainter p(this);
+	loadSnapshot();
 	p.eraseRect(rect());
 	p.end();
 }
@@ -3166,6 +3214,9 @@ void SoftwareSnap::loadSnapshot()
 	}
 
 	if ( pmLoaded ) {
+		qreal factor = (qreal)zoom / 100.0;
+		QSize zoomSize(factor * pm.size().width(), factor * pm.size().height());
+		pm = pm.scaled(zoomSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		resize(pm.size());
 		switch ( qmc2SoftwareSnapPosition ) {
 			case QMC2_SWSNAP_POS_ABOVE_CENTER:
@@ -3266,7 +3317,6 @@ void SoftwareSnap::loadSnapshot()
 		setPalette(pal);
 		showNormal();
 		update();
-		raise();
 		snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
 	} else {
 		myItem = NULL;

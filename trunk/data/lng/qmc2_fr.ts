@@ -1988,44 +1988,50 @@ p, li { white-space: pre-wrap; }
         <translation>Options d&apos;embarquement</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="31"/>
-        <source>Snapshots</source>
-        <translation>Captures d&apos;écran</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.ui" line="37"/>
+        <location filename="../../embedderopt.ui" line="29"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
         <translation>Prendre une capture d&apos;écran de la fenêtre actuelle - maintenir pour prendre en mode rafale (chaque 100ms)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="40"/>
+        <location filename="../../embedderopt.ui" line="32"/>
         <source>Take snapshot</source>
         <translation>Prendre une capture</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="98"/>
+        <location filename="../../embedderopt.ui" line="90"/>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="106"/>
+        <location filename="../../embedderopt.ui" line="109"/>
+        <source>Set zoom factor for snapshot items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="112"/>
+        <source> %</source>
+        <translation type="unfinished"> %</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="137"/>
         <source>Clear snapshots</source>
         <translation>Nettoyer les captures d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="101"/>
+        <location filename="../../embedderopt.ui" line="140"/>
         <source>Clear</source>
         <translation>Nettoyer</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="115"/>
+        <location filename="../../embedderopt.ui" line="61"/>
         <source>Scale snapshots to the native resolution</source>
         <translation>Etirer la capture d&apos;écran à la résolution native</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="118"/>
+        <location filename="../../embedderopt.ui" line="64"/>
         <source>Native resolution</source>
         <translation>Résolution native</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.ui" line="130"/>
-        <source>Movies</source>
-        <translation>Films</translation>
     </message>
 </context>
 <context>
@@ -14649,7 +14655,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="797"/>
         <location filename="../../softwarelist.cpp" line="2531"/>
         <location filename="../../softwarelist.cpp" line="2576"/>
-        <location filename="../../softwarelist.cpp" line="3441"/>
+        <location filename="../../softwarelist.cpp" line="3491"/>
         <source>Auto mount</source>
         <translation>Monter automatiquement</translation>
     </message>
@@ -14659,8 +14665,8 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="2556"/>
         <location filename="../../softwarelist.cpp" line="2562"/>
         <location filename="../../softwarelist.cpp" line="2580"/>
-        <location filename="../../softwarelist.cpp" line="3446"/>
-        <location filename="../../softwarelist.cpp" line="3450"/>
+        <location filename="../../softwarelist.cpp" line="3496"/>
+        <location filename="../../softwarelist.cpp" line="3500"/>
         <source>Not mounted</source>
         <translation>Non monté</translation>
     </message>
@@ -14668,14 +14674,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="804"/>
         <location filename="../../softwarelist.cpp" line="2543"/>
         <location filename="../../softwarelist.cpp" line="2584"/>
-        <location filename="../../softwarelist.cpp" line="3452"/>
+        <location filename="../../softwarelist.cpp" line="3502"/>
         <source>Mounted on:</source>
         <translation>Monté sur:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="796"/>
         <location filename="../../softwarelist.cpp" line="2549"/>
-        <location filename="../../softwarelist.cpp" line="3440"/>
+        <location filename="../../softwarelist.cpp" line="3490"/>
         <source>Don&apos;t mount</source>
         <translation>Ne pas monter</translation>
     </message>
@@ -14685,30 +14691,30 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>En attente de données...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3405"/>
-        <location filename="../../softwarelist.cpp" line="3407"/>
+        <location filename="../../softwarelist.cpp" line="3455"/>
+        <location filename="../../softwarelist.cpp" line="3457"/>
         <source>Searching</source>
         <translation>Recherche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3419"/>
+        <location filename="../../softwarelist.cpp" line="3469"/>
         <source>Updating</source>
         <translation>Mise à jour</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3431"/>
+        <location filename="../../softwarelist.cpp" line="3481"/>
         <source>Part:</source>
         <translation>Partie:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="806"/>
-        <location filename="../../softwarelist.cpp" line="3457"/>
+        <location filename="../../softwarelist.cpp" line="3507"/>
         <source>No mount device</source>
         <translation>Pas de périphérique de montage</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="807"/>
-        <location filename="../../softwarelist.cpp" line="3458"/>
+        <location filename="../../softwarelist.cpp" line="3508"/>
         <source>Unmanaged</source>
         <translation>Non géré</translation>
     </message>
@@ -14728,34 +14734,34 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3483"/>
+        <location filename="../../softwarelist.cpp" line="3533"/>
         <source>Data area:</source>
         <translation>Zone de données:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3486"/>
-        <location filename="../../softwarelist.cpp" line="3498"/>
-        <location filename="../../softwarelist.cpp" line="3512"/>
+        <location filename="../../softwarelist.cpp" line="3536"/>
+        <location filename="../../softwarelist.cpp" line="3548"/>
+        <location filename="../../softwarelist.cpp" line="3562"/>
         <source>Size:</source>
         <translation>Taille:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3495"/>
+        <location filename="../../softwarelist.cpp" line="3545"/>
         <source>Disk area:</source>
         <translation>Zone de disque:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3515"/>
+        <location filename="../../softwarelist.cpp" line="3565"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3530"/>
+        <location filename="../../softwarelist.cpp" line="3580"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3539"/>
+        <location filename="../../softwarelist.cpp" line="3589"/>
         <source>Info:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17730,42 +17736,57 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="158"/>
+        <location filename="../../embedderopt.cpp" line="162"/>
         <source>Snapshot viewer</source>
         <translation>Visualiseur de Captures</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="167"/>
+        <location filename="../../embedderopt.cpp" line="171"/>
         <source>Use as preview</source>
         <translation>Utiliser comme aperçu</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="173"/>
+        <location filename="../../embedderopt.cpp" line="177"/>
         <source>Use as title</source>
         <translation>Utiliser comme titre</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="182"/>
+        <location filename="../../embedderopt.cpp" line="186"/>
+        <source>Zoom in (+10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="192"/>
+        <source>Zoom out (-10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="198"/>
+        <source>Reset zoom (100%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="206"/>
         <source>Save as...</source>
         <translation>Sauvegarder sous...</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="188"/>
+        <location filename="../../embedderopt.cpp" line="212"/>
         <source>Copy to clipboard</source>
         <translation>Copier dans le presse-papier</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="293"/>
+        <location filename="../../embedderopt.cpp" line="344"/>
         <source>Choose PNG file to store image</source>
         <translation>Choisir le fichier PNG à enregistrer</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="293"/>
+        <location filename="../../embedderopt.cpp" line="344"/>
         <source>PNG images (*.png)</source>
         <translation>images PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="298"/>
+        <location filename="../../embedderopt.cpp" line="349"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation>FATAL: échec de sauvegarde de l&apos;image en &apos;%1&apos;</translation>
     </message>
@@ -18725,12 +18746,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2890"/>
+        <source>Zoom in (+10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2896"/>
+        <source>Zoom out (-10%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2902"/>
+        <source>Reset zoom (100%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2910"/>
         <source>Refresh cache slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2900"/>
-        <location filename="../../softwarelist.cpp" line="3117"/>
+        <location filename="../../softwarelist.cpp" line="2922"/>
+        <location filename="../../softwarelist.cpp" line="3165"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossible d&apos;ouvrir le fichier de captures du logiciel, vérifiez les permissions de %1</translation>
     </message>
@@ -18738,22 +18774,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="3616"/>
+        <location filename="../../softwarelist.cpp" line="3666"/>
         <source>Copy image to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3622"/>
+        <location filename="../../softwarelist.cpp" line="3672"/>
         <source>Copy file path to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3631"/>
+        <location filename="../../softwarelist.cpp" line="3681"/>
         <source>Refresh cache slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3719"/>
+        <location filename="../../softwarelist.cpp" line="3769"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossible d&apos;ouvrir le fichier de captures du logiciel, vérifiez les permissions de %1</translation>
     </message>
