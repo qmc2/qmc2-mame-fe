@@ -33,6 +33,8 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
   checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
   spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", 100).toInt());
 
+  listWidgetSnapshots->setStyleSheet(listWidgetSnapshots->styleSheet() + " QListView::item:selected { background-color: palette(dark); }");
+
   adjustIconSizes();
 }
 
