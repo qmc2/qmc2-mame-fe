@@ -154,8 +154,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>235</width>
-        <height>64</height>
+        <width>460</width>
+        <height>304</height>
        </rect>
       </property>
       <attribute name="label">
@@ -248,18 +248,10 @@
            <string notr="true">DiagCrossPattern</string>
           </property>
          </item>
-         <item>
-          <property name="text">
-           <string notr="true">TexturePattern</string>
-          </property>
-         </item>
         </widget>
        </item>
-       <item row="0" column="4">
-        <widget class="QLineEdit" name="lineEditTextureImage">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+       <item row="0" column="1">
+        <widget class="QFrame" name="framePatternColor">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -267,18 +259,18 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Pattern texture image file</string>
+          <string>Pattern color</string>
          </property>
-         <property name="placeholderText">
-          <string>Specify texture image file</string>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
-        <widget class="QToolButton" name="toolButtonBrowseTextureImage">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonPatternColor">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -286,15 +278,15 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Browse pattern texture image file</string>
+          <string>Choose pattern color</string>
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+           <normaloff>:/data/img/colors.png</normaloff>:/data/img/colors.png</iconset>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="6">
+       <item row="1" column="0" colspan="3">
         <widget class="QFrame" name="framePatternPreview">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -329,48 +321,6 @@
            </widget>
           </item>
          </layout>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QFrame" name="framePatternColor">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Pattern color</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QToolButton" name="toolButtonPatternColor">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Choose pattern color</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/colors.png</normaloff>:/data/img/colors.png</iconset>
-         </property>
         </widget>
        </item>
       </layout>
@@ -1074,8 +1024,6 @@
   <tabstop>toolButtonBrowseImageFile</tabstop>
   <tabstop>comboBoxPatternType</tabstop>
   <tabstop>toolButtonPatternColor</tabstop>
-  <tabstop>lineEditTextureImage</tabstop>
-  <tabstop>toolButtonBrowseTextureImage</tabstop>
   <tabstop>comboBoxGradientType</tabstop>
   <tabstop>comboBoxSpreadType</tabstop>
   <tabstop>toolButtonAddColorStop</tabstop>

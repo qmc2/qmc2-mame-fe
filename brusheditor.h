@@ -18,7 +18,6 @@
 #define QMC2_BRUSHEDITOR_PATTERN_BDIAGPATTERN		12
 #define QMC2_BRUSHEDITOR_PATTERN_FDIAGPATTERN		13
 #define QMC2_BRUSHEDITOR_PATTERN_DIAGCROSSPATTERN	14
-#define QMC2_BRUSHEDITOR_PATTERN_TEXTUREPATTERN		15
 
 #define QMC2_BRUSHEDITOR_GRADIENT_LINEAR		0
 #define QMC2_BRUSHEDITOR_GRADIENT_RADIAL		1
@@ -69,7 +68,6 @@ class BrushEditor : public QDialog, public Ui::BrushEditor
 		void on_pushButtonCancel_clicked();
 		void on_toolButtonBrowseImageFile_clicked();
 		void on_toolButtonPatternColor_clicked();
-		void on_toolButtonBrowseTextureImage_clicked();
 		void on_toolButtonAddColorStop_clicked();
 		void on_comboBoxPatternType_currentIndexChanged(int);
 		void on_comboBoxGradientType_currentIndexChanged(int);

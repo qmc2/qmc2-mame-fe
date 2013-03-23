@@ -434,7 +434,7 @@ MainWindow::MainWindow(QWidget *parent)
                             << "Shadow" << "Highlight" << "HighlightedText" << "Link" << "LinkVisited";
   BrushEditor::patternNames << "NoBrush" << "SolidPattern" << "Dense1Pattern" << "Dense2Pattern" << "Dense3Pattern" << "Dense4Pattern"
 	  		    << "Dense5Pattern" << "Dense6Pattern" << "Dense7Pattern" << "HorPattern" << "VerPattern" << "CrossPattern"
-			    << "BDiagPattern" << "FDiagPattern" << "DiagCrossPattern" << "TexturePattern";
+			    << "BDiagPattern" << "FDiagPattern" << "DiagCrossPattern";
   BrushEditor::gradientTypeNames << "Linear" << "Radial" << "Conical";
   BrushEditor::gradientSpreadNames << "PadSpread" << "RepeatSpread" << "ReflectSpread";
 
