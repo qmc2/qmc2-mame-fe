@@ -76,6 +76,7 @@ class ImageWidget : public QWidget
 		QString cleanDir(QString);
 		QString absoluteImagePath() { return currentPixmap.imagePath; }
 		QString toBase64();
+		QString primaryPathFor(QString);
 
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }
@@ -95,6 +96,7 @@ class ImageWidget : public QWidget
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
 		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL, bool loadImages = true);
+		bool replaceImage(QString, QPixmap &);
 		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL);
 		void copyToClipboard();
 		void copyPathToClipboard();

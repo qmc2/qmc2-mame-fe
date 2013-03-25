@@ -273,6 +273,53 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	return fileOk;
 }
 
+QString ImageWidget::primaryPathFor(QString gameName)
+{
+	if ( !useZip() ) {
+		QStringList fl = imageDir().split(";", QString::SkipEmptyParts);
+		QString baseDirectory;
+		if ( fl.count() > 0 )
+			baseDirectory = fl[0];
+		return QDir::cleanPath(QDir::toNativeSeparators(baseDirectory + "/" + gameName + ".png"));
+	} else // we don't support on-the-fly image replacement for zipped images yet!
+		return QString();
+}
+
+bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
+{
+	if ( !useZip() ) {
+		QString savePath = primaryPathFor(gameName);
+		if ( !savePath.isEmpty() ) {
+			bool goOn = true;
+			if ( QFile::exists(savePath) ) {
+				QString backupPath = savePath + ".bak";
+				if ( QFile::exists(backupPath) )
+					QFile::remove(backupPath);
+				if ( !QFile::copy(savePath, backupPath) ) {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create backup of existing image file '%1' as '%2'").arg(savePath).arg(backupPath));
+					goOn = false;
+				}
+			}
+			if ( goOn ) {
+				if ( pixmap.save(savePath, "PNG") ) {
+					currentPixmap = pixmap;
+					currentPixmap.imagePath = savePath;
+					update();
+					return true;
+				} else {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create image file '%1'").arg(savePath));
+					return false;
+				}
+			} else
+				return false;
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't determine primary path for image-type '%1'").arg(imageType()));
+			return false;
+		}
+	} else // we don't support on-the-fly image replacement for zipped images yet!
+		return false;
+}
+
 bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError)
 {
 	QImage image;
