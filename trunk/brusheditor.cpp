@@ -236,8 +236,10 @@ void BrushEditor::updateGradientPreview()
 
 void  BrushEditor::updateGradientStopActions()
 {
+	QTreeWidgetItem *lastItem = NULL;
 	for (int i = 0; i < treeWidgetColorStops->topLevelItemCount(); i++) {
-		GradientStopActions *gsa = (GradientStopActions *)treeWidgetColorStops->itemWidget(treeWidgetColorStops->topLevelItem(i), QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);
+		QTreeWidgetItem *thisItem = treeWidgetColorStops->topLevelItem(i);
+		GradientStopActions *gsa = (GradientStopActions *)treeWidgetColorStops->itemWidget(thisItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);
 		if ( i == 0 ) {
 			gsa->toolButtonUp->setEnabled(false);
 			gsa->toolButtonDown->setEnabled(i < treeWidgetColorStops->topLevelItemCount() - 1);
@@ -248,6 +250,18 @@ void  BrushEditor::updateGradientStopActions()
 			gsa->toolButtonUp->setEnabled(true);
 			gsa->toolButtonDown->setEnabled(true);
 		}
+		if ( lastItem ) {
+			GradientStopActions *gsa1 = (GradientStopActions *)treeWidgetColorStops->itemWidget(lastItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);
+			QDoubleSpinBox *dsb1 = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(lastItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+			QDoubleSpinBox *dsb2 = (QDoubleSpinBox *)treeWidgetColorStops->itemWidget(thisItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_STOP);
+			ColorWidget *cw1 = (ColorWidget *)treeWidgetColorStops->itemWidget(lastItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_COLOR);
+			treeWidgetColorStops->setTabOrder(dsb1, cw1->toolButtonColor);
+			treeWidgetColorStops->setTabOrder(cw1->toolButtonColor, gsa1->toolButtonUp);
+			treeWidgetColorStops->setTabOrder(gsa1->toolButtonUp, gsa1->toolButtonDown);
+			treeWidgetColorStops->setTabOrder(gsa1->toolButtonDown, gsa1->toolButtonRemove);
+			treeWidgetColorStops->setTabOrder(gsa1->toolButtonRemove, dsb2);
+		}
+		lastItem = thisItem;
 	}
 
 	QTimer::singleShot(0, this, SLOT(adjustWidgetSizes()));
@@ -297,7 +311,7 @@ void BrushEditor::on_toolButtonAddColorStop_clicked()
 	QTreeWidgetItem *newItem = new QTreeWidgetItem(treeWidgetColorStops);
 	QDoubleSpinBox *dsb = new QDoubleSpinBox();
 	dsb->setDecimals(2);
-	dsb->setSingleStep(0.1);
+	dsb->setSingleStep(0.01);
 	dsb->setRange(0.0, 1.0);
 	dsb->setValue(0.0);
 	ColorWidget *cw = new ColorWidget(QString(), QString(), QPalette::Normal, QPalette::NoRole, QColor("black"), QBrush(), 0, false, true);
