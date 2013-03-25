@@ -8,6 +8,25 @@
 
 #include "ui_embedderopt.h"
 
+#if defined(QMC2_EMUTYPE_MESS)
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW	0
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_SWS		1
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER	2
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_CABINET	3
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_CONTROLLER	4
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_MARQUEE	5
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_PCB		6
+#else
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW	0
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_TITLE	1
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_SWS		2
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER	3
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_CABINET	4
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_CONTROLLER	5
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_MARQUEE	6
+#define QMC2_EMBEDDER_SNAP_IMGTYPE_PCB		7
+#endif
+
 class SnapshotViewer : public QWidget
 {
 	Q_OBJECT
@@ -15,14 +34,18 @@ class SnapshotViewer : public QWidget
 	public:
 		QListWidgetItem *myItem;
 		QMenu *contextMenu;
+		QMenu *useAsMenu;
 		QString fileName;
+		QStringList imageTypeNames;
+		QStringList cachePrefixes;
+		QStringList imageTypeIcons;
+		QMap<QString, QAction *> useAsActions;
 		int zoom;
 
 		SnapshotViewer(QListWidgetItem *item, QWidget *parent = 0);
 
 	public slots:
-		void useAsPreview();
-		void useAsTitle();
+		void useAsImage();
 		void copyToClipboard();
 		void saveAs();
 		void zoomIn();

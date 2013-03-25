@@ -849,7 +849,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="281"/>
-        <location filename="../../brusheditor.cpp" line="285"/>
+        <location filename="../../brusheditor.cpp" line="299"/>
         <source>Choose pattern color</source>
         <translation>Musterfarbe auswählen</translation>
     </message>
@@ -972,17 +972,17 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="273"/>
+        <location filename="../../brusheditor.cpp" line="287"/>
         <source>Choose image file</source>
         <translation>Bild Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="273"/>
+        <location filename="../../brusheditor.cpp" line="287"/>
         <source>Supported image files (%1)</source>
         <translation>Unterstützte Bild-Dateien (%1)</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="273"/>
+        <location filename="../../brusheditor.cpp" line="287"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -5434,6 +5434,21 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../imagewidget.cpp" line="117"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="299"/>
+        <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
+        <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="310"/>
+        <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
+        <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="316"/>
+        <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
+        <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
 </context>
 <context>
@@ -17723,57 +17738,112 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="162"/>
+        <location filename="../../embedderopt.cpp" line="174"/>
         <source>Snapshot viewer</source>
         <translation>Schnappschuss Anzeige</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="171"/>
-        <source>Use as preview</source>
-        <translation>Als Vorschaubild verwenden</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.cpp" line="177"/>
-        <source>Use as title</source>
-        <translation>Als Titelbild verwenden</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.cpp" line="186"/>
+        <location filename="../../embedderopt.cpp" line="190"/>
         <source>Zoom in (+10%)</source>
         <translation>Vergrößern (+10%)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="192"/>
+        <location filename="../../embedderopt.cpp" line="196"/>
         <source>Zoom out (-10%)</source>
         <translation>Verkleinern (-10%)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="198"/>
+        <location filename="../../embedderopt.cpp" line="202"/>
         <source>Reset zoom (100%)</source>
         <translation>Zoomfaktor zurücksetzen (100%)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="206"/>
+        <location filename="../../embedderopt.cpp" line="210"/>
         <source>Save as...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="212"/>
+        <location filename="../../embedderopt.cpp" line="182"/>
         <source>Copy to clipboard</source>
         <translation>In Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="344"/>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="324"/>
+        <source>Preview</source>
+        <translation>Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="333"/>
+        <source>Software snapshot</source>
+        <translation>Software Schnappschuss</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="338"/>
+        <source>Flyer</source>
+        <translation>Flyer</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="342"/>
+        <source>Cabinet</source>
+        <translation>Gehäuse</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="346"/>
+        <source>Controller</source>
+        <translation>Controller</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="351"/>
+        <source>Logo</source>
+        <translation>Logo</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="358"/>
+        <source>PCB</source>
+        <translation>PCB</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="329"/>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="353"/>
+        <source>Marquee</source>
+        <translation>Marquee</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="230"/>
+        <source>Use as</source>
+        <translation>Verwenden als</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="447"/>
         <source>Choose PNG file to store image</source>
         <translation>PNG Datei zum Speichern des Bildes auswählen</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="344"/>
+        <location filename="../../embedderopt.cpp" line="447"/>
         <source>PNG images (*.png)</source>
         <translation>PNG Dateien (*.png)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="349"/>
+        <location filename="../../embedderopt.cpp" line="452"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation>FATAL: konnte Schnappschuss für &apos;%1&apos; nicht speichern</translation>
     </message>

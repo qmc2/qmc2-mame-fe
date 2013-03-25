@@ -7,59 +7,69 @@
 #include "gamelist.h"
 #include "qmc2main.h"
 #include "preview.h"
+#include "flyer.h"
+#include "cabinet.h"
+#include "controller.h"
+#include "marquee.h"
 #include "title.h"
+#include "pcb.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Gamelist *qmc2Gamelist;
 extern QSettings *qmc2Config;
-extern Preview *qmc2Preview;
-extern Title *qmc2Title;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
+extern Preview *qmc2Preview;
+extern Flyer *qmc2Flyer;
+extern Cabinet *qmc2Cabinet;
+extern Controller *qmc2Controller;
+extern Marquee *qmc2Marquee;
+extern Title *qmc2Title;
+extern PCB *qmc2PCB;
 
 EmbedderOptions::EmbedderOptions(QWidget *parent)
-  : QWidget(parent)
+	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::EmbedderOptions(QWidget *parent = %1)").arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::EmbedderOptions(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
-  hide();
-  setupUi(this);
+	hide();
+	setupUi(this);
 
-  snapshotViewer = NULL;
+	snapshotViewer = NULL;
 
-  // restore settings
-  checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
-  spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", 100).toInt());
+	// restore settings
+	checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
+	spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", 100).toInt());
 
-  listWidgetSnapshots->setStyleSheet(listWidgetSnapshots->styleSheet() + " QListView::item:selected { background-color: palette(dark); }");
+	listWidgetSnapshots->setStyleSheet(listWidgetSnapshots->styleSheet() + " QListView::item:selected { background-color: palette(dark); }");
 
-  adjustIconSizes();
+	adjustIconSizes();
 }
 
 EmbedderOptions::~EmbedderOptions()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::~EmbedderOptions()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::~EmbedderOptions()");
 #endif
 
-  if ( snapshotViewer )
-    delete snapshotViewer;
+	if ( snapshotViewer )
+		delete snapshotViewer;
 }
 
 void EmbedderOptions::adjustIconSizes()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::adjustIconSizes()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::adjustIconSizes()");
 #endif
 
-  QFont f;
-  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
-  QFontMetrics fm(f);
-  QSize iconSize(fm.height() - 2, fm.height() - 2);
-  toolButtonTakeSnapshot->setIconSize(iconSize);
-  toolButtonClearSnapshots->setIconSize(iconSize);
+	QFont f;
+	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+	QFontMetrics fm(f);
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	toolButtonTakeSnapshot->setIconSize(iconSize);
+	toolButtonClearSnapshots->setIconSize(iconSize);
 }
 
 void EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom)
@@ -76,32 +86,32 @@ void EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom)
 void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonTakeSnapshot_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonTakeSnapshot_clicked()");
 #endif
 
-  Embedder *embedder = (Embedder *)parent();
-  QPixmap pm = QPixmap::grabWindow(embedder->winId);
-  QRect rect = pm.rect();
-  QSize size = embedder->nativeResolution;
-  size.scale(rect.size(), Qt::KeepAspectRatio);
-  rect.setSize(size);
-  rect.moveCenter(pm.rect().center());
-  QPixmap clippedPixmap = pm.copy(rect);
-  QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
-  if ( checkBoxNativeSnapshotResolution->isChecked() )
-    snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-  else
-    snapshotMap[snapshotItem] = clippedPixmap;
-  listWidgetSnapshots->scrollToItem(snapshotItem, QAbstractItemView::PositionAtBottom);
+	Embedder *embedder = (Embedder *)parent();
+	QPixmap pm = QPixmap::grabWindow(embedder->winId);
+	QRect rect = pm.rect();
+	QSize size = embedder->nativeResolution;
+	size.scale(rect.size(), Qt::KeepAspectRatio);
+	rect.setSize(size);
+	rect.moveCenter(pm.rect().center());
+	QPixmap clippedPixmap = pm.copy(rect);
+	QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
+	if ( checkBoxNativeSnapshotResolution->isChecked() )
+		snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	else
+		snapshotMap[snapshotItem] = clippedPixmap;
+	listWidgetSnapshots->scrollToItem(snapshotItem, QAbstractItemView::PositionAtBottom);
 }
 
 void EmbedderOptions::on_toolButtonClearSnapshots_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonClearSnapshots_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonClearSnapshots_clicked()");
 #endif
 
-  snapshotMap.clear();
+	snapshotMap.clear();
 }
 
 void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
@@ -147,77 +157,89 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled = %1)").arg(enabled));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled = %1)").arg(enabled));
 #endif
 
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", enabled);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", enabled);
 }
 
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
-  : QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
+	: QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::SnapshotViewer(QListWidgetItem *item = %1, QWidget *parent = %2)").arg((qulonglong)item).arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::SnapshotViewer(QListWidgetItem *item = %1, QWidget *parent = %2)").arg((qulonglong)item).arg((qulonglong)parent));
 #endif
 
-  myItem = item;
-  setWindowTitle(tr("Snapshot viewer"));
+	myItem = item;
+	setWindowTitle(tr("Snapshot viewer"));
 
-  contextMenu = new QMenu(this);
-  contextMenu->hide();
-  
-  QString s;
-  QAction *action;
+	contextMenu = new QMenu(this);
+	contextMenu->hide();
 
-#if defined(QMC2_WIP_ENABLED)
-  s = tr("Use as preview");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/camera.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(useAsPreview()));
+	QString s;
+	QAction *action;
 
-  s = tr("Use as title");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(useAsTitle()));
+	s = tr("Copy to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
-  contextMenu->addSeparator();
+	contextMenu->addSeparator();
+
+	s = tr("Zoom in (+10%)");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-in.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(zoomIn()));
+
+	s = tr("Zoom out (-10%)");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-out.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(zoomOut()));
+
+	s = tr("Reset zoom (100%)");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-none.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(resetZoom()));
+
+	contextMenu->addSeparator();
+
+	s = tr("Save as...");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
+
+#if defined(QMC2_EMUTYPE_MESS)
+	QList<int> separatorIndizes;
+	separatorIndizes << 0 << 1;
+	imageTypeNames << tr("Preview") << tr("Software snapshot") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Logo") << tr("PCB");
+	imageTypeIcons << "camera" << "pacman" << "thumbnail" << "arcadecabinet" << "joystick" << "marquee" << "circuit";
+	cachePrefixes << "prv" << "sws" << "fly" << "cab" << "ctl" << "mrq" << "pcb";
+#else
+	QList<int> separatorIndizes;
+	separatorIndizes << 1 << 2;
+	imageTypeNames << tr("Preview") << tr("Title") << tr("Software snapshot") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Marquee") << tr("PCB");
+	imageTypeIcons << "camera" << "arcademode" << "pacman" << "thumbnail" << "arcadecabinet" << "joystick" << "marquee" << "circuit";
+	cachePrefixes << "prv" << "ttl" << "sws" << "fly" << "cab" << "ctl" << "mrq" << "pcb";
 #endif
 
-  s = tr("Zoom in (+10%)");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-in.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(zoomIn()));
+	useAsMenu = contextMenu->addMenu(QIcon(QString::fromUtf8(":/data/img/filesaveas_and_apply.png")), tr("Use as"));
 
-  s = tr("Zoom out (-10%)");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-out.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(zoomOut()));
+	for (int i = 0; i < imageTypeNames.count(); i++) {
+		action = useAsMenu->addAction(imageTypeNames[i]);
+		action->setIcon(QIcon(QString(":/data/img/%1.png").arg(imageTypeIcons[i])));
+		action->setData(cachePrefixes[i]);
+		connect(action, SIGNAL(triggered()), this, SLOT(useAsImage()));
+		useAsActions[cachePrefixes[i]] = action;
+		if ( separatorIndizes.contains(i) )
+			useAsMenu->addSeparator();
+	}
 
-  s = tr("Reset zoom (100%)");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/zoom-none.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(resetZoom()));
-
-  contextMenu->addSeparator();
-
-  s = tr("Save as...");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
-
-  s = tr("Copy to clipboard");
-  action = contextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
-
-  zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotZoom", 100).toInt();
+	zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotZoom", 100).toInt();
 }
 
 void SnapshotViewer::zoomIn()
@@ -248,119 +270,198 @@ void SnapshotViewer::resetZoom()
 void SnapshotViewer::leaveEvent(QEvent *)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::leaveEvent(QEvent *)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::leaveEvent(QEvent *)");
 #endif
 
-  if ( contextMenu->isHidden() )
-    hide();
+	if ( contextMenu->isHidden() )
+		hide();
 }
 
 void SnapshotViewer::mousePressEvent(QMouseEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( e->button() != Qt::RightButton ) {
-    myItem->setSelected(true);
-    hide();
-  }
+	if ( e->button() != Qt::RightButton ) {
+		myItem->setSelected(true);
+		hide();
+	}
 }
 
 void SnapshotViewer::keyPressEvent(QKeyEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::keyPressEvent(QKeyPressEvent *e)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::keyPressEvent(QKeyPressEvent *e)");
 #endif
 
-  if ( e->key() == Qt::Key_Escape ) {
-    myItem->setSelected(true);
-    hide();
-  }
+	if ( e->key() == Qt::Key_Escape ) {
+		myItem->setSelected(true);
+		hide();
+	}
 }
 
 void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
-  contextMenu->show();
+	Embedder *embedder = (Embedder *)(parent()->parent());
+	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
+
+	QMapIterator<QString, QAction *> it(useAsActions);
+	bool activateUseAsMenu = false;
+	while ( it.hasNext() ) {
+		it.next();
+		QAction *action = it.value();
+		QString cachePrefix = it.key();
+		ImageWidget *iw = NULL;
+		QString actionText;
+		switch ( cachePrefixes.indexOf(cachePrefix) ) {
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:
+				iw = qmc2Preview;
+				actionText = tr("Preview");
+				break;
+#if !defined(QMC2_EMUTYPE_MESS)
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_TITLE:
+				iw = qmc2Title;
+				actionText = tr("Title");
+				break;
+#endif
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
+				actionText = tr("Software snapshot");
+				// FIXME
+				break;
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER:
+				iw = qmc2Flyer;
+				actionText = tr("Flyer");
+				break;
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_CABINET:
+				iw = qmc2Cabinet;
+				actionText = tr("Cabinet");
+				break;
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_CONTROLLER:
+				iw = qmc2Controller;
+				actionText = tr("Controller");
+				break;
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_MARQUEE:
+				iw = qmc2Marquee;
+#if defined(QMC2_EMUTYPE_MESS)
+				actionText = tr("Logo");
+#else
+				actionText = tr("Marquee");
+#endif
+				break;
+			case QMC2_EMBEDDER_SNAP_IMGTYPE_PCB:
+				iw = qmc2PCB;
+				actionText = tr("PCB");
+				break;
+		}
+		if ( iw ) {
+			action->setVisible(!iw->useZip());
+			if ( action->isEnabled() ) {
+				activateUseAsMenu = true;
+				action->setText(actionText + " (" + iw->primaryPathFor(embedder->gameName) + ")");
+			}
+		} else
+			action->setVisible(false);
+	}
+	useAsMenu->setEnabled(activateUseAsMenu);
+
+	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
+	contextMenu->show();
 }
 
-void SnapshotViewer::useAsPreview()
+void SnapshotViewer::useAsImage()
 {
+	QAction *action = (QAction *)sender();
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsPreview()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsImage()");
 #endif
 
-  Embedder *embedder = (Embedder *)(parent()->parent());
-  EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-  qmc2ImagePixmapCache.remove("prv_" + embedder->gameName);
-  qmc2ImagePixmapCache.insert("prv_" + embedder->gameName, new ImagePixmap(embedderOptions->snapshotMap[myItem]), embedderOptions->snapshotMap[myItem].toImage().byteCount());
-  qmc2Preview->update();
+	Embedder *embedder = (Embedder *)(parent()->parent());
+	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
 
-  // FIXME: we also need to save the image to the preview path or ZIP archive
-}
-
-void SnapshotViewer::useAsTitle()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsTitle()");
+	switch ( cachePrefixes.indexOf(action->data().toString()) ) {
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:
+			if ( qmc2Preview )
+				qmc2Preview->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
+#if !defined(QMC2_EMUTYPE_MESS)
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_TITLE:
+			if ( qmc2Title )
+				qmc2Title->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
 #endif
-
-  Embedder *embedder = (Embedder *)(parent()->parent());
-  EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-  qmc2ImagePixmapCache.remove("ttl_" + embedder->gameName);
-  qmc2ImagePixmapCache.insert("ttl__" + embedder->gameName, new ImagePixmap(embedderOptions->snapshotMap[myItem]), embedderOptions->snapshotMap[myItem].toImage().byteCount());
-  qmc2Title->update();
-
-  // FIXME: we also need to save the image to the title path or ZIP archive
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
+			// FIXME
+			break;
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER:
+			if ( qmc2Flyer )
+				qmc2Flyer->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_CABINET:
+			if ( qmc2Cabinet )
+				qmc2Cabinet->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_CONTROLLER:
+			if ( qmc2Controller )
+				qmc2Controller->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_MARQUEE:
+			if ( qmc2Marquee )
+				qmc2Marquee->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
+		case QMC2_EMBEDDER_SNAP_IMGTYPE_PCB:
+			if ( qmc2PCB )
+				qmc2PCB->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
+			break;
+	}
 }
 
 void SnapshotViewer::copyToClipboard()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::copyToClipboard()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::copyToClipboard()");
 #endif
 
-  EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-  qApp->clipboard()->setPixmap(embedderOptions->snapshotMap[myItem]);
+	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
+	qApp->clipboard()->setPixmap(embedderOptions->snapshotMap[myItem]);
 }
 
 void SnapshotViewer::saveAs()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::saveAs()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::saveAs()");
 #endif
 
-  if ( fileName.isEmpty() ) {
-    Embedder *embedder = (Embedder *)(parent()->parent());
-    fileName = embedder->gameName + ".png";
-    if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath") )
-      fileName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath").toString());
-  }
+	if ( fileName.isEmpty() ) {
+		Embedder *embedder = (Embedder *)(parent()->parent());
+		fileName = embedder->gameName + ".png";
+		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath") )
+			fileName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath").toString());
+	}
 
-  hide();
-  fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"));
+	hide();
+	fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"));
 
-  if ( !fileName.isEmpty() ) {
-    EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
-    if ( !embedderOptions->snapshotMap[myItem].save(fileName, "PNG") )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't save snapshot image to '%1'").arg(fileName));
-    QFileInfo fiFilePath(fileName);
-    QString storagePath = fiFilePath.absolutePath();
-    if ( !storagePath.endsWith("/") ) storagePath.append("/");
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath", storagePath);
-  }
+	if ( !fileName.isEmpty() ) {
+		EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
+		if ( !embedderOptions->snapshotMap[myItem].save(fileName, "PNG") )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't save snapshot image to '%1'").arg(fileName));
+		QFileInfo fiFilePath(fileName);
+		QString storagePath = fiFilePath.absolutePath();
+		if ( !storagePath.endsWith("/") ) storagePath.append("/");
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath", storagePath);
+	}
 }
 
 void SnapshotViewer::paintEvent(QPaintEvent *e)
 {
-  QPainter p(this);
-  p.eraseRect(rect());
-  p.end();
+	QPainter p(this);
+	p.eraseRect(rect());
+	p.end();
 }
 
 #endif

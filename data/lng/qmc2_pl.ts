@@ -869,7 +869,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="281"/>
-        <location filename="../../brusheditor.cpp" line="285"/>
+        <location filename="../../brusheditor.cpp" line="299"/>
         <source>Choose pattern color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -992,17 +992,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="273"/>
+        <location filename="../../brusheditor.cpp" line="287"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="273"/>
+        <location filename="../../brusheditor.cpp" line="287"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="273"/>
+        <location filename="../../brusheditor.cpp" line="287"/>
         <source>All files (*)</source>
         <translation type="unfinished">Wszystkie pliki (*)</translation>
     </message>
@@ -5476,6 +5476,21 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagewidget.cpp" line="117"/>
         <source>Waiting for data...</source>
         <translation>Oczekiwanie na dane...</translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="299"/>
+        <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="310"/>
+        <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="316"/>
+        <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -17789,57 +17804,112 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="162"/>
+        <location filename="../../embedderopt.cpp" line="174"/>
         <source>Snapshot viewer</source>
         <translation>Przeglądarka zrzutów ekranu</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="171"/>
-        <source>Use as preview</source>
-        <translation>Użyj jako podglądu</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.cpp" line="177"/>
-        <source>Use as title</source>
-        <translation>Użyj jako ekranu tytułowego</translation>
-    </message>
-    <message>
-        <location filename="../../embedderopt.cpp" line="186"/>
+        <location filename="../../embedderopt.cpp" line="190"/>
         <source>Zoom in (+10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="192"/>
+        <location filename="../../embedderopt.cpp" line="196"/>
         <source>Zoom out (-10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="198"/>
+        <location filename="../../embedderopt.cpp" line="202"/>
         <source>Reset zoom (100%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="206"/>
+        <location filename="../../embedderopt.cpp" line="210"/>
         <source>Save as...</source>
         <translation>Zapisz jako...</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="212"/>
+        <location filename="../../embedderopt.cpp" line="182"/>
         <source>Copy to clipboard</source>
         <translation>Kopiuj do schowka</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="344"/>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="324"/>
+        <source>Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="333"/>
+        <source>Software snapshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="338"/>
+        <source>Flyer</source>
+        <translation type="unfinished">Ulotka</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="342"/>
+        <source>Cabinet</source>
+        <translation type="unfinished">Automat</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="346"/>
+        <source>Controller</source>
+        <translation type="unfinished">Kontroler</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="351"/>
+        <source>Logo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="219"/>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="358"/>
+        <source>PCB</source>
+        <translation type="unfinished">Płytka drukowana</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="329"/>
+        <source>Title</source>
+        <translation type="unfinished">Tytuł</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="225"/>
+        <location filename="../../embedderopt.cpp" line="353"/>
+        <source>Marquee</source>
+        <translation type="unfinished">Plansza tytułowa</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="230"/>
+        <source>Use as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="447"/>
         <source>Choose PNG file to store image</source>
         <translation>Wybierz plik PNG do zapisania obrazu</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="344"/>
+        <location filename="../../embedderopt.cpp" line="447"/>
         <source>PNG images (*.png)</source>
         <translation>Obrazy PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="349"/>
+        <location filename="../../embedderopt.cpp" line="452"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation>FATALNIE: nie udało się zapisać zrzutu ekranu do &apos;%1&apos;</translation>
     </message>
