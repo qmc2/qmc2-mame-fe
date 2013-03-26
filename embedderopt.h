@@ -52,6 +52,7 @@ class SnapshotViewer : public QWidget
 		void zoomIn();
 		void zoomOut();
 		void resetZoom();
+		void updateUseAsMenu() { contextMenuEvent(NULL); };
 
 	protected:
 		void leaveEvent(QEvent *);
@@ -71,6 +72,7 @@ class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
 	public:
 		QMap<QListWidgetItem *, QPixmap> snapshotMap;
 		SnapshotViewer *snapshotViewer;
+		bool showSnapshotViewer;
 
 		EmbedderOptions(QWidget *parent = 0);
 		~EmbedderOptions();
@@ -78,7 +80,9 @@ class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
 	public slots:
 		void on_toolButtonTakeSnapshot_clicked();
 		void on_toolButtonClearSnapshots_clicked();
+		void on_toolButtonSaveAs_clicked();
 		void on_listWidgetSnapshots_itemPressed(QListWidgetItem *);
+		void on_listWidgetSnapshots_itemSelectionChanged();
 		void on_checkBoxNativeSnapshotResolution_toggled(bool);
 		void on_spinBoxZoom_valueChanged(int);
 		void adjustIconSizes();

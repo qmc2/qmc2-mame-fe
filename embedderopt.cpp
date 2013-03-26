@@ -43,10 +43,12 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 	setupUi(this);
 
 	snapshotViewer = NULL;
+	showSnapshotViewer = true;
 
 	// restore settings
 	checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
 	spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", 100).toInt());
+	spinBoxZoom->setPrefix(tr("Zoom") + ": ");
 
 	listWidgetSnapshots->setStyleSheet(listWidgetSnapshots->styleSheet() + " QListView::item:selected { background-color: palette(dark); }");
 
@@ -75,6 +77,8 @@ void EmbedderOptions::adjustIconSizes()
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	toolButtonTakeSnapshot->setIconSize(iconSize);
 	toolButtonClearSnapshots->setIconSize(iconSize);
+	toolButtonSaveAs->setIconSize(iconSize);
+	toolButtonUseAs->setIconSize(iconSize);
 }
 
 void EmbedderOptions::on_spinBoxZoom_valueChanged(int zoom)
@@ -155,8 +159,26 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 	p.end();
 	pal.setBrush(QPalette::Window, pm);
 	snapshotViewer->setPalette(pal);
-	snapshotViewer->showNormal();
-	snapshotViewer->raise();
+	if ( showSnapshotViewer ) {
+		snapshotViewer->showNormal();
+		snapshotViewer->raise();
+	} else
+		snapshotViewer->hide();
+	showSnapshotViewer = true;
+}
+
+void EmbedderOptions::on_listWidgetSnapshots_itemSelectionChanged()
+{
+	bool enable = !listWidgetSnapshots->selectedItems().isEmpty();
+	toolButtonSaveAs->setEnabled(enable);
+	if ( enable ) {
+		showSnapshotViewer = false;
+		on_listWidgetSnapshots_itemPressed(listWidgetSnapshots->selectedItems()[0]);
+		QTimer::singleShot(0, snapshotViewer, SLOT(updateUseAsMenu()));
+	} else {
+		toolButtonUseAs->setEnabled(false);
+		toolButtonUseAs->setMenu(NULL);
+	}
 }
 
 void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
@@ -166,6 +188,16 @@ void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
 #endif
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", enabled);
+}
+
+void EmbedderOptions::on_toolButtonSaveAs_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonSaveAs_clicked()");
+#endif
+
+	if ( snapshotViewer )
+		snapshotViewer->saveAs();
 }
 
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
@@ -406,9 +438,13 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 			action->setVisible(false);
 	}
 	useAsMenu->menuAction()->setVisible(activateUseAsMenu);
+	embedderOptions->toolButtonUseAs->setEnabled(activateUseAsMenu);
+	embedderOptions->toolButtonUseAs->setMenu(useAsMenu);
 
-	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
-	contextMenu->show();
+	if ( e ) {
+		contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
+		contextMenu->show();
+	}
 }
 
 void SnapshotViewer::useAsImage()
