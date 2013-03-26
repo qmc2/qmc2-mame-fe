@@ -869,7 +869,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="281"/>
-        <location filename="../../brusheditor.cpp" line="299"/>
+        <location filename="../../brusheditor.cpp" line="309"/>
         <source>Choose pattern color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -992,17 +992,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="287"/>
+        <location filename="../../brusheditor.cpp" line="28"/>
+        <source>Radius (C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../brusheditor.cpp" line="297"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="287"/>
+        <location filename="../../brusheditor.cpp" line="297"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="287"/>
+        <location filename="../../brusheditor.cpp" line="297"/>
         <source>All files (*)</source>
         <translation type="unfinished">Wszystkie pliki (*)</translation>
     </message>
@@ -17836,60 +17841,62 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="330"/>
+        <location filename="../../embedderopt.cpp" line="335"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="340"/>
+        <location filename="../../embedderopt.cpp" line="243"/>
+        <location filename="../../embedderopt.cpp" line="244"/>
+        <location filename="../../embedderopt.cpp" line="345"/>
         <source>Software snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="344"/>
+        <location filename="../../embedderopt.cpp" line="349"/>
         <source>Flyer</source>
         <translation type="unfinished">Ulotka</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="348"/>
+        <location filename="../../embedderopt.cpp" line="353"/>
         <source>Cabinet</source>
         <translation type="unfinished">Automat</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="352"/>
+        <location filename="../../embedderopt.cpp" line="357"/>
         <source>Controller</source>
         <translation type="unfinished">Kontroler</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="357"/>
+        <location filename="../../embedderopt.cpp" line="362"/>
         <source>Logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="224"/>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="364"/>
+        <location filename="../../embedderopt.cpp" line="369"/>
         <source>PCB</source>
         <translation type="unfinished">Płytka drukowana</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="335"/>
+        <location filename="../../embedderopt.cpp" line="340"/>
         <source>Title</source>
         <translation type="unfinished">Tytuł</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="359"/>
+        <location filename="../../embedderopt.cpp" line="364"/>
         <source>Marquee</source>
         <translation type="unfinished">Plansza tytułowa</translation>
     </message>
@@ -17899,17 +17906,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="472"/>
+        <location filename="../../embedderopt.cpp" line="495"/>
         <source>Choose PNG file to store image</source>
         <translation>Wybierz plik PNG do zapisania obrazu</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="472"/>
+        <location filename="../../embedderopt.cpp" line="495"/>
         <source>PNG images (*.png)</source>
         <translation>Obrazy PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="477"/>
+        <location filename="../../embedderopt.cpp" line="500"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation>FATALNIE: nie udało się zapisać zrzutu ekranu do &apos;%1&apos;</translation>
     </message>

@@ -240,6 +240,10 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
 		action->setData(cachePrefixes[i]);
 		connect(action, SIGNAL(triggered()), this, SLOT(useAsImage()));
 		useAsActions[cachePrefixes[i]] = action;
+		if ( imageTypeNames[i] == tr("Software snapshot") ) {
+			swsMenu = useAsMenu->addMenu(QIcon(QString(":/data/img/%1.png").arg(imageTypeIcons[i])), tr("Software snapshot"));
+			swsMenu->menuAction()->setVisible(false);
+		}
 		if ( separatorIndizes.contains(i) )
 			useAsMenu->addSeparator();
 	}
@@ -317,6 +321,7 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 
 	QMapIterator<QString, QAction *> it(useAsActions);
 	bool activateUseAsMenu = false;
+	swsMenu->menuAction()->setVisible(false);
 	while ( it.hasNext() ) {
 		it.next();
 		QAction *action = it.value();
@@ -375,18 +380,32 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());
 				QStringList softwareLists = qmc2ProcessManager->softwareListsMap[proc];
 				QStringList softwareNames = qmc2ProcessManager->softwareNamesMap[proc];
-				if ( softwareLists.count() > 0 && softwareNames.count() > 0 ) {
-					action->setVisible(true);
-					action->setText(actionText + " (" + sws->primaryPathFor(softwareLists[0], softwareNames[0]) + ")");
-					activateUseAsMenu = true;
-				} else
+				if ( softwareLists.count() > 1 && softwareNames.count() > 1 ) {
 					action->setVisible(false);
+					swsMenu->clear();
+					for (int j = 0; j < softwareLists.count(); j++) {
+						QAction *a = swsMenu->addAction(sws->primaryPathFor(softwareLists[j], softwareNames[j]));
+						a->setData(QString("sws\t%1").arg(j));
+						connect(a, SIGNAL(triggered()), this, SLOT(useAsImage()));
+					}
+					swsMenu->menuAction()->setVisible(true);
+					activateUseAsMenu = true;
+				} else if ( softwareLists.count() > 0 && softwareNames.count() > 0 ) {
+					action->setVisible(true);
+					swsMenu->menuAction()->setVisible(false);
+					action->setText(actionText + " (" + sws->primaryPathFor(softwareLists[0], softwareNames[0]) + ")");
+					action->setData(QString("sws\t0"));
+					activateUseAsMenu = true;
+				} else {
+					action->setVisible(false);
+					swsMenu->menuAction()->setVisible(false);
+				}
 			} else
 				action->setVisible(false);
 		} else
 			action->setVisible(false);
 	}
-	useAsMenu->setEnabled(activateUseAsMenu);
+	useAsMenu->menuAction()->setVisible(activateUseAsMenu);
 
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
@@ -402,7 +421,9 @@ void SnapshotViewer::useAsImage()
 	Embedder *embedder = (Embedder *)(parent()->parent());
 	EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
 
-	switch ( cachePrefixes.indexOf(action->data().toString()) ) {
+	QStringList dataList = action->data().toString().split("\t", QString::SkipEmptyParts);
+
+	switch ( cachePrefixes.indexOf(dataList[0]) ) {
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:
 			if ( qmc2Preview )
 				qmc2Preview->replaceImage(embedder->gameName, embedderOptions->snapshotMap[myItem]);
@@ -418,8 +439,10 @@ void SnapshotViewer::useAsImage()
 				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());
 				QStringList softwareLists = qmc2ProcessManager->softwareListsMap[proc];
 				QStringList softwareNames = qmc2ProcessManager->softwareNamesMap[proc];
-				if ( softwareLists.count() > 0 && softwareNames.count() > 0 )
-					qmc2SoftwareSnap->replaceImage(softwareLists[0], softwareNames[0], embedderOptions->snapshotMap[myItem]);
+				if ( softwareLists.count() > 0 && softwareNames.count() > 0 ) {
+					int dataIndex = dataList[1].toInt();
+					qmc2SoftwareSnap->replaceImage(softwareLists[dataIndex], softwareNames[dataIndex], embedderOptions->snapshotMap[myItem]);
+				}
 			}
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER:
