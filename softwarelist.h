@@ -108,8 +108,11 @@ class SoftwareSnap : public QWidget
 		SoftwareSnap(QWidget *parent = 0);
 		~SoftwareSnap();
 
+		QString primaryPathFor(QString, QString);
+
 	public slots:
 		void loadSnapshot();
+		bool replaceImage(QString, QString, QPixmap &);
 		void resetSnapForced();
 		void copyToClipboard();
 		void copyPathToClipboard();
@@ -210,7 +213,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString &getXmlData();
 		QString &getXmlDataWithEnabledSlots(QStringList);
 		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
-		QStringList &arguments();
+		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);
 
 	public slots:
 		bool load();

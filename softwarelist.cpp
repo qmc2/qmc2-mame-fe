@@ -24,6 +24,7 @@ extern bool qmc2EarlyStartup;
 extern bool qmc2UseSoftwareSnapFile;
 extern SoftwareList *qmc2SoftwareList;
 extern SoftwareSnap *qmc2SoftwareSnap;
+extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 extern int qmc2SoftwareSnapPosition;
 extern bool qmc2IgnoreItemActivation;
 extern bool qmc2SmoothScaling;
@@ -2290,12 +2291,8 @@ void SoftwareList::on_comboBoxSearch_activated(const QString &pattern)
 	comboBoxSearch_editTextChanged_delayed();
 }
 
-QStringList &SoftwareList::arguments()
+QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *softwareNames)
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::arguments()");
-#endif
-
 	static QStringList swlArgs;
 
 	swlArgs.clear();
@@ -2371,7 +2368,11 @@ QStringList &SoftwareList::arguments()
 						swlArgs << QString("-%1").arg(comboBox->currentText());
 						QTreeWidgetItem *item = *it;
 						while ( item->parent() ) item = item->parent();
-						swlArgs << QString("%1:%2:%3").arg((*it)->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg((*it)->text(QMC2_SWLIST_COLUMN_PART));
+						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(item->text(QMC2_SWLIST_COLUMN_PART));
+						if ( softwareLists )
+							*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
+						if ( softwareNames )
+							*softwareNames << item->text(QMC2_SWLIST_COLUMN_NAME);
 					}
 				}
 				it++;
@@ -2392,6 +2393,10 @@ QStringList &SoftwareList::arguments()
 					swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(parts[i]);
 				}
 			}
+			if ( softwareLists )
+				*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
+			if ( softwareNames )
+				*softwareNames << item->text(QMC2_SWLIST_COLUMN_NAME);
 		}
 	}
 
@@ -2935,6 +2940,53 @@ SoftwareSnap::~SoftwareSnap()
 			unzClose(snapFile);
 		snapFileMap.clear();
 	}
+}
+
+QString SoftwareSnap::primaryPathFor(QString list, QString name)
+{
+	if ( !qmc2UseSoftwareSnapFile ) {
+		QStringList fl = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString().split(";", QString::SkipEmptyParts);
+		QString baseDirectory;
+		if ( fl.count() > 0 )
+			baseDirectory = fl[0];
+		return QDir::cleanPath(QDir::toNativeSeparators(baseDirectory + "/" + list + "/" + name + ".png"));
+	} else // we don't support on-the-fly image replacement for zipped images yet!
+		return QString();
+}
+
+bool SoftwareSnap::replaceImage(QString list, QString name, QPixmap &pixmap)
+{
+	if ( !qmc2UseSoftwareSnapFile ) {
+		QString savePath = primaryPathFor(list, name);
+		if ( !savePath.isEmpty() ) {
+			bool goOn = true;
+			if ( QFile::exists(savePath) ) {
+				QString backupPath = savePath + ".bak";
+				if ( QFile::exists(backupPath) )
+					QFile::remove(backupPath);
+				if ( !QFile::copy(savePath, backupPath) ) {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create backup of existing image file '%1' as '%2'").arg(savePath).arg(backupPath));
+					goOn = false;
+				}
+			}
+			if ( goOn ) {
+				if ( pixmap.save(savePath, "PNG") ) {
+					refresh();
+					if ( qmc2SoftwareSnapshot )
+						qmc2SoftwareSnapshot->refresh();
+					return true;
+				} else {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create image file '%1'").arg(savePath));
+					return false;
+				}
+			} else
+				return false;
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't determine primary path for image-type '%1'").arg(tr("software snapshot")));
+			return false;
+		}
+	} else // we don't support on-the-fly image replacement for zipped images yet!
+		return false;
 }
 
 void SoftwareSnap::zoomIn()
