@@ -35,6 +35,7 @@ class SnapshotViewer : public QWidget
 		QListWidgetItem *myItem;
 		QMenu *contextMenu;
 		QMenu *useAsMenu;
+		QMenu *swsMenu;
 		QString fileName;
 		QStringList imageTypeNames;
 		QStringList cachePrefixes;
