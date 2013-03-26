@@ -1812,6 +1812,8 @@ void MainWindow::on_actionPlay_triggered(bool)
     args << "-window" << "-nomaximize" << "-keepaspect" << "-rotate" << "-noror" << "-norol";
 #endif
 
+  QStringList softwareLists, softwareNames;
+
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( !qmc2DemoGame.isEmpty() )
     args << qmc2DemoArgs;
@@ -1820,7 +1822,7 @@ void MainWindow::on_actionPlay_triggered(bool)
   args << gameName;
 
   if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) ) {
-	  QStringList swlArgs = qmc2SoftwareList->arguments();
+	  QStringList swlArgs = qmc2SoftwareList->arguments(&softwareLists, &softwareNames);
 	  if ( swlArgs.count() > 1 ) { 
 		  if ( swlArgs[0] == "-snapname" ) {
 			  args.removeLast();
@@ -2022,7 +2024,7 @@ void MainWindow::on_actionPlay_triggered(bool)
   QString workingDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString();
 
   // start game/machine
-  qmc2ProcessManager->process(qmc2ProcessManager->start(command, args, true, workingDirectory));
+  qmc2ProcessManager->process(qmc2ProcessManager->start(command, args, true, workingDirectory, softwareLists, softwareNames));
 
   qmc2AutoMinimizedWidgets.clear();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {

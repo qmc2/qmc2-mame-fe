@@ -13,6 +13,8 @@
 #include "marquee.h"
 #include "title.h"
 #include "pcb.h"
+#include "softwarelist.h"
+#include "procmgr.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
@@ -26,6 +28,9 @@ extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
+extern SoftwareSnap *qmc2SoftwareSnap;
+extern bool qmc2UseSoftwareSnapFile;
+extern ProcessManager *qmc2ProcessManager;
 
 EmbedderOptions::EmbedderOptions(QWidget *parent)
 	: QWidget(parent)
@@ -317,6 +322,7 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 		QAction *action = it.value();
 		QString cachePrefix = it.key();
 		ImageWidget *iw = NULL;
+		SoftwareSnap *sws = NULL;
 		QString actionText;
 		switch ( cachePrefixes.indexOf(cachePrefix) ) {
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:
@@ -330,8 +336,8 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 				break;
 #endif
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
+				sws = qmc2SoftwareSnap;
 				actionText = tr("Software snapshot");
-				// FIXME
 				break;
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER:
 				iw = qmc2Flyer;
@@ -360,10 +366,23 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 		}
 		if ( iw ) {
 			action->setVisible(!iw->useZip());
-			if ( action->isEnabled() ) {
+			if ( action->isVisible() ) {
 				activateUseAsMenu = true;
 				action->setText(actionText + " (" + iw->primaryPathFor(embedder->gameName) + ")");
 			}
+		} else if ( sws ) {
+			if ( !qmc2UseSoftwareSnapFile ) {
+				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());
+				QStringList softwareLists = qmc2ProcessManager->softwareListsMap[proc];
+				QStringList softwareNames = qmc2ProcessManager->softwareNamesMap[proc];
+				if ( softwareLists.count() > 0 && softwareNames.count() > 0 ) {
+					action->setVisible(true);
+					action->setText(actionText + " (" + sws->primaryPathFor(softwareLists[0], softwareNames[0]) + ")");
+					activateUseAsMenu = true;
+				} else
+					action->setVisible(false);
+			} else
+				action->setVisible(false);
 		} else
 			action->setVisible(false);
 	}
@@ -395,7 +414,13 @@ void SnapshotViewer::useAsImage()
 			break;
 #endif
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_SWS:
-			// FIXME
+			if ( qmc2SoftwareSnap ) {
+				QProcess *proc = qmc2ProcessManager->process(embedder->gameID.toInt());
+				QStringList softwareLists = qmc2ProcessManager->softwareListsMap[proc];
+				QStringList softwareNames = qmc2ProcessManager->softwareNamesMap[proc];
+				if ( softwareLists.count() > 0 && softwareNames.count() > 0 )
+					qmc2SoftwareSnap->replaceImage(softwareLists[0], softwareNames[0], embedderOptions->snapshotMap[myItem]);
+			}
 			break;
 		case QMC2_EMBEDDER_SNAP_IMGTYPE_FLYER:
 			if ( qmc2Flyer )
