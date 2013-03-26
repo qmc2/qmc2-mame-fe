@@ -1972,48 +1972,68 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="29"/>
+        <location filename="../../embedderopt.ui" line="26"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="32"/>
+        <location filename="../../embedderopt.ui" line="29"/>
         <source>Take snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="90"/>
+        <location filename="../../embedderopt.cpp" line="51"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="106"/>
-        <location filename="../../embedderopt.ui" line="109"/>
+        <location filename="../../embedderopt.ui" line="105"/>
+        <location filename="../../embedderopt.ui" line="108"/>
         <source>Set zoom factor for snapshot items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="112"/>
+        <location filename="../../embedderopt.ui" line="111"/>
         <source> %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="137"/>
+        <location filename="../../embedderopt.ui" line="152"/>
+        <source>Save selected image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="155"/>
+        <source>Save as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="175"/>
         <source>Clear snapshots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="140"/>
+        <location filename="../../embedderopt.ui" line="178"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="61"/>
+        <location filename="../../embedderopt.ui" line="201"/>
+        <source>Choose the image-type for which the selected image should be used directly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="204"/>
+        <source>Use as</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="89"/>
         <source>Scale snapshots to the native resolution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="64"/>
+        <location filename="../../embedderopt.ui" line="92"/>
         <source>Native resolution</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17675,114 +17695,114 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="179"/>
+        <location filename="../../embedderopt.cpp" line="211"/>
         <source>Snapshot viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="195"/>
+        <location filename="../../embedderopt.cpp" line="227"/>
         <source>Zoom in (+10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="201"/>
+        <location filename="../../embedderopt.cpp" line="233"/>
         <source>Zoom out (-10%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="207"/>
+        <location filename="../../embedderopt.cpp" line="239"/>
         <source>Reset zoom (100%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="215"/>
+        <location filename="../../embedderopt.cpp" line="247"/>
         <source>Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="187"/>
+        <location filename="../../embedderopt.cpp" line="219"/>
         <source>Copy to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="335"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="367"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="243"/>
-        <location filename="../../embedderopt.cpp" line="244"/>
-        <location filename="../../embedderopt.cpp" line="345"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="275"/>
+        <location filename="../../embedderopt.cpp" line="276"/>
+        <location filename="../../embedderopt.cpp" line="377"/>
         <source>Software snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="349"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="381"/>
         <source>Flyer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="353"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="385"/>
         <source>Cabinet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="357"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="389"/>
         <source>Controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="362"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="394"/>
         <source>Logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="224"/>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="369"/>
+        <location filename="../../embedderopt.cpp" line="256"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="401"/>
         <source>PCB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="340"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="372"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="230"/>
-        <location filename="../../embedderopt.cpp" line="364"/>
+        <location filename="../../embedderopt.cpp" line="262"/>
+        <location filename="../../embedderopt.cpp" line="396"/>
         <source>Marquee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="235"/>
+        <location filename="../../embedderopt.cpp" line="267"/>
         <source>Use as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="495"/>
+        <location filename="../../embedderopt.cpp" line="531"/>
         <source>Choose PNG file to store image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="495"/>
+        <location filename="../../embedderopt.cpp" line="531"/>
         <source>PNG images (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="500"/>
+        <location filename="../../embedderopt.cpp" line="536"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
