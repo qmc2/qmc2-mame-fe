@@ -2949,7 +2949,7 @@ QString SoftwareSnap::primaryPathFor(QString list, QString name)
 		QString baseDirectory;
 		if ( fl.count() > 0 )
 			baseDirectory = fl[0];
-		return QDir::cleanPath(QDir::toNativeSeparators(baseDirectory + "/" + list + "/" + name + ".png"));
+		return QDir::toNativeSeparators(QDir::cleanPath(baseDirectory + "/" + list + "/" + name + ".png"));
 	} else // we don't support on-the-fly image replacement for zipped images yet!
 		return QString();
 }

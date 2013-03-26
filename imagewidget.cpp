@@ -280,7 +280,7 @@ QString ImageWidget::primaryPathFor(QString gameName)
 		QString baseDirectory;
 		if ( fl.count() > 0 )
 			baseDirectory = fl[0];
-		return QDir::cleanPath(QDir::toNativeSeparators(baseDirectory + "/" + gameName + ".png"));
+		return QDir::toNativeSeparators(QDir::cleanPath(baseDirectory + "/" + gameName + ".png"));
 	} else // we don't support on-the-fly image replacement for zipped images yet!
 		return QString();
 }
