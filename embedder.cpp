@@ -351,13 +351,13 @@ void Embedder::resizeEvent(QResizeEvent *e)
 
 	QWidget::resizeEvent(e);
 
+#if defined(QMC2_OS_WIN)
 	if ( embedded ) {
 		embedContainer->resize(size());
-#if defined(QMC2_OS_WIN)
 		if ( windowHandle && !updatingWindow )
 			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
-#endif
 	}
+#endif
 }
 
 #if defined(QMC2_OS_UNIX)
