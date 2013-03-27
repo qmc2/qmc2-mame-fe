@@ -317,7 +317,6 @@ Options::Options(QWidget *parent)
   comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_MACHINENAME, tr("Machine name"));
   spinBoxResponsiveness->setToolTip(tr("Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)"));
   spinBoxUpdateDelay->setToolTip(tr("Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?"));
-  checkBoxSortOnline->setToolTip(tr("Sort machine list while reloading (slower)"));
   checkBoxScaledTitle->setVisible(false);
   checkBoxScaledMarquee->setText(tr("Scaled logo"));
   radioButtonMarqueeSelect->setText(tr("Logo directory"));
@@ -336,7 +335,6 @@ Options::Options(QWidget *parent)
   toolButtonBrowseCatverIniFile->setVisible(false);
   labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
-  checkBoxHideWhileLoading->setToolTip(tr("Hide primary machine list while loading (recommended, much faster)"));
   tableWidgetRegisteredEmulators->setToolTip(tr("Registered emulators -- you may select one of these in the machine-specific emulator configuration"));
   checkBoxSaveGameSelection->setText(tr("Save machine selection"));
   checkBoxSaveGameSelection->setToolTip(tr("Save machine selection on exit and before reloading the machine list"));
@@ -1404,10 +1402,8 @@ void Options::on_pushButtonApply_clicked()
   bool showBiosSets = checkBoxShowBiosSets->isChecked();
   needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool() != showBiosSets );
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", showBiosSets);
-  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", checkBoxSortOnline->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", checkBoxAutoTriggerROMCheck->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", checkBoxDoubleClickActivation->isChecked());
-  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", checkBoxHideWhileLoading->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", checkBoxPlayOnSublistActivation->isChecked());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)comboBoxCursorPosition->currentIndex();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", qmc2CursorPositioningMode);
@@ -2438,10 +2434,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool());
   checkBoxShowDeviceSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool());
   checkBoxShowBiosSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool());
-  checkBoxSortOnline->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", false).toBool());
   checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", false).toBool());
   checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", true).toBool());
-  checkBoxHideWhileLoading->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", true).toBool());
   checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", false).toBool());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
   comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);

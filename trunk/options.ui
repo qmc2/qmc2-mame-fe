@@ -2514,8 +2514,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>508</width>
-                <height>273</height>
+                <width>513</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2535,7 +2535,20 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="0" colspan="4">
+                 <item row="8" column="0" colspan="4">
+                  <spacer name="verticalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="9" column="0" colspan="4">
                   <layout class="QHBoxLayout" name="layout8_2">
                    <item>
                     <widget class="QLabel" name="labelLegend5Pic">
@@ -2655,19 +2668,6 @@
                     <string>SW snaps on mouse hover</string>
                    </property>
                   </widget>
-                 </item>
-                 <item row="9" column="0" colspan="4">
-                  <spacer name="verticalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                  <item row="2" column="2">
                   <widget class="QLabel" name="labelSortOrder">
@@ -3061,38 +3061,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxHideWhileLoading">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Hide primary game list while loading (recommended, much faster)</string>
-                   </property>
-                   <property name="text">
-                    <string>Hide while loading</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="8" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxSortOnline">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Sort game list while reloading (slower)</string>
-                   </property>
-                   <property name="text">
-                    <string>Sort while loading</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="5" column="0">
                   <widget class="QLabel" name="labelSoftwareSnapPosition">
                    <property name="text">
@@ -3192,8 +3160,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>513</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3311,8 +3279,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>227</height>
+                <width>513</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3771,8 +3739,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
-                <height>463</height>
+                <width>513</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4240,8 +4208,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>506</height>
+                <width>182</width>
+                <height>438</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -5406,8 +5374,6 @@
   <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>checkBoxDoubleClickActivation</tabstop>
   <tabstop>checkBoxPlayOnSublistActivation</tabstop>
-  <tabstop>checkBoxHideWhileLoading</tabstop>
-  <tabstop>checkBoxSortOnline</tabstop>
   <tabstop>pushButtonRedefineKeySequence</tabstop>
   <tabstop>pushButtonResetShortcut</tabstop>
   <tabstop>treeWidgetShortcuts</tabstop>

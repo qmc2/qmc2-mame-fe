@@ -112,7 +112,7 @@ class Gamelist : public QObject
 class GamelistItem : public QTreeWidgetItem
 {
   public:
-    GamelistItem(QTreeWidget *parentTreeWidget) : QTreeWidgetItem(parentTreeWidget, QTreeWidgetItem::UserType) {;}
+    GamelistItem(QTreeWidget *parentTreeWidget = 0) : QTreeWidgetItem(parentTreeWidget, QTreeWidgetItem::UserType) {;}
     GamelistItem(QTreeWidgetItem *parentItem) : QTreeWidgetItem(parentItem, QTreeWidgetItem::UserType) {;}
 
     virtual bool operator<(const QTreeWidgetItem &) const;
