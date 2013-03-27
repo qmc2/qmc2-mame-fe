@@ -202,6 +202,7 @@ void Embedder::release()
 	embedContainer->clearFocus();
 #if defined(QMC2_OS_UNIX)
 	embedContainer->discardClient();
+	XMapRaised(QX11Info::display(), winId);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(raise()));
 #elif defined(QMC2_OS_WIN)
