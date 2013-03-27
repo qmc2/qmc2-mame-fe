@@ -3265,7 +3265,7 @@ void SoftwareSnap::loadSnapshot()
 		}
 	}
 
-	if ( pmLoaded ) {
+	if ( pmLoaded && !pm.isGhost ) {
 		qreal factor = (qreal)zoom / 100.0;
 		QSize zoomSize(factor * pm.size().width(), factor * pm.size().height());
 		pm = pm.scaled(zoomSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
