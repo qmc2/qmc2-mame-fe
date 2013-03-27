@@ -6837,6 +6837,7 @@ void MainWindow::init()
 
   createFifo();
   qmc2GhostImagePixmap.load(":/data/img/ghost.png");
+  qmc2GhostImagePixmap.isGhost = true;
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
   setupStyle(myStyle);
   if ( qApp->styleSheet().isEmpty() ) {

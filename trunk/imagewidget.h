@@ -17,29 +17,36 @@ class ImagePixmap : public QPixmap
 {
 	public:
 		QString imagePath;
-		ImagePixmap() : QPixmap()
+		bool isGhost;
+		ImagePixmap(bool ghost = false) : QPixmap()
 		{
 			imagePath.clear();
+			isGhost = ghost;
 		}
 
 		ImagePixmap(const ImagePixmap &other) : QPixmap((QPixmap &)other)
 		{
 			imagePath = other.imagePath;
+			isGhost = other.isGhost;
 		}
 
 		ImagePixmap(const QPixmap &other) : QPixmap(other)
 		{
 			const ImagePixmap *otherImagePixmap = dynamic_cast<const ImagePixmap *>(&other);
-			if ( otherImagePixmap )
+			if ( otherImagePixmap ) {
 				imagePath = otherImagePixmap->imagePath;
-			else
+				isGhost = otherImagePixmap->isGhost;
+			} else {
 				imagePath.clear();
+				isGhost = false;
+			}
 		}
 
 		ImagePixmap &operator=(const ImagePixmap &other)
 		{
 			QPixmap::operator=((QPixmap &)other);
 			imagePath = other.imagePath;
+			isGhost = other.isGhost;
 			return *this;
 		}
 
@@ -47,10 +54,13 @@ class ImagePixmap : public QPixmap
 		{
 			QPixmap::operator=(other);
 			const ImagePixmap *otherImagePixmap = dynamic_cast<const ImagePixmap *>(&other);
-			if ( otherImagePixmap )
+			if ( otherImagePixmap ) {
 				imagePath = otherImagePixmap->imagePath;
-			else
+				isGhost = otherImagePixmap->isGhost;
+			} else {
 				imagePath.clear();
+				isGhost = false;
+			}
 			return *this;
 		}
 };
