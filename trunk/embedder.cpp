@@ -204,6 +204,7 @@ void Embedder::release()
 	embedContainer->discardClient();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
 	XMapRaised(QX11Info::display(), winId);
+	QApplication::syncX();
 	raise();
 #elif defined(QMC2_OS_WIN)
 	checkTimer.stop();
