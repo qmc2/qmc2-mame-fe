@@ -27,6 +27,10 @@
 #define QMC2_EMBEDDER_SNAP_IMGTYPE_PCB		7
 #endif
 
+#define QMC2_EMBEDDER_SNAP_SCALE_NONE		0
+#define QMC2_EMBEDDER_SNAP_SCALE_NO_FILTER	1
+#define QMC2_EMBEDDER_SNAP_SCALE_FILTERED	2
+
 class SnapshotViewer : public QWidget
 {
 	Q_OBJECT
@@ -83,7 +87,7 @@ class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
 		void on_toolButtonSaveAs_clicked();
 		void on_listWidgetSnapshots_itemPressed(QListWidgetItem *);
 		void on_listWidgetSnapshots_itemSelectionChanged();
-		void on_checkBoxNativeSnapshotResolution_toggled(bool);
+		void on_comboBoxScaleMode_currentIndexChanged(int);
 		void on_spinBoxZoom_valueChanged(int);
 		void adjustIconSizes();
 };
