@@ -25,7 +25,7 @@
      <property name="title">
       <string>Available tool-bar actions</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
+     <layout class="QGridLayout" name="gridLayoutAvailableActions">
       <item row="0" column="0">
        <widget class="QListWidget" name="listWidgetAvailableActions">
         <property name="toolTip">
@@ -52,7 +52,7 @@
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
+          <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
         </property>
         <property name="autoDefault">
          <bool>false</bool>
@@ -73,7 +73,7 @@
      <property name="title">
       <string>Active tool-bar actions</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QGridLayout" name="gridLayoutActiveActions">
       <item row="0" column="0" colspan="5">
        <widget class="QListWidget" name="listWidgetActiveActions">
         <property name="toolTip">
@@ -97,7 +97,7 @@
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/previous-sail.png</normaloff>:/data/img/previous-sail.png</iconset>
+          <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
         </property>
         <property name="autoDefault">
          <bool>false</bool>
@@ -114,7 +114,7 @@
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+          <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
         </property>
         <property name="autoRepeat">
          <bool>true</bool>
@@ -134,7 +134,7 @@
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+          <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
         </property>
         <property name="autoRepeat">
          <bool>true</bool>
@@ -182,7 +182,7 @@
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer1">
        <property name="orientation">

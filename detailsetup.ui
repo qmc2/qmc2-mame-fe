@@ -14,7 +14,7 @@
   <property name="windowTitle">
    <string>Detail setup</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QGridLayout" name="gridLayoutBase">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0" colspan="5">
@@ -29,7 +29,7 @@
         <property name="title">
          <string>Available details</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_3">
+        <layout class="QGridLayout" name="gridLayoutAvailableDetails">
          <item row="0" column="0">
           <widget class="QListWidget" name="listWidgetAvailableDetails">
            <property name="toolTip">
@@ -72,7 +72,7 @@
              </property>
              <property name="icon">
               <iconset resource="qmc2.qrc">
-               <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
+               <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
              </property>
             </widget>
            </item>
@@ -84,7 +84,7 @@
         <property name="title">
          <string>Active details</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_4">
+        <layout class="QGridLayout" name="gridLayoutActiveDetails">
          <item row="0" column="0">
           <widget class="QListWidget" name="listWidgetActiveDetails">
            <property name="toolTip">
@@ -107,7 +107,7 @@
              </property>
              <property name="icon">
               <iconset resource="qmc2.qrc">
-               <normaloff>:/data/img/previous-sail.png</normaloff>:/data/img/previous-sail.png</iconset>
+               <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
              </property>
             </widget>
            </item>
@@ -121,7 +121,7 @@
              </property>
              <property name="icon">
               <iconset resource="qmc2.qrc">
-               <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+               <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
              </property>
              <property name="autoRepeat">
               <bool>true</bool>
@@ -138,7 +138,7 @@
              </property>
              <property name="icon">
               <iconset resource="qmc2.qrc">
-               <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+               <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
              </property>
              <property name="autoRepeat">
               <bool>true</bool>
