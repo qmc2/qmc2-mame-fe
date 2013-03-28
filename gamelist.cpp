@@ -818,7 +818,7 @@ void Gamelist::load()
       int i = 0;
       int gameCount = 0;
       QString readBuffer;
-      while ( !ts.atEnd() || !readBuffer.isEmpty() ) {
+      while ( (!ts.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
         readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
         bool endsWithNewLine = readBuffer.endsWith("\n");
         QStringList lines = readBuffer.split("\n");
@@ -851,11 +851,11 @@ void Gamelist::load()
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML game list data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
-      if ( singleXMLLine != "</mame>" ) {
+      if ( singleXMLLine != "</mame>" && !qmc2StopParser ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML game list cache is incomplete, invalidating XML game list cache"));
 #elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML machine list data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
-      if ( singleXMLLine != "</mess>" ) {
+      if ( singleXMLLine != "</mess>" && !qmc2StopParser ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML machine list cache is incomplete, invalidating XML machine list cache"));
 #endif
         xmlCacheOkay = false;
@@ -2726,12 +2726,15 @@ void Gamelist::loadReadyReadStandardOutput()
   qApp->processEvents();
 
 #if defined(QMC2_OS_WIN)
-  QString s =  QString::fromUtf8(loadProc->readAllStandardOutput());
+  QString s = QString::fromUtf8(loadProc->readAllStandardOutput());
 #else
   QString s = loadProc->readAllStandardOutput();
 #endif
   bool endsWithSpace = s.endsWith(" ");
   bool startWithSpace = s.startsWith(" ");
+
+  if ( qmc2StopParser )
+    loadProc->kill();
 
   s = s.simplified();
   if ( startWithSpace )
