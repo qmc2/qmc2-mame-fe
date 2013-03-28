@@ -46,7 +46,7 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 	showSnapshotViewer = true;
 
 	// restore settings
-	checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
+	comboBoxScaleMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotScaleMode", QMC2_EMBEDDER_SNAP_SCALE_NO_FILTER).toInt());
 	spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/ItemZoom", 100).toInt());
 	spinBoxZoom->setPrefix(tr("Zoom") + ": ");
 
@@ -107,10 +107,17 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
 	rect.moveCenter(pm.rect().center());
 	QPixmap clippedPixmap = pm.copy(rect);
 	QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
-	if ( checkBoxNativeSnapshotResolution->isChecked() )
-		snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-	else
-		snapshotMap[snapshotItem] = clippedPixmap;
+	switch ( comboBoxScaleMode->currentIndex() ) {
+		case QMC2_EMBEDDER_SNAP_SCALE_NONE:
+			snapshotMap[snapshotItem] = clippedPixmap;
+			break;
+		case QMC2_EMBEDDER_SNAP_SCALE_NO_FILTER:
+			snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::FastTransformation);
+			break;
+		case QMC2_EMBEDDER_SNAP_SCALE_FILTERED:
+			snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+			break;
+	}
 	listWidgetSnapshots->scrollToItem(snapshotItem, QAbstractItemView::PositionAtBottom);
 }
 
@@ -181,13 +188,13 @@ void EmbedderOptions::on_listWidgetSnapshots_itemSelectionChanged()
 	}
 }
 
-void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
+void EmbedderOptions::on_comboBoxScaleMode_currentIndexChanged(int mode)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled = %1)").arg(enabled));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_comboBoxScaleMode_currentIndexChanged(int mode = %1)").arg(mode));
 #endif
 
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", enabled);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/SnapshotScaleMode", mode);
 }
 
 void EmbedderOptions::on_toolButtonSaveAs_clicked()

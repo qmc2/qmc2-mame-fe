@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>521</width>
-    <height>229</height>
+    <width>544</width>
+    <height>221</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -77,22 +77,6 @@
      </property>
      <property name="uniformItemSizes">
       <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QCheckBox" name="checkBoxNativeSnapshotResolution">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Scale snapshots to the native resolution</string>
-     </property>
-     <property name="text">
-      <string>Native resolution</string>
      </property>
     </widget>
    </item>
@@ -225,11 +209,39 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboBoxScaleMode">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Select the snapshot scaling mode</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>No scaling</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Original size - no filter</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Original size - filtered</string>
+      </property>
+     </item>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>toolButtonTakeSnapshot</tabstop>
-  <tabstop>checkBoxNativeSnapshotResolution</tabstop>
+  <tabstop>comboBoxScaleMode</tabstop>
   <tabstop>spinBoxZoom</tabstop>
   <tabstop>toolButtonClearSnapshots</tabstop>
   <tabstop>toolButtonSaveAs</tabstop>

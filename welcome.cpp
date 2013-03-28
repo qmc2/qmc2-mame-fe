@@ -391,6 +391,17 @@ bool Welcome::checkConfig()
 		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading") )
 			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading");
 	  }
+#if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
+	  if ( oldMinor < 39 || (oldSvnRevision < 4818 && oldSvnRevision > 0) ) {
+		  // remove deprecated keys: "Embedder/NativeSnapshotResolution"
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution") )
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Embedder/NativeSnapshotResolution") )
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Embedder/NativeSnapshotResolution");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution") )
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution");
+	  }
+#endif
   }
 
   configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
