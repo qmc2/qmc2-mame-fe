@@ -628,6 +628,7 @@
 #define QMC2_EMBED_MAXIMIZE_DELAY		100
 #define QMC2_EMBED_FOCUS_DELAY			100
 #define QMC2_EMBED_PAUSERESUME_DELAY		250
+#define QMC2_EMBED_RELEASE_DELAY		25
 
 // X11 and Windows only: embedder snapshot item default size (100% zoom)
 #define QMC2_EMBED_SNAPSHOT_DEFAULT_ITEM_SIZE	50.0
