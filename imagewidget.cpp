@@ -301,6 +301,10 @@ bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
 				}
 			}
 			if ( goOn ) {
+				QString primaryPath = QFileInfo(savePath).absoluteDir().absolutePath();
+				QDir ppDir(primaryPath);
+				if ( !ppDir.exists() )
+					ppDir.mkpath(primaryPath);
 				if ( pixmap.save(savePath, "PNG") ) {
 					currentPixmap = pixmap;
 					currentPixmap.imagePath = savePath;

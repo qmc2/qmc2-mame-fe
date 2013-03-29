@@ -2970,6 +2970,10 @@ bool SoftwareSnap::replaceImage(QString list, QString name, QPixmap &pixmap)
 				}
 			}
 			if ( goOn ) {
+				QString primaryPath = QFileInfo(savePath).absoluteDir().absolutePath();
+				QDir ppDir(primaryPath);
+				if ( !ppDir.exists() )
+					ppDir.mkpath(primaryPath);
 				if ( pixmap.save(savePath, "PNG") ) {
 					refresh();
 					if ( qmc2SoftwareSnapshot )
