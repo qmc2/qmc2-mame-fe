@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>567</width>
+    <width>597</width>
     <height>331</height>
    </rect>
   </property>
@@ -109,6 +109,29 @@
        </property>
        <property name="checkable">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonSoftwareStates">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Toggle checking / displaying software-states (hold down for menu)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::DelayedPopup</enum>
        </property>
       </widget>
      </item>
@@ -300,7 +323,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>557</width>
+        <width>587</width>
         <height>192</height>
        </rect>
       </property>
@@ -390,8 +413,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>557</width>
-        <height>192</height>
+        <width>83</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -485,8 +508,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>557</width>
-        <height>195</height>
+        <width>83</width>
+        <height>90</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -621,6 +644,7 @@
   <tabstop>toolButtonCompatFilterToggle</tabstop>
   <tabstop>toolButtonToggleSoftwareInfo</tabstop>
   <tabstop>toolButtonToggleSnapnameAdjustment</tabstop>
+  <tabstop>toolButtonSoftwareStates</tabstop>
   <tabstop>comboBoxSnapnameDevice</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
   <tabstop>toolButtonExport</tabstop>

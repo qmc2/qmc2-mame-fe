@@ -179,6 +179,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QMenu *menuFavoriteSoftwareHeader;
 		QMenu *menuSearchResultsHeader;
 		QMenu *menuSnapnameAdjustment;
+		QMenu *menuSoftwareStates;
 		QMenu *menuSearchOptions;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
@@ -227,6 +228,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_toolButtonToggleSoftwareInfo_clicked(bool);
 		void on_toolButtonCompatFilterToggle_clicked(bool);
 		void on_toolButtonToggleSnapnameAdjustment_clicked(bool);
+		void on_toolButtonSoftwareStates_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);
@@ -263,6 +265,12 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void loadReadyReadStandardError();
 		void loadError(QProcess::ProcessError);
 		void loadStateChanged(QProcess::ProcessState);
+		void verifyStarted();
+		void verifyFinished(int, QProcess::ExitStatus);
+		void verifyReadyReadStandardOutput();
+		void verifyReadyReadStandardError();
+		void verifyError(QProcess::ProcessError);
+		void verifyStateChanged(QProcess::ProcessState);
  
 		// other
 		void treeWidgetKnownSoftware_headerSectionClicked(int);
