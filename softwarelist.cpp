@@ -43,6 +43,8 @@ QMap<QString, QString> softwareListXmlDataCache;
 QString swlBuffer;
 QString swlLastLine;
 QString swlSelectedMountDevice;
+QString swStatesBuffer;
+QString swStatesLastLine;
 bool swlSupported = true;
 
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
@@ -53,6 +55,10 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 #endif
 
 	setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED) // FIXME: remove when software-state checking works
+	toolButtonSoftwareStates->setVisible(false);
+#endif
 
 	// hide snapname device selection initially
 	comboBoxSnapnameDevice->hide();
@@ -99,6 +105,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonToggleSoftwareInfo->setIconSize(iconSize);
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
 	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
+	toolButtonSoftwareStates->setIconSize(iconSize);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
@@ -117,6 +124,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonExport->setEnabled(false);
 	toolButtonToggleSoftwareInfo->setEnabled(false);
 	toolButtonCompatFilterToggle->setEnabled(false);
+	toolButtonToggleSnapnameAdjustment->setEnabled(false);
+	toolButtonSoftwareStates->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
 
 	// software list context menu
@@ -175,6 +184,15 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(adjustSnapnamePattern()));
 	toolButtonToggleSnapnameAdjustment->setMenu(menuSnapnameAdjustment);
 
+	// software-states menu
+	menuSoftwareStates = new QMenu(this);
+	s = tr("Check software-states");
+	action = menuSoftwareStates->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/update.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(checkSoftwareStates()));
+	toolButtonSoftwareStates->setMenu(menuSoftwareStates);
+
 	// search options menu
 	menuSearchOptions = new QMenu(this);
 	s = tr("Negate search");
@@ -201,6 +219,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", true).toBool());
 	toolButtonCompatFilterToggle->blockSignals(false);
 	toolButtonToggleSnapnameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname").toBool());
+	toolButtonSoftwareStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates").toBool());
 
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
@@ -298,6 +317,7 @@ SoftwareList::~SoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareInfo", toolButtonToggleSoftwareInfo->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", toolButtonCompatFilterToggle->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", toolButtonToggleSnapnameAdjustment->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates", toolButtonSoftwareStates->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/NegateSearch", actionNegateSearch->isChecked());
 }
 
@@ -386,6 +406,8 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 			toolButtonExport->setEnabled(false);
 			toolButtonToggleSoftwareInfo->setEnabled(false);
 			toolButtonCompatFilterToggle->setEnabled(false);
+			toolButtonToggleSnapnameAdjustment->setEnabled(false);
+			toolButtonSoftwareStates->setEnabled(false);
 			softwareListXmlBuffer.clear();
 		}
 	}
@@ -738,6 +760,8 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
+		toolButtonToggleSnapnameAdjustment->setEnabled(true);
+		toolButtonSoftwareStates->setEnabled(true);
 
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		// load available device configurations, if any...
@@ -1144,6 +1168,8 @@ bool SoftwareList::load()
 	toolButtonReload->setEnabled(true);
 	toolButtonToggleSoftwareInfo->setEnabled(true);
 	toolButtonCompatFilterToggle->setEnabled(true);
+	toolButtonToggleSnapnameAdjustment->setEnabled(true);
+	toolButtonSoftwareStates->setEnabled(true);
 
 	isLoading = false;
 	fullyLoaded = !interruptLoad;
@@ -1421,6 +1447,89 @@ void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 
 }
 
+void SoftwareList::verifyStarted()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyStarted()"));
+#endif
+
+	// FIXME
+}
+
+void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
+#endif
+
+	if ( exitStatus != QProcess::NormalExit || exitCode != 0 )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify software-states didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+
+	// FIXME
+}
+
+void SoftwareList::verifyReadyReadStandardOutput()
+{
+	QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyReadyReadStandardOutput()"));
+#endif
+
+#if defined(QMC2_OS_WIN)
+	QString s = swStatesLastLine + QString::fromAscii(proc->readAllStandardOutput());
+	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#else
+	QString s = swStatesLastLine + proc->readAllStandardOutput();
+#endif
+	QStringList lines = s.split("\n");
+
+	if ( s.endsWith("\n") ) {
+		swStatesLastLine.clear();
+	} else {
+		swStatesLastLine = lines.last();
+		lines.removeLast();
+	}
+
+	foreach (QString line, lines) {
+		// FIXME
+	}
+}
+
+void SoftwareList::verifyReadyReadStandardError()
+{
+	QProcess *proc = (QProcess *)sender();
+
+	QString data = proc->readAllStandardError();
+	data = data.trimmed();
+
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyReadyReadStandardError(): data = '%1'").arg(data));
+#endif
+
+	// FIXME
+}
+
+void SoftwareList::verifyError(QProcess::ProcessError processError)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyError(QProcess::ProcessError processError = %1)").arg(processError));
+#endif
+
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify software-states caused an error -- processError = %1").arg(processError));
+
+	// FIXME
+}
+
+void SoftwareList::verifyStateChanged(QProcess::ProcessState processState)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
+#endif
+
+	// FIXME
+}
+
 void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
@@ -1431,6 +1540,15 @@ void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 		comboBoxSnapnameDevice->show();
 	else
 		comboBoxSnapnameDevice->hide();
+}
+
+void SoftwareList::on_toolButtonSoftwareStates_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonSoftwareStates_clicked(bool checked = %1)").arg(checked));
+#endif
+
+	// FIXME
 }
 
 void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
@@ -1545,6 +1663,8 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 	toolButtonExport->setEnabled(false);
 	toolButtonToggleSoftwareInfo->setEnabled(false);
 	toolButtonCompatFilterToggle->setEnabled(false);
+	toolButtonToggleSnapnameAdjustment->setEnabled(false);
+	toolButtonSoftwareStates->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
 	comboBoxDeviceConfiguration->clear();
 	comboBoxDeviceConfiguration->insertItem(0, tr("Default configuration"));
