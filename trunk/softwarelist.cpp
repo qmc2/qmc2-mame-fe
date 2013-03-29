@@ -218,8 +218,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->blockSignals(true);
 	toolButtonCompatFilterToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", true).toBool());
 	toolButtonCompatFilterToggle->blockSignals(false);
-	toolButtonToggleSnapnameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname").toBool());
-	toolButtonSoftwareStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates").toBool());
+	toolButtonToggleSnapnameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", false).toBool());
+	toolButtonSoftwareStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates", false).toBool());
 
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
@@ -1447,6 +1447,16 @@ void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 
 }
 
+#define QMC2_DEBUG
+
+void SoftwareList::checkSoftwareStates()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::checkSoftwareStates()"));
+#endif
+
+}
+
 void SoftwareList::verifyStarted()
 {
 #ifdef QMC2_DEBUG
@@ -1529,6 +1539,8 @@ void SoftwareList::verifyStateChanged(QProcess::ProcessState processState)
 
 	// FIXME
 }
+
+#undef QMC2_DEBUG
 
 void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 {

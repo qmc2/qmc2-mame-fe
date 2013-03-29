@@ -220,6 +220,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool load();
 		bool save();
 		void updateMountDevices();
+		void checkSoftwareStates();
 
 		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);
