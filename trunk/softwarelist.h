@@ -212,6 +212,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QList<QTreeWidgetItem *> softwareListItems;
 		quint64 numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
 		bool verifyReadingStdout;
+		QFile softwareStateFile;
+		QTextStream softwareStateStream;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
