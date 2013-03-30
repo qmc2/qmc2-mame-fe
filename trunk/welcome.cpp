@@ -125,10 +125,10 @@ void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 	QString s;
 
 	if ( lineEditExecutableFile->text().isEmpty() )
-		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), QString(), tr("All files (*)"));
+		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), QString(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	else {
 		QFileInfo fileInfo(lineEditExecutableFile->text());
-		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absolutePath(), tr("All files (*)"));
+		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absolutePath(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	}
 
 	if ( !s.isEmpty() )
@@ -150,7 +150,7 @@ void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
     QFileInfo fi(executableFile);
     suggestion = fi.dir().absolutePath();
   }
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), suggestion, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), suggestion, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditWorkingDirectory->setText(s);
   raise();
@@ -162,7 +162,7 @@ void Welcome::on_toolButtonBrowseROMPath_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseROMPath_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose ROM path"), lineEditROMPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose ROM path"), lineEditROMPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditROMPath->setText(s);
   raise();
@@ -175,7 +175,7 @@ void Welcome::on_toolButtonBrowseSamplePath_clicked()
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditSamplePath->setText(s);
   raise();
@@ -188,7 +188,7 @@ void Welcome::on_toolButtonBrowseHashPath_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseHashPath_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditHashPath->setText(s);
   raise();

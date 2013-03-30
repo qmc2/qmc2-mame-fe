@@ -535,7 +535,7 @@ void SnapshotViewer::saveAs()
 	}
 
 	hide();
-	fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"));
+	fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"), 0, QFileDialog::DontUseNativeDialog);
 
 	if ( !fileName.isEmpty() ) {
 		EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();

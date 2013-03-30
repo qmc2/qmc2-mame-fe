@@ -252,6 +252,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->checkBoxShowBiosSets->setEnabled(enable);
   qmc2Options->checkBoxShowDeviceSets->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSoftwareStateCache->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
   qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
 #endif

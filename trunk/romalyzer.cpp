@@ -1961,7 +1961,7 @@ void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD manager executable file"), lineEditCHDManagerExecutableFile->text(), tr("All files (*)"));
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD manager executable file"), lineEditCHDManagerExecutableFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditCHDManagerExecutableFile->setText(s);
   raise();
@@ -1973,7 +1973,7 @@ void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditTemporaryWorkingDirectory->setText(s);
@@ -1987,7 +1987,7 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()");
 #endif
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose output directory"), lineEditSetRewriterOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose output directory"), lineEditSetRewriterOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") ) s += "/";
 		lineEditSetRewriterOutputPath->setText(s);
@@ -2001,7 +2001,7 @@ void ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked()");
 #endif
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose additional ROM path"), lineEditSetRewriterAdditionalRomPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose additional ROM path"), lineEditSetRewriterAdditionalRomPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditSetRewriterAdditionalRomPath->setText(s);
 	raise();
@@ -3152,7 +3152,7 @@ void ROMAlyzer::on_toolButtonSaveLog_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonSaveLog_clicked()");
 #endif
 
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the ROMAlyzer log"), "qmc2-romalyzer.log", tr("All files (*)"));
+	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the ROMAlyzer log"), "qmc2-romalyzer.log", tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		QFile f(fileName);
 		if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
@@ -3239,7 +3239,7 @@ void ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()");
 #endif
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose local DB output path"), lineEditDatabaseOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose local DB output path"), lineEditDatabaseOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
 
 	if ( !s.isNull() ) {
 		if ( !s.endsWith("/") ) s += "/";

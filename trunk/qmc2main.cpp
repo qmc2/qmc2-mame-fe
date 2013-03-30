@@ -6044,7 +6044,7 @@ void MainWindow::pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
 #else
   QString fileName;
 #endif
-  QString s = QFileDialog::getSaveFileName(qmc2Options, tr("Choose export file"), fileName, tr("All files (*)"));
+  QString s = QFileDialog::getSaveFileName(qmc2Options, tr("Choose export file"), fileName, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     pushButtonGlobalEmulatorOptionsExportToFile_clicked(s);
 }
@@ -6073,7 +6073,7 @@ void MainWindow::pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
 #else
   QString fileName;
 #endif
-  QString s = QFileDialog::getOpenFileName(qmc2Options, tr("Choose import file"), fileName, tr("All files (*)"));
+  QString s = QFileDialog::getOpenFileName(qmc2Options, tr("Choose import file"), fileName, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     pushButtonGlobalEmulatorOptionsImportFromFile_clicked(s);
 }
@@ -6101,7 +6101,7 @@ void MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
     iniPath = ".";
     log(QMC2_LOG_FRONTEND, tr("WARNING: invalid inipath"));
   }
-  QString s = QFileDialog::getSaveFileName(this, tr("Choose export file"), iniPath, tr("All files (*)"));
+  QString s = QFileDialog::getSaveFileName(this, tr("Choose export file"), iniPath, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     pushButtonCurrentEmulatorOptionsExportToFile_clicked(s);
 }
@@ -6133,7 +6133,7 @@ void MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
     log(QMC2_LOG_FRONTEND, tr("WARNING: invalid inipath"));
   }
   iniPath += "/" + qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".ini";
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose import file"), iniPath, tr("All files (*)"));
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose import file"), iniPath, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     pushButtonCurrentEmulatorOptionsImportFromFile_clicked(s);
 }
@@ -7943,7 +7943,7 @@ void MainWindow::on_toolButtonAudioAddTracks_clicked()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioAddTracks_clicked()");
 #endif
 
-  QStringList sl = QFileDialog::getOpenFileNames(this, tr("Select one or more audio files"), QString(), tr("All files (*)"));
+  QStringList sl = QFileDialog::getOpenFileNames(this, tr("Select one or more audio files"), QString(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   if ( sl.count() > 0 )
     listWidgetAudioPlaylist->addItems(sl);
 }
@@ -9760,7 +9760,7 @@ void MainWindow::storeMawsIcon()
   } else {
     if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
       saveName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
-    filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store the icon"), saveName, tr("All files (*)"));
+    filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store the icon"), saveName, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   }
 
   if ( !filePath.isEmpty() ) {
@@ -9827,7 +9827,7 @@ void MainWindow::startDownload(QWidget *forParent, QNetworkReply *reply, QString
   } else {
     if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
       proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
-    filePath = QFileDialog::getSaveFileName(forParent, tr("Choose file to store download"), proposedName, tr("All files (*)"));
+    filePath = QFileDialog::getSaveFileName(forParent, tr("Choose file to store download"), proposedName, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
   }
 
   if ( !filePath.isEmpty() ) {
