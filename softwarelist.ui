@@ -324,7 +324,7 @@
         <x>0</x>
         <y>0</y>
         <width>587</width>
-        <height>192</height>
+        <height>170</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -633,6 +633,16 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="format">
+      <string>Checking software-states - %p%</string>
      </property>
     </widget>
    </item>

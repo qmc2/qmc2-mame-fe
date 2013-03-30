@@ -703,6 +703,10 @@
 #define QMC2_SWLIST_LOAD_RESPONSE_LONG		1000
 #define QMC2_SWLIST_LOAD_ANIM_DELAY		5000
 
+// responsiveness in sofware-state checks
+#define QMC2_SWLIST_CHECK_RESPONSE		100
+#define QMC2_SWLIST_CHECK_RESPONSE_SHORT	25
+
 // when analyzing sets that were not mentioned during full audit, be responsive every n'th line in the XML that's being read
 #define QMC2_AUDIT_NMS_RESPONSE			1000
 

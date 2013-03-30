@@ -168,6 +168,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 	
 	public:
 		QProcess *loadProc;
+		QProcess *verifyProc;
 		QTime loadTimer;
 		QFile fileSWLCache;
 		QString systemName;
@@ -206,6 +207,11 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		int oldMax, oldMin;
 		QString oldFmt;
 		QTreeWidgetItem *currentItem;
+		QMap<QString, int> softwareStateMap;
+		QString softwareListName;
+		QList<QTreeWidgetItem *> softwareListItems;
+		quint64 numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
+		bool verifyReadingStdout;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
