@@ -1,11 +1,6 @@
 #include <QtGui>
-#include "macros.h"
-#if defined(QMC2_OS_MAC)
 #include <QTest>
-#endif
-#if QT_VERSION >= 0x050000
 #include <QFileDialog>
-#endif
 #include <QCache>
 #include <QInputDialog>
 
@@ -14,6 +9,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
+#include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -59,6 +55,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 #if !defined(QMC2_WIP_ENABLED) // FIXME: remove when software-state checking works
 	toolButtonSoftwareStates->setVisible(false);
 #endif
+	progressBar->setVisible(false);
 
 	// hide snapname device selection initially
 	comboBoxSnapnameDevice->hide();
@@ -71,7 +68,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(&snapTimer, SIGNAL(timeout()), qmc2SoftwareSnap, SLOT(loadSnapshot()));
 
 	systemName = sysName;
-	loadProc = NULL;
+	loadProc = verifyProc = NULL;
 	exporter = NULL;
 	currentItem = NULL;
 	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = updatingMountDevices = negatedMatch = false;
@@ -96,6 +93,10 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	QSize iconSizeMiddle = iconSize + QSize(2, 2);
+	treeWidgetKnownSoftware->setIconSize(iconSizeMiddle);
+	treeWidgetFavoriteSoftware->setIconSize(iconSizeMiddle);
+	treeWidgetSearchResults->setIconSize(iconSizeMiddle);
 	toolButtonAddToFavorites->setIconSize(iconSize);
 	toolButtonRemoveFromFavorites->setIconSize(iconSize);
 	toolButtonFavoritesOptions->setIconSize(iconSize);
@@ -760,8 +761,6 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
-		toolButtonToggleSnapnameAdjustment->setEnabled(true);
-		toolButtonSoftwareStates->setEnabled(true);
 
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		// load available device configurations, if any...
@@ -1447,14 +1446,69 @@ void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 
 }
 
-#define QMC2_DEBUG
-
 void SoftwareList::checkSoftwareStates()
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::checkSoftwareStates()"));
 #endif
 
+	QStringList softwareLists = systemSoftwareListMap[systemName];
+	progressBar->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
+	progressBar->setValue(0);
+
+	foreach (QString softwareList, softwareLists) {
+		if ( verifyProc )
+			delete verifyProc;
+
+		verifyProc = new QProcess(this);
+
+		connect(verifyProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(verifyError(QProcess::ProcessError)));
+		connect(verifyProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(verifyFinished(int, QProcess::ExitStatus)));
+		connect(verifyProc, SIGNAL(readyReadStandardOutput()), this, SLOT(verifyReadyReadStandardOutput()));
+		connect(verifyProc, SIGNAL(readyReadStandardError()), this, SLOT(verifyReadyReadStandardError()));
+		connect(verifyProc, SIGNAL(started()), this, SLOT(verifyStarted()));
+		connect(verifyProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(verifyStateChanged(QProcess::ProcessState)));
+
+		numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
+		softwareListItems = treeWidgetKnownSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
+		softwareListName = softwareList;
+		swStatesLastLine.clear();
+		softwareStateMap.clear();
+
+		QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
+		QStringList args;
+		args << "-verifysoftlist" << softwareList;
+		QString romPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME");
+		if ( !romPath.isEmpty() )
+			args << "-rompath" << romPath;
+		QString hashPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath").toString().replace("~", "$HOME");
+		if ( !hashPath.isEmpty() )
+			args << "-hashpath" << hashPath;
+
+		verifyProc->start(command, args);
+
+		verifyReadingStdout = false;
+		bool verifyProcStarted = false;
+		int retries = 0;
+		bool started = verifyProc->waitForStarted(QMC2_PROCESS_POLL_TIME);
+		while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES )
+			started = verifyProc->waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+
+		if ( started ) {
+			verifyProcStarted = true;
+			bool verifyProcRunning = (verifyProc->state() == QProcess::Running);
+			while ( !verifyProc->waitForFinished(QMC2_PROCESS_POLL_TIME) && verifyProcRunning ) {
+				qApp->processEvents();
+				verifyProcRunning = (verifyProc->state() == QProcess::Running);
+			}
+			verifyProc->waitForFinished();
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
+			break;
+		}
+	}
+
+	QTimer::singleShot(0, progressBar, SLOT(hide()));
 }
 
 void SoftwareList::verifyStarted()
@@ -1463,7 +1517,7 @@ void SoftwareList::verifyStarted()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyStarted()"));
 #endif
 
-	// FIXME
+	progressBar->setVisible(true);
 }
 
 void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -1472,25 +1526,45 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
 #endif
 
-	if ( exitStatus != QProcess::NormalExit || exitCode != 0 )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify software-states didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+	while ( verifyReadingStdout ) {
+		QTest::qWait(10);
+		qApp->processEvents();
+	}
 
-	// FIXME
+	if ( (exitStatus != QProcess::NormalExit || exitCode != 0) && exitCode != 2 )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify the states for software-list '%1' didn't exit cleanly -- exitCode = %2, exitStatus = %3").arg(softwareListName).arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+
+	for (int i = 0; i < softwareListItems.count(); i++) {
+		QTreeWidgetItem *softwareItem = softwareListItems[i];
+		QString key = softwareItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + softwareItem->text(QMC2_SWLIST_COLUMN_NAME);
+		if ( !softwareStateMap.contains(key) ) {
+			progressBar->setValue(progressBar->value() + 1);
+			softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+			numSoftwareNotFound++;
+		}
+
+		if ( i % QMC2_SWLIST_CHECK_RESPONSE == 0 )
+			qApp->processEvents();
+	}
+
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(softwareListName).arg(softwareListItems.count()).arg(numSoftwareCorrect).arg(numSoftwareMostlyCorrect).arg(numSoftwareIncorrect).arg(numSoftwareNotFound).arg(numSoftwareUnknown));
+
+	softwareListItems.clear();
 }
 
 void SoftwareList::verifyReadyReadStandardOutput()
 {
-	QProcess *proc = (QProcess *)sender();
+	verifyReadingStdout = true;
 
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyReadyReadStandardOutput()"));
 #endif
 
 #if defined(QMC2_OS_WIN)
-	QString s = swStatesLastLine + QString::fromAscii(proc->readAllStandardOutput());
+	QString s = swStatesLastLine + QString::fromAscii(verifyProc->readAllStandardOutput());
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #else
-	QString s = swStatesLastLine + proc->readAllStandardOutput();
+	QString s = swStatesLastLine + verifyProc->readAllStandardOutput();
 #endif
 	QStringList lines = s.split("\n");
 
@@ -1502,22 +1576,69 @@ void SoftwareList::verifyReadyReadStandardOutput()
 	}
 
 	foreach (QString line, lines) {
-		// FIXME
+		line = line.simplified();
+		if ( !line.isEmpty() ) {
+			QStringList words = line.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+			if ( line.startsWith("romset") ) {
+				progressBar->setValue(progressBar->value() + 1);
+				QStringList romsetWords = words[1].split(":", QString::SkipEmptyParts);
+				QString status = words.last();
+				QString entry = romsetWords[1];
+				QString key = romsetWords[0] + ":" + entry;
+
+				QTreeWidgetItem *softwareItem = NULL;
+				foreach (QTreeWidgetItem *item, softwareListItems) {
+					if ( item->text(QMC2_SWLIST_COLUMN_NAME) == entry ) {
+						softwareItem = item;
+						break;
+					}
+				}
+
+				if ( !softwareItem )
+					continue;
+
+				int numericStatus = QMC2_ROMSTATE_INT_U;
+				if ( status == "good" )
+					numericStatus = QMC2_ROMSTATE_INT_C;
+				else if ( status == "bad" )
+					numericStatus = QMC2_ROMSTATE_INT_I;
+				else if ( status == "available" )
+					numericStatus = QMC2_ROMSTATE_INT_M;
+
+				softwareStateMap[key] = numericStatus;
+
+				switch ( numericStatus ) {
+					case QMC2_ROMSTATE_INT_C:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+						numSoftwareCorrect++;
+						break;
+					case QMC2_ROMSTATE_INT_M:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+						numSoftwareMostlyCorrect++;
+						break;
+					case QMC2_ROMSTATE_INT_I:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+						numSoftwareIncorrect++;
+						break;
+					case QMC2_ROMSTATE_INT_U:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+						numSoftwareUnknown++;
+						break;
+				}
+			}
+		}
 	}
+
+	verifyReadingStdout = false;
 }
 
 void SoftwareList::verifyReadyReadStandardError()
 {
-	QProcess *proc = (QProcess *)sender();
-
-	QString data = proc->readAllStandardError();
-	data = data.trimmed();
-
 #ifdef QMC2_DEBUG
+	QString data = verifyProc->readAllStandardError();
+	data = data.trimmed();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyReadyReadStandardError(): data = '%1'").arg(data));
 #endif
-
-	// FIXME
 }
 
 void SoftwareList::verifyError(QProcess::ProcessError processError)
@@ -1528,7 +1649,7 @@ void SoftwareList::verifyError(QProcess::ProcessError processError)
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify software-states caused an error -- processError = %1").arg(processError));
 
-	// FIXME
+	progressBar->setVisible(false);
 }
 
 void SoftwareList::verifyStateChanged(QProcess::ProcessState processState)
@@ -1536,11 +1657,7 @@ void SoftwareList::verifyStateChanged(QProcess::ProcessState processState)
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
 #endif
-
-	// FIXME
 }
-
-#undef QMC2_DEBUG
 
 void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 {
@@ -1560,7 +1677,10 @@ void SoftwareList::on_toolButtonSoftwareStates_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonSoftwareStates_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	// FIXME
+	if ( checked )
+		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
+	else
+		toolButtonSoftwareStates->setMenu(NULL);
 }
 
 void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
