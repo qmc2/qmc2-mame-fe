@@ -692,7 +692,7 @@ void ImageChecker::on_toolButtonSaveLog_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::on_toolButtonSaveLog_clicked()");
 #endif
 
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the image checker log"), "qmc2-imagechecker.log", tr("All files (*)"));
+	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the image checker log"), "qmc2-imagechecker.log", tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		QFile f(fileName);
 		if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {

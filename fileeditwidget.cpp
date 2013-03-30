@@ -49,9 +49,9 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 		startPath = qmc2FileEditStartPath;
 	QString s;
 	if ( toolButtonClear->isVisible() )
-		s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter);
+		s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontUseNativeDialog);
 	else
-		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontConfirmOverwrite);
+		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontConfirmOverwrite | QFileDialog::DontUseNativeDialog);
 	if ( !s.isEmpty() ) {
 		if ( browserPart == "basename" ) {
 			QFileInfo fi(s);

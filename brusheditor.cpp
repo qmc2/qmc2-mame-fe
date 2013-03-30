@@ -294,7 +294,7 @@ void BrushEditor::on_toolButtonBrowseImageFile_clicked()
 	QStringList imageFileTypes;
 	foreach (QByteArray imageFormat, QImageReader::supportedImageFormats())
 		imageFileTypes << "*." + QString(imageFormat).toLower();
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), lineEditImageFile->text(), tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"));
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), lineEditImageFile->text(), tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		lineEditImageFile->setText(fileName);
 		QPalette pal = frameImagePreview->palette();

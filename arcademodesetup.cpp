@@ -237,28 +237,28 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 
 void ArcadeModeSetup::on_toolButtonBrowseExecutableFile_clicked()
 {
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose QMC2 Arcade's executable file"), lineEditExecutableFile->text(), tr("All files (*)"));
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose QMC2 Arcade's executable file"), lineEditExecutableFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() )
 		lineEditExecutableFile->setText(fileName);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseWorkingDirectory_clicked()
 {
-	QString workDir = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString workDir = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
 	if ( !workDir.isEmpty() )
 		lineEditWorkingDirectory->setText(workDir);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseConfigurationPath_clicked()
 {
-	QString configPath = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's configuration path"), lineEditConfigurationPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString configPath = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's configuration path"), lineEditConfigurationPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
 	if ( !configPath.isEmpty() )
 		lineEditConfigurationPath->setText(configPath);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseFilteredListFile_clicked()
 {
-	QString filteredListFile = QFileDialog::getSaveFileName(this, tr("Choose filtered list file for export"), lineEditFilteredListFile->text(), tr("All files (*)"));
+	QString filteredListFile = QFileDialog::getSaveFileName(this, tr("Choose filtered list file for export"), lineEditFilteredListFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 	if ( !filteredListFile.isEmpty() )
 		lineEditFilteredListFile->setText(filteredListFile);
 }

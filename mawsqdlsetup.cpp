@@ -110,7 +110,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowseIconDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseIconDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose icon directory"), lineEditIconDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose icon directory"), lineEditIconDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditIconDirectory->setText(s);
@@ -123,7 +123,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowseFlyerDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseFlyerDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose flyer directory"), lineEditFlyerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose flyer directory"), lineEditFlyerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditFlyerDirectory->setText(s);
@@ -136,7 +136,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowseCabinetDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseCabinetDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose cabinet directory"), lineEditCabinetDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose cabinet directory"), lineEditCabinetDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditCabinetDirectory->setText(s);
@@ -149,7 +149,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowseControllerDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseControllerDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose controller directory"), lineEditControllerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose controller directory"), lineEditControllerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditControllerDirectory->setText(s);
@@ -162,7 +162,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowseMarqueeDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseMarqueeDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose marquee directory"), lineEditMarqueeDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose marquee directory"), lineEditMarqueeDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditMarqueeDirectory->setText(s);
@@ -175,7 +175,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowsePCBDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowsePCBDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose PCB directory"), lineEditPCBDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose PCB directory"), lineEditPCBDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditPCBDirectory->setText(s);
@@ -188,7 +188,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowsePreviewDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowsePreviewDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose preview directory"), lineEditPreviewDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose preview directory"), lineEditPreviewDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditPreviewDirectory->setText(s);
@@ -201,7 +201,7 @@ void MawsQuickDownloadSetup::on_toolButtonBrowseTitleDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseTitleDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose title directory"), lineEditTitleDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose title directory"), lineEditTitleDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditTitleDirectory->setText(s);

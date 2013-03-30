@@ -410,7 +410,7 @@ void SoftwareListExporter::on_toolButtonBrowseASCIIFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::on_toolButtonBrowseASCIIFile_clicked()");
 #endif
 
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"));
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 
 	if ( !s.isNull() )
 		lineEditASCIIFile->setText(s);
@@ -424,7 +424,7 @@ void SoftwareListExporter::on_toolButtonBrowseCSVFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::on_toolButtonBrowseCSVFile_clicked()");
 #endif
 
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"));
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
 
 	if ( !s.isNull() )
 		lineEditCSVFile->setText(s);

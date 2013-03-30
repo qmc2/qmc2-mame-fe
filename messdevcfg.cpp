@@ -2046,7 +2046,7 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 
 	qmc2Config->beginGroup(group);
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
 	if ( !s.isEmpty() )
 		qmc2Config->setValue("DefaultDeviceDirectory", s);
 	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();

@@ -571,7 +571,7 @@ void YouTubeVideoPlayer::playerLocalMovieFile()
 #endif
 	
 	QString filter = tr("All files (*)");
-	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter);
+	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, QFileDialog::DontUseNativeDialog);
 	if ( !path.isNull() )
 		playMovieFile(path);
 }
@@ -583,7 +583,7 @@ void YouTubeVideoPlayer::attachMovieFile()
 #endif
 
 	QString filter = tr("All files (*)");
-	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter);
+	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, QFileDialog::DontUseNativeDialog);
 	if ( !path.isNull() )
 		attachVideo("#:" + path, "", "");
 }
