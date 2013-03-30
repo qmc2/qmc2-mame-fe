@@ -1457,6 +1457,9 @@ void SoftwareList::checkSoftwareStates()
 	progressBar->setValue(0);
 
 	foreach (QString softwareList, softwareLists) {
+		if ( softwareList == "NO_SOFTWARE_LIST" )
+			break;
+
 		if ( verifyProc )
 			delete verifyProc;
 
