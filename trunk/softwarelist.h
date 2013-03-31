@@ -61,6 +61,8 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
 		bool characters(const QString &);
+
+		void loadSoftwareStates(QString);
 };
 
 class SoftwareEntryXmlHandler : public QXmlDefaultHandler
@@ -207,9 +209,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		int oldMax, oldMin;
 		QString oldFmt;
 		QTreeWidgetItem *currentItem;
-		QMap<QString, int> softwareStateMap;
 		QString softwareListName;
-		QList<QTreeWidgetItem *> softwareListItems;
+		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
 		quint64 numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
 		bool verifyReadingStdout;
 		QFile softwareStateFile;
@@ -237,7 +238,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_toolButtonToggleSoftwareInfo_clicked(bool);
 		void on_toolButtonCompatFilterToggle_clicked(bool);
 		void on_toolButtonToggleSnapnameAdjustment_clicked(bool);
-		void on_toolButtonSoftwareStates_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);
@@ -266,6 +266,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_comboBoxSearch_activated(const QString &);
 		void on_comboBoxDeviceConfiguration_currentIndexChanged(int);
 		void on_toolBoxSoftwareList_currentChanged(int);
+		void on_toolButtonSoftwareStates_toggled(bool);
 
 		// process management
 		void loadStarted();

@@ -38,6 +38,7 @@ extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
 QMap<QString, QString> softwareListXmlDataCache;
+QMap<QString, QMap<QString, int> > softwareListStateMap;
 QString swlBuffer;
 QString swlLastLine;
 QString swlSelectedMountDevice;
@@ -54,9 +55,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED) // FIXME: remove when software-state checking works
-	toolButtonSoftwareStates->setVisible(false);
-#endif
 	progressBar->setVisible(false);
 
 	// hide snapname device selection initially
@@ -194,7 +192,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/update.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(checkSoftwareStates()));
-	toolButtonSoftwareStates->setMenu(menuSoftwareStates);
 
 	// search options menu
 	menuSearchOptions = new QMenu(this);
@@ -223,6 +220,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->blockSignals(false);
 	toolButtonToggleSnapnameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", false).toBool());
 	toolButtonSoftwareStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates", false).toBool());
+	if ( toolButtonSoftwareStates->isChecked() )
+		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
 
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
@@ -1458,6 +1457,8 @@ void SoftwareList::checkSoftwareStates()
 	progressBar->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
 	progressBar->setValue(0);
 
+	qmc2MainWindow->tabWidgetGamelist->setEnabled(false);
+
 	foreach (QString softwareList, softwareLists) {
 		if ( softwareList == "NO_SOFTWARE_LIST" )
 			break;
@@ -1474,11 +1475,13 @@ void SoftwareList::checkSoftwareStates()
 		connect(verifyProc, SIGNAL(started()), this, SLOT(verifyStarted()));
 		connect(verifyProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(verifyStateChanged(QProcess::ProcessState)));
 
-		numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
-		softwareListItems = treeWidgetKnownSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
 		softwareListName = softwareList;
 		swStatesLastLine.clear();
-		softwareStateMap.clear();
+		softwareListStateMap[softwareListName].clear();
+		numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
+		softwareListItems = treeWidgetKnownSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
+		favoritesListItems = treeWidgetFavoriteSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
+		searchListItems = treeWidgetSearchResults->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
 
 		QString softwareStateCachePath = QDir::toNativeSeparators(QDir::cleanPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache").toString() + "/" + softwareList + ".ssc"));
 		softwareStateFile.setFileName(softwareStateCachePath);
@@ -1522,6 +1525,8 @@ void SoftwareList::checkSoftwareStates()
 		}
 	}
 
+	qmc2MainWindow->tabWidgetGamelist->setEnabled(true);
+
 	QTimer::singleShot(0, progressBar, SLOT(hide()));
 }
 
@@ -1555,18 +1560,53 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	for (int i = 0; i < softwareListItems.count(); i++) {
 		QTreeWidgetItem *softwareItem = softwareListItems[i];
 		QString softwareName = softwareItem->text(QMC2_SWLIST_COLUMN_NAME);
-		QString key = softwareItem->text(QMC2_SWLIST_COLUMN_LIST) + ":" + softwareName;
-		if ( !softwareStateMap.contains(key) ) {
+
+		QTreeWidgetItem *favoriteItem = NULL;
+		foreach (QTreeWidgetItem *item, favoritesListItems) {
+			if ( item->text(QMC2_SWLIST_COLUMN_NAME) == softwareName ) {
+				favoriteItem = item;
+				break;
+			}
+		}
+
+		QTreeWidgetItem *searchItem = NULL;
+		foreach (QTreeWidgetItem *item, searchListItems) {
+			if ( item->text(QMC2_SWLIST_COLUMN_NAME) == softwareName ) {
+				searchItem = item;
+				break;
+			}
+		}
+
+		QString listName = softwareItem->text(QMC2_SWLIST_COLUMN_LIST);
+		if ( !softwareListStateMap[listName].contains(softwareName) ) {
 			progressBar->setValue(progressBar->value() + 1);
-			softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
-			if ( softwareStateFile.isOpen() )
-				softwareStateStream << softwareName << QString(notFoundState ? " N\n" : " U\n");
-			numSoftwareNotFound++;
+			if ( notFoundState ) {
+				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+				if ( favoriteItem )
+					favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+				if ( searchItem )
+					searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+				if ( softwareStateFile.isOpen() )
+					softwareStateStream << softwareName << " N\n";
+				softwareListStateMap[listName][softwareName] = QMC2_ROMSTATE_INT_N;
+				numSoftwareNotFound++;
+			} else {
+				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+				if ( favoriteItem )
+					favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+				if ( searchItem )
+					searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+				if ( softwareStateFile.isOpen() )
+					softwareStateStream << softwareName << " U\n";
+				softwareListStateMap[listName][softwareName] = QMC2_ROMSTATE_INT_U;
+				numSoftwareUnknown++;
+			}
 		}
 
 		if ( i % QMC2_SWLIST_CHECK_RESPONSE == 0 )
 			qApp->processEvents();
 	}
+
 	if ( softwareStateFile.isOpen() )
 		softwareStateFile.close();
 
@@ -1605,9 +1645,9 @@ void SoftwareList::verifyReadyReadStandardOutput()
 			if ( line.startsWith("romset") ) {
 				progressBar->setValue(progressBar->value() + 1);
 				QStringList romsetWords = words[1].split(":", QString::SkipEmptyParts);
-				QString status = words.last();
+				QString listName = romsetWords[0];
 				QString softwareName = romsetWords[1];
-				QString key = romsetWords[0] + ":" + softwareName;
+				QString status = words.last();
 
 				QTreeWidgetItem *softwareItem = NULL;
 				foreach (QTreeWidgetItem *item, softwareListItems) {
@@ -1620,6 +1660,22 @@ void SoftwareList::verifyReadyReadStandardOutput()
 				if ( !softwareItem )
 					continue;
 
+				QTreeWidgetItem *favoriteItem = NULL;
+				foreach (QTreeWidgetItem *item, favoritesListItems) {
+					if ( item->text(QMC2_SWLIST_COLUMN_NAME) == softwareName ) {
+						favoriteItem = item;
+						break;
+					}
+				}
+
+				QTreeWidgetItem *searchItem = NULL;
+				foreach (QTreeWidgetItem *item, searchListItems) {
+					if ( item->text(QMC2_SWLIST_COLUMN_NAME) == softwareName ) {
+						searchItem = item;
+						break;
+					}
+				}
+
 				int numericStatus = QMC2_ROMSTATE_INT_U;
 				if ( status == "good" )
 					numericStatus = QMC2_ROMSTATE_INT_C;
@@ -1628,29 +1684,45 @@ void SoftwareList::verifyReadyReadStandardOutput()
 				else if ( status == "available" )
 					numericStatus = QMC2_ROMSTATE_INT_M;
 
-				softwareStateMap[key] = numericStatus;
+				softwareListStateMap[listName][softwareName] = numericStatus;
 
 				switch ( numericStatus ) {
 					case QMC2_ROMSTATE_INT_C:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+						if ( favoriteItem )
+							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+						if ( searchItem )
+							searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
 						if ( softwareStateFile.isOpen() )
 							softwareStateStream << softwareName << " C\n";
 						numSoftwareCorrect++;
 						break;
 					case QMC2_ROMSTATE_INT_M:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+						if ( favoriteItem )
+							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+						if ( searchItem )
+							searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
 						if ( softwareStateFile.isOpen() )
 							softwareStateStream << softwareName << " M\n";
 						numSoftwareMostlyCorrect++;
 						break;
 					case QMC2_ROMSTATE_INT_I:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+						if ( favoriteItem )
+							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+						if ( searchItem )
+							searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
 						if ( softwareStateFile.isOpen() )
 							softwareStateStream << softwareName << " I\n";
 						numSoftwareIncorrect++;
 						break;
 					case QMC2_ROMSTATE_INT_U:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+						if ( favoriteItem )
+							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+						if ( searchItem )
+							searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 						if ( softwareStateFile.isOpen() )
 							softwareStateStream << softwareName << " U\n";
 						numSoftwareUnknown++;
@@ -1702,10 +1774,10 @@ void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 		comboBoxSnapnameDevice->hide();
 }
 
-void SoftwareList::on_toolButtonSoftwareStates_clicked(bool checked)
+void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonSoftwareStates_clicked(bool checked = %1)").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked = %1)").arg(checked));
 #endif
 
 	if ( checked )
@@ -1887,6 +1959,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 		}
 		if ( item ) {
 			item->setText(QMC2_SWLIST_COLUMN_TITLE, si->text(QMC2_SWLIST_COLUMN_TITLE));
+			item->setIcon(QMC2_SWLIST_COLUMN_TITLE, si->icon(QMC2_SWLIST_COLUMN_TITLE));
 			item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, si->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 			QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 			bool showItem = !checked || compatList.isEmpty() || compatFilters.isEmpty();
@@ -2535,6 +2608,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
 		QTreeWidgetItem *matchItem = matches.at(i);
 		item->setText(QMC2_SWLIST_COLUMN_TITLE, matchItem->text(QMC2_SWLIST_COLUMN_TITLE));
+		item->setIcon(QMC2_SWLIST_COLUMN_TITLE, matchItem->icon(QMC2_SWLIST_COLUMN_TITLE));
 		item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, matchItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 		if ( qmc2SoftwareList->toolButtonCompatFilterToggle->isChecked() ) {
 			QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
@@ -3042,6 +3116,54 @@ SoftwareListXmlHandler::~SoftwareListXmlHandler()
 
 }
 
+void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::loadSoftwareStates(QString listName = %1)").arg(listName));
+#endif
+
+	QString softwareStateCachePath = QDir::toNativeSeparators(QDir::cleanPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache").toString() + "/" + listName + ".ssc"));
+	QFile stateCacheFile(softwareStateCachePath);
+	if ( stateCacheFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+		quint64 numTotal, numCorrect, numMostlyCorrect, numIncorrect, numNotFound, numUnknown;
+		numTotal = numCorrect = numMostlyCorrect = numIncorrect = numNotFound = numUnknown = 0;
+		QTextStream ts(&stateCacheFile);
+		ts.readLine(); // comment line
+		while ( !ts.atEnd() ) {
+			QStringList words = ts.readLine().trimmed().split(" ", QString::SkipEmptyParts);
+			if ( words.count() > 1 ) {
+				numTotal++;
+				switch ( words[1][0].toLatin1() ) {
+					case 'C':
+						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_C;
+						numCorrect++;
+						break;
+					case 'M':
+						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_M;
+						numMostlyCorrect++;
+						break;
+					case 'I':
+						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_I;
+						numIncorrect++;
+						break;
+					case 'N':
+						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_N;
+						numNotFound++;
+						break;
+					case 'U':
+					default:
+						numUnknown++;
+						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_U;
+						break;
+				}
+			}
+		}
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(listName).arg(numTotal).arg(numCorrect).arg(numMostlyCorrect).arg(numIncorrect).arg(numNotFound).arg(numUnknown));
+		stateCacheFile.close();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("no state info for software-list '%1'").arg(listName));
+}
+
 bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
@@ -3057,6 +3179,9 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 	if ( qName == "softwarelist" ) {
 		softwareListName = attributes.value("name");
 		compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
+		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() )
+			if ( !softwareListStateMap.contains(softwareListName) )
+				loadSoftwareStates(softwareListName);
 	} else if ( qName == "software" ) {
 		softwareName = attributes.value("name");
 		softwareSupported = attributes.value("supported");
@@ -3072,6 +3197,28 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, softwareSupported);
+		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() ) {
+			if ( softwareListStateMap[softwareListName].contains(softwareName) ) {
+				switch ( softwareListStateMap[softwareListName][softwareName] ) {
+					case QMC2_ROMSTATE_INT_C:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+						break;
+					case QMC2_ROMSTATE_INT_M:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+						break;
+					case QMC2_ROMSTATE_INT_I:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+						break;
+					case QMC2_ROMSTATE_INT_N:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+						break;
+					case QMC2_ROMSTATE_INT_U:
+						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+						break;
+				}
+			} else
+				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+		}
 	} else if ( qName == "part" ) {
 		softwarePart = attributes.value("name");
 		QString parts = softwareItem->text(QMC2_SWLIST_COLUMN_PART);
