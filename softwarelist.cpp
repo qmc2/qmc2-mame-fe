@@ -1784,6 +1784,8 @@ void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
 	else
 		toolButtonSoftwareStates->setMenu(NULL);
+
+	qApp->processEvents();
 }
 
 void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
