@@ -65,6 +65,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool isManualSlotOptionChange;
 		bool includeFolders;
 		bool foldersFirst;
+		bool fullyLoaded;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QString messMachineName;
 		QString currentConfigName;
