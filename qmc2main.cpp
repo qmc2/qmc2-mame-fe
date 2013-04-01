@@ -4271,7 +4271,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
 #endif
       if ( qmc2SoftwareList ) {
-        if ( qmc2SoftwareList->isLoading ) {
+        if ( qmc2SoftwareList->isLoading || isCreatingSoftList ) {
           qmc2SoftwareList->interruptLoad = true;
           qmc2LastSoftwareListItem = NULL;
 	  QTimer::singleShot(0, this, SLOT(softwareLoadInterrupted()));
@@ -4285,7 +4285,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2SoftwareList->save();
           QLayout *vbl = tabSoftwareList->layout();
           if ( vbl ) delete vbl;
-	  qmc2ShortcutMap["F2"].second = NULL;
+	  qmc2ShortcutMap["F10"].second = NULL;
           delete qmc2SoftwareList;
           qmc2SoftwareList = NULL;
         }
