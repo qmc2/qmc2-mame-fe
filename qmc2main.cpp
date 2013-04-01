@@ -4279,13 +4279,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         }
       }
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem && !isCreatingSoftList ) {
+        QTreeWidgetItem *ci = qmc2CurrentItem;
         isCreatingSoftList = true;
         tabSoftwareList->setUpdatesEnabled(false);
         if ( qmc2SoftwareList ) {
+	  qmc2ShortcutMap["F10"].second = NULL;
           qmc2SoftwareList->save();
           QLayout *vbl = tabSoftwareList->layout();
           if ( vbl ) delete vbl;
-	  qmc2ShortcutMap["F10"].second = NULL;
           delete qmc2SoftwareList;
           qmc2SoftwareList = NULL;
         }
@@ -4296,11 +4297,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2SoftwareList = new SoftwareList(machineName, tabSoftwareList);
         layout->addWidget(qmc2SoftwareList);
         tabSoftwareList->setLayout(layout);
-        qmc2LastSoftwareListItem = qmc2CurrentItem;
         qmc2SoftwareList->show();
         tabSoftwareList->setUpdatesEnabled(true);
         isCreatingSoftList = false;
         qmc2SoftwareList->load();
+        qmc2LastSoftwareListItem = ci;
       }
       break;
 
