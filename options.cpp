@@ -455,6 +455,7 @@ Options::Options(QWidget *parent)
 #endif
   qmc2ShortcutMap["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
+  qmc2ShortcutMap["F10"] = QPair<QString, QAction *>(tr("Check software-states"), NULL);
   qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
   qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), NULL);

@@ -34,6 +34,8 @@ extern bool qmc2StopParser;
 extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
+extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
+extern QMap<QString, QString> qmc2CustomShortcutMap;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -192,6 +194,9 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/update.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(checkSoftwareStates()));
+	actionCheckSoftwareStates = action;
+	actionCheckSoftwareStates->setShortcut(QKeySequence(qmc2CustomShortcutMap["F10"]));
+	qmc2ShortcutMap["F10"].second = actionCheckSoftwareStates;
 
 	// search options menu
 	menuSearchOptions = new QMenu(this);
@@ -1458,6 +1463,9 @@ void SoftwareList::checkSoftwareStates()
 	progressBar->setValue(0);
 
 	qmc2MainWindow->tabWidgetGamelist->setEnabled(false);
+	qmc2MainWindow->menuBar()->setEnabled(false);
+	qmc2MainWindow->toolbar->setEnabled(false);
+	actionCheckSoftwareStates->setEnabled(false);
 
 	foreach (QString softwareList, softwareLists) {
 		if ( softwareList == "NO_SOFTWARE_LIST" )
@@ -1526,6 +1534,9 @@ void SoftwareList::checkSoftwareStates()
 	}
 
 	qmc2MainWindow->tabWidgetGamelist->setEnabled(true);
+	qmc2MainWindow->menuBar()->setEnabled(true);
+	qmc2MainWindow->toolbar->setEnabled(true);
+	actionCheckSoftwareStates->setEnabled(true);
 
 	QTimer::singleShot(0, progressBar, SLOT(hide()));
 }

@@ -189,6 +189,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionSaveFavoritesToFile;
 		QAction *actionClearSelection;
 		QAction *actionNegateSearch;
+		QAction *actionCheckSoftwareStates;
 		QTimer snapTimer;
 		QTimer searchTimer;
 		QTimer detailUpdateTimer;
