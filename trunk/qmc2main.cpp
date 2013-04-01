@@ -4285,6 +4285,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2SoftwareList->save();
           QLayout *vbl = tabSoftwareList->layout();
           if ( vbl ) delete vbl;
+	  qmc2ShortcutMap["F2"].second = NULL;
           delete qmc2SoftwareList;
           qmc2SoftwareList = NULL;
         }
@@ -11429,6 +11430,7 @@ void prepareShortcuts()
 #endif
   qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
   qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
+  qmc2ShortcutMap["F10"].second = NULL; // for "check software-states"
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME) // FIXME: we have no MESS arcade theme yet!
   qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionLaunchArcade;
