@@ -424,7 +424,7 @@ MainWindow::MainWindow(QWidget *parent)
  
   qmc2StartupDefaultFont = new QFont(qApp->font());
   desktopGeometry = qApp->desktop()->geometry();
-  isActiveState = launchForeignID = negatedMatch = false;
+  isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = false;
   comboBoxEmuSelector = NULL;
   proxyStyle = NULL;
 
@@ -4278,7 +4278,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	  return;
         }
       }
-      if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
+      if ( qmc2CurrentItem != qmc2LastSoftwareListItem && !isCreatingSoftList ) {
+        isCreatingSoftList = true;
         tabSoftwareList->setUpdatesEnabled(false);
         if ( qmc2SoftwareList ) {
           qmc2SoftwareList->save();
@@ -4297,6 +4298,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2LastSoftwareListItem = qmc2CurrentItem;
         qmc2SoftwareList->show();
         tabSoftwareList->setUpdatesEnabled(true);
+        isCreatingSoftList = false;
         qmc2SoftwareList->load();
       }
       break;
