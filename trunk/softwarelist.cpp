@@ -196,6 +196,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(checkSoftwareStates()));
 	actionCheckSoftwareStates = action;
 	actionCheckSoftwareStates->setShortcut(QKeySequence(qmc2CustomShortcutMap["F10"]));
+	actionCheckSoftwareStates->setShortcutContext(Qt::ApplicationShortcut);
 	qmc2ShortcutMap["F10"].second = actionCheckSoftwareStates;
 
 	// search options menu
@@ -1462,6 +1463,7 @@ void SoftwareList::checkSoftwareStates()
 	progressBar->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
 	progressBar->setValue(0);
 
+	QWidget *focusWidget = qApp->focusWidget();
 	qmc2MainWindow->tabWidgetGamelist->setEnabled(false);
 	qmc2MainWindow->menuBar()->setEnabled(false);
 	qmc2MainWindow->toolbar->setEnabled(false);
@@ -1537,6 +1539,8 @@ void SoftwareList::checkSoftwareStates()
 	qmc2MainWindow->menuBar()->setEnabled(true);
 	qmc2MainWindow->toolbar->setEnabled(true);
 	actionCheckSoftwareStates->setEnabled(true);
+	if ( focusWidget )
+		focusWidget->setFocus();
 
 	QTimer::singleShot(0, progressBar, SLOT(hide()));
 }
