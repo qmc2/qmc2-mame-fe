@@ -167,6 +167,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QWidget *vSplitterWidget0;
     QTimer activityCheckTimer;
     bool activityState;
+    bool isCreatingSoftList;
     QString urlSectionRegExp;
     int retry_tabWidgetGameDetail_currentIndex;
 
