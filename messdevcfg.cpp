@@ -157,7 +157,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	dirModel = NULL;
 	fileModel = NULL;
 	configurationRenameItem = NULL;
-	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = false;
+	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = fullyLoaded = false;
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
@@ -1292,6 +1292,7 @@ bool MESSDeviceConfigurator::load()
 #endif
 
 	refreshRunning = true;
+	fullyLoaded = false;
 
 	if ( messSystemSlotMap.isEmpty() && messSystemSlotsSupported )
 		if ( !readSystemSlots() ) {
@@ -1476,6 +1477,8 @@ bool MESSDeviceConfigurator::load()
 	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
 		treeWidgetSlotOptions->setEnabled(false);
 
+	fullyLoaded = true;
+
 	return true;
 }
 
@@ -1484,6 +1487,9 @@ bool MESSDeviceConfigurator::save()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::save()");
 #endif
+
+	if ( !fullyLoaded )
+		return false;
 
 	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
 	QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
