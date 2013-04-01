@@ -225,6 +225,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString &getXmlDataWithEnabledSlots(QStringList);
 		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
 		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);
+		QString softwareStatus(QString, QString, bool translated = false);
 
 	public slots:
 		bool load();

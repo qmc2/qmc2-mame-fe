@@ -3115,6 +3115,57 @@ void SoftwareList::saveFavoritesToFile()
 	}
 }
 
+QString SoftwareList::softwareStatus(QString listName, QString softwareName, bool translated)
+{
+	if ( softwareListStateMap.contains(listName) ) {
+		if ( softwareListStateMap[listName].contains(softwareName) ) {
+			switch ( softwareListStateMap[listName][softwareName] ) {
+				case QMC2_ROMSTATE_INT_C:
+					if ( translated )
+						return tr("correct");
+					else
+						return "correct";
+					break;
+				case QMC2_ROMSTATE_INT_M:
+					if ( translated )
+						return tr("mostly correct");
+					else
+						return "mostly correct";
+					break;
+				case QMC2_ROMSTATE_INT_I:
+					if ( translated )
+						return tr("incorrect");
+					else
+						return "incorrect";
+					break;
+				case QMC2_ROMSTATE_INT_N:
+					if ( translated )
+						return tr("not found");
+					else
+						return "not found";
+					break;
+				case QMC2_ROMSTATE_INT_U:
+				default:
+					if ( translated )
+						return tr("unknown");
+					else
+						return "unknown";
+					break;
+			}
+		} else {
+			if ( translated )
+				return tr("unknown");
+			else
+				return "unknown";
+		}
+	} else {
+		if ( translated )
+			return tr("unknown");
+		else
+			return "unknown";
+	}
+}
+
 SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG

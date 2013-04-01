@@ -13,6 +13,8 @@
 	$SOFTWARE_SUPPORTED_UT$	Software support status ('yes', 'no' or 'partially' / untranslated)
 	$SOFTWARE_INFO$		Software info DB entry (from MAME history.dat)
 	$SOFTWARE_INFO_STATUS$	Status of the software info DB entry (OK / NO_DATA)
+	$SOFTWARE_STATUS$	The software-set's status (translated)
+	$SOFTWARE_STATUS_UT$	The software-set's status (untranslated)
 
 	Image macros:
 
@@ -55,6 +57,20 @@
 			document.write("<td style=\"color: #f90000;\">$SOFTWARE_SUPPORTED$</td>");
 		else
 			document.write("<td style=\"color: #a2c743;\">$SOFTWARE_SUPPORTED$</td>");
+	</script>
+</tr>
+<tr><td bgcolor="lightgrey">Status</td>
+	<script>
+		if ( "$SOFTWARE_STATUS_UT$" == "correct" )
+			document.write("<td style=\"color: #00cc00;\">$SOFTWARE_STATUS$</td>");
+		else if ( "$SOFTWARE_STATUS_UT$" == "incorrect" )
+			document.write("<td style=\"color: #f90000;\">$SOFTWARE_STATUS$</td>");
+		else if ( "$SOFTWARE_STATUS_UT$" == "mostly correct" )
+			document.write("<td style=\"color: #a2c743;\">$SOFTWARE_STATUS$</td>");
+		else if ( "$SOFTWARE_STATUS_UT$" == "not found" )
+			document.write("<td style=\"color: #7f7f7f;\">$SOFTWARE_STATUS$</td>");
+		else
+			document.write("<td style=\"color: #0000f9;\">$SOFTWARE_STATUS$</td>");
 	</script>
 </tr>
 </tbody>
