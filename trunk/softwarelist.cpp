@@ -5,12 +5,14 @@
 #include <QFileDialog>
 #include <QCache>
 #include <QInputDialog>
+#include <QWidgetAction>
 
 #include "softwarelist.h"
 #include "gamelist.h"
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
+#include "softwarestatefilter.h"
 #include "macros.h"
 
 // external global variables
@@ -199,6 +201,13 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionCheckSoftwareStates->setShortcut(QKeySequence(qmc2CustomShortcutMap["F10"]));
 	actionCheckSoftwareStates->setShortcutContext(Qt::ApplicationShortcut);
 	qmc2ShortcutMap["F10"].second = actionCheckSoftwareStates;
+#if defined(QMC2_WIP_ENABLED) // FIXME: remove when software-state filtering works
+	menuSoftwareStates->addSeparator();
+	SoftwareStateFilter *stateFilter = new SoftwareStateFilter(menuSoftwareStates);
+	QWidgetAction *stateFilterAction = new QWidgetAction(menuSoftwareStates);
+	stateFilterAction->setDefaultWidget(stateFilter);
+	menuSoftwareStates->addAction(stateFilterAction);
+#endif
 
 	// search options menu
 	menuSearchOptions = new QMenu(this);

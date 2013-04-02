@@ -47,6 +47,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			colorwidget.ui \
 			brusheditor.ui \
 			gradientstopactions.ui \
+			softwarestatefilter.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -104,6 +105,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			colorwidget.cpp \
 			brusheditor.cpp \
 			gradientstopactions.cpp \
+			softwarestatefilter.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -179,6 +181,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			colorwidget.h \
 			brusheditor.h \
 			gradientstopactions.h \
+			softwarestatefilter.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
