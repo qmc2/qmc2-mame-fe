@@ -3907,6 +3907,9 @@ qmc2/.svn/text-base/SDLMain_tmpl.m.svn-base
 qmc2/.svn/text-base/softwarelist.cpp.svn-base
 qmc2/.svn/text-base/softwarelist.h.svn-base
 qmc2/.svn/text-base/softwarelist.ui.svn-base
+qmc2/.svn/text-base/softwarestatefilter.cpp.svn-base
+qmc2/.svn/text-base/softwarestatefilter.h.svn-base
+qmc2/.svn/text-base/softwarestatefilter.ui.svn-base
 qmc2/.svn/text-base/swlistexport.cpp.svn-base
 qmc2/.svn/text-base/swlistexport.h.svn-base
 qmc2/.svn/text-base/swlistexport.ui.svn-base
