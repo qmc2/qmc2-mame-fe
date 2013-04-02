@@ -14,12 +14,24 @@ SoftwareStateFilter::SoftwareStateFilter(QWidget *parent)
 	: QWidget(parent)
 {
 	setupUi(this);
+	adjustIconSizes();
 
-	// FIXME
+	checkBoxStateFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/Enabled", false).toBool());
+	toolButtonCorrect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowCorrect", true).toBool());
+	toolButtonMostlyCorrect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowMostlyCorrect", true).toBool());
+	toolButtonIncorrect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowIncorrect", true).toBool());
+	toolButtonNotFound->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowNotFound", true).toBool());
+	toolButtonUnknown->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowUnknown", true).toBool());
 }
 
 SoftwareStateFilter::~SoftwareStateFilter()
 {
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/Enabled", checkBoxStateFilter->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowCorrect", toolButtonCorrect->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowMostlyCorrect", toolButtonMostlyCorrect->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowIncorrect", toolButtonIncorrect->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowNotFound", toolButtonNotFound->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowUnknown", toolButtonUnknown->isChecked());
 }
 
 void SoftwareStateFilter::adjustIconSizes()
@@ -36,7 +48,7 @@ void SoftwareStateFilter::adjustIconSizes()
 	toolButtonUnknown->setIconSize(iconSize);
 }
 
-void SoftwareStateFilter::on_checkBoxStateFilter_stateChanged(int state)
+void SoftwareStateFilter::on_checkBoxStateFilter_toggled(bool checked)
 {
 }
 
