@@ -183,10 +183,10 @@
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="toolTip">
-      <string>Enabled/disable filtering by software-state</string>
+      <string>Toggle filtering by software-states</string>
      </property>
      <property name="statusTip">
-      <string>Enabled/disable filtering by software-state</string>
+      <string>Toggle filtering by software-states</string>
      </property>
      <property name="text">
       <string>State filter</string>
