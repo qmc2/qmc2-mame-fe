@@ -220,8 +220,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
 
+		void getXmlData();
 		QString &getSoftwareListXmlData(QString);
-		QString &getXmlData();
 		QString &getXmlDataWithEnabledSlots(QStringList);
 		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
 		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);

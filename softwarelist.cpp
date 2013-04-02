@@ -695,13 +695,11 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	return softwareListDeviceName;
 }
 
-QString &SoftwareList::getXmlData()
+void SoftwareList::getXmlData()
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::getXmlData()");
 #endif
-
-	static QString xmlBuffer;
 
 	QStringList softwareList = systemSoftwareListMap[systemName];
 	if ( softwareList.isEmpty() || softwareList.contains("NO_SOFTWARE_LIST") ) {
@@ -760,8 +758,6 @@ QString &SoftwareList::getXmlData()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2 (cached)").arg(systemName).arg(systemSoftwareListMap[systemName].join(", ")));
 #endif
 
-	xmlBuffer.clear();
-
 	if ( !softwareList.isEmpty() && !softwareList.contains("NO_SOFTWARE_LIST") ) {
 		QString swlString = softwareList.join(", ");
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString));
@@ -784,8 +780,6 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (no data available)"));
 	}
-
-	return xmlBuffer;
 }
 
 void SoftwareList::updateMountDevices()
@@ -1080,7 +1074,7 @@ bool SoftwareList::load()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData));
 #endif
 
-	QString xmlData = getXmlData();
+	getXmlData();
 
 	QStringList softwareList = systemSoftwareListMap[systemName];
 	if ( !softwareList.contains("NO_SOFTWARE_LIST") && !interruptLoad ) {
