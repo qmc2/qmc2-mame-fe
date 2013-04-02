@@ -216,6 +216,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool verifyReadingStdout;
 		QFile softwareStateFile;
 		QTextStream softwareStateStream;
+		static bool isInitialLoad;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();

@@ -47,6 +47,7 @@ QString swlSelectedMountDevice;
 QString swStatesBuffer;
 QString swStatesLastLine;
 bool swlSupported = true;
+bool SoftwareList::isInitialLoad = true;
 
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
@@ -969,11 +970,13 @@ bool SoftwareList::load()
 			toolBoxSoftwareList->setVisible(true);
 
 			isLoading = false;
+			isInitialLoad = false;
 			return false;
 		}
         }
 
 	if ( !swlCacheOkay ) {
+		isInitialLoad = true;
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
 		labelLoadingSoftwareLists->setVisible(true);
 		toolBoxSoftwareList->setVisible(false);
@@ -996,6 +999,7 @@ bool SoftwareList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the UME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards").arg(swlCachePath));
 #endif
 			isLoading = false;
+			isInitialLoad = false;
 			return false;
 		}
 
@@ -1063,6 +1067,7 @@ bool SoftwareList::load()
 			toolBoxSoftwareList->setVisible(true);
 
 			isLoading = false;
+			isInitialLoad = false;
 			return false;
 		}
 	}
@@ -1173,6 +1178,7 @@ bool SoftwareList::load()
 
 	isLoading = false;
 	fullyLoaded = !interruptLoad;
+	isInitialLoad = false;
 	return true;
 }
 

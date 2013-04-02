@@ -4273,6 +4273,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
 #endif
       if ( qmc2SoftwareList ) {
+        if ( qmc2SoftwareList->isInitialLoad ) {
+	  	QTimer::singleShot(0, this, SLOT(softwareLoadInterrupted()));
+		return;
+	}
         if ( qmc2SoftwareList->isLoading || isCreatingSoftList ) {
           qmc2SoftwareList->interruptLoad = true;
           qmc2LastSoftwareListItem = NULL;
