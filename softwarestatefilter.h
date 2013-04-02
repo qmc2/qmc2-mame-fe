@@ -13,7 +13,7 @@ class SoftwareStateFilter : public QWidget, public Ui::SoftwareStateFilter
 
 	public slots:
 		void adjustIconSizes();
-		void on_checkBoxStateFilter_stateChanged(int);
+		void on_checkBoxStateFilter_toggled(bool);
 		void on_toolButtonCorrect_toggled(bool);
 		void on_toolButtonMostlyCorrect_toggled(bool);
 		void on_toolButtonIncorrect_toggled(bool);
