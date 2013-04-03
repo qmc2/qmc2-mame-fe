@@ -1115,10 +1115,8 @@ bool SoftwareList::load()
 				xmlReader.setContentHandler(&xmlHandler);
 				if ( !xmlReader.parse(xmlInputSource) && !interruptLoad )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
-#ifdef QMC2_DEBUG
-				else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
-#endif
+				else if ( xmlHandler.newSoftwareStates )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(swList).arg(xmlHandler.numTotal).arg(xmlHandler.numCorrect).arg(xmlHandler.numMostlyCorrect).arg(xmlHandler.numIncorrect).arg(xmlHandler.numNotFound).arg(xmlHandler.numUnknown));
 			}
 		}
 
@@ -3182,7 +3180,8 @@ SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 #endif
 
 	parentTreeWidget = parent;
-	elementCounter = 0;
+	numTotal = numCorrect = numMostlyCorrect = numIncorrect = numNotFound = numUnknown = elementCounter = 0;
+	newSoftwareStates = false;
 }
 
 SoftwareListXmlHandler::~SoftwareListXmlHandler()
@@ -3202,43 +3201,35 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 	QString softwareStateCachePath = QDir::toNativeSeparators(QDir::cleanPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache").toString() + "/" + listName + ".ssc"));
 	QFile stateCacheFile(softwareStateCachePath);
 	if ( stateCacheFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-		quint64 numTotal, numCorrect, numMostlyCorrect, numIncorrect, numNotFound, numUnknown;
 		numTotal = numCorrect = numMostlyCorrect = numIncorrect = numNotFound = numUnknown = 0;
 		QTextStream ts(&stateCacheFile);
 		ts.readLine(); // comment line
 		while ( !ts.atEnd() ) {
 			QStringList words = ts.readLine().trimmed().split(" ", QString::SkipEmptyParts);
 			if ( words.count() > 1 ) {
-				numTotal++;
 				switch ( words[1][0].toLatin1() ) {
 					case 'C':
 						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_C;
-						numCorrect++;
 						break;
 					case 'M':
 						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_M;
-						numMostlyCorrect++;
 						break;
 					case 'I':
 						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_I;
-						numIncorrect++;
 						break;
 					case 'N':
 						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_N;
-						numNotFound++;
 						break;
 					case 'U':
 					default:
-						numUnknown++;
 						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_U;
 						break;
 				}
 			}
 		}
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(listName).arg(numTotal).arg(numCorrect).arg(numMostlyCorrect).arg(numIncorrect).arg(numNotFound).arg(numUnknown));
 		stateCacheFile.close();
-	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("no state info for software-list '%1'").arg(listName));
+	}
+	newSoftwareStates = true;
 }
 
 bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
@@ -3275,26 +3266,35 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, softwareSupported);
 		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() ) {
+			numTotal++;
 			if ( softwareListStateMap[softwareListName].contains(softwareName) ) {
 				switch ( softwareListStateMap[softwareListName][softwareName] ) {
 					case QMC2_ROMSTATE_INT_C:
+						numCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
 						break;
 					case QMC2_ROMSTATE_INT_M:
+						numMostlyCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
 						break;
 					case QMC2_ROMSTATE_INT_I:
+						numIncorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
 						break;
 					case QMC2_ROMSTATE_INT_N:
+						numNotFound++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 						break;
 					case QMC2_ROMSTATE_INT_U:
+					default:
+						numUnknown++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 						break;
 				}
-			} else
+			} else {
+				numUnknown++;
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+			}
 		}
 	} else if ( qName == "part" ) {
 		softwarePart = attributes.value("name");

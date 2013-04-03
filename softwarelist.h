@@ -54,6 +54,8 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		QString currentText;
 		QStringList compatFilters;
 		int elementCounter;
+		bool newSoftwareStates;
+		quint64 numTotal, numCorrect, numMostlyCorrect, numIncorrect, numNotFound, numUnknown;
 
 		SoftwareListXmlHandler(QTreeWidget *);
 		~SoftwareListXmlHandler();
