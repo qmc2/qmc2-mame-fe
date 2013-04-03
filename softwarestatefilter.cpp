@@ -4,11 +4,13 @@
 #include <QApplication>
 
 #include "softwarestatefilter.h"
+#include "softwarelist.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern SoftwareList *qmc2SoftwareList;
 
 SoftwareStateFilter::SoftwareStateFilter(QWidget *parent)
 	: QWidget(parent)
@@ -16,12 +18,16 @@ SoftwareStateFilter::SoftwareStateFilter(QWidget *parent)
 	setupUi(this);
 	adjustIconSizes();
 
+	isReady = false;
+
 	checkBoxStateFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/Enabled", false).toBool());
 	toolButtonCorrect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowCorrect", true).toBool());
 	toolButtonMostlyCorrect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowMostlyCorrect", true).toBool());
 	toolButtonIncorrect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowIncorrect", true).toBool());
 	toolButtonNotFound->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowNotFound", true).toBool());
 	toolButtonUnknown->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareStateFilter/ShowUnknown", true).toBool());
+
+	isReady = true;
 }
 
 SoftwareStateFilter::~SoftwareStateFilter()
@@ -48,28 +54,89 @@ void SoftwareStateFilter::adjustIconSizes()
 	toolButtonUnknown->setIconSize(iconSize);
 }
 
+void SoftwareStateFilter::filter()
+{
+	if ( !isReady )
+		return;
+
+	qmc2SoftwareList->progressBar->setFormat(tr("State filter - %p%"));
+	qmc2SoftwareList->progressBar->setRange(0, qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItemCount());
+	qmc2SoftwareList->progressBar->setValue(0);
+	qmc2SoftwareList->progressBar->setVisible(true);
+	qmc2SoftwareList->treeWidgetKnownSoftware->setUpdatesEnabled(false);
+	if ( checkBoxStateFilter->isChecked() ) {
+		for (int i = 0; i < qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i);
+			switch ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).at(0).toLatin1() ) {
+				case 'C':
+					item->setHidden(!toolButtonCorrect->isChecked());
+					break;
+				case 'M':
+					item->setHidden(!toolButtonMostlyCorrect->isChecked());
+					break;
+				case 'I':
+					item->setHidden(!toolButtonIncorrect->isChecked());
+					break;
+				case 'N':
+					item->setHidden(!toolButtonNotFound->isChecked());
+					break;
+				case 'U':
+				default:
+					item->setHidden(!toolButtonUnknown->isChecked());
+					break;
+			}
+			qmc2SoftwareList->progressBar->setValue(i + 1);
+		}
+	} else {
+		for (int i = 0; i < qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItemCount(); i++) {
+			qmc2SoftwareList->treeWidgetKnownSoftware->topLevelItem(i)->setHidden(false);
+			qmc2SoftwareList->progressBar->setValue(i + 1);
+		}
+	}
+	if ( qmc2SoftwareList->toolButtonCompatFilterToggle->isChecked() )
+		qmc2SoftwareList->on_toolButtonCompatFilterToggle_clicked(true);
+	qmc2SoftwareList->treeWidgetKnownSoftware->setUpdatesEnabled(true);
+	qmc2SoftwareList->progressBar->setVisible(false);
+}
+
 void SoftwareStateFilter::on_checkBoxStateFilter_toggled(bool checked)
 {
+	if ( !isReady )
+		return;
+
+	QString itemText = qmc2SoftwareList->toolBoxSoftwareList->itemText(QMC2_SWLIST_KNOWN_SW_PAGE);
+	itemText.remove(QRegExp(" - " + tr("filtered") + "$"));
+	if ( checked )
+		qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " - " + tr("filtered"));
+	else
+		qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText);
+
+	filter();
 }
 
 void SoftwareStateFilter::on_toolButtonCorrect_toggled(bool checked)
 {
+	filter();
 }
 
 void SoftwareStateFilter::on_toolButtonMostlyCorrect_toggled(bool checked)
 {
+	filter();
 }
 
 void SoftwareStateFilter::on_toolButtonIncorrect_toggled(bool checked)
 {
+	filter();
 }
 
 void SoftwareStateFilter::on_toolButtonNotFound_toggled(bool checked)
 {
+	filter();
 }
 
 void SoftwareStateFilter::on_toolButtonUnknown_toggled(bool checked)
 {
+	filter();
 }
 
 void SoftwareStateFilter::showEvent(QShowEvent *e)

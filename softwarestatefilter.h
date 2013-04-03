@@ -11,6 +11,10 @@ class SoftwareStateFilter : public QWidget, public Ui::SoftwareStateFilter
 		SoftwareStateFilter(QWidget *parent = 0);
 		~SoftwareStateFilter();
 
+		void filter();
+
+		bool isReady;
+
 	public slots:
 		void adjustIconSizes();
 		void on_checkBoxStateFilter_toggled(bool);
