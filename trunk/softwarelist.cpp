@@ -1500,6 +1500,12 @@ void SoftwareList::checkSoftwareStates()
 	qmc2MainWindow->toolbar->setEnabled(false);
 	actionCheckSoftwareStates->setEnabled(false);
 
+	if ( treeWidgetKnownSoftware->topLevelItemCount() > QMC2_SWLIST_COUNT_THRESHOLD ) {
+		labelLoadingSoftwareLists->setText(tr("Checking software-states, please wait..."));
+		labelLoadingSoftwareLists->setVisible(true);
+		toolBoxSoftwareList->setVisible(false);
+	}
+
 	foreach (QString softwareList, softwareLists) {
 		if ( softwareList == "NO_SOFTWARE_LIST" )
 			break;
@@ -1604,12 +1610,6 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( (exitStatus != QProcess::NormalExit || exitCode != 0) && exitCode != 2 ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to verify the states for software-list '%1' didn't exit cleanly -- exitCode = %2, exitStatus = %3").arg(softwareListName).arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 		notFoundState = false;
-	}
-
-	if ( softwareListItems.count() > QMC2_SWLIST_COUNT_THRESHOLD ) {
-		labelLoadingSoftwareLists->setText(tr("Checking software-states, please wait..."));
-		labelLoadingSoftwareLists->setVisible(true);
-		toolBoxSoftwareList->setVisible(false);
 	}
 
 	for (int i = 0; i < softwareListItems.count(); i++) {
