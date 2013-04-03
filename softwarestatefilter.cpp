@@ -79,3 +79,15 @@ void SoftwareStateFilter::showEvent(QShowEvent *e)
 	if ( e )
 		QWidget::showEvent(e);
 }
+
+void SoftwareStateFilter::enterEvent(QEvent *e)
+{
+	qmc2MainWindow->statusBar()->showMessage(tr("State filter settings"));
+	QWidget::enterEvent(e);
+}
+
+void SoftwareStateFilter::leaveEvent(QEvent *e)
+{
+	qmc2MainWindow->statusBar()->clearMessage();
+	QWidget::leaveEvent(e);
+}

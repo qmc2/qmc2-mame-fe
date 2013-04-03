@@ -22,6 +22,8 @@ class SoftwareStateFilter : public QWidget, public Ui::SoftwareStateFilter
 
 	protected:
 		void showEvent(QShowEvent *);
+		void enterEvent(QEvent *);
+		void leaveEvent(QEvent *);
 };
 
 #endif
