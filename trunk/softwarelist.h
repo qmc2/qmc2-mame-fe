@@ -16,6 +16,7 @@
 #include "unzip.h"
 #include "swlistexport.h"
 #include "imagewidget.h"
+#include "softwarestatefilter.h"
 
 class SoftwareListExporter;
 
@@ -201,6 +202,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool autoMounted;
 		bool interruptLoad;
 		bool isLoading;
+		bool isReady;
 		bool fullyLoaded;
 		bool loadFinishedFlag;
 		bool updatingMountDevices;
@@ -218,6 +220,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool verifyReadingStdout;
 		QFile softwareStateFile;
 		QTextStream softwareStateStream;
+		SoftwareStateFilter *stateFilter;
 		static bool isInitialLoad;
 
 		SoftwareList(QString, QWidget *);

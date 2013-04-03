@@ -12,7 +12,6 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
-#include "softwarestatefilter.h"
 #include "macros.h"
 
 // external global variables
@@ -76,7 +75,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	loadProc = verifyProc = NULL;
 	exporter = NULL;
 	currentItem = NULL;
-	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = updatingMountDevices = negatedMatch = false;
+	snapForced = autoSelectSearchItem = interruptLoad = isLoading = isReady = fullyLoaded = updatingMountDevices = negatedMatch = false;
 	validData = autoMounted = true;
 	cachedDeviceLookupPosition = 0;
 
@@ -201,13 +200,11 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionCheckSoftwareStates->setShortcut(QKeySequence(qmc2CustomShortcutMap["F10"]));
 	actionCheckSoftwareStates->setShortcutContext(Qt::ApplicationShortcut);
 	qmc2ShortcutMap["F10"].second = actionCheckSoftwareStates;
-#if defined(QMC2_WIP_ENABLED) // FIXME: remove when software-state filtering works
 	menuSoftwareStates->addSeparator();
-	SoftwareStateFilter *stateFilter = new SoftwareStateFilter(menuSoftwareStates);
+	stateFilter = new SoftwareStateFilter(menuSoftwareStates);
 	QWidgetAction *stateFilterAction = new QWidgetAction(menuSoftwareStates);
 	stateFilterAction->setDefaultWidget(stateFilter);
 	menuSoftwareStates->addAction(stateFilterAction);
-#endif
 
 	// search options menu
 	menuSearchOptions = new QMenu(this);
@@ -316,6 +313,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	// detail update timer
 	connect(&detailUpdateTimer, SIGNAL(timeout()), this, SLOT(updateDetail()));
+
+	isReady = true;
 }
 
 SoftwareList::~SoftwareList()
@@ -770,7 +769,10 @@ void SoftwareList::getXmlData()
 
 	if ( !softwareList.isEmpty() && !softwareList.contains("NO_SOFTWARE_LIST") ) {
 		QString swlString = softwareList.join(", ");
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString));
+		if ( toolButtonSoftwareStates->isChecked() && stateFilter->checkBoxStateFilter->isChecked() )
+			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString) + " - " + tr("filtered"));
+		else
+			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
@@ -1142,13 +1144,34 @@ bool SoftwareList::load()
 				SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
 				item->setText(QMC2_SWLIST_COLUMN_TITLE, swItem->text(QMC2_SWLIST_COLUMN_TITLE));
 				item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, swItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
+				item->setIcon(QMC2_SWLIST_COLUMN_TITLE, swItem->icon(QMC2_SWLIST_COLUMN_TITLE));
 				if ( toolButtonCompatFilterToggle->isChecked() ) {
 					QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 					bool showItem = compatList.isEmpty() || compatFilters.isEmpty();
 					for (int i = 0; i < compatList.count() && !showItem; i++)
 						for (int j = 0; j < compatFilters.count() && !showItem; j++)
 							showItem = (compatList[i] == compatFilters[j]);
-					item->setHidden(!showItem);
+					if ( stateFilter->checkBoxStateFilter->isChecked() ) {
+						switch ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).at(0).toLatin1() ) {
+							case 'C':
+								item->setHidden(!stateFilter->toolButtonCorrect->isChecked() || !showItem);
+								break;
+							case 'M':
+								item->setHidden(!stateFilter->toolButtonMostlyCorrect->isChecked() || !showItem);
+								break;
+							case 'I':
+								item->setHidden(!stateFilter->toolButtonIncorrect->isChecked() || !showItem);
+								break;
+							case 'N':
+								item->setHidden(!stateFilter->toolButtonNotFound->isChecked() || !showItem);
+								break;
+							case 'U':
+							default:
+								item->setHidden(!stateFilter->toolButtonUnknown->isChecked() || !showItem);
+								break;
+						}
+					} else
+						item->setHidden(!showItem);
 				}
 				item->setText(QMC2_SWLIST_COLUMN_NAME, swItem->text(QMC2_SWLIST_COLUMN_NAME));
 				item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, swItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
@@ -1467,6 +1490,7 @@ void SoftwareList::checkSoftwareStates()
 #endif
 
 	QStringList softwareLists = systemSoftwareListMap[systemName];
+	progressBar->setFormat(tr("Checking software-states - %p%"));
 	progressBar->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
 	progressBar->setValue(0);
 
@@ -1604,6 +1628,11 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			progressBar->setValue(progressBar->value() + 1);
 			if ( notFoundState ) {
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+				softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "N");
+				if ( stateFilter->checkBoxStateFilter->isChecked() )
+					softwareItem->setHidden(!stateFilter->toolButtonNotFound->isChecked());
+				else
+					softwareItem->setHidden(false);
 				if ( favoriteItem )
 					favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 				if ( searchItem )
@@ -1614,6 +1643,11 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				numSoftwareNotFound++;
 			} else {
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+				softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
+				if ( stateFilter->checkBoxStateFilter->isChecked() )
+					softwareItem->setHidden(!stateFilter->toolButtonUnknown->isChecked());
+				else
+					softwareItem->setHidden(false);
 				if ( favoriteItem )
 					favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 				if ( searchItem )
@@ -1633,6 +1667,9 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		softwareStateFile.close();
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(softwareListName).arg(softwareListItems.count()).arg(numSoftwareCorrect).arg(numSoftwareMostlyCorrect).arg(numSoftwareIncorrect).arg(numSoftwareNotFound).arg(numSoftwareUnknown));
+
+	if ( toolButtonCompatFilterToggle->isChecked() )
+		on_toolButtonCompatFilterToggle_clicked(true);
 
 	softwareListItems.clear();
 }
@@ -1711,6 +1748,11 @@ void SoftwareList::verifyReadyReadStandardOutput()
 				switch ( numericStatus ) {
 					case QMC2_ROMSTATE_INT_C:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "C");
+						if ( stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!stateFilter->toolButtonCorrect->isChecked());
+						else
+							softwareItem->setHidden(false);
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
 						if ( searchItem )
@@ -1721,6 +1763,11 @@ void SoftwareList::verifyReadyReadStandardOutput()
 						break;
 					case QMC2_ROMSTATE_INT_M:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "M");
+						if ( stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!stateFilter->toolButtonMostlyCorrect->isChecked());
+						else
+							softwareItem->setHidden(false);
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
 						if ( searchItem )
@@ -1731,6 +1778,11 @@ void SoftwareList::verifyReadyReadStandardOutput()
 						break;
 					case QMC2_ROMSTATE_INT_I:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "I");
+						if ( stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!stateFilter->toolButtonIncorrect->isChecked());
+						else
+							softwareItem->setHidden(false);
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
 						if ( searchItem )
@@ -1741,6 +1793,11 @@ void SoftwareList::verifyReadyReadStandardOutput()
 						break;
 					case QMC2_ROMSTATE_INT_U:
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
+						if ( stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!stateFilter->toolButtonUnknown->isChecked());
+						else
+							softwareItem->setHidden(false);
 						if ( favoriteItem )
 							favoriteItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 						if ( searchItem )
@@ -1802,10 +1859,21 @@ void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked = %1)").arg(checked));
 #endif
 
-	if ( checked )
+	QString itemText = toolBoxSoftwareList->itemText(QMC2_SWLIST_KNOWN_SW_PAGE);
+	itemText.remove(QRegExp(" - " + tr("filtered") + "$"));
+
+	if ( checked ) {
 		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
-	else
+		if ( isReady )
+			qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText + " - " + tr("filtered"));
+	} else {
 		toolButtonSoftwareStates->setMenu(NULL);
+		if ( isReady )
+			qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText);
+	}
+
+	if ( isReady )
+		QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 
 	qApp->processEvents();
 }
@@ -1865,12 +1933,35 @@ void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 		for (int i = 0; i < compatList.count() && !showItem; i++)
 			for (int j = 0; j < compatFilters.count() && !showItem; j++)
 				showItem = (compatList[i] == compatFilters[j]);
-		if ( !showItem ) {
-			item->setHidden(true);
-			if ( item->isSelected() )
+		if ( stateFilter->checkBoxStateFilter->isChecked() ) {
+			switch ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).at(0).toLatin1() ) {
+				case 'C':
+					item->setHidden(!stateFilter->toolButtonCorrect->isChecked() || !showItem);
+					break;
+				case 'M':
+					item->setHidden(!stateFilter->toolButtonMostlyCorrect->isChecked() || !showItem);
+					break;
+				case 'I':
+					item->setHidden(!stateFilter->toolButtonIncorrect->isChecked() || !showItem);
+					break;
+				case 'N':
+					item->setHidden(!stateFilter->toolButtonNotFound->isChecked() || !showItem);
+					break;
+				case 'U':
+				default:
+					item->setHidden(!stateFilter->toolButtonUnknown->isChecked() || !showItem);
+					break;
+			}
+			if ( item->isHidden() && item->isSelected() )
 				item->setSelected(false);
-		} else
-			item->setHidden(false);
+		} else {
+			if ( !showItem ) {
+				item->setHidden(true);
+				if ( item->isSelected() )
+					item->setSelected(false);
+			} else
+				item->setHidden(false);
+		}
 	}
 	for (int count = 0; count < treeWidgetFavoriteSoftware->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(count);
@@ -3272,28 +3363,58 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 					case QMC2_ROMSTATE_INT_C:
 						numCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "C");
+						if ( qmc2SoftwareList->stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!qmc2SoftwareList->stateFilter->toolButtonCorrect->isChecked());
+						else
+							softwareItem->setHidden(false);
 						break;
 					case QMC2_ROMSTATE_INT_M:
 						numMostlyCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "M");
+						if ( qmc2SoftwareList->stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!qmc2SoftwareList->stateFilter->toolButtonMostlyCorrect->isChecked());
+						else
+							softwareItem->setHidden(false);
 						break;
 					case QMC2_ROMSTATE_INT_I:
 						numIncorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "I");
+						if ( qmc2SoftwareList->stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!qmc2SoftwareList->stateFilter->toolButtonIncorrect->isChecked());
+						else
+							softwareItem->setHidden(false);
 						break;
 					case QMC2_ROMSTATE_INT_N:
 						numNotFound++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "N");
+						if ( qmc2SoftwareList->stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!qmc2SoftwareList->stateFilter->toolButtonNotFound->isChecked());
+						else
+							softwareItem->setHidden(false);
 						break;
 					case QMC2_ROMSTATE_INT_U:
 					default:
 						numUnknown++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
+						if ( qmc2SoftwareList->stateFilter->checkBoxStateFilter->isChecked() )
+							softwareItem->setHidden(!qmc2SoftwareList->stateFilter->toolButtonUnknown->isChecked());
+						else
+							softwareItem->setHidden(false);
 						break;
 				}
 			} else {
 				numUnknown++;
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
+				softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
+				if ( qmc2SoftwareList->stateFilter->checkBoxStateFilter->isChecked() )
+					softwareItem->setHidden(!qmc2SoftwareList->stateFilter->toolButtonUnknown->isChecked());
+				else
+					softwareItem->setHidden(false);
 			}
 		}
 	} else if ( qName == "part" ) {
@@ -3321,7 +3442,8 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 					for (int i = 0; i < compatList.count() && !showItem; i++)
 						for (int j = 0; j < compatFilters.count() && !showItem; j++)
 							showItem = (compatList[i] == compatFilters[j]);
-					softwareItem->setHidden(!showItem);
+					if ( !softwareItem->isHidden() )
+						softwareItem->setHidden(!showItem);
 				}
 			}
 		}
