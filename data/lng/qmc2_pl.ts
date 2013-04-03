@@ -19083,6 +19083,11 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <source>State filter</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../softwarestatefilter.cpp" line="85"/>
+        <source>State filter settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TablePropertyDialog</name>

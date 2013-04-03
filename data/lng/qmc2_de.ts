@@ -19017,6 +19017,11 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <source>State filter</source>
         <translation>Status-Filter</translation>
     </message>
+    <message>
+        <location filename="../../softwarestatefilter.cpp" line="85"/>
+        <source>State filter settings</source>
+        <translation>Einstellung des Status-Filters</translation>
+    </message>
 </context>
 <context>
     <name>TablePropertyDialog</name>
