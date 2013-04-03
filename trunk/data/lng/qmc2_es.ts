@@ -19036,6 +19036,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>State filter</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../softwarestatefilter.cpp" line="85"/>
+        <source>State filter settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TablePropertyDialog</name>
