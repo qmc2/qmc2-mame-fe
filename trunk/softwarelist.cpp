@@ -1603,6 +1603,12 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		notFoundState = false;
 	}
 
+	if ( softwareListItems.count() > QMC2_SWLIST_COUNT_THRESHOLD ) {
+		labelLoadingSoftwareLists->setText(tr("Checking software-states, please wait..."));
+		labelLoadingSoftwareLists->setVisible(true);
+		toolBoxSoftwareList->setVisible(false);
+	}
+
 	for (int i = 0; i < softwareListItems.count(); i++) {
 		QTreeWidgetItem *softwareItem = softwareListItems[i];
 		QString softwareName = softwareItem->text(QMC2_SWLIST_COLUMN_NAME);
@@ -1662,6 +1668,9 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		if ( i % QMC2_SWLIST_CHECK_RESPONSE == 0 )
 			qApp->processEvents();
 	}
+
+	labelLoadingSoftwareLists->setVisible(false);
+	toolBoxSoftwareList->setVisible(true);
 
 	if ( softwareStateFile.isOpen() )
 		softwareStateFile.close();
