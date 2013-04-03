@@ -1566,6 +1566,9 @@ void SoftwareList::checkSoftwareStates()
 		}
 	}
 
+	labelLoadingSoftwareLists->setVisible(false);
+	toolBoxSoftwareList->setVisible(true);
+
 	qmc2MainWindow->tabWidgetGamelist->setEnabled(true);
 	qmc2MainWindow->menuBar()->setEnabled(true);
 	qmc2MainWindow->toolbar->setEnabled(true);
@@ -1668,9 +1671,6 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		if ( i % QMC2_SWLIST_CHECK_RESPONSE == 0 )
 			qApp->processEvents();
 	}
-
-	labelLoadingSoftwareLists->setVisible(false);
-	toolBoxSoftwareList->setVisible(true);
 
 	if ( softwareStateFile.isOpen() )
 		softwareStateFile.close();
