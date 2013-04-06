@@ -214,6 +214,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		int oldMax, oldMin;
 		QString oldFmt;
 		QTreeWidgetItem *currentItem;
+		QTreeWidgetItem *enteredItem;
 		QString softwareListName;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
 		quint64 numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
