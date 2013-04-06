@@ -74,7 +74,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	systemName = sysName;
 	loadProc = verifyProc = NULL;
 	exporter = NULL;
-	currentItem = NULL;
+	currentItem = enteredItem = NULL;
 	snapForced = autoSelectSearchItem = interruptLoad = isLoading = isReady = fullyLoaded = updatingMountDevices = negatedMatch = false;
 	validData = autoMounted = true;
 	cachedDeviceLookupPosition = 0;
@@ -2522,6 +2522,11 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+	if ( item == enteredItem )
+		return;
+
+	enteredItem = item;
+
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool() )
 		return;
 
@@ -2541,6 +2546,11 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+	if ( item == enteredItem )
+		return;
+
+	enteredItem = item;
+
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool() )
 		return;
 
@@ -2559,6 +2569,11 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
+
+	if ( item == enteredItem )
+		return;
+
+	enteredItem = item;
 
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool() )
 		return;
