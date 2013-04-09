@@ -1266,6 +1266,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
   actionMenuGamelistHeaderVersion = action;
 #endif
+  menuGamelistHeader->addSeparator();
+  action = menuGamelistHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionGamelistHeader_triggered())); action->setData(QMC2_GAMELIST_RESET);
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &)));
 
@@ -1306,6 +1308,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
   actionMenuHierarchyHeaderVersion = action;
 #endif
+  menuHierarchyHeader->addSeparator();
+  action = menuHierarchyHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionHierarchyHeader_triggered())); action->setData(QMC2_GAMELIST_RESET);
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &)));
 
@@ -1337,6 +1341,8 @@ MainWindow::MainWindow(QWidget *parent)
   action = menuCategoryHeader->addAction(tr("Version"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
 #endif
+  menuCategoryHeader->addSeparator();
+  action = menuCategoryHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionCategoryHeader_triggered())); action->setData(QMC2_GAMELIST_RESET);
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &)));
 
@@ -1363,6 +1369,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
   action = menuVersionHeader->addAction(tr("Category"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
+  menuVersionHeader->addSeparator();
+  action = menuVersionHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionVersionHeader_triggered())); action->setData(QMC2_GAMELIST_RESET);
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &)));
 #endif
@@ -10086,6 +10094,17 @@ void MainWindow::actionGamelistHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) if ( !treeWidgetGamelist->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
+			for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) treeWidgetGamelist->setColumnHidden(i, false);
+			treeWidgetGamelist->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuGamelistHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetGamelist->setColumnHidden(action->data().toInt(), false);
@@ -10119,6 +10138,17 @@ void MainWindow::actionHierarchyHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) if ( !treeWidgetHierarchy->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
+			for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) treeWidgetHierarchy->setColumnHidden(i, false);
+			treeWidgetHierarchy->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuHierarchyHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetHierarchy->setColumnHidden(action->data().toInt(), false);
@@ -10300,6 +10330,17 @@ void MainWindow::actionCategoryHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) if ( !treeWidgetCategoryView->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
+			for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) treeWidgetCategoryView->setColumnHidden(i, false);
+			treeWidgetCategoryView->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuCategoryHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetCategoryView->setColumnHidden(action->data().toInt(), false);
@@ -10334,6 +10375,17 @@ void MainWindow::actionVersionHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) if ( !treeWidgetVersionView->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
+			for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) treeWidgetVersionView->setColumnHidden(i, false);
+			treeWidgetVersionView->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuVersionHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetVersionView->setColumnHidden(action->data().toInt(), false);

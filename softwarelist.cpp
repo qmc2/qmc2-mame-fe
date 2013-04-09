@@ -262,6 +262,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setChecked(!treeWidgetKnownSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
 	action = menuKnownSoftwareHeader->addAction(tr("Supported"), this, SLOT(actionKnownSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_SUPPORTED);
 	action->setChecked(!treeWidgetKnownSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_SUPPORTED));
+	menuKnownSoftwareHeader->addSeparator();
+	action = menuKnownSoftwareHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionKnownSoftwareHeader_triggered())); action->setData(QMC2_SWLIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &)));
 
@@ -287,6 +289,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action = menuFavoriteSoftwareHeader->addAction(tr("Device configuration"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_DEVICECFG);
 	action->setChecked(!treeWidgetFavoriteSoftware->isColumnHidden(QMC2_SWLIST_COLUMN_DEVICECFG));
 #endif
+	menuFavoriteSoftwareHeader->addSeparator();
+	action = menuFavoriteSoftwareHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionFavoriteSoftwareHeader_triggered())); action->setData(QMC2_SWLIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &)));
 
@@ -308,6 +312,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setChecked(!treeWidgetSearchResults->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
 	action = menuSearchResultsHeader->addAction(tr("Supported"), this, SLOT(actionSearchResultsHeader_triggered())); action->setCheckable(true); action->setData(QMC2_SWLIST_COLUMN_SUPPORTED);
 	action->setChecked(!treeWidgetSearchResults->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
+	menuSearchResultsHeader->addSeparator();
+	action = menuSearchResultsHeader->addAction(QIcon(":data/img/reset.png"), tr("Reset"), this, SLOT(actionSearchResultsHeader_triggered())); action->setData(QMC2_SWLIST_RESET);
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &)));
 
@@ -2926,6 +2932,17 @@ void SoftwareList::actionKnownSoftwareHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetKnownSoftware->columnCount(); i++) if ( !treeWidgetKnownSoftware->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_SWLIST_RESET ) {
+			for (int i = 0; i < treeWidgetKnownSoftware->columnCount(); i++) treeWidgetKnownSoftware->setColumnHidden(i, false);
+			treeWidgetKnownSoftware->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuKnownSoftwareHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetKnownSoftware->setColumnHidden(action->data().toInt(), false);
@@ -2959,6 +2976,17 @@ void SoftwareList::actionFavoriteSoftwareHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetFavoriteSoftware->columnCount(); i++) if ( !treeWidgetFavoriteSoftware->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_SWLIST_RESET ) {
+			for (int i = 0; i < treeWidgetFavoriteSoftware->columnCount(); i++) treeWidgetFavoriteSoftware->setColumnHidden(i, false);
+			treeWidgetFavoriteSoftware->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuFavoriteSoftwareHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetFavoriteSoftware->setColumnHidden(action->data().toInt(), false);
@@ -2992,6 +3020,17 @@ void SoftwareList::actionSearchResultsHeader_triggered()
 	int visibleColumns = 0;
 	for (int i = 0; i < treeWidgetSearchResults->columnCount(); i++) if ( !treeWidgetSearchResults->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
+		if ( action->data().toInt() == QMC2_SWLIST_RESET ) {
+			for (int i = 0; i < treeWidgetSearchResults->columnCount(); i++) treeWidgetSearchResults->setColumnHidden(i, false);
+			treeWidgetSearchResults->header()->resizeSections(QHeaderView::Stretch);
+			foreach (QAction *a, menuSearchResultsHeader->actions())
+				if ( a->isCheckable() ) {
+					a->blockSignals(true);
+					a->setChecked(true);
+					a->blockSignals(false);
+				}
+			return;
+		}
 		bool visibility = true;
 		if ( action->isChecked() )
 			treeWidgetSearchResults->setColumnHidden(action->data().toInt(), false);
