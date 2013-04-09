@@ -46,7 +46,7 @@ inf: informational only
   <li>imp: made XML cache loading/creation an interruptable process</li>
   <li>imp: X11 and Windows only: the scaling mode for snapshots taken through the embedder can now be selected</li>
   <li>imp: using Qt's built-in (= non-native) standard file-dialogs wherever possible</li>
-  <li>imp: added 'reset' action to all header context-menus (will make all contained columns visible and stretch them equally)</li>
+  <li>imp: added a 'reset' action to all header context-menus (will make all contained columns visible and stretch them equally)</li>
   <li>new: system- and software-notes templates: added two new slots for use with zipped images: 'qmc2NEO.isZippedImage()' will determine if an image is from a ZIP, 'qmc2NEO.getImageData()' will return the base64-encoded image data which you can use in &lt;img&gt; tags (<b>caution: may be slow and will inflate the HTML enormously -- only use this with the WYSIWYG editor!</b>)</li>
   <li>new: HTML editor: added an option to show/hide the HTML tab</li>
   <li>new: system- and software-notes templates: added support for querying the XML (from -listxml) using XQuery through the new slots 'qmc2NEO.queryXml()' (will execute an XQuery on the complete XML data, warning: may be slow), 'qmc2NEO.queryLocalXml()' (same as before, restricted to a single game/machine and thus much faster) and 'qmc2NEO.getXmlResult()' (will return the list of result strings as an array)</li>
