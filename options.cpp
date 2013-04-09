@@ -174,6 +174,8 @@ extern SampleChecker *qmc2SampleChecker;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
 extern QPalette qmc2CustomPalette;
 extern QMap<QString, QPalette> qmc2StandardPalettes;
+extern bool qmc2CategoryInfoUsed;
+extern bool qmc2VersionInfoUsed;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -1329,6 +1331,8 @@ void Options::on_pushButtonApply_clicked()
   needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool() != categoryUsed );
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", categoryUsed);
 #endif
+  qmc2CategoryInfoUsed = catverUsed | categoryUsed;
+  qmc2VersionInfoUsed = catverUsed;
 
   if ( catverUsed || categoryUsed ) {
     qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);

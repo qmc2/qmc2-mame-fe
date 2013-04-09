@@ -282,6 +282,8 @@ QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 QPalette qmc2CustomPalette;
 QMap<QString, QPalette> qmc2StandardPalettes;
+bool qmc2CategoryInfoUsed = false;
+bool qmc2VersionInfoUsed = false;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -10095,7 +10097,16 @@ void MainWindow::actionGamelistHeader_triggered()
 	for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) if ( !treeWidgetGamelist->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
-			for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) treeWidgetGamelist->setColumnHidden(i, false);
+			for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) {
+				if ( i == QMC2_GAMELIST_COLUMN_CATEGORY ) {
+				       	if ( qmc2CategoryInfoUsed )
+						treeWidgetGamelist->setColumnHidden(i, false);
+				} else if ( i == QMC2_GAMELIST_COLUMN_VERSION ) {
+				       	if ( qmc2VersionInfoUsed )
+						treeWidgetGamelist->setColumnHidden(i, false);
+				} else
+					treeWidgetGamelist->setColumnHidden(i, false);
+			}
 			treeWidgetGamelist->header()->resizeSections(QHeaderView::Stretch);
 			foreach (QAction *a, menuGamelistHeader->actions())
 				if ( a->isCheckable() ) {
@@ -10139,7 +10150,16 @@ void MainWindow::actionHierarchyHeader_triggered()
 	for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) if ( !treeWidgetHierarchy->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
-			for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) treeWidgetHierarchy->setColumnHidden(i, false);
+			for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) {
+				if ( i == QMC2_GAMELIST_COLUMN_CATEGORY ) {
+				       	if ( qmc2CategoryInfoUsed )
+						treeWidgetHierarchy->setColumnHidden(i, false);
+				} else if ( i == QMC2_GAMELIST_COLUMN_VERSION ) {
+				       	if ( qmc2VersionInfoUsed )
+						treeWidgetHierarchy->setColumnHidden(i, false);
+				} else
+					treeWidgetHierarchy->setColumnHidden(i, false);
+			}
 			treeWidgetHierarchy->header()->resizeSections(QHeaderView::Stretch);
 			foreach (QAction *a, menuHierarchyHeader->actions())
 				if ( a->isCheckable() ) {
@@ -10331,7 +10351,13 @@ void MainWindow::actionCategoryHeader_triggered()
 	for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) if ( !treeWidgetCategoryView->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
-			for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) treeWidgetCategoryView->setColumnHidden(i, false);
+			for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) {
+				if ( i == QMC2_GAMELIST_COLUMN_VERSION ) {
+				       	if ( qmc2VersionInfoUsed )
+						treeWidgetCategoryView->setColumnHidden(i, false);
+				} else if ( i != QMC2_GAMELIST_COLUMN_CATEGORY )
+					treeWidgetCategoryView->setColumnHidden(i, false);
+			}
 			treeWidgetCategoryView->header()->resizeSections(QHeaderView::Stretch);
 			foreach (QAction *a, menuCategoryHeader->actions())
 				if ( a->isCheckable() ) {
@@ -10376,7 +10402,13 @@ void MainWindow::actionVersionHeader_triggered()
 	for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) if ( !treeWidgetVersionView->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
-			for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) treeWidgetVersionView->setColumnHidden(i, false);
+			for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) {
+				if ( i == QMC2_GAMELIST_COLUMN_CATEGORY ) {
+				       	if ( qmc2CategoryInfoUsed )
+						treeWidgetVersionView->setColumnHidden(i, false);
+				} else if ( i != QMC2_GAMELIST_COLUMN_VERSION )
+					treeWidgetVersionView->setColumnHidden(i, false);
+			}
 			treeWidgetVersionView->header()->resizeSections(QHeaderView::Stretch);
 			foreach (QAction *a, menuVersionHeader->actions())
 				if ( a->isCheckable() ) {
