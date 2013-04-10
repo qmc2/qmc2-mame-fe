@@ -421,16 +421,10 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax && !interruptLoad )
 			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
 		softwareListXmlBuffer += "</softwarelist>";
-		if ( i < swlLinesMax ) {
+		if ( i < swlLinesMax )
 			softwareListXmlDataCache[listName] = softwareListXmlBuffer;
-		} else {
+		else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: software list '%1' not found").arg(listName));
-			toolBoxSoftwareList->setEnabled(false);
-			toolButtonExport->setEnabled(false);
-			toolButtonToggleSoftwareInfo->setEnabled(false);
-			toolButtonCompatFilterToggle->setEnabled(false);
-			toolButtonToggleSnapnameAdjustment->setEnabled(false);
-			toolButtonSoftwareStates->setEnabled(false);
 			softwareListXmlBuffer.clear();
 		}
 	}
