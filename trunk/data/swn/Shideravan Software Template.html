@@ -1,14 +1,14 @@
 <!--
 ULTIMATE SOFTWARE TEMPLATE
-LAST MODIFICATION: 19/02/2013
+LAST MODIFICATION: 15/04/2013
 
   
 --------------------------------------------
 status of the languages supported: 
  us (English) = Full
  pt (Portuguese) = Full
- de (German) = Partial
- es (Spanish) = Partial
+ de (German) = Full
+ es (Spanish) = Full
  fr (French) = Partial
  it (Italian) = Partial
  sv (Swedish) = Partial
@@ -27,6 +27,8 @@ status of the languages supported:
   $SOFTWARE_SUPPORTED_UT$  Software support status ('yes', 'no' or 'partially' / untranslated)
   $SOFTWARE_INFO$    Software info DB entry (from MAME history.dat)
   $SOFTWARE_INFO_STATUS$  Status of the software info DB entry (OK / NO_DATA)
+  $SOFTWARE_STATUS$
+  $SOFTWARE_STATUS_UT$
 
   Image macros:
 
@@ -125,7 +127,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = 'Transição de Imagens';
       
       trMap['Shadows'] = 'Sombras';
-      trMap['Use images from ZIP (may slow)'] = 'Usar imagens de ZIP (pode ficar lento)';
+      trMap['Use images from ZIP (may be slow)'] = 'Usar imagens de ZIP (pode ficar lento)';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
@@ -136,14 +138,14 @@ switch ("$GUI_LANGUAGE$")
    case "de":
    { 
       /*LANGUAGE: DE*/
-      trMap['File Status'] = '???';
+      trMap['File Status'] = 'Datei-Status';
       trMap['Support'] = 'Unterstützung';
       trMap['Image source'] = 'Bildquelle';
       trMap['your default directory'] = 'dein Standardverzeichnis';
       trMap['No image availiable'] = 'Kein Bild verfügbar';
 
-      trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';
+      trMap['ZIP File'] = 'ZIP Datei';
+      trMap['file not zipped'] = 'Datei nicht komprimiert';
           
       /*DE:infobar*/
       trMap['Software-list'] = 'Software-Liste';
@@ -159,23 +161,23 @@ switch ("$GUI_LANGUAGE$")
       trMap['Show Sources'] = 'Quellen';      
                    
       trMap['Header Options'] = 'Optionen der Kopfzeile';
-      trMap['Left Snapshot'] = '???';
+      trMap['Left Snapshot'] = 'Linker Schnappschuss';
       trMap['Info Bar'] = 'Info-Zeile';      
-      trMap['Right Snapshot'] = '???';      
+      trMap['Right Snapshot'] = 'Rechter Schnappschuss';
            
       trMap['Image Options'] = 'Bild-Optionen';      
       trMap['TV Mode'] = 'TV-Modus';
-      trMap['Scaled Images'] = '???';       
+      trMap['Scaled Images'] = 'Bilder skalieren';
       trMap['Image Transition'] = 'Bildübergang';
       
-      trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Shadows'] = 'Schatten';
+      trMap['Use images from ZIP (may be slow)'] = 'Bilder aus ZIPs vewenden (u.U. langsam)'; 
       
       /*BG Mode*/
-      trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';     
-      break;       
-  }            
+      trMap['BG mode'] = 'HG Modus';
+      trMap['SoftInfo/BG'] = 'SW-Info/HG';     
+      break;
+  }           
 
   case "fr":
   {     
@@ -213,57 +215,57 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = '???';
       
       trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Use images from ZIP (may be slow)'] = '???';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
       trMap['SoftInfo/BG'] = '???';            
-    break;
-  }            
+      break;
+   }            
 
-  case "es":
-  { 
-    /*LANGUAGE: ES*/ 
-      trMap['File Status'] = 'Estado del archivo'; 
-      trMap['Support'] = 'Soporte';
-      trMap['Image source'] = 'Origen de la imagen';
-      trMap['your default directory'] = 'tu directorio por defecto';
-      trMap['No image availiable'] = 'No hay una imagen disponible';
+   case "es":
+   { 
+        /*LANGUAGE: ES*/ 
+        trMap['File Status'] = 'Estado del archivo'; 
+        trMap['Support'] = 'Soporte';
+        trMap['Image source'] = 'Origen de la imagen';
+        trMap['your default directory'] = 'tu directorio por defecto';
+        trMap['No image availiable'] = 'No hay una imagen disponible';
 
-      trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';          
-      
-      /*ES:infobar*/
-      trMap['Software-list'] = 'Lista de software';
-      trMap['Publisher'] = 'Fabricante';
-      trMap['Release date'] = 'Año';   
-      trMap['Clone of'] = 'Clon de';
-      trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL';          
-      
-      /*ES :options*/
-      trMap['SHOW OPTIONS'] = 'MOSTRAR OPICIONES';
-      
-      trMap['General Options'] = 'Opiciones Generales'; 
-      trMap['Show Sources'] = '???';      
-                   
-      trMap['Header Options'] = 'Opciones de Cabecera';
-      trMap['Left Snapshot'] = 'Imagen del Juego (izquierda)';
-      trMap['Info Bar'] = 'Barra Info';      
-      trMap['Right Snapshot'] = 'Imagen del Juego (derecho)';      
-           
-      trMap['Image Options'] = 'Opciones de Imagen';      
-      trMap['TV Mode'] = 'TV Mode';
-      trMap['Scaled Images'] = 'Imágenes Escaladas';       
-      trMap['Image Transition'] = 'Transición de Imágenes';
-      
-      trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
-      
-      /*BG Mode*/
-      trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';
-      break;      
-  }                  
+        trMap['ZIP File'] = 'Fichero ZIP';
+        trMap['file not zipped'] = 'Fichero no comprimido';
+
+        /*ES:infobar*/
+        trMap['Software-list'] = 'Lista de software';
+        trMap['Publisher'] = 'Fabricante';
+        trMap['Release date'] = 'Año';
+        trMap['Clone of'] = 'Clon de';
+        trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL';
+
+        /*ES :options*/
+        trMap['SHOW OPTIONS'] = 'MOSTRAR OPICIONES';
+
+        trMap['General Options'] = 'Opiciones Generales';
+        trMap['Show Sources'] = 'Mostrar fuentes';
+
+        trMap['Header Options'] = 'Opciones de Cabecera';
+        trMap['Left Snapshot'] = 'Imagen del Juego (izquierda)';
+        trMap['Info Bar'] = 'Barra Info';
+        trMap['Right Snapshot'] = 'Imagen del Juego (derecha)';
+
+        trMap['Image Options'] = 'Opciones de Imagen';
+        trMap['TV Mode'] = 'Modo TV';
+        trMap['Scaled Images'] = 'Imágenes Escaladas';
+        trMap['Image Transition'] = 'Transición de Imágenes';
+
+        trMap['Shadows'] = 'Sombreado';
+        trMap['Use images from ZIP (may be slow)'] = 'Usar imágenes en ficheros ZIP (puede ser lento)';
+
+        /*BG Mode*/
+        trMap['BG mode'] = 'Modo BG';
+        trMap['SoftInfo/BG'] = 'SoftInfo/BG';
+        break; 
+     }                  
 
   case "sv":
   {       
@@ -301,7 +303,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = '???';
       
       trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Use images from ZIP (may be slow)'] = '???';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
@@ -345,7 +347,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = '???';
       
       trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Use images from ZIP (may be slow)'] = '???';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
@@ -389,7 +391,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = '???';
       
       trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Use images from ZIP (may be slow)'] = '???';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
@@ -433,7 +435,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = '???';
       
       trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Use images from ZIP (may be slow)'] = '???';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
@@ -477,7 +479,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Image Transition'] = '???';
       
       trMap['Shadows'] = '???';
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Use images from ZIP (may be slow)'] = '???';
       
       /*BG Mode*/
       trMap['BG mode'] = '???';
@@ -746,6 +748,43 @@ function supportCor()
       }  
    }          
 }
+
+<!--Creates a color software status bar
+function statusCor() 
+{
+   switch ("$SOFTWARE_STATUS_UT$")
+   {
+      case "correct":
+      {
+         document.write("<tbody bgcolor=\"#005000\">");
+         break;
+      }
+           
+      case "mostly correct":
+      {
+         document.write("<tbody bgcolor=\"#777700\">");        
+         break;    
+      }
+           
+      case "incorrect":
+      {
+         document.write("<tbody bgcolor=\"#700000\">");
+         break;
+      }
+
+      case "not found":
+      {
+         document.write("<tbody bgcolor=\"#7f7f7f\">");
+         break;
+      }
+                  
+      default:
+      {
+         document.write("<tbody bgcolor=\"#000070\">");
+         break;
+      } 
+   }          
+}-->
 </script>
 </head>
 
@@ -1029,7 +1068,7 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/Background
    document.write("<table border=\"0\" cellspacing=\"0\" height=\"5\" width=\"100%\">");
    supportCor();
    document.write("<tr><td height=\"5\"></td></tr></tbody></table>");
-   document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" style=\"table-layout: fixed;\"><tbody><tr><td>$SOFTWARE_INFO$  </td></tr></tbody></body></table>");
+   document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" style=\"table-layout: fixed;\"><tbody><tr><td>$SOFTWARE_INFO$</td></tr></tbody></body></table>");
 }
 </script>
 
@@ -1064,7 +1103,7 @@ document.write(" <label><b>"+tr('SHOW OPTIONS')+"</b></label></font></td>");
    
 document.write("<td align=\"center\" valign=\"middle\"><font size=\"4\"><font style=\"color:white\"><b>");
 
-/*document.write(tr('File Status')+": $SOFTWARE_FILE_STATUS$");*/
+document.write(tr('File Status')+": $SOFTWARE_STATUS$");
 
 document.write("</b></font></td><td align=\"right\"><font color=\"white\"><b>"+tr('SHOW OPTIONS')+"</b>");
 
@@ -1189,11 +1228,11 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/ToggleOpti
    
    if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/UseZip'] == 'true')
    {
-      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" checked=\"checked\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may slow)')+"</label>");
+      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" checked=\"checked\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }                
    else
    {
-      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may slow)')+"</label>");
+      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }   
 
    document.write("</td></tr><tr><td></td><td></td>");
