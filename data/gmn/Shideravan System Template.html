@@ -1,6 +1,6 @@
 <!--
 ULTIMATE SYSTEM TEMPLATE
-LAST MODIFICATION: 22/02/2013
+LAST MODIFICATION: 15/04/2013
 
 This is the Ultimate System Template aka Shideravan's templates for QMC2 0.39 by Shideravan. Enjoy!
 
@@ -12,8 +12,8 @@ I want to thank all envolved in project and help with the project, in special, R
 status of the languages supported: 
  us (English) = Full
  pt (Portuguese) = Full
- de (German) = Partial
- es (Spanish) = Partial
+ de (German) = Full
+ es (Spanish) = Full
  fr (French) = Partial
  it (Italian) = Partial
  sv (Swedish) = Partial
@@ -125,7 +125,7 @@ status of the languages supported:
 
 
 <script language="JavaScript">
-<!--Shideravan exclusive features-->
+<!--Shideravan features-->
 function toggleUseZip(enable) 
 {
    localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseZip'] = enable ? 'true' : 'false';
@@ -317,7 +317,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = 'Mostrar Informações';
       
       trMap['Preview Image'] = 'Imagem Preview';
-      trMap['No use']  = 'Não mostrar';    
+      trMap['Not used']  = 'Não mostrar';    
       trMap['Original'] = 'Original';
       trMap['Big Image'] = 'Imagem extendida';      
       trMap['TVMode'] = 'ModoTV';      
@@ -333,11 +333,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = 'Bancos de Dados na Internet';
       
       trMap['Performance'] = 'Performance';                    
-      trMap['Info XML (may slow)'] = 'Info do XML (pode ficar lento)';          
-      trMap['Status XML (may slow)'] = 'Estado pelo XML (pode ficar lento)';    
-      trMap['Softwarelist/Samples XML (may slow)'] = 'Softwarelist/Samples pelo XML (pode ficar lento)'; 
-      trMap['Processors info XML (may slow)'] = 'Informação de processadores por XML (pode ficar lento)';     
-      trMap['Use images from ZIP (may slow)'] = 'Usar imagens de ZIP (pode ficar lento)';      
+      trMap['Info XML (may be slow)'] = 'Info do XML (pode ficar lento)';          
+      trMap['Status XML (may be slow)'] = 'Estado pelo XML (pode ficar lento)';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = 'Softwarelist/Samples pelo XML (pode ficar lento)'; 
+      trMap['Processors info XML (may be slow)'] = 'Informação de processadores por XML (pode ficar lento)';     
+      trMap['Use images from ZIP (may be slow)'] = 'Usar imagens de ZIP (pode ficar lento)';      
          
       /*BG Modes*/ 
       trMap['BG mode'] = 'Fundo';
@@ -356,11 +356,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['your default directory'] = 'Dein Standardverzeichnis';
       trMap['No image availiable'] = 'Kein Bild vorhanden';
       
-      trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';
-      trMap['CPU'] = '???';
-      trMap['Audio'] = '???';
-      trMap['Others'] = '???';      
+      trMap['ZIP File'] = 'ZIP Datei';
+      trMap['file not zipped'] = 'Datei nicht komprimiert';
+      trMap['CPU'] = 'CPU';
+      trMap['Audio'] = 'Audio';
+      trMap['Others'] = 'Weitere';        
       
       /*Infobar*/
       trMap['Manufacturer'] = 'Hersteller';
@@ -370,29 +370,30 @@ switch ("$GUI_LANGUAGE$")
       trMap['MAIN SYSTEM'] = 'Hauptsystem';      
       
       /*W.I.P. Driver Information*/
-      trMap['PROCESSORS'] = '???';      
+      trMap['PROCESSORS'] = 'Prozessoren'; /* better don't use CAPITAL letters only :)!*/
       trMap['Driver'] = 'Treiber';
       trMap['Processors'] = 'CPU';
       trMap['Screen'] = 'Video';
       trMap['Sound'] = 'Sound';
-      trMap['Control'] = 'Steuerung';      
+      trMap['Control'] = 'Steuerung';    
       
       /*W.I.P. Emulation Status*/
-      trMap['Samples'] = '???';
+      trMap['Samples'] = 'Samples';
       trMap['Software List'] = 'Software-Liste';   
       trMap['Emulation'] = 'Emulation';       
       trMap['Graphics'] = 'Grafik';
       trMap['Color'] = 'Farbe';
       trMap['S.State'] = 'S.State';
       
-      trMap['Not necessary'] = '???'; 
-      trMap['None'] = '???';
-      trMap['Good'] = '???';
-      trMap['Imperfect'] = '???';
-      trMap['Preliminary'] = '???';
-      trMap['Supported'] = '???';
-      trMap['Unsupported'] = '???';
-      trMap['XML query error!'] = '???';
+      trMap['Not necessary'] = 'Nicht benötigt'; 
+      trMap['None'] = 'Kein(e)'; /* if the last 'e' is required or not depends on the context where this is used! */
+      trMap['Good'] = 'Gut';
+      trMap['Imperfect'] = 'Unvollständig';
+      trMap['Preliminary'] = 'Vorläufig';
+      trMap['Supported'] = 'Unterstützt';
+      trMap['Unsupported'] = 'Nicht unterstützt';
+      trMap['XML query error!'] = 'Fehler bei XML Abfrage';
+      
       
       /*DE:options*/
       trMap['SHOW OPTIONS'] = 'Optionen anzeigen';
@@ -403,14 +404,14 @@ switch ("$GUI_LANGUAGE$")
       trMap['System Info'] = 'System Info';      
       
       trMap['Header Options'] = 'Optionen der Kopfzeile';
-      trMap['Title/Cabinet Image'] = '???';
+      trMap['Title/Cabinet Image'] = 'Titel-/Gehäuse-Bild';
       trMap['Toggle Info'] = 'Info an/aus';
       
-      trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
-      trMap['Original'] = '???';
-      trMap['Big Image'] = '???';      
-      trMap['TVMode'] = 'TV Modus';      
+      trMap['Preview Image'] = 'Vorschau-Bild';
+      trMap['Not used']  = 'Nicht verwendet'; 
+      trMap['Original'] = 'Original';
+      trMap['Big Image'] = 'Großes Bild';
+      trMap['TVMode'] = 'TV Modus';       
       
       trMap['Image Options'] = 'Bild-Optionen';
       trMap['Image Transition'] = 'Bildübergang';        
@@ -418,23 +419,23 @@ switch ("$GUI_LANGUAGE$")
       
       trMap['General Options'] = 'Allgemeine Optionen';
       trMap['Bottom Info'] = 'Info in Fußzeile';      
-      trMap['Shadows'] = '???';
+      trMap['Shadows'] = 'Schatten';
       trMap['Search Extra Images'] = 'Suche Extra-Bilder';             
       trMap['Internet Databases'] = 'Internet Datenbanken';
       
-      trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???';
+      trMap['Performance'] = 'Performance';
+      trMap['Info XML (may be slow)'] = 'Info XML (u.U. langsam)'; 
+      trMap['Status XML (may be slow)'] = 'Status XML (u.U.. langsam)'; 
+      trMap['Softwarelist/Samples XML (may be slow)'] = 'Software-Listen/Samples XML (u.U. langsam)'; 
+      trMap['Processors info XML (may be slow)'] = 'Prozessor-Info XML (u.U. langsam)'; 
+      trMap['Use images from ZIP (may be slow)'] = 'Bilder aus ZIPs vewenden (u.U. langsam)'; 
       
       /*BG Modes*/ 
-      trMap['BG mode'] = '???';
-      trMap['Default'] = '???';
-      trMap['Image'] = '???';
-      trMap['scaled'] = '???';
-      trMap['tiled'] = '???';      
+      trMap['BG mode'] = 'HG Modus';
+      trMap['Default'] = 'Standard';
+      trMap['Image'] = 'Bild';
+      trMap['scaled'] = 'skaliert';
+      trMap['tiled'] = 'gekachelt';       
       break;
    }
 
@@ -497,7 +498,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
+      trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
       trMap['TVMode'] = 'Mode TV';      
@@ -513,11 +514,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = '???';
       
       trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???';          
+      trMap['Info XML (may be slow)'] = '???';          
+      trMap['Status XML (may be slow)'] = '???';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = '???'; 
+      trMap['Processors info XML (may be slow)'] = '???';     
+      trMap['Use images from ZIP (may be slow)'] = '???';          
 
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -531,90 +532,90 @@ switch ("$GUI_LANGUAGE$")
    case "es":
    {    
       /*LANGUAGE: ES*/ 
-      trMap['SYSTEM WITHOUT ROM'] = 'SISTEMA SIN ROM';      
+      trMap['SYSTEM WITHOUT ROM'] = 'SISTEMA SIN ROM'; 
       trMap['Image source'] = 'Origen de la imagen';
       trMap['your default directory'] = 'tu directorio por defecto';
-      trMap['No image availiable'] = 'No hay una imagen disponible';      
+      trMap['No image availiable'] = 'No hay una imagen disponible'; 
 
-      trMap['ZIP File'] = '???';
-      trMap['file not zipped'] = '???';
-      trMap['CPU'] = '???';
-      trMap['Audio'] = '???';
-      trMap['Others'] = '???';
-            
+      trMap['ZIP File'] = 'Fichero ZIP';
+      trMap['file not zipped'] = 'Fichero no comprimido';
+      trMap['CPU'] = 'CPU';
+      trMap['Audio'] = 'Audio';
+      trMap['Others'] = 'Otros';
+
       /*Infobar*/
       trMap['Manufacturer'] = 'Fabricante';
-      trMap['Release Date'] = 'Año';      
+      trMap['Release Date'] = 'Año'; 
       trMap['Players'] = 'Jugadores';
       trMap['Clone of'] = 'Clon de';
-      trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL';    
+      trMap['MAIN SYSTEM'] = 'SISTEMA PRINCIPAL'; 
 
       /*W.I.P. Driver Information*/
-      trMap['PROCESSORS'] = '???';
-      trMap['Driver'] =  'Controlador'; /* Also 'Driver' */
-      trMap['Processors'] = 'Procesador'; /* Also 'CPU' */
-      trMap['Screen'] = 'Vídeo';
+      trMap['PROCESSORS'] = 'PROCESADORES';
+      trMap['Driver'] = 'Controlador'; /* Also 'Driver' */
+      trMap['Processors'] = 'Procesadores';
+      trMap['Screen'] = 'Pantalla';
       trMap['Sound'] = 'Sonido';
-      trMap['Control'] = 'Control';      
-      
+      trMap['Control'] = 'Control'; 
+
       /*W.I.P. Emulation Status*/
-      trMap['Samples'] = '???';
+      trMap['Samples'] = 'Samples';
       trMap['Software List'] = 'Lista de Software';
-      trMap['Emulation'] = 'Emulación';      
+      trMap['Emulation'] = 'Emulación'; 
       trMap['Graphics'] = 'Gráficos';
       trMap['Color'] = 'Color';
       trMap['S.State'] = 'Guardar estado'; /* Also 'S.State' */
-      
-      trMap['Not necessary'] = '???';     
-      trMap['None'] = '???';
-      trMap['Good'] = '???';
-      trMap['Imperfect'] = '???';
-      trMap['Preliminary'] = '???';
-      trMap['Supported'] = '???';
-      trMap['Unsupported'] = '???';
-      trMap['XML query error!'] = '???';        
-    
+
+      trMap['Not necessary'] = 'No necesario'; 
+      trMap['None'] = 'Ninguno';
+      trMap['Good'] = 'Bueno';
+      trMap['Imperfect'] = 'Imperfecto';
+      trMap['Preliminary'] = 'Preliminar';
+      trMap['Supported'] = 'Soportado';
+      trMap['Unsupported'] = 'No soportado';
+      trMap['XML query error!'] = 'Error en consulta XML'; 
+
       /*ES :options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPCIONES';
-      
+
       trMap['Structural Options'] = 'Opciones Estructurales';
       trMap['Emulator Info'] = 'Información del Emulador';
       trMap['Black Column'] = 'Columna Negra';
-      trMap['System Info'] = 'Información del Sistema';      
-      
+      trMap['System Info'] = 'Información del Sistema'; 
+
       trMap['Header Options'] = 'Opciones de Cabecera';
-      trMap['Title/Cabinet Image'] = '???';
+      trMap['Title/Cabinet Image'] = 'Imagen de Títulos/Cabinas';
       trMap['Toggle Info'] = 'Mostrar Información';
-      
-      trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
-      trMap['Original'] = '???';
-      trMap['Big Image'] = '???';      
-      trMap['TVMode'] = 'ModoTV';      
-      
+
+      trMap['Preview Image'] = 'Previsualizar Imagen';
+      trMap['Not used'] = 'No utilizar'; /* Also 'No usar' */
+      trMap['Original'] = 'Original';
+      trMap['Big Image'] = 'Imagen Grande';
+      trMap['TVMode'] = 'ModoTV';
+
       trMap['Image Options'] = 'Opciones de Imagen';
-      trMap['Image Transition'] = 'Transición de Imágenes';        
-      trMap['Show sources'] = 'Mostrar fuentes';      
-      
+      trMap['Image Transition'] = 'Transición de Imágenes'; 
+      trMap['Show sources'] = 'Mostrar fuentes'; 
+
       trMap['General Options'] = 'Opciones Generales';
-      trMap['Bottom Info'] = 'Información adicional más abajo';      
-      trMap['Shadows'] = '???';
-      trMap['Search Extra Images'] = 'Buscar Imágenes Adicionales';             
+      trMap['Bottom Info'] = 'Información adicional más abajo'; 
+      trMap['Shadows'] = 'Sombreado';
+      trMap['Search Extra Images'] = 'Buscar Imágenes Adicionales';
       trMap['Internet Databases'] = 'Bases de datos de Internet';
-      
-      trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???';       
-      
+
+      trMap['Performance'] = 'Rendimiento';
+      trMap['Info XML (may be slow)'] = 'XML de Información (puede ser lento)';
+      trMap['Status XML (may be slow)'] = 'XML de Estado (puede ser lento)';
+      trMap['Softwarelist/Samples XML (may be slow)'] = 'XML de Listas de software/Samples (puede ser lento)';
+      trMap['Processors info XML (may be slow)'] = 'XML de información de los Procesadores (puede ser lento)';
+      trMap['Use images from ZIP (may be slow)'] = 'Usar imágenes en ficheros ZIP (puede ser lento)';
+
       /*BG Modes*/ 
-      trMap['BG mode'] = '???';
-      trMap['Default'] = '???';
-      trMap['Image'] = '???';
-      trMap['scaled'] = '???';
-      trMap['tiled'] = '???';        
+      trMap['BG mode'] = 'Modo BG';
+      trMap['Default'] = 'Por defecto';
+      trMap['Image'] = 'Imagen';
+      trMap['scaled'] = 'escalado';
+      trMap['tiled'] = 'mosaico';
       break;
    }
   
@@ -677,7 +678,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
+      trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
       trMap['TVMode'] = '???';      
@@ -693,11 +694,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = '???';
       
       trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???'; 
+      trMap['Info XML (may be slow)'] = '???';          
+      trMap['Status XML (may be slow)'] = '???';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = '???'; 
+      trMap['Processors info XML (may be slow)'] = '???';     
+      trMap['Use images from ZIP (may be slow)'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -767,7 +768,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
+      trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
       trMap['TVMode'] = '???';      
@@ -783,11 +784,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = '???';
       
       trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???'; 
+      trMap['Info XML (may be slow)'] = '???';          
+      trMap['Status XML (may be slow)'] = '???';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = '???'; 
+      trMap['Processors info XML (may be slow)'] = '???';     
+      trMap['Use images from ZIP (may be slow)'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -857,7 +858,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
+      trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
       trMap['TVMode'] = '???';      
@@ -873,11 +874,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = '???';
       
       trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???'; 
+      trMap['Info XML (may be slow)'] = '???';          
+      trMap['Status XML (may be slow)'] = '???';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = '???'; 
+      trMap['Processors info XML (may be slow)'] = '???';     
+      trMap['Use images from ZIP (may be slow)'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -947,7 +948,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
+      trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
       trMap['TVMode'] = '???';      
@@ -963,11 +964,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = '???';
       
       trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???'; 
+      trMap['Info XML (may be slow)'] = '???';          
+      trMap['Status XML (may be slow)'] = '???';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = '???'; 
+      trMap['Processors info XML (may be slow)'] = '???';     
+      trMap['Use images from ZIP (may be slow)'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -1036,7 +1037,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Toggle Info'] = '???';
       
       trMap['Preview Image'] = '???';
-      trMap['No use']  = '???';    
+      trMap['Not used']  = '???';    
       trMap['Original'] = '???';
       trMap['Big Image'] = '???';      
       trMap['TVMode'] = '???';      
@@ -1052,11 +1053,11 @@ switch ("$GUI_LANGUAGE$")
       trMap['Internet Databases'] = '???';
       
       trMap['Performance'] = '???';                    
-      trMap['Info XML (may slow)'] = '???';          
-      trMap['Status XML (may slow)'] = '???';    
-      trMap['Softwarelist/Samples XML (may slow)'] = '???'; 
-      trMap['Processors info XML (may slow)'] = '???';     
-      trMap['Use images from ZIP (may slow)'] = '???'; 
+      trMap['Info XML (may be slow)'] = '???';          
+      trMap['Status XML (may be slow)'] = '???';    
+      trMap['Softwarelist/Samples XML (may be slow)'] = '???'; 
+      trMap['Processors info XML (may be slow)'] = '???';     
+      trMap['Use images from ZIP (may be slow)'] = '???'; 
       
       /*BG Modes*/ 
       trMap['BG mode'] = '???';
@@ -2746,19 +2747,19 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'] == 'no')
    {
-      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\" selected=\"selected\">"+tr('Preview Image')+": "+tr('No use')+"</option><option value=\"deafult\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" >"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");
+      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"deafult\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" >"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");
    }   
    else if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'] == 'tvmode')
    {
-      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('No use')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\" selected=\"selected\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");   
+      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\" selected=\"selected\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");   
    }
    else if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMode'] == 'bigimage')
    {
-      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('No use')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");     
+      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");     
    }
    else
    {
-      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('No use')+"</option><option value=\"default\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");  
+      document.write("<select onchange=\"changePrevImageMode(this.value)\" name=\"selPrevImageMode\" id=\"selPrevImage\" style=\"vertical-align: middle;\"><option value=\"no\">"+tr('Preview Image')+": "+tr('Not used')+"</option><option value=\"default\" selected=\"selected\">"+tr('Preview Image')+": "+tr('Original')+"</option><option value=\"bigimage\">"+tr('Preview Image')+": "+tr('Big Image')+"</option><option value=\"tvmode\">"+tr('Preview Image')+": "+tr('TVMode')+"</option></select></td>");  
    }
    
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">"+tr('Image Options'));
@@ -2866,33 +2867,33 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
              
    if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] == 'true' )
    {
-      document.write("<input name=\"cixml\" type=\"checkbox\" id=\"cixml\" checked=\"checked\" onclick=\"toggleInfoXML(this.checked);\" title=\"Show extra information from search from XML in information area(can be slow)\"/> <label>"+tr('Info XML (may slow)')+"</label>");
+      document.write("<input name=\"cixml\" type=\"checkbox\" id=\"cixml\" checked=\"checked\" onclick=\"toggleInfoXML(this.checked);\" title=\"Show extra information from search from XML in information area(can be slow)\"/> <label>"+tr('Info XML (may be slow)')+"</label>");
    }                  
    else
    {
-      document.write("<input name=\"cixml\" type=\"checkbox\" id=\"cixml\" onclick=\"toggleInfoXML(this.checked);\" title=\"Show extra information from search from XML in information area(can be slow)\"/> <label>"+tr('Info XML (may slow)')+"</label>");       
+      document.write("<input name=\"cixml\" type=\"checkbox\" id=\"cixml\" onclick=\"toggleInfoXML(this.checked);\" title=\"Show extra information from search from XML in information area(can be slow)\"/> <label>"+tr('Info XML (may be slow)')+"</label>");       
    }     
       
    document.write("</td><td align=\"left\"><font color=\"white\">");             
              
    if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SearchXML'] == 'true' )
    {
-      document.write("<input name=\"csxml\" type=\"checkbox\" id=\"csxml\" checked=\"checked\" onclick=\"toggleSearchXML(this.checked);\" title=\"Show information from search from XML (can be slow)\"/> <label>"+tr('Status XML (may slow)')+"</label>"); 
+      document.write("<input name=\"csxml\" type=\"checkbox\" id=\"csxml\" checked=\"checked\" onclick=\"toggleSearchXML(this.checked);\" title=\"Show information from search from XML (can be slow)\"/> <label>"+tr('Status XML (may be slow)')+"</label>"); 
    }                  
    else
    {
-      document.write("<input name=\"csxml\" type=\"checkbox\" id=\"csxml\" onclick=\"toggleSearchXML(this.checked);\" title=\"Show information from search from XML (can be slow)\"/> <label>"+tr('Status XML (may slow)')+"</label>"); 
+      document.write("<input name=\"csxml\" type=\"checkbox\" id=\"csxml\" onclick=\"toggleSearchXML(this.checked);\" title=\"Show information from search from XML (can be slow)\"/> <label>"+tr('Status XML (may be slow)')+"</label>"); 
    }                 
 
    document.write("</td><td align=\"right\"><font color=\"white\">");             
              
    if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/SoftlistXML'] == 'true' )
    {
-      document.write(tr('Softwarelist/Samples XML (may slow)')+"<input name=\"csfixml\" type=\"checkbox\" id=\"csfixml\" checked=\"checked\" onclick=\"toggleSoftlistXML(this.checked);\" title=\"Show information from softwarelist in search from XML (can be slow)\"/> <label></label>");
+      document.write(tr('Softwarelist/Samples XML (may be slow)')+"<input name=\"csfixml\" type=\"checkbox\" id=\"csfixml\" checked=\"checked\" onclick=\"toggleSoftlistXML(this.checked);\" title=\"Show information from softwarelist in search from XML (can be slow)\"/> <label></label>");
    }                   
    else
    {
-      document.write(tr('Softwarelist/Samples XML (may slow)')+"<input name=\"csfixml\" type=\"checkbox\" id=\"csfixml\" onclick=\"toggleSoftlistXML(this.checked);\" title=\"Show information from softwarelist in search from XML (can be slow)\"/> <label></label>"); 
+      document.write(tr('Softwarelist/Samples XML (may be slow)')+"<input name=\"csfixml\" type=\"checkbox\" id=\"csfixml\" onclick=\"toggleSoftlistXML(this.checked);\" title=\"Show information from softwarelist in search from XML (can be slow)\"/> <label></label>"); 
    }       
             
    document.write("</td></tr><tr><td width=\"10%\"><font color=\"white\">");
@@ -2900,22 +2901,22 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ToggleOption
 
    if ( localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/ProcXML'] == 'true' )
    {
-      document.write("<input name=\"cprocml\" type=\"checkbox\" id=\"cprocxml\" checked=\"checked\" onclick=\"toggleProcXML(this.checked);\" title=\"Show information from processors of the system in search from XML (can be slow)\"/> <label>"+tr('Processors info XML (may slow)')+"</label>");
+      document.write("<input name=\"cprocml\" type=\"checkbox\" id=\"cprocxml\" checked=\"checked\" onclick=\"toggleProcXML(this.checked);\" title=\"Show information from processors of the system in search from XML (can be slow)\"/> <label>"+tr('Processors info XML (may be slow)')+"</label>");
    }                
    else
    {
-      document.write("<input name=\"cprocml\" type=\"checkbox\" id=\"cprocxml\" onclick=\"toggleProcXML(this.checked);\" title=\"Show information from processors of the system in search from XML (can be slow)\"/> <label>"+tr('Processors info XML (may slow)')+"</label>");
+      document.write("<input name=\"cprocml\" type=\"checkbox\" id=\"cprocxml\" onclick=\"toggleProcXML(this.checked);\" title=\"Show information from processors of the system in search from XML (can be slow)\"/> <label>"+tr('Processors info XML (may be slow)')+"</label>");
    } 
 
    document.write("</td><td align=\"left\"><font color=\"white\">");
    
    if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/UseZip'] == 'true')
    {
-      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" checked=\"checked\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may slow)')+"</label>");
+      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" checked=\"checked\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }                
    else
    {
-      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may slow)')+"</label>");
+      document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
    }   
 
    document.write("</td></tr><tr><td width=\"10%\">");
