@@ -925,6 +925,11 @@ void Options::on_pushButtonApply_clicked()
        needManualReload = false,
        needChangeCookieJar = false;
 
+  pushButtonApply->setEnabled(false);
+  pushButtonRestore->setEnabled(false);
+  pushButtonDefault->setEnabled(false);
+  pushButtonOk->setEnabled(false);
+
   // General
   config->setValue("Version", QString(XSTR(QMC2_VERSION)));
 #if QMC2_SVN_REV > 0
@@ -2118,6 +2123,11 @@ void Options::on_pushButtonApply_clicked()
     qmc2AutomaticReload = true;
     QTimer::singleShot(0, qmc2MainWindow->actionReload, SLOT(trigger()));
   }
+
+  pushButtonApply->setEnabled(true);
+  pushButtonRestore->setEnabled(true);
+  pushButtonDefault->setEnabled(true);
+  pushButtonOk->setEnabled(true);
 
   QTimer::singleShot(0, this, SLOT(applyDelayed()));
 }
