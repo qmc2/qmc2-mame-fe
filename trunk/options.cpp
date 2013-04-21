@@ -929,6 +929,7 @@ void Options::on_pushButtonApply_clicked()
   pushButtonRestore->setEnabled(false);
   pushButtonDefault->setEnabled(false);
   pushButtonOk->setEnabled(false);
+  pushButtonCancel->setEnabled(false);
 
   // General
   config->setValue("Version", QString(XSTR(QMC2_VERSION)));
@@ -2128,6 +2129,7 @@ void Options::on_pushButtonApply_clicked()
   pushButtonRestore->setEnabled(true);
   pushButtonDefault->setEnabled(true);
   pushButtonOk->setEnabled(true);
+  pushButtonCancel->setEnabled(true);
 
   QTimer::singleShot(0, this, SLOT(applyDelayed()));
 }
