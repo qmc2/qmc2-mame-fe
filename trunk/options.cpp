@@ -65,9 +65,7 @@
 #endif
 #include "htmleditor/htmleditor.h"
 #include "customidsetup.h"
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 #include "samplechecker.h"
-#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -168,9 +166,7 @@ extern QSplashScreen *qmc2SplashScreen;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 extern bool qmc2SortingActive;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern SampleChecker *qmc2SampleChecker;
-#endif
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
 extern QPalette qmc2CustomPalette;
 extern QMap<QString, QPalette> qmc2StandardPalettes;

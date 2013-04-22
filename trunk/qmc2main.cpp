@@ -6262,7 +6262,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     return;
   }
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2ReloadActive ||
        qmc2VerifyActive ||
        qmc2FilterActive ||
@@ -6272,16 +6271,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
        qmc2LoadingGameInfoDB ||
        qmc2LoadingSoftwareInfoDB ||
        qmc2LoadingEmuInfoDB )
-#else
-  if ( qmc2ReloadActive ||
-       qmc2VerifyActive ||
-       qmc2FilterActive ||
-       qmc2ImageCheckActive ||
-       qmc2ROMAlyzerActive ||
-       qmc2LoadingGameInfoDB ||
-       qmc2LoadingSoftwareInfoDB ||
-       qmc2LoadingEmuInfoDB )
-#endif
   {
     qmc2StopParser = true;
     log(QMC2_LOG_FRONTEND, tr("stopping current processing upon user request"));
@@ -9957,7 +9946,6 @@ void MainWindow::checkActivity()
   // resync timer (as far as possible)
   activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2ReloadActive ||
        qmc2VerifyActive ||
        qmc2FilterActive ||
@@ -9965,17 +9953,9 @@ void MainWindow::checkActivity()
        qmc2SampleCheckActive ||
        qmc2ROMAlyzerActive ||
        qmc2LoadingGameInfoDB ||
+       qmc2LoadingSoftwareInfoDB ||
        qmc2LoadingEmuInfoDB ||
        (qmc2SoftwareList && qmc2SoftwareList->isLoading) )
-#else
-  if ( qmc2ReloadActive ||
-       qmc2VerifyActive ||
-       qmc2FilterActive ||
-       qmc2ImageCheckActive ||
-       qmc2ROMAlyzerActive ||
-       qmc2LoadingGameInfoDB ||
-       (qmc2SoftwareList && qmc2SoftwareList->isLoading) )
-#endif
   {
     activityState = !activityState;
     if ( activityState )
