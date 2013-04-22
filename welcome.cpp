@@ -41,18 +41,12 @@ Welcome::Welcome(QWidget *parent)
     QString emulatorName = tr("SDLUME");
 #elif defined(QMC2_SDLMESS)
     QString emulatorName = tr("SDLMESS");
-    labelSamplePath->setVisible(false);
-    lineEditSamplePath->setVisible(false);
-    toolButtonBrowseSamplePath->setVisible(false);
 #elif defined(QMC2_MAME)
     QString emulatorName = tr("MAME");
 #elif defined(QMC2_UME)
     QString emulatorName = tr("UME");
 #elif defined(QMC2_MESS)
     QString emulatorName = tr("MESS");
-    labelSamplePath->setVisible(false);
-    lineEditSamplePath->setVisible(false);
-    toolButtonBrowseSamplePath->setVisible(false);
 #else
     QString emulatorName = tr("Unsupported emulator");
 #endif
@@ -83,7 +77,6 @@ void Welcome::on_pushButtonOkay_clicked()
   if ( !checkOkay ) {
     QFileInfo fileInfo(lineEditExecutableFile->text());
     if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
       if ( !lineEditWorkingDirectory->text().isEmpty() ) {
         QString s = lineEditWorkingDirectory->text();
@@ -96,18 +89,6 @@ void Welcome::on_pushButtonOkay_clicked()
         startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
       if ( !lineEditHashPath->text().isEmpty() )
         startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
-#elif defined(QMC2_EMUTYPE_MESS)
-      startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
-      if ( !lineEditWorkingDirectory->text().isEmpty() ) {
-        QString s = lineEditWorkingDirectory->text();
-	if ( !s.endsWith("/") ) s += "/";
-        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", s);
-      }
-      if ( !lineEditROMPath->text().isEmpty() )
-        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", lineEditROMPath->text());
-      if ( !lineEditHashPath->text().isEmpty() )
-        startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
-#endif
       startupConfig->sync();
       emit accept();
     } else
@@ -174,12 +155,10 @@ void Welcome::on_toolButtonBrowseSamplePath_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseSamplePath_clicked()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditSamplePath->setText(s);
   raise();
-#endif
 }
 
 void Welcome::on_toolButtonBrowseHashPath_clicked()

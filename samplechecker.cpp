@@ -18,21 +18,9 @@ extern ProcessManager *qmc2ProcessManager;
 extern QSettings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
-extern bool qmc2EarlyStartup;
-extern bool qmc2ReloadActive;
-extern bool qmc2ImageCheckActive;
 extern bool qmc2SampleCheckActive;
-extern bool qmc2EarlyReloadActive;
-extern bool qmc2VerifyActive;
-extern bool qmc2FilterActive;
 extern bool qmc2StopParser;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
-#endif
-extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 SampleChecker::SampleChecker(QWidget *parent)
 #if defined(QMC2_OS_WIN)
@@ -136,7 +124,6 @@ void SampleChecker::verify()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verify()"));
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying samples"));
 	qmc2SampleCheckActive = true;
 	qmc2StopParser = false;
@@ -166,7 +153,11 @@ void SampleChecker::verify()
 		if ( gameListPos % QMC2_CHECK_UPDATE_FAST == 0 || gameListPos == xmlLinesCount - 1)
 			qApp->processEvents();
 		QString line = qmc2Gamelist->xmlLines[gameListPos];
+#if defined(QMC2_EMUTYPE_MESS)
+		int startIndex = line.indexOf("<machine name=\"");
+#else
 		int startIndex = line.indexOf("<game name=\"");
+#endif
 		int endIndex = -1;
 		if ( startIndex >= 0 ) {
 			startIndex += 12;
@@ -190,7 +181,11 @@ void SampleChecker::verify()
 			hasSamples |= true;
 			sampleCount++;
 		} else {
+#if defined(QMC2_EMUTYPE_MESS)
+			startIndex = line.indexOf("</machine>");
+#else
 			startIndex = line.indexOf("</game>");
+#endif
 			if ( startIndex >= 0 ) {
 				if ( !currentGameName.isEmpty() && hasSamples ) {
 					if ( currentSampleOf.isEmpty() ) {
@@ -201,7 +196,11 @@ void SampleChecker::verify()
 							sampleMap[currentGameName] = currentSampleOf;
 							sampleCountMap[currentGameName] = sampleCount;
 						} else
+#if defined(QMC2_EMUTYPE_MESS)
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the machine '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MESS developers").arg(currentGameName).arg(currentSampleOf));
+#else
 							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
+#endif
 					}
 				}
 				currentGameName.clear();
@@ -233,10 +232,17 @@ void SampleChecker::verify()
 		if ( sampleCountMap[currentSample] == 0 ) {
 			QStringList refList = sampleMap.keys(currentSample);
 			if ( refList.count() > 0 ) {
+#if defined(QMC2_EMUTYPE_MESS)
+				if ( refList.count() > 1 )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following machines are referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MESS developers").arg(currentSample).arg(refList.join(", ")));
+				else
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following machine is referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MESS developers").arg(currentSample).arg(refList.join(", ")));
+#else
 				if ( refList.count() > 1 )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following games are referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
 				else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the following game is referencing a sample-set which isn't required (sampleof=\"%1\"): %2 -- please inform MAME developers").arg(currentSample).arg(refList.join(", ")));
+#endif
 				sampleSets.removeAll(currentSample);
 			}
 		}
@@ -367,7 +373,6 @@ void SampleChecker::verify()
 	progressBar->setFormat(tr("Idle"));
 	progressBar->setRange(-1, -1);
 	progressBar->setValue(-1);
-#endif
 }
 
 void SampleChecker::verifyObsolete()
@@ -376,7 +381,6 @@ void SampleChecker::verifyObsolete()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::verifyObsolete()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	progressBar->setFormat(tr("Checking for obsolete files / folders"));
 	progressBar->setRange(0, 0);
 	progressBar->setValue(-1);
@@ -415,7 +419,6 @@ void SampleChecker::verifyObsolete()
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: sample path '%1' does not exist").arg(sampleDir.absolutePath()));
 	}
-#endif
 }
 
 void SampleChecker::on_pushButtonSamplesCheck_clicked()
@@ -423,8 +426,6 @@ void SampleChecker::on_pushButtonSamplesCheck_clicked()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::on_pushButtonSamplesCheck_clicked()");
 #endif
-
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 
 	if ( qmc2SampleCheckActive ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("stopping sample check upon user request"));
@@ -440,7 +441,6 @@ void SampleChecker::on_pushButtonSamplesCheck_clicked()
 	pushButtonSamplesCheck->setText(tr("&Stop check"));
 	pushButtonSamplesCheck->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
 	verify();
-#endif
 }
 
 void SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()
@@ -449,7 +449,6 @@ void SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	toolButtonSamplesRemoveObsolete->setEnabled(false);
 	pushButtonSamplesCheck->setEnabled(false);
 	QString emuWorkDir = QDir::toNativeSeparators(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
@@ -509,7 +508,6 @@ void SampleChecker::on_toolButtonSamplesRemoveObsolete_clicked()
 	progressBar->setFormat(tr("Idle"));
 	progressBar->setRange(-1, -1);
 	progressBar->setValue(-1);
-#endif
 }
 
 void SampleChecker::recursiveFileList(const QString &sDir, QStringList &fileNames)
@@ -518,7 +516,6 @@ void SampleChecker::recursiveFileList(const QString &sDir, QStringList &fileName
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::recursiveFileList(const QString& sDir = %1, QStringList &fileNames)").arg(sDir));
 #endif
 
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QDir dir(sDir);
 	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
 		QString path = QDir::toNativeSeparators(info.filePath());
@@ -532,5 +529,4 @@ void SampleChecker::recursiveFileList(const QString &sDir, QStringList &fileName
 		} else
 			fileNames << path;
 	}
-#endif
 } 
