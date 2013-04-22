@@ -160,7 +160,11 @@ void SampleChecker::verify()
 #endif
 		int endIndex = -1;
 		if ( startIndex >= 0 ) {
+#if defined(QMC2_EMUTYPE_MESS)
+			startIndex += 15;
+#else
 			startIndex += 12;
+#endif
 			endIndex = line.indexOf("\"", startIndex);
 			if ( endIndex >= 0 )
 				currentGameName = line.mid(startIndex, endIndex - startIndex);
