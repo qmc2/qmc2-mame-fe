@@ -121,8 +121,8 @@ Rectangle {
                 id: overlayRectBack
                 anchors.fill: parent
                 border.color: "black"
-                border.width: 2
-                radius: 4
+                border.width: 2 * ToxicWaste.scaleFactorX()
+                radius: 5
                 smooth: true
                 gradient: Gradient {
                     GradientStop { position: 0.00; color: "#ffffff" }
@@ -143,21 +143,22 @@ Rectangle {
                 Rectangle {
                     id: imageViewerRect
                     anchors.top: itemDescription.bottom
-                    anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
+                    anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: 400 * ToxicWaste.scaleFactorX()
-                    height: 300 * ToxicWaste.scaleFactorX()
+                    height: 300 * ToxicWaste.scaleFactorY()
                     smooth: true
-                    radius: 10
-                    color: "#202020"
                     border.color: "black"
-                    border.width: 2
+                    border.width: 2 * ToxicWaste.scaleFactorX()
+                    radius: 5
+                    color: "#202020"
                     Image {
                         id: imageViewer
                         source: ToxicWaste.imageUrl(toxicWasteMain.secondaryImageType)
                         smooth: true
                         anchors.fill: parent
                         anchors.centerIn: parent
+                        anchors.margins: 2
                         fillMode: Image.PreserveAspectFit
                     }
                     Rectangle {
@@ -170,7 +171,7 @@ Rectangle {
                         radius: 15 * ToxicWaste.scaleFactorX()
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: imageViewer.bottom
-                        anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
+                        anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
                         height: 30 * ToxicWaste.scaleFactorX()
                         width: 200 * ToxicWaste.scaleFactorX()
                         smooth: true
@@ -228,20 +229,15 @@ Rectangle {
                             }
                         }
                     }
-                    Rectangle {
-                        anchors.fill: imageViewer
-                        color: "transparent"
-                        border.color: "black"
-                        border.width: 4 * ToxicWaste.scaleFactorX()
-                        radius: 4 * ToxicWaste.scaleFactorX()
-                    }
                 }
             }
             transform: Rotation {
                 id: overlayRotation
                 origin.x: overlayFlip.width/2
                 origin.y: overlayFlip.height/2
-                axis.x: 0; axis.y: 1; axis.z: 0
+                axis.x: 0
+                axis.y: 1
+                axis.z: 0
                 angle: 0
             }
             states: State {
