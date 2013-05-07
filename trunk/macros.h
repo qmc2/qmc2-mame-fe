@@ -11,7 +11,7 @@
 #elif defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
 #define QMC2_OS_WIN
 #else
-#error "Target OS is not supported -- QMC2 currently supports Linux/UNIX, Windows and Mac OS X!"
+#warning "Target OS is not supported -- QMC2 currently supports Linux/UNIX, Windows and Mac OS X!"
 #endif
 
 #if !defined(Q_OS_WIN)

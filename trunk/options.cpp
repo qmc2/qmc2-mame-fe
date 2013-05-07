@@ -1534,6 +1534,8 @@ void Options::on_pushButtonApply_clicked()
       }
     }
   }
+  toolButtonMapJoystick->setChecked(true);
+  on_toolButtonMapJoystick_clicked();
 #endif
 
   // Network / Proxy
