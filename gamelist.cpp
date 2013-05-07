@@ -1062,6 +1062,8 @@ void Gamelist::verify(bool currentOnly)
   connect(verifyProc, SIGNAL(readyReadStandardOutput()), this, SLOT(verifyReadyReadStandardOutput()));
   connect(verifyProc, SIGNAL(started()), this, SLOT(verifyStarted()));
   connect(verifyProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(verifyStateChanged(QProcess::ProcessState)));
+  if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString().isEmpty() )
+	  verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString());
   verifyProc->setProcessChannelMode(QProcess::MergedChannels);
   verifyProc->start(command, args);
 }
