@@ -783,6 +783,14 @@
       <description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
       <description lang="es" text="Mostrar el cursor del ratón en la interfaz gráfica"/>
     </option>
+    <option default="" name="autoboot_command" type="string">
+      <description lang="us" text="Command to execute after machine boot"/>
+      <description lang="de" text="Nach dem Boot der Maschine auszuführendes Kommando"/>
+    </option>
+    <option default="2" name="autoboot_delay" type="int">
+      <description lang="us" text="Timer delay in seconds to trigger command execution on autoboot"/>
+      <description lang="de" text="Teitverzögerung (in Sekunden) bis zum Ausführen des automatischen Boot Kommandos"/>
+    </option>
   </section>
   <section name="configuration">
     <description lang="es" text="Configuración"/>

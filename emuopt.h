@@ -48,9 +48,8 @@ class EmulatorOption
     int decimals;
     QTreeWidgetItem *item;
 
-    EmulatorOption() {
-      valid = false;
-    };
+    EmulatorOption() { valid = false; }
+
     EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QString p, QTreeWidgetItem *i, bool va, int dec = QMC2_EMUOPT_DFLT_DECIMALS, QStringList c = QStringList(), bool vis = true) {
       name = n;
       shortname = sn;
