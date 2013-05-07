@@ -78,7 +78,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 #if defined(QMC2_OS_WIN)
 			if ( arg == "-snapname" )
 				snapnameActive = true;
-			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/)")) ) {
+			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\/|\\;)")) ) {
 				arg = "\"" + arg + "\"";
 				if ( snapnameActive ) {
 					if ( arg.contains("/") )
@@ -87,7 +87,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 				}
 			}
 #else
-			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\))")) )
+			if ( arg.contains(QRegExp("(\\s|\\\\|\\(|\\)|\\;)")) )
 				arg = "\"" + arg + "\"";
 #endif
 			lastCommand += " " + arg;
