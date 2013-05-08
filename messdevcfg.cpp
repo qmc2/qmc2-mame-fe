@@ -830,7 +830,7 @@ void MESSDeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOpt
 	QStringList slotOptionsShort;
 	int count = 0;
 	foreach (QString s, slotOptionNames) {
-		slotOptions << QString("%1 (%2)").arg(s).arg(slotOptionDescriptions[count]);
+		slotOptions << QString("%1 - %2").arg(s).arg(slotOptionDescriptions[count]);
 		slotOptionsShort << s;
 		nestedSlotOptionMap[slotName][s] = slotOptionDescriptions[count++];
 	}
@@ -1382,7 +1382,7 @@ bool MESSDeviceConfigurator::load()
 		QStringList slotOptions;
 		QStringList slotOptionsShort;
 		foreach (QString s, it.value()) {
-			slotOptions << QString("%1 (%2)").arg(s).arg(messSlotNameMap[s]);
+			slotOptions << QString("%1 - %2").arg(s).arg(messSlotNameMap[s]);
 			slotOptionsShort << s;
 		}
 		slotOptions.sort();
@@ -1879,9 +1879,9 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 								bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(valuePair.first[i]);
 								if ( valuePair.second[i] != "\"\"" ) {
 									if ( isNestedSlot )
-										index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
+										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
 									else
-										index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
+										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
 								} else
 									index = 0;
 
@@ -1974,7 +1974,7 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChange
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point = (%1, %2))").arg(point.x()).arg(point.y()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point = [%1, %2])").arg(point.x()).arg(point.y()));
 #endif
 
 	QListWidgetItem *item = listWidgetDeviceConfigurations->itemAt(point);
