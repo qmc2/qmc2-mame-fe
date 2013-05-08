@@ -117,7 +117,7 @@ class EmulatorOptions : public QTreeWidget
     void save();
     void restoreHeaderState();
     void saveHeaderState();
-    void addChoices(QString, QStringList);
+    void addChoices(QString, QStringList, QStringList, QString defaultChoice = QString(), bool sort = true);
     void createTemplateMap();
     void checkTemplateMap();
     void createMap();

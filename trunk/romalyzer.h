@@ -211,7 +211,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     bool readFileData(QString, QString, QByteArray *);
     bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
     bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
-    QString humanReadable(quint64);
+    static QString humanReadable(quint64, int digits = 2);
     static QString &getXmlData(QString, bool includeDTD = false);
     QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString,
                               QByteArray *, QString *, QString *, bool *, bool *, int, QString *);

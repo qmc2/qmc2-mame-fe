@@ -2,6 +2,7 @@
 #include <QCache>
 #include <QHeaderView>
 #include <QTextStream>
+#include <QTextDocument>
 #include <QScrollBar>
 #include <QProcess>
 #include <QTimer>
@@ -4533,10 +4534,36 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	qmc2EmulatorOptions->show();
 
 #if defined(QMC2_EMUTYPE_MAME)
-        qmc2EmulatorOptions->addChoices("bios", getXmlChoices(gameName, "biosset", "name"));
+	QString defaultChoice;
+	QStringList biosSets = getXmlChoices(gameName, "biosset", "name", &defaultChoice);
+	QStringList biosDescriptions = getXmlChoices(gameName, "biosset", "description");
+	for (int i = 0; i < biosSets.count(); i++) {
+		biosDescriptions[i] = biosSets[i] + " (" + biosDescriptions[i] + ")";
+		if ( biosSets[i] == defaultChoice )
+			biosDescriptions[i] += " / " + tr("default");
+	}
+        qmc2EmulatorOptions->addChoices("bios", biosSets, biosDescriptions, defaultChoice);
 #else
-        qmc2EmulatorOptions->addChoices("bios", getXmlChoices(gameName, "biosset", "name"));
-        qmc2EmulatorOptions->addChoices("ramsize", getXmlChoices(gameName, "ramoption"));
+	QString defaultChoice;
+	QStringList biosSets = getXmlChoices(gameName, "biosset", "name", &defaultChoice);
+	QStringList biosDescriptions = getXmlChoices(gameName, "biosset", "description");
+	for (int i = 0; i < biosSets.count(); i++) {
+		biosDescriptions[i] = biosSets[i] + " - " + biosDescriptions[i];
+		if ( biosSets[i] == defaultChoice )
+			biosDescriptions[i] += " / " + tr("default");
+	}
+        qmc2EmulatorOptions->addChoices("bios", biosSets, biosDescriptions, defaultChoice);
+
+	QStringList ramSizes = getXmlChoices(gameName, "ramoption", QString(), &defaultChoice);
+	qSort(ramSizes.begin(), ramSizes.end(), MainWindow::qStringListLessThan);
+	QStringList humanReadableRamSizes;
+	for (int i = 0; i < ramSizes.count(); i++) {
+		if ( ramSizes[i] == defaultChoice )
+			humanReadableRamSizes << ROMAlyzer::humanReadable(ramSizes[i].toULongLong(), 0) + " / " + tr("default");
+		else
+			humanReadableRamSizes << ROMAlyzer::humanReadable(ramSizes[i].toULongLong(), 0);
+	}
+        qmc2EmulatorOptions->addChoices("ramsize", ramSizes, humanReadableRamSizes, defaultChoice, false);
 #endif
 
         layout->addWidget(qmc2EmulatorOptions);
@@ -5020,8 +5047,16 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 					index = xmlLine.indexOf(">", index);
 					if ( index >= 0 ) {
 						xmlLine.remove(0, index + 1);
+						bool isDefaultChoice = false;
+						if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
+							isDefaultChoice = true;
 						xmlLine.replace("</" + optionElement + ">", "");
+						QTextDocument doc;
+						doc.setHtml(xmlLine);
+						xmlLine = doc.toPlainText();
 						xmlChoices << xmlLine;
+						if ( isDefaultChoice )
+							*defaultChoice = xmlLine;
 					}
 				} else {
 					QString prefix = optionAttribute + "=\"";
@@ -5030,20 +5065,17 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 						xmlLine.remove(0, index + prefix.length());
 						index = xmlLine.indexOf("\"");
 						if ( index >= 0 ) {
-							QString choice = xmlLine.left(index);
+							QTextDocument doc;
+							doc.setHtml(xmlLine.left(index));
+							QString choice = doc.toPlainText();
 							xmlChoices << choice;
-							if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || defaultChoice->isEmpty()) )
+							if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
 								*defaultChoice = choice;
 						}
 					}
 				}
 			}
 		}
-	}
-	if ( !xmlChoices.isEmpty() ) {
-		xmlChoices.removeDuplicates();
-		qSort(xmlChoices.begin(), xmlChoices.end(), qStringListLessThan);
-		xmlChoices.insert(0, QString());
 	}
 	return xmlChoices;
 }

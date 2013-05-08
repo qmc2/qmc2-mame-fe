@@ -910,21 +910,34 @@ void EmulatorOptions::save()
   changed = false;
 }
 
-void EmulatorOptions::addChoices(QString optionName, QStringList choices)
+void EmulatorOptions::addChoices(QString optionName, QStringList choices, QStringList displayChoices, QString defaultChoice, bool sort)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::addChoices(QString optionName = %1, QStringList choices = ...)").arg(optionName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::addChoices(QString optionName = %1, QStringList choices = ..., QStringList displayChoices = ..., QString defaultChoice = %2, bool sort = %3)").arg(optionName).arg(defaultChoice).arg(sort ? "true" : "false"));
 #endif
 
 	// IMPORTANT: it's assumed that 'optionName' refers to a combo-type option -- this isn't checked and will thus lead to crashes if the assumption is wrong!
 	bool optFound = false;
+	if ( displayChoices.isEmpty() )
+		displayChoices = choices;
 	foreach (QString section, optionsMap.keys()) {
 		foreach (EmulatorOption emuOpt, optionsMap[section]) {
 			if ( emuOpt.name == optionName ) {
 				ComboBoxEditWidget *comboWidget = (ComboBoxEditWidget *)itemWidget(emuOpt.item, QMC2_EMUOPT_COLUMN_VALUE);
 				if ( comboWidget ) {
 					QString value = comboWidget->comboBoxValue->lineEdit()->text();
-					comboWidget->comboBoxValue->insertItems(comboWidget->comboBoxValue->count(), choices);
+					for (int i = 0; i < choices.count(); i++) {
+						int insertIndex = comboWidget->comboBoxValue->count();
+						comboWidget->comboBoxValue->insertItem(insertIndex, displayChoices[i]);
+						comboWidget->comboBoxValue->setItemData(insertIndex, choices[i], Qt::UserRole);
+					}
+					if ( sort )
+						comboWidget->comboBoxValue->model()->sort(0);
+					if ( !defaultChoice.isEmpty() ) {
+						int index = comboWidget->comboBoxValue->findText(displayChoices[choices.indexOf(defaultChoice)]);
+						if ( index >= 0 )
+							comboWidget->comboBoxValue->setCurrentIndex(index);
+					}
 					comboWidget->comboBoxValue->lineEdit()->setText(value);
 				}
 				optFound = true;

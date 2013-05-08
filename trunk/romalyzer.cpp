@@ -1902,10 +1902,10 @@ void ROMAlyzer::selectItem(QString gameName)
   }
 }
 
-QString ROMAlyzer::humanReadable(quint64 value)
+QString ROMAlyzer::humanReadable(quint64 value, int digits)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::humanReadable(quint64 value = %1)").arg(value));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::humanReadable(quint64 value = %1, int digits = %2)").arg(value).arg(digits));
 #endif
 
   static QString humanReadableString;
@@ -1915,27 +1915,27 @@ QString ROMAlyzer::humanReadable(quint64 value)
 #if __WORDSIZE == 64
   if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" KB"));
   } else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" MB"));
   } else if ( (qreal)value / (qreal)QMC2_ONE_GIGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" GB"));
   } else {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_TERABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" TB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" TB"));
   }
 #else
   if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" KB"));
   } else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" MB"));
   } else {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
-    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', digits) + QString(tr(" GB"));
   }
 #endif
 
