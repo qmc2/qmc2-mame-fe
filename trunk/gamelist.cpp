@@ -2660,8 +2660,11 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)loadProc));
 #endif
 
-  if ( exitStatus != QProcess::NormalExit && !qmc2StopParser )
+  bool invalidateListXmlCache = false;
+  if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
+    qmc2StopParser = invalidateListXmlCache = true;
+  }
 
   QTime elapsedTime(0, 0, 0, 0);
   elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
@@ -2681,6 +2684,15 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   if ( listXMLCache.isOpen() )
     listXMLCache.close();
+
+  if ( invalidateListXmlCache ) {
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML game list cache is incomplete, invalidating XML game list cache"));
+#elif defined(QMC2_EMUTYPE_MESS)
+	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML machine list cache is incomplete, invalidating XML machine list cache"));
+#endif
+	  listXMLCache.remove();
+  }
 
   parse();
   loadFavorites();
