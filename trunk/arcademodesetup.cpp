@@ -373,7 +373,8 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT) << "\t"
-		   << "0\n";
+		   << "0\t"
+		   << gameItem->text(QMC2_GAMELIST_COLUMN_SRCFILE) << "\n";
 	}
 
 	progressBarFilter->setValue(0);
