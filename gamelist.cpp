@@ -1600,10 +1600,11 @@ void Gamelist::parse()
             QString gamePlayers = words[8];
             QString gameStatus = words[9];
             bool isDevice = (words[10] == "1");
+	    QString gameSource = words[11];
 
 #ifdef QMC2_DEBUG
-            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parse(): gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11").
-                            arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS).arg(hasROMs).arg(hasCHDs).arg(gamePlayers).arg(gameStatus).arg(isDevice));
+            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parse(): gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11, gameSource = %12").
+                            arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS).arg(hasROMs).arg(hasCHDs).arg(gamePlayers).arg(gameStatus).arg(isDevice).arg(gameSource));
 #endif
 
             GamelistItem *gameDescriptionItem = new GamelistItem();
@@ -1620,6 +1621,7 @@ void Gamelist::parse()
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
+            gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, gameSource);
 	    if ( hasROMs && hasCHDs )
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
             else if ( hasROMs )
@@ -1830,6 +1832,7 @@ void Gamelist::parse()
         bool isBIOS = ( value(gameElement, "isbios") == "yes" );
         bool isDevice = ( value(gameElement, "isdevice") == "yes" );
         QString gameName = value(gameElement, "name");
+        QString gameSource = value(gameElement, "sourcefile");
 	if ( gameName.isEmpty() ) {
 #if defined(QMC2_EMUTYPE_MAME)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
@@ -1841,9 +1844,7 @@ void Gamelist::parse()
 	}
         QString gameCloneOf = value(gameElement, "cloneof");
         QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
-        //GamelistItem *gameDescriptionItem = new GamelistItem();
         GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
-	//itemList << gameDescriptionItem;
         gameDescriptionItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
         gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
         gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1906,6 +1907,7 @@ void Gamelist::parse()
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
+        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, gameSource);
 	if ( hasROMs && hasCHDs )
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
         else if ( hasROMs )
@@ -2021,10 +2023,11 @@ void Gamelist::parse()
         loadIcon(gameName, gameDescriptionItem);
 
         if ( gamelistCache.isOpen() )
-          tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
-                          << gameYear << "\t" << gameCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
-			  << (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
-			  << gamePlayers << "\t" << gameStatus << "\t" << (isDevice ? "1": "0") <<"\n";
+		tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
+				<< gameYear << "\t" << gameCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
+				<< (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
+				<< gamePlayers << "\t" << gameStatus << "\t" << (isDevice ? "1": "0") << "\t"
+				<< gameSource <<"\n";
 
         numGames++;
         if ( isDevice ) numDevices++;
@@ -2076,6 +2079,7 @@ void Gamelist::parse()
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+    hierarchyItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
@@ -2162,6 +2166,7 @@ void Gamelist::parse()
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+      hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
@@ -2276,6 +2281,9 @@ void Gamelist::parse()
       break;
     case QMC2_SORT_BY_DRVSTAT:
       sortCriteria = QObject::tr("driver status");
+      break;
+    case QMC2_SORT_BY_SRCFILE:
+      sortCriteria = QObject::tr("source file");
       break;
     case QMC2_SORT_BY_CATEGORY:
       sortCriteria = QObject::tr("category");
@@ -3718,6 +3726,8 @@ void Gamelist::createCategoryView()
 	qmc2MainWindow->stackedWidgetView->update();
 	qApp->processEvents();
 
+	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY, true);
+
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->treeWidgetCategoryView->clear();
 		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
@@ -3764,6 +3774,7 @@ void Gamelist::createCategoryView()
 				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
@@ -3923,6 +3934,8 @@ void Gamelist::createVersionView()
 	qmc2MainWindow->stackedWidgetView->update();
 	qApp->processEvents();
 
+	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_GAMELIST_COLUMN_VERSION, true);
+
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->treeWidgetVersionView->clear();
 		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
@@ -3969,6 +3982,7 @@ void Gamelist::createVersionView()
 				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
@@ -4159,6 +4173,9 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 
     case QMC2_SORT_BY_DRVSTAT:
       return (text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
+
+    case QMC2_SORT_BY_SRCFILE:
+      return (text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
 
     case QMC2_SORT_BY_CATEGORY:
       return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());

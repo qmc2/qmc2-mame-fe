@@ -814,11 +814,12 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
     treeWidgetCategoryView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState").toByteArray());
-    treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    treeWidgetCategoryView->setColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY, true);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
-    treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    treeWidgetVersionView->setColumnHidden(QMC2_GAMELIST_COLUMN_VERSION, true);
 #endif
+
     treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
 #if defined(QMC2_OS_WIN)
     // output notifiers are not supported on Windows
@@ -1261,6 +1262,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuGamelistHeader->addAction(tr("Driver status"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+  action = menuGamelistHeader->addAction(tr("Source file"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
   action = menuGamelistHeader->addAction(tr("Category"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   actionMenuGamelistHeaderCategory = action;
@@ -1303,6 +1306,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuHierarchyHeader->addAction(tr("Driver status"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+  action = menuHierarchyHeader->addAction(tr("Source file"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
   action = menuHierarchyHeader->addAction(tr("Category"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   actionMenuHierarchyHeaderCategory = action;
@@ -1340,6 +1345,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuCategoryHeader->addAction(tr("Driver status"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+  action = menuCategoryHeader->addAction(tr("Source file"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   action = menuCategoryHeader->addAction(tr("Version"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
@@ -1370,6 +1377,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
   action = menuVersionHeader->addAction(tr("Driver status"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+  action = menuVersionHeader->addAction(tr("Source file"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_SRCFILE);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_SRCFILE));
   action = menuVersionHeader->addAction(tr("Category"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
   menuVersionHeader->addSeparator();
@@ -4793,6 +4802,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	      qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 	      qmc2SystemNotesEditor->templateMap["$EMULATOR_TYPE$"] = QMC2_EMU_NAME;
+	      qmc2SystemNotesEditor->templateMap["$SOURCE_FILE$"] = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_SRCFILE);
 	      QString filePath;
 	      QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 	      QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
@@ -8736,6 +8746,13 @@ void MainWindow::treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_DRVSTAT);
       break;
 
+    case QMC2_GAMELIST_COLUMN_SRCFILE:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_SRCFILE )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_SRCFILE);
+      break;
+
     case QMC2_GAMELIST_COLUMN_CATEGORY:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_CATEGORY )
         qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
@@ -10016,49 +10033,41 @@ int MainWindow::sortCriteriaLogicalIndex() {
     case QMC2_SORT_BY_DESCRIPTION:
     case QMC2_SORT_BY_ROM_STATE:
       return QMC2_GAMELIST_COLUMN_GAME;
-      break;
 
     case QMC2_SORT_BY_TAG:
       return QMC2_GAMELIST_COLUMN_TAG;
-      break;
 
     case QMC2_SORT_BY_YEAR:
       return QMC2_GAMELIST_COLUMN_YEAR;
-      break;
 
     case QMC2_SORT_BY_MANUFACTURER:
       return QMC2_GAMELIST_COLUMN_MANU;
-      break;
 
     case QMC2_SORT_BY_NAME:
       return QMC2_GAMELIST_COLUMN_NAME;
-      break;
 
     case QMC2_SORT_BY_ROMTYPES:
       return QMC2_GAMELIST_COLUMN_RTYPES;
-      break;
 
     case QMC2_SORT_BY_PLAYERS:
       return QMC2_GAMELIST_COLUMN_PLAYERS;
-      break;
 
     case QMC2_SORT_BY_DRVSTAT:
       return QMC2_GAMELIST_COLUMN_DRVSTAT;
-      break;
+
+    case QMC2_SORT_BY_SRCFILE:
+      return QMC2_GAMELIST_COLUMN_SRCFILE;
 
     case QMC2_SORT_BY_CATEGORY:
       return QMC2_GAMELIST_COLUMN_CATEGORY;
-      break;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_SORT_BY_VERSION:
       return QMC2_GAMELIST_COLUMN_VERSION;
-      break;
 #endif
 
     default:
       return QMC2_GAMELIST_COLUMN_GAME;
-      break;
   }
 }
 
@@ -10363,6 +10372,7 @@ void MainWindow::actionCategoryHeader_triggered()
 	for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) if ( !treeWidgetCategoryView->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
+			treeWidgetCategoryView->setColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY, true);
 			for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) {
 				if ( i == QMC2_GAMELIST_COLUMN_VERSION ) {
 				       	if ( qmc2VersionInfoUsed )
@@ -10414,6 +10424,7 @@ void MainWindow::actionVersionHeader_triggered()
 	for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) if ( !treeWidgetVersionView->isColumnHidden(i) ) visibleColumns++;
 	if ( action ) {
 		if ( action->data().toInt() == QMC2_GAMELIST_RESET ) {
+			treeWidgetVersionView->setColumnHidden(QMC2_GAMELIST_COLUMN_VERSION, true);
 			for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) {
 				if ( i == QMC2_GAMELIST_COLUMN_CATEGORY ) {
 				       	if ( qmc2CategoryInfoUsed )

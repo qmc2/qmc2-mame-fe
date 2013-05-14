@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>293</width>
+    <width>295</width>
     <height>276</height>
    </rect>
   </property>
@@ -249,7 +249,7 @@
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+           <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
          </property>
         </item>
         <item>
@@ -258,7 +258,7 @@
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+           <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
          </property>
         </item>
        </widget>
