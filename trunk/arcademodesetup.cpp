@@ -451,6 +451,11 @@ bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *it
 				return (item1->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
 			else
 				return (item1->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
+		case QMC2_SORT_BY_SRCFILE:
+			if ( qmc2ArcadeModeSortOrder )
+				return (item1->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
+			else
+				return (item1->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_SRCFILE).toUpper());
 		case QMC2_SORT_BY_CATEGORY:
 			if ( qmc2ArcadeModeSortOrder )
 				return (item1->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() > item2->text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());

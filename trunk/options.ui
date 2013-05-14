@@ -871,7 +871,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>228</width>
+                <width>496</width>
                 <height>705</height>
                </rect>
               </property>
@@ -2514,8 +2514,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>508</width>
-                <height>248</height>
+                <width>513</width>
+                <height>506</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2657,6 +2657,11 @@
                      <string>Driver status</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>Source file</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item row="5" column="2" colspan="2">
@@ -2693,7 +2698,7 @@
                     </property>
                     <property name="icon">
                      <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+                      <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
                     </property>
                    </item>
                    <item>
@@ -2702,7 +2707,7 @@
                     </property>
                     <property name="icon">
                      <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+                      <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
                     </property>
                    </item>
                   </widget>
@@ -4208,8 +4213,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>506</height>
+                <width>182</width>
+                <height>467</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
