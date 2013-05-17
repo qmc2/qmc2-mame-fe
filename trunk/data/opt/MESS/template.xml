@@ -809,6 +809,10 @@
       <description lang="us" text="Timer delay in seconds to trigger command execution on autoboot"/>
       <description lang="de" text="Teitverzögerung (in Sekunden) bis zum Ausführen des automatischen Boot Kommandos"/>
     </option>
+    <option default="" name="autoboot_script" type="string">
+      <description lang="us" text="LUA script to execute after machine boot"/>
+      <description lang="de" text="Nach dem Boot der Maschine auszuführendes LUA-Skript"/>
+    </option>
   </section>
   <section name="configuration">
     <description lang="es" text="Configuración"/>

@@ -166,7 +166,7 @@
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/previous.png</normaloff>:/data/img/previous.png</iconset>
+           <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
          </property>
          <property name="autoRepeat">
           <bool>true</bool>
@@ -212,7 +212,7 @@
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/next.png</normaloff>:/data/img/next.png</iconset>
+           <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
          </property>
          <property name="autoRepeat">
           <bool>true</bool>
