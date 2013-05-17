@@ -196,6 +196,7 @@ class Options : public QDialog, public Ui::Options
     void on_lineEditAdditionalEmulatorArguments_textChanged(const QString &);
     void on_pushButtonClearCookieDatabase_clicked();
     void on_pushButtonManageCookies_clicked();
+    void on_pushButtonAdditionalArtworkSetup_clicked();
 
     // joystick setup callbacks
 #if QMC2_JOYSTICK == 1

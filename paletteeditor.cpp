@@ -403,6 +403,7 @@ void PaletteEditor::hideEvent(QHideEvent *e)
 {
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/PaletteEditor/Geometry", saveGeometry());
 	on_pushButtonCancel_clicked();
+
 	if ( e )
-		QWidget::hideEvent(e);
+		QDialog::hideEvent(e);
 }

@@ -45,6 +45,7 @@
 #include "imagewidget.h"
 #include "cookiejar.h"
 #include "cookiemanager.h"
+#include "additionalartworksetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -214,6 +215,10 @@ Options::Options(QWidget *parent)
   QWebSettings::enablePersistentStorage(userScopePath);
 
   setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED) // FIXME: remove WIP clause when "additional artwork" support is functional
+  pushButtonAdditionalArtworkSetup->setVisible(false);
+#endif
 
   qmc2StandardWorkDir = QDir::currentPath();
 
@@ -2840,6 +2845,16 @@ void Options::on_pushButtonManageCookies_clicked()
 
 	CookieManager cm(this);
 	cm.exec();
+}
+
+void Options::on_pushButtonAdditionalArtworkSetup_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonAdditionalArtworkSetup_clicked()");
+#endif
+
+	AdditionalArtworkSetup as(this);
+	as.exec();
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
