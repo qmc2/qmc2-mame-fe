@@ -321,82 +321,82 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="14"/>
         <source>Additional artwork classes</source>
-        <translation type="unfinished"></translation>
+        <translation>Classes de arte adicionais</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="63"/>
         <source>Active</source>
-        <translation type="unfinished">Ativo</translation>
+        <translation>Ativo</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="33"/>
         <source>Artwork name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da arte</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="38"/>
         <source>Icon</source>
-        <translation type="unfinished">Ícone</translation>
+        <translation>Ícone</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="43"/>
         <source>Cache prefix</source>
-        <translation type="unfinished"></translation>
+        <translation>Prefixo do cache</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="48"/>
         <source>Target</source>
-        <translation type="unfinished"></translation>
+        <translation>Alvo</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="53"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="58"/>
         <source>Folder / Zip</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta / Zip</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="77"/>
         <source>Apply additional artwork setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração de arte adicional e fechar a janela</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="80"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="100"/>
         <source>Cancel additional artwork editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar edição de arte adicional</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="103"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="126"/>
         <source>Restore additional artwork from currently active setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar arte adicional da configuração ativa atualmente</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="129"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurar</translation>
+        <translation>&amp;Restaurar</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="162"/>
         <source>Add a new artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar nova classe de arte</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="179"/>
         <source>Remove selected artwork classes</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover classes de arte selecionadas</translation>
     </message>
 </context>
 <context>
@@ -597,7 +597,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="578"/>
         <source>Source file</source>
-        <translation type="unfinished">Arquivo fonte</translation>
+        <translation>Arquivo fonte</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="637"/>
@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../brusheditor.ui" line="316"/>
         <location filename="../../brusheditor.ui" line="441"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previsualização</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="162"/>
@@ -952,13 +952,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.ui" line="262"/>
         <source>Pattern color</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor do padrão</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="281"/>
         <location filename="../../brusheditor.cpp" line="309"/>
         <source>Choose pattern color</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a cor do padrão</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="338"/>
@@ -968,7 +968,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.ui" line="477"/>
         <source>Actions</source>
-        <translation type="unfinished">Ações</translation>
+        <translation>Ações</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="501"/>
@@ -977,12 +977,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../brusheditor.ui" line="695"/>
         <location filename="../../brusheditor.ui" line="956"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="530"/>
         <source>Final end point</source>
-        <translation type="unfinished"></translation>
+        <translation>Último ponto final</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="562"/>
@@ -991,52 +991,52 @@ p, li { white-space: pre-wrap; }
         <location filename="../../brusheditor.ui" line="753"/>
         <location filename="../../brusheditor.ui" line="911"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="627"/>
         <source>Start point</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponto inicial</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="663"/>
         <source>Focal point (F)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponto focal (F)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="798"/>
         <source>Center point (C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponto central (C)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="814"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="827"/>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="856"/>
         <source>Radius (C, F)</source>
-        <translation type="unfinished"></translation>
+        <translation>Raio (C, F)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="879"/>
         <source>Center point</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponto central</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="895"/>
         <source>Angle</source>
-        <translation type="unfinished"></translation>
+        <translation>Ângulo</translation>
     </message>
     <message utf8="true">
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="350"/>
@@ -1046,7 +1046,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.ui" line="378"/>
         <source>Spread type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de distribuição</translation>
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="406"/>
@@ -1081,22 +1081,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../brusheditor.cpp" line="28"/>
         <source>Radius (C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Raio (C)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.cpp" line="297"/>
         <source>Choose image file</source>
-        <translation type="unfinished">Escolhar arquivo de imagem</translation>
+        <translation>Escolhar arquivo de imagem</translation>
     </message>
     <message>
         <location filename="../../brusheditor.cpp" line="297"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de imagem suportados (%1)</translation>
     </message>
     <message>
         <location filename="../../brusheditor.cpp" line="297"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
 </context>
 <context>
@@ -2093,28 +2093,28 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.cpp" line="51"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="92"/>
         <location filename="../../embedderopt.ui" line="95"/>
         <source>Set zoom factor for snapshot items</source>
-        <translation type="unfinished"></translation>
+        <translation>Defina o fator de zoom para itens de captura</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="98"/>
         <source> %</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="139"/>
         <source>Save selected image</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar imagem selecionada</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="142"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar como</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="162"/>
@@ -2129,32 +2129,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="188"/>
         <source>Choose the image-type for which the selected image should be used directly</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o tipo de imagem para o qual a imagem selecionada deveria ser diretamente usada</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="191"/>
         <source>Use as</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar como</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="221"/>
         <source>Select the snapshot scaling mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o modo de scala do snapshot</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="225"/>
         <source>No scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem escala</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="230"/>
         <source>Original size - no filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho original - sem filtro</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="235"/>
         <source>Original size - filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho original - filtrado</translation>
     </message>
 </context>
 <context>
@@ -5582,17 +5582,17 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagewidget.cpp" line="299"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível criar um backup do arquivo de imagem existente &apos;%1&apos; como &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="314"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível criar arquivo de imagem &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="320"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível determinar caminho primário para o tipo de imagem &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -6098,7 +6098,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../messdevcfg.cpp" line="664"/>
         <source>ERROR: can&apos;t open slot info cache for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir cache de informações de slot para escrita, caminho = %1</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="708"/>
@@ -6138,27 +6138,27 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../messdevcfg.cpp" line="678"/>
         <source>loading available system slots and (re-)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando slots de sistema disponíveis e (re)criando cache</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="699"/>
         <source>FATAL: can&apos;t start UME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do UME dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do UME dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="739"/>
         <source>loading available system slots from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando slots de sistema disponíveis do cache</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="803"/>
         <source>done (loading available system slots from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando slots de sistema disponíveis do cache. tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="805"/>
         <source>done (loading available system slots and (re-)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando slots de sistema disponíveis e (re)criando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1194"/>
@@ -7713,7 +7713,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1355"/>
         <location filename="../../qmc2main.cpp" line="1385"/>
         <source>Reset</source>
-        <translation type="unfinished">Redefinir</translation>
+        <translation>Redefinir</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1408"/>
@@ -7758,12 +7758,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2716"/>
         <source>slot info cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache de informações de slot &apos;%1&apos; removidos forçosamente devido requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2718"/>
         <source>WARNING: cannot remove the slot info cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover o arquivo de cache de informações de slot &apos;%1&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2749"/>
@@ -9229,7 +9229,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
         <location filename="../../qmc2main.cpp" line="1348"/>
         <location filename="../../qmc2main.cpp" line="1380"/>
         <source>Source file</source>
-        <translation type="unfinished">Arquivo fonte</translation>
+        <translation>Arquivo fonte</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="879"/>
@@ -9746,13 +9746,13 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="3548"/>
         <source>Clear slot info cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache de informações de slot</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3551"/>
         <location filename="../../qmc2main.ui" line="3554"/>
         <source>Forcedly clear (remove) the slot info cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar (remover) forçosamente o cache de informações de slot</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3639"/>
@@ -11109,7 +11109,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="461"/>
         <source>Check software-states</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar estados de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="462"/>
@@ -11848,7 +11848,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3247"/>
         <source>Choose slot info cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de cache de informações de slot</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3274"/>
@@ -11863,7 +11863,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3300"/>
         <source>Choose software state cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher diretório de cache de estado de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3315"/>
@@ -13456,12 +13456,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2491"/>
         <source>Define additional artwork classes for systems and software-list entries</source>
-        <translation type="unfinished"></translation>
+        <translation>Definir classes de arte adicionais para entradas de listas de sistema e de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2494"/>
         <source>Set up additional artwork classes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar classes de arte adicionais...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2607"/>
@@ -13476,7 +13476,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2672"/>
         <source>Source file</source>
-        <translation type="unfinished">Arquivo fonte</translation>
+        <translation>Arquivo fonte</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2965"/>
@@ -13991,32 +13991,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4792"/>
         <source>Slot info cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de informações de slot</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4805"/>
         <source>Slot info cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache de informações de slot (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4818"/>
         <source>Browse slot info cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por arquivo de cache de informações de slot</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4829"/>
         <source>Software state cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de estado de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4842"/>
         <source>Directory used to store individual state cache files for each software-list (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório usado para guardar arquivo de cache de estado individuais para cada lista de software (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4855"/>
         <source>Browse software state cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por diretório de cache de estado de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4915"/>
@@ -14617,7 +14617,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../gamelist.cpp" line="2287"/>
         <location filename="../../options.cpp" line="1865"/>
         <source>source file</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo fonte</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3249"/>
@@ -14906,7 +14906,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1121"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação de estado para a lista de software &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3405"/>
@@ -17778,7 +17778,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="204"/>
         <source>WARNING: XML bug: the machine &apos;%1&apos; is referencing a non-existing sample-set (sampleof=&quot;%2&quot;) -- please inform MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: a máquina &apos;%1&apos; referencia um conjunto de sample inexistente (sampleof=&quot;%2&quot;) -- por favor informe os desenvolvedores do MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="206"/>
@@ -17788,12 +17788,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="241"/>
         <source>WARNING: XML bug: the following machines are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: as máquinas a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="243"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: a máquina a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="246"/>
@@ -17948,17 +17948,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../embedderopt.cpp" line="234"/>
         <source>Zoom in (+10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar zoom (+10%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="240"/>
         <source>Zoom out (-10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuir zoom (-10%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="246"/>
         <source>Reset zoom (100%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefinir zoom (100%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="254"/>
@@ -17975,7 +17975,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="374"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previsualização</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
@@ -17984,58 +17984,58 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../embedderopt.cpp" line="283"/>
         <location filename="../../embedderopt.cpp" line="384"/>
         <source>Software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Snapshot de software</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="388"/>
         <source>Flyer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="392"/>
         <source>Cabinet</source>
-        <translation type="unfinished">Gabinete</translation>
+        <translation>Gabinete</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="396"/>
         <source>Controller</source>
-        <translation type="unfinished">Controle</translation>
+        <translation>Controle</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
         <location filename="../../embedderopt.cpp" line="401"/>
         <source>Logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="263"/>
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="408"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="379"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="269"/>
         <location filename="../../embedderopt.cpp" line="403"/>
         <source>Marquee</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="274"/>
         <source>Use as</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar como</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="538"/>
@@ -18143,7 +18143,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.ui" line="124"/>
         <source>Toggle checking / displaying software-states (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar verificar / mostar estados de software (segure pressionado para abrir o menu)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="170"/>
@@ -18297,7 +18297,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="645"/>
         <location filename="../../softwarelist.cpp" line="1493"/>
         <source>Checking software-states - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificando estados de software - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="84"/>
@@ -18377,7 +18377,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="194"/>
         <source>Check software-states</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar estados de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="211"/>
@@ -18389,7 +18389,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="293"/>
         <location filename="../../softwarelist.cpp" line="316"/>
         <source>Reset</source>
-        <translation type="unfinished">Redefinir</translation>
+        <translation>Redefinir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="363"/>
@@ -18432,7 +18432,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="1872"/>
         <location filename="../../softwarelist.cpp" line="1877"/>
         <source>filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>filtrado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="776"/>
@@ -18607,27 +18607,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1536"/>
         <source>WARNING: can&apos;t open software state cache file &apos;%1&apos; for writing, please check access permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir o arquivo de cache de estado de software &apos;%1&apos; para escrita, por favor verifique as permissões de acesso</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1611"/>
         <source>WARNING: the external process called to verify the states for software-list &apos;%1&apos; didn&apos;t exit cleanly -- exitCode = %2, exitStatus = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para verificar os estados das listas de software &apos;%1&apos; não terminou corretamente -- código da saída = %2, estado de saída = %3</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1504"/>
         <source>Checking software-states, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificando estados de software, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1678"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
-        <translation type="unfinished"></translation>
+        <translation>informação de estado para a lista de software &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1841"/>
         <source>WARNING: the external process called to verify software-states caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para verificar os estados de software causou um erro -- Erro do Processo = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2211"/>
@@ -18719,29 +18719,29 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="3280"/>
         <source>correct</source>
-        <translation type="unfinished">correto</translation>
+        <translation>correto</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3286"/>
         <source>mostly correct</source>
-        <translation type="unfinished">maioria correto</translation>
+        <translation>maioria correto</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3292"/>
         <source>incorrect</source>
-        <translation type="unfinished">incorreto</translation>
+        <translation>incorreto</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3298"/>
         <source>not found</source>
-        <translation type="unfinished">não encontrado</translation>
+        <translation>não encontrado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3305"/>
         <location filename="../../softwarelist.cpp" line="3312"/>
         <location filename="../../softwarelist.cpp" line="3318"/>
         <source>unknown</source>
-        <translation type="unfinished">desconhecido</translation>
+        <translation>desconhecido</translation>
     </message>
 </context>
 <context>
@@ -19096,17 +19096,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="3581"/>
         <source>Zoom in (+10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar zoom (+10%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3587"/>
         <source>Zoom out (-10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuir zoom (-10%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3593"/>
         <source>Reset zoom (100%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefinir zoom (100%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3601"/>
@@ -19122,22 +19122,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="3654"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível criar um backup do arquivo de imagem existente &apos;%1&apos; como &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3669"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível criar arquivo de imagem &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3675"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível determinar caminho primário para o tipo de imagem &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3675"/>
         <source>software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>snapshot de software</translation>
     </message>
 </context>
 <context>
@@ -19169,58 +19169,58 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarestatefilter.ui" line="44"/>
         <location filename="../../softwarestatefilter.ui" line="47"/>
         <source>Toggle software-state &apos;correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar filtro de estado de software &apos;correto&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="73"/>
         <location filename="../../softwarestatefilter.ui" line="76"/>
         <source>Toggle software-state &apos;unknown&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar filtro de estado de software &apos;desconhecido&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="102"/>
         <location filename="../../softwarestatefilter.ui" line="105"/>
         <source>Toggle software-state &apos;mostly correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar filtro de estado de software &apos;maioria correto&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="131"/>
         <location filename="../../softwarestatefilter.ui" line="134"/>
         <source>Toggle software-state &apos;not found&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar filtro de estado de software &apos;não encontrado&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="160"/>
         <location filename="../../softwarestatefilter.ui" line="163"/>
         <source>Toggle software-state &apos;incorrect&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar filtro de estado de software &apos;incorreto&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="186"/>
         <location filename="../../softwarestatefilter.ui" line="189"/>
         <source>Toggle filtering by software-states</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar filtro por estados de software</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="192"/>
         <source>State filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro de estado</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="62"/>
         <source>State filter - %p%</source>
-        <translation type="unfinished">Filtro de estado - %p%</translation>
+        <translation>Filtro de estado - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="108"/>
         <location filename="../../softwarestatefilter.cpp" line="110"/>
         <source>filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>filtrado</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="152"/>
         <source>State filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do filtro de estado</translation>
     </message>
 </context>
 <context>
