@@ -1549,6 +1549,9 @@ void SoftwareList::checkSoftwareStates()
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << hashPath;
 
+		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString().isEmpty() )
+			verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString());
+
 		verifyProc->start(command, args);
 
 		verifyReadingStdout = false;
