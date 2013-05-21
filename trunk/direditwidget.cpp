@@ -2,12 +2,13 @@
 #include <QFileDialog>
 #include "direditwidget.h"
 
-#ifdef QMC2_DEBUG
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
+
 extern MainWindow *qmc2MainWindow;
-#endif
 extern QString qmc2DirectoryEditStartPath;
+extern Options *qmc2Options;
 
 DirectoryEditWidget::DirectoryEditWidget(QString dirPath, QWidget *parent)
 	: QWidget(parent)
@@ -41,7 +42,7 @@ void DirectoryEditWidget::on_toolButtonBrowse_clicked()
 	QString startPath = lineEditDirectory->text();
 	if ( startPath.isEmpty() )
 		startPath = qmc2DirectoryEditStartPath;
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose directory"), startPath);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose directory"), startPath, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isEmpty() )
 		lineEditDirectory->setText(s);
 }
