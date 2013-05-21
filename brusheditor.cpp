@@ -10,10 +10,12 @@
 #include "colorwidget.h"
 #include "gradientstopactions.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern Options *qmc2Options;
 
 QStringList BrushEditor::patternNames;
 QStringList BrushEditor::gradientTypeNames;
@@ -294,7 +296,7 @@ void BrushEditor::on_toolButtonBrowseImageFile_clicked()
 	QStringList imageFileTypes;
 	foreach (QByteArray imageFormat, QImageReader::supportedImageFormats())
 		imageFileTypes << "*." + QString(imageFormat).toLower();
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), lineEditImageFile->text(), tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose image file"), lineEditImageFile->text(), tr("Supported image files (%1)").arg(imageFileTypes.join(" ")) + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() ) {
 		lineEditImageFile->setText(fileName);
 		QPalette pal = frameImagePreview->palette();

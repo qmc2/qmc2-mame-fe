@@ -3,6 +3,7 @@
 
 #include <QSettings>
 #include "ui_welcome.h"
+#include "macros.h"
 
 class Welcome : public QDialog, public Ui::Welcome
 {
@@ -18,6 +19,7 @@ class Welcome : public QDialog, public Ui::Welcome
     QString fallbackVariant;
 
     bool checkConfig();
+    bool useNativeFileDialogs() { return startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
 
   public slots:
     void on_pushButtonOkay_clicked();

@@ -14,12 +14,14 @@
 
 #include "macros.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "gamelist.h"
 #include "youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern Options *qmc2Options;
 extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
@@ -571,7 +573,7 @@ void YouTubeVideoPlayer::playerLocalMovieFile()
 #endif
 	
 	QString filter = tr("All files (*)");
-	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, QFileDialog::DontUseNativeDialog);
+	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !path.isNull() )
 		playMovieFile(path);
 }
@@ -583,7 +585,7 @@ void YouTubeVideoPlayer::attachMovieFile()
 #endif
 
 	QString filter = tr("All files (*)");
-	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, QFileDialog::DontUseNativeDialog);
+	QString path = QFileDialog::getOpenFileName(this, tr("Choose movie file"), QString(), filter, 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !path.isNull() )
 		attachVideo("#:" + path, "", "");
 }

@@ -9,6 +9,7 @@
 
 #include "arcademodesetup.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
@@ -22,6 +23,7 @@ extern QStringList qmc2DeviceROMs;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern Gamelist *qmc2Gamelist;
+extern Options *qmc2Options;
 
 int qmc2ArcadeModeSortCriteria = 0;
 int qmc2ArcadeModeSortOrder = 0;
@@ -237,28 +239,28 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 
 void ArcadeModeSetup::on_toolButtonBrowseExecutableFile_clicked()
 {
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose QMC2 Arcade's executable file"), lineEditExecutableFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose QMC2 Arcade's executable file"), lineEditExecutableFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !fileName.isEmpty() )
 		lineEditExecutableFile->setText(fileName);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseWorkingDirectory_clicked()
 {
-	QString workDir = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
+	QString workDir = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !workDir.isEmpty() )
 		lineEditWorkingDirectory->setText(workDir);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseConfigurationPath_clicked()
 {
-	QString configPath = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's configuration path"), lineEditConfigurationPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
+	QString configPath = QFileDialog::getExistingDirectory(this, tr("Choose QMC2 Arcade's configuration path"), lineEditConfigurationPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !configPath.isEmpty() )
 		lineEditConfigurationPath->setText(configPath);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseFilteredListFile_clicked()
 {
-	QString filteredListFile = QFileDialog::getSaveFileName(this, tr("Choose filtered list file for export"), lineEditFilteredListFile->text(), tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
+	QString filteredListFile = QFileDialog::getSaveFileName(this, tr("Choose filtered list file for export"), lineEditFilteredListFile->text(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !filteredListFile.isEmpty() )
 		lineEditFilteredListFile->setText(filteredListFile);
 }

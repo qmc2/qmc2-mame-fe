@@ -17,6 +17,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
@@ -3152,7 +3153,7 @@ void SoftwareList::loadFavoritesFromFile()
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath") )
 		proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath").toString());
 
-	QString filePath = QFileDialog::getOpenFileName(this, tr("Choose file to merge favorites from"), proposedName, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
+	QString filePath = QFileDialog::getOpenFileName(this, tr("Choose file to merge favorites from"), proposedName, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 
 	if ( !filePath.isEmpty() ) {
 		QFileInfo fiFilePath(filePath);
@@ -3231,7 +3232,7 @@ void SoftwareList::saveFavoritesToFile()
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath") )
 		proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath").toString());
 
-	QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store favorites to"), proposedName, tr("All files (*)"), 0, QFileDialog::DontUseNativeDialog);
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store favorites to"), proposedName, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 
 	if ( !filePath.isEmpty() ) {
 		QFileInfo fiFilePath(filePath);
