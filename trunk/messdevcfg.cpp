@@ -12,6 +12,7 @@
 #include "options.h"
 #include "fileeditwidget.h"
 #include "iconlineedit.h"
+#include "options.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -28,6 +29,7 @@ extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 #endif
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern bool qmc2UseDefaultEmulator;
+extern Options *qmc2Options;
 
 QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
@@ -2052,7 +2054,7 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 
 	qmc2Config->beginGroup(group);
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isEmpty() )
 		qmc2Config->setValue("DefaultDeviceDirectory", s);
 	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();

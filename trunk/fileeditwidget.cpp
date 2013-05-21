@@ -1,13 +1,16 @@
 #include <QApplication>
 #include <QFileDialog>
+#include <QSettings>
 #include "fileeditwidget.h"
 
-#ifdef QMC2_DEBUG
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
+
 extern MainWindow *qmc2MainWindow;
-#endif
+extern QSettings *qmc2Config;
 extern QString qmc2FileEditStartPath;
+extern Options *qmc2Options;
 
 FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, QWidget *parent, bool showClearButton)
 	: QWidget(parent)
@@ -49,9 +52,9 @@ void FileEditWidget::on_toolButtonBrowse_clicked()
 		startPath = qmc2FileEditStartPath;
 	QString s;
 	if ( toolButtonClear->isVisible() )
-		s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontUseNativeDialog);
+		s = QFileDialog::getOpenFileName(this, tr("Choose file"), startPath, browserFilter, 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	else
-		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontConfirmOverwrite | QFileDialog::DontUseNativeDialog);
+		s = QFileDialog::getSaveFileName(this, tr("Choose file"), startPath, browserFilter, 0, QFileDialog::DontConfirmOverwrite | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isEmpty() ) {
 		if ( browserPart == "basename" ) {
 			QFileInfo fi(s);

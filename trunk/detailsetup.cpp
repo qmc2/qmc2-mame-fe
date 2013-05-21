@@ -6,10 +6,12 @@
 
 #include "detailsetup.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern Options *qmc2Options;
 
 DetailSetup::DetailSetup(QWidget *parent)
 	: QDialog(parent)
@@ -531,8 +533,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 				case QMC2_YOUTUBE_INDEX: {
 					QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 					QString oldCacheDirectory = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
-					// we set the option 'QFileDialog::DontUseNativeDialog' here because the native dialog doesn't always handle dot-paths (hidden dirs) correctly
-					QString youTubeCacheDirectory = QFileDialog::getExistingDirectory(this, tr("Choose the YouTube cache directory"), oldCacheDirectory, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
+					QString youTubeCacheDirectory = QFileDialog::getExistingDirectory(this, tr("Choose the YouTube cache directory"), oldCacheDirectory, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 					if ( !youTubeCacheDirectory.isNull() ) {
 						if ( !youTubeCacheDirectory.endsWith("/") )
 							youTubeCacheDirectory += "/";

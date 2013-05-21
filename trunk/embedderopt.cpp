@@ -15,6 +15,7 @@
 #include "pcb.h"
 #include "softwarelist.h"
 #include "procmgr.h"
+#include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
@@ -31,6 +32,7 @@ extern PCB *qmc2PCB;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern bool qmc2UseSoftwareSnapFile;
 extern ProcessManager *qmc2ProcessManager;
+extern Options *qmc2Options;
 
 EmbedderOptions::EmbedderOptions(QWidget *parent)
 	: QWidget(parent)
@@ -535,7 +537,7 @@ void SnapshotViewer::saveAs()
 	}
 
 	hide();
-	fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"), 0, QFileDialog::DontUseNativeDialog);
+	fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 
 	if ( !fileName.isEmpty() ) {
 		EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();

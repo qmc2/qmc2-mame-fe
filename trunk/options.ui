@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>618</width>
-    <height>704</height>
+    <width>544</width>
+    <height>612</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>586</width>
-                <height>601</height>
+                <y>-116</y>
+                <width>495</width>
+                <height>625</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -237,6 +237,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="8" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxScaledFlyer">
+                   <property name="toolTip">
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                   </property>
+                   <property name="text">
+                    <string>Scaled flyer</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="7" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
                    <property name="toolTip">
@@ -294,7 +304,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="7">
+                 <item row="23" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -307,7 +317,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="23" column="0" colspan="7">
+                 <item row="24" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -513,16 +523,6 @@
                    </property>
                    <property name="text">
                     <string>Only when required</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="8" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxScaledFlyer">
-                   <property name="toolTip">
-                    <string>Scale image to fit frame size (otherwise use original size)</string>
-                   </property>
-                   <property name="text">
-                    <string>Scaled flyer</string>
                    </property>
                   </widget>
                  </item>
@@ -842,6 +842,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="22" column="0" colspan="7">
+                  <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
+                   <property name="toolTip">
+                    <string>Use the system's own (native) file dialogs, otherwise Qt's built-in dialogs are used</string>
+                   </property>
+                   <property name="text">
+                    <string>Native file dialogs</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -870,8 +880,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-130</y>
-                <width>569</width>
+                <y>0</y>
+                <width>495</width>
                 <height>731</height>
                </rect>
               </property>
@@ -2524,8 +2534,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>586</width>
-                <height>601</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3175,8 +3185,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>586</width>
-                <height>601</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3294,8 +3304,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>586</width>
-                <height>601</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3754,8 +3764,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>586</width>
-                <height>601</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -5322,6 +5332,7 @@
   <tabstop>checkBoxSuppressQtMessages</tabstop>
   <tabstop>checkBoxShowSplashScreen</tabstop>
   <tabstop>checkBoxSetWorkDirFromExec</tabstop>
+  <tabstop>checkBoxNativeFileDialogs</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
