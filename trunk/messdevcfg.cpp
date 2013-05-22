@@ -12,7 +12,6 @@
 #include "options.h"
 #include "fileeditwidget.h"
 #include "iconlineedit.h"
-#include "options.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;

@@ -63,6 +63,7 @@ void AdditionalArtworkSetup::showEvent(QShowEvent *e)
 	// FIXME
 	adjustIconSizes();
 	adjustSize();
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AdditionalArtworkSetup/Geometry", QByteArray()).toByteArray());
 
 	if ( e )
 		QDialog::showEvent(e);
@@ -77,7 +78,9 @@ void AdditionalArtworkSetup::resizeEvent(QResizeEvent *e)
 
 void AdditionalArtworkSetup::hideEvent(QHideEvent *e)
 {
-	// FIXME
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AdditionalArtworkSetup/Geometry", saveGeometry());
+	on_pushButtonCancel_clicked();
+
 	if ( e )
 		QDialog::hideEvent(e);
 }
