@@ -3327,6 +3327,10 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( searchActive )
 		return;
 
+	if ( treeWidgetGamelist->topLevelItemCount() == 1 )
+		if ( treeWidgetGamelist->topLevelItem(0)->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+			return;
+
 	searchActive = true;
 
 	searchTimer.stop();

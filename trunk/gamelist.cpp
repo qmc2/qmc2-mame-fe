@@ -138,8 +138,8 @@ Gamelist::Gamelist(QObject *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::Gamelist()");
 #endif
 
-  numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = numDevices = -1;
-  cachedGamesCounter = numTaggedSets = 0;
+  numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numDevices = -1;
+  cachedGamesCounter = numTaggedSets = numSearchGames = 0;
   loadProc = verifyProc = NULL;
   emulatorVersion = tr("unknown");
   mergeCategories = autoRomCheck = false;
@@ -374,8 +374,8 @@ void Gamelist::load()
 
   qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 
-  numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = numDevices = -1;
-  numTaggedSets = 0;
+  numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numDevices = -1;
+  numTaggedSets = numSearchGames = 0;
   qmc2MainWindow->treeWidgetGamelist->clear();
   qmc2MainWindow->treeWidgetHierarchy->clear();
   qmc2CategoryItemMap.clear();
