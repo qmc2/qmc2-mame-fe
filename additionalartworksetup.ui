@@ -22,12 +22,20 @@
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>
+     <property name="uniformRowHeights">
+      <bool>true</bool>
+     </property>
      <property name="itemsExpandable">
       <bool>false</bool>
      </property>
      <property name="expandsOnDoubleClick">
       <bool>false</bool>
      </property>
+     <column>
+      <property name="text">
+       <string>X</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Artwork name</string>
@@ -56,11 +64,6 @@
      <column>
       <property name="text">
        <string>Folder / Zip</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Active</string>
       </property>
      </column>
     </widget>
