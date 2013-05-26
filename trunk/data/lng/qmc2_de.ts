@@ -380,39 +380,50 @@ p, li { white-space: pre-wrap; }
         <translation>Ausgewählte Bildklassen entfernen</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="79"/>
+        <location filename="../../additionalartworksetup.cpp" line="83"/>
         <source>Choose...</source>
         <translation>Auswählen...</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="85"/>
+        <location filename="../../additionalartworksetup.cpp" line="90"/>
         <source>System</source>
         <translation>System</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="86"/>
+        <location filename="../../additionalartworksetup.cpp" line="91"/>
         <source>Software</source>
         <translation>Software</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="89"/>
+        <location filename="../../additionalartworksetup.cpp" line="94"/>
         <source>Folder</source>
         <translation>Ordner</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="90"/>
+        <location filename="../../additionalartworksetup.cpp" line="95"/>
         <source>ZIP</source>
         <translation>ZIP</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="92"/>
+        <location filename="../../additionalartworksetup.cpp" line="97"/>
         <source>ZIP files (*.zip)</source>
         <translation>ZIP Dateien (*.zip)</translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="92"/>
+        <location filename="../../additionalartworksetup.cpp" line="97"/>
+        <location filename="../../additionalartworksetup.cpp" line="137"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="137"/>
+        <source>Choose icon file</source>
+        <translation>Icon Datei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="137"/>
+        <source>PNG files (*.png)</source>
+        <translation>PNG Dateien (*.png)</translation>
     </message>
 </context>
 <context>
