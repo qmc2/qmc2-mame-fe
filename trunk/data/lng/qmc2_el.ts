@@ -311,6 +311,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="41"/>
+        <location filename="../../additionalartworksetup.cpp" line="81"/>
         <source>Artwork name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -321,6 +322,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="51"/>
+        <location filename="../../additionalartworksetup.cpp" line="92"/>
         <source>Cache prefix</source>
         <translation type="unfinished"></translation>
     </message>
@@ -380,48 +382,108 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="83"/>
+        <location filename="../../additionalartworksetup.cpp" line="77"/>
+        <source>Select / deselect this artwork class for removal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="82"/>
+        <source>Enter a name for this artwork class (required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="86"/>
         <source>Choose...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="90"/>
+        <location filename="../../additionalartworksetup.cpp" line="88"/>
+        <source>Choose an icon file to be used for this artwork class (optional)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="93"/>
+        <source>Enter a &lt;u&gt;unique&lt;/u&gt; cache prefix (required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="96"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="91"/>
+        <location filename="../../additionalartworksetup.cpp" line="97"/>
         <source>Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="94"/>
+        <location filename="../../additionalartworksetup.cpp" line="98"/>
+        <source>Select system or software as &lt;i&gt;target&lt;/i&gt; for this artwork class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="101"/>
         <source>Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="95"/>
+        <location filename="../../additionalartworksetup.cpp" line="102"/>
         <source>ZIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="97"/>
+        <location filename="../../additionalartworksetup.cpp" line="103"/>
+        <source>Choose if images are loaded from a folder or a ZIP archive for this artwork class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="105"/>
         <source>ZIP files (*.zip)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="97"/>
-        <location filename="../../additionalartworksetup.cpp" line="137"/>
+        <location filename="../../additionalartworksetup.cpp" line="105"/>
+        <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="137"/>
+        <location filename="../../additionalartworksetup.cpp" line="106"/>
+        <source>Image ZIP file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="107"/>
+        <source>Image ZIP file for this artwork class (required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="108"/>
+        <source>Browse image ZIP file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="110"/>
+        <source>Image folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="111"/>
+        <source>Image folder for this artwork class (required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="112"/>
+        <source>Browse image folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>Choose icon file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../additionalartworksetup.cpp" line="137"/>
+        <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>PNG files (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
