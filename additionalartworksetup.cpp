@@ -5,17 +5,21 @@
 #include <QComboBox>
 #include <QTreeWidgetItem>
 #include <QStackedWidget>
-#include <QList>
 #include <QApplication>
+#include <QFileDialog>
+#include <QList>
+#include <QIcon>
 
 #include "additionalartworksetup.h"
 #include "fileeditwidget.h"
 #include "direditwidget.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern Options *qmc2Options;
 
 AdditionalArtworkSetup::AdditionalArtworkSetup(QWidget *parent)
 	: QDialog(parent)
@@ -78,6 +82,7 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	toolButtonIcon->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	toolButtonIcon->setText(tr("Choose..."));
 	toolButtonIcon->setIconSize(iconSize);
+	connect(toolButtonIcon, SIGNAL(clicked()), this, SLOT(chooseIcon()));
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_ICON, toolButtonIcon);
 	QLineEdit *lineEditCachePrefix = new QLineEdit();
 	treeWidget->setItemWidget(newItem, QMC2_ADDITIONALARTWORK_COLUMN_CACHE_PREFIX, lineEditCachePrefix);
@@ -123,6 +128,17 @@ void AdditionalArtworkSetup::selectionFlagsChanged(bool)
 			enable = cb->isChecked();
 	}
 	toolButtonRemove->setEnabled(enable);
+}
+
+void AdditionalArtworkSetup::chooseIcon()
+{
+	QToolButton *tb = (QToolButton *)sender();
+
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Choose icon file"), tb->whatsThis(), tr("PNG files (*.png)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !fileName.isEmpty() ) {
+		tb->setIcon(QIcon(fileName));
+		tb->setWhatsThis(fileName);
+	}
 }
 
 void AdditionalArtworkSetup::showEvent(QShowEvent *e)

@@ -648,7 +648,7 @@
 
 // responsiveness while loading an additional information source
 #if defined(QMC2_EMUTYPE_MESS)
-#define QMC2_INFOSOURCE_RESPONSIVENESS		500
+#define QMC2_INFOSOURCE_RESPONSIVENESS		1000
 #else
 #define QMC2_INFOSOURCE_RESPONSIVENESS		5000
 #endif
