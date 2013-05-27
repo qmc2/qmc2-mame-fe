@@ -1043,14 +1043,6 @@
     <description lang="fr" text="Direct3D"/>
     <description lang="pt" text="Direct3D"/>
     <description lang="es" text="Direct3D"/>
-    <option default="9" name="d3dversion" type="int">
-      <description lang="us" text="Specify the preferred Direct3D version (8 or 9)"/>
-      <description lang="de" text="Bevorzugte Direct3D Version festlegen (8 oder 9)"/>
-      <description lang="pl" text="Określ preferowaną wersję Direct3D (8 albo 9)"/>
-      <description lang="fr" text="Specifier la version préférée de Direct3D (8 ou 9)"/>
-      <description lang="pt" text="Especificar a versão preferencial do Direct3D (8 ou 9)"/>
-      <description lang="es" text="Especificar la versión preferida de Direct3D (8 ó 9)"/>
-    </option>
     <option default="true" name="filter" type="bool">
       <description lang="us" text="Enable bilinear filtering on screen output"/>
       <description lang="de" text="Bilineare Filterung bei Bildschirmausgabe anwenden"/>
