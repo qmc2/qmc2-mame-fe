@@ -1770,21 +1770,73 @@
       <description lang="fr" text="Valeur de la phase pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor de contagem de fase para o processamento de sinal NTSC"/>
     </option>
-    <option default="0.0" ignore="true" name="vector_time_scale" type="float">
+    <option default="0.0" name="vector_time_scale" type="float">
       <description lang="us" text="How much the fade rate affects vector fade"/>
       <description lang="de" text="Einfluss der Fade-Rate auf den Vektor-Fade"/>
     </option>
-    <option default="0.1" ignore="true" name="vector_time_period" type="float">
+    <option default="0.0" name="vector_time_period" type="float">
       <description lang="us" text="Vector fade rate versus screen refresh rate"/>
       <description lang="de" text="Vektor-Fade Rate versus Screen-Refresh Rate"/>
     </option>
-    <option default="0.9" ignore="true" name="vector_length_scale" type="float">
+    <option default="0.8" name="vector_length_scale" type="float">
       <description lang="us" text="How much length affects vector fade"/>
       <description lang="de" text="Einfluss der Länge auf den Vektor-Fade"/>
     </option>
-    <option default="4.0" ignore="true" name="vector_length_ratio" type="float">
+    <option default="500.0" name="vector_length_ratio" type="float">
       <description lang="us" text="Vector fade length (4.0 means vectors fade the most at and above 4 pixels, etc.)"/>
       <description lang="de" text="Vektor-Fade Länge (4.0 bedeutet, dass Vektoren am Meisten bei und oberhald von 4 Pixeln ein-/ausgeblendet werden)"/>
+    </option>
+    <option default="0.3" name="vector_bloom_scale" type="float">
+      <description lang="us" text="Intensity factor for vector bloom"/>
+      <description lang="de" text=""/>
+    </option>
+    <option default="0.225" name="raster_bloom_scale" type="float">
+      <description lang="us" text="Intensity factor for raster bloom"/>
+      <description lang="de" text=""/>
+    </option>
+    <option default="1.0" name="bloom_lvl0_weight" type="float">
+      <description lang="us" text="Bloom level 0 (full-size target) weight"/>
+      <description lang="de" text="Glanz-Level 0 Gewichtung (Maßstab 1:1)"/>
+    </option>
+    <option default="0.21" name="bloom_lvl1_weight" type="float">
+      <description lang="us" text="Bloom level 1 (half-size target) weight"/>
+      <description lang="de" text="Glanz-Level 1 Gewichtung (Maßstab 1:2)"/>
+    </option>
+    <option default="0.19" name="bloom_lvl2_weight" type="float">
+      <description lang="us" text="Bloom level 2 (quarter-size target) weight"/>
+      <description lang="de" text="Glanz-Level 2 Gewichtung (Maßstab 1:4)"/>
+    </option>
+    <option default="0.17" name="bloom_lvl3_weight" type="float">
+      <description lang="us" text="Bloom level 3 (.) weight"/>
+      <description lang="de" text="Glanz-Level 3 Gewichtung"/>
+    </option>
+    <option default="0.15" name="bloom_lvl4_weight" type="float">
+      <description lang="us" text="Bloom level 4 (.) weight"/>
+      <description lang="de" text="Glanz-Level 4 Gewichtung"/>
+    </option>
+    <option default="0.14" name="bloom_lvl5_weight" type="float">
+      <description lang="us" text="Bloom level 5 (.) weight"/>
+      <description lang="de" text="Glanz-Level 5 Gewichtung"/>
+    </option>
+    <option default="0.13" name="bloom_lvl6_weight" type="float">
+      <description lang="us" text="Bloom level 6 (.) weight"/>
+      <description lang="de" text="Glanz-Level 6 Gewichtung"/>
+    </option>
+    <option default="0.12" name="bloom_lvl7_weight" type="float">
+      <description lang="us" text="Bloom level 7 (.) weight"/>
+      <description lang="de" text="Glanz-Level 7 Gewichtung"/>
+    </option>
+    <option default="0.11" name="bloom_lvl8_weight" type="float">
+      <description lang="us" text="Bloom level 8 (.) weight"/>
+      <description lang="de" text="Glanz-Level 8 Gewichtung"/>
+    </option>
+    <option default="0.10" name="bloom_lvl9_weight" type="float">
+      <description lang="us" text="Bloom level 9 (.) weight"/>
+      <description lang="de" text="Glanz-Level 9 Gewichtung"/>
+    </option>
+    <option default="0.09" name="bloom_lvl10_weight" type="float">
+      <description lang="us" text="Bloom level 10 (1x1 target) weight"/>
+      <description lang="de" text="Glanz-Level 10 Gewichtung"/>
     </option>
   </section>
 </template>
