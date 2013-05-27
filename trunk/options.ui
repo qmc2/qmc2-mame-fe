@@ -64,6 +64,16 @@
               <layout class="QGridLayout" name="gridLayout_21">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_99">
+                 <item row="17" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
+                   <property name="toolTip">
+                    <string>Use the system's own (native) file dialogs, otherwise Qt's built-in dialogs are used</string>
+                   </property>
+                   <property name="text">
+                    <string>Use native file dialogs</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="9" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxScaledCabinet">
                    <property name="toolTip">
@@ -237,6 +247,19 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="18" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxGameStatusIndicatorOnlyWhenRequired">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>Show the game status indicator only when the game list is not visible due to the current layout</string>
+                   </property>
+                   <property name="text">
+                    <string>Only when required</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="8" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxScaledFlyer">
                    <property name="toolTip">
@@ -266,6 +289,19 @@
                     <string>Scaled preview</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="23" column="0" colspan="7">
+                  <spacer name="spacer4">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>436</width>
+                     <height>13</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                  <item row="2" column="6">
                   <widget class="QToolButton" name="toolButtonBrowseFont">
@@ -303,19 +339,6 @@
                     <string>Set working directory from executable</string>
                    </property>
                   </widget>
-                 </item>
-                 <item row="23" column="0" colspan="7">
-                  <spacer name="spacer4">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>436</width>
-                     <height>13</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                  <item row="24" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
@@ -493,16 +516,6 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="17" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
-                   <property name="toolTip">
-                    <string>Kill emulators on exit?</string>
-                   </property>
-                   <property name="text">
-                    <string>Kill emulators</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="18" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
                    <property name="toolTip">
@@ -510,19 +523,6 @@
                    </property>
                    <property name="text">
                     <string>Game status indicator</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="18" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxGameStatusIndicatorOnlyWhenRequired">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="toolTip">
-                    <string>Show the game status indicator only when the game list is not visible due to the current layout</string>
-                   </property>
-                   <property name="text">
-                    <string>Only when required</string>
                    </property>
                   </widget>
                  </item>
@@ -842,13 +842,23 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="7">
-                  <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
+                 <item row="22" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
                    <property name="toolTip">
-                    <string>Use the system's own (native) file dialogs, otherwise Qt's built-in dialogs are used</string>
+                    <string>Kill emulators when QMC2 exits?</string>
                    </property>
                    <property name="text">
-                    <string>Native file dialogs</string>
+                    <string>Kill emulators on exit</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="22" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxOneEmulatorOnly">
+                   <property name="toolTip">
+                    <string>Terminate all other emulator instances when launching a new one?</string>
+                   </property>
+                   <property name="text">
+                    <string>One emulator at a time</string>
                    </property>
                   </widget>
                  </item>
@@ -4233,8 +4243,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>182</width>
-                <height>467</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4899,8 +4909,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>236</width>
-                <height>211</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -5323,7 +5333,7 @@
   <tabstop>checkBoxShowMenuBar</tabstop>
   <tabstop>checkBoxProgressTexts</tabstop>
   <tabstop>checkBoxMinimizeOnEmuLaunch</tabstop>
-  <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
+  <tabstop>checkBoxNativeFileDialogs</tabstop>
   <tabstop>checkBoxGameStatusIndicator</tabstop>
   <tabstop>checkBoxGameStatusIndicatorOnlyWhenRequired</tabstop>
   <tabstop>checkBoxShowGameName</tabstop>
@@ -5332,7 +5342,8 @@
   <tabstop>checkBoxSuppressQtMessages</tabstop>
   <tabstop>checkBoxShowSplashScreen</tabstop>
   <tabstop>checkBoxSetWorkDirFromExec</tabstop>
-  <tabstop>checkBoxNativeFileDialogs</tabstop>
+  <tabstop>checkBoxOneEmulatorOnly</tabstop>
+  <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
