@@ -1043,6 +1043,7 @@ void Options::on_pushButtonApply_clicked()
   qmc2ImagePixmapCache.setMaxCost(oldCacheSize * QMC2_1M);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", checkBoxMinimizeOnEmuLaunch->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", checkBoxKillEmulatorsOnExit->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/OneEmulatorOnly", checkBoxOneEmulatorOnly->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", checkBoxShowMenuBar->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", checkBoxCheckSingleInstance->isChecked());
   qmc2SuppressQtMessages = checkBoxSuppressQtMessages->isChecked();
@@ -2246,6 +2247,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   spinBoxPixmapCacheSize->setValue(pixmapCacheSize);
   checkBoxMinimizeOnEmuLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool());
   checkBoxKillEmulatorsOnExit->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", true).toBool());
+  checkBoxOneEmulatorOnly->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/OneEmulatorOnly", false).toBool());
   checkBoxShowMenuBar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
   checkBoxCheckSingleInstance->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", true).toBool());
   qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();

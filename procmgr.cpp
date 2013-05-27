@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <QSettings>
 
 #include "procmgr.h"
 #include "qmc2main.h"
@@ -14,6 +15,7 @@ extern QWidgetList qmc2AutoMinimizedWidgets;
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
+extern QSettings *qmc2Config;
 
 ProcessManager::ProcessManager(QWidget *parent)
 	: QObject(parent)
@@ -42,6 +44,26 @@ ProcessManager::~ProcessManager()
 
 int ProcessManager::start(QString &command, QStringList &arguments, bool autoConnect, QString workDir, QStringList softwareLists, QStringList softwareNames)
 {
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/OneEmulatorOnly", false).toBool() ) {
+		foreach (int index, procMap) {
+			QProcess *proc = process(index);
+
+			if ( !proc )
+				continue;
+
+			bool finished = false;
+			proc->terminate();
+			for (int i = 0; i < 1000 / QMC2_PROCESS_POLL_TIME && !finished; i++) {
+				finished = proc->waitForFinished(QMC2_PROCESS_POLL_TIME);
+				qApp->processEvents();
+			}
+
+			if ( !proc->waitForFinished(0) )
+				proc->kill();
+		}
+		qApp->processEvents();
+	}
+
 	launchForeignID = qmc2MainWindow->launchForeignID;
 	QProcess *proc = new QProcess(this);
 	if ( !workDir.isEmpty() ) {
