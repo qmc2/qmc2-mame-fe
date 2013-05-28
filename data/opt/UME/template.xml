@@ -167,6 +167,11 @@
       <description lang="pt" text="Estado salvo para carregar"/>
       <description lang="es" text="Estado guardado a cargar"/>
     </option>
+    <option default="%g" name="statename" type="combo">
+      <description lang="us" text="Override of the default state sub-folder naming: %g == gamename"/>
+      <description lang="de" text="Namensgebung für Status-Unterordner ändern: %g == Spielname"/>
+      <choice name="%g"/>
+    </option>
     <option default="false" name="autosave" type="bool">
       <description lang="us" text="Enable automatic restore at startup, and automatic save at exit time"/>
       <description lang="de" text="Spiel-Status beim Beenden automatisch sichern und beim Start wiederherstellen"/>
