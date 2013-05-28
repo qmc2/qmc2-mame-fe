@@ -36,6 +36,7 @@ inf: informational only
   <li>fix: honor the emulator's working directory (if specified) when verifying ROMs</li>
   <li>fix: avoid crash of the front-end when 'mame/mess/ume -listxml' crashes</li>
   <li>fix: minor: don't issue an actual search when no game/machine list data has been loaded yet</li>
+  <li>fix: key-sequence scanner: avoid <i>X Error: BadWindow invalid window parameter</i> warning when grabbing the keyboard -- on X11, the window must the 'mapped' (shown) first</li>
   <li>imp: added tool-buttons to select/deselect all categories in the demo- and arcade-mode setup dialogs</li>
   <li>imp: software-list export: added the 'supported' column to the software-list export feature</li>
   <li>imp: software-lists: added a 'clear selection' item to the software-list's context-menu</li>

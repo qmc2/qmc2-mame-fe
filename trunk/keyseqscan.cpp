@@ -29,7 +29,6 @@ KeySequenceScanner::KeySequenceScanner(QWidget *parent, bool special, bool onlyO
   animationTimeout();
   connect(&animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
   animTimer.start(QMC2_ANIMATION_TIMEOUT);
-  grabKeyboard();
 }
 
 KeySequenceScanner::~KeySequenceScanner()
@@ -38,7 +37,18 @@ KeySequenceScanner::~KeySequenceScanner()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: KeySequenceScanner::~KeySequenceScanner()");
 #endif
 
-  releaseKeyboard();
+}
+
+void KeySequenceScanner::hideEvent(QHideEvent *e)
+{
+	releaseKeyboard();
+	QDialog::hideEvent(e);
+}
+ 
+void KeySequenceScanner::showEvent(QShowEvent *e)
+{
+	QDialog::showEvent(e);
+	grabKeyboard();
 }
 
 void KeySequenceScanner::animationTimeout()

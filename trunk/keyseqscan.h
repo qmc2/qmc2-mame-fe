@@ -26,6 +26,8 @@ class KeySequenceScanner : public QDialog, public Ui::KeySequenceScanner
   protected:
     void keyPressEvent(QKeyEvent *);
     void keyReleaseEvent(QKeyEvent *);
+    void showEvent(QShowEvent *);
+    void hideEvent(QHideEvent *);
 };
 
 #endif
