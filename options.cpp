@@ -533,7 +533,7 @@ Options::Options(QWidget *parent)
   joystick = NULL;
   joystickCalibrationWidget = NULL;
   joystickTestWidget = NULL;
-  scrollArea = new QScrollArea(groupBoxCalibrationAndTest);
+  scrollArea = new QScrollArea(frameCalibrationAndTest);
   scrollArea->hide();
   scrollArea->setWidgetResizable(true);
 #endif
@@ -2767,8 +2767,12 @@ void Options::applyDelayed()
         if ( config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible").toBool() )
           show();
       treeWidgetShortcuts->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState").toByteArray());
+      treeWidgetShortcuts->header()->setClickable(true);
+      treeWidgetShortcuts->header()->setSortIndicatorShown(true);
 #if QMC2_JOYSTICK == 1
       treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
+      treeWidgetJoystickMappings->header()->setClickable(true);
+      treeWidgetJoystickMappings->header()->setSortIndicatorShown(true);
 #endif
       tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
     }
@@ -4345,7 +4349,7 @@ void Options::on_toolButtonCalibrateAxes_clicked()
       joystick->close();
     if ( joystick->open(comboBoxSelectJoysticks->currentIndex()) ) {
       // create joystick calibration widget
-      QGridLayout *myLayout = (QGridLayout *)qmc2Options->groupBoxCalibrationAndTest->layout();
+      QGridLayout *myLayout = (QGridLayout *)qmc2Options->frameCalibrationAndTest->layout();
       if ( joystickTestWidget ) {
         myLayout->removeWidget(scrollArea);
         scrollArea->takeWidget();
@@ -4366,7 +4370,7 @@ void Options::on_toolButtonCalibrateAxes_clicked()
         pushButtonRemoveJoystickMapping->hide();
         treeWidgetJoystickMappings->hide();
       }
-      joystickCalibrationWidget = new JoystickCalibrationWidget(joystick, groupBoxCalibrationAndTest);
+      joystickCalibrationWidget = new JoystickCalibrationWidget(joystick, frameCalibrationAndTest);
       myLayout->addWidget(scrollArea);
       scrollArea->setWidget(joystickCalibrationWidget);
       scrollArea->show();
@@ -4398,7 +4402,7 @@ void Options::on_toolButtonTestJoystick_clicked()
       joystick->close();
     if ( joystick->open(comboBoxSelectJoysticks->currentIndex()) ) {
       // create joystick test widget
-      QGridLayout *myLayout = (QGridLayout *)qmc2Options->groupBoxCalibrationAndTest->layout();
+      QGridLayout *myLayout = (QGridLayout *)qmc2Options->frameCalibrationAndTest->layout();
       if ( joystickTestWidget ) {
         myLayout->removeWidget(scrollArea);
         scrollArea->takeWidget();
@@ -4419,7 +4423,7 @@ void Options::on_toolButtonTestJoystick_clicked()
         pushButtonRemoveJoystickMapping->hide();
         treeWidgetJoystickMappings->hide();
       }
-      joystickTestWidget = new JoystickTestWidget(joystick, groupBoxCalibrationAndTest);
+      joystickTestWidget = new JoystickTestWidget(joystick, frameCalibrationAndTest);
       myLayout->addWidget(scrollArea);
       scrollArea->setWidget(joystickTestWidget);
       scrollArea->show();
@@ -4443,14 +4447,14 @@ void Options::on_toolButtonMapJoystick_clicked()
   bool relayout = ( joystickCalibrationWidget || joystickTestWidget );
   
   if ( joystickCalibrationWidget ) {
-    groupBoxCalibrationAndTest->layout()->removeWidget(scrollArea);
+    frameCalibrationAndTest->layout()->removeWidget(scrollArea);
     scrollArea->takeWidget();
     scrollArea->hide();
     delete joystickCalibrationWidget;
     joystickCalibrationWidget = NULL;
   }
   if ( joystickTestWidget ) {
-    groupBoxCalibrationAndTest->layout()->removeWidget(scrollArea);
+    frameCalibrationAndTest->layout()->removeWidget(scrollArea);
     scrollArea->takeWidget();
     scrollArea->hide();
     delete joystickTestWidget;
@@ -4458,7 +4462,7 @@ void Options::on_toolButtonMapJoystick_clicked()
   }
 
   if ( relayout ) {
-    QGridLayout *myLayout = (QGridLayout *)qmc2Options->groupBoxCalibrationAndTest->layout();
+    QGridLayout *myLayout = (QGridLayout *)qmc2Options->frameCalibrationAndTest->layout();
     myLayout->addWidget(pushButtonRemapJoystickFunction, 0, 0);
     myLayout->addWidget(pushButtonRemoveJoystickMapping, 0, 1);
     myLayout->addWidget(treeWidgetJoystickMappings, 1, 0, 1, 2);
@@ -4743,7 +4747,7 @@ JoystickCalibrationWidget::~JoystickCalibrationWidget()
 #endif
 
   // ignore destruction when we are already cleaning up the application...
-  if ( !qmc2Options->groupBoxCalibrationAndTest->layout() )
+  if ( !qmc2Options->frameCalibrationAndTest->layout() )
     return;
 
   int i;
@@ -4999,7 +5003,7 @@ JoystickTestWidget::~JoystickTestWidget()
 #endif
 
   // ignore destruction when we are already cleaning up the application...
-  if ( !qmc2Options->groupBoxCalibrationAndTest->layout() )
+  if ( !qmc2Options->frameCalibrationAndTest->layout() )
     return;
 
   QLayoutItem *childItem;

@@ -56,7 +56,7 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-116</y>
+                <y>0</y>
                 <width>495</width>
                 <height>625</height>
                </rect>
@@ -891,8 +891,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>495</width>
-                <height>731</height>
+                <width>228</width>
+                <height>728</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2544,8 +2544,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>508</width>
+                <height>245</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3265,6 +3265,9 @@
                    <property name="itemsExpandable">
                     <bool>false</bool>
                    </property>
+                   <property name="sortingEnabled">
+                    <bool>true</bool>
+                   </property>
                    <property name="allColumnsShowFocus">
                     <bool>true</bool>
                    </property>
@@ -3656,17 +3659,17 @@
                      </layout>
                     </item>
                     <item row="3" column="0">
-                     <widget class="QGroupBox" name="groupBoxCalibrationAndTest">
+                     <widget class="QFrame" name="frameCalibrationAndTest">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                         <horstretch>0</horstretch>
                         <verstretch>0</verstretch>
                        </sizepolicy>
                       </property>
-                      <property name="title">
-                       <string/>
-                      </property>
-                      <layout class="QGridLayout">
+                      <layout class="QGridLayout" name="gridLayoutCalibrationAndTest">
+                       <property name="margin">
+                        <number>0</number>
+                       </property>
                        <item row="0" column="0">
                         <widget class="QPushButton" name="pushButtonRemapJoystickFunction">
                          <property name="enabled">
@@ -3724,6 +3727,9 @@
                          <property name="itemsExpandable">
                           <bool>false</bool>
                          </property>
+                         <property name="sortingEnabled">
+                          <bool>true</bool>
+                         </property>
                          <property name="allColumnsShowFocus">
                           <bool>true</bool>
                          </property>
@@ -3774,8 +3780,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>374</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4243,8 +4249,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>182</width>
+                <height>464</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4909,8 +4915,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>236</width>
+                <height>211</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
