@@ -99,13 +99,8 @@ void Joystick::processEvents()
 	int i;
 
 	for (i = 0; i < numAxes; i++) {
-		/* FIXME!
-		int minValue = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Minimum").arg(jsIndex).arg(i), 0).toInt();
-		int maxValue = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Maximum").arg(jsIndex).arg(i), 0).toInt();
-		int centerValue = (minValue + maxValue) / 2;
-		*/
 		Sint16 moved = SDL_JoystickGetAxis(joystick, i);
-		if ( abs(moved /*- (Sint16)centerValue*/) >= deadzones[i] ) {
+		if ( abs(moved) >= deadzones[i] ) {
 			if ( (moved != axes[i]) ) {
 				int deltaMoved = abs(axes[i] - moved);
 				if ( deltaMoved >= sensitivities[i] )
