@@ -17,13 +17,13 @@
 # Notes:
 #
 # Using this option on any other OS than Windows will make the build fail! Also,
-# you'll need a working MinGW GCC installation (plus Qt and SDL). This option
+# you'll need a working MinGW GCC installation (incl. Qt and SDL). This option
 # will enable some assumptions with regard to these requirements!
 #
 # This is NOT for users of MS Visual C++ 2010!
 #
-# For detailed build instructions on Windows, see:
-# http://qmc2.wikia.com/wiki/The_%27ultimate%27_guide_to_QMC2#Windows.
+# For detailed build instructions on Windows, see our Wiki:
+# http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Windows
 #
 ifndef MINGW
 ifeq ($(OS),Windows_NT)
@@ -54,8 +54,10 @@ endif
 #
 # Supported emulators:
 #
-# UNIX and Mac OS X .... SDLMAME (default), SDLMESS or SDLUME
-# Windows .............. MAME (default), MESS or UME
+# UNIX and Mac OS X .... SDLMAME (default), SDLMESS or SDLUME (you can can also
+#                        use EMU=MAME|MESS|UME and/or mixed-case letters)
+# Windows .............. MAME (default), MESS or UME (you can also use lower-
+#                        case letters, mixed-case won't work though)
 #
 ifndef EMULATOR
 ifeq '$(MINGW)' '1'
@@ -276,7 +278,7 @@ endif
 # Built-in Phonon features include the MP3 audio player and the YouTube video
 # widget.
 #
-# For Qt 5, this will be disabled automatically (has no Phonon module)!
+# For Qt 5, this will be disabled automatically (Qt 5 has no Phonon module)!
 #
 ifndef PHONON
 PHONON = 1
@@ -492,8 +494,7 @@ endif
 #
 # Specify the command to be used to run 'xwininfo'.
 #
-# This is used by the emulator embedder which is only available on Qt platforms
-# that utilize X11.
+# This is only used by the emulator embedder feature on X11 platforms!
 #
 ifndef XWININFO
 XWININFO = xwininfo
@@ -502,8 +503,7 @@ endif
 # >>> DATABASE <<<
 #
 # Enable (1) or disable (0) the use of any optional features that make use of
-# relational databases. The only supported DB type currently is MySQL (SQLite
-# support is planned as well).
+# relational databases.
 #
 # WARNING: this is a WIP feature under development right now -- use at your own
 # risk!
