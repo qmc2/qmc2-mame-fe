@@ -1398,37 +1398,38 @@ endif
 help:
 	@echo "Usage: $(MAKE) [<targets>] [<configuration_options>]"
 	@echo ""
-	@echo "### Target ###  ### Description ###"
-	@echo "all (default)   Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
-	@echo "clean           Clean up compilation & linkage binaries from source tree"
-	@echo "config          Show build configuration options and their current values"
+	@echo "### Target ###   ### Description ###"
+	@echo "all (default)    Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
+	@echo "clean            Clean up compilation & linkage binaries from source tree"
+	@echo "config           Show build configuration options and their current values"
+	@echo "configure        Create qmake output and stop, alias: qmake"
 ifneq '$(ARCH)' 'Windows'
-	@echo "dist            Create source distribution archives (tar.gz and tar.bz2)"
-	@echo "exclude-list    Recreate SVN exclude-list (only used by developers)"
+	@echo "dist             Create source distribution archives (tar.gz and tar.bz2)"
+	@echo "exclude-list     Recreate SVN exclude-list (only used by developers)"
 endif
-	@echo "help | ?        Show this help"
+	@echo "help | ?         Show this help"
 ifneq '$(ARCH)' 'Windows'
-	@echo "install         Install QMC2 binaries and data files for system-wide use"
+	@echo "install          Install QMC2 binaries and data files for system-wide use"
 endif
-	@echo "lang            Recreate binary translation files only (if not up to date)"
+	@echo "lang             Recreate binary translation files only (if not up to date)"
 ifneq '$(ARCH)' 'Windows'
-	@echo "os-detect       Detect host OS and distribution / version"
-	@echo "snap            Create source distribution archives with date and time stamp"
+	@echo "os-detect        Detect host OS and distribution / version"
+	@echo "snap             Create source distribution archives with date and time stamp"
 endif
-ifeq '$(ARCH)' 'Darwin'
-	@echo "xcode-project   Create XCode project and stop, alias: xcp, configure, qmake"
-else
-	@echo "configure       Create qmake output and stop, alias: qmake"
-endif
-	@echo "arcade          Build arcade-mode binary (qmc2-arcade)"
-	@echo "arcade-clean    Clean up arcade-mode build (qmc2-arcade)"
+	@echo "arcade           Build QMC2 Arcade binary (qmc2-arcade)"
+	@echo "arcade-clean     Clean up QMC2 Arcade build"
 ifneq '$(ARCH)' 'Windows'
-	@echo "arcade-install  Install arcade mode binary (qmc2-arcade)"
+	@echo "arcade-install   Install QMC2 Arcade"
 endif
-	@echo "tools           Build tools: qchdman"
-	@echo "tools-clean     Clean up tools: qchdman-clean"
+	@echo "qchdman          Build Qt CHDMAN GUI binary (qchdman)"
+	@echo "qchdman-clean    Clean up Qt CHDMAN GUI build"
 ifneq '$(ARCH)' 'Windows'
-	@echo "tools-install   Install tools: qchdman-install"
+	@echo "qchdman-install  Install Qt CHDMAN GUI"
+endif
+	@echo "tools            Build tools: qchdman"
+	@echo "tools-clean      Clean up tools: qchdman-clean"
+ifneq '$(ARCH)' 'Windows'
+	@echo "tools-install    Install tools: qchdman-install"
 endif
 	@echo ""
 	@echo "Run 'make config' for build configuration options."
