@@ -636,7 +636,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	QString slotInfoCachePath;
 #if defined(QMC2_EMUTYPE_MESS)
 	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString();
-#elif defined(QMC2_EMUTYE_UME)
+#elif defined(QMC2_EMUTYPE_UME)
 	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString();
 #endif
 
