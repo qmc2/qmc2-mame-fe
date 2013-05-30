@@ -245,7 +245,6 @@ QMap<QString, QString> qmc2ParentMap;
 QMap<QString, QIcon> qmc2IconMap;
 QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 QMap<QString, QString> qmc2CustomShortcutMap;
-QMap<QString, QString> qmc2JoystickFunctionMap;
 QMap<QString, QByteArray *> qmc2GameInfoDB;
 QList<QWidget *> qmc2ActiveViews;
 QString qmc2DemoGame;
@@ -261,6 +260,7 @@ KeyPressFilter *qmc2KeyPressFilter = NULL;
 QMap<QString, QKeySequence> qmc2QtKeyMap;
 #if QMC2_JOYSTICK == 1
 Joystick *qmc2Joystick = NULL;
+QMap<QString, QString> qmc2JoystickFunctionMap;
 #endif
 QString qmc2DefaultStyle;
 QSocketNotifier *qmc2FifoNotifier = NULL;
