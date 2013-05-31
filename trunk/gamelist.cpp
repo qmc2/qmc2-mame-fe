@@ -183,6 +183,14 @@ Gamelist::Gamelist(QObject *parent)
     reverseTranslation[QObject::tr("partially")] = "partially";
   }
 
+#if defined(QMC2_EMUTYPE_MAME)
+  emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E.";
+#elif defined(QMC2_EMUTYPE_MESS)
+  emulatorIdentifiers << "MESS" << "M.E.S.S.";
+#elif defined(QMC2_EMUTYPE_UME)
+  emulatorIdentifiers << "UME" << "U.M.E.";
+#endif
+
   if ( qmc2UseIconFile ) {
 	  foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 		  unzFile iconFile = unzOpen(filePath.toLocal8Bit());
@@ -615,7 +623,7 @@ void Gamelist::load()
 #if defined(QMC2_EMUTYPE_MAME)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
-      if ( versionWords[0] == "M.A.M.E." || versionWords[0] == "HB.M.A.M.E." ) {
+      if ( emulatorIdentifiers.contains(versionWords[0]) ) {
         emulatorVersion = versionWords[1].remove("v");
         emulatorType = "MAME";
       } else {
@@ -630,7 +638,7 @@ void Gamelist::load()
 #elif defined(QMC2_EMUTYPE_MESS)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
-      if ( versionWords[0] == "MESS" || versionWords[0] == "M.E.S.S.") {
+      if ( emulatorIdentifiers.contains(versionWords[0]) ) {
         emulatorVersion = versionWords[1].remove("v");
         emulatorType = "MESS";
       } else {
@@ -645,7 +653,7 @@ void Gamelist::load()
 #elif defined(QMC2_EMUTYPE_UME)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
-      if ( versionWords[0] == "U.M.E." ) {
+      if ( emulatorIdentifiers.contains(versionWords[0]) ) {
         emulatorVersion = versionWords[1].remove("v");
         emulatorType = "UME";
       } else {

@@ -32,6 +32,7 @@ class Gamelist : public QObject
     QProcess *verifyProc;
     QString gamelistBuffer;
     QStringList xmlLines;
+    QStringList emulatorIdentifiers;
     static QStringList phraseTranslatorList;
     static QMap<QString, QString> reverseTranslation;
     QTime loadTimer;
