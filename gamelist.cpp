@@ -2024,6 +2024,16 @@ void Gamelist::parse()
         QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
         nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
         nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
+#if defined(QMC2_EMUTYPE_MAME)
+        if ( qmc2GamelistItemMap.contains(gameName) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(gameName));
+#elif defined(QMC2_EMUTYPE_MESS)
+        if ( qmc2GamelistItemMap.contains(gameName) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MESS developers").arg(gameName));
+#elif defined(QMC2_EMUTYPE_UME)
+        if ( qmc2GamelistItemMap.contains(gameName) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(gameName));
+#endif
         qmc2GamelistItemMap[gameName] = gameDescriptionItem;
         qmc2GamelistItemByDescriptionMap[gameDescription] = gameDescriptionItem;
         qmc2GamelistDescriptionMap[gameName] = gameDescription;
@@ -2052,7 +2062,6 @@ void Gamelist::parse()
         qApp->processEvents();
       }
     }
-    //qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
   }
   if ( gamelistCache.isOpen() )
     gamelistCache.close();
