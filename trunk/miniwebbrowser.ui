@@ -337,7 +337,7 @@
           </property>
           <property name="icon">
            <iconset resource="qmc2.qrc">
-            <normaloff>:/data/img/previous-sail.png</normaloff>:/data/img/previous-sail.png</iconset>
+            <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
           </property>
          </widget>
         </item>
@@ -354,7 +354,7 @@
           </property>
           <property name="icon">
            <iconset resource="qmc2.qrc">
-            <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
+            <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
           </property>
          </widget>
         </item>
