@@ -145,6 +145,7 @@ extern PaletteEditor *qmc2PaletteEditor;
 extern QWidget *qmc2DetailSetupParent;
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
+extern bool qmc2JoystickIsCalibrating;
 #endif
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
@@ -4338,6 +4339,8 @@ void Options::on_toolButtonCalibrateAxes_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCalibrateAxes_clicked()");
 #endif
 
+  qmc2JoystickIsCalibrating = false;
+
   if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
     toolButtonMapJoystick->setChecked(true);
     on_toolButtonMapJoystick_clicked();
@@ -4375,6 +4378,7 @@ void Options::on_toolButtonCalibrateAxes_clicked()
       scrollArea->setWidget(joystickCalibrationWidget);
       scrollArea->show();
       joystickCalibrationWidget->show();
+      qmc2JoystickIsCalibrating = true;
     } else {
       toolButtonMapJoystick->setChecked(true);
       on_toolButtonMapJoystick_clicked();
@@ -4390,6 +4394,8 @@ void Options::on_toolButtonTestJoystick_clicked()
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonTestJoystick_clicked()");
 #endif
+
+  qmc2JoystickIsCalibrating = false;
 
   if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
     toolButtonMapJoystick->setChecked(true);
@@ -4443,6 +4449,8 @@ void Options::on_toolButtonMapJoystick_clicked()
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonMapJoystick_clicked()");
 #endif
+
+  qmc2JoystickIsCalibrating = false;
 
   bool relayout = ( joystickCalibrationWidget || joystickTestWidget );
   

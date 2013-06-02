@@ -261,6 +261,7 @@ QMap<QString, QKeySequence> qmc2QtKeyMap;
 #if QMC2_JOYSTICK == 1
 Joystick *qmc2Joystick = NULL;
 QMap<QString, QString> qmc2JoystickFunctionMap;
+bool qmc2JoystickIsCalibrating = false;
 #endif
 QString qmc2DefaultStyle;
 QSocketNotifier *qmc2FifoNotifier = NULL;
