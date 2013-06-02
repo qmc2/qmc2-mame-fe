@@ -3109,14 +3109,17 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	  if ( romRequired ) {
 		  romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
 		  hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
+                  qmc2GamelistStatusMap[gameName] = "N";
 	  } else {
 		  romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
 		  hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
+                  qmc2GamelistStatusMap[gameName] = "C";
 	  }
         } else {
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't find item map entry for '%1' - ROM state cannot be determined").arg(gameName));
           if ( romCache.isOpen() )
             tsRomCache << gameName << " U\n";
+          qmc2GamelistStatusMap[gameName] = "U";
           numUnknownGames++;
         }
       }
