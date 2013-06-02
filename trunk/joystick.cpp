@@ -8,6 +8,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern bool qmc2JoystickIsCalibrating;
 
 Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay)
 	: QObject(parent)
@@ -100,6 +101,8 @@ void Joystick::processEvents()
 
 	for (i = 0; i < numAxes; i++) {
 		Sint16 moved = SDL_JoystickGetAxis(joystick, i);
+		if ( !qmc2JoystickIsCalibrating )
+			moved = normalizeAxisValue(moved, i);
 		if ( abs(moved) >= deadzones[i] ) {
 			if ( (moved != axes[i]) ) {
 				int deltaMoved = abs(axes[i] - moved);
@@ -164,7 +167,21 @@ int Joystick::getAxisValue(int axis)
 
 	if ( isOpen() ) {
 		SDL_JoystickUpdate();
-		return SDL_JoystickGetAxis(joystick, axis);
+		if ( !qmc2JoystickIsCalibrating )
+			return normalizeAxisValue(SDL_JoystickGetAxis(joystick, axis), axis);
+		else
+			return SDL_JoystickGetAxis(joystick, axis);
+	} else
+		return 0;
+}
+
+Sint16 Joystick::normalizeAxisValue(Sint16 rawValue, int axis)
+{
+	int max = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Maximum").arg(jsIndex).arg(axis), 32767).toInt();
+	int min = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Minimum").arg(jsIndex).arg(axis), -32768).toInt();
+	if ( max > min ) {
+		rawValue -= (max + min) / 2;
+		return 65535.0 * (double)rawValue / (double)(max - min);
 	} else
 		return 0;
 }

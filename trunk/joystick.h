@@ -50,6 +50,7 @@ class Joystick : public QObject
 		void close();
 		bool isOpen() { return joystick != NULL; }
 		int getAxisValue(int);
+		Sint16 normalizeAxisValue(Sint16, int);
 
 	private:
 		QMap<int, Sint16> axes;
