@@ -1,4 +1,3 @@
-
 #ifndef INFOPROVIDER_H
 #define INFOPROVIDER_H
 
@@ -25,4 +24,3 @@ class InfoProvider
 };
 
 #endif
-
