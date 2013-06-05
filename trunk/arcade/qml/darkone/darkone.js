@@ -1,11 +1,10 @@
-
 var baseWidth = 800;
 var baseHeight = 600;
 var baseListWidth = 250;
 var lastItemText;
 var lastitemBackground;
 var resetZoom;
-var resetListHidden; 
+var resetListHidden;
 var resetToolbarHidden;
 var flashCounter = 0;
 var inGame = false;
@@ -20,7 +19,7 @@ var dataTypes = { "title": { key: "title", name: "title image", type: "image", p
                   "emuinfo": { key: "emuinfo", name: "emulator info", type: "text", text: "[emulator info]" } }
 
 function init() {
-    if (!darkone.initialised && darkone.lastIndex == -1) { 
+    if (!darkone.initialised && darkone.lastIndex == -1) {
         viewer.loadSettings();
         colourScheme(darkone.colourScheme);
         viewer.loadGamelist();
@@ -32,9 +31,9 @@ function init() {
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
         listToggle(1 - (darkone.listHidden * 2));
-        if (fpsVisible) 
+        if (fpsVisible)
             toolbarShowFpsLock = true;
-        if (!keepLightOn) { 
+        if (!keepLightOn) {
             lightOutTimer.start();
             lightOutScreenTimer.start();
         }
@@ -75,7 +74,7 @@ function scaleFactorY() {
 }
 
 function listWidth() {
-    return Math.floor(Math.max(baseListWidth, baseListWidth * scaleFactorX())); 
+    return Math.floor(Math.max(baseListWidth, baseListWidth * scaleFactorX()));
 }
 
 function overlayWidth() {
@@ -83,8 +82,8 @@ function overlayWidth() {
 }
 
 function itemEntered(itemText, itemBackground, itemCurrent) {
-    darkone.debug && console.log("[itemEntered] " + 
-                                 "listWidth: '" + listWidth() + "', " + 
+    darkone.debug && console.log("[itemEntered] " +
+                                 "listWidth: '" + listWidth() + "', " +
                                  "overlayWidth: '" + overlayWidth() + "'");
     if ( !itemText.fontResized ) {
         if ( lastItemText != undefined )
@@ -118,19 +117,18 @@ function toolbarToggle(force) {
     searchTextInput.focus = false;
     darkone.debug && console.log("[toolbarToggle 2] " +
                                  "toolbarHidden: '" + darkone.toolbarHidden + "', " +
-                                 "toolbarAutoHide: '" + darkone.toolbarAutoHide + "', " + 
+                                 "toolbarAutoHide: '" + darkone.toolbarAutoHide + "', " +
                                  "force: '" + force + "'");
 }
 
 function listToggle(force) {
-  
     darkone.debug && console.log("[listToggle 1] " +
                                  "listHidden: '" + darkone.listHidden + "', " +
                                  "force: '" + force + "'");
     if (toolbarShowMenuLock)
         return
     darkone.overlayDuration = 1000;
-    resetOverlaySnapTimer.start(); 
+    resetOverlaySnapTimer.start();
     if (force > 0 || (darkone.listHidden && !force)) {
         gameListView.state = "shown"
         darkone.listHidden = false;
@@ -163,7 +161,7 @@ function lightToggle(force) {
             lightOutScreenTimer.restart();
         }
     } else if (force < 0 || (!darkone.lightOff && !force)) {
-        ignoreLaunch = true 
+        ignoreLaunch = true
         resetListHidden = !darkone.listHidden;
         listToggle(-1);
         resetToolbarHidden = !darkone.toolbarHidden;
@@ -172,7 +170,7 @@ function lightToggle(force) {
         if (resetZoom == 1 && !darkone.disableZoom) {
             resetZoom = darkone.overlayScale;
             zoom("0.5");
-        }        
+        }
         lightOutTimer.stop();
         lightOut = true;
     }
@@ -184,14 +182,14 @@ function round(number, dp) {
 
 function zoom(zoom) {
     darkone.debug && console.log(
-        "[zoom] " + 
+        "[zoom] " +
         "scale: window (x,y): ' " + round(scaleFactorX(), 2) + "," + round(scaleFactorY(), 2) + "', " +
         "scale: screen: '" + round(darkone.overlayScale, 2) + "', " +
 //        "scale: combined:' " + round(scaleFactorX() * darkone.overlayScale, 2) + "', " +
 //        "darkone.height: '" + round(darkone.height, 2) + "', " +
 //        "overlayScreen.anchors.topMargin: '" + round(overlayScreen.anchors.topMargin, 2) + "', " +
 //        "overlayScreen.y: '" + round(overlayScreen.y, 2) + "', " +
-//        "overlayScreen.parent.y: '" + round(overlayScreen.parent.y, 2) + "', " + 
+//        "overlayScreen.parent.y: '" + round(overlayScreen.parent.y, 2) + "', " +
         "overlayScreen.height: '" + round(overlayScreen.height, 2) + "', " +
         "darkone.height: '" + round(baseHeight, 2) + "', " +
         "overlayScreen.height scaled: '" + round(overlayScreen.height * overlayScreen.scale, 2) + "', " +
@@ -206,7 +204,7 @@ function zoom(zoom) {
                   zoom = (darkone.height / (overlayScreen.height * scaleFactorY()));
                   darkone.zoomDuration = Math.max(200, Math.abs(zoom - darkone.overlayScale) * 100 * 8);
 
-                  darkone.debug && console.log("[zoom max] zoom: '" + zoom + "', " +  
+                  darkone.debug && console.log("[zoom max] zoom: '" + zoom + "', " +
                                                           "duration: '" + darkone.zoomDuration + "'");
                   darkone.overlayScale = zoom;
                   darkone.debug && console.log("[zoom max 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
@@ -214,14 +212,13 @@ function zoom(zoom) {
               }
               break;
         default:
-                 
             darkone.zoomDuration = Math.max(200, Math.abs(zoom - darkone.overlayScale) * 100 * 8);
-            darkone.debug && console.log("[zoom] zoom: " + zoom + ", " +  
+            darkone.debug && console.log("[zoom] zoom: " + zoom + ", " +
                                                 "duration: " + darkone.zoomDuration + ",");
             if (zoom > 1) {
                 darkone.debug && console.log("[zoom > 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                darkone.debug && console.log("[zoom] testing on: '" + 
+                darkone.debug && console.log("[zoom] testing on: '" +
                     round(((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height), 2) + " > 0.95'");
 
                 if (((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height ) > 0.95)
@@ -242,17 +239,16 @@ function zoom(zoom) {
 }
 
 function launchFlash() {
-    
     if (flashCounter == darkone.flashes) {
         launchFlashTimer.stop();
         flashCounter = 0;
         !darkone.disableZoom && zoom("max");
         launchTimer.start()
-    } else { 
-        if (launchButton.opacity < 1) { 
+    } else {
+        if (launchButton.opacity < 1) {
              launchButton.opacity = 1.0;
              overlayStateBlock.opacity = 1.0;
-        } else { 
+        } else {
              launchButton.opacity = 0.5;
              overlayStateBlock.opacity = 0.5;
         }
@@ -261,7 +257,6 @@ function launchFlash() {
 }
 
 function launch() {
-     
      searchTextInput.focus = false;
      resetListHidden = !darkone.listHidden;
      listToggle(-1);
@@ -293,7 +288,7 @@ function gameOver() {
         resetToolbarHidden && toolbarToggle(1);
         !darkone.disableZoom && zoom(resetZoom / darkone.overlayScale);
         !darkone.toolbarHidden ? searchTextInput.focus = true : true;
-    } 
+    }
 }
 
 function gameCardHeader() {
@@ -333,7 +328,7 @@ function adjDataType(type, offset) {
         previous = current
     }
     if (set && !target) {
-        if (offset > 0)        
+        if (offset > 0)
             target = first
         else if (offset < 0)
             target = current
@@ -358,7 +353,7 @@ function data(type) {
             var image = ""
             var image2 = ""
             if (darkone.dataHidden) {
-                if (dataTypes[darkone.dataTypePrimary].type == "image") { 
+                if (dataTypes[darkone.dataTypePrimary].type == "image") {
                      if ( viewer.loadImage(dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id) != "" ) {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id;
                          darkone.debug && console.log("[data] success using image path: '" + image + "'");
@@ -373,7 +368,7 @@ function data(type) {
                 if (image == "" && ( dataTypes[darkone.dataTypePrimary].type == "image" || dataTypes[darkone.dataTypeSecondary].type == "image"))
                    image = "image://qmc2/ttl/default" // default
             } else {
-                if (dataTypes[darkone.dataTypeCurrent].type == "image") { 
+                if (dataTypes[darkone.dataTypeCurrent].type == "image") {
                     if ( viewer.loadImage(dataTypes[darkone.dataTypeCurrent].path + "/" + gameListModel[gameListView.currentIndex].id) != "") {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypeCurrent].path + "/" + gameListModel[gameListView.currentIndex].id;
                          darkone.debug && console.log("[data] success using image path: '" + image + "'");
@@ -385,12 +380,12 @@ function data(type) {
             darkone.debug && console.log("[data] using image path: '" + image + "'");
             return image;
             break;
-        case "text": 
+        case "text":
             var info = ""
             var type = ""
             if (darkone.dataHidden) {
                  if (dataTypes[darkone.dataTypePrimary].type == "text") {
-                     type = dataTypes[darkone.dataTypePrimary].text 
+                     type = dataTypes[darkone.dataTypePrimary].text
                      info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypePrimary].key);
                      if (!info.match("no info available")) {
                          darkone.debug && console.log("[data] using text type: '" + type + "'");
@@ -415,7 +410,7 @@ function data(type) {
                                                 "info: '" + "info" + "'")
             return type == "" ? "" : "<style type='text/css'>p,h3 { margin:0px }</style>" + "<h3>" + type + "</h3>" + "<p>" + info + "</p>";
             break;
-        case "name": 
+        case "name":
             return dataTypes[darkone.dataTypeCurrent].name;
             break;
     }
