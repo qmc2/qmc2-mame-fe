@@ -1063,7 +1063,6 @@ Rectangle {
             text: qsTr("disable launch flash?")
             textColor: textColour1
             smooth: true
-            onFocusChanged: darkone.focus = !focus;
             onClicked: disableLaunchFlash = checked;
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
