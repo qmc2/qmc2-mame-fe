@@ -65,10 +65,6 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 
 TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
-#ifdef QMC2_DEBUG
-    QMC2_ARCADE_LOG_STR(tr("DEBUG: TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
-                            viewer.initialised: ''%1'").arg(rootContext()->contextProperty("initialised").toString()));
-#endif
     if (initialised)
         saveSettings();
 }

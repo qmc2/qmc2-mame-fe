@@ -107,12 +107,12 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                         QString imageFileName = id + ".png";
                         unzFile imageFile = mZipFileMap[imageType];
                         if ( imageFile && unzLocateFile(imageFile, (const char *)imageFileName.toLocal8Bit(), 0) != UNZ_OK ) {
-                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::validateImage(): unable to load zipimage type '%1' requested").arg(imageFileName));
+                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
                         } else {
                             QByteArray imageData;
                             char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
                             if ( unzOpenCurrentFile(imageFile) != UNZ_OK ) {
-                                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::validateImage(): unable to load zipimage type '%1' requested").arg(imageFileName));
+                                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
                             } else {
                                 int len = 0;
                                 while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 ) {
@@ -152,12 +152,12 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                         QString imageFileName = id + ".png";
                         unzFile imageFile = mZipFileMap[imageType];
                         if ( imageFile && unzLocateFile(imageFile, (const char *)imageFileName.toLocal8Bit(), 0) != UNZ_OK ) {
-                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::validateImage(): unable to load zipimage type '%1' requested").arg(imageFileName));
+                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
                         } else {
                             QByteArray imageData;
                             char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
                             if ( unzOpenCurrentFile(imageFile) != UNZ_OK ) {
-                                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::validateImage(): unable to load zipimage type '%1' requested").arg(imageFileName));
+                                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
                             } else {
                                 int len = 0;
                                 while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ARCADE_ZIP_BUFSIZE)) > 0 ) {

@@ -45,7 +45,7 @@ Rectangle {
     property bool fullScreen: false
     property bool fpsVisible: false
     property bool sortByName: false
-    property bool disableFlashLaunch: false
+    property bool disableLaunchFlash: false
     property bool disableZoom: false
     property string dataTypePrimary: ""
     property string dataTypeSecondary: ""
@@ -1059,11 +1059,12 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: disableFlashLaunch
+            checked: disableLaunchFlash
             text: qsTr("disable launch flash?")
             textColor: textColour1
             smooth: true
             onFocusChanged: darkone.focus = !focus;
+            onClicked: disableLaunchFlash = checked;
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: autoHideToolbarCheckBox
