@@ -12,10 +12,8 @@
 #include "gameobject.h"
 #include "consolewindow.h"
 #include "macros.h"
-//#if QT_VERSION < 0x050000
 #include "wheel.h"
 #include "pointer.h"
-//#endif
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
@@ -30,10 +28,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     numFrames = 0;
     windowModeSwitching = false;
 
-//#if QT_VERSION < 0x050000    
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
     qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
-//#endif
 
     processManager = new ProcessManager(this);
     processManager->createTemplateList();
