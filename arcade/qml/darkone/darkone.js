@@ -268,7 +268,7 @@ function launch() {
      resetToolbarHidden = !darkone.toolbarHidden;
      toolbarToggle(-1);
      resetZoom = darkone.overlayScale;
-     if (darkone.disableFlashLaunch) {
+     if (darkone.disableLaunchFlash) {
          !darkone.disableZoom && zoom("max");
          launchTimer.start();
      } else {
