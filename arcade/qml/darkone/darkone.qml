@@ -1,4 +1,3 @@
-
 import QtQuick 1.1
 import "./components";
 import Wheel 1.0;
@@ -36,7 +35,6 @@ Rectangle {
     property string textColour2: "#000000"
     property string version: ""
     property bool debug: false
-//    property bool debug: true
 
     // restored properties
     property int lastIndex: -1
@@ -184,6 +182,7 @@ Rectangle {
                        lightOutScreenTimer.stop(); }
     }
 
+
 /***
 * overlay
 */
@@ -204,7 +203,6 @@ Rectangle {
         Behavior on width { PropertyAnimation { duration: overlayDuration; easing.type: Easing.InOutQuad } }
         MouseArea {
             anchors.fill: parent
-//            onWheel: { event.angleDelta.y > 0 ? : // QT_VERSION >= 0x050000 } 
             onClicked: { debug && console.log("[overlay] clicked");
                          searchTextInput.focus = false; }
         }
@@ -212,10 +210,11 @@ Rectangle {
             anchors.fill: parent
             onWheel: {
                        DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
-                       debug && console.log("[overlay] wheel event: overlayScale: '" + overlayScale + "', " + 
+                       debug && console.log("[overlay] wheel event: overlayScale: '" + overlayScale + "', " +
                                                                    "zoom: '" + (1 + (0.1) * (delta / Math.abs(delta))) + "'");
             }
         }
+
 
 /***
 * screen
@@ -228,7 +227,7 @@ Rectangle {
             scale: DarkoneJS.scaleFactorY() * overlayScale
             anchors.top: parent.top
             // keep the screen still under scaling, ensure margin of 30% of non-screen space
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (height * scale)) 
+            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (height * scale))
             anchors.horizontalCenter: parent.horizontalCenter
             smooth: true
             opacity: 1.0
@@ -270,9 +269,10 @@ Rectangle {
                 }
             ]
             Behavior on scale { PropertyAnimation { id: "overlayScreenScaleAnimation"; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
-            onStateChanged: { debug && console.log("[overlayScreen] state changed, state: '" + state + "', " + 
+            onStateChanged: { debug && console.log("[overlayScreen] state changed, state: '" + state + "', " +
                                                                    "backLightOpacity: '" + backLightOpacity + "'"); }
-    
+
+
 /***
 * display
 */
@@ -290,7 +290,6 @@ Rectangle {
                 color: "transparent"
                 MouseArea {
                     anchors.fill: parent
-//                    cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
                     onDoubleClicked: { debug && console.log("[overlayDisplay] double-clicked");
                                        dataHidden = !dataHidden; }
                 }
@@ -318,7 +317,7 @@ Rectangle {
                     }
                     WheelArea {
                         anchors.fill: parent
-                        onWheel: { 
+                        onWheel: {
                             DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
                         }
                     }
@@ -353,11 +352,11 @@ Rectangle {
                         }
                         WheelArea {
                             anchors.fill: parent
-                            onWheel: { 
+                            onWheel: {
                                 DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
                             }
                         }
-                        Text { 
+                        Text {
                             id: overlayText
                             anchors.fill: parent
                             text: DarkoneJS.data("text")
@@ -397,10 +396,6 @@ Rectangle {
                 opacity: 1.0
                 state: "hidden"
                 color: "transparent"
-                MouseArea {
-                    anchors.fill: parent
-//                    cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
-                }
                 CursorShapeArea {
                     anchors.fill: parent
                     cursorShape: Qt.CrossCursor
@@ -410,7 +405,7 @@ Rectangle {
                         from: "hidden"
                         to: "shown"
                         SequentialAnimation {
-                            ParallelAnimation 
+                            ParallelAnimation
 {
                                 PropertyAnimation { target: overlayDisplay; property: "anchors.topMargin"; from: 0; to: overlayDataHeader.height; duration: 450; easing.type: Easing.InExpo }
                                 PropertyAnimation { target: overlayDataHeader; property: "anchors.topMargin"; from: -overlayDataHeader.height - 5; to: 0; duration: 450; easing.type: Easing.InExpo }
@@ -451,7 +446,6 @@ Rectangle {
                     opacity: 0
                     smooth: true
                     color: debug ? "yellow" : "transparent"
-//                    Behavior on anchors.topMargin { PropertyAnimation { easing.type: Easing.Linear; duration: 0 } } // it can't work this way
                     MouseArea {
                         anchors.fill: parent
                         onClicked: { dataHidden = !dataHidden; }
@@ -481,20 +475,17 @@ Rectangle {
                     width: parent.width
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.bottom
-//                    anchors.bottomMargin: dataHidden? -height : 0 // it can't work this way
                     color: debug ? "red" : parent.color
                     opacity: 0
                     smooth: true
-//                    Behavior on anchors.bottomMargin { PropertyAnimation { easing.type: Easing.Linear; duration: 0 } } // it can't work this way
                     MouseArea {
-                        anchors.fill: parent                        
-//                        cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
+                        anchors.fill: parent
                         onClicked: { debug && console.log("[overlayDataNav] clicked"); }
                     }
 
                     Rectangle {
                         id: overlayDataNavSeparator
-                        height: 1 
+                        height: 1
                         width: parent.width * 0.5
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.top
@@ -505,7 +496,7 @@ Rectangle {
                     }
                     Rectangle {
                         id: overlayDataTypeSetPrimaryButton
-                        height: 14 
+                        height: 14
                         width: 10
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 5
@@ -517,7 +508,6 @@ Rectangle {
                         opacity: 0.75
                         MouseArea {
                             anchors.fill: parent
-//                            cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
                             onClicked: { darkone.dataTypePrimary = darkone.dataTypeCurrent;
                                          debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
                         }
@@ -540,19 +530,18 @@ Rectangle {
                     }
                     Rectangle {
                         id: overlayDataTypeSetSecondaryButton
-                        height: 14 
+                        height: 14
                         width: 10
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 5
                         anchors.left: overlayDataTypeSetPrimaryButton.right
                         anchors.leftMargin: 3
-                        color: "white"            
+                        color: "white"
                         border.width: 2
                         border.color: "black"
                         opacity: 0.75
                         MouseArea {
                             anchors.fill: parent
-//                            cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
                             onClicked: { darkone.dataTypeSecondary = darkone.dataTypeCurrent;
                                          debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
                         }
@@ -631,6 +620,7 @@ Rectangle {
             } // overlayData
         } // overlayScreen
 
+
 /***
 * cabinet
 */
@@ -648,7 +638,7 @@ Rectangle {
             smooth: true
             opacity: 1.0
             Behavior on scale { ParallelAnimation {
-                                  PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } 
+                                  PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear }
                                   PropertyAnimation { target: overlayLighting; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } } }
         }
         Image {
@@ -658,13 +648,11 @@ Rectangle {
             fillMode: Image.PreserveAspectFit
             scale: overlayCabinet.scale
             anchors.top: parent.top
-            //keep the cabinet still under scaling, then shift it by the same amount as the screen is shift, then offet the image to match the screen
             anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (559 * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
             smooth: true
             opacity: backLight ? backLightOpacity : 0
-//            Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
         }
         Rectangle {
             id: overlayStateBlock
@@ -679,7 +667,7 @@ Rectangle {
             color: DarkoneJS.gameStatusColour()
             smooth: true
             opacity: 0.0
-            Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }            
+            Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
         }
         Rectangle {
             id: overlayButtonBlock
@@ -696,7 +684,6 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
-//                  cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
                 onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0; }
                 onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5; }
                 onClicked: { if (!ignoreLaunch) {
@@ -723,7 +710,6 @@ Rectangle {
             Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
             MouseArea {
                 anchors.fill: parent
-//                cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
                 hoverEnabled: true
                 onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0; }
                 onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5; }
@@ -740,6 +726,7 @@ Rectangle {
     } // overlay
     onDataHiddenChanged: { dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
     onInfoMissingChanged: { infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
+
 
 /***
 * list
@@ -766,9 +753,6 @@ Rectangle {
         currentIndex: darkone.lastIndex || 0
         preferredHighlightBegin: (height / 2) - (gameListView.itemHeight / 2)
         preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
-//        snapMode: ListView.SnapToItem
-//        highlightFollowsCurrentItem: true  // keep list stationary
-//        highlightRangeMode: ListView.StrictlyEnforceRange  // keep list stationary
         states: [
             State {
                 name: "hidden"
@@ -787,11 +771,11 @@ Rectangle {
         }
         onCurrentIndexChanged: { darkone.lastIndex = currentIndex; }
 
-        /* item */  
+        /* item */
         delegate: Component {
             id: gameListItemDelegate
             Rectangle {
-                width: parent.width 
+                width: parent.width
                 height: gameListView.itemHeight
                 id: gameListItemBackground
                 smooth: true
@@ -847,9 +831,9 @@ Rectangle {
         function firstVisibleItem() { return - Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
         function lastVisibleItem() { return + Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
         function itemsPerPage() { debug && console.log("contentX: '" + contentX + "', " +
-                                                       "contentY: '" + contentY + "', " +  
-                                                       "firstVisibleItem: '" + firstVisibleItem() + "', " +  
-                                                       "lastVisibleItem: '" + lastVisibleItem() + "', " +  
+                                                       "contentY: '" + contentY + "', " +
+                                                       "firstVisibleItem: '" + firstVisibleItem() + "', " +
+                                                       "lastVisibleItem: '" + lastVisibleItem() + "', " +
                                                        "itemsPerPage: '" + height / (gameListView.itemHeight + 10) + "'");
                                            return lastVisibleItem() - firstVisibleItem() + 1 }
         Keys.onPressed: {
@@ -858,11 +842,11 @@ Rectangle {
                 lightOutScreenTimer.restart();
             }
             if (lightOut)
-                 DarkoneJS.lightToggle(1); 
+                 DarkoneJS.lightToggle(1);
             switch ( event.key ) {
             case Qt.Key_PageUp:
                 if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
-                    currentIndex -= (itemsPerPage() - 1)  
+                    currentIndex -= (itemsPerPage() - 1)
                     gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
                 } else {
                     gameListView.positionViewAtBeginning();
@@ -872,7 +856,7 @@ Rectangle {
                 break;
             case Qt.Key_PageDown:
                 if ( currentIndex + (itemsPerPage() - 1) < gameListModelCount ) {
-                    currentIndex += (itemsPerPage() - 1)  
+                    currentIndex += (itemsPerPage() - 1)
                     gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
                 } else {
                     gameListView.positionViewAtEnd();
@@ -899,10 +883,10 @@ Rectangle {
         }
     }
 
+
 /***
 * preferences menu
 */
-
     Rectangle {
         id: preferencesDialog
         z: 4
@@ -989,18 +973,6 @@ Rectangle {
             KeyNavigation.backtab: colourScheme2Button
             KeyNavigation.tab: sortByNameCheckBox
         }
-/*
-        CheckBoxItem {
-            id: fpsCheckBox
-            property int index: 2
-            text: qsTr("FPS counter")
-            onClicked: {
-                fpsVisible = checked;
-                resetIgnoreLaunchTimer.restart();
-                toolbarShowFpsLock = checked ? toolbarAutoHide : false;
-            }
-        }
-*/
         CheckBox {
             id: sortByNameCheckBox
             property int index: 3
@@ -1135,7 +1107,6 @@ Rectangle {
                 smooth: true
                 focus: false
                 text: lightTimeout
-//                inputMask: "0000;" // annoying 'optional' white space
                 cursorDelegate: Rectangle {
                     color: "black"
                     width: 1
@@ -1211,7 +1182,7 @@ Rectangle {
             anchors.leftMargin: 6
             anchors.verticalCenter: colourScheme1Button.verticalCenter
             anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter 
+            verticalAlignment: Text.AlignVCenter
             text: qsTr("dark colour scheme")
             font.pixelSize: 12
             color: textColour1
@@ -1224,7 +1195,7 @@ Rectangle {
                 enabled: true
             }
             property alias exclusiveGroup: checkable2.exclusiveGroup
-            property alias checked: checkable2.checked 
+            property alias checked: checkable2.checked
             id: colourScheme2Button
             property int index: 10
             opacity: 0.5
@@ -1253,7 +1224,7 @@ Rectangle {
             anchors.leftMargin: 6
             anchors.verticalCenter: colourScheme2Button.verticalCenter
             anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter 
+            verticalAlignment: Text.AlignVCenter
             text: qsTr("metal colour scheme")
             font.pixelSize: 12
             color: textColour1
@@ -1261,10 +1232,10 @@ Rectangle {
         }
     }
 
+
 /***
 * toolbar
 */
-
     Rectangle {
         id: toolbar
         x: 0
@@ -1296,18 +1267,6 @@ Rectangle {
                                      DarkoneJS.lightToggle(1);
             }
         }
-/*
-        states: [
-            State {
-                name: "hidden"
-//                PropertyChanges { target: toolbar; anchors.bottomMargin: -(toolbar.height - 2) }
-            },
-            State {
-                name: "shown"
-//                PropertyChanges { target: toolbar; anchors.bottomMargin: 0 }
-            }
-        ]
-*/
         transitions: [
             Transition {
                 from: "hidden"
@@ -1328,7 +1287,7 @@ Rectangle {
         ]
         Item {
             id: searchBox
-            width: DarkoneJS.listWidth() 
+            width: DarkoneJS.listWidth()
             height: 24
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
@@ -1350,8 +1309,8 @@ Rectangle {
                     onEntered: { toolbarAutoHide && toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); parent.opacity = 1.0 }
                     onExited: { hideToolbarTimer.start(); parent.opacity = 0.75 }
                     onClicked: {
-                        parent.opacity = 1.0;                        
-                        gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex) 
+                        parent.opacity = 1.0;
+                        gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
                         gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
                         searchTextInput.focus = false;
                     }
@@ -1385,13 +1344,10 @@ Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: parent.activeFocus
                     }
-                    onAccepted: { gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex) 
+                    onAccepted: { gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
                                   gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
                     }
-                    onFocusChanged: {
-                        if ( !focus )
-                            darkone.focus = true;
-                    }
+                    onFocusChanged: darkone.focus = !focus;
                 }
             }
             Image {
@@ -1416,7 +1372,6 @@ Rectangle {
                     }
                 }
             }
-//            }
         }
         Image {
             id: showListButton
@@ -1425,7 +1380,7 @@ Rectangle {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: (toolbar.height - height) / 2
             anchors.left: searchBox.right
-            anchors.leftMargin: 15        
+            anchors.leftMargin: 15
             fillMode: Image.PreserveAspectFit
             opacity: 0.75
             rotation: listHidden ? 90 : 270
@@ -1540,7 +1495,6 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
-//                    cursorShape: Qt.CrossCursor // QT_VERSION >= 0x050000
                     hoverEnabled: true
                     onEntered: { parent.opacity = 1.0
                                  parent.parent.opacity = 1.0
@@ -1567,7 +1521,6 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: 15
-//            anchors.rightMargin: 15 + 18 + 10
             source: "images/exit.png"
             smooth: true
             opacity: 0.25
@@ -1584,37 +1537,7 @@ Rectangle {
                 }
             }
         }
-
     }
-
-/***
-* show/hide toolbar button
-*/
-
-/*
-    Image {
-        id: showHideToolbarButton
-        source: "images/toolbar_toggle.png"
-        height: 18
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: (toolbar.height - height) / 2
-        anchors.right: parent.right
-//        anchors.rightMargin: 10 + 18 + 5
-        anchors.rightMargin: 10
-        fillMode: Image.PreserveAspectFit
-        opacity: 0.75
-        rotation: darkone.toolbarHidden ? 0 : 180
-        smooth: true
-        z: 5
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: parent.opacity = 1.0
-            onExited: parent.opacity = 0.75
-            onClicked: DarkoneJS.toolbarToggle()
-        }
-    }
-*/
 
     focus: true
     Keys.onPressed: {
@@ -1633,7 +1556,7 @@ Rectangle {
             if ( searchTextInput.focus )
                 searchTextInput.focus = false;
             else if ( preferencesDialog.state == "shown" )
-                preferencesDialog.state = "hidden";            
+                preferencesDialog.state = "hidden";
             event.accepted = true;
             break;
         case Qt.Key_F1:
@@ -1657,7 +1580,7 @@ Rectangle {
                     Qt.quit();
                     break;
                 case Qt.Key_P:
-                    !darkone.ignoreLaunch && DarkoneJS.launch();                    
+                    !darkone.ignoreLaunch && DarkoneJS.launch();
                     event.accepted = true;
                     break;
                 case Qt.Key_O:
@@ -1711,4 +1634,3 @@ Rectangle {
         }
     }
 }
-
