@@ -184,18 +184,18 @@ void InfoProvider::loadGameInfoDB()
   switch ( emulatorMode ) {
 	  case QMC2_ARCADE_EMUMODE_MAME:
 	  case QMC2_ARCADE_EMUMODE_UME:
-		  QMC2_ARCADE_LOG_STR(QObject::tr("Done (Loading machine info DB)"));
-		  QMC2_ARCADE_LOG_STR(QObject::tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
-		  if ( qmc2InfoStopParser ) {
-			  QMC2_ARCADE_LOG_STR(QObject::tr("Invalidating machine info DB"));
-			  clearGameInfoDB();
-		  }
-		  break;
-	  case QMC2_ARCADE_EMUMODE_MESS:
 		  QMC2_ARCADE_LOG_STR(QObject::tr("Done (Loading game info DB)"));
 		  QMC2_ARCADE_LOG_STR(QObject::tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
 		  if ( qmc2InfoStopParser ) {
 			  QMC2_ARCADE_LOG_STR(QObject::tr("Invalidating game info DB"));
+			  clearGameInfoDB();
+		  }
+		  break;
+	  case QMC2_ARCADE_EMUMODE_MESS:
+		  QMC2_ARCADE_LOG_STR(QObject::tr("Done (Loading machine info DB)"));
+		  QMC2_ARCADE_LOG_STR(QObject::tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
+		  if ( qmc2InfoStopParser ) {
+			  QMC2_ARCADE_LOG_STR(QObject::tr("Invalidating machine info DB"));
 			  clearGameInfoDB();
 		  }
 		  break;
