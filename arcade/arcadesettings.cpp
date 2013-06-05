@@ -217,6 +217,114 @@ bool ArcadeSettings::showShaderEffect()
     return value(QString("Arcade/%1/showShaderEffect").arg(arcadeTheme), false).toBool();
 }
 
+void ArcadeSettings::setToolbarHidden(bool hidden)
+{
+    setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);
+}
+bool ArcadeSettings::toolbarHidden()
+{
+    return value(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setListHidden(bool hidden)
+{
+    setValue(QString("Arcade/%1/listHidden").arg(arcadeTheme), hidden);
+}
+bool ArcadeSettings::listHidden()
+{
+    return value(QString("Arcade/%1/listHidden").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setSortByName(bool sortByName)
+{
+    setValue(QString("Arcade/%1/sortByName").arg(arcadeTheme), sortByName);
+}
+bool ArcadeSettings::sortByName()
+{
+    return value(QString("Arcade/%1/sortByName").arg(arcadeTheme), true).toBool();
+}
+
+void ArcadeSettings::setToolbarAutoHide(bool toolbarAutoHide)
+{
+    setValue(QString("Arcade/%1/toolbarAutoHide").arg(arcadeTheme), toolbarAutoHide);
+}
+bool ArcadeSettings::toolbarAutoHide()
+{
+    return value(QString("Arcade/%1/toolbarAutoHide").arg(arcadeTheme), true).toBool();
+}
+
+void ArcadeSettings::setBackLight(bool backLight)
+{
+    setValue(QString("Arcade/%1/backLight").arg(arcadeTheme), backLight);
+}
+bool ArcadeSettings::backLight()
+{
+    return value(QString("Arcade/%1/backLight").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setDisableLaunchFlash(bool disableLaunchFlash)
+{
+    setValue(QString("Arcade/%1/disableLaunchFlash").arg(arcadeTheme), disableLaunchFlash);
+}
+bool ArcadeSettings::disableLaunchFlash()
+{
+    return value(QString("Arcade/%1/disableLaunchFlash").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setDisableZoom(bool disableZoom)
+{
+    setValue(QString("Arcade/%1/disableZoom").arg(arcadeTheme), disableZoom);
+}
+bool ArcadeSettings::disableZoom()
+{
+    return value(QString("Arcade/%1/disableZoom").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setOverlayScale(double overlayScale)
+{
+    setValue(QString("Arcade/%1/overlayScale").arg(arcadeTheme), overlayScale);
+}
+double ArcadeSettings::overlayScale()
+{
+    return value(QString("Arcade/%1/overlayScale").arg(arcadeTheme), 1.0).toDouble();
+}
+
+void ArcadeSettings::setLightTimeout(double lightTimeout)
+{
+    setValue(QString("Arcade/%1/lightTimeout").arg(arcadeTheme), lightTimeout);
+}
+double ArcadeSettings::lightTimeout()
+{
+    return value(QString("Arcade/%1/lightTimeout").arg(arcadeTheme), 60).toDouble();
+}
+
+void ArcadeSettings::setDataTypePrimary(QString dataTypePrimary)
+{
+    setValue(QString("Arcade/%1/dataTypePrimary").arg(arcadeTheme), dataTypePrimary);
+}
+QString ArcadeSettings::dataTypePrimary()
+{
+    return value(QString("Arcade/%1/dataTypePrimary").arg(arcadeTheme), "title").toString();
+}
+
+void ArcadeSettings::setDataTypeSecondary(QString dataTypeSecondary)
+{
+    setValue(QString("Arcade/%1/dataTypeSecondary").arg(arcadeTheme), dataTypeSecondary);
+}
+QString ArcadeSettings::dataTypeSecondary()
+{
+    return value(QString("Arcade/%1/dataTypeSecondary").arg(arcadeTheme), "preview").toString();
+}
+
+void ArcadeSettings::setColourScheme(QString colourScheme)
+{
+    setValue(QString("Arcade/%1/colourScheme").arg(arcadeTheme), colourScheme);
+}
+QString ArcadeSettings::colourScheme()
+{
+    return value(QString("Arcade/%1/colourScheme").arg(arcadeTheme), "metal").toString();
+}
+
 QString ArcadeSettings::gameListCacheFile()
 {
     return value(QString("%1/FilesAndDirectories/GamelistCacheFile").arg(emulatorPrefix)).toString();
@@ -351,3 +459,24 @@ QString ArcadeSettings::language()
 {
     return value(QString("%1/GUI/Language").arg(frontEndPrefix)).toString();
 }
+
+QString ArcadeSettings::gameInfoDB()
+{
+    return value(QString("%1/FilesAndDirectories/GameInfoDB").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::compressGameInfoDB()
+{
+    return value(QString("%1/GUI/CompressGameInfoDB").arg(frontEndPrefix)).toBool();
+}
+
+QString ArcadeSettings::emuInfoDB()
+{
+    return value(QString("%1/FilesAndDirectories/EmuInfoDB").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::compressEmuInfoDB()
+{
+    return value(QString("%1/GUI/CompressEmuInfoDB").arg(frontEndPrefix)).toBool();
+}
+

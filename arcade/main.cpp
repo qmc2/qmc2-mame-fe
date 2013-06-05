@@ -63,7 +63,7 @@ void showHelp()
                                   "Option           Meaning             Possible values ([..] = default)\n"
                                   "---------------  ------------------  ------------------------------------\n"
                                   "-emu             Emulator mode       [mame], mess, ume\n"
-                                  "-theme           Theme selection     [ToxicWaste]\n"
+                                  "-theme           Theme selection     ToxicWaste, darkone [ToxicWaste]\n"
                                   "-console         Console type        [terminal], window, window-minimized\n"
                                   "-graphicssystem  Graphics engine     [raster], native, opengl\n"
                                   "-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
@@ -94,10 +94,10 @@ int main(int argc, char *argv[])
 
     // avalibale emulator modes & themes
     emulatorModeNames << QObject::tr("MAME") << QObject::tr("MESS") << QObject::tr("UME");
-    arcadeThemes << "ToxicWaste";
-    mameThemes << "ToxicWaste";
+    arcadeThemes << "ToxicWaste" << "darkone";
+    mameThemes << "ToxicWaste" << "darkone";
     // messThemes << "..."
-    umeThemes << "ToxicWaste";
+    umeThemes << "ToxicWaste" << "darkone";
 
     QString console = QMC2_ARCADE_CLI_CONS;
 

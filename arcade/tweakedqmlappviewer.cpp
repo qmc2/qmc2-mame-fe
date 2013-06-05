@@ -8,11 +8,14 @@
 #include <QPaintEngine>
 
 #include "tweakedqmlappviewer.h"
-#include "imageprovider.h"
 #include "arcadesettings.h"
 #include "gameobject.h"
 #include "consolewindow.h"
 #include "macros.h"
+//#if QT_VERSION < 0x050000
+#include "wheel.h"
+#include "pointer.h"
+//#endif
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
@@ -23,18 +26,38 @@ extern QStringList emulatorModeNames;
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
 {
+    initialised = false;
     numFrames = 0;
     windowModeSwitching = false;
 
+//#if QT_VERSION < 0x050000    
+    qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
+    qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
+//#endif
+
     processManager = new ProcessManager(this);
     processManager->createTemplateList();
+    connect(processManager, SIGNAL(emulatorStarted(int)), this, SIGNAL(emulatorStarted(int)));
+    connect(processManager, SIGNAL(emulatorFinished(int)), this, SIGNAL(emulatorFinished(int)));
 
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-    engine()->addImageProvider(QLatin1String("qmc2"), new ImageProvider(QDeclarativeImageProvider::Image));
+
+    imageProvider = new ImageProvider(QDeclarativeImageProvider::Image);
+    engine()->addImageProvider(QLatin1String("qmc2"), imageProvider);
+
+    infoProvider = new InfoProvider();
+
     engine()->addImportPath(QDir::fromNativeSeparators(XSTR(QMC2_ARCADE_QML_IMPORT_PATH)));
     rootContext()->setContextProperty("viewer", this);
 
-    loadGamelist();
+    // theme-specific initialisation
+    if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
+        loadGamelist();
+    } else if ( globalConfig->arcadeTheme == "darkone" ) {
+        // propagate empty gameList to QML
+        rootContext()->setContextProperty("gameListModel", QVariant::fromValue(gameList));
+        rootContext()->setContextProperty("gameListModelCount", gameList.count());
+    }
 
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);
@@ -42,7 +65,12 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 
 TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
-    saveSettings();
+#ifdef QMC2_DEBUG
+    QMC2_ARCADE_LOG_STR(tr("DEBUG: TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
+                            viewer.initialised: ''%1'").arg(rootContext()->contextProperty("initialised").toString()));
+#endif
+    if (initialised)
+        saveSettings();
 }
 
 void TweakedQmlApplicationViewer::fpsReady()
@@ -70,7 +98,24 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex() < gameList.count() ? globalConfig->lastIndex() : 0);
         rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
+    } else if ( globalConfig->arcadeTheme == "darkone" ) {
+        rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
+        rootObject()->setProperty("dataTypePrimary", globalConfig->dataTypePrimary());
+        rootObject()->setProperty("dataTypeSecondary", globalConfig->dataTypeSecondary());
+        rootObject()->setProperty("fullScreen", globalConfig->fullScreen());
+        rootObject()->setProperty("listHidden", globalConfig->listHidden());
+        rootObject()->setProperty("toolbarHidden", globalConfig->toolbarHidden());
+        rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
+        rootObject()->setProperty("sortByName", globalConfig->sortByName());
+        rootObject()->setProperty("backLight", globalConfig->backLight());
+        rootObject()->setProperty("toolbarAutoHide", globalConfig->toolbarAutoHide());
+        rootObject()->setProperty("disableLaunchFlash", globalConfig->disableLaunchFlash());
+        rootObject()->setProperty("disableZoom", globalConfig->disableZoom());
+        rootObject()->setProperty("overlayScale", std::max(0.33, globalConfig->overlayScale()));
+        rootObject()->setProperty("lightTimeout", std::max(5.0, globalConfig->lightTimeout()));
+        rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
     }
+    initialised = true;
 
     QMC2_ARCADE_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
 }
@@ -99,6 +144,22 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setCabinetFlipped(rootObject()->property("cabinetFlipped").toBool());
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setMenuHidden(rootObject()->property("menuHidden").toBool());
+    } else if ( globalConfig->arcadeTheme == "darkone" ) {
+        globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
+        globalConfig->setDataTypePrimary(rootObject()->property("dataTypePrimary").toString());
+        globalConfig->setDataTypeSecondary(rootObject()->property("dataTypeSecondary").toString());
+        globalConfig->setToolbarHidden(rootObject()->property("toolbarHidden").toBool());
+        globalConfig->setListHidden(rootObject()->property("listHidden").toBool());
+        globalConfig->setFullScreen(rootObject()->property("fullScreen").toBool());
+        globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
+        globalConfig->setSortByName(rootObject()->property("sortByName").toBool());
+        globalConfig->setBackLight(rootObject()->property("backLight").toBool());
+        globalConfig->setToolbarAutoHide(rootObject()->property("toolbarAutoHide").toBool());
+        globalConfig->setDisableLaunchFlash(rootObject()->property("disableLaunchFlash").toBool());
+        globalConfig->setDisableZoom(rootObject()->property("disableZoom").toBool());
+        globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
+        globalConfig->setLightTimeout(rootObject()->property("lightTimeout").toDouble());
+        globalConfig->setColourScheme(rootObject()->property("colourScheme").toString());
     }
 }
 
@@ -192,7 +253,7 @@ int TweakedQmlApplicationViewer::romStateCharToInt(char status)
 void TweakedQmlApplicationViewer::loadGamelist()
 {
     QString gameListCachePath;
-    bool listAlreadySorted = false;
+    gameList.clear();
 
     if ( globalConfig->useFilteredList() ) {
         gameListCachePath = QFileInfo(globalConfig->filteredListFile()).absoluteFilePath();
@@ -201,8 +262,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
                                 arg(gameListCachePath).
                                 arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")));
             gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
-        } else
-            listAlreadySorted = true;
+        } 
     } else
         gameListCachePath = QFileInfo(globalConfig->gameListCacheFile()).absoluteFilePath();
 
@@ -253,7 +313,7 @@ void TweakedQmlApplicationViewer::loadGamelist()
                      arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("game list") : tr("machine list")).
                      arg(QDir::toNativeSeparators(gameListCachePath)));
 
-    if ( !listAlreadySorted )
+    if ( globalConfig->sortByName() )
         qSort(gameList.begin(), gameList.end(), GameObject::lessThan);
 
     // propagate gameList to QML
@@ -271,6 +331,26 @@ void TweakedQmlApplicationViewer::launchEmulator(QString id)
     processManager->startEmulator(id);
 }
 
+QString TweakedQmlApplicationViewer::loadImage(const QString &id)
+{
+    return imageProvider->loadImage(id);
+}
+
+QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QString &infoClass)
+{
+    QString info("");
+    if (infoClass == "gameinfo")
+        info = infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
+    else if (infoClass == "emuinfo")
+        info = infoProvider->requestInfo(id, InfoProvider::InfoClassEmu);
+#ifdef QMC2_DEBUG
+    else
+        info = QString("DEBUG: TweakedQmlApplicationViewer::requestInfo() unsupported info class '%1'").arg(infoClass);
+#endif
+
+    return info;
+}
+
 int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
 {
     if ( pattern.isEmpty() )
@@ -279,12 +359,16 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     int foundIndex = startIndex;
     bool indexFound = false;
 
-    QRegExp patternRegExp(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
+    QRegExp wildcard(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
+    QRegExp regexp(pattern, Qt::CaseInsensitive, QRegExp::RegExp);
 
     for (int i = startIndex + 1; i < gameList.count() && !indexFound; i++) {
         QString description = ((GameObject *)gameList[i])->description();
         QString id = ((GameObject *)gameList[i])->id();
-        if ( description.indexOf(patternRegExp, 0) >= 0 || id.indexOf(patternRegExp, 0) >= 0 ) {
+        if ( description.indexOf(wildcard, 0) >= 0 || id.indexOf(wildcard, 0) >= 0 ) {
+            foundIndex = i;
+            indexFound = true;
+        } else if ( regexp.indexIn(description, 0) >= 0 || regexp.indexIn(id, 0) >= 0 ) {
             foundIndex = i;
             indexFound = true;
         }
@@ -293,7 +377,10 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
     for (int i = 0; i < startIndex && !indexFound; i++) {
         QString description = ((GameObject *)gameList[i])->description();
         QString id = ((GameObject *)gameList[i])->id();
-        if ( description.indexOf(patternRegExp, 0) >= 0 || id.indexOf(patternRegExp, 0) >= 0 ) {
+        if ( description.indexOf(wildcard, 0) >= 0 || id.indexOf(wildcard, 0) >= 0 ) {
+            foundIndex = i;
+            indexFound = true;
+        } else if ( regexp.indexIn(description, 0) >= 0 || regexp.indexIn(id, 0) >= 0 ) {
             foundIndex = i;
             indexFound = true;
         }
