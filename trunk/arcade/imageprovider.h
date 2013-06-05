@@ -16,10 +16,12 @@ public:
 
     QImage requestImage(const QString &, QSize *, const QSize &);
     QPixmap requestPixmap(const QString &, QSize *, const QSize &);
+    QString loadImage(const QString &);
+
+    enum CacheClass { CacheClassImage, CacheClassPixmap };
 
 private:
-    QImage loadZippedImage(QString, QString);
-    QPixmap loadZippedPixmap(QString, QString);
+    QString loadImage(const QString &id, const enum CacheClass cacheClass);
     QString imageTypeToZipFile(QString);
     QString imageTypeToLongName(QString);
     bool isZippedImageType(QString);

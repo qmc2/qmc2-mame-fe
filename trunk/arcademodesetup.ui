@@ -34,6 +34,11 @@
            <string notr="true">ToxicWaste</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string notr="true">darkone</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="3" column="0">

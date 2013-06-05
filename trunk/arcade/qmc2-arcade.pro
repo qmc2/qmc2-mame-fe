@@ -3,7 +3,9 @@ VERSION = 0.1
 # Add more folders to ship with the application, here
 folder_01.source = qml/ToxicWaste
 folder_01.target = qml
-DEPLOYMENTFOLDERS = folder_01
+folder_02.source = qml/darkone
+folder_02.target = qml
+DEPLOYMENTFOLDERS = folder_01 folder_02
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -20,11 +22,13 @@ QML_IMPORT_PATH =
 SOURCES += main.cpp \
     tweakedqmlappviewer.cpp \
     imageprovider.cpp \
+    infoprovider.cpp \
     arcadesettings.cpp \
     gameobject.cpp \
     consolewindow.cpp \
     processmanager.cpp \
     joystick.cpp \
+    pointer.cpp \
     ../zlib/zutil.c \
     ../zlib/uncompr.c \
     ../zlib/trees.c \
@@ -52,11 +56,14 @@ OTHER_FILES += \
     qml/ToxicWaste/ToxicWaste.qml \
     qml/ToxicWaste/ToxicWaste.js \
     qml/ToxicWaste/BackgroundAnimation.qml \
+    qml/darkone/darkone.qml \
+    qml/darkone/darkone.js \
     ../zlib/README.zlib
 
 HEADERS += \
     tweakedqmlappviewer.h \
     imageprovider.h \
+    infoprovider.h \
     arcadesettings.h \
     macros.h \
     gameobject.h \
@@ -64,6 +71,8 @@ HEADERS += \
     processmanager.h \
     emulatoroption.h \
     joystick.h \
+    wheel.h \
+    pointer.h \
     ../zlib/zutil.h \
     ../zlib/zlib.h \
     ../zlib/zconf.h \
@@ -87,8 +96,10 @@ RESOURCES += \
 
 evil_hack_to_fool_lupdate {
     SOURCES += qml/ToxicWaste/ToxicWaste.qml \
-               qml/ToxicWaste/BackgroundAnimation.qml \
                qml/ToxicWaste/ToxicWaste.js \
+               qml/ToxicWaste/BackgroundAnimation.qml \
+               qml/darkone/darkone.qml \
+               qml/darkone/darkone.js
 }
 
 TRANSLATIONS += translations/qmc2-arcade_de.ts \

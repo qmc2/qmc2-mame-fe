@@ -25,6 +25,29 @@
         <file>qml/ToxicWaste/images/shadereffectsource.png</file>
         <file>qml/ToxicWaste/images/toxic.png</file>
         <file>qml/ToxicWaste/images/windowed.png</file>
+        <file>qml/ToxicWaste/images/green_bubble.png</file>
+        <file>qml/ToxicWaste/images/blue_bubble.png</file>
+        <file>qml/ToxicWaste/images/purple_bubble.png</file>
+        <file>qml/darkone/components/Button.qml</file>
+        <file>qml/darkone/components/CheckBox.qml</file>
+        <file>qml/darkone/components/CheckableGroup.qml</file>
+        <file>qml/darkone/components/CheckableGroup.js</file>
+        <file>qml/darkone/components/Checkable.qml</file>
+        <file>qml/darkone/darkone.js</file>
+        <file>qml/darkone/darkone.qml</file>
+        <file>qml/darkone/images/arrow.png</file>
+        <file>qml/darkone/images/checkmark.png</file>
+        <file>qml/darkone/images/clear.png</file>
+        <file>qml/darkone/images/exit.png</file>
+        <file>qml/darkone/images/find.png</file>
+        <file>qml/darkone/images/fullscreen.png</file>
+        <file>qml/darkone/images/toolbar_toggle.png</file>
+        <file>qml/darkone/images/list_toggle.png</file>
+        <file>qml/darkone/images/launch.png</file>
+        <file>qml/darkone/images/cabinet.png</file>
+        <file>qml/darkone/images/preferences.png</file>
+        <file>qml/darkone/images/backlight.png</file>
+        <file>qml/darkone/images/windowed.png</file>
         <file>translations/qmc2-arcade_de.qm</file>
         <file>translations/qmc2-arcade_el.qm</file>
         <file>translations/qmc2-arcade_es.qm</file>
@@ -35,8 +58,5 @@
         <file>translations/qmc2-arcade_ro.qm</file>
         <file>translations/qmc2-arcade_sv.qm</file>
         <file>translations/qmc2-arcade_us.qm</file>
-        <file>qml/ToxicWaste/images/green_bubble.png</file>
-        <file>qml/ToxicWaste/images/blue_bubble.png</file>
-        <file>qml/ToxicWaste/images/purple_bubble.png</file>
     </qresource>
 </RCC>

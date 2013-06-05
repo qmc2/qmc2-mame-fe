@@ -117,4 +117,8 @@
 #define QMC2_ARCADE_LOG_CSTR(s)     if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s)); }
 #define QMC2_ARCADE_LOG_CSTR_NT(s)  if ( !consoleWindow ) { printf("%s\n", (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QString(s)); }
 
+// exchangable (de)compression routines
+#define QMC2_ARCADE_COMPRESS(data)			qCompress((data))
+#define QMC2_ARCADE_UNCOMPRESS(data)			(data).isEmpty() ? QByteArray() : qUncompress(data)
+
 #endif
