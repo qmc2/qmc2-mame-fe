@@ -33,7 +33,7 @@ function init() {
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
         listToggle(1 - (darkone.listHidden * 2));
         if (fpsVisible) 
-            toolbarShowMenuLock = true;
+            toolbarShowFpsLock = true;
         if (!keepLightOn) { 
             lightOutTimer.start();
             lightOutScreenTimer.start();
