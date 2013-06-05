@@ -344,62 +344,57 @@
         <translation>Visor QML no iniciado - por vaor cierra la ventana de la consola para salir</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="68"/>
-        <source>loading game info DB</source>
+        <location filename="../infoprovider.cpp" line="66"/>
+        <source>Loading game info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="70"/>
-        <source>loading machine info DB</source>
+        <location filename="../infoprovider.cpp" line="69"/>
+        <source>Loading machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="135"/>
-        <source>WARNING: missing &apos;$end&apos; in game info DB %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="137"/>
-        <source>WARNING: missing &apos;$end&apos; in machine info DB %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="142"/>
-        <source>WARNING: missing &apos;$bio&apos; in game info DB %1</source>
+        <location filename="../infoprovider.cpp" line="141"/>
+        <source>WARNING: Missing &apos;$end&apos; in game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="144"/>
-        <source>WARNING: missing &apos;$bio&apos; in machine info DB %1</source>
+        <source>WARNING: Missing &apos;$end&apos; in machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="149"/>
-        <source>WARNING: missing &apos;$info&apos; in game info DB %1</source>
+        <location filename="../infoprovider.cpp" line="152"/>
+        <source>WARNING: Missing &apos;$bio&apos; in game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="151"/>
-        <source>WARNING: missing &apos;$info&apos; in machine info DB %1</source>
+        <location filename="../infoprovider.cpp" line="155"/>
+        <source>WARNING: Missing &apos;$bio&apos; in machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="158"/>
-        <source>WARNING: can&apos;t open game info DB %1</source>
+        <location filename="../infoprovider.cpp" line="163"/>
+        <source>WARNING: Missing &apos;$info&apos; in game info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="160"/>
-        <source>WARNING: can&apos;t open machine info DB %1</source>
+        <location filename="../infoprovider.cpp" line="166"/>
+        <source>WARNING: Missing &apos;$info&apos; in machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="165"/>
-        <source>done (loading machine info DB</source>
+        <location filename="../infoprovider.cpp" line="176"/>
+        <source>WARNING: Can&apos;t open game info DB %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="179"/>
+        <source>WARNING: Can&apos;t open machine info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="166"/>
+        <location filename="../infoprovider.cpp" line="188"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -407,17 +402,52 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="168"/>
-        <source>invalidating machine info DB</source>
+        <location filename="../infoprovider.cpp" line="190"/>
+        <source>Invalidating machine info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="170"/>
-        <source>done (loading game info DB)</source>
+        <location filename="../infoprovider.cpp" line="198"/>
+        <source>Invalidating game info DB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="208"/>
+        <source>Loading emulator info DB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="264"/>
+        <source>WARNING: Missing &apos;$end&apos; in emulator info DB %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="267"/>
+        <source>WARNING: Missing &apos;$mame&apos; in emulator info DB %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="270"/>
+        <source>WARNING: Missing &apos;$info&apos; in emulator info DB %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="275"/>
+        <source>WARNING: Can&apos;t open emulator info DB %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="277"/>
+        <source>Done (Loading emulator info DB)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../infoprovider.cpp" line="280"/>
+        <source>Invalidating emulator info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="171"/>
+        <location filename="../infoprovider.cpp" line="196"/>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -425,42 +455,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="173"/>
-        <source>invalidating game info DB</source>
+        <location filename="../infoprovider.cpp" line="187"/>
+        <source>Done (Loading machine info DB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="185"/>
-        <source>loading emulator info DB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="241"/>
-        <source>WARNING: missing &apos;$end&apos; in emulator info DB %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="244"/>
-        <source>WARNING: missing &apos;$mame&apos; in emulator info DB %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="247"/>
-        <source>WARNING: missing &apos;$info&apos; in emulator info DB %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="252"/>
-        <source>WARNING: can&apos;t open emulator info DB %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="254"/>
-        <source>done (loading emulator info DB)</source>
+        <location filename="../infoprovider.cpp" line="195"/>
+        <source>Done (Loading game info DB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="255"/>
+        <location filename="../infoprovider.cpp" line="278"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -468,15 +473,10 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="257"/>
-        <source>invalidating emulator info DB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../infoprovider.cpp" line="286"/>
-        <location filename="../infoprovider.cpp" line="288"/>
-        <location filename="../infoprovider.cpp" line="300"/>
-        <location filename="../infoprovider.cpp" line="302"/>
+        <location filename="../infoprovider.cpp" line="313"/>
+        <location filename="../infoprovider.cpp" line="315"/>
+        <location filename="../infoprovider.cpp" line="327"/>
+        <location filename="../infoprovider.cpp" line="329"/>
         <source>no info available</source>
         <translation type="unfinished"></translation>
     </message>

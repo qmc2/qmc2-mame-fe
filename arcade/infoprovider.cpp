@@ -1,4 +1,3 @@
-
 #include <QTextStream>
 #include <QTextCodec>
 
@@ -9,6 +8,7 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
+extern int emulatorMode;
 
 InfoProvider::InfoProvider()
 {
@@ -60,15 +60,19 @@ void InfoProvider::clearEmuInfoDB() {
 
 void InfoProvider::loadGameInfoDB()
 {
-#ifdef QMC2_DEBUG
-  QMC2_ARCADE_LOG_STR(QString("DEBUG: InfoProvider::loadGameInfoDB()"));
-#endif
+  switch ( emulatorMode ) {
+	  case QMC2_ARCADE_EMUMODE_MAME:
+	  case QMC2_ARCADE_EMUMODE_UME:
+		  QMC2_ARCADE_LOG_STR(QObject::tr("Loading game info DB"));
+		  break;
+	  case QMC2_ARCADE_EMUMODE_MESS:
+		  QMC2_ARCADE_LOG_STR(QObject::tr("Loading machine info DB"));
+		  break;
+	  default:
+		  return;
+  }
+
   qmc2InfoStopParser = false;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  QMC2_ARCADE_LOG_STR(QObject::tr("loading game info DB"));
-#elif defined(QMC2_EMUTYPE_MESS)
-  QMC2_ARCADE_LOG_STR(QObject::tr("loading machine info DB"));
-#endif
 
   // clear game/machine info DB
   clearGameInfoDB();
@@ -131,58 +135,77 @@ void InfoProvider::loadGameInfoDB()
                 qmc2GameInfoDB[gameWords[i]] = gameInfo;
             }
           } else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$end' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
-#endif
+	    switch ( emulatorMode ) {
+		    case QMC2_ARCADE_EMUMODE_MAME:
+		    case QMC2_ARCADE_EMUMODE_UME:
+			    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in game info DB %1").arg(pathToGameInfoDB));
+			    break;
+		    case QMC2_ARCADE_EMUMODE_MESS:
+			    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
+			    break;
+	    }
           }
         } else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-          QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-          QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
-#endif
+	  switch ( emulatorMode ) {
+		  case QMC2_ARCADE_EMUMODE_MAME:
+		  case QMC2_ARCADE_EMUMODE_UME:
+			  QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
+			  break;
+		  case QMC2_ARCADE_EMUMODE_MESS:
+			  QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
+			  break;
+	  }
         }
       } else if ( !ts.atEnd() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$info' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
-#endif
+	      switch ( emulatorMode ) {
+		      case QMC2_ARCADE_EMUMODE_MAME:
+		      case QMC2_ARCADE_EMUMODE_UME:
+			      QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in game info DB %1").arg(pathToGameInfoDB));
+			      break;
+		      case QMC2_ARCADE_EMUMODE_MESS:
+			      QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
+			      break;
+	      }
       }
     }
     gameInfoDB.close();
   } else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: can't open game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_EMUTYPE_MESS)
-    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: can't open machine info DB %1").arg(pathToGameInfoDB));
-#endif
+	  switch ( emulatorMode ) {
+		  case QMC2_ARCADE_EMUMODE_MAME:
+		  case QMC2_ARCADE_EMUMODE_UME:
+			  QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open game info DB %1").arg(pathToGameInfoDB));
+			  break;
+		  case QMC2_ARCADE_EMUMODE_MESS:
+			  QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open machine info DB %1").arg(pathToGameInfoDB));
+			  break;
+	  }
   }
   
-#if defined(QMC2_EMUTYPE_MESS)
-  QMC2_ARCADE_LOG_STR(QObject::tr("done (loading machine info DB"));
-  QMC2_ARCADE_LOG_STR(QObject::tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
-  if ( qmc2InfoStopParser ) {
-    QMC2_ARCADE_LOG_STR(QObject::tr("invalidating machine info DB"));
-#else
-  QMC2_ARCADE_LOG_STR(QObject::tr("done (loading game info DB)"));
-  QMC2_ARCADE_LOG_STR(QObject::tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
-  if ( qmc2InfoStopParser ) {
-    QMC2_ARCADE_LOG_STR(QObject::tr("invalidating game info DB"));
-#endif
-    clearGameInfoDB();
+  switch ( emulatorMode ) {
+	  case QMC2_ARCADE_EMUMODE_MAME:
+	  case QMC2_ARCADE_EMUMODE_UME:
+		  QMC2_ARCADE_LOG_STR(QObject::tr("Done (Loading machine info DB)"));
+		  QMC2_ARCADE_LOG_STR(QObject::tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
+		  if ( qmc2InfoStopParser ) {
+			  QMC2_ARCADE_LOG_STR(QObject::tr("Invalidating machine info DB"));
+			  clearGameInfoDB();
+		  }
+		  break;
+	  case QMC2_ARCADE_EMUMODE_MESS:
+		  QMC2_ARCADE_LOG_STR(QObject::tr("Done (Loading game info DB)"));
+		  QMC2_ARCADE_LOG_STR(QObject::tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
+		  if ( qmc2InfoStopParser ) {
+			  QMC2_ARCADE_LOG_STR(QObject::tr("Invalidating game info DB"));
+			  clearGameInfoDB();
+		  }
+		  break;
   }
 }
 
 void InfoProvider::loadEmuInfoDB()
 {
-#ifdef QMC2_DEBUG
-  QMC2_ARCADE_LOG_STR(QString("DEBUG: InfoProvider::loadEmuInfoDB()"));
-#endif
   qmc2InfoStopParser = false;
-  QMC2_ARCADE_LOG_STR(QObject::tr("loading emulator info DB"));
+  QMC2_ARCADE_LOG_STR(QObject::tr("Loading emulator info DB"));
 
   // clear emulator info DB
   clearEmuInfoDB();
@@ -238,23 +261,23 @@ void InfoProvider::loadEmuInfoDB()
                 qmc2EmuInfoDB[gameWords[i]] = emuInfo;
             }
           } else {
-            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
+            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
           }
         } else if ( !ts.atEnd() ) {
-          QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$mame' in emulator info DB %1").arg(pathToEmuInfoDB));
+          QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$mame' in emulator info DB %1").arg(pathToEmuInfoDB));
         }
       } else if ( !ts.atEnd() ) {
-        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
+        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
       }
     }
     emuInfoDB.close();
   } else
-    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: can't open emulator info DB %1").arg(pathToEmuInfoDB));
+    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open emulator info DB %1").arg(pathToEmuInfoDB));
 
-  QMC2_ARCADE_LOG_STR(QObject::tr("done (loading emulator info DB)"));
+  QMC2_ARCADE_LOG_STR(QObject::tr("Done (Loading emulator info DB)"));
   QMC2_ARCADE_LOG_STR(QObject::tr("%n emulator info record(s) loaded", "", qmc2EmuInfoDB.count()));
   if ( qmc2InfoStopParser ) {
-    QMC2_ARCADE_LOG_STR(QObject::tr("invalidating emulator info DB"));
+    QMC2_ARCADE_LOG_STR(QObject::tr("Invalidating emulator info DB"));
     clearEmuInfoDB();
   }
 }
@@ -271,17 +294,21 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass ) {
       if ( qmc2GameInfoDB.contains(id) ) {
         QByteArray *newGameInfo = qmc2GameInfoDB[id];
         if ( newGameInfo ) {
-#if defined(QMC2_EMUTYPE_MESS)
-          if ( globalConfig->compressGameInfoDB() )
-            infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
-          else
-            infoText = QString(*newGameInfo);
-#else
-          if ( globalConfig->compressGameInfoDB() )
-            infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-          else
-            infoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-#endif
+		switch ( emulatorMode ) {
+			case QMC2_ARCADE_EMUMODE_MAME:
+			case QMC2_ARCADE_EMUMODE_UME:
+				if ( globalConfig->compressGameInfoDB() )
+					infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+				else
+					infoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+				break;
+			case QMC2_ARCADE_EMUMODE_MESS:
+				if ( globalConfig->compressGameInfoDB() )
+					infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
+				else
+					infoText = QString(*newGameInfo);
+				break;
+		}
         } else
           infoText = "<p>" + QObject::tr("no info available") + "</p>";
       } else
