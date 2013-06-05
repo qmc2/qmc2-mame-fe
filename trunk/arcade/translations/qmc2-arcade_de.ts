@@ -768,7 +768,7 @@
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1043"/>
         <source>auto-hide toolbar</source>
-        <translation>Werkzeugleiste ausblenden</translation>
+        <translation>Werkzeugleiste ausbl.?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1063"/>
@@ -783,17 +783,17 @@
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1104"/>
         <source>back lighting</source>
-        <translation>Hintergrundbeleuchtung</translation>
+        <translation>Hintergr.beleuchtung?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1172"/>
         <source>lights out (secs)</source>
-        <translation>Bildschirmschoner (Sekunden)</translation>
+        <translation>Licht aus (Sekunden)</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1216"/>
         <source>dark colour scheme</source>
-        <translation>Dunkles Farbschema</translation>
+        <translation>Farbschema &apos;dunkel&apos;</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1258"/>
