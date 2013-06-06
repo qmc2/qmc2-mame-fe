@@ -337,7 +337,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="46"/>
         <source>Icon</source>
-        <translation type="unfinished">Ikona</translation>
+        <translation>Ikona</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="51"/>
@@ -353,7 +353,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="61"/>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="66"/>
@@ -368,17 +368,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="83"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="103"/>
         <source>Cancel additional artwork editing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anulu</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="106"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Anuluj</translation>
+        <translation>&amp;Anuluj</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="129"/>
@@ -388,7 +388,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="132"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Przywróć</translation>
+        <translation>&amp;Przywróć</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="165"/>
@@ -464,7 +464,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="105"/>
         <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="106"/>
@@ -917,8 +917,6 @@ p, li { white-space: pre-wrap; }
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -1300,67 +1298,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cookiemanager.ui" line="14"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządzaj zapisanymi ciasteczkami</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="20"/>
         <source>Stored cookies in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Ciasteczka zapisane w bazie danych</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="48"/>
         <source>Remove</source>
-        <translation type="unfinished">Usuń</translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="78"/>
         <source>Close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.ui" line="81"/>
         <source>Close</source>
-        <translation type="unfinished">Zamknij</translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="34"/>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="35"/>
         <source>Domain</source>
-        <translation type="unfinished"></translation>
+        <translation>Domena</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="36"/>
         <source>Path</source>
-        <translation type="unfinished">Ścieżka</translation>
+        <translation>Ścieżka</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="37"/>
         <source>Value</source>
-        <translation type="unfinished">Wartość</translation>
+        <translation>Wartość</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="38"/>
         <source>Expiry date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data wygaśnięcia</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="39"/>
         <source>Secure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezpieczne?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="40"/>
         <source>HTTP only?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko HTTP?</translation>
     </message>
     <message>
         <location filename="../../cookiemanager.cpp" line="84"/>
         <source>WARNING: failed to remove cookie from database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie udało się usunąć ciasteczka z bazy danych: kwerenda = &apos;%1&apos;, błąd = &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -2203,28 +2201,28 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.cpp" line="53"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiększenie</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="92"/>
         <location filename="../../embedderopt.ui" line="95"/>
         <source>Set zoom factor for snapshot items</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienie współczynnika powiększenia dla ikon zrzutów ekranu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="98"/>
         <source> %</source>
-        <translation type="unfinished"> %</translation>
+        <translation> %</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="139"/>
         <source>Save selected image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz wybrany obraz</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="142"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz jako</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="162"/>
@@ -2239,32 +2237,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="188"/>
         <source>Choose the image-type for which the selected image should be used directly</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybór rodzaju obrazu, dla którego wybrany obraz ma być używany bezpośrednio</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="191"/>
         <source>Use as</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj jako</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="221"/>
         <source>Select the snapshot scaling mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tryb skalowania zrzutów ekranu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="225"/>
         <source>No scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez skalowania</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="230"/>
         <source>Original size - no filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar oryginalny - bez filtrowania</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="235"/>
         <source>Original size - filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar oryginalny - filtrowany</translation>
     </message>
 </context>
 <context>
@@ -2272,69 +2270,71 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuoptactions.ui" line="72"/>
         <source>Reset to default value</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć wartość domyślną</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="52"/>
         <source>Revert to stored value</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć zapisaną wartość</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="32"/>
         <source>Store value</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz wartość</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="24"/>
         <source>Default</source>
-        <translation type="unfinished">Domyślny</translation>
+        <translation>Domyślna</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="26"/>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="38"/>
         <source>Reset to global value</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć wartość globalną</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="113"/>
         <source>Confirm</source>
-        <translation type="unfinished">Potwierdź</translation>
+        <translation>Potwierdź</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>An open game-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykryto otwartą, dostosowaną do gry konfigurację emulatora.
+Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością globalną czy nie zastosowywać?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="117"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykryto otwartą, dostosowaną do maszyny konfigurację emulatora.
+Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością globalną czy nie zastosowywać?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>&amp;Local</source>
-        <translation type="unfinished">&amp;Lokalne</translation>
+        <translation>&amp;Lokalne</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>&amp;Overwrite</source>
-        <translation type="unfinished">&amp;Nadpisz</translation>
+        <translation>&amp;Nadpisz</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="119"/>
         <source>Do&amp;n&apos;t apply</source>
-        <translation type="unfinished">&amp;Nie zastosowuj</translation>
+        <translation>&amp;Nie zastosowuj</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="30"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;BRAK&gt;</translation>
     </message>
 </context>
 <context>
@@ -2353,12 +2353,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="214"/>
         <source>enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>włączone</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="216"/>
         <source>disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>wyłączone</translation>
     </message>
 </context>
 <context>
@@ -2416,7 +2416,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="423"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcje</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="981"/>
@@ -2471,7 +2471,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="544"/>
         <location filename="../../emuopt.cpp" line="1039"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;BRAK&gt;</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1047"/>
@@ -3227,42 +3227,42 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="2029"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: bug XML: nazwa &apos;%1&apos; jest używana dla więcej niż jednego zestawu -- proszę poinformować deweloperów MAME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2032"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: bug XML: nazwa &apos;%1&apos; jest używana dla więcej niż jednego zestawu -- proszę poinformować deweloperów MESS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2035"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME/MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: bug XML: nazwa &apos;%1&apos; jest używana dla więcej niż jednego zestawu -- proszę poinformować deweloperów MAME/MESS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3162"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (weryfikowanie stanu ROM-ów dla wszystkich zestawów, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4080"/>
         <source>correct</source>
-        <translation type="unfinished">poprawny</translation>
+        <translation>poprawny</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4086"/>
         <source>mostly correct</source>
-        <translation type="unfinished">w większości poprawny</translation>
+        <translation>w większości poprawny</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4092"/>
         <source>incorrect</source>
-        <translation type="unfinished">niepoprawny</translation>
+        <translation>niepoprawny</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4098"/>
         <source>not found</source>
-        <translation type="unfinished">nieznaleziony</translation>
+        <translation>nieznaleziony</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="498"/>
@@ -3278,7 +3278,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="1049"/>
         <source>verifying ROM status for all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>sprawdzanie stanu ROM-ów dla wszystkich zestawów</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1287"/>
@@ -4941,22 +4941,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../htmleditor/htmleditor.cpp" line="170"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="171"/>
         <source>Page load progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Postęp wczytywania strony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="151"/>
         <source>Hide menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj menu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="155"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko do odczytu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="159"/>
         <source>Show HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="467"/>
@@ -5059,12 +5059,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1172"/>
         <source>Select color</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz kolor</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="1181"/>
         <source>Choose image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik obrazu</translation>
     </message>
 </context>
 <context>
@@ -5187,17 +5187,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.ui" line="267"/>
         <source>Show only bad images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż jedynie niepoprawne obrazy</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="296"/>
         <source>Remove bad image files</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń niepoprawne pliki obrazów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="354"/>
         <source>Remove obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń przestarzałe pliki / foldery</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="236"/>
@@ -5225,7 +5225,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.ui" line="329"/>
         <source>Files / folders which couldn&apos;t be matched to any set (and are thus obsolete)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki / foldery, których nie udało się dopasować do żadnego zestawu (tym samym przestarzałe)</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="338"/>
@@ -5368,37 +5368,37 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="442"/>
         <source>preview</source>
-        <translation type="unfinished">podgląd</translation>
+        <translation>podgląd</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="446"/>
         <source>flyer</source>
-        <translation type="unfinished">ulotka</translation>
+        <translation>ulotka</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="450"/>
         <source>cabinet</source>
-        <translation type="unfinished">automat</translation>
+        <translation>automat</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="454"/>
         <source>marquee</source>
-        <translation type="unfinished">plansza tytułowa</translation>
+        <translation>plansza tytułowa</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="458"/>
         <source>controller</source>
-        <translation type="unfinished">kontoler</translation>
+        <translation>kontoler</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="463"/>
         <source>title</source>
-        <translation type="unfinished">ekran tytułowy</translation>
+        <translation>ekran tytułowy</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="468"/>
         <source>PCB</source>
-        <translation type="unfinished">Płytka drukowana</translation>
+        <translation>Płytka drukowana</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="477"/>
@@ -5408,12 +5408,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="507"/>
         <source>Checking %1 images</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzanie %1 obrazów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="507"/>
         <source>Checking icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzanie ikon</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="639"/>
@@ -5456,45 +5456,45 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="804"/>
         <source>Running ZIP tool to remove bad image files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchamianie narzędzia ZIP w celu usunięcia niepoprawnych plików, polecenie = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="827"/>
         <location filename="../../imagechecker.cpp" line="953"/>
         <location filename="../../imagechecker.cpp" line="1047"/>
         <source>WARNING: ZIP tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: narzędzie ZIP nie zakończyło pracy czysto: kod wyjścia = %1, stan wyjścia = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="827"/>
         <location filename="../../imagechecker.cpp" line="953"/>
         <location filename="../../imagechecker.cpp" line="1047"/>
         <source>normal</source>
-        <translation type="unfinished">normalny</translation>
+        <translation>normalny</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="827"/>
         <location filename="../../imagechecker.cpp" line="953"/>
         <location filename="../../imagechecker.cpp" line="1047"/>
         <source>crashed</source>
-        <translation type="unfinished">przestał działać</translation>
+        <translation>przestał działać</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="841"/>
         <source>Bad image file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto niepoprawny plik obrazu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="847"/>
         <source>Bad image file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawny plik obrazu &apos;%1&apos; nie może zostać usunięty, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="765"/>
         <location filename="../../imagechecker.cpp" line="905"/>
         <location filename="../../imagechecker.cpp" line="999"/>
         <source>Executing ZIP tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchamianie narzędzia ZIP</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="947"/>
@@ -5506,17 +5506,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="965"/>
         <location filename="../../imagechecker.cpp" line="1059"/>
         <source>Removing obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie przestarzałych plików / folderów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="974"/>
         <source>Obsolete image folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto przestarzały folder obrazów &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="979"/>
         <source>Obsolete image folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestarzały folder obrazów &apos;%1&apos; nie może zostać usunięty, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="983"/>
@@ -5531,12 +5531,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="1068"/>
         <source>Obsolete icon folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto przestarzały folder ikon &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1073"/>
         <source>Obsolete icon folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestarzały folder ikon &apos;%1&apos; nie może zostać usunięty, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1077"/>
@@ -5556,7 +5556,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="1164"/>
         <source>Checking for obsolete files / folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzanie w poszukiwaniu przestarzałych plików / folderów</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1174"/>
@@ -5577,12 +5577,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="1332"/>
         <source>%1 folder &apos;%2&apos; is obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder %1 &apos;%2&apos; jest przestarzały</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1338"/>
         <source>%1 file &apos;%2&apos; is obsolete</source>
-        <translation>%1 plik &apos;%2&apos; jest przestarzały</translation>
+        <translation>Plik %1 &apos;%2&apos; jest przestarzały</translation>
     </message>
     <message numerus="yes">
         <location filename="../../imagechecker.cpp" line="1356"/>
@@ -5663,16 +5663,16 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="120"/>
         <source>Thread[%1]: processing work unit with %n entries</source>
         <translation>
+            <numerusform>Wątek[%1]: przetwarzanie jednostki pracy z %n wpisem</numerusform>
             <numerusform>Wątek[%1]: przetwarzanie jednostki pracy z %n wpisami</numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Wątek[%1]: przetwarzanie jednostki pracy z %n wpisami</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="139"/>
         <location filename="../../imagechecker.cpp" line="164"/>
         <source>Thread[%1]: image for &apos;%2&apos; found, loaded from &apos;%3&apos;, size = %4x%5, bytes = %6</source>
-        <translation>Wątek[%1]: znaleziono obraz należący do &apos;%2&apos;, wczytano z &apos;%3&apos;, rozmiar = %4x%5, bajtów = 6</translation>
+        <translation>Wątek[%1]: znaleziono obraz należący do &apos;%2&apos;, wczytano z &apos;%3&apos;, rozmiar = %4x%5, bajtów = %6</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="145"/>
@@ -5728,17 +5728,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagewidget.cpp" line="299"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się zapisać kopii istniejącego pliku obrazu &apos;%1&apos; jako &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="314"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można utworzyć pliku obrazu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="320"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można ustalić podstawowej ścieżku dla typu obrazów &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -5759,7 +5759,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../downloaditem.cpp" line="99"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing</source>
-        <translation>FATALNIE: nie można &apos;%1&apos; do zapisu</translation>
+        <translation>FATALNIE: nie można otworzyć &apos;%1&apos; do zapisu</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="113"/>
@@ -6198,7 +6198,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.ui" line="363"/>
         <source>Folder mode selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybór trybu katalogowego</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="383"/>
@@ -6349,12 +6349,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="264"/>
         <source>Rename configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę konfiguracji</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="265"/>
         <source>Re&amp;name configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień &amp;nazwę konfiguracji</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="270"/>
@@ -6384,7 +6384,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="314"/>
         <source>&amp;Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Otwórz folder</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="321"/>
@@ -6395,22 +6395,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="328"/>
         <source>Open e&amp;xternally...</source>
-        <translation>Otwórz &amp;zewnętrznie</translation>
+        <translation>Otwórz &amp;zewnętrznie...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="336"/>
         <source>Hide folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj foldery</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="341"/>
         <source>Show folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż foldery</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="346"/>
         <source>Show folders first</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż foldery na początku</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="405"/>
@@ -6862,13 +6862,13 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2323"/>
         <source>Software info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2338"/>
         <location filename="../../qmc2main.ui" line="2341"/>
         <source>Detailed software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczegółowe informacje o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2374"/>
@@ -8242,14 +8242,12 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
         <source>%n software info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7716"/>
         <source>invalidating software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>unieważnianie bazy danych informacji o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8365"/>
@@ -9912,8 +9910,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -10344,7 +10340,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../marquee.h" line="17"/>
         <source>logo</source>
-        <translation type="unfinished"></translation>
+        <translation>logo</translation>
     </message>
     <message>
         <location filename="../../marquee.h" line="19"/>
@@ -10684,7 +10680,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../miniwebbrowser.ui" line="264"/>
         <source>Toggle display of the search bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz wyświetlanie paska wyszukiwania</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="300"/>
@@ -10692,27 +10688,27 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../miniwebbrowser.cpp" line="62"/>
         <location filename="../../miniwebbrowser.cpp" line="63"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz szukany ciąg</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="316"/>
         <source>Case-sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Z uwzględnianiem wielkości liter</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="336"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź poprzednie wystąpienie</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="353"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź następne wystąpienie</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="370"/>
         <source>Highlight matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Podświetl dopasowania</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="165"/>
@@ -10746,7 +10742,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="66"/>
         <source>Enter URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="101"/>
@@ -11799,22 +11795,22 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="796"/>
         <source>Default palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna paleta</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="803"/>
         <source>Edit the color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Edycja palety kolorów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="806"/>
         <source>Edit color palette...</source>
-        <translation type="unfinished"></translation>
+        <translation>Edycja palety kolorów...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="70"/>
         <source>Use the system&apos;s own (native) file dialogs, otherwise Qt&apos;s built-in dialogs are used</source>
-        <translation type="unfinished"></translation>
+        <translation>Używanie systemowych (natywnych) okien dialogowych, w przeciwnym wypadku są używane wbudowane okna Qt.</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2282"/>
@@ -11894,32 +11890,32 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2445"/>
         <source>Load software information database (from history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładuj bazę danych informacji o historii (z history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2448"/>
         <source>Software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych informacji o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2465"/>
         <source>Use in-memory compression for software info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj kompresji w pamięci dla bazy danych informacji o oprogramowaniu (troszkę wolniejsze, lecz zużywa dobitnie mniej pamięci; stopień kompresji to zwykle około 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2487"/>
         <source>Software information database - history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych informacji o oprogramowaniu - history.dat (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2500"/>
         <source>Browse software information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż bazę danych informacji o oprogramowaniu (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2511"/>
         <source>Define additional artwork classes for systems and software-list entries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Definicja dodatkowych typów </translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2514"/>
@@ -12029,32 +12025,32 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4115"/>
         <source>Browser settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia przeglądarki</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4127"/>
         <source>Browse cookie database</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż bazę danych ciasteczek</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4144"/>
         <source>Cookie database file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych ciasteczek (zapis)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4151"/>
         <source>Cookie database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych ciasteczek</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4160"/>
         <source>Save and restore cookies used on web pages?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisywać i przywracać ciasteczka używane na stronach internetowych?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4192"/>
         <source>Remove all cookies by recreating the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wszystkie ciasteczka tworząc bazę danych od nowa</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4359"/>
@@ -12260,27 +12256,27 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="3764"/>
         <source>Network / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieć / &amp;Narzędzia</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4163"/>
         <source>Restore cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywracaj ciasteczka</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4179"/>
         <source>Manage cookies stored in database</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządzaj ciasteczkami przechowywanymi w bazie danych</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4182"/>
         <source>Manage stored cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządzaj zapisanymi ciasteczkami</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4195"/>
         <source>Clear database</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bazę danych</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5078"/>
@@ -12939,7 +12935,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="3158"/>
         <source>Choose cookie database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik bazy danych ciasteczek</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3256"/>
@@ -12969,7 +12965,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="3387"/>
         <source>Choose software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz bazę danych informacji o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3400"/>
@@ -13957,17 +13953,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="464"/>
         <source>Launch arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom tryb salonowy</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="489"/>
         <source>Return key</source>
-        <translation type="unfinished"></translation>
+        <translation>Klawisz Enter</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="494"/>
         <source>Activate item</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywuj element</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="518"/>
@@ -13988,7 +13984,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="1786"/>
         <source>invalidating software info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>unieważnianie bazy danych informacji o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1819"/>
@@ -15091,17 +15087,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3409"/>
         <source>yes</source>
-        <translation type="unfinished">tak</translation>
+        <translation>tak</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3411"/>
         <source>no</source>
-        <translation type="unfinished">nie</translation>
+        <translation>nie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3413"/>
         <source>partially</source>
-        <translation type="unfinished"></translation>
+        <translation>częściowo</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4279"/>
@@ -18009,8 +18005,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <source>found %n individual sample set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -18022,8 +18016,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../samplechecker.cpp" line="255"/>
         <source>%n system(s) using samples</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -18106,12 +18098,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../samplechecker.cpp" line="492"/>
         <source>obsolete file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto przestarzały plik &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="500"/>
         <source>obsolete file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>przestarzały plik &apos;%1&apos; nie może zostać usunięty, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="435"/>
@@ -18139,17 +18131,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../embedderopt.cpp" line="236"/>
         <source>Zoom in (+10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiększ (+10%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="242"/>
         <source>Zoom out (-10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomniejsz (-10%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="248"/>
         <source>Reset zoom (100%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rzeczywisty rozmiar (100%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="256"/>
@@ -18166,7 +18158,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="376"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Podgląd</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
@@ -18175,58 +18167,58 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../embedderopt.cpp" line="285"/>
         <location filename="../../embedderopt.cpp" line="386"/>
         <source>Software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrzut ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="390"/>
         <source>Flyer</source>
-        <translation type="unfinished">Ulotka</translation>
+        <translation>Ulotka</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="394"/>
         <source>Cabinet</source>
-        <translation type="unfinished">Automat</translation>
+        <translation>Automat</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="398"/>
         <source>Controller</source>
-        <translation type="unfinished">Kontroler</translation>
+        <translation>Kontroler</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
         <location filename="../../embedderopt.cpp" line="403"/>
         <source>Logo</source>
-        <translation type="unfinished"></translation>
+        <translation>Logo</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="410"/>
         <source>PCB</source>
-        <translation type="unfinished">Płytka drukowana</translation>
+        <translation>Płytka drukowana</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="381"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Ekran tytułowy</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="271"/>
         <location filename="../../embedderopt.cpp" line="405"/>
         <source>Marquee</source>
-        <translation type="unfinished">Plansza tytułowa</translation>
+        <translation>Plansza tytułowa</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="276"/>
         <source>Use as</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj jako</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="540"/>
@@ -18442,7 +18434,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="287"/>
         <location filename="../../softwarelist.cpp" line="314"/>
         <source>Supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsługiwane</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="425"/>
@@ -18543,7 +18535,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="163"/>
         <source>Clear software selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść wybór oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="164"/>
@@ -18623,7 +18615,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="1876"/>
         <location filename="../../softwarelist.cpp" line="1881"/>
         <source>filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>filtrowane</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="777"/>
@@ -18910,29 +18902,29 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3284"/>
         <source>correct</source>
-        <translation type="unfinished">poprawny</translation>
+        <translation>poprawne</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3290"/>
         <source>mostly correct</source>
-        <translation type="unfinished">w większości poprawny</translation>
+        <translation>w większości poprawne</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3296"/>
         <source>incorrect</source>
-        <translation type="unfinished">niepoprawny</translation>
+        <translation>niepoprawne</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3302"/>
         <source>not found</source>
-        <translation type="unfinished">nieznaleziony</translation>
+        <translation>nieznalezione</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3309"/>
         <location filename="../../softwarelist.cpp" line="3316"/>
         <location filename="../../softwarelist.cpp" line="3322"/>
         <source>unknown</source>
-        <translation type="unfinished">nieznany</translation>
+        <translation>nieznane</translation>
     </message>
 </context>
 <context>
@@ -19071,7 +19063,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../swlistexport.ui" line="540"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsługiwane</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="359"/>
@@ -19287,17 +19279,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3585"/>
         <source>Zoom in (+10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiększ (+10%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3591"/>
         <source>Zoom out (-10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomniejsz (-10%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3597"/>
         <source>Reset zoom (100%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rzeczywisty rozmiar (100%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3605"/>
@@ -19313,22 +19305,22 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3658"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się zapisać kopii istniejącego pliku obrazu &apos;%1&apos; jako &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3673"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można utworzyć pliku obrazu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3679"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można ustalić podstawowej ścieżku dla typu obrazów &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3679"/>
         <source>software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>zrzut ekranu oprogramowania</translation>
     </message>
 </context>
 <context>
@@ -19360,58 +19352,58 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarestatefilter.ui" line="44"/>
         <location filename="../../softwarestatefilter.ui" line="47"/>
         <source>Toggle software-state &apos;correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz stan oprogramowania &apos;poprawne&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="73"/>
         <location filename="../../softwarestatefilter.ui" line="76"/>
         <source>Toggle software-state &apos;unknown&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz stan oprogramowania &apos;nieznane&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="102"/>
         <location filename="../../softwarestatefilter.ui" line="105"/>
         <source>Toggle software-state &apos;mostly correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz stan oprogramowania &apos;w większości poprawne&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="131"/>
         <location filename="../../softwarestatefilter.ui" line="134"/>
         <source>Toggle software-state &apos;not found&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz stan oprogramowania &apos;nieznalezione&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="160"/>
         <location filename="../../softwarestatefilter.ui" line="163"/>
         <source>Toggle software-state &apos;incorrect&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz stan oprogramowania &apos;niepoprawne&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="186"/>
         <location filename="../../softwarestatefilter.ui" line="189"/>
         <source>Toggle filtering by software-states</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz filtrowanie według stanów oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.ui" line="192"/>
         <source>State filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr stanów</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="62"/>
         <source>State filter - %p%</source>
-        <translation type="unfinished">Filtr stanów - %p%</translation>
+        <translation>Filtr stanów - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="108"/>
         <location filename="../../softwarestatefilter.cpp" line="110"/>
         <source>filtered</source>
-        <translation type="unfinished"></translation>
+        <translation>filtrowane</translation>
     </message>
     <message>
         <location filename="../../softwarestatefilter.cpp" line="152"/>
         <source>State filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia filtru statów</translation>
     </message>
 </context>
 <context>
@@ -20252,12 +20244,12 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1278"/>
         <source>video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>błąd informacji o filmie: przekroczono czas</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1282"/>
         <source>video info error: unknown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>błąd informacji o filmie: powód nieznany</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1315"/>
