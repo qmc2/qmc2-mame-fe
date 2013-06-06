@@ -30,6 +30,9 @@ function init() {
         darkone.debug && console.log("[init] lastIndex: '" + lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
+        resetZoom = darkone.overlayScale;
+        darkone.overlayScale /= 2;
+
         listToggle(1 - (darkone.listHidden * 2));
         if (fpsVisible)
             toolbarShowFpsLock = true;
@@ -46,6 +49,8 @@ function init() {
         //power
         lightOut = false;
         lightOutScreen = false;
+        zoom(resetZoom / darkone.overlayScale);
+        resetZoom = 1;
     }
 }
 
@@ -151,7 +156,8 @@ function lightToggle(force) {
         lightOutScreen = false;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        !darkone.disableLaunchZoom && zoom(resetZoom / darkone.overlayScale);
+        zoom(resetZoom / darkone.overlayScale);
+        resetZoom = 1;
         if (!keepLightOn) {
             lightOutTimer.restart();
             lightOutScreenTimer.restart();
@@ -163,9 +169,9 @@ function lightToggle(force) {
         resetToolbarHidden = !darkone.toolbarHidden;
         toolbarToggle(-1);
         overlayStateBlock.opacity = 0
-        if (resetZoom == 1 && !darkone.disableLaunchZoom) {
+        if (resetZoom == 1) {
             resetZoom = darkone.overlayScale;
-            zoom("0.5");
+            zoom(resetZoom / 2);
         }
         lightOutTimer.stop();
         lightOut = true;
@@ -283,6 +289,7 @@ function gameOver() {
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
         !darkone.disableLaunchZoom && zoom(resetZoom / darkone.overlayScale);
+        resetZoom = 1;
         !darkone.toolbarHidden ? searchTextInput.focus = true : true;
     }
 }
