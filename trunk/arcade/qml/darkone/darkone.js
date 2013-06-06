@@ -3,7 +3,7 @@ var baseHeight = 600;
 var baseListWidth = 250;
 var lastItemText;
 var lastitemBackground;
-var resetZoom;
+var resetScale;
 var resetListHidden;
 var resetToolbarHidden;
 var flashCounter = 0;
@@ -30,7 +30,7 @@ function init() {
         darkone.debug && console.log("[init] lastIndex: '" + lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
-        resetZoom = darkone.overlayScale;
+        resetScale = darkone.overlayScale;
         darkone.overlayScale /= 2;
 
         listToggle(1 - (darkone.listHidden * 2));
@@ -49,8 +49,8 @@ function init() {
         //power
         lightOut = false;
         lightOutScreen = false;
-        zoom(resetZoom / darkone.overlayScale);
-        resetZoom = 1;
+        zoom(resetScale / darkone.overlayScale);
+        resetScale = 1;
     }
 }
 
@@ -156,22 +156,32 @@ function lightToggle(force) {
         lightOutScreen = false;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        zoom(resetZoom / darkone.overlayScale);
-        resetZoom = 1;
+        if (resetScale != 1) {
+            zoom(resetScale / darkone.overlayScale);
+            resetScale = 1;
+        }
         if (!keepLightOn) {
             lightOutTimer.restart();
             lightOutScreenTimer.restart();
         }
     } else if (force < 0 || (!darkone.lightOff && !force)) {
         ignoreLaunch = true
-        resetListHidden = !darkone.listHidden;
+        if (resetListHidden)
+           //do NOT interfere with whatever else is expecting to 'reset listHidden' (aka show the list)
+           true // no-op
+        else
+           resetListHidden = !darkone.listHidden;
         listToggle(-1);
-        resetToolbarHidden = !darkone.toolbarHidden;
+        if (resetToolbarHidden)
+           //do NOT interfere with whatever else is expecting to 'reset toolbarHidden' (aka sho the toolbar)
+           true // no-op
+        else
+           resetToolbarHidden = !darkone.toolbarHidden;
         toolbarToggle(-1);
         overlayStateBlock.opacity = 0
-        if (resetZoom == 1) {
-            resetZoom = darkone.overlayScale;
-            zoom(resetZoom / 2);
+        if (resetScale == 1) {
+            resetScale = darkone.overlayScale;
+            zoom(resetScale / 2);
         }
         lightOutTimer.stop();
         lightOut = true;
@@ -264,7 +274,7 @@ function launch() {
      listToggle(-1);
      resetToolbarHidden = !darkone.toolbarHidden;
      toolbarToggle(-1);
-     resetZoom = darkone.overlayScale;
+     resetScale = darkone.overlayScale;
      if (darkone.disableLaunchFlash) {
          !darkone.disableLaunchZoom && zoom("max");
          launchTimer.start();
@@ -280,7 +290,7 @@ function gameOn() {
 
 function gameOver() {
     if (inGame) {
-        darkone.debug && console.log("[gameOver] resetZoom: '" + resetZoom + "', " +
+        darkone.debug && console.log("[gameOver] resetScale: '" + resetScale + "', " +
                                                 "resetToolbarHidden: '" + resetToolbarHidden + "', " +
                                                 "resetListHidden: '" + resetListHidden + "'");
         inGame = false;
@@ -288,8 +298,10 @@ function gameOver() {
         overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        !darkone.disableLaunchZoom && zoom(resetZoom / darkone.overlayScale);
-        resetZoom = 1;
+        if (!darkone.disableLaunchZoom && resetScale != 1) {
+           zoom(resetScale / darkone.overlayScale);
+           resetScale = 1;
+        }
         !darkone.toolbarHidden ? searchTextInput.focus = true : true;
     }
 }
