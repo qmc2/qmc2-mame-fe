@@ -41,7 +41,7 @@ function init() {
             lightOutScreenTimer.start();
         }
         darkone.keepLightOn = (darkone.lightTimeout == 0) ? true : false;
-        toolbarToggle(darkone.toolbarAutoHide ? -1 : 1 - (darkone.toolbarHidden * 2));
+        toolbarToggle(darkone.toolbarAutoHide ? -1 : 1);
         fadeIn.start();
     } else if(!fadeIn.running) {
         darkone.initialised = true;
