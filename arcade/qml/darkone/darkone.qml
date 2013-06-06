@@ -102,6 +102,7 @@ Rectangle {
                                      backLightOpacity = 1.0;
                                   overlayScreen.state = "on";
                                } }
+    onOverlayScaleChanged: { overlayScaleTextInput.text = DarkoneJS.round(overlayScale, 2); }
 
     MouseArea {
         anchors.fill: parent
@@ -940,7 +941,7 @@ Rectangle {
         x: preferencesButton.x - 10
         y: parent.height - toolbar.height - 5 - height
         width: 180
-        height: (itemHeight + itemSpacing) * (10 + 1) + 10
+        height: (itemHeight + itemSpacing) * (11 + 1) + 10
         border.color: "black"
         border.width: 1
         color: colour5
@@ -1158,32 +1159,100 @@ Rectangle {
                     visible: parent.activeFocus
                 }
                 onAccepted: {
-                    var valid = text.match(/\D/) ? false : true
-                    text = text.replace(/\D/g, "");
-                    lightTimeout = text == "" ? 0 : text
-                    darkone.keepLightOn = (lightTimeout == 0) ? true : false;
-                    if (darkone.keepLightOn) {
-                        lightOutTimer.stop();
-                        lightOutScreenTimer.stop();
-                    } else {
-                        lightOutTimer.start();
-                        lightOutScreenTimer.start();
-                    }
+                    text = text.replace(/([^0-9.])/g, '');
+                    var valid = text.match(/^(|\d+|\d+\.*\d+)$/g) &&
+                                  parseFloat(text) >= 5 ? true : false
                     if (valid) {
-                        colourScheme1Button.focus = true;
+                        color = "black"
+                        lightTimeout = parseFloat(text);
+                        darkone.keepLightOn = lightTimeout == 0 ? true : false;
+                        if (darkone.keepLightOn) {
+                            lightOutTimer.stop();
+                            lightOutScreenTimer.stop();
+                        } else {
+                            lightOutTimer.start();
+                            lightOutScreenTimer.start();
+                        }
+                        overlayScaleTextInput.focus = true;
                         focus = false;
-                    }
+                    } else
+                        color = "red"
                 }
+                onFocusChanged: { if (focus)
+                                      text = text.replace(/([^0-9.])/g, ''); }
                 KeyNavigation.up: KeyNavigation.backtab
                 KeyNavigation.down: KeyNavigation.tab
                 KeyNavigation.backtab: backLightCheckBox
-                KeyNavigation.tab: colourScheme1Button
+                KeyNavigation.tab: overlayScaleTextInput
             }
             Text {
                 opacity: 1.0
                 anchors.left: lightOutTextInput.right
                 anchors.leftMargin: 7
                 text: qsTr("lights out (secs)")
+                font.pixelSize: 12
+                color: textColour1
+                smooth: true
+            }
+        }
+        Rectangle {
+            id: overlayScaleInputBox
+            property int index: 9
+            height: parent.itemHeight + 2
+            width: 30
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            smooth: true
+            color: "white"
+            TextInput {
+                id: overlayScaleTextInput
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.topMargin: 2
+                anchors.bottomMargin: 2
+                anchors.leftMargin: 2
+                anchors.right: parent.right
+                anchors.rightMargin: 2
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: parent.height - 5
+                smooth: true
+                focus: false
+                color: "black"
+                text: DarkoneJS.round(overlayScale, 2)
+                cursorDelegate: Rectangle {
+                    color: "black"
+                    width: 1
+                    anchors.verticalCenter: parent.verticalCenter
+                    visible: parent.activeFocus
+                }
+                onAccepted: {
+                    text = text.replace(/([^0-9.])/g, '');
+                    var valid = text.match(/^(\d+|\d+\.*\d+)$/g) &&
+                                  parseFloat(text) > 0.33 && parseFloat(text) < 3 ? true : false
+                    if (valid) {
+                        color = "black"
+                        DarkoneJS.zoom( parseFloat(text) / overlayScale )
+                        overlayScale = parseFloat(text)
+                        colourScheme1Button.focus = true;
+                        focus = false;
+                    } else
+                        color = "red"
+                }
+                onFocusChanged: { if (focus)
+                                      text = text.replace(/([^0-9.])/g, ''); }
+                                    
+                KeyNavigation.up: KeyNavigation.backtab
+                KeyNavigation.down: KeyNavigation.tab
+                KeyNavigation.backtab: lightOutTextInput
+                KeyNavigation.tab: colourScheme1Button
+            }
+            Text {
+                opacity: 1.0
+                anchors.left: overlayScaleTextInput.right
+                anchors.leftMargin: 7
+                text: qsTr("overlay scale") // (0.33<x<3.0)")
                 font.pixelSize: 12
                 color: textColour1
                 smooth: true
@@ -1199,7 +1268,7 @@ Rectangle {
             property alias exclusiveGroup: checkable1.exclusiveGroup
             property alias checked: checkable1.checked
             id: colourScheme1Button
-            property int index: 9
+            property int index: 10
             opacity: 0.5
             height: parent.itemHeight - 2
             width: height
@@ -1217,7 +1286,7 @@ Rectangle {
             onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: lightOutInputBox
+            KeyNavigation.backtab: overlayScaleInputBox
             KeyNavigation.tab: colourScheme2Button
         }
         Text {
@@ -1241,7 +1310,7 @@ Rectangle {
             property alias exclusiveGroup: checkable2.exclusiveGroup
             property alias checked: checkable2.checked
             id: colourScheme2Button
-            property int index: 10
+            property int index: 11
             opacity: 0.5
             height: parent.itemHeight - 2
             width: height
