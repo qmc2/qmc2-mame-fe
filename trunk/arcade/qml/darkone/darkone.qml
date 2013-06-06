@@ -103,6 +103,19 @@ Rectangle {
                                   overlayScreen.state = "on";
                                } }
     onOverlayScaleChanged: { overlayScaleTextInput.text = DarkoneJS.round(overlayScale, 2); }
+    onDataHiddenChanged: { dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
+    onInfoMissingChanged: { infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
+    onFullScreenChanged: {
+        if ( !DarkoneJS.initialising ) {
+            if ( fullScreen ) {
+                viewer.switchToFullScreen();
+                fullScreenToggleButton.state = "fullscreen";
+            } else {
+                viewer.switchToWindowed();
+                fullScreenToggleButton.state = "windowed";
+            }
+        }
+    }
 
     MouseArea {
         anchors.fill: parent
@@ -725,9 +738,6 @@ Rectangle {
             }
         }
     } // overlay
-    onDataHiddenChanged: { dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
-    onInfoMissingChanged: { infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
-
 
 /***
 * list
@@ -1740,15 +1750,4 @@ Rectangle {
         }
     }
     Keys.forwardTo: [gameListView]
-    onFullScreenChanged: {
-        if ( !DarkoneJS.initialising ) {
-            if ( fullScreen ) {
-                viewer.switchToFullScreen();
-                fullScreenToggleButton.state = "fullscreen";
-            } else {
-                viewer.switchToWindowed();
-                fullScreenToggleButton.state = "windowed";
-            }
-        }
-    }
 }
