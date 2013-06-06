@@ -102,7 +102,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("backLight", globalConfig->backLight());
         rootObject()->setProperty("toolbarAutoHide", globalConfig->toolbarAutoHide());
         rootObject()->setProperty("disableLaunchFlash", globalConfig->disableLaunchFlash());
-        rootObject()->setProperty("disableZoom", globalConfig->disableZoom());
+        rootObject()->setProperty("disableLaunchZoom", globalConfig->disableLaunchZoom());
         rootObject()->setProperty("overlayScale", std::max(0.33, globalConfig->overlayScale()));
         rootObject()->setProperty("lightTimeout", std::max(5.0, globalConfig->lightTimeout()));
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
@@ -148,7 +148,7 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setBackLight(rootObject()->property("backLight").toBool());
         globalConfig->setToolbarAutoHide(rootObject()->property("toolbarAutoHide").toBool());
         globalConfig->setDisableLaunchFlash(rootObject()->property("disableLaunchFlash").toBool());
-        globalConfig->setDisableZoom(rootObject()->property("disableZoom").toBool());
+        globalConfig->setDisableLaunchZoom(rootObject()->property("disableLaunchZoom").toBool());
         globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
         globalConfig->setLightTimeout(rootObject()->property("lightTimeout").toDouble());
         globalConfig->setColourScheme(rootObject()->property("colourScheme").toString());
