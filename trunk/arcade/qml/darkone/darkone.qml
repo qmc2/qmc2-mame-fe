@@ -756,26 +756,59 @@ Rectangle {
         states: [
             State {
                 name: "hidden"
+                PropertyChanges { target: showListButton; anchors.left: toolbar.left; }
                 PropertyChanges { target: gameListView; anchors.leftMargin: -DarkoneJS.listWidth() - 5 }
+
             },
             State {
                 name: "shown"
+                PropertyChanges { target: showListButton; anchors.left: searchBox.right; }
                 PropertyChanges { target: gameListView; anchors.leftMargin: 15 }
             }
         ]
         transitions: [
+            //note: here we jump through hoops for an issue where by if a list is hidden in non-fullscreen, and
+            //then fullscreen is enabled, the leftMargin isn't updated and so the (hidden) list is partially viewable.
+            //the clean way is to switch anchors from 'left against parent.left' to 'right against parent.left',
+            //but setting left/right anchors to 'undefined' in a state doesn't seem to work. the setting doesn't
+            //take effect, and hence the list is squashed out of existence instead of moved which looks bad
+            //a massive negitive margin would work fine but that's a very bad hack. so as it stands here, opacity
+            //comes to the rescue. it seems natural to set hidden elements to transparent, but just remember the above
+            //issue means that the hidden list can become technically unhidden (unhidden but invisible)
             Transition {
                 from: "hidden"
                 to: "shown"
-                ParallelAnimation {
-                    PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad }
-                    PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad } } },
+                SequentialAnimation {
+                    // ensure correct initial position
+                    PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -DarkoneJS.listWidth() - 5; duration: 0; easing.type: Easing.Linear }
+                    PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -DarkoneJS.listWidth() - 5; duration: 0; easing.type: Easing.Linear }
+                    // make visible
+                    PropertyAnimation { target: gameListView; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                    PropertyAnimation { target: searchBox; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                    // re-anchor show/hide list button (set in the state property)
+                    PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
+                    // animate
+                    ParallelAnimation {
+                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad }
+
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad } } } },
             Transition {
                 from: "shown"
                 to: "hidden"
-                ParallelAnimation {
-                    PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad }
-                    PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad } } }
+                SequentialAnimation {
+                    // ensure correct initial position
+                    PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: DarkoneJS.listWidth() +15; duration: 0; easing.type: Easing.Linear }
+                    PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: anchors.leftMargin; to: DarkoneJS.listWidth() + 15; duration: 0; easing.type: Easing.Linear }
+                    // animate
+                    ParallelAnimation {
+                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad }
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad } }
+                    // make invisible
+                    PropertyAnimation { target: gameListView; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                    PropertyAnimation { target: searchBox; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                    // re-anchor show/hide list button (set in the state property)
+                    PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
+             } }
         ]
         onCurrentIndexChanged: { darkone.lastIndex = currentIndex; }
 
@@ -1568,7 +1601,7 @@ Rectangle {
             else if ( launchFlashTimer.running ) {
                 launchFlashTimer.stop();
                 DarkoneJS.flashCounter = 0;
-                overlayStateBlock.opacity = 0.5; 
+                overlayStateBlock.opacity = 0.5;
             }
             event.accepted = true;
             break;
