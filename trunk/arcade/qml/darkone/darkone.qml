@@ -756,19 +756,27 @@ Rectangle {
         states: [
             State {
                 name: "hidden"
-                PropertyChanges { target: gameListView; anchors.leftMargin: -DarkoneJS.listWidth() - 15 }
+                PropertyChanges { target: gameListView; anchors.leftMargin: -DarkoneJS.listWidth() - 5 }
             },
             State {
                 name: "shown"
                 PropertyChanges { target: gameListView; anchors.leftMargin: 15 }
             }
         ]
-        transitions: Transition {
-            from: "hidden"
-            to: "shown"
-            reversible: true
-            PropertyAnimation { properties: "anchors.leftMargin"; duration: listDuration; easing.type: Easing.InOutQuad }
-        }
+        transitions: [
+            Transition {
+                from: "hidden"
+                to: "shown"
+                ParallelAnimation {
+                    PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad }
+                    PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad } } },
+            Transition {
+                from: "shown"
+                to: "hidden"
+                ParallelAnimation {
+                    PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad }
+                    PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad } } }
+        ]
         onCurrentIndexChanged: { darkone.lastIndex = currentIndex; }
 
         /* item */
@@ -1292,7 +1300,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 15
-            opacity: listHidden ? 0 : 1.0
+            opacity: 1.0
             Image {
                 id: searchButton
                 source: "images/find.png"

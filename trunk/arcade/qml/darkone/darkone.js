@@ -132,14 +132,10 @@ function listToggle(force) {
     if (force > 0 || (darkone.listHidden && !force)) {
         gameListView.state = "shown"
         darkone.listHidden = false;
-        searchBox.opacity = 1.0;
-        showListButton.anchors.left = searchBox.right
         showListButton.rotation = 270;
     } else if (force < 0 || (!darkone.listHidden && !force)) {
         gameListView.state = "hidden"
         darkone.listHidden = true;
-        searchBox.opacity = 0;
-        showListButton.anchors.left = showListButton.parent.left
         showListButton.rotation = 90;
     }
     searchTextInput.focus = false;
