@@ -50,7 +50,7 @@ function init() {
         lightOut = false;
         lightOutScreen = false;
         zoom(resetScale / darkone.overlayScale);
-        resetScale = 1;
+        resetScale = -1;
     }
 }
 
@@ -156,9 +156,9 @@ function lightToggle(force) {
         lightOutScreen = false;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        if (resetScale != 1) {
+        if (resetScale != -1) {
             zoom(resetScale / darkone.overlayScale);
-            resetScale = 1;
+            resetScale = -1;
         }
         if (!keepLightOn) {
             lightOutTimer.restart();
@@ -179,7 +179,7 @@ function lightToggle(force) {
            resetToolbarHidden = !darkone.toolbarHidden;
         toolbarToggle(-1);
         overlayStateBlock.opacity = 0
-        if (resetScale == 1) {
+        if (resetScale == -1) {
             resetScale = darkone.overlayScale;
             zoom(resetScale / 2);
         }
@@ -298,9 +298,9 @@ function gameOver() {
         overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        if (!darkone.disableLaunchZoom && resetScale != 1) {
+        if (!darkone.disableLaunchZoom && resetScale != -1) {
            zoom(resetScale / darkone.overlayScale);
-           resetScale = 1;
+           resetScale = -1;
         }
         !darkone.toolbarHidden ? searchTextInput.focus = true : true;
     }
