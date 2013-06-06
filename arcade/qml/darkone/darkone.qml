@@ -758,12 +758,15 @@ Rectangle {
                 name: "hidden"
                 PropertyChanges { target: showListButton; anchors.left: toolbar.left; }
                 PropertyChanges { target: gameListView; anchors.leftMargin: -DarkoneJS.listWidth() - 5 }
-
+                PropertyChanges { target: gameListView; opacity: 0 }
+                PropertyChanges { target: searchBox; opacity: 0 }
             },
             State {
                 name: "shown"
                 PropertyChanges { target: showListButton; anchors.left: searchBox.right; }
                 PropertyChanges { target: gameListView; anchors.leftMargin: 15 }
+                PropertyChanges { target: gameListView; opacity: 1.0 }
+                PropertyChanges { target: searchBox; opacity: 1.0 }
             }
         ]
         transitions: [
@@ -782,9 +785,9 @@ Rectangle {
                     // ensure correct initial position
                     PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -DarkoneJS.listWidth() - 5; duration: 0; easing.type: Easing.Linear }
                     PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -DarkoneJS.listWidth() - 5; duration: 0; easing.type: Easing.Linear }
-                    // make visible
-                    PropertyAnimation { target: gameListView; property: "opacity"; from: 0; to: 1.0; duration: 0; }
-                    PropertyAnimation { target: searchBox; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                    // make visible (set in the state property)
+                    PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
+                    PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
                     // re-anchor show/hide list button (set in the state property)
                     PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
                     // animate
@@ -803,9 +806,9 @@ Rectangle {
                     ParallelAnimation {
                         PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad }
                         PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad } }
-                    // make invisible
-                    PropertyAnimation { target: gameListView; property: "opacity"; from: 1.0; to: 0; duration: 0; }
-                    PropertyAnimation { target: searchBox; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                    // make invisible (set in the state property)
+                    PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
+                    PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
                     // re-anchor show/hide list button (set in the state property)
                     PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
              } }
