@@ -127,6 +127,36 @@ QString ArcadeSettings::filteredListFile()
     return value(QString("Arcade/%1/FilteredListFile").arg(emulatorPrefix), QString()).toString();
 }
 
+void ArcadeSettings::setDefaultTheme(QString theme)
+{
+    setValue(QString("%1/Arcade/Theme").arg(frontEndPrefix), theme);
+}
+
+QString ArcadeSettings::defaultTheme()
+{
+    return value(QString("%1/Arcade/Theme").arg(frontEndPrefix), "ToxicWaste").toString();
+}
+
+void ArcadeSettings::setDefaultConsoleType(QString consoleType)
+{
+    setValue(QString("%1/Arcade/ConsoleType").arg(frontEndPrefix), consoleType);
+}
+
+QString ArcadeSettings::defaultConsoleType()
+{
+    return value(QString("%1/Arcade/ConsoleType").arg(frontEndPrefix), "terminal").toString();
+}
+
+void ArcadeSettings::setDefaultGraphicsSystem(QString graphicsSystem)
+{
+    setValue(QString("%1/Arcade/GraphicsSystem").arg(frontEndPrefix), graphicsSystem);
+}
+
+QString ArcadeSettings::defaultGraphicsSystem()
+{
+    return value(QString("%1/Arcade/GraphicsSystem").arg(frontEndPrefix), "raster").toString();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);

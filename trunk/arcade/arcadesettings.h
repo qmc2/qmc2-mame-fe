@@ -38,6 +38,14 @@ public slots:
     void setFilteredListFile(QString);
     QString filteredListFile();
 
+    // default settings for command line arguments
+    void setDefaultTheme(QString);
+    QString defaultTheme();
+    void setDefaultConsoleType(QString);
+    QString defaultConsoleType();
+    void setDefaultGraphicsSystem(QString);
+    QString defaultGraphicsSystem();
+
     // theme-specific settings
     void setFpsVisible(bool);
     bool fpsVisible();

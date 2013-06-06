@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QXmlStreamReader>
 #include <QFileInfo>
 
