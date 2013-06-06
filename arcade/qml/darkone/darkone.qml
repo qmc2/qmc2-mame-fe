@@ -18,7 +18,7 @@ Rectangle {
     property string dataTypeCurrent: "title"
     property int zoomDuration: 250
     property int listDuration: 750
-    property int flashes: 3
+    property int flashes: 4
     property int overlayDuration: 0
     property int toolbarHideIn: 0
     property bool preferencesLaunchLock: false
@@ -1557,6 +1557,11 @@ Rectangle {
                 searchTextInput.focus = false;
             else if ( preferencesDialog.state == "shown" )
                 preferencesDialog.state = "hidden";
+            else if ( launchFlashTimer.running ) {
+                launchFlashTimer.stop();
+                DarkoneJS.flashCounter = 0;
+                overlayStateBlock.opacity = 0.5; 
+            }
             event.accepted = true;
             break;
         case Qt.Key_F1:
