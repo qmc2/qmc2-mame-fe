@@ -38,22 +38,22 @@
 <context>
     <name>ProcessManager</name>
     <message>
-        <location filename="../processmanager.cpp" line="105"/>
+        <location filename="../processmanager.cpp" line="106"/>
         <source>Loading configuration template from &apos;%1&apos;</source>
         <translation>Lade Konfigurationsvorlage von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="113"/>
+        <location filename="../processmanager.cpp" line="114"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation>FATAL: XML Fehler beim Lesen der Vorlage: &apos;%1&apos; in Datei &apos;%2&apos; in Zeile %3, Spalte %4</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="144"/>
+        <location filename="../processmanager.cpp" line="145"/>
         <source>Done (loading configuration template from &apos;%1&apos;)</source>
         <translation>Fertig (Lade Konfigurationsvorlage von &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../processmanager.cpp" line="144"/>
+        <location filename="../processmanager.cpp" line="145"/>
         <source>%n option(s) loaded</source>
         <translation>
             <numerusform>%n Option geladen</numerusform>
@@ -61,169 +61,169 @@
         </translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="146"/>
+        <location filename="../processmanager.cpp" line="147"/>
         <source>FATAL: Can&apos;t open the configuration template file: reason = %1</source>
         <translation>FATAL: Kann die Konfigurationsvorlage-Datei nicht öffnen: Grund = %1</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="153"/>
+        <location filename="../processmanager.cpp" line="154"/>
         <source>No error occurred</source>
         <translation>Kein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="155"/>
+        <location filename="../processmanager.cpp" line="156"/>
         <source>An error occurred when reading from the file</source>
         <translation>Beim Lesen der Datei ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="157"/>
+        <location filename="../processmanager.cpp" line="158"/>
         <source>An error occurred when writing to the file</source>
         <translation>Beim Schreiben der Datei ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="159"/>
+        <location filename="../processmanager.cpp" line="160"/>
         <source>A fatal error occurred</source>
         <translation>Ein fataler Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="161"/>
+        <location filename="../processmanager.cpp" line="162"/>
         <source>A resource error occurred</source>
         <translation>Ein Ressource-Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="163"/>
+        <location filename="../processmanager.cpp" line="164"/>
         <source>The file could not be opened</source>
         <translation>Die Datei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="165"/>
+        <location filename="../processmanager.cpp" line="166"/>
         <source>The operation was aborted</source>
         <translation>Die Operation wurde abgebrochen</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="167"/>
-        <location filename="../processmanager.cpp" line="195"/>
+        <location filename="../processmanager.cpp" line="168"/>
+        <location filename="../processmanager.cpp" line="196"/>
         <source>A timeout occurred</source>
         <translation>Eine Zeitüberschreitung ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="169"/>
+        <location filename="../processmanager.cpp" line="170"/>
         <source>An unspecified error occurred</source>
         <translation>Ein unspezifischer Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="171"/>
+        <location filename="../processmanager.cpp" line="172"/>
         <source>The file could not be removed</source>
         <translation>Die Datei konnte nicht entfernt werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="173"/>
+        <location filename="../processmanager.cpp" line="174"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="175"/>
+        <location filename="../processmanager.cpp" line="176"/>
         <source>The position in the file could not be changed</source>
         <translation>Die Position in der Datei konnte nicht verändert werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="177"/>
+        <location filename="../processmanager.cpp" line="178"/>
         <source>The file could not be resized</source>
         <translation>Die Größe der Datei konnte nicht geändert werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="179"/>
+        <location filename="../processmanager.cpp" line="180"/>
         <source>The file could not be accessed</source>
         <translation>Auf die Datei konnte nicht zugegriffen werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="181"/>
+        <location filename="../processmanager.cpp" line="182"/>
         <source>The file could not be copied</source>
         <translation>Die Datei konnte nicht kopiert werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="183"/>
-        <location filename="../processmanager.cpp" line="202"/>
+        <location filename="../processmanager.cpp" line="184"/>
+        <location filename="../processmanager.cpp" line="203"/>
         <source>An unknown error occurred</source>
         <translation>Ein unbekannter Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="191"/>
+        <location filename="../processmanager.cpp" line="192"/>
         <source>The process failed to start</source>
         <translation>Der Prozess konnte nicht gestartet werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="193"/>
+        <location filename="../processmanager.cpp" line="194"/>
         <source>The process crashed</source>
         <translation>Der Prozess ist abgestürzt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="197"/>
+        <location filename="../processmanager.cpp" line="198"/>
         <source>An error occurred when attempting to write to the process</source>
         <translation>Beim Versuch an den Prozess zu schreiben ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="199"/>
+        <location filename="../processmanager.cpp" line="200"/>
         <source>An error occurred when attempting to read from the process</source>
         <translation>Beim Versuch vom Prozess zu lesen ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="210"/>
+        <location filename="../processmanager.cpp" line="211"/>
         <source>Not running</source>
         <translation>Wird nicht ausgeführt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="212"/>
+        <location filename="../processmanager.cpp" line="213"/>
         <source>Starting</source>
         <translation>Programm wird gestartet</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="214"/>
+        <location filename="../processmanager.cpp" line="215"/>
         <source>Running</source>
         <translation>Wird ausgeführt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="216"/>
+        <location filename="../processmanager.cpp" line="217"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="224"/>
+        <location filename="../processmanager.cpp" line="225"/>
         <source>Emulator #%1 error: reason = %2</source>
         <translation>Emulator #%1 Fehler: Grund = %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="231"/>
+        <location filename="../processmanager.cpp" line="232"/>
         <source>Emulator #%1 finished: exitCode = %2, exitStatus = %3</source>
         <translation>Emulator #%1 beendet: exitCode = %2, exitStatus = %3</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="231"/>
+        <location filename="../processmanager.cpp" line="232"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="231"/>
+        <location filename="../processmanager.cpp" line="232"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="246"/>
+        <location filename="../processmanager.cpp" line="247"/>
         <source>Emulator #%1 stdout: %2</source>
         <translation>Emulator #%1 stdout: %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="263"/>
+        <location filename="../processmanager.cpp" line="264"/>
         <source>Emulator #%1 stderr: %2</source>
         <translation>Emulator #%1 stderr: %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="272"/>
+        <location filename="../processmanager.cpp" line="273"/>
         <source>Emulator #%1 started</source>
         <translation>Emulator #%1 gestartet</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="280"/>
+        <location filename="../processmanager.cpp" line="281"/>
         <source>Emulator #%1 state changed: newState = %2</source>
         <translation>Emulator #%1 Statusänderung: newState = %2</translation>
     </message>
@@ -290,56 +290,66 @@
         <translation>QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="96"/>
-        <source>MAME</source>
-        <translation>MAME</translation>
+        <location filename="../main.cpp" line="165"/>
+        <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
+        <translation>%1 ist kein gültiges Grafik-System - verfügare Grafik-Systeme: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="96"/>
-        <source>MESS</source>
-        <translation>MESS</translation>
+        <location filename="../main.cpp" line="181"/>
+        <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
+        <translation>%1 ist kein gültiger Emulator-Modus - verfügare Emulator-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="96"/>
-        <source>UME</source>
-        <translation>UME</translation>
+        <location filename="../main.cpp" line="199"/>
+        <source>%1 is not a valid console-mode - available console-modes: %2</source>
+        <translation>%1 ist kein gültiger Konsolen-Modus - verfügare Konsolen-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="125"/>
+        <location filename="../main.cpp" line="217"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 ist kein gültiger Theme - verfügare Themes: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="146"/>
-        <location filename="../main.cpp" line="155"/>
-        <location filename="../main.cpp" line="164"/>
+        <location filename="../main.cpp" line="230"/>
+        <location filename="../main.cpp" line="239"/>
+        <location filename="../main.cpp" line="248"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 ist kein gültiger %2 Theme - verfügare %2 Themes: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="146"/>
-        <location filename="../main.cpp" line="155"/>
-        <location filename="../main.cpp" line="164"/>
+        <location filename="../main.cpp" line="230"/>
+        <location filename="../main.cpp" line="239"/>
+        <location filename="../main.cpp" line="248"/>
         <source>(none)</source>
         <translation>(keine)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="201"/>
-        <source>emulator: %1</source>
-        <translation>Emulator: %1</translation>
+        <location filename="../main.cpp" line="281"/>
+        <source>emulator-mode: %1</source>
+        <translation>Emulator-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="202"/>
+        <location filename="../main.cpp" line="282"/>
         <source>theme: %1</source>
         <translation>Theme: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="213"/>
+        <location filename="../main.cpp" line="283"/>
+        <source>graphics-system: %1</source>
+        <translation>Grafik-System: %1</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="284"/>
+        <source>console-mode: %1</source>
+        <translation>Konsolen-Modus: %1</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="296"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Starte QML Anzeige unter Verwendung des Themes &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="229"/>
+        <location filename="../main.cpp" line="312"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
@@ -394,17 +404,17 @@
         <translation>WARNUNG: Kann Maschinen-Info DB %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="187"/>
+        <location filename="../infoprovider.cpp" line="195"/>
         <source>Done (Loading machine info DB)</source>
         <translation>Fertig (Lade Maschinen-Info DB)</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="195"/>
+        <location filename="../infoprovider.cpp" line="187"/>
         <source>Done (Loading game info DB)</source>
         <translation>Fertig (Lade Spiel-Info DB)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="188"/>
+        <location filename="../infoprovider.cpp" line="196"/>
         <source>%n machine info record(s) loaded</source>
         <translation>
             <numerusform>%n Maschinen-Info Datensatz geladen</numerusform>
@@ -412,12 +422,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="190"/>
+        <location filename="../infoprovider.cpp" line="198"/>
         <source>Invalidating machine info DB</source>
         <translation>Invalidiere Maschinen-Info DB</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="198"/>
+        <location filename="../infoprovider.cpp" line="190"/>
         <source>Invalidating game info DB</source>
         <translation>Invalidiere Spiel-Info DB</translation>
     </message>
@@ -457,7 +467,7 @@
         <translation>Invalidiere Emulator-Info DB</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="196"/>
+        <location filename="../infoprovider.cpp" line="188"/>
         <source>%n game info record(s) loaded</source>
         <translation>
             <numerusform>%n Spiel-Info Datensatz geladen</numerusform>
@@ -592,120 +602,120 @@
 <context>
     <name>TweakedQmlApplicationViewer</name>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="81"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="77"/>
         <source>Loading global and theme-specific settings</source>
         <translation>Lade globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="116"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="112"/>
         <source>Ready to launch %1</source>
         <translation>Bereit zum Starten von %1</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="116"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="112"/>
         <source>games</source>
         <translation>Spiele</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="116"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="112"/>
         <source>machines</source>
         <translation>Maschinen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="121"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="117"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Speichere globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="175"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="171"/>
         <source>Activating full-screen display</source>
         <translation>Aktiviere Vollbild-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="198"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="194"/>
         <source>Activating windowed display</source>
         <translation>Aktiviere Fenster-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="219"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="215"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="221"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="217"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="223"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="219"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="225"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="221"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="228"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="224"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="257"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="253"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>WARNUNG: Die gefilterte Listen-Datei &apos;%1&apos; existiert nicht oder kann nicht geöffnet werden, verwende stattdessen die volle %2</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="259"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="268"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="255"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="264"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="301"/>
         <location filename="../tweakedqmlappviewer.cpp" line="305"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="309"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="320"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="316"/>
         <source>game list</source>
         <translation>Spieleliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="259"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="268"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="255"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="264"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="301"/>
         <location filename="../tweakedqmlappviewer.cpp" line="305"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="309"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="320"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="316"/>
         <source>machine list</source>
         <translation>Maschinenliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="267"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="263"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Lade %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="284"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="280"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: Kann ROM Status Cache Datei &apos;%1&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="287"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="283"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>WARNUNG: Die ROM Status Cache Datei &apos;%1&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="304"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="300"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Kann die %1-Cache Datei &apos;%2&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="308"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="304"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>FATAL: Die %1-Cache Datei &apos;%2&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="319"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="315"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Lade &apos;%1&apos; von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="320"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="316"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n unterstütztes Set (ohne Geräte-Sets)</numerusform>
@@ -713,27 +723,27 @@
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="326"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="322"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Starte Emulator #%1 für %2 mit der ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="326"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="322"/>
         <source>game</source>
         <translation>Spiel</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="326"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="322"/>
         <source>machine</source>
         <translation>Maschine</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="401"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
         <source>Stopping QML viewer</source>
         <translation>Beende QML Viewer</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="404"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="400"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>QML Viewer gestoppt - bitte zum Beenden Konsolenfenster schließen</translation>
     </message>
@@ -741,67 +751,67 @@
 <context>
     <name>darkone</name>
     <message>
-        <location filename="../qml/darkone/darkone.js" line="306"/>
+        <location filename="../qml/darkone/darkone.js" line="304"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.js" line="306"/>
+        <location filename="../qml/darkone/darkone.js" line="304"/>
         <source>ROM state</source>
         <translation>ROM Status</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="955"/>
+        <location filename="../qml/darkone/darkone.qml" line="947"/>
         <source>Preferences</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="978"/>
+        <location filename="../qml/darkone/darkone.qml" line="970"/>
         <source>FPS counter</source>
         <translation>FPS-Zähler</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1015"/>
+        <location filename="../qml/darkone/darkone.qml" line="995"/>
         <source>sort by name?</source>
         <translation>Nach Namen sortieren?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1043"/>
+        <location filename="../qml/darkone/darkone.qml" line="1023"/>
         <source>auto-hide toolbar</source>
         <translation>Werkzeugleiste ausbl.?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1063"/>
+        <location filename="../qml/darkone/darkone.qml" line="1043"/>
         <source>disable launch flash?</source>
         <translation>Start-Flash abschalten?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1084"/>
+        <location filename="../qml/darkone/darkone.qml" line="1063"/>
         <source>disable launch zoom?</source>
         <translation>Start-Zoom abschalten?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1104"/>
+        <location filename="../qml/darkone/darkone.qml" line="1083"/>
         <source>back lighting</source>
         <translation>Hintergr.beleuchtung?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1172"/>
+        <location filename="../qml/darkone/darkone.qml" line="1150"/>
         <source>lights out (secs)</source>
         <translation>Licht aus (Sekunden)</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1216"/>
+        <location filename="../qml/darkone/darkone.qml" line="1194"/>
         <source>dark colour scheme</source>
         <translation>Farbschema &apos;dunkel&apos;</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1258"/>
+        <location filename="../qml/darkone/darkone.qml" line="1236"/>
         <source>metal colour scheme</source>
         <translation>Farbschema &apos;Metall&apos;</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1517"/>
+        <location filename="../qml/darkone/darkone.qml" line="1479"/>
         <source>FPS</source>
         <translation>FPS</translation>
     </message>

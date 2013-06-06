@@ -12,11 +12,14 @@ ArcadeSettings *globalConfig = NULL;
 ConsoleWindow *consoleWindow = NULL;
 int emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
 int consoleMode = QMC2_ARCADE_CONSOLE_TERM;
-QStringList emulatorModeNames;
+QStringList emulatorModes;
 QStringList arcadeThemes;
 QStringList mameThemes;
 QStringList messThemes;
 QStringList umeThemes;
+QStringList consoleModes;
+QStringList graphicsSystems;
+QStringList argumentList;
 bool runApp = true;
 
 #if QT_VERSION < 0x050000
@@ -50,7 +53,7 @@ void qtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString 
     QMC2_ARCADE_LOG_STR(msgString);
 }
 
-void showHelp()
+void showHelp(ArcadeSettings *settings = NULL)
 {
 #if defined(QMC2_ARCADE_OS_WIN)
     // we need the console window to display the help text on Windows because we have no terminal connection
@@ -59,14 +62,54 @@ void showHelp()
         consoleWindow->show();
     }
 #endif
-    QString helpMessage = QString("Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
-                                  "Option           Meaning             Possible values ([..] = default)\n"
-                                  "---------------  ------------------  ------------------------------------\n"
-                                  "-emu             Emulator mode       [mame], mess, ume\n"
-                                  "-theme           Theme selection     [ToxicWaste], darkone\n"
-                                  "-console         Console type        [terminal], window, window-minimized\n"
-                                  "-graphicssystem  Graphics engine     [raster], native, opengl\n"
-                                  "-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+
+    QString defTheme = "ToxicWaste";
+    QString defConsole = "terminal";
+    QString defGSys = "raster";
+
+    if ( settings ) {
+        defTheme = settings->defaultTheme();
+        defConsole = settings->defaultConsoleType();
+        defGSys = settings->defaultGraphicsSystem();
+    }
+
+    QStringList themeList;
+    foreach (QString theme, arcadeThemes) {
+        if ( defTheme == theme )
+            themeList << "[" + theme + "]";
+        else
+            themeList << theme;
+    }
+    QString availableThemes = themeList.join(", ");
+
+    QStringList consoleList;
+    foreach (QString console, consoleModes) {
+        if ( defConsole == console )
+            consoleList << "[" + console + "]";
+        else
+            consoleList << console;
+    }
+    QString availableConsoles = consoleList.join(", ");
+
+    QStringList gSysList;
+    foreach (QString gSys, graphicsSystems) {
+        if ( defGSys == gSys )
+            gSysList << "[" + gSys + "]";
+        else
+            gSysList << gSys;
+    }
+    QString availableGraphicsSystems = gSysList.join(", ");
+
+    QString helpMessage;
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
+                   "Option           Meaning             Possible values ([..] = default)\n"
+                   "---------------  ------------------  ------------------------------------\n"
+                   "-emu             Emulator mode       [mame], mess, ume\n";
+    helpMessage += "-theme           Theme selection     " + availableThemes + "\n";
+    helpMessage += "-console         Console type        " + availableConsoles + "\n";
+    helpMessage += "-graphicssystem  Graphics engine     " + availableGraphicsSystems + "\n";
+    helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
@@ -90,16 +133,60 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(qtMessageHandler);
 #endif
 
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
-
-    // available emulator modes & themes
-    emulatorModeNames << QObject::tr("MAME") << QObject::tr("MESS") << QObject::tr("UME");
+    // available emulator-modes, themes, console-modes and graphics-systems
+    emulatorModes << "mame" << "mess" << "ume";
     arcadeThemes << "ToxicWaste" << "darkone";
     mameThemes << "ToxicWaste" << "darkone";
     // messThemes << "..."
     umeThemes << "ToxicWaste" << "darkone";
+    consoleModes << "terminal" << "window" << "window-minimized";
+    graphicsSystems << "raster" << "native" << "opengl";
 
-    QString console = QMC2_ARCADE_CLI_CONS;
+    // we have to make a copy of the command line arguments since QApplication's constructor "eats" -graphicssystem and its value (and we really need to know if it has been set!)
+    for (int i = 0; i < argc; i++)
+        argumentList << argv[i];
+
+    QApplication *tempApp = new QApplication(argc, argv);
+
+    QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
+    QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
+    QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
+    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
+    ArcadeSettings *startupConfig = new ArcadeSettings("");
+
+    QString gSys = startupConfig->defaultGraphicsSystem();
+    if ( QMC2_ARCADE_CLI_GSYS_VAL )
+        gSys = QMC2_ARCADE_CLI_GSYS;
+
+    delete startupConfig;
+    delete tempApp;
+
+    if ( !graphicsSystems.contains(gSys) ) {
+        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid graphics-system - available graphics-systems: %2").arg(gSys).arg(graphicsSystems.join(", ")));
+        return 1;
+    }
+
+    QApplication::setGraphicsSystem(gSys);
+
+    // create the actual application instance
+    QScopedPointer<QApplication> app(createApplication(argc, argv));
+
+    if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
+        emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
+        if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK ) {
+            showHelp();
+            return 1;
+        }
+    } else if ( !emulatorModes.contains(QMC2_ARCADE_CLI_EMU) ) {
+        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid emulator-mode - available emulator-modes: %2").arg(QMC2_ARCADE_CLI_EMU).arg(emulatorModes.join(", ")));
+        return 1;
+    }
+
+    startupConfig = new ArcadeSettings("");
+
+    QString console = startupConfig->defaultConsoleType();
+    if ( QMC2_ARCADE_CLI_CONS_VAL )
+        console = QMC2_ARCADE_CLI_CONS;
 
     if ( console == "window" || console == "window-minimized" ) {
         consoleMode = console == "window" ? QMC2_ARCADE_CONSOLE_WIN : QMC2_ARCADE_CONSOLE_WINMIN;
@@ -108,42 +195,39 @@ int main(int argc, char *argv[])
             consoleWindow->showMinimized();
         else
             consoleWindow->show();
+    } else if ( !consoleModes.contains(console) ) {
+        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid console-mode - available console-modes: %2").arg(console).arg(consoleModes.join(", ")));
+        return 1;
     }
 
-    // process command line arguments
     if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
-        showHelp();
-        if ( !consoleWindow )
+        showHelp(startupConfig);
+        if ( !consoleWindow ) {
+            delete startupConfig;
             return 1;
-        else
+        } else
             runApp = false;
     }
 
-    QString theme = QMC2_ARCADE_CLI_THEME;
+    QString theme = startupConfig->defaultTheme();
+    if ( QMC2_ARCADE_CLI_THEME_VAL )
+        theme = QMC2_ARCADE_CLI_THEME;
 
     if ( !arcadeThemes.contains(theme) && runApp ) {
         QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
-        if ( !consoleWindow )
+        if ( !consoleWindow ) {
+            delete startupConfig;
             return 1;
-        else
+        } else
             runApp = false;
     }
 
-    if ( !QMC2_ARCADE_CLI_EMU_UNK && runApp ) {
-        emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
-        if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK ) {
-            showHelp();
-            if ( !consoleWindow )
-                return 1;
-            else
-                runApp = false;
-        }
-    }
+    delete startupConfig;
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
         if ( !mameThemes.contains(theme) && runApp ) {
-            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
+            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else
@@ -152,7 +236,7 @@ int main(int argc, char *argv[])
         break;
     case QMC2_ARCADE_EMUMODE_MESS:
         if ( !messThemes.contains(theme) && runApp ) {
-            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
+            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_MESS]).arg(messThemes.isEmpty() ? QObject::tr("(none)") : messThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else
@@ -161,7 +245,7 @@ int main(int argc, char *argv[])
         break;
     case QMC2_ARCADE_EMUMODE_UME:
         if ( !umeThemes.contains(theme) && runApp ) {
-            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModeNames[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
+            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_UME]).arg(umeThemes.isEmpty() ? QObject::tr("(none)") : umeThemes.join(", ")));
             if ( !consoleWindow )
                 return 1;
             else
@@ -170,11 +254,7 @@ int main(int argc, char *argv[])
         break;
     }
 
-    // settings management
-    QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
-    QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
-    QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
-    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
+    // create global settings
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
@@ -186,8 +266,8 @@ int main(int argc, char *argv[])
     if ( qmc2ArcadeTranslator.load(QString("qmc2-arcade_%1").arg(language), ":/translations") )
         app->installTranslator(&qmc2ArcadeTranslator);
 
-
     int returnCode;
+
     if ( runApp ) {
         // log banner message
         QString bannerMessage = QString("%1 %2 (%3)").
@@ -198,8 +278,11 @@ int main(int argc, char *argv[])
                                 arg(QMC2_ARCADE_APP_VERSION).
 #endif
                                 arg(QString("Qt ") + qVersion() + ", " +
-                                    QObject::tr("emulator: %1").arg(emulatorModeNames[emulatorMode]) + ", " +
-                                    QObject::tr("theme: %1").arg(theme));
+                                    QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
+                                    QObject::tr("theme: %1").arg(theme) + ", " +
+                                    QObject::tr("graphics-system: %1").arg(gSys) + ", " +
+                                    QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]));
+
         QMC2_ARCADE_LOG_STR(bannerMessage);
 
         if ( consoleWindow )

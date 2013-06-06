@@ -52,7 +52,7 @@
 #else
 #define QMC2_ARCADE_DOT_PATH        (QDir::homePath() + "/.qmc2")
 #endif
-#define QMC2_ARCADE_DYN_DOT_PATH    (qApp->arguments().indexOf("-config_path") >= 0 && qApp->arguments().indexOf("-config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-config_path") + 1]: QMC2_ARCADE_DOT_PATH)
+#define QMC2_ARCADE_DYN_DOT_PATH    (argumentList.indexOf("-config_path") >= 0 && argumentList.indexOf("-config_path") + 1 <= argumentList.count() ? argumentList[argumentList.indexOf("-config_path") + 1]: QMC2_ARCADE_DOT_PATH)
 
 // ROM states
 #define QMC2_ARCADE_ROMSTATE_C      0
@@ -94,22 +94,28 @@
 
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)
-#define QMC2_ARCADE_CLI_EMU_MAME    (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "mame" : false)
-#define QMC2_ARCADE_CLI_EMU_MESS    (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "mess" : false)
-#define QMC2_ARCADE_CLI_EMU_UME     (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-emu") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-emu") + 1].toLower() == "ume" : false)
+#define QMC2_ARCADE_CLI_EMU         (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() : "mame")
+#define QMC2_ARCADE_CLI_EMU_MAME    (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() == "mame" : false)
+#define QMC2_ARCADE_CLI_EMU_MESS    (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() == "mess" : false)
+#define QMC2_ARCADE_CLI_EMU_UME     (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() == "ume" : false)
 #define QMC2_ARCADE_CLI_EMU_UNK     (!QMC2_ARCADE_CLI_EMU_MAME && !QMC2_ARCADE_CLI_EMU_MESS && !QMC2_ARCADE_CLI_EMU_UME)
-#define QMC2_ARCADE_CLI_EMU_INV     (qApp->arguments().indexOf("-emu") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-emu") + 1)
-// -theme <theme> ([ToxicWaste])
-#define QMC2_ARCADE_CLI_THEME       (qApp->arguments().indexOf("-theme") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-theme") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-theme") + 1] : "ToxicWaste")
-#define QMC2_ARCADE_CLI_THEME_INV   (qApp->arguments().indexOf("-theme") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-theme") + 1)
+#define QMC2_ARCADE_CLI_EMU_INV     (argumentList.indexOf("-emu") >= 0 && argumentList.count() == argumentList.indexOf("-emu") + 1)
+// -theme <theme> ([ToxicWaste], darkone)
+#define QMC2_ARCADE_CLI_THEME       (argumentList.indexOf("-theme") >= 0 && argumentList.count() > argumentList.indexOf("-theme") + 1 ? argumentList[argumentList.indexOf("-theme") + 1] : "ToxicWaste")
+#define QMC2_ARCADE_CLI_THEME_INV   (argumentList.indexOf("-theme") >= 0 && argumentList.count() == argumentList.indexOf("-theme") + 1)
+#define QMC2_ARCADE_CLI_THEME_VAL   (argumentList.indexOf("-theme") >= 0 && argumentList.count() > argumentList.indexOf("-theme") + 1)
 // -console <mode> ([terminal], window, window-minimized)
-#define QMC2_ARCADE_CLI_CONS        (qApp->arguments().indexOf("-console") >= 0 && qApp->arguments().count() > qApp->arguments().indexOf("-console") + 1 ? qApp->arguments()[qApp->arguments().indexOf("-console") + 1] : "terminal")
-#define QMC2_ARCADE_CLI_CONS_INV    (qApp->arguments().indexOf("-console") >= 0 && qApp->arguments().count() == qApp->arguments().indexOf("-console") + 1)
-
+#define QMC2_ARCADE_CLI_CONS        (argumentList.indexOf("-console") >= 0 && argumentList.count() > argumentList.indexOf("-console") + 1 ? argumentList[argumentList.indexOf("-console") + 1] : "terminal")
+#define QMC2_ARCADE_CLI_CONS_INV    (argumentList.indexOf("-console") >= 0 && argumentList.count() == argumentList.indexOf("-console") + 1)
+#define QMC2_ARCADE_CLI_CONS_VAL    (argumentList.indexOf("-console") >= 0 && argumentList.count() > argumentList.indexOf("-console") + 1)
+// -graphicssystem <gsys> ([raster], native, opengl)
+#define QMC2_ARCADE_CLI_GSYS        (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1 ? argumentList[argumentList.indexOf("-graphicssystem") + 1] : "raster")
+#define QMC2_ARCADE_CLI_GSYS_INV    (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() == argumentList.indexOf("-graphicssystem") + 1)
+#define QMC2_ARCADE_CLI_GSYS_VAL    (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1)
 // -h|-?|-help
-#define QMC2_ARCADE_CLI_HELP        (qApp->arguments().indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
+#define QMC2_ARCADE_CLI_HELP        (argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation
-#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV)
+#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV)
 
 // console logging macros
 #define QMC2_ARCADE_LOG_STR(s)      if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
