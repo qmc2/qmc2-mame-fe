@@ -44,7 +44,7 @@ Rectangle {
     property bool fpsVisible: false
     property bool sortByName: false
     property bool disableLaunchFlash: false
-    property bool disableZoom: false
+    property bool disableLaunchZoom: false
     property string dataTypePrimary: ""
     property string dataTypeSecondary: ""
     property real lightTimeout: 60
@@ -1051,11 +1051,11 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: disableZoom
+            checked: disableLaunchZoom
             text: qsTr("disable launch zoom?")
             textColor: textColour1
             smooth: true
-            onClicked: disableZoom = checked;
+            onClicked: disableLaunchZoom = checked;
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: disableLaunchFlashCheckBox

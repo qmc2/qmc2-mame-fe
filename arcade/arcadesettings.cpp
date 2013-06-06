@@ -271,13 +271,13 @@ bool ArcadeSettings::disableLaunchFlash()
     return value(QString("Arcade/%1/disableLaunchFlash").arg(arcadeTheme), false).toBool();
 }
 
-void ArcadeSettings::setDisableZoom(bool disableZoom)
+void ArcadeSettings::setDisableLaunchZoom(bool disableLaunchZoom)
 {
-    setValue(QString("Arcade/%1/disableZoom").arg(arcadeTheme), disableZoom);
+    setValue(QString("Arcade/%1/disableLaunchZoom").arg(arcadeTheme), disableLaunchZoom);
 }
-bool ArcadeSettings::disableZoom()
+bool ArcadeSettings::disableLaunchZoom()
 {
-    return value(QString("Arcade/%1/disableZoom").arg(arcadeTheme), false).toBool();
+    return value(QString("Arcade/%1/disableLaunchZoom").arg(arcadeTheme), false).toBool();
 }
 
 void ArcadeSettings::setOverlayScale(double overlayScale)
@@ -322,7 +322,7 @@ void ArcadeSettings::setColourScheme(QString colourScheme)
 }
 QString ArcadeSettings::colourScheme()
 {
-    return value(QString("Arcade/%1/colourScheme").arg(arcadeTheme), "metal").toString();
+    return value(QString("Arcade/%1/colourScheme").arg(arcadeTheme), "dark").toString();
 }
 
 QString ArcadeSettings::gameListCacheFile()

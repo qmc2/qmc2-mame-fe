@@ -71,8 +71,8 @@ public slots:
     bool toolbarAutoHide();
     void setDisableLaunchFlash(bool);
     bool disableLaunchFlash();
-    void setDisableZoom(bool);
-    bool disableZoom();
+    void setDisableLaunchZoom(bool);
+    bool disableLaunchZoom();
     void setDataTypePrimary(QString);
     QString dataTypePrimary();
     void setDataTypeSecondary(QString);
