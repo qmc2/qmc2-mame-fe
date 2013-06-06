@@ -108,8 +108,6 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
     }
     initialised = true;
-
-    QMC2_ARCADE_LOG_STR(tr("Ready to launch %1").arg(emulatorMode != QMC2_ARCADE_EMUMODE_MESS ? tr("games") : tr("machines")));
 }
 
 void TweakedQmlApplicationViewer::saveSettings()
