@@ -1380,7 +1380,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: { toolbarAutoHide && toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); }
+            onEntered: { toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); }
             onExited: { hideToolbarTimer.start(); }
             onPositionChanged: { if (!keepLightOn) {
                                      lightOutTimer.restart();
@@ -1683,7 +1683,8 @@ Rectangle {
             else if ( launchFlashTimer.running ) {
                 launchFlashTimer.stop();
                 DarkoneJS.flashCounter = 0;
-                overlayStateBlock.opacity = 0.5;
+                DarkoneJS.inGame = true; // fake game over
+                DarkoneJS.gameOver();
             }
             event.accepted = true;
             break;
