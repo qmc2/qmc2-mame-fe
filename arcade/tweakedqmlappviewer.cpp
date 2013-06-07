@@ -20,6 +20,9 @@ extern ConsoleWindow *consoleWindow;
 extern int emulatorMode;
 extern int consoleMode;
 extern QStringList emulatorModeNames;
+extern QStringList mameThemes;
+extern QStringList messThemes;
+extern QStringList umeThemes;
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
@@ -27,6 +30,24 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     initialised = false;
     numFrames = 0;
     windowModeSwitching = false;
+
+    cliParams << "theme" << "graphicssystem" << "console";
+    switch ( emulatorMode ) {
+    case QMC2_ARCADE_EMUMODE_MAME:
+        cliAllowedParameterValues["theme"] = mameThemes;
+        break;
+    case QMC2_ARCADE_EMUMODE_MESS:
+        cliAllowedParameterValues["theme"] = messThemes;
+        break;
+    case QMC2_ARCADE_EMUMODE_UME:
+        cliAllowedParameterValues["theme"] = umeThemes;
+        break;
+    }
+    cliAllowedParameterValues["graphicssystem"] << "raster" << "native" << "opengl";
+    cliAllowedParameterValues["console"] << "terminal" << "window" << "window-minimized";
+    cliParameterDescriptions["theme"] = tr("Theme");
+    cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
+    cliParameterDescriptions["console"] = tr("Console type");
 
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
     qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
@@ -382,6 +403,50 @@ int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
 void TweakedQmlApplicationViewer::log(QString message)
 {
     QMC2_ARCADE_LOG_STR(message);
+}
+
+QStringList TweakedQmlApplicationViewer::cliParamNames()
+{
+    return cliAllowedParameterValues.keys();
+}
+
+QString TweakedQmlApplicationViewer::cliParamDescription(QString param)
+{
+    return cliParameterDescriptions[param];
+}
+
+QString TweakedQmlApplicationViewer::cliParamValue(QString param)
+{
+    switch ( cliParams.indexOf(param) ) {
+    case QMC2_ARCADE_PARAM_THEME:
+        return globalConfig->defaultTheme();
+    case QMC2_ARCADE_PARAM_GRASYS:
+        return globalConfig->defaultGraphicsSystem();
+    case QMC2_ARCADE_PARAM_CONSOLE:
+        return globalConfig->defaultConsoleType();
+    default:
+        return QString();
+    }
+}
+
+QStringList TweakedQmlApplicationViewer::cliParamAllowedValues(QString param)
+{
+    return cliAllowedParameterValues[param];
+}
+
+void TweakedQmlApplicationViewer::setCliParamValue(QString param, QString value)
+{
+    switch ( cliParams.indexOf(param) ) {
+    case QMC2_ARCADE_PARAM_THEME:
+        globalConfig->setDefaultTheme(value);
+        break;
+    case QMC2_ARCADE_PARAM_GRASYS:
+        globalConfig->setDefaultGraphicsSystem(value);
+        break;
+    case QMC2_ARCADE_PARAM_CONSOLE:
+        globalConfig->setDefaultConsoleType(value);
+        break;
+    }
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)

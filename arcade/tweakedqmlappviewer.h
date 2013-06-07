@@ -2,12 +2,17 @@
 #define TWEAKEDQMLAPPVIEWER_H
 
 #include <QTimer>
+#include <QStringList>
 #include <QMap>
 
 #include "qmlapplicationviewer.h"
 #include "processmanager.h"
 #include "imageprovider.h"
 #include "infoprovider.h"
+
+#define QMC2_ARCADE_PARAM_THEME     0
+#define QMC2_ARCADE_PARAM_GRASYS    1
+#define QMC2_ARCADE_PARAM_CONSOLE   2
 
 class TweakedQmlApplicationViewer : public QmlApplicationViewer
 {
@@ -23,6 +28,9 @@ public:
     ImageProvider *imageProvider;
     InfoProvider *infoProvider;
     bool windowModeSwitching;
+    QMap<QString, QStringList> cliAllowedParameterValues;
+    QMap<QString, QString> cliParameterDescriptions;
+    QStringList cliParams;
 
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
     virtual ~TweakedQmlApplicationViewer();
@@ -46,6 +54,11 @@ public slots:
     QString requestInfo(const QString&, const QString&);
     int findIndex(QString, int startIndex = 0);
     void log(QString);
+    QStringList cliParamNames();
+    QString cliParamDescription(QString);
+    QString cliParamValue(QString);
+    QStringList cliParamAllowedValues(QString);
+    void setCliParamValue(QString, QString);
 
 private:
     bool initialised;
