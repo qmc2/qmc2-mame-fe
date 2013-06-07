@@ -124,6 +124,8 @@ public slots:
     bool compressGameInfoDB();
     QString emuInfoDB();
     bool compressEmuInfoDB();
+    int joystickAxisMinimum(int, int);
+    int joystickAxisMaximum(int, int);
 };
 
 #endif

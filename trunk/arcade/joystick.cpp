@@ -21,6 +21,7 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
     }
 
     joystick = NULL;
+    jsIndex = -1;
     numAxes = numButtons = numHats = numTrackballs = 0;
     autoRepeat = doAutoRepeat;
     autoRepeatDelay = repeatDelay;
@@ -47,9 +48,11 @@ bool Joystick::open(int stick)
         numHats = SDL_JoystickNumHats(joystick);
         numTrackballs = SDL_JoystickNumBalls(joystick);
         joystickTimer.start(eventTimeout);
+        jsIndex = stick;
         return true;
     } else {
         QMC2_ARCADE_LOG_STR(tr("ERROR: couldn't open SDL joystick #%1").arg(stick));
+        jsIndex = -1;
         return false;
     }
 }
@@ -60,6 +63,7 @@ void Joystick::close()
     if ( joystick )
         SDL_JoystickClose(joystick);
     joystick = NULL;
+    jsIndex = -1;
     numAxes = numButtons = numHats = numTrackballs = 0;
 }
 
@@ -72,7 +76,7 @@ void Joystick::processEvents()
 
     int i;
     for (i = 0; i < numAxes; i++) {
-        Sint16 moved = SDL_JoystickGetAxis(joystick, i);
+        Sint16 moved = normalizeAxisValue(SDL_JoystickGetAxis(joystick, i), i);
         if ( abs(moved) >= deadzones[i] ) {
             if ( (moved != axes[i]) ) {
                 int deltaMoved = abs(axes[i] - moved);
@@ -130,7 +134,18 @@ int Joystick::getAxisValue(int axis)
 {
     if ( isOpen() ) {
         SDL_JoystickUpdate();
-        return SDL_JoystickGetAxis(joystick, axis);
+        return normalizeAxisValue(SDL_JoystickGetAxis(joystick, axis), axis);
+    } else
+        return 0;
+}
+
+Sint16 Joystick::normalizeAxisValue(Sint16 rawValue, int axis)
+{
+    int max = globalConfig->joystickAxisMaximum(jsIndex, axis);
+    int min = globalConfig->joystickAxisMinimum(jsIndex, axis);
+    if ( max > min ) {
+        rawValue -= (max + min) / 2;
+        return 65535.0 * (double)rawValue / (double)(max - min);
     } else
         return 0;
 }

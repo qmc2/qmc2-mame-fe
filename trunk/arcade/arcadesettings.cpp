@@ -510,3 +510,13 @@ bool ArcadeSettings::compressEmuInfoDB()
     return value(QString("%1/GUI/CompressEmuInfoDB").arg(frontEndPrefix)).toBool();
 }
 
+int ArcadeSettings::joystickAxisMinimum(int jsIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Minimum").arg(frontEndPrefix).arg(jsIndex).arg(axis)).toInt();
+}
+
+int ArcadeSettings::joystickAxisMaximum(int jsIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Maximum").arg(frontEndPrefix).arg(jsIndex).arg(axis)).toInt();
+}
+
