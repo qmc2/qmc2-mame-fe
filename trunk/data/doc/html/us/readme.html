@@ -248,12 +248,14 @@ The <i>installation</i> at a user's end would then just be to extract this archi
 <p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include:
 <pre>
 imageformats\*.dll
+imports\* (recursively, only *.dll and qmldir files)
 phonon_backend\phonon_ds94.dll
 phonon4.dll
 QtCore4.dll
 QtGui4.dll
 QtNetwork4.dll
 QtOpenGL4.dll
+QtScript4.dll
 QtSql4.dll
 QtTest4.dll
 QtXml4.dll
