@@ -47,7 +47,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     cliAllowedParameterValues["console"] << "terminal" << "window" << "window-minimized";
     cliParameterDescriptions["theme"] = tr("Theme");
     cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
-    cliParameterDescriptions["console"] = tr("Console type");
+    cliParameterDescriptions["console"] = tr("Console mode");
 
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
     qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
