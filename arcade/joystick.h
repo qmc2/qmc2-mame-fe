@@ -36,6 +36,7 @@ public:
     int eventTimeout;
     int autoRepeatDelay;
     bool autoRepeat;
+    int jsIndex;
     QTimer joystickTimer;
     QMap<int, int> deadzones;
     QMap<int, int> sensitivities;
@@ -49,6 +50,7 @@ public:
     void close();
     bool isOpen() { return joystick != NULL; }
     int getAxisValue(int);
+    Sint16 normalizeAxisValue(Sint16, int);
 
 private:
     QMap<int, Sint16> axes;
