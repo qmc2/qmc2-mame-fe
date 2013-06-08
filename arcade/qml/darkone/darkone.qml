@@ -1240,7 +1240,7 @@ Rectangle {
                 onAccepted: {
                     text = text.replace(/([^0-9.])/g, '');
                     var valid = text.match(/^(\d+|\d+\.*\d+)$/g) &&
-                                  parseFloat(text) > 0.33 && parseFloat(text) < 3 ? true : false
+                                  parseFloat(text) >= DarkoneJS.overlayScaleMin && parseFloat(text) <= DarkoneJS.overlayScaleMax ? true : false
                     if (valid) {
                         color = "black"
                         DarkoneJS.zoom( parseFloat(text) / overlayScale )
