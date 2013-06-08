@@ -33,6 +33,7 @@
         <file>qml/darkone/components/CheckableGroup.qml</file>
         <file>qml/darkone/components/CheckableGroup.js</file>
         <file>qml/darkone/components/Checkable.qml</file>
+        <file>qml/darkone/components/Slider.qml</file>
         <file>qml/darkone/darkone.js</file>
         <file>qml/darkone/darkone.qml</file>
         <file>qml/darkone/images/arrow.png</file>
