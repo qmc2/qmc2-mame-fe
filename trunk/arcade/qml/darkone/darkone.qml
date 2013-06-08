@@ -104,6 +104,7 @@ Rectangle {
                                } }
     onDataHiddenChanged: { dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
     onInfoMissingChanged: { infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
+    onOverlayScaleChanged: { overlayScaleSlider.value = overlayScale; }
     onFullScreenChanged: {
         if ( !DarkoneJS.initialising ) {
             if ( fullScreen ) {
@@ -963,6 +964,8 @@ Rectangle {
                 preferencesLaunchLock = true;
                 fpsCheckBox.focus = true;
                 toolbarShowMenuLock = true;
+                overlayScaleSlider.maximum = DarkoneJS.overlayScaleMax * 1.5;
+                overlayScaleSlider.minimum = DarkoneJS.overlayScaleMin;
                 overlayScaleSlider.value = overlayScale;
             } else {
                 preferencesLaunchLock = false;
@@ -1317,8 +1320,6 @@ Rectangle {
             fgColour2: colour4
             bgColour1: "white"
             bgColour2: "white"
-            maximum: DarkoneJS.overlayScaleMax
-            minimum: DarkoneJS.overlayScaleMin
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme2Button
@@ -1332,7 +1333,7 @@ Rectangle {
             anchors.verticalCenter: overlayScaleSlider.verticalCenter
             anchors.verticalCenterOffset: 0
             verticalAlignment: Text.AlignVCenter
-            text: overlayScale
+            text: DarkoneJS.round(100 * overlayScale / DarkoneJS.overlayScaleMax, 0) + "%"
             font.pixelSize: 12
             color: textColour1
             smooth: true
