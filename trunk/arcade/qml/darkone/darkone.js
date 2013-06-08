@@ -169,13 +169,13 @@ function lightToggle(force) {
     } else if (force < 0 || (!darkone.lightOff && !force)) {
         ignoreLaunch = true
         if (resetListHidden)
-           //do NOT interfere with whatever else is expecting to 'reset listHidden' (aka show the list)
+           //do NOT interfere with whatever else is expecting to 'reset listHidden (aka show the list)'
            true // no-op
         else
            resetListHidden = !darkone.listHidden;
         listToggle(-1);
         if (resetToolbarHidden)
-           //do NOT interfere with whatever else is expecting to 'reset toolbarHidden' (aka sho the toolbar)
+           //do NOT interfere with whatever else is expecting to 'reset toolbarHidden (aka show the toolbar)'
            true // no-op
         else
            resetToolbarHidden = !darkone.toolbarHidden;
@@ -215,7 +215,7 @@ function zoom(zoom) {
               if (zoom == "max") {
                   darkone.debug && console.log("[zoom max 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                  zoom = (darkone.height / (overlayScreen.height * scaleFactorY()));
+                  zoom = round((darkone.height / (overlayScreen.height * scaleFactorY())), 2);
                   darkone.zoomDuration = Math.max(200, Math.abs(zoom - darkone.overlayScale) * 100 * 8);
 
                   darkone.debug && console.log("[zoom max] zoom: '" + zoom + "', " +
@@ -224,7 +224,7 @@ function zoom(zoom) {
                   darkone.debug && console.log("[zoom max 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
               } else if (zoom == "min") {
-                  zoom = overlayScaleMin; 
+                  zoom = round(overlayScaleMin, 2);
                   darkone.zoomDuration = Math.max(200, Math.abs(darkone.overlayScale - zoom) * 100 * 8);
                   darkone.overlayScale = zoom;
               }
@@ -241,7 +241,7 @@ function zoom(zoom) {
                 if (((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height ) > 0.95)
                     DarkoneJS.zoom("max");
                 else
-                    darkone.overlayScale *= zoom;
+                    darkone.overlayScale = round(darkone.overlayScale * zoom, 2);
                 darkone.debug && console.log("[zoom > 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                               "overlayScreen.scale: '" + overlayScreen.scale + "'");
             } else if (zoom < 1) {
@@ -250,7 +250,7 @@ function zoom(zoom) {
                 if (darkone.overlayScale * zoom < overlayScaleMin)
                     DarkoneJS.zoom("min");
                 else
-                    darkone.overlayScale *= zoom;         
+                    darkone.overlayScale = round(darkone.overlayScale * zoom, 2);
                 darkone.debug && console.log("[zoom < 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
             }
@@ -500,7 +500,7 @@ function colourScheme(scheme) {
             colour3 = "#aaaaaa";
             colour4 = "#000000";
             colour5 = "#999999";
-            textColour1 = "#000000"
+            textColour1 = "#222222"
             textColour2 = "#0000ff"
             break;
     }
