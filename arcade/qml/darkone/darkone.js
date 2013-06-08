@@ -8,8 +8,8 @@ var resetListHidden;
 var resetToolbarHidden;
 var flashCounter = 0;
 var inGame = false;
-var overlayScaleMin = 0.25;
-var overlayScaleMax = 2.5;
+var overlayScaleMin = 0;
+var overlayScaleMax = 0;
 var dataTypes = { "title": { key: "title", name: "title image", type: "image", path: "ttl" },
                   "preview": { key: "preview", name: "preview image", type: "image", path: "prv" },
                   "flyer": { key: "flyer", name: "flyer image", type: "image", path: "fly" },
@@ -22,6 +22,10 @@ var dataTypes = { "title": { key: "title", name: "title image", type: "image", p
 
 function init() {
     if (!darkone.initialised && darkone.lastIndex == -1) {
+        overlayScaleMax = baseHeight / overlayScreen.height;
+        overlayScaleMin = overlayScaleMax * 0.10;
+        console.log("overlayScreen.height: " + overlayScreen.height + ", " +
+                    "overlayScaleMax: " + overlayScaleMax)
         viewer.loadSettings();
         colourScheme(darkone.colourScheme);
         viewer.loadGamelist();
@@ -32,8 +36,12 @@ function init() {
         darkone.debug && console.log("[init] lastIndex: '" + lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
+        darkone.debug && console.log("[init 1] resetScale: '" + resetScale + "', " +
+                                            "overlayScale: '" + darkone.overlayScale + "'");
         resetScale = darkone.overlayScale;
         darkone.overlayScale /= 2;
+        darkone.debug && console.log("[init 2] resetScale: '" + resetScale + "', " +
+                                            "overlayScale: '" + darkone.overlayScale + "'");
 
         listToggle(1 - (darkone.listHidden * 2));
         if (fpsVisible)
@@ -158,16 +166,22 @@ function lightToggle(force) {
         lightOutScreen = false;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
+        darkone.debug && console.log("[lightToggle on 1] resetScale: '" + resetScale + "', " +
+                                            "overlayScale: '" + darkone.overlayScale + "'");
         if (resetScale != -1) {
             zoom(resetScale / darkone.overlayScale);
             resetScale = -1;
         }
+        darkone.debug && console.log("[lightToggle on 2] resetScale: '" + resetScale + "', " +
+                                            "overlayScale: '" + darkone.overlayScale + "'");
         if (!keepLightOn) {
             lightOutTimer.restart();
             lightOutScreenTimer.restart();
         }
     } else if (force < 0 || (!darkone.lightOff && !force)) {
         ignoreLaunch = true
+        darkone.debug && console.log("[lightToggle off 1] resetScale: '" + resetScale + "', " +
+                                            "overlayScale: '" + darkone.overlayScale + "'");
         if (resetListHidden)
            //do NOT interfere with whatever else is expecting to 'reset listHidden (aka show the list)'
            true // no-op
@@ -183,8 +197,10 @@ function lightToggle(force) {
         overlayStateBlock.opacity = 0
         if (resetScale == -1) {
             resetScale = darkone.overlayScale;
-            zoom(resetScale / 2);
+            zoom(0.5);
         }
+        darkone.debug && console.log("[lightToggle off 2] resetScale: '" + resetScale + "', " +
+                                            "overlayScale: '" + darkone.overlayScale + "'");
         lightOutTimer.stop();
         lightOut = true;
     }
@@ -215,9 +231,8 @@ function zoom(zoom) {
               if (zoom == "max") {
                   darkone.debug && console.log("[zoom max 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                  zoom = round((darkone.height / (overlayScreen.height * scaleFactorY())), 2);
+                  zoom = round(baseHeight / overlayScreen.height, 2);
                   darkone.zoomDuration = Math.max(200, Math.abs(zoom - darkone.overlayScale) * 100 * 8);
-
                   darkone.debug && console.log("[zoom max] zoom: '" + zoom + "', " +
                                                           "duration: '" + darkone.zoomDuration + "'");
                   darkone.overlayScale = zoom;
@@ -237,8 +252,8 @@ function zoom(zoom) {
                 darkone.debug && console.log("[zoom > 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
                 darkone.debug && console.log("[zoom] testing on: '" +
-                    round(((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height), 2) + " > 0.95'");
-                if (((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height ) > 0.95)
+                    round(((overlayScreen.height * darkone.overlayScale * zoom) / baseHeight), 2) + " > 0.95'");
+                if (((overlayScreen.height * darkone.overlayScale * zoom) / baseHeight ) > 0.95)
                     DarkoneJS.zoom("max");
                 else
                     darkone.overlayScale = round(darkone.overlayScale * zoom, 2);
