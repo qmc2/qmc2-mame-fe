@@ -963,7 +963,7 @@ Rectangle {
                 preferencesLaunchLock = true;
                 fpsCheckBox.focus = true;
                 toolbarShowMenuLock = true;
-                overlaySlider.value = overlayScale;
+                overlayScaleSlider.value = overlayScale;
             } else {
                 preferencesLaunchLock = false;
                 ignoreLaunch = false;
