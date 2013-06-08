@@ -8,6 +8,8 @@ var resetListHidden;
 var resetToolbarHidden;
 var flashCounter = 0;
 var inGame = false;
+var overlayScaleMin = 0.25;
+var overlayScaleMax = 2.5;
 var dataTypes = { "title": { key: "title", name: "title image", type: "image", path: "ttl" },
                   "preview": { key: "preview", name: "preview image", type: "image", path: "prv" },
                   "flyer": { key: "flyer", name: "flyer image", type: "image", path: "fly" },
@@ -206,7 +208,7 @@ function zoom(zoom) {
         "darkone.height: '" + round(baseHeight, 2) + "', " +
         "overlayScreen.height scaled: '" + round(overlayScreen.height * overlayScreen.scale, 2) + "', " +
         "overlayScreen.height scaled comp: '" + round(overlayScreen.height * scaleFactorY() * darkone.overlayScale, 2) + "', " +
-        "darkone.height scaled: '" + round(darkone.height, 2) + "'")
+        "darkone.height scaled: '" + round(darkone.height, 2) + "'");
 
       switch(typeof(zoom)) {
           case "string":
@@ -221,6 +223,10 @@ function zoom(zoom) {
                   darkone.overlayScale = zoom;
                   darkone.debug && console.log("[zoom max 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
+              } else if (zoom == "min") {
+                  zoom = overlayScaleMin; 
+                  darkone.zoomDuration = Math.max(200, Math.abs(darkone.overlayScale - zoom) * 100 * 8);
+                  darkone.overlayScale = zoom;
               }
               break;
         default:
@@ -232,17 +238,19 @@ function zoom(zoom) {
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
                 darkone.debug && console.log("[zoom] testing on: '" +
                     round(((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height), 2) + " > 0.95'");
-
                 if (((overlayScreen.height * scaleFactorY() * darkone.overlayScale * zoom) / darkone.height ) > 0.95)
                     DarkoneJS.zoom("max");
                 else
                     darkone.overlayScale *= zoom;
-                    darkone.debug && console.log("[zoom > 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                darkone.debug && console.log("[zoom > 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                               "overlayScreen.scale: '" + overlayScreen.scale + "'");
-            } else if (zoom < 1 && overlayScreen.scale * zoom >= 0.33) {
+            } else if (zoom < 1) {
                 darkone.debug && console.log("[zoom < 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                darkone.overlayScale *= zoom;
+                if (darkone.overlayScale * zoom < overlayScaleMin)
+                    DarkoneJS.zoom("min");
+                else
+                    darkone.overlayScale *= zoom;         
                 darkone.debug && console.log("[zoom < 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
             }
