@@ -43,8 +43,8 @@ Rectangle {
     property bool fullScreen: false
     property bool fpsVisible: false
     property bool sortByName: false
-    property bool disableLaunchFlash: false
-    property bool disableLaunchZoom: false
+    property bool launchFlash: true
+    property bool launchZoom: true
     property string dataTypePrimary: ""
     property string dataTypeSecondary: ""
     property real lightTimeout: 60
@@ -104,7 +104,7 @@ Rectangle {
                                } }
     onDataHiddenChanged: { dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
     onInfoMissingChanged: { infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
-    onOverlayScaleChanged: { overlayScaleSlider.value = overlayScale; }
+    onOverlayScaleChanged: { overlayScaleSliderItem.value = overlayScale; }
     onFullScreenChanged: {
         if ( !DarkoneJS.initialising ) {
             if ( fullScreen ) {
@@ -155,7 +155,7 @@ Rectangle {
         interval: 750
         running: false
         repeat: true
-        onTriggered: DarkoneJS.launchFlash()
+        onTriggered: DarkoneJS.launchDelay()
     }
     Timer {
         id: launchTimer
@@ -196,6 +196,7 @@ Rectangle {
                        lightOutScreenTimer.stop(); }
     }
 
+//FocusScope {
 
 /***
 * overlay
@@ -308,7 +309,7 @@ Rectangle {
                                        dataHidden = !dataHidden; }
                 }
                 CursorShapeArea {
-                    anchors.fill: parent
+                    anchors.fill: darkone.focus ? parent : undefined
                     cursorShape: Qt.CrossCursor
                 }
                 Behavior on anchors.topMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
@@ -411,7 +412,7 @@ Rectangle {
                 state: "hidden"
                 color: "transparent"
                 CursorShapeArea {
-                    anchors.fill: parent
+                    anchors.fill: darkone.focus ? parent : undefined
                     cursorShape: Qt.CrossCursor
                 }
                 transitions: [
@@ -526,7 +527,7 @@ Rectangle {
                                          debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
                         }
                         CursorShapeArea {
-                            anchors.fill: parent
+                            anchors.fill: darkone.focus ? parent : undefined
                             cursorShape: Qt.CrossCursor
                         }
                         Text {
@@ -560,7 +561,7 @@ Rectangle {
                                          debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
                         }
                         CursorShapeArea {
-                            anchors.fill: parent
+                            anchors.fill: darkone.focus ? parent : undefined
                             cursorShape: Qt.CrossCursor
                         }
                         Text {
@@ -706,7 +707,7 @@ Rectangle {
                 }
             }
             CursorShapeArea {
-                anchors.fill: parent
+                anchors.fill: darkone.focus ? parent : undefined
                 cursorShape: Qt.CrossCursor
             }
         }
@@ -733,7 +734,7 @@ Rectangle {
                 }
             }
             CursorShapeArea {
-                anchors.fill: parent
+                anchors.fill: darkone.focus ? parent : undefined
                 cursorShape: Qt.CrossCursor
             }
         }
@@ -899,41 +900,46 @@ Rectangle {
             if (lightOut)
                  DarkoneJS.lightToggle(1);
             switch ( event.key ) {
-            case Qt.Key_PageUp:
-                if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
-                    currentIndex -= (itemsPerPage() - 1)
-                    gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
-                } else {
-                    gameListView.positionViewAtBeginning();
-                    currentIndex = 0;
+                case Qt.Key_PageUp: {
+                    if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
+                        currentIndex -= (itemsPerPage() - 1)
+                        gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
+                    } else {
+                        gameListView.positionViewAtBeginning();
+                        currentIndex = 0;
+                    }
+                    event.accepted = true;
+                    break;
                 }
-                event.accepted = true;
-                break;
-            case Qt.Key_PageDown:
-                if ( currentIndex + (itemsPerPage() - 1) < gameListModelCount ) {
-                    currentIndex += (itemsPerPage() - 1)
-                    gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
-                } else {
-                    gameListView.positionViewAtEnd();
-                    currentIndex = gameListModelCount - 1;
+                case Qt.Key_PageDown: {
+                    if ( currentIndex + (itemsPerPage() - 1) < gameListModelCount ) {
+                        currentIndex += (itemsPerPage() - 1)
+                        gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
+                    } else {
+                        gameListView.positionViewAtEnd();
+                        currentIndex = gameListModelCount - 1;
+                    }
+                    event.accepted = true;
+                    break;
                 }
-                event.accepted = true;
-                break;
-            case Qt.Key_End:
-                positionViewAtEnd();
-                event.accepted = true;
-                break;
-            case Qt.Key_Home:
-                positionViewAtBeginning();
-                event.accepted = true;
-                break;
-            case Qt.Key_Enter:
-            case Qt.Key_Return:
-                if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) && !ignoreLaunch ) {
-                    gameListView.positionViewAtIndex(lastIndex, ListView.Center);
-                    DarkoneJS.launch();
+                case Qt.Key_End: {
+                    positionViewAtEnd();
+                    event.accepted = true;
+                    break;
                 }
-                break;
+                case Qt.Key_Home: {
+                    positionViewAtBeginning();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Enter:
+                case Qt.Key_Return: {
+                    if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) && !ignoreLaunch ) {
+                        gameListView.positionViewAtIndex(lastIndex, ListView.Center);
+                        DarkoneJS.launch();
+                    }
+                    break;
+                }
             }
         }
     }
@@ -942,35 +948,62 @@ Rectangle {
 /***
 * preferences menu
 */
+
+    FocusScope {
+
+    id: preferencesFocusScope
+    focus: true
+//    x: preferencesDialog.x;
+//    y: preferencesDialog.y;
+    x: preferencesButton.x - 10
+    y: parent.height - toolbar.height - 5 - height
+    width: preferencesDialog.width;
+    height: preferencesDialog.height;
+
     Rectangle {
         id: preferencesDialog
         z: 4
         property int itemHeight: 12
-        property int itemSpacing: 8
+        property int itemSpacing: 6
+        property int itemTextSize: 9
         smooth: true
-        x: preferencesButton.x - 10
-        y: parent.height - toolbar.height - 5 - height
-        width: 180
-        height: (itemHeight + itemSpacing) * (11 + 1) + 10
-        border.color: "black"
+//        x: preferencesButton.x - 10
+//        y: parent.height - toolbar.height - 5 - height
+        width: 175
+        height: (itemHeight + itemSpacing) * 19 + 10
+        border.color: "transparent"
         border.width: 1
         color: colour5
         opacity: 1.0
         state: "hidden"
-        MouseArea { anchors.fill: parent; }
+        focus: false
+        MouseArea {
+            anchors.fill: parent;
+            hoverEnabled: true
+            onClicked: {
+                debug && console.log("[preferences onClick 1] focus: '" + focus + "'");
+                focus = true;
+                debug && console.log("[preferences onClick 2] focus: '" + focus + "'"); }
+        }
+        onFocusChanged: {
+            debug && console.log("[preferences onFocus] focus: '" + focus + "'");
+            border.color = debug && activeFocus ? "green" : "transparent";
+            darkone.focus = !focus;
+        }
         onStateChanged: {
             if ( state == "shown" ) {
                 ignoreLaunch = true;
                 preferencesLaunchLock = true;
-                fpsCheckBox.focus = true;
+                sortByName.focus = true;
                 toolbarShowMenuLock = true;
-                overlayScaleSlider.maximum = DarkoneJS.overlayScaleMax * 1.5;
-                overlayScaleSlider.minimum = DarkoneJS.overlayScaleMin;
-                overlayScaleSlider.value = overlayScale;
+                overlayScaleSliderItem.maximum = DarkoneJS.overlayScaleMax * 1.5;
+                overlayScaleSliderItem.minimum = DarkoneJS.overlayScaleMin;
+                overlayScaleSliderItem.value = overlayScale;
             } else {
                 preferencesLaunchLock = false;
                 ignoreLaunch = false;
                 toolbarShowMenuLock = false;
+                focus = false;
             }
         }
         states: [
@@ -989,8 +1022,6 @@ Rectangle {
             reversible: true
             PropertyAnimation { property: "opacity"; duration: 100 }
         }
-        onFocusChanged: darkone.focus = !focus;
-
         Text {
             id: headerText
             property int index: 1
@@ -1000,40 +1031,44 @@ Rectangle {
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) - parent.itemSpacing
             anchors.left: parent.left
             anchors.leftMargin: 10
-            font.pixelSize: 12
+            font.pixelSize: parent.itemTextSize + 3
             font.bold: true
             color: textColour1
             smooth: true
         }
 
-        CheckBox {
-            id: fpsCheckBox
+        /**********
+        * behaviour
+        */
+        Text {
+            id: prefsText
             property int index: 2
-            height: parent.itemHeight
+            opacity: 1.0
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
             anchors.left: parent.left
             anchors.leftMargin: 10
+            text: qsTr("behaviour")
+            font.pixelSize: parent.itemTextSize + 2
+            font.bold: true
+            color: textColour1
+            smooth: true
+        }
+        Rectangle {
+            id: prefsSeparator
+            height: 1
+            anchors.verticalCenter: prefsText.verticalCenter
+            anchors.left: prefsText.right
+            anchors.leftMargin: 7
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: fpsVisible
-            text: qsTr("FPS counter")
-            textColor: textColour1
+            color: textColour1
+            opacity: 0.5
             smooth: true
-            focus: true
-            onClicked: {
-                fpsVisible = checked;
-                resetIgnoreLaunchTimer.restart();
-                toolbarShowFpsLock = checked ? toolbarAutoHide : false;
-            }
-            KeyNavigation.up: KeyNavigation.backtab
-            KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: colourScheme2Button
-            KeyNavigation.tab: sortByNameCheckBox
         }
         CheckBox {
             id: sortByNameCheckBox
-            property int index: 3
+            property int index: prefsText.index + 1
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1043,8 +1078,13 @@ Rectangle {
             anchors.rightMargin: 10
             checked: sortByName
             text: qsTr("sort by name?")
-            textColor: textColour1
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
             smooth: true
+            onEntered: {
+                debug && console.log("[sortByNameCheckbox] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
+            }
             onClicked: { sortByName = checked;
                          var desc = gameListModel[gameListView.currentIndex].description
                          viewer.saveSettings();
@@ -1056,12 +1096,13 @@ Rectangle {
             }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: fpsCheckBox
+            KeyNavigation.backtab: backendParamValuesCycleItem
             KeyNavigation.tab: autoHideToolbarCheckBox
         }
+
         CheckBox {
             id: autoHideToolbarCheckBox
-            property int index: 4
+            property int index: prefsText.index + 2
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1071,17 +1112,22 @@ Rectangle {
             anchors.rightMargin: 10
             checked: toolbarAutoHide
             text: qsTr("auto-hide toolbar")
-            textColor: textColour1
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
             smooth: true
+            onEntered: {
+                debug && console.log("[autoHideToolbarCheckBox entered] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
+            }
             onClicked: toolbarAutoHide = checked;
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: sortByNameCheckBox
-            KeyNavigation.tab: disableLaunchFlashCheckBox
+            KeyNavigation.tab: fpsCheckBox
         }
         CheckBox {
-            id: disableLaunchFlashCheckBox
-            property int index: 5
+            id: fpsCheckBox
+            property int index: prefsText.index + 3
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1089,19 +1135,73 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: disableLaunchFlash
-            text: qsTr("disable launch flash?")
-            textColor: textColour1
+            checked: fpsVisible
+            text: qsTr("FPS counter")
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
             smooth: true
-            onClicked: disableLaunchFlash = checked;
+            onEntered: {
+                debug && console.log("[fpsCheckBox entered] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
+            }
+            onClicked: {
+                fpsVisible = checked;
+                resetIgnoreLaunchTimer.restart();
+                toolbarShowFpsLock = checked ? toolbarAutoHide : false;
+            }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: autoHideToolbarCheckBox
-            KeyNavigation.tab: disableLaunchZoomCheckBox
+            KeyNavigation.tab: lightOutInputItem
         }
-        CheckBox {
-            id: disableLaunchZoomCheckBox
-            property int index: 6
+        InputItem {
+            id: lightOutInputItem
+            property int index: prefsText.index + 4
+            height: parent.itemHeight
+            inputWidth: 25
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            textPrefix: qsTr("lights out in")
+            textSuffix: qsTr("secs")
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            inputColour: "black"
+            text: lightTimeout
+            onAccepted: {
+                text = text.replace(/([^0-9.])/g, '');
+                var valid = text.match(/^(|\d+|\d+\.*\d+)$/g) &&
+                              parseFloat(text) >= 5 ? true : false
+                if (valid) {
+                    inputColour = "black"
+                    lightTimeout = parseFloat(text);
+                    darkone.keepLightOn = lightTimeout == 0 ? true : false;
+                    if (darkone.keepLightOn) {
+                        lightOutTimer.stop();
+                        lightOutScreenTimer.stop();
+                    } else {
+                        lightOutTimer.start();
+                        lightOutScreenTimer.start();
+                    }
+                    focus = false;
+                    overlayScaleSliderItem.focus = true;
+                } else
+                    inputColour = "red"
+            }
+            onFocusChanged: { if (focus)
+                                  text = text.replace(/([^0-9.])/g, ''); }
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: fpsCheckBox
+            KeyNavigation.tab: overlayScaleSliderItem
+        }
+        SliderItem {
+            id: overlayScaleSliderItem
+            property int index: prefsText.index + 5
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1109,19 +1209,56 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: disableLaunchZoom
-            text: qsTr("disable launch zoom?")
-            textColor: textColour1
-            smooth: true
-            onClicked: disableLaunchZoom = checked;
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            fgColour1: colour3
+            fgColour2: colour4
+            bgColour1: "white"
+            bgColour2: "white"
+            textPrefix: qsTr("scale")
+            textSuffix: DarkoneJS.round(100 * overlayScale / DarkoneJS.overlayScaleMax, 0) + "%"
+            sliderWidth: 85
+            slidePercentage: 4
+            onValueChanged: overlayScale = DarkoneJS.round(value, 2);
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: disableLaunchFlashCheckBox
+            KeyNavigation.backtab: lightOutInputItem
             KeyNavigation.tab: backLightCheckBox
+        }
+
+        /********
+        * effects
+        */
+        Text {
+            id: prefsEffectsText
+            property int index: 8
+            opacity: 1.0
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            text: qsTr("effects")
+            font.pixelSize: parent.itemTextSize + 2
+            font.bold: true
+            color: textColour1
+            smooth: true
+        }
+        Rectangle {
+            id: prefsEffectsSeparator
+            height: 1
+            anchors.verticalCenter: prefsEffectsText.verticalCenter
+            anchors.left: prefsEffectsText.right
+            anchors.leftMargin: 7
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            color: textColour1
+            opacity: 0.5
+            smooth: true
         }
         CheckBox {
             id: backLightCheckBox
-            property int index: 7
+            property int index: prefsEffectsText.index + 1
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1131,82 +1268,90 @@ Rectangle {
             anchors.rightMargin: 10
             checked: backLight
             text: qsTr("back lighting")
-            textColor: textColour1
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
             smooth: true
             onClicked: { backLightOpacity = checked ? darkone.opacity : 0;
                          backLight = checked; }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: disableLaunchZoomCheckBox
-            KeyNavigation.tab: lightOutTextInput
+            KeyNavigation.backtab: overlayScaleSliderItem
+            KeyNavigation.tab: launchFlashCheckBox
         }
-        Rectangle {
-            id: lightOutInputBox
-            property int index: 8
-            height: parent.itemHeight + 2
-            width: 30
+        CheckBox {
+            id: launchFlashCheckBox
+            property int index: prefsEffectsText.index + 2
+            height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
             anchors.left: parent.left
             anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: launchFlash
+            text: qsTr("launch flash?")
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
             smooth: true
-            color: "white"
-            TextInput {
-                id: lightOutTextInput
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.topMargin: 2
-                anchors.bottomMargin: 2
-                anchors.leftMargin: 2
-                anchors.right: parent.right
-                anchors.rightMargin: 2
-                horizontalAlignment: Text.AlignHCenter
-                font.pointSize: parent.height - 5
-                smooth: true
-                focus: false
-                text: lightTimeout
-                cursorDelegate: Rectangle {
-                    color: "black"
-                    width: 1
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible: parent.activeFocus
-                }
-                onAccepted: {
-                    text = text.replace(/([^0-9.])/g, '');
-                    var valid = text.match(/^(|\d+|\d+\.*\d+)$/g) &&
-                                  parseFloat(text) >= 5 ? true : false
-                    if (valid) {
-                        color = "black"
-                        lightTimeout = parseFloat(text);
-                        darkone.keepLightOn = lightTimeout == 0 ? true : false;
-                        if (darkone.keepLightOn) {
-                            lightOutTimer.stop();
-                            lightOutScreenTimer.stop();
-                        } else {
-                            lightOutTimer.start();
-                            lightOutScreenTimer.start();
-                        }
-                        overlayScaleTextInput.focus = true;
-                        focus = false;
-                    } else
-                        color = "red"
-                }
-                onFocusChanged: { if (focus)
-                                      text = text.replace(/([^0-9.])/g, ''); }
-                KeyNavigation.up: KeyNavigation.backtab
-                KeyNavigation.down: KeyNavigation.tab
-                KeyNavigation.backtab: backLightCheckBox
-                KeyNavigation.tab: colourScheme1Button
-            }
-            Text {
-                opacity: 1.0
-                anchors.left: lightOutTextInput.right
-                anchors.leftMargin: 7
-                text: qsTr("lights out (secs)")
-                font.pixelSize: 12
-                color: textColour1
-                smooth: true
-            }
+            onClicked: launchFlash = checked;
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: backLightCheckBox
+            KeyNavigation.tab: launchZoomCheckBox
+        }
+        CheckBox {
+            id: launchZoomCheckBox
+            property int index: prefsEffectsText.index + 3
+            height: parent.itemHeight
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: launchZoom
+            text: qsTr("launch zoom?")
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            smooth: true
+            onClicked: launchZoom = checked;
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: launchFlashCheckBox
+            KeyNavigation.tab: colourScheme1Button
+        }
+
+        /***************
+        * colour schemes
+        */
+        Text {
+            id: prefsColourSchemeText
+            property int index: 12
+            opacity: 1.0
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            text: qsTr("colour scheme")
+            font.pixelSize: parent.itemTextSize + 2
+            font.bold: true
+            color: textColour1
+            smooth: true
+        }
+        Rectangle {
+            id: prefsColourSchemeSeparator
+            height: 1
+            anchors.verticalCenter: prefsColourSchemeText.verticalCenter
+            anchors.left: prefsColourSchemeText.right
+            anchors.leftMargin: 7
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            color: textColour1
+            opacity: 0.5
+            smooth: true
         }
         CheckableGroup { id: group }
         Rectangle {
@@ -1218,38 +1363,51 @@ Rectangle {
             property alias exclusiveGroup: checkable1.exclusiveGroup
             property alias checked: checkable1.checked
             id: colourScheme1Button
-            property int index: 9
+            property int index: prefsColourSchemeText.index + 1
             opacity: 0.5
             height: parent.itemHeight - 2
             width: height
             anchors.top: parent.top
-            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) + 1
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) + 2
             anchors.left: parent.left
             anchors.leftMargin: 13
             radius: height / 2
             smooth: true
             MouseArea {
+                id: colourScheme1ButtonMouseArea
                 anchors.fill: parent
                 onClicked: { parent.checked = true;
                              darkone.colourScheme = "dark";
-                             DarkoneJS.colourScheme(darkone.colourScheme); } }
+                             DarkoneJS.colourScheme(darkone.colourScheme); }
+            }
             onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: lightOutInputBox
+            KeyNavigation.backtab: launchZoomCheckBox
             KeyNavigation.tab: colourScheme2Button
         }
         Text {
-            opacity: 1.0
+            id: colourScheme1Text
+            opacity: 0.8
             anchors.left: colourScheme1Button.right
             anchors.leftMargin: 6
             anchors.verticalCenter: colourScheme1Button.verticalCenter
             anchors.verticalCenterOffset: 0
             verticalAlignment: Text.AlignVCenter
-            text: qsTr("dark colour scheme")
-            font.pixelSize: 12
+            text: qsTr("dark")
+            font.pixelSize: parent.itemTextSize
             color: textColour1
             smooth: true
+            MouseArea {
+                id: colourScheme1TextMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: { parent.opacity += 0.2; }
+                onExited: { parent.opacity -= 0.2; }
+            }
+            Component.onCompleted: {
+                colourScheme1TextMouseArea.clicked.connect(colourScheme1ButtonMouseArea.clicked);
+            }
         }
         Rectangle {
             Checkable {
@@ -1260,84 +1418,194 @@ Rectangle {
             property alias exclusiveGroup: checkable2.exclusiveGroup
             property alias checked: checkable2.checked
             id: colourScheme2Button
-            property int index: 10
+            property int index: prefsColourSchemeText.index + 2
             opacity: 0.5
             height: parent.itemHeight - 2
             width: height
             anchors.top: parent.top
-            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) + 1
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) - 2
             anchors.left: parent.left
             anchors.leftMargin: 13
             radius: height / 2
             smooth: true
             MouseArea {
+                id: colourScheme2ButtonMouseArea
                 anchors.fill: parent
                 onClicked: { parent.checked = true;
                              darkone.colourScheme = "metal";
-                             DarkoneJS.colourScheme(darkone.colourScheme); } }
+                             DarkoneJS.colourScheme(darkone.colourScheme); }
+            }
             onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme1Button
-            KeyNavigation.tab: overlayScaleSlider
+            KeyNavigation.tab: backendParamNamesCycleItem
         }
         Text {
-            opacity: 1.0
+            opacity: 0.8
             anchors.left: colourScheme2Button.right
             anchors.leftMargin: 6
             anchors.verticalCenter: colourScheme2Button.verticalCenter
             anchors.verticalCenterOffset: 0
             verticalAlignment: Text.AlignVCenter
-            text: qsTr("metal colour scheme")
-            font.pixelSize: 12
+            text: qsTr("metal")
+            font.pixelSize: parent.itemTextSize
             color: textColour1
             smooth: true
+            MouseArea {
+                id: colourScheme2TextMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: { parent.opacity += 0.2; }
+                onExited: { parent.opacity -= 0.2; }
+            }
+            Component.onCompleted: {
+                colourScheme2TextMouseArea.clicked.connect(colourScheme2ButtonMouseArea.clicked);
+            }
         }
+
+        /**********
+        * backend
+        */
         Text {
-            id: overlayScaleText
+            id: prefsBackendText
+            property int index: 15
             opacity: 1.0
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.verticalCenter: overlayScaleSlider.verticalCenter
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-            text: qsTr("scale")
-            font.pixelSize: 12
-            color: textColour1
-            smooth: true
-        }
-        Slider {
-            id: overlayScaleSlider
-            property int index: 11
-            height: parent.itemHeight
-            width: 75
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
-            anchors.left: overlayScaleText.right
-            anchors.leftMargin: 6
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            text: qsTr("backend")
+            font.pixelSize: parent.itemTextSize + 2
+            font.bold: true
+            color: textColour1
             smooth: true
-            fgColour1: colour3
-            fgColour2: colour4
-            bgColour1: "white"
-            bgColour2: "white"
+        }
+        Rectangle {
+            id: prefsBackendSeparator
+            height: 1
+            anchors.verticalCenter: prefsBackendText.verticalCenter
+            anchors.left: prefsBackendText.right
+            anchors.leftMargin: 7
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            color: textColour1
+            opacity: 0.5
+            smooth: true
+        }
+        CycleItem {
+            id: backendParamNamesCycleItem
+            property int index: prefsBackendText.index + 1
+            height: parent.itemHeight
+            width: parent.width - 25
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            textPrefix: "param:"
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            items: viewer.cliParamNames()
+            image: "../images/arrow.png"
+            imageWidth: 14
+            imageRotation: 0
+            Component.onCompleted: {
+                clicked.connect(backendParamValuesCycleItem.clicked);
+            }
+            onValueChanged: {
+                debug && console.log("[preferences params names 1] param " +
+                                         "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
+                                         "values set: '" + backendParamValuesCycleItem.items + "', " +
+                                         "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "', " +
+                                         "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
+
+                backendParamValuesCycleItem.items = viewer.cliParamAllowedValues(value)
+                backendParamValuesCycleItem.selectedItem = viewer.cliParamValue(backendParamNamesCycleItem.value)
+                backendParamValuesCycleItem.value = viewer.cliParamValue(backendParamNamesCycleItem.value)
+
+                debug && console.log("[preferences param names 2] param " +
+                                         "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
+                                         "values set: '" + backendParamValuesCycleItem.items + "', " +
+                                         "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "', " +
+                                         "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
+
+            }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme2Button
-            KeyNavigation.tab: fpsCheckBox
-            onValueChanged: overlayScale = DarkoneJS.round(value, 2);
+            KeyNavigation.tab: backendParamValuesCycleItem
         }
         Text {
-            opacity: 1.0
-            anchors.left: overlayScaleSlider.right
-            anchors.leftMargin: 6
-            anchors.verticalCenter: overlayScaleSlider.verticalCenter
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-            text: DarkoneJS.round(100 * overlayScale / DarkoneJS.overlayScaleMax, 0) + "%"
-            font.pixelSize: 12
+            id: backendParamDescText
+            property int index: prefsBackendText.index + 2
+            opacity: 0.8
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            text: "desc:   "
+            font.pixelSize: parent.itemTextSize
+            font.bold: false
             color: textColour1
             smooth: true
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: { parent.opacity += 0.2; }
+                onExited: { parent.opacity -= 0.2; }
+            }
         }
+        Text {
+            id: backendParamDescText2
+            opacity: 1.0
+            anchors.verticalCenter: backendParamDescText.verticalCenter
+            anchors.left: backendParamDescText.right
+            anchors.leftMargin: 5
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            text: viewer.cliParamDescription(backendParamNamesCycleItem.value)
+            font.pixelSize: parent.itemTextSize + 1
+            color: textColour1
+            elide: Text.ElideRight
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            smooth: true
+        }
+        CycleItem {
+            id: backendParamValuesCycleItem
+            property int index: prefsBackendText.index + 3
+            height: parent.itemHeight
+            width: parent.width - 25
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            textPrefix: "value: "
+            image: "../images/arrow.png"
+            imageWidth: 14
+            imageRotation: 0
+            onClicked: {
+                debug && console.log("[preferences] param values: '" +
+                                          viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
+                                         "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "'");
+                if (value != "" && selectedItem != value) {
+                    debug && console.log("[preferences] setting param: '" + backendParamNamesCycleItem.value + ", " +
+                                                               "value: '" + selectedItem + "' -> '" + value + "'");
+                    selectedItem = value;
+                    viewer.setCliParamValue(backendParamNamesCycleItem.value, value);
+                }
+
+            }
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: colourScheme2Button
+            KeyNavigation.tab: sortByNameCheckBox
+        }
+    } // focusScope
     }
 
 
@@ -1618,7 +1886,7 @@ Rectangle {
                     }
                 }
                 CursorShapeArea {
-                    anchors.fill: parent
+                    anchors.fill: darkone.focus ? parent : undefined
                     cursorShape: Qt.CrossCursor
                 }
             }
@@ -1650,90 +1918,104 @@ Rectangle {
     focus: true
     Keys.onPressed: {
         switch ( event.key ) {
-        case Qt.Key_Left:
-            if (!listHidden)
-                DarkoneJS.listToggle();
-            event.accepted = true;
-            break;
-        case Qt.Key_Right:
-            if (listHidden && preferencesDialog.state == "hidden")
-                DarkoneJS.listToggle();
-            event.accepted = true;
-            break;
-       case Qt.Key_Escape:
-            if ( searchTextInput.focus )
-                searchTextInput.focus = false;
-            else if ( preferencesDialog.state == "shown" )
-                preferencesDialog.state = "hidden";
-            else if ( launchFlashTimer.running ) {
-                launchFlashTimer.stop();
-                DarkoneJS.flashCounter = 0;
-                DarkoneJS.inGame = true; // fake game over
-                DarkoneJS.gameOver();
+            case Qt.Key_Left: {
+                if (!listHidden)
+                    DarkoneJS.listToggle();
+                event.accepted = true;
+                break;
             }
-            event.accepted = true;
-            break;
-        case Qt.Key_F1:
-            break;
-        case Qt.Key_F11:
-            fullScreen = !fullScreen;
-            event.accepted = true;
-            break;
-        case Qt.Key_F:
-        case Qt.Key_Enter:
-        case Qt.Key_Return:
-            if ( event.modifiers & Qt.AltModifier ) {
+            case Qt.Key_Right: {
+                if (listHidden && preferencesDialog.state == "hidden")
+                    DarkoneJS.listToggle();
+                event.accepted = true;
+                break;
+           }
+           case Qt.Key_Escape: {
+                if ( searchTextInput.focus )
+                    searchTextInput.focus = false;
+                else if ( preferencesDialog.state == "shown" )
+                    preferencesDialog.state = "hidden";
+                else if ( launchFlashTimer.running ) {
+                    launchFlashTimer.stop();
+                    DarkoneJS.flashCounter = 0;
+                    DarkoneJS.inGame = true; // fake game over
+                    DarkoneJS.gameOver();
+                }
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_F1:
+                break;
+            case Qt.Key_F11: {
                 fullScreen = !fullScreen;
                 event.accepted = true;
+                break;
             }
-            break;
-        default:
-            if ( event.modifiers & Qt.ControlModifier) {
-                switch ( event.key ) {
-                case Qt.Key_Q:
-                    Qt.quit();
-                    break;
-                case Qt.Key_P:
-                    !darkone.ignoreLaunch && DarkoneJS.launch();
+            case Qt.Key_F:
+            case Qt.Key_Enter:
+            case Qt.Key_Return: {
+                if ( event.modifiers & Qt.AltModifier ) {
+                    fullScreen = !fullScreen;
                     event.accepted = true;
-                    break;
-                case Qt.Key_O:
-                    preferencesDialog.state = preferencesDialog.state == "shown" ? "hidden" : "shown";
-                    event.accepted = true;
-                    break;
-                case Qt.Key_M:
-                    darkone.toolbarHidden = !darkone.toolbarHidden;
-                    event.accepted = true;
-                    break;
-                case Qt.Key_X:
-                    if ( confirmQuitDialog.state == "hidden" )
-                        confirmQuitDialog.state = "shown";
-                    else
-                        confirmQuitDialog.state = "hidden";
-                    event.accepted = true;
-                    break;
-                case Qt.Key_F:
-                    if ( !darkone.toolbarHidden ) {
-                        searchTextInput.text = "";
-                        searchTextInput.focus = true;
-                    }
-                    break;
                 }
-            } else if ( !darkone.toolbarHidden ) {
-                if ( DarkoneJS.validateKey(event.text) ) {
-                    searchTextInput.text += event.text;
-                    searchTextInput.focus = true;
-                } else if ( DarkoneJS.validateSpecialKey(event.text) ) {
-                    searchTextInput.focus = true;
-                    switch ( event.text ) {
-                    case "\b":
-                        if ( searchTextInput.text.length > 0)
-                            searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
-                        break;
+                break;
+            }
+            default: {
+                if ( event.modifiers & Qt.ControlModifier) {
+                    switch ( event.key ) {
+                        case Qt.Key_Q: {
+                            Qt.quit();
+                            break;
+                        }
+                        case Qt.Key_P: {
+                            !darkone.ignoreLaunch && DarkoneJS.launch();
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_O: {
+                            preferencesDialog.state = preferencesDialog.state == "shown" ? "hidden" : "shown";
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_M: {
+                            darkone.toolbarHidden = !darkone.toolbarHidden;
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_X: {
+                            if ( confirmQuitDialog.state == "hidden" )
+                                confirmQuitDialog.state = "shown";
+                            else
+                                confirmQuitDialog.state = "hidden";
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_F: {
+                            if ( !darkone.toolbarHidden ) {
+                                searchTextInput.text = "";
+                                searchTextInput.focus = true;
+                            }
+                            break;
+                        }
+                    }
+                } else if ( !darkone.toolbarHidden ) {
+                    if ( DarkoneJS.validateKey(event.text) ) {
+                        searchTextInput.text += event.text;
+                        searchTextInput.focus = true;
+                    } else if ( DarkoneJS.validateSpecialKey(event.text) ) {
+                        searchTextInput.focus = true;
+                        switch ( event.text ) {
+                        case "\b":
+                            if ( searchTextInput.text.length > 0)
+                                searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
+                            break;
+                        }
                     }
                 }
             }
         }
     }
     Keys.forwardTo: [gameListView]
+//}
+
 }

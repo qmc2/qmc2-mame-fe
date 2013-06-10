@@ -24,8 +24,8 @@ function init() {
     if (!darkone.initialised && darkone.lastIndex == -1) {
         overlayScaleMax = baseHeight / overlayScreen.height;
         overlayScaleMin = overlayScaleMax * 0.10;
-        console.log("overlayScreen.height: " + overlayScreen.height + ", " +
-                    "overlayScaleMax: " + overlayScaleMax)
+        darkone.debug && console.log("[init] overlayScreen.height: '" + overlayScreen.height + "', " +
+                                            "overlayScaleMax: '" + overlayScaleMax + "'");
         viewer.loadSettings();
         colourScheme(darkone.colourScheme);
         viewer.loadGamelist();
@@ -39,7 +39,7 @@ function init() {
         darkone.debug && console.log("[init 1] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
         resetScale = darkone.overlayScale;
-        darkone.overlayScale /= 2;
+        darkone.overlayScale = Math.min(darkone.overlayScale, overlayScaleMax) / 2;
         darkone.debug && console.log("[init 2] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
 
@@ -213,18 +213,20 @@ function round(number, dp) {
 function zoom(zoom) {
     darkone.debug && console.log(
         "[zoom] " +
-        "scale: window (x,y): ' " + round(scaleFactorX(), 2) + "," + round(scaleFactorY(), 2) + "', " +
-        "scale: screen: '" + round(darkone.overlayScale, 2) + "', " +
+//        "scale: window (x,y): ' " + round(scaleFactorX(), 2) + "," + round(scaleFactorY(), 2) + "', " +
+//        "scale: screen: '" + round(darkone.overlayScale, 2) + "', " +
 //        "scale: combined:' " + round(scaleFactorX() * darkone.overlayScale, 2) + "', " +
 //        "darkone.height: '" + round(darkone.height, 2) + "', " +
 //        "overlayScreen.anchors.topMargin: '" + round(overlayScreen.anchors.topMargin, 2) + "', " +
 //        "overlayScreen.y: '" + round(overlayScreen.y, 2) + "', " +
 //        "overlayScreen.parent.y: '" + round(overlayScreen.parent.y, 2) + "', " +
-        "overlayScreen.height: '" + round(overlayScreen.height, 2) + "', " +
-        "darkone.height: '" + round(baseHeight, 2) + "', " +
-        "overlayScreen.height scaled: '" + round(overlayScreen.height * overlayScreen.scale, 2) + "', " +
-        "overlayScreen.height scaled comp: '" + round(overlayScreen.height * scaleFactorY() * darkone.overlayScale, 2) + "', " +
-        "darkone.height scaled: '" + round(darkone.height, 2) + "'");
+//        "overlayScreen.height: '" + round(overlayScreen.height, 2) + "', " +
+//        "darkone.height: '" + round(baseHeight, 2) + "', " +
+//        "overlayScreen.height scaled: '" + round(overlayScreen.height * overlayScreen.scale, 2) + "', " +
+//        "overlayScreen.height scaled comp: '" + round(overlayScreen.height * scaleFactorY() * darkone.overlayScale, 2) + "', " +
+//        "darkone.height scaled: '" + round(darkone.height, 2) + "'");
+        "overlayScreen.height: '" + overlayScreen.height + "', " +
+        "overlayScaleMax: '" + overlayScaleMax + "'");
 
       switch(typeof(zoom)) {
           case "string":
@@ -273,11 +275,11 @@ function zoom(zoom) {
     }
 }
 
-function launchFlash() {
+function launchDelay() {
     if (flashCounter == darkone.flashes) {
         launchFlashTimer.stop();
         flashCounter = 0;
-        !darkone.disableLaunchZoom && zoom("max");
+        darkone.launchZoom && zoom("max");
         launchTimer.start()
     } else {
         if (launchButton.opacity < 1) {
@@ -298,8 +300,8 @@ function launch() {
      resetToolbarHidden = !darkone.toolbarHidden;
      toolbarToggle(-1);
      resetScale = darkone.overlayScale;
-     if (darkone.disableLaunchFlash) {
-         !darkone.disableLaunchZoom && zoom("max");
+     if (!darkone.launchFlash) {
+         darkone.launchZoom && zoom("max");
          launchTimer.start();
      } else {
          launchFlashTimer.start();
@@ -321,7 +323,7 @@ function gameOver() {
         overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        if (!darkone.disableLaunchZoom && resetScale != -1) {
+        if (darkone.launchZoom && resetScale != -1) {
            zoom(resetScale / darkone.overlayScale);
            resetScale = -1;
         }
@@ -337,6 +339,7 @@ function gameCardHeader() {
           var gameObject = gameListModel[gameListView.currentIndex];
     return "<style type='text/css'>p,h2 { margin:0px }</style><h2>" + gameObject.description + "</h2><p>" + qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p>";
 }
+
 
 // find datatype (object) by (property) name in (object) dataTypes, and return an 'adjacent' datatype's name
 // type: key (property) of datatype to find in datatypes
