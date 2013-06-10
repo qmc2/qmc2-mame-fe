@@ -77,10 +77,10 @@ public slots:
     bool backLight();
     void setToolbarAutoHide(bool);
     bool toolbarAutoHide();
-    void setDisableLaunchFlash(bool);
-    bool disableLaunchFlash();
-    void setDisableLaunchZoom(bool);
-    bool disableLaunchZoom();
+    void setLaunchFlash(bool);
+    bool launchFlash();
+    void setLaunchZoom(bool);
+    bool launchZoom();
     void setDataTypePrimary(QString);
     QString dataTypePrimary();
     void setDataTypeSecondary(QString);

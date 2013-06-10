@@ -39,58 +39,80 @@
  **
  ****************************************************************************/
 
- import QtQuick 1.0
+import QtQuick 1.0
 
- Item {
-     id: slider; width: 400; height: 16
+Item {
+    id: slider; width: 400; height: 16
 
-     // value is read/write.
-     property real value: 1
-     onValueChanged: updatePos();
-     property real maximum: 1
-     property real minimum: 1
-     property int xMax: width - handle.width - 4
-     onXMaxChanged: updatePos();
-     onMinimumChanged: updatePos();
+    // value is read/write.
+    property real value: 1
+    onValueChanged: updatePos();
+    property real maximum: 1
+    property real minimum: 1
+    property int xMax: width - handle.width - 4
+    onXMaxChanged: updatePos();
+    onMinimumChanged: updatePos();
 
-     property string fgColour1: "lightgray"
-     property string fgColour2: "gray"
-     property string bgColour1: "#66343434"
-     property string bgColour2: "#66000000"
+    property string fgColour1: "lightgray"
+    property string fgColour2: "gray"
+    property string bgColour1: "black"
+    property string bgColour2: "black"
+    property string activeColour: "red"
+    property int slidePercentage: 1
 
-     function updatePos() {
-         if (maximum > minimum) {
-             var pos = 2 + (value - minimum) * slider.xMax / (maximum - minimum);
-             pos = Math.min(pos, width - handle.width - 2);
-             pos = Math.max(pos, 2);
-             handle.x = pos;
-         } else {
-             handle.x = 2;
-         }
-     }
+    function updatePos() {
+        if (maximum > minimum) {
+            var pos = 2 + (value - minimum) * slider.xMax / (maximum - minimum);
+            pos = Math.min(pos, width - handle.width - 2);
+            pos = Math.max(pos, 2);
+            handle.x = pos;
+        } else {
+            handle.x = 2;
+        }
+    }
+    function slide(change) {
+        value = Math.max(minimum, value + (change / 100) * (maximum - minimum))
+    }
 
-     Rectangle {
-         anchors.fill: parent
-         border.color: "white"; border.width: 0; radius: 3
-         gradient: Gradient {
-             GradientStop { position: 0.0; color: bgColour1 }
-             GradientStop { position: 1.0; color: bgColour2 }
-         }
-     }
+    Rectangle {
+        id: sliderBackground
+        anchors.fill: parent
+        border.width: slider.activeFocus ? 2 : 0
+        border.color: parent.activeColour
+        radius: 3
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: bgColour1 }
+            GradientStop { position: 1.0; color: bgColour2 }
+        }
+    }
 
-     Rectangle {
-         id: handle; smooth: true
-         y: 1; width: 15; height: slider.height-2; radius: 4
-         gradient: Gradient {
-             GradientStop { position: 0.0; color: fgColour1 }
-             GradientStop { position: 1.0; color: fgColour2 }
-         }
+    Rectangle {
+        id: handle; smooth: true
+        y: 1; width: 15; height: slider.height - 2; radius: 4
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: fgColour1 }
+            GradientStop { position: 1.0; color: fgColour2 }
+        }
 
-         MouseArea {
-             id: mouse
-             anchors.fill: parent; drag.target: parent
-             drag.axis: Drag.XAxis; drag.minimumX: 2; drag.maximumX: slider.xMax+2
-             onPositionChanged: { value = (maximum - minimum) * (handle.x-2) / slider.xMax + minimum; }
-         }
-     }
- }
+        MouseArea {
+            id: mouse
+            anchors.fill: parent; drag.target: parent
+            drag.axis: Drag.XAxis; drag.minimumX: 2; drag.maximumX: slider.xMax + 2
+            onPositionChanged: { value = (maximum - minimum) * (handle.x-2) / slider.xMax + minimum; }
+        }
+    }
+    Keys.onPressed: {
+       switch ( event.key ) {
+           case Qt.Key_Left: {
+               slide(-slidePercentage)
+               event.accepted = true;
+               break;
+           }
+           case Qt.Key_Right: {
+               slide(slidePercentage)
+               event.accepted = true;
+               break;
+           }
+       }
+    }
+}

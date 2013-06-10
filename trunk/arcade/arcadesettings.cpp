@@ -292,22 +292,22 @@ bool ArcadeSettings::backLight()
     return value(QString("Arcade/%1/backLight").arg(arcadeTheme), false).toBool();
 }
 
-void ArcadeSettings::setDisableLaunchFlash(bool disableLaunchFlash)
+void ArcadeSettings::setLaunchFlash(bool launchFlash)
 {
-    setValue(QString("Arcade/%1/disableLaunchFlash").arg(arcadeTheme), disableLaunchFlash);
+    setValue(QString("Arcade/%1/launchFlash").arg(arcadeTheme), launchFlash);
 }
-bool ArcadeSettings::disableLaunchFlash()
+bool ArcadeSettings::launchFlash()
 {
-    return value(QString("Arcade/%1/disableLaunchFlash").arg(arcadeTheme), false).toBool();
+    return value(QString("Arcade/%1/launchFlash").arg(arcadeTheme), true).toBool();
 }
 
-void ArcadeSettings::setDisableLaunchZoom(bool disableLaunchZoom)
+void ArcadeSettings::setLaunchZoom(bool launchZoom)
 {
-    setValue(QString("Arcade/%1/disableLaunchZoom").arg(arcadeTheme), disableLaunchZoom);
+    setValue(QString("Arcade/%1/launchZoom").arg(arcadeTheme), launchZoom);
 }
-bool ArcadeSettings::disableLaunchZoom()
+bool ArcadeSettings::launchZoom()
 {
-    return value(QString("Arcade/%1/disableLaunchZoom").arg(arcadeTheme), false).toBool();
+    return value(QString("Arcade/%1/launchZoom").arg(arcadeTheme), true).toBool();
 }
 
 void ArcadeSettings::setOverlayScale(double overlayScale)
