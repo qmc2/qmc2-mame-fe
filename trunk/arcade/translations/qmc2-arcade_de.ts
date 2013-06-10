@@ -783,12 +783,12 @@
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1169"/>
         <source>secs</source>
-        <translation>Sek.</translation>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1219"/>
         <source>scale</source>
-        <translation>Skalierung</translation>
+        <translation>Skalieren</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1241"/>
