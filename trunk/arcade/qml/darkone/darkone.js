@@ -59,8 +59,12 @@ function init() {
         //power
         lightOut = false;
         lightOutScreen = false;
-        zoom(resetScale / darkone.overlayScale);
-        resetScale = -1;
+        //immediate user interaction may have caused a light-on event which means the zoom may
+        //have already been reset. check before we call zoom with a negative argument!
+        if (resetScale != -1) {
+            zoom(resetScale / darkone.overlayScale);
+            resetScale = -1;
+        }
     }
 }
 
