@@ -30,7 +30,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="52"/>
+        <location filename="../joystick.cpp" line="54"/>
         <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
         <translation></translation>
     </message>
@@ -751,72 +751,97 @@
 <context>
     <name>darkone</name>
     <message>
-        <location filename="../qml/darkone/darkone.js" line="316"/>
+        <location filename="../qml/darkone/darkone.js" line="345"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.js" line="316"/>
+        <location filename="../qml/darkone/darkone.js" line="345"/>
         <source>ROM state</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="994"/>
+        <location filename="../qml/darkone/darkone.qml" line="1028"/>
         <source>Preferences</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1017"/>
+        <location filename="../qml/darkone/darkone.qml" line="1051"/>
+        <source>behaviour</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1139"/>
         <source>FPS counter</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1042"/>
+        <location filename="../qml/darkone/darkone.qml" line="1168"/>
+        <source>lights out in</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1169"/>
+        <source>secs</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1219"/>
+        <source>scale</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1241"/>
+        <source>effects</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1293"/>
+        <source>launch flash?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1315"/>
+        <source>launch zoom?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1338"/>
+        <source>colour scheme</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1397"/>
+        <source>dark</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1451"/>
+        <source>metal</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1478"/>
+        <source>backend</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/darkone.qml" line="1080"/>
         <source>sort by name?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1070"/>
+        <location filename="../qml/darkone/darkone.qml" line="1114"/>
         <source>auto-hide toolbar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1090"/>
-        <source>disable launch flash?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/darkone.qml" line="1110"/>
-        <source>disable launch zoom?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/darkone.qml" line="1130"/>
+        <location filename="../qml/darkone/darkone.qml" line="1270"/>
         <source>back lighting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/darkone.qml" line="1202"/>
-        <source>lights out (secs)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/darkone.qml" line="1265"/>
-        <source>overlay scale</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/darkone.qml" line="1309"/>
-        <source>dark colour scheme</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/darkone.qml" line="1351"/>
-        <source>metal colour scheme</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/darkone.qml" line="1594"/>
+        <location filename="../qml/darkone/darkone.qml" line="1847"/>
         <source>FPS</source>
         <translation></translation>
     </message>
