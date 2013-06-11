@@ -233,13 +233,13 @@
     <message>
         <location filename="../imageprovider.cpp" line="95"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image ID &apos;%1&apos; requested</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ImageProvider::loadImage(): ID de imagem inválido &apos;%1&apos; requisitado</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="132"/>
         <location filename="../imageprovider.cpp" line="177"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image type &apos;%1&apos; requested</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ImageProvider::loadImage(): Tipo de imagem inválido &apos;%1&apos; requisitado</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="110"/>
@@ -247,7 +247,7 @@
         <location filename="../imageprovider.cpp" line="155"/>
         <location filename="../imageprovider.cpp" line="160"/>
         <source>WARNING: ImageProvider::loadImage(): unable to load image file &apos;%1&apos; from ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ImageProvider::loadImage(): não foi possível carregar o arquivo de imagem &apos;%1&apos; do ZIP</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="222"/>
@@ -292,17 +292,17 @@
     <message>
         <location filename="../main.cpp" line="165"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 não é um sistema gráfico válido - sistemas gráficos disponíveis: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="181"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 não é um modo de emulador válido - modos de emulador disponíveis: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="199"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 não é um modo de console válido - modos de console disponíveis: %2</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="217"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../main.cpp" line="281"/>
         <source>emulator-mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>modo de emulador: %1</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="282"/>
@@ -336,12 +336,12 @@
     <message>
         <location filename="../main.cpp" line="283"/>
         <source>graphics-system: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>sistema gráfico: %1</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="284"/>
         <source>console-mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>modo de console: %1</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="296"/>
@@ -356,130 +356,130 @@
     <message>
         <location filename="../infoprovider.cpp" line="66"/>
         <source>Loading game info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando BD de informações de jogo</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="69"/>
         <source>Loading machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando BD de informações de máquina</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="141"/>
         <source>WARNING: Missing &apos;$end&apos; in game info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="144"/>
         <source>WARNING: Missing &apos;$end&apos; in machine info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="152"/>
         <source>WARNING: Missing &apos;$bio&apos; in game info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$bio&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="155"/>
         <source>WARNING: Missing &apos;$bio&apos; in machine info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="163"/>
         <source>WARNING: Missing &apos;$info&apos; in game info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="166"/>
         <source>WARNING: Missing &apos;$info&apos; in machine info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="176"/>
         <source>WARNING: Can&apos;t open game info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Não foi possível abrir o BD de informações de jogo %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="179"/>
         <source>WARNING: Can&apos;t open machine info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Não foi possível abrir o BD de informações de máquina %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../infoprovider.cpp" line="196"/>
         <source>%n machine info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de máquina carregado</numerusform>
+            <numerusform>%n registros de informação de máquina carregados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="198"/>
         <source>Invalidating machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalidando BD de informações de máquina</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="190"/>
         <source>Invalidating game info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalidando BD de informações de jogo</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="208"/>
         <source>Loading emulator info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando BD de informações de emulador</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="264"/>
         <source>WARNING: Missing &apos;$end&apos; in emulator info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="267"/>
         <source>WARNING: Missing &apos;$mame&apos; in emulator info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$mame&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="270"/>
         <source>WARNING: Missing &apos;$info&apos; in emulator info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="275"/>
         <source>WARNING: Can&apos;t open emulator info DB %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Não foi possível abrir o BD de informações de emulador %1</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="277"/>
         <source>Done (Loading emulator info DB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Feito (Carregando BD de informações de emulador)</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="280"/>
         <source>Invalidating emulator info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Invalidando BD de informações de emulador</translation>
     </message>
     <message numerus="yes">
         <location filename="../infoprovider.cpp" line="188"/>
         <source>%n game info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de jogo carregado</numerusform>
+            <numerusform>%n registros de informação de jogo carregados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="195"/>
         <source>Done (Loading machine info DB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Feito (Carregando BD de informações de máquina)</translation>
     </message>
     <message>
         <location filename="../infoprovider.cpp" line="187"/>
         <source>Done (Loading game info DB)</source>
-        <translation type="unfinished"></translation>
+        <translation>Feito (Carregando BD de informações de jogo)</translation>
     </message>
     <message numerus="yes">
         <location filename="../infoprovider.cpp" line="278"/>
         <source>%n emulator info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de emulador carregado</numerusform>
+            <numerusform>%n registros de informação de emulador carregados</numerusform>
         </translation>
     </message>
     <message>
@@ -488,7 +488,7 @@
         <location filename="../infoprovider.cpp" line="327"/>
         <location filename="../infoprovider.cpp" line="329"/>
         <source>no info available</source>
-        <translation type="unfinished"></translation>
+        <translation>informação não disponível</translation>
     </message>
 </context>
 <context>
@@ -604,67 +604,67 @@
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="48"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="49"/>
         <source>Graphics system</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema gráfico</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="50"/>
         <source>Console mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de console</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="98"/>
         <source>Loading global and theme-specific settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando configurações globais e específicas do tema</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="136"/>
         <source>Saving global and theme-specific settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvando configurações globais e específicas do tema</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="190"/>
         <source>Activating full-screen display</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativando tela cheia</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="213"/>
         <source>Activating windowed display</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativando modo janela</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="234"/>
         <source>correct</source>
-        <translation type="unfinished"></translation>
+        <translation>correto</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="236"/>
         <source>mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>maioria correto</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="238"/>
         <source>incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>incorreto</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="240"/>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>não encontrado</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="243"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>desconhecido</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="272"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: arquivo de lista filtrado &apos;%1&apos; não existe ou não está acessível, revertendo para a %2 completa</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="274"/>
@@ -673,7 +673,7 @@
         <location filename="../tweakedqmlappviewer.cpp" line="324"/>
         <location filename="../tweakedqmlappviewer.cpp" line="335"/>
         <source>game list</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de jogos</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="274"/>
@@ -682,70 +682,70 @@
         <location filename="../tweakedqmlappviewer.cpp" line="324"/>
         <location filename="../tweakedqmlappviewer.cpp" line="335"/>
         <source>machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de máquinas</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="282"/>
         <source>Loading %1 from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="299"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Não foi possível abrir o arquivo de cache de estados de ROM &apos;%1&apos;, por favor verifque as permissões</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="302"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: O arquivo de cache de estados de ROM &apos;%1&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="319"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: Não foi possível abrir o arquivo de cache de %1 &apos;%2&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="323"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: O arquivo de cache de %1 &apos;%2&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="334"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Feito (carregando %1 de &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../tweakedqmlappviewer.cpp" line="335"/>
         <source>%n non-device set(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n conjunto de não-dispositivo carregado</numerusform>
+            <numerusform>%n conjuntos de não-dispositivo carregados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="341"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando emulador #%1 para %2 ID &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="341"/>
         <source>game</source>
-        <translation type="unfinished"></translation>
+        <translation>jogo</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="341"/>
         <source>machine</source>
-        <translation type="unfinished"></translation>
+        <translation>máquina</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="460"/>
         <source>Stopping QML viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Parando visualizador QML</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="463"/>
         <source>QML viewer stopped - please close the console window to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador QML parado - por favor feche a janela do console para sair</translation>
     </message>
 </context>
 <context>
@@ -753,97 +753,97 @@
     <message>
         <location filename="../qml/darkone/darkone.js" line="345"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.js" line="345"/>
         <source>ROM state</source>
-        <translation type="unfinished">Estado da ROM</translation>
+        <translation>Estado da ROM</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1028"/>
         <source>Preferences</source>
-        <translation type="unfinished">Preferências</translation>
+        <translation>Preferências</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1051"/>
         <source>behaviour</source>
-        <translation type="unfinished"></translation>
+        <translation>comportamento</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1139"/>
         <source>FPS counter</source>
-        <translation type="unfinished"></translation>
+        <translation>contador de QPS</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1168"/>
         <source>lights out in</source>
-        <translation type="unfinished"></translation>
+        <translation>apagar luzes em</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1169"/>
         <source>secs</source>
-        <translation type="unfinished"></translation>
+        <translation>segs</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1219"/>
         <source>scale</source>
-        <translation type="unfinished"></translation>
+        <translation>escala</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1241"/>
         <source>effects</source>
-        <translation type="unfinished"></translation>
+        <translation>efeitos</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1293"/>
         <source>launch flash?</source>
-        <translation type="unfinished"></translation>
+        <translation>flash na inicialização?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1315"/>
         <source>launch zoom?</source>
-        <translation type="unfinished"></translation>
+        <translation>zoom na inicialização?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1338"/>
         <source>colour scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>esquema de cor</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1397"/>
         <source>dark</source>
-        <translation type="unfinished"></translation>
+        <translation>escuro</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1451"/>
         <source>metal</source>
-        <translation type="unfinished"></translation>
+        <translation>metal</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1478"/>
         <source>backend</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1080"/>
         <source>sort by name?</source>
-        <translation type="unfinished"></translation>
+        <translation>ordenar por nome?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1114"/>
         <source>auto-hide toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>auto-ocultar barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1270"/>
         <source>back lighting</source>
-        <translation type="unfinished"></translation>
+        <translation>luz de fundo</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1847"/>
         <source>FPS</source>
-        <translation type="unfinished"></translation>
+        <translation>QPS</translation>
     </message>
 </context>
 </TS>
