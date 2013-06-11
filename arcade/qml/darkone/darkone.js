@@ -164,6 +164,8 @@ function listToggle(force) {
 }
 
 function lightToggle(force) {
+    if (initialising || fadeIn.running)
+        return   
     if (force > 0 || (darkone.lightOff && !force)) {
         ignoreLaunch = preferencesLaunchLock ? true : false
         lightOut = false;
