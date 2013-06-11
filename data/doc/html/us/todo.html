@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.39, 01-JUN-2013</h3>
+<h3>TODO - v0.39, 11-JUN-2013</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -31,7 +31,6 @@
 </ul>
 <p><b>Planned changes, new features and improvements</b></p>
 <ul>
-  <li>Fix joystick support on Mac OS X by implementing <b>real</b> calibration -- see <a href="http://tracker.batcom-it.net/view.php?id=39" target="_blank">bug tracker ID #39</a></li>
   <li>Arcade mode: add support for remapping of key-sequences and (digital) joystick-functions</li>
   <li>Arcade mode: add support for dynamically changing background images based on the current game's category (category images being freely customizable), add a MESS specific theme</li>
   <li>Port all uses of Qt Phonon to Qt Multimedia as Phonon isn't part of Qt 5 (not even planned for future releases)</li>
@@ -55,10 +54,8 @@
   <li>Add a high-score database</li>
   <li>Add a joystick &amp; keyboard configurator for MAME and MESS</li>
   <li>Add support for MAME/MESS output notifications on Windows</li>
-  <li>Add support for even more game/machine images (hiscores, howtos, ...)</li>
   <li>Create an improved setup wizard with QWizard</li>
   <li>Extend the template syntax to include the version an option was added/removed and process such options only if the current MAME/MESS version lies within this range (both new attributes will be optional, though, meaning that if they are omitted QMC2 will process the respective option regardless of the current MAME/MESS version -- just as it works now) (do we really need that?)</li>
-  <li>Update MAWS quick download links: the cabinet artwork URLs are no longer found (since the latest MAWS site changes) (MAWS is down for quite some time now... if things don't change, we might drop/replace this feature)</li>
 </ul>
 </body>
 </html>
