@@ -103,7 +103,7 @@ void showHelp(ArcadeSettings *settings = NULL)
     QString helpMessage;
     helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
                    "Option           Meaning             Possible values ([..] = default)\n"
-                   "---------------  ------------------  ------------------------------------\n"
+                   "---------------  ------------------  -----------------------------------------\n"
                    "-emu             Emulator mode       [mame], mess, ume\n";
     helpMessage += "-theme           Theme selection     " + availableThemes + "\n";
     helpMessage += "-console         Console type        " + availableConsoles + "\n";
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
     // messThemes << "..."
     umeThemes << "ToxicWaste" << "darkone";
     consoleModes << "terminal" << "window" << "window-minimized";
-    graphicsSystems << "raster" << "native" << "opengl";
+    graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "openvg";
 
     // we have to make a copy of the command line arguments since QApplication's constructor "eats" -graphicssystem and its value (and we really need to know if it has been set!)
     for (int i = 0; i < argc; i++)
