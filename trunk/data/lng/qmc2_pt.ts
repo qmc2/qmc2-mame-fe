@@ -326,7 +326,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.ui" line="36"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.ui" line="41"/>
@@ -403,108 +403,108 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../additionalartworksetup.cpp" line="77"/>
         <source>Select / deselect this artwork class for removal</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar / deselecionar essa classe de arte para remoção</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="82"/>
         <source>Enter a name for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre um nome para essa classe de arte (obrigatório)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="86"/>
         <source>Choose...</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher...</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="88"/>
         <source>Choose an icon file to be used for this artwork class (optional)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um arquivo de ícone para ser utilizado para essa classe de arte (opcional)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="93"/>
         <source>Enter a &lt;u&gt;unique&lt;/u&gt; cache prefix (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre um prefixo de cache &lt;u&gt;único&lt;/u&gt; (obrigatório)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="96"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="97"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="98"/>
         <source>Select system or software as &lt;i&gt;target&lt;/i&gt; for this artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o sistema ou software como &lt;i&gt;alvo&lt;/i&gt; para essa classe de arte</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="101"/>
         <source>Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="102"/>
         <source>ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="103"/>
         <source>Choose if images are loaded from a folder or a ZIP archive for this artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha se as imagens são carregadas de uma pasta ou de um arquivo ZIP para essa classe de arte</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="105"/>
         <source>ZIP files (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos ZIP (*.zip)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="105"/>
         <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="106"/>
         <source>Image ZIP file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo ZIP de imagens</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="107"/>
         <source>Image ZIP file for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo ZIP de imagens para essa classe de arte (obrigatório)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="108"/>
         <source>Browse image ZIP file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo ZIP de imagens</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="110"/>
         <source>Image folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de imagens</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="111"/>
         <source>Image folder for this artwork class (required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de imagens para essa classe de arte (obrigatório)</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="112"/>
         <source>Browse image folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pela pasta de imagens</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>Choose icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha arquivo de ícone</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="151"/>
         <source>PNG files (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos PNG (*.png)</translation>
     </message>
 </context>
 <context>
@@ -3524,17 +3524,17 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="2029"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: o nome &apos;%1&apos; é usado por vários conjuntos -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2032"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: o nome &apos;%1&apos; é usado por vários conjuntos -- por favor informe os desenvolvedores do MESS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2035"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME/MESS developers</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Defeito do XML: o nome &apos;%1&apos; é usado por vários conjuntos -- por favor informe os desenvolvedores do MAME/MESS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3162"/>
@@ -13175,27 +13175,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="73"/>
         <source>Use native file dialogs</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar diálogos de arquivo nativos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="848"/>
         <source>Kill emulators when QMC2 exits?</source>
-        <translation type="unfinished"></translation>
+        <translation>Matar emuladores quando o QMC2 for fechado?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="851"/>
         <source>Kill emulators on exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Matar emuladores ao sair</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="858"/>
         <source>Terminate all other emulator instances when launching a new one?</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminar todas as outras instâncias de emulador quando executar uma nova?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="861"/>
         <source>One emulator at a time</source>
-        <translation type="unfinished"></translation>
+        <translation>Um emulador por vez</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3025"/>
@@ -13495,7 +13495,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="70"/>
         <source>Use the system&apos;s own (native) file dialogs, otherwise Qt&apos;s built-in dialogs are used</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar os diálogos de arquivo do próprio sistema (nativos), caso contrários os diálogos nativos do Qt serão utilizados</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2282"/>
