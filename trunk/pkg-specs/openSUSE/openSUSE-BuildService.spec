@@ -1,6 +1,6 @@
 Name:           qmc2
-Version:        0.39
-Release:        2
+Version:        0.40
+Release:        1
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -156,6 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qchdman.desktop
 
 %changelog
+* Tue Jun 11 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-1
+- updated spec to QMC2 0.40
+
 * Fri Feb 22 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-2
 - added build rules for 'Qt CHDMAN GUI' (qchdman)
 
