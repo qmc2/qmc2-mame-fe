@@ -667,7 +667,7 @@ Rectangle {
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
             smooth: true
-            opacity: backLight ? Math.min(darkone.opacity, backLightOpacity) : 0
+            opacity: backLight ? backLightOpacity : 0
         }
         Rectangle {
             id: overlayStateBlock
