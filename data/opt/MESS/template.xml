@@ -1529,21 +1529,21 @@
       <description lang="fr" text="Taille de la texture du masque d'ombrage en direction V"/>
       <description lang="pt" text="Tamanho da textura da máscara de sombras na direção V"/>
     </option>
-    <option default="0" name="curvature" type="float">
+    <option default="0.03" name="curvature" type="float">
       <description lang="es" text="Cantidad de curvatura de la pantalla"/>
       <description lang="us" text="Screen curvature amount"/>
       <description lang="de" text="Betrag der Bildschirmkrümmung"/>
       <description lang="fr" text="Taux de courbure de l'écran"/>
       <description lang="pt" text="Quantidade de curvatura da tela"/>
     </option>
-    <option default="0" name="pincushion" type="float">
+    <option default="0.03" name="pincushion" type="float">
       <description lang="es" text="Cantidad de 'pincushion'"/>
       <description lang="us" text="Pincushion amount"/>
       <description lang="de" text="Betrag der Kissenverzerrung"/>
       <description lang="fr" text="Quantité de Pincushion"/>
       <description lang="pt" text="Quantidade de pincushion"/>
     </option>
-    <option default="0" name="scanline_alpha" type="float">
+    <option default="1" name="scanline_alpha" type="float">
       <description lang="es" text="Valor global de escalado alpha de scanlines"/>
       <description lang="us" text="Overall alpha scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Alpha-Skalierungs-Wert für Abtastzeilen"/>
@@ -1557,7 +1557,7 @@
       <description lang="fr" text="Valeur globale d'étirement vertical alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de altura geral para scanlines"/>
     </option>
-    <option default="0.7" name="scanline_height" type="float">
+    <option default="1" name="scanline_height" type="float">
       <description lang="es" text="Valor individual  de altura de escalado de scanlines"/>
       <description lang="us" text="Individual height scaling value for scanlines"/>
       <description lang="de" text="Individueller Höhen-Skalierungs-Wert für Abtastzeilen"/>
@@ -1592,14 +1592,14 @@
       <description lang="fr" text="Echelle globale d'étirement 'defocus' pour les coordonnées relatives à l'écran"/>
       <description lang="pt" text="Escala de desfocagem geral nas coordenadas relativas à tela"/>
     </option>
-    <option default="0.000000,0.000000,0.000000" name="converge_x" type="float3">
+    <option default="0.300000,0.000000,-0.300000" name="converge_x" type="float3">
       <description lang="es" text="Convergencia en dirección X relativa a la pantalla"/>
       <description lang="us" text="Convergence in screen-relative X direction"/>
       <description lang="de" text="Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
       <description lang="fr" text="Convergence en direction X relative à l'écran"/>
       <description lang="pt" text="Convergência do vermelho na direção X relativa"/>
     </option>
-    <option default="0.000000,0.000000,0.000000" name="converge_y" type="float3">
+    <option default="0.000000,0.300000,-0.300000" name="converge_y" type="float3">
       <description lang="es" text="Convergencia en dirección Y relativa a la pantalla"/>
       <description lang="us" text="Convergence in screen-relative Y direction"/>
       <description lang="de" text="Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
@@ -1641,7 +1641,7 @@
       <description lang="fr" text="Signal de sortie Bleu généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada"/>
     </option>
-    <option default="1" name="saturation" type="float">
+    <option default="1.4" name="saturation" type="float">
       <description lang="es" text="Valor de escalado de saturación"/>
       <description lang="us" text="Saturation scaling value"/>
       <description lang="de" text="Wert der Sättigungs-Skalierung"/>
@@ -1655,28 +1655,28 @@
       <description lang="fr" text="Valeur de signal offset (cumulatif)"/>
       <description lang="pt" text="Valor de deslocamento do sinal (aditivo)"/>
     </option>
-    <option default="1.000000,1.000000,1.000000" name="scale" type="float3">
+    <option default="0.950000,0.950000,0.950000" name="scale" type="float3">
       <description lang="es" text="Valor de escalado de la señal (multiplicador)"/>
       <description lang="us" text="Signal scaling value (multiplicative)"/>
       <description lang="de" text="Wert des Signal-Offsets (multiplikativ)"/>
       <description lang="fr" text="Valeur d'étirement du signal (multiplicatif)"/>
       <description lang="pt" text="Valor de escala do sinal (multiplicativo)"/>
     </option>
-    <option default="1.000000,1.000000,1.000000" name="power" type="float3">
+    <option default="0.800000,0.800000,0.800000" name="power" type="float3">
       <description lang="es" text="Valor de potencia de la señal (exponencial)"/>
       <description lang="us" text="Signal power value (exponential)"/>
       <description lang="de" text="Wert der Signalstärke (exponentiell)"/>
       <description lang="fr" text="Valeur de puissance du signal (exponentiel)"/>
       <description lang="pt" text="Valor da potência do sinal (exponencial)"/>
     </option>
-    <option default="0.000000,0.000000,0.000000" name="floor" type="float3">
+    <option default="0.050000,0.050000,0.050000" name="floor" type="float3">
       <description lang="es" text="Nivel de suelo de la señal"/>
       <description lang="us" text="Signal floor level"/>
       <description lang="de" text="Niedrigster Wert der Signalstärke"/>
       <description lang="fr" text="Niveau plancher du signal"/>
       <description lang="pt" text="Nível base de sinal"/>
     </option>
-    <option default="0.000000,0.000000,0.000000" name="phosphor_life" type="float3">
+    <option default="0.400000,0.400000,0.400000" name="phosphor_life" type="float3">
       <description lang="es" text="Relación de decaimiento de la fosforescencia (0.0 es instantáneo, 1.0 es infinito)"/>
       <description lang="us" text="Phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
       <description lang="de" text="Rate der Nachleuchtdämpfung (0.0 = sofort, 1.0 = ewig)"/>
@@ -1766,14 +1766,6 @@
       <description lang="de" text="Anzahl der Phasen für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Valeur de la phase pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor de contagem de fase para o processamento de sinal NTSC"/>
-    </option>
-    <option default="0.0" name="vector_time_scale" type="float">
-      <description lang="us" text="How much the fade rate affects vector fade"/>
-      <description lang="de" text="Einfluss der Fade-Rate auf den Vektor-Fade"/>
-    </option>
-    <option default="0.0" name="vector_time_period" type="float">
-      <description lang="us" text="Vector fade rate versus screen refresh rate"/>
-      <description lang="de" text="Vektor-Fade Rate versus Screen-Refresh Rate"/>
     </option>
     <option default="0.8" name="vector_length_scale" type="float">
       <description lang="us" text="How much length affects vector fade"/>
