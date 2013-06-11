@@ -23,6 +23,8 @@ extern QStringList emulatorModeNames;
 extern QStringList mameThemes;
 extern QStringList messThemes;
 extern QStringList umeThemes;
+extern QStringList consoleModes;
+extern QStringList graphicsSystems;
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 	: QmlApplicationViewer(parent)
@@ -43,8 +45,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
         cliAllowedParameterValues["theme"] = umeThemes;
         break;
     }
-    cliAllowedParameterValues["graphicssystem"] << "raster" << "native" << "opengl";
-    cliAllowedParameterValues["console"] << "terminal" << "window" << "window-minimized";
+    cliAllowedParameterValues["graphicssystem"] = graphicsSystems;
+    cliAllowedParameterValues["console"] = consoleModes;
     cliParameterDescriptions["theme"] = tr("Theme");
     cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
     cliParameterDescriptions["console"] = tr("Console mode");

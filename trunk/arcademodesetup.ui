@@ -66,12 +66,22 @@
          </item>
          <item>
           <property name="text">
+           <string notr="true">native</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string notr="true">opengl</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string notr="true">native</string>
+           <string>opengl1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>openvg</string>
           </property>
          </item>
         </widget>
