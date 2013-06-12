@@ -76,12 +76,12 @@
          </item>
          <item>
           <property name="text">
-           <string>opengl1</string>
+           <string notr="true">opengl1</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>openvg</string>
+           <string notr="true">openvg</string>
           </property>
          </item>
         </widget>

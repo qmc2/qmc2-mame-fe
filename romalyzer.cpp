@@ -1206,7 +1206,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   qint64 totalSize, myProgress, sizeLeft, len;
 
   // search for file in ROM paths (first search for "game/file", then "file" in "game.zip"), load file data when found
+  int romPathCount = 0;
   foreach (QString romPath, romPaths) {
+    romPathCount++;
     progressWidget = NULL;
     needProgressWidget = false;
     QString filePath(romPath + "/" + gameName + "/" + fileName);
@@ -1657,7 +1659,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
         log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
     } else {
       if ( isCHD ) {
-        log(tr("WARNING: CHD file '%1' not found").arg(filePath));
+        if ( romPathCount == romPaths.count() ) {
+          QString baseName = QFileInfo(filePath).baseName();
+          QStringList chdPaths = romPaths;
+          for (int i = 0; i < chdPaths.count(); i++)
+            chdPaths[i] = chdPaths[i] + QDir::separator() + baseName + ".chd";
+          log(tr("WARNING: CHD file '%1' not found").arg(baseName) + " -- " + tr("searched paths: %1").arg(chdPaths.join(", ")));
+        }
         if ( mergeFile.isEmpty() && merge.isEmpty() )
           if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
       }
