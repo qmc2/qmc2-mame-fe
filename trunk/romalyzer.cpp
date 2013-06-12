@@ -1664,7 +1664,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           QStringList chdPaths = romPaths;
           for (int i = 0; i < chdPaths.count(); i++)
             chdPaths[i] = chdPaths[i] + QDir::separator() + baseName + ".chd";
-          log(tr("WARNING: CHD file '%1' not found").arg(baseName) + " -- " + tr("searched paths: %1").arg(chdPaths.join(", ")));
+          QString sP;
+	  if ( romPaths.count() > 1 )
+		  sP = tr("searched paths: %1").arg(chdPaths.join(", "));
+	  else
+		  sP = tr("searched path: %1").arg(chdPaths[0]);
+          log(tr("WARNING: CHD file '%1' not found").arg(baseName) + " -- " + sP);
         }
         if ( mergeFile.isEmpty() && merge.isEmpty() )
           if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
