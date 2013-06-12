@@ -31,6 +31,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 macx {
     QMAKE_INFO_PLIST = Info.plist
+    contains(DEFINES, QCHDMAN_MAC_UNIVERSAL): CONFIG += x86 ppc
 }
 
 win32 {
