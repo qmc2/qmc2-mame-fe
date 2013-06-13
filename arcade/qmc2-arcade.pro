@@ -97,7 +97,7 @@ RESOURCES += \
 evil_hack_to_fool_lupdate {
     SOURCES += qml/ToxicWaste/ToxicWaste.qml \
                qml/ToxicWaste/ToxicWaste.js \
-               qml/ToxicWaste/BackgroundAnimation.qml \
+               qml/ToxicWaste/animations/BackgroundAnimation.qml \
                qml/darkone/darkone.qml \
                qml/darkone/darkone.js
 }

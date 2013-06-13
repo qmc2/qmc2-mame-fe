@@ -57,6 +57,13 @@ qmc2/arcade/qml/darkone/.svn
 qmc2/arcade/qml/darkone/.svn/text-base/darkone.js.svn-base
 qmc2/arcade/qml/darkone/.svn/text-base/darkone.qml.svn-base
 qmc2/arcade/qml/.svn
+qmc2/arcade/qml/ToxicWaste/animations/.svn
+qmc2/arcade/qml/ToxicWaste/animations/.svn/text-base/BackgroundAnimation.qml.svn-base
+qmc2/arcade/qml/ToxicWaste/components/.svn
+qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/Button.qml.svn-base
+qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/CheckBox.qml.svn-base
+qmc2/arcade/qml/ToxicWaste/effects/.svn
+qmc2/arcade/qml/ToxicWaste/effects/.svn/text-base/RadialWaveEffect.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/arrow.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/blue_bubble.png.svn-base
@@ -99,10 +106,6 @@ qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/shadereffectsource.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/toxic.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/windowed.png.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn
-qmc2/arcade/qml/ToxicWaste/.svn/text-base/BackgroundAnimation.qml.svn-base
-qmc2/arcade/qml/ToxicWaste/.svn/text-base/Button.qml.svn-base
-qmc2/arcade/qml/ToxicWaste/.svn/text-base/CheckBox.qml.svn-base
-qmc2/arcade/qml/ToxicWaste/.svn/text-base/RadialWaveEffect.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/ToxicWaste.js.svn-base
 qmc2/arcade/qml/ToxicWaste/.svn/text-base/ToxicWaste.qml.svn-base
 qmc2/arcade/.svn
