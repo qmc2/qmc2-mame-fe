@@ -2971,6 +2971,15 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
   QStringList args;
   args << QMC2_VARIANT_SDLMAME_NAME << QMC2_VARIANT_SDLMAME_TITLE << QMC2_VARIANT_SDLMAME_NAME << qApp->arguments();
   launched = QProcess::startDetached(QMC2_COMMAND_RUNONCE, args);
+  if ( !launched  && QFileInfo(QCoreApplication::applicationDirPath() +
+                               "/" + QMC2_VARIANT_SDLMAME_NAME).exists() ) {
+    args.clear();
+    args << QMC2_VARIANT_SDLMAME_NAME << QMC2_VARIANT_SDLMAME_TITLE
+         << QCoreApplication::applicationDirPath() +
+            "/" + QMC2_VARIANT_SDLMAME_NAME << qApp->arguments();
+    launched = QProcess::startDetached(QCoreApplication::applicationDirPath() +
+                                       "/" + QMC2_COMMAND_RUNONCE, args);
+  }
 #endif
 
   if ( launched ) {
@@ -3066,6 +3075,15 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
   QStringList args;
   args << QMC2_VARIANT_SDLMESS_NAME << QMC2_VARIANT_SDLMESS_TITLE << QMC2_VARIANT_SDLMESS_NAME << qApp->arguments();
   launched = QProcess::startDetached(QMC2_COMMAND_RUNONCE, args);
+  if ( !launched  && QFileInfo(QCoreApplication::applicationDirPath() +
+                               "/" + QMC2_VARIANT_SDLMESS_NAME).exists() ) {
+    args.clear();
+    args << QMC2_VARIANT_SDLMESS_NAME << QMC2_VARIANT_SDLMESS_TITLE
+         << QCoreApplication::applicationDirPath() +
+            "/" + QMC2_VARIANT_SDLMESS_NAME << qApp->arguments();
+    launched = QProcess::startDetached(QCoreApplication::applicationDirPath() +
+                                       "/" + QMC2_COMMAND_RUNONCE, args);
+  }
 #endif
 
   if ( launched ) {
@@ -3161,6 +3179,15 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
   QStringList args;
   args << QMC2_VARIANT_SDLUME_NAME << QMC2_VARIANT_SDLUME_TITLE << QMC2_VARIANT_SDLUME_NAME << qApp->arguments();
   launched = QProcess::startDetached(QMC2_COMMAND_RUNONCE, args);
+  if ( !launched  && QFileInfo(QCoreApplication::applicationDirPath() +
+                               "/" + QMC2_VARIANT_SDLUME_NAME).exists() ) {
+    args.clear();
+    args << QMC2_VARIANT_SDLUME_NAME << QMC2_VARIANT_SDLUME_TITLE
+         << QCoreApplication::applicationDirPath() +
+            "/" + QMC2_VARIANT_SDLUME_NAME << qApp->arguments();
+    launched = QProcess::startDetached(QCoreApplication::applicationDirPath() +
+                                       "/" + QMC2_COMMAND_RUNONCE, args);
+  }
 #endif
 
   if ( launched ) {
