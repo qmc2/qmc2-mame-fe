@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
     if ( QMC2_ARCADE_CLI_LANG_VAL )
         language = QMC2_ARCADE_CLI_LANG;
     if ( !globalConfig->languageMap.contains(language) ) {
-        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid language, falling back to 'us' - available languages: %2").arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
+        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid language, falling back to 'us' - available languages: %2").arg(language).arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
         language = "us";
     }
     QTranslator qmc2ArcadeTranslator;
