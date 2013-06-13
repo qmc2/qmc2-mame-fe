@@ -30,7 +30,7 @@ Rectangle {
         anchors.topMargin: 0
         Image {
             id: checkboxMarkImage
-            source: "images/checkmark.png"
+            source: "../images/checkmark.png"
             smooth: true
             anchors.fill: parent
             anchors.margins: 1
