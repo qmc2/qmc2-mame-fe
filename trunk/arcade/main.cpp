@@ -265,14 +265,19 @@ int main(int argc, char *argv[])
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
-    // load translator
     QString language = globalConfig->language();
     if ( QMC2_ARCADE_CLI_LANG_VAL )
         language = QMC2_ARCADE_CLI_LANG;
     if ( !globalConfig->languageMap.contains(language) ) {
-        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid language, falling back to 'us' - available languages: %2").arg(language).arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
-        language = "us";
+        if ( QMC2_ARCADE_CLI_LANG_VAL ) {
+            QMC2_ARCADE_LOG_STR_NT(QString("%1 is not a valid language - available languages: %2").arg(language).arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
+            delete globalConfig;
+            return 1;
+        } else
+            language = "us";
     }
+
+    // load translator
     QTranslator qmc2ArcadeTranslator;
     if ( qmc2ArcadeTranslator.load(QString("qmc2-arcade_%1").arg(language), ":/translations") )
         app->installTranslator(&qmc2ArcadeTranslator);
