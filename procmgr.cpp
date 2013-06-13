@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <QSettings>
+#include <QMap>
 
 #include "procmgr.h"
 #include "qmc2main.h"
@@ -11,12 +12,11 @@ extern MainWindow *qmc2MainWindow;
 extern bool qmc2GuiReady;
 extern bool qmc2StartEmbedded;
 extern QString qmc2DriverName;
-extern QWidgetList qmc2AutoMinimizedWidgets;
+extern QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 extern QSettings *qmc2Config;
-extern bool qmc2SuppressMainShowEvent;
 
 ProcessManager::ProcessManager(QWidget *parent)
 	: QObject(parent)
@@ -283,13 +283,8 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 #endif
 #endif
 
-	if ( !qmc2AutoMinimizedWidgets.isEmpty() ) {
-		qmc2SuppressMainShowEvent = true;
-		foreach (QWidget *w, qmc2AutoMinimizedWidgets)
-			w->showNormal();
-		qmc2AutoMinimizedWidgets.clear();
-		qmc2SuppressMainShowEvent = false;
-	}
+	if ( !qmc2AutoMinimizedWidgets.isEmpty() )
+		qmc2MainWindow->setWindowState(qmc2AutoMinimizedWidgets[qmc2MainWindow]);
 }
 
 void ProcessManager::started()

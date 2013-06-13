@@ -176,7 +176,6 @@ bool qmc2FifoIsOpen = false;
 bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
-bool qmc2SuppressMainShowEvent = false;
 int qmc2GamelistResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
@@ -278,7 +277,6 @@ QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::Pos
 QMap<QString, int> qmc2XmlGamePositionMap;
 QFont *qmc2StartupDefaultFont = NULL;
 int qmc2SoftwareSnapPosition = 0;
-QWidgetList qmc2AutoMinimizedWidgets;
 QSplashScreen *qmc2SplashScreen = NULL;
 int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
 QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
@@ -287,6 +285,7 @@ QPalette qmc2CustomPalette;
 QMap<QString, QPalette> qmc2StandardPalettes;
 bool qmc2CategoryInfoUsed = false;
 bool qmc2VersionInfoUsed = false;
+QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -1739,8 +1738,8 @@ void MainWindow::on_actionPlay_triggered(bool)
     qmc2AutoMinimizedWidgets.clear();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
 	    foreach (QWidget *w, qApp->topLevelWidgets()) {
-		    if ( w->isVisible () ) {
-			    qmc2AutoMinimizedWidgets << w;
+		    if ( w->isVisible() ) {
+			    qmc2AutoMinimizedWidgets[w] = w->windowState();
 			    w->showMinimized();
 		    }
 	    }
@@ -2050,12 +2049,12 @@ void MainWindow::on_actionPlay_triggered(bool)
 
   qmc2AutoMinimizedWidgets.clear();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
-    foreach (QWidget *w, qApp->topLevelWidgets()) {
-      if ( w->isVisible () ) {
-        qmc2AutoMinimizedWidgets << w;
-        w->showMinimized();
-      }
-    }
+	  foreach (QWidget *w, qApp->topLevelWidgets()) {
+		  if ( w->isVisible() ) {
+			  qmc2AutoMinimizedWidgets[w] = w->windowState();
+			  w->showMinimized();
+		  }
+	  }
   }
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -2997,8 +2996,8 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
     } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
 	    qmc2AutoMinimizedWidgets.clear();
 	    foreach (QWidget *w, qApp->topLevelWidgets()) {
-		    if ( w->isVisible () ) {
-			    qmc2AutoMinimizedWidgets << w;
+		    if ( w->isVisible() ) {
+			    qmc2AutoMinimizedWidgets[w] = w->windowState();
 			    w->showMinimized();
 		    }
 	    }
@@ -3088,7 +3087,7 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
 	    qmc2AutoMinimizedWidgets.clear();
 	    foreach (QWidget *w, qApp->topLevelWidgets()) {
 		    if ( w->isVisible () ) {
-			    qmc2AutoMinimizedWidgets << w;
+			    qmc2AutoMinimizedWidgets[w] = w->windowState();
 			    w->showMinimized();
 		    }
 	    }
@@ -3178,7 +3177,7 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
 	    qmc2AutoMinimizedWidgets.clear();
 	    foreach (QWidget *w, qApp->topLevelWidgets()) {
 		    if ( w->isVisible () ) {
-			    qmc2AutoMinimizedWidgets << w;
+			    qmc2AutoMinimizedWidgets[w] = w->windowState();
 			    w->showMinimized();
 		    }
 	    }
@@ -6848,9 +6847,12 @@ void MainWindow::showEvent(QShowEvent *e)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( !qmc2AutoMinimizedWidgets.isEmpty() && !qmc2SuppressMainShowEvent ) {
-		foreach (QWidget *w, qmc2AutoMinimizedWidgets)
-			w->showNormal();
+	if ( !qmc2AutoMinimizedWidgets.isEmpty() ) {
+		QMapIterator<QWidget *, Qt::WindowStates> it(qmc2AutoMinimizedWidgets);
+		while ( it.hasNext() ) {
+			it.next();
+			it.key()->setWindowState(it.value());
+		}
 		qmc2AutoMinimizedWidgets.clear();
 	}
 }
