@@ -157,6 +157,16 @@ QString ArcadeSettings::defaultGraphicsSystem()
     return value(QString("%1/Arcade/GraphicsSystem").arg(frontEndPrefix), "raster").toString();
 }
 
+void ArcadeSettings::setDefaultLanguage(QString lang)
+{
+    setValue(QString("%1/GUI/Language").arg(frontEndPrefix), lang);
+}
+
+QString ArcadeSettings::defaultLanguage()
+{
+    return value(QString("%1/GUI/Language").arg(frontEndPrefix)).toString();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);
@@ -483,11 +493,6 @@ QString ArcadeSettings::emulatorExecutablePath()
 QString ArcadeSettings::emulatorWorkingDirectory()
 {
     return value(QString("%1/FilesAndDirectories/WorkingDirectory").arg(emulatorPrefix)).toString();
-}
-
-QString ArcadeSettings::language()
-{
-    return value(QString("%1/GUI/Language").arg(frontEndPrefix)).toString();
 }
 
 QString ArcadeSettings::gameInfoDB()

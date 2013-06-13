@@ -45,6 +45,8 @@ public slots:
     QString defaultConsoleType();
     void setDefaultGraphicsSystem(QString);
     QString defaultGraphicsSystem();
+    void setDefaultLanguage(QString);
+    QString defaultLanguage();
 
     // theme-specific settings
     void setFpsVisible(bool);
@@ -119,7 +121,6 @@ public slots:
     QString optionsTemplateFile();
     QString emulatorExecutablePath();
     QString emulatorWorkingDirectory();
-    QString language();
     QString gameInfoDB();
     bool compressGameInfoDB();
     QString emuInfoDB();

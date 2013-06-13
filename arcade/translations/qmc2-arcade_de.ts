@@ -324,37 +324,32 @@
         <translation>(keine)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="273"/>
-        <source>%1 is not a valid language, falling back to &apos;us&apos; - available languages: %2</source>
-        <translation>%1 ist keine gültige Sprache, falle auf &apos;us&apos; zurück - verfügare Sprachen: %2</translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="292"/>
+        <location filename="../main.cpp" line="297"/>
         <source>emulator-mode: %1</source>
         <translation>Emulator-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="293"/>
+        <location filename="../main.cpp" line="298"/>
         <source>theme: %1</source>
         <translation>Theme: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="294"/>
+        <location filename="../main.cpp" line="299"/>
         <source>graphics-system: %1</source>
         <translation>Grafik-System: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="295"/>
+        <location filename="../main.cpp" line="300"/>
         <source>console-mode: %1</source>
         <translation>Konsolen-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="307"/>
+        <location filename="../main.cpp" line="312"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Starte QML Anzeige unter Verwendung des Themes &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="323"/>
+        <location filename="../main.cpp" line="328"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
@@ -607,120 +602,125 @@
 <context>
     <name>TweakedQmlApplicationViewer</name>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="50"/>
-        <source>Theme</source>
-        <translation>Theme</translation>
+        <location filename="../tweakedqmlappviewer.cpp" line="51"/>
+        <source>Theme selection</source>
+        <translation>Theme-Auswahl</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="51"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="52"/>
         <source>Graphics system</source>
         <translation>Grafik-System</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="52"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="53"/>
         <source>Console mode</source>
         <translation>Konsolen-Modus</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="100"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="54"/>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="../tweakedqmlappviewer.cpp" line="102"/>
         <source>Loading global and theme-specific settings</source>
         <translation>Lade globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="138"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="140"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Speichere globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="192"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="194"/>
         <source>Activating full-screen display</source>
         <translation>Aktiviere Vollbild-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="215"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="217"/>
         <source>Activating windowed display</source>
         <translation>Aktiviere Fenster-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="236"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="238"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="238"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="240"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="240"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="242"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="242"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="244"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="245"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="247"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="274"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="276"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>WARNUNG: Die gefilterte Listen-Datei &apos;%1&apos; existiert nicht oder kann nicht geöffnet werden, verwende stattdessen die volle %2</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="276"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="285"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="322"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="326"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="337"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="278"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="287"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="324"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="328"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="339"/>
         <source>game list</source>
         <translation>Spieleliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="276"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="285"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="322"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="326"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="337"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="278"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="287"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="324"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="328"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="339"/>
         <source>machine list</source>
         <translation>Maschinenliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="284"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="286"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Lade %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="301"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="303"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: Kann ROM Status Cache Datei &apos;%1&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="304"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="306"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>WARNUNG: Die ROM Status Cache Datei &apos;%1&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="321"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="323"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Kann die %1-Cache Datei &apos;%2&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="325"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="327"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>FATAL: Die %1-Cache Datei &apos;%2&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="336"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="338"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Lade &apos;%1&apos; von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="337"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="339"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n unterstütztes Set (ohne Geräte-Sets)</numerusform>
@@ -728,27 +728,27 @@
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="343"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="345"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Starte Emulator #%1 für %2 mit der ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="343"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="345"/>
         <source>game</source>
         <translation>Spiel</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="343"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="345"/>
         <source>machine</source>
         <translation>Maschine</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="462"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="469"/>
         <source>Stopping QML viewer</source>
         <translation>Beende QML Viewer</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="465"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="472"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>QML Viewer gestoppt - bitte zum Beenden Konsolenfenster schließen</translation>
     </message>
@@ -838,12 +838,12 @@
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1114"/>
         <source>auto-hide toolbar</source>
-        <translation>Werkzeugleiste ausbl.?</translation>
+        <translation>Werkzeugleiste ausblenden?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1270"/>
         <source>back lighting</source>
-        <translation>Hintergr.beleuchtung?</translation>
+        <translation>Hintergrundbeleuchtung?</translation>
     </message>
     <message>
         <location filename="../qml/darkone/darkone.qml" line="1847"/>
