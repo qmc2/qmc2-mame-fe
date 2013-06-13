@@ -112,10 +112,14 @@
 #define QMC2_ARCADE_CLI_GSYS        (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1 ? argumentList[argumentList.indexOf("-graphicssystem") + 1] : "raster")
 #define QMC2_ARCADE_CLI_GSYS_INV    (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() == argumentList.indexOf("-graphicssystem") + 1)
 #define QMC2_ARCADE_CLI_GSYS_VAL    (argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1)
+// -language <lang>
+#define QMC2_ARCADE_CLI_LANG        (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1 ? argumentList[argumentList.indexOf("-language") + 1] : "us")
+#define QMC2_ARCADE_CLI_LANG_INV    (argumentList.indexOf("-language") >= 0 && argumentList.count() == argumentList.indexOf("-language") + 1)
+#define QMC2_ARCADE_CLI_LANG_VAL    (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1)
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP        (argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation
-#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV)
+#define QMC2_ARCADE_CLI_INVALID     (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV)
 
 // console logging macros
 #define QMC2_ARCADE_LOG_STR(s)      if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }

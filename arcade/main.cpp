@@ -53,7 +53,7 @@ void qtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString 
     QMC2_ARCADE_LOG_STR(msgString);
 }
 
-void showHelp(ArcadeSettings *settings = NULL)
+void showHelp()
 {
 #if defined(QMC2_ARCADE_OS_WIN)
     // we need the console window to display the help text on Windows because we have no terminal connection
@@ -63,15 +63,10 @@ void showHelp(ArcadeSettings *settings = NULL)
     }
 #endif
 
-    QString defTheme = "ToxicWaste";
-    QString defConsole = "terminal";
-    QString defGSys = "raster";
-
-    if ( settings ) {
-        defTheme = settings->defaultTheme();
-        defConsole = settings->defaultConsoleType();
-        defGSys = settings->defaultGraphicsSystem();
-    }
+    QString defTheme = globalConfig->defaultTheme();
+    QString defConsole = globalConfig->defaultConsoleType();
+    QString defGSys = globalConfig->defaultGraphicsSystem();
+    QString defLang = globalConfig->language();
 
     QStringList themeList;
     foreach (QString theme, arcadeThemes) {
@@ -100,14 +95,24 @@ void showHelp(ArcadeSettings *settings = NULL)
     }
     QString availableGraphicsSystems = gSysList.join(", ");
 
+    QStringList langList;
+    foreach (QString lang, globalConfig->languageMap.keys()) {
+        if ( defLang == lang )
+            langList << "[" + lang + "]";
+        else
+            langList << lang;
+    }
+    QString availableLanguages = langList.join(", ");
+
     QString helpMessage;
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-config_path <path>] [-h|-?|-help]\n\n"
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-h|-?|-help]\n\n"
                    "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
                    "-emu             Emulator mode       [mame], mess, ume\n";
     helpMessage += "-theme           Theme selection     " + availableThemes + "\n";
     helpMessage += "-console         Console type        " + availableConsoles + "\n";
     helpMessage += "-graphicssystem  Graphics engine     " + availableGraphicsSystems + "\n";
+    helpMessage += "-language        Language selection  " + availableLanguages + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
 
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
@@ -152,13 +157,14 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
-    ArcadeSettings *startupConfig = new ArcadeSettings("");
+    globalConfig = new ArcadeSettings("");
 
-    QString gSys = startupConfig->defaultGraphicsSystem();
+    QString gSys = globalConfig->defaultGraphicsSystem();
     if ( QMC2_ARCADE_CLI_GSYS_VAL )
         gSys = QMC2_ARCADE_CLI_GSYS;
 
-    delete startupConfig;
+    delete globalConfig;
+    globalConfig = NULL;
     delete tempApp;
 
     if ( !graphicsSystems.contains(gSys) ) {
@@ -182,9 +188,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    startupConfig = new ArcadeSettings("");
+    globalConfig = new ArcadeSettings("");
 
-    QString console = startupConfig->defaultConsoleType();
+    QString console = globalConfig->defaultConsoleType();
     if ( QMC2_ARCADE_CLI_CONS_VAL )
         console = QMC2_ARCADE_CLI_CONS;
 
@@ -201,28 +207,29 @@ int main(int argc, char *argv[])
     }
 
     if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
-        showHelp(startupConfig);
+        showHelp();
         if ( !consoleWindow ) {
-            delete startupConfig;
+            delete globalConfig;
             return 1;
         } else
             runApp = false;
     }
 
-    QString theme = startupConfig->defaultTheme();
+    QString theme = globalConfig->defaultTheme();
     if ( QMC2_ARCADE_CLI_THEME_VAL )
         theme = QMC2_ARCADE_CLI_THEME;
 
     if ( !arcadeThemes.contains(theme) && runApp ) {
         QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
         if ( !consoleWindow ) {
-            delete startupConfig;
+            delete globalConfig;
             return 1;
         } else
             runApp = false;
     }
 
-    delete startupConfig;
+    delete globalConfig;
+    globalConfig = NULL;
 
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
@@ -254,14 +261,18 @@ int main(int argc, char *argv[])
         break;
     }
 
-    // create global settings
+    // create final instance of the global settings object
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
     // load translator
     QString language = globalConfig->language();
-    if ( !globalConfig->languageMap.contains(language) )
+    if ( QMC2_ARCADE_CLI_LANG_VAL )
+        language = QMC2_ARCADE_CLI_LANG;
+    if ( !globalConfig->languageMap.contains(language) ) {
+        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid language, falling back to 'us' - available languages: %2").arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
         language = "us";
+    }
     QTranslator qmc2ArcadeTranslator;
     if ( qmc2ArcadeTranslator.load(QString("qmc2-arcade_%1").arg(language), ":/translations") )
         app->installTranslator(&qmc2ArcadeTranslator);

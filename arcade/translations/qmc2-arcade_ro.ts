@@ -291,66 +291,71 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="165"/>
+        <location filename="../main.cpp" line="171"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="181"/>
+        <location filename="../main.cpp" line="187"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="199"/>
+        <location filename="../main.cpp" line="205"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="217"/>
+        <location filename="../main.cpp" line="223"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="230"/>
-        <location filename="../main.cpp" line="239"/>
-        <location filename="../main.cpp" line="248"/>
+        <location filename="../main.cpp" line="237"/>
+        <location filename="../main.cpp" line="246"/>
+        <location filename="../main.cpp" line="255"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="230"/>
-        <location filename="../main.cpp" line="239"/>
-        <location filename="../main.cpp" line="248"/>
+        <location filename="../main.cpp" line="237"/>
+        <location filename="../main.cpp" line="246"/>
+        <location filename="../main.cpp" line="255"/>
         <source>(none)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="281"/>
+        <location filename="../main.cpp" line="273"/>
+        <source>%1 is not a valid language, falling back to &apos;us&apos; - available languages: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="292"/>
         <source>emulator-mode: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="282"/>
+        <location filename="../main.cpp" line="293"/>
         <source>theme: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="283"/>
+        <location filename="../main.cpp" line="294"/>
         <source>graphics-system: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="284"/>
+        <location filename="../main.cpp" line="295"/>
         <source>console-mode: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="296"/>
+        <location filename="../main.cpp" line="307"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="312"/>
+        <location filename="../main.cpp" line="323"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation type="unfinished"></translation>
     </message>
