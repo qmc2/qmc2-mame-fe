@@ -176,6 +176,7 @@ bool qmc2FifoIsOpen = false;
 bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
+bool qmc2SuppressMainShowEvent = false;
 int qmc2GamelistResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
@@ -2967,12 +2968,12 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
 	} else
 		launched = QProcess::startDetached(otherVariantExe, otherVariantArgs);
   }
-#else
+#else // QMC2_OS_UNIX
   QStringList args;
   args << QMC2_VARIANT_SDLMAME_NAME << QMC2_VARIANT_SDLMAME_TITLE << QMC2_VARIANT_SDLMAME_NAME << qApp->arguments();
   launched = QProcess::startDetached(QMC2_COMMAND_RUNONCE, args);
-  if ( !launched  && QFileInfo(QCoreApplication::applicationDirPath() +
-                               "/" + QMC2_VARIANT_SDLMAME_NAME).exists() ) {
+  if ( !launched && QFileInfo(QCoreApplication::applicationDirPath() +
+                              "/" + QMC2_VARIANT_SDLMAME_NAME).exists() ) {
     args.clear();
     args << QMC2_VARIANT_SDLMAME_NAME << QMC2_VARIANT_SDLMAME_TITLE
          << QCoreApplication::applicationDirPath() +
@@ -2994,27 +2995,13 @@ void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
       QTimer::singleShot(0, actionExitStop, SLOT(trigger()));
       QTimer::singleShot(100, actionExitStop, SLOT(trigger()));
     } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
-      if ( qmc2Options )
-        if ( qmc2Options->isVisible() )
-          qmc2Options->showMinimized();
-      if ( qmc2ROMAlyzer )
-        if ( qmc2ROMAlyzer->isVisible() )
-          qmc2ROMAlyzer->showMinimized();
-      if ( qmc2ImageChecker )
-        if ( qmc2ImageChecker->isVisible() )
-          qmc2ImageChecker->showMinimized();
-      if ( qmc2SampleChecker )
-        if ( qmc2SampleChecker->isVisible() )
-          qmc2SampleChecker->showMinimized();
-      if ( qmc2DocBrowser )
-        if ( qmc2DocBrowser->isVisible() )
-          qmc2DocBrowser->showMinimized();
-#if QMC2_USE_PHONON_API
-      if ( qmc2AudioEffectDialog )
-	if ( qmc2AudioEffectDialog->isVisible() )
-	  qmc2AudioEffectDialog->showMinimized();
-#endif
-      showMinimized();
+	    qmc2AutoMinimizedWidgets.clear();
+	    foreach (QWidget *w, qApp->topLevelWidgets()) {
+		    if ( w->isVisible () ) {
+			    qmc2AutoMinimizedWidgets << w;
+			    w->showMinimized();
+		    }
+	    }
     }
   } else {
 #if defined(QMC2_OS_WIN)
@@ -3071,11 +3058,11 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
 	} else
 		launched = QProcess::startDetached(otherVariantExe, otherVariantArgs);
   }
-#else
+#else // QMC2_OS_UNIX
   QStringList args;
   args << QMC2_VARIANT_SDLMESS_NAME << QMC2_VARIANT_SDLMESS_TITLE << QMC2_VARIANT_SDLMESS_NAME << qApp->arguments();
   launched = QProcess::startDetached(QMC2_COMMAND_RUNONCE, args);
-  if ( !launched  && QFileInfo(QCoreApplication::applicationDirPath() +
+  if ( !launched && QFileInfo(QCoreApplication::applicationDirPath() +
                                "/" + QMC2_VARIANT_SDLMESS_NAME).exists() ) {
     args.clear();
     args << QMC2_VARIANT_SDLMESS_NAME << QMC2_VARIANT_SDLMESS_TITLE
@@ -3098,27 +3085,13 @@ void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
       QTimer::singleShot(0, actionExitStop, SLOT(trigger()));
       QTimer::singleShot(100, actionExitStop, SLOT(trigger()));
     } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
-      if ( qmc2Options )
-        if ( qmc2Options->isVisible() )
-          qmc2Options->showMinimized();
-      if ( qmc2ROMAlyzer )
-        if ( qmc2ROMAlyzer->isVisible() )
-          qmc2ROMAlyzer->showMinimized();
-      if ( qmc2ImageChecker )
-        if ( qmc2ImageChecker->isVisible() )
-          qmc2ImageChecker->showMinimized();
-      if ( qmc2SampleChecker )
-        if ( qmc2SampleChecker->isVisible() )
-          qmc2SampleChecker->showMinimized();
-      if ( qmc2DocBrowser )
-        if ( qmc2DocBrowser->isVisible() )
-          qmc2DocBrowser->showMinimized();
-#if QMC2_USE_PHONON_API
-      if ( qmc2AudioEffectDialog )
-	if ( qmc2AudioEffectDialog->isVisible() )
-	  qmc2AudioEffectDialog->showMinimized();
-#endif
-      showMinimized();
+	    qmc2AutoMinimizedWidgets.clear();
+	    foreach (QWidget *w, qApp->topLevelWidgets()) {
+		    if ( w->isVisible () ) {
+			    qmc2AutoMinimizedWidgets << w;
+			    w->showMinimized();
+		    }
+	    }
     }
   } else {
 #if defined(QMC2_OS_WIN)
@@ -3175,11 +3148,11 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
 	} else
 		launched = QProcess::startDetached(otherVariantExe, otherVariantArgs);
   }
-#else
+#else // QMC2_OS_UNIX
   QStringList args;
   args << QMC2_VARIANT_SDLUME_NAME << QMC2_VARIANT_SDLUME_TITLE << QMC2_VARIANT_SDLUME_NAME << qApp->arguments();
   launched = QProcess::startDetached(QMC2_COMMAND_RUNONCE, args);
-  if ( !launched  && QFileInfo(QCoreApplication::applicationDirPath() +
+  if ( !launched && QFileInfo(QCoreApplication::applicationDirPath() +
                                "/" + QMC2_VARIANT_SDLUME_NAME).exists() ) {
     args.clear();
     args << QMC2_VARIANT_SDLUME_NAME << QMC2_VARIANT_SDLUME_TITLE
@@ -3202,27 +3175,13 @@ void MainWindow::on_actionLaunchQMC2UME_triggered(bool)
       QTimer::singleShot(0, actionExitStop, SLOT(trigger()));
       QTimer::singleShot(100, actionExitStop, SLOT(trigger()));
     } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
-      if ( qmc2Options )
-        if ( qmc2Options->isVisible() )
-          qmc2Options->showMinimized();
-      if ( qmc2ROMAlyzer )
-        if ( qmc2ROMAlyzer->isVisible() )
-          qmc2ROMAlyzer->showMinimized();
-      if ( qmc2ImageChecker )
-        if ( qmc2ImageChecker->isVisible() )
-          qmc2ImageChecker->showMinimized();
-      if ( qmc2SampleChecker )
-        if ( qmc2SampleChecker->isVisible() )
-          qmc2SampleChecker->showMinimized();
-      if ( qmc2DocBrowser )
-        if ( qmc2DocBrowser->isVisible() )
-          qmc2DocBrowser->showMinimized();
-#if QMC2_USE_PHONON_API
-      if ( qmc2AudioEffectDialog )
-	if ( qmc2AudioEffectDialog->isVisible() )
-	  qmc2AudioEffectDialog->showMinimized();
-#endif
-      showMinimized();
+	    qmc2AutoMinimizedWidgets.clear();
+	    foreach (QWidget *w, qApp->topLevelWidgets()) {
+		    if ( w->isVisible () ) {
+			    qmc2AutoMinimizedWidgets << w;
+			    w->showMinimized();
+		    }
+	    }
     }
   } else {
 #if defined(QMC2_OS_WIN)
@@ -6881,6 +6840,19 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   // remove possible left-overs
   QApplication::closeAllWindows();
+}
+
+void MainWindow::showEvent(QShowEvent *e)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	if ( !qmc2AutoMinimizedWidgets.isEmpty() && !qmc2SuppressMainShowEvent ) {
+		foreach (QWidget *w, qmc2AutoMinimizedWidgets)
+			w->showNormal();
+		qmc2AutoMinimizedWidgets.clear();
+	}
 }
 
 void MainWindow::init()

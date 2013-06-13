@@ -16,6 +16,7 @@ extern QWidgetList qmc2AutoMinimizedWidgets;
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 extern QSettings *qmc2Config;
+extern bool qmc2SuppressMainShowEvent;
 
 ProcessManager::ProcessManager(QWidget *parent)
 	: QObject(parent)
@@ -282,7 +283,13 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 #endif
 #endif
 
-	if ( !qmc2AutoMinimizedWidgets.isEmpty() ) foreach (QWidget *w, qmc2AutoMinimizedWidgets) w->showNormal();
+	if ( !qmc2AutoMinimizedWidgets.isEmpty() ) {
+		qmc2SuppressMainShowEvent = true;
+		foreach (QWidget *w, qmc2AutoMinimizedWidgets)
+			w->showNormal();
+		qmc2AutoMinimizedWidgets.clear();
+		qmc2SuppressMainShowEvent = false;
+	}
 }
 
 void ProcessManager::started()
