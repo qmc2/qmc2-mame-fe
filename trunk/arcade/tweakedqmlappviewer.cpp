@@ -33,7 +33,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     numFrames = 0;
     windowModeSwitching = false;
 
-    cliParams << "theme" << "graphicssystem" << "console";
+    cliParams << "theme" << "graphicssystem" << "console" << "language";
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
         cliAllowedParameterValues["theme"] = mameThemes;
@@ -47,9 +47,11 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     }
     cliAllowedParameterValues["graphicssystem"] = graphicsSystems;
     cliAllowedParameterValues["console"] = consoleModes;
-    cliParameterDescriptions["theme"] = tr("Theme");
+    cliAllowedParameterValues["language"] = globalConfig->languageMap.keys();
+    cliParameterDescriptions["theme"] = tr("Theme selection");
     cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
     cliParameterDescriptions["console"] = tr("Console mode");
+    cliParameterDescriptions["language"] = tr("Language");
 
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
     qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
@@ -426,6 +428,8 @@ QString TweakedQmlApplicationViewer::cliParamValue(QString param)
         return globalConfig->defaultGraphicsSystem();
     case QMC2_ARCADE_PARAM_CONSOLE:
         return globalConfig->defaultConsoleType();
+    case QMC2_ARCADE_PARAM_LANGUAGE:
+        return globalConfig->defaultLanguage();
     default:
         return QString();
     }
@@ -447,6 +451,9 @@ void TweakedQmlApplicationViewer::setCliParamValue(QString param, QString value)
         break;
     case QMC2_ARCADE_PARAM_CONSOLE:
         globalConfig->setDefaultConsoleType(value);
+        break;
+    case QMC2_ARCADE_PARAM_LANGUAGE:
+        globalConfig->setDefaultLanguage(value);
         break;
     }
 }

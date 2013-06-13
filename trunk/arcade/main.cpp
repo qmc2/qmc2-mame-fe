@@ -66,7 +66,7 @@ void showHelp()
     QString defTheme = globalConfig->defaultTheme();
     QString defConsole = globalConfig->defaultConsoleType();
     QString defGSys = globalConfig->defaultGraphicsSystem();
-    QString defLang = globalConfig->language();
+    QString defLang = globalConfig->defaultLanguage();
 
     QStringList themeList;
     foreach (QString theme, arcadeThemes) {
@@ -265,7 +265,7 @@ int main(int argc, char *argv[])
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
-    QString language = globalConfig->language();
+    QString language = globalConfig->defaultLanguage();
     if ( QMC2_ARCADE_CLI_LANG_VAL )
         language = QMC2_ARCADE_CLI_LANG;
     if ( !globalConfig->languageMap.contains(language) ) {

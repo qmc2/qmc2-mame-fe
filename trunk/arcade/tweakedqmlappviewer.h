@@ -13,6 +13,7 @@
 #define QMC2_ARCADE_PARAM_THEME     0
 #define QMC2_ARCADE_PARAM_GRASYS    1
 #define QMC2_ARCADE_PARAM_CONSOLE   2
+#define QMC2_ARCADE_PARAM_LANGUAGE  3
 
 class TweakedQmlApplicationViewer : public QmlApplicationViewer
 {
