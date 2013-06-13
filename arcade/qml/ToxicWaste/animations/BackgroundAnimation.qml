@@ -1,6 +1,6 @@
 import QtQuick 1.1
 import Qt.labs.particles 1.0
-import "ToxicWaste.js" as ToxicWaste
+import "../ToxicWaste.js" as ToxicWaste
 
 Item {
     id: animationItem
@@ -29,7 +29,7 @@ Item {
     ]
     Image {
         id: purpleBubble
-        source: "images/purple_bubble.png"
+        source: "../images/purple_bubble.png"
         scale: ToxicWaste.scaleFactorX()
         Component.onCompleted: {
             x = randomize(0, toxicWasteMain.width - purpleBubble.width)
@@ -57,7 +57,7 @@ Item {
             id: purpleBubbleParticles
             y: purpleBubble.height/2
             x: purpleBubble.width/2
-            source: "images/purple_bubble.png"
+            source: "../images/purple_bubble.png"
             scale: 0.5
             lifeSpan: 8000
             lifeSpanDeviation: 4000
@@ -80,7 +80,7 @@ Item {
     }
     Image {
         id: blueBubble
-        source: "images/blue_bubble.png"
+        source: "../images/blue_bubble.png"
         scale: ToxicWaste.scaleFactorX()
         Component.onCompleted: {
             x = randomize(0, toxicWasteMain.width - blueBubble.width)
@@ -108,7 +108,7 @@ Item {
             id: blueBubbleParticles
             y: blueBubble.height/2
             x: blueBubble.width/2
-            source: "images/blue_bubble.png"
+            source: "../images/blue_bubble.png"
             scale: 0.5
             lifeSpan: 8000
             lifeSpanDeviation: 4000
@@ -131,7 +131,7 @@ Item {
     }
     Image {
         id: greenBubble
-        source: "images/green_bubble.png"
+        source: "../images/green_bubble.png"
         scale: ToxicWaste.scaleFactorX()
         Component.onCompleted: {
             x = randomize(0, toxicWasteMain.width - greenBubble.width)
@@ -159,7 +159,7 @@ Item {
             id: greenBubbleParticles
             y: greenBubble.height/2
             x: greenBubble.width/2
-            source: "images/green_bubble.png"
+            source: "../images/green_bubble.png"
             scale: 0.5
             lifeSpan: 8000
             lifeSpanDeviation: 4000

@@ -1,6 +1,9 @@
 import QtQuick 1.1
 import Qt.labs.shaders 1.0
 import "ToxicWaste.js" as ToxicWaste
+import "./animations"
+import "./components"
+import "./effects"
 
 Rectangle {
     id: toxicWasteMain
