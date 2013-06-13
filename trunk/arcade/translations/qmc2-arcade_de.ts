@@ -290,66 +290,71 @@
         <translation>QMC2 Arcade</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="165"/>
+        <location filename="../main.cpp" line="171"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation>%1 ist kein gültiges Grafik-System - verfügare Grafik-Systeme: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="181"/>
+        <location filename="../main.cpp" line="187"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation>%1 ist kein gültiger Emulator-Modus - verfügare Emulator-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="199"/>
+        <location filename="../main.cpp" line="205"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation>%1 ist kein gültiger Konsolen-Modus - verfügare Konsolen-Modi: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="217"/>
+        <location filename="../main.cpp" line="223"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 ist kein gültiger Theme - verfügare Themes: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="230"/>
-        <location filename="../main.cpp" line="239"/>
-        <location filename="../main.cpp" line="248"/>
+        <location filename="../main.cpp" line="237"/>
+        <location filename="../main.cpp" line="246"/>
+        <location filename="../main.cpp" line="255"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 ist kein gültiger %2 Theme - verfügare %2 Themes: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="230"/>
-        <location filename="../main.cpp" line="239"/>
-        <location filename="../main.cpp" line="248"/>
+        <location filename="../main.cpp" line="237"/>
+        <location filename="../main.cpp" line="246"/>
+        <location filename="../main.cpp" line="255"/>
         <source>(none)</source>
         <translation>(keine)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="281"/>
+        <location filename="../main.cpp" line="273"/>
+        <source>%1 is not a valid language, falling back to &apos;us&apos; - available languages: %2</source>
+        <translation>%1 ist keine gültige Sprache, falle auf &apos;us&apos; zurück - verfügare Sprachen: %2</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="292"/>
         <source>emulator-mode: %1</source>
         <translation>Emulator-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="282"/>
+        <location filename="../main.cpp" line="293"/>
         <source>theme: %1</source>
         <translation>Theme: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="283"/>
+        <location filename="../main.cpp" line="294"/>
         <source>graphics-system: %1</source>
         <translation>Grafik-System: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="284"/>
+        <location filename="../main.cpp" line="295"/>
         <source>console-mode: %1</source>
         <translation>Konsolen-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="296"/>
+        <location filename="../main.cpp" line="307"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Starte QML Anzeige unter Verwendung des Themes &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="312"/>
+        <location filename="../main.cpp" line="323"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>QML Anzeige nicht gestartet - bitte Konsolenfenster schließen um das Programm zu beenden</translation>
     </message>
