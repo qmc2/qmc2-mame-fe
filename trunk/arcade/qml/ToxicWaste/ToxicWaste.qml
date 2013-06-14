@@ -470,7 +470,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: 0
             font.pixelSize: 12
-            color: "white"
+            color: "black"
             smooth: true
         }
         Row {
@@ -552,7 +552,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 240
-        height: 200
+        height: 190
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -590,6 +590,7 @@ Rectangle {
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.showBackgroundAnimation
                     text: qsTr("Show background animation?")
+                    textColor: "black"
                     onClicked: {
                         toxicWasteMain.showBackgroundAnimation = checked;
                         toxicWasteMain.ignoreLaunch = true;
@@ -617,6 +618,7 @@ Rectangle {
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.animateInForeground
                     text: qsTr("Animate in foreground?")
+                    textColor: "black"
                     onClicked: {
                         toxicWasteMain.animateInForeground = checked;
                         toxicWasteMain.ignoreLaunch = true;
@@ -644,6 +646,7 @@ Rectangle {
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.showShaderEffect
                     text: qsTr("Show shader effect?")
+                    textColor: "black"
                     onClicked: {
                         toxicWasteMain.showShaderEffect = checked;
                         toxicWasteMain.ignoreLaunch = true;
@@ -671,6 +674,7 @@ Rectangle {
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.fpsVisible
                     text: qsTr("Show FPS counter?")
+                    textColor: "black"
                     onClicked: {
                         toxicWasteMain.fpsVisible = checked;
                         toxicWasteMain.ignoreLaunch = true;

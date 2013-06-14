@@ -4,6 +4,7 @@ Rectangle {
     id: checkboxContainer
     property variant text
     property bool checked: false
+    property string textColor: "black"
     signal clicked
     smooth: true
     color: "transparent"
@@ -46,7 +47,7 @@ Rectangle {
         id: checkboxText
         text: parent.text
         font.pixelSize: 12
-        color: "white"
+        color: checkboxContainer.textColor
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
         smooth: true

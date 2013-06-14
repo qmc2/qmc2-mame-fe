@@ -14,7 +14,11 @@ Item {
 
     function setOpacities() {
         for (var i = 0; i < stack.children.length; i++)
-            stack.children[i].opacity = (i == current ? 1 : 0)
+            stack.children[i].opacity = (i == current ? 1 : 0);
+    }
+
+    function tabHeaderWidth() {
+        return (tabWidget.width - stack.children.length - 1) / stack.children.length;
     }
 
     Row {
@@ -23,8 +27,8 @@ Item {
         Repeater {
             model: stack.children.length
             delegate: Rectangle {
-                width: tabWidget.width / stack.children.length - 2;
-                x: width * index + 2
+                width: tabHeaderWidth()
+                x: (tabHeaderWidth() + 3) * index
                 height: 30
                 color: tabWidget.current == index ? baseColor : "transparent"
                 border.color: tabWidget.current == index ? activeBorderColor : baseColor
@@ -53,7 +57,7 @@ Item {
         id: stack
         width: tabWidget.width
         anchors.top: header.bottom
-        anchors.topMargin: 2
+        anchors.topMargin: 3
         anchors.bottom: tabWidget.bottom
     }
 }
