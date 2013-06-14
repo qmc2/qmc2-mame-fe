@@ -551,8 +551,8 @@ Rectangle {
         scale: ToxicWaste.scaleFactorX()
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
-        width: 228
-        height: 178
+        width: 240
+        height: 200
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -562,125 +562,140 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
         }
-        Text {
-            id: headerText
-            text: qsTr("Preferences")
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: 0
-            font.pixelSize: 12
-            font.bold: true
-            color: "white"
+        TabWidget {
+            id: preferencesTabWidget
+            anchors.fill: parent
+            anchors.margins: 5
+            baseColor: "#55a5ff"
+            activeBorderColor: "black"
+            fontSize: 12
             smooth: true
-        }
-        CheckBox {
-            id: showBgAnimCheckBox
-            anchors.top: headerText.bottom
-            anchors.topMargin: 10
-            anchors.bottom: headerText.bottom
-            anchors.bottomMargin: -26
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            checked: toxicWasteMain.showBackgroundAnimation
-            text: qsTr("Show background animation?")
-            onClicked: {
-                toxicWasteMain.showBackgroundAnimation = checked;
-                toxicWasteMain.ignoreLaunch = true;
-                resetIgnoreLaunchTimer.restart();
+            Rectangle {
+                property string title: qsTr("ToxicWaste")
+                id: themePreferencesTab
+                anchors.fill: parent
+                color: preferencesTabWidget.baseColor
+                radius: 5
+                smooth: true
+                border.color: preferencesTabWidget.activeBorderColor
+                CheckBox {
+                    id: showBgAnimCheckBox
+                    anchors.top: themePreferencesTab.top
+                    anchors.topMargin: 10
+                    anchors.bottom: themePreferencesTab.top
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.showBackgroundAnimation
+                    text: qsTr("Show background animation?")
+                    onClicked: {
+                        toxicWasteMain.showBackgroundAnimation = checked;
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: animInFgCheckBox
+                    KeyNavigation.backtab: closeButton
+                    KeyNavigation.right: animInFgCheckBox
+                    KeyNavigation.left: closeButton
+                    smooth: true
+                }
+                CheckBox {
+                    id: animInFgCheckBox
+                    anchors.top: showBgAnimCheckBox.bottom
+                    anchors.topMargin: 10
+                    anchors.bottom: showBgAnimCheckBox.bottom
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.animateInForeground
+                    text: qsTr("Animate in foreground?")
+                    onClicked: {
+                        toxicWasteMain.animateInForeground = checked;
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: showShaderEffectCheckBox
+                    KeyNavigation.backtab: showBgAnimCheckBox
+                    KeyNavigation.right: showShaderEffectCheckBox
+                    KeyNavigation.left: showBgAnimCheckBox
+                    smooth: true
+                }
+                CheckBox {
+                    id: showShaderEffectCheckBox
+                    anchors.top: animInFgCheckBox.bottom
+                    anchors.topMargin: 10
+                    anchors.bottom: animInFgCheckBox.bottom
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.showShaderEffect
+                    text: qsTr("Show shader effect?")
+                    onClicked: {
+                        toxicWasteMain.showShaderEffect = checked;
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: showFpsCheckBox
+                    KeyNavigation.backtab: animInFgCheckBox
+                    KeyNavigation.right: showFpsCheckBox
+                    KeyNavigation.left: animInFgCheckBox
+                    smooth: true
+                }
+                CheckBox {
+                    id: showFpsCheckBox
+                    anchors.top: showShaderEffectCheckBox.bottom
+                    anchors.topMargin: 10
+                    anchors.bottom: showShaderEffectCheckBox.bottom
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.fpsVisible
+                    text: qsTr("Show FPS counter?")
+                    onClicked: {
+                        toxicWasteMain.fpsVisible = checked;
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: closeButton
+                    KeyNavigation.backtab: showShaderEffectCheckBox
+                    KeyNavigation.right: closeButton
+                    KeyNavigation.left: showShaderEffectCheckBox
+                    smooth: true
+                }
             }
-            onFocusChanged: {
-                if ( !focus )
-                    toxicWasteMain.focus = true;
+            Rectangle {
+                property string title: qsTr("Backend")
+                id: backendPreferencesTab
+                anchors.fill: parent
+                color: preferencesTabWidget.baseColor
+                border.color: preferencesTabWidget.activeBorderColor
+                radius: 5
+                smooth: true
             }
-            KeyNavigation.tab: animInFgCheckBox
-            KeyNavigation.backtab: closeButton
-            KeyNavigation.right: animInFgCheckBox
-            KeyNavigation.left: closeButton
-            smooth: true
-        }
-        CheckBox {
-            id: animInFgCheckBox
-            anchors.top: showBgAnimCheckBox.bottom
-            anchors.topMargin: 10
-            anchors.bottom: showBgAnimCheckBox.bottom
-            anchors.bottomMargin: -26
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            checked: toxicWasteMain.animateInForeground
-            text: qsTr("Animate in foreground?")
-            onClicked: {
-                toxicWasteMain.animateInForeground = checked;
-                toxicWasteMain.ignoreLaunch = true;
-                resetIgnoreLaunchTimer.restart();
-            }
-            onFocusChanged: {
-                if ( !focus )
-                    toxicWasteMain.focus = true;
-            }
-            KeyNavigation.tab: showFpsCheckBox
-            KeyNavigation.backtab: showBgAnimCheckBox
-            KeyNavigation.right: showFpsCheckBox
-            KeyNavigation.left: showBgAnimCheckBox
-            smooth: true
-        }
-        CheckBox {
-            id: showShaderEffectCheckBox
-            anchors.top: animInFgCheckBox.bottom
-            anchors.topMargin: 10
-            anchors.bottom: animInFgCheckBox.bottom
-            anchors.bottomMargin: -26
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            checked: toxicWasteMain.showShaderEffect
-            text: qsTr("Show shader effect?")
-            onClicked: {
-                toxicWasteMain.showShaderEffect = checked;
-                toxicWasteMain.ignoreLaunch = true;
-                resetIgnoreLaunchTimer.restart();
-            }
-            onFocusChanged: {
-                if ( !focus )
-                    toxicWasteMain.focus = true;
-            }
-            KeyNavigation.tab: showFpsCheckBox
-            KeyNavigation.backtab: animInFgCheckBox
-            KeyNavigation.right: showFpsCheckBox
-            KeyNavigation.left: animInFgCheckBox
-            smooth: true
-        }
-        CheckBox {
-            id: showFpsCheckBox
-            anchors.top: showShaderEffectCheckBox.bottom
-            anchors.topMargin: 10
-            anchors.bottom: showShaderEffectCheckBox.bottom
-            anchors.bottomMargin: -26
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            checked: toxicWasteMain.fpsVisible
-            text: qsTr("Show FPS counter?")
-            onClicked: {
-                toxicWasteMain.fpsVisible = checked;
-                toxicWasteMain.ignoreLaunch = true;
-                resetIgnoreLaunchTimer.restart();
-            }
-            onFocusChanged: {
-                if ( !focus )
-                    toxicWasteMain.focus = true;
-            }
-            KeyNavigation.tab: closeButton
-            KeyNavigation.backtab: animInFgCheckBox
-            KeyNavigation.right: closeButton
-            KeyNavigation.left: animInFgCheckBox
-            smooth: true
         }
         Button {
             id: closeButton
