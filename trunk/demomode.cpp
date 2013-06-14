@@ -226,10 +226,10 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( !gameItem )
 			    continue;
-		    if ( minDrvStatus < QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT ) {
+		    if ( minDrvStatus < QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY ) {
 			    QString drvStatus = gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
-			    if ( minDrvStatus == QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY ) {
-				    if ( drvStatus != tr("good") && drvStatus != tr("preliminary") )
+			    if ( minDrvStatus == QMC2_DEMO_MODE_DRV_STATUS_IMPERFECT ) {
+				    if ( drvStatus != tr("good") && drvStatus != tr("imperfect") )
 					    continue;
 			    } else {
 				    if ( drvStatus != tr("good") )
