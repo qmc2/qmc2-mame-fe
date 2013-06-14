@@ -240,7 +240,7 @@ Rectangle {
                 origin.x: overlayFlip.width/2
                 origin.y: overlayFlip.height/2
                 axis.x: 0
-                axis.y: toxicWasteMain.invertFlip ? -1 : 1
+                axis.y: toxicWasteMain.invertFlip ? 1 : -1
                 axis.z: 0
                 angle: 0
             }
