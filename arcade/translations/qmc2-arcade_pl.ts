@@ -543,62 +543,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="467"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="534"/>
         <source>Really quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="484"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="551"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="500"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="567"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="567"/>
-        <source>Preferences</source>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="641"/>
+        <source>ToxicWaste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="588"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="659"/>
         <source>Show background animation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="615"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="687"/>
         <source>Animate in foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="642"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="715"/>
         <source>Show shader effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="669"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="743"/>
         <source>Show FPS counter?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="691"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="762"/>
+        <source>Backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="777"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="794"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="880"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1010"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1096"/>
         <source>Starting shader effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1012"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1098"/>
         <source>Shader effect stopped</source>
         <translation type="unfinished"></translation>
     </message>
