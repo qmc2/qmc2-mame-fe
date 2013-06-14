@@ -308,12 +308,12 @@
          </item>
          <item>
           <property name="text">
-           <string>good + preliminary</string>
+           <string>good + imperfect</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>good + preliminary + imperfect</string>
+           <string>good + imperfect + preliminary</string>
           </property>
          </item>
         </widget>
