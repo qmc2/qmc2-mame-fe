@@ -19,6 +19,7 @@ Rectangle {
     property bool fullScreen: false
     property string secondaryImageType: "preview"
     property bool cabinetFlipped: false
+    property bool invertFlip: false
     property int lastIndex: 0
     property bool menuHidden: false
     property string version: ""
@@ -239,7 +240,7 @@ Rectangle {
                 origin.x: overlayFlip.width/2
                 origin.y: overlayFlip.height/2
                 axis.x: 0
-                axis.y: 1
+                axis.y: toxicWasteMain.invertFlip ? -1 : 1
                 axis.z: 0
                 angle: 0
             }
@@ -253,7 +254,19 @@ Rectangle {
             }
             MouseArea {
                 anchors.fill: parent
+                anchors.leftMargin: parent.width/2
                 onClicked: {
+                    toxicWasteMain.invertFlip = true;
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    searchTextInput.focus = false;
+                }
+                z: -1
+            }
+            MouseArea {
+                anchors.fill: parent
+                anchors.rightMargin: parent.width/2
+                onClicked: {
+                    toxicWasteMain.invertFlip = false;
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
                     searchTextInput.focus = false;
                 }
