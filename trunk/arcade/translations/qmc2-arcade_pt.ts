@@ -539,62 +539,67 @@
         <translation>Imagem da pré-visualização</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="467"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="534"/>
         <source>Really quit?</source>
         <translation>Sair realmente?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="484"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="551"/>
         <source>Yes</source>
         <translation>Sim</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="500"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="567"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="567"/>
-        <source>Preferences</source>
-        <translation>Preferências</translation>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="641"/>
+        <source>ToxicWaste</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="588"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="659"/>
         <source>Show background animation?</source>
         <translation>Mostrar animação do plano de fundo?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="615"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="687"/>
         <source>Animate in foreground?</source>
         <translation>Animar o primeiro plano?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="642"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="715"/>
         <source>Show shader effect?</source>
         <translation>Mostrar efeito de shader?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="669"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="743"/>
         <source>Show FPS counter?</source>
         <translation>Mostrar contador de FPS?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="691"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="762"/>
+        <source>Backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="777"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="794"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="880"/>
         <source>FPS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1010"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1096"/>
         <source>Starting shader effect</source>
         <translation>Iniciando efeito de shader</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1012"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1098"/>
         <source>Shader effect stopped</source>
         <translation>Efeito de shader parado</translation>
     </message>

@@ -10,6 +10,9 @@ Rectangle {
 
     property int fps: 0
     property bool ignoreLaunch: false
+    property bool invertFlip: false
+    property bool horizontalFlip: true
+    property bool flipDirectionChanged: false
 
     // restored properties
     property bool fpsVisible: false
@@ -19,7 +22,6 @@ Rectangle {
     property bool fullScreen: false
     property string secondaryImageType: "preview"
     property bool cabinetFlipped: false
-    property bool invertFlip: false
     property int lastIndex: 0
     property bool menuHidden: false
     property string version: ""
@@ -36,6 +38,13 @@ Rectangle {
     Component.onCompleted: initTimer.start()
 
     Timer {
+        id: launchButtonFlashTimer
+        interval: 100
+        running: false
+        onTriggered: launchButton.opacity = 0.8
+    }
+
+    Timer {
         id: resetIgnoreLaunchTimer
         interval: 100
         running: false
@@ -44,10 +53,11 @@ Rectangle {
     }
 
     Timer {
-        id: launchButtonFlashTimer
+        id: flipDirectionResetTimer
+        interval: 200
         running: false
-        onTriggered: launchButton.opacity = 0.8
-        interval: 100
+        repeat: false
+        onTriggered: toxicWasteMain.flipDirectionChanged = false
     }
 
     width: ToxicWaste.baseWidth
@@ -128,6 +138,7 @@ Rectangle {
                 border.width: 2 * ToxicWaste.scaleFactorX()
                 radius: 5
                 smooth: true
+                scale: toxicWasteMain.flipDirectionChanged ? -1 : 1
                 gradient: Gradient {
                     GradientStop { position: 0.00; color: "#ffffff" }
                     GradientStop { position: 0.50; color: "#007bff" }
@@ -239,36 +250,79 @@ Rectangle {
                 id: overlayRotation
                 origin.x: overlayFlip.width/2
                 origin.y: overlayFlip.height/2
-                axis.x: 0
-                axis.y: toxicWasteMain.invertFlip ? 1 : -1
+                axis.x: toxicWasteMain.horizontalFlip ? 0 : (toxicWasteMain.invertFlip ? -1 : 1)
+                axis.y: toxicWasteMain.horizontalFlip ? (toxicWasteMain.invertFlip ? -1 : 1) : 0
                 axis.z: 0
                 angle: 0
             }
-            states: State {
-                name: "back"
-                PropertyChanges { target: overlayRotation; angle: 180 }
-                when: toxicWasteMain.cabinetFlipped
-            }
+            states: [
+                State {
+                    name: "back"
+                    PropertyChanges { target: overlayRotation; angle: 180 }
+                    when: toxicWasteMain.cabinetFlipped
+                },
+                State {
+                    name: "front"
+                    PropertyChanges { target: overlayRotation; angle: 0 }
+                    when: !toxicWasteMain.cabinetFlipped
+                }
+            ]
             transitions: Transition {
-                NumberAnimation { target: overlayRotation; property: "angle"; duration: 500 }
+                NumberAnimation { target: overlayRotation; property: "angle"; duration: 400 }
             }
-            MouseArea {
+            MouseArea { // right
                 anchors.fill: parent
                 anchors.leftMargin: parent.width/2
+                anchors.bottomMargin: parent.height/4
+                anchors.topMargin: parent.height/4
                 onClicked: {
-                    toxicWasteMain.invertFlip = true;
-                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    toxicWasteMain.flipDirectionChanged = !toxicWasteMain.horizontalFlip;
+                    toxicWasteMain.invertFlip = flipDirectionChanged ? toxicWasteMain.cabinetFlipped : false;
+                    toxicWasteMain.horizontalFlip = true;
                     searchTextInput.focus = false;
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    flipDirectionResetTimer.restart();
                 }
                 z: -1
             }
-            MouseArea {
+            MouseArea { // left
                 anchors.fill: parent
                 anchors.rightMargin: parent.width/2
+                anchors.bottomMargin: parent.height/4
+                anchors.topMargin: parent.height/4
                 onClicked: {
-                    toxicWasteMain.invertFlip = false;
-                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    toxicWasteMain.flipDirectionChanged = !toxicWasteMain.horizontalFlip;
+                    toxicWasteMain.invertFlip = flipDirectionChanged ? !toxicWasteMain.cabinetFlipped : true;
+                    toxicWasteMain.horizontalFlip = true;
                     searchTextInput.focus = false;
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    flipDirectionResetTimer.restart();
+                }
+                z: -1
+            }
+            MouseArea { // top
+                anchors.fill: parent
+                anchors.bottomMargin: parent.height - parent.height/4
+                onClicked: {
+                    toxicWasteMain.flipDirectionChanged = toxicWasteMain.horizontalFlip;
+                    toxicWasteMain.invertFlip = flipDirectionChanged ? toxicWasteMain.cabinetFlipped : false;
+                    toxicWasteMain.horizontalFlip = false;
+                    searchTextInput.focus = false;
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    flipDirectionResetTimer.restart();
+                }
+                z: -1
+            }
+            MouseArea { // bottom
+                anchors.fill: parent
+                anchors.topMargin: parent.height - parent.height/4
+                onClicked: {
+                    toxicWasteMain.flipDirectionChanged = toxicWasteMain.horizontalFlip;
+                    toxicWasteMain.invertFlip = flipDirectionChanged ? !toxicWasteMain.cabinetFlipped : true;
+                    toxicWasteMain.horizontalFlip = false;
+                    searchTextInput.focus = false;
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    flipDirectionResetTimer.restart();
                 }
                 z: -1
             }
