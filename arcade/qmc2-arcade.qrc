@@ -7,6 +7,7 @@
         <file>qml/ToxicWaste/animations/BackgroundAnimation.qml</file>
         <file>qml/ToxicWaste/components/Button.qml</file>
         <file>qml/ToxicWaste/components/CheckBox.qml</file>
+        <file>qml/ToxicWaste/components/ComboBox.qml</file>
         <file>qml/ToxicWaste/components/TabWidget.qml</file>
         <file>qml/ToxicWaste/effects/RadialWaveEffect.qml</file>
         <file>qml/ToxicWaste/images/arrow.png</file>

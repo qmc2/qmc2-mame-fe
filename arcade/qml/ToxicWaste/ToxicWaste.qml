@@ -530,10 +530,19 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
         }
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 5
+            color: "#55a5ff"
+            border.color: "black"
+            border.width: 1
+            radius: 5
+            smooth: true
+        }
         Text {
             text: qsTr("Really quit?")
             anchors.top: parent.top
-            anchors.topMargin: 10
+            anchors.topMargin: 15
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: 0
             font.pixelSize: 12
