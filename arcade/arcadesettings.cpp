@@ -257,6 +257,16 @@ bool ArcadeSettings::showShaderEffect()
     return value(QString("Arcade/%1/showShaderEffect").arg(arcadeTheme), false).toBool();
 }
 
+void ArcadeSettings::setConfirmQuit(bool confirm)
+{
+    setValue(QString("Arcade/%1/confirmQuit").arg(arcadeTheme), confirm);
+}
+
+bool ArcadeSettings::confirmQuit()
+{
+    return value(QString("Arcade/%1/confirmQuit").arg(arcadeTheme), true).toBool();
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);

@@ -115,6 +115,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("cabinetFlipped", globalConfig->cabinetFlipped());
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex() < gameList.count() ? globalConfig->lastIndex() : 0);
         rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
+        rootObject()->setProperty("confirmQuit", globalConfig->confirmQuit());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
         rootObject()->setProperty("dataTypePrimary", globalConfig->dataTypePrimary());
@@ -159,6 +160,7 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setCabinetFlipped(rootObject()->property("cabinetFlipped").toBool());
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setMenuHidden(rootObject()->property("menuHidden").toBool());
+        globalConfig->setConfirmQuit(rootObject()->property("confirmQuit").toBool());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setDataTypePrimary(rootObject()->property("dataTypePrimary").toString());

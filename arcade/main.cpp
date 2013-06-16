@@ -293,11 +293,12 @@ int main(int argc, char *argv[])
 #else
                                 arg(QMC2_ARCADE_APP_VERSION).
 #endif
-                                arg(QString("Qt ") + qVersion() + ", " +
+                                arg(QString("Qt") + " " + qVersion() + ", " +
                                     QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
-                                    QObject::tr("theme: %1").arg(theme) + ", " +
+                                    QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]) + ", " +
                                     QObject::tr("graphics-system: %1").arg(gSys) + ", " +
-                                    QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]));
+                                    QObject::tr("language: %1").arg(language) + ", " +
+                                    QObject::tr("theme: %1").arg(theme));
 
         QMC2_ARCADE_LOG_STR(bannerMessage);
 

@@ -36,12 +36,23 @@ FocusScope {
     property alias model: listView.model
     property int index: 0
     property alias arrowIcon: arrowIcon.source
+    property int maxDropDownItems: 4
+    property int maxDropDownHeight: maxDropDownItems * container.height
+    property bool openingDropDown: false
 
     signal indexChosen(int index)
 
     height: txtMain.font.pixelSize + 8
 
     onFocusChanged: if (!container.activeFocus) close(false)
+
+    Timer {
+        id: resetOpeningDropDownTimer
+        interval: 200
+        running: false
+        repeat: false
+        onTriggered: container.openingDropDown = false;
+    }
 
     Rectangle {
         id: main
@@ -107,17 +118,23 @@ FocusScope {
     }
 
     Keys.onPressed: {
-        if (event.key === Qt.Key_Up) {
+        if ( !activeFocus )
+            return;
+        if ( event.key === Qt.Key_Up ) {
             listView.decrementCurrentIndex();
-        } else if (event.key === Qt.Key_Down) {
-            if (event.modifiers !== Qt.AltModifier)
+            event.accepted = true;
+        } else if ( event.key === Qt.Key_Down ) {
+            if ( dropDown.state === "visible" )
                 listView.incrementCurrentIndex();
             else
                 toggle();
-        } else if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
+            event.accepted = true;
+        } else if ( event.key === Qt.Key_Enter || event.key === Qt.Key_Return ) {
             close(true);
-        } else if (event.key === Qt.Key_Escape) {
+            event.accepted = true;
+        } else if ( event.key === Qt.Key_Escape && dropDown.state === "visible" ) {
             close(false);
+            event.accepted = true;
         }
     }
 
@@ -126,11 +143,10 @@ FocusScope {
         width: container.width
         height: 0
         anchors.top: container.bottom
-        anchors.topMargin: -1
+        anchors.topMargin: 1
         smooth: true
         clip: true
-        z: +1
-        Behavior on height { NumberAnimation { duration: 100 } }
+        Behavior on height { NumberAnimation { duration: 200 } }
         Component {
             id: myDelegate
             Rectangle {
@@ -160,8 +176,9 @@ FocusScope {
         ListView {
             id: listView
             width: container.width
-            height: container.height * count
+            height: dropDown.height
             delegate: myDelegate
+            boundsBehavior: Flickable.StopAtBounds
             highlight: Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: container.hoverColor
@@ -171,34 +188,62 @@ FocusScope {
             anchors.fill: listView
             color: "transparent"
             clip: false
-            border.color: main.border.color
+            border.color: container.borderColor
             border.width: main.border.width
             smooth: true
+        }
+        Image {
+            id: upArrow
+            anchors.top: parent.top
+            anchors.topMargin: 2
+            anchors.left: parent.right
+            anchors.leftMargin: -10
+            source: arrowIcon.source
+            scale: -1
+            smooth: true
+            width: 8
+            opacity: container.openingDropDown ? 0 : (listView.contentY > 0 ? 0.33 : 0)
+            Behavior on opacity { NumberAnimation { duration: container.openingDropDown ? 0 : 200 } }
+            fillMode: Image.PreserveAspectFit
+        }
+        Image {
+            id: downArrow
+            anchors.top: parent.bottom
+            anchors.topMargin: -8
+            anchors.left: parent.right
+            anchors.leftMargin: -10
+            source: arrowIcon.source
+            smooth: true
+            width: 8
+            opacity: container.openingDropDown ? 0 : (listView.contentY + dropDown.height < container.height * listView.count ? 0.33 : 0)
+            Behavior on opacity { NumberAnimation { duration: container.openingDropDown ? 0 : 200 } }
+            fillMode: Image.PreserveAspectFit
         }
         states: [
             State {
                 name: "visible";
-                PropertyChanges { target: dropDown; height: container.height * listView.count }
+                PropertyChanges { target: dropDown; height: Math.min(container.height * listView.count, maxDropDownHeight); }
             }
         ]
     }
 
     function toggle() {
-        if (dropDown.state === "visible")
+        if ( dropDown.state === "visible" )
             close(false);
         else
             open();
     }
 
     function open() {
+        container.openingDropDown = true;
         dropDown.state = "visible";
         listView.currentIndex = container.index;
+        resetOpeningDropDownTimer.restart();
     }
 
     function close(update) {
         dropDown.state = "";
-
-        if (update) {
+        if ( update ) {
             container.index = listView.currentIndex;
             txtMain.text = listView.currentItem.text;
         }
@@ -206,6 +251,15 @@ FocusScope {
 
     function positionAtTop() {
         listView.positionViewAtIndex(listView.currentIndex, ListView.Beginning);
+    }
+
+    function setCurrentIndex(newIndex) {
+        listView.currentIndex = newIndex;
+        close(true);
+    }
+
+    function currentIndex() {
+        return listView.currentIndex;
     }
 
     Component.onCompleted: {
