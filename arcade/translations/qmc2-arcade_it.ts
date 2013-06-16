@@ -539,67 +539,77 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="534"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="543"/>
         <source>Really quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="551"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="560"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="567"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="576"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="641"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="653"/>
         <source>ToxicWaste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="659"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="671"/>
         <source>Show background animation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="687"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="699"/>
         <source>Animate in foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="715"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="727"/>
         <source>Show shader effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="743"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="755"/>
         <source>Show FPS counter?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="762"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="774"/>
         <source>Backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="777"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="790"/>
+        <source>Option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="825"/>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="858"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="880"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="961"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1096"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1177"/>
         <source>Starting shader effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1098"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1179"/>
         <source>Shader effect stopped</source>
         <translation type="unfinished"></translation>
     </message>
@@ -608,7 +618,7 @@
     <name>TweakedQmlApplicationViewer</name>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="51"/>
-        <source>Theme selection</source>
+        <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

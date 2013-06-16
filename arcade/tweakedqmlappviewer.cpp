@@ -48,7 +48,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     cliAllowedParameterValues["graphicssystem"] = graphicsSystems;
     cliAllowedParameterValues["console"] = consoleModes;
     cliAllowedParameterValues["language"] = globalConfig->languageMap.keys();
-    cliParameterDescriptions["theme"] = tr("Theme selection");
+    cliParameterDescriptions["theme"] = tr("Theme");
     cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
     cliParameterDescriptions["console"] = tr("Console mode");
     cliParameterDescriptions["language"] = tr("Language");

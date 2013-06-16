@@ -5,8 +5,11 @@ Item {
 
     default property alias content: stack.children
     property int current: 0
-    property string baseColor: parent.color
-    property string activeBorderColor: "transparent"
+    property color baseColor: parent.color
+    property color activeBorderColor: "transparent"
+    property color inactiveBorderColor: "transparent"
+    property color activeTextColor: "black"
+    property color inactiveTextColor: "black"
     property int fontSize: 12
 
     onCurrentChanged: setOpacities()
@@ -31,7 +34,7 @@ Item {
                 x: (tabHeaderWidth() + 3) * index
                 height: 30
                 color: tabWidget.current == index ? baseColor : "transparent"
-                border.color: tabWidget.current == index ? activeBorderColor : baseColor
+                border.color: tabWidget.current == index ? activeBorderColor : inactiveBorderColor
                 border.width: 1
                 radius: 5
                 smooth: true
@@ -43,6 +46,7 @@ Item {
                     elide: Text.ElideRight
                     font.bold: tabWidget.current == index
                     font.pixelSize: tabWidget.fontSize
+                    color: tabWidget.current == index ? activeTextColor : inactiveTextColor
                     smooth: true
                 }
                 MouseArea {

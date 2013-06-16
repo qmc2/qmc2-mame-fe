@@ -26,31 +26,31 @@ import QtQuick 1.1
 
 FocusScope {
     id: container
-    width: 80; height: 30
 
     property color color: "white"
     property color borderColor: "#ababab"
-    property color focusColor: "#266294"
-    property color hoverColor: "#5692c4"
+    property color focusColor: "#5692c4"
+    property color hoverColor: "#266294"
     property alias font: txtMain.font
     property alias textColor: txtMain.color
     property alias model: listView.model
     property int index: 0
     property alias arrowIcon: arrowIcon.source
 
+    signal indexChosen(int index)
+
+    height: txtMain.font.pixelSize + 8
+
     onFocusChanged: if (!container.activeFocus) close(false)
 
     Rectangle {
         id: main
-
         anchors.fill: parent
-
         color: container.color
         border.color: container.borderColor
         border.width: 1
-
-        Behavior on border.color { ColorAnimation { duration: 100 } }
-
+        smooth: true
+        Behavior on border.color { ColorAnimation { duration: 50 } }
         states: [
             State {
                 name: "hover"; when: mouseArea.containsMouse
@@ -65,30 +65,32 @@ FocusScope {
 
     Text {
         id: txtMain
-        anchors.left: parent.left; anchors.right: arrow.left
+        anchors.left: parent.left
+        anchors.right: arrow.left
         anchors.margins: 4
         height: parent.height
-
         clip: true
         color: "black"
         focus: true
         elide: Text.ElideRight
         text: ""
-
+        smooth: true
         verticalAlignment: Text.AlignVCenter
+        onTextChanged: container.indexChosen(listView.currentIndex)
     }
 
     Rectangle {
         id: arrow
         anchors.right: parent.right
-        width: 20; height: parent.height
-
+        width: 12
+        height: parent.height
+        smooth: true
         border.color: main.border.color
         border.width: main.border.width
-
         Image {
             id: arrowIcon
             anchors.fill: parent
+            anchors.margins: 2
             clip: true
             smooth: true
             fillMode: Image.PreserveAspectFit
@@ -98,86 +100,81 @@ FocusScope {
     MouseArea {
         id: mouseArea
         anchors.fill: container
-
         hoverEnabled: true
-
         onEntered: if (main.state == "") main.state = "hover";
-        onExited: if (main.state == "hover") main.state = "";
+        onExited: if ( main.state == "hover" ) main.state = "";
         onClicked: { container.focus = true; toggle() }
     }
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Up) {
-            listView.decrementCurrentIndex()
+            listView.decrementCurrentIndex();
         } else if (event.key === Qt.Key_Down) {
             if (event.modifiers !== Qt.AltModifier)
-                listView.incrementCurrentIndex()
+                listView.incrementCurrentIndex();
             else
-                toggle()
+                toggle();
         } else if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
-            close(true)
+            close(true);
         } else if (event.key === Qt.Key_Escape) {
-            close(false)
+            close(false);
         }
     }
 
     Rectangle {
         id: dropDown
-        width: container.width; height: 0
+        width: container.width
+        height: 0
         anchors.top: container.bottom
         anchors.topMargin: -1
-
+        smooth: true
         clip: true
-
+        z: +1
         Behavior on height { NumberAnimation { duration: 100 } }
-
         Component {
             id: myDelegate
-
             Rectangle {
-                width: dropDown.width; height: container.height
+                width: dropDown.width
+                height: container.height
                 color: "transparent"
-
                 property string text: model.name
-
                 Text {
                     id: textDelegate
                     anchors.fill: parent
                     anchors.margins: 4
-
+                    smooth: true
                     text: model.name
-
                     elide: Text.ElideRight
                     font: txtMain.font
                     verticalAlignment: Text.AlignVCenter
                 }
-
                 MouseArea {
                     id: delegateMouseArea
                     anchors.fill: parent
-
                     hoverEnabled: true
                     onEntered: listView.currentIndex = index
                     onClicked: close(true)
                 }
             }
         }
-
         ListView {
             id: listView
-            width: container.width; height: container.height * count
+            width: container.width
+            height: container.height * count
             delegate: myDelegate
-            highlight: Rectangle { anchors.horizontalCenter: parent.horizontalCenter; color: container.hoverColor }
+            highlight: Rectangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: container.hoverColor
+            }
         }
-
         Rectangle {
             anchors.fill: listView
             color: "transparent"
             clip: false
             border.color: main.border.color
             border.width: main.border.width
+            smooth: true
         }
-
         states: [
             State {
                 name: "visible";
@@ -188,27 +185,32 @@ FocusScope {
 
     function toggle() {
         if (dropDown.state === "visible")
-            close(false)
+            close(false);
         else
-            open()
+            open();
     }
 
     function open() {
-        dropDown.state = "visible"
-        listView.currentIndex = container.index
+        dropDown.state = "visible";
+        listView.currentIndex = container.index;
     }
 
     function close(update) {
-        dropDown.state = ""
+        dropDown.state = "";
 
         if (update) {
-            container.index = listView.currentIndex
-            txtMain.text = listView.currentItem.text
+            container.index = listView.currentIndex;
+            txtMain.text = listView.currentItem.text;
         }
     }
 
+    function positionAtTop() {
+        listView.positionViewAtIndex(listView.currentIndex, ListView.Beginning);
+    }
+
     Component.onCompleted: {
-        listView.currentIndex = container.index
-        txtMain.text = listView.currentItem.text
+        listView.currentIndex = container.index;
+        positionAtTop();
+        txtMain.text = listView.currentItem.text;
     }
 }
