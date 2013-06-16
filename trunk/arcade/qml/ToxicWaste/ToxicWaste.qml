@@ -627,7 +627,7 @@ Rectangle {
         scale: ToxicWaste.scaleFactorX()
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
-        width: 240
+        width: 300
         height: 190
         border.color: "black"
         border.width: 2
@@ -644,6 +644,9 @@ Rectangle {
             anchors.margins: 5
             baseColor: "#55a5ff"
             activeBorderColor: "black"
+            inactiveBorderColor: "#202020"
+            activeTextColor: "black"
+            inactiveTextColor: "#202020"
             fontSize: 12
             smooth: true
             Rectangle {
@@ -775,6 +778,75 @@ Rectangle {
                 border.color: preferencesTabWidget.activeBorderColor
                 radius: 5
                 smooth: true
+                Text {
+                    id: cliOptionText
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    anchors.rightMargin: parent.width/2 + 2
+                    smooth: true
+                    font.pixelSize: 12
+                    text: qsTr("Option")
+                    horizontalAlignment: Text.Center
+                }
+                ComboBox {
+                    id: cliOptionCombo
+                    anchors.top: cliOptionText.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    anchors.rightMargin: parent.width/2 + 2
+                    smooth: true
+                    model: ListModel {}
+                    arrowIcon: "images/down_arrow.png"
+                    font.pixelSize: 12
+                    onIndexChosen: {
+                        viewer.log("DEBUG: cliOptionCombo: index = " + index);
+                        cliValueCombo.model.clear();
+                        var cliParamNames = viewer.cliParamNames();
+                        var cliParamOptions = viewer.cliParamAllowedValues(cliParamNames[index]);
+                        for (var i = 0; i < cliParamOptions.length; i++)
+                            cliValueCombo.model.append({'name': cliParamOptions[i]});
+                        cliValueCombo.close(true);
+                        cliValueCombo.positionAtTop();
+                    }
+                }
+                Text {
+                    id: cliValueText
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    anchors.leftMargin: parent.width/2 + 2
+                    smooth: true
+                    font.pixelSize: 12
+                    horizontalAlignment: Text.Center
+                    text: qsTr("Value")
+                }
+                ComboBox {
+                    id: cliValueCombo
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: cliValueText.bottom
+                    anchors.margins: 5
+                    anchors.leftMargin: parent.width/2 + 2
+                    smooth: true
+                    model: ListModel {}
+                    arrowIcon: "images/down_arrow.png"
+                    font.pixelSize: 12
+                    onIndexChosen: {
+                        viewer.log("DEBUG: cliValueCombo: index = " + index);
+                    }
+                }
+                Component.onCompleted: {
+                    var cliParamNames = viewer.cliParamNames();
+                    var cliParamOptions = viewer.cliParamAllowedValues(cliParamNames[0]);
+                    for (var i = 0; i < cliParamOptions.length; i++)
+                        cliValueCombo.model.append({'name': cliParamOptions[i]});
+                    for (var i = 0; i < cliParamNames.length; i++)
+                        cliOptionCombo.model.append({'name': viewer.cliParamDescription(cliParamNames[i])});
+                }
             }
         }
         Button {
