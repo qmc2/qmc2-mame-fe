@@ -68,6 +68,8 @@ public slots:
     bool menuHidden();
     void setShowShaderEffect(bool);
     bool showShaderEffect();
+    void setConfirmQuit(bool);
+    bool confirmQuit();
     // darkone
     void setToolbarHidden(bool);
     bool toolbarHidden();

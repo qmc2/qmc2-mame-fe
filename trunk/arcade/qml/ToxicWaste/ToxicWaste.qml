@@ -25,6 +25,7 @@ Rectangle {
     property int lastIndex: 0
     property bool menuHidden: false
     property string version: ""
+    property bool confirmQuit: true
 
     // delayed init
     Timer {
@@ -628,7 +629,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 300
-        height: 190
+        height: 210
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -763,10 +764,38 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: closeButton
+                    KeyNavigation.tab: confirmQuitCheckBox
                     KeyNavigation.backtab: showShaderEffectCheckBox
-                    KeyNavigation.right: closeButton
+                    KeyNavigation.right: confirmQuitCheckBox
                     KeyNavigation.left: showShaderEffectCheckBox
+                    smooth: true
+                }
+                CheckBox {
+                    id: confirmQuitCheckBox
+                    anchors.top: showFpsCheckBox.bottom
+                    anchors.topMargin: 10
+                    anchors.bottom: showFpsCheckBox.bottom
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.confirmQuit
+                    text: qsTr("Confirm quit?")
+                    textColor: "black"
+                    onClicked: {
+                        toxicWasteMain.confirmQuit = checked;
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: closeButton
+                    KeyNavigation.backtab: showFpsCheckBox
+                    KeyNavigation.right: closeButton
+                    KeyNavigation.left: showFpsCheckBox
                     smooth: true
                 }
             }
@@ -801,15 +830,28 @@ Rectangle {
                     model: ListModel {}
                     arrowIcon: "images/down_arrow.png"
                     font.pixelSize: 12
+                    z: +1
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
                     onIndexChosen: {
-                        viewer.log("DEBUG: cliOptionCombo: index = " + index);
+                        cliValueCombo.ready = false;
                         cliValueCombo.model.clear();
-                        var cliParamNames = viewer.cliParamNames();
-                        var cliParamOptions = viewer.cliParamAllowedValues(cliParamNames[index]);
-                        for (var i = 0; i < cliParamOptions.length; i++)
-                            cliValueCombo.model.append({'name': cliParamOptions[i]});
+                        var cliParamName = viewer.cliParamNames()[index];
+                        var cliParamOptions = viewer.cliParamAllowedValues(cliParamName);
+                        var cliParamValue = viewer.cliParamValue(cliParamName);
+                        var indexToSelect = 0;
+                        for (var i = 0; i < cliParamOptions.length; i++) {
+                            var cliParamOption = cliParamOptions[i];
+                            cliValueCombo.model.append({'name': cliParamOption});
+                            if ( cliParamOption === cliParamValue )
+                                indexToSelect = i;
+                        }
                         cliValueCombo.close(true);
                         cliValueCombo.positionAtTop();
+                        cliValueCombo.setCurrentIndex(indexToSelect);
+                        cliValueCombo.ready = true;
                     }
                 }
                 Text {
@@ -826,6 +868,7 @@ Rectangle {
                 }
                 ComboBox {
                     id: cliValueCombo
+                    property bool ready: false
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.top: cliValueText.bottom
@@ -835,17 +878,47 @@ Rectangle {
                     model: ListModel {}
                     arrowIcon: "images/down_arrow.png"
                     font.pixelSize: 12
-                    onIndexChosen: {
-                        viewer.log("DEBUG: cliValueCombo: index = " + index);
+                    z: +1
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
                     }
+                    onIndexChosen: {
+                        if ( ready ) {
+                            var cliParamName = viewer.cliParamNames()[cliOptionCombo.currentIndex()];
+                            var cliParamValue = viewer.cliParamAllowedValues(cliParamName)[cliValueCombo.currentIndex()];
+                            if ( cliParamName !== "" && cliParamValue !== "" )
+                                viewer.setCliParamValue(cliParamName, cliParamValue);
+                        }
+                    }
+                }
+                Text {
+                    id: cliInfoText
+                    anchors.top: cliValueCombo.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    anchors.topMargin: 20
+                    smooth: true
+                    font.pixelSize: 12
+                    horizontalAlignment: Text.Center
+                    text: qsTr("For customized default backend options to\ntake effect, please restart QMC2 Arcade!")
                 }
                 Component.onCompleted: {
                     var cliParamNames = viewer.cliParamNames();
                     var cliParamOptions = viewer.cliParamAllowedValues(cliParamNames[0]);
-                    for (var i = 0; i < cliParamOptions.length; i++)
-                        cliValueCombo.model.append({'name': cliParamOptions[i]});
+                    var cliParamValue = viewer.cliParamValue(cliParamNames[0]);
+                    var indexToSelect = 0;
+                    for (var i = 0; i < cliParamOptions.length; i++) {
+                        var cliParamOption = cliParamOptions[i];
+                        cliValueCombo.model.append({'name': cliParamOption});
+                        if ( cliParamOption === cliParamValue )
+                            indexToSelect = i;
+                    }
                     for (var i = 0; i < cliParamNames.length; i++)
                         cliOptionCombo.model.append({'name': viewer.cliParamDescription(cliParamNames[i])});
+                    cliValueCombo.setCurrentIndex(indexToSelect);
+                    cliValueCombo.ready = true;
                 }
             }
         }
@@ -859,6 +932,7 @@ Rectangle {
             onClicked: {
                 toxicWasteMain.ignoreLaunch = true;
                 preferencesDialog.state = "hidden";
+                toxicWasteMain.focus = true;
                 resetIgnoreLaunchTimer.restart();
             }
             onFocusChanged: {
@@ -978,9 +1052,12 @@ Rectangle {
                 onEntered: parent.opacity = 0.5
                 onExited: parent.opacity = 1.0
                 onClicked: {
-                    parent.opacity = 1.0;
-                    confirmQuitDialog.state = "shown";
-                    searchTextInput.focus = false;
+                    if ( toxicWasteMain.confirmQuit ) {
+                        parent.opacity = 1.0;
+                        confirmQuitDialog.state = "shown";
+                        searchTextInput.focus = false;
+                    } else
+                        Qt.quit();
                 }
             }
         }
@@ -1187,10 +1264,13 @@ Rectangle {
             if ( searchTextInput.focus )
                 searchTextInput.focus = false;
             else {
-                if ( confirmQuitDialog.state == "hidden" )
-                    confirmQuitDialog.state = "shown";
-                else
-                    confirmQuitDialog.state = "hidden";
+                if ( toxicWasteMain.confirmQuit ) {
+                    if ( confirmQuitDialog.state == "hidden" )
+                        confirmQuitDialog.state = "shown";
+                    else
+                        confirmQuitDialog.state = "hidden";
+                } else
+                    Qt.quit();
             }
             event.accepted = true;
             break;
@@ -1227,11 +1307,14 @@ Rectangle {
                     event.accepted = true;
                     break;
                 case Qt.Key_X:
-                    if ( confirmQuitDialog.state == "hidden" )
-                        confirmQuitDialog.state = "shown";
-                    else
-                        confirmQuitDialog.state = "hidden";
-                    event.accepted = true;
+                    if ( toxicWasteMain.confirmQuit ) {
+                        if ( confirmQuitDialog.state == "hidden" )
+                            confirmQuitDialog.state = "shown";
+                        else
+                            confirmQuitDialog.state = "hidden";
+                        event.accepted = true;
+                    } else
+                        Qt.quit();
                     break;
                 case Qt.Key_F:
                     if ( !toxicWasteMain.menuHidden ) {
