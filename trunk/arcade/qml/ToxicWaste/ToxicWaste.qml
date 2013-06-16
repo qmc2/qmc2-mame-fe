@@ -651,8 +651,10 @@ Rectangle {
             fontSize: 12
             smooth: true
             Rectangle {
-                property string title: qsTr("ToxicWaste")
                 id: themePreferencesTab
+                property string title: qsTr("ToxicWaste")
+                property alias firstKeyNavItem: showBgAnimCheckBox
+                property alias lastKeyNavItem: confirmQuitCheckBox
                 anchors.fill: parent
                 color: preferencesTabWidget.baseColor
                 radius: 5
@@ -675,6 +677,7 @@ Rectangle {
                         toxicWasteMain.showBackgroundAnimation = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
+                        focus = true;
                     }
                     onFocusChanged: {
                         if ( !focus )
@@ -703,6 +706,7 @@ Rectangle {
                         toxicWasteMain.animateInForeground = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
+                        focus = true;
                     }
                     onFocusChanged: {
                         if ( !focus )
@@ -731,6 +735,7 @@ Rectangle {
                         toxicWasteMain.showShaderEffect = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
+                        focus = true;
                     }
                     onFocusChanged: {
                         if ( !focus )
@@ -759,6 +764,7 @@ Rectangle {
                         toxicWasteMain.fpsVisible = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
+                        focus = true;
                     }
                     onFocusChanged: {
                         if ( !focus )
@@ -787,6 +793,7 @@ Rectangle {
                         toxicWasteMain.confirmQuit = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
+                        focus = true;
                     }
                     onFocusChanged: {
                         if ( !focus )
@@ -800,8 +807,10 @@ Rectangle {
                 }
             }
             Rectangle {
-                property string title: qsTr("Backend")
                 id: backendPreferencesTab
+                property string title: qsTr("Backend")
+                property alias firstKeyNavItem: cliOptionCombo
+                property alias lastKeyNavItem: cliValueCombo
                 anchors.fill: parent
                 color: preferencesTabWidget.baseColor
                 border.color: preferencesTabWidget.activeBorderColor
@@ -853,6 +862,10 @@ Rectangle {
                         cliValueCombo.setCurrentIndex(indexToSelect);
                         cliValueCombo.ready = true;
                     }
+                    KeyNavigation.tab: cliValueCombo
+                    KeyNavigation.backtab: closeButton
+                    KeyNavigation.right: cliValueCombo
+                    KeyNavigation.left: closeButton
                 }
                 Text {
                     id: cliValueText
@@ -891,6 +904,10 @@ Rectangle {
                                 viewer.setCliParamValue(cliParamName, cliParamValue);
                         }
                     }
+                    KeyNavigation.tab: closeButton
+                    KeyNavigation.backtab: cliOptionCombo
+                    KeyNavigation.right: closeButton
+                    KeyNavigation.left: cliOptionCombo
                 }
                 Text {
                     id: cliInfoText
@@ -939,10 +956,10 @@ Rectangle {
                 if ( !focus )
                     toxicWasteMain.focus = true;
             }
-            KeyNavigation.tab: showBgAnimCheckBox
-            KeyNavigation.backtab: showFpsCheckBox
-            KeyNavigation.right: showBgAnimCheckBox
-            KeyNavigation.left: showFpsCheckBox
+            KeyNavigation.tab: preferencesTabWidget.firstKeyNavItem()
+            KeyNavigation.backtab: preferencesTabWidget.lastKeyNavItem()
+            KeyNavigation.right: preferencesTabWidget.firstKeyNavItem()
+            KeyNavigation.left: preferencesTabWidget.lastKeyNavItem()
         }
         onStateChanged: {
             if ( state == "shown" && confirmQuitDialog.state == "hidden" )

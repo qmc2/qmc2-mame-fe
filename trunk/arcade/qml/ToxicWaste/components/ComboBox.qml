@@ -29,7 +29,7 @@ FocusScope {
 
     property color color: "white"
     property color borderColor: "#ababab"
-    property color focusColor: "#5692c4"
+    property color focusColor: "black"
     property color hoverColor: "#266294"
     property alias font: txtMain.font
     property alias textColor: txtMain.color
@@ -44,7 +44,16 @@ FocusScope {
 
     height: txtMain.font.pixelSize + 8
 
-    onFocusChanged: if (!container.activeFocus) close(false)
+    onFocusChanged: {
+        if ( !container.activeFocus ) {
+            close(false);
+            main.border.color = container.borderColor;
+            main.border.width = 1;
+        } else {
+            main.border.color = container.focusColor;
+            main.border.width = 2;
+        }
+    }
 
     Timer {
         id: resetOpeningDropDownTimer
@@ -58,8 +67,8 @@ FocusScope {
         id: main
         anchors.fill: parent
         color: container.color
-        border.color: container.borderColor
-        border.width: 1
+        border.color: container.activeFocus ? container.focusColor : container.borderColor
+        border.width: container.activeFocus ? 2 : 1
         smooth: true
         Behavior on border.color { ColorAnimation { duration: 50 } }
         states: [
@@ -82,7 +91,6 @@ FocusScope {
         height: parent.height
         clip: true
         color: "black"
-        focus: true
         elide: Text.ElideRight
         text: ""
         smooth: true
@@ -118,7 +126,7 @@ FocusScope {
     }
 
     Keys.onPressed: {
-        if ( !activeFocus )
+        if ( !container.activeFocus )
             return;
         if ( event.key === Qt.Key_Up ) {
             listView.decrementCurrentIndex();
@@ -130,7 +138,7 @@ FocusScope {
                 toggle();
             event.accepted = true;
         } else if ( event.key === Qt.Key_Enter || event.key === Qt.Key_Return ) {
-            close(true);
+            close(dropDown.state == "visible");
             event.accepted = true;
         } else if ( event.key === Qt.Key_Escape && dropDown.state === "visible" ) {
             close(false);
