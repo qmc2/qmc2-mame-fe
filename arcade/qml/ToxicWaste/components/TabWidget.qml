@@ -17,11 +17,19 @@ Item {
 
     function setOpacities() {
         for (var i = 0; i < stack.children.length; i++)
-            stack.children[i].opacity = (i == current ? 1 : 0);
+            stack.children[i].opacity = (i == current ? 1: 0);
     }
 
     function tabHeaderWidth() {
         return (tabWidget.width - stack.children.length - 1) / stack.children.length;
+    }
+
+    function firstKeyNavItem() {
+        return stack.children[current].firstKeyNavItem;
+    }
+
+    function lastKeyNavItem() {
+        return stack.children[current].lastKeyNavItem;
     }
 
     Row {
