@@ -998,6 +998,7 @@ void Gamelist::verify(bool currentOnly)
       tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
     }
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for '%1'").arg(checkedItem->text(QMC2_GAMELIST_COLUMN_GAME)));
+    oldRomState = checkedItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0);
     // decrease counter for current game's/machine's state
     switch ( checkedItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
       case QMC2_ROMSTATE_CHAR_C:
@@ -2417,15 +2418,15 @@ void Gamelist::parse()
   if ( autoRomCheck )
 	  QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
   else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() )
-	  filter();
+	  filter(true);
 
   enableWidgets(true);
 }
 
-void Gamelist::filter()
+void Gamelist::filter(bool initial)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::filter()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::filter(initial = %1)").arg(initial));
 #endif
 
   if ( qmc2FilterActive ) {
@@ -2443,6 +2444,19 @@ void Gamelist::filter()
     return;
   }
 
+  bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", true).toBool();
+  bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", true).toBool();
+  bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", true).toBool();
+  bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", true).toBool();
+  bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", true).toBool();
+  bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
+  bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
+
+  if ( initial && showC && showM && showI && showN && showU && showDeviceSets && showBiosSets ) {
+	  qmc2StatesTogglesEnabled = true;
+	  return;
+  }
+
   QTime elapsedTime(0, 0, 0, 0);
   qmc2StopParser = false;
   parseTimer.start();
@@ -2454,58 +2468,43 @@ void Gamelist::filter()
     qmc2MainWindow->progressBarGamelist->setFormat(tr("State filter - %p%"));
   else
     qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-
   qmc2MainWindow->progressBarGamelist->setRange(0, numGames - 1);
-
-  bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC").toBool();
-  bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM").toBool();
-  bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI").toBool();
-  bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN").toBool();
-  bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU").toBool();
-  bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
-  bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
-
-  QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
-  int i = 0;
+  qApp->processEvents();
   int filterResponse = numGames / QMC2_STATEFILTER_UPDATES;
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
-  while ( it.hasNext() && !qmc2StopParser ) {
-    if ( i++ % filterResponse == 0 ) {
-      qmc2MainWindow->progressBarGamelist->setValue(i);
-      qApp->processEvents();
-    }
-    it.next();
-    QTreeWidgetItem *item = it.value();
-    if ( item ) {
-      QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
-      if ( !showBiosSets && qmc2BiosROMs.contains(gameName) )
-        item->setHidden(true);
-      else if ( !showDeviceSets && qmc2DeviceROMs.contains(gameName) )
-        item->setHidden(true);
-      else switch ( item->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
-        case QMC2_ROMSTATE_CHAR_C:
-          item->setHidden(!showC);
-          break;
-        case QMC2_ROMSTATE_CHAR_M:
-          item->setHidden(!showM);
-          break;
-        case QMC2_ROMSTATE_CHAR_I:
-          item->setHidden(!showI);
-          break;
-        case QMC2_ROMSTATE_CHAR_N:
-          item->setHidden(!showN);
-          break;
-        case QMC2_ROMSTATE_CHAR_U:
-        default:
-          item->setHidden(!showU);
-          break;
-      }
-    }
+  for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount() && !qmc2StopParser; i++) {
+	  if ( i % filterResponse == 0 ) {
+		  qmc2MainWindow->progressBarGamelist->setValue(i);
+		  qApp->processEvents();
+	  }
+	  QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
+	  if ( !showBiosSets && qmc2BiosROMs.contains(item->text(QMC2_GAMELIST_COLUMN_NAME)) )
+		  item->setHidden(true);
+	  else if ( !showDeviceSets && qmc2DeviceROMs.contains(item->text(QMC2_GAMELIST_COLUMN_NAME)) )
+		  item->setHidden(true);
+	  else switch ( item->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
+		  case QMC2_ROMSTATE_CHAR_C:
+			  item->setHidden(!showC);
+			  break;
+		  case QMC2_ROMSTATE_CHAR_M:
+			  item->setHidden(!showM);
+			  break;
+		  case QMC2_ROMSTATE_CHAR_I:
+			  item->setHidden(!showI);
+			  break;
+		  case QMC2_ROMSTATE_CHAR_N:
+			  item->setHidden(!showN);
+			  break;
+		  case QMC2_ROMSTATE_CHAR_U:
+		  default:
+			  item->setHidden(!showU);
+			  break;
+	  }
   }
   qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
   qApp->processEvents();
-  qmc2MainWindow->scrollToCurrentItem();
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+  QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
   qmc2FilterActive = false;
   elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -3116,6 +3115,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     qmc2MainWindow->labelGamelistStatus->setText(status());
   }
 
+  bool doFilter = true;
   if ( verifyCurrentOnly && romCache.isOpen() ) {
     QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
     while ( it.hasNext() ) {
@@ -3131,17 +3131,18 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
         case QMC2_ROMSTATE_CHAR_M:
           tsRomCache << "M\n";
           break;
-        case QMC2_ROMSTATE_CHAR_U:
-          tsRomCache << "U\n";
-          break;
         case QMC2_ROMSTATE_CHAR_I:
           tsRomCache << "I\n";
           break;
         case QMC2_ROMSTATE_CHAR_N:
           tsRomCache << "N\n";
           break;
+        case QMC2_ROMSTATE_CHAR_U:
+          tsRomCache << "U\n";
+          break;
       }
     }
+    doFilter = oldRomState != checkedItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME)[0];
   }
 
   QTime elapsedTime(0, 0, 0, 0);
@@ -3200,7 +3201,12 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   enableWidgets(true);
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() ) filter();
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() ){
+	  if ( doFilter )
+		  filter();
+	  else
+		  QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+  }
 }
 
 void Gamelist::verifyReadyReadStandardOutput()
