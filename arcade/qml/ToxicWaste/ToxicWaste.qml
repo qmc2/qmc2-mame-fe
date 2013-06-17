@@ -507,6 +507,7 @@ Rectangle {
                     launchButton.opacity = 1.0;
                     viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
                     launchButtonFlashTimer.start();
+                    event.accepted = true;
                 }
                 break;
             }
