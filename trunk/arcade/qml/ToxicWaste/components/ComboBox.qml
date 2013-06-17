@@ -74,7 +74,7 @@ FocusScope {
         states: [
             State {
                 name: "hover"; when: mouseArea.containsMouse
-                PropertyChanges { target: main; border.width: 1; border.color: container.hoverColor }
+                PropertyChanges { target: main; border.width: container.activeFocus ? 2 : 1; border.color: container.activeFocus ? container.focusColor : container.hoverColor }
             },
             State {
                 name: "focus"; when: container.activeFocus && !mouseArea.containsMouse
@@ -230,7 +230,7 @@ FocusScope {
         states: [
             State {
                 name: "visible";
-                PropertyChanges { target: dropDown; height: Math.min(container.height * listView.count, maxDropDownHeight); }
+                PropertyChanges { target: dropDown; height: Math.min(container.height * listView.count, maxDropDownHeight) }
             }
         ]
     }
