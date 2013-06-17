@@ -892,7 +892,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>228</width>
-                <height>728</height>
+                <height>731</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2545,7 +2545,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>508</width>
-                <height>245</height>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3195,8 +3195,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>249</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3317,8 +3317,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>342</width>
+                <height>213</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -4249,8 +4249,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>182</width>
-                <height>464</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4393,7 +4393,7 @@
                  <item row="7" column="0">
                   <widget class="QLabel" name="labelListXMLCache">
                    <property name="text">
-                    <string>XML game list cache</string>
+                    <string>XML data cache</string>
                    </property>
                   </widget>
                  </item>
@@ -4406,7 +4406,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Cache file for the output of mame -listxml / -lx (write)</string>
+                    <string>Cache file for the output from -listxml (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -4419,7 +4419,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse XML gamelist cache file</string>
+                    <string>Browse XML data cache file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -4443,7 +4443,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Gamelist cache file (write)</string>
+                    <string>Game list cache file (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -4456,7 +4456,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse gamelist cache file</string>
+                    <string>Browse game list cache file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -4915,8 +4915,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>236</width>
-                <height>211</height>
+                <width>512</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
