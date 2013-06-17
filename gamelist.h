@@ -63,6 +63,7 @@ class Gamelist : public QObject
     bool autoRomCheck;
     QMap<QString, QString> driverNameMap;
     bool mergeCategories;
+    QChar oldRomState;
 
     QString lookupDriverName(QString);
     QString romStatus(QString, bool translated = false);
@@ -106,7 +107,7 @@ class Gamelist : public QObject
     void parseGameDetail(QTreeWidgetItem *);
     void insertAttributeItems(QTreeWidgetItem *, QString, QStringList, QStringList, bool translate = false);
     void enableWidgets(bool enable = true);
-    void filter();
+    void filter(bool initial = false);
     bool loadIcon(QString, QTreeWidgetItem *, bool checkOnly = false, QString *fileName = NULL);
 };
 
