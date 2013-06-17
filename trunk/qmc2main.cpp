@@ -8622,6 +8622,7 @@ void MainWindow::romStateFilterC_toggled(bool on)
     qmc2Options->toolButtonShowC->setChecked(on);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", on);
     qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, on);
+    qmc2Gamelist->verifyCurrentOnly = false;
     qmc2Gamelist->filter();
   }
 }
@@ -8636,6 +8637,7 @@ void MainWindow::romStateFilterM_toggled(bool on)
     qmc2Options->toolButtonShowM->setChecked(on);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", on);
     qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, on);
+    qmc2Gamelist->verifyCurrentOnly = false;
     qmc2Gamelist->filter();
   }
 }
@@ -8650,6 +8652,7 @@ void MainWindow::romStateFilterI_toggled(bool on)
     qmc2Options->toolButtonShowI->setChecked(on);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", on);
     qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, on);
+    qmc2Gamelist->verifyCurrentOnly = false;
     qmc2Gamelist->filter();
   }
 }
@@ -8664,6 +8667,7 @@ void MainWindow::romStateFilterN_toggled(bool on)
     qmc2Options->toolButtonShowN->setChecked(on);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", on);
     qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, on);
+    qmc2Gamelist->verifyCurrentOnly = false;
     qmc2Gamelist->filter();
   }
 }
@@ -8678,6 +8682,7 @@ void MainWindow::romStateFilterU_toggled(bool on)
     qmc2Options->toolButtonShowU->setChecked(on);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", on);
     qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, on);
+    qmc2Gamelist->verifyCurrentOnly = false;
     qmc2Gamelist->filter();
   }
 }
