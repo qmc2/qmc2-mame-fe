@@ -814,11 +814,7 @@ void Gamelist::load()
     if ( xmlCacheOkay ) {
       QTime xmlElapsedTime(0, 0, 0, 0);
       parseTimer.start();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML game list data from cache"));
-#elif defined(QMC2_EMUTYPE_MESS)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML machine list data from cache"));
-#endif
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data from cache"));
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
         qmc2MainWindow->progressBarGamelist->setFormat(tr("XML cache - %p%"));
       else
@@ -859,14 +855,13 @@ void Gamelist::load()
       }
       gamelistBuffer += "\n";
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML game list data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
       if ( singleXMLLine != "</mame>" && !qmc2StopParser ) {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML game list cache is incomplete, invalidating XML game list cache"));
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 #elif defined(QMC2_EMUTYPE_MESS)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML machine list data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
       if ( singleXMLLine != "</mess>" && !qmc2StopParser ) {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML machine list cache is incomplete, invalidating XML machine list cache"));
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 #endif
         xmlCacheOkay = false;
       } else
@@ -929,11 +924,7 @@ void Gamelist::load()
     qApp->processEvents();
   } else {
     loadTimer.start();
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML game list data and (re)creating cache"));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML machine list data and (re)creating cache"));
-#endif
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data and (re)creating cache"));
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
       qmc2MainWindow->progressBarGamelist->setFormat(tr("XML data - %p%"));
     else
@@ -2694,11 +2685,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   QTime elapsedTime(0, 0, 0, 0);
   elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML game list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML machine list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#endif
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
   qmc2MainWindow->progressBarGamelist->reset();
   qmc2EarlyReloadActive = false;
   if ( loadProc )

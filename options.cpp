@@ -345,6 +345,8 @@ Options::Options(QWidget *parent)
   checkBoxRestoreGameSelection->setText(tr("Restore machine selection"));
   checkBoxRestoreGameSelection->setToolTip(tr("Restore saved machine selection at start and after reloading the machine list"));
   labelGamelistCacheFile->setText(tr("Machine list cache"));
+  lineEditGamelistCacheFile->setToolTip(tr("Machine list cache file (write)"));
+  toolButtonBrowseGamelistCacheFile->setToolTip(tr("Browse machine list cache file"));
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
   labelGeneralSoftwareFolder->setVisible(false);
