@@ -7502,34 +7502,44 @@ void MainWindow::loadEmuInfoDB()
     int recordsProcessed = 0;
     while ( !ts.atEnd() && !qmc2StopParser ) {
       QString singleLine = ts.readLine();
-      while ( !singleLine.simplified().startsWith("$info=") && !ts.atEnd() ) {
+      QString singleLineSimplified = singleLine.simplified();
+      bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+      while ( !startsWithDollarInfo && !ts.atEnd() ) {
         singleLine = ts.readLine();
         if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
           progressBarGamelist->setValue(emuInfoDB.pos());
           qApp->processEvents();
         }
+        singleLineSimplified = singleLine.simplified();
+	startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
       }
-      if ( singleLine.simplified().startsWith("$info=") ) {
-        QStringList gameWords = singleLine.simplified().mid(6).split(",");
-        while ( !singleLine.simplified().startsWith("$mame") && !ts.atEnd() ) {
+      if ( startsWithDollarInfo ) {
+        QStringList gameWords = singleLineSimplified.mid(6).split(",");
+	bool startsWithDollarMame = false;
+        while ( !startsWithDollarMame && !ts.atEnd() ) {
           singleLine = ts.readLine();
           if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
             progressBarGamelist->setValue(emuInfoDB.pos());
             qApp->processEvents();
           }
+          singleLineSimplified = singleLine.simplified();
+	  startsWithDollarMame = singleLineSimplified.startsWith("$mame");
         }
-        if ( singleLine.simplified().startsWith("$mame") ) {
+        if ( startsWithDollarMame ) {
           QString emuInfoString;
-          while ( !singleLine.simplified().startsWith("$end") && !ts.atEnd() ) {
+	  bool startsWithDollarEnd = false;
+          while ( !startsWithDollarEnd && !ts.atEnd() ) {
             singleLine = ts.readLine();
-            if ( !singleLine.simplified().startsWith("$end") )
+            singleLineSimplified = singleLine.simplified();
+	    startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+            if ( !startsWithDollarEnd )
               emuInfoString.append(singleLine + "<br>");
             if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
               progressBarGamelist->setValue(emuInfoDB.pos());
               qApp->processEvents();
             }
           }
-          if ( singleLine.simplified().startsWith("$end") ) {
+          if ( startsWithDollarEnd ) {
             // convert "two (or more) empty lines" to a paragraph delimiter
             emuInfoString = emuInfoString.replace("<br><br><br>", "<p>").replace("<br><br>", "<p>");
             if ( emuInfoString.startsWith("<br>") )
