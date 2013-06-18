@@ -14,9 +14,9 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
-extern QMap<QString, QString> qmc2CategoryMap;
+extern QMap<QString, QString *> qmc2CategoryMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QString> qmc2VersionMap;
+extern QMap<QString, QString *> qmc2VersionMap;
 #endif
 extern QStringList qmc2BiosROMs;
 extern QStringList qmc2DeviceROMs;
@@ -152,7 +152,10 @@ bool ArcadeModeSetup::isWritableFile(QString fileName)
 
 void ArcadeModeSetup::updateCategoryFilter()
 {
-	QStringList categoryNames = qmc2CategoryMap.values();
+	QStringList categoryNames;
+	foreach (QString *category, qmc2CategoryMap.values())
+		if ( category )
+			categoryNames << *category;
 	categoryNames.removeDuplicates();
 	qSort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
@@ -304,8 +307,11 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		if ( !nameFilter.isEmpty() )
 			if ( game.indexOf(nameFilterRegExp) < 0 )
 				continue;
-		QString category = qmc2CategoryMap[game];
-		if ( category.isEmpty() )
+		QString *categoryPtr = qmc2CategoryMap[game];
+		QString category;
+		if ( categoryPtr )
+			category = *categoryPtr;
+		else
 			category = tr("?");
 		if ( qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
 			continue;

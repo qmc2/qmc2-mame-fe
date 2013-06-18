@@ -205,11 +205,9 @@ QCache<QString, QByteArray> qmc2MAWSCache;
 #if defined(QMC2_EMUTYPE_MAME)
 MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup = NULL;
 #endif
-QMap<QString, QString> qmc2CategoryMap;
 QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-QMap<QString, QString> qmc2VersionMap;
 QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
 #endif
