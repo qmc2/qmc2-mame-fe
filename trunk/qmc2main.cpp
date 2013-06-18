@@ -239,7 +239,6 @@ QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2GamelistItemByDescriptionMap;
 QMap<QString, QString> qmc2GamelistNameMap;
 QMap<QString, QString> qmc2GamelistDescriptionMap;
-QMap<QString, QString> qmc2GamelistStatusMap;
 QMap<QString, QStringList> qmc2HierarchyMap;
 QMap<QString, QString> qmc2ParentMap;
 QMap<QString, QIcon> qmc2IconMap;
