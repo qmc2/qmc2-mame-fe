@@ -286,10 +286,10 @@
 #define QMC2_SEARCH_TIMEOUT			2500
 
 // buffer size for reading zip-files
-#define QMC2_ZIP_BUFFER_SIZE			QMC2_32K
+#define QMC2_ZIP_BUFFER_SIZE			QMC2_64K
 
 // buffer size for reading regular files
-#define QMC2_FILE_BUFFER_SIZE			QMC2_64K
+#define QMC2_FILE_BUFFER_SIZE			QMC2_256K
 
 // process timeouts in msecs
 #define QMC2_PROCESS_POLL_TIME			25
@@ -367,7 +367,7 @@
 #define QMC2_STATEFILTER_UPDATES		4
 
 // responsiveness while reading the XML game/machine list cache
-#define QMC2_XMLCACHE_RESPONSIVENESS		100
+#define QMC2_XMLCACHE_RESPONSIVENESS		50
 
 // responsiveness while reading the ROM state cache
 #define QMC2_ROMCACHE_RESPONSIVENESS		500
