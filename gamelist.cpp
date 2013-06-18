@@ -935,13 +935,9 @@ void Gamelist::load()
     args << "-listxml";
 
     listXMLCache.open(QIODevice::WriteOnly | QIODevice::Text);
-    if ( !listXMLCache.isOpen() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open XML game list cache for writing, please check permissions"));
-#elif defined(QMC2_EMUTYPE_MESS)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open XML machine list cache for writing, please check permissions"));
-#endif
-    } else {
+    if ( !listXMLCache.isOpen() )
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open XML data cache for writing, please check permissions"));
+    else {
       tsListXMLCache.setDevice(&listXMLCache);
       tsListXMLCache.reset();
       tsListXMLCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
@@ -1811,7 +1807,7 @@ void Gamelist::parse()
 #endif
     }
 
-    // parse XML gamelist data
+    // parse XML data
     int lineCounter;
     numGames = numUnknownGames = numDevices = 0;
     bool endParser = qmc2StopParser;
@@ -2727,11 +2723,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
     listXMLCache.close();
 
   if ( invalidateListXmlCache ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML game list cache is incomplete, invalidating XML game list cache"));
-#elif defined(QMC2_EMUTYPE_MESS)
-	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML machine list cache is incomplete, invalidating XML machine list cache"));
-#endif
+	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 	  listXMLCache.remove();
   }
 
