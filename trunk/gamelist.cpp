@@ -820,40 +820,34 @@ void Gamelist::load()
         qmc2MainWindow->progressBarGamelist->setFormat(tr("XML cache - %p%"));
       else
         qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-      qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
-      qmc2MainWindow->progressBarGamelist->reset();
+      qmc2MainWindow->progressBarGamelist->setRange(0, listXMLCache.size());
+      qmc2MainWindow->progressBarGamelist->setValue(0);
       int i = 0;
-      int gameCount = 0;
       QString readBuffer;
       while ( (!ts.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
-        readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
-        bool endsWithNewLine = readBuffer.endsWith("\n");
-        QStringList lines = readBuffer.split("\n");
-        int l, lc = lines.count();
-        if ( !endsWithNewLine )
-          lc -= 1;
-        for (l = 0; l < lc; l++) {
-          if ( !lines[l].isEmpty() ) {
-            singleXMLLine = lines[l];
-            gamelistBuffer += singleXMLLine + "\n";
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-            gameCount += singleXMLLine.count("<game name=");
-#elif defined(QMC2_EMUTYPE_MESS)
-            gameCount += singleXMLLine.count("<machine name=");
-#endif
-          }
-        }
-
-        if ( endsWithNewLine )
-          readBuffer.clear();
-        else
-          readBuffer = lines.last();
-
-        if ( i++ % QMC2_XMLCACHE_RESPONSIVENESS == 0 ) {
-          qmc2MainWindow->progressBarGamelist->setValue(gameCount);
-	  qApp->processEvents();
-	}
+	      readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
+	      bool endsWithNewLine = readBuffer.endsWith("\n");
+	      QStringList lines = readBuffer.split("\n");
+	      int lc = lines.count();
+	      if ( !endsWithNewLine )
+		      lc -= 1;
+	      for (int l = 0; l < lc; l++) {
+		      if ( !lines[l].isEmpty() ) {
+			      singleXMLLine = lines[l];
+			      gamelistBuffer += singleXMLLine + "\n";
+		      }
+	      }
+	      if ( endsWithNewLine )
+		      readBuffer.clear();
+	      else
+		      readBuffer = lines.last();
+	      if ( ++i % QMC2_XMLCACHE_RESPONSIVENESS == 0 ) {
+		      qmc2MainWindow->progressBarGamelist->setValue(listXMLCache.pos());
+		      qApp->processEvents();
+	      }
       }
+      qmc2MainWindow->progressBarGamelist->setValue(listXMLCache.pos());
+      qApp->processEvents();
       gamelistBuffer += "\n";
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
@@ -1573,18 +1567,17 @@ void Gamelist::parse()
       QTime gameDataCacheElapsedTime(0, 0, 0, 0);
       miscTimer.start();
       numGames = numUnknownGames = numDevices = 0;
-      qmc2MainWindow->progressBarGamelist->reset();
-      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+      qmc2MainWindow->progressBarGamelist->setValue(0);
       QString readBuffer;
       QList<QTreeWidgetItem *> itemList;
       while ( (!tsGamelistCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
         readBuffer += tsGamelistCache.read(QMC2_FILE_BUFFER_SIZE);
         bool endsWithNewLine = readBuffer.endsWith("\n");
         QStringList lines = readBuffer.split("\n");
-        int l, lc = lines.count();
+        int lc = lines.count();
         if ( !endsWithNewLine )
           lc -= 1;
-        for (l = 0; l < lc; l++) {
+        for (int l = 0; l < lc; l++) {
           line = lines[l];
           if ( !line.isEmpty() && !line.startsWith("#") ) {
             QStringList words = line.split("\t");
