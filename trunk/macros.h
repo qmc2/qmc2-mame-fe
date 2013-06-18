@@ -653,6 +653,9 @@
 #define QMC2_INFOSOURCE_RESPONSIVENESS		5000
 #endif
 
+// software-info responsiveness
+#define QMC2_SWINFO_RESPONSIVENESS		5000
+
 // maximum delay in ms before finally killing an external tool (if required to)
 #define QMC2_TOOL_KILL_WAIT			2000
 
