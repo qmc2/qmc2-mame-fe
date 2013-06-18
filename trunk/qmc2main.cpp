@@ -3368,17 +3368,13 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_activated(const QString &pattern = \"" + pattern + "\")");
-#endif
-
-  if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
-    tabWidgetGamelist->blockSignals(true);
-    tabWidgetGamelist->setCurrentWidget(tabSearch);
-    tabWidgetGamelist->blockSignals(false);
-  }
-  QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
-  comboBoxSearch_editTextChanged_delayed();
+	if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
+		tabWidgetGamelist->blockSignals(true);
+		tabWidgetGamelist->setCurrentWidget(tabSearch);
+		tabWidgetGamelist->blockSignals(false);
+	}
+	comboBoxSearch_editTextChanged_delayed();
+	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
 }
 
 void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
@@ -11355,11 +11351,13 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 {
 	comboBoxSearch->lineEdit()->setText(text);
-	tabWidgetGamelist->blockSignals(true);
-	tabWidgetGamelist->setCurrentIndex(QMC2_SEARCH_INDEX);
-	tabWidgetGamelist->blockSignals(false);
-	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
+	if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
+		tabWidgetGamelist->blockSignals(true);
+		tabWidgetGamelist->setCurrentWidget(tabSearch);
+		tabWidgetGamelist->blockSignals(false);
+	}
 	comboBoxSearch_editTextChanged_delayed();
+	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
 }
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)

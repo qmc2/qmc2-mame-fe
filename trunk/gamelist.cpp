@@ -2585,6 +2585,8 @@ void Gamelist::loadFavorites()
         if ( gameItem ) {
           QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
           item->setText(gameItem->text(QMC2_GAMELIST_COLUMN_GAME));
+	  if ( gameItem->isSelected() )
+		  item->setSelected(true);
         }
       }
     }
@@ -2640,6 +2642,8 @@ void Gamelist::loadPlayHistory()
         if ( gameItem ) {
           QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
           item->setText(gameItem->text(QMC2_GAMELIST_COLUMN_GAME));
+	  if ( gameItem->isSelected() )
+		  item->setSelected(true);
         }
       }
     }
