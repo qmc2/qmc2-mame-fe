@@ -3146,7 +3146,7 @@ void Options::on_toolButtonBrowseListXMLCache_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseListXMLCache_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose XML gamelist cache file"), lineEditListXMLCache->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose XML data cache file"), lineEditListXMLCache->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditListXMLCache->setText(s);
   raise();
