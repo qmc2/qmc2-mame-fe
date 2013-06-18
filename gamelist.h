@@ -64,9 +64,17 @@ class Gamelist : public QObject
     QMap<QString, QString> driverNameMap;
     bool mergeCategories;
     QChar oldRomState;
+    QMap<QString, QString *> categoryNames;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+    QMap<QString, QString *> versionNames;
+#endif
 
     QString lookupDriverName(QString);
     QString romStatus(QString, bool translated = false);
+    void clearCategoryNames();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+    void clearVersionNames();
+#endif
 
     Gamelist(QObject *parent = 0);
     ~Gamelist();

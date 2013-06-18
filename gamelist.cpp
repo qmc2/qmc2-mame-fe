@@ -129,10 +129,8 @@ QStringList verifiedList;
 QMap<QString, int> xmlGamePositionMap;
 QMap<QString, char> qmc2GamelistStatusMap;
 QMap<QString, QString *> qmc2CategoryMap;
-QMap<QString, QString *> qmc2CategoryNames;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 QMap<QString, QString *> qmc2VersionMap;
-QMap<QString, QString *> qmc2VersionNames;
 #endif
 
 Gamelist::Gamelist(QObject *parent)
@@ -218,6 +216,11 @@ Gamelist::~Gamelist()
 
   if ( verifyProc )
     verifyProc->kill();
+
+  clearCategoryNames();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  clearVersionNames();
+#endif
 
   foreach (unzFile iconFile, qmc2IconFileMap)
     unzClose(iconFile);
@@ -3678,8 +3681,10 @@ void Gamelist::loadCategoryIni()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCategoryIni()");
 #endif
 
-	if ( !mergeCategories )
+	if ( !mergeCategories ) {
+		clearCategoryNames();
 		qmc2CategoryMap.clear();
+	}
 
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
@@ -3710,9 +3715,9 @@ void Gamelist::loadCategoryIni()
 			if ( categoryLine.indexOf(QRegExp("^\\[.*\\]$")) == 0 )
 				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
 			else if ( !categoryName.isEmpty() ) {
-				if ( !qmc2CategoryNames.contains(categoryName) )
-					qmc2CategoryNames[categoryName] = new QString(categoryName);
-				qmc2CategoryMap.insert(categoryLine, qmc2CategoryNames[categoryName]);
+				if ( !categoryNames.contains(categoryName) )
+					categoryNames[categoryName] = new QString(categoryName);
+				qmc2CategoryMap.insert(categoryLine, categoryNames[categoryName]);
 				entryCounter++;
 			}
 		}
@@ -3882,7 +3887,9 @@ void Gamelist::loadCatverIni()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
 #endif
 
+  clearCategoryNames();
   qmc2CategoryMap.clear();
+  clearVersionNames();
   qmc2VersionMap.clear();
 
   QTime loadTimer, elapsedTime(0, 0, 0, 0);
@@ -3919,15 +3926,15 @@ void Gamelist::loadCatverIni()
         QStringList tokens = catverLine.split("=");
         if ( tokens.count() >= 2 ) {
           if ( isCategory ) {
-		  if ( !qmc2CategoryNames.contains(tokens[1]) )
-			  qmc2CategoryNames[tokens[1]] = new QString(tokens[1]);
-		  qmc2CategoryMap.insert(tokens[0], qmc2CategoryNames[tokens[1]]);
+		  if ( !categoryNames.contains(tokens[1]) )
+			  categoryNames[tokens[1]] = new QString(tokens[1]);
+		  qmc2CategoryMap.insert(tokens[0], categoryNames[tokens[1]]);
           } else if ( isVersion ) {
             QString verStr = tokens[1];
             if ( verStr.startsWith(".") ) verStr.prepend("0");
-	    if ( !qmc2VersionNames.contains(verStr) )
-		    qmc2VersionNames[verStr] = new QString(verStr);
-            qmc2VersionMap.insert(tokens[0], qmc2VersionNames[verStr]);
+	    if ( !versionNames.contains(verStr) )
+		    versionNames[verStr] = new QString(verStr);
+            qmc2VersionMap.insert(tokens[0], versionNames[verStr]);
           }
         }
       }
@@ -4182,6 +4189,24 @@ QString Gamelist::lookupDriverName(QString systemName)
 
 	return driverName;
 }
+
+void Gamelist::clearCategoryNames()
+{
+	foreach (QString *category, categoryNames)
+		if ( category )
+			delete category;
+	categoryNames.clear();
+}
+
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+void Gamelist::clearVersionNames()
+{
+	foreach (QString *version, versionNames)
+		if ( version )
+			delete version;
+	versionNames.clear();
+}
+#endif
 
 bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 {
