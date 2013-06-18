@@ -7640,15 +7640,17 @@ void MainWindow::loadSoftwareInfoDB()
 		while ( !ts.atEnd() && !qmc2StopParser ) {
 			QString singleLine = ts.readLine();
 			QString singleLineSimplified = singleLine.simplified();
-			while ( !singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$")) && !ts.atEnd() ) {
+			bool containsMark = singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$"));
+			while ( !containsMark && !ts.atEnd() ) {
 				singleLine = ts.readLine();
 				singleLineSimplified = singleLine.simplified();
 				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 					progressBarGamelist->setValue(swInfoDB.pos());
 					qApp->processEvents();
 				}
+				containsMark = singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$"));
 			}
-			if ( singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$")) && !singleLineSimplified.startsWith("$info=") ) {
+			if ( containsMark && !singleLineSimplified.startsWith("$info=") ) {
 				QStringList infoWords = singleLineSimplified.mid(1).split("=", QString::SkipEmptyParts);
 				if ( infoWords.count() == 2 ) {
 					QStringList systemNames = infoWords[0].split(",", QString::SkipEmptyParts);
@@ -7657,7 +7659,7 @@ void MainWindow::loadSoftwareInfoDB()
 					while ( !singleLineSimplified.startsWith("$bio") && !ts.atEnd() ) {
 						singleLine = ts.readLine();
 						singleLineSimplified = singleLine.simplified();
-						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+						if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
 							progressBarGamelist->setValue(swInfoDB.pos());
 							qApp->processEvents();
 						}
@@ -7665,7 +7667,8 @@ void MainWindow::loadSoftwareInfoDB()
 					if ( singleLineSimplified.startsWith("$bio") ) {
 						QString swInfoString;
 						bool firstLine = true;
-						while ( !singleLineSimplified.startsWith("$end") && !ts.atEnd() ) {
+						bool startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+						while ( !startsWithDollarEnd && !ts.atEnd() ) {
 							singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
 							if ( !singleLineSimplified.startsWith("$end") ) {
@@ -7676,12 +7679,13 @@ void MainWindow::loadSoftwareInfoDB()
 									firstLine = false;
 								}
 							}
-							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+							if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
 								progressBarGamelist->setValue(swInfoDB.pos());
 								qApp->processEvents();
 							}
+							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 						}
-						if ( singleLineSimplified.startsWith("$end") ) {
+						if ( startsWithDollarEnd ) {
 							// reduce the number of line breaks
 							swInfoString.replace("<br><br><br><br>", "<p>");
 							swInfoString.replace("<br><br><br>", "<p>");
