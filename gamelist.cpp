@@ -3521,9 +3521,8 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
   } else if ( qmc2IconsPreloaded ) {
     // icon wasn't found
     if ( !checkOnly ) {
-      icon = QIcon();
-      qmc2IconMap[gameName] = icon;
-      item->setIcon(QMC2_GAMELIST_COLUMN_ICON, icon);
+      qmc2IconMap[gameName] = QIcon();
+      item->setIcon(QMC2_GAMELIST_COLUMN_ICON, QIcon());
     } else
       qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 
