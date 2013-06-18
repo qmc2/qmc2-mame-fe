@@ -106,10 +106,8 @@ extern QStringList qmc2DeviceROMs;
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
-extern QMap<QString, QString> qmc2CategoryMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QString> qmc2VersionMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 extern DemoModeDialog *qmc2DemoModeDialog;
 #endif
@@ -130,6 +128,12 @@ QString verifyLastLine;
 QStringList verifiedList;
 QMap<QString, int> xmlGamePositionMap;
 QMap<QString, char> qmc2GamelistStatusMap;
+QMap<QString, QString *> qmc2CategoryMap;
+QMap<QString, QString *> qmc2CategoryNames;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+QMap<QString, QString *> qmc2VersionMap;
+QMap<QString, QString *> qmc2VersionNames;
+#endif
 
 Gamelist::Gamelist(QObject *parent)
   : QObject(parent)
@@ -1633,11 +1637,11 @@ void Gamelist::parse()
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
             }
             if ( useCatverIni || useCategoryIni ) {
-              QString categoryString = qmc2CategoryMap[gameName];
-              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString.isEmpty() ? tr("Unknown") : categoryString);
+              QString *categoryString = qmc2CategoryMap[gameName];
+              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-              QString versionString = qmc2VersionMap[gameName];
-              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString.isEmpty() ? tr("?") : versionString);
+              QString *versionString = qmc2VersionMap[gameName];
+              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 #endif
             }
             switch ( qmc2GamelistStatusMap[gameName] ) {
@@ -1919,11 +1923,11 @@ void Gamelist::parse()
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
         }
         if ( useCatverIni || useCategoryIni ) {
-          QString categoryString = qmc2CategoryMap[gameName];
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString.isEmpty() ? tr("Unknown") : categoryString);
+          QString *categoryString = qmc2CategoryMap[gameName];
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-          QString versionString = qmc2VersionMap[gameName];
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString.isEmpty() ? tr("?") : versionString);
+          QString *versionString = qmc2VersionMap[gameName];
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 #endif
         }
         switch ( qmc2GamelistStatusMap[gameName] ) {
@@ -3706,7 +3710,9 @@ void Gamelist::loadCategoryIni()
 			if ( categoryLine.indexOf(QRegExp("^\\[.*\\]$")) == 0 )
 				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
 			else if ( !categoryName.isEmpty() ) {
-				qmc2CategoryMap.insert(categoryLine, categoryName);
+				if ( !qmc2CategoryNames.contains(categoryName) )
+					qmc2CategoryNames[categoryName] = new QString(categoryName);
+				qmc2CategoryMap.insert(categoryLine, qmc2CategoryNames[categoryName]);
 				entryCounter++;
 			}
 		}
@@ -3764,7 +3770,7 @@ void Gamelist::createCategoryView()
 			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 		qmc2MainWindow->progressBarGamelist->setRange(0, qmc2CategoryMap.count());
 		qmc2MainWindow->progressBarGamelist->reset();
-		QMapIterator<QString, QString> it(qmc2CategoryMap);
+		QMapIterator<QString, QString *> it(qmc2CategoryMap);
 		int counter = 0;
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
@@ -3773,12 +3779,15 @@ void Gamelist::createCategoryView()
 			it.next();
 			qmc2MainWindow->progressBarGamelist->setValue(counter++);
 			QString gameName = it.key();
-			QString category = it.value();
 			if ( gameName.isEmpty() )
 				continue;
 			if ( !qmc2GamelistItemMap.contains(gameName) )
 				continue;
-			if ( category.isEmpty() )
+			QString *categoryPtr = it.value();
+			QString category;
+			if ( categoryPtr )
+				category = *categoryPtr;
+			else
 				category = tr("?");
 			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
 			if ( baseItem ) {
@@ -3909,12 +3918,16 @@ void Gamelist::loadCatverIni()
       } else {
         QStringList tokens = catverLine.split("=");
         if ( tokens.count() >= 2 ) {
-          if ( isCategory )
-            qmc2CategoryMap.insert(tokens[0], tokens[1]);
-          else if ( isVersion ) {
+          if ( isCategory ) {
+		  if ( !qmc2CategoryNames.contains(tokens[1]) )
+			  qmc2CategoryNames[tokens[1]] = new QString(tokens[1]);
+		  qmc2CategoryMap.insert(tokens[0], qmc2CategoryNames[tokens[1]]);
+          } else if ( isVersion ) {
             QString verStr = tokens[1];
             if ( verStr.startsWith(".") ) verStr.prepend("0");
-            qmc2VersionMap.insert(tokens[0], verStr);
+	    if ( !qmc2VersionNames.contains(verStr) )
+		    qmc2VersionNames[verStr] = new QString(verStr);
+            qmc2VersionMap.insert(tokens[0], qmc2VersionNames[verStr]);
           }
         }
       }
@@ -3972,7 +3985,7 @@ void Gamelist::createVersionView()
 			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 		qmc2MainWindow->progressBarGamelist->setRange(0, qmc2VersionMap.count());
 		qmc2MainWindow->progressBarGamelist->reset();
-		QMapIterator<QString, QString> it(qmc2VersionMap);
+		QMapIterator<QString, QString *> it(qmc2VersionMap);
 		int counter = 0;
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
@@ -3981,12 +3994,15 @@ void Gamelist::createVersionView()
 			it.next();
 			qmc2MainWindow->progressBarGamelist->setValue(counter++);
 			QString gameName = it.key();
-			QString version = it.value();
 			if ( gameName.isEmpty() )
 				continue;
 			if ( !qmc2GamelistItemMap.contains(gameName) )
 				continue;
-			if ( version.isEmpty() )
+			QString *versionPtr = it.value();
+			QString version;
+			if ( versionPtr )
+				version = *versionPtr;
+			else
 				version = tr("?");
 			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
 			if ( baseItem ) {

@@ -17,7 +17,7 @@ extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
 extern QSettings *qmc2Config;
-extern QMap<QString, QString> qmc2CategoryMap;
+extern QMap<QString, QString *> qmc2CategoryMap;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)
   : QDialog(parent)
@@ -143,7 +143,10 @@ void DemoModeDialog::updateCategoryFilter()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::updateCategoryFilter()");
 #endif
 
-	QStringList categoryNames = qmc2CategoryMap.values();
+	QStringList categoryNames;
+	foreach (QString *category, qmc2CategoryMap.values())
+		if ( category )
+			categoryNames << *category;
 	categoryNames.removeDuplicates();
 	qSort(categoryNames.begin(), categoryNames.end(), MainWindow::qStringListLessThan);
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
@@ -218,8 +221,11 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		    if ( !nameFilter.isEmpty() )
 			    if ( game.indexOf(nameFilterRegExp) < 0 )
 				    continue;
-		    QString category = qmc2CategoryMap[game];
-		    if ( category.isEmpty() )
+		    QString *categoryPtr = qmc2CategoryMap[game];
+		    QString category;
+		    if ( categoryPtr )
+			    category = *categoryPtr;
+		    else
 			    category = tr("?");
 		    if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
 			    continue;
