@@ -234,7 +234,6 @@ QMenu *qmc2EmulatorMenu = NULL,
       *qmc2SearchMenu = NULL;
 QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-QMap<QString, QTreeWidgetItem *> qmc2GamelistItemByDescriptionMap;
 QMap<QString, QString> qmc2GamelistNameMap;
 QMap<QString, QString> qmc2GamelistDescriptionMap;
 QMap<QString, QStringList> qmc2HierarchyMap;
@@ -2235,7 +2234,7 @@ void MainWindow::on_actionReload_triggered(bool)
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
       if ( qmc2CurrentItem ) {
         log(QMC2_LOG_FRONTEND, tr("saving game selection"));
-        qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
+        qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
       } else
         qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
     }
@@ -3382,41 +3381,29 @@ void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
   comboBoxSearch_editTextChanged_delayed();
 }
 
-void MainWindow::on_listWidgetSearch_currentTextChanged(QString s)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetSearch_currentTextChanged(QString s = \""+ s + "\")");
-#endif
-
-  QTreeWidgetItem *matchItem = qmc2GamelistItemByDescriptionMap[s];
-  if ( matchItem ) {
-    qmc2CheckItemVisibility = false;
-    treeWidgetGamelist->clearSelection();
-    treeWidgetGamelist->setCurrentItem(matchItem);
-    qmc2CurrentItem = matchItem;
-  }
-#ifdef QMC2_DEBUG
-  else
-    log(QMC2_LOG_FRONTEND, "DEBUG: ERROR: no match found (?)");
-#endif
-}
-
 void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current = %1, QListWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
 #endif
 
+  static bool isActive = false;
+  if ( isActive )
+	  return;
+  isActive = true;
   QTreeWidgetItem *glItem = NULL;
-  if ( current )
-    glItem = qmc2GamelistItemByDescriptionMap[current->text()];
+  if ( current ) {
+    QList<QTreeWidgetItem *> matchItemList = treeWidgetGamelist->findItems(current->text(), Qt::MatchExactly);
+    if ( !matchItemList.isEmpty() )
+      glItem = matchItemList[0];
+  }
   if ( glItem ) {
     qmc2CheckItemVisibility = false;
     treeWidgetGamelist->clearSelection();
     qmc2CurrentItem = glItem;
     treeWidgetGamelist->setCurrentItem(glItem);
-    processEvents();
   }
+  isActive = false;
 }
 
 void MainWindow::on_listWidgetSearch_itemPressed(QListWidgetItem *current)
@@ -3448,8 +3435,9 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
   if ( item == NULL )
     return;
 
-  QTreeWidgetItem *matchItem = qmc2GamelistItemByDescriptionMap[item->text()];
-  if ( matchItem ) {
+  QList<QTreeWidgetItem *> matchItemList = treeWidgetGamelist->findItems(item->text(), Qt::MatchExactly);
+  if ( !matchItemList.isEmpty() ) {
+    QTreeWidgetItem *matchItem = matchItemList[0];
     qmc2CheckItemVisibility = false;
     treeWidgetGamelist->clearSelection();
     treeWidgetGamelist->setCurrentItem(matchItem);
@@ -3480,15 +3468,6 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
     log(QMC2_LOG_FRONTEND, tr("ERROR: no match found (?)"));
 }
 
-void MainWindow::on_listWidgetFavorites_currentTextChanged(QString s)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetFavorites_currentTextChanged(QString s = \""+ s + "\")");
-#endif
-
-  on_listWidgetSearch_currentTextChanged(s);
-}
-
 void MainWindow::on_listWidgetFavorites_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
@@ -3507,15 +3486,6 @@ void MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item)
 #endif
 
   on_listWidgetSearch_itemActivated(item);
-}
-
-void MainWindow::on_listWidgetPlayed_currentTextChanged(QString s)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetPlayed_currentTextChanged(QString s = \""+ s + "\")");
-#endif
-
-  on_listWidgetSearch_currentTextChanged(s);
 }
 
 void MainWindow::on_listWidgetPlayed_itemSelectionChanged()
@@ -5323,7 +5293,7 @@ void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
   if ( selected.count() > 0 ) {
     if ( selected.at(0)->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
       return;
-    qmc2HierarchySelectedItem = qmc2GamelistItemByDescriptionMap[selected.at(0)->text(QMC2_GAMELIST_COLUMN_GAME)];
+    qmc2HierarchySelectedItem = qmc2GamelistItemMap[selected.at(0)->text(QMC2_GAMELIST_COLUMN_NAME)];
     qmc2CheckItemVisibility = false;
     treeWidgetGamelist->setCurrentItem(qmc2HierarchySelectedItem);
   }
@@ -6460,7 +6430,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() ) {
     if ( qmc2CurrentItem ) {
       log(QMC2_LOG_FRONTEND, tr("saving game selection"));
-      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
+      qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
     } else
       qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
   }
@@ -9215,10 +9185,9 @@ void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 	QList<QTreeWidgetItem *>selected = treeWidgetCategoryView->selectedItems();
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *item = selected.at(0);
-		QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
-		if ( gameDescription == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
 			return;
-		qmc2CategoryViewSelectedItem = qmc2GamelistItemByDescriptionMap[gameDescription];
+		qmc2CategoryViewSelectedItem = qmc2GamelistItemMap[item->text(QMC2_GAMELIST_COLUMN_NAME)];
 		qmc2CheckItemVisibility = false;
 		treeWidgetGamelist->setCurrentItem(qmc2CategoryViewSelectedItem);
 	}
@@ -9321,10 +9290,9 @@ void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 	QList<QTreeWidgetItem *>selected = treeWidgetVersionView->selectedItems();
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *item = selected.at(0);
-		QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
-		if ( gameDescription == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
 			return;
-		qmc2VersionViewSelectedItem = qmc2GamelistItemByDescriptionMap[gameDescription];
+		qmc2VersionViewSelectedItem = qmc2GamelistItemMap[item->text(QMC2_GAMELIST_COLUMN_NAME)];
 		qmc2CheckItemVisibility = false;
 		treeWidgetGamelist->setCurrentItem(qmc2VersionViewSelectedItem);
 	}

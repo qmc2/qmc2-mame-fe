@@ -271,17 +271,14 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_comboBoxSearch_editTextChanged(const QString &);
     void comboBoxSearch_editTextChanged_delayed();
     void on_comboBoxSearch_activated(const QString &);
-    void on_listWidgetSearch_currentTextChanged(QString);
     void on_listWidgetSearch_itemActivated(QListWidgetItem *);
     void on_listWidgetSearch_currentItemChanged(QListWidgetItem *, QListWidgetItem *);
     void on_listWidgetSearch_itemPressed(QListWidgetItem *);
     void on_listWidgetSearch_itemSelectionChanged();
 
     // favorites & played widgets
-    void on_listWidgetFavorites_currentTextChanged(QString);
     void on_listWidgetFavorites_itemSelectionChanged();
     void on_listWidgetFavorites_itemActivated(QListWidgetItem *);
-    void on_listWidgetPlayed_currentTextChanged(QString);
     void on_listWidgetPlayed_itemSelectionChanged();
     void on_listWidgetPlayed_itemActivated(QListWidgetItem *);
 

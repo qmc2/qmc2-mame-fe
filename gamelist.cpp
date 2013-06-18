@@ -91,7 +91,6 @@ extern QString swlBuffer;
 extern bool swlSupported;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
-extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemByDescriptionMap;
 extern QMap<QString, QString> qmc2GamelistNameMap;
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QMap<QString, QStringList> qmc2HierarchyMap;
@@ -378,7 +377,6 @@ void Gamelist::load()
   qmc2StopParser = false;
   qmc2GamelistItemMap.clear();
   qmc2GamelistNameMap.clear();
-  qmc2GamelistItemByDescriptionMap.clear();
   qmc2GamelistDescriptionMap.clear();
   qmc2GamelistStatusMap.clear();
   qmc2BiosROMs.clear();
@@ -1729,7 +1727,6 @@ void Gamelist::parse()
             nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
             nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
             qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-            qmc2GamelistItemByDescriptionMap[gameDescription] = gameDescriptionItem;
             qmc2GamelistDescriptionMap[gameName] = gameDescription;
             qmc2GamelistNameMap[gameDescription] = gameName;
 
@@ -2025,7 +2022,6 @@ void Gamelist::parse()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(gameName));
 #endif
         qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-        qmc2GamelistItemByDescriptionMap[gameDescription] = gameDescriptionItem;
         qmc2GamelistDescriptionMap[gameName] = gameDescription;
         qmc2GamelistNameMap[gameDescription] = gameName;
 
@@ -2308,7 +2304,7 @@ void Gamelist::parse()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
   qApp->processEvents();
-  QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard);
+  QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
   for (int i = 0; i < itemList.count(); i++) {
     if ( itemList[i]->childCount() > 1 ) {
       qmc2MainWindow->treeWidgetGamelist->collapseItem(itemList[i]);
@@ -2330,27 +2326,43 @@ void Gamelist::parse()
     if ( ci->isSelected() ) {
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
     } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-      QTreeWidgetItem *glItem = qmc2GamelistItemByDescriptionMap[qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame").toString()];
-      if ( glItem ) {
+      QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
+      if ( !selectedGame.isEmpty() ) {
+	      QTreeWidgetItem *glItem = qmc2GamelistItemMap[selectedGame];
+	      if ( !glItem ) { // fallback for old value (game description)
+		      QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetGamelist->findItems(selectedGame, Qt::MatchExactly, QMC2_GAMELIST_COLUMN_GAME);
+		      if ( !il.isEmpty() )
+			      glItem = il[0];
+	      }
+	      if ( glItem ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
+		      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
 #elif defined(QMC2_EMUTYPE_MESS)
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
+		      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 #endif
-        qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
-        QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+		      qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
+		      QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+	      }
       }
     }
   } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-    QTreeWidgetItem *glItem = qmc2GamelistItemByDescriptionMap[qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame").toString()];
-    if ( glItem ) {
+    QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
+    if ( !selectedGame.isEmpty() ) {
+	    QTreeWidgetItem *glItem = qmc2GamelistItemMap[selectedGame];
+	    if ( !glItem ) { // fallback for old value (game description)
+		    QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetGamelist->findItems(selectedGame, Qt::MatchExactly, QMC2_GAMELIST_COLUMN_GAME);
+		    if ( !il.isEmpty() )
+			    glItem = il[0];
+	    }
+	    if ( glItem ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
+		    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
 #elif defined(QMC2_EMUTYPE_MESS)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
+		    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 #endif
-      qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
-      QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+		    qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
+		    QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
+	    }
     }
   }
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
@@ -3199,7 +3211,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
     qApp->processEvents();
-    QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard);
+    QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
     for (int i = 0; i < itemList.count(); i++) {
       if ( itemList[i]->childCount() > 1 ) {
         qmc2MainWindow->treeWidgetGamelist->collapseItem(itemList[i]);
