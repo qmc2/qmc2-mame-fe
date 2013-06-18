@@ -7324,28 +7324,38 @@ void MainWindow::loadGameInfoDB()
     int recordsProcessed = 0;
     while ( !ts.atEnd() && !qmc2StopParser ) {
       QString singleLine = ts.readLine();
-      while ( !singleLine.simplified().startsWith("$info=") && !ts.atEnd() ) {
+      QString singleLineSimplified = singleLine.simplified();
+      bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
+      while ( !startsWithDollarInfo && !ts.atEnd() ) {
         singleLine = ts.readLine();
+	singleLineSimplified = singleLine.simplified();
         if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
           progressBarGamelist->setValue(gameInfoDB.pos());
           qApp->processEvents();
         }
+	startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
       }
-      if ( singleLine.simplified().startsWith("$info=") ) {
-        QStringList gameWords = singleLine.simplified().mid(6).split(",");
-        while ( !singleLine.simplified().startsWith("$bio") && !ts.atEnd() ) {
+      if ( startsWithDollarInfo ) {
+        QStringList gameWords = singleLineSimplified.mid(6).split(",");
+	bool startsWithDollarBio = false;
+        while ( !startsWithDollarBio && !ts.atEnd() ) {
           singleLine = ts.readLine();
+	  singleLineSimplified = singleLine.simplified();
           if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
             progressBarGamelist->setValue(gameInfoDB.pos());
             qApp->processEvents();
           }
+	  startsWithDollarBio = singleLineSimplified.startsWith("$bio");
         }
-        if ( singleLine.simplified().startsWith("$bio") ) {
+        if ( startsWithDollarBio ) {
           QString gameInfoString;
           bool firstLine = true;
-          while ( !singleLine.simplified().startsWith("$end") && !ts.atEnd() ) {
+	  bool startsWithDollarEnd = false;
+          while ( !startsWithDollarEnd && !ts.atEnd() ) {
             singleLine = ts.readLine();
-            if ( !singleLine.simplified().startsWith("$end") ) {
+	    singleLineSimplified = singleLine.simplified();
+	    startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+            if ( !startsWithDollarEnd ) {
 #if defined(QMC2_EMUTYPE_MESS)
               if ( !firstLine ) {
                   gameInfoString.append(singleLine + "<br>");
@@ -7367,7 +7377,7 @@ void MainWindow::loadGameInfoDB()
               qApp->processEvents();
             }
           }
-          if ( singleLine.simplified().startsWith("$end") ) {
+          if ( startsWithDollarEnd ) {
             // reduce the number of line breaks
             gameInfoString.replace("<br><br><br><br>", "<p>");
             gameInfoString.replace("<br><br><br>", "<p>");
