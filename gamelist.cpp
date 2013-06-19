@@ -1150,7 +1150,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     }
   } else {
       item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
-      qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
+      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
   }
 
   qApp->processEvents();
