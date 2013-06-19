@@ -7627,7 +7627,7 @@ void MainWindow::loadSoftwareInfoDB()
 			while ( !containsMark && !ts.atEnd() ) {
 				singleLine = ts.readLine();
 				singleLineSimplified = singleLine.simplified();
-				if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+				if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
 					progressBarGamelist->setValue(swInfoDB.pos());
 					qApp->processEvents();
 				}
@@ -7638,19 +7638,20 @@ void MainWindow::loadSoftwareInfoDB()
 				if ( infoWords.count() == 2 ) {
 					QStringList systemNames = infoWords[0].split(",", QString::SkipEmptyParts);
 					QStringList gameWords = infoWords[1].split(",", QString::SkipEmptyParts);
-
-					while ( !singleLineSimplified.startsWith("$bio") && !ts.atEnd() ) {
+					bool startsWithDollarBio = false;
+					while ( !startsWithDollarBio && !ts.atEnd() ) {
 						singleLine = ts.readLine();
 						singleLineSimplified = singleLine.simplified();
 						if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
 							progressBarGamelist->setValue(swInfoDB.pos());
 							qApp->processEvents();
 						}
+						startsWithDollarBio = singleLineSimplified.startsWith("$bio");
 					}
-					if ( singleLineSimplified.startsWith("$bio") ) {
+					if ( startsWithDollarBio ) {
 						QString swInfoString;
 						bool firstLine = true;
-						bool startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+						bool startsWithDollarEnd = false;
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
 							singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();

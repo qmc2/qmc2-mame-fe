@@ -647,14 +647,10 @@
 #define QMC2_WININFO_DELAY			50
 
 // responsiveness while loading an additional information source
-#if defined(QMC2_EMUTYPE_MESS)
-#define QMC2_INFOSOURCE_RESPONSIVENESS		1000
-#else
-#define QMC2_INFOSOURCE_RESPONSIVENESS		5000
-#endif
+#define QMC2_INFOSOURCE_RESPONSIVENESS		10000
 
 // software-info responsiveness
-#define QMC2_SWINFO_RESPONSIVENESS		5000
+#define QMC2_SWINFO_RESPONSIVENESS		15000
 
 // maximum delay in ms before finally killing an external tool (if required to)
 #define QMC2_TOOL_KILL_WAIT			2000
