@@ -1480,6 +1480,8 @@ bool MESSDeviceConfigurator::load()
 
 	fullyLoaded = true;
 
+	tabSlotOptions->setUpdatesEnabled(true);
+
 	return true;
 }
 
