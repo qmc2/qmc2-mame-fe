@@ -542,6 +542,9 @@
        </item>
        <item row="0" column="3">
         <widget class="QToolButton" name="toolButtonCloneConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -565,6 +568,9 @@
        </item>
        <item row="0" column="4">
         <widget class="QToolButton" name="toolButtonRemoveConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -588,6 +594,9 @@
        </item>
        <item row="0" column="5">
         <widget class="QToolButton" name="toolButtonSaveConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>

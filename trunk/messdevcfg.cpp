@@ -1440,8 +1440,11 @@ bool MESSDeviceConfigurator::load()
 	qmc2Config->endGroup();
 
 	QListWidgetItem *selectedItem = NULL;
+	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
 	foreach (QString configName, configurationList) {
+		if ( configName == tr("Default configuration") )
+			continue;
 		configurationMap[configName].first = qmc2Config->value(group + QString("/%1/Instances").arg(configName)).toStringList();
 		configurationMap[configName].second = qmc2Config->value(group + QString("/%1/Files").arg(configName)).toStringList();
 		slotMap[configName].first = qmc2Config->value(group + QString("/%1/Slots").arg(configName), QStringList()).toStringList();
@@ -1453,6 +1456,7 @@ bool MESSDeviceConfigurator::load()
 		if ( currentConfigName == configName ) selectedItem = item;
 	}
 	listWidgetDeviceConfigurations->setSortingEnabled(true);
+	listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 	listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
 
 	qmc2FileEditStartPath = qmc2Config->value(group + "/DefaultDeviceDirectory").toString();
