@@ -324,7 +324,7 @@
         <x>0</x>
         <y>0</y>
         <width>587</width>
-        <height>170</height>
+        <height>177</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -637,14 +637,43 @@
     </widget>
    </item>
    <item>
-    <widget class="QProgressBar" name="progressBar">
-     <property name="value">
-      <number>0</number>
-     </property>
-     <property name="format">
-      <string>Checking software-states - %p%</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="labelSoftwareListStats">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</string>
+       </property>
+       <property name="statusTip">
+        <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="progressBar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="format">
+        <string>Checking software-states - %p%</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
