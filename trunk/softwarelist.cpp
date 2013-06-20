@@ -4263,7 +4263,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 	if ( qName == "feature" ) {
 		if ( partItem != NULL ) {
 			QString featureName = attributes.value("name");
-			if ( featureName == "part id" ) {
+			if ( featureName == "part id" || featureName == "part_id" ) {
 				QString partTitle = attributes.value("value");
 				if ( !partTitle.isEmpty() )
 					partItem->setText(QMC2_SWLIST_COLUMN_TITLE, partItem->text(QMC2_SWLIST_COLUMN_TITLE) + " (" + partTitle + ")");
