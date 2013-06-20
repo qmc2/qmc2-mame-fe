@@ -217,7 +217,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QTreeWidgetItem *enteredItem;
 		QString softwareListName;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
-		quint64 numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
+		quint64 numSoftwareTotal, numSoftwareCorrect, numSoftwareIncorrect, numSoftwareMostlyCorrect, numSoftwareNotFound, numSoftwareUnknown;
 		bool verifyReadingStdout;
 		QFile softwareStateFile;
 		QTextStream softwareStateStream;
@@ -239,6 +239,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool save();
 		void updateMountDevices();
 		void checkSoftwareStates();
+		QString status(SoftwareListXmlHandler *handler = NULL);
+		void updateStats(SoftwareListXmlHandler *handler = NULL);
 
 		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);

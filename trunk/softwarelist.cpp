@@ -6,6 +6,7 @@
 #include <QCache>
 #include <QInputDialog>
 #include <QWidgetAction>
+#include <QLocale>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -868,6 +869,8 @@ bool SoftwareList::load()
 	fullyLoaded = false;
 	validData = swlSupported;
 	QString swlCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCache").toString();
+	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
+	updateStats();
 
 	toolButtonReload->setEnabled(false);
 
@@ -1120,7 +1123,14 @@ bool SoftwareList::load()
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
 				else if ( xmlHandler.newSoftwareStates )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("state info for software-list '%1': L:%2 C:%3 M:%4 I:%5 N:%6 U:%7").arg(swList).arg(xmlHandler.numTotal).arg(xmlHandler.numCorrect).arg(xmlHandler.numMostlyCorrect).arg(xmlHandler.numIncorrect).arg(xmlHandler.numNotFound).arg(xmlHandler.numUnknown));
+				numSoftwareTotal += xmlHandler.numTotal;
+				numSoftwareCorrect += xmlHandler.numCorrect;
+				numSoftwareIncorrect += xmlHandler.numIncorrect;
+				numSoftwareMostlyCorrect += xmlHandler.numMostlyCorrect;
+				numSoftwareNotFound += xmlHandler.numNotFound;
+				numSoftwareUnknown += xmlHandler.numUnknown;
 			}
+			updateStats();
 		}
 
 		QTimer::singleShot(0, labelLoadingSoftwareLists, SLOT(hide()));
@@ -1507,6 +1517,9 @@ void SoftwareList::checkSoftwareStates()
 		toolBoxSoftwareList->setVisible(false);
 	}
 
+	numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
+	updateStats();
+
 	foreach (QString softwareList, softwareLists) {
 		if ( softwareList == "NO_SOFTWARE_LIST" )
 			break;
@@ -1526,7 +1539,6 @@ void SoftwareList::checkSoftwareStates()
 		softwareListName = softwareList;
 		swStatesLastLine.clear();
 		softwareListStateMap[softwareListName].clear();
-		numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
 		softwareListItems = treeWidgetKnownSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
 		favoritesListItems = treeWidgetFavoriteSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
 		searchListItems = treeWidgetSearchResults->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
@@ -1672,9 +1684,13 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			}
 		}
 
-		if ( i % QMC2_SWLIST_CHECK_RESPONSE == 0 )
+		if ( i % QMC2_SWLIST_CHECK_RESPONSE == 0 ) {
+			updateStats();
 			qApp->processEvents();
+		}
 	}
+
+	updateStats();
 
 	if ( softwareStateFile.isOpen() )
 		softwareStateFile.close();
@@ -1709,7 +1725,7 @@ void SoftwareList::verifyReadyReadStandardOutput()
 		swStatesLastLine = lines.last();
 		lines.removeLast();
 	}
-
+ 
 	foreach (QString line, lines) {
 		line = line.simplified();
 		if ( !line.isEmpty() ) {
@@ -1824,6 +1840,8 @@ void SoftwareList::verifyReadyReadStandardOutput()
 		}
 	}
 
+	updateStats();
+
 	verifyReadingStdout = false;
 }
 
@@ -1884,6 +1902,7 @@ void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 		if ( isReady )
 			qmc2SoftwareList->toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, itemText);
 	}
+	updateStats();
 
 	if ( isReady )
 		QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
@@ -2013,6 +2032,9 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 #endif
 
 	save();
+
+	numSoftwareTotal = numSoftwareCorrect = numSoftwareIncorrect = numSoftwareMostlyCorrect = numSoftwareNotFound = numSoftwareUnknown = 0;
+	updateStats();
 
 	treeWidgetKnownSoftware->clear();
 	treeWidgetFavoriteSoftware->clear();
@@ -3325,6 +3347,38 @@ QString SoftwareList::softwareStatus(QString listName, QString softwareName, boo
 	}
 }
 
+QString SoftwareList::status(SoftwareListXmlHandler *handler)
+{
+	QLocale locale;
+	QString statusString = "<b>";
+	if ( handler ) {
+		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal + handler->numTotal) + "</font> ";
+		if ( toolButtonSoftwareStates->isChecked() ) {
+			statusString += "<font color=#00cc00>" + tr("C:") + locale.toString(numSoftwareCorrect + handler->numCorrect) + "</font> ";
+			statusString += "<font color=#a2c743>" + tr("M:") + locale.toString(numSoftwareMostlyCorrect + handler->numMostlyCorrect) + "</font> ";
+			statusString += "<font color=#f90000>" + tr("I:") + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font> ";
+			statusString += "<font color=#7f7f7f>" + tr("N:") + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font> ";
+			statusString += "<font color=#0000f9>" + tr("U:") + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font> ";
+		}
+	} else {
+		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal) + "</font> ";
+		if ( toolButtonSoftwareStates->isChecked() ) {
+			statusString += "<font color=#00cc00>" + tr("C:") + locale.toString(numSoftwareCorrect) + "</font> ";
+			statusString += "<font color=#a2c743>" + tr("M:") + locale.toString(numSoftwareMostlyCorrect) + "</font> ";
+			statusString += "<font color=#f90000>" + tr("I:") + locale.toString(numSoftwareIncorrect) + "</font> ";
+			statusString += "<font color=#7f7f7f>" + tr("N:") + locale.toString(numSoftwareNotFound) + "</font> ";
+			statusString += "<font color=#0000f9>" + tr("U:") + locale.toString(numSoftwareUnknown) + "</font> ";
+		}
+	}
+	statusString += "</b>";
+	return statusString;
+}
+
+void SoftwareList::updateStats(SoftwareListXmlHandler *handler)
+{
+	labelSoftwareListStats->setText(status(handler));
+}
+
 SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
@@ -3393,8 +3447,10 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 	if ( qmc2SoftwareList->interruptLoad )
 		return false;
 
-	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE == 0 )
+	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE_LONG == 0 ) {
+		qmc2SoftwareList->updateStats(this);
 		qApp->processEvents();
+	}
 
 	if ( qName == "softwarelist" ) {
 		softwareListName = attributes.value("name");
@@ -3417,8 +3473,8 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, softwareSupported);
+		numTotal++;
 		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() ) {
-			numTotal++;
 			if ( softwareListStateMap[softwareListName].contains(softwareName) ) {
 				switch ( softwareListStateMap[softwareListName][softwareName] ) {
 					case QMC2_ROMSTATE_INT_C:
