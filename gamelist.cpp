@@ -3796,13 +3796,15 @@ void Gamelist::createCategoryView()
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
+		QList<QTreeWidgetItem *> hideList;
 		while ( it.hasNext() ) {
 			it.next();
 			qmc2MainWindow->progressBarGamelist->setValue(counter++);
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2GamelistItemMap.contains(gameName) )
+			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
+			if ( !baseItem )
 				continue;
 			QString *categoryPtr = it.value();
 			QString category;
@@ -3810,81 +3812,81 @@ void Gamelist::createCategoryView()
 				category = *categoryPtr;
 			else
 				category = tr("?");
-			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
-			if ( baseItem ) {
-				QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetCategoryView->findItems(category, Qt::MatchExactly);
-				QTreeWidgetItem *categoryItem = NULL;
-				if ( matchItems.count() > 0 )
-					categoryItem = matchItems[0];
-				if ( categoryItem == NULL ) {
-					categoryItem = new QTreeWidgetItem();
-					categoryItem->setText(QMC2_GAMELIST_COLUMN_GAME, category);
-					itemList << categoryItem;
-				}
-				QTreeWidgetItem *gameItem = new QTreeWidgetItem(categoryItem);
-				bool isBIOS = qmc2BiosROMs.contains(gameName);
-				bool isDevice = qmc2DeviceROMs.contains(gameName);
-				gameItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
-				gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
-				gameItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, baseItem->checkState(QMC2_GAMELIST_COLUMN_TAG));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
-				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
-					switch ( qmc2GamelistStatusMap[gameName] ) {
-						case 'C':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-							break;
-						case 'M':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-							break;
-						case 'I':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-							break;
-						case 'N':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-							break;
-						default:
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-							break;
-					}
-				}
-				loadIcon(gameName, gameItem);
-				qmc2CategoryItemMap[gameName] = gameItem;
+			QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetCategoryView->findItems(category, Qt::MatchExactly);
+			QTreeWidgetItem *categoryItem = NULL;
+			if ( matchItems.count() > 0 )
+				categoryItem = matchItems[0];
+			if ( categoryItem == NULL ) {
+				categoryItem = new QTreeWidgetItem();
+				categoryItem->setText(QMC2_GAMELIST_COLUMN_GAME, category);
+				itemList << categoryItem;
 			}
+			QTreeWidgetItem *gameItem = new QTreeWidgetItem(categoryItem);
+			bool isBIOS = qmc2BiosROMs.contains(gameName);
+			bool isDevice = qmc2DeviceROMs.contains(gameName);
+			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
+				hideList << gameItem;
+			gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			gameItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, baseItem->checkState(QMC2_GAMELIST_COLUMN_TAG));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
+				switch ( qmc2GamelistStatusMap[gameName] ) {
+					case 'C':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+						break;
+					case 'M':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+						break;
+					case 'I':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+						break;
+					case 'N':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+						break;
+					default:
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+						break;
+				}
+			}
+			loadIcon(gameName, gameItem);
+			qmc2CategoryItemMap[gameName] = gameItem;
 			qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		}
+		foreach (QTreeWidgetItem *hiddenItem, hideList)
+			hiddenItem->setHidden(true);
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarGamelist->reset();
 		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
@@ -4013,13 +4015,15 @@ void Gamelist::createVersionView()
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool();
 		QList<QTreeWidgetItem *> itemList;
+		QList<QTreeWidgetItem *> hideList;
 		while ( it.hasNext() ) {
 			it.next();
 			qmc2MainWindow->progressBarGamelist->setValue(counter++);
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			if ( !qmc2GamelistItemMap.contains(gameName) )
+			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
+			if ( !baseItem )
 				continue;
 			QString *versionPtr = it.value();
 			QString version;
@@ -4027,81 +4031,81 @@ void Gamelist::createVersionView()
 				version = *versionPtr;
 			else
 				version = tr("?");
-			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
-			if ( baseItem ) {
-				QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetVersionView->findItems(version, Qt::MatchExactly);
-				QTreeWidgetItem *versionItem = NULL;
-				if ( matchItems.count() > 0 )
-					versionItem = matchItems[0];
-				if ( versionItem == NULL ) {
-					versionItem = new QTreeWidgetItem();
-					versionItem->setText(QMC2_GAMELIST_COLUMN_GAME, version);
-					itemList << versionItem;
-				}
-				QTreeWidgetItem *gameItem = new QTreeWidgetItem(versionItem);
-				bool isBIOS = qmc2BiosROMs.contains(gameName);
-				bool isDevice = qmc2DeviceROMs.contains(gameName);
-				gameItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
-				gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
-				gameItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, baseItem->checkState(QMC2_GAMELIST_COLUMN_TAG));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
-				gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
-				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
-					switch ( qmc2GamelistStatusMap[gameName] ) {
-						case 'C':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-							break;
-						case 'M':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-							break;
-						case 'I':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-							break;
-						case 'N':
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-							break;
-						default:
-							if ( isBIOS )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-							else if ( isDevice )
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-							else
-								gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-							break;
-					}
-				}
-				loadIcon(gameName, gameItem);
-				qmc2VersionItemMap[gameName] = gameItem;
+			QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetVersionView->findItems(version, Qt::MatchExactly);
+			QTreeWidgetItem *versionItem = NULL;
+			if ( matchItems.count() > 0 )
+				versionItem = matchItems[0];
+			if ( versionItem == NULL ) {
+				versionItem = new QTreeWidgetItem();
+				versionItem->setText(QMC2_GAMELIST_COLUMN_GAME, version);
+				itemList << versionItem;
 			}
+			QTreeWidgetItem *gameItem = new QTreeWidgetItem(versionItem);
+			bool isBIOS = qmc2BiosROMs.contains(gameName);
+			bool isDevice = qmc2DeviceROMs.contains(gameName);
+			if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
+				hideList << gameItem;
+			gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+			gameItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, baseItem->checkState(QMC2_GAMELIST_COLUMN_TAG));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, baseItem->text(QMC2_GAMELIST_COLUMN_SRCFILE));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
+			gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
+				switch ( qmc2GamelistStatusMap[gameName] ) {
+					case 'C':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+						break;
+					case 'M':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+						break;
+					case 'I':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+						break;
+					case 'N':
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+						break;
+					default:
+						if ( isBIOS )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+						else if ( isDevice )
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
+						else
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+						break;
+				}
+			}
+			loadIcon(gameName, gameItem);
+			qmc2VersionItemMap[gameName] = gameItem;
 			qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		}
+		foreach (QTreeWidgetItem *hiddenItem, hideList)
+			hiddenItem->setHidden(true);
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarGamelist->reset();
 		qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
