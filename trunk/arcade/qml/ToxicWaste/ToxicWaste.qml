@@ -162,7 +162,7 @@ Rectangle {
                     anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: 400 * ToxicWaste.scaleFactorX()
-                    height: 300 * ToxicWaste.scaleFactorY()
+                    height: 400 * ToxicWaste.scaleFactorY()
                     smooth: true
                     border.color: "black"
                     border.width: 2 * ToxicWaste.scaleFactorX()
