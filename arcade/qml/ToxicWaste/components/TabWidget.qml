@@ -11,6 +11,7 @@ Item {
     property color activeTextColor: "black"
     property color inactiveTextColor: "black"
     property int fontSize: 12
+    property real scaleFactor: 1
 
     onCurrentChanged: setOpacities()
     Component.onCompleted: setOpacities()
@@ -21,7 +22,7 @@ Item {
     }
 
     function tabHeaderWidth() {
-        return (tabWidget.width - stack.children.length - 1) / stack.children.length;
+        return (tabWidget.width - 4 * (stack.children.length - 1)) / stack.children.length;
     }
 
     function firstKeyNavItem() {
@@ -39,7 +40,7 @@ Item {
             model: stack.children.length
             delegate: Rectangle {
                 width: tabHeaderWidth()
-                x: (tabHeaderWidth() + 3) * index
+                x: (tabHeaderWidth() + 4) * index
                 height: 30
                 color: tabWidget.current == index ? baseColor : "transparent"
                 border.color: tabWidget.current == index ? activeBorderColor : inactiveBorderColor
