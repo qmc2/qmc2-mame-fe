@@ -112,9 +112,7 @@ void InfoProvider::loadGameInfoDB()
           }
           if ( singleLine.simplified().startsWith("$end") ) {
             // reduce the number of line breaks
-            gameInfoString.replace("<br><br><br><br>", "<p>");
-            gameInfoString.replace("<br><br><br>", "<p>");
-            gameInfoString.replace("<br><br>", "<p>");
+            gameInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
             if ( gameInfoString.endsWith("<p>") )
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
@@ -237,8 +235,8 @@ void InfoProvider::loadEmuInfoDB()
               emuInfoString.append(singleLine + "<br>");
           }
           if ( singleLine.simplified().startsWith("$end") ) {
-            // convert "two (or more) empty lines" to a paragraph delimiter
-            emuInfoString = emuInfoString.replace("<br><br><br>", "<p>").replace("<br><br>", "<p>");
+            // reduce the number of line breaks
+            emuInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
             if ( emuInfoString.startsWith("<br>") )
               emuInfoString.remove(0, 4);
             if ( emuInfoString.endsWith("<p>") )
