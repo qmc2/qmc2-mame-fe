@@ -7342,9 +7342,7 @@ void MainWindow::loadGameInfoDB()
           }
           if ( startsWithDollarEnd ) {
             // reduce the number of line breaks
-            gameInfoString.replace("<br><br><br><br>", "<p>");
-            gameInfoString.replace("<br><br><br>", "<p>");
-            gameInfoString.replace("<br><br>", "<p>");
+            gameInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
             if ( gameInfoString.endsWith("<p>") )
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
@@ -7514,7 +7512,7 @@ void MainWindow::loadEmuInfoDB()
           }
           if ( startsWithDollarEnd ) {
             // convert "two (or more) empty lines" to a paragraph delimiter
-            emuInfoString = emuInfoString.replace("<br><br><br>", "<p>").replace("<br><br>", "<p>");
+            emuInfoString = emuInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
             if ( emuInfoString.startsWith("<br>") )
               emuInfoString.remove(0, 4);
             if ( emuInfoString.endsWith("<p>") )
@@ -7655,7 +7653,8 @@ void MainWindow::loadSoftwareInfoDB()
 						while ( !startsWithDollarEnd && !ts.atEnd() ) {
 							singleLine = ts.readLine();
 							singleLineSimplified = singleLine.simplified();
-							if ( !singleLineSimplified.startsWith("$end") ) {
+							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
+							if ( !startsWithDollarEnd ) {
 								if ( !firstLine ) {
 									swInfoString.append(singleLine.trimmed() + "<br>");
 								} else if ( !singleLine.isEmpty() ) {
@@ -7667,13 +7666,10 @@ void MainWindow::loadSoftwareInfoDB()
 								progressBarGamelist->setValue(swInfoDB.pos());
 								qApp->processEvents();
 							}
-							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 						}
 						if ( startsWithDollarEnd ) {
 							// reduce the number of line breaks
-							swInfoString.replace("<br><br><br><br>", "<p>");
-							swInfoString.replace("<br><br><br>", "<p>");
-							swInfoString.replace("<br><br>", "<p>");
+							swInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
 							if ( swInfoString.endsWith("<p>") )
 								swInfoString.remove(swInfoString.length() - 3, swInfoString.length() - 1);
 							QByteArray *swInfo;
