@@ -369,47 +369,47 @@
         <translation>Carregando BD de informações de máquina</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="141"/>
+        <location filename="../infoprovider.cpp" line="139"/>
         <source>WARNING: Missing &apos;$end&apos; in game info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="144"/>
+        <location filename="../infoprovider.cpp" line="142"/>
         <source>WARNING: Missing &apos;$end&apos; in machine info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="152"/>
+        <location filename="../infoprovider.cpp" line="150"/>
         <source>WARNING: Missing &apos;$bio&apos; in game info DB %1</source>
         <translation>AVISO: Faltando &apos;$bio&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="155"/>
+        <location filename="../infoprovider.cpp" line="153"/>
         <source>WARNING: Missing &apos;$bio&apos; in machine info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="163"/>
+        <location filename="../infoprovider.cpp" line="161"/>
         <source>WARNING: Missing &apos;$info&apos; in game info DB %1</source>
         <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="166"/>
+        <location filename="../infoprovider.cpp" line="164"/>
         <source>WARNING: Missing &apos;$info&apos; in machine info DB %1</source>
         <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de máquina %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="176"/>
+        <location filename="../infoprovider.cpp" line="174"/>
         <source>WARNING: Can&apos;t open game info DB %1</source>
         <translation>AVISO: Não foi possível abrir o BD de informações de jogo %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="179"/>
+        <location filename="../infoprovider.cpp" line="177"/>
         <source>WARNING: Can&apos;t open machine info DB %1</source>
         <translation>AVISO: Não foi possível abrir o BD de informações de máquina %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="196"/>
+        <location filename="../infoprovider.cpp" line="194"/>
         <source>%n machine info record(s) loaded</source>
         <translation>
             <numerusform>%n registro de informação de máquina carregado</numerusform>
@@ -417,52 +417,52 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="198"/>
+        <location filename="../infoprovider.cpp" line="196"/>
         <source>Invalidating machine info DB</source>
         <translation>Invalidando BD de informações de máquina</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="190"/>
+        <location filename="../infoprovider.cpp" line="188"/>
         <source>Invalidating game info DB</source>
         <translation>Invalidando BD de informações de jogo</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="208"/>
+        <location filename="../infoprovider.cpp" line="206"/>
         <source>Loading emulator info DB</source>
         <translation>Carregando BD de informações de emulador</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="264"/>
+        <location filename="../infoprovider.cpp" line="262"/>
         <source>WARNING: Missing &apos;$end&apos; in emulator info DB %1</source>
         <translation>AVISO: Faltando &apos;$end&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="267"/>
+        <location filename="../infoprovider.cpp" line="265"/>
         <source>WARNING: Missing &apos;$mame&apos; in emulator info DB %1</source>
         <translation>AVISO: Faltando &apos;$mame&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="270"/>
+        <location filename="../infoprovider.cpp" line="268"/>
         <source>WARNING: Missing &apos;$info&apos; in emulator info DB %1</source>
         <translation>AVISO: Faltando &apos;$info&apos; no BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="275"/>
+        <location filename="../infoprovider.cpp" line="273"/>
         <source>WARNING: Can&apos;t open emulator info DB %1</source>
         <translation>AVISO: Não foi possível abrir o BD de informações de emulador %1</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="277"/>
+        <location filename="../infoprovider.cpp" line="275"/>
         <source>Done (Loading emulator info DB)</source>
         <translation>Feito (Carregando BD de informações de emulador)</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="280"/>
+        <location filename="../infoprovider.cpp" line="278"/>
         <source>Invalidating emulator info DB</source>
         <translation>Invalidando BD de informações de emulador</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="188"/>
+        <location filename="../infoprovider.cpp" line="186"/>
         <source>%n game info record(s) loaded</source>
         <translation>
             <numerusform>%n registro de informação de jogo carregado</numerusform>
@@ -470,17 +470,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="195"/>
+        <location filename="../infoprovider.cpp" line="193"/>
         <source>Done (Loading machine info DB)</source>
         <translation>Feito (Carregando BD de informações de máquina)</translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="187"/>
+        <location filename="../infoprovider.cpp" line="185"/>
         <source>Done (Loading game info DB)</source>
         <translation>Feito (Carregando BD de informações de jogo)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="278"/>
+        <location filename="../infoprovider.cpp" line="276"/>
         <source>%n emulator info record(s) loaded</source>
         <translation>
             <numerusform>%n registro de informação de emulador carregado</numerusform>
@@ -488,10 +488,10 @@
         </translation>
     </message>
     <message>
+        <location filename="../infoprovider.cpp" line="311"/>
         <location filename="../infoprovider.cpp" line="313"/>
-        <location filename="../infoprovider.cpp" line="315"/>
+        <location filename="../infoprovider.cpp" line="325"/>
         <location filename="../infoprovider.cpp" line="327"/>
-        <location filename="../infoprovider.cpp" line="329"/>
         <source>no info available</source>
         <translation>informação não disponível</translation>
     </message>
@@ -544,88 +544,103 @@
         <translation>Imagem da pré-visualização</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="544"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="175"/>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="264"/>
+        <source>Emu info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="276"/>
+        <source>Game info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="583"/>
         <source>Really quit?</source>
         <translation>Sair realmente?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="561"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="600"/>
         <source>Yes</source>
         <translation>Sim</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="577"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="616"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="654"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="695"/>
         <source>ToxicWaste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="672"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="714"/>
         <source>Show background animation?</source>
         <translation>Mostrar animação do plano de fundo?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="700"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="743"/>
         <source>Animate in foreground?</source>
         <translation>Animar o primeiro plano?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="728"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="772"/>
         <source>Show shader effect?</source>
         <translation>Mostrar efeito de shader?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="756"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="801"/>
         <source>Show FPS counter?</source>
         <translation>Mostrar contador de FPS?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="784"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="830"/>
         <source>Confirm quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="803"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="851"/>
         <source>Backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="819"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="868"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="867"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="920"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="905"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="962"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="931"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="988"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1035"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1092"/>
         <source>FPS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1254"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1311"/>
         <source>Starting shader effect</source>
         <translation>Iniciando efeito de shader</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1256"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1313"/>
         <source>Shader effect stopped</source>
         <translation>Efeito de shader parado</translation>
     </message>
