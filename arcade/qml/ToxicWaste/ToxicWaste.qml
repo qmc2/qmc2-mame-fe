@@ -197,7 +197,7 @@ Rectangle {
                                 GradientStop { position: 0.75; color: "white" }
                                 GradientStop { position: 1.00; color: "black" }
                             }
-                            radius: 15 * ToxicWaste.scaleFactorX()
+                            radius: height/2
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: imageViewer.bottom
                             anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
