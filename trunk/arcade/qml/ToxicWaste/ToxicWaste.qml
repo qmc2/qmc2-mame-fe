@@ -156,94 +156,132 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
                 }
-                Rectangle {
-                    id: imageViewerRect
-                    anchors.top: itemDescription.bottom
-                    anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
+                TabWidget {
+                    id: gameCardTabWidget
+                    anchors.fill: parent
+                    anchors.margins: 10 * ToxicWaste.scaleFactorY()
+                    anchors.topMargin: itemDescription.height + 25 * ToxicWaste.scaleFactorY()
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: 400 * ToxicWaste.scaleFactorX()
-                    height: 400 * ToxicWaste.scaleFactorY()
+                    baseColor: "#55a5ff"
+                    activeBorderColor: "black"
+                    inactiveBorderColor: "#202020"
+                    activeTextColor: "black"
+                    inactiveTextColor: "#202020"
+                    fontSize: 12 * ToxicWaste.scaleFactorY()
                     smooth: true
-                    border.color: "black"
-                    border.width: 2 * ToxicWaste.scaleFactorX()
-                    radius: 5
-                    color: "#202020"
-                    Image {
-                        id: imageViewer
-                        source: ToxicWaste.imageUrl(toxicWasteMain.secondaryImageType)
-                        smooth: true
-                        anchors.fill: parent
-                        anchors.centerIn: parent
-                        anchors.margins: 2
-                        fillMode: Image.PreserveAspectFit
-                    }
+                    scaleFactor: ToxicWaste.scaleFactorX()
                     Rectangle {
-                        id: itemTypeSelector
-                        gradient: Gradient {
-                            GradientStop { position: 0.00; color: "black" }
-                            GradientStop { position: 0.75; color: "white" }
-                            GradientStop { position: 1.00; color: "black" }
-                        }
-                        radius: 15 * ToxicWaste.scaleFactorX()
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.top: imageViewer.bottom
-                        anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
-                        height: 30 * ToxicWaste.scaleFactorX()
-                        width: 200 * ToxicWaste.scaleFactorX()
+                        id: imageViewerRect
+                        property string title: qsTr("Images")
+                        anchors.fill: parent
+                        anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 35 * ToxicWaste.scaleFactorY()
                         smooth: true
-                        Text {
-                            id: imageTypeText
-                            text: ToxicWaste.gameImageType(toxicWasteMain.secondaryImageType)
-                            color: "black"
-                            font.bold: true
-                            font.pixelSize: 12 * ToxicWaste.scaleFactorX()
+                        border.color: "black"
+                        border.width: 2 * ToxicWaste.scaleFactorX()
+                        radius: 5
+                        color: "#202020"
+                        Image {
+                            id: imageViewer
+                            source: ToxicWaste.imageUrl(toxicWasteMain.secondaryImageType)
+                            smooth: true
                             anchors.fill: parent
                             anchors.centerIn: parent
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            smooth: true
-                        }
-                        Image {
-                            id: nextImageButton
-                            opacity: 0.5
-                            source: "images/arrow.png"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.horizontalCenterOffset: 100 * ToxicWaste.scaleFactorX() - width/2
-                            anchors.verticalCenter: parent.verticalCenter
-                            height: parent.height - 2
+                            anchors.margins: 2
                             fillMode: Image.PreserveAspectFit
+                        }
+                        Rectangle {
+                            id: itemTypeSelector
+                            gradient: Gradient {
+                                GradientStop { position: 0.00; color: "black" }
+                                GradientStop { position: 0.75; color: "white" }
+                                GradientStop { position: 1.00; color: "black" }
+                            }
+                            radius: 15 * ToxicWaste.scaleFactorX()
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.top: imageViewer.bottom
+                            anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
+                            height: 30 * ToxicWaste.scaleFactorY()
+                            width: 200 * ToxicWaste.scaleFactorX()
                             smooth: true
-                            MouseArea {
+                            Text {
+                                id: imageTypeText
+                                text: ToxicWaste.gameImageType(toxicWasteMain.secondaryImageType)
+                                color: "black"
+                                font.bold: true
+                                font.pixelSize: 12 * ToxicWaste.scaleFactorX()
                                 anchors.fill: parent
-                                hoverEnabled: true
-                                onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
-                                onClicked: {
-                                    toxicWasteMain.secondaryImageType = ToxicWaste.nextImageType(toxicWasteMain.secondaryImageType);
-                                    searchTextInput.focus = false;
+                                anchors.centerIn: parent
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                smooth: true
+                            }
+                            Image {
+                                id: nextImageButton
+                                opacity: 0.5
+                                source: "images/arrow.png"
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.horizontalCenterOffset: 100 * ToxicWaste.scaleFactorX() - width/2
+                                anchors.verticalCenter: parent.verticalCenter
+                                height: parent.height - 2
+                                fillMode: Image.PreserveAspectFit
+                                smooth: true
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
+                                    onClicked: {
+                                        toxicWasteMain.secondaryImageType = ToxicWaste.nextImageType(toxicWasteMain.secondaryImageType);
+                                        searchTextInput.focus = false;
+                                    }
+                                }
+                            }
+                            Image {
+                                id: previousImageButton
+                                opacity: 0.5
+                                source: "images/arrow.png"
+                                mirror: true
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.horizontalCenterOffset: -100 * ToxicWaste.scaleFactorX() + width/2
+                                anchors.verticalCenter: parent.verticalCenter
+                                height: parent.height - 2
+                                fillMode: Image.PreserveAspectFit
+                                smooth: true
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
+                                    onClicked: {
+                                        toxicWasteMain.secondaryImageType = ToxicWaste.previousImageType(toxicWasteMain.secondaryImageType);
+                                        searchTextInput.focus = false;
+                                    }
                                 }
                             }
                         }
-                        Image {
-                            id: previousImageButton
-                            opacity: 0.5
-                            source: "images/arrow.png"
-                            mirror: true
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.horizontalCenterOffset: -100 * ToxicWaste.scaleFactorX() + width/2
-                            anchors.verticalCenter: parent.verticalCenter
-                            height: parent.height - 2
-                            fillMode: Image.PreserveAspectFit
-                            smooth: true
-                            MouseArea {
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.5
-                                onClicked: {
-                                    toxicWasteMain.secondaryImageType = ToxicWaste.previousImageType(toxicWasteMain.secondaryImageType);
-                                    searchTextInput.focus = false;
-                                }
-                            }
-                        }
+                    }
+                    Rectangle {
+                        id: emuInfoViewer
+                        property string title: qsTr("Emu info")
+                        anchors.fill: parent
+                        anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 5 * ToxicWaste.scaleFactorY()
+                        smooth: true
+                        border.color: "black"
+                        border.width: 2 * ToxicWaste.scaleFactorX()
+                        radius: 5
+                        color: "#202020"
+                    }
+                    Rectangle {
+                        id: gameInfoViewer
+                        property string title: qsTr("Game info")
+                        anchors.fill: parent
+                        anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 5 * ToxicWaste.scaleFactorY()
+                        smooth: true
+                        border.color: "black"
+                        border.width: 2 * ToxicWaste.scaleFactorX()
+                        radius: 5
+                        color: "#202020"
                     }
                 }
             }
@@ -651,6 +689,7 @@ Rectangle {
             inactiveTextColor: "#202020"
             fontSize: 12
             smooth: true
+            scaleFactor: ToxicWaste.scaleFactorX()
             Rectangle {
                 id: themePreferencesTab
                 property string title: qsTr("ToxicWaste")
