@@ -143,6 +143,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	setupUi(this);
 
 	tabFileChooser->setUpdatesEnabled(false);
+	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
+	listWidgetDeviceConfigurations->setSortingEnabled(false);
 
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
 	setEnabled(false);
@@ -1298,6 +1300,7 @@ bool MESSDeviceConfigurator::load()
 	if ( messSystemSlotMap.isEmpty() && messSystemSlotsSupported )
 		if ( !readSystemSlots() ) {
 			tabFileChooser->setUpdatesEnabled(true);
+			listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 			refreshRunning = false;
 			return false;
 		}
@@ -1306,6 +1309,8 @@ bool MESSDeviceConfigurator::load()
 
 	setEnabled(qmc2UseDefaultEmulator);
 	tabSlotOptions->setUpdatesEnabled(false);
+	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
+	listWidgetDeviceConfigurations->setSortingEnabled(false);
 
 	QString xmlBuffer = getXmlData(messMachineName);
   
@@ -1440,8 +1445,6 @@ bool MESSDeviceConfigurator::load()
 	qmc2Config->endGroup();
 
 	QListWidgetItem *selectedItem = NULL;
-	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
-	listWidgetDeviceConfigurations->setSortingEnabled(false);
 	foreach (QString configName, configurationList) {
 		if ( configName == tr("Default configuration") )
 			continue;
@@ -1456,8 +1459,8 @@ bool MESSDeviceConfigurator::load()
 		if ( currentConfigName == configName ) selectedItem = item;
 	}
 	listWidgetDeviceConfigurations->setSortingEnabled(true);
-	listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 	listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
+	listWidgetDeviceConfigurations->setUpdatesEnabled(true);
 
 	qmc2FileEditStartPath = qmc2Config->value(group + "/DefaultDeviceDirectory").toString();
 
