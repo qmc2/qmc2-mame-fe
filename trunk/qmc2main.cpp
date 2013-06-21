@@ -7511,8 +7511,8 @@ void MainWindow::loadEmuInfoDB()
             }
           }
           if ( startsWithDollarEnd ) {
-            // convert "two (or more) empty lines" to a paragraph delimiter
-            emuInfoString = emuInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
+            // reduce the number of line breaks
+            emuInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
             if ( emuInfoString.startsWith("<br>") )
               emuInfoString.remove(0, 4);
             if ( emuInfoString.endsWith("<p>") )
