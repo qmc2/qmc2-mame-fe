@@ -60,6 +60,7 @@ public slots:
     QString cliParamValue(QString);
     QStringList cliParamAllowedValues(QString);
     void setCliParamValue(QString, QString);
+    void linkActivated(QString);
 
 private:
     bool initialised;
