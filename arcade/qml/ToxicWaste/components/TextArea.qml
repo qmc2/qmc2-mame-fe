@@ -22,9 +22,7 @@ Rectangle {
             wrapMode: Text.WordWrap
             smooth: true
             width: parent.width
-            onLinkActivated: {
-                    viewer.linkActivated(link);
-            }
+            onLinkActivated: viewer.linkActivated(link)
         }
     }
     Image {
