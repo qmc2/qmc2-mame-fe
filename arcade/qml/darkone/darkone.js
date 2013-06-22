@@ -434,14 +434,14 @@ function data(type) {
                  if (dataTypes[darkone.dataTypePrimary].type == "text") {
                      type = dataTypes[darkone.dataTypePrimary].text
                      info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypePrimary].key);
-                     if (!info.match("no info available")) {
+                     if (!info.match(qsTr("no info available"))) {
                          darkone.debug && console.log("[data] using text type: '" + type + "'");
                      }
                 }
                 if (type == "" && dataTypes[darkone.dataTypeSecondary].type == "text") {
                     type = dataTypes[darkone.dataTypeSecondary].text
                     info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypeSecondary].key);
-                    if (!info.match("no info available")) {
+                    if (!info.match(qsTr("no info available"))) {
                         darkone.debug && console.log("[data] using text type: '" + type + "'");
                     }
                 }
@@ -452,7 +452,7 @@ function data(type) {
                     info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypeCurrent].key);
                 }
             }
-            info.match("no info available") ? darkone.infoMissing = true : darkone.infoMissing = false;
+            info.match(qsTr("no info available")) ? darkone.infoMissing = true : darkone.infoMissing = false;
             darkone.debug && console.log("[data] infoMissing: '" + darkone.infoMissing + "', " +
                                                 "info: '" + "info" + "'")
             return type == "" ? "" : "<style type='text/css'>p,h3 { margin:0px }</style>" + "<h3>" + type + "</h3>" + "<p>" + info + "</p>";
