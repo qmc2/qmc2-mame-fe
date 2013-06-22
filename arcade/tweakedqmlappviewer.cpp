@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QPaintEngine>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "tweakedqmlappviewer.h"
 #include "arcadesettings.h"
@@ -460,6 +462,11 @@ void TweakedQmlApplicationViewer::setCliParamValue(QString param, QString value)
         globalConfig->setDefaultLanguage(value);
         break;
     }
+}
+
+void TweakedQmlApplicationViewer::linkActivated(QString link)
+{
+    QDesktopServices::openUrl(QUrl::fromUserInput(link));
 }
 
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
