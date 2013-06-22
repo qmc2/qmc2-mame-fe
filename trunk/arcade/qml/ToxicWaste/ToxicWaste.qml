@@ -689,7 +689,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 300
-        height: 210
+        height: 200
         border.color: "black"
         border.width: 2
         color: "#007bff"
