@@ -26,6 +26,7 @@ Rectangle {
     property bool menuHidden: false
     property string version: ""
     property bool confirmQuit: true
+    property int gameCardPage: 0
 
     // delayed init
     Timer {
@@ -162,6 +163,8 @@ Rectangle {
                     anchors.margins: 10 * ToxicWaste.scaleFactorY()
                     anchors.topMargin: itemDescription.height + 25 * ToxicWaste.scaleFactorY()
                     anchors.horizontalCenter: parent.horizontalCenter
+                    current: toxicWasteMain.gameCardPage
+                    onCurrentChanged: toxicWasteMain.gameCardPage = current
                     baseColor: "#55a5ff"
                     activeBorderColor: "black"
                     inactiveBorderColor: "#202020"

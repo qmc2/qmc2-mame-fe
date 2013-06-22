@@ -70,6 +70,8 @@ public slots:
     bool showShaderEffect();
     void setConfirmQuit(bool);
     bool confirmQuit();
+    void setGameCardPage(int);
+    int gameCardPage();
     // darkone
     void setToolbarHidden(bool);
     bool toolbarHidden();
