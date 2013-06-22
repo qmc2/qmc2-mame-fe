@@ -207,7 +207,7 @@ Rectangle {
                             anchors.bottom: parent.bottom
                             anchors.bottomMargin: -25 * ToxicWaste.scaleFactorY()
                             height: 20 * ToxicWaste.scaleFactorY()
-                            width: 200 * ToxicWaste.scaleFactorX()
+                            width: 300 * ToxicWaste.scaleFactorX()
                             smooth: true
                             Text {
                                 id: imageTypeText
@@ -217,6 +217,8 @@ Rectangle {
                                 font.pixelSize: 12 * ToxicWaste.scaleFactorY()
                                 anchors.fill: parent
                                 anchors.centerIn: parent
+                                anchors.leftMargin: nextImageButton.width
+                                anchors.rightMargin: previousImageButton.width
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                                 smooth: true
@@ -227,7 +229,7 @@ Rectangle {
                                 opacity: 0.5
                                 source: "images/arrow.png"
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                anchors.horizontalCenterOffset: 100 * ToxicWaste.scaleFactorX() - width/2
+                                anchors.horizontalCenterOffset: 150 * ToxicWaste.scaleFactorX() - width/2
                                 anchors.verticalCenter: parent.verticalCenter
                                 height: parent.height - 2
                                 fillMode: Image.PreserveAspectFit
@@ -248,7 +250,7 @@ Rectangle {
                                 source: "images/arrow.png"
                                 mirror: true
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                anchors.horizontalCenterOffset: -100 * ToxicWaste.scaleFactorX() + width/2
+                                anchors.horizontalCenterOffset: -150 * ToxicWaste.scaleFactorX() + width/2
                                 anchors.verticalCenter: parent.verticalCenter
                                 height: parent.height - 2
                                 fillMode: Image.PreserveAspectFit
