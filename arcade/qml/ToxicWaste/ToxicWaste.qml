@@ -160,7 +160,9 @@ Rectangle {
                 TabWidget {
                     id: gameCardTabWidget
                     anchors.fill: parent
-                    anchors.margins: 10 * ToxicWaste.scaleFactorY()
+                    anchors.leftMargin: 10 * ToxicWaste.scaleFactorX()
+                    anchors.rightMargin: anchors.leftMargin
+                    anchors.bottom: parent.bottom
                     anchors.topMargin: itemDescription.height + 25 * ToxicWaste.scaleFactorY()
                     anchors.horizontalCenter: parent.horizontalCenter
                     current: toxicWasteMain.gameCardPage
@@ -178,7 +180,7 @@ Rectangle {
                         property string title: qsTr("Images")
                         anchors.fill: parent
                         anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
-                        anchors.bottomMargin: 25 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 30 * ToxicWaste.scaleFactorY()
                         smooth: true
                         border.color: "black"
                         border.width: ToxicWaste.scaleFactorX()
@@ -202,8 +204,8 @@ Rectangle {
                             }
                             radius: height/2
                             anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.top: imageViewer.bottom
-                            anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: -25 * ToxicWaste.scaleFactorY()
                             height: 20 * ToxicWaste.scaleFactorY()
                             width: 200 * ToxicWaste.scaleFactorX()
                             smooth: true
@@ -218,6 +220,7 @@ Rectangle {
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                                 smooth: true
+                                elide: Text.ElideRight
                             }
                             Image {
                                 id: nextImageButton
@@ -267,7 +270,7 @@ Rectangle {
                         property string title: qsTr("Emu info")
                         anchors.fill: parent
                         anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
-                        anchors.bottomMargin: 5 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 10 * ToxicWaste.scaleFactorY()
                         smooth: true
                         border.color: "black"
                         border.width: ToxicWaste.scaleFactorX()
@@ -288,7 +291,7 @@ Rectangle {
                         property string title: qsTr("Game info")
                         anchors.fill: parent
                         anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
-                        anchors.bottomMargin: 5 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 10 * ToxicWaste.scaleFactorY()
                         smooth: true
                         border.color: "black"
                         border.width: ToxicWaste.scaleFactorX()
