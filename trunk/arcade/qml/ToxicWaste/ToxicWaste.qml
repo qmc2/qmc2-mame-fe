@@ -175,10 +175,10 @@ Rectangle {
                         property string title: qsTr("Images")
                         anchors.fill: parent
                         anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
-                        anchors.bottomMargin: 35 * ToxicWaste.scaleFactorY()
+                        anchors.bottomMargin: 25 * ToxicWaste.scaleFactorY()
                         smooth: true
                         border.color: "black"
-                        border.width: 2 * ToxicWaste.scaleFactorX()
+                        border.width: ToxicWaste.scaleFactorX()
                         radius: 5
                         color: "#202020"
                         Image {
@@ -201,7 +201,7 @@ Rectangle {
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: imageViewer.bottom
                             anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
-                            height: 30 * ToxicWaste.scaleFactorY()
+                            height: 20 * ToxicWaste.scaleFactorY()
                             width: 200 * ToxicWaste.scaleFactorX()
                             smooth: true
                             Text {
@@ -209,7 +209,7 @@ Rectangle {
                                 text: ToxicWaste.gameImageType(toxicWasteMain.secondaryImageType)
                                 color: "black"
                                 font.bold: true
-                                font.pixelSize: 12 * ToxicWaste.scaleFactorX()
+                                font.pixelSize: 12 * ToxicWaste.scaleFactorY()
                                 anchors.fill: parent
                                 anchors.centerIn: parent
                                 horizontalAlignment: Text.AlignHCenter
@@ -267,7 +267,7 @@ Rectangle {
                         anchors.bottomMargin: 5 * ToxicWaste.scaleFactorY()
                         smooth: true
                         border.color: "black"
-                        border.width: 2 * ToxicWaste.scaleFactorX()
+                        border.width: ToxicWaste.scaleFactorX()
                         radius: 5
                         color: "#202020"
                     }
@@ -279,7 +279,7 @@ Rectangle {
                         anchors.bottomMargin: 5 * ToxicWaste.scaleFactorY()
                         smooth: true
                         border.color: "black"
-                        border.width: 2 * ToxicWaste.scaleFactorX()
+                        border.width: ToxicWaste.scaleFactorX()
                         radius: 5
                         color: "#202020"
                     }
@@ -1030,11 +1030,10 @@ Rectangle {
     Image {
         id: showHideMenuBarButton
         source: "images/hide_show_menu.png"
-        height: 20 * ToxicWaste.scaleFactorX()
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: parent.height/2 - (menuAndStatusBar.height/2) * ToxicWaste.scaleFactorX()
-        anchors.horizontalCenter: parent.left
-        anchors.horizontalCenterOffset: width/2 + 2 * ToxicWaste.scaleFactorX()
+        height: menuAndStatusBar.height
+        anchors.left: parent.left
+        anchors.leftMargin: 2 * ToxicWaste.scaleFactorX()
+        anchors.bottom: parent.bottom
         fillMode: Image.PreserveAspectFit
         opacity: 0.5
         rotation: toxicWasteMain.menuHidden ? 0 : 180
@@ -1069,37 +1068,37 @@ Rectangle {
         id: menuAndStatusBar
         x: 0
         z: 4
-        width: 800
-        height: 24
+        width: parent.width
+        height: ToxicWaste.scaleFactorY() > 1 ? 24 : (ToxicWaste.scaleFactorY() < 0.5 ? 12 : 24 * ToxicWaste.scaleFactorY())
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
         transformOrigin: Rectangle.Bottom
         opacity: 0.5
         smooth: true
-        scale: ToxicWaste.scaleFactorX()
         gradient: Gradient {
             GradientStop { position: 0.0; color: "lightgrey" }
             GradientStop { position: 1.0; color: "black" }
         }
         Text {
             id: fpsText
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
             anchors.left: parent.left
-            anchors.leftMargin: (showHideMenuBarButton.width + 2)/ToxicWaste.scaleFactorX() + 5
+            anchors.leftMargin: showHideMenuBarButton.width + 10 * ToxicWaste.scaleFactorX()
+            anchors.verticalCenter: menuAndStatusBar.verticalCenter
+            smooth: true
             color: "white"
             text: qsTr("FPS") + ": " + toxicWasteMain.fps.toString()
+            font.pixelSize: parent.height - 4 * ToxicWaste.scaleFactorY()
             visible: toxicWasteMain.fpsVisible
         }
         Image {
             id: exitButton
             anchors.top: parent.top
-            anchors.topMargin: 5
+            anchors.topMargin: 2 * ToxicWaste.scaleFactorY()
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 2 * ToxicWaste.scaleFactorY()
             anchors.right: parent.right
-            anchors.rightMargin: 5
+            anchors.rightMargin: 2 * ToxicWaste.scaleFactorX()
             source: "images/exit.png"
             smooth: true
             fillMode: Image.PreserveAspectFit
@@ -1121,11 +1120,11 @@ Rectangle {
         Image {
             id: fullScreenToggleButton
             anchors.top: parent.top
-            anchors.topMargin: 5
+            anchors.topMargin: 2 * ToxicWaste.scaleFactorY()
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 2 * ToxicWaste.scaleFactorY()
             anchors.right: exitButton.left
-            anchors.rightMargin: 5
+            anchors.rightMargin: 5 * ToxicWaste.scaleFactorX()
             source: "images/fullscreen.png"
             state: toxicWasteMain.fullScreen ? "fullscreen" : "windowed"
             smooth: true
@@ -1161,11 +1160,11 @@ Rectangle {
         Image {
             id: preferencesButton
             anchors.top: parent.top
-            anchors.topMargin: 5
+            anchors.topMargin: 2 * ToxicWaste.scaleFactorY()
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 2 * ToxicWaste.scaleFactorY()
             anchors.right: fullScreenToggleButton.left
-            anchors.rightMargin: 5
+            anchors.rightMargin: 5 * ToxicWaste.scaleFactorX()
             source: "images/preferences.png"
             smooth: true
             fillMode: Image.PreserveAspectFit
@@ -1184,13 +1183,12 @@ Rectangle {
         Item {
             id: searchBox
             anchors.centerIn: parent
-            width: 230 / ToxicWaste.scaleFactorX()
-            height: 24 / ToxicWaste.scaleFactorX()
-            scale: ToxicWaste.scaleFactorX()
+            width: 230 * ToxicWaste.scaleFactorX()
+            height: menuAndStatusBar.height - 2 * ToxicWaste.scaleFactorY()
             Image {
                 id: searchImage
                 source: "images/find.png"
-                height: 20 / ToxicWaste.scaleFactorX()
+                height: parent.height - 4 * ToxicWaste.scaleFactorY()
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 anchors.verticalCenter: parent.verticalCenter
@@ -1208,28 +1206,28 @@ Rectangle {
             }
             Rectangle {
                 id: searchTextInputBox
-                height: searchImage.height
-                width: 200 / ToxicWaste.scaleFactorX()
-                radius: height
+                height: parent.height - 2 * ToxicWaste.scaleFactorY()
+                width: 200 * ToxicWaste.scaleFactorX()
+                radius: height/2
                 smooth: true
                 anchors.left: searchImage.right
-                anchors.leftMargin: 5 / ToxicWaste.scaleFactorX()
+                anchors.leftMargin: 5 * ToxicWaste.scaleFactorX()
                 anchors.verticalCenter: searchImage.verticalCenter
                 TextInput {
                     id: searchTextInput
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    anchors.leftMargin: 2
+                    anchors.leftMargin: 2 * ToxicWaste.scaleFactorX()
                     anchors.right: parent.right
-                    anchors.rightMargin: 2
-                    font.pointSize: parent.height
+                    anchors.rightMargin: 2 * ToxicWaste.scaleFactorX()
+                    font.pointSize: parent.height - 2
                     smooth: true
                     focus: false
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
                         color: "black"
                         width: 1
-                        height: 10
+                        height: parent.height
                         anchors.verticalCenter: parent.verticalCenter
                         visible: parent.activeFocus
                         SequentialAnimation on opacity {
@@ -1251,12 +1249,12 @@ Rectangle {
             Image {
                 id: clearImage
                 source: "images/clear.png"
-                height: 28 / ToxicWaste.scaleFactorX()
+                height: parent.height + 2 * ToxicWaste.scaleFactorY()
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: searchTextInputBox.right
-                anchors.leftMargin: 5 / ToxicWaste.scaleFactorX()
+                anchors.leftMargin: 5 * ToxicWaste.scaleFactorY()
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
