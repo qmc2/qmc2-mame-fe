@@ -64,6 +64,7 @@ qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/Button.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/CheckBox.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/ComboBox.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/TabWidget.qml.svn-base
+qmc2/arcade/qml/ToxicWaste/components/.svn/text-base/TextArea.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/effects/.svn
 qmc2/arcade/qml/ToxicWaste/effects/.svn/text-base/RadialWaveEffect.qml.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn
@@ -72,6 +73,7 @@ qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/blue_bubble.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/checkmark.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/clear.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/down_arrow.png.svn-base
+qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/down_arrow_white.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/exit.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/find.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/prop-base/fullscreen.png.svn-base
@@ -93,6 +95,7 @@ qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/blue_bubble.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/checkmark.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/clear.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/down_arrow.png.svn-base
+qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/down_arrow_white.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/exit.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/find.png.svn-base
 qmc2/arcade/qml/ToxicWaste/images/.svn/text-base/fullscreen.png.svn-base
