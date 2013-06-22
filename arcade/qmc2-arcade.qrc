@@ -9,11 +9,13 @@
         <file>qml/ToxicWaste/components/CheckBox.qml</file>
         <file>qml/ToxicWaste/components/ComboBox.qml</file>
         <file>qml/ToxicWaste/components/TabWidget.qml</file>
+        <file>qml/ToxicWaste/components/TextArea.qml</file>
         <file>qml/ToxicWaste/effects/RadialWaveEffect.qml</file>
         <file>qml/ToxicWaste/images/arrow.png</file>
         <file>qml/ToxicWaste/images/checkmark.png</file>
         <file>qml/ToxicWaste/images/clear.png</file>
         <file>qml/ToxicWaste/images/down_arrow.png</file>
+        <file>qml/ToxicWaste/images/down_arrow_white.png</file>
         <file>qml/ToxicWaste/images/exit.png</file>
         <file>qml/ToxicWaste/images/find.png</file>
         <file>qml/ToxicWaste/images/fullscreen.png</file>

@@ -41,7 +41,7 @@ Item {
             delegate: Rectangle {
                 width: tabHeaderWidth()
                 x: (tabHeaderWidth() + 4) * index
-                height: 30
+                height: tabWidget.fontSize + 6
                 color: tabWidget.current == index ? baseColor : "transparent"
                 border.color: tabWidget.current == index ? activeBorderColor : inactiveBorderColor
                 border.width: 1
