@@ -147,7 +147,7 @@ Rectangle {
                 Text {
                     id: itemDescription
                     text: ToxicWaste.gameCardHeader()
-                    font.pixelSize: 12 * ToxicWaste.scaleFactorX()
+                    font.pixelSize: 12 * ToxicWaste.scaleFactorY()
                     anchors.top: parent.top
                     anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -167,7 +167,7 @@ Rectangle {
                     inactiveBorderColor: "#202020"
                     activeTextColor: "black"
                     inactiveTextColor: "#202020"
-                    fontSize: 12 * ToxicWaste.scaleFactorY()
+                    fontSize: 12 * ToxicWaste.scaleFactorX()
                     smooth: true
                     scaleFactor: ToxicWaste.scaleFactorX()
                     Rectangle {
@@ -270,6 +270,15 @@ Rectangle {
                         border.width: ToxicWaste.scaleFactorX()
                         radius: 5
                         color: "#202020"
+                        TextArea {
+                            anchors.fill: parent
+                            anchors.margins: 5
+                            color: "transparent"
+                            fontSize: 12 * ToxicWaste.scaleFactorX()
+                            fontColor: "white"
+                            arrowIcon: "images/down_arrow_white.png"
+                            displayText: viewer.requestInfo(gameListModel[gamelistView.currentIndex].id, "emuinfo");
+                        }
                     }
                     Rectangle {
                         id: gameInfoViewer
@@ -282,6 +291,15 @@ Rectangle {
                         border.width: ToxicWaste.scaleFactorX()
                         radius: 5
                         color: "#202020"
+                        TextArea {
+                            anchors.fill: parent
+                            anchors.margins: 5
+                            color: "transparent"
+                            fontSize: 12 * ToxicWaste.scaleFactorX()
+                            fontColor: "white"
+                            arrowIcon: "images/down_arrow_white.png"
+                            displayText: viewer.requestInfo(gameListModel[gamelistView.currentIndex].id, "gameinfo");
+                        }
                     }
                 }
             }
