@@ -267,6 +267,16 @@ bool ArcadeSettings::confirmQuit()
     return value(QString("Arcade/%1/confirmQuit").arg(arcadeTheme), true).toBool();
 }
 
+void ArcadeSettings::setGameCardPage(int page)
+{
+    setValue(QString("Arcade/%1/gameCardPage").arg(arcadeTheme), page);
+}
+
+int ArcadeSettings::gameCardPage()
+{
+    return value(QString("Arcade/%1/gameCardPage").arg(arcadeTheme), 0).toInt();
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);
