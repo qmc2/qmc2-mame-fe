@@ -36,7 +36,7 @@ FocusScope {
     property alias model: listView.model
     property int index: 0
     property alias arrowIcon: arrowIcon.source
-    property int maxDropDownItems: 5
+    property int maxDropDownItems: 6
     property int maxDropDownHeight: maxDropDownItems * container.height
     property bool openingDropDown: false
 
@@ -47,10 +47,10 @@ FocusScope {
     onFocusChanged: {
         if ( !container.activeFocus ) {
             close(false);
-            main.border.color = container.borderColor;
+            main.border.color = (mouseArea.containsMouse ? container.hoverColor : container.borderColor);
             main.border.width = 1;
         } else {
-            main.border.color = container.focusColor;
+            main.border.color = (mouseArea.containsMouse ? container.hoverColor : container.focusColor);
             main.border.width = 2;
         }
     }
@@ -67,18 +67,19 @@ FocusScope {
         id: main
         anchors.fill: parent
         color: container.color
-        border.color: container.activeFocus ? container.focusColor : container.borderColor
+        border.color: container.borderColor
         border.width: container.activeFocus ? 2 : 1
         smooth: true
         Behavior on border.color { ColorAnimation { duration: 50 } }
+        state: ""
         states: [
             State {
                 name: "hover"; when: mouseArea.containsMouse
-                PropertyChanges { target: main; border.width: container.activeFocus ? 2 : 1; border.color: container.activeFocus ? container.focusColor : container.hoverColor }
+                PropertyChanges { target: main; border.width: container.activeFocus ? 2 : 1; border.color: container.hoverColor }
             },
             State {
-                name: "focus"; when: container.activeFocus && !mouseArea.containsMouse
-                PropertyChanges { target: main; border.width: 1; border.color: container.focusColor }
+                name: "nohover"; when: !mouseArea.containsMouse
+                PropertyChanges { target: main; border.width: container.activeFocus ? 2 : 1; border.color: container.activeFocus ? container.focusColor : container.borderColor }
             }
         ]
     }
@@ -120,9 +121,10 @@ FocusScope {
         id: mouseArea
         anchors.fill: container
         hoverEnabled: true
-        onEntered: if (main.state == "") main.state = "hover";
-        onExited: if ( main.state == "hover" ) main.state = "";
-        onClicked: { container.focus = true; toggle() }
+        onClicked: {
+            container.focus = true;
+            toggle();
+        }
     }
 
     Keys.onPressed: {
@@ -138,7 +140,10 @@ FocusScope {
                 toggle();
             event.accepted = true;
         } else if ( event.key === Qt.Key_Enter || event.key === Qt.Key_Return ) {
-            close(dropDown.state == "visible");
+            if ( dropDown.state == "visible" )
+                close(true);
+            else
+                open();
             event.accepted = true;
         } else if ( event.key === Qt.Key_Escape && dropDown.state === "visible" ) {
             close(false);

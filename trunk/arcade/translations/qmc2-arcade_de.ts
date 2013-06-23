@@ -575,8 +575,8 @@
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="761"/>
-        <source>ToxicWaste</source>
-        <translation>ToxicWaste</translation>
+        <source>Switches</source>
+        <translation>Schalter</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="780"/>
@@ -609,22 +609,22 @@
         <translation>Gehäuse autom. skalieren/platzieren?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="949"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="960"/>
         <source>Backend</source>
         <translation>Backend</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="966"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="977"/>
         <source>Option</source>
         <translation>Option</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1018"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1029"/>
         <source>Value</source>
         <translation>Wert</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1060"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1071"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation>Um geänderte Standardwerte für Backend
@@ -632,22 +632,22 @@ Optionen wirksam werden zu lassen, bitte
 QMC2 Arcade neu starten!</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1086"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1097"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1188"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1199"/>
         <source>FPS</source>
         <translation>FPS</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1407"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1418"/>
         <source>Starting shader effect</source>
         <translation>Starte Shader-Effekt</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1409"/>
+        <location filename="../qml/ToxicWaste/ToxicWaste.qml" line="1420"/>
         <source>Shader effect stopped</source>
         <translation>Shader-Effekt gestoppt</translation>
     </message>

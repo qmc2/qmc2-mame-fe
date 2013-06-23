@@ -734,7 +734,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 300
-        height: 220
+        height: 230
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -757,8 +757,8 @@ Rectangle {
             smooth: true
             scaleFactor: ToxicWaste.scaleFactorX()
             Rectangle {
-                id: themePreferencesTab
-                property string title: qsTr("ToxicWaste")
+                id: preferencesSwitchesTab
+                property string title: qsTr("Switches")
                 property alias firstKeyNavItem: showBgAnimCheckBox
                 property alias lastKeyNavItem: autoPositionOverlayCheckBox
                 anchors.fill: parent
@@ -768,9 +768,9 @@ Rectangle {
                 border.color: preferencesTabWidget.activeBorderColor
                 CheckBox {
                     id: showBgAnimCheckBox
-                    anchors.top: themePreferencesTab.top
+                    anchors.top: preferencesSwitchesTab.top
                     anchors.topMargin: 10
-                    anchors.bottom: themePreferencesTab.top
+                    anchors.bottom: preferencesSwitchesTab.top
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
                     anchors.leftMargin: 10
@@ -944,8 +944,19 @@ Rectangle {
                     smooth: true
                 }
             }
+//            Rectangle {
+//                id: preferencesSlidersTab
+//                property string title: qsTr("Sliders")
+//                property alias firstKeyNavItem: cliOptionCombo
+//                property alias lastKeyNavItem: cliValueCombo
+//                anchors.fill: parent
+//                color: preferencesTabWidget.baseColor
+//                border.color: preferencesTabWidget.activeBorderColor
+//                radius: 5
+//                smooth: true
+//            }
             Rectangle {
-                id: backendPreferencesTab
+                id: preferencesBackendTab
                 property string title: qsTr("Backend")
                 property alias firstKeyNavItem: cliOptionCombo
                 property alias lastKeyNavItem: cliValueCombo

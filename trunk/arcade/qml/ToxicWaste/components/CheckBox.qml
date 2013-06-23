@@ -5,6 +5,8 @@ Rectangle {
     property variant text
     property bool checked: false
     property string textColor: "black"
+    property string frameColor: "black"
+    property color hoverColor: "#266294"
     signal clicked
     smooth: true
     color: "transparent"
@@ -17,8 +19,8 @@ Rectangle {
     onClicked: checked = !checked
     Rectangle {
         id: checkboxMark
-        border.color: "black"
-        border.width: 1
+        border.color: checkboxContainer.frameColor
+        border.width: checkboxContainer.activeFocus ? 2 : 1
         smooth: true
         anchors.left: checkboxContainer.left
         anchors.leftMargin: 0
@@ -39,9 +41,18 @@ Rectangle {
             visible: checkboxContainer.checked
         }
         MouseArea {
+            id: mouseArea
             anchors.fill: parent
+            hoverEnabled: true
             onClicked: checkboxContainer.clicked()
         }
+        Behavior on border.color { ColorAnimation { duration: 50 } }
+        states: [
+            State {
+                name: "hover"; when: mouseArea.containsMouse
+                PropertyChanges { target: checkboxMark; border.width: checkboxContainer.activeFocus ? 2 : 1; border.color: checkboxContainer.hoverColor }
+            }
+        ]
     }
     Text {
         id: checkboxText
