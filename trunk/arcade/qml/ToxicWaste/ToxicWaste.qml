@@ -789,10 +789,10 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: animInFgCheckBox
-                    KeyNavigation.backtab: closeButton
-                    KeyNavigation.right: animInFgCheckBox
-                    KeyNavigation.left: closeButton
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(animInFgCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(closeButton, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(animInFgCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(closeButton, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
@@ -818,10 +818,10 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: showShaderEffectCheckBox
-                    KeyNavigation.backtab: showBgAnimCheckBox
-                    KeyNavigation.right: showShaderEffectCheckBox
-                    KeyNavigation.left: showBgAnimCheckBox
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(showBgAnimCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(showBgAnimCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
@@ -847,10 +847,10 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: showFpsCheckBox
-                    KeyNavigation.backtab: animInFgCheckBox
-                    KeyNavigation.right: showFpsCheckBox
-                    KeyNavigation.left: animInFgCheckBox
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(animInFgCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(animInFgCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
@@ -876,10 +876,10 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: confirmQuitCheckBox
-                    KeyNavigation.backtab: showShaderEffectCheckBox
-                    KeyNavigation.right: confirmQuitCheckBox
-                    KeyNavigation.left: showShaderEffectCheckBox
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(confirmQuitCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(confirmQuitCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
@@ -905,10 +905,10 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: autoPositionOverlayCheckBox
-                    KeyNavigation.backtab: showFpsCheckBox
-                    KeyNavigation.right: autoPositionOverlayCheckBox
-                    KeyNavigation.left: showFpsCheckBox
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(autoPositionOverlayCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(autoPositionOverlayCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
@@ -937,10 +937,10 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: closeButton
-                    KeyNavigation.backtab: confirmQuitCheckBox
-                    KeyNavigation.right: closeButton
-                    KeyNavigation.left: confirmQuitCheckBox
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(closeButton, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(confirmQuitCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(closeButton, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(confirmQuitCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
             }
@@ -1011,10 +1011,10 @@ Rectangle {
                         cliValueCombo.setCurrentIndex(indexToSelect);
                         cliValueCombo.ready = true;
                     }
-                    KeyNavigation.tab: cliValueCombo
-                    KeyNavigation.backtab: closeButton
-                    KeyNavigation.right: cliValueCombo
-                    KeyNavigation.left: closeButton
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(cliValueCombo, preferencesBackendTab);
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(closeButton, preferencesBackendTab);
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(cliValueCombo, preferencesBackendTab);
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(closeButton, preferencesBackendTab);
                 }
                 Text {
                     id: cliValueText
@@ -1053,10 +1053,10 @@ Rectangle {
                                 viewer.setCliParamValue(cliParamName, cliParamValue);
                         }
                     }
-                    KeyNavigation.tab: closeButton
-                    KeyNavigation.backtab: cliOptionCombo
-                    KeyNavigation.right: closeButton
-                    KeyNavigation.left: cliOptionCombo
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(closeButton, preferencesBackendTab);
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(cliOptionCombo, preferencesBackendTab);
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(closeButton, preferencesBackendTab);
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(cliOptionCombo, preferencesBackendTab);
                 }
                 Text {
                     id: cliInfoText

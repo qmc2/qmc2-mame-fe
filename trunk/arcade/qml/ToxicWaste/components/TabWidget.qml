@@ -16,6 +16,17 @@ Item {
     onCurrentChanged: setOpacities()
     Component.onCompleted: setOpacities()
 
+    function pageId(childItem) {
+        var pgId = -1;
+        for (var i = 0; i < stack.children.length; i++) {
+            if ( childItem === stack.children[i] ) {
+                pgId = i;
+                break;
+            }
+        }
+        return pgId;
+    }
+
     function setOpacities() {
         for (var i = 0; i < stack.children.length; i++)
             stack.children[i].opacity = (i == current ? 1: 0);
@@ -31,6 +42,20 @@ Item {
 
     function lastKeyNavItem() {
         return stack.children[current].lastKeyNavItem;
+    }
+
+    function nextKeyNavItem(nextItem, page) {
+        if ( pageId(page) !== current )
+            return stack.children[current].firstKeyNavItem;
+        else
+            return nextItem;
+    }
+
+    function previousKeyNavItem(prevItem, page) {
+        if ( pageId(page) !== current )
+            return stack.children[current].lastKeyNavItem;
+        else
+            return prevItem;
     }
 
     Row {
