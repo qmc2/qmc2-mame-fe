@@ -14,7 +14,7 @@ Rectangle {
         boundsBehavior: Flickable.StopAtBounds
         contentHeight: textDisplay.height
         clip: true
-        Text {
+        Text { // I would like to use a read-only TextEdit here as it's much faster on transforms, but with Qt 4.8.4 at least this doesn't trigger the linkActivated signal (only when readOnly == false)
             id: textDisplay
             text: container.displayText
             font.pointSize: container.fontSize

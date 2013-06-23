@@ -119,6 +119,10 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
         rootObject()->setProperty("confirmQuit", globalConfig->confirmQuit());
         rootObject()->setProperty("gameCardPage", globalConfig->gameCardPage());
+        rootObject()->setProperty("autoPositionOverlay", globalConfig->autoPositionOverlay());
+        rootObject()->setProperty("overlayScale", globalConfig->overlayScale());
+        rootObject()->setProperty("overlayOffsetX", globalConfig->overlayOffsetX());
+        rootObject()->setProperty("overlayOffsetY", globalConfig->overlayOffsetY());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
         rootObject()->setProperty("dataTypePrimary", globalConfig->dataTypePrimary());
@@ -165,6 +169,10 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setMenuHidden(rootObject()->property("menuHidden").toBool());
         globalConfig->setConfirmQuit(rootObject()->property("confirmQuit").toBool());
         globalConfig->setGameCardPage(rootObject()->property("gameCardPage").toInt());
+        globalConfig->setAutoPositionOverlay(rootObject()->property("autoPositionOverlay").toBool());
+        globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
+        globalConfig->setOverlayOffsetX(rootObject()->property("overlayOffsetX").toInt());
+        globalConfig->setOverlayOffsetY(rootObject()->property("overlayOffsetY").toInt());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setDataTypePrimary(rootObject()->property("dataTypePrimary").toString());

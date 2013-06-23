@@ -48,13 +48,16 @@ public slots:
     void setDefaultLanguage(QString);
     QString defaultLanguage();
 
-    // theme-specific settings
+    // theme-specific settings (general)
     void setFpsVisible(bool);
     bool fpsVisible();
     void setFullScreen(bool);
     bool fullScreen();
     void setLastIndex(int);
     int lastIndex();
+    void setOverlayScale(double);
+    double overlayScale();
+
     // ToxicWaste
     void setShowBackgroundAnimation(bool);
     bool showBackgroundAnimation();
@@ -72,6 +75,13 @@ public slots:
     bool confirmQuit();
     void setGameCardPage(int);
     int gameCardPage();
+    void setAutoPositionOverlay(bool);
+    bool autoPositionOverlay();
+    void setOverlayOffsetX(int);
+    int overlayOffsetX();
+    void setOverlayOffsetY(int);
+    int overlayOffsetY();
+
     // darkone
     void setToolbarHidden(bool);
     bool toolbarHidden();
@@ -93,8 +103,6 @@ public slots:
     QString dataTypeSecondary();
     void setLightTimeout(double);
     double lightTimeout();
-    void setOverlayScale(double);
-    double overlayScale();
     void setColourScheme(QString);
     QString colourScheme();
 

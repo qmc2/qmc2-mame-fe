@@ -277,6 +277,36 @@ int ArcadeSettings::gameCardPage()
     return value(QString("Arcade/%1/gameCardPage").arg(arcadeTheme), 0).toInt();
 }
 
+void ArcadeSettings::setAutoPositionOverlay(bool autoPosition)
+{
+    setValue(QString("Arcade/%1/autoPositionOverlay").arg(arcadeTheme), autoPosition);
+}
+
+bool ArcadeSettings::autoPositionOverlay()
+{
+    return value(QString("Arcade/%1/autoPositionOverlay").arg(arcadeTheme), true).toBool();
+}
+
+void ArcadeSettings::setOverlayOffsetX(int offset)
+{
+    setValue(QString("Arcade/%1/overlayOffsetX").arg(arcadeTheme), offset);
+}
+
+int ArcadeSettings::overlayOffsetX()
+{
+    return value(QString("Arcade/%1/overlayOffsetX").arg(arcadeTheme), 0).toInt();
+}
+
+void ArcadeSettings::setOverlayOffsetY(int offset)
+{
+    setValue(QString("Arcade/%1/overlayOffsetY").arg(arcadeTheme), offset);
+}
+
+int ArcadeSettings::overlayOffsetY()
+{
+    return value(QString("Arcade/%1/overlayOffsetY").arg(arcadeTheme), 0).toInt();
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);

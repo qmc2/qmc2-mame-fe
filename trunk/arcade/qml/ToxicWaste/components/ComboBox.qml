@@ -36,7 +36,7 @@ FocusScope {
     property alias model: listView.model
     property int index: 0
     property alias arrowIcon: arrowIcon.source
-    property int maxDropDownItems: 4
+    property int maxDropDownItems: 5
     property int maxDropDownHeight: maxDropDownItems * container.height
     property bool openingDropDown: false
 

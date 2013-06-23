@@ -49,7 +49,7 @@ function itemClicked(itemText, itemBackground) {
 
 function overlayOffset(h) {
     var offset;
-    h = h * overlayImageFront.scale;
+    h *= overlayImageFront.scale;
     if ( h < toxicWasteMain.height )
         offset = 0;
     else

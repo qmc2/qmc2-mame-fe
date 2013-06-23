@@ -4,6 +4,7 @@ import "ToxicWaste.js" as ToxicWaste
 import "./animations"
 import "./components"
 import "./effects"
+import Wheel 1.0
 
 Rectangle {
     id: toxicWasteMain
@@ -27,6 +28,10 @@ Rectangle {
     property string version: ""
     property bool confirmQuit: true
     property int gameCardPage: 0
+    property bool autoPositionOverlay: true
+    property real overlayScale: 0.73
+    property int overlayOffsetX: 0
+    property int overlayOffsetY: 0
 
     // delayed init
     Timer {
@@ -97,7 +102,12 @@ Rectangle {
             id: overlayFlip
             anchors.fill: parent
             front: Item {
+                id: frontItem
                 anchors.fill: parent
+                scale: toxicWasteMain.autoPositionOverlay ? 1.0 : toxicWasteMain.overlayScale
+                property bool shiftPressed: false
+                property bool altPressed: false
+                property bool ctrlPressed: false
                 Image {
                     id: overlayImageFront
                     source: "images/overlay.png"
@@ -105,16 +115,15 @@ Rectangle {
                     width: 380
                     scale: ToxicWaste.scaleFactorX()
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: ToxicWaste.overlayOffset(height)
+                    anchors.verticalCenterOffset: toxicWasteMain.autoPositionOverlay ? ToxicWaste.overlayOffset(height) : overlayOffsetY
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.horizontalCenterOffset: 0
+                    anchors.horizontalCenterOffset: toxicWasteMain.autoPositionOverlay ? 0 : overlayOffsetX
                     smooth: true
                 }
                 Rectangle {
                     id: previewRect
                     width: 230
                     height: 170
-                    opacity: 1.0
                     anchors.verticalCenter: overlayImageFront.verticalCenter
                     anchors.verticalCenterOffset: -157 * ToxicWaste.scaleFactorX()
                     anchors.horizontalCenter: overlayImageFront.horizontalCenter
@@ -131,6 +140,36 @@ Rectangle {
                         anchors.centerIn: parent
                         fillMode: Image.PreserveAspectFit
                     }
+                }
+                WheelArea {
+                    anchors.fill: overlayImageFront
+                    onWheel: {
+                        if ( !toxicWasteMain.autoPositionOverlay ) {
+                            frontItem.focus = true;
+                            var wheelEventHandled = false;
+                            if ( frontItem.altPressed ) {
+                                wheelEventHandled = true;
+                                toxicWasteMain.overlayOffsetX += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
+                            }
+                            if ( frontItem.ctrlPressed ) {
+                                wheelEventHandled = true;
+                                toxicWasteMain.overlayOffsetY += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
+                            }
+                            if ( !wheelEventHandled )
+                                toxicWasteMain.overlayScale *= 1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta));
+                        }
+                    }
+                }
+                focus: true
+                Keys.onPressed: {
+                    frontItem.shiftPressed = event.modifiers & Qt.ShiftModifier
+                    frontItem.altPressed = event.modifiers & Qt.AltModifier
+                    frontItem.ctrlPressed = event.modifiers & Qt.ControlModifier
+                }
+                Keys.onReleased: {
+                    frontItem.shiftPressed = event.modifiers & Qt.ShiftModifier
+                    frontItem.altPressed = event.modifiers & Qt.AltModifier
+                    frontItem.ctrlPressed = event.modifiers & Qt.ControlModifier
                 }
             }
             back: Rectangle {
@@ -329,6 +368,7 @@ Rectangle {
                 State {
                     name: "front"
                     PropertyChanges { target: overlayRotation; angle: 0 }
+                    PropertyChanges { target: frontItem; focus: true }
                     when: !toxicWasteMain.cabinetFlipped
                 }
             ]
@@ -694,7 +734,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 300
-        height: 200
+        height: 220
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -720,7 +760,7 @@ Rectangle {
                 id: themePreferencesTab
                 property string title: qsTr("ToxicWaste")
                 property alias firstKeyNavItem: showBgAnimCheckBox
-                property alias lastKeyNavItem: confirmQuitCheckBox
+                property alias lastKeyNavItem: autoPositionOverlayCheckBox
                 anchors.fill: parent
                 color: preferencesTabWidget.baseColor
                 radius: 5
@@ -737,7 +777,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.showBackgroundAnimation
-                    text: qsTr("Show background animation?")
+                    text: qsTr("Show floating-bubbles animation?")
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.showBackgroundAnimation = checked;
@@ -766,7 +806,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.animateInForeground
-                    text: qsTr("Animate in foreground?")
+                    text: qsTr("Draw animation in the foreground?")
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.animateInForeground = checked;
@@ -795,7 +835,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.showShaderEffect
-                    text: qsTr("Show shader effect?")
+                    text: qsTr("Show radial wave effect on background?")
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.showShaderEffect = checked;
@@ -824,7 +864,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.fpsVisible
-                    text: qsTr("Show FPS counter?")
+                    text: qsTr("Show FPS counter in the menu-bar?")
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.fpsVisible = checked;
@@ -853,7 +893,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.confirmQuit
-                    text: qsTr("Confirm quit?")
+                    text: qsTr("Confirm when quitting the application?")
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.confirmQuit = checked;
@@ -865,10 +905,42 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: closeButton
+                    KeyNavigation.tab: autoPositionOverlayCheckBox
                     KeyNavigation.backtab: showFpsCheckBox
-                    KeyNavigation.right: closeButton
+                    KeyNavigation.right: autoPositionOverlayCheckBox
                     KeyNavigation.left: showFpsCheckBox
+                    smooth: true
+                }
+                CheckBox {
+                    id: autoPositionOverlayCheckBox
+                    anchors.top: confirmQuitCheckBox.bottom
+                    anchors.topMargin: 10
+                    anchors.bottom: confirmQuitCheckBox.bottom
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.autoPositionOverlay
+                    text: qsTr("Scale & position cabinet automatically?")
+                    textColor: "black"
+                    onClicked: {
+                        toxicWasteMain.autoPositionOverlay = checked;
+                        toxicWasteMain.overlayScale = 1.0;
+                        toxicWasteMain.overlayOffsetX = 0;
+                        toxicWasteMain.overlayOffsetY = ToxicWaste.overlayOffset(overlayImageFront.height);
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                        focus = true;
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: closeButton
+                    KeyNavigation.backtab: confirmQuitCheckBox
+                    KeyNavigation.right: closeButton
+                    KeyNavigation.left: confirmQuitCheckBox
                     smooth: true
                 }
             }
