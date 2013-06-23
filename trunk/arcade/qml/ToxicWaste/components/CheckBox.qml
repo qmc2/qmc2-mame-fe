@@ -51,6 +51,10 @@ Rectangle {
             State {
                 name: "hover"; when: mouseArea.containsMouse
                 PropertyChanges { target: checkboxMark; border.width: checkboxContainer.activeFocus ? 2 : 1; border.color: checkboxContainer.hoverColor }
+            },
+            State {
+                name: "nohover"; when: !mouseArea.containsMouse
+                PropertyChanges { target: checkboxMark; border.width: checkboxContainer.activeFocus ? 2 : 1; border.color: checkboxContainer.frameColor }
             }
         ]
     }
