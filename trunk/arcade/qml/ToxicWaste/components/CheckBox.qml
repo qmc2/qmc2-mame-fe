@@ -65,7 +65,9 @@ Rectangle {
         color: checkboxContainer.textColor
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
+        anchors.right: parent.right
         smooth: true
+        elide: Text.ElideRight
     }
     Keys.onPressed: {
         switch ( event.key ) {

@@ -384,7 +384,7 @@ Rectangle {
                     toxicWasteMain.flipDirectionChanged = !toxicWasteMain.horizontalFlip;
                     toxicWasteMain.invertFlip = flipDirectionChanged ? toxicWasteMain.cabinetFlipped : false;
                     toxicWasteMain.horizontalFlip = true;
-                    searchTextInput.focus = false;
+                    toxicWasteMain.focus = true;
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
                     flipDirectionResetTimer.restart();
                 }
@@ -399,7 +399,7 @@ Rectangle {
                     toxicWasteMain.flipDirectionChanged = !toxicWasteMain.horizontalFlip;
                     toxicWasteMain.invertFlip = flipDirectionChanged ? !toxicWasteMain.cabinetFlipped : true;
                     toxicWasteMain.horizontalFlip = true;
-                    searchTextInput.focus = false;
+                    toxicWasteMain.focus = true;
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
                     flipDirectionResetTimer.restart();
                 }
@@ -412,7 +412,7 @@ Rectangle {
                     toxicWasteMain.flipDirectionChanged = toxicWasteMain.horizontalFlip;
                     toxicWasteMain.invertFlip = flipDirectionChanged ? toxicWasteMain.cabinetFlipped : false;
                     toxicWasteMain.horizontalFlip = false;
-                    searchTextInput.focus = false;
+                    toxicWasteMain.focus = true;
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
                     flipDirectionResetTimer.restart();
                 }
@@ -425,7 +425,7 @@ Rectangle {
                     toxicWasteMain.flipDirectionChanged = toxicWasteMain.horizontalFlip;
                     toxicWasteMain.invertFlip = flipDirectionChanged ? !toxicWasteMain.cabinetFlipped : true;
                     toxicWasteMain.horizontalFlip = false;
-                    searchTextInput.focus = false;
+                    toxicWasteMain.focus = true;
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
                     flipDirectionResetTimer.restart();
                 }
@@ -773,7 +773,7 @@ Rectangle {
                     anchors.bottom: preferencesSwitchesTab.top
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 5
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.showBackgroundAnimation
@@ -802,7 +802,7 @@ Rectangle {
                     anchors.bottom: showBgAnimCheckBox.bottom
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 5
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.animateInForeground
@@ -831,7 +831,7 @@ Rectangle {
                     anchors.bottom: animInFgCheckBox.bottom
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 5
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.showShaderEffect
@@ -860,7 +860,7 @@ Rectangle {
                     anchors.bottom: showShaderEffectCheckBox.bottom
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 5
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.fpsVisible
@@ -889,7 +889,7 @@ Rectangle {
                     anchors.bottom: showFpsCheckBox.bottom
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 5
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.confirmQuit
@@ -918,7 +918,7 @@ Rectangle {
                     anchors.bottom: confirmQuitCheckBox.bottom
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 5
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.autoPositionOverlay
@@ -954,6 +954,9 @@ Rectangle {
 //                border.color: preferencesTabWidget.activeBorderColor
 //                radius: 5
 //                smooth: true
+//                Slider {
+//                    anchors.fill: parent
+//                }
 //            }
             Rectangle {
                 id: preferencesBackendTab
