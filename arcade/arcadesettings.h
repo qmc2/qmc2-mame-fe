@@ -85,6 +85,8 @@ public slots:
     double overlayOpacity();
     void setBackgroundOpacity(double);
     double backgroundOpacity();
+    void setGameListOpacity(double);
+    double gameListOpacity();
 
     // darkone
     void setToolbarHidden(bool);
