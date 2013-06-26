@@ -120,9 +120,11 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("confirmQuit", globalConfig->confirmQuit());
         rootObject()->setProperty("gameCardPage", globalConfig->gameCardPage());
         rootObject()->setProperty("autoPositionOverlay", globalConfig->autoPositionOverlay());
-        rootObject()->setProperty("overlayScale", globalConfig->overlayScale());
+        rootObject()->setProperty("overlayScale", std::max(0.0, std::min(10.0, globalConfig->overlayScale())));
         rootObject()->setProperty("overlayOffsetX", globalConfig->overlayOffsetX());
         rootObject()->setProperty("overlayOffsetY", globalConfig->overlayOffsetY());
+        rootObject()->setProperty("overlayOpacity", globalConfig->overlayOpacity());
+        rootObject()->setProperty("backgroundOpacity", globalConfig->backgroundOpacity());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
         rootObject()->setProperty("dataTypePrimary", globalConfig->dataTypePrimary());
@@ -171,8 +173,10 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setGameCardPage(rootObject()->property("gameCardPage").toInt());
         globalConfig->setAutoPositionOverlay(rootObject()->property("autoPositionOverlay").toBool());
         globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
-        globalConfig->setOverlayOffsetX(rootObject()->property("overlayOffsetX").toInt());
-        globalConfig->setOverlayOffsetY(rootObject()->property("overlayOffsetY").toInt());
+        globalConfig->setOverlayOffsetX(rootObject()->property("overlayOffsetX").toDouble());
+        globalConfig->setOverlayOffsetY(rootObject()->property("overlayOffsetY").toDouble());
+        globalConfig->setOverlayOpacity(rootObject()->property("overlayOpacity").toDouble());
+        globalConfig->setBackgroundOpacity(rootObject()->property("backgroundOpacity").toDouble());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setDataTypePrimary(rootObject()->property("dataTypePrimary").toString());

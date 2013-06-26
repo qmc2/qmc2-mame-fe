@@ -30,8 +30,10 @@ Rectangle {
     property int gameCardPage: 0
     property bool autoPositionOverlay: true
     property real overlayScale: 0.73
-    property int overlayOffsetX: 0
-    property int overlayOffsetY: 0
+    property real overlayOffsetX: 0
+    property real overlayOffsetY: 0
+    property real overlayOpacity: 1
+    property real backgroundOpacity: 0.7
 
     // delayed init
     Timer {
@@ -85,15 +87,15 @@ Rectangle {
         source: "images/toxic.png"
         z: 2
         smooth: true
-        opacity: 0.7
+        opacity: toxicWasteMain.backgroundOpacity
     }
     Item {
         id: overlayItem
         z: 3
         anchors.top: parent.top
-        anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
+        anchors.topMargin: 10 * ToxicWaste.scaleFactorY()
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10 * ToxicWaste.scaleFactorX()
+        anchors.bottomMargin: 10 * ToxicWaste.scaleFactorY()
         anchors.left: parent.left
         anchors.leftMargin: 20 * ToxicWaste.scaleFactorX()
         anchors.right: parent.right
@@ -104,30 +106,29 @@ Rectangle {
             front: Item {
                 id: frontItem
                 anchors.fill: parent
-                scale: toxicWasteMain.autoPositionOverlay ? 1.0 : toxicWasteMain.overlayScale
+                scale: toxicWasteMain.autoPositionOverlay ? 1 : toxicWasteMain.overlayScale
                 property bool shiftPressed: false
                 property bool altPressed: false
                 property bool ctrlPressed: false
                 Image {
-                    id: overlayImageFront
+                    id: overlayImage
                     source: "images/overlay.png"
+                    opacity: toxicWasteMain.overlayOpacity
                     fillMode: Image.PreserveAspectFit
                     width: 380
                     scale: ToxicWaste.scaleFactorX()
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.verticalCenterOffset: toxicWasteMain.autoPositionOverlay ? ToxicWaste.overlayOffset(height) : overlayOffsetY
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.horizontalCenterOffset: toxicWasteMain.autoPositionOverlay ? 0 : overlayOffsetX
+                    anchors.centerIn: parent
+                    anchors.verticalCenterOffset: toxicWasteMain.autoPositionOverlay ? ToxicWaste.overlayOffset(height) : toxicWasteMain.overlayOffsetY
+                    anchors.horizontalCenterOffset: toxicWasteMain.autoPositionOverlay ? 0 : (toxicWasteMain.overlayOffsetX + toxicWasteMain.mapToItem(parent, toxicWasteMain.width/2, 0).x - parent.width/2) * toxicWasteMain.overlayScale / toxicWasteMain.overlayScale
                     smooth: true
                 }
                 Rectangle {
                     id: previewRect
                     width: 230
                     height: 170
-                    anchors.verticalCenter: overlayImageFront.verticalCenter
+                    opacity: toxicWasteMain.overlayOpacity
+                    anchors.centerIn: overlayImage
                     anchors.verticalCenterOffset: -157 * ToxicWaste.scaleFactorX()
-                    anchors.horizontalCenter: overlayImageFront.horizontalCenter
-                    anchors.horizontalCenterOffset: 0
                     scale: ToxicWaste.scaleFactorX()
                     color: "#202020"
                     smooth: true
@@ -142,7 +143,7 @@ Rectangle {
                     }
                 }
                 WheelArea {
-                    anchors.fill: overlayImageFront
+                    anchors.fill: overlayImage
                     onWheel: {
                         if ( !toxicWasteMain.autoPositionOverlay ) {
                             frontItem.focus = true;
@@ -155,8 +156,10 @@ Rectangle {
                                 wheelEventHandled = true;
                                 toxicWasteMain.overlayOffsetY += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
                             }
-                            if ( !wheelEventHandled )
+                            if ( !wheelEventHandled ) {
                                 toxicWasteMain.overlayScale *= 1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta));
+                                preferencesSlidersTab.cabinetZoomValue = toxicWasteMain.overlayScale;
+                            }
                         }
                     }
                 }
@@ -926,9 +929,6 @@ Rectangle {
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.autoPositionOverlay = checked;
-                        toxicWasteMain.overlayScale = 1.0;
-                        toxicWasteMain.overlayOffsetX = 0;
-                        toxicWasteMain.overlayOffsetY = ToxicWaste.overlayOffset(overlayImageFront.height);
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
                         focus = true;
@@ -944,20 +944,85 @@ Rectangle {
                     smooth: true
                 }
             }
-//            Rectangle {
-//                id: preferencesSlidersTab
-//                property string title: qsTr("Sliders")
-//                property alias firstKeyNavItem: cliOptionCombo
-//                property alias lastKeyNavItem: cliValueCombo
-//                anchors.fill: parent
-//                color: preferencesTabWidget.baseColor
-//                border.color: preferencesTabWidget.activeBorderColor
-//                radius: 5
-//                smooth: true
-//                Slider {
-//                    anchors.fill: parent
-//                }
-//            }
+            Rectangle {
+                id: preferencesSlidersTab
+                property string title: qsTr("Sliders")
+                property alias firstKeyNavItem: cliOptionCombo
+                property alias lastKeyNavItem: cliValueCombo
+                property alias cabinetZoomValue: cabinetZoomSlider.value
+                anchors.fill: parent
+                color: preferencesTabWidget.baseColor
+                border.color: preferencesTabWidget.activeBorderColor
+                radius: 5
+                smooth: true
+                Slider {
+                    id: cabinetZoomSlider
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Cabinet zoom")
+                    minimum: 0.01
+                    maximum: 10
+                    value: toxicWasteMain.overlayScale
+                    defaultValue: 1
+                    onValueChanged: toxicWasteMain.overlayScale = value
+                }
+                Slider {
+                    id: cabinetOffsetXSlider
+                    anchors.top: cabinetZoomSlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Cabinet X center offset")
+                    minimum: (-toxicWasteMain.width/2 - 514 * toxicWasteMain.overlayScale) / toxicWasteMain.overlayScale
+                    maximum: (toxicWasteMain.width/2 + 514 * toxicWasteMain.overlayScale) / toxicWasteMain.overlayScale
+                    showAsPercent: false
+                    value: toxicWasteMain.overlayOffsetX
+                    defaultValue: 0
+                    onValueChanged: toxicWasteMain.overlayOffsetX = value
+                }
+                Slider {
+                    id: cabinetOffsetYSlider
+                    anchors.top: cabinetOffsetXSlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Cabinet Y center offset")
+                    minimum: (-toxicWasteMain.height/2 - 1104 * toxicWasteMain.overlayScale) / toxicWasteMain.overlayScale
+                    maximum: (toxicWasteMain.height/2 + 1104 * toxicWasteMain.overlayScale) / toxicWasteMain.overlayScale
+                    showAsPercent: false
+                    value: toxicWasteMain.overlayOffsetY
+                    defaultValue: 0
+                    onValueChanged: toxicWasteMain.overlayOffsetY = value
+                }
+                Slider {
+                    id: cabinetOpacitySlider
+                    anchors.top: cabinetOffsetYSlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Cabinet opacity")
+                    minimum: 0
+                    maximum: 1
+                    value: toxicWasteMain.overlayOpacity
+                    defaultValue: 1
+                    onValueChanged: toxicWasteMain.overlayOpacity = value
+                }
+                Slider {
+                    id: backgroundOpacitySlider
+                    anchors.top: cabinetOpacitySlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Background opacity")
+                    minimum: 0
+                    maximum: 1
+                    value: toxicWasteMain.backgroundOpacity
+                    defaultValue: 0.7
+                    onValueChanged: toxicWasteMain.backgroundOpacity = value
+                }
+            }
             Rectangle {
                 id: preferencesBackendTab
                 property string title: qsTr("Backend")

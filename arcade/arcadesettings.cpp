@@ -287,24 +287,44 @@ bool ArcadeSettings::autoPositionOverlay()
     return value(QString("Arcade/%1/autoPositionOverlay").arg(arcadeTheme), true).toBool();
 }
 
-void ArcadeSettings::setOverlayOffsetX(int offset)
+void ArcadeSettings::setOverlayOffsetX(double offset)
 {
     setValue(QString("Arcade/%1/overlayOffsetX").arg(arcadeTheme), offset);
 }
 
-int ArcadeSettings::overlayOffsetX()
+double ArcadeSettings::overlayOffsetX()
 {
-    return value(QString("Arcade/%1/overlayOffsetX").arg(arcadeTheme), 0).toInt();
+    return value(QString("Arcade/%1/overlayOffsetX").arg(arcadeTheme), 0).toDouble();
 }
 
-void ArcadeSettings::setOverlayOffsetY(int offset)
+void ArcadeSettings::setOverlayOffsetY(double offset)
 {
     setValue(QString("Arcade/%1/overlayOffsetY").arg(arcadeTheme), offset);
 }
 
-int ArcadeSettings::overlayOffsetY()
+double ArcadeSettings::overlayOffsetY()
 {
-    return value(QString("Arcade/%1/overlayOffsetY").arg(arcadeTheme), 0).toInt();
+    return value(QString("Arcade/%1/overlayOffsetY").arg(arcadeTheme), 0).toDouble();
+}
+
+void ArcadeSettings::setOverlayOpacity(double opacity)
+{
+    setValue(QString("Arcade/%1/overlayOpacity").arg(arcadeTheme), opacity);
+}
+
+double ArcadeSettings::overlayOpacity()
+{
+    return value(QString("Arcade/%1/overlayOpacity").arg(arcadeTheme), 1).toDouble();
+}
+
+void ArcadeSettings::setBackgroundOpacity(double opacity)
+{
+    setValue(QString("Arcade/%1/backgroundOpacity").arg(arcadeTheme), opacity);
+}
+
+double ArcadeSettings::backgroundOpacity()
+{
+    return value(QString("Arcade/%1/backgroundOpacity").arg(arcadeTheme), 1).toDouble();
 }
 
 void ArcadeSettings::setToolbarHidden(bool hidden)
