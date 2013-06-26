@@ -34,6 +34,7 @@ Rectangle {
     property real overlayOffsetY: 0
     property real overlayOpacity: 1
     property real backgroundOpacity: 0.7
+    property real gameListOpacity: 1
 
     // delayed init
     Timer {
@@ -157,7 +158,12 @@ Rectangle {
                                 toxicWasteMain.overlayOffsetY += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
                             }
                             if ( !wheelEventHandled ) {
-                                toxicWasteMain.overlayScale *= 1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta));
+                                var newScale = toxicWasteMain.overlayScale * (1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta)));
+                                if ( newScale > 10.0 )
+                                    newScale = 10.0;
+                                else if ( newScale < 0.01 )
+                                    newScale = 0.01;
+                                toxicWasteMain.overlayScale = newScale;
                                 preferencesSlidersTab.cabinetZoomValue = toxicWasteMain.overlayScale;
                             }
                         }
@@ -470,6 +476,7 @@ Rectangle {
     }
     ListView {
         id: gamelistView
+        opacity: toxicWasteMain.gameListOpacity
         scale: ToxicWaste.scaleFactorX()
         flickDeceleration: 2000
         maximumFlickVelocity: 4000
@@ -1021,6 +1028,19 @@ Rectangle {
                     value: toxicWasteMain.backgroundOpacity
                     defaultValue: 0.7
                     onValueChanged: toxicWasteMain.backgroundOpacity = value
+                }
+                Slider {
+                    id: gameListOpacitySlider
+                    anchors.top: backgroundOpacitySlider.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.margins: 5
+                    sliderText: qsTr("Game list opacity")
+                    minimum: 0
+                    maximum: 1
+                    value: toxicWasteMain.gameListOpacity
+                    defaultValue: 1
+                    onValueChanged: toxicWasteMain.gameListOpacity = value
                 }
             }
             Rectangle {
