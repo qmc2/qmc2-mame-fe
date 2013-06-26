@@ -77,10 +77,14 @@ public slots:
     int gameCardPage();
     void setAutoPositionOverlay(bool);
     bool autoPositionOverlay();
-    void setOverlayOffsetX(int);
-    int overlayOffsetX();
-    void setOverlayOffsetY(int);
-    int overlayOffsetY();
+    void setOverlayOffsetX(double);
+    double overlayOffsetX();
+    void setOverlayOffsetY(double);
+    double overlayOffsetY();
+    void setOverlayOpacity(double);
+    double overlayOpacity();
+    void setBackgroundOpacity(double);
+    double backgroundOpacity();
 
     // darkone
     void setToolbarHidden(bool);

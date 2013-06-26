@@ -34,6 +34,7 @@
         <file>qml/ToxicWaste/images/green_bubble.png</file>
         <file>qml/ToxicWaste/images/blue_bubble.png</file>
         <file>qml/ToxicWaste/images/purple_bubble.png</file>
+        <file>qml/ToxicWaste/images/x.png</file>
         <file>qml/darkone/components/Button.qml</file>
         <file>qml/darkone/components/CheckBox.qml</file>
         <file>qml/darkone/components/CheckableGroup.qml</file>
