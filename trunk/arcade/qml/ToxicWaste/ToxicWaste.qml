@@ -120,7 +120,7 @@ Rectangle {
                     scale: ToxicWaste.scaleFactorX()
                     anchors.centerIn: parent
                     anchors.verticalCenterOffset: toxicWasteMain.autoPositionOverlay ? ToxicWaste.overlayOffset(height) : toxicWasteMain.overlayOffsetY
-                    anchors.horizontalCenterOffset: toxicWasteMain.autoPositionOverlay ? 0 : (toxicWasteMain.overlayOffsetX + toxicWasteMain.mapToItem(parent, toxicWasteMain.width/2, 0).x - parent.width/2) * toxicWasteMain.overlayScale / toxicWasteMain.overlayScale
+                    anchors.horizontalCenterOffset: toxicWasteMain.autoPositionOverlay ? 0 : (toxicWasteMain.overlayOffsetX + toxicWasteMain.mapToItem(parent, toxicWasteMain.width/2, 0).x - parent.width/2) * toxicWasteMain.overlayScale / toxicWasteMain.overlayScale // <= this is funny, I know, but seems to be the only way to trigger a recalculation when overlayScale changes
                     smooth: true
                 }
                 Rectangle {

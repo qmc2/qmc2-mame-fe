@@ -83,6 +83,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 		comboBoxConsoleType->setCurrentIndex(index);
 
 	// game list filter
+	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
+	checkBoxTaggedSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", false).toBool());
 	checkBoxUseFilteredList->setChecked(qmc2Config->value(QMC2_ARCADE_PREFIX + "UseFilteredList", false).toBool());
 	lineEditFilteredListFile->setText(qmc2Config->value(QMC2_ARCADE_PREFIX + "FilteredListFile", qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile", QString()).toString() + ".filtered").toString());
 	toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectC", true).toBool());
@@ -120,6 +122,8 @@ void ArcadeModeSetup::saveSettings()
 	// game list filter
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "UseFilteredList", checkBoxUseFilteredList->isChecked());
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "FilteredListFile", lineEditFilteredListFile->text());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", checkBoxFavoriteSetsOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", checkBoxTaggedSetsOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SelectC", toolButtonSelectC->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SelectM", toolButtonSelectM->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SelectI", toolButtonSelectI->isChecked());
@@ -225,6 +229,12 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 	toolButtonBrowseFilteredListFile->setEnabled(enable);
 	pushButtonExport->setEnabled(enable && isWritableFile(lineEditFilteredListFile->text()));
 	progressBarFilter->setEnabled(enable);
+
+	checkBoxFavoriteSetsOnly->setEnabled(enable);
+	checkBoxTaggedSetsOnly->setEnabled(enable);
+
+	enable &= !checkBoxFavoriteSetsOnly->isChecked() && !checkBoxTaggedSetsOnly->isChecked();
+
 	toolButtonSelectC->setEnabled(enable);
 	toolButtonSelectM->setEnabled(enable);
 	toolButtonSelectI->setEnabled(enable);
@@ -238,6 +248,20 @@ void ArcadeModeSetup::on_checkBoxUseFilteredList_toggled(bool enable)
 	lineEditNameFilter->setEnabled(enable);
 	toolButtonClearNameFilter->setEnabled(enable);
 	listWidgetCategoryFilter->setEnabled(enable);
+}
+
+void ArcadeModeSetup::on_checkBoxFavoriteSetsOnly_toggled(bool enable)
+{
+	if ( checkBoxFavoriteSetsOnly->isEnabled() && enable )
+		checkBoxTaggedSetsOnly->setChecked(false);
+	on_checkBoxUseFilteredList_toggled(true);
+}
+
+void ArcadeModeSetup::on_checkBoxTaggedSetsOnly_toggled(bool enable)
+{
+	if ( checkBoxTaggedSetsOnly->isEnabled() && enable )
+		checkBoxFavoriteSetsOnly->setChecked(false);
+	on_checkBoxUseFilteredList_toggled(true);
 }
 
 void ArcadeModeSetup::on_toolButtonBrowseExecutableFile_clicked()
@@ -304,20 +328,51 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 	foreach (QString game, qmc2GamelistItemMap.keys()) {
 		progressBarFilter->setValue(++itemCount);
+
+		// no devices
+		if ( qmc2DeviceROMs.contains(game) )
+			continue;
+
+		// tagged
+		if ( checkBoxTaggedSetsOnly->isChecked() ) {
+			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
+			if ( gameItem && gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+				selectedGames << gameItem;
+			continue;
+		}
+
+		// favorites
+		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
+			GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
+			if ( gameItem ) {
+				QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
+				if ( !favoritesMatches.isEmpty() )
+					selectedGames << gameItem;
+			}
+			continue;
+		}
+
+		// name filter
 		if ( !nameFilter.isEmpty() )
 			if ( game.indexOf(nameFilterRegExp) < 0 )
 				continue;
+
+		// category
 		QString *categoryPtr = qmc2CategoryMap[game];
 		QString category;
 		if ( categoryPtr )
 			category = *categoryPtr;
 		else
 			category = tr("?");
-		if ( qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
+
+		if ( !qmc2CategoryMap.isEmpty() && excludedCategories.contains(category) )
 			continue;
+
 		GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
 		if ( !gameItem )
 			continue;
+
+		// driver status
 		if ( minDrvStatus < QMC2_ARCADE_DRV_STATUS_PRELIMINARY ) {
 			QString drvStatus = gameItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT);
 			if ( minDrvStatus == QMC2_ARCADE_DRV_STATUS_IMPERFECT ) {
@@ -328,6 +383,8 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 					continue;
 			}
 		}
+
+		// ROM status
 		switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
 			case QMC2_ROMSTATE_CHAR_C:
 				if ( toolButtonSelectC->isChecked() )
@@ -385,6 +442,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_SRCFILE) << "\n";
 	}
 
+	progressBarFilter->setRange(0, 100);
 	progressBarFilter->setValue(0);
 	progressBarFilter->setFormat(tr("Idle"));
 	filteredListFile.close();

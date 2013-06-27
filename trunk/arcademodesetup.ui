@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>308</width>
-    <height>372</height>
+    <width>309</width>
+    <height>406</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -283,7 +283,27 @@
        <string>Game list filter</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="10" column="0" colspan="4">
+       <item row="5" column="0" colspan="4">
+        <widget class="Line" name="horizontalLine2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QLabel" name="labelCategoryFilter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Category filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="0" colspan="4">
         <widget class="QListWidget" name="listWidgetCategoryFilter">
          <property name="enabled">
           <bool>false</bool>
@@ -293,7 +313,7 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="1" colspan="3">
+       <item row="9" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxDriverStatus">
          <property name="enabled">
           <bool>false</bool>
@@ -318,7 +338,7 @@
          </item>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="7" column="0">
         <widget class="QLabel" name="labelSortCriteria">
          <property name="text">
           <string>Sort criteria</string>
@@ -348,7 +368,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1" colspan="3">
+       <item row="6" column="1" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
           <number>0</number>
@@ -496,7 +516,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="labelROMStatesToSelect">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -509,7 +529,7 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="3">
+       <item row="10" column="3">
         <widget class="QToolButton" name="toolButtonClearNameFilter">
          <property name="enabled">
           <bool>false</bool>
@@ -529,7 +549,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1" colspan="3">
+       <item row="7" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxSortCriteria">
          <property name="enabled">
           <bool>false</bool>
@@ -596,13 +616,13 @@
         </widget>
        </item>
        <item row="3" column="0" colspan="4">
-        <widget class="Line" name="line">
+        <widget class="Line" name="horizontalLine1">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="6" column="1" colspan="3">
+       <item row="8" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxSortOrder">
          <property name="enabled">
           <bool>false</bool>
@@ -646,21 +666,21 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="10" column="0">
         <widget class="QLabel" name="labelNameFilter">
          <property name="text">
           <string>Name filter</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="9" column="0">
         <widget class="QLabel" name="labelDriverStatus">
          <property name="text">
           <string>Driver status</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="labelSortOrder">
          <property name="text">
           <string>Sort order</string>
@@ -683,20 +703,7 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
-        <widget class="QLabel" name="labelCategoryFilter">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Category filter</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="3">
+       <item row="11" column="3">
         <widget class="QToolButton" name="toolButtonDeselectAll">
          <property name="toolTip">
           <string>Deselect all categories</string>
@@ -707,7 +714,7 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="2">
+       <item row="11" column="2">
         <widget class="QToolButton" name="toolButtonSelectAll">
          <property name="toolTip">
           <string>Select all categories</string>
@@ -718,7 +725,7 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="1" colspan="2">
+       <item row="10" column="1" colspan="2">
         <widget class="QLineEdit" name="lineEditNameFilter">
          <property name="enabled">
           <bool>false</bool>
@@ -749,6 +756,42 @@
           <string>Output file used as the filtered game list</string>
          </property>
         </widget>
+       </item>
+       <item row="4" column="0" colspan="4">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QCheckBox" name="checkBoxFavoriteSetsOnly">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Use only sets included in the favorites list?</string>
+           </property>
+           <property name="text">
+            <string>Use only favorite sets</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxTaggedSetsOnly">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Use only sets that are tagged?</string>
+           </property>
+           <property name="text">
+            <string>Use only tagged sets</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -821,6 +864,8 @@
   <tabstop>lineEditFilteredListFile</tabstop>
   <tabstop>toolButtonBrowseFilteredListFile</tabstop>
   <tabstop>pushButtonExport</tabstop>
+  <tabstop>checkBoxFavoriteSetsOnly</tabstop>
+  <tabstop>checkBoxTaggedSetsOnly</tabstop>
   <tabstop>toolButtonSelectC</tabstop>
   <tabstop>toolButtonSelectM</tabstop>
   <tabstop>toolButtonSelectI</tabstop>
