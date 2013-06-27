@@ -21,6 +21,8 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		void updateCategoryFilter();
 		void saveCategoryFilter();
 		void on_checkBoxUseFilteredList_toggled(bool);
+		void on_checkBoxFavoriteSetsOnly_toggled(bool);
+		void on_checkBoxTaggedSetsOnly_toggled(bool);
 		void on_pushButtonExport_clicked();
 		void on_toolButtonBrowseExecutableFile_clicked();
 		void on_toolButtonBrowseWorkingDirectory_clicked();

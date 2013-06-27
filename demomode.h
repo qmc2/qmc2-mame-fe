@@ -6,34 +6,37 @@
 
 class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QStringList selectedGames;
-    QProcess *emuProcess;
-    bool demoModeRunning;
-    int seqNum;
+	public:
+		QStringList selectedGames;
+		QProcess *emuProcess;
+		bool demoModeRunning;
+		int seqNum;
 
-    DemoModeDialog(QWidget *parent = 0);
-    ~DemoModeDialog();
+		DemoModeDialog(QWidget *parent = 0);
+		~DemoModeDialog();
 
-  public slots:
-    void adjustIconSizes();
-    void on_pushButtonRunDemo_clicked();
-    void emuFinished(int, QProcess::ExitStatus);
-    void emuStarted();
-    void startNextEmu();
-    void setStatus(QString);
-    void clearStatus() { setStatus(QString()); }
-    void updateCategoryFilter();
-    void saveCategoryFilter();
-    void on_toolButtonSelectAll_clicked();
-    void on_toolButtonDeselectAll_clicked();
+	public slots:
+		void adjustIconSizes();
+		void on_pushButtonRunDemo_clicked();
+		void emuFinished(int, QProcess::ExitStatus);
+		void emuStarted();
+		void startNextEmu();
+		void setStatus(QString);
+		void clearStatus() { setStatus(QString()); }
+		void updateCategoryFilter();
+		void saveCategoryFilter();
+		void on_toolButtonSelectAll_clicked();
+		void on_toolButtonDeselectAll_clicked();
+		void on_checkBoxTagged_toggled(bool);
+		void on_checkBoxFavorites_toggled(bool);
+		void enableFilters(bool);
 
-  protected:
-    void closeEvent(QCloseEvent *);
-    void hideEvent(QHideEvent *) { closeEvent(NULL); };
-    void showEvent(QShowEvent *);
+	protected:
+		void closeEvent(QCloseEvent *);
+		void hideEvent(QHideEvent *) { closeEvent(NULL); }
+		void showEvent(QShowEvent *);
 };
 
 #endif

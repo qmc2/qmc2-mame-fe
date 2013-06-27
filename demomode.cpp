@@ -49,6 +49,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   checkBoxEmbedded->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", false).toBool());
 #endif
   checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
+  checkBoxFavorites->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Favorites", false).toBool());
   checkBoxSequential->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", false).toBool());
   spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
   spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
@@ -99,6 +100,7 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", checkBoxEmbedded->isChecked());
 #endif
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", checkBoxTagged->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Favorites", checkBoxFavorites->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", checkBoxSequential->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
@@ -204,11 +206,24 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     selectedGames.clear();
     if ( checkBoxTagged->isChecked() ) {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-		    if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) ) continue;
+		    if ( qmc2DeviceROMs.contains(game) )
+			    continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
-		    if ( !gameItem ) continue;
+		    if ( !gameItem )
+			    continue;
 		    if ( gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
 			    selectedGames << game;
+	    }
+    } else if ( checkBoxFavorites->isChecked() ) {
+	    foreach (QString game, qmc2GamelistItemMap.keys()) {
+		    if ( qmc2DeviceROMs.contains(game) )
+			    continue;
+		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+		    if ( gameItem ) {
+			    QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
+			    if ( !favoritesMatches.isEmpty() )
+				    selectedGames << game;
+		    }
 	    }
     } else {
 	    QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/ExcludedCategories", QStringList()).toStringList();
@@ -227,7 +242,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			    category = *categoryPtr;
 		    else
 			    category = tr("?");
-		    if ( qmc2BiosROMs.contains(game) || qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
+		    if ( qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
 			    continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( !gameItem )
@@ -406,4 +421,33 @@ void DemoModeDialog::on_toolButtonDeselectAll_clicked()
 		QListWidgetItem *item = listWidgetCategoryFilter->item(i);
 		item->setCheckState(Qt::Unchecked);
 	}
+}
+
+void DemoModeDialog::enableFilters(bool enable)
+{
+	toolButtonSelectC->setEnabled(enable);
+	toolButtonSelectM->setEnabled(enable);
+	toolButtonSelectI->setEnabled(enable);
+	toolButtonSelectN->setEnabled(enable);
+	toolButtonSelectU->setEnabled(enable);
+	comboBoxDriverStatus->setEnabled(enable);
+	lineEditNameFilter->setEnabled(enable);
+	toolButtonClearNameFilter->setEnabled(enable);
+	toolButtonSelectAll->setEnabled(enable);
+	toolButtonDeselectAll->setEnabled(enable);
+	listWidgetCategoryFilter->setEnabled(enable);
+}
+
+void DemoModeDialog::on_checkBoxTagged_toggled(bool enable)
+{
+	if ( enable )
+		checkBoxFavorites->setChecked(false);
+	enableFilters(!enable);
+}
+
+void DemoModeDialog::on_checkBoxFavorites_toggled(bool enable)
+{
+	if ( enable )
+		checkBoxTagged->setChecked(false);
+	enableFilters(!enable);
 }
