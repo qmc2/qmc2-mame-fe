@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QIcon>
+#include <QStyleFactory>
 
 #include "arcadesettings.h"
 #include "tweakedqmlappviewer.h"
@@ -150,6 +151,23 @@ int main(int argc, char *argv[])
     // we have to make a copy of the command line arguments since QApplication's constructor "eats" -graphicssystem and its value (and we really need to know if it has been set!)
     for (int i = 0; i < argc; i++)
         argumentList << argv[i];
+
+    // possible work-around for weird style-related issues with GTK
+    QStringList wantedStyles = QStringList() << "Plastique" << "Cleanlooks" << "Fusion" << "CDE" << "Motif" << "Windows";
+    QStringList styleList = QStyleFactory::keys();
+    QMC2_ARCADE_LOG_STR(QString("DEBUG: available styles: %1").arg(styleList.join(", ")));
+    int styleIndex = -1;
+    foreach (QString style, wantedStyles) {
+        int index = styleList.indexOf(style);
+        if ( index >= 0 ) {
+            styleIndex = index;
+            break;
+        }
+    }
+    if ( styleIndex >= 0 ) {
+        QMC2_ARCADE_LOG_STR(QString("DEBUG: chosen style: %1").arg(styleList[styleIndex]));
+        QApplication::setStyle(styleList[styleIndex]);
+    }
 
     QApplication *tempApp = new QApplication(argc, argv);
 
