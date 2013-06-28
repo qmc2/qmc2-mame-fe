@@ -148,26 +148,24 @@ int main(int argc, char *argv[])
     consoleModes << "terminal" << "window" << "window-minimized";
     graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "openvg";
 
-    // we have to make a copy of the command line arguments since QApplication's constructor "eats" -graphicssystem and its value (and we really need to know if it has been set!)
+    // we have to make a copy of the command line arguments since QApplication's constructor "eats"
+    // -graphicssystem and its value (and we *really* need to know if it has been set or not!)
     for (int i = 0; i < argc; i++)
         argumentList << argv[i];
 
-    // possible work-around for weird style-related issues with GTK
+    // work-around for a weird style-related issue with GTK (we actually don't need to set a GUI style, but
+    // somehow Qt and/or GTK do this implicitly, which may cause crashes when the automatically chosen style
+    // isn't bug-free, so we try to fall back to a safe built-in style to avoid this)
     QStringList wantedStyles = QStringList() << "Plastique" << "Cleanlooks" << "Fusion" << "CDE" << "Motif" << "Windows";
-    QStringList styleList = QStyleFactory::keys();
-    QMC2_ARCADE_LOG_STR(QString("DEBUG: available styles: %1").arg(styleList.join(", ")));
+    QStringList availableStyles = QStyleFactory::keys();
     int styleIndex = -1;
     foreach (QString style, wantedStyles) {
-        int index = styleList.indexOf(style);
-        if ( index >= 0 ) {
-            styleIndex = index;
+        styleIndex = availableStyles.indexOf(style);
+        if ( styleIndex >= 0 )
             break;
-        }
     }
-    if ( styleIndex >= 0 ) {
-        QMC2_ARCADE_LOG_STR(QString("DEBUG: chosen style: %1").arg(styleList[styleIndex]));
-        QApplication::setStyle(styleList[styleIndex]);
-    }
+    if ( styleIndex >= 0 )
+        QApplication::setStyle(availableStyles[styleIndex]);
 
     QApplication *tempApp = new QApplication(argc, argv);
 
