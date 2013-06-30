@@ -2770,11 +2770,19 @@ void Options::applyDelayed()
         if ( config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible").toBool() )
           show();
       treeWidgetShortcuts->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/ShortcutsHeaderState").toByteArray());
+#if QT_VERSION < 0x050000
       treeWidgetShortcuts->header()->setClickable(true);
+#else
+      treeWidgetShortcuts->header()->setSectionsClickable(true);
+#endif
       treeWidgetShortcuts->header()->setSortIndicatorShown(true);
 #if QMC2_JOYSTICK == 1
       treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
+#if QT_VERSION < 0x050000
       treeWidgetJoystickMappings->header()->setClickable(true);
+#else
+      treeWidgetJoystickMappings->header()->setSectionsClickable(true);
+#endif
       treeWidgetJoystickMappings->header()->setSortIndicatorShown(true);
 #endif
       tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());

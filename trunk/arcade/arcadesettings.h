@@ -43,8 +43,10 @@ public slots:
     QString defaultTheme();
     void setDefaultConsoleType(QString);
     QString defaultConsoleType();
+#if QT_VERSION < 0x050000
     void setDefaultGraphicsSystem(QString);
     QString defaultGraphicsSystem();
+#endif
     void setDefaultLanguage(QString);
     QString defaultLanguage();
 
