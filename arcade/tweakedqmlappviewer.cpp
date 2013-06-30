@@ -1,6 +1,4 @@
 #include <QGraphicsObject>
-#include <QDeclarativeContext>
-#include <QDeclarativeEngine>
 #include <QApplication>
 #include <QFileInfo>
 #include <QFile>
@@ -8,6 +6,8 @@
 #include <QPaintEngine>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QDeclarativeContext>
+#include <QDeclarativeEngine>
 
 #include "tweakedqmlappviewer.h"
 #include "arcadesettings.h"
@@ -26,16 +26,22 @@ extern QStringList mameThemes;
 extern QStringList messThemes;
 extern QStringList umeThemes;
 extern QStringList consoleModes;
+#if QT_VERSION < 0x050000
 extern QStringList graphicsSystems;
+#endif
 
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
-	: QmlApplicationViewer(parent)
+    : QmlApplicationViewer(parent)
 {
     initialised = false;
     numFrames = 0;
     windowModeSwitching = false;
 
+#if QT_VERSION < 0x050000
     cliParams << "theme" << "graphicssystem" << "console" << "language";
+#else
+    cliParams << "theme" << "console" << "language";
+#endif
     switch ( emulatorMode ) {
     case QMC2_ARCADE_EMUMODE_MAME:
         cliAllowedParameterValues["theme"] = mameThemes;
@@ -47,11 +53,15 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
         cliAllowedParameterValues["theme"] = umeThemes;
         break;
     }
+#if QT_VERSION < 0x050000
     cliAllowedParameterValues["graphicssystem"] = graphicsSystems;
+#endif
     cliAllowedParameterValues["console"] = consoleModes;
     cliAllowedParameterValues["language"] = globalConfig->languageMap.keys();
     cliParameterDescriptions["theme"] = tr("Theme");
+#if QT_VERSION < 0x050000
     cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
+#endif
     cliParameterDescriptions["console"] = tr("Console mode");
     cliParameterDescriptions["language"] = tr("Language");
 
@@ -66,7 +76,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
     imageProvider = new ImageProvider(QDeclarativeImageProvider::Image);
-    engine()->addImageProvider(QLatin1String("qmc2"), imageProvider);
+    engine()->addImageProvider(QString("qmc2"), imageProvider);
 
     infoProvider = new InfoProvider();
 
@@ -444,8 +454,10 @@ QString TweakedQmlApplicationViewer::cliParamValue(QString param)
     switch ( cliParams.indexOf(param) ) {
     case QMC2_ARCADE_PARAM_THEME:
         return globalConfig->defaultTheme();
+#if QT_VERSION < 0x050000
     case QMC2_ARCADE_PARAM_GRASYS:
         return globalConfig->defaultGraphicsSystem();
+#endif
     case QMC2_ARCADE_PARAM_CONSOLE:
         return globalConfig->defaultConsoleType();
     case QMC2_ARCADE_PARAM_LANGUAGE:
@@ -466,9 +478,11 @@ void TweakedQmlApplicationViewer::setCliParamValue(QString param, QString value)
     case QMC2_ARCADE_PARAM_THEME:
         globalConfig->setDefaultTheme(value);
         break;
+#if QT_VERSION < 0x050000
     case QMC2_ARCADE_PARAM_GRASYS:
         globalConfig->setDefaultGraphicsSystem(value);
         break;
+#endif
     case QMC2_ARCADE_PARAM_CONSOLE:
         globalConfig->setDefaultConsoleType(value);
         break;

@@ -19,7 +19,9 @@ QStringList mameThemes;
 QStringList messThemes;
 QStringList umeThemes;
 QStringList consoleModes;
+#if QT_VERSION < 0x050000
 QStringList graphicsSystems;
+#endif
 QStringList argumentList;
 bool runApp = true;
 
@@ -66,7 +68,9 @@ void showHelp()
 
     QString defTheme = globalConfig->defaultTheme();
     QString defConsole = globalConfig->defaultConsoleType();
+#if QT_VERSION < 0x050000
     QString defGSys = globalConfig->defaultGraphicsSystem();
+#endif
     QString defLang = globalConfig->defaultLanguage();
 
     QStringList themeList;
@@ -87,6 +91,7 @@ void showHelp()
     }
     QString availableConsoles = consoleList.join(", ");
 
+#if QT_VERSION < 0x050000
     QStringList gSysList;
     foreach (QString gSys, graphicsSystems) {
         if ( defGSys == gSys )
@@ -95,6 +100,7 @@ void showHelp()
             gSysList << gSys;
     }
     QString availableGraphicsSystems = gSysList.join(", ");
+#endif
 
     QStringList langList;
     foreach (QString lang, globalConfig->languageMap.keys()) {
@@ -106,6 +112,7 @@ void showHelp()
     QString availableLanguages = langList.join(", ");
 
     QString helpMessage;
+#if QT_VERSION < 0x050000
     helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-h|-?|-help]\n\n"
                    "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
@@ -115,6 +122,16 @@ void showHelp()
     helpMessage += "-graphicssystem  Graphics engine     " + availableGraphicsSystems + "\n";
     helpMessage += "-language        Language selection  " + availableLanguages + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+#else
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-h|-?|-help]\n\n"
+                   "Option           Meaning             Possible values ([..] = default)\n"
+                   "---------------  ------------------  -----------------------------------------\n"
+                   "-emu             Emulator mode       [mame], mess, ume\n";
+    helpMessage += "-theme           Theme selection     " + availableThemes + "\n";
+    helpMessage += "-console         Console type        " + availableConsoles + "\n";
+    helpMessage += "-language        Language selection  " + availableLanguages + "\n";
+    helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+#endif
 
     QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
@@ -146,7 +163,9 @@ int main(int argc, char *argv[])
     // messThemes << "..."
     umeThemes << "ToxicWaste" << "darkone";
     consoleModes << "terminal" << "window" << "window-minimized";
+#if QT_VERSION < 0x050000
     graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "openvg";
+#endif
 
     // we have to make a copy of the command line arguments since QApplication's constructor "eats"
     // -graphicssystem and its value (and we *really* need to know if it has been set or not!)
@@ -167,12 +186,16 @@ int main(int argc, char *argv[])
     if ( styleIndex >= 0 )
         QApplication::setStyle(availableStyles[styleIndex]);
 
+#if QT_VERSION < 0x050000
     QApplication *tempApp = new QApplication(argc, argv);
+#endif
 
     QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
+
+#if QT_VERSION < 0x050000
     globalConfig = new ArcadeSettings("");
 
     QString gSys = globalConfig->defaultGraphicsSystem();
@@ -189,6 +212,7 @@ int main(int argc, char *argv[])
     }
 
     QApplication::setGraphicsSystem(gSys);
+#endif
 
     // create the actual application instance
     QScopedPointer<QApplication> app(createApplication(argc, argv));
@@ -312,7 +336,9 @@ int main(int argc, char *argv[])
                                 arg(QString("Qt") + " " + qVersion() + ", " +
                                     QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
                                     QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]) + ", " +
+#if QT_VERSION < 0x050000
                                     QObject::tr("graphics-system: %1").arg(gSys) + ", " +
+#endif
                                     QObject::tr("language: %1").arg(language) + ", " +
                                     QObject::tr("theme: %1").arg(theme));
 

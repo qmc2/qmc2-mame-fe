@@ -11803,7 +11803,7 @@ int main(int argc, char *argv[])
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
 
-  // is CLI option -cc is set, clear all emulator caches before starting up
+  // if CLI option -cc is set, clear all emulator caches before starting up
   if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
 	  qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
 
@@ -11811,7 +11811,7 @@ int main(int argc, char *argv[])
   int retCode = qmc2App.exec();
 
   if ( qmc2SplashScreen )
-  	qmc2SplashScreen->deleteLater();
+	  qmc2SplashScreen->deleteLater();
 
   // wait for all application threads to finish
   QThreadPool::globalInstance()->waitForDone();

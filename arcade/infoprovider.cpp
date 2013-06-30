@@ -12,8 +12,10 @@ extern int emulatorMode;
 
 InfoProvider::InfoProvider()
 {
+#if QT_VERSION < 0x050000
   QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
   QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+#endif
   loadGameInfoDB();
   loadEmuInfoDB();
 }
@@ -244,7 +246,7 @@ void InfoProvider::loadEmuInfoDB()
             QByteArray *emuInfo;
 #if QT_VERSION >= 0x050000
             if ( compressData )
-              emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(emuInfoString))); 
+              emuInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(emuInfoString)));
             else
               emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
 #else

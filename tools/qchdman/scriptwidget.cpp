@@ -1,3 +1,6 @@
+#include <QFileDialog>
+#include <QInputDialog>
+
 #include "ui_scriptwidget.h"
 #include "macros.h"
 #include "scriptwidget.h"
@@ -21,7 +24,11 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     splitterSizes << 250 << 750;
     ui->hSplitter->setSizes(splitterSizes);
 
+#if QT_VERSION < 0x050000
     ui->tableWidgetInputOutput->horizontalHeader()->setResizeMode(QHeaderView::Interactive);
+#else
+    ui->tableWidgetInputOutput->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+#endif
     ui->tableWidgetInputOutput->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     ui->tableWidgetInputOutput->horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableWidgetInputOutput->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(tableWidgetInputOutput_sectionClicked(int)));
