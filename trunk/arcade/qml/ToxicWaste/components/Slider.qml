@@ -42,7 +42,9 @@
 import QtQuick 1.1
 
 Item {
-    id: slider; width: 400; height: 16
+    id: slider
+    width: 400
+    height: 16
 
     // value is read/write.
     property real value: 0
@@ -106,7 +108,10 @@ Item {
         }
         MouseArea {
             anchors.fill: parent
+            hoverEnabled: true
             onClicked: slider.value = slider.defaultValue
+            onEntered: resetButton.opacity = 0.7
+            onExited: resetButton.opacity = 1
         }
     }
 
@@ -166,6 +171,9 @@ Item {
             drag.minimumX: 20
             drag.maximumX: slider.xMax + 20
             onPositionChanged: value = (maximum - minimum) * (handle.x - 20) / slider.xMax + minimum
+            hoverEnabled: true
+            onEntered: handle.opacity = 1.0
+            onExited: handle.opacity = slider.handleOpacity
         }
     }
 
