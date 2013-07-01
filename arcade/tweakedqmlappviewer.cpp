@@ -6,8 +6,14 @@
 #include <QPaintEngine>
 #include <QDesktopServices>
 #include <QUrl>
+
+#if QT_VERSION < 0x050000
 #include <QDeclarativeContext>
 #include <QDeclarativeEngine>
+#else
+#include <QQmlContext>
+#include <QQmlEngine>
+#endif
 
 #include "tweakedqmlappviewer.h"
 #include "arcadesettings.h"
@@ -30,8 +36,13 @@ extern QStringList consoleModes;
 extern QStringList graphicsSystems;
 #endif
 
+#if QT_VERSION < 0x050000
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     : QmlApplicationViewer(parent)
+#else
+TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
+    : QQuickView(parent)
+#endif
 {
     initialised = false;
     numFrames = 0;
@@ -73,9 +84,13 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
     connect(processManager, SIGNAL(emulatorStarted(int)), this, SIGNAL(emulatorStarted(int)));
     connect(processManager, SIGNAL(emulatorFinished(int)), this, SIGNAL(emulatorFinished(int)));
 
+#if QT_VERSION < 0x050000
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-
     imageProvider = new ImageProvider(QDeclarativeImageProvider::Image);
+#else
+    setResizeMode(QQuickView::SizeRootObjectToView);
+    imageProvider = new ImageProvider(QQuickImageProvider::Image);
+#endif
     engine()->addImageProvider(QString("qmc2"), imageProvider);
 
     infoProvider = new InfoProvider();
@@ -94,6 +109,11 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
 
     connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
     frameCheckTimer.start(1000);
+
+#if QT_VERSION >= 0x050000
+    connect(this, SIGNAL(frameSwapped()), this, SLOT(frameBufferSwapped()));
+    connect(engine(), SIGNAL(quit()), this, SLOT(handleQuit()));
+#endif
 }
 
 TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
@@ -497,6 +517,28 @@ void TweakedQmlApplicationViewer::linkActivated(QString link)
     QDesktopServices::openUrl(QUrl::fromUserInput(link));
 }
 
+#if QT_VERSION >= 0x050000
+void TweakedQmlApplicationViewer::frameBufferSwapped()
+{
+    numFrames++;
+}
+
+void TweakedQmlApplicationViewer::handleQuit()
+{
+    QMC2_ARCADE_LOG_STR(tr("Stopping QML viewer"));
+
+    if ( consoleWindow ) {
+        QString consoleMessage(tr("QML viewer stopped - please close the console window to exit"));
+        QMC2_ARCADE_LOG_STR(QString("-").repeated(consoleMessage.length()));
+        QMC2_ARCADE_LOG_STR(consoleMessage);
+        QMC2_ARCADE_LOG_STR(QString("-").repeated(consoleMessage.length()));
+        consoleWindow->showNormal();
+        consoleWindow->raise();
+    }
+
+    close();
+}
+#else
 void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
 {
     numFrames++;
@@ -517,3 +559,4 @@ void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *e)
     }
     e->accept();
 }
+#endif

@@ -1,5 +1,5 @@
-import QtQuick 1.1
-import Qt.labs.particles 1.0
+import QtQuick 2.0
+import QtQuick.Particles 2.0
 import "../ToxicWaste.js" as ToxicWaste
 
 Item {
@@ -53,30 +53,33 @@ Item {
                 }
             }
         }
-        Particles {
-            id: purpleBubbleParticles
-            y: purpleBubble.height/2
-            x: purpleBubble.width/2
-            source: "../images/purple_bubble.png"
-            scale: 0.5
-            lifeSpan: 8000
-            lifeSpanDeviation: 4000
-            count: animationItem.running ? 5 : 0
-            emissionRate: animationItem.running ? -1 : 0
-            angle: 0
-            angleDeviation: 360
-            velocity: 30
-            velocityDeviation: 10
-            fadeInDuration: 250
-            fadeOutDuration: 500
-            smooth: true
-            z: 1
-            ParticleMotionWander {
-                xvariance: 30
-                yvariance: 30
-                pace: 100
-            }
-        }
+//        ParticleSystem {
+//            id: purpleParticleSystem
+//            anchors.fill: parent
+//            smooth: true
+//            ImageParticle{
+//                id: purpleBubbleParticle
+//                y: purpleBubble.height/2
+//                x: purpleBubble.width/2
+//                source: "../images/purple_bubble.png"
+//                groups: ["purpleBubbles"]
+//                z: 1
+//            }
+//            Emitter {
+//                id: purpleBubbleEmitter
+//                anchors.fill: parent
+//                emitRate: animationItem.running ? -1 : 0
+//                maximumEmitted: animationItem.running ? 5 : 0
+//                lifeSpan: 8000
+//                lifeSpanVariation: 4000
+//                group: "purpleBubbles"
+//            }
+//            Wander {
+//                xVariance: 30
+//                yVariance: 30
+//                pace: 100
+//            }
+//        }
     }
     Image {
         id: blueBubble
@@ -104,30 +107,32 @@ Item {
                 }
             }
         }
-        Particles {
-            id: blueBubbleParticles
-            y: blueBubble.height/2
-            x: blueBubble.width/2
-            source: "../images/blue_bubble.png"
-            scale: 0.5
-            lifeSpan: 8000
-            lifeSpanDeviation: 4000
-            count: animationItem.running ? 5 : 0
-            emissionRate: animationItem.running ? -1 : 0
-            angle: 0
-            angleDeviation: 360
-            velocity: 30
-            velocityDeviation: 10
-            fadeInDuration: 250
-            fadeOutDuration: 500
-            smooth: true
-            z: 1
-            ParticleMotionWander {
-                xvariance: 30
-                yvariance: 30
-                pace: 100
-            }
-        }
+//        ParticleSystem {
+//            ImageParticle{
+//            id: blueBubbleParticles
+//            y: blueBubble.height/2
+//            x: blueBubble.width/2
+//            source: "../images/blue_bubble.png"
+//            scale: 0.5
+//            lifeSpan: 8000
+//            lifeSpanDeviation: 4000
+//            count: animationItem.running ? 5 : 0
+//            emissionRate: animationItem.running ? -1 : 0
+//            angle: 0
+//            angleDeviation: 360
+//            velocity: 30
+//            velocityDeviation: 10
+//            fadeInDuration: 250
+//            fadeOutDuration: 500
+//            smooth: true
+//            z: 1
+//            Wander {
+//                xvariance: 30
+//                yvariance: 30
+//                pace: 100
+//            }
+//            }
+//        }
     }
     Image {
         id: greenBubble
@@ -155,29 +160,31 @@ Item {
                 }
             }
         }
-        Particles {
-            id: greenBubbleParticles
-            y: greenBubble.height/2
-            x: greenBubble.width/2
-            source: "../images/green_bubble.png"
-            scale: 0.5
-            lifeSpan: 8000
-            lifeSpanDeviation: 4000
-            count: animationItem.running ? 5 : 0
-            emissionRate: animationItem.running ? -1 : 0
-            angle: 0
-            angleDeviation: 360
-            velocity: 30
-            velocityDeviation: 10
-            fadeInDuration: 250
-            fadeOutDuration: 500
-            smooth: true
-            z: 1
-            ParticleMotionWander {
-                xvariance: 30
-                yvariance: 30
-                pace: 100
-            }
-        }
+//        ParticleSystem {
+//            ImageParticle{
+//            id: greenBubbleParticles
+//            y: greenBubble.height/2
+//            x: greenBubble.width/2
+//            source: "../images/green_bubble.png"
+//            scale: 0.5
+//            lifeSpan: 8000
+//            lifeSpanDeviation: 4000
+//            count: animationItem.running ? 5 : 0
+//            emissionRate: animationItem.running ? -1 : 0
+//            angle: 0
+//            angleDeviation: 360
+//            velocity: 30
+//            velocityDeviation: 10
+//            fadeInDuration: 250
+//            fadeOutDuration: 500
+//            smooth: true
+//            z: 1
+//            Wander {
+//                xvariance: 30
+//                yvariance: 30
+//                pace: 100
+//            }
+//            }
+//        }
     }
 }

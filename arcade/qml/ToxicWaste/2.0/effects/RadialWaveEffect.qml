@@ -39,10 +39,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 1.1
-import Qt.labs.shaders 1.0
+import QtQuick 2.0
 
-ShaderEffectItem {
+ShaderEffect {
     id: effect
 
     property real wave: 0.3

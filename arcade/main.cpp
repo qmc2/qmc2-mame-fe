@@ -1,7 +1,11 @@
-#include <QApplication>
 #include <QTranslator>
 #include <QIcon>
 #include <QStyleFactory>
+#if QT_VERSION < 0x050000
+#include <QApplication>
+#else
+#include <QGuiApplication>
+#endif
 
 #include "arcadesettings.h"
 #include "tweakedqmlappviewer.h"
@@ -172,6 +176,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < argc; i++)
         argumentList << argv[i];
 
+#if QT_VERSION < 0x050000
     // work-around for a weird style-related issue with GTK (we actually don't need to set a GUI style, but
     // somehow Qt and/or GTK do this implicitly, which may cause crashes when the automatically chosen style
     // isn't bug-free, so we try to fall back to a safe built-in style to avoid this)
@@ -186,7 +191,6 @@ int main(int argc, char *argv[])
     if ( styleIndex >= 0 )
         QApplication::setStyle(availableStyles[styleIndex]);
 
-#if QT_VERSION < 0x050000
     QApplication *tempApp = new QApplication(argc, argv);
 #endif
 
@@ -212,10 +216,13 @@ int main(int argc, char *argv[])
     }
 
     QApplication::setGraphicsSystem(gSys);
-#endif
 
     // create the actual application instance
     QScopedPointer<QApplication> app(createApplication(argc, argv));
+#else
+    // create the actual application instance
+    QGuiApplication *app = new QGuiApplication(argc, argv);
+#endif
 
     if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
         emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
@@ -349,9 +356,14 @@ int main(int argc, char *argv[])
 
         // set up the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
+#if QT_VERSION < 0x050000
         viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+#else
+        // FIXME: add missing functionality
+#endif
+
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
 #if QT_VERSION < 0x050000

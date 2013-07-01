@@ -9,8 +9,13 @@
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
 
+#if QT_VERSION < 0x050000
 ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type)
     : QDeclarativeImageProvider(type)
+#else
+ImageProvider::ImageProvider(QQuickImageProvider::ImageType type)
+    : QQuickImageProvider(type)
+#endif
 {
     mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb";
     mImageCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);

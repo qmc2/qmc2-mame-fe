@@ -158,7 +158,7 @@ macx {
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += gui quick qml widgets
+    QT += gui quick qml
 }
 
 INCLUDEPATH += ../zlib
