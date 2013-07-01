@@ -53,11 +53,16 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    qml/ToxicWaste/ToxicWaste.qml \
-    qml/ToxicWaste/ToxicWaste.js \
-    qml/ToxicWaste/BackgroundAnimation.qml \
-    qml/darkone/darkone.qml \
-    qml/darkone/darkone.js \
+    qml/ToxicWaste/1.1/ToxicWaste.qml \
+    qml/ToxicWaste/1.1/ToxicWaste.js \
+    qml/ToxicWaste/1.1/BackgroundAnimation.qml \
+    qml/ToxicWaste/2.0/ToxicWaste.qml \
+    qml/ToxicWaste/2.0/ToxicWaste.js \
+    qml/ToxicWaste/2.0/BackgroundAnimation.qml \
+    qml/darkone/1.1/darkone.qml \
+    qml/darkone/1.1/darkone.js \
+    qml/darkone/2.0/darkone.qml \
+    qml/darkone/2.0/darkone.js \
     ../zlib/README.zlib
 
 HEADERS += \
@@ -95,11 +100,16 @@ RESOURCES += \
     qmc2-arcade.qrc
 
 evil_hack_to_fool_lupdate {
-    SOURCES += qml/ToxicWaste/ToxicWaste.qml \
-               qml/ToxicWaste/ToxicWaste.js \
-               qml/ToxicWaste/animations/BackgroundAnimation.qml \
-               qml/darkone/darkone.qml \
-               qml/darkone/darkone.js
+    SOURCES += qml/ToxicWaste/1.1/ToxicWaste.qml \
+               qml/ToxicWaste/1.1/ToxicWaste.js \
+               qml/ToxicWaste/1.1/animations/BackgroundAnimation.qml \
+               qml/ToxicWaste/2.0/ToxicWaste.qml \
+               qml/ToxicWaste/2.0/ToxicWaste.js \
+               qml/ToxicWaste/2.0/animations/BackgroundAnimation.qml \
+               qml/darkone/1.1/darkone.qml \
+               qml/darkone/1.1/darkone.js \
+               qml/darkone/2.0/darkone.qml \
+               qml/darkone/2.0/darkone.js
 }
 
 TRANSLATIONS += translations/qmc2-arcade_de.ts \
