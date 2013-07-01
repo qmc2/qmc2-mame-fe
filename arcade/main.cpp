@@ -353,7 +353,12 @@ int main(int argc, char *argv[])
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
-        viewer->setSource(QString("qrc:/qml/%1/%1.qml").arg(theme));
+
+#if QT_VERSION < 0x050000
+        viewer->setSource(QString("qrc:/qml/%1/1.1/%1.qml").arg(theme));
+#else
+        viewer->setSource(QString("qrc:/qml/%1/2.0/%1.qml").arg(theme));
+#endif
 
         // set up display mode initially...
         if ( globalConfig->fullScreen() )
