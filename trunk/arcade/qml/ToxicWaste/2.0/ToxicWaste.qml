@@ -1466,14 +1466,14 @@ Rectangle {
             }
         }
     }
-//    BackgroundAnimation {
-//        id: backgroundAnim
-//        opacity: toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0
-//        Behavior on opacity {
-//            NumberAnimation { properties: "opacity"; duration: 1000 }
-//        }
-//        z: toxicWasteMain.animateInForeground ? 5 : 2
-//    }
+    BackgroundAnimation {
+        id: backgroundAnim
+        opacity: toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0
+        Behavior on opacity {
+            NumberAnimation { properties: "opacity"; duration: 1000 }
+        }
+        z: toxicWasteMain.animateInForeground ? 5 : 2
+    }
     ShaderEffectSource {
         id: effectSource
         anchors.fill: parent
