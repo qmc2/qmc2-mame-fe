@@ -1,5 +1,5 @@
-import QtQuick 1.1
-import Qt.labs.shaders 1.0
+import QtQuick 2.0
+//import Qt.labs.shaders 1.0
 import "ToxicWaste.js" as ToxicWaste
 import "./animations"
 import "./components"
@@ -1466,14 +1466,14 @@ Rectangle {
             }
         }
     }
-    BackgroundAnimation {
-        id: backgroundAnim
-        opacity: toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0
-        Behavior on opacity {
-            NumberAnimation { properties: "opacity"; duration: 1000 }
-        }
-        z: toxicWasteMain.animateInForeground ? 5 : 2
-    }
+//    BackgroundAnimation {
+//        id: backgroundAnim
+//        opacity: toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0
+//        Behavior on opacity {
+//            NumberAnimation { properties: "opacity"; duration: 1000 }
+//        }
+//        z: toxicWasteMain.animateInForeground ? 5 : 2
+//    }
     ShaderEffectSource {
         id: effectSource
         anchors.fill: parent
