@@ -156,6 +156,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("overlayOpacity", globalConfig->overlayOpacity());
         rootObject()->setProperty("backgroundOpacity", globalConfig->backgroundOpacity());
         rootObject()->setProperty("gameListOpacity", globalConfig->gameListOpacity());
+        rootObject()->setProperty("cabinetImageType", globalConfig->cabinetImageType());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
         rootObject()->setProperty("dataTypePrimary", globalConfig->dataTypePrimary());
@@ -209,6 +210,7 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setOverlayOpacity(rootObject()->property("overlayOpacity").toDouble());
         globalConfig->setBackgroundOpacity(rootObject()->property("backgroundOpacity").toDouble());
         globalConfig->setGameListOpacity(rootObject()->property("gameListOpacity").toDouble());
+        globalConfig->setCabinetImageType(rootObject()->property("cabinetImageType").toString());
     } else if ( globalConfig->arcadeTheme == "darkone" ) {
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setDataTypePrimary(rootObject()->property("dataTypePrimary").toString());

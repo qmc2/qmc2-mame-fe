@@ -339,6 +339,16 @@ double ArcadeSettings::gameListOpacity()
     return value(QString("Arcade/%1/gameListOpacity").arg(arcadeTheme), 1).toDouble();
 }
 
+void ArcadeSettings::setCabinetImageType(QString imageType)
+{
+    setValue(QString("Arcade/%1/cabinetImageType").arg(arcadeTheme), imageType);
+}
+
+QString ArcadeSettings::cabinetImageType()
+{
+    return value(QString("Arcade/%1/cabinetImageType").arg(arcadeTheme), "preview").toString();
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);

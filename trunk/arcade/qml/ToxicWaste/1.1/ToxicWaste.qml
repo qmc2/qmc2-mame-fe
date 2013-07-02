@@ -35,6 +35,7 @@ Rectangle {
     property real overlayOpacity: 1
     property real backgroundOpacity: 0.7
     property real gameListOpacity: 1
+    property string cabinetImageType: "preview"
 
     // delayed init
     Timer {
@@ -136,7 +137,7 @@ Rectangle {
                     z: -1
                     Image {
                         id: previewImage
-                        source: "image://qmc2/prv/" + gameListModel[gamelistView.currentIndex].id
+                        source: ToxicWaste.imageUrl(toxicWasteMain.cabinetImageType);
                         smooth: true
                         anchors.fill: parent
                         anchors.centerIn: parent
