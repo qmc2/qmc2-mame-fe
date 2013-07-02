@@ -971,7 +971,7 @@ Rectangle {
                     sliderText: qsTr("Cabinet zoom")
                     minimum: 0.01
                     maximum: 10
-                    value: toxicWasteMain.overlayScale
+                    value: toxicWasteMain.overlayScale == undefined ? 0.73 : toxicWasteMain.overlayScale
                     defaultValue: 1
                     onValueChanged: toxicWasteMain.overlayScale = value
                 }

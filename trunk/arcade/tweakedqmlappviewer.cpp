@@ -232,7 +232,9 @@ void TweakedQmlApplicationViewer::goFullScreen()
 {
     showFullScreen();
     raise();
+#if QT_VERSION < 0x050000
     qApp->processEvents();
+#endif
     windowModeSwitching = false;
 }
 
@@ -249,7 +251,7 @@ void TweakedQmlApplicationViewer::switchToFullScreen(bool initially)
         savedGeometry = saveGeometry();
         savedMaximized = isMaximized();
     }
-#if defined(QMC2_ARCADE_OS_UNIX)
+#if defined(QMC2_ARCADE_OS_UNIX) && QT_VERSION < 0x050000
     hide();
     qApp->processEvents();
     QTimer::singleShot(100, this, SLOT(goFullScreen()));
@@ -269,7 +271,7 @@ void TweakedQmlApplicationViewer::switchToWindowed(bool initially)
         savedGeometry = globalConfig->viewerGeometry();
         savedMaximized = globalConfig->viewerMaximized();
     }
-#if defined(QMC2_ARCADE_OS_UNIX)
+#if defined(QMC2_ARCADE_OS_UNIX) && QT_VERSION < 0x050000
     hide();
 #endif
     restoreGeometry(savedGeometry);

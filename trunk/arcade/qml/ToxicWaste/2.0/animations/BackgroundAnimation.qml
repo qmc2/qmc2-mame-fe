@@ -71,6 +71,25 @@ Item {
                 }
             }
         }
+        ParticleSystem {
+            anchors.horizontalCenter: purpleBubble.horizontalCenter
+            anchors.verticalCenter: purpleBubble.verticalCenter
+            ImageParticle {
+                source: purpleBubble.source
+            }
+            Emitter {
+                size: purpleBubble.width/2 * ToxicWaste.scaleFactorX()
+                sizeVariation: 5
+                lifeSpan: 5000
+                lifeSpanVariation: 3000
+                maximumEmitted: 5
+                velocity: AngleDirection {
+                    angle: 0
+                    angleVariation: 360
+                    magnitude: 50
+                }
+            }
+        }
     }
     Image {
         id: blueBubble
@@ -114,6 +133,25 @@ Item {
                 }
             }
         }
+        ParticleSystem {
+            anchors.horizontalCenter: blueBubble.horizontalCenter
+            anchors.verticalCenter: blueBubble.verticalCenter
+            ImageParticle {
+                source: blueBubble.source
+            }
+            Emitter {
+                size: blueBubble.width/2 * ToxicWaste.scaleFactorX()
+                sizeVariation: 5
+                lifeSpan: 5000
+                lifeSpanVariation: 3000
+                maximumEmitted: 5
+                velocity: AngleDirection {
+                    angle: 0
+                    angleVariation: 360
+                    magnitude: 50
+                }
+            }
+        }
     }
     Image {
         id: greenBubble
@@ -154,6 +192,25 @@ Item {
                     gPath.cubicX = randomize(greenBubble.width, toxicWasteMain.width - greenBubble.width);
                     gPath.cubicY = randomize(greenBubble.height, toxicWasteMain.height - greenBubble.height);
                     gPathAnim.duration = randomize(3000, 8000);
+                }
+            }
+        }
+        ParticleSystem {
+            anchors.horizontalCenter: greenBubble.horizontalCenter
+            anchors.verticalCenter: greenBubble.verticalCenter
+            ImageParticle {
+                source: greenBubble.source
+            }
+            Emitter {
+                size: greenBubble.width/2 * ToxicWaste.scaleFactorX()
+                sizeVariation: 5
+                lifeSpan: 5000
+                lifeSpanVariation: 3000
+                maximumEmitted: 5
+                velocity: AngleDirection {
+                    angle: 0
+                    angleVariation: 360
+                    magnitude: 50
                 }
             }
         }
