@@ -149,33 +149,37 @@ function gameImageType(imageType) {
     return typeName;
 }
 
-function imageUrl(imageType) {
-    var imgUrl = "image://qmc2/";
+function cachePrefix(imageType) {
+    var prefix = "prv";
     switch ( imageType ) {
     case "flyer":
-        imgUrl += "fly/";
+        prefix = "fly";
         break;
     case "cabinet":
-        imgUrl += "cab/";
+        prefix = "cab";
         break;
     case "controller":
-        imgUrl += "ctl/";
+        prefix = "ctl";
         break;
     case "marquee":
-        imgUrl += "mrq/";
+        prefix = "mrq";
         break;
     case "title":
-        imgUrl += "ttl/";
+        prefix = "ttl";
         break;
     case "pcb":
-        imgUrl += "pcb/";
+        prefix = "pcb";
         break;
     case "preview":
     default:
-        imgUrl += "prv/";
+        prefix = "prv";
         break;
     }
-    imgUrl += gameListModel[gamelistView.currentIndex].id;
+    return prefix;
+}
+
+function imageUrl(imageType) {
+    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + gameListModel[gamelistView.currentIndex].id;
     return imgUrl;
 }
 
