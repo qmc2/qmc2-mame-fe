@@ -274,29 +274,6 @@ Rectangle {
                                 elide: Text.ElideRight
                             }
                             Image {
-                                id: miniCabinetImage
-                                source: "images/cabinet_small.png"
-                                anchors.horizontalCenter: imageTypeText.horizontalCenter
-                                anchors.horizontalCenterOffset: -140 * ToxicWaste.scaleFactorX() + previousImageButton.width
-                                anchors.verticalCenter: parent.verticalCenter
-                                smooth: true
-                                fillMode: Image.PreserveAspectFit
-                                height: parent.height - 4
-                                opacity: toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType ? 1.0 : 0.3
-                                MouseArea {
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onEntered: miniCabinetImage.opacity = 1.0
-                                    onExited: {
-                                        if ( toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType )
-                                            miniCabinetImage.opacity = 1.0;
-                                        else
-                                            miniCabinetImage.opacity = 0.3;
-                                    }
-                                    onClicked: toxicWasteMain.cabinetImageType = toxicWasteMain.secondaryImageType
-                                }
-                            }
-                            Image {
                                 id: nextImageButton
                                 opacity: 0.5
                                 source: "images/arrow.png"
@@ -344,6 +321,28 @@ Rectangle {
                                             miniCabinetImage.opacity = 0.3;
                                     }
                                 }
+                            }
+                        }
+                        Image {
+                            id: miniCabinetImage
+                            source: "images/cabinet_small.png"
+                            anchors.left: parent.left
+                            anchors.verticalCenter: imageTypeSelector.verticalCenter
+                            smooth: true
+                            fillMode: Image.PreserveAspectFit
+                            height: imageTypeSelector.height
+                            opacity: toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType ? 1.0 : 0.3
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onEntered: miniCabinetImage.opacity = 1.0
+                                onExited: {
+                                    if ( toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType )
+                                        miniCabinetImage.opacity = 1.0;
+                                    else
+                                        miniCabinetImage.opacity = 0.3;
+                                }
+                                onClicked: toxicWasteMain.cabinetImageType = toxicWasteMain.secondaryImageType
                             }
                         }
                     }
