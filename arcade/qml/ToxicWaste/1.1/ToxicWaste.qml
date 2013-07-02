@@ -245,7 +245,7 @@ Rectangle {
                             fillMode: Image.PreserveAspectFit
                         }
                         Rectangle {
-                            id: itemTypeSelector
+                            id: imageTypeSelector
                             gradient: Gradient {
                                 GradientStop { position: 0.00; color: "black" }
                                 GradientStop { position: 0.75; color: "white" }
@@ -274,6 +274,29 @@ Rectangle {
                                 elide: Text.ElideRight
                             }
                             Image {
+                                id: miniCabinetImage
+                                source: "images/cabinet_small.png"
+                                anchors.horizontalCenter: imageTypeText.horizontalCenter
+                                anchors.horizontalCenterOffset: -140 * ToxicWaste.scaleFactorX() + previousImageButton.width
+                                anchors.verticalCenter: parent.verticalCenter
+                                smooth: true
+                                fillMode: Image.PreserveAspectFit
+                                height: parent.height - 4
+                                opacity: toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType ? 1.0 : 0.3
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onEntered: miniCabinetImage.opacity = 1.0
+                                    onExited: {
+                                        if ( toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType )
+                                            miniCabinetImage.opacity = 1.0;
+                                        else
+                                            miniCabinetImage.opacity = 0.3;
+                                    }
+                                    onClicked: toxicWasteMain.cabinetImageType = toxicWasteMain.secondaryImageType
+                                }
+                            }
+                            Image {
                                 id: nextImageButton
                                 opacity: 0.5
                                 source: "images/arrow.png"
@@ -290,6 +313,10 @@ Rectangle {
                                     onClicked: {
                                         toxicWasteMain.secondaryImageType = ToxicWaste.nextImageType(toxicWasteMain.secondaryImageType);
                                         searchTextInput.focus = false;
+                                        if ( toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType )
+                                            miniCabinetImage.opacity = 1.0;
+                                        else
+                                            miniCabinetImage.opacity = 0.3;
                                     }
                                 }
                             }
@@ -311,6 +338,10 @@ Rectangle {
                                     onClicked: {
                                         toxicWasteMain.secondaryImageType = ToxicWaste.previousImageType(toxicWasteMain.secondaryImageType);
                                         searchTextInput.focus = false;
+                                        if ( toxicWasteMain.cabinetImageType == toxicWasteMain.secondaryImageType )
+                                            miniCabinetImage.opacity = 1.0;
+                                        else
+                                            miniCabinetImage.opacity = 0.3;
                                     }
                                 }
                             }
