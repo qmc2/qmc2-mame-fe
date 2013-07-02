@@ -109,7 +109,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                 else {
                     QImage image;
                     if ( isZippedImageType(imageType) ) {
-                        QString imageFileName = id + ".png";
+                        QString imageFileName = gameId + ".png";
                         unzFile imageFile = mZipFileMap[imageType];
                         if ( imageFile && unzLocateFile(imageFile, (const char *)imageFileName.toLocal8Bit(), 0) != UNZ_OK ) {
                             QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
@@ -154,7 +154,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
                 else {
                     QPixmap image;
                     if ( isZippedImageType(imageType) ) {
-                        QString imageFileName = id + ".png";
+                        QString imageFileName = gameId + ".png";
                         unzFile imageFile = mZipFileMap[imageType];
                         if ( imageFile && unzLocateFile(imageFile, (const char *)imageFileName.toLocal8Bit(), 0) != UNZ_OK ) {
                             QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): unable to load image file '%1' from ZIP").arg(imageFileName));
