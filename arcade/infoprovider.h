@@ -6,14 +6,14 @@
 
 class InfoProvider
 {
-  public:
+public:
     explicit InfoProvider();
     virtual ~InfoProvider();
 
     enum InfoClass { InfoClassGame, InfoClassEmu };
     QString requestInfo(const QString &, InfoClass);
 
-  private:
+private:
     void clearGameInfoDB();
     void clearEmuInfoDB();
     void loadGameInfoDB();

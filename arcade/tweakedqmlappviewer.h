@@ -43,6 +43,7 @@ public:
     QMap<QString, QStringList> cliAllowedParameterValues;
     QMap<QString, QString> cliParameterDescriptions;
     QStringList cliParams;
+    QStringList infoClasses;
 
 #if QT_VERSION < 0x050000
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
