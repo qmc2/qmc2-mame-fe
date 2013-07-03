@@ -31,6 +31,7 @@ extern QStringList emulatorModeNames;
 extern QStringList mameThemes;
 extern QStringList messThemes;
 extern QStringList umeThemes;
+extern QStringList arcadeThemes;
 extern QStringList consoleModes;
 #if QT_VERSION < 0x050000
 extern QStringList graphicsSystems;
@@ -137,7 +138,8 @@ void TweakedQmlApplicationViewer::loadSettings()
     rootObject()->setProperty("version", globalConfig->applicationVersion());
 
     // load theme-specific arcade settings
-    if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
+    switch ( arcadeThemes.indexOf(globalConfig->arcadeTheme) ) {
+    case QMC2_ARCADE_THEME_TOXICWASTE:
         rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
         rootObject()->setProperty("showBackgroundAnimation", globalConfig->showBackgroundAnimation());
         rootObject()->setProperty("showShaderEffect", globalConfig->showShaderEffect());
@@ -157,7 +159,8 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("backgroundOpacity", globalConfig->backgroundOpacity());
         rootObject()->setProperty("gameListOpacity", globalConfig->gameListOpacity());
         rootObject()->setProperty("cabinetImageType", globalConfig->cabinetImageType());
-    } else if ( globalConfig->arcadeTheme == "darkone" ) {
+        break;
+    case QMC2_ARCADE_THEME_DARKONE:
         rootObject()->setProperty("lastIndex", globalConfig->lastIndex());
         rootObject()->setProperty("dataTypePrimary", globalConfig->dataTypePrimary());
         rootObject()->setProperty("dataTypeSecondary", globalConfig->dataTypeSecondary());
@@ -173,6 +176,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("overlayScale", std::max(0.33, globalConfig->overlayScale()));
         rootObject()->setProperty("lightTimeout", std::max(5.0, globalConfig->lightTimeout()));
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
+        break;
     }
     initialised = true;
 }
@@ -191,7 +195,8 @@ void TweakedQmlApplicationViewer::saveSettings()
     }
 
     // save theme-specific arcade settings
-    if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
+    switch ( arcadeThemes.indexOf(globalConfig->arcadeTheme) ) {
+    case QMC2_ARCADE_THEME_TOXICWASTE:
         globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
         globalConfig->setShowBackgroundAnimation(rootObject()->property("showBackgroundAnimation").toBool());
         globalConfig->setShowShaderEffect(rootObject()->property("showShaderEffect").toBool());
@@ -211,7 +216,8 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setBackgroundOpacity(rootObject()->property("backgroundOpacity").toDouble());
         globalConfig->setGameListOpacity(rootObject()->property("gameListOpacity").toDouble());
         globalConfig->setCabinetImageType(rootObject()->property("cabinetImageType").toString());
-    } else if ( globalConfig->arcadeTheme == "darkone" ) {
+        break;
+    case QMC2_ARCADE_THEME_DARKONE:
         globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
         globalConfig->setDataTypePrimary(rootObject()->property("dataTypePrimary").toString());
         globalConfig->setDataTypeSecondary(rootObject()->property("dataTypeSecondary").toString());
@@ -227,6 +233,7 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
         globalConfig->setLightTimeout(rootObject()->property("lightTimeout").toDouble());
         globalConfig->setColourScheme(rootObject()->property("colourScheme").toString());
+        break;
     }
 }
 
