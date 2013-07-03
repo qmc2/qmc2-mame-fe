@@ -92,6 +92,10 @@
 // number of image- & pixmap-cache slots
 #define QMC2_ARCADE_IMGCACHE_SIZE     100
 
+// indexed QML themes
+#define QMC2_ARCADE_THEME_TOXICWASTE  0
+#define QMC2_ARCADE_THEME_DARKONE     1
+
 // additional command line arguments
 // -emu <emu> ([mame], mess, ume)
 #define QMC2_ARCADE_CLI_EMU           (argumentList.indexOf("-emu") >= 0 && argumentList.count() > argumentList.indexOf("-emu") + 1 ? argumentList[argumentList.indexOf("-emu") + 1].toLower() : "mame")

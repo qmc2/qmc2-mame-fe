@@ -69,8 +69,9 @@ public:
     {
         // FIXME
     }
-
 #endif
+
+    int themeToIndex();
 
 signals:
     void emulatorStarted(int);
