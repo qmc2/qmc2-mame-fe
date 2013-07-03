@@ -49,6 +49,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     numFrames = 0;
     windowModeSwitching = false;
 
+    infoClasses << "gameinfo" << "emuinfo";
+
 #if QT_VERSION < 0x050000
     cliParams << "theme" << "graphicssystem" << "console" << "language";
 #else
@@ -414,17 +416,15 @@ QString TweakedQmlApplicationViewer::loadImage(const QString &id)
 
 QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QString &infoClass)
 {
-    QString info("");
-    if (infoClass == "gameinfo")
-        info = infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
-    else if (infoClass == "emuinfo")
-        info = infoProvider->requestInfo(id, InfoProvider::InfoClassEmu);
-#ifdef QMC2_DEBUG
-    else
-        info = QString("DEBUG: TweakedQmlApplicationViewer::requestInfo() unsupported info class '%1'").arg(infoClass);
-#endif
-
-    return info;
+    switch ( infoClasses.indexOf(infoClass) ) {
+    case QMC2_ARCADE_INFO_CLASS_GAME:
+        return infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
+    case QMC2_ARCADE_INFO_CLASS_EMU:
+        return infoProvider->requestInfo(id, InfoProvider::InfoClassEmu);
+    default:
+        QMC2_ARCADE_LOG_STR(tr("WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class '%1'").arg(infoClass));
+        return tr("no info available");
+    }
 }
 
 int TweakedQmlApplicationViewer::findIndex(QString pattern, int startIndex)
