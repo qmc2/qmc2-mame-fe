@@ -21,6 +21,7 @@ private:
     bool qmc2InfoStopParser;
     QMap<QString, QByteArray *> qmc2EmuInfoDB;
     QMap<QString, QByteArray *> qmc2GameInfoDB;
+    QString urlSectionRegExp;
 };
 
 #endif
