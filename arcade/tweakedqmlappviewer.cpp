@@ -125,6 +125,11 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
         saveSettings();
 }
 
+int TweakedQmlApplicationViewer::themeIndex()
+{
+    return arcadeThemes.indexOf(globalConfig->arcadeTheme);
+}
+
 void TweakedQmlApplicationViewer::fpsReady()
 {
     if ( rootObject() )
@@ -140,7 +145,7 @@ void TweakedQmlApplicationViewer::loadSettings()
     rootObject()->setProperty("version", globalConfig->applicationVersion());
 
     // load theme-specific arcade settings
-    switch ( arcadeThemes.indexOf(globalConfig->arcadeTheme) ) {
+    switch ( themeIndex() ) {
     case QMC2_ARCADE_THEME_TOXICWASTE:
         rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
         rootObject()->setProperty("showBackgroundAnimation", globalConfig->showBackgroundAnimation());
@@ -197,7 +202,7 @@ void TweakedQmlApplicationViewer::saveSettings()
     }
 
     // save theme-specific arcade settings
-    switch ( arcadeThemes.indexOf(globalConfig->arcadeTheme) ) {
+    switch ( themeIndex() ) {
     case QMC2_ARCADE_THEME_TOXICWASTE:
         globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
         globalConfig->setShowBackgroundAnimation(rootObject()->property("showBackgroundAnimation").toBool());
