@@ -98,6 +98,8 @@ public slots:
     QStringList cliParamAllowedValues(QString);
     void setCliParamValue(QString, QString);
     void linkActivated(QString);
+    QString emuMode();
+    int emuModeIndex();
 #if QT_VERSION >= 0x050000
     void frameBufferSwapped();
     void handleQuit();
