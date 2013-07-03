@@ -140,7 +140,7 @@ void TweakedQmlApplicationViewer::loadSettings()
     rootObject()->setProperty("version", globalConfig->applicationVersion());
 
     // load theme-specific arcade settings
-    switch ( emuModeIndex() ) {
+    switch ( arcadeThemes.indexOf(globalConfig->arcadeTheme) ) {
     case QMC2_ARCADE_THEME_TOXICWASTE:
         rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
         rootObject()->setProperty("showBackgroundAnimation", globalConfig->showBackgroundAnimation());
@@ -197,7 +197,7 @@ void TweakedQmlApplicationViewer::saveSettings()
     }
 
     // save theme-specific arcade settings
-    switch ( emuModeIndex() ) {
+    switch ( arcadeThemes.indexOf(globalConfig->arcadeTheme) ) {
     case QMC2_ARCADE_THEME_TOXICWASTE:
         globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
         globalConfig->setShowBackgroundAnimation(rootObject()->property("showBackgroundAnimation").toBool());
@@ -530,12 +530,16 @@ void TweakedQmlApplicationViewer::linkActivated(QString link)
 
 QString TweakedQmlApplicationViewer::emuMode()
 {
-    return globalConfig->arcadeTheme;
-}
-
-int TweakedQmlApplicationViewer::emuModeIndex()
-{
-    return arcadeThemes.indexOf(globalConfig->arcadeTheme);
+    switch ( emulatorMode ) {
+    case QMC2_ARCADE_EMUMODE_MAME:
+        return "mame";
+    case QMC2_ARCADE_EMUMODE_MESS:
+        return "mess";
+    case QMC2_ARCADE_EMUMODE_UME:
+        return "ume";
+    default:
+        return "unknown";
+    }
 }
 
 #if QT_VERSION >= 0x050000
