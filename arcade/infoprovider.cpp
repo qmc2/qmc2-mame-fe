@@ -16,6 +16,10 @@ InfoProvider::InfoProvider()
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
+
+    // URL replacement regexp
+    urlSectionRegExp = QString("[%1]+").arg(QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*"));
+
     loadGameInfoDB();
     loadEmuInfoDB();
 }
@@ -273,10 +277,6 @@ void InfoProvider::loadEmuInfoDB()
 QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
 {
     QString infoText;
-
-    // URL replacement regexp
-    static QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*");
-    static QString urlSectionRegExp = QString("[%1]+").arg(urlChar);
 
     switch ( infoClass ) {
     case InfoProvider::InfoClassGame:
