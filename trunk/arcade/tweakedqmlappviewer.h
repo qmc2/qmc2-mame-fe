@@ -72,7 +72,7 @@ public:
     }
 #endif
 
-    int themeToIndex();
+    int themeIndex();
 
 signals:
     void emulatorStarted(int);
