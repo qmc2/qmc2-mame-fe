@@ -141,6 +141,9 @@ qmc2-arcade:
 	${MAKE} DISTCFG=1 PREFIX=/usr/ arcade
 	mkdir -p ${CURDIR}/debian/qmc2-arcade/usr/bin
 	${MAKE} DISTCFG=1 PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-arcade arcade-install
+
+	# Remove shared resources
+	rm -rf $(CURDIR)/debian/qmc2-arcade/usr/share/qmc2
 	
 	dh_testdir
 	dh_testroot
@@ -164,6 +167,9 @@ qchdman:
 	${MAKE} DISTCFG=1 PREFIX=/usr/ tools
 	mkdir -p ${CURDIR}/debian/qchdman/usr/bin
 	${MAKE} DISTCFG=1 PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qchdman tools-install
+
+	# Remove shared resources
+	rm -rf $(CURDIR)/debian/qchdman/usr/share/qmc2
 	
 	dh_testdir
 	dh_testroot

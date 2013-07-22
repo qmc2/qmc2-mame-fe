@@ -333,7 +333,7 @@
     <message>
         <location filename="../main.cpp" line="349"/>
         <source>language: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>língua: %1</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="350"/>
@@ -558,19 +558,19 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="229"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="229"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagens</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="351"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="351"/>
         <source>Emu info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info do emulador</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="372"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="372"/>
         <source>Game info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info do jogo</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="690"/>
@@ -594,110 +594,111 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="802"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="802"/>
         <source>Switches</source>
-        <translation type="unfinished"></translation>
+        <translation>Interruptores</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="821"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="821"/>
         <source>Show floating-bubbles animation?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar animação de bolhas flutuantes?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="850"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="850"/>
         <source>Draw animation in the foreground?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenhar a animação em primeiro plano?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="879"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="879"/>
         <source>Show radial wave effect on background?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar efeito de onda radial no plano de fundo?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="908"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="908"/>
         <source>Show FPS counter in the menu-bar?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar contador de QPS na barra de menu?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="937"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="937"/>
         <source>Confirm when quitting the application?</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar quando sair da aplicação?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="966"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="966"/>
         <source>Scale &amp; position cabinet automatically?</source>
-        <translation type="unfinished"></translation>
+        <translation>Escalar e posicionar automaticamente o gabinete?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="987"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="987"/>
         <source>Sliders</source>
-        <translation type="unfinished"></translation>
+        <translation>Sliders</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1002"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1002"/>
         <source>Cabinet zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom do gabinete</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1015"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1015"/>
         <source>Cabinet X center offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Deslocamento do centro X do gabinete</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1029"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1029"/>
         <source>Cabinet Y center offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Deslocamento do centro Y do gabinete</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1043"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1043"/>
         <source>Cabinet opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade do gabinete</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1056"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1056"/>
         <source>Background opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade do plano de fundo</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1069"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1069"/>
         <source>Game list opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade da lista de jogos</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1079"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1079"/>
         <source>Backend</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1096"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1096"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>Opção</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1148"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1148"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1190"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1190"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
-        <translation type="unfinished"></translation>
+        <translation>Para as opções do backend padrão customizadas
+terem efeito, por favor reinicie o Arcade do QMC2!</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1216"/>
@@ -729,7 +730,7 @@ take effect, please restart QMC2 Arcade!</source>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="75"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="77"/>
@@ -744,7 +745,7 @@ take effect, please restart QMC2 Arcade!</source>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="80"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Língua</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="137"/>
@@ -870,12 +871,12 @@ take effect, please restart QMC2 Arcade!</source>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="425"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO:TweakedQmlApplicationViewer::requestInfo(): classe de informação não suportada &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="426"/>
         <source>no info available</source>
-        <translation type="unfinished">informação não disponível</translation>
+        <translation>informação não disponível</translation>
     </message>
     <message>
         <location filename="../tweakedqmlappviewer.cpp" line="549"/>
@@ -912,7 +913,7 @@ take effect, please restart QMC2 Arcade!</source>
         <location filename="../qml/darkone/2.0/darkone.js" line="446"/>
         <location filename="../qml/darkone/2.0/darkone.js" line="457"/>
         <source>no info available</source>
-        <translation type="unfinished">informação não disponível</translation>
+        <translation>informação não disponível</translation>
     </message>
     <message>
         <location filename="../qml/darkone/1.1/darkone.qml" line="1028"/>

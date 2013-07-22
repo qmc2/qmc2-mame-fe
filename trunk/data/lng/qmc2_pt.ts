@@ -597,12 +597,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="331"/>
         <source>good + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bom + imperfeito</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="336"/>
         <source>good + imperfect + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bom + imperfeito + preliminar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="578"/>
@@ -811,22 +811,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="771"/>
         <source>Use only sets included in the favorites list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos incluídos na lista dos favoritos?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="774"/>
         <source>Use only favorite sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos favoritos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="787"/>
         <source>Use only sets that are tagged?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos etiquetados?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="790"/>
         <source>Use only tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="800"/>
@@ -910,7 +910,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="379"/>
         <source>imperfect</source>
-        <translation type="unfinished">imperfeito</translation>
+        <translation>imperfeito</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="414"/>
@@ -1510,7 +1510,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="253"/>
         <source>imperfect</source>
-        <translation type="unfinished">imperfeito</translation>
+        <translation>imperfeito</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="286"/>
@@ -1558,22 +1558,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="127"/>
         <source>Use only sets included in the favorites list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos incluídos na lista dos favoritos?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="130"/>
         <source>Favorites</source>
-        <translation type="unfinished">Favoritos</translation>
+        <translation>Favoritos</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="214"/>
         <source>good + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bom + imperfeito</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="219"/>
         <source>good + imperfect + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bom + imperfeito + preliminar</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="268"/>
@@ -1675,7 +1675,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="394"/>
         <source>Use only sets that are tagged?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente conjuntos etiquetados?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="417"/>
@@ -3517,7 +3517,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="2728"/>
         <source>done (loading XML data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados da lista de software (XML) e (re)criando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3190"/>
@@ -3814,29 +3814,29 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="823"/>
         <source>loading XML data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando dados XML do cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="858"/>
         <source>done (loading XML data from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados XML do cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="861"/>
         <location filename="../../gamelist.cpp" line="864"/>
         <location filename="../../gamelist.cpp" line="2742"/>
         <source>WARNING: XML data cache is incomplete, invalidating XML data cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Cache de dados XML está incompleto, invalidando cache de dados XML</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="927"/>
         <source>loading XML data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando dados XML e (re)criando cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="938"/>
         <source>WARNING: can&apos;t open XML data cache for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir cache de dados XML para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1038"/>
@@ -10951,12 +10951,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="348"/>
         <source>Machine list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache de lista de máquinas (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="349"/>
         <source>Browse machine list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de cache de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="362"/>
@@ -11973,7 +11973,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3149"/>
         <source>Choose XML data cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de cache de dados XML</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3161"/>
@@ -14246,27 +14246,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4396"/>
         <source>XML data cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de dados XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4409"/>
         <source>Cache file for the output from -listxml (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache para a saída de -listxml (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4422"/>
         <source>Browse XML data cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de cache de dados XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4446"/>
         <source>Game list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache de lista de jogos (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4459"/>
         <source>Browse game list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de cache de lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5078"/>
@@ -15256,12 +15256,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1669"/>
         <source>searched paths: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>caminhos procurados: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1671"/>
         <source>searched path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>caminho procurado: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1726"/>
@@ -18462,7 +18462,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="650"/>
         <location filename="../../softwarelist.ui" line="653"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>L:Listado - C:Correto - M:Maioria correto - I:Incorreto - N:Não econtrado - D:Desconhecido</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="672"/>
@@ -18789,37 +18789,37 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="3355"/>
         <location filename="../../softwarelist.cpp" line="3364"/>
         <source>L:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3357"/>
         <location filename="../../softwarelist.cpp" line="3366"/>
         <source>C:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3358"/>
         <location filename="../../softwarelist.cpp" line="3367"/>
         <source>M:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3359"/>
         <location filename="../../softwarelist.cpp" line="3368"/>
         <source>I:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3360"/>
         <location filename="../../softwarelist.cpp" line="3369"/>
         <source>N:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3361"/>
         <location filename="../../softwarelist.cpp" line="3370"/>
         <source>U:</source>
-        <translation type="unfinished"></translation>
+        <translation>D:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1515"/>
