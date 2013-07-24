@@ -1779,11 +1779,11 @@
     </option>
     <option default="0.3" name="vector_bloom_scale" type="float">
       <description lang="us" text="Intensity factor for vector bloom"/>
-      <description lang="de" text=""/>
+      <description lang="de" text="Intensitätsfaktor für Vektor-Bloom"/>
     </option>
     <option default="0.225" name="raster_bloom_scale" type="float">
       <description lang="us" text="Intensity factor for raster bloom"/>
-      <description lang="de" text=""/>
+      <description lang="de" text="Intensitätsfaktor für Raster-Bloom"/>
     </option>
     <option default="1.0" name="bloom_lvl0_weight" type="float">
       <description lang="us" text="Bloom level 0 (full-size target) weight"/>
