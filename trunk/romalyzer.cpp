@@ -911,7 +911,12 @@ void ROMAlyzer::analyze()
 	    QString sizeStr = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
 	    if ( !sizeStr.isEmpty() ){
 	      fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, QString::number(data.size()));
-	      fileStatus += tr("SIZE ");
+	      if ( !fileStatus.isEmpty() )
+		      fileStatus += " ";
+	      if ( data.size() == sizeStr.toLongLong() )
+		      fileStatus += tr("SIZE");
+	      else
+		      fileStatus += tr("size");
 	      if ( data.size() != sizeStr.toLongLong() && hasDump ) {
 		somethingsWrong = true;
 		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SIZE, xmlHandler.redBrush);
@@ -926,7 +931,12 @@ void ROMAlyzer::analyze()
 	      ulong crc = crc32(0, NULL, 0);
 	      crc = crc32(crc, (const Bytef *)data.data(), data.size());
 	      fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, QString::number(crc, 16).rightJustified(8, '0'));
-	      fileStatus += tr("CRC ");
+	      if ( !fileStatus.isEmpty() )
+		      fileStatus += " ";
+	      if ( crc == crcStr.toULongLong(0, 16) )
+		      fileStatus += tr("CRC");
+	      else
+		      fileStatus += tr("crc");
 	      if ( crc != crcStr.toULongLong(0, 16) && hasDump ) {
 		somethingsWrong = true;
 		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_CRC, xmlHandler.redBrush);
@@ -938,7 +948,12 @@ void ROMAlyzer::analyze()
 	    QString sha1Str = childItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
 	    if ( !sha1Str.isEmpty() && checkBoxCalculateSHA1->isChecked() ) {
 	      fileItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, sha1Calculated);
-	      fileStatus += tr("SHA1 ");
+	      if ( !fileStatus.isEmpty() )
+		      fileStatus += " ";
+	      if ( sha1Str == sha1Calculated )
+		      fileStatus += tr("SHA1");
+	      else
+		      fileStatus += tr("sha1");
 	      if ( sha1Str != sha1Calculated && hasDump ) {
 		somethingsWrong = true;
 		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
@@ -963,7 +978,12 @@ void ROMAlyzer::analyze()
 	    QString md5Str = childItem->text(QMC2_ROMALYZER_COLUMN_MD5);
 	    if ( !md5Str.isEmpty() && checkBoxCalculateMD5->isChecked() ) {
 	      fileItem->setText(QMC2_ROMALYZER_COLUMN_MD5, md5Calculated);
-	      fileStatus += tr("MD5 ");
+	      if ( !fileStatus.isEmpty() )
+		      fileStatus += " ";
+	      if ( md5Str == md5Calculated )
+		      fileStatus += tr("MD5");
+	      else
+		      fileStatus += tr("md5");
 	      if ( md5Str != md5Calculated && hasDump ) {
 		somethingsWrong = true;
 		fileItem->setForeground(QMC2_ROMALYZER_COLUMN_MD5, xmlHandler.redBrush);
