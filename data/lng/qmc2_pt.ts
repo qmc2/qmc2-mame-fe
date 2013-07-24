@@ -15783,27 +15783,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="917"/>
         <source>SIZE</source>
-        <translation type="unfinished"></translation>
+        <translation>TAMANHO</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="919"/>
         <source>size</source>
-        <translation type="unfinished"></translation>
+        <translation>tamanho</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="939"/>
         <source>crc</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="956"/>
         <source>sha1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="986"/>
         <source>md5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1052"/>

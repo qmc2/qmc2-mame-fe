@@ -38,7 +38,7 @@ Description: QMC2 Variant Launcher Utility
 
 Package: qmc2-arcade
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-sdlmame | qmc2-sdlmess | qmc2-sdlume
 Description: QMC2 Arcade Mode
  An Arcade like user interface for QMC2
 
