@@ -680,11 +680,11 @@ ifneq '$(QMAKEV)' '1'
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
-ifeq '$(XCODE3)' '0'
 QT_LIBTMP = $(shell echo $(QT_LIBVERSION) | tr "." " " )
 QT_LIBMAJ = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
 QT_LIBMIN = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
 QT_LIB48PLUS = $(shell [ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ] && echo true)
+ifeq '$(XCODE3)' '0'
 ifeq '$(QT_LIB48PLUS)' 'true'
 QMAKEFILE = Makefile.qmake
 endif
@@ -1030,7 +1030,7 @@ arcade/Info.plist: arcade/Info.plist.in
 	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(ARCADE_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qmc2-arcade.icns/g' < $< > $@
 arcade/qmc2-arcade.app/Contents/Resources/qt.conf: arcade/Info.plist
 	@$(MACDEPLOYQT) arcade/qmc2-arcade.app
-	@arch/Darwin/arcade_macdeployimports.sh
+	@arch/Darwin/arcade_macdeployimports.sh $(QT_LIBMAJ)
 arcade-macdeployqt: arcade/qmc2-arcade.app/Contents/Resources/qt.conf
 endif
 
