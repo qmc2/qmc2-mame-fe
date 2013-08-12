@@ -5703,42 +5703,102 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
 <context>
     <name>ImageWidget</name>
     <message>
-        <location filename="../../imagewidget.cpp" line="45"/>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Portable Network Graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Windows Bitmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Graphic Interchange Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Joint Photographic Experts Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Portable Bitmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Portable Graymap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Portable Pixmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Tagged Image File Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>X11 Bitmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>X11 Pixmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Scalable Vector Graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Targa Image Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="54"/>
         <source>Copy image to clipboard</source>
         <translation>Skopiuj obraz do schowka</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="51"/>
+        <location filename="../../imagewidget.cpp" line="60"/>
         <source>Copy file path to clipboard</source>
         <translation>Skopiuj ścieżkę pliku do schowka</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="69"/>
         <source>Refresh cache slot</source>
         <translation>Odśwież slot bufora</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="70"/>
+        <location filename="../../imagewidget.cpp" line="79"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
         <translation>FATALNIE: nie można otworzyć pliku %1, proszę sprawdzić uprawnienia dostępu dla %2</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="117"/>
+        <location filename="../../imagewidget.cpp" line="126"/>
         <source>Waiting for data...</source>
         <translation>Oczekiwanie na dane...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="299"/>
+        <location filename="../../imagewidget.cpp" line="308"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATALNIE: nie udało się zapisać kopii istniejącego pliku obrazu &apos;%1&apos; jako &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="314"/>
+        <location filename="../../imagewidget.cpp" line="323"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATALNIE: nie można utworzyć pliku obrazu &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="320"/>
+        <location filename="../../imagewidget.cpp" line="329"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATALNIE: nie można ustalić podstawowej ścieżku dla typu obrazów &apos;%1&apos;</translation>
     </message>
@@ -16012,22 +16072,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="885"/>
         <source>Checksums</source>
         <translation>Sumy kontrolne</translation>
-    </message>
-    <message>
-        <source>SIZE </source>
-        <translation type="obsolete">ROZMIAR </translation>
-    </message>
-    <message>
-        <source>CRC </source>
-        <translation type="obsolete">CRC </translation>
-    </message>
-    <message>
-        <source>SHA1 </source>
-        <translation type="obsolete">SHA1 </translation>
-    </message>
-    <message>
-        <source>MD5 </source>
-        <translation type="obsolete">MD5 </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1030"/>

@@ -617,3 +617,8 @@ int ArcadeSettings::joystickAxisMaximum(int jsIndex, int axis)
     return value(QString("%1/Joystick/%2/Axis%3Maximum").arg(frontEndPrefix).arg(jsIndex).arg(axis)).toInt();
 }
 
+QStringList ArcadeSettings::activeImageFormats(QString imageType)
+{
+    return value(QString("%1/ActiveImageFormats/%2").arg(frontEndPrefix).arg(imageType)).toStringList();
+}
+

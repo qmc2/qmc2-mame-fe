@@ -5679,42 +5679,102 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>ImageWidget</name>
     <message>
-        <location filename="../../imagewidget.cpp" line="45"/>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Portable Network Graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Windows Bitmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Graphic Interchange Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Joint Photographic Experts Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Portable Bitmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Portable Graymap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Portable Pixmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Tagged Image File Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>X11 Bitmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>X11 Pixmap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Scalable Vector Graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Targa Image Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="54"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagen al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="51"/>
+        <location filename="../../imagewidget.cpp" line="60"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar la ruta del archivo al portapapeles</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="69"/>
         <source>Refresh cache slot</source>
         <translation>Actualizar el slot de caché</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="70"/>
+        <location filename="../../imagewidget.cpp" line="79"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
         <translation>ERROR: no se puede abrir el archivo &apos;%1&apos;, por favor comprueba los permisos de acceso para %2</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="117"/>
+        <location filename="../../imagewidget.cpp" line="126"/>
         <source>Waiting for data...</source>
         <translation>Esperando datos...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="299"/>
+        <location filename="../../imagewidget.cpp" line="308"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>ERROR: no se puede crear el respaldo del archivo de imagen &apos;%1&apos; como &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="314"/>
+        <location filename="../../imagewidget.cpp" line="323"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>ERROR: no se puede creae el archivo de imagen &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="320"/>
+        <location filename="../../imagewidget.cpp" line="329"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>ERROR: no se puede determinar la ruta principal para el tipo de imagen &apos;%1&apos;</translation>
     </message>
@@ -16307,10 +16367,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="904"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the UME developers as a possible XML bug of the respective driver</source>
         <translation>INFORMACIÓN: archivo %1 &apos;%2&apos; tiene una mezcla (&apos;%3&apos;) pero no un set padre -- ignorado, pero debería informarse a los desarrolladores de UME como un posible error de XML del driver respectivo</translation>
-    </message>
-    <message>
-        <source>SIZE </source>
-        <translation type="obsolete">TAMAÑO </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="967"/>

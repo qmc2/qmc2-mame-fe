@@ -3,7 +3,21 @@
 
 #include <QMap>
 #include <QCache>
+#include <QList>
 #include <QString>
+
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG     0
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_BMP     1
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_GIF     2
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_JPG     3
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_PBM     4
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_PGM     5
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_PPM     6
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_TIFF    7
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_XBM     8
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_XPM     9
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_SVG     10
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_TGA     11
 
 #include "../minizip/unzip.h"
 
@@ -32,6 +46,8 @@ private:
     QMap<QString, unzFile> mZipFileMap;
     QCache<QString, QImage> mImageCache;
     QCache<QString, QPixmap> mPixmapCache;
+    QMap<QString, QList<int> > mActiveFormatsMap;
+    QStringList mFormatExtensions;
 };
 #else
 #include <QQuickImageProvider>
@@ -58,6 +74,8 @@ private:
     QMap<QString, unzFile> mZipFileMap;
     QCache<QString, QImage> mImageCache;
     QCache<QString, QPixmap> mPixmapCache;
+    QMap<QString, QList<int> > mActiveFormatsMap;
+    QStringList mFormatExtensions;
 };
 #endif
 

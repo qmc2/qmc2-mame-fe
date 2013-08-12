@@ -7,17 +7,32 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QAction>
+#include <QStringList>
 #if QMC2_OPENGL == 1
 #include <QGLWidget>
 #endif
 #include "unzip.h"
 #include "macros.h"
 
+#define QMC2_IMAGE_FORMAT_INDEX_PNG	0
+#define QMC2_IMAGE_FORMAT_INDEX_BMP	1
+#define QMC2_IMAGE_FORMAT_INDEX_GIF	2
+#define QMC2_IMAGE_FORMAT_INDEX_JPG	3
+#define QMC2_IMAGE_FORMAT_INDEX_PBM	4
+#define QMC2_IMAGE_FORMAT_INDEX_PGM	5
+#define QMC2_IMAGE_FORMAT_INDEX_PPM	6
+#define QMC2_IMAGE_FORMAT_INDEX_TIFF	7
+#define QMC2_IMAGE_FORMAT_INDEX_XBM	8
+#define QMC2_IMAGE_FORMAT_INDEX_XPM	9
+#define QMC2_IMAGE_FORMAT_INDEX_SVG	10
+#define QMC2_IMAGE_FORMAT_INDEX_TGA	11
+
 class ImagePixmap : public QPixmap
 {
 	public:
 		QString imagePath;
 		bool isGhost;
+
 		ImagePixmap(bool ghost = false) : QPixmap()
 		{
 			imagePath.clear();
@@ -79,6 +94,10 @@ class ImageWidget : public QWidget
 		QMenu *contextMenu;
 		QString cacheKey;
 		QAction *actionCopyPathToClipboard;
+		QList<int> activeFormats;
+
+		static QStringList formatNames;
+		static QStringList formatExtensions;
 
 		ImageWidget(QWidget *parent);
 		~ImageWidget();

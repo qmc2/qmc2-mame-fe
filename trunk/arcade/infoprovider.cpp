@@ -257,10 +257,12 @@ void InfoProvider::loadEmuInfoDB()
                                 qmc2EmuInfoDB[gameWords[i]] = emuInfo;
                     } else
                         QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in emulator info DB %1").arg(pathToEmuInfoDB));
-                } else if ( !ts.atEnd() )
+                } else if ( !ts.atEnd() ) {
                     QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$mame' in emulator info DB %1").arg(pathToEmuInfoDB));
-            } else if ( !ts.atEnd() )
+                }
+            } else if ( !ts.atEnd() ) {
                 QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
+            }
         }
         emuInfoDB.close();
     } else

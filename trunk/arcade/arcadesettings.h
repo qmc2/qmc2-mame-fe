@@ -4,6 +4,7 @@
 #include <QSettings>
 #include <QLocale>
 #include <QSize>
+#include <QStringList>
 
 class ArcadeSettings : public QSettings
 {
@@ -149,6 +150,7 @@ public slots:
     bool compressEmuInfoDB();
     int joystickAxisMinimum(int, int);
     int joystickAxisMaximum(int, int);
+    QStringList activeImageFormats(QString);
 };
 
 #endif
