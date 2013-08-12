@@ -85,6 +85,7 @@ class ImageWidget : public QWidget
 
 		static QStringList formatNames;
 		static QStringList formatExtensions;
+		static QStringList formatDescriptions;
 
 		ImageWidget(QWidget *parent);
 		~ImageWidget();
