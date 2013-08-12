@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>544</width>
+    <width>545</width>
     <height>612</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>495</width>
+                <width>496</width>
                 <height>625</height>
                </rect>
               </property>
@@ -890,14 +890,101 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>228</width>
-                <height>731</height>
+                <y>-196</y>
+                <width>496</width>
+                <height>733</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_7">
+                 <item row="13" column="1" colspan="2">
+                  <widget class="QStackedWidget" name="stackedWidgetCabinet">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="currentIndex">
+                    <number>0</number>
+                   </property>
+                   <widget class="QWidget" name="pageCabinetDirectory">
+                    <layout class="QHBoxLayout" name="_2">
+                     <property name="margin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditCabinetDirectory">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Cabinet directory (read)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButtonBrowseCabinetDirectory">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Browse cabinet directory</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="qmc2.qrc">
+                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="pageCabinetFile">
+                    <layout class="QHBoxLayout" name="_3">
+                     <property name="margin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditCabinetFile">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>ZIP-compressed cabinet file (read)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButtonBrowseCabinetFile">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Browse ZIP-compressed cabinet file</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="qmc2.qrc">
+                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </widget>
+                 </item>
                  <item row="0" column="2">
                   <widget class="QToolButton" name="toolButtonBrowseTemporaryFile">
                    <property name="sizePolicy">
@@ -1702,93 +1789,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="1" colspan="2">
-                  <widget class="QStackedWidget" name="stackedWidgetCabinet">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="currentIndex">
-                    <number>0</number>
-                   </property>
-                   <widget class="QWidget" name="pageCabinetDirectory">
-                    <layout class="QHBoxLayout" name="_2">
-                     <property name="margin">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="QLineEdit" name="lineEditCabinetDirectory">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="toolTip">
-                        <string>Cabinet directory (read)</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QToolButton" name="toolButtonBrowseCabinetDirectory">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="toolTip">
-                        <string>Browse cabinet directory</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="qmc2.qrc">
-                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                   <widget class="QWidget" name="pageCabinetFile">
-                    <layout class="QHBoxLayout" name="_3">
-                     <property name="margin">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="QLineEdit" name="lineEditCabinetFile">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="toolTip">
-                        <string>ZIP-compressed cabinet file (read)</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QToolButton" name="toolButtonBrowseCabinetFile">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="toolTip">
-                        <string>Browse ZIP-compressed cabinet file</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="qmc2.qrc">
-                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </widget>
-                 </item>
                  <item row="14" column="0">
                   <widget class="QRadioButton" name="radioButtonControllerSelect">
                    <property name="toolTip">
@@ -2506,14 +2506,28 @@
                   </widget>
                  </item>
                  <item row="19" column="0" colspan="3">
-                  <widget class="QPushButton" name="pushButtonAdditionalArtworkSetup">
-                   <property name="toolTip">
-                    <string>Define additional artwork classes for systems and software-list entries</string>
-                   </property>
-                   <property name="text">
-                    <string>Set up additional artwork classes...</string>
-                   </property>
-                  </widget>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QPushButton" name="pushButtonAdditionalArtworkSetup">
+                     <property name="toolTip">
+                      <string>Define additional artwork classes for systems and software-list entries</string>
+                     </property>
+                     <property name="text">
+                      <string>Set up additional artwork classes...</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButtonImageFormats">
+                     <property name="toolTip">
+                      <string>Choose active image formats and their priorities (per artwork class)</string>
+                     </property>
+                     <property name="text">
+                      <string>Select image formats...</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                 </layout>
                </item>
@@ -2544,8 +2558,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>508</width>
-                <height>248</height>
+                <width>513</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3195,8 +3209,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>513</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3317,8 +3331,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>213</height>
+                <width>513</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3780,8 +3794,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
-                <height>463</height>
+                <width>513</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4249,8 +4263,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>182</width>
+                <height>467</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4915,8 +4929,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>509</height>
+                <width>236</width>
+                <height>211</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -5424,6 +5438,7 @@
   <tabstop>lineEditSoftwareSnapFile</tabstop>
   <tabstop>toolButtonBrowseSoftwareSnapFile</tabstop>
   <tabstop>pushButtonAdditionalArtworkSetup</tabstop>
+  <tabstop>pushButtonImageFormats</tabstop>
   <tabstop>lineEditSystemNotesFolder</tabstop>
   <tabstop>toolButtonBrowseSystemNotesFolder</tabstop>
   <tabstop>checkBoxUseSystemNotesTemplate</tabstop>

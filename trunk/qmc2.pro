@@ -49,6 +49,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			gradientstopactions.ui \
 			softwarestatefilter.ui \
 			additionalartworksetup.ui \
+			imageformatsetup.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -108,6 +109,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			gradientstopactions.cpp \
 			softwarestatefilter.cpp \
 			additionalartworksetup.cpp \
+			imageformatsetup.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -185,6 +187,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			gradientstopactions.h \
 			softwarestatefilter.h \
 			additionalartworksetup.h \
+			imageformatsetup.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

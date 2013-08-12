@@ -46,6 +46,7 @@
 #include "cookiejar.h"
 #include "cookiemanager.h"
 #include "additionalartworksetup.h"
+#include "imageformatsetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -217,8 +218,10 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED) // FIXME: remove WIP clause when "additional artwork" support is functional
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when "additional artwork support" / "support for additional image formats" is functional
   pushButtonAdditionalArtworkSetup->setVisible(false);
+  pushButtonImageFormats->setVisible(false);
 #endif
 
   qmc2StandardWorkDir = QDir::currentPath();
@@ -2876,6 +2879,17 @@ void Options::on_pushButtonAdditionalArtworkSetup_clicked()
 	AdditionalArtworkSetup as(this);
 	as.exec();
 }
+
+void Options::on_pushButtonImageFormats_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonImageFormats_clicked()");
+#endif
+
+	ImageFormatSetup ifs(this);
+	ifs.exec();
+}
+
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
 {
