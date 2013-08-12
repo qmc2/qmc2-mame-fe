@@ -27,7 +27,13 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type)
                 QMC2_ARCADE_LOG_STR(QString("WARNING: Can't open %1 ZIP file '%2'").arg(imageTypeToLongName(imageType)).arg(imageTypeToZipFile(imageType)));
             }
         }
+        QStringList activeFormats = globalConfig->activeImageFormats(imageType);
+        if ( activeFormats.isEmpty() )
+            mActiveFormatsMap[imageType] << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG;
+        else for (int i = 0; i < activeFormats.count(); i++)
+            mActiveFormatsMap[imageType]<< activeFormats[i].toInt();
     }
+    mFormatExtensions << "png" << "bmp" << "gif" << "jpg:jpeg" << "pbm" << "pgm" << "ppm" << "tif:tiff" << "xbm" << "xpm" << "svg" << "tga";
 }
 
 ImageProvider::~ImageProvider()

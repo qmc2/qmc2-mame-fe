@@ -5659,42 +5659,102 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>ImageWidget</name>
     <message>
-        <location filename="../../imagewidget.cpp" line="45"/>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Portable Network Graphics</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Windows Bitmap</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Graphic Interchange Format</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Joint Photographic Experts Group</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="49"/>
+        <source>Portable Bitmap</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Portable Graymap</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Portable Pixmap</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Tagged Image File Format</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>X11 Bitmap</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>X11 Pixmap</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Scalable Vector Graphics</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="50"/>
+        <source>Targa Image Format</source>
+        <translation>Targa Bild Format</translation>
+    </message>
+    <message>
+        <location filename="../../imagewidget.cpp" line="54"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="51"/>
+        <location filename="../../imagewidget.cpp" line="60"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="69"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="70"/>
+        <location filename="../../imagewidget.cpp" line="79"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
         <translation>FATAL: kann %1-Datei nicht öffnen, bitte Zugriffsrechte für %2 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="117"/>
+        <location filename="../../imagewidget.cpp" line="126"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="299"/>
+        <location filename="../../imagewidget.cpp" line="308"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="314"/>
+        <location filename="../../imagewidget.cpp" line="323"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="320"/>
+        <location filename="../../imagewidget.cpp" line="329"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
@@ -15953,22 +16013,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../romalyzer.cpp" line="885"/>
         <source>Checksums</source>
         <translation>Prüfsummen</translation>
-    </message>
-    <message>
-        <source>SIZE </source>
-        <translation type="obsolete">GR </translation>
-    </message>
-    <message>
-        <source>CRC </source>
-        <translation type="obsolete">CRC </translation>
-    </message>
-    <message>
-        <source>SHA1 </source>
-        <translation type="obsolete">SHA1 </translation>
-    </message>
-    <message>
-        <source>MD5 </source>
-        <translation type="obsolete">MD5 </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1030"/>

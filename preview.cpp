@@ -11,7 +11,11 @@ extern bool qmc2ScaledPreview;
 Preview::Preview(QWidget *parent)
 	: ImageWidget(parent)
 {
-	// NOP
+	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ActiveImageFormats/prv", QStringList()).toStringList();
+	if ( imgFmts.isEmpty() )
+		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
+	else for (int i = 0; i < imgFmts.count(); i++)
+		activeFormats << imgFmts[i].toInt();
 }
 
 QString Preview::imageZip()

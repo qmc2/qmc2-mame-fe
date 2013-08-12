@@ -25,6 +25,9 @@ extern QMap<QString, QString> qmc2ParentMap;
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
+QStringList ImageWidget::formatNames;
+QStringList ImageWidget::formatExtensions;
+
 ImageWidget::ImageWidget(QWidget *parent)
 #if QMC2_OPENGL == 1
 	: QGLWidget(parent)
@@ -41,6 +44,12 @@ ImageWidget::ImageWidget(QWidget *parent)
 
 	QString s;
 	QAction *action;
+
+	if ( formatNames.isEmpty() )
+		formatNames << tr("Portable Network Graphics") << tr("Windows Bitmap") << tr("Graphic Interchange Format") << tr("Joint Photographic Experts Group") << tr("Portable Bitmap")
+			    << tr("Portable Graymap") << tr("Portable Pixmap") << tr("Tagged Image File Format") << tr("X11 Bitmap") << tr("X11 Pixmap") << tr("Scalable Vector Graphics") << tr("Targa Image Format");
+	if ( formatExtensions.isEmpty() )
+		formatExtensions << "png" << "bmp" << "gif" << "jpg:jpeg" << "pbm" << "pgm" << "ppm" << "tif:tiff" << "xbm" << "xpm" << "svg" << "tga";
 
 	s = tr("Copy image to clipboard");
 	action = contextMenu->addAction(s);
