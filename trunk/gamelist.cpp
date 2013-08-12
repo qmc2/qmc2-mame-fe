@@ -328,6 +328,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->checkBoxStandardColorPalette->setEnabled(enable);
   qmc2Options->pushButtonEditPalette->setEnabled(enable && !qmc2Options->checkBoxStandardColorPalette->isChecked());
   qmc2Options->pushButtonAdditionalArtworkSetup->setEnabled(enable);
+  qmc2Options->pushButtonImageFormats->setEnabled(enable);
   for (int row = 0; row < qmc2Options->tableWidgetRegisteredEmulators->rowCount(); row++) {
 	  QWidget *w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
 	  if ( w ) w->setEnabled(enable);
