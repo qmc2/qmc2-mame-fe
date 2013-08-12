@@ -16,6 +16,7 @@ class ImageFormatSetup : public QDialog, public Ui::ImageFormatSetup
 		void on_pushButtonOk_clicked();
 		void on_pushButtonCancel_clicked();
 		void on_pushButtonRestore_clicked();
+		void on_comboBoxImageType_currentIndexChanged(int);
 
 	protected:
 		void showEvent(QShowEvent *);
