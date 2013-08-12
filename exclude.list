@@ -4042,6 +4042,9 @@ qmc2/.svn/text-base/iconlineedit.h.svn-base
 qmc2/.svn/text-base/imagechecker.cpp.svn-base
 qmc2/.svn/text-base/imagechecker.h.svn-base
 qmc2/.svn/text-base/imagechecker.ui.svn-base
+qmc2/.svn/text-base/imageformatsetup.cpp.svn-base
+qmc2/.svn/text-base/imageformatsetup.h.svn-base
+qmc2/.svn/text-base/imageformatsetup.ui.svn-base
 qmc2/.svn/text-base/imagewidget.cpp.svn-base
 qmc2/.svn/text-base/imagewidget.h.svn-base
 qmc2/.svn/text-base/itemselect.cpp.svn-base
