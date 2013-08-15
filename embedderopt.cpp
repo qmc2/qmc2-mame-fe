@@ -27,7 +27,9 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
+#endif
 extern PCB *qmc2PCB;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern bool qmc2UseSoftwareSnapFile;

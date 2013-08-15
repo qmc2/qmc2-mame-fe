@@ -91,6 +91,8 @@ void ImageFormatSetup::on_pushButtonOk_clicked()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(it.key()), prioList);
 	}
 
+	qmc2MainWindow->reloadImageFormats();
+
 	accept();
 }
 

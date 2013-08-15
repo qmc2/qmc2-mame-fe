@@ -81,7 +81,9 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
+#endif
 extern PCB *qmc2PCB;
 extern SoftwareSnapshot *qmc2SoftwareSnapshot;
 extern SoftwareList *qmc2SoftwareList;
@@ -1112,7 +1114,9 @@ bool HtmlEditor::isZippedImage(QString imageType)
 		case QMC2_IMGTYPE_CABINET: imageWidget = qmc2Cabinet; break;
 		case QMC2_IMGTYPE_CONTROLLER: imageWidget = qmc2Controller; break;
 		case QMC2_IMGTYPE_MARQUEE: imageWidget = qmc2Marquee; break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGTYPE_TITLE: imageWidget = qmc2Title; break;
+#endif
 		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
 		case QMC2_IMGTYPE_SWSNAP: return qmc2UseSoftwareSnapFile;
 		default: break;
@@ -1136,7 +1140,9 @@ QString HtmlEditor::getImageData(QString imageType)
 		case QMC2_IMGTYPE_CABINET: imageWidget = qmc2Cabinet; break;
 		case QMC2_IMGTYPE_CONTROLLER: imageWidget = qmc2Controller; break;
 		case QMC2_IMGTYPE_MARQUEE: imageWidget = qmc2Marquee; break;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		case QMC2_IMGTYPE_TITLE: imageWidget = qmc2Title; break;
+#endif
 		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
 		case QMC2_IMGTYPE_SWSNAP:
 			if ( qmc2SoftwareSnapshot ) {

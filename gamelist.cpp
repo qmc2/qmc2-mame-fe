@@ -69,7 +69,9 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
+#endif
 extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
@@ -480,7 +482,9 @@ void Gamelist::load()
   qmc2Cabinet->update();
   qmc2Controller->update();
   qmc2Marquee->update();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2Title->update();
+#endif
   qmc2PCB->update();
 
   qApp->processEvents();

@@ -504,6 +504,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void action_foreignIDsMenuItem_triggered();
 		void checkRomPath();
 		void negateSearchTriggered(bool);
+		void reloadImageFormats();
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);
