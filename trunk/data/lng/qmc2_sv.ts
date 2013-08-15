@@ -5681,98 +5681,132 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="26"/>
-        <source>Select image type to adjust</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../imageformatsetup.ui" line="30"/>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Previews</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="39"/>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Flyers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="48"/>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Cabinets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="57"/>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Controllers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="66"/>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <source>Logos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
+        <source>Software snaps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Marquees</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="75"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Titles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="84"/>
+        <location filename="../../imageformatsetup.cpp" line="130"/>
+        <location filename="../../imageformatsetup.cpp" line="162"/>
+        <source>deactivated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.cpp" line="133"/>
+        <location filename="../../imageformatsetup.cpp" line="161"/>
+        <location filename="../../imageformatsetup.cpp" line="165"/>
+        <source>activated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.cpp" line="34"/>
+        <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>PCBs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="210"/>
+        <location filename="../../imageformatsetup.ui" line="147"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="215"/>
+        <location filename="../../imageformatsetup.ui" line="152"/>
         <source>Description</source>
         <translation type="unfinished">Beskrivning</translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="220"/>
+        <location filename="../../imageformatsetup.ui" line="157"/>
         <source>Extensions</source>
         <translation type="unfinished">Tillägg</translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="225"/>
-        <source>Active</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../imageformatsetup.ui" line="102"/>
+        <location filename="../../imageformatsetup.ui" line="39"/>
         <source>Apply image format setup and close dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="105"/>
+        <location filename="../../imageformatsetup.ui" line="26"/>
+        <source>Select artwork class to adjust</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.ui" line="42"/>
         <source>&amp;Ok</source>
         <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="125"/>
+        <location filename="../../imageformatsetup.ui" line="62"/>
         <source>Cancel image format setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="128"/>
+        <location filename="../../imageformatsetup.ui" line="65"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">A&amp;vbryt</translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="151"/>
+        <location filename="../../imageformatsetup.ui" line="88"/>
         <source>Restore active image formats from currently stored setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="154"/>
+        <location filename="../../imageformatsetup.ui" line="91"/>
         <source>&amp;Restore</source>
         <translation type="unfinished">Åte&amp;rställ</translation>
     </message>
     <message>
-        <location filename="../../imageformatsetup.ui" line="181"/>
-        <source>Image type</source>
+        <location filename="../../imageformatsetup.ui" line="118"/>
+        <source>Artwork class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.ui" line="125"/>
+        <source>Drag &amp; drop format entries to adjust priorities of activated formats for the current artwork class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../imageformatsetup.ui" line="162"/>
+        <source>Activation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -18301,83 +18335,83 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="376"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="375"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="271"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="283"/>
         <location filename="../../embedderopt.cpp" line="284"/>
-        <location filename="../../embedderopt.cpp" line="285"/>
-        <location filename="../../embedderopt.cpp" line="386"/>
+        <location filename="../../embedderopt.cpp" line="385"/>
         <source>Software snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="390"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="389"/>
         <source>Flyer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="394"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="393"/>
         <source>Cabinet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="398"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="397"/>
         <source>Controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="403"/>
+        <location filename="../../embedderopt.cpp" line="402"/>
         <source>Logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="265"/>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="410"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="409"/>
         <source>PCB</source>
         <translation type="unfinished">PCB</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="381"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="380"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="271"/>
-        <location filename="../../embedderopt.cpp" line="405"/>
+        <location filename="../../embedderopt.cpp" line="270"/>
+        <location filename="../../embedderopt.cpp" line="404"/>
         <source>Marquee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="276"/>
+        <location filename="../../embedderopt.cpp" line="275"/>
         <source>Use as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="540"/>
+        <location filename="../../embedderopt.cpp" line="539"/>
         <source>Choose PNG file to store image</source>
         <translation>Välj PNG-fil för att lagra bilden</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="540"/>
+        <location filename="../../embedderopt.cpp" line="539"/>
         <source>PNG images (*.png)</source>
         <translation>PNG-bilder (*.png)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="545"/>
+        <location filename="../../embedderopt.cpp" line="544"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
