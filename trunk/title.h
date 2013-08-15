@@ -10,7 +10,7 @@ class Title : public ImageWidget
 	public:
 		Title(QWidget *parent);
 
-		virtual QString cachePrefix() { return "ttl_"; }
+		virtual QString cachePrefix() { return "ttl"; }
 		virtual QString imageZip();
 		virtual QString imageDir();
 		virtual QString imageType() { return tr("title"); }
