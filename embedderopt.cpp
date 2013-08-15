@@ -259,14 +259,13 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-#if defined(QMC2_EMUTYPE_MESS)
 	QList<int> separatorIndizes;
+#if defined(QMC2_EMUTYPE_MESS)
 	separatorIndizes << 0 << 1;
 	imageTypeNames << tr("Preview") << tr("Software snapshot") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Logo") << tr("PCB");
 	imageTypeIcons << "camera" << "pacman" << "thumbnail" << "arcadecabinet" << "joystick" << "marquee" << "circuit";
 	cachePrefixes << "prv" << "sws" << "fly" << "cab" << "ctl" << "mrq" << "pcb";
 #else
-	QList<int> separatorIndizes;
 	separatorIndizes << 1 << 2;
 	imageTypeNames << tr("Preview") << tr("Title") << tr("Software snapshot") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Marquee") << tr("PCB");
 	imageTypeIcons << "camera" << "arcademode" << "pacman" << "thumbnail" << "arcadecabinet" << "joystick" << "marquee" << "circuit";
