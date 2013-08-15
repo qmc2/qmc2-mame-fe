@@ -89,11 +89,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 		}
 	}
 
-	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(cachePrefix()), QStringList()).toStringList();
-	if ( imgFmts.isEmpty() )
-		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
-	else for (int i = 0; i < imgFmts.count(); i++)
-		activeFormats << imgFmts[i].toInt();
+	reloadActiveFormats();
 }
 
 ImageWidget::~ImageWidget()
@@ -106,6 +102,20 @@ ImageWidget::~ImageWidget()
 		foreach (unzFile imageFile, imageFileMap)
 			unzClose(imageFile);
 	}
+}
+
+void ImageWidget::reloadActiveFormats()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::reloadActiveFormats()");
+#endif
+
+	activeFormats.clear();
+	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(cachePrefix()), QStringList()).toStringList();
+	if ( imgFmts.isEmpty() )
+		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
+	else for (int i = 0; i < imgFmts.count(); i++)
+		activeFormats << imgFmts[i].toInt();
 }
 
 QString ImageWidget::cleanDir(QString dirs)

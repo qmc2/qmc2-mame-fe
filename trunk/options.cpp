@@ -116,7 +116,9 @@ extern Flyer *qmc2Flyer;
 extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 extern Title *qmc2Title;
+#endif
 extern PCB *qmc2PCB;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern Gamelist *qmc2Gamelist;
@@ -2073,7 +2075,11 @@ void Options::on_pushButtonApply_clicked()
   }
 
   QList<ImageWidget *> iwl;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   iwl << qmc2Preview << qmc2Flyer << qmc2Cabinet << qmc2Controller << qmc2Marquee << qmc2Title << qmc2PCB;
+#else
+  iwl << qmc2Preview << qmc2Flyer << qmc2Cabinet << qmc2Controller << qmc2Marquee << qmc2PCB;
+#endif
   foreach (ImageWidget *iw, iwl) {
 	  if ( iw ) {
 		  bool needReopenFile = false;

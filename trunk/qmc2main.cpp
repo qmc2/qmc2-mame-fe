@@ -103,7 +103,9 @@ Flyer *qmc2Flyer = NULL;
 Cabinet *qmc2Cabinet = NULL;
 Controller *qmc2Controller = NULL;
 Marquee *qmc2Marquee = NULL;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 Title *qmc2Title = NULL;
+#endif
 PCB *qmc2PCB = NULL;
 About *qmc2About = NULL;
 DocBrowser *qmc2DocBrowser = NULL;
@@ -729,7 +731,9 @@ MainWindow::MainWindow(QWidget *parent)
               *cabinetLayout = new QHBoxLayout,
               *controllerLayout = new QHBoxLayout,
               *marqueeLayout = new QHBoxLayout,
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
               *titleLayout = new QHBoxLayout,
+#endif
               *pcbLayout = new QHBoxLayout;
 
   int left, top, right, bottom;
@@ -755,10 +759,12 @@ MainWindow::MainWindow(QWidget *parent)
   marqueeLayout->addWidget(qmc2Marquee);
   marqueeLayout->setContentsMargins(left, top, right, bottom);
   tabMarquee->setLayout(marqueeLayout);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2Title = new Title(tabTitle);
   titleLayout->addWidget(qmc2Title);
   titleLayout->setContentsMargins(left, top, right, bottom);
   tabTitle->setLayout(titleLayout);
+#endif
   qmc2PCB = new PCB(tabPCB);
   pcbLayout->addWidget(qmc2PCB);
   pcbLayout->setContentsMargins(left, top, right, bottom);
@@ -3654,7 +3660,9 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   qmc2Cabinet->update();
   qmc2Controller->update();
   qmc2Marquee->update();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2Title->update();
+#endif
   qmc2PCB->update();
 
   // show / hide game status indicator
@@ -4831,6 +4839,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      qmc2SystemNotesEditor->templateMap["$LOGO_IMAGE$"] = qmc2SystemNotesEditor->templateMap["$MARQUEE_IMAGE$"];
 #endif
 	      }
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	      if ( qmc2Title ) {
 #if defined(QMC2_OS_WIN)
 		      if ( qmc2Title->loadImage(gameName, gameName, true, &filePath, false) )
@@ -4844,6 +4853,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 			      qmc2SystemNotesEditor->templateMap["$TITLE_IMAGE$"] = "file://" + ghostPath;
 #endif
 	      }
+#endif
 	      if ( qmc2PCB ) {
 #if defined(QMC2_OS_WIN)
 		      if ( qmc2PCB->loadImage(gameName, gameName, true, &filePath, false) )
@@ -5268,7 +5278,9 @@ void MainWindow::treeWidgetGamelist_itemSelectionChanged_delayed()
       qmc2Cabinet->update();
       qmc2Controller->update();
       qmc2Marquee->update();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       qmc2Title->update();
+#endif
       qmc2PCB->update();
 
       on_tabWidgetGameDetail_currentChanged(tabWidgetGameDetail->currentIndex());
@@ -6627,10 +6639,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
     log(QMC2_LOG_FRONTEND, tr("destroying marquee"));
     delete qmc2Marquee;
   }
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   if ( qmc2Title ) {
     log(QMC2_LOG_FRONTEND, tr("destroying title"));
     delete qmc2Title;
   }
+#endif
   if ( qmc2PCB ) {
     log(QMC2_LOG_FRONTEND, tr("destroying PCB"));
     delete qmc2PCB;
@@ -11427,6 +11441,21 @@ void MainWindow::negateSearchTriggered(bool negate)
 	actionToolbarNegateSearch->setChecked(negatedMatch);
 
 	searchTimer.start(QMC2_SEARCH_DELAY);
+}
+
+void MainWindow::reloadImageFormats()
+{
+	qmc2Preview->reloadActiveFormats();
+	qmc2Flyer->reloadActiveFormats();
+	qmc2Cabinet->reloadActiveFormats();
+	qmc2Controller->reloadActiveFormats();
+	qmc2Marquee->reloadActiveFormats();
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+	qmc2Title->reloadActiveFormats();
+#endif
+	qmc2PCB->reloadActiveFormats();
+
+	// FIXME: add support for additional artwork classes
 }
 
 #if QT_VERSION < 0x050000
