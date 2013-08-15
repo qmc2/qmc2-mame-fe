@@ -8,6 +8,7 @@
 #include <QClipboard>
 #include <QCache>
 #include <QTreeWidgetItem>
+#include <QSettings>
 
 #include "imagewidget.h"
 #include "qmc2main.h"
@@ -15,6 +16,7 @@
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
+extern QSettings *qmc2Config;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
@@ -86,6 +88,12 @@ ImageWidget::ImageWidget(QWidget *parent)
 				imageFileMap[filePath] = imageFile;
 		}
 	}
+
+	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("ActiveImageFormats/%1").arg(cachePrefix()), QStringList()).toStringList();
+	if ( imgFmts.isEmpty() )
+		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
+	else for (int i = 0; i < imgFmts.count(); i++)
+		activeFormats << imgFmts[i].toInt();
 }
 
 ImageWidget::~ImageWidget()
@@ -138,7 +146,7 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 		topLevelItem = topLevelItem->parent();
 
 	QString gameName = topLevelItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-	cacheKey = cachePrefix() + gameName;
+	cacheKey = cachePrefix() + "_" + gameName;
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 	if ( !cpm ) {
 		qmc2CurrentItem = topLevelItem;

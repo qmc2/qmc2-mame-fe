@@ -10,7 +10,7 @@ class Marquee : public ImageWidget
 	public:
 		Marquee(QWidget *parent);
 
-		virtual QString cachePrefix() { return "mrq_"; }
+		virtual QString cachePrefix() { return "mrq"; }
 		virtual QString imageZip();
 		virtual QString imageDir();
 #if defined(QMC2_EMUTYPE_MESS)
