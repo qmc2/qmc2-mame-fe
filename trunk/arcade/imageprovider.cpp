@@ -31,9 +31,9 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type)
         if ( activeFormats.isEmpty() )
             mActiveFormatsMap[imageType] << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG;
         else for (int i = 0; i < activeFormats.count(); i++)
-            mActiveFormatsMap[imageType]<< activeFormats[i].toInt();
+            mActiveFormatsMap[imageType] << activeFormats[i].toInt();
     }
-    mFormatExtensions << "png" << "bmp" << "gif" << "jpg:jpeg" << "pbm" << "pgm" << "ppm" << "tif:tiff" << "xbm" << "xpm" << "svg" << "tga";
+    mFormatExtensions << "png" << "bmp" << "gif" << "jpg, jpeg" << "pbm" << "pgm" << "ppm" << "tif, tiff" << "xbm" << "xpm" << "svg" << "tga";
 }
 
 ImageProvider::~ImageProvider()
