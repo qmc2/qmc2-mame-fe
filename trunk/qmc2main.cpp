@@ -6908,6 +6908,8 @@ void MainWindow::init()
   QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
 
   floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
+
+  reloadImageFormats();
 }
 
 void MainWindow::setupStyle(QString styleName)
