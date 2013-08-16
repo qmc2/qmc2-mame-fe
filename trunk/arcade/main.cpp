@@ -336,7 +336,11 @@ int main(int argc, char *argv[])
         QString bannerMessage = QString("%1 %2 (%3)").
                                 arg(QMC2_ARCADE_APP_TITLE).
 #if defined(QMC2_ARCADE_SVN_REV)
+        #if QMC2_ARCADE_SVN_REV > 0
                                 arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
+        #else
+                                arg(QMC2_ARCADE_APP_VERSION).
+        #endif
 #else
                                 arg(QMC2_ARCADE_APP_VERSION).
 #endif
