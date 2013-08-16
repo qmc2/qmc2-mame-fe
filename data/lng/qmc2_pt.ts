@@ -5680,136 +5680,136 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imageformatsetup.ui" line="14"/>
         <source>Active image formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatos de imagem ativos</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Previews</source>
-        <translation type="unfinished"></translation>
+        <translation>Previsualizações</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Cabinets</source>
-        <translation type="unfinished">Gabinetes</translation>
+        <translation>Gabinetes</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Controllers</source>
-        <translation type="unfinished">Controles</translation>
+        <translation>Controles</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <source>Logos</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Software snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Snapshots de software</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Marquees</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Titles</source>
-        <translation type="unfinished">Títulos</translation>
+        <translation>Títulos</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="130"/>
         <location filename="../../imageformatsetup.cpp" line="162"/>
         <source>deactivated</source>
-        <translation type="unfinished"></translation>
+        <translation>desativado</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="133"/>
         <location filename="../../imageformatsetup.cpp" line="161"/>
         <location filename="../../imageformatsetup.cpp" line="165"/>
         <source>activated</source>
-        <translation type="unfinished"></translation>
+        <translation>ativado</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="147"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="152"/>
         <source>Description</source>
-        <translation type="unfinished">Descrição</translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="157"/>
         <source>Extensions</source>
-        <translation type="unfinished">Extensões</translation>
+        <translation>Extensões</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="39"/>
         <source>Apply image format setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração de formato de imagem e fechar janela</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="26"/>
         <source>Select artwork class to adjust</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar classe de arte para ajustar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="42"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="62"/>
         <source>Cancel image format setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar configuração de formato de imagem</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="65"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="88"/>
         <source>Restore active image formats from currently stored setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar formatos de imagem ativos das configurações ativas atualmente</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="91"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurar</translation>
+        <translation>&amp;Restaurar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="118"/>
         <source>Artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Classe de arte</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="125"/>
         <source>Drag &amp; drop format entries to adjust priorities of activated formats for the current artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrastar e soltar entradas de formato para ajustar prioridades dos formatos ativados para a classe de arte atual</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="162"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativação</translation>
     </message>
 </context>
 <context>
@@ -5817,62 +5817,62 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagewidget.cpp" line="56"/>
         <source>Portable Network Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="56"/>
         <source>Windows Bitmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="56"/>
         <source>Graphic Interchange Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="56"/>
         <source>Joint Photographic Experts Group</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="56"/>
         <source>Portable Bitmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>Portable Graymap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>Portable Pixmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>Tagged Image File Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>X11 Bitmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>X11 Pixmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>Scalable Vector Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="57"/>
         <source>Targa Image Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
@@ -13813,12 +13813,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2523"/>
         <source>Choose active image formats and their priorities (per artwork class)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher formatos de imagem ativos e suas prioridades (por classe de arte)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2526"/>
         <source>Select image formats...</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar formatos de imagem...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2641"/>
