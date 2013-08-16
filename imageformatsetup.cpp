@@ -140,13 +140,14 @@ void ImageFormatSetup::on_comboBoxImageType_currentIndexChanged(int index)
 
 	int prio = 0;
 	for (int i = 0; i < activeFormats.count(); i++) {
-		int foundIndex = -1;
+		bool found = false;
 		int format = activeFormats[i];
-		for (int j = 0; j < insertItems.count() && foundIndex < 0; j++)
-			if ( ImageWidget::formatNames.indexOf(insertItems[j]->text(QMC2_IMGFMT_SETUP_COLUMN_NAME)) == format )
-				foundIndex = j;
-		if ( foundIndex > -1 )
-			insertItems.insert(prio++, insertItems.takeAt(foundIndex));
+		for (int j = 0; j < insertItems.count() && !found; j++) {
+			if ( ImageWidget::formatNames.indexOf(insertItems[j]->text(QMC2_IMGFMT_SETUP_COLUMN_NAME)) == format ) {
+				insertItems.insert(prio++, insertItems.takeAt(j));
+				found = true;
+			}
+		}
 	}
 
 	treeWidget->insertTopLevelItems(0, insertItems);
@@ -180,19 +181,11 @@ void ImageFormatSetup::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colu
 void ImageFormatSetup::showEvent(QShowEvent *e)
 {
 	adjustIconSizes();
-	adjustSize();
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageFormatSetup/Geometry", QByteArray()).toByteArray());
 	comboBoxImageType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageFormatSetup/ImageType", QMC2_IMAGE_FORMAT_INDEX_PNG).toInt());
 
 	if ( e )
 		QDialog::showEvent(e);
-}
-
-void ImageFormatSetup::resizeEvent(QResizeEvent *e)
-{
-	// FIXME
-	if ( e )
-		QDialog::resizeEvent(e);
 }
 
 void ImageFormatSetup::hideEvent(QHideEvent *e)

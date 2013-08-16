@@ -29,7 +29,6 @@ class ImageFormatSetup : public QDialog, public Ui::ImageFormatSetup
 
 	protected:
 		void showEvent(QShowEvent *);
-		void resizeEvent(QResizeEvent *);
 		void hideEvent(QHideEvent *);
 
 	private:
