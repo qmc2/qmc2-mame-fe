@@ -393,77 +393,104 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 		// try loading image from ZIP(s)
 		QByteArray imageData;
 		int len, i;
-		QString gameFile = gameName + ".png";
 
-		if ( fileName )
-			*fileName = gameFile;
+		foreach (int format, activeFormats) {
+			QString formatName = formatNames[format];
+			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+				QString gameFile = gameName + "." + extension;
 
-		if ( zip == NULL ) {
-			foreach (unzFile imageFile, imageFileMap) {
-				if ( unzLocateFile(imageFile, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
-					if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
-						while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-							for (i = 0; i < len; i++)
-								imageData += imageBuffer[i];
-						}
-						fileOk = true;
-						unzCloseCurrentFile(imageFile);
+				if ( fileName )
+					*fileName = gameFile;
+
+				if ( zip == NULL ) {
+					foreach (unzFile imageFile, imageFileMap) {
+						if ( unzLocateFile(imageFile, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+							if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
+								while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+									for (i = 0; i < len; i++)
+										imageData += imageBuffer[i];
+								}
+								fileOk = true;
+								unzCloseCurrentFile(imageFile);
+							} else
+								fileOk = false;
+						} else
+							fileOk = false;
+
+						if ( fileOk )
+							break;
+						else
+							imageData.clear();
+					}
+				} else {
+					if ( unzLocateFile(zip, gameFile.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+						if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
+							while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+								for (i = 0; i < len; i++)
+									imageData += imageBuffer[i];
+							}
+							fileOk = true;
+							unzCloseCurrentFile(zip);
+						} else
+							fileOk = false;
 					} else
 						fileOk = false;
-				} else
-					fileOk = false;
+				}
+
+				if ( fileOk ) {
+					QBuffer buffer(&imageData);
+					QImageReader imageReader(&buffer, formatName.toLocal8Bit().constData());
+					fileOk = imageReader.read(&image);
+					if ( fileOk ) {
+						if ( sizeReturn )
+							*sizeReturn = image.size();
+						if ( bytesUsed )
+							*bytesUsed = image.byteCount();
+					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+						*readerError = imageReader.errorString();
+				}
 
 				if ( fileOk )
 					break;
-				else
-					imageData.clear();
 			}
-		} else {
-			if ( unzLocateFile(zip, (const char *)gameFile.toLocal8Bit(), 0) == UNZ_OK ) {
-				if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
-					while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-						for (i = 0; i < len; i++)
-							imageData += imageBuffer[i];
-					}
-					unzCloseCurrentFile(zip);
-				} else
-					fileOk = false;
-			} else
-				fileOk = false;
-		}
 
-		if ( fileOk ) {
-			QBuffer buffer(&imageData);
-			QImageReader imageReader(&buffer, "PNG");
-			fileOk = imageReader.read(&image);
-			if ( fileOk ) {
-				if ( sizeReturn )
-					*sizeReturn = image.size();
-				if ( bytesUsed )
-					*bytesUsed = image.byteCount();
-			} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
-				*readerError = imageReader.errorString();
+			if ( fileOk )
+				break;
 		}
 	} else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
 			QString imgDir = baseDirectory + gameName;
-			QString localImagePath = imgDir + ".png";
+			foreach (int format, activeFormats) {
+				QString formatName = formatNames[format];
+				foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+					QString localImagePath = imgDir + "." + extension;
 
-			if ( fileName )
-				*fileName = QDir::toNativeSeparators(localImagePath);
+					if ( fileName )
+						*fileName = QDir::toNativeSeparators(localImagePath);
 
-			QImageReader imageReader(localImagePath, "PNG");
-			fileOk = imageReader.read(&image);
+					QImageReader imageReader(localImagePath, formatName.toLocal8Bit().constData());
+					fileOk = imageReader.read(&image);
 
-			if ( fileOk ) {
-				if ( sizeReturn )
-					*sizeReturn = image.size();
-				if ( bytesUsed )
-					*bytesUsed = image.byteCount();
+					if ( fileOk ) {
+						if ( sizeReturn )
+							*sizeReturn = image.size();
+						if ( bytesUsed )
+							*bytesUsed = image.byteCount();
+						break;
+					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+						*readerError = imageReader.errorString();
+
+					if ( fileOk )
+						break;
+				}
+
+				if ( fileOk )
+					break;
+			}
+
+			if ( fileOk )
 				break;
-			} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
-				*readerError = imageReader.errorString();
 		}
 	}
 
