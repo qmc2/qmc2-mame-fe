@@ -1219,38 +1219,43 @@ void ImageChecker::checkObsoleteFiles()
 				QString pathCopy = path;
 				pathCopy.remove(QRegExp("^.*\\: "));
 				fi.setFile(pathCopy);
+
+				foreach (int format, imageWidget->activeFormats) {
+					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 #if defined(Q_OS_WIN)
-				if ( pathCopy == fi.filePath() && fi.completeSuffix().toLower() == "png" )
-					if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
-						isValidPath = true;
+						if ( pathCopy == fi.filePath() && fi.completeSuffix().toLower() == extension )
+							if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+								isValidPath = true;
 #else
-				if ( pathCopy == fi.filePath() && fi.completeSuffix() == "png" )
-					if ( qmc2GamelistItemMap.contains(fi.baseName()) )
-						isValidPath = true;
+						if ( pathCopy == fi.filePath() && fi.completeSuffix() == extension )
+							if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+								isValidPath = true;
 #endif
-				if ( !isValidPath ) {
-					QString subPath = fi.dir().dirName();
-					QString imageFile = fi.baseName();
-					if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
+						if ( !isValidPath ) {
+							QString subPath = fi.dir().dirName();
+							QString imageFile = fi.baseName();
+							if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
 #if defined(Q_OS_WIN)
-						if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
-							if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
-								isValidPath = fi.completeSuffix().toLower() == "png";
+								if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
+									if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+										isValidPath = fi.completeSuffix().toLower() == extension;
+								}
+#else
+								if ( qmc2GamelistItemMap.contains(subPath) ) {
+									if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+										isValidPath = fi.completeSuffix() == extension;
+								}
+#endif
+							} else if ( !subPath.isEmpty() ) {
+#if defined(Q_OS_WIN)
+								if ( qmc2GamelistItemMap.contains(subPath.toLower()) )
+									isValidPath = true;
+#else
+								if ( qmc2GamelistItemMap.contains(subPath) )
+									isValidPath = true;
+#endif
+							}
 						}
-#else
-						if ( qmc2GamelistItemMap.contains(subPath) ) {
-							if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
-								isValidPath = fi.completeSuffix() == "png";
-						}
-#endif
-					} else if ( !subPath.isEmpty() ) {
-#if defined(Q_OS_WIN)
-						if ( qmc2GamelistItemMap.contains(subPath.toLower()) )
-							isValidPath = true;
-#else
-						if ( qmc2GamelistItemMap.contains(subPath) )
-							isValidPath = true;
-#endif
 					}
 				}
 			} else {
@@ -1261,42 +1266,47 @@ void ImageChecker::checkObsoleteFiles()
 					QString pathCopy = path;
 					pathCopy.remove(dirPath);
 					fi.setFile(pathCopy);
-					if ( pathCopy.endsWith(QDir::separator()) ) {
-						pathCopy.remove(pathCopy.length() - 1, 1);
-#if defined(Q_OS_WIN)
-						if ( qmc2GamelistItemMap.contains(pathCopy.toLower()) )
-							isValidPath = true;
-#else
-						if ( qmc2GamelistItemMap.contains(pathCopy) )
-							isValidPath = true;
-#endif
-					} else {
-#if defined(Q_OS_WIN)
-						if ( pathCopy == fi.fileName() && fi.completeSuffix().toLower() == "png" )
-							if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
-								isValidPath = true;
-#else
-						if ( pathCopy == fi.fileName() && fi.completeSuffix() == "png" )
-							if ( qmc2GamelistItemMap.contains(fi.baseName()) )
-								isValidPath = true;
-#endif
-					}
 
-					if ( !isValidPath ) {
-						QString subPath = fi.dir().dirName();
-						QString imageFile = fi.baseName();
-						if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
+					foreach (int format, imageWidget->activeFormats) {
+						foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+							if ( pathCopy.endsWith(QDir::separator()) ) {
+								pathCopy.remove(pathCopy.length() - 1, 1);
 #if defined(Q_OS_WIN)
-							if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
-								if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
-									isValidPath = fi.completeSuffix().toLower() == "png";
-							}
+								if ( qmc2GamelistItemMap.contains(pathCopy.toLower()) )
+									isValidPath = true;
 #else
-							if ( qmc2GamelistItemMap.contains(subPath) ) {
-								if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
-									isValidPath = fi.completeSuffix() == "png";
-							}
+								if ( qmc2GamelistItemMap.contains(pathCopy) )
+									isValidPath = true;
 #endif
+							} else {
+#if defined(Q_OS_WIN)
+								if ( pathCopy == fi.fileName() && fi.completeSuffix().toLower() == extension )
+									if ( qmc2GamelistItemMap.contains(fi.baseName().toLower()) )
+										isValidPath = true;
+#else
+								if ( pathCopy == fi.fileName() && fi.completeSuffix() == extension )
+									if ( qmc2GamelistItemMap.contains(fi.baseName()) )
+										isValidPath = true;
+#endif
+							}
+
+							if ( !isValidPath ) {
+								QString subPath = fi.dir().dirName();
+								QString imageFile = fi.baseName();
+								if ( !subPath.isEmpty() && !imageFile.isEmpty() ) {
+#if defined(Q_OS_WIN)
+									if ( qmc2GamelistItemMap.contains(subPath.toLower()) ) {
+										if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+											isValidPath = fi.completeSuffix().toLower() == extension;
+									}
+#else
+									if ( qmc2GamelistItemMap.contains(subPath) ) {
+										if ( imageFile.indexOf(QRegExp("^\\d{4}$")) == 0 )
+											isValidPath = fi.completeSuffix() == extension;
+									}
+#endif
+								}
+							}
 						}
 					}
 				}
