@@ -1,4 +1,4 @@
-VERSION = 0.2
+VERSION = 0.3
 
 # Add more folders to ship with the application, here
 folder_01.source = qml/ToxicWaste
