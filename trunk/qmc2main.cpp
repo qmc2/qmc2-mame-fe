@@ -11447,15 +11447,26 @@ void MainWindow::negateSearchTriggered(bool negate)
 
 void MainWindow::reloadImageFormats()
 {
-	qmc2Preview->reloadActiveFormats();
-	qmc2Flyer->reloadActiveFormats();
-	qmc2Cabinet->reloadActiveFormats();
-	qmc2Controller->reloadActiveFormats();
-	qmc2Marquee->reloadActiveFormats();
+	if ( qmc2Preview )
+		qmc2Preview->reloadActiveFormats();
+	if ( qmc2Flyer )
+		qmc2Flyer->reloadActiveFormats();
+	if ( qmc2Cabinet )
+		qmc2Cabinet->reloadActiveFormats();
+	if ( qmc2Controller )
+		qmc2Controller->reloadActiveFormats();
+	if ( qmc2Marquee )
+		qmc2Marquee->reloadActiveFormats();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	qmc2Title->reloadActiveFormats();
+	if ( qmc2Title )
+		qmc2Title->reloadActiveFormats();
 #endif
-	qmc2PCB->reloadActiveFormats();
+	if ( qmc2PCB )
+		qmc2PCB->reloadActiveFormats();
+	if ( qmc2SoftwareSnap )
+		qmc2SoftwareSnap->reloadActiveFormats();
+	if ( qmc2SoftwareSnapshot )
+		qmc2SoftwareSnapshot->reloadActiveFormats();
 
 	// FIXME: add support for additional artwork classes
 }

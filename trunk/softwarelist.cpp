@@ -3673,6 +3673,8 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
 		}
 	}
+
+	reloadActiveFormats();
 }
 
 SoftwareSnap::~SoftwareSnap()
@@ -3971,27 +3973,32 @@ void SoftwareSnap::loadSnapshot()
 				if ( snapFile ) {
 					bool fileOk = true;
 					QByteArray imageData;
-					QString pathInZip = listName + "/" + entryName + ".png";
-					if ( unzLocateFile(snapFile, (const char *)pathInZip.toLocal8Bit(), 0) == UNZ_OK ) {
-						if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
-							char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-							int len;
-							while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-								for (int i = 0; i < len; i++)
-									imageData += imageBuffer[i];
-							}
-							unzCloseCurrentFile(snapFile);
-							fileOk = true;
-						} else
-							fileOk = false;
-					} else
-						fileOk = false;
+					foreach (int format, activeFormats) {
+						QString formatName = ImageWidget::formatNames[format];
+						foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+							QString pathInZip = listName + "/" + entryName + "." + extension;
+							if ( unzLocateFile(snapFile, pathInZip.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+								if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
+									char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+									int len;
+									while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+										for (int i = 0; i < len; i++)
+											imageData += imageBuffer[i];
+									}
+									unzCloseCurrentFile(snapFile);
+									fileOk = true;
+								} else
+									fileOk = false;
+							} else
+								fileOk = false;
 
-					if ( fileOk ) {
-						if ( pm.loadFromData(imageData, "PNG") ) {
-							pmLoaded = true;
-							qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
-							break;
+							if ( fileOk ) {
+								if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+									pmLoaded = true;
+									qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+									break;
+								}
+							}
 						}
 					}
 				}
@@ -4001,13 +4008,22 @@ void SoftwareSnap::loadSnapshot()
 			pmLoaded = false;
 			foreach (QString baseDirectory, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString().split(";", QString::SkipEmptyParts)) {
 				QDir snapDir(baseDirectory + "/" + listName);
-				if ( snapDir.exists(entryName + ".png") ) {
-					QString filePath = snapDir.absoluteFilePath(entryName + ".png");
-					if ( pm.load(filePath) ) {
-						pmLoaded = true;
-						pm.imagePath = filePath;
-						qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount()); 
+				foreach (int format, activeFormats) {
+					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+						QString fullEntryName = entryName + "." + extension;
+						if ( snapDir.exists(fullEntryName) ) {
+							QString filePath = snapDir.absoluteFilePath(fullEntryName);
+							if ( pm.load(filePath) ) {
+								pmLoaded = true;
+								pm.imagePath = filePath;
+								qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount()); 
+							}
+						}
+						if ( pmLoaded )
+							break;
 					}
+					if ( pmLoaded )
+						break;
 				}
 				if ( pmLoaded )
 					break;
@@ -4222,6 +4238,16 @@ void SoftwareSnap::copyPathToClipboard()
 		if ( cpm )
 			qApp->clipboard()->setText(cpm->imagePath);
 	}
+}
+
+void SoftwareSnap::reloadActiveFormats()
+{
+	activeFormats.clear();
+	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ActiveImageFormats/sws", QStringList()).toStringList();
+	if ( imgFmts.isEmpty() )
+		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
+	else for (int i = 0; i < imgFmts.count(); i++)
+		activeFormats << imgFmts[i].toInt();
 }
 
 SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
@@ -4485,6 +4511,8 @@ SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
+
+	reloadActiveFormats();
 }
 
 SoftwareSnapshot::~SoftwareSnapshot()
@@ -4573,29 +4601,40 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 		}
 		foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap) {
 			if ( snapFile ) {
-				QByteArray imageData;
-				QString pathInZip = listName + "/" + entryName + ".png";
-				if ( unzLocateFile(snapFile, (const char *)pathInZip.toLocal8Bit(), 0) == UNZ_OK ) {
-					if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
-						char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-						int len;
-						while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-							for (int i = 0; i < len; i++)
-								imageData += imageBuffer[i];
-						}
-						unzCloseCurrentFile(snapFile);
-						fileOk = true;
-					} else
-						fileOk = false;
-				} else
-					fileOk = false;
+				foreach (int format, activeFormats) {
+					QString formatName = ImageWidget::formatNames[format];
+					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+						QByteArray imageData;
+						QString pathInZip = listName + "/" + entryName + "." + extension;
+						if ( unzLocateFile(snapFile, pathInZip.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+							if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
+								char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+								int len;
+								while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+									for (int i = 0; i < len; i++)
+										imageData += imageBuffer[i];
+								}
+								unzCloseCurrentFile(snapFile);
+								fileOk = true;
+							} else
+								fileOk = false;
+						} else
+							fileOk = false;
 
-				if ( fileOk ) {
-					if ( pm.loadFromData(imageData, "PNG") ) {
-						qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+						if ( fileOk ) {
+							if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+								qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+								break;
+							} else
+								fileOk = false;
+						}
+
+						if ( fileOk )
+							break;
+					}
+
+					if ( fileOk )
 						break;
-					} else
-						fileOk = false;
 				}
 			}
 		}
@@ -4604,16 +4643,28 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 		fileOk = false;
 		foreach (QString baseDirectory, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapDirectory").toString().split(";", QString::SkipEmptyParts)) {
 			QDir snapDir(baseDirectory + "/" + listName);
-			if ( snapDir.exists(entryName + ".png") ) {
-				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
-				if ( pm.load(filePath) ) {
-					fileOk = true;
-					currentSnapshotPixmap = pm;
-					currentSnapshotPixmap.imagePath = filePath;
-					qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount()); 
-				} else
-					fileOk = false;
+			foreach (int format, activeFormats) {
+				foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+					QString fullEntryName = entryName + "." + extension;
+					if ( snapDir.exists(fullEntryName) ) {
+						QString filePath = snapDir.absoluteFilePath(fullEntryName);
+						if ( pm.load(filePath) ) {
+							fileOk = true;
+							currentSnapshotPixmap = pm;
+							currentSnapshotPixmap.imagePath = filePath;
+							qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(currentSnapshotPixmap), currentSnapshotPixmap.toImage().byteCount()); 
+						} else
+							fileOk = false;
+					}
+
+					if ( fileOk )
+						break;
+				}
+
+				if ( fileOk )
+					break;
 			}
+
 			if ( fileOk )
 				break;
 		}
@@ -4727,4 +4778,14 @@ void SoftwareSnapshot::contextMenuEvent(QContextMenuEvent *e)
 	actionCopyPathToClipboard->setVisible(!currentSnapshotPixmap.imagePath.isEmpty());
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
+}
+
+void SoftwareSnapshot::reloadActiveFormats()
+{
+	activeFormats.clear();
+	QStringList imgFmts = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ActiveImageFormats/sws", QStringList()).toStringList();
+	if ( imgFmts.isEmpty() )
+		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
+	else for (int i = 0; i < imgFmts.count(); i++)
+		activeFormats << imgFmts[i].toInt();
 }
