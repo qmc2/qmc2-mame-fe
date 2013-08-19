@@ -4000,8 +4000,14 @@ void SoftwareSnap::loadSnapshot()
 								}
 							}
 						}
+
+						if ( pmLoaded )
+							break;
 					}
 				}
+
+				if ( pmLoaded )
+					break;
 			}
 		} else {
 			// try loading image from (semicolon-separated) software-snapshot folder(s)
@@ -4637,6 +4643,9 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 						break;
 				}
 			}
+
+			if ( fileOk )
+				break;
 		}
 	} else {
 		// try loading image from (semicolon-separated) software-snapshot folder(s)
