@@ -109,11 +109,13 @@ class SoftwareSnap : public QWidget
 		QString myCacheKey;
 		QAction *actionCopyPathToClipboard;
 		int zoom;
+		QList<int> activeFormats;
 
 		SoftwareSnap(QWidget *parent = 0);
 		~SoftwareSnap();
 
 		QString primaryPathFor(QString, QString);
+		void reloadActiveFormats();
 
 	public slots:
 		void loadSnapshot();
@@ -148,11 +150,13 @@ class SoftwareSnapshot : public QWidget
 		QMenu *contextMenu;
 		QString myCacheKey;
 		QAction *actionCopyPathToClipboard;
+		QList<int> activeFormats;
 
 		SoftwareSnapshot(QWidget *parent = 0);
 		~SoftwareSnapshot();
 
 		QString toBase64();
+		void reloadActiveFormats();
 
 	public slots:
 		void drawCenteredImage(QPixmap *, QPainter *);

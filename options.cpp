@@ -221,9 +221,8 @@ Options::Options(QWidget *parent)
   setupUi(this);
 
 #if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when "additional artwork support" / "support for additional image formats" is functional
+  // FIXME: remove WIP clause when "additional artwork support" is functional
   pushButtonAdditionalArtworkSetup->setVisible(false);
-  pushButtonImageFormats->setVisible(false);
 #endif
 
   qmc2StandardWorkDir = QDir::currentPath();
