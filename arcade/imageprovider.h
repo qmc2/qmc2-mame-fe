@@ -48,6 +48,7 @@ private:
     QCache<QString, QPixmap> mPixmapCache;
     QMap<QString, QList<int> > mActiveFormatsMap;
     QStringList mFormatExtensions;
+    QStringList mFormatNames;
 };
 #else
 #include <QQuickImageProvider>
@@ -76,6 +77,7 @@ private:
     QCache<QString, QPixmap> mPixmapCache;
     QMap<QString, QList<int> > mActiveFormatsMap;
     QStringList mFormatExtensions;
+    QStringList mFormatNames;
 };
 #endif
 
