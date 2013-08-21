@@ -539,6 +539,15 @@ qmc2/data/doc/html/us/.svn/text-base/credits.html.svn-base
 qmc2/data/doc/html/us/.svn/text-base/index.html.svn-base
 qmc2/data/doc/html/us/.svn/text-base/readme.html.svn-base
 qmc2/data/doc/html/us/.svn/text-base/todo.html.svn-base
+qmc2/data/doc/man/.svn
+qmc2/data/doc/man/.svn/text-base/qchdman.ctl.svn-base
+qmc2/data/doc/man/.svn/text-base/qchdman.man.text.svn-base
+qmc2/data/doc/man/.svn/text-base/qmc2-arcade.ctl.svn-base
+qmc2/data/doc/man/.svn/text-base/qmc2-arcade.man.text.svn-base
+qmc2/data/doc/man/.svn/text-base/qmc2-main-gui.ctl.svn-base
+qmc2/data/doc/man/.svn/text-base/qmc2-main-gui.man.text.svn-base
+qmc2/data/doc/man/.svn/text-base/runonce.ctl.svn-base
+qmc2/data/doc/man/.svn/text-base/runonce.man.text.svn-base
 qmc2/data/doc/.svn
 qmc2/data/fly/.svn
 qmc2/data/fly/.svn/text-base/dirinfo.txt.svn-base
@@ -3883,6 +3892,7 @@ qmc2/scripts/.svn/prop-base/plugin_helper.sh.svn-base
 qmc2/scripts/.svn/prop-base/romalyzer.pl.svn-base
 qmc2/scripts/.svn/prop-base/setup_imgset.bat.svn-base
 qmc2/scripts/.svn/prop-base/setup_imgset.sh.svn-base
+qmc2/scripts/.svn/prop-base/txt2man.sh.svn-base
 qmc2/scripts/.svn/text-base/generate-vcprojects.bat.svn-base
 qmc2/scripts/.svn/text-base/os-detect.sh.svn-base
 qmc2/scripts/.svn/text-base/plugin_helper.sh.svn-base
@@ -3890,6 +3900,7 @@ qmc2/scripts/.svn/text-base/romalyzer.pl.svn-base
 qmc2/scripts/.svn/text-base/setup_imgset.bat.svn-base
 qmc2/scripts/.svn/text-base/setup_imgset.sh.svn-base
 qmc2/scripts/.svn/text-base/subwcrev.template.svn-base
+qmc2/scripts/.svn/text-base/txt2man.sh.svn-base
 qmc2/.svn
 qmc2/.svn/prop-base/about.cpp.svn-base
 qmc2/.svn/prop-base/about.h.svn-base
