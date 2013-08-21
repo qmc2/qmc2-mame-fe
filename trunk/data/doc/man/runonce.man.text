@@ -2,7 +2,7 @@ NAME
   runonce - single-instance program launching wrapper for X11
 
 SYNOPSIS
-  runonce [--verbose] <window-name> <window-title> <program> <args>
+  runonce [--verbose] window-name window-title program args
 
 DESCRIPTION
   (to do)
@@ -10,13 +10,13 @@ DESCRIPTION
 OPTIONS
   --verbose (to do)
 
-  <window-name> (to do)
+  window-name (to do)
 
-  <window-title> (to do)
+  window-title (to do)
 
-  <program> (to do)
+  program (to do)
 
-  <args> (to do)
+  args (to do)
 
 ENVIRONMENT
   (to do)

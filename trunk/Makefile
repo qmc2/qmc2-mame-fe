@@ -87,6 +87,14 @@ PREFIX = /usr/local
 endif
 endif
 
+# >>> MAN_DIR <<<
+#
+# The base-directory used by the 'make doc-install' target to install man-pages.
+#
+ifndef MAN_DIR
+MAN_DIR = $(PREFIX)/man
+endif
+
 # >>> QUIET <<<
 #
 # Compile and link QMC2 'quietly' (1) or show all command lines completely (0)?
@@ -1267,7 +1275,11 @@ endif
 
 endif
 
+ifneq '$(ARCH)' 'Windows'
+distclean: clean tools-clean arcade-clean doc-clean
+else
 distclean: clean tools-clean arcade-clean
+endif
 
 clean: $(QMAKEFILE)
 	@echo "Cleaning up build of QMC2 v$(VERSION)"
@@ -1411,6 +1423,9 @@ help:
 	@echo "configure        Create qmake output and stop, alias: qmake"
 ifneq '$(ARCH)' 'Windows'
 	@echo "dist             Create source distribution archives (tar.gz and tar.bz2)"
+	@echo "doc              Convert man-pages to troff/nroff format, alias: man"
+	@echo "doc-clean        Clean up converted man-pages, alias: man-clean"
+	@echo "doc-install      Install man-pages system-wide, alias: man-install"
 	@echo "exclude-list     Recreate SVN exclude-list (only used by developers)"
 endif
 	@echo "help | ?         Show this help"
@@ -1557,6 +1572,21 @@ else
 configure: $(QMAKEFILE)
 qmake: $(QMAKEFILE)
 endif
+endif
+
+ifneq '$(ARCH)' 'Windows'
+doc: man
+man:
+	@scripts/make-man-pages.sh data/doc/man $(VERSION)
+
+doc-clean: man-clean
+man-clean:
+	$(RM) data/doc/man/*.gz
+
+doc-install: man-install
+man-install:
+	@echo "Installing man-pages to $(MAN_DIR)/man6"
+	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(MAN_DIR)/man6/
 endif
 
 # process translations
