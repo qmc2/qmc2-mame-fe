@@ -1,0 +1,39 @@
+NAME
+  runonce - single-instance program launching wrapper for X11
+
+SYNOPSIS
+  runonce [--verbose] <window-name> <window-title> <program> <args>
+
+DESCRIPTION
+  (to do)
+
+OPTIONS
+  --verbose (to do)
+
+  <window-name> (to do)
+
+  <window-title> (to do)
+
+  <program> (to do)
+
+  <args> (to do)
+
+ENVIRONMENT
+  (to do)
+
+EXAMPLE
+  (to do)
+
+HINTS
+  (to do)
+
+SEE ALSO
+  (to do)
+
+BUGS
+  (to do)
+
+AUTHOR
+  Jamie Zawinski (jwz@jwz.org)
+
+  The QMC2 development-team (http://qmc2.arcadehits.net/wordpress)
