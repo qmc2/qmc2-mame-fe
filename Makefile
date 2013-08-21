@@ -91,8 +91,10 @@ endif
 #
 # The base-directory used by the 'make doc-install' target to install man-pages.
 #
+ifneq '$(ARCH)' 'Windows'
 ifndef MAN_DIR
 MAN_DIR = $(PREFIX)/man
+endif
 endif
 
 # >>> QUIET <<<
@@ -1513,6 +1515,9 @@ endif
 	@echo "MACHINE                Target system's machine type                  $(MACHINE)"
 	@echo "MAKE                   GNU make command                              $(MAKE)"
 	@echo "MAKESILENT             GNU make command (silent mode)                $(MAKESILENT)"
+ifneq '$(ARCH)' 'Windows'
+	@echo "MAN_DIR                Base directory for man-page installation      $(MAN_DIR)"
+endif
 ifeq '$(ARCH)' 'Windows'
 	@echo "MINGW                  Force use of MinGW on Windows (0, 1)          $(MINGW)"
 endif
