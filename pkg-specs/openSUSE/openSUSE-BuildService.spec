@@ -17,6 +17,7 @@ BuildRequires:  rsync
 BuildRequires:  desktop-file-utils
 BuildRequires:  openSUSE-release
 BuildRequires:  fdupes
+BuildRequires:  man-pages
 
 %description
 QMC2 is a Qt 4 based multi-platform GUI front end for several MAME, MESS and UME variants.
