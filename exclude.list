@@ -3887,6 +3887,7 @@ qmc2/runonce/.svn/text-base/runonce.c.svn-base
 qmc2/runonce/.svn/text-base/runonce.pro.svn-base
 qmc2/scripts/.svn
 qmc2/scripts/.svn/prop-base/generate-vcprojects.bat.svn-base
+qmc2/scripts/.svn/prop-base/make-man-pages.sh.svn-base
 qmc2/scripts/.svn/prop-base/os-detect.sh.svn-base
 qmc2/scripts/.svn/prop-base/plugin_helper.sh.svn-base
 qmc2/scripts/.svn/prop-base/romalyzer.pl.svn-base
@@ -3894,6 +3895,7 @@ qmc2/scripts/.svn/prop-base/setup_imgset.bat.svn-base
 qmc2/scripts/.svn/prop-base/setup_imgset.sh.svn-base
 qmc2/scripts/.svn/prop-base/txt2man.sh.svn-base
 qmc2/scripts/.svn/text-base/generate-vcprojects.bat.svn-base
+qmc2/scripts/.svn/text-base/make-man-pages.sh.svn-base
 qmc2/scripts/.svn/text-base/os-detect.sh.svn-base
 qmc2/scripts/.svn/text-base/plugin_helper.sh.svn-base
 qmc2/scripts/.svn/text-base/romalyzer.pl.svn-base
