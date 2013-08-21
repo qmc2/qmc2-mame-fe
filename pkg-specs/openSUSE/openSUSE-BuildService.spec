@@ -180,7 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/runonce.6.gz
 
 %changelog
-* Tue Aug 21 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-2
+* Wed Aug 21 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-2
 - added man-page build rules
 
 * Tue Jun 11 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-1
@@ -189,13 +189,13 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Feb 22 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-2
 - added build rules for 'Qt CHDMAN GUI' (qchdman)
 
-* Tue Jan 12 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-1
+* Sat Jan 12 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.39-1
 - updated spec to QMC2 0.39
 
-* Tue Dec 14 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-2
+* Fri Dec 14 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-2
 - added build rules for 'QMC2 Arcade'
 
-* Tue Sep 17 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-1
+* Mon Sep 17 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.38-1
 - updated spec to QMC2 0.38
 
 * Tue May 22 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.37-1
@@ -210,7 +210,7 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Jun 29 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.34-1
 - updated spec to QMC2 0.34
 
-* Sun Mar 03 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b20-1
+* Thu Mar 03 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b20-1
 - updated spec to QMC2 0.2.b20
 
 * Sun Jan 02 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b19-1
