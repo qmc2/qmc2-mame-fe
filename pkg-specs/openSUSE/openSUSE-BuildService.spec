@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.40
-Release:        1
+Release:        2
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -33,6 +33,8 @@ tar -xjf %{SOURCE0}
 mv %{name} arcade
 tar -xjf %{SOURCE0}
 mv %{name} qchdman
+tar -xjf %{SOURCE0}
+mv %{name} manpages
 
 %build
 pushd sdlmess
@@ -68,6 +70,13 @@ make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     JOYSTICK=1 WIP=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 qchdman
+popd
+
+pushd manpages
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    JOYSTICK=1 WIP=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3 man
 popd
 
 %install
@@ -107,6 +116,13 @@ popd
 
 pushd qchdman
 make qchdman-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    JOYSTICK=1 WIP=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
+popd
+
+pushd manpages
+make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     JOYSTICK=1 WIP=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
@@ -154,8 +170,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlume.desktop
 %{_datadir}/applications/qmc2-arcade.desktop
 %{_datadir}/applications/qchdman.desktop
+%{_mandir}/man6/qmc2-main-gui.6.gz
+%{_mandir}/man6/qmc2.6.gz
+%{_mandir}/man6/qmc2-sdlmame.6.gz
+%{_mandir}/man6/qmc2-sdlmess.6.gz
+%{_mandir}/man6/qmc2-sdlume.6.gz
+%{_mandir}/man6/qmc2-arcade.6.gz
+%{_mandir}/man6/qchdman.6.gz
+%{_mandir}/man6/runonce.6.gz
 
 %changelog
+* Tue Aug 21 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-2
+- added man-page build rules
+
 * Tue Jun 11 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-1
 - updated spec to QMC2 0.40
 
