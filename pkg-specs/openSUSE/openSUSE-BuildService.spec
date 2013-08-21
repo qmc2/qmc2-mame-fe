@@ -122,7 +122,7 @@ make qchdman-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=
 popd
 
 pushd manpages
-make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT MAN_DIR=$RPM_BUILD_ROOT/usr/man DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     JOYSTICK=1 WIP=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3
