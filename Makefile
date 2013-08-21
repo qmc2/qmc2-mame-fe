@@ -1591,6 +1591,7 @@ man-clean:
 doc-install: man-install
 man-install:
 	@echo "Installing man-pages to $(MAN_DIR)/man6"
+	@$(MKDIR) $(MAN_DIR)/man6
 	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(MAN_DIR)/man6/
 endif
 
