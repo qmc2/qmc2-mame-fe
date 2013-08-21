@@ -2,7 +2,7 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - MAME/MESS/UME Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-h|-?|-help]
+  qmc2-arcade [-emu emulator] [-theme name] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-h|-?|-help]
 
 DESCRIPTION
   (to do)
@@ -32,7 +32,7 @@ HINTS
   (to do)
 
 SEE ALSO
-  (to do)
+  qmc2(6), qmc2-sdlmame(6), qmc2-sdlmess(6), qmc2-sdlume(6), qchdman(6), runonce(6)
 
 BUGS
   (to do)
