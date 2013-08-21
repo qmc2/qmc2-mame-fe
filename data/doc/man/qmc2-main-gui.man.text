@@ -1,0 +1,37 @@
+NAME
+  qmc2-sdlmame, qmc2-sdlmess, qmc2-sdlume - main GUI of QMC2 - MAME/MESS/UME Catalog/Launcher II
+
+SYNOPSIS
+  qmc2-sdlmame [-qmc2_config_path <path>] [-cc] [qt_arguments]
+
+  qmc2-sdlmess [-qmc2_config_path <path>] [-cc] [qt_arguments]
+
+  qmc2-sdlume [-qmc2_config_path <path>] [-cc] [qt_arguments]
+
+DESCRIPTION
+  (to do)
+
+OPTIONS
+  -qmc2_config_path (to do)
+
+  -cc (to do)
+
+  qt_arguments
+
+ENVIRONMENT
+  (to do)
+
+EXAMPLE
+  (to do)
+
+HINTS
+  (to do)
+
+SEE ALSO
+  (to do)
+
+BUGS
+  (to do)
+
+AUTHOR
+  The QMC2 development-team (http://qmc2.arcadehits.net/wordpress)
