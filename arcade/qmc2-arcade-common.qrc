@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/ghost.png</file>
+        <file>images/qmc2-arcade.png</file>
+        <file>translations/qmc2-arcade_de.qm</file>
+        <file>translations/qmc2-arcade_el.qm</file>
+        <file>translations/qmc2-arcade_es.qm</file>
+        <file>translations/qmc2-arcade_fr.qm</file>
+        <file>translations/qmc2-arcade_it.qm</file>
+        <file>translations/qmc2-arcade_pl.qm</file>
+        <file>translations/qmc2-arcade_pt.qm</file>
+        <file>translations/qmc2-arcade_ro.qm</file>
+        <file>translations/qmc2-arcade_sv.qm</file>
+        <file>translations/qmc2-arcade_us.qm</file>
+    </qresource>
+</RCC>
