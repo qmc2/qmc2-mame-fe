@@ -96,8 +96,12 @@ HEADERS += \
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 
-RESOURCES += \
-    qmc2-arcade.qrc
+RESOURCES += qmc2-arcade-common.qrc
+greaterThan(QT_MAJOR_VERSION, 4) {
+    RESOURCES += qmc2-arcade-2-0.qrc
+} else {
+    RESOURCES += qmc2-arcade-1-1.qrc
+}
 
 evil_hack_to_fool_lupdate {
     SOURCES += qml/ToxicWaste/1.1/ToxicWaste.qml \
