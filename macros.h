@@ -450,6 +450,9 @@
 // MAWS ROM set base URL (default)
 #define QMC2_MAWS_BASE_URL			"http://maws.mameworld.info/maws/romset/%1"
 
+// MAWS default URL
+#define QMC2_MAWS_DEFAULT_URL			"http://www.mamedb.com/game/%1"
+
 // ProjectMESS driver look-up URL
 #define QMC2_PROJECTMESS_PATTERN_URL		"http://www.progettoemma.net/mess/system.php?machine=%1"
 
