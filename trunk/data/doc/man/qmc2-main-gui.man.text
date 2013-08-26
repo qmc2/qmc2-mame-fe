@@ -1,5 +1,5 @@
 NAME
-  qmc2-sdlmame, qmc2-sdlmess, qmc2-sdlume - main GUI of QMC2 - MAME/MESS/UME Catalog/Launcher II
+  qmc2-sdlmame, qmc2-sdlmess, qmc2-sdlume - QMC2 - MAME/MESS/UME Catalog/Launcher II
 
 SYNOPSIS
   qmc2-sdlmame [-qmc2_config_path path] [-cc] [qt_arguments]
@@ -9,29 +9,71 @@ SYNOPSIS
   qmc2-sdlume [-qmc2_config_path path] [-cc] [qt_arguments]
 
 DESCRIPTION
-  (to do)
+  QMC2 is a graphical front-end based on Qt for the great MAME and MESS emulators, including UME, a unified version of both. Individual front-end binaries exist for each of the three emulator 'variants' (qmc2-sdlmame, qmc2-sdlmess and qmc2-sdlume) and are configured independently, sharing just a few project-global settings.
 
 OPTIONS
-  -qmc2_config_path (to do)
+  -qmc2_config_path path  Specify this argument to use the directory path instead of the default folder (~/.qmc2) to store QMC2's configuration, logs and cache-files / cache-folders.
 
-  -cc (to do)
+  -cc  This command line option will instruct QMC2 to clear (remove) all emulator related cache files while starting up in order to forcibly reload this data from the emulator.
 
-  qt_arguments
+  qt_arguments  See http://qt-project.org/doc/qt-4.8/qapplication.html#QApplication for more information. Note, however, that QMC2 will overwrite most of the available Qt arguments with its saved settings in qmc2.ini (see.
 
-ENVIRONMENT
-  (to do)
+FILES
+  /etc/qmc2/qmc2.ini
 
-EXAMPLE
-  (to do)
+    System-wide default configuration (optional)
 
-HINTS
-  (to do)
+  ~/.qmc2/qmc2.ini
+
+    Individual user's configuration (system-wide settings will be copied initially, if any)
+
+  ~/.qmc2/qmc2-sdlmame.log, ~/.qmc2/qmc2-sdlmess.log, ~/.qmc2/qmc2-sdlume.log 
+
+    Front-end log from last run of a QMC2 variant
+
+  ~/.qmc2/mame.log, ~/.qmc2/mess.log, ~/.qmc2/ume.log
+
+    Emulator-log from last run of an emulator variant launched by QMC2
+
+  ~/.qmc2/mame.rsc, ~/.qmc2/mess.rsc, ~/.qmc2/ume.rsc
+
+    ROM state cache
+
+  ~/.qmc2/mame.lxc, ~/.qmc2/mess.lxc, ~/.qmc2/ume.lxc
+
+    XML data cache
+
+  ~/.qmc2/mame.glc, ~/.qmc2/mess.glc, ~/.qmc2/ume.glc
+
+    Game/machine list cache
+
+  ~/.qmc2/mame.swl, ~/.qmc2/mess.swl, ~/.qmc2/ume.swl
+
+    Software-list cache
+
+  ~/.qmc2/sw-state-cache/*.ssc
+
+    Software-state cache (shared by all variants)
+
+  ~/.qmc2/youtube/*
+
+    YouTube video info cache (shared by all variants, but each one has its own index file for meta data and video attachment info)
+
+  ~/.qmc2/maws/*
+
+  NAWS web-cache
+
+  ~/.qmc2/LocalStorage/*.localstorage
+  
+  Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
 
 SEE ALSO
   qmc2-arcade(6), qchdman(6), runonce(6)
 
 BUGS
-  (to do)
+  See the TODO file in the included QMC2 documentation for known bugs and restrictions.
+
+  New bugs can be reported here: http://tracker.batcom-it.net/view_all_bug_page.php
 
 AUTHOR
   The QMC2 development-team (http://qmc2.arcadehits.net/wordpress)
