@@ -9,7 +9,7 @@ SYNOPSIS
   qmc2-sdlume [-qmc2_config_path path] [-cc] [qt_arguments]
 
 DESCRIPTION
-  QMC2 is a graphical front-end based on Qt for the great MAME and MESS emulators, including UME, a unified version of both. Individual front-end binaries exist for each of the three emulator 'variants' (qmc2-sdlmame, qmc2-sdlmess and qmc2-sdlume) and are configured independently, sharing just a few project-global settings.
+  QMC2 is a graphical front-end based on Qt to drive the great MAME and MESS emulators - including UME, a unified version of both. Individual front-end binaries exist for each of the three emulator variants (qmc2-sdlmame, qmc2-sdlmess and qmc2-sdlume) and are configured independently, sharing just a few project-global settings.
 
 OPTIONS
   -qmc2_config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to store QMC2's configuration, logs and cache-files / cache-folders.
@@ -55,11 +55,11 @@ FILES
 
     Software-state cache (shared by all variants)
 
-  CONFIG_PATH/youtube/*
+  CONFIG_PATH/youtube/*.yti, CONFIG_PATH/youtube/*.png
 
-    YouTube video info cache (shared by all variants, but each one has its own index file for meta data and video attachment info)
+    YouTube video info/image cache (shared by all variants, but each one has its own qmc2-<variant>.yti index file for video meta data)
 
-  CONFIG_PATH/maws/*
+  CONFIG_PATH/maws/*.wc
 
   NAWS web-cache
 
