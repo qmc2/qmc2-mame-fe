@@ -2724,7 +2724,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 
 	static bool searchActive = false;
 
-	if ( searchActive )
+	if ( searchActive || isLoading )
 		return;
 
 	searchActive = true;
