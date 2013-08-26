@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QTranslator>
 #include <QLocale>
+#include <QDir>
 
 #include "welcome.h"
 #include "macros.h"
