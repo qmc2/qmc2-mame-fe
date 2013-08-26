@@ -61,11 +61,11 @@ FILES
 
   CONFIG_PATH/maws/*.wc
 
-  NAWS web-cache
+    NAWS web-cache
 
   CONFIG_PATH/LocalStorage/*.localstorage
   
-  Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
+    Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
 
 SEE ALSO
   qmc2-arcade(6), qchdman(6), runonce(6)
