@@ -51,6 +51,10 @@ FILES
 
     Software-list cache
 
+  CONFIG_PATH/mess.sic, CONFIG_PATH/ume.sic
+
+    Slot-info cache (MESS/UME only)
+
   CONFIG_PATH/sw-state-cache/*.ssc
 
     Software-state cache (shared by all variants)
@@ -61,7 +65,7 @@ FILES
 
   CONFIG_PATH/maws/*.wc
 
-    NAWS web-cache
+    NAWS web-cache (MAME only)
 
   CONFIG_PATH/LocalStorage/*.localstorage
   
