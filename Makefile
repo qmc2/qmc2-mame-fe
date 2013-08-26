@@ -1581,9 +1581,9 @@ endif
 
 ifneq '$(ARCH)' 'Windows'
 ifeq '$(ARCH)' 'Darwin'
-DEFAULT_CONFIG_PATH="~/Library/Application Support/qmc2"
+DEFAULT_CONFIG_PATH=~/Library/Application Support/qmc2
 else
-DEFAULT_CONFIG_PATH="~/.qmc2"
+DEFAULT_CONFIG_PATH=~/.qmc2
 endif
 doc: man
 man:
