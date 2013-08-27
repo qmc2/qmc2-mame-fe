@@ -25,12 +25,12 @@ TXT2MAN=$(cd $(dirname "$0"); pwd)/txt2man.sh
 
 CONFIG_PATH=~/.qmc2
 if [ "$4" != "" ]; then
-	CONFIG_PATH=$3
+	CONFIG_PATH=$4
 fi
 
 SYS_CONF_DIR=/etc
 if [ "$5" != "" ]; then
-	SYS_CONF_DIR=$4
+	SYS_CONF_DIR=$5
 fi
 
 cd $MAN_SOURCE_FOLDER > /dev/null
