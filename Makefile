@@ -1591,7 +1591,7 @@ DEFAULT_CONFIG_PATH=~/.qmc2
 endif
 doc: man
 man:
-	@scripts/make-man-pages.sh data/doc/man $(VERSION) "$(DEFAULT_CONFIG_PATH)" "$(SYSCONFDIR)"
+	@scripts/make-man-pages.sh data/doc/man $(VERSION) $(ARCH) "$(DEFAULT_CONFIG_PATH)" "$(SYSCONFDIR)"
 
 doc-clean: man-clean
 man-clean:
