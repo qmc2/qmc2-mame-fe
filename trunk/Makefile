@@ -93,7 +93,11 @@ endif
 #
 ifneq '$(ARCH)' 'Windows'
 ifndef MAN_DIR
+ifeq '$(ARCH)' 'Darwin'
+MAN_DIR = /usr/share/man
+else
 MAN_DIR = $(PREFIX)/man
+endif
 endif
 endif
 
