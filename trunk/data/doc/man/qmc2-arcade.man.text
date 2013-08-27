@@ -2,40 +2,61 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - MAME/MESS/UME Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-emu emulator] [-theme name] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-h|-?|-help]
+  qmc2-arcade [-emu emulator] [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-h|-?|-help]
 
 DESCRIPTION
-  (to do)
+  For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
+  game- or machine-list, launching emulators in the same smart way that you're used to with QMC2's main GUI (see qmc2(6)).
+
+  QMC2 Arcade usually loads within just a few seconds and is by far less bloated than the main GUI, trimmed to what's absolutely required.
+  But although it's designed to run stand-alone, you must start QMC2's main GUI at least once prior to using QMC2 Arcade, because some of
+  the file caches need to be created first - QMC2 Arcade doesn't take care of this itself, which is one of the reasons why it's so much
+  faster. Also, you cannot change the emulator's configuration from within QMC2 Arcade. So whenever you want to make modifications to a
+  game's/machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
+
+  The main GUI also has a specific dialog for setting up all relevant back-end options (-theme, -console, -graphicssystem and -language) and
+  for producing a filtered game/machine list used by QMC2 Arcade exclusively (optional). Default values for back-end options can also be
+  configured inside QMC2 Arcade provided the chosen qml_theme supports it (which both of the available themes do).
+
+  Changed back-end default options will require a restart of QMC2 Arcade to take effect. Specifying them on the command line will overwrite
+  the current defaults temporarily, but will not change their stored default values.
 
 OPTIONS
-  -emu (to do)
+  -emu emulator  Set the emulator mode QMC2 Arcade runs in. Available values for emulator are 'mame' (default), 'mess' and 'ume'.
 
-  -theme (to do)
+  -theme qml_theme  Select the QML theme used for scene graphics, animations and/or shader effects. Available values for qml_theme are 'ToxicWaste'
+                    (default) and 'darkone'. Note that there are currently no themes available for MESS.
 
-  -console (to do)
+  -console type  Choose the type of console to use. Available values for type are 'terminal' (default), 'window' and 'window-minimized'.
 
-  -graphicssystem (to do)
+  -graphicssystem engine  Select the graphics sub-system engine instead of the currently set default one. Available values for engine are 'raster'
+                          (default), 'opengl', 'opengl1', 'openvg' and 'native'. Note that this option only exists when QMC2 Arcade has been built
+                          with Qt 4 (which is recommended). Qt 5 builds do not include it!
 
-  -language (to do)
+  -language lang  Choose translation to load. Run 'qmc2-arcade -h' for a list of available values for lang. Note that the default value for -language
+                  is shared with the main GUI's language setting!
 
-  -config_path (to do)
+  -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to search for QMC2's configuration
+                     and cache-files.
 
-  -h|-?|-help (to do)
+  -h|-?|-help  Show usage help, available options / values and their current defaults (for the given emulator mode).
 
-ENVIRONMENT
-  (to do)
+FILES
+  SYS_CONF_DIR/qmc2/qmc2.ini  System-wide default configuration (optional)
 
-EXAMPLE
-  (to do)
+  CONFIG_PATH/qmc2.ini  Individual user's configuration
 
-HINTS
-  (to do)
+  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Game/machine list cache
+
+  CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the game/machine list cache created by qmc2(6) (optional)
 
 SEE ALSO
   qmc2(6), qmc2-sdlmame(6), qmc2-sdlmess(6), qmc2-sdlume(6), qchdman(6), runonce(6)
 
 BUGS
-  (to do)
+  See the TODO file in the included QMC2 documentation for known bugs and restrictions.
+
+  New bugs can be reported here: http://tracker.batcom-it.net/view_all_bug_page.php
 
 AUTHOR
   The QMC2 development-team (http://qmc2.arcadehits.net/wordpress)

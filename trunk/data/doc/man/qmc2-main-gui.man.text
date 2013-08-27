@@ -19,57 +19,33 @@ OPTIONS
   qt_arguments  See http://qt-project.org/doc/qt-4.8/qapplication.html#QApplication for more information. Note, however, that QMC2 will overwrite most of the available Qt arguments with its saved settings in qmc2.ini (see.
 
 FILES
-  SYS_CONF_DIR/qmc2/qmc2.ini
+  SYS_CONF_DIR/qmc2/qmc2.ini  System-wide default configuration (optional)
 
-    System-wide default configuration (optional)
+  CONFIG_PATH/qmc2.ini  Individual user's configuration (system-wide settings will be copied initially, if any)
 
-  CONFIG_PATH/qmc2.ini
+  CONFIG_PATH/qmc2-sdlmame.log, CONFIG_PATH/qmc2-sdlmess.log, CONFIG_PATH/qmc2-sdlume.log  Front-end log from last run of a QMC2 variant
 
-    Individual user's configuration (system-wide settings will be copied initially, if any)
+  CONFIG_PATH/mame.log, CONFIG_PATH/mess.log, CONFIG_PATH/ume.log  Emulator-log from last run of an emulator variant launched by QMC2
 
-  CONFIG_PATH/qmc2-sdlmame.log, CONFIG_PATH/qmc2-sdlmess.log, CONFIG_PATH/qmc2-sdlume.log 
+  CONFIG_PATH/mame.rsc, CONFIG_PATH/mess.rsc, CONFIG_PATH/ume.rsc  ROM state cache
 
-    Front-end log from last run of a QMC2 variant
+  CONFIG_PATH/mame.lxc, CONFIG_PATH/mess.lxc, CONFIG_PATH/ume.lxc  XML data cache
 
-  CONFIG_PATH/mame.log, CONFIG_PATH/mess.log, CONFIG_PATH/ume.log
+  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Game/machine list cache
 
-    Emulator-log from last run of an emulator variant launched by QMC2
+  CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the game/machine list cache used by qmc2-arcade(6) (optional)
 
-  CONFIG_PATH/mame.rsc, CONFIG_PATH/mess.rsc, CONFIG_PATH/ume.rsc
+  CONFIG_PATH/mame.swl, CONFIG_PATH/mess.swl, CONFIG_PATH/ume.swl  Software-list cache
 
-    ROM state cache
+  CONFIG_PATH/mess.sic, CONFIG_PATH/ume.sic  Slot-info cache (MESS/UME only)
 
-  CONFIG_PATH/mame.lxc, CONFIG_PATH/mess.lxc, CONFIG_PATH/ume.lxc
+  CONFIG_PATH/sw-state-cache/*.ssc  Software-state cache (shared by all variants)
 
-    XML data cache
+  CONFIG_PATH/youtube/*.yti, CONFIG_PATH/youtube/*.png  YouTube video info/image cache (shared by all variants, but each one has its own qmc2-<variant>.yti index file for video meta data)
 
-  CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc
+  CONFIG_PATH/maws/*.wc  NAWS web-cache (MAME only)
 
-    Game/machine list cache
-
-  CONFIG_PATH/mame.swl, CONFIG_PATH/mess.swl, CONFIG_PATH/ume.swl
-
-    Software-list cache
-
-  CONFIG_PATH/mess.sic, CONFIG_PATH/ume.sic
-
-    Slot-info cache (MESS/UME only)
-
-  CONFIG_PATH/sw-state-cache/*.ssc
-
-    Software-state cache (shared by all variants)
-
-  CONFIG_PATH/youtube/*.yti, CONFIG_PATH/youtube/*.png
-
-    YouTube video info/image cache (shared by all variants, but each one has its own qmc2-<variant>.yti index file for video meta data)
-
-  CONFIG_PATH/maws/*.wc
-
-    NAWS web-cache (MAME only)
-
-  CONFIG_PATH/LocalStorage/*.localstorage
-  
-    Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
+  CONFIG_PATH/LocalStorage/*.localstorage  Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
 
 SEE ALSO
   qmc2-arcade(6), qchdman(6), runonce(6)
