@@ -38,12 +38,12 @@ cd $MAN_SOURCE_FOLDER > /dev/null
 for ctl_file in $(ls *.ctl); do
 	os_exclude=
 	. ./$ctl_file
-	ctl_file_basename=$(basename $ctl_file .ctl)
-	man_source=$ctl_file_basename.man.text
-	man_target=$ctl_file_basename.$man_section
-	man_compressed_target=$man_target.gz
 	echo $os_exclude | grep $ARCH > /dev/null
 	if [ "$?" != "0" ]; then
+		ctl_file_basename=$(basename $ctl_file .ctl)
+		man_source=$ctl_file_basename.man.text
+		man_target=$ctl_file_basename.$man_section
+		man_compressed_target=$man_target.gz
 		echo "Converting '$man_source' to '$man_target'"
 		cat $man_source | sed -e "s|SYS_CONF_DIR|$SYS_CONF_DIR|g" -e "s|CONFIG_PATH|$CONFIG_PATH|g" | $TXT2MAN -t "$title_name" -v "$volume_name" -r "$VERSION" -s "$man_section" > $man_target
 		echo "Compressing '$man_target' to '$man_compressed_target'"
