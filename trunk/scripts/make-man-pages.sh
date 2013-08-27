@@ -1,22 +1,24 @@
 #!/bin/sh
 # Create man-pages using txt2man.sh
 
-MAN_SOURCE_FOLDER=$1
-if [ "$MAN_SOURCE_FOLDER" == "" ]; then
+usage() {
 	echo "Usage: $0 <man_source_folder> <version> <arch> [<config_path> [<sys_conf_dir>]]"
 	exit 1
+}
+
+MAN_SOURCE_FOLDER=$1
+if [ "$MAN_SOURCE_FOLDER" == "" ]; then
+	usage
 fi
 
 VERSION=$2
 if [ "$VERSION" == "" ]; then
-	echo "Usage: $0 <man_source_folder> <version> <arch> [<config_path> [<sys_conf_dir>]]"
-	exit 1
+	usage
 fi
 
 ARCH=$3
 if [ "$ARCH" == "" ]; then
-	echo "Usage: $0 <man_source_folder> <version> <arch> [<config_path> [<sys_conf_dir>]]"
-	exit 1
+	usage
 fi
 
 TXT2MAN=$(cd $(dirname "$0"); pwd)/txt2man.sh
