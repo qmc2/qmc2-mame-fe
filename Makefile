@@ -87,20 +87,6 @@ PREFIX = /usr/local
 endif
 endif
 
-# >>> MAN_DIR <<<
-#
-# The base-directory used by the 'make doc-install' target to install man-pages.
-#
-ifneq '$(ARCH)' 'Windows'
-ifndef MAN_DIR
-ifeq '$(ARCH)' 'Darwin'
-MAN_DIR = /usr/share/man
-else
-MAN_DIR = $(PREFIX)/man
-endif
-endif
-endif
-
 # >>> QUIET <<<
 #
 # Compile and link QMC2 'quietly' (1) or show all command lines completely (0)?
@@ -568,6 +554,20 @@ endif
 #
 ifndef LOCAL_QML_IMPORT_PATH
 LOCAL_QML_IMPORT_PATH = imports
+endif
+
+# >>> MAN_DIR <<<
+#
+# The base-directory used by the 'make doc-install' target to install man-pages.
+#
+ifneq '$(ARCH)' 'Windows'
+ifndef MAN_DIR
+ifeq '$(ARCH)' 'Darwin'
+MAN_DIR = /usr/share/man
+else
+MAN_DIR = $(PREFIX)/man
+endif
+endif
 endif
 
 # >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
