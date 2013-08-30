@@ -1004,6 +1004,14 @@
       <description lang="pt" text="Manter razão de aspecto original"/>
       <description lang="es" text="Mantener la relación de aspecto apropiada"/>
     </option>
+    <option default="true" name="unevenstretch" type="bool">
+      <description lang="us" text="Allow non-integer stretch factors"/>
+      <description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren zulassen"/>
+      <description lang="pl" text="Pozwól na niecałkowite współczynniki rozciągnięcia"/>
+      <description lang="fr" text="Autorise un rapport de valeur non-intègre"/>
+      <description lang="pt" text="Permitir fatores de esticamento não inteiros"/>
+      <description lang="es" text="Permitir valores de relación de aspecto no enteros"/>
+    </option>
     <option default="1" name="prescale" type="int">
       <description lang="us" text="Scale screen rendering by this amount in software"/>
       <description lang="de" text="Bildschirm-Skalierung um diesen Betrag (in Software)"/>
@@ -1439,33 +1447,12 @@
       <description lang="pt" text="Habilitar pós processamento HLSL (requer Pixel Shader 3.0)"/>
       <description lang="es" text="Activar post-procesado HLSL (se necesita Pixel Shader 3.0)"/>
     </option>
-    <option default="false" name="hlsl_ini_read" type="bool">
-      <description lang="us" text="Enable HLSL INI reading"/>
-      <description lang="de" text="Einlesen von HLSL INI Dateien aktivieren"/>
-      <description lang="fr" text="Active la lecture du INI de HLSL"/>
-      <description lang="pt" text="Habilitar leitura do INI do HLSL"/>
-      <description lang="es" text="Activar lectura INI HLSL"/>
-    </option>
-    <option default="false" name="hlsl_ini_write" type="bool">
-      <description lang="us" text="Enable HLSL INI writing"/>
-      <description lang="de" text="Schreiben von HLSL INI Dateien aktivieren"/>
-      <description lang="fr" text="Active l'écriture du INI de HLSL"/>
-      <description lang="pt" text="Habilitar escrita do INI do HLSL"/>
-      <description lang="es" text="Activar escritura INI HLSL"/>
-    </option>
     <option default="hlsl" name="hlslpath" type="directory">
       <description lang="us" text="Path to hlsl files"/>
       <description lang="de" text="Suchpfad für hlsl-Dateien"/>
       <description lang="fr" text="Répertoire des fichiers HLSL"/>
       <description lang="pt" text="Caminho para os arquivos hlsl"/>
       <description lang="es" text="Ruta a archivos hlsl"/>
-    </option>
-    <option default="%g" name="hlslini" type="string">
-      <description lang="us" text="HLSL ini file path"/>
-      <description lang="de" text="Pfad für HLSL ini Dateien"/>
-      <description lang="fr" text="Répertoire des fichiers INI de HLSL"/>
-      <description lang="pt" text="Caminho para o arquivo INI do HLSL"/>
-      <description lang="es" text="Ruta a archivo ini HLSL"/>
     </option>
     <option default="0" name="hlsl_prescale_x" type="int">
       <description lang="us" text="HLSL pre-scale override factor for X (0 for auto)"/>
@@ -1733,7 +1720,7 @@
       <description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
       <description lang="es" text="Valor B para procesado de señal NTSC"/>
     </option>
-    <option default="0" name="yiq_o" type="float">
+    <option default="1.5708" name="yiq_o" type="float">
       <description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
       <description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
       <description lang="fr" text="Phase offset de sortie pour la fréquence de couleurs pour le traitement du signal NTSC"/>
