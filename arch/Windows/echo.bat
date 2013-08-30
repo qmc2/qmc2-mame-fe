@@ -5,4 +5,8 @@ rem Windows replacement for the UNIX command 'echo' to NOT print surrounding dou
 rem
 
 SET string=%1
-for /F "usebackq tokens=*" %%a in (`echo %string%`) do @echo %%~a
+if "%1" == "" (
+  @echo.
+) else (
+  for /F "usebackq tokens=*" %%a in (`echo %string%`) do @echo %%~a
+)
