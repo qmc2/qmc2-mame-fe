@@ -1421,11 +1421,7 @@ endif
 ?: help
 help:
 	@$(ECHO) "Usage: $(MAKE) [<targets>] [<configuration_options>]"
-ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) ""
-else
-	@$(ECHO) " "
-endif
 	@$(ECHO) "### Target ###   ### Description ###"
 	@$(ECHO) "all (default)    Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
 	@$(ECHO) "clean            Clean up compilation & linkage binaries from source tree"
@@ -1462,20 +1458,12 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "tools-install    Install tools: qchdman-install"
 endif
-ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) ""
-else
-	@$(ECHO) " "
-endif
 	@$(ECHO) "Run 'make config' for build configuration options."
 
 config:
 	@$(ECHO) "Current build configuration:"
-ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) ""
-else
-	@$(ECHO) " "
-endif
 	@$(ECHO) "### Option ###         ### Description ###                           ### Value ###" 
 	@$(ECHO) "ARCH                   Target system's OS / architecture name        $(ARCH)"
 	@$(ECHO) "AUDIOEFFECTDIALOGS     Enable audio-effect dialogs (0, 1)            $(AUDIOEFFECTDIALOGS)"
@@ -1572,11 +1560,7 @@ endif
 	@$(ECHO) "XWININFO               X11 xwininfo command                          $(XWININFO)"
 	@$(ECHO) "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
-ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) ""
-else
-	@$(ECHO) " "
-endif
 ifneq '$(SVN_REV)' '0'
 	@$(ECHO) "The SVN revision of your working copy is $(SVN_REV)."
 else
