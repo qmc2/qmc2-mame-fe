@@ -1,4 +1,4 @@
-@echo off
+@echo off > NUL
 
 REM #############################################################
 REM # !!! ADJUST THESE PATHS TO FIT YOUR LOCAL INSTALLATION !!! #
