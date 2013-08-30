@@ -21,6 +21,12 @@ DESCRIPTION
   Changed back-end default options will require a restart of QMC2 Arcade to take effect. Specifying them on the command line will overwrite
   the current defaults temporarily, but will not change their stored default values.
 
+  The -emu parameter's value corresponds to the main GUI's three variants qmc2-sdlmame(6), qmc2-sdlmess(6) and qmc2-sdlume(6). As in case of
+  of the main GUI counterparts, selecting a certain emulator will make QMC2 Arcade use the settings specific to the chosen variant.
+
+  Theme-specific settings are shared between all modes. That is, when a theme supports multiple emulators, it will usually look the same in
+  each mode.
+
 OPTIONS
   -emu emulator  Set the emulator mode QMC2 Arcade runs in. Available values for emulator are 'mame' (default), 'mess' and 'ume'.
 
