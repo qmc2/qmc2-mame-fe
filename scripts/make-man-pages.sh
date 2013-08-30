@@ -21,7 +21,7 @@ if [ "$ARCH" == "" ]; then
 	usage
 fi
 
-TXT2MAN=$(cd $(dirname "$0"); pwd)/txt2man.sh
+TXT2MAN="$(cd $(dirname "$0"); pwd)/txt2man.sh"
 
 CONFIG_PATH=~/.qmc2
 if [ "$4" != "" ]; then
@@ -45,7 +45,7 @@ for ctl_file in $(ls *.ctl); do
 		man_target=$ctl_file_basename.$man_section
 		man_compressed_target=$man_target.gz
 		echo "Converting '$man_source' to '$man_target'"
-		cat $man_source | sed -e "s|SYS_CONF_DIR|$SYS_CONF_DIR|g" -e "s|CONFIG_PATH|$CONFIG_PATH|g" | $TXT2MAN -t "$title_name" -v "$volume_name" -r "$VERSION" -s "$man_section" > $man_target
+		cat $man_source | sed -e "s|SYS_CONF_DIR|$SYS_CONF_DIR|g" -e "s|CONFIG_PATH|$CONFIG_PATH|g" | "$TXT2MAN" -t "$title_name" -v "$volume_name" -r "$VERSION" -s "$man_section" > $man_target
 		echo "Compressing '$man_target' to '$man_compressed_target'"
 		gzip -f $man_target
 		for man_page_link in $man_pages; do
