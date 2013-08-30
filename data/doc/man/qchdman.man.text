@@ -11,7 +11,7 @@ DESCRIPTION
   Future versions will also support some way of scripting to allow for freely customizable batch operations for repeating work.
 
 OPTIONS
-  -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to search for qchdman's
+  -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to store qchdman's
                      configuration.
 
 FILES
