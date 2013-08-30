@@ -4,9 +4,9 @@ rem
 rem Windows replacement for the UNIX command 'echo' to NOT print surrounding double-quote
 rem
 
-SET string=%1
-if "%1" == "" (
+set string=%1
+if %string% == "" (
   @echo.
 ) else (
-  for /F "usebackq tokens=*" %%a in (`echo %string%`) do @echo %%~a
+  for /f "usebackq tokens=*" %%a in (`echo %string%`) do @echo %%~a
 )
