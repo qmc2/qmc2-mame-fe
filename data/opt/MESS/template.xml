@@ -1718,7 +1718,7 @@
       <description lang="fr" text="Valeur B pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
     </option>
-    <option default="1.5708" name="yiq_o" type="float">
+    <option default="1.570796325" name="yiq_o" type="float" decimals="9">
       <description lang="es" text="Compensación de fase de color de salida para procesado de señal NTSC"/>
       <description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
       <description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
