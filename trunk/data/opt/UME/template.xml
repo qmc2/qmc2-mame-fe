@@ -752,6 +752,14 @@
     <description lang="fr" text="Divers"/>
     <description lang="pt" text="Diversos"/>
     <description lang="es" text="Miscelánea"/>
+    <option default="true" name="drc" type="bool">
+      <description lang="us" text="Enable DRC cpu core if available"/>
+      <description lang="de" text="DRC CPU Core aktivieren, wenn verfügbar"/>
+    </option>
+    <option default="false" name="drc_use_c" type="bool">
+      <description lang="us" text="Force DRC to use C back-end"/>
+      <description lang="de" text="C-Backend für DRC erzwingen"/>
+    </option>
     <option default="" name="bios" type="combo">
       <description lang="us" text="Select the system BIOS to use"/>
       <description lang="de" text="Zu verwendendes System BIOS auswählen"/>
