@@ -5,25 +5,25 @@ SYNOPSIS
   qchdman [-config_path path]
 
 DESCRIPTION
-  (to do)
+  Qt CHDMAN GUI - or qchdman in short - is a Qt based graphical front-end for CHDMAN, the 'MAME Compressed Hunks of Data (CHD) manager'.
+
+  At the current stage of development, qchdman supports all available operation modes of CHDMAN, called 'project types' in qchdman.
+  Future versions will also support some way of scripting to allow for freely customizable batch operations for repeating work.
 
 OPTIONS
-  -config_path (to do)
+  -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to search for qchdman's
+                     configuration.
 
-ENVIRONMENT
-  (to do)
-
-EXAMPLE
-  (to do)
-
-HINTS
-  (to do)
+FILES
+  CONFIG_PATH/qchdman.ini  Individual user's configuration
 
 SEE ALSO
   qmc2(6), qmc2-sdlmame(6), qmc2-sdlmess(6), qmc2-sdlume(6), qmc2-arcade(6)
 
 BUGS
-  (to do)
+  None that we're aware of.
+
+  New bugs can be reported here: http://tracker.batcom-it.net/view_all_bug_page.php
 
 AUTHOR
   The QMC2 development-team (http://qmc2.arcadehits.net/wordpress)
