@@ -1,4 +1,4 @@
-@echo off
+@echo off > NUL
 
 rem
 rem Windows replacement for the UNIX command 'which' (well, similar)

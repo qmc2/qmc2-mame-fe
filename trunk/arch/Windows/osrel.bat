@@ -1,4 +1,4 @@
-@Echo off
+@echo off > NUL
 Setlocal
 :: Get windows Version numbers
 For /f "tokens=2 delims=[]" %%G in ('ver') Do (set _version=%%G)
