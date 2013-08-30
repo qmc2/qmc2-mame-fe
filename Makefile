@@ -601,7 +601,7 @@ endif
 
 # make sure the emulator target is in capital letters
 ifdef TR
-QMC2_EMULATOR = $(shell echo $(EMULATOR) | $(TR) [a-z] [A-Z])
+QMC2_EMULATOR = $(shell $(ECHO) $(EMULATOR) | $(TR) [a-z] [A-Z])
 else
 QMC2_EMULATOR = $(EMULATOR)
 ifeq '$(EMULATOR)' 'mame'
@@ -669,10 +669,10 @@ endif
 ifneq '$(ARCH)' 'Windows' 
 
 # global QMC2 configuration file
-GLOBAL_QMC2_INI=$(shell echo $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
+GLOBAL_QMC2_INI=$(shell $(ECHO) $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 
 # global data directory
-GLOBAL_DATADIR=$(shell echo $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
+GLOBAL_DATADIR=$(shell $(ECHO) $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
 
 endif
 
@@ -681,7 +681,7 @@ ifndef QMAKEV
 ifeq '$(ARCH)' 'Windows'
 QMAKEV = 2
 else
-QMAKEV = $(shell echo `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
+QMAKEV = $(shell $(ECHO) `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
 endif
 endif
 
@@ -694,10 +694,10 @@ ifneq '$(QMAKEV)' '1'
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
-QT_LIBTMP = $(shell echo $(QT_LIBVERSION) | tr "." " " )
-QT_LIBMAJ = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
-QT_LIBMIN = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
-QT_LIB48PLUS = $(shell [ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ] && echo true)
+QT_LIBTMP = $(shell $(ECHO) $(QT_LIBVERSION) | tr "." " " )
+QT_LIBMAJ = $(shell $(ECHO) $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
+QT_LIBMIN = $(shell $(ECHO) $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
+QT_LIB48PLUS = $(shell [ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ] && $(ECHO) true)
 ifeq '$(XCODE3)' '0'
 ifeq '$(QT_LIB48PLUS)' 'true'
 QMAKEFILE = Makefile.qmake
@@ -811,7 +811,7 @@ endif
 
 # target name (variant)
 ifneq '$(ARCH)' 'Windows'
-TARGET_NAME = $(PROJECT)-$(shell echo $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
+TARGET_NAME = $(PROJECT)-$(shell $(ECHO) $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
 else
 ifeq '$(QMC2_EMULATOR)' 'MAME'
 TARGET_NAME = $(PROJECT)-mame
@@ -994,7 +994,7 @@ qchdman-install: qchdman
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@echo "Installing qchdman.desktop to $(GLOBAL_DATADIR)/applications"
+	@$(ECHO) "Installing qchdman.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
 	@$(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/qchdman.desktop.template > $(GLOBAL_DATADIR)/applications/qchdman.desktop
@@ -1061,7 +1061,7 @@ arcade-install: arcade
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@echo "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
+	@$(ECHO) "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
 	@$(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/qmc2-arcade.desktop.template > $(GLOBAL_DATADIR)/applications/qmc2-arcade.desktop
@@ -1085,7 +1085,7 @@ $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
 $(PROJECT)-bin: lang $(QMAKEFILE) 
 endif
-	@echo "Updating build of QMC2 v$(VERSION)"
+	@$(ECHO) "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QT_LIB48PLUS)' 'true'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null
@@ -1116,15 +1116,15 @@ endif
 ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 	@$(LN) -s SDLMESS/template.xml data/opt/template.xml > /dev/null
 endif
-	@echo "Build of QMC2 v$(VERSION) complete"
-	@echo "Target emulator: $(QMC2_EMULATOR)"
+	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
+	@$(ECHO) "Target emulator: $(QMC2_EMULATOR)"
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
 else
 $(QMAKEFILE): $(PROJECT).pro
 endif
-	@echo "Configuring build of QMC2 v$(VERSION)"
+	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
@@ -1156,7 +1156,7 @@ $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
 $(PROJECT)-bin: lang $(QMAKEFILE)
 endif
-	@echo "Updating build of QMC2 v$(VERSION)"
+	@$(ECHO) "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QT_LIB48PLUS)' 'true'
 	+@$(MAKE) -f $(QMAKEFILE)
@@ -1187,15 +1187,15 @@ endif
 ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 	@$(LN) -s SDLMESS/template.xml data/opt/template.xml
 endif
-	@echo "Build of QMC2 v$(VERSION) complete"
-	@echo "Target emulator: $(QMC2_EMULATOR)"
+	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
+	@$(ECHO) "Target emulator: $(QMC2_EMULATOR)"
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
 else
 $(QMAKEFILE): $(PROJECT).pro
 endif
-	@echo "Configuring build of QMC2 v$(VERSION)"
+	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
@@ -1226,7 +1226,7 @@ install: bin macdeployqt
 else
 install: bin
 endif
-	@echo "Installing QMC2 v$(VERSION)"
+	@$(ECHO) "Installing QMC2 v$(VERSION)"
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
@@ -1242,7 +1242,7 @@ endif
 	@if [ "$(QT_TRANSLATION)" = "qmc2" ] ; then \
 	  $(RSYNC) --exclude '*svn*' ./data/lng/qt_*.qm "$(GLOBAL_DATADIR)/$(PROJECT)/lng/" ; \
 	else \
-	  echo "Using Qt translation files from $(QT_TRANSLATION)" ; \
+	  $(ECHO) "Using Qt translation files from $(QT_TRANSLATION)" ; \
 	  $(RM) -f "$(GLOBAL_DATADIR)/$(PROJECT)/lng/"qt_*.qm ; \
 	  for i in $(QT_TRANSLATIONS) ; do \
 	    $(LN) -s "$(QT_TRANSLATION)/qt_$$i.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_$$i.qm" ; \
@@ -1264,20 +1264,20 @@ endif
 	@$(RSYNC) --exclude '*svn*' ./data/gmn "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/js "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@if [ -f "$(GLOBAL_QMC2_INI)" ] ; then \
-	  echo "Preserving system-wide configuration in $(GLOBAL_QMC2_INI)" ; \
-	  echo "Installing new system-wide configuration as $(GLOBAL_QMC2_INI).new" ; \
+	  $(ECHO) "Preserving system-wide configuration in $(GLOBAL_QMC2_INI)" ; \
+	  $(ECHO) "Installing new system-wide configuration as $(GLOBAL_QMC2_INI).new" ; \
 	  $(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/$(PROJECT).ini.template > "$(GLOBAL_QMC2_INI).new" ; \
 	else \
-	  echo "Installing system-wide configuration as $(GLOBAL_QMC2_INI)" ; \
+	  $(ECHO) "Installing system-wide configuration as $(GLOBAL_QMC2_INI)" ; \
 	  $(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/$(PROJECT).ini.template > "$(GLOBAL_QMC2_INI)" ; \
 	fi
 ifneq '$(ARCH)' 'Darwin'
-	@echo "Installing $(TARGET_NAME).desktop to $(GLOBAL_DATADIR)/applications"
+	@$(ECHO) "Installing $(TARGET_NAME).desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
 	@$(SED) -e "s*DATADIR*$(DATADIR)*g; s*EMULATOR*$(QMC2_EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
 endif
-	@echo "Installation complete"
+	@$(ECHO) "Installation complete"
 
 endif
 
@@ -1288,7 +1288,7 @@ distclean: clean tools-clean arcade-clean
 endif
 
 clean: $(QMAKEFILE)
-	@echo "Cleaning up build of QMC2 v$(VERSION)"
+	@$(ECHO) "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml error.log
@@ -1370,14 +1370,14 @@ NOW = $(shell $(DATE))
 SRCDIR = $(shell $(BASENAME) `pwd`)
 snapshot: snap exclude.list
 snap: distclean
-	@echo "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)"
+	@$(ECHO) "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)"
 	$(CD) .. ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
 
 distribution: dist exclude.list
 dist: distclean
-	@echo "Creating source distribution archive for QMC2 v$(VERSION)"
+	@$(ECHO) "Creating source distribution archive for QMC2 v$(VERSION)"
 	$(CD) .. ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
@@ -1394,7 +1394,7 @@ clean: all
 install: all
 bin: all
 all:
-	@echo "Error: Wrong qmake version. Version 2 (Qt 4) or 3 (Qt 5) required!"
+	@$(ECHO) "Error: Wrong qmake version. Version 2 (Qt 4) or 3 (Qt 5) required!"
 endif
 
 ifneq '$(ARCH)' 'Windows'
@@ -1404,13 +1404,13 @@ xlist: exclude-list
 svn-exclude-list: exclude-list
 exclude.list: exclude-list
 exclude-list:
-	@echo -n "Creating SVN exclude list... "
+	@$(ECHO) -n "Creating SVN exclude list... "
 	@cd .. ; \
 	$(FIND) $(PROJECT) -name "*svn*" > $(PROJECT)/exclude.list.new ; \
-	echo "$(PROJECT)/exclude.list" >> $(PROJECT)/exclude.list.new ; \
+	$(ECHO) "$(PROJECT)/exclude.list" >> $(PROJECT)/exclude.list.new ; \
 	$(CAT) $(PROJECT)/exclude.list.new | env LOCALE=C sort > $(PROJECT)/exclude.list ; \
 	$(RM) $(PROJECT)/exclude.list.new
-	@echo "done"
+	@$(ECHO) "done"
 
 detect-os: os-detect
 os-detect:
@@ -1420,151 +1420,151 @@ endif
 
 ?: help
 help:
-	@echo "Usage: $(MAKE) [<targets>] [<configuration_options>]"
-	@echo ""
-	@echo "### Target ###   ### Description ###"
-	@echo "all (default)    Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
-	@echo "clean            Clean up compilation & linkage binaries from source tree"
-	@echo "config           Show build configuration options and their current values"
-	@echo "configure        Create qmake output and stop, alias: qmake"
+	@$(ECHO) "Usage: $(MAKE) [<targets>] [<configuration_options>]"
+	@$(ECHO) ""
+	@$(ECHO) "### Target ###   ### Description ###"
+	@$(ECHO) "all (default)    Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
+	@$(ECHO) "clean            Clean up compilation & linkage binaries from source tree"
+	@$(ECHO) "config           Show build configuration options and their current values"
+	@$(ECHO) "configure        Create qmake output and stop, alias: qmake"
 ifneq '$(ARCH)' 'Windows'
-	@echo "dist             Create source distribution archives (tar.gz and tar.bz2)"
-	@echo "doc              Convert man-pages to troff/nroff format, alias: man"
-	@echo "doc-clean        Clean up converted man-pages, alias: man-clean"
-	@echo "doc-install      Install man-pages system-wide, alias: man-install"
-	@echo "exclude-list     Recreate SVN exclude-list (only used by developers)"
+	@$(ECHO) "dist             Create source distribution archives (tar.gz and tar.bz2)"
+	@$(ECHO) "doc              Convert man-pages to troff/nroff format, alias: man"
+	@$(ECHO) "doc-clean        Clean up converted man-pages, alias: man-clean"
+	@$(ECHO) "doc-install      Install man-pages system-wide, alias: man-install"
+	@$(ECHO) "exclude-list     Recreate SVN exclude-list (only used by developers)"
 endif
-	@echo "help | ?         Show this help"
+	@$(ECHO) "help | ?         Show this help"
 ifneq '$(ARCH)' 'Windows'
-	@echo "install          Install QMC2 binaries and data files for system-wide use"
+	@$(ECHO) "install          Install QMC2 binaries and data files for system-wide use"
 endif
-	@echo "lang             Recreate binary translation files only (if not up to date)"
+	@$(ECHO) "lang             Recreate binary translation files only (if not up to date)"
 ifneq '$(ARCH)' 'Windows'
-	@echo "os-detect        Detect host OS and distribution / version"
-	@echo "snap             Create source distribution archives with date and time stamp"
+	@$(ECHO) "os-detect        Detect host OS and distribution / version"
+	@$(ECHO) "snap             Create source distribution archives with date and time stamp"
 endif
-	@echo "arcade           Build QMC2 Arcade binary (qmc2-arcade)"
-	@echo "arcade-clean     Clean up QMC2 Arcade build"
+	@$(ECHO) "arcade           Build QMC2 Arcade binary (qmc2-arcade)"
+	@$(ECHO) "arcade-clean     Clean up QMC2 Arcade build"
 ifneq '$(ARCH)' 'Windows'
-	@echo "arcade-install   Install QMC2 Arcade"
+	@$(ECHO) "arcade-install   Install QMC2 Arcade"
 endif
-	@echo "qchdman          Build Qt CHDMAN GUI binary (qchdman)"
-	@echo "qchdman-clean    Clean up Qt CHDMAN GUI build"
+	@$(ECHO) "qchdman          Build Qt CHDMAN GUI binary (qchdman)"
+	@$(ECHO) "qchdman-clean    Clean up Qt CHDMAN GUI build"
 ifneq '$(ARCH)' 'Windows'
-	@echo "qchdman-install  Install Qt CHDMAN GUI"
+	@$(ECHO) "qchdman-install  Install Qt CHDMAN GUI"
 endif
-	@echo "tools            Build tools: qchdman"
-	@echo "tools-clean      Clean up tools: qchdman-clean"
+	@$(ECHO) "tools            Build tools: qchdman"
+	@$(ECHO) "tools-clean      Clean up tools: qchdman-clean"
 ifneq '$(ARCH)' 'Windows'
-	@echo "tools-install    Install tools: qchdman-install"
+	@$(ECHO) "tools-install    Install tools: qchdman-install"
 endif
-	@echo ""
-	@echo "Run 'make config' for build configuration options."
+	@$(ECHO) ""
+	@$(ECHO) "Run 'make config' for build configuration options."
 
 config:
-	@echo "Current build configuration:"
-	@echo ""
-	@echo "### Option ###         ### Description ###                           ### Value ###" 
-	@echo "ARCH                   Target system's OS / architecture name        $(ARCH)"
-	@echo "AUDIOEFFECTDIALOGS     Enable audio-effect dialogs (0, 1)            $(AUDIOEFFECTDIALOGS)"
-	@echo "AWK                    UNIX command awk                              $(AWK)"
-	@echo "BASENAME               UNIX command basename                         $(BASENAME)"
-	@echo "BINDIR                 Binary directory for installation             $(BINDIR)"
-	@echo "BROWSER_EXTRAS         Enable browser extra features (0, 1)          $(BROWSER_EXTRAS)"
-	@echo "BROWSER_JAVA           Enable Java in web browsers (0, 1)            $(BROWSER_JAVA)"
-	@echo "BROWSER_JAVASCRIPT     Enable JavaScript in web browsers (0, 1)      $(BROWSER_JAVASCRIPT)"
-	@echo "BROWSER_PLUGINS        Enable browser plugins (0, 1)                 $(BROWSER_PLUGINS)"
-	@echo "BROWSER_PREFETCH_DNS   Enable prefetching of DNS lookups (0, 1)      $(BROWSER_PREFETCH_DNS)"
-	@echo "CC_FLAGS               Additional flags passed to the C compiler     $(CC_FLAGS)"
-	@echo "CXX_FLAGS              Additional flags passed to the C++ compiler   $(CXX_FLAGS)"
-	@echo "CCACHE                 Use a compiler cache (0, 1)                   $(CCACHE)"
-	@echo "CCACHE_CC              Command used for cached cc                    $(CCACHE_CC)"
-	@echo "CCACHE_CXX             Command used for cached c++                   $(CCACHE_CXX)"
-	@echo "CD                     UNIX command cd                               $(CD)"
-	@echo "CHMOD                  UNIX command chmod                            $(CHMOD)"
-	@echo "CHOWN                  UNIX command chown                            $(CHOWN)"
-	@echo "COLRM                  UNIX command colrm                            $(COLRM)"
-	@echo "CP                     UNIX command cp                               $(CP)"
-	@echo "CTIME                  Measure compilation & linkage time (0, 1)     $(CTIME)"
-	@echo "DATABASE               Enable database features (0, 1)               $(DATABASE)"
-	@echo "DATADIR                Data directory for installation               $(DATADIR)"
-	@echo "DATE                   UNIX command date                             $(DATE)"
-	@echo "DEBUG                  Choose debugging level (0, 1, 2)              $(DEBUG)"
-	@echo "DISTCC                 Use a distributed compiler (0, 1)             $(DISTCC)"
-	@echo "DISTCC_CC              Command used for distributed cc               $(DISTCC_CC)"
-	@echo "DISTCC_CXX             Command used for distributed c++              $(DISTCC_CXX)"
-	@echo "DISTCFG                Use distribution-specific config (0, 1)       $(DISTCFG)"
+	@$(ECHO) "Current build configuration:"
+	@$(ECHO) ""
+	@$(ECHO) "### Option ###         ### Description ###                           ### Value ###" 
+	@$(ECHO) "ARCH                   Target system's OS / architecture name        $(ARCH)"
+	@$(ECHO) "AUDIOEFFECTDIALOGS     Enable audio-effect dialogs (0, 1)            $(AUDIOEFFECTDIALOGS)"
+	@$(ECHO) "AWK                    UNIX command awk                              $(AWK)"
+	@$(ECHO) "BASENAME               UNIX command basename                         $(BASENAME)"
+	@$(ECHO) "BINDIR                 Binary directory for installation             $(BINDIR)"
+	@$(ECHO) "BROWSER_EXTRAS         Enable browser extra features (0, 1)          $(BROWSER_EXTRAS)"
+	@$(ECHO) "BROWSER_JAVA           Enable Java in web browsers (0, 1)            $(BROWSER_JAVA)"
+	@$(ECHO) "BROWSER_JAVASCRIPT     Enable JavaScript in web browsers (0, 1)      $(BROWSER_JAVASCRIPT)"
+	@$(ECHO) "BROWSER_PLUGINS        Enable browser plugins (0, 1)                 $(BROWSER_PLUGINS)"
+	@$(ECHO) "BROWSER_PREFETCH_DNS   Enable prefetching of DNS lookups (0, 1)      $(BROWSER_PREFETCH_DNS)"
+	@$(ECHO) "CC_FLAGS               Additional flags passed to the C compiler     $(CC_FLAGS)"
+	@$(ECHO) "CXX_FLAGS              Additional flags passed to the C++ compiler   $(CXX_FLAGS)"
+	@$(ECHO) "CCACHE                 Use a compiler cache (0, 1)                   $(CCACHE)"
+	@$(ECHO) "CCACHE_CC              Command used for cached cc                    $(CCACHE_CC)"
+	@$(ECHO) "CCACHE_CXX             Command used for cached c++                   $(CCACHE_CXX)"
+	@$(ECHO) "CD                     UNIX command cd                               $(CD)"
+	@$(ECHO) "CHMOD                  UNIX command chmod                            $(CHMOD)"
+	@$(ECHO) "CHOWN                  UNIX command chown                            $(CHOWN)"
+	@$(ECHO) "COLRM                  UNIX command colrm                            $(COLRM)"
+	@$(ECHO) "CP                     UNIX command cp                               $(CP)"
+	@$(ECHO) "CTIME                  Measure compilation & linkage time (0, 1)     $(CTIME)"
+	@$(ECHO) "DATABASE               Enable database features (0, 1)               $(DATABASE)"
+	@$(ECHO) "DATADIR                Data directory for installation               $(DATADIR)"
+	@$(ECHO) "DATE                   UNIX command date                             $(DATE)"
+	@$(ECHO) "DEBUG                  Choose debugging level (0, 1, 2)              $(DEBUG)"
+	@$(ECHO) "DISTCC                 Use a distributed compiler (0, 1)             $(DISTCC)"
+	@$(ECHO) "DISTCC_CC              Command used for distributed cc               $(DISTCC_CC)"
+	@$(ECHO) "DISTCC_CXX             Command used for distributed c++              $(DISTCC_CXX)"
+	@$(ECHO) "DISTCFG                Use distribution-specific config (0, 1)       $(DISTCFG)"
 ifeq '$(ARCH)' 'Windows'
-	@echo "EMULATOR, EMU          Target emulator (MAME, MESS or UME)           $(QMC2_EMULATOR)"
+	@$(ECHO) "EMULATOR, EMU          Target emulator (MAME, MESS or UME)           $(QMC2_EMULATOR)"
 else
-	@echo "EMULATOR, EMU          Target emulator (SDLMAME, SDLMESS or SDLUME)  $(QMC2_EMULATOR)"
+	@$(ECHO) "EMULATOR, EMU          Target emulator (SDLMAME, SDLMESS or SDLUME)  $(QMC2_EMULATOR)"
 endif
-	@echo "FADER_SPEED            Audio fading speed (0: fastest, >0: slower)   $(FADER_SPEED)"
-	@echo "FIND                   UNIX command find                             $(FIND)"
-	@echo "GREP                   UNIX command grep                             $(GREP)"
-	@echo "IMGSET                 Image set to be used                          $(IMGSET)"
-	@echo "JOYSTICK               Compile with SDL joystick support (0, 1)      $(JOYSTICK)"
-	@echo "L_FLAGS                Additional flags passed to the linker         $(L_FLAGS)"
-	@echo "L_LIBS                 Additional libraries passed to the linker     $(L_LIBS)"
-	@echo "L_LIBDIRS              Additional library paths for the linker       $(L_LIBDIRS)"
-	@echo "LINKER                 The linker to be used (empty = default)       $(LINKER)"
-	@echo "LN                     UNIX command ln                               $(LN)"
-	@echo "LOCAL_QML_IMPORT_PATH  Additional QML import path to use             $(LOCAL_QML_IMPORT_PATH)"
-	@echo "LRELEASE               Qt language release (lrelease) command        $(LRELEASE)"
-	@echo "LUPDATE                Qt language update (lupdate) command          $(LUPDATE)"
+	@$(ECHO) "FADER_SPEED            Audio fading speed (0: fastest, >0: slower)   $(FADER_SPEED)"
+	@$(ECHO) "FIND                   UNIX command find                             $(FIND)"
+	@$(ECHO) "GREP                   UNIX command grep                             $(GREP)"
+	@$(ECHO) "IMGSET                 Image set to be used                          $(IMGSET)"
+	@$(ECHO) "JOYSTICK               Compile with SDL joystick support (0, 1)      $(JOYSTICK)"
+	@$(ECHO) "L_FLAGS                Additional flags passed to the linker         $(L_FLAGS)"
+	@$(ECHO) "L_LIBS                 Additional libraries passed to the linker     $(L_LIBS)"
+	@$(ECHO) "L_LIBDIRS              Additional library paths for the linker       $(L_LIBDIRS)"
+	@$(ECHO) "LINKER                 The linker to be used (empty = default)       $(LINKER)"
+	@$(ECHO) "LN                     UNIX command ln                               $(LN)"
+	@$(ECHO) "LOCAL_QML_IMPORT_PATH  Additional QML import path to use             $(LOCAL_QML_IMPORT_PATH)"
+	@$(ECHO) "LRELEASE               Qt language release (lrelease) command        $(LRELEASE)"
+	@$(ECHO) "LUPDATE                Qt language update (lupdate) command          $(LUPDATE)"
 ifeq '$(ARCH)' 'Darwin'
-	@echo "MACDEPLOYQT            Qt's Mac OS X deployment tool                 $(MACDEPLOYQT)"
-	@echo "MAC_UNIVERSAL          Build a universal application bundle (0, 1)   $(MAC_UNIVERSAL)"
+	@$(ECHO) "MACDEPLOYQT            Qt's Mac OS X deployment tool                 $(MACDEPLOYQT)"
+	@$(ECHO) "MAC_UNIVERSAL          Build a universal application bundle (0, 1)   $(MAC_UNIVERSAL)"
 endif
-	@echo "MACHINE                Target system's machine type                  $(MACHINE)"
-	@echo "MAKE                   GNU make command                              $(MAKE)"
-	@echo "MAKESILENT             GNU make command (silent mode)                $(MAKESILENT)"
+	@$(ECHO) "MACHINE                Target system's machine type                  $(MACHINE)"
+	@$(ECHO) "MAKE                   GNU make command                              $(MAKE)"
+	@$(ECHO) "MAKESILENT             GNU make command (silent mode)                $(MAKESILENT)"
 ifneq '$(ARCH)' 'Windows'
-	@echo "MAN_DIR                Base directory for man-page installation      $(MAN_DIR)"
+	@$(ECHO) "MAN_DIR                Base directory for man-page installation      $(MAN_DIR)"
 endif
 ifeq '$(ARCH)' 'Windows'
-	@echo "MINGW                  Force use of MinGW on Windows (0, 1)          $(MINGW)"
+	@$(ECHO) "MINGW                  Force use of MinGW on Windows (0, 1)          $(MINGW)"
 endif
-	@echo "MKDIR                  UNIX command mkdir                            $(MKDIR)"
-	@echo "MKSPEC                 Qt mkspec to be used (empty = default)        $(MKSPEC)"
-	@echo "MV                     UNIX command mv                               $(MV)"
-	@echo "OPENGL                 Enable miscellaneous OpenGL features (0, 1)   $(OPENGL)"
-	@echo "OSCFG                  Use global OS configuration (0, 1)            $(OSCFG)"
-	@echo "OSNAME                 Target system's OS name                       $(OSNAME)"
-	@echo "OSREL                  Target system's OS release                    $(OSREL)"
-	@echo "PHONON                 Enable Phonon based features (0, 1)           $(PHONON)"
-	@echo "PREFIX                 Prefix directory for install target           $(PREFIX)"
-	@echo "QMAKE                  Qt make (qmake) command                       $(QMAKE)"
-	@echo "QMAKEFILE              Qt generated Makefile name                    $(QMAKEFILE)"
-	@echo "QT_TRANSLATION         Specify path to Qt translations or 'qmc2'     $(QT_TRANSLATION)"
+	@$(ECHO) "MKDIR                  UNIX command mkdir                            $(MKDIR)"
+	@$(ECHO) "MKSPEC                 Qt mkspec to be used (empty = default)        $(MKSPEC)"
+	@$(ECHO) "MV                     UNIX command mv                               $(MV)"
+	@$(ECHO) "OPENGL                 Enable miscellaneous OpenGL features (0, 1)   $(OPENGL)"
+	@$(ECHO) "OSCFG                  Use global OS configuration (0, 1)            $(OSCFG)"
+	@$(ECHO) "OSNAME                 Target system's OS name                       $(OSNAME)"
+	@$(ECHO) "OSREL                  Target system's OS release                    $(OSREL)"
+	@$(ECHO) "PHONON                 Enable Phonon based features (0, 1)           $(PHONON)"
+	@$(ECHO) "PREFIX                 Prefix directory for install target           $(PREFIX)"
+	@$(ECHO) "QMAKE                  Qt make (qmake) command                       $(QMAKE)"
+	@$(ECHO) "QMAKEFILE              Qt generated Makefile name                    $(QMAKEFILE)"
+	@$(ECHO) "QT_TRANSLATION         Specify path to Qt translations or 'qmc2'     $(QT_TRANSLATION)"
 ifneq '$(ARCH)' 'Windows'
-	@echo "QT_LIBVERSION          Version of the Qt library in use              $(QT_LIBVERSION)"
+	@$(ECHO) "QT_LIBVERSION          Version of the Qt library in use              $(QT_LIBVERSION)"
 endif
-	@echo "QUIET                  Suppress output of compile/link (0, 1)        $(QUIET)"
-	@echo "RM                     UNIX command rm                               $(RM)"
-	@echo "RMDIR                  UNIX command rmdir                            $(RMDIR)"
-	@echo "RSYNC                  UNIX command rsync                            $(RSYNC)"
-	@echo "SDLLOCAL               Enable use of a 'local' SDL library (0, 1)    $(SDLLOCAL)"
-	@echo "SDLLOCAL_INC           Base include directory of the 'local' SDL     $(SDLLOCAL_INC)"
-	@echo "SDLLOCAL_LIB           Base library directory of the 'local' SDL     $(SDLLOCAL_LIB)"
-	@echo "SED                    UNIX command sed                              $(SED)"
-	@echo "SVNVERSION             UNIX command svnversion (optional)            $(SVNVERSION)"
-	@echo "SYSCONFDIR             System configuration directory                $(SYSCONFDIR)"
-	@echo "TAR                    UNIX command tar                              $(TAR)"
-	@echo "TARGET                 Name of the QMC2 'target executable'          $(TARGET_NAME)"
-	@echo "TR                     UNIX command tr                               $(TR)"
-	@echo "TIME                   UNIX command time                             $(TIME)"
-	@echo "VARIANT_LAUNCHER       Enable the QMC2 variant launcher (0, 1)       $(VARIANT_LAUNCHER)"
-	@echo "WC_COMPRESSION         Compress MAWS web-cache data (0, 1)           $(WC_COMPRESSION)"
-	@echo "WIP                    Enable unfinished code (0, 1)                 $(WIP)"
-	@echo "XWININFO               X11 xwininfo command                          $(XWININFO)"
-	@echo "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"
+	@$(ECHO) "QUIET                  Suppress output of compile/link (0, 1)        $(QUIET)"
+	@$(ECHO) "RM                     UNIX command rm                               $(RM)"
+	@$(ECHO) "RMDIR                  UNIX command rmdir                            $(RMDIR)"
+	@$(ECHO) "RSYNC                  UNIX command rsync                            $(RSYNC)"
+	@$(ECHO) "SDLLOCAL               Enable use of a 'local' SDL library (0, 1)    $(SDLLOCAL)"
+	@$(ECHO) "SDLLOCAL_INC           Base include directory of the 'local' SDL     $(SDLLOCAL_INC)"
+	@$(ECHO) "SDLLOCAL_LIB           Base library directory of the 'local' SDL     $(SDLLOCAL_LIB)"
+	@$(ECHO) "SED                    UNIX command sed                              $(SED)"
+	@$(ECHO) "SVNVERSION             UNIX command svnversion (optional)            $(SVNVERSION)"
+	@$(ECHO) "SYSCONFDIR             System configuration directory                $(SYSCONFDIR)"
+	@$(ECHO) "TAR                    UNIX command tar                              $(TAR)"
+	@$(ECHO) "TARGET                 Name of the QMC2 'target executable'          $(TARGET_NAME)"
+	@$(ECHO) "TR                     UNIX command tr                               $(TR)"
+	@$(ECHO) "TIME                   UNIX command time                             $(TIME)"
+	@$(ECHO) "VARIANT_LAUNCHER       Enable the QMC2 variant launcher (0, 1)       $(VARIANT_LAUNCHER)"
+	@$(ECHO) "WC_COMPRESSION         Compress MAWS web-cache data (0, 1)           $(WC_COMPRESSION)"
+	@$(ECHO) "WIP                    Enable unfinished code (0, 1)                 $(WIP)"
+	@$(ECHO) "XWININFO               X11 xwininfo command                          $(XWININFO)"
+	@$(ECHO) "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
-	@echo ""
+	@$(ECHO) ""
 ifneq '$(SVN_REV)' '0'
-	@echo "The SVN revision of your working copy is $(SVN_REV)."
+	@$(ECHO) "The SVN revision of your working copy is $(SVN_REV)."
 else
-	@echo "The SVN revision of your working copy could not be determined."
+	@$(ECHO) "The SVN revision of your working copy could not be determined."
 endif
 endif
 
@@ -1599,7 +1599,7 @@ man-clean:
 
 doc-install: man-install
 man-install:
-	@echo "Installing man-pages to $(MAN_DIR)/man6"
+	@$(ECHO) "Installing man-pages to $(MAN_DIR)/man6"
 	@$(MKDIR) $(MAN_DIR)/man6
 	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(MAN_DIR)/man6/
 endif
