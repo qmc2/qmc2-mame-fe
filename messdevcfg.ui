@@ -578,10 +578,10 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Remove current device configuration from list of available configurations</string>
+          <string>Remove current device configuration</string>
          </property>
          <property name="statusTip">
-          <string>Remove current device configuration from list of available configurations</string>
+          <string>Remove current device configuration</string>
          </property>
          <property name="text">
           <string/>
@@ -604,10 +604,10 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Save current device configuration to list of available configurations</string>
+          <string>Save current device configuration</string>
          </property>
          <property name="statusTip">
-          <string>Save current device configuration to list of available configurations</string>
+          <string>Save current device configuration</string>
          </property>
          <property name="text">
           <string/>
@@ -625,7 +625,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="labelAvailableDeviceConfigurations">
          <property name="text">
-          <string>Available device configurations</string>
+          <string>Stored device configurations</string>
          </property>
         </widget>
        </item>
@@ -661,10 +661,10 @@
           <enum>Qt::CustomContextMenu</enum>
          </property>
          <property name="toolTip">
-          <string>List of available device configurations</string>
+          <string>List of stored device configurations</string>
          </property>
          <property name="statusTip">
-          <string>List of available device configurations</string>
+          <string>List of stored device configurations</string>
          </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
