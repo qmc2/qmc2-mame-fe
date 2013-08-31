@@ -780,7 +780,7 @@ void SoftwareList::getXmlData()
 		toolBoxSoftwareList->setEnabled(true);
 
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
-		// load available device configurations, if any...
+		// load stored device configurations, if any...
 		qmc2Config->beginGroup(QString(QMC2_EMULATOR_PREFIX + "Configuration/Devices/%1").arg(systemName));
 		QStringList configurationList = qmc2Config->childGroups();
 		qmc2Config->endGroup();
