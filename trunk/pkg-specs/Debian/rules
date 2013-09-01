@@ -40,13 +40,18 @@ install: build
 qmc2-sdlume:
 	${MAKE} DISTCFG=1 EMULATOR=SDLUME PREFIX=/usr/
 	${MAKE} DISTCFG=1 EMULATOR=SDLUME PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-sdlume install
-	
+	${MAKE} DISTCFG=1 EMULATOR=SDLUME PREFIX=/usr/ man
+
 	# Remove shared resources and runonce application
 	rm -rf $(CURDIR)/debian/qmc2-sdlume/usr/bin/qmc2
 	rm -rf $(CURDIR)/debian/qmc2-sdlume/usr/bin/runonce
 	rm -rf $(CURDIR)/debian/qmc2-sdlume/usr/share/qmc2
 	rm -rf $(CURDIR)/debian/qmc2-sdlume/etc
 	rm -rf $(CURDIR)/debian/qmc2-sdlume/usr/bin/runonce
+
+	# install manpage
+	mkdir -p $(CURDIR)/debian/qmc2-sdlume/usr/share/man/man6
+	cp -d $(CURDIR)/data/doc/man/qmc2-sdlume.6.gz $(CURDIR)/debian/qmc2-sdlume/usr/share/man/man6/
 
 	dh_testdir
 	dh_testroot
@@ -67,8 +72,10 @@ qmc2-sdlume:
 
 qmc2-sdlmess:
 	$(MAKE) DISTCFG=1 clean
+	$(MAKE) DISTCFG=1 man-clean
 	$(MAKE) DISTCFG=1 EMULATOR=SDLMESS PREFIX=/usr/
 	$(MAKE) DISTCFG=1 EMULATOR=SDLMESS PREFIX=/usr/ DESTDIR=$(CURDIR)/debian/qmc2-sdlmess install
+	$(MAKE) DISTCFG=1 EMULATOR=SDLMESS PREFIX=/usr/ man
 
 	# Remove QMC2 link
 	rm -rf $(CURDIR)/debian/qmc2-sdlmess/usr/bin/qmc2
@@ -85,10 +92,13 @@ qmc2-sdlmess:
 	w3m -dump $(CURDIR)/debian/qmc2-data/usr/share/qmc2/doc/html/us/changes.html > $(CURDIR)/debian/qmc2-data/usr/share/doc/qmc2/changelog
 	gzip -9 $(CURDIR)/debian/qmc2-data/usr/share/doc/qmc2/changelog
 	
-
 	# Move runonce application to qmc2-runonce package
 	mkdir -p $(CURDIR)/debian/qmc2-runonce/usr/bin
 	mv $(CURDIR)/debian/qmc2-sdlmess/usr/bin/runonce $(CURDIR)/debian/qmc2-runonce/usr/bin/
+
+	# install manpage
+	mkdir -p $(CURDIR)/debian/qmc2-sdlmess/usr/share/man/man6
+	cp -d $(CURDIR)/data/doc/man/qmc2-sdlmess.6.gz $(CURDIR)/debian/qmc2-sdlmess/usr/share/man/man6/
 
 	dh_testdir
 	dh_testroot
@@ -109,8 +119,10 @@ qmc2-sdlmess:
 
 qmc2-sdlmame:
 	$(MAKE) DISTCFG=1 clean
+	$(MAKE) DISTCFG=1 man-clean
 	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/
 	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-sdlmame install
+	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/ man
 	
 	# Remove shared resources and runonce application
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/usr/bin/qmc2
@@ -118,6 +130,10 @@ qmc2-sdlmame:
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/usr/share/qmc2
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/etc
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/usr/bin/runonce
+
+	# install manpage
+	mkdir -p $(CURDIR)/debian/qmc2-sdlmame/usr/share/man/man6
+	cp -d $(CURDIR)/data/doc/man/qmc2-sdlmame.6.gz $(CURDIR)/debian/qmc2-sdlmame/usr/share/man/man6/
 
 	dh_testdir
 	dh_testroot
@@ -138,9 +154,11 @@ qmc2-sdlmame:
 
 qmc2-arcade:
 	$(MAKE) DISTCFG=1 clean
+	$(MAKE) DISTCFG=1 man-clean
 	${MAKE} DISTCFG=1 PREFIX=/usr/ arcade
 	mkdir -p ${CURDIR}/debian/qmc2-arcade/usr/bin
 	${MAKE} DISTCFG=1 PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-arcade arcade-install
+	$(MAKE) DISTCFG=1 PREFIX=/usr/ man
 
 	# Remove shared resources
 	rm -rf $(CURDIR)/debian/qmc2-arcade/usr/share/qmc2
@@ -164,9 +182,11 @@ qmc2-arcade:
 
 qchdman:
 	$(MAKE) DISTCFG=1 clean
+	${MAKE} DISTCFG=1 PREFIX=/usr/ man-clean
 	${MAKE} DISTCFG=1 PREFIX=/usr/ tools
 	mkdir -p ${CURDIR}/debian/qchdman/usr/bin
 	${MAKE} DISTCFG=1 PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qchdman tools-install
+	${MAKE} DISTCFG=1 PREFIX=/usr/ man
 
 	# Remove shared resources
 	rm -rf $(CURDIR)/debian/qchdman/usr/share/qmc2
