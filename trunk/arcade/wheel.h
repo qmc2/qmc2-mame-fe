@@ -3,7 +3,8 @@
 
 #include <Qt>
 
-#if QT_VERSION < 0x050000
+#if QT_VERSION < 0x050000 // we use the standard MouseArea's wheel events for Qt version >= 5.0.0
+
 #include <QDeclarativeItem>
 #include <QGraphicsSceneWheelEvent>
 
@@ -23,26 +24,7 @@ protected:
 signals:
     void wheel(int delta);
 };
-#else
-#include <QQuickItem>
-#include <QGraphicsSceneWheelEvent>
 
-class WheelArea : public QQuickItem
-{
-    Q_OBJECT
-
-public:
-    explicit WheelArea(QQuickItem *parent = 0) : QQuickItem(parent) {}
-
-protected:
-    void wheelEvent(QGraphicsSceneWheelEvent *event)
-    {
-        emit wheel(event->delta());
-    }
-
-signals:
-    void wheel(int delta);
-};
 #endif
 
 #endif
