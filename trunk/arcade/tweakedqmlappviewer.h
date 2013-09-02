@@ -18,9 +18,14 @@
 #include "infoprovider.h"
 
 #define QMC2_ARCADE_PARAM_THEME     0
+#if QT_VERSION < 0x050000
 #define QMC2_ARCADE_PARAM_GRASYS    1
 #define QMC2_ARCADE_PARAM_CONSOLE   2
 #define QMC2_ARCADE_PARAM_LANGUAGE  3
+#else
+#define QMC2_ARCADE_PARAM_CONSOLE   1
+#define QMC2_ARCADE_PARAM_LANGUAGE  2
+#endif
 
 #if QT_VERSION < 0x050000
 class TweakedQmlApplicationViewer : public QmlApplicationViewer
