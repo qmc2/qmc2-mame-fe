@@ -1,7 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.0;
 import "./components";
-import Wheel 1.0;
-import Pointer 1.0;
 import "darkone.js" as DarkoneJS
 
 Rectangle {
@@ -220,13 +218,10 @@ Rectangle {
             anchors.fill: parent
             onClicked: { debug && console.log("[overlay] clicked");
                          searchTextInput.focus = false; }
-        }
-        WheelArea {
-            anchors.fill: parent
             onWheel: {
-                       DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
+                       DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
                        debug && console.log("[overlay] wheel event: overlayScale: '" + overlayScale + "', " +
-                                                                   "zoom: '" + (1 + (0.1) * (delta / Math.abs(delta))) + "'");
+                                                                   "zoom: '" + (1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y))) + "'");
             }
         }
 
@@ -305,12 +300,9 @@ Rectangle {
                 color: "transparent"
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.CrossCursor
                     onDoubleClicked: { debug && console.log("[overlayDisplay] double-clicked");
                                        dataHidden = !dataHidden; }
-                }
-                CursorShapeArea {
-                    anchors.fill: darkone.focus ? parent : undefined
-                    cursorShape: Qt.CrossCursor
                 }
                 Behavior on anchors.topMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
                 Behavior on anchors.bottomMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
@@ -329,11 +321,8 @@ Rectangle {
                         anchors.fill: parent
                         onDoubleClicked: { debug && console.log("[overlayImage] double-clicked");
                                            dataHidden = !dataHidden; }
-                    }
-                    WheelArea {
-                        anchors.fill: parent
                         onWheel: {
-                            DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
+                            DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
                         }
                     }
                 }
@@ -364,11 +353,8 @@ Rectangle {
                             anchors.fill: parent
                             onDoubleClicked: { debug && console.log("[overlayTextFlick] double-clicked");
                                                dataHidden = !dataHidden; }
-                        }
-                        WheelArea {
-                            anchors.fill: parent
                             onWheel: {
-                                DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
+                                DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
                             }
                         }
                         Text {
@@ -411,8 +397,7 @@ Rectangle {
                 opacity: 1.0
                 state: "hidden"
                 color: "transparent"
-                CursorShapeArea {
-                    anchors.fill: darkone.focus ? parent : undefined
+                MouseArea {
                     cursorShape: Qt.CrossCursor
                 }
                 transitions: [
@@ -523,12 +508,9 @@ Rectangle {
                         opacity: 0.75
                         MouseArea {
                             anchors.fill: parent
+                            cursorShape: Qt.CrossCursor
                             onClicked: { darkone.dataTypePrimary = darkone.dataTypeCurrent;
                                          debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
-                        }
-                        CursorShapeArea {
-                            anchors.fill: darkone.focus ? parent : undefined
-                            cursorShape: Qt.CrossCursor
                         }
                         Text {
                             id: overlayDataTypeSetPrimaryText
@@ -557,12 +539,9 @@ Rectangle {
                         opacity: 0.75
                         MouseArea {
                             anchors.fill: parent
+                            cursorShape: Qt.CrossCursor
                             onClicked: { darkone.dataTypeSecondary = darkone.dataTypeCurrent;
                                          debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
-                        }
-                        CursorShapeArea {
-                            anchors.fill: darkone.focus ? parent : undefined
-                            cursorShape: Qt.CrossCursor
                         }
                         Text {
                             id: overlayDataTypeSetSecondaryText
@@ -698,6 +677,7 @@ Rectangle {
             Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
             MouseArea {
                 anchors.fill: parent
+                cursorShape: Qt.CrossCursor
                 hoverEnabled: true
                 onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0; }
                 onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5; }
@@ -705,10 +685,6 @@ Rectangle {
                                  gameListView.positionViewAtIndex(lastIndex, ListView.Center);
                                  DarkoneJS.launch(); }
                 }
-            }
-            CursorShapeArea {
-                anchors.fill: darkone.focus ? parent : undefined
-                cursorShape: Qt.CrossCursor
             }
         }
         Rectangle {
@@ -725,6 +701,7 @@ Rectangle {
             Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
             MouseArea {
                 anchors.fill: parent
+                cursorShape: Qt.CrossCursor
                 hoverEnabled: true
                 onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0; }
                 onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5; }
@@ -732,10 +709,6 @@ Rectangle {
                                  gameListView.positionViewAtIndex(lastIndex, ListView.Center);
                                  DarkoneJS.launch(); }
                 }
-            }
-            CursorShapeArea {
-                anchors.fill: darkone.focus ? parent : undefined
-                cursorShape: Qt.CrossCursor
             }
         }
     } // overlay
@@ -1871,6 +1844,7 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.CrossCursor
                     hoverEnabled: true
                     onEntered: { parent.opacity = 1.0
                                  parent.parent.opacity = 1.0
@@ -1884,10 +1858,6 @@ Rectangle {
                                      gameListView.positionViewAtIndex(lastIndex, ListView.Center);
                                      DarkoneJS.launch(); }
                     }
-                }
-                CursorShapeArea {
-                    anchors.fill: darkone.focus ? parent : undefined
-                    cursorShape: Qt.CrossCursor
                 }
             }
         }
