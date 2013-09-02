@@ -4,7 +4,6 @@ import "ToxicWaste.js" as ToxicWaste
 import "./animations"
 import "./components"
 import "./effects"
-import Wheel 1.0
 
 Rectangle {
     id: toxicWasteMain
@@ -144,7 +143,7 @@ Rectangle {
                         fillMode: Image.PreserveAspectFit
                     }
                 }
-                WheelArea {
+                MouseArea {
                     anchors.fill: overlayImage
                     onWheel: {
                         if ( !toxicWasteMain.autoPositionOverlay ) {
@@ -152,14 +151,14 @@ Rectangle {
                             var wheelEventHandled = false;
                             if ( frontItem.altPressed ) {
                                 wheelEventHandled = true;
-                                toxicWasteMain.overlayOffsetX += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
+                                toxicWasteMain.overlayOffsetX += (frontItem.shiftPressed ? 0.05 : 0.25) * wheel.angleDelta.y
                             }
                             if ( frontItem.ctrlPressed ) {
                                 wheelEventHandled = true;
-                                toxicWasteMain.overlayOffsetY += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
+                                toxicWasteMain.overlayOffsetY += (frontItem.shiftPressed ? 0.05 : 0.25) * wheel.angleDelta.y
                             }
                             if ( !wheelEventHandled ) {
-                                var newScale = toxicWasteMain.overlayScale * (1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta)));
+                                var newScale = toxicWasteMain.overlayScale * (1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
                                 if ( newScale > 10.0 )
                                     newScale = 10.0;
                                 else if ( newScale < 0.01 )

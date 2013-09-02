@@ -79,8 +79,10 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     cliParameterDescriptions["console"] = tr("Console mode");
     cliParameterDescriptions["language"] = tr("Language");
 
+#if QT_VERSION < 0x050000
     qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
     qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
+#endif
 
     processManager = new ProcessManager(this);
     processManager->createTemplateList();
