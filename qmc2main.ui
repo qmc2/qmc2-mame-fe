@@ -1790,6 +1790,11 @@
              </column>
              <column>
               <property name="text">
+               <string>LED2</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>PID</string>
               </property>
              </column>

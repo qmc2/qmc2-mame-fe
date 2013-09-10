@@ -829,6 +829,7 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
+    treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED2);
 #endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible").toBool() )
       on_actionCheckSamples_triggered();
@@ -8543,6 +8544,11 @@ void MainWindow::processFifoData()
                 il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
               else
                 il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
+            } else if ( msgWhat == "led2" ) {
+              if ( msgState == "1" )
+                il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
+              else
+                il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
             } else if ( msgWhat == "pause" ) {
 #if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
 	      Embedder *embedder = NULL;
