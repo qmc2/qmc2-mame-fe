@@ -382,6 +382,16 @@ bool Welcome::checkConfig()
 			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution");
 	  }
 #endif
+
+	  if ( oldMinor < 40 || (oldSvnRevision < 5171 && oldSvnRevision > 0) ) {
+		  // reset "Layout/MainWidget/EmulatorControlHeaderState"
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState") )
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/EmulatorControlHeaderState") )
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/EmulatorControlHeaderState");
+		  if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState") )
+			  startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState");
+	  }
   }
 
   configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
