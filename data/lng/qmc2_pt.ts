@@ -6552,18 +6552,18 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../messdevcfg.ui" line="581"/>
         <location filename="../../messdevcfg.ui" line="584"/>
         <source>Remove current device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover configuração de dispositivo ativa</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="607"/>
         <location filename="../../messdevcfg.ui" line="610"/>
         <source>Save current device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar configuração de dispositivo ativa</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="628"/>
         <source>Stored device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de dispositivo salvas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="641"/>
@@ -6695,7 +6695,7 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../messdevcfg.ui" line="664"/>
         <location filename="../../messdevcfg.ui" line="667"/>
         <source>List of stored device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista das configurações de dispositivos salvas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="317"/>
@@ -9562,7 +9562,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.ui" line="1793"/>
         <source>LED2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2146"/>
