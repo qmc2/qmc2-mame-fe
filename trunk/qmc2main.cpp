@@ -257,7 +257,6 @@ QStringList qmc2DeviceROMs;
 KeyPressFilter *qmc2KeyPressFilter = NULL;
 QMap<QString, QKeySequence> qmc2QtKeyMap;
 #if QMC2_JOYSTICK == 1
-Joystick *qmc2Joystick = NULL;
 QMap<QString, QString> qmc2JoystickFunctionMap;
 bool qmc2JoystickIsCalibrating = false;
 #endif
