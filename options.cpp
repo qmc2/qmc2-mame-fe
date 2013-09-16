@@ -134,7 +134,6 @@ extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
-extern QMap<QString, QString> qmc2JoystickFunctionMap;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern QMap<QString, QKeySequence> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
@@ -147,7 +146,7 @@ extern ToolBarCustomizer *qmc2ToolBarCustomizer;
 extern PaletteEditor *qmc2PaletteEditor;
 extern QWidget *qmc2DetailSetupParent;
 #if QMC2_JOYSTICK == 1
-extern Joystick *qmc2Joystick;
+extern QMap<QString, QString> qmc2JoystickFunctionMap;
 extern bool qmc2JoystickIsCalibrating;
 #endif
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
