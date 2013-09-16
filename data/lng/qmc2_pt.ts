@@ -6057,55 +6057,60 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../../joystick.cpp" line="25"/>
-        <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
-        <translation>ERRO: impossível inicializar suporte à joystick do SDL</translation>
+        <location filename="../../joystick.cpp" line="61"/>
+        <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../joystick.cpp" line="69"/>
+        <location filename="../../joystick.cpp" line="67"/>
         <source>ERROR: couldn&apos;t open SDL joystick #%1</source>
         <translation>ERRO: impossível abrir joystick #%1 do SDL</translation>
+    </message>
+    <message>
+        <location filename="../../joystick.cpp" line="82"/>
+        <source>SDL joystick #%1 closed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4724"/>
+        <location filename="../../options.cpp" line="4725"/>
         <source>Enable/disable axis %1</source>
         <translation>Habilitar/desabilitar eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4728"/>
+        <location filename="../../options.cpp" line="4729"/>
         <source>Axis %1:</source>
         <translation>Eixo %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4729"/>
+        <location filename="../../options.cpp" line="4730"/>
         <source>Reset calibration of axis %1</source>
         <translation>Reiniciar calibração do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4737"/>
+        <location filename="../../options.cpp" line="4738"/>
         <source>Current value of axis %1</source>
         <translation>Valor atual do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4741"/>
+        <location filename="../../options.cpp" line="4742"/>
         <source>DZ:</source>
         <translation>ZM:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4743"/>
+        <location filename="../../options.cpp" line="4744"/>
         <source>Deadzone of axis %1</source>
         <translation>Zona morta do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4749"/>
+        <location filename="../../options.cpp" line="4750"/>
         <source>S:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4751"/>
+        <location filename="../../options.cpp" line="4752"/>
         <source>Sensitivity of axis %1</source>
         <translation>Sensibilidade do eixo %1</translation>
     </message>
@@ -6149,67 +6154,67 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4972"/>
+        <location filename="../../options.cpp" line="4973"/>
         <source>A%1: %v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4973"/>
+        <location filename="../../options.cpp" line="4974"/>
         <source>Current value of axis %1</source>
         <translation>Valor atual do eixo %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4983"/>
+        <location filename="../../options.cpp" line="4984"/>
         <source>B%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4984"/>
+        <location filename="../../options.cpp" line="4985"/>
         <source>Current state of button %1</source>
         <translation>Estado atual do botão %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4994"/>
+        <location filename="../../options.cpp" line="4995"/>
         <source>H%1: 0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4995"/>
+        <location filename="../../options.cpp" line="4996"/>
         <source>Current value of hat %1</source>
         <translation>Valor atual do hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5005"/>
+        <location filename="../../options.cpp" line="5006"/>
         <source>T%1 DX: 0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5006"/>
+        <location filename="../../options.cpp" line="5007"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Diferença X atual do trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5016"/>
+        <location filename="../../options.cpp" line="5017"/>
         <source>T%1 DY: 0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5017"/>
+        <location filename="../../options.cpp" line="5018"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Diferença Y atual do trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5105"/>
+        <location filename="../../options.cpp" line="5106"/>
         <source>H%1: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5139"/>
+        <location filename="../../options.cpp" line="5140"/>
         <source>T%1 DX: %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5140"/>
+        <location filename="../../options.cpp" line="5141"/>
         <source>T%1 DY: %2</source>
         <translation></translation>
     </message>
@@ -11544,6 +11549,11 @@ Tentar novamente?</translation>
         <translation></translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="4359"/>
+        <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
+        <translation type="unfinished">ERRO: impossível inicializar suporte à joystick do SDL</translation>
+    </message>
+    <message>
         <location filename="../../options.cpp" line="490"/>
         <source>Enter key</source>
         <translation>Tecla Enter</translation>
@@ -12336,19 +12346,19 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3403"/>
         <location filename="../../options.cpp" line="4348"/>
-        <location filename="../../options.cpp" line="4373"/>
-        <location filename="../../options.cpp" line="4429"/>
-        <location filename="../../options.cpp" line="4518"/>
+        <location filename="../../options.cpp" line="4374"/>
+        <location filename="../../options.cpp" line="4430"/>
+        <location filename="../../options.cpp" line="4519"/>
         <source>No joysticks found</source>
         <translation>Nenhum joystick encontrado</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4689"/>
+        <location filename="../../options.cpp" line="4690"/>
         <source>joystick map is clean</source>
         <translation>mapa de joystick está limpo</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4691"/>
+        <location filename="../../options.cpp" line="4692"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation>AVISO: mapa de joystick contém itens duplicados</translation>
     </message>

@@ -47,6 +47,7 @@ bool Joystick::open(int stick)
         numButtons = SDL_JoystickNumButtons(joystick);
         numHats = SDL_JoystickNumHats(joystick);
         numTrackballs = SDL_JoystickNumBalls(joystick);
+        QMC2_ARCADE_LOG_STR(tr("SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6").arg(stick).arg(joystickNames[stick]).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
         joystickTimer.start(eventTimeout);
         jsIndex = stick;
         return true;
@@ -60,8 +61,10 @@ bool Joystick::open(int stick)
 void Joystick::close()
 {
     joystickTimer.stop();
-    if ( joystick )
+    if ( joystick ) {
         SDL_JoystickClose(joystick);
+        QMC2_ARCADE_LOG_STR(tr("SDL joystick #%1 closed").arg(jsIndex));
+    }
     joystick = NULL;
     jsIndex = -1;
     numAxes = numButtons = numHats = numTrackballs = 0;

@@ -21,8 +21,7 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 		for (int i = 0; i < SDL_NumJoysticks(); i++)
 			joystickNames.append(SDL_JoystickName(i));
 		connect(&joystickTimer, SIGNAL(timeout()), this, SLOT(processEvents()));
-	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: couldn't initialize SDL joystick support"));
+	}
 
 	joystick = NULL;
 	jsIndex = -1;
@@ -59,9 +58,8 @@ bool Joystick::open(int stick)
 		numButtons = SDL_JoystickNumButtons(joystick);
 		numHats = SDL_JoystickNumHats(joystick);
 		numTrackballs = SDL_JoystickNumBalls(joystick);
-#ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SDL joystick #%1 opened; axes = %2, buttons = %3, hats = %4, trackballs = %5").arg(stick).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
-#endif
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6")
+							  .arg(stick).arg(joystickNames[stick]).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
 		joystickTimer.start(eventTimeout);
 		jsIndex = stick;
 		return true;
@@ -79,8 +77,10 @@ void Joystick::close()
 #endif
 
 	joystickTimer.stop();
-	if ( joystick )
+	if ( joystick ) {
 		SDL_JoystickClose(joystick);
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 closed").arg(jsIndex));
+	}
 	joystick = NULL;
 	jsIndex = -1;
 	numAxes = numButtons = numHats = numTrackballs = 0;
