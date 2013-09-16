@@ -4338,28 +4338,29 @@ void Options::saveCustomPalette()
 void Options::on_pushButtonRescanJoysticks_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRescanJoysticks_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRescanJoysticks_clicked()");
 #endif
 
-  toolButtonMapJoystick->setChecked(true);
-  on_toolButtonMapJoystick_clicked();
+	toolButtonMapJoystick->setChecked(true);
+	on_toolButtonMapJoystick_clicked();
 
-  QStringList joystickNames;
-  joystickNames << tr("No joysticks found");
+	QStringList joystickNames;
+	joystickNames << tr("No joysticks found");
 
-  if ( joystick )
-    delete joystick;
-  joystick = new Joystick(0, 
-                          spinBoxJoystickEventTimeout->value(),
-                          checkBoxJoystickAutoRepeat->isChecked(),
-                          spinBoxJoystickAutoRepeatTimeout->value());
-  if ( joystick )
-    if ( joystick->joystickNames.count() > 0 )
-      joystickNames = joystick->joystickNames;
+	if ( joystick )
+		delete joystick;
 
-  comboBoxSelectJoysticks->clear();
-  comboBoxSelectJoysticks->insertItems(0, joystickNames);
-  comboBoxSelectJoysticks->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index", 0).toInt());
+	joystick = new Joystick(0, spinBoxJoystickEventTimeout->value(), checkBoxJoystickAutoRepeat->isChecked(), spinBoxJoystickAutoRepeatTimeout->value());
+
+	if ( joystick ) {
+		if ( joystick->joystickNames.count() > 0 )
+			joystickNames = joystick->joystickNames;
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: couldn't initialize SDL joystick support"));
+
+	comboBoxSelectJoysticks->clear();
+	comboBoxSelectJoysticks->insertItems(0, joystickNames);
+	comboBoxSelectJoysticks->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index", 0).toInt());
 }
 
 void Options::on_toolButtonCalibrateAxes_clicked()
