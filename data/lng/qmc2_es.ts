@@ -597,12 +597,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="331"/>
         <source>good + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + imperfecto</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="336"/>
         <source>good + imperfect + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + imperfecto + preliminar</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="578"/>
@@ -811,22 +811,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="771"/>
         <source>Use only sets included in the favorites list?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Usar sólo sets incluídos en la lista de favoritos?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="774"/>
         <source>Use only favorite sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar sólo sets favoritos</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="787"/>
         <source>Use only sets that are tagged?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Usar sólo sets que están etiquetados?</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="790"/>
         <source>Use only tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar sólo sets etiquetados</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="800"/>
@@ -910,7 +910,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="379"/>
         <source>imperfect</source>
-        <translation type="unfinished">imperfecto</translation>
+        <translation>imperfecto</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="414"/>
@@ -1485,22 +1485,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="127"/>
         <source>Use only sets included in the favorites list?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Usar sólo sets incluídos en la lista de favoritos?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="130"/>
         <source>Favorites</source>
-        <translation type="unfinished">Favoritos</translation>
+        <translation>Favoritos</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="214"/>
         <source>good + imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + imperfecto</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="219"/>
         <source>good + imperfect + preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>bueno + imperfecto + preliminar</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="268"/>
@@ -1587,7 +1587,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="394"/>
         <source>Use only sets that are tagged?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Usar sólo sets que están etiquetados?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="417"/>
@@ -1708,7 +1708,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="253"/>
         <source>imperfect</source>
-        <translation type="unfinished">imperfecto</translation>
+        <translation>imperfecto</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="286"/>
@@ -3555,7 +3555,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="2733"/>
         <source>done (loading XML data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando datos XML y (re)creando caché, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3195"/>
@@ -3888,29 +3888,29 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="828"/>
         <source>loading XML data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando datos XML desde caché</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="863"/>
         <source>done (loading XML data from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando datos XML desde caché, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="866"/>
         <location filename="../../gamelist.cpp" line="869"/>
         <location filename="../../gamelist.cpp" line="2747"/>
         <source>WARNING: XML data cache is incomplete, invalidating XML data cache</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: caché de datos XML incompleta, invalidando caché</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="932"/>
         <source>loading XML data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando datos XML y (re)creando caché</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="943"/>
         <source>WARNING: can&apos;t open XML data cache for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: no se puede abrir los datos XML para su escritura, por favor comprueba los permisos</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1043"/>
@@ -5681,136 +5681,136 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imageformatsetup.ui" line="14"/>
         <source>Active image formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatos de imagen activos</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Previews</source>
-        <translation type="unfinished">Previsualizaciones</translation>
+        <translation>Previsualizaciones</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Cabinets</source>
-        <translation type="unfinished">Cabinas</translation>
+        <translation>Cabinas</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Controllers</source>
-        <translation type="unfinished">Mandos</translation>
+        <translation>Mandos</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <source>Logos</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Software snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Captura de software</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Marquees</source>
-        <translation type="unfinished">Marquesinas</translation>
+        <translation>Marquesinas</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>Titles</source>
-        <translation type="unfinished">Títulos</translation>
+        <translation>Títulos</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="132"/>
         <location filename="../../imageformatsetup.cpp" line="165"/>
         <source>deactivated</source>
-        <translation type="unfinished"></translation>
+        <translation>desactivado</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="135"/>
         <location filename="../../imageformatsetup.cpp" line="164"/>
         <location filename="../../imageformatsetup.cpp" line="168"/>
         <source>activated</source>
-        <translation type="unfinished"></translation>
+        <translation>activado</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.cpp" line="34"/>
         <location filename="../../imageformatsetup.cpp" line="40"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="147"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="152"/>
         <source>Description</source>
-        <translation type="unfinished">Descripción</translation>
+        <translation>Descripción</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="157"/>
         <source>Extensions</source>
-        <translation type="unfinished">Extensiones</translation>
+        <translation>Extensiones</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="39"/>
         <source>Apply image format setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar la configuración de formato de imagen y cerrar la ventana</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="26"/>
         <source>Select artwork class to adjust</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar arte para ajustar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="42"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Aceptar</translation>
+        <translation>&amp;Aceptar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="62"/>
         <source>Cancel image format setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar configuración de formato de imagen</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="65"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="88"/>
         <source>Restore active image formats from currently stored setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar formatos de imagen activos de la configuración guardada</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="91"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurar</translation>
+        <translation>&amp;Restaurar</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="118"/>
         <source>Artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Arte</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="125"/>
         <source>Drag &amp; drop format entries to adjust priorities of activated formats for the current artwork class</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrastra y suelta para ajustar las prioridades de los formatos activos del arte seleccionado</translation>
     </message>
     <message>
         <location filename="../../imageformatsetup.ui" line="162"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Activación</translation>
     </message>
 </context>
 <context>
@@ -5818,62 +5818,62 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagewidget.cpp" line="58"/>
         <source>Portable Network Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="58"/>
         <source>Windows Bitmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="58"/>
         <source>Graphic Interchange Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="58"/>
         <source>Joint Photographic Experts Group</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="58"/>
         <source>Portable Bitmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>Portable Graymap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>Portable Pixmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>Tagged Image File Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>X11 Bitmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>X11 Pixmap</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>Scalable Vector Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="59"/>
         <source>Targa Image Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="61"/>
@@ -6060,7 +6060,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../joystick.cpp" line="61"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick SDL #%1 abierto: nombre = %2, ejes = %3, botones = %4, hats = %5, trackballs = %6</translation>
     </message>
     <message>
         <location filename="../../joystick.cpp" line="67"/>
@@ -6070,7 +6070,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../joystick.cpp" line="82"/>
         <source>SDL joystick #%1 closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick SDL #%1 cerrado</translation>
     </message>
 </context>
 <context>
@@ -6278,18 +6278,18 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../messdevcfg.ui" line="581"/>
         <location filename="../../messdevcfg.ui" line="584"/>
         <source>Remove current device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar la configuración de dispositivo actual</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="607"/>
         <location filename="../../messdevcfg.ui" line="610"/>
         <source>Save current device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar la configuración de dispositivo actual</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="628"/>
         <source>Stored device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuraciones de dispositivo almacenadas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="641"/>
@@ -6468,7 +6468,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../messdevcfg.ui" line="664"/>
         <location filename="../../messdevcfg.ui" line="667"/>
         <source>List of stored device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de configuraciones de dispositivo almacenadas</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="158"/>
@@ -7834,7 +7834,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1793"/>
         <source>LED2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2146"/>
@@ -12109,12 +12109,12 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.ui" line="2523"/>
         <source>Choose active image formats and their priorities (per artwork class)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escoge los formatos de imagen activos y sus prioridades (por arte)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2526"/>
         <source>Select image formats...</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar formatos de imagen...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2542"/>
@@ -12879,27 +12879,27 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.ui" line="4410"/>
         <source>XML data cache</source>
-        <translation type="unfinished"></translation>
+        <translation>caché de datos XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4423"/>
         <source>Cache file for the output from -listxml (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo caché para el resultado de -listxml (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4436"/>
         <source>Browse XML data cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo caché de datos XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4460"/>
         <source>Game list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de caché de lista de juegos (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4473"/>
         <source>Browse game list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo caché de lista de juegos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4206"/>
@@ -13854,7 +13854,7 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.cpp" line="3176"/>
         <source>Choose XML data cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar archivo caché de datos XML</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="490"/>
@@ -13864,12 +13864,12 @@ Por favor comprueba la opción &apos;rompath&apos; en la configuración global d
     <message>
         <location filename="../../options.cpp" line="352"/>
         <source>Machine list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo caché de lista de máquinas (escritura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="353"/>
         <source>Browse machine list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo caché de lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="468"/>
@@ -14543,7 +14543,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="4359"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
-        <translation type="unfinished">ERROR: no se pudo inicializar el soporte para joystick SDL</translation>
+        <translation>ERROR: no se pudo inicializar el soporte para joystick SDL</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4690"/>
@@ -16904,7 +16904,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1691"/>
         <source>searched path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ruta buscada: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1692"/>
@@ -16914,32 +16914,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1689"/>
         <source>searched paths: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>rutas buscadas: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="917"/>
         <source>SIZE</source>
-        <translation type="unfinished"></translation>
+        <translation>TAMAÑO</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="919"/>
         <source>size</source>
-        <translation type="unfinished"></translation>
+        <translation>tamaño</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="939"/>
         <source>crc</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="956"/>
         <source>sha1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="986"/>
         <source>md5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1723"/>
@@ -18692,7 +18692,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="650"/>
         <location filename="../../softwarelist.ui" line="653"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>L:Listado - C:Correcto - M:Mayormente correcto - I:Incorrecto - N:No encontrado - D:Desconocido</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="672"/>
@@ -19019,37 +19019,37 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="3355"/>
         <location filename="../../softwarelist.cpp" line="3364"/>
         <source>L:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3357"/>
         <location filename="../../softwarelist.cpp" line="3366"/>
         <source>C:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3358"/>
         <location filename="../../softwarelist.cpp" line="3367"/>
         <source>M:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3359"/>
         <location filename="../../softwarelist.cpp" line="3368"/>
         <source>I:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3360"/>
         <location filename="../../softwarelist.cpp" line="3369"/>
         <source>N:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3361"/>
         <location filename="../../softwarelist.cpp" line="3370"/>
         <source>U:</source>
-        <translation type="unfinished">D:</translation>
+        <translation>D:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1515"/>
