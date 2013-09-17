@@ -6059,7 +6059,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../joystick.cpp" line="61"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick SDL #%1 aberto: nome = %2, eixos = %3, botões = %4, hats = %5, trackballs = %6</translation>
     </message>
     <message>
         <location filename="../../joystick.cpp" line="67"/>
@@ -6069,7 +6069,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../joystick.cpp" line="82"/>
         <source>SDL joystick #%1 closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick SDL #%1 fechado</translation>
     </message>
 </context>
 <context>
@@ -11551,7 +11551,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="4359"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
-        <translation type="unfinished">ERRO: impossível inicializar suporte à joystick do SDL</translation>
+        <translation>ERRO: impossível inicializar suporte a joysticks do SDL</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="490"/>

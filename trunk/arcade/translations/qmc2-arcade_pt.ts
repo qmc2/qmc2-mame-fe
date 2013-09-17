@@ -34,7 +34,7 @@
     <message>
         <location filename="../joystick.cpp" line="50"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick SDL #%1 aberto: nome = %2, eixos = %3, botões = %4, hats = %5, trackballs = %6</translation>
     </message>
     <message>
         <location filename="../joystick.cpp" line="55"/>
@@ -44,7 +44,7 @@
     <message>
         <location filename="../joystick.cpp" line="66"/>
         <source>SDL joystick #%1 closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Joystick SDL #%1 fechado</translation>
     </message>
 </context>
 <context>
