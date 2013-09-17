@@ -1533,13 +1533,12 @@ void Options::on_pushButtonApply_clicked()
   if ( joystick ) {
     if ( joystick->isOpen() )
       joystick->close();
-    // reconnect joystick callbacks to main widget if applicable
+    // (re)connect joystick callbacks to main widget
     joystick->disconnect(qmc2MainWindow);
     if ( config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl").toBool() ) {
       if ( !joystick->open(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index").toInt()) ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't initialize joystick"));
       } else {
-        // (re)connect joystick callbacks to main widget
         connect(joystick, SIGNAL(axisValueChanged(int, int)), qmc2MainWindow, SLOT(joystickAxisValueChanged(int, int)));
         connect(joystick, SIGNAL(buttonValueChanged(int, bool)), qmc2MainWindow, SLOT(joystickButtonValueChanged(int, bool)));
         connect(joystick, SIGNAL(hatValueChanged(int, int)), qmc2MainWindow, SLOT(joystickHatValueChanged(int, int)));
@@ -2182,7 +2181,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
 
   treeWidgetShortcuts->clear();
-  treeWidgetJoystickMappings->clear();
 
   if ( useDefaultSettings ) {
     QString fn = config->fileName();
@@ -2580,7 +2578,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   spinBoxJoystickEventTimeout->setValue(config->value(QMC2_FRONTEND_PREFIX + "Joystick/EventTimeout", 25).toInt());
   on_pushButtonRescanJoysticks_clicked();
 
-  // Joystick function map
+  // Recreate joystick function map
+  treeWidgetJoystickMappings->clear();
   it.toFront();
   while ( it.hasNext() ) {
     it.next();
@@ -4336,6 +4335,8 @@ void Options::saveCustomPalette()
 #if QMC2_JOYSTICK == 1
 void Options::on_pushButtonRescanJoysticks_clicked()
 {
+	QWidget *sendingWidget = (QWidget *)sender();
+
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRescanJoysticks_clicked()");
 #endif
@@ -4512,25 +4513,32 @@ void Options::on_toolButtonMapJoystick_clicked()
 void Options::on_comboBoxSelectJoysticks_currentIndexChanged(int index)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_comboBoxSelectJoysticks_currentIndexChanged(int index = %1)").arg(index));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_comboBoxSelectJoysticks_currentIndexChanged(int index = %1)").arg(index));
 #endif
 
-  if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || index < 0 ) {
-    labelJoystickAxesNum->setText("0");
-    labelJoystickButtonsNum->setText("0");
-    labelJoystickHatsNum->setText("0");
-    labelJoystickTrackballsNum->setText("0");
-    return;
-  }
+	if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || index < 0 ) {
+		labelJoystickAxesNum->setText("0");
+		labelJoystickButtonsNum->setText("0");
+		labelJoystickHatsNum->setText("0");
+		labelJoystickTrackballsNum->setText("0");
+		return;
+	}
 
-  if ( joystick )
-    if ( joystick->open(index) ) {
-      labelJoystickAxesNum->setText(QString::number(joystick->numAxes));
-      labelJoystickButtonsNum->setText(QString::number(joystick->numButtons));
-      labelJoystickHatsNum->setText(QString::number(joystick->numHats));
-      labelJoystickTrackballsNum->setText(QString::number(joystick->numTrackballs));
-      joystick->close();
-    }
+	if ( joystick )
+		if ( joystick->open(index) ) {
+			labelJoystickAxesNum->setText(QString::number(joystick->numAxes));
+			labelJoystickButtonsNum->setText(QString::number(joystick->numButtons));
+			labelJoystickHatsNum->setText(QString::number(joystick->numHats));
+			labelJoystickTrackballsNum->setText(QString::number(joystick->numTrackballs));
+			if ( qmc2MainWindow ) {
+				// (re)connect joystick callbacks to main widget
+				joystick->disconnect(qmc2MainWindow);
+				connect(joystick, SIGNAL(axisValueChanged(int, int)), qmc2MainWindow, SLOT(joystickAxisValueChanged(int, int)));
+				connect(joystick, SIGNAL(buttonValueChanged(int, bool)), qmc2MainWindow, SLOT(joystickButtonValueChanged(int, bool)));
+				connect(joystick, SIGNAL(hatValueChanged(int, int)), qmc2MainWindow, SLOT(joystickHatValueChanged(int, int)));
+				connect(joystick, SIGNAL(trackballValueChanged(int, int, int)), qmc2MainWindow, SLOT(joystickTrackballValueChanged(int, int, int)));
+			}
+		}
 }
 
 void Options::on_checkBoxEnableJoystickControl_toggled(bool enable)
