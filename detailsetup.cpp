@@ -497,6 +497,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 					QString currentUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_DEFAULT_URL).toString();
 					suggestedUrls << QMC2_MAWS_DEFAULT_URL
 						<< "http://www.arcadehits.net/index.php?p=roms&jeu=%1"
+						<< "http://www.mamedb.com/game/%1"
 						<< QMC2_MAWS_BASE_URL
 						<< "http://maws.mameworld.info/minimaws/romset/%1";
 					if ( !suggestedUrls.contains(currentUrl) ) suggestedUrls << currentUrl;
