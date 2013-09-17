@@ -452,7 +452,7 @@
 #define QMC2_MAWS_BASE_URL			"http://maws.mameworld.info/maws/romset/%1"
 
 // MAWS default URL
-#define QMC2_MAWS_DEFAULT_URL			"http://www.mamedb.com/game/%1"
+#define QMC2_MAWS_DEFAULT_URL			"http://www.progettoemma.net/gioco.php?game=%1&lang=en"
 
 // ProjectMESS driver look-up URL
 #define QMC2_PROJECTMESS_PATTERN_URL		"http://www.progettoemma.net/mess/system.php?machine=%1"
