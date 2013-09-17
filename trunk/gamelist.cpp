@@ -1503,6 +1503,7 @@ void Gamelist::parse()
   gamelistCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile").toString());
   gamelistCache.open(QIODevice::ReadOnly | QIODevice::Text);
   bool reparseGamelist = true;
+  bool romStateCacheUpdate = false;
 
   if ( gamelistCache.isOpen() ) {
     QString line;
@@ -1522,7 +1523,7 @@ void Gamelist::parse()
 #elif defined(QMC2_EMUTYPE_UME)
         if ( words[0] == "UME_VERSION" ) {
 #endif
-          reparseGamelist = (words[1] != emulatorVersion);
+	  romStateCacheUpdate = reparseGamelist = (words[1] != emulatorVersion);
         }
       } else {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -2420,7 +2421,7 @@ void Gamelist::parse()
 	  if ( loadProc )
 		  loadProc->kill();
   } else {
-	  if ( cachedGamesCounter - numDevices != numTotalGames ) {
+	  if ( romStateCacheUpdate || cachedGamesCounter - numDevices != numTotalGames ) {
 		  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
 			  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check"));
 			  autoRomCheck = true;
