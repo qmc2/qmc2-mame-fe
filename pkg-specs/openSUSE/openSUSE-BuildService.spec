@@ -1,6 +1,6 @@
 Name:           qmc2
-Version:        0.40
-Release:        2
+Version:        0.41
+Release:        1
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
@@ -180,6 +180,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/runonce.6.gz
 
 %changelog
+* Wed Sep 18 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.41-1
+- updated spec to QMC2 0.41
+
 * Wed Aug 21 2013 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.40-2
 - added man-page build rules
 
