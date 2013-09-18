@@ -47,7 +47,7 @@
       <description lang="fr" text="Répertoire des paramètres des controleurs"/>
       <description lang="pt" text="Caminho para as definições de controles"/>
     </option>
-    <option default="~/.mess;.;ini" default.Darwin=".;ini" name="inipath" type="directory">
+    <option default="~/.mess;.;ini" default.Darwin="~/Library/Application Support/mess;~/.mess;.;ini" name="inipath" type="directory">
       <description lang="es" text="Ruta a archivos ini"/>
       <description lang="us" text="Path to ini files"/>
       <description lang="de" text="Suchpfad für INI-Dateien"/>
@@ -924,7 +924,7 @@
     <description lang="pl" text="Obraz"/>
     <description lang="fr" text="Vidéo"/>
     <description lang="pt" text="Vídeo"/>
-    <option default="soft" name="video" type="combo">
+    <option default="soft" default.Darwin="opengl" name="video" type="combo">
       <description lang="es" text="Método de salida de vídeo: ninguno, gdi, ddraw o d3d"/>
       <description lang="us" text="Video output method: none, soft or opengl"/>
       <description lang="de" text="Methode zur Video-Ausgabe: none, soft oder opengl"/>
@@ -1637,7 +1637,7 @@
       <description lang="fr" text="Fichier pour le mapping de clavier"/>
       <description lang="pt" text="Arquivo de mapeamento de teclado"/>
     </option>
-    <option default="SCRLOCK" default.Darwin="DELETE" name="uimodekey" type="string">
+    <option default="SCRLOCK" default.Darwin="DEL" name="uimodekey" type="string">
       <description lang="es" text="Especifica la tecla usada para cambiar entre UI completa y parcial"/>
       <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
       <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
