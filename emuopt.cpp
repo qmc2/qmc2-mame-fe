@@ -1387,7 +1387,7 @@ void EmulatorOptions::checkTemplateMap()
             if ( option.dvalue.toInt() != emuOptions[option.name].toInt() ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
-                                                     .arg(option.name).arg(option.dvalue.toInt()).arg(emuOptions[option.name].toInt()).arg(assumedType));
+                                                     .arg(option.name).arg(emuOptions[option.name].toInt()).arg(option.dvalue.toInt()).arg(assumedType));
             }
             break;
 
@@ -1396,7 +1396,7 @@ void EmulatorOptions::checkTemplateMap()
             if ( option.dvalue.toDouble() != emuOptions[option.name].toDouble() ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
-                                                     .arg(option.name).arg(option.dvalue.toDouble()).arg(emuOptions[option.name].toDouble()).arg(assumedType));
+                                                     .arg(option.name).arg(emuOptions[option.name].toDouble()).arg(option.dvalue.toDouble()).arg(assumedType));
             }
             break;
 
@@ -1411,7 +1411,7 @@ void EmulatorOptions::checkTemplateMap()
             if ( isDifferent ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
-                                                     .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(assumedType));
+                                                     .arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
             }
             break;
 
@@ -1426,7 +1426,7 @@ void EmulatorOptions::checkTemplateMap()
             if ( isDifferent ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
-                                                     .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(assumedType));
+                                                     .arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
             }
             break;
 
@@ -1438,7 +1438,7 @@ void EmulatorOptions::checkTemplateMap()
             if ( option.dvalue != emuOpt ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
-                                                     .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(assumedType));
+                                                     .arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
             }
             break;
           }
@@ -1455,7 +1455,7 @@ void EmulatorOptions::checkTemplateMap()
             if ( option.dvalue.replace("$HOME", "~") != emuOptions[option.name].replace("$HOME", "~") ) {
               diffCount++;
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
-                                                     .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(assumedType));
+                                                     .arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
             }
             break;
         }
