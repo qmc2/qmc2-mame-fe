@@ -125,12 +125,12 @@ Rectangle {
                 }
                 Rectangle {
                     id: previewRect
-                    width: 230
-                    height: 170
+                    width: 239
+                    height: 165
                     opacity: toxicWasteMain.overlayOpacity
                     anchors.centerIn: overlayImage
-                    anchors.verticalCenterOffset: -157 * ToxicWaste.scaleFactorX()
-                    scale: ToxicWaste.scaleFactorX()
+                    anchors.verticalCenterOffset: -124 * ToxicWaste.scaleFactorX()
+                    scale: overlayImage.scale
                     color: "#202020"
                     smooth: true
                     z: -1
@@ -140,6 +140,7 @@ Rectangle {
                         smooth: true
                         anchors.fill: parent
                         anchors.centerIn: parent
+                        anchors.margins: 1
                         fillMode: Image.PreserveAspectFit
                     }
                 }
