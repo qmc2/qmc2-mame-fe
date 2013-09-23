@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < argc; i++)
         argumentList << argv[i];
 
-#if QT_VERSION < 0x050000
+#if QT_VERSION < 0x050000 && !defined(QMC2_ARCADE_OS_MAC)
     // work-around for a weird style-related issue with GTK (we actually don't need to set a GUI style, but
     // somehow Qt and/or GTK do this implicitly, which may cause crashes when the automatically chosen style
     // isn't bug-free, so we try to fall back to a safe built-in style to avoid this)
@@ -208,7 +208,10 @@ int main(int argc, char *argv[])
 
     delete globalConfig;
     globalConfig = NULL;
+
+#if !defined(QMC2_ARCADE_OS_MAC)
     delete tempApp;
+#endif
 
     if ( !graphicsSystems.contains(gSys) ) {
         QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid graphics-system - available graphics-systems: %2").arg(gSys).arg(graphicsSystems.join(", ")));
