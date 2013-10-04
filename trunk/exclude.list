@@ -245,6 +245,10 @@ qmc2/arcade/.svn/text-base/infoprovider.cpp.svn-base
 qmc2/arcade/.svn/text-base/infoprovider.h.svn-base
 qmc2/arcade/.svn/text-base/joystick.cpp.svn-base
 qmc2/arcade/.svn/text-base/joystick.h.svn-base
+qmc2/arcade/.svn/text-base/keyeventfilter.cpp.svn-base
+qmc2/arcade/.svn/text-base/keyeventfilter.h.svn-base
+qmc2/arcade/.svn/text-base/keymap.cpp.svn-base
+qmc2/arcade/.svn/text-base/keymap.h.svn-base
 qmc2/arcade/.svn/text-base/macros.h.svn-base
 qmc2/arcade/.svn/text-base/main.cpp.svn-base
 qmc2/arcade/.svn/text-base/pointer.cpp.svn-base
@@ -3845,8 +3849,12 @@ qmc2/pkg-specs/Debian/.svn/text-base/control.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/copyright.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/docs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qchdman.dirs.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/qchdman.manpages.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-arcade.dirs.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/qmc2-arcade.manpages.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-data.dirs.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/qmc2-data.manpages.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/qmc2-runonce.manpages.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmame.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlmess.dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2-sdlume.dirs.svn-base
