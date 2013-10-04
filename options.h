@@ -79,6 +79,7 @@ class Options : public QDialog, public Ui::Options
   public:
     QSettings *config;
     bool applied;
+    bool cancelClicked;
 #if QMC2_JOYSTICK == 1
     Joystick *joystick;
     JoystickCalibrationWidget *joystickCalibrationWidget;
