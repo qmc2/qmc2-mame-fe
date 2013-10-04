@@ -12,6 +12,7 @@
 #include "consolewindow.h"
 #include "macros.h"
 #include "joystick.h"
+#include "keyeventfilter.h"
 
 ArcadeSettings *globalConfig = NULL;
 ConsoleWindow *consoleWindow = NULL;
@@ -226,6 +227,9 @@ int main(int argc, char *argv[])
     // create the actual application instance
     QGuiApplication *app = new QGuiApplication(argc, argv);
 #endif
+
+    KeyEventFilter keyEventFilter;
+    app->installEventFilter(&keyEventFilter);
 
     if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
         emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
