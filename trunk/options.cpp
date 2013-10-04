@@ -219,6 +219,8 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
+  cancelClicked = false;
+
 #if !defined(QMC2_WIP_ENABLED)
   // FIXME: remove WIP clause when "additional artwork support" is functional
   pushButtonAdditionalArtworkSetup->setVisible(false);
@@ -892,6 +894,7 @@ void Options::on_pushButtonCancel_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonCancel_clicked()");
 #endif
 
+  cancelClicked = true;
   restoreCurrentConfig();
 }
 
@@ -4344,23 +4347,25 @@ void Options::on_pushButtonRescanJoysticks_clicked()
 	toolButtonMapJoystick->setChecked(true);
 	on_toolButtonMapJoystick_clicked();
 
-	QStringList joystickNames;
-	joystickNames << tr("No joysticks found");
+	if ( !cancelClicked ) {
+		QStringList joystickNames;
+		joystickNames << tr("No joysticks found");
 
-	if ( joystick )
-		delete joystick;
+		if ( joystick )
+			delete joystick;
 
-	joystick = new Joystick(0, spinBoxJoystickEventTimeout->value(), checkBoxJoystickAutoRepeat->isChecked(), spinBoxJoystickAutoRepeatTimeout->value());
+		joystick = new Joystick(0, spinBoxJoystickEventTimeout->value(), checkBoxJoystickAutoRepeat->isChecked(), spinBoxJoystickAutoRepeatTimeout->value());
 
-	if ( joystick ) {
-		if ( joystick->joystickNames.count() > 0 )
-			joystickNames = joystick->joystickNames;
-	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: couldn't initialize SDL joystick support"));
+		if ( joystick ) {
+			if ( joystick->joystickNames.count() > 0 )
+				joystickNames = joystick->joystickNames;
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: couldn't initialize SDL joystick support"));
 
-	comboBoxSelectJoysticks->clear();
-	comboBoxSelectJoysticks->insertItems(0, joystickNames);
-	comboBoxSelectJoysticks->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index", 0).toInt());
+		comboBoxSelectJoysticks->clear();
+		comboBoxSelectJoysticks->insertItems(0, joystickNames);
+		comboBoxSelectJoysticks->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index", 0).toInt());
+	}
 }
 
 void Options::on_toolButtonCalibrateAxes_clicked()

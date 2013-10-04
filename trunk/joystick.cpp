@@ -49,6 +49,10 @@ bool Joystick::open(int stick)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Joystick::open(int stick = %1)").arg(stick));
 #endif
 
+	static bool firstOpenCall = true;
+	bool doLog = !firstOpenCall;
+	firstOpenCall = false;
+
 	if ( isOpen() )
 		close();
 
@@ -58,8 +62,9 @@ bool Joystick::open(int stick)
 		numButtons = SDL_JoystickNumButtons(joystick);
 		numHats = SDL_JoystickNumHats(joystick);
 		numTrackballs = SDL_JoystickNumBalls(joystick);
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6")
-							  .arg(stick).arg(joystickNames[stick]).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
+		if ( doLog )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6")
+								  .arg(stick).arg(joystickNames[stick]).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
 		joystickTimer.start(eventTimeout);
 		jsIndex = stick;
 		return true;
@@ -76,10 +81,15 @@ void Joystick::close()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Joystick::close()");
 #endif
 
+	static bool firstCloseCall = true;
+	bool doLog = !firstCloseCall;
+	firstCloseCall = false;
+
 	joystickTimer.stop();
 	if ( joystick ) {
 		SDL_JoystickClose(joystick);
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 closed").arg(jsIndex));
+		if ( doLog )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 closed").arg(jsIndex));
 	}
 	joystick = NULL;
 	jsIndex = -1;
