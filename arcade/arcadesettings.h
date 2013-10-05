@@ -16,7 +16,7 @@ public:
     QString emulatorPrefix;
     QMap<QString, QLocale::Language> languageMap;
 
-    explicit ArcadeSettings(QString);
+    explicit ArcadeSettings(QString theme = QString());
     virtual ~ArcadeSettings();
     
     QString languageToString(QLocale::Language);
