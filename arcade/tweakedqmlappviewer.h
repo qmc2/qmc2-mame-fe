@@ -16,6 +16,7 @@
 #include "processmanager.h"
 #include "imageprovider.h"
 #include "infoprovider.h"
+#include "keysequencemap.h"
 
 #define QMC2_ARCADE_PARAM_THEME     0
 #if QT_VERSION < 0x050000
@@ -49,6 +50,7 @@ public:
     QMap<QString, QString> cliParameterDescriptions;
     QStringList cliParams;
     QStringList infoClasses;
+    KeySequenceMap *keyMap;
 
 #if QT_VERSION < 0x050000
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);

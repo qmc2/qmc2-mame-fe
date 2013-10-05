@@ -28,7 +28,6 @@ SOURCES += main.cpp \
     consolewindow.cpp \
     processmanager.cpp \
     joystick.cpp \
-    keymap.cpp \
     pointer.cpp \
     ../zlib/zutil.c \
     ../zlib/uncompr.c \
@@ -48,7 +47,8 @@ SOURCES += main.cpp \
     ../minizip/zip.c \
     ../minizip/unzip.c \
     ../minizip/ioapi.c \
-    keyeventfilter.cpp
+    keyeventfilter.cpp \
+    keysequencemap.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -78,7 +78,6 @@ HEADERS += \
     processmanager.h \
     emulatoroption.h \
     joystick.h \
-    keymap.h \
     wheel.h \
     pointer.h \
     ../zlib/zutil.h \
@@ -96,7 +95,9 @@ HEADERS += \
     ../minizip/unzip.h \
     ../minizip/ioapi.h \
     ../minizip/crypt.h \
-    keyeventfilter.h
+    keyeventfilter.h \
+    keysequences.h \
+    keysequencemap.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 

@@ -228,9 +228,6 @@ int main(int argc, char *argv[])
     QGuiApplication *app = new QGuiApplication(argc, argv);
 #endif
 
-    KeyEventFilter keyEventFilter;
-    app->installEventFilter(&keyEventFilter);
-
     if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
         emulatorMode = QMC2_ARCADE_CLI_EMU_MAME ? QMC2_ARCADE_EMUMODE_MAME : QMC2_ARCADE_CLI_EMU_MESS ? QMC2_ARCADE_EMUMODE_MESS : QMC2_ARCADE_CLI_EMU_UME ? QMC2_ARCADE_EMUMODE_UME : QMC2_ARCADE_EMUMODE_UNK;
         if ( emulatorMode == QMC2_ARCADE_EMUMODE_UNK ) {
@@ -367,6 +364,9 @@ int main(int argc, char *argv[])
 
         // set up the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
+        KeyEventFilter keyEventFilter(viewer->keyMap);
+        app->installEventFilter(&keyEventFilter);
+
 #if QT_VERSION < 0x050000
         viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);

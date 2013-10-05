@@ -1557,8 +1557,6 @@ Rectangle {
             }
             event.accepted = true;
             break;
-        case Qt.Key_F1:
-            break;
         case Qt.Key_F11:
             fullScreen = !fullScreen;
             event.accepted = true;

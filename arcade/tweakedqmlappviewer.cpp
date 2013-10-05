@@ -22,6 +22,7 @@
 #include "macros.h"
 #include "wheel.h"
 #include "pointer.h"
+#include "keysequences.h"
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
@@ -48,6 +49,18 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     initialised = false;
     numFrames = 0;
     windowModeSwitching = false;
+
+    QStringList keySequences;
+    QMC2_ARCADE_ADD_COMMON_KEYSEQS(keySequences);
+    switch ( themeIndex() ) {
+    case QMC2_ARCADE_THEME_TOXICWASTE:
+        QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQS(keySequences);
+        break;
+    case QMC2_ARCADE_THEME_DARKONE:
+        QMC2_ARCADE_ADD_DARKONE_KEYSEQS(keySequences);
+        break;
+    }
+    keyMap = new KeySequenceMap(keySequences);
 
     infoClasses << "gameinfo" << "emuinfo";
 
@@ -101,7 +114,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     infoProvider = new InfoProvider();
 
     engine()->addImportPath(QDir::fromNativeSeparators(XSTR(QMC2_ARCADE_QML_IMPORT_PATH)));
-    rootContext()->setContextProperty("viewer", this);
+    rootContext()->setContextProperty("viewer", this);  
 
     // theme-specific initialisation
     if ( globalConfig->arcadeTheme == "ToxicWaste" ) {
@@ -125,6 +138,7 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
     if (initialised)
         saveSettings();
+    delete keyMap;
 }
 
 int TweakedQmlApplicationViewer::themeIndex()
