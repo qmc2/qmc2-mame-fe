@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_DYN_DOT_PATH);
 
 #if QT_VERSION < 0x050000
-    globalConfig = new ArcadeSettings("");
+    globalConfig = new ArcadeSettings;
 
     QString gSys = globalConfig->defaultGraphicsSystem();
     if ( QMC2_ARCADE_CLI_GSYS_VAL )
@@ -239,7 +239,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    globalConfig = new ArcadeSettings("");
+    globalConfig = new ArcadeSettings;
 
     QString console = globalConfig->defaultConsoleType();
     if ( QMC2_ARCADE_CLI_CONS_VAL )
