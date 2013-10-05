@@ -13,6 +13,7 @@ public:
     explicit KeySequenceMap(QStringList keySequences, QObject *parent = 0);
 
 public slots:
+    void setKeySequences(QStringList keySequences);
     void loadKeySequenceMap();
     QString mapKeySequence(QString nativeKeySeq);
 
