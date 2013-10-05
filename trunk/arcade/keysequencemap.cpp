@@ -9,12 +9,18 @@ extern ConsoleWindow *consoleWindow;
 KeySequenceMap::KeySequenceMap(QStringList keySequences, QObject *parent) :
     QObject(parent)
 {
-    mNativeKeySequences = keySequences;
+    setKeySequences(keySequences);
     loadKeySequenceMap();
+}
+
+void KeySequenceMap::setKeySequences(QStringList keySequences)
+{
+    mNativeKeySequences = keySequences;
 }
 
 void KeySequenceMap::loadKeySequenceMap()
 {
+    mKeySequenceMap.clear();
     globalConfig->beginGroup(globalConfig->keySequenceMapBaseKey());
     foreach (QString key, globalConfig->childKeys()) {
         if ( mNativeKeySequences.contains(key) )
