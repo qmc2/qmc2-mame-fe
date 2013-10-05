@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QKeySequence>
 #include <QKeyEvent>
 
@@ -9,10 +10,10 @@
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
 
-KeyEventFilter::KeyEventFilter(KeySequenceMap *keyMap, QObject *parent) :
+KeyEventFilter::KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent) :
     QObject(parent)
 {
-    mKeyMap = keyMap;
+    mKeySequenceMap = keySequenceMap;
 }
 
 bool KeyEventFilter::eventFilter(QObject *, QEvent *event)

@@ -364,7 +364,9 @@ int main(int argc, char *argv[])
 
         // set up the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
-        KeyEventFilter keyEventFilter(viewer->keyMap);
+
+        // install our key-event filter to remap key-sequences, if applicable
+        KeyEventFilter keyEventFilter(viewer->keySequenceMap);
         app->installEventFilter(&keyEventFilter);
 
 #if QT_VERSION < 0x050000
@@ -392,6 +394,9 @@ int main(int argc, char *argv[])
         // ... and run the application
         returnCode = app->exec();
 
+        // remove the key-event filter before destroying the viewer, otherwise there's a small possibility
+        // for an exit-crash as the event-filter uses the key-sequence-map object from the viewer
+        app->removeEventFilter(&keyEventFilter);
         delete viewer;
     } else {
         if ( consoleWindow ) {
