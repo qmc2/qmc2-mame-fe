@@ -21,6 +21,7 @@ public:
     
     QString languageToString(QLocale::Language);
     QLocale::Language languageFromString(QString);
+    QString keySequenceMapBaseKey();
 
 signals:
     
