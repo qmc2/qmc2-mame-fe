@@ -67,6 +67,11 @@ QLocale::Language ArcadeSettings::languageFromString(QString lang)
         return QLocale::English;
 }
 
+QString ArcadeSettings::keySequenceMapBaseKey()
+{
+    return QString("Arcade/%1/keySequenceMap").arg(arcadeTheme);
+}
+
 void ArcadeSettings::setApplicationVersion(QString version)
 {
     setValue("Arcade/Version", version);

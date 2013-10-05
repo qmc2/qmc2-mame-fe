@@ -1,6 +1,10 @@
-#include <QStringList>
-
 #include "keysequencemap.h"
+#include "arcadesettings.h"
+#include "consolewindow.h"
+#include "macros.h"
+
+extern ArcadeSettings *globalConfig;
+extern ConsoleWindow *consoleWindow;
 
 KeySequenceMap::KeySequenceMap(QStringList keySequences, QObject *parent) :
     QObject(parent)
@@ -11,7 +15,14 @@ KeySequenceMap::KeySequenceMap(QStringList keySequences, QObject *parent) :
 
 void KeySequenceMap::loadKeySequenceMap()
 {
-    // FIXME
+    globalConfig->beginGroup(globalConfig->keySequenceMapBaseKey());
+    foreach (QString key, globalConfig->childKeys()) {
+        if ( mNativeKeySequences.contains(key) )
+            mKeySequenceMap[globalConfig->value(key, key).toString()] = key;
+        else
+            globalConfig->remove(key);
+    }
+    globalConfig->endGroup();
 }
 
 QString KeySequenceMap::mapKeySequence(QString nativeKeySeq)

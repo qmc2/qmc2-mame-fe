@@ -51,13 +51,13 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     windowModeSwitching = false;
 
     QStringList keySequences;
-    QMC2_ARCADE_ADD_COMMON_KEYSEQS(keySequences);
+    QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
     switch ( themeIndex() ) {
     case QMC2_ARCADE_THEME_TOXICWASTE:
-        QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQS(keySequences);
+        QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(keySequences);
         break;
     case QMC2_ARCADE_THEME_DARKONE:
-        QMC2_ARCADE_ADD_DARKONE_KEYSEQS(keySequences);
+        QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(keySequences);
         break;
     }
     keySequenceMap = new KeySequenceMap(keySequences);
