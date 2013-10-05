@@ -247,8 +247,9 @@ qmc2/arcade/.svn/text-base/joystick.cpp.svn-base
 qmc2/arcade/.svn/text-base/joystick.h.svn-base
 qmc2/arcade/.svn/text-base/keyeventfilter.cpp.svn-base
 qmc2/arcade/.svn/text-base/keyeventfilter.h.svn-base
-qmc2/arcade/.svn/text-base/keymap.cpp.svn-base
-qmc2/arcade/.svn/text-base/keymap.h.svn-base
+qmc2/arcade/.svn/text-base/keysequencemap.cpp.svn-base
+qmc2/arcade/.svn/text-base/keysequencemap.h.svn-base
+qmc2/arcade/.svn/text-base/keysequences.h.svn-base
 qmc2/arcade/.svn/text-base/macros.h.svn-base
 qmc2/arcade/.svn/text-base/main.cpp.svn-base
 qmc2/arcade/.svn/text-base/pointer.cpp.svn-base
