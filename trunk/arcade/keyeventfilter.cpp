@@ -55,7 +55,7 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
               key -= Qt::MetaModifier;
               mods |= Qt::MetaModifier;
             }
-            QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods, QString("QMC2_ARCADE_EMULATED_KEY_EVENT"));
+            QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods);
             qApp->postEvent(object, emulatedKeyEvent);
             // no further event processing
             return true;
