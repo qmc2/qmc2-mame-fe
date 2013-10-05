@@ -11,11 +11,13 @@ KeySequenceMap::KeySequenceMap(QStringList keySequences, QObject *parent) :
 
 void KeySequenceMap::loadKeySequenceMap()
 {
-    // FIXME: loads nothing
+    // FIXME
 }
 
 QString KeySequenceMap::mapKeySequence(QString nativeKeySeq)
 {
-    // FIXME: maps nothing
-    return nativeKeySeq;
+    if ( mKeySequenceMap.contains(nativeKeySeq) )
+        return mKeySequenceMap[nativeKeySeq];
+    else
+        return nativeKeySeq;
 }

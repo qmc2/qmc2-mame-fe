@@ -16,10 +16,11 @@ KeyEventFilter::KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent) 
     mKeySequenceMap = keySequenceMap;
 }
 
-bool KeyEventFilter::eventFilter(QObject *, QEvent *event)
+bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
 {
+    QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
     if ( event->spontaneous() && (event->type() == QEvent::KeyPress || event->type() == QEvent::KeyRelease) ) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        // 'native' key-event
         int keySeq = 0;
         if ( keyEvent->modifiers() & Qt::ShiftModifier )
             keySeq += Qt::SHIFT;
@@ -30,11 +31,39 @@ bool KeyEventFilter::eventFilter(QObject *, QEvent *event)
         if ( keyEvent->modifiers() & Qt::MetaModifier )
             keySeq += Qt::META;
         keySeq += keyEvent->key();
-        QString pressedKeySeq = QString(QKeySequence(keySeq).toString().toLatin1());
-        QMC2_ARCADE_LOG_STR(QString("DEBUG: Key-sequence '%1' %2").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
-        //return true;
-    }
-
-    // default key processing
-    return false;
+        QString nativeKeySeq = QString(QKeySequence(keySeq).toString().toLatin1());
+        QString mappedKeySeq = mKeySequenceMap->mapKeySequence(nativeKeySeq);
+        if ( mappedKeySeq != nativeKeySeq ) {
+            // emulate a key-event for the mapped key
+            QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released").arg(mappedKeySeq));
+            QKeySequence emulatedKeySequence(mappedKeySeq);
+            Qt::KeyboardModifiers mods = Qt::NoModifier;
+            int key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
+            if ( key & Qt::ShiftModifier ) {
+              key -= Qt::ShiftModifier;
+              mods |= Qt::ShiftModifier;
+            }
+            if ( key & Qt::ControlModifier ) {
+              key -= Qt::ControlModifier;
+              mods |= Qt::ControlModifier;
+            }
+            if ( key & Qt::AltModifier ) {
+              key -= Qt::AltModifier;
+              mods |= Qt::AltModifier;
+            }
+            if ( key & Qt::MetaModifier ) {
+              key -= Qt::MetaModifier;
+              mods |= Qt::MetaModifier;
+            }
+            QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods, QString("QMC2_ARCADE_EMULATED_KEY_EVENT"));
+            qApp->postEvent(object, emulatedKeyEvent);
+            // no further event processing
+            return true;
+        } else
+            // default event processing
+            QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - default event processing").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
+            return QObject::eventFilter(object, event);
+    } else
+        // default event processing
+        return QObject::eventFilter(object, event);
 }

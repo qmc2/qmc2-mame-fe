@@ -12,7 +12,7 @@ public:
     explicit KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent = 0);
 
 protected:
-    bool eventFilter(QObject *, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event);
 
 private:
     KeySequenceMap *mKeySequenceMap;
