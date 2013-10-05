@@ -50,7 +50,7 @@ public:
     QMap<QString, QString> cliParameterDescriptions;
     QStringList cliParams;
     QStringList infoClasses;
-    KeySequenceMap *keyMap;
+    KeySequenceMap *keySequenceMap;
 
 #if QT_VERSION < 0x050000
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);

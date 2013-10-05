@@ -9,13 +9,13 @@ class KeyEventFilter : public QObject
     Q_OBJECT
 
 public:
-    explicit KeyEventFilter(KeySequenceMap * keyMap, QObject *parent = 0);
+    explicit KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent = 0);
 
 protected:
     bool eventFilter(QObject *, QEvent *event);
 
 private:
-    KeySequenceMap *mKeyMap;
+    KeySequenceMap *mKeySequenceMap;
 };
 
 #endif // KEYPRESSFILTER_H

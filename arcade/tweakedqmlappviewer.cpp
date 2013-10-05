@@ -60,7 +60,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
         QMC2_ARCADE_ADD_DARKONE_KEYSEQS(keySequences);
         break;
     }
-    keyMap = new KeySequenceMap(keySequences);
+    keySequenceMap = new KeySequenceMap(keySequences);
 
     infoClasses << "gameinfo" << "emuinfo";
 
@@ -138,7 +138,7 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
     if (initialised)
         saveSettings();
-    delete keyMap;
+    delete keySequenceMap;
 }
 
 int TweakedQmlApplicationViewer::themeIndex()
