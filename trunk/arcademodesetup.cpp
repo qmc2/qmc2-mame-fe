@@ -142,9 +142,16 @@ void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*
 	keySeqScanner.setWindowTitle(tr("Scanning key sequence"));
 	keySeqScanner.labelStatus->setText(tr("Scanning key sequence"));
 
-	if ( keySeqScanner.exec() == QDialog::Accepted )
-		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, keySeqScanner.labelKeySequence->text());
-	else if ( keySeqScanner.clearClicked )
+	if ( keySeqScanner.exec() == QDialog::Accepted ) {
+		QString keySeqText = keySeqScanner.labelKeySequence->text();
+		QTreeWidgetItemIterator it(item->treeWidget());
+		while ( *it ) {
+			if ( keySeqText == (*it)->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM) )
+				(*it)->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, QString());
+			it++;
+		}
+		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, keySeqText);
+	} else if ( keySeqScanner.clearClicked )
 		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, QString());
 
 	qApp->installEventFilter(qmc2KeyPressFilter);
