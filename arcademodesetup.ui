@@ -812,6 +812,9 @@
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
             <widget class="QTreeWidget" name="treeWidgetKeyMapToxicWaste">
+             <property name="toolTip">
+              <string>Double-click to scan or clear a custom key sequence</string>
+             </property>
              <property name="sortingEnabled">
               <bool>true</bool>
              </property>
@@ -836,6 +839,9 @@
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="QTreeWidget" name="treeWidgetKeyMapDarkone">
+             <property name="toolTip">
+              <string>Double-click to scan or clear a custom key sequence</string>
+             </property>
              <property name="sortingEnabled">
               <bool>true</bool>
              </property>
