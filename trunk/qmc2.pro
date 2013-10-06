@@ -193,7 +193,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			minizip/unzip.h \
 			minizip/zip.h \
 			htmleditor/htmleditor.h \
-			htmleditor/highlighter.h
+			htmleditor/highlighter.h \
+			arcade/keysequences.h
 		PRECOMPILED_HEADER = qmc2_prefix.h
 		TRANSLATIONS += data/lng/qmc2_de.ts \
 			data/lng/qmc2_el.ts \

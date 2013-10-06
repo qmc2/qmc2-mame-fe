@@ -827,4 +827,13 @@
 #define QMC2_PRINT_BOOL(b)			printf("%s = %s\n", #b, b ? "true" : "false")
 #define QMC2_PRINT_STRLST(l)			for (int i = 0; i < l.count(); i++) printf("%s[%ld] = %s\n", #l, i, (const char *)l[i].toLocal8Bit())
 
+// indexed QMC2 Arcade themes
+#define QMC2_ARCADE_THEME_COUNT			2
+#define QMC2_ARCADE_THEME_TOXICWASTE		0
+#define QMC2_ARCADE_THEME_DARKONE		1
+
+// arcade mode setup: column indizes for key-sequence-maps
+#define QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION	0
+#define QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM	1
+
 #endif

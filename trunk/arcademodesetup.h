@@ -20,6 +20,7 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		void saveSettings();
 		void updateCategoryFilter();
 		void saveCategoryFilter();
+		void loadKeySequenceMaps();
 		void on_checkBoxUseFilteredList_toggled(bool);
 		void on_checkBoxFavoriteSetsOnly_toggled(bool);
 		void on_checkBoxTaggedSetsOnly_toggled(bool);
