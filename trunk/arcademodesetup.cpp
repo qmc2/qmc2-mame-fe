@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QMap>
 #include <QTreeWidgetItem>
+#include <QTreeWidgetItemIterator>
 #include <QTextStream>
 
 #include "arcademodesetup.h"
@@ -31,6 +32,8 @@ extern KeyPressFilter *qmc2KeyPressFilter;
 int qmc2ArcadeModeSortCriteria = 0;
 int qmc2ArcadeModeSortOrder = 0;
 
+QStringList ArcadeModeSetup::keySequenceMapBases;
+
 ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	: QDialog(parent)
 {
@@ -38,11 +41,13 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 
 	// FIXME: joystick-mappings are not supported yet
 #if !defined(QMC2_WIP_ENABLED) 
-	tabWidget->removeTab(tabWidget->indexOf(tabKeys));
 	tabWidget->removeTab(tabWidget->indexOf(tabJoystick));
 #endif
 
 	adjustIconSizes();
+
+	if ( keySequenceMapBases.isEmpty() )
+		keySequenceMapBases << "Arcade/ToxicWaste/keySequenceMap" << "Arcade/darkone/keySequenceMap";
 
 	if ( !qmc2CategoryMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
@@ -128,6 +133,9 @@ ArcadeModeSetup::~ArcadeModeSetup()
 
 void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*/)
 {
+	if ( !item->parent() )
+		return;
+
 	qApp->removeEventFilter(qmc2KeyPressFilter);
 
 	KeySequenceScanner keySeqScanner(this, false, false, true);
@@ -150,19 +158,16 @@ void ArcadeModeSetup::loadKeySequenceMaps()
 		QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
 		QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(keySequenceDescriptions);
 		QTreeWidget *treeWidget = NULL;
-		QString keySequenceMapBase;
 		switch ( i ) {
 			case QMC2_ARCADE_THEME_TOXICWASTE:
 				treeWidget = treeWidgetKeyMapToxicWaste;
 				QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(keySequences);
 				QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(keySequenceDescriptions);
-				keySequenceMapBase = "Arcade/ToxicWaste/keySequenceMap";
 				break;
 			case QMC2_ARCADE_THEME_DARKONE:
 				treeWidget = treeWidgetKeyMapDarkone;
 				QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(keySequences);
 				QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(keySequenceDescriptions);
-				keySequenceMapBase = "Arcade/darkone/keySequenceMap";
 				break;
 		}
 		QMap<QString, QTreeWidgetItem *> descriptionItemMap;
@@ -178,9 +183,36 @@ void ArcadeModeSetup::loadKeySequenceMaps()
 			}
 			QTreeWidgetItem *keySequenceItem = new QTreeWidgetItem(descriptionItem);
 			keySequenceItem->setText(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, keySequences[j]);
-			QString keySeqKey = keySequenceMapBase + "/" + keySequences[j];
-			if ( qmc2Config->contains(keySeqKey) )
+			QString keySeqKey = keySequenceMapBases[i] + "/" + keySequences[j];
+			if ( qmc2Config->contains(keySeqKey) ) {
 				keySequenceItem->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, qmc2Config->value(keySeqKey, QString()).toString());
+				descriptionItem->setExpanded(true);
+			}
+		}
+	}
+}
+
+void ArcadeModeSetup::saveKeySequenceMaps()
+{
+	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
+		QTreeWidget *treeWidget = NULL;
+		switch ( i ) {
+			case QMC2_ARCADE_THEME_TOXICWASTE:
+				treeWidget = treeWidgetKeyMapToxicWaste;
+				break;
+			case QMC2_ARCADE_THEME_DARKONE:
+				treeWidget = treeWidgetKeyMapDarkone;
+				break;
+		}
+
+		qmc2Config->remove(keySequenceMapBases[i]);
+
+		QTreeWidgetItemIterator it(treeWidget);
+		while ( *it ) {
+			QString customKeySequence = (*it)->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM);
+			if ( !customKeySequence.isEmpty() )
+				qmc2Config->setValue(keySequenceMapBases[i] + "/" + (*it)->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION), customKeySequence);
+			it++;
 		}
 	}
 }
@@ -210,6 +242,9 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DriverStatus", comboBoxDriverStatus->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", lineEditNameFilter->text());
 	saveCategoryFilter();
+
+	// key sequence maps
+	saveKeySequenceMaps();
 }
 
 bool ArcadeModeSetup::isWritableFile(QString fileName)

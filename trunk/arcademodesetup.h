@@ -1,6 +1,8 @@
 #ifndef _ARCADEMODESETUP_H_
 #define _ARCADEMODESETUP_H_
 
+#include <QStringList>
+
 #include "ui_arcademodesetup.h"
 #include "gamelist.h"
 
@@ -15,10 +17,12 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		bool isWritableFile(QString);
 		static bool lessThan(const GamelistItem *, const GamelistItem *);
 
+		static QStringList keySequenceMapBases;
 
 	public slots:
 		void scanCustomKeySequence(QTreeWidgetItem *, int);
 		void loadKeySequenceMaps();
+		void saveKeySequenceMaps();
 		void adjustIconSizes();
 		void saveSettings();
 		void updateCategoryFilter();
