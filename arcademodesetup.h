@@ -15,12 +15,14 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		bool isWritableFile(QString);
 		static bool lessThan(const GamelistItem *, const GamelistItem *);
 
+
 	public slots:
+		void scanCustomKeySequence(QTreeWidgetItem *, int);
+		void loadKeySequenceMaps();
 		void adjustIconSizes();
 		void saveSettings();
 		void updateCategoryFilter();
 		void saveCategoryFilter();
-		void loadKeySequenceMaps();
 		void on_checkBoxUseFilteredList_toggled(bool);
 		void on_checkBoxFavoriteSetsOnly_toggled(bool);
 		void on_checkBoxTaggedSetsOnly_toggled(bool);

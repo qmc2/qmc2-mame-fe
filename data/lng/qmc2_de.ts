@@ -678,8 +678,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="326"/>
-        <location filename="../../arcademodesetup.cpp" line="435"/>
-        <location filename="../../arcademodesetup.cpp" line="438"/>
+        <location filename="../../arcademodesetup.cpp" line="455"/>
+        <location filename="../../arcademodesetup.cpp" line="458"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
@@ -775,7 +775,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="702"/>
-        <location filename="../../arcademodesetup.cpp" line="503"/>
+        <location filename="../../arcademodesetup.cpp" line="523"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -854,91 +854,97 @@ p, li { white-space: pre-wrap; }
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="46"/>
+        <location filename="../../arcademodesetup.cpp" line="48"/>
         <source>Category</source>
         <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="49"/>
+        <location filename="../../arcademodesetup.cpp" line="51"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="224"/>
-        <location filename="../../arcademodesetup.cpp" line="226"/>
+        <location filename="../../arcademodesetup.cpp" line="134"/>
+        <location filename="../../arcademodesetup.cpp" line="135"/>
+        <source>Scanning key sequence</source>
+        <translation>Scanne Tastaturkürzel</translation>
+    </message>
+    <message>
         <location filename="../../arcademodesetup.cpp" line="244"/>
-        <location filename="../../arcademodesetup.cpp" line="422"/>
+        <location filename="../../arcademodesetup.cpp" line="246"/>
+        <location filename="../../arcademodesetup.cpp" line="264"/>
+        <location filename="../../arcademodesetup.cpp" line="442"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="325"/>
+        <location filename="../../arcademodesetup.cpp" line="345"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation>Ausführbare Datei für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="325"/>
-        <location filename="../../arcademodesetup.cpp" line="346"/>
+        <location filename="../../arcademodesetup.cpp" line="345"/>
+        <location filename="../../arcademodesetup.cpp" line="366"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="332"/>
+        <location filename="../../arcademodesetup.cpp" line="352"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation>Arbeitsverzeichnis für Ausführung von QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="339"/>
+        <location filename="../../arcademodesetup.cpp" line="359"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation>Konfigurationspfad für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="346"/>
+        <location filename="../../arcademodesetup.cpp" line="366"/>
         <source>Choose filtered list file for export</source>
         <translation>Datei für Export der gefilterten Liste auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="356"/>
+        <location filename="../../arcademodesetup.cpp" line="376"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation>FATAL: Arcade-Modus: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="380"/>
+        <location filename="../../arcademodesetup.cpp" line="400"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation>WARNUNG: Arcade-Modus: der reguläre Ausdruck für den Namensfilter ist ungültig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="382"/>
+        <location filename="../../arcademodesetup.cpp" line="402"/>
         <source>Filtering</source>
         <translation>Filtere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="435"/>
+        <location filename="../../arcademodesetup.cpp" line="455"/>
         <source>imperfect</source>
         <translation>unvollständig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="470"/>
+        <location filename="../../arcademodesetup.cpp" line="490"/>
         <source>Sorting</source>
         <translation>Sortiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="478"/>
+        <location filename="../../arcademodesetup.cpp" line="498"/>
         <source>Exporting</source>
         <translation>Exportiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="493"/>
+        <location filename="../../arcademodesetup.cpp" line="513"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="494"/>
+        <location filename="../../arcademodesetup.cpp" line="514"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="505"/>
+        <location filename="../../arcademodesetup.cpp" line="525"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation>
             <numerusform>Arcade-Modus: %n gefiltertes Set nach &apos;%1&apos; exportiert</numerusform>
@@ -6227,29 +6233,39 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>KeySequenceScanner</name>
     <message>
-        <location filename="../../keyseqscan.ui" line="43"/>
+        <location filename="../../keyseqscan.ui" line="61"/>
         <source>Accept key sequence</source>
         <translation>Tastaturkürzel akzeptieren</translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="56"/>
+        <location filename="../../keyseqscan.ui" line="77"/>
         <source>Cancel redefinition of key sequence</source>
         <translation>Festlegung des Tastaturkürzels abbrechen</translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="27"/>
+        <location filename="../../keyseqscan.ui" line="43"/>
         <source>&lt;&lt;&lt;&gt;&gt;&gt;</source>
         <translation>&lt;&lt;&lt;&gt;&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="46"/>
+        <location filename="../../keyseqscan.ui" line="64"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="59"/>
+        <location filename="../../keyseqscan.ui" line="80"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../../keyseqscan.ui" line="93"/>
+        <source>Clear custom key sequence</source>
+        <translation>Angepasstes Tastaturkürzel löschen</translation>
+    </message>
+    <message>
+        <location filename="../../keyseqscan.ui" line="96"/>
+        <source>Clear</source>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.cpp" line="21"/>
@@ -6259,7 +6275,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="15"/>
-        <location filename="../../keyseqscan.ui" line="72"/>
+        <location filename="../../keyseqscan.ui" line="27"/>
         <location filename="../../keyseqscan.cpp" line="24"/>
         <location filename="../../keyseqscan.cpp" line="25"/>
         <source>Scanning shortcut</source>

@@ -11,6 +11,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "macros.h"
+#include "keyseqscan.h"
 #include "arcade/keysequences.h"
 
 extern MainWindow *qmc2MainWindow;
@@ -25,6 +26,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern Gamelist *qmc2Gamelist;
 extern Options *qmc2Options;
+extern KeyPressFilter *qmc2KeyPressFilter;
 
 int qmc2ArcadeModeSortCriteria = 0;
 int qmc2ArcadeModeSortOrder = 0;
@@ -107,6 +109,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	connect(pushButtonOk, SIGNAL(clicked()), this, SLOT(saveSettings()));
 
 	// load key sequence maps asynchronously
+	connect(treeWidgetKeyMapToxicWaste, SIGNAL(itemActivated(QTreeWidgetItem *, int)), this, SLOT(scanCustomKeySequence(QTreeWidgetItem *, int)));
+	connect(treeWidgetKeyMapDarkone, SIGNAL(itemActivated(QTreeWidgetItem *, int)), this, SLOT(scanCustomKeySequence(QTreeWidgetItem *, int)));
 	QTimer::singleShot(0, this, SLOT(loadKeySequenceMaps()));
 }
 
@@ -120,6 +124,22 @@ ArcadeModeSetup::~ArcadeModeSetup()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapCurrentTab", tabWidgetJoyMaps->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapToxicWasteHeaderState", treeWidgetKeyMapToxicWaste->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapDarkoneHeaderState", treeWidgetKeyMapDarkone->header()->saveState());
+}
+
+void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*/)
+{
+	qApp->removeEventFilter(qmc2KeyPressFilter);
+
+	KeySequenceScanner keySeqScanner(this, false, false, true);
+	keySeqScanner.setWindowTitle(tr("Scanning key sequence"));
+	keySeqScanner.labelStatus->setText(tr("Scanning key sequence"));
+
+	if ( keySeqScanner.exec() == QDialog::Accepted )
+		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, keySeqScanner.labelKeySequence->text());
+	else if ( keySeqScanner.clearClicked )
+		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, QString());
+
+	qApp->installEventFilter(qmc2KeyPressFilter);
 }
 
 void ArcadeModeSetup::loadKeySequenceMaps()

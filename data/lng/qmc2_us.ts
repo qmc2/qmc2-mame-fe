@@ -678,8 +678,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="326"/>
-        <location filename="../../arcademodesetup.cpp" line="435"/>
-        <location filename="../../arcademodesetup.cpp" line="438"/>
+        <location filename="../../arcademodesetup.cpp" line="455"/>
+        <location filename="../../arcademodesetup.cpp" line="458"/>
         <source>good</source>
         <translation></translation>
     </message>
@@ -775,7 +775,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="702"/>
-        <location filename="../../arcademodesetup.cpp" line="503"/>
+        <location filename="../../arcademodesetup.cpp" line="523"/>
         <source>Idle</source>
         <translation></translation>
     </message>
@@ -854,91 +854,97 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Cancel</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="46"/>
+        <location filename="../../arcademodesetup.cpp" line="48"/>
         <source>Category</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="49"/>
+        <location filename="../../arcademodesetup.cpp" line="51"/>
         <source>Version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="224"/>
-        <location filename="../../arcademodesetup.cpp" line="226"/>
+        <location filename="../../arcademodesetup.cpp" line="134"/>
+        <location filename="../../arcademodesetup.cpp" line="135"/>
+        <source>Scanning key sequence</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../../arcademodesetup.cpp" line="244"/>
-        <location filename="../../arcademodesetup.cpp" line="422"/>
+        <location filename="../../arcademodesetup.cpp" line="246"/>
+        <location filename="../../arcademodesetup.cpp" line="264"/>
+        <location filename="../../arcademodesetup.cpp" line="442"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="325"/>
+        <location filename="../../arcademodesetup.cpp" line="345"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="325"/>
-        <location filename="../../arcademodesetup.cpp" line="346"/>
+        <location filename="../../arcademodesetup.cpp" line="345"/>
+        <location filename="../../arcademodesetup.cpp" line="366"/>
         <source>All files (*)</source>
         <translation>All files (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="332"/>
+        <location filename="../../arcademodesetup.cpp" line="352"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="339"/>
+        <location filename="../../arcademodesetup.cpp" line="359"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="346"/>
+        <location filename="../../arcademodesetup.cpp" line="366"/>
         <source>Choose filtered list file for export</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="356"/>
+        <location filename="../../arcademodesetup.cpp" line="376"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="380"/>
+        <location filename="../../arcademodesetup.cpp" line="400"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="382"/>
+        <location filename="../../arcademodesetup.cpp" line="402"/>
         <source>Filtering</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="435"/>
+        <location filename="../../arcademodesetup.cpp" line="455"/>
         <source>imperfect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="470"/>
+        <location filename="../../arcademodesetup.cpp" line="490"/>
         <source>Sorting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="478"/>
+        <location filename="../../arcademodesetup.cpp" line="498"/>
         <source>Exporting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="493"/>
+        <location filename="../../arcademodesetup.cpp" line="513"/>
         <source>ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="494"/>
+        <location filename="../../arcademodesetup.cpp" line="514"/>
         <source>CHD</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="505"/>
+        <location filename="../../arcademodesetup.cpp" line="525"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation>
             <numerusform>arcade mode: exported %n filtered set to &apos;%1&apos;</numerusform>
@@ -6232,35 +6238,45 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="15"/>
-        <location filename="../../keyseqscan.ui" line="72"/>
+        <location filename="../../keyseqscan.ui" line="27"/>
         <location filename="../../keyseqscan.cpp" line="24"/>
         <location filename="../../keyseqscan.cpp" line="25"/>
         <source>Scanning shortcut</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="27"/>
+        <location filename="../../keyseqscan.ui" line="43"/>
         <source>&lt;&lt;&lt;&gt;&gt;&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="43"/>
+        <location filename="../../keyseqscan.ui" line="61"/>
         <source>Accept key sequence</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="46"/>
+        <location filename="../../keyseqscan.ui" line="64"/>
         <source>Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="56"/>
+        <location filename="../../keyseqscan.ui" line="77"/>
         <source>Cancel redefinition of key sequence</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../keyseqscan.ui" line="59"/>
+        <location filename="../../keyseqscan.ui" line="80"/>
         <source>Cancel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../keyseqscan.ui" line="93"/>
+        <source>Clear custom key sequence</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../keyseqscan.ui" line="96"/>
+        <source>Clear</source>
         <translation></translation>
     </message>
 </context>

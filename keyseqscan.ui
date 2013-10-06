@@ -7,15 +7,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>178</width>
-    <height>90</height>
+    <width>169</width>
+    <height>68</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Scanning shortcut</string>
   </property>
-  <layout class="QGridLayout">
-   <item row="1" column="0" colspan="2">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelStatus">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Scanning shortcut</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QLabel" name="labelKeySequence">
      <property name="frameShape">
       <enum>QFrame::Box</enum>
@@ -32,49 +48,59 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QPushButton" name="pushButtonOk">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="focusPolicy">
-      <enum>Qt::ClickFocus</enum>
-     </property>
-     <property name="toolTip">
-      <string>Accept key sequence</string>
-     </property>
-     <property name="text">
-      <string>Ok</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="pushButtonCancel">
-     <property name="focusPolicy">
-      <enum>Qt::ClickFocus</enum>
-     </property>
-     <property name="toolTip">
-      <string>Cancel redefinition of key sequence</string>
-     </property>
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="labelStatus">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Scanning shortcut</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButtonOk">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Accept key sequence</string>
+       </property>
+       <property name="text">
+        <string>Ok</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonCancel">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Cancel redefinition of key sequence</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonClear">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="toolTip">
+        <string>Clear custom key sequence</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -94,8 +120,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>170</x>
-     <y>88</y>
+     <x>107</x>
+     <y>62</y>
     </hint>
     <hint type="destinationlabel">
      <x>185</x>
@@ -110,12 +136,28 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>88</y>
+     <x>44</x>
+     <y>62</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
      <y>3</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonClear</sender>
+   <signal>clicked()</signal>
+   <receiver>KeySequenceScanner</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>140</x>
+     <y>-2</y>
     </hint>
    </hints>
   </connection>
