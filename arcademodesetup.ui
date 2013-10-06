@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>309</width>
-    <height>406</height>
+    <height>422</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -799,11 +799,87 @@
       <attribute name="title">
        <string>Keys</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidgetKeyMaps">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tabToxicWasteKeyMap">
+          <attribute name="title">
+           <string>ToxicWaste</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QTreeWidget" name="treeWidgetKeyMapToxicWaste">
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Function / Key-sequence</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Custom key-sequence</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tabDarkoneKeyMap">
+          <attribute name="title">
+           <string>darkone</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QTreeWidget" name="treeWidgetKeyMapDarkone">
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Function / Key-sequence</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Custom key-sequence</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabJoystick">
       <attribute name="title">
        <string>Joystick</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidgetJoyMaps">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tabToxicWasteJoyMap">
+          <attribute name="title">
+           <string>ToxicWaste</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tabDarkoneJoyMap">
+          <attribute name="title">
+           <string>darkone</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -879,6 +955,10 @@
   <tabstop>toolButtonSelectAll</tabstop>
   <tabstop>toolButtonDeselectAll</tabstop>
   <tabstop>listWidgetCategoryFilter</tabstop>
+  <tabstop>tabWidgetKeyMaps</tabstop>
+  <tabstop>treeWidgetKeyMapToxicWaste</tabstop>
+  <tabstop>treeWidgetKeyMapDarkone</tabstop>
+  <tabstop>tabWidgetJoyMaps</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
@@ -893,12 +973,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>295</x>
-     <y>230</y>
+     <x>296</x>
+     <y>266</y>
     </hint>
     <hint type="destinationlabel">
-     <x>157</x>
-     <y>230</y>
+     <x>241</x>
+     <y>266</y>
     </hint>
    </hints>
   </connection>
@@ -910,7 +990,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>142</x>
-     <y>367</y>
+     <y>417</y>
     </hint>
     <hint type="destinationlabel">
      <x>86</x>
@@ -926,7 +1006,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>205</x>
-     <y>367</y>
+     <y>417</y>
     </hint>
     <hint type="destinationlabel">
      <x>279</x>

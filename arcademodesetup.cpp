@@ -11,6 +11,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "macros.h"
+#include "arcade/keysequences.h"
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
@@ -33,7 +34,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 {
 	setupUi(this);
 
-	// FIXME: keyboard- & joystick-mappings are not supported yet
+	// FIXME: joystick-mappings are not supported yet
 #if !defined(QMC2_WIP_ENABLED) 
 	tabWidget->removeTab(tabWidget->indexOf(tabKeys));
 	tabWidget->removeTab(tabWidget->indexOf(tabJoystick));
@@ -55,6 +56,10 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	tabWidget->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupCurrentTab", 0).toInt());
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Arcade/SetupWidth") && qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Arcade/SetupHeight") )
 		resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupWidth").toInt(), qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupHeight").toInt());
+	tabWidgetKeyMaps->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapCurrentTab", 0).toInt());
+	treeWidgetKeyMapToxicWaste->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapToxicWasteHeaderState", QByteArray()).toByteArray());
+	treeWidgetKeyMapDarkone->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapDarkoneHeaderState", QByteArray()).toByteArray());
+	tabWidgetJoyMaps->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapCurrentTab", 0).toInt());
 
 	// general settings
 #if defined(QMC2_OS_WIN)
@@ -98,7 +103,11 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	lineEditNameFilter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", QString()).toString());
 	updateCategoryFilter();
 
+	// miscellaneous connections
 	connect(pushButtonOk, SIGNAL(clicked()), this, SLOT(saveSettings()));
+
+	// load key sequence maps asynchronously
+	QTimer::singleShot(0, this, SLOT(loadKeySequenceMaps()));
 }
 
 ArcadeModeSetup::~ArcadeModeSetup()
@@ -107,6 +116,53 @@ ArcadeModeSetup::~ArcadeModeSetup()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupCurrentTab", tabWidget->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupWidth", width());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupHeight", height());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapCurrentTab", tabWidgetKeyMaps->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapCurrentTab", tabWidgetJoyMaps->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapToxicWasteHeaderState", treeWidgetKeyMapToxicWaste->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapDarkoneHeaderState", treeWidgetKeyMapDarkone->header()->saveState());
+}
+
+void ArcadeModeSetup::loadKeySequenceMaps()
+{
+	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
+		QStringList keySequences;
+		QStringList keySequenceDescriptions;
+		QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
+		QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(keySequenceDescriptions);
+		QTreeWidget *treeWidget = NULL;
+		QString keySequenceMapBase;
+		switch ( i ) {
+			case QMC2_ARCADE_THEME_TOXICWASTE:
+				treeWidget = treeWidgetKeyMapToxicWaste;
+				QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(keySequences);
+				QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(keySequenceDescriptions);
+				keySequenceMapBase = "Arcade/ToxicWaste/keySequenceMap";
+				break;
+			case QMC2_ARCADE_THEME_DARKONE:
+				treeWidget = treeWidgetKeyMapDarkone;
+				QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(keySequences);
+				QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(keySequenceDescriptions);
+				keySequenceMapBase = "Arcade/darkone/keySequenceMap";
+				break;
+		}
+		QMap<QString, QTreeWidgetItem *> descriptionItemMap;
+		for (int j = 0; j < keySequenceDescriptions.count(); j++) {
+			QString description = keySequenceDescriptions[j];
+			QTreeWidgetItem *descriptionItem;
+			if ( descriptionItemMap.contains(description) )
+				descriptionItem = descriptionItemMap[description];
+			else {
+				descriptionItem = new QTreeWidgetItem(treeWidget);
+				descriptionItem->setText(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, description);
+				descriptionItemMap[description] = descriptionItem;
+			}
+			QTreeWidgetItem *keySequenceItem = new QTreeWidgetItem(descriptionItem);
+			keySequenceItem->setText(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, keySequences[j]);
+			QString keySeqKey = keySequenceMapBase + "/" + keySequences[j];
+			if ( qmc2Config->contains(keySeqKey) )
+				keySequenceItem->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, qmc2Config->value(keySeqKey, QString()).toString());
+		}
+	}
 }
 
 void ArcadeModeSetup::saveSettings()

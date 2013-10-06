@@ -12,17 +12,17 @@
                                                                              << "Esc" \
                                                                              << "Enter" \
                                                                              << "Return"
-#define QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(stringList)         (stringList) << tr("Cursor up") \
-                                                                             << tr("Cursor down") \
-                                                                             << tr("Cursor left") \
-                                                                             << tr("Cursor right") \
-                                                                             << tr("Page up") \
-                                                                             << tr("Page down") \
-                                                                             << tr("Start of list") \
-                                                                             << tr("End of list") \
-                                                                             << tr("Exit") \
-                                                                             << tr("Start emulation") \
-                                                                             << tr("Start emulation")
+#define QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(stringList)         (stringList) << QObject::tr("Cursor up") \
+                                                                             << QObject::tr("Cursor down") \
+                                                                             << QObject::tr("Cursor left") \
+                                                                             << QObject::tr("Cursor right") \
+                                                                             << QObject::tr("Page up") \
+                                                                             << QObject::tr("Page down") \
+                                                                             << QObject::tr("Start of list") \
+                                                                             << QObject::tr("End of list") \
+                                                                             << QObject::tr("Exit") \
+                                                                             << QObject::tr("Start emulation") \
+                                                                             << QObject::tr("Start emulation")
 #define QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(stringList)    (stringList) << "F11" \
                                                                              << "Alt+Enter" \
                                                                              << "Alt+Return" \
@@ -31,14 +31,14 @@
                                                                              << "Ctrl+O" \
                                                                              << "Ctrl+P" \
                                                                              << "Ctrl+X"
-#define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << tr("Toggle full-screen / windowed mode") \
-                                                                             << tr("Toggle full-screen / windowed mode") \
-                                                                             << tr("Toggle full-screen / windowed mode") \
-                                                                             << tr("Focus search box") \
-                                                                             << tr("Toggle menu-bar") \
-                                                                             << tr("Toggle preferences") \
-                                                                             << tr("Start emulation") \
-                                                                             << tr("Exit")
+#define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << QObject::tr("Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("Focus search box") \
+                                                                             << QObject::tr("Toggle menu-bar") \
+                                                                             << QObject::tr("Toggle preferences") \
+                                                                             << QObject::tr("Start emulation") \
+                                                                             << QObject::tr("Exit")
 #define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        ; // FIXME: add darkone-specific key-sequences
 #define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)        ; // FIXME: add darkone-specific key-sequence descriptions
 
