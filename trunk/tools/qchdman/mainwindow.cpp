@@ -291,6 +291,13 @@ MainWindow::MainWindow(QWidget *parent) :
             << DiskGeometry("WDAC2700", 1416, 16, 63, 512)
             << DiskGeometry("WDAC11000", 2046, 16, 63, 512);
 
+    hardDiskTemplates["Applied Engineering"]
+            << DiskGeometry("Vulcan 40MB", 960, 5, 17, 512)
+            << DiskGeometry("Vulcan 80MB v1", 1067, 5, 29, 512)
+            << DiskGeometry("Vulcan 80MB v2", 954, 10, 17, 512)
+            << DiskGeometry("Vulcan 100MB", 863, 7, 34, 512)
+            << DiskGeometry("Vulcan 140MB", 1068, 9, 29, 512);
+
     statisticsLabel = new QLabel(this);
     statusBar()->addPermanentWidget(statisticsLabel);
     updateStatus();
