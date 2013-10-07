@@ -354,10 +354,21 @@ QString ArcadeSettings::cabinetImageType()
     return value(QString("Arcade/%1/cabinetImageType").arg(arcadeTheme), "preview").toString();
 }
 
+void ArcadeSettings::setAutoStopAnimations(bool autoStop)
+{
+    setValue(QString("Arcade/%1/autoStopAnimations").arg(arcadeTheme), autoStop);
+}
+
+bool ArcadeSettings::autoStopAnimations()
+{
+    return value(QString("Arcade/%1/autoStopAnimations").arg(arcadeTheme), true).toBool();
+}
+
 void ArcadeSettings::setToolbarHidden(bool hidden)
 {
     setValue(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), hidden);
 }
+
 bool ArcadeSettings::toolbarHidden()
 {
     return value(QString("Arcade/%1/toolbarHidden").arg(arcadeTheme), false).toBool();

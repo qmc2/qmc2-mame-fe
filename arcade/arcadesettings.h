@@ -93,6 +93,8 @@ public slots:
     double gameListOpacity();
     void setCabinetImageType(QString);
     QString cabinetImageType();
+    void setAutoStopAnimations(bool);
+    bool autoStopAnimations();
 
     // darkone
     void setToolbarHidden(bool);

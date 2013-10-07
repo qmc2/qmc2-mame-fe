@@ -21,6 +21,7 @@ public:
     QString processErrorToString(QProcess::ProcessError);
     QString processStateToString(QProcess::ProcessState);
     int highestProcessID() { return mCurrentProcessId; }
+    int runningProcesses() { return mProcessMap.count(); }
 
 signals:
     void emulatorStarted(int);

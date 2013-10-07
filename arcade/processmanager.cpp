@@ -230,6 +230,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
     QProcess *proc = (QProcess *)sender();
     int procID = mProcessMap.key(proc);
     QMC2_ARCADE_LOG_STR(tr("Emulator #%1 finished: exitCode = %2, exitStatus = %3").arg(procID).arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+    mProcessMap.remove(procID);
 }
 
 void ProcessManager::readyReadStandardOutput()

@@ -219,3 +219,19 @@ function validateSpecialKey(k) {
     else
         return true;
 }
+
+function emulatorStarted() {
+    if ( toxicWasteMain.autoStopAnimations ) {
+        waveEffect.running = false;
+        backgroundAnim.opacity = 0.0;
+    }
+}
+
+function emulatorStopped() {
+    if ( toxicWasteMain.autoStopAnimations && viewer.runningEmulators() === 1 ) {
+        if ( toxicWasteMain.showShaderEffect )
+            waveEffect.running = true;
+        if ( toxicWasteMain.showBackgroundAnimation )
+            backgroundAnim.opacity = 1.0;
+    }
+}
