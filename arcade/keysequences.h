@@ -7,7 +7,7 @@
                                                                              << "Right" \
                                                                              << "PgUp" \
                                                                              << "PgDown" \
-                                                                             << "Pos1" \
+                                                                             << "Home" \
                                                                              << "End" \
                                                                              << "Esc" \
                                                                              << "Enter" \
