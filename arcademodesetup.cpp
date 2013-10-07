@@ -264,11 +264,27 @@ void ArcadeModeSetup::checkKeySequenceMaps()
 			QList<QTreeWidgetItem *> itemList = keySeqMap.values(key);
 			if ( itemList.count() > 1 ) {
 				foreach (QTreeWidgetItem *item, itemList) {
-					if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION) == key )
+					if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION) == key && item->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM).isEmpty() ) {
 						item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, Qt::red);
-					if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM) == key )
-						item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, Qt::red);
-					item->parent()->setExpanded(true);
+						item->parent()->setExpanded(true);
+					} else
+						item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, Qt::green);
+					if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM) == key ) {
+						bool isOk = true;
+						foreach (QTreeWidgetItem *it, itemList) {
+							if ( it->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION) == key && it->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM).isEmpty() ) {
+								isOk = false;
+								break;
+							}
+						}
+
+						if ( isOk )
+							item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, Qt::green);
+						else {
+							item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, Qt::red);
+							item->parent()->setExpanded(true);
+						}
+					}
 				}
 			} else {
 				QTreeWidgetItem *item = itemList[0];
