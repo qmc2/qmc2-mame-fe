@@ -832,6 +832,10 @@ Rectangle {
                         toxicWasteMain.showBackgroundAnimation = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
+                        if ( checked )
+                            backgroundAnim.opacity = 1.0;
+                        else
+                            backgroundAnim.opacity = 0.0;
                         focus = true;
                     }
                     onFocusChanged: {
@@ -888,6 +892,7 @@ Rectangle {
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.showShaderEffect = checked;
+                        waveEffect.running = checked;
                         toxicWasteMain.ignoreLaunch = true;
                         resetIgnoreLaunchTimer.restart();
                         focus = true;
