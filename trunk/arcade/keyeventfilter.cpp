@@ -32,12 +32,12 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
         if ( keyEvent->modifiers() & Qt::MetaModifier )
             keySeq += Qt::META;
         keySeq += keyEvent->key();
-        QString nativeKeySeq = QString(QKeySequence(keySeq).toString().toLatin1());
-        QString mappedKeySeq = mKeySequenceMap->mapKeySequence(nativeKeySeq);
-        if ( mappedKeySeq != nativeKeySeq ) {
+        QString pressedKeySeq = QString(QKeySequence(keySeq).toString().toLatin1());
+        QString mappedKeySeq = mKeySequenceMap->mapKeySequence(pressedKeySeq);
+        if ( mappedKeySeq != pressedKeySeq ) {
             // emulate a key-event for the mapped key
             if ( debugKeys )
-                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released").arg(mappedKeySeq));
+                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released").arg(mappedKeySeq));
             QKeySequence emulatedKeySequence(mappedKeySeq);
             Qt::KeyboardModifiers mods = Qt::NoModifier;
             int key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
@@ -64,7 +64,7 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
         } else
             // default event processing
             if ( debugKeys )
-                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - default event processing").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
+                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - default event processing").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
             return QObject::eventFilter(object, event);
     } else
         // default event processing
