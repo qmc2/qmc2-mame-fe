@@ -2,7 +2,7 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - MAME/MESS/UME Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-emu emulator] [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-h|-?|-help]
+  qmc2-arcade [-emu emulator] [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-debugkeys] [-h|-?|-help]
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
