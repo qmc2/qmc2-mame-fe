@@ -9,6 +9,7 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
+extern bool debugKeys;
 
 KeyEventFilter::KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent) :
     QObject(parent)
@@ -35,7 +36,8 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
         QString mappedKeySeq = mKeySequenceMap->mapKeySequence(nativeKeySeq);
         if ( mappedKeySeq != nativeKeySeq ) {
             // emulate a key-event for the mapped key
-            QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released").arg(mappedKeySeq));
+            if ( debugKeys )
+                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released").arg(mappedKeySeq));
             QKeySequence emulatedKeySequence(mappedKeySeq);
             Qt::KeyboardModifiers mods = Qt::NoModifier;
             int key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
@@ -61,7 +63,8 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
             return true;
         } else
             // default event processing
-            QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - default event processing").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
+            if ( debugKeys )
+                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - default event processing").arg(nativeKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
             return QObject::eventFilter(object, event);
     } else
         // default event processing

@@ -45,6 +45,9 @@ OPTIONS
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to search for QMC2's configuration
                      and cache-files.
 
+  -debugkeys  Enable debug logging for key-sequence mapping. Every recognized key or key-sequence will be logged to the console together with info on
+              how the event is processed. Mapped key-sequences will cause event emulation, others will follow Qt's default event processing.
+
   -h|-?|-help  Show usage help, available options / values and their current defaults (for the given emulator mode).
 
 FILES
