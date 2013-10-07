@@ -14,6 +14,46 @@
    <string>Arcade mode setup</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>82</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButtonOk">
+     <property name="text">
+      <string>&amp;Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>&amp;Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>81</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="0" column="0" colspan="4">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
@@ -24,6 +64,16 @@
        <string>General settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="6" column="0" colspan="4">
+        <widget class="QCheckBox" name="checkBoxDebugKeys">
+         <property name="toolTip">
+          <string>Log debug messages of key-sequence mapping events to the console</string>
+         </property>
+         <property name="text">
+          <string>Debug key-sequence mapping</string>
+         </property>
+        </widget>
+       </item>
        <item row="4" column="2" colspan="2">
         <widget class="QComboBox" name="comboBoxArcadeTheme">
          <property name="toolTip">
@@ -207,7 +257,7 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="4">
+       <item row="8" column="0" colspan="4">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -273,6 +323,16 @@
          <property name="icon">
           <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="4">
+        <widget class="QCheckBox" name="checkBoxDebugJoy">
+         <property name="toolTip">
+          <string>Log debug messages of joystick function mapping events to the console</string>
+         </property>
+         <property name="text">
+          <string>Debug joystick function mapping</string>
          </property>
         </widget>
        </item>
@@ -889,46 +949,6 @@
      </widget>
     </widget>
    </item>
-   <item row="1" column="0">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>82</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="pushButtonOk">
-     <property name="text">
-      <string>&amp;Ok</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="pushButtonCancel">
-     <property name="text">
-      <string>&amp;Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>81</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
  <tabstops>
@@ -942,6 +962,8 @@
   <tabstop>comboBoxGraphicsSystem</tabstop>
   <tabstop>comboBoxArcadeTheme</tabstop>
   <tabstop>comboBoxConsoleType</tabstop>
+  <tabstop>checkBoxDebugKeys</tabstop>
+  <tabstop>checkBoxDebugJoy</tabstop>
   <tabstop>checkBoxUseFilteredList</tabstop>
   <tabstop>lineEditFilteredListFile</tabstop>
   <tabstop>toolButtonBrowseFilteredListFile</tabstop>

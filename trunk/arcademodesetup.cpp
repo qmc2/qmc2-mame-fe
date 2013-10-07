@@ -94,6 +94,13 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	index = comboBoxConsoleType->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType", "terminal").toString());
 	if ( index > 0 )
 		comboBoxConsoleType->setCurrentIndex(index);
+	checkBoxDebugKeys->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", false).toBool());
+	checkBoxDebugJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy", false).toBool());
+
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME
+	checkBoxDebugJoy->hide();
+#endif
 
 	// game list filter
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
@@ -283,6 +290,8 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem", comboBoxGraphicsSystem->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/Theme", comboBoxArcadeTheme->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType", comboBoxConsoleType->currentText());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", checkBoxDebugKeys->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy", checkBoxDebugJoy->isChecked());
 
 	// game list filter
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "UseFilteredList", checkBoxUseFilteredList->isChecked());
