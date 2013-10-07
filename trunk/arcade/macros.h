@@ -128,6 +128,10 @@
 #define QMC2_ARCADE_CLI_LANG          (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1 ? argumentList[argumentList.indexOf("-language") + 1] : "us")
 #define QMC2_ARCADE_CLI_LANG_INV      (argumentList.indexOf("-language") >= 0 && argumentList.count() == argumentList.indexOf("-language") + 1)
 #define QMC2_ARCADE_CLI_LANG_VAL      (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1)
+// -debugkeys
+#define QMC2_ARCADE_CLI_DEBUG_KEYS    (argumentList.indexOf("-debugkeys") >= 0)
+// -debugjoy
+#define QMC2_ARCADE_CLI_DEBUG_JOY     (argumentList.indexOf("-debugjoy") >= 0)
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP          (argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation
