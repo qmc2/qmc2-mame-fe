@@ -30,7 +30,8 @@
                                                                              << "Ctrl+M" \
                                                                              << "Ctrl+O" \
                                                                              << "Ctrl+P" \
-                                                                             << "Ctrl+X"
+                                                                             << "Ctrl+X" \
+                                                                             << "Ctrl+Backspace"
 #define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << QObject::tr("Toggle full-screen / windowed mode") \
                                                                              << QObject::tr("Toggle full-screen / windowed mode") \
                                                                              << QObject::tr("Toggle full-screen / windowed mode") \
@@ -38,7 +39,8 @@
                                                                              << QObject::tr("Toggle menu-bar") \
                                                                              << QObject::tr("Toggle preferences") \
                                                                              << QObject::tr("Start emulation") \
-                                                                             << QObject::tr("Exit")
+                                                                             << QObject::tr("Exit") \
+                                                                             << QObject::tr("Flip cabinet / game-card")
 #define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        ; // FIXME: add darkone-specific key-sequences
 #define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)        ; // FIXME: add darkone-specific key-sequence descriptions
 

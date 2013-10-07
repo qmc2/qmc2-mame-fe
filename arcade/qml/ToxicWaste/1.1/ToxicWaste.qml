@@ -1646,6 +1646,9 @@ Rectangle {
                         searchTextInput.focus = true;
                     }
                     break;
+                case Qt.Key_Backspace:
+                    toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    break;
                 }
             } else if ( !toxicWasteMain.menuHidden ) {
                 if ( ToxicWaste.validateKey(event.text) ) {

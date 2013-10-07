@@ -547,37 +547,42 @@
     </message>
     <message>
         <location filename="../keysequences.h" line="23"/>
-        <location filename="../keysequences.h" line="41"/>
+        <location filename="../keysequences.h" line="42"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="24"/>
         <location filename="../keysequences.h" line="25"/>
-        <location filename="../keysequences.h" line="40"/>
+        <location filename="../keysequences.h" line="41"/>
         <source>Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="34"/>
         <location filename="../keysequences.h" line="35"/>
         <location filename="../keysequences.h" line="36"/>
+        <location filename="../keysequences.h" line="37"/>
         <source>Toggle full-screen / windowed mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="37"/>
+        <location filename="../keysequences.h" line="38"/>
         <source>Focus search box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="38"/>
+        <location filename="../keysequences.h" line="39"/>
         <source>Toggle menu-bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="39"/>
+        <location filename="../keysequences.h" line="40"/>
         <source>Toggle preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="43"/>
+        <source>Flip cabinet / game-card</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -686,129 +691,129 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="858"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="857"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="862"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="861"/>
         <source>Draw animation in the foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="887"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="886"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="891"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="890"/>
         <source>Show radial wave effect on background?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="916"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="915"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="921"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="920"/>
         <source>Auto-stop animation and wave effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="945"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="944"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="950"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="949"/>
         <source>Show FPS counter in the menu-bar?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="974"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="973"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="979"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="978"/>
         <source>Confirm when quitting the application?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1003"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1002"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1008"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1007"/>
         <source>Scale &amp; position cabinet automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1024"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1023"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1029"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1028"/>
         <source>Sliders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1039"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1038"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1044"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1043"/>
         <source>Cabinet zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1052"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1051"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1057"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1056"/>
         <source>Cabinet X center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1066"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1065"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1071"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1070"/>
         <source>Cabinet Y center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1080"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1079"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1085"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1084"/>
         <source>Cabinet opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1093"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1092"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1098"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1097"/>
         <source>Background opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1106"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1105"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1111"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1110"/>
         <source>Game list opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1116"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1115"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1121"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1120"/>
         <source>Backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1133"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1132"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1138"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1137"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1185"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1184"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1190"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1189"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1227"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1226"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1232"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1231"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1253"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1252"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1258"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1257"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1355"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1354"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1360"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1359"/>
         <source>FPS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1575"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1574"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1580"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1579"/>
         <source>Starting shader effect</source>
         <translation>Iniciando efecto de sombreado</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1577"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1576"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1582"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1581"/>
         <source>Shader effect stopped</source>
         <translation>Efecto de sombreado finalizado</translation>
     </message>
