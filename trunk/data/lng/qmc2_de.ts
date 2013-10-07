@@ -698,8 +698,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="386"/>
-        <location filename="../../arcademodesetup.cpp" line="556"/>
-        <location filename="../../arcademodesetup.cpp" line="559"/>
+        <location filename="../../arcademodesetup.cpp" line="572"/>
+        <location filename="../../arcademodesetup.cpp" line="575"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
@@ -795,7 +795,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="762"/>
-        <location filename="../../arcademodesetup.cpp" line="624"/>
+        <location filename="../../arcademodesetup.cpp" line="640"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -896,81 +896,81 @@ p, li { white-space: pre-wrap; }
         <translation>Scanne Tastaturkürzel</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="345"/>
-        <location filename="../../arcademodesetup.cpp" line="347"/>
-        <location filename="../../arcademodesetup.cpp" line="365"/>
-        <location filename="../../arcademodesetup.cpp" line="543"/>
+        <location filename="../../arcademodesetup.cpp" line="361"/>
+        <location filename="../../arcademodesetup.cpp" line="363"/>
+        <location filename="../../arcademodesetup.cpp" line="381"/>
+        <location filename="../../arcademodesetup.cpp" line="559"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="446"/>
+        <location filename="../../arcademodesetup.cpp" line="462"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation>Ausführbare Datei für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="446"/>
-        <location filename="../../arcademodesetup.cpp" line="467"/>
+        <location filename="../../arcademodesetup.cpp" line="462"/>
+        <location filename="../../arcademodesetup.cpp" line="483"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="453"/>
+        <location filename="../../arcademodesetup.cpp" line="469"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation>Arbeitsverzeichnis für Ausführung von QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="460"/>
+        <location filename="../../arcademodesetup.cpp" line="476"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation>Konfigurationspfad für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="467"/>
+        <location filename="../../arcademodesetup.cpp" line="483"/>
         <source>Choose filtered list file for export</source>
         <translation>Datei für Export der gefilterten Liste auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="477"/>
+        <location filename="../../arcademodesetup.cpp" line="493"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation>FATAL: Arcade-Modus: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="501"/>
+        <location filename="../../arcademodesetup.cpp" line="517"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation>WARNUNG: Arcade-Modus: der reguläre Ausdruck für den Namensfilter ist ungültig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="503"/>
+        <location filename="../../arcademodesetup.cpp" line="519"/>
         <source>Filtering</source>
         <translation>Filtere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="556"/>
+        <location filename="../../arcademodesetup.cpp" line="572"/>
         <source>imperfect</source>
         <translation>unvollständig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="591"/>
+        <location filename="../../arcademodesetup.cpp" line="607"/>
         <source>Sorting</source>
         <translation>Sortiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="599"/>
+        <location filename="../../arcademodesetup.cpp" line="615"/>
         <source>Exporting</source>
         <translation>Exportiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="614"/>
+        <location filename="../../arcademodesetup.cpp" line="630"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="615"/>
+        <location filename="../../arcademodesetup.cpp" line="631"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="626"/>
+        <location filename="../../arcademodesetup.cpp" line="642"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation>
             <numerusform>Arcade-Modus: %n gefiltertes Set nach &apos;%1&apos; exportiert</numerusform>
@@ -15421,38 +15421,43 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="23"/>
-        <location filename="../../arcade/keysequences.h" line="41"/>
+        <location filename="../../arcade/keysequences.h" line="42"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="24"/>
         <location filename="../../arcade/keysequences.h" line="25"/>
-        <location filename="../../arcade/keysequences.h" line="40"/>
+        <location filename="../../arcade/keysequences.h" line="41"/>
         <source>Start emulation</source>
         <translation>Emulation starten</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="34"/>
         <location filename="../../arcade/keysequences.h" line="35"/>
         <location filename="../../arcade/keysequences.h" line="36"/>
+        <location filename="../../arcade/keysequences.h" line="37"/>
         <source>Toggle full-screen / windowed mode</source>
         <translation>Vollbild- / Fenster-Modus umschalten</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="37"/>
+        <location filename="../../arcade/keysequences.h" line="38"/>
         <source>Focus search box</source>
         <translation>Such-Box Eingabe</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="38"/>
+        <location filename="../../arcade/keysequences.h" line="39"/>
         <source>Toggle menu-bar</source>
         <translation>Menüzeile ein-/ausschalten</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="39"/>
+        <location filename="../../arcade/keysequences.h" line="40"/>
         <source>Toggle preferences</source>
         <translation>Einstellungen ein-/ausschalten</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="43"/>
+        <source>Flip cabinet / game-card</source>
+        <translation>Gehäuse / Spielkarte umdrehen</translation>
     </message>
 </context>
 <context>
