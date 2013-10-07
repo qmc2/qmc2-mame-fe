@@ -31,10 +31,10 @@ void KeySequenceMap::loadKeySequenceMap()
     globalConfig->endGroup();
 }
 
-QString KeySequenceMap::mapKeySequence(QString nativeKeySeq)
+QString KeySequenceMap::mapKeySequence(QString keySeq)
 {
-    if ( mKeySequenceMap.contains(nativeKeySeq) )
-        return mKeySequenceMap[nativeKeySeq];
+    if ( mKeySequenceMap.contains(keySeq) )
+        return mKeySequenceMap[keySeq];
     else
-        return nativeKeySeq;
+        return keySeq;
 }

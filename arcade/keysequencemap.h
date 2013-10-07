@@ -15,7 +15,7 @@ public:
 public slots:
     void setKeySequences(QStringList keySequences);
     void loadKeySequenceMap();
-    QString mapKeySequence(QString nativeKeySeq);
+    QString mapKeySequence(QString keySeq);
 
 private:
     QStringList mNativeKeySequences;
