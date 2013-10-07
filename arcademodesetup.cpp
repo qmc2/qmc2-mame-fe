@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QApplication>
+#include <QMultiMap>
 #include <QMap>
 #include <QTreeWidgetItem>
 #include <QTreeWidgetItemIterator>
@@ -155,6 +156,8 @@ void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*
 		item->setText(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, QString());
 
 	qApp->installEventFilter(qmc2KeyPressFilter);
+
+	QTimer::singleShot(0, this, SLOT(checkKeySequenceMaps()));
 }
 
 void ArcadeModeSetup::loadKeySequenceMaps()
@@ -197,6 +200,8 @@ void ArcadeModeSetup::loadKeySequenceMaps()
 			}
 		}
 	}
+
+	QTimer::singleShot(0, this, SLOT(checkKeySequenceMaps()));
 }
 
 void ArcadeModeSetup::saveKeySequenceMaps()
@@ -220,6 +225,51 @@ void ArcadeModeSetup::saveKeySequenceMaps()
 			if ( !customKeySequence.isEmpty() )
 				qmc2Config->setValue(keySequenceMapBases[i] + "/" + (*it)->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION), customKeySequence);
 			it++;
+		}
+	}
+}
+
+void ArcadeModeSetup::checkKeySequenceMaps()
+{
+	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
+		QTreeWidget *treeWidget = NULL;
+		switch ( i ) {
+			case QMC2_ARCADE_THEME_TOXICWASTE:
+				treeWidget = treeWidgetKeyMapToxicWaste;
+				break;
+			case QMC2_ARCADE_THEME_DARKONE:
+				treeWidget = treeWidgetKeyMapDarkone;
+				break;
+		}
+
+		QTreeWidgetItemIterator it(treeWidget);
+		QMultiMap<QString, QTreeWidgetItem *> keySeqMap;
+		while ( *it ) {
+			if ( (*it)->parent() ) {
+				QString customKeySequence = (*it)->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM);
+				keySeqMap.insert((*it)->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION), *it);
+				if ( !customKeySequence.isEmpty() )
+					keySeqMap.insert(customKeySequence, *it);
+			}
+			it++;
+		}
+		foreach (QString key, keySeqMap.keys()) {
+			QList<QTreeWidgetItem *> itemList = keySeqMap.values(key);
+			if ( itemList.count() > 1 ) {
+				foreach (QTreeWidgetItem *item, itemList) {
+					if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION) == key )
+						item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, Qt::red);
+					if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM) == key )
+						item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, Qt::red);
+					item->parent()->setExpanded(true);
+				}
+			} else {
+				QTreeWidgetItem *item = itemList[0];
+				if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION) == key )
+					item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION, Qt::green);
+				if ( item->text(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM) == key )
+					item->setForeground(QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM, Qt::green);
+			}
 		}
 	}
 }

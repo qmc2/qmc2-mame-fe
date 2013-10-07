@@ -23,6 +23,7 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		void scanCustomKeySequence(QTreeWidgetItem *, int);
 		void loadKeySequenceMaps();
 		void saveKeySequenceMaps();
+		void checkKeySequenceMaps();
 		void adjustIconSizes();
 		void saveSettings();
 		void updateCategoryFilter();
