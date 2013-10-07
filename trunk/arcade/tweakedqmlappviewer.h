@@ -111,6 +111,7 @@ public slots:
     void frameBufferSwapped();
     void handleQuit();
 #endif
+    int runningEmulators() { return processManager->runningProcesses(); }
 
 private:
     bool initialised;

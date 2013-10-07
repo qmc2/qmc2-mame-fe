@@ -35,6 +35,7 @@ Rectangle {
     property real backgroundOpacity: 0.7
     property real gameListOpacity: 1
     property string cabinetImageType: "preview"
+    property bool autoStopAnimations: true
 
     // delayed init
     Timer {
@@ -68,6 +69,12 @@ Rectangle {
         running: false
         repeat: false
         onTriggered: toxicWasteMain.flipDirectionChanged = false
+    }
+
+    Connections {
+        target: viewer;
+        onEmulatorStarted: ToxicWaste.emulatorStarted()
+        onEmulatorFinished: ToxicWaste.emulatorStopped()
     }
 
     width: ToxicWaste.baseWidth
@@ -775,7 +782,7 @@ Rectangle {
         x: parent.width / 2 - width / 2
         y: parent.height / 2 - height / 2
         width: 300
-        height: 230
+        height: 250
         border.color: "black"
         border.width: 2
         color: "#007bff"
@@ -888,17 +895,46 @@ Rectangle {
                         if ( !focus )
                             toxicWasteMain.focus = true;
                     }
-                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(autoStopAnimationsCheckBox, preferencesSwitchesTab)
                     KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(animInFgCheckBox, preferencesSwitchesTab)
-                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(autoStopAnimationsCheckBox, preferencesSwitchesTab)
                     KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(animInFgCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
-                    id: showFpsCheckBox
+                    id: autoStopAnimationsCheckBox
                     anchors.top: showShaderEffectCheckBox.bottom
                     anchors.topMargin: 10
                     anchors.bottom: showShaderEffectCheckBox.bottom
+                    anchors.bottomMargin: -26
+                    anchors.left: parent.left
+                    anchors.leftMargin: 5
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: toxicWasteMain.autoStopAnimations
+                    text: qsTr("Auto-stop animation and wave effect?")
+                    textColor: "black"
+                    onClicked: {
+                        toxicWasteMain.autoStopAnimations = checked;
+                        toxicWasteMain.ignoreLaunch = true;
+                        resetIgnoreLaunchTimer.restart();
+                        focus = true;
+                    }
+                    onFocusChanged: {
+                        if ( !focus )
+                            toxicWasteMain.focus = true;
+                    }
+                    KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(showFpsCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    smooth: true
+                }
+                CheckBox {
+                    id: showFpsCheckBox
+                    anchors.top: autoStopAnimationsCheckBox.bottom
+                    anchors.topMargin: 10
+                    anchors.bottom: autoStopAnimationsCheckBox.bottom
                     anchors.bottomMargin: -26
                     anchors.left: parent.left
                     anchors.leftMargin: 5
@@ -918,9 +954,9 @@ Rectangle {
                             toxicWasteMain.focus = true;
                     }
                     KeyNavigation.tab: preferencesTabWidget.nextKeyNavItem(confirmQuitCheckBox, preferencesSwitchesTab)
-                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.backtab: preferencesTabWidget.previousKeyNavItem(autoStopAnimationsCheckBox, preferencesSwitchesTab)
                     KeyNavigation.right: preferencesTabWidget.nextKeyNavItem(confirmQuitCheckBox, preferencesSwitchesTab)
-                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(showShaderEffectCheckBox, preferencesSwitchesTab)
+                    KeyNavigation.left: preferencesTabWidget.previousKeyNavItem(autoStopAnimationsCheckBox, preferencesSwitchesTab)
                     smooth: true
                 }
                 CheckBox {
@@ -1499,7 +1535,7 @@ Rectangle {
     }
     BackgroundAnimation {
         id: backgroundAnim
-        opacity: toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0
+        opacity: toxicWasteMain.autoStopAnimations ? (toxicWasteMain.showBackgroundAnimation && viewer.runningEmulators() === 0 ? 1.0 : 0.0) : (toxicWasteMain.showBackgroundAnimation ? 1.0 : 0.0)
         Behavior on opacity {
             NumberAnimation { properties: "opacity"; duration: 1000 }
         }
@@ -1516,7 +1552,7 @@ Rectangle {
         hideSource: true
     }
     RadialWaveEffect {
-        id: layer
+        id: waveEffect
         anchors.fill: parent
         source: effectSource
         wave: 0.0
@@ -1524,9 +1560,10 @@ Rectangle {
         waveOriginY: 0.5
         waveWidth: 0.01
         z: 1
+        property alias running: waveAnim.running
         NumberAnimation on wave {
             id: waveAnim
-            running: toxicWasteMain.showShaderEffect
+            running: toxicWasteMain.autoStopAnimations ? (toxicWasteMain.showShaderEffect && viewer.runningEmulators() === 0) : toxicWasteMain.showShaderEffect
             loops: Animation.Infinite
             easing.type: Easing.Linear
             from: 0.0000;
