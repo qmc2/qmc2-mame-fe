@@ -706,7 +706,7 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="921"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="920"/>
         <source>Auto-stop animation and wave effect?</source>
-        <translation>Animation / Welleneffekt autom. stoppen?</translation>
+        <translation>Animationen automatisch stoppen?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="950"/>

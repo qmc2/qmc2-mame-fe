@@ -14,15 +14,16 @@ DESCRIPTION
   faster. Also, you cannot change the emulator's configuration from within QMC2 Arcade. So whenever you want to make modifications to a
   game's/machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
 
-  The main GUI also has a specific dialog for setting up all relevant back-end options (-theme, -console, -graphicssystem and -language) and
-  for producing a filtered game/machine list used by QMC2 Arcade exclusively (optional). Default values for back-end options can also be
-  configured inside QMC2 Arcade provided the chosen qml_theme supports it (which both of the available themes do).
+  The main GUI also has a specific dialog for setting up all relevant back-end default options (-theme, -console, -graphicssystem and
+  -language), for producing a filtered game/machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences (also
+  optional). Default values for back-end options can also be configured inside QMC2 Arcade provided the chosen qml_theme supports it (which
+  all of the available themes do).
 
   Changed back-end default options will require a restart of QMC2 Arcade to take effect. Specifying them on the command line will overwrite
   the current defaults temporarily, but will not change their stored default values.
 
   The -emu parameter's value corresponds to the main GUI's three variants qmc2-sdlmame(6), qmc2-sdlmess(6) and qmc2-sdlume(6). As in case of
-  of the main GUI counterparts, selecting a certain emulator will make QMC2 Arcade use the settings specific to the chosen variant.
+  the main GUI counterparts, selecting a certain emulator will make QMC2 Arcade use the settings specific to the chosen variant.
 
   Theme-specific settings are shared between all modes. That is, when a theme supports multiple emulators, it will usually look the same in
   each mode.
