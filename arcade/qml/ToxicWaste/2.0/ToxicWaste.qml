@@ -72,7 +72,7 @@ Rectangle {
     }
 
     Connections {
-        target: viewer;
+        target: viewer
         onEmulatorStarted: ToxicWaste.emulatorStarted()
         onEmulatorFinished: ToxicWaste.emulatorStopped()
     }
@@ -410,12 +410,13 @@ Rectangle {
                 State {
                     name: "back"
                     PropertyChanges { target: overlayRotation; angle: 180 }
+                    PropertyChanges { target: toxicWasteMain; focus: true }
                     when: toxicWasteMain.cabinetFlipped
                 },
                 State {
                     name: "front"
                     PropertyChanges { target: overlayRotation; angle: 0 }
-                    PropertyChanges { target: frontItem; focus: true }
+                    PropertyChanges { target: toxicWasteMain; focus: true }
                     when: !toxicWasteMain.cabinetFlipped
                 }
             ]
@@ -1643,11 +1644,11 @@ Rectangle {
                     if ( !toxicWasteMain.menuHidden ) {
                         searchTextInput.text = "";
                         searchTextInput.focus = true;
+                        event.accepted = true;
                     }
                     break;
                 case Qt.Key_Backspace:
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
-                    toxicWasteMain.focus = true;
                     event.accepted = true;
                     break;
                 }
