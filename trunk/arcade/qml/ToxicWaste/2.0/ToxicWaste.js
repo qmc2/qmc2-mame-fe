@@ -21,7 +21,7 @@ function scaleFactorY() {
 
 function itemEntered(itemText, itemBackground) {
     if ( !itemText.fontResized ) {
-        if ( lastItemText != undefined )
+        if ( lastItemText !== undefined )
             itemExited(lastItemText, lastitemBackground);
         lastItemText = itemText;
         lastitemBackground = itemBackground;
@@ -207,14 +207,14 @@ function launchButtonSource() {
 }
 
 function validateKey(k) {
-    if ( /[^a-zA-Z0-9\*\?$]/.test(k) || k == "" )
+    if ( /[^a-zA-Z0-9\*\?$]/.test(k) || k === "" )
         return false;
     else
         return true;
 }
 
 function validateSpecialKey(k) {
-    if ( /[^\b$]/.test(k) || k == "" )
+    if ( /[^\b$]/.test(k) || k === "" )
         return false;
     else
         return true;
