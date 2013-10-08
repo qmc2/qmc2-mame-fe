@@ -1647,6 +1647,8 @@ Rectangle {
                     break;
                 case Qt.Key_Backspace:
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
+                    toxicWasteMain.focus = true;
+                    event.accepted = true;
                     break;
                 }
             } else if ( !toxicWasteMain.menuHidden ) {
