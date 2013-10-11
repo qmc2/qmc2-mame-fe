@@ -1,10 +1,8 @@
 #include "keysequencemap.h"
 #include "arcadesettings.h"
-#include "consolewindow.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
-extern ConsoleWindow *consoleWindow;
 
 KeySequenceMap::KeySequenceMap(QStringList keySequences, QObject *parent) :
     QObject(parent)

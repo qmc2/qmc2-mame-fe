@@ -17,6 +17,9 @@
 #include "imageprovider.h"
 #include "infoprovider.h"
 #include "keysequencemap.h"
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+#include "joyfunctionmap.h"
+#endif
 
 #define QMC2_ARCADE_PARAM_THEME     0
 #if QT_VERSION < 0x050000
@@ -51,6 +54,9 @@ public:
     QStringList cliParams;
     QStringList infoClasses;
     KeySequenceMap *keySequenceMap;
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    JoyFunctionMap *joyFunctionMap;
+#endif
 
 #if QT_VERSION < 0x050000
     explicit TweakedQmlApplicationViewer(QWidget *parent = 0);

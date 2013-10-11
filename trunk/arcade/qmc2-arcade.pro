@@ -48,7 +48,8 @@ SOURCES += main.cpp \
     ../minizip/unzip.c \
     ../minizip/ioapi.c \
     keyeventfilter.cpp \
-    keysequencemap.cpp
+    keysequencemap.cpp \
+    joyfunctionmap.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -97,7 +98,8 @@ HEADERS += \
     ../minizip/crypt.h \
     keyeventfilter.h \
     keysequences.h \
-    keysequencemap.h
+    keysequencemap.h \
+    joyfunctionmap.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 
