@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>309</width>
-    <height>422</height>
+    <height>406</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,7 +64,30 @@
        <string>General settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="6" column="0" colspan="4">
+       <item row="7" column="0" colspan="3">
+        <widget class="QCheckBox" name="checkBoxNoJoy">
+         <property name="toolTip">
+          <string>Disable joystick function mapping</string>
+         </property>
+         <property name="text">
+          <string>Disable joystick function mapping</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEditConfigurationPath">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Configuration path for QMC2 Arcade</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="3">
         <widget class="QCheckBox" name="checkBoxDebugKeys">
          <property name="toolTip">
           <string>Log debug messages of key-sequence mapping events to the console</string>
@@ -74,7 +97,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="2" colspan="2">
+       <item row="4" column="1" colspan="2">
         <widget class="QComboBox" name="comboBoxArcadeTheme">
          <property name="toolTip">
           <string>Select arcade theme</string>
@@ -104,7 +127,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2" colspan="2">
+       <item row="3" column="1" colspan="2">
         <widget class="QComboBox" name="comboBoxGraphicsSystem">
          <property name="toolTip">
           <string>Select the graphics system used to render the scene (when available, OpenGL is strongly recommended!)</string>
@@ -162,7 +185,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="lineEditWorkingDirectory">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -175,7 +198,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="2" colspan="2">
+       <item row="5" column="1" colspan="2">
         <widget class="QComboBox" name="comboBoxConsoleType">
          <property name="toolTip">
           <string>Select type of console</string>
@@ -197,7 +220,7 @@
          </item>
         </widget>
        </item>
-       <item row="1" column="3">
+       <item row="1" column="2">
         <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -214,7 +237,20 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
+       <item row="10" column="0" colspan="3">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="2">
         <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -244,7 +280,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
+       <item row="0" column="1">
         <widget class="QLineEdit" name="lineEditExecutableFile">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -256,19 +292,6 @@
           <string>QMC2 Arcade executable file</string>
          </property>
         </widget>
-       </item>
-       <item row="8" column="0" colspan="4">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="labelExecutableFile">
@@ -297,19 +320,6 @@
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QLineEdit" name="lineEditConfigurationPath">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Configuration path for QMC2 Arcade</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
         <widget class="QToolButton" name="toolButtonBrowseConfigurationPath">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -326,7 +336,7 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="4">
+       <item row="8" column="0" colspan="3">
         <widget class="QCheckBox" name="checkBoxDebugJoy">
          <property name="toolTip">
           <string>Log debug messages of joystick function mapping events to the console</string>
@@ -335,6 +345,30 @@
           <string>Debug joystick function mapping</string>
          </property>
         </widget>
+       </item>
+       <item row="9" column="0" colspan="3">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QCheckBox" name="checkBoxJoy">
+           <property name="toolTip">
+            <string>Force use of joystick at specified index</string>
+           </property>
+           <property name="text">
+            <string>Force use of joystick at specified index</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBoxJoyIndex">
+           <property name="toolTip">
+            <string>Joystick index</string>
+           </property>
+           <property name="maximum">
+            <number>9999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -1007,7 +1041,10 @@
   <tabstop>comboBoxArcadeTheme</tabstop>
   <tabstop>comboBoxConsoleType</tabstop>
   <tabstop>checkBoxDebugKeys</tabstop>
+  <tabstop>checkBoxNoJoy</tabstop>
   <tabstop>checkBoxDebugJoy</tabstop>
+  <tabstop>checkBoxJoy</tabstop>
+  <tabstop>spinBoxJoyIndex</tabstop>
   <tabstop>checkBoxUseFilteredList</tabstop>
   <tabstop>lineEditFilteredListFile</tabstop>
   <tabstop>toolButtonBrowseFilteredListFile</tabstop>
@@ -1047,12 +1084,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>296</x>
-     <y>266</y>
+     <x>290</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>241</x>
-     <y>266</y>
+     <x>155</x>
+     <y>242</y>
     </hint>
    </hints>
   </connection>
@@ -1064,7 +1101,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>142</x>
-     <y>417</y>
+     <y>401</y>
     </hint>
     <hint type="destinationlabel">
      <x>86</x>
@@ -1080,11 +1117,59 @@
    <hints>
     <hint type="sourcelabel">
      <x>205</x>
-     <y>417</y>
+     <y>401</y>
     </hint>
     <hint type="destinationlabel">
      <x>279</x>
      <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxNoJoy</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxDebugJoy</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxNoJoy</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxJoy</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>234</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>158</x>
+     <y>276</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxNoJoy</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBoxJoyIndex</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>250</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>265</x>
+     <y>279</y>
     </hint>
    </hints>
   </connection>
