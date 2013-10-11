@@ -243,6 +243,8 @@ qmc2/arcade/.svn/text-base/imageprovider.h.svn-base
 qmc2/arcade/.svn/text-base/Info.plist.in.svn-base
 qmc2/arcade/.svn/text-base/infoprovider.cpp.svn-base
 qmc2/arcade/.svn/text-base/infoprovider.h.svn-base
+qmc2/arcade/.svn/text-base/joyfunctionmap.cpp.svn-base
+qmc2/arcade/.svn/text-base/joyfunctionmap.h.svn-base
 qmc2/arcade/.svn/text-base/joystick.cpp.svn-base
 qmc2/arcade/.svn/text-base/joystick.h.svn-base
 qmc2/arcade/.svn/text-base/keyeventfilter.cpp.svn-base
