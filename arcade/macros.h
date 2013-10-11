@@ -130,12 +130,18 @@
 #define QMC2_ARCADE_CLI_LANG_VAL      (argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1)
 // -debugkeys
 #define QMC2_ARCADE_CLI_DEBUG_KEYS    (argumentList.indexOf("-debugkeys") >= 0)
+// -joy <index>
+#define QMC2_ARCADE_CLI_JOY           (argumentList.indexOf("-joy") >= 0 && argumentList.count() > argumentList.indexOf("-joy") + 1 ? argumentList[argumentList.indexOf("-joy") + 1].toInt() : 0)
+#define QMC2_ARCADE_CLI_JOY_INV       (argumentList.indexOf("-joy") >= 0 && argumentList.count() == argumentList.indexOf("-joy") + 1)
+#define QMC2_ARCADE_CLI_JOY_VAL       (argumentList.indexOf("-joy") >= 0 && argumentList.count() > argumentList.indexOf("-joy") + 1)
+// -nojoy
+#define QMC2_ARCADE_CLI_NO_JOY        (argumentList.indexOf("-nojoy") >= 0)
 // -debugjoy
 #define QMC2_ARCADE_CLI_DEBUG_JOY     (argumentList.indexOf("-debugjoy") >= 0)
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP          (argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation
-#define QMC2_ARCADE_CLI_INVALID       (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV)
+#define QMC2_ARCADE_CLI_INVALID       (QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV || QMC2_ARCADE_CLI_JOY_INV)
 
 // console logging macros
 #define QMC2_ARCADE_LOG_STR(s)        if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)s.toLocal8Bit()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
