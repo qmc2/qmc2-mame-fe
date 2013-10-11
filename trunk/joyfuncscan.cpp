@@ -23,6 +23,7 @@ JoystickFunctionScanner::JoystickFunctionScanner(Joystick *joystick, bool showCl
 	if ( !showClearButton )
 		pushButtonClear->hide();
 
+	clearClicked = false;
 	joyIndex = qmc2Options->comboBoxSelectJoysticks->currentIndex();
 	labelStatus->setText(tr("Scanning joystick function"));
 	setWindowTitle(tr("Scanning joystick function"));

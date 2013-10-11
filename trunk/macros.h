@@ -832,8 +832,10 @@
 #define QMC2_ARCADE_THEME_TOXICWASTE		0
 #define QMC2_ARCADE_THEME_DARKONE		1
 
-// arcade mode setup: column indizes for key-sequence-maps
+// arcade mode setup: column indizes for key-sequence and joystick-function maps
 #define QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION	0
 #define QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM	1
+#define QMC2_ARCADE_JOYMAP_COLUMN_FUNCTION	QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION
+#define QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM	QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM
 
 #endif
