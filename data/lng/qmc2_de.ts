@@ -710,8 +710,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="386"/>
-        <location filename="../../arcademodesetup.cpp" line="604"/>
-        <location filename="../../arcademodesetup.cpp" line="607"/>
+        <location filename="../../arcademodesetup.cpp" line="697"/>
+        <location filename="../../arcademodesetup.cpp" line="700"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
@@ -807,7 +807,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="762"/>
-        <location filename="../../arcademodesetup.cpp" line="672"/>
+        <location filename="../../arcademodesetup.cpp" line="765"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -894,97 +894,102 @@ p, li { white-space: pre-wrap; }
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="59"/>
+        <location filename="../../arcademodesetup.cpp" line="55"/>
+        <source>Please enable joystick control!</source>
+        <translation>Bitte Joystick-Steuerung aktivieren!</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.cpp" line="72"/>
         <source>Category</source>
         <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="62"/>
+        <location filename="../../arcademodesetup.cpp" line="75"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="162"/>
-        <location filename="../../arcademodesetup.cpp" line="163"/>
+        <location filename="../../arcademodesetup.cpp" line="183"/>
+        <location filename="../../arcademodesetup.cpp" line="184"/>
         <source>Scanning key sequence</source>
         <translation>Scanne Tastaturkürzel</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="393"/>
-        <location filename="../../arcademodesetup.cpp" line="395"/>
-        <location filename="../../arcademodesetup.cpp" line="413"/>
-        <location filename="../../arcademodesetup.cpp" line="591"/>
+        <location filename="../../arcademodesetup.cpp" line="486"/>
+        <location filename="../../arcademodesetup.cpp" line="488"/>
+        <location filename="../../arcademodesetup.cpp" line="506"/>
+        <location filename="../../arcademodesetup.cpp" line="684"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="494"/>
+        <location filename="../../arcademodesetup.cpp" line="587"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation>Ausführbare Datei für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="494"/>
-        <location filename="../../arcademodesetup.cpp" line="515"/>
+        <location filename="../../arcademodesetup.cpp" line="587"/>
+        <location filename="../../arcademodesetup.cpp" line="608"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="501"/>
+        <location filename="../../arcademodesetup.cpp" line="594"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation>Arbeitsverzeichnis für Ausführung von QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="508"/>
+        <location filename="../../arcademodesetup.cpp" line="601"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation>Konfigurationspfad für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="515"/>
+        <location filename="../../arcademodesetup.cpp" line="608"/>
         <source>Choose filtered list file for export</source>
         <translation>Datei für Export der gefilterten Liste auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="525"/>
+        <location filename="../../arcademodesetup.cpp" line="618"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation>FATAL: Arcade-Modus: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="549"/>
+        <location filename="../../arcademodesetup.cpp" line="642"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation>WARNUNG: Arcade-Modus: der reguläre Ausdruck für den Namensfilter ist ungültig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="551"/>
+        <location filename="../../arcademodesetup.cpp" line="644"/>
         <source>Filtering</source>
         <translation>Filtere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="604"/>
+        <location filename="../../arcademodesetup.cpp" line="697"/>
         <source>imperfect</source>
         <translation>unvollständig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="639"/>
+        <location filename="../../arcademodesetup.cpp" line="732"/>
         <source>Sorting</source>
         <translation>Sortiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="647"/>
+        <location filename="../../arcademodesetup.cpp" line="740"/>
         <source>Exporting</source>
         <translation>Exportiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="662"/>
+        <location filename="../../arcademodesetup.cpp" line="755"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="663"/>
+        <location filename="../../arcademodesetup.cpp" line="756"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="674"/>
+        <location filename="../../arcademodesetup.cpp" line="767"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation>
             <numerusform>Arcade-Modus: %n gefiltertes Set nach &apos;%1&apos; exportiert</numerusform>
@@ -6170,36 +6175,46 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <name>JoystickFunctionScanner</name>
     <message>
         <location filename="../../joyfuncscan.ui" line="15"/>
-        <location filename="../../joyfuncscan.ui" line="72"/>
-        <location filename="../../joyfuncscan.cpp" line="24"/>
-        <location filename="../../joyfuncscan.cpp" line="25"/>
+        <location filename="../../joyfuncscan.ui" line="27"/>
+        <location filename="../../joyfuncscan.cpp" line="28"/>
+        <location filename="../../joyfuncscan.cpp" line="29"/>
         <source>Scanning joystick function</source>
         <translation>Scanne Joystick Funktion</translation>
     </message>
     <message>
-        <location filename="../../joyfuncscan.ui" line="27"/>
+        <location filename="../../joyfuncscan.ui" line="43"/>
         <source>&lt;&lt;&lt;&gt;&gt;&gt;</source>
         <translation>&lt;&lt;&lt;&gt;&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="../../joyfuncscan.ui" line="43"/>
+        <location filename="../../joyfuncscan.ui" line="61"/>
         <source>Accept joystick function</source>
         <translation>Joystick Funktion übernehmen</translation>
     </message>
     <message>
-        <location filename="../../joyfuncscan.ui" line="46"/>
+        <location filename="../../joyfuncscan.ui" line="64"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../joyfuncscan.ui" line="56"/>
+        <location filename="../../joyfuncscan.ui" line="77"/>
         <source>Cancel remapping of joystick function</source>
         <translation>Neuzuweisung der Jostick Funktion abbrechen</translation>
     </message>
     <message>
-        <location filename="../../joyfuncscan.ui" line="59"/>
+        <location filename="../../joyfuncscan.ui" line="80"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../../joyfuncscan.ui" line="93"/>
+        <source>Clear joystick function</source>
+        <translation>Joystick Funktion löschen</translation>
+    </message>
+    <message>
+        <location filename="../../joyfuncscan.ui" line="96"/>
+        <source>Clear</source>
+        <translation>Löschen</translation>
     </message>
 </context>
 <context>

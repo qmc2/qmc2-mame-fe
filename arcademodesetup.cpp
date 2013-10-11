@@ -13,8 +13,11 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "macros.h"
-#include "keyseqscan.h"
 #include "arcade/keysequences.h"
+#include "keyseqscan.h"
+#if QMC2_JOYSTICK == 1
+#include "joyfuncscan.h"
+#endif
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
@@ -34,16 +37,24 @@ int qmc2ArcadeModeSortCriteria = 0;
 int qmc2ArcadeModeSortOrder = 0;
 
 QStringList ArcadeModeSetup::keySequenceMapBases;
+#if QMC2_JOYSTICK == 1
 QStringList ArcadeModeSetup::joyFunctionMapBases;
+#endif
 
 ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
 
-	// FIXME: joystick-mappings are not supported yet
-#if !defined(QMC2_WIP_ENABLED) 
+	// FIXME: WIP
+#if QMC2_JOYSTICK == 0 || !defined(QMC2_WIP_ENABLED)
 	tabWidget->removeTab(tabWidget->indexOf(tabJoystick));
+#else
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl", false).toBool() ) {
+		tabJoystick->setEnabled(false);
+		joyStatusLabel = new QLabel("<b>" + tr("Please enable joystick control!") + "<b>", this);
+		tabWidgetJoyMaps->setCornerWidget(joyStatusLabel);
+	}
 #endif
 
 	adjustIconSizes();
@@ -51,8 +62,10 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	// QSettings base-keys for key-sequence and joystick-function maps (take care that the indizes in the string-lists correspond to the QMC2_ARCADE_THEME_* macros!)
 	if ( keySequenceMapBases.isEmpty() )
 		keySequenceMapBases << "Arcade/ToxicWaste/keySequenceMap" << "Arcade/darkone/keySequenceMap";
+#if QMC2_JOYSTICK == 1
 	if ( joyFunctionMapBases.isEmpty() )
-		keySequenceMapBases << "Arcade/ToxicWaste/joyFunctionMap" << "Arcade/darkone/joyFunctionMap";
+		joyFunctionMapBases << "Arcade/ToxicWaste/joyFunctionMap" << "Arcade/darkone/joyFunctionMap";
+#endif
 
 	// category and version maps
 	if ( !qmc2CategoryMap.isEmpty() )
@@ -70,11 +83,15 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Arcade/SetupWidth") && qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Arcade/SetupHeight") )
 		resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupWidth").toInt(), qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupHeight").toInt());
 	tabWidgetKeyMaps->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapCurrentTab", 0).toInt());
+#if QMC2_JOYSTICK == 1
 	tabWidgetJoyMaps->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapCurrentTab", 0).toInt());
+#endif
 	treeWidgetKeyMapToxicWaste->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapToxicWasteHeaderState", QByteArray()).toByteArray());
 	treeWidgetKeyMapDarkone->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapDarkoneHeaderState", QByteArray()).toByteArray());
+#if QMC2_JOYSTICK == 1
 	treeWidgetJoyMapToxicWaste->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapToxicWasteHeaderState", QByteArray()).toByteArray());
 	treeWidgetJoyMapDarkone->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapDarkoneHeaderState", QByteArray()).toByteArray());
+#endif
 
 	// general settings
 #if defined(QMC2_OS_WIN)
@@ -104,8 +121,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	checkBoxDebugKeys->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", false).toBool());
 	checkBoxDebugJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy", false).toBool());
 
+	// FIXME: WIP
 #if !defined(QMC2_WIP_ENABLED)
-	// FIXME
 	checkBoxDebugJoy->hide();
 #endif
 
@@ -131,10 +148,12 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	// load key-sequence and joy-function maps asynchronously
 	connect(treeWidgetKeyMapToxicWaste, SIGNAL(itemActivated(QTreeWidgetItem *, int)), this, SLOT(scanCustomKeySequence(QTreeWidgetItem *, int)));
 	connect(treeWidgetKeyMapDarkone, SIGNAL(itemActivated(QTreeWidgetItem *, int)), this, SLOT(scanCustomKeySequence(QTreeWidgetItem *, int)));
+	QTimer::singleShot(0, this, SLOT(loadKeySequenceMaps()));
+#if QMC2_JOYSTICK == 1
 	connect(treeWidgetJoyMapToxicWaste, SIGNAL(itemActivated(QTreeWidgetItem *, int)), this, SLOT(scanCustomJoyFunction(QTreeWidgetItem *, int)));
 	connect(treeWidgetJoyMapDarkone, SIGNAL(itemActivated(QTreeWidgetItem *, int)), this, SLOT(scanCustomJoyFunction(QTreeWidgetItem *, int)));
-	QTimer::singleShot(0, this, SLOT(loadKeySequenceMaps()));
 	QTimer::singleShot(0, this, SLOT(loadJoyFunctionMaps()));
+#endif
 }
 
 ArcadeModeSetup::~ArcadeModeSetup()
@@ -147,8 +166,10 @@ ArcadeModeSetup::~ArcadeModeSetup()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapCurrentTab", tabWidgetJoyMaps->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapToxicWasteHeaderState", treeWidgetKeyMapToxicWaste->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupKeyMapDarkoneHeaderState", treeWidgetKeyMapDarkone->header()->saveState());
+#if QMC2_JOYSTICK == 1
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapToxicWasteHeaderState", treeWidgetJoyMapToxicWaste->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/SetupJoyMapDarkoneHeaderState", treeWidgetJoyMapDarkone->header()->saveState());
+#endif
 }
 
 void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*/)
@@ -177,11 +198,6 @@ void ArcadeModeSetup::scanCustomKeySequence(QTreeWidgetItem *item, int /*column*
 	qApp->installEventFilter(qmc2KeyPressFilter);
 
 	QTimer::singleShot(0, this, SLOT(checkKeySequenceMaps()));
-}
-
-void ArcadeModeSetup::scanCustomJoyFunction(QTreeWidgetItem *item, int /*column*/)
-{
-	// FIXME
 }
 
 void ArcadeModeSetup::loadKeySequenceMaps()
@@ -228,11 +244,6 @@ void ArcadeModeSetup::loadKeySequenceMaps()
 	QTimer::singleShot(0, this, SLOT(checkKeySequenceMaps()));
 }
 
-void ArcadeModeSetup::loadJoyFunctionMaps()
-{
-	// FIXME
-}
-
 void ArcadeModeSetup::saveKeySequenceMaps()
 {
 	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
@@ -256,11 +267,6 @@ void ArcadeModeSetup::saveKeySequenceMaps()
 			it++;
 		}
 	}
-}
-
-void ArcadeModeSetup::saveJoyFunctionMaps()
-{
-	// FIXME
 }
 
 void ArcadeModeSetup::checkKeySequenceMaps()
@@ -324,10 +330,94 @@ void ArcadeModeSetup::checkKeySequenceMaps()
 	}
 }
 
-void ArcadeModeSetup::checkJoyFunctionMaps()
+#if QMC2_JOYSTICK == 1
+void ArcadeModeSetup::scanCustomJoyFunction(QTreeWidgetItem *item, int /*column*/)
 {
-	// FIXME
+	if ( !item->parent() || qmc2Options->joystick == NULL )
+		return;
+
+	JoystickFunctionScanner joyFunctionScanner(qmc2Options->joystick, true, this);
+
+	if ( joyFunctionScanner.exec() == QDialog::Accepted ) {
+		QString joyFuncText = joyFunctionScanner.labelJoystickFunction->text();
+		QTreeWidgetItemIterator it(item->treeWidget());
+		while ( *it ) {
+			if ( joyFuncText == (*it)->text(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM) )
+				(*it)->setText(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM, QString());
+			it++;
+		}
+		item->setText(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM, joyFuncText);
+	} else if ( joyFunctionScanner.clearClicked )
+		item->setText(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM, QString());
 }
+
+void ArcadeModeSetup::loadJoyFunctionMaps()
+{
+	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
+		QStringList keySequences;
+		QStringList keySequenceDescriptions;
+		QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
+		QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(keySequenceDescriptions);
+		QTreeWidget *treeWidget = NULL;
+		switch ( i ) {
+			case QMC2_ARCADE_THEME_TOXICWASTE:
+				treeWidget = treeWidgetJoyMapToxicWaste;
+				QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(keySequences);
+				QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(keySequenceDescriptions);
+				break;
+			case QMC2_ARCADE_THEME_DARKONE:
+				treeWidget = treeWidgetJoyMapDarkone;
+				QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(keySequences);
+				QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(keySequenceDescriptions);
+				break;
+		}
+		QMap<QString, QTreeWidgetItem *> descriptionItemMap;
+		for (int j = 0; j < keySequenceDescriptions.count(); j++) {
+			QString description = keySequenceDescriptions[j];
+			QTreeWidgetItem *descriptionItem;
+			if ( descriptionItemMap.contains(description) )
+				descriptionItem = descriptionItemMap[description];
+			else {
+				descriptionItem = new QTreeWidgetItem(treeWidget);
+				descriptionItem->setText(QMC2_ARCADE_JOYMAP_COLUMN_FUNCTION, description);
+				descriptionItemMap[description] = descriptionItem;
+			}
+			QTreeWidgetItem *keySequenceItem = new QTreeWidgetItem(descriptionItem);
+			keySequenceItem->setText(QMC2_ARCADE_JOYMAP_COLUMN_FUNCTION, keySequences[j]);
+			QString joyFuncKey = joyFunctionMapBases[i] + "/" + keySequences[j];
+			if ( qmc2Config->contains(joyFuncKey) ) {
+				keySequenceItem->setText(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM, qmc2Config->value(joyFuncKey, QString()).toString());
+				descriptionItem->setExpanded(true);
+			}
+		}
+	}
+}
+
+void ArcadeModeSetup::saveJoyFunctionMaps()
+{
+	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
+		QTreeWidget *treeWidget = NULL;
+		switch ( i ) {
+			case QMC2_ARCADE_THEME_TOXICWASTE:
+				treeWidget = treeWidgetJoyMapToxicWaste;
+				break;
+			case QMC2_ARCADE_THEME_DARKONE:
+				treeWidget = treeWidgetJoyMapDarkone;
+				break;
+		}
+
+		qmc2Config->remove(joyFunctionMapBases[i]);
+
+		QTreeWidgetItemIterator it(treeWidget);
+		while ( *it ) {
+			QString joyFunction = (*it)->text(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM);
+			if ( !joyFunction.isEmpty() )
+				qmc2Config->setValue(joyFunctionMapBases[i] + "/" + (*it)->text(QMC2_ARCADE_JOYMAP_COLUMN_FUNCTION), joyFunction);
+			it++;
+		}
+	}
+}
+#endif
 
 void ArcadeModeSetup::saveSettings()
 {
@@ -357,8 +447,11 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/NameFilter", lineEditNameFilter->text());
 	saveCategoryFilter();
 
-	// key sequence maps
+	// key-sequence and joystick-function maps
 	saveKeySequenceMaps();
+#if QMC2_JOYSTICK == 1
+	saveJoyFunctionMaps();
+#endif
 }
 
 bool ArcadeModeSetup::isWritableFile(QString fileName)

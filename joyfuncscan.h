@@ -25,6 +25,7 @@ class JoystickFunctionScanner : public QDialog, public Ui::JoystickFunctionScann
 		void on_joystickButtonValueChanged(int, bool);
 		void on_joystickHatValueChanged(int, int);
 		void on_joystickTrackballValueChanged(int, int, int);
+		void on_pushButtonClear_clicked() { clearClicked = true; }
 
 	protected:
 		void closeEvent(QCloseEvent *);
