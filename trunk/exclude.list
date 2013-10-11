@@ -247,6 +247,8 @@ qmc2/arcade/.svn/text-base/joyfunctionmap.cpp.svn-base
 qmc2/arcade/.svn/text-base/joyfunctionmap.h.svn-base
 qmc2/arcade/.svn/text-base/joystick.cpp.svn-base
 qmc2/arcade/.svn/text-base/joystick.h.svn-base
+qmc2/arcade/.svn/text-base/joystickmanager.cpp.svn-base
+qmc2/arcade/.svn/text-base/joystickmanager.h.svn-base
 qmc2/arcade/.svn/text-base/keyeventfilter.cpp.svn-base
 qmc2/arcade/.svn/text-base/keyeventfilter.h.svn-base
 qmc2/arcade/.svn/text-base/keysequencemap.cpp.svn-base
