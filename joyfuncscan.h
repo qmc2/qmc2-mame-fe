@@ -9,25 +9,25 @@
 
 class JoystickFunctionScanner : public QDialog, public Ui::JoystickFunctionScanner
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QTimer animTimer;
-    int animSeq;
-    int joyIndex;
+	public:
+		QTimer animTimer;
+		int animSeq;
+		int joyIndex;
+		bool clearClicked;
 
-    JoystickFunctionScanner(Joystick *joystick, QWidget *parent = 0);
-    ~JoystickFunctionScanner();
+		JoystickFunctionScanner(Joystick *joystick, bool showClearButton = false, QWidget *parent = 0);
 
-  public slots:
-    void animationTimeout();
-    void on_joystickAxisValueChanged(int, int);
-    void on_joystickButtonValueChanged(int, bool);
-    void on_joystickHatValueChanged(int, int);
-    void on_joystickTrackballValueChanged(int, int, int);
+	public slots:
+		void animationTimeout();
+		void on_joystickAxisValueChanged(int, int);
+		void on_joystickButtonValueChanged(int, bool);
+		void on_joystickHatValueChanged(int, int);
+		void on_joystickTrackballValueChanged(int, int, int);
 
-  protected:
-    void closeEvent(QCloseEvent *);
+	protected:
+		void closeEvent(QCloseEvent *);
 };
 
 #endif
