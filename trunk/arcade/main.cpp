@@ -122,7 +122,11 @@ void showHelp()
 
     QString helpMessage;
 #if QT_VERSION < 0x050000
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-debugjoy] [-h|-?|-help]\n\n"
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-joy <index>] [-nojoy] [-debugjoy] [-h|-?|-help]\n\n"
+#else
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n"
+#endif
                    "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
                    "-emu             Emulator mode       [mame], mess, ume\n";
@@ -132,9 +136,17 @@ void showHelp()
     helpMessage += "-language        Language selection  " + availableLanguages + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
     helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
-    helpMessage += "-debugjoy        Debug joy-mapping   N/A";
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    helpMessage += "-nojoy           Disable joystick    N/A\n";
+    helpMessage += "-joy             Use given joystick  N/A\n";
+    helpMessage += "-debugjoy        Debug joy-mapping   N/A\n";
+#endif
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-debugjoy] [-h|-?|-help]\n\n"
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-joy <index>] [-nojoy] [-debugjoy] [-h|-?|-help]\n\n"
+#else
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n"
+#endif
                    "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
                    "-emu             Emulator mode       [mame], mess, ume\n";
@@ -143,7 +155,11 @@ void showHelp()
     helpMessage += "-language        Language selection  " + availableLanguages + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
     helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
-    helpMessage += "-debugjoy        Debug joy-mapping   N/A";
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    helpMessage += "-nojoy           Disable joystick    N/A\n";
+    helpMessage += "-joy             Use given joystick  N/A\n";
+    helpMessage += "-debugjoy        Debug joy-mapping   N/A\n";
+#endif
 #endif
 
     QMC2_ARCADE_LOG_STR_NT(helpMessage);

@@ -2,7 +2,7 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - MAME/MESS/UME Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-emu emulator] [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-debugkeys] [-h|-?|-help]
+  qmc2-arcade [-emu emulator] [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-config_path path] [-debugkeys] [-joy index] [-nojoy] [-debugjoy] [-h|-?|-help]
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
@@ -48,6 +48,14 @@ OPTIONS
 
   -debugkeys  Enable debug logging for key-sequence mapping. Every recognized key or key-sequence will be logged to the console together with info on
               how the event is processed. Mapped key-sequences will cause event emulation, others will follow Qt's default event processing.
+
+  -joy index  Use the joystick specified by index instead of the one read from CONFIG_PATH/qmc2.ini, and enable joystick-function mapping (regardless
+              if it's enabled in the main GUI or not).
+
+  -nojoy  Disable joystick-function mapping (regardless if it's enabled in the main GUI or not).
+
+  -debugjoy  Enable debug logging for joystick-function mapping. Every recognized joystick-function which has been mapped to a key-sequence will be
+             logged to the console.
 
   -h|-?|-help  Show usage help, available options / values and their current defaults (for the given emulator mode).
 

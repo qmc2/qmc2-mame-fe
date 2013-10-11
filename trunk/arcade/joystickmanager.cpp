@@ -10,6 +10,7 @@
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
 extern bool debugJoy;
+extern QStringList argumentList;
 
 JoystickManager::JoystickManager(JoyFunctionMap *joyFuncMap, int joyIndex, QObject *parent) :
     QObject(parent)
@@ -17,7 +18,13 @@ JoystickManager::JoystickManager(JoyFunctionMap *joyFuncMap, int joyIndex, QObje
     mJoyIndex = joyIndex;
     mJoystick = NULL;
     mJoyFunctionMap = joyFuncMap;
-    openJoystick();
+
+    if ( !QMC2_ARCADE_CLI_NO_JOY ) {
+        if ( QMC2_ARCADE_CLI_JOY_VAL )
+            openJoystick(QMC2_ARCADE_CLI_JOY);
+        else
+            openJoystick();
+    }
 }
 
 JoystickManager::~JoystickManager()
