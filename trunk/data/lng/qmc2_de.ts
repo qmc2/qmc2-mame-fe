@@ -616,6 +616,18 @@ p, li { white-space: pre-wrap; }
         <translation>Spieler</translation>
     </message>
     <message>
+        <location filename="../../arcademodesetup.ui" line="944"/>
+        <location filename="../../arcademodesetup.ui" line="971"/>
+        <source>Double-click to scan or clear a joystck function mapped to a key-sequence</source>
+        <translation>Doppelt klicken um eine Joystick-Funktion, die mit einem Tastaturkürzel verknüpft ist, zu scannen oder zu löschen</translation>
+    </message>
+    <message>
+        <location filename="../../arcademodesetup.ui" line="956"/>
+        <location filename="../../arcademodesetup.ui" line="983"/>
+        <source>Joystick function</source>
+        <translation>Joystick Funktion</translation>
+    </message>
+    <message>
         <location filename="../../arcademodesetup.ui" line="571"/>
         <source>Browse the output file used as the filtered game list</source>
         <translation>Datei zur Ausgabe der gefilterten Spieleliste auswählen</translation>
@@ -698,8 +710,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="386"/>
-        <location filename="../../arcademodesetup.cpp" line="572"/>
-        <location filename="../../arcademodesetup.cpp" line="575"/>
+        <location filename="../../arcademodesetup.cpp" line="604"/>
+        <location filename="../../arcademodesetup.cpp" line="607"/>
         <source>good</source>
         <translation>gut</translation>
     </message>
@@ -795,7 +807,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="762"/>
-        <location filename="../../arcademodesetup.cpp" line="640"/>
+        <location filename="../../arcademodesetup.cpp" line="672"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -849,6 +861,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="883"/>
         <location filename="../../arcademodesetup.ui" line="910"/>
+        <location filename="../../arcademodesetup.ui" line="951"/>
+        <location filename="../../arcademodesetup.ui" line="978"/>
         <source>Function / Key-sequence</source>
         <translation>Funktion / Tastaturkürzel</translation>
     </message>
@@ -860,7 +874,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="897"/>
-        <location filename="../../arcademodesetup.ui" line="943"/>
+        <location filename="../../arcademodesetup.ui" line="965"/>
         <source>darkone</source>
         <translation></translation>
     </message>
@@ -880,97 +894,97 @@ p, li { white-space: pre-wrap; }
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="54"/>
+        <location filename="../../arcademodesetup.cpp" line="59"/>
         <source>Category</source>
         <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="57"/>
+        <location filename="../../arcademodesetup.cpp" line="62"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="150"/>
-        <location filename="../../arcademodesetup.cpp" line="151"/>
+        <location filename="../../arcademodesetup.cpp" line="162"/>
+        <location filename="../../arcademodesetup.cpp" line="163"/>
         <source>Scanning key sequence</source>
         <translation>Scanne Tastaturkürzel</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="361"/>
-        <location filename="../../arcademodesetup.cpp" line="363"/>
-        <location filename="../../arcademodesetup.cpp" line="381"/>
-        <location filename="../../arcademodesetup.cpp" line="559"/>
+        <location filename="../../arcademodesetup.cpp" line="393"/>
+        <location filename="../../arcademodesetup.cpp" line="395"/>
+        <location filename="../../arcademodesetup.cpp" line="413"/>
+        <location filename="../../arcademodesetup.cpp" line="591"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="462"/>
+        <location filename="../../arcademodesetup.cpp" line="494"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation>Ausführbare Datei für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="462"/>
-        <location filename="../../arcademodesetup.cpp" line="483"/>
+        <location filename="../../arcademodesetup.cpp" line="494"/>
+        <location filename="../../arcademodesetup.cpp" line="515"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="469"/>
+        <location filename="../../arcademodesetup.cpp" line="501"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation>Arbeitsverzeichnis für Ausführung von QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="476"/>
+        <location filename="../../arcademodesetup.cpp" line="508"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation>Konfigurationspfad für QMC2 Arcade auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="483"/>
+        <location filename="../../arcademodesetup.cpp" line="515"/>
         <source>Choose filtered list file for export</source>
         <translation>Datei für Export der gefilterten Liste auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="493"/>
+        <location filename="../../arcademodesetup.cpp" line="525"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation>FATAL: Arcade-Modus: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="517"/>
+        <location filename="../../arcademodesetup.cpp" line="549"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation>WARNUNG: Arcade-Modus: der reguläre Ausdruck für den Namensfilter ist ungültig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="519"/>
+        <location filename="../../arcademodesetup.cpp" line="551"/>
         <source>Filtering</source>
         <translation>Filtere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="572"/>
+        <location filename="../../arcademodesetup.cpp" line="604"/>
         <source>imperfect</source>
         <translation>unvollständig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="607"/>
+        <location filename="../../arcademodesetup.cpp" line="639"/>
         <source>Sorting</source>
         <translation>Sortiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="615"/>
+        <location filename="../../arcademodesetup.cpp" line="647"/>
         <source>Exporting</source>
         <translation>Exportiere</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="630"/>
+        <location filename="../../arcademodesetup.cpp" line="662"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="631"/>
+        <location filename="../../arcademodesetup.cpp" line="663"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="642"/>
+        <location filename="../../arcademodesetup.cpp" line="674"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation>
             <numerusform>Arcade-Modus: %n gefiltertes Set nach &apos;%1&apos; exportiert</numerusform>
@@ -2891,7 +2905,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="1733"/>
         <location filename="../../gamelist.cpp" line="2018"/>
         <location filename="../../gamelist.cpp" line="2322"/>
-        <location filename="../../gamelist.cpp" line="3233"/>
+        <location filename="../../gamelist.cpp" line="3235"/>
         <source>Waiting for data...</source>
         <translation>Warte auf Daten...</translation>
     </message>
@@ -3409,16 +3423,16 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../gamelist.cpp" line="2308"/>
         <location filename="../../gamelist.cpp" line="2310"/>
-        <location filename="../../gamelist.cpp" line="3219"/>
         <location filename="../../gamelist.cpp" line="3221"/>
+        <location filename="../../gamelist.cpp" line="3223"/>
         <source>ascending</source>
         <translation>aufsteigend</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2308"/>
         <location filename="../../gamelist.cpp" line="2310"/>
-        <location filename="../../gamelist.cpp" line="3219"/>
         <location filename="../../gamelist.cpp" line="3221"/>
+        <location filename="../../gamelist.cpp" line="3223"/>
         <source>descending</source>
         <translation>absteigend</translation>
     </message>
@@ -3463,22 +3477,22 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>FATAL: kann Icon-Archiv nicht öffnen, bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3569"/>
+        <location filename="../../gamelist.cpp" line="3571"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation>Lade Icons aus ZIP Archiv</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3624"/>
+        <location filename="../../gamelist.cpp" line="3626"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>Fertig (Lade Icons aus ZIP Archiv, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3638"/>
+        <location filename="../../gamelist.cpp" line="3640"/>
         <source>pre-caching icons from directory</source>
         <translation>Lade Icons aus Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3682"/>
+        <location filename="../../gamelist.cpp" line="3684"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>Fertig (Lade Icons aus Verzeichnis, benötigte Zeit = %1)</translation>
     </message>
@@ -3499,12 +3513,12 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Ermittle Spiel-Informationen für &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3194"/>
+        <location filename="../../gamelist.cpp" line="3196"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>Fertig (Prüfe ROM Status für &apos;%1&apos;; benötigte Zeit = %2)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3495"/>
+        <location filename="../../gamelist.cpp" line="3497"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>ROM Status für &apos;%1&apos; ist &apos;%2&apos;</translation>
     </message>
@@ -3524,8 +3538,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="683"/>
         <location filename="../../gamelist.cpp" line="748"/>
         <location filename="../../gamelist.cpp" line="751"/>
-        <location filename="../../gamelist.cpp" line="4162"/>
-        <location filename="../../gamelist.cpp" line="4170"/>
+        <location filename="../../gamelist.cpp" line="4164"/>
+        <location filename="../../gamelist.cpp" line="4172"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -3558,7 +3572,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../gamelist.cpp" line="1047"/>
         <location filename="../../gamelist.cpp" line="2924"/>
-        <location filename="../../gamelist.cpp" line="3283"/>
+        <location filename="../../gamelist.cpp" line="3285"/>
         <source>ROM check - %p%</source>
         <translation>ROM Prüfung - %p%</translation>
     </message>
@@ -3568,8 +3582,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>XML Daten - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3219"/>
         <location filename="../../gamelist.cpp" line="3221"/>
+        <location filename="../../gamelist.cpp" line="3223"/>
         <source>ROM state</source>
         <translation>ROM-Status</translation>
     </message>
@@ -3588,8 +3602,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3625"/>
-        <location filename="../../gamelist.cpp" line="3683"/>
+        <location filename="../../gamelist.cpp" line="3627"/>
+        <location filename="../../gamelist.cpp" line="3685"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n Icon geladen</numerusform>
@@ -3597,8 +3611,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3576"/>
-        <location filename="../../gamelist.cpp" line="3649"/>
+        <location filename="../../gamelist.cpp" line="3578"/>
+        <location filename="../../gamelist.cpp" line="3651"/>
         <source>Icon cache - %p%</source>
         <translation>Icon Cache - %p%</translation>
     </message>
@@ -4078,27 +4092,27 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Fertig (Lade XML Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3196"/>
+        <location filename="../../gamelist.cpp" line="3198"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
         <translation>Fertig (Prüfe ROM Status aller Sets, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4138"/>
+        <location filename="../../gamelist.cpp" line="4140"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4144"/>
+        <location filename="../../gamelist.cpp" line="4146"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4150"/>
+        <location filename="../../gamelist.cpp" line="4152"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4156"/>
+        <location filename="../../gamelist.cpp" line="4158"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
@@ -4123,14 +4137,14 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../gamelist.cpp" line="2702"/>
         <location filename="../../gamelist.cpp" line="2703"/>
         <location filename="../../gamelist.cpp" line="2704"/>
-        <location filename="../../gamelist.cpp" line="3198"/>
-        <location filename="../../gamelist.cpp" line="3199"/>
         <location filename="../../gamelist.cpp" line="3200"/>
         <location filename="../../gamelist.cpp" line="3201"/>
         <location filename="../../gamelist.cpp" line="3202"/>
         <location filename="../../gamelist.cpp" line="3203"/>
-        <location filename="../../gamelist.cpp" line="3820"/>
-        <location filename="../../gamelist.cpp" line="4039"/>
+        <location filename="../../gamelist.cpp" line="3204"/>
+        <location filename="../../gamelist.cpp" line="3205"/>
+        <location filename="../../gamelist.cpp" line="3822"/>
+        <location filename="../../gamelist.cpp" line="4041"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -4171,13 +4185,13 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2308"/>
-        <location filename="../../gamelist.cpp" line="3219"/>
+        <location filename="../../gamelist.cpp" line="3221"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>Sortiere Spieleliste nach %1 in %2er Reihenfolge</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2310"/>
-        <location filename="../../gamelist.cpp" line="3221"/>
+        <location filename="../../gamelist.cpp" line="3223"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>Sortiere Maschinenliste nach %1 in %2er Reihenfolge</translation>
     </message>
@@ -4245,7 +4259,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2414"/>
-        <location filename="../../gamelist.cpp" line="3204"/>
+        <location filename="../../gamelist.cpp" line="3206"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation>ROM Status Info: L:%1 K:%2 B:%3 I:%4 N:%5 U:%6</translation>
     </message>
@@ -4288,7 +4302,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3156"/>
+        <location filename="../../gamelist.cpp" line="3158"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation>
             <numerusform>Fertig (Prüfe echten Status eines Sets, welches während der Analyse nicht erwähnt wurde)</numerusform>
@@ -4296,57 +4310,57 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3713"/>
+        <location filename="../../gamelist.cpp" line="3715"/>
         <source>loading category.ini</source>
         <translation>Lade category.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3719"/>
+        <location filename="../../gamelist.cpp" line="3721"/>
         <source>Category.ini - %p%</source>
         <translation>Category.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3748"/>
+        <location filename="../../gamelist.cpp" line="3750"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine category.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3757"/>
+        <location filename="../../gamelist.cpp" line="3759"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade category.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3921"/>
+        <location filename="../../gamelist.cpp" line="3923"/>
         <source>loading catver.ini</source>
         <translation>Lade catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3927"/>
+        <location filename="../../gamelist.cpp" line="3929"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3968"/>
+        <location filename="../../gamelist.cpp" line="3970"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine catver.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3977"/>
+        <location filename="../../gamelist.cpp" line="3979"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>Fertig (Lade catver.ini, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3978"/>
+        <location filename="../../gamelist.cpp" line="3980"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>%1 Kategorie- / %2 Versions-Datensätze geladen</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3795"/>
+        <location filename="../../gamelist.cpp" line="3797"/>
         <source>Category view - %p%</source>
         <translation>Kategorieansicht - %p%</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3758"/>
+        <location filename="../../gamelist.cpp" line="3760"/>
         <source>%n category record(s) loaded</source>
         <translation>
             <numerusform>%n Kategorie-Datensatz geladen</numerusform>
@@ -4354,7 +4368,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="4014"/>
+        <location filename="../../gamelist.cpp" line="4016"/>
         <source>Version view - %p%</source>
         <translation>Versionsansicht - %p%</translation>
     </message>
@@ -4386,8 +4400,8 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2978"/>
-        <location filename="../../gamelist.cpp" line="3148"/>
-        <location filename="../../gamelist.cpp" line="3480"/>
+        <location filename="../../gamelist.cpp" line="3150"/>
+        <location filename="../../gamelist.cpp" line="3482"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
         <translation>WARNUNG: kann Eintrag für &apos;%1&apos; in Lookup-Tabelle nicht finden - ROM Status kann nicht ermittelt werden</translation>
     </message>
@@ -15038,28 +15052,28 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Quelldatei</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3305"/>
+        <location filename="../../gamelist.cpp" line="3307"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3340"/>
+        <location filename="../../gamelist.cpp" line="3342"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3375"/>
+        <location filename="../../gamelist.cpp" line="3377"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3410"/>
+        <location filename="../../gamelist.cpp" line="3412"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3445"/>
-        <location filename="../../gamelist.cpp" line="3482"/>
+        <location filename="../../gamelist.cpp" line="3447"/>
+        <location filename="../../gamelist.cpp" line="3484"/>
         <location filename="../../romalyzer.cpp" line="3354"/>
         <location filename="../../romalyzer.cpp" line="3388"/>
         <location filename="../../romalyzer.cpp" line="3400"/>

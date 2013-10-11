@@ -4605,7 +4605,7 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
       // suppress strange Qt warning messages (this works - basta! :)
       bool saveSQM = qmc2SuppressQtMessages;
       qmc2SuppressQtMessages = true;
-      JoystickFunctionScanner joyFuncScanner(joystick, this);
+      JoystickFunctionScanner joyFuncScanner(joystick, false, this);
       if ( joyFuncScanner.exec() == QDialog::Accepted ) {
         item->setText(1, joyFuncScanner.labelJoystickFunction->text());
         qmc2JoystickFunctionMap.insertMulti(joyFuncScanner.labelJoystickFunction->text(), item->whatsThis(0));

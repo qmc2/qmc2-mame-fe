@@ -869,7 +869,7 @@
           <attribute name="title">
            <string>ToxicWaste</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_6">
+          <layout class="QGridLayout" name="gridLayoutTabToxicWasteKeyMap">
            <item row="0" column="0">
             <widget class="QTreeWidget" name="treeWidgetKeyMapToxicWaste">
              <property name="toolTip">
@@ -896,7 +896,7 @@
           <attribute name="title">
            <string>darkone</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_7">
+          <layout class="QGridLayout" name="gridLayoutTabDarkoneKeyMap">
            <item row="0" column="0">
             <widget class="QTreeWidget" name="treeWidgetKeyMapDarkone">
              <property name="toolTip">
@@ -937,11 +937,55 @@
           <attribute name="title">
            <string>ToxicWaste</string>
           </attribute>
+          <layout class="QGridLayout" name="gridLayoutTabToxicWasteJoyMap">
+           <item row="0" column="0">
+            <widget class="QTreeWidget" name="treeWidgetJoyMapToxicWaste">
+             <property name="toolTip">
+              <string>Double-click to scan or clear a joystck function mapped to a key-sequence</string>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Function / Key-sequence</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Joystick function</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tabDarkoneJoyMap">
           <attribute name="title">
            <string>darkone</string>
           </attribute>
+          <layout class="QGridLayout" name="gridLayoutTabDarkoneJoyMap">
+           <item row="0" column="0">
+            <widget class="QTreeWidget" name="treeWidgetJoyMapDarkone">
+             <property name="toolTip">
+              <string>Double-click to scan or clear a joystck function mapped to a key-sequence</string>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Function / Key-sequence</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Joystick function</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -987,6 +1031,8 @@
   <tabstop>treeWidgetKeyMapToxicWaste</tabstop>
   <tabstop>treeWidgetKeyMapDarkone</tabstop>
   <tabstop>tabWidgetJoyMaps</tabstop>
+  <tabstop>treeWidgetJoyMapToxicWaste</tabstop>
+  <tabstop>treeWidgetJoyMapDarkone</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>

@@ -18,12 +18,17 @@ class ArcadeModeSetup : public QDialog, public Ui::ArcadeModeSetup
 		static bool lessThan(const GamelistItem *, const GamelistItem *);
 
 		static QStringList keySequenceMapBases;
+		static QStringList joyFunctionMapBases;
 
 	public slots:
 		void scanCustomKeySequence(QTreeWidgetItem *, int);
+		void scanCustomJoyFunction(QTreeWidgetItem *, int);
 		void loadKeySequenceMaps();
+		void loadJoyFunctionMaps();
 		void saveKeySequenceMaps();
+		void saveJoyFunctionMaps();
 		void checkKeySequenceMaps();
+		void checkJoyFunctionMaps();
 		void adjustIconSizes();
 		void saveSettings();
 		void updateCategoryFilter();
