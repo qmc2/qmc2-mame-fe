@@ -118,7 +118,12 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	if ( index > 0 )
 		comboBoxConsoleType->setCurrentIndex(index);
 	checkBoxDebugKeys->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", false).toBool());
+#if QMC2_JOYSTICK == 1
+	checkBoxNoJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/NoJoy", false).toBool());
 	checkBoxDebugJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy", false).toBool());
+	checkBoxJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/Joy", false).toBool());
+	spinBoxJoyIndex->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/JoyIndex", 0).toInt());
+#endif
 
 	// game list filter
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
@@ -423,7 +428,12 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/Theme", comboBoxArcadeTheme->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/ConsoleType", comboBoxConsoleType->currentText());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", checkBoxDebugKeys->isChecked());
+#if QMC2_JOYSTICK == 1
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/NoJoy", checkBoxNoJoy->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy", checkBoxDebugJoy->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/Joy", checkBoxJoy->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/JoyIndex", spinBoxJoyIndex->value());
+#endif
 
 	// game list filter
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "UseFilteredList", checkBoxUseFilteredList->isChecked());
