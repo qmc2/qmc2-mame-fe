@@ -61,6 +61,9 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
         break;
     }
     keySequenceMap = new KeySequenceMap(keySequences);
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    joyFunctionMap = new JoyFunctionMap(keySequences);
+#endif
 
     infoClasses << "gameinfo" << "emuinfo";
 
@@ -139,6 +142,9 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
     if (initialised)
         saveSettings();
     delete keySequenceMap;
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    delete joyFunctionMap;
+#endif
 }
 
 int TweakedQmlApplicationViewer::themeIndex()

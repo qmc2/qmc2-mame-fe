@@ -30,7 +30,9 @@ QStringList graphicsSystems;
 QStringList argumentList;
 bool runApp = true;
 bool debugKeys = false;
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 bool debugJoy = false;
+#endif
 
 #if QT_VERSION < 0x050000
 void qtMessageHandler(QtMsgType type, const char *msg)
@@ -370,7 +372,9 @@ int main(int argc, char *argv[])
 
         // debug options
         debugKeys = QMC2_ARCADE_CLI_DEBUG_KEYS;
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
         debugJoy = QMC2_ARCADE_CLI_DEBUG_JOY;
+#endif
 
         // set up the main QML app viewer window
         TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();

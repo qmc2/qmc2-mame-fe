@@ -72,6 +72,13 @@ QString ArcadeSettings::keySequenceMapBaseKey()
     return QString("Arcade/%1/keySequenceMap").arg(arcadeTheme);
 }
 
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+QString ArcadeSettings::joyFunctionMapBaseKey()
+{
+    return QString("Arcade/%1/joyFunctionMap").arg(arcadeTheme);
+}
+#endif
+
 void ArcadeSettings::setApplicationVersion(QString version)
 {
     setValue("Arcade/Version", version);
