@@ -2999,7 +2999,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
 #endif
-	// there are a number of machines in MESS and some in MAME that don't require any ROMs...
+	// there are quite a number of sets in MESS and MAME that don't require any ROMs... many/most device-sets in particular
 	bool romRequired = true;
 	int xmlCounter = 0;
 	bool xmlFound = false;
@@ -3009,10 +3009,10 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	} else {
 #if defined(QMC2_EMUTYPE_MESS)
 		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
-			xmlFound = (xmlLines[xmlCounter].contains(QString("<machine name=\"%1\"").arg(gameName)));
+			QString xmlLine = xmlLines[xmlCounter];
+			xmlFound = xmlLine.contains(QString("<machine name=\"%1\"").arg(gameName));
 			if ( !xmlFound ) {
-				if ( xmlLines[xmlCounter].contains("<machine name=\"") ) {
-					QString xmlLine = xmlLines[xmlCounter];
+				if ( xmlLine.contains("<machine name=\"") ) {
 					int gameNamePos = xmlLine.indexOf("<machine name=\"") + 15;
 					if ( xmlLine[gameNamePos] != '\"' ) {
 						QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
@@ -3021,14 +3021,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 			xmlCounter++;
-			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 ) qApp->processEvents();
+			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 )
+				qApp->processEvents();
 		}
 #elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
-			xmlFound = (xmlLines[xmlCounter].contains(QString("<game name=\"%1\"").arg(gameName)));
+			QString xmlLine = xmlLines[xmlCounter];
+			xmlFound = xmlLine.contains(QString("<game name=\"%1\"").arg(gameName));
 			if ( !xmlFound ) {
-				if ( xmlLines[xmlCounter].contains("<game name=\"") ) {
-					QString xmlLine = xmlLines[xmlCounter];
+				if ( xmlLine.contains("<game name=\"") ) {
 					int gameNamePos = xmlLine.indexOf("<game name=\"") + 12;
 					if ( xmlLine[gameNamePos] != '\"' ) {
 						QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
@@ -3037,7 +3038,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 			xmlCounter++;
-			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 ) qApp->processEvents();
+			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 )
+				qApp->processEvents();
 		}
 #endif
 	}
