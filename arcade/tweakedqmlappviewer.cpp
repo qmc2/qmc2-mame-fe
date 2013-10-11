@@ -63,6 +63,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     keySequenceMap = new KeySequenceMap(keySequences);
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     joyFunctionMap = new JoyFunctionMap(keySequences);
+    joystickManager = new JoystickManager(joyFunctionMap);
 #endif
 
     infoClasses << "gameinfo" << "emuinfo";
@@ -141,10 +142,11 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 {
     if (initialised)
         saveSettings();
-    delete keySequenceMap;
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+    delete joystickManager;
     delete joyFunctionMap;
 #endif
+    delete keySequenceMap;
 }
 
 int TweakedQmlApplicationViewer::themeIndex()

@@ -154,9 +154,17 @@ public slots:
     bool compressGameInfoDB();
     QString emuInfoDB();
     bool compressEmuInfoDB();
+    QStringList activeImageFormats(QString);
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     int joystickAxisMinimum(int, int);
     int joystickAxisMaximum(int, int);
-    QStringList activeImageFormats(QString);
+    bool joystickAxisEnabled(int, int);
+    int joystickIndex();
+    bool joystickEnabled();
+    int joystickEventTimeout();
+    bool joystickAutoRepeat();
+    int joystickAutoRepeatTimeout();
+#endif
 };
 
 #endif

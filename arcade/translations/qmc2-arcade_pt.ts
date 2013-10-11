@@ -300,71 +300,71 @@
         <translation>Arcade QMC2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="224"/>
+        <location filename="../main.cpp" line="226"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation>%1 não é um sistema gráfico válido - sistemas gráficos disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="244"/>
+        <location filename="../main.cpp" line="246"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation>%1 não é um modo de emulador válido - modos de emulador disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="262"/>
+        <location filename="../main.cpp" line="264"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation>%1 não é um modo de console válido - modos de console disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="280"/>
+        <location filename="../main.cpp" line="282"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 não é um tema válido - temas disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="294"/>
-        <location filename="../main.cpp" line="303"/>
-        <location filename="../main.cpp" line="312"/>
+        <location filename="../main.cpp" line="296"/>
+        <location filename="../main.cpp" line="305"/>
+        <location filename="../main.cpp" line="314"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 não é um tema de %2 válido - temas %2 disponíveis: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="294"/>
-        <location filename="../main.cpp" line="303"/>
-        <location filename="../main.cpp" line="312"/>
+        <location filename="../main.cpp" line="296"/>
+        <location filename="../main.cpp" line="305"/>
+        <location filename="../main.cpp" line="314"/>
         <source>(none)</source>
         <translation>(nenhum)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="358"/>
+        <location filename="../main.cpp" line="360"/>
         <source>emulator-mode: %1</source>
         <translation>modo de emulador: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="363"/>
+        <location filename="../main.cpp" line="365"/>
         <source>language: %1</source>
         <translation>língua: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="364"/>
+        <location filename="../main.cpp" line="366"/>
         <source>theme: %1</source>
         <translation>tema: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="361"/>
+        <location filename="../main.cpp" line="363"/>
         <source>graphics-system: %1</source>
         <translation>sistema gráfico: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="359"/>
+        <location filename="../main.cpp" line="361"/>
         <source>console-mode: %1</source>
         <translation>modo de console: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="390"/>
+        <location filename="../main.cpp" line="394"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Iniciando visualizador QML usando o tema &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="414"/>
+        <location filename="../main.cpp" line="418"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>Visualizador QML não iniciado - por favor feche a janela do console para sair</translation>
     </message>
@@ -661,160 +661,160 @@
         <translation>Info do jogo</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="698"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="697"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="699"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="698"/>
         <source>Really quit?</source>
         <translation>Sair realmente?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="715"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="714"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="716"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="715"/>
         <source>Yes</source>
         <translation>Sim</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="731"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="730"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="732"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="731"/>
         <source>No</source>
         <translation>Não</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="810"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="809"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="811"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="810"/>
         <source>Switches</source>
         <translation>Interruptores</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="829"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="828"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="830"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="829"/>
         <source>Show floating-bubbles animation?</source>
         <translation>Mostrar animação de bolhas flutuantes?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="862"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="861"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="863"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="862"/>
         <source>Draw animation in the foreground?</source>
         <translation>Desenhar a animação em primeiro plano?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="891"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="890"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="892"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="891"/>
         <source>Show radial wave effect on background?</source>
         <translation>Mostrar efeito de onda radial no plano de fundo?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="921"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="920"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="922"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="921"/>
         <source>Auto-stop animation and wave effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="950"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="949"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="951"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="950"/>
         <source>Show FPS counter in the menu-bar?</source>
         <translation>Mostrar contador de QPS na barra de menu?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="979"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="978"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="980"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="979"/>
         <source>Confirm when quitting the application?</source>
         <translation>Confirmar quando sair da aplicação?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1008"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1007"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1009"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1008"/>
         <source>Scale &amp; position cabinet automatically?</source>
         <translation>Escalar e posicionar automaticamente o gabinete?</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1029"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1028"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1030"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1029"/>
         <source>Sliders</source>
         <translation>Sliders</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1044"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1043"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1045"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1044"/>
         <source>Cabinet zoom</source>
         <translation>Zoom do gabinete</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1057"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1056"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1058"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1057"/>
         <source>Cabinet X center offset</source>
         <translation>Deslocamento do centro X do gabinete</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1071"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1070"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1072"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1071"/>
         <source>Cabinet Y center offset</source>
         <translation>Deslocamento do centro Y do gabinete</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1085"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1084"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1086"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1085"/>
         <source>Cabinet opacity</source>
         <translation>Opacidade do gabinete</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1098"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1097"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1099"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1098"/>
         <source>Background opacity</source>
         <translation>Opacidade do plano de fundo</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1111"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1110"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1112"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1111"/>
         <source>Game list opacity</source>
         <translation>Opacidade da lista de jogos</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1121"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1120"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1122"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1121"/>
         <source>Backend</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1138"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1137"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1139"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1138"/>
         <source>Option</source>
         <translation>Opção</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1190"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1189"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1191"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1190"/>
         <source>Value</source>
         <translation>Valor</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1232"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1231"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1233"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1232"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation>Para as opções do backend padrão customizadas
 terem efeito, por favor reinicie o Arcade do QMC2!</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1258"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1257"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1259"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1258"/>
         <source>Close</source>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1360"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1359"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1361"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1360"/>
         <source>FPS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1580"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1579"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1581"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1580"/>
         <source>Starting shader effect</source>
         <translation>Iniciando efeito de shader</translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1582"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1581"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1583"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1582"/>
         <source>Shader effect stopped</source>
         <translation>Efeito de shader parado</translation>
     </message>
@@ -822,125 +822,125 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
 <context>
     <name>TweakedQmlApplicationViewer</name>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="88"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="92"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="90"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="94"/>
         <source>Graphics system</source>
         <translation>Sistema gráfico</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="92"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="96"/>
         <source>Console mode</source>
         <translation>Modo de console</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="93"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="97"/>
         <source>Language</source>
         <translation>Língua</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="158"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="166"/>
         <source>Loading global and theme-specific settings</source>
         <translation>Carregando configurações globais e específicas do tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="210"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="218"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Salvando configurações globais e específicas do tema</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="280"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="288"/>
         <source>Activating full-screen display</source>
         <translation>Ativando tela cheia</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="303"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="311"/>
         <source>Activating windowed display</source>
         <translation>Ativando modo janela</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="324"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="332"/>
         <source>correct</source>
         <translation>correto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="326"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="334"/>
         <source>mostly correct</source>
         <translation>maioria correto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="328"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="336"/>
         <source>incorrect</source>
         <translation>incorreto</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="330"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="338"/>
         <source>not found</source>
         <translation>não encontrado</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="333"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="341"/>
         <source>unknown</source>
         <translation>desconhecido</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="362"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="370"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>AVISO: arquivo de lista filtrado &apos;%1&apos; não existe ou não está acessível, revertendo para a %2 completa</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="364"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="373"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="410"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="414"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="372"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="381"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="418"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="422"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
         <source>game list</source>
         <translation>lista de jogos</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="364"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="373"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="410"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="414"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="372"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="381"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="418"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="422"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
         <source>machine list</source>
         <translation>lista de máquinas</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="372"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="380"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Carregando %1 de &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="389"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>AVISO: Não foi possível abrir o arquivo de cache de estados de ROM &apos;%1&apos;, por favor verifque as permissões</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="392"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="400"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>AVISO: O arquivo de cache de estados de ROM &apos;%1&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="409"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="417"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Não foi possível abrir o arquivo de cache de %1 &apos;%2&apos;, por favor verifique as permissões</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="413"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="421"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>AVISO: O arquivo de cache de %1 &apos;%2&apos; não existe, por favor rode o executável do front-end principal para criá-lo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="424"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="432"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Feito (carregando %1 de &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="425"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n conjunto de não-dispositivo carregado</numerusform>
@@ -948,39 +948,39 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="431"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Iniciando emulador #%1 para %2 ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="431"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
         <source>game</source>
         <translation>jogo</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="431"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
         <source>machine</source>
         <translation>máquina</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="448"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="456"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
         <translation>AVISO:TweakedQmlApplicationViewer::requestInfo(): classe de informação não suportada &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="449"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="457"/>
         <source>no info available</source>
         <translation>informação não disponível</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="576"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="598"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="584"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="606"/>
         <source>Stopping QML viewer</source>
         <translation>Parando visualizador QML</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="579"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="601"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="587"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="609"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>Visualizador QML parado - por favor feche a janela do console para sair</translation>
     </message>
