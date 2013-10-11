@@ -122,7 +122,7 @@ void showHelp()
 
     QString helpMessage;
 #if QT_VERSION < 0x050000
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n"
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-config_path <path>] [-debugkeys] [-debugjoy] [-h|-?|-help]\n\n"
                    "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
                    "-emu             Emulator mode       [mame], mess, ume\n";
@@ -131,10 +131,10 @@ void showHelp()
     helpMessage += "-graphicssystem  Graphics engine     " + availableGraphicsSystems + "\n";
     helpMessage += "-language        Language selection  " + availableLanguages + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
-    helpMessage += "-debugkeys       Debug key-mapping   N/A";
-    //helpMessage += "-debugjoy        Debug joy-mapping   N/A";
+    helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
+    helpMessage += "-debugjoy        Debug joy-mapping   N/A";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-h|-?|-help]\n\n"
+    helpMessage  = "Usage: qmc2-arcade [-emu <emulator>] [-theme <theme>] [-console <type>] [-language <lang>] [-config_path <path>] [-debugkeys] [-debugjoy] [-h|-?|-help]\n\n"
                    "Option           Meaning             Possible values ([..] = default)\n"
                    "---------------  ------------------  -----------------------------------------\n"
                    "-emu             Emulator mode       [mame], mess, ume\n";
@@ -142,8 +142,8 @@ void showHelp()
     helpMessage += "-console         Console type        " + availableConsoles + "\n";
     helpMessage += "-language        Language selection  " + availableLanguages + "\n";
     helpMessage += QString("-config_path     Configuration path  [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
-    helpMessage += "-debugkeys       Debug key-mapping   N/A";
-    //helpMessage += "-debugjoy        Debug joy-mapping   N/A";
+    helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
+    helpMessage += "-debugjoy        Debug joy-mapping   N/A";
 #endif
 
     QMC2_ARCADE_LOG_STR_NT(helpMessage);

@@ -19,6 +19,7 @@
 #include "keysequencemap.h"
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 #include "joyfunctionmap.h"
+#include "joystickmanager.h"
 #endif
 
 #define QMC2_ARCADE_PARAM_THEME     0
@@ -56,6 +57,7 @@ public:
     KeySequenceMap *keySequenceMap;
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     JoyFunctionMap *joyFunctionMap;
+    JoystickManager *joystickManager;
 #endif
 
 #if QT_VERSION < 0x050000

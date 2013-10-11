@@ -49,7 +49,8 @@ SOURCES += main.cpp \
     ../minizip/ioapi.c \
     keyeventfilter.cpp \
     keysequencemap.cpp \
-    joyfunctionmap.cpp
+    joyfunctionmap.cpp \
+    joystickmanager.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -99,7 +100,8 @@ HEADERS += \
     keyeventfilter.h \
     keysequences.h \
     keysequencemap.h \
-    joyfunctionmap.h
+    joyfunctionmap.h \
+    joystickmanager.h
 
 DEFINES += QMC2_ARCADE_VERSION=$$VERSION
 

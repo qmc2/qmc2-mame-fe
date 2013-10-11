@@ -42,20 +42,20 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
             Qt::KeyboardModifiers mods = Qt::NoModifier;
             int key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
             if ( key & Qt::ShiftModifier ) {
-              key -= Qt::ShiftModifier;
-              mods |= Qt::ShiftModifier;
+                key -= Qt::ShiftModifier;
+                mods |= Qt::ShiftModifier;
             }
             if ( key & Qt::ControlModifier ) {
-              key -= Qt::ControlModifier;
-              mods |= Qt::ControlModifier;
+                key -= Qt::ControlModifier;
+                mods |= Qt::ControlModifier;
             }
             if ( key & Qt::AltModifier ) {
-              key -= Qt::AltModifier;
-              mods |= Qt::AltModifier;
+                key -= Qt::AltModifier;
+                mods |= Qt::AltModifier;
             }
             if ( key & Qt::MetaModifier ) {
-              key -= Qt::MetaModifier;
-              mods |= Qt::MetaModifier;
+                key -= Qt::MetaModifier;
+                mods |= Qt::MetaModifier;
             }
             QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods);
             qApp->postEvent(object, emulatedKeyEvent);

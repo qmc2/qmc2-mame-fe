@@ -729,8 +729,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="386"/>
-        <location filename="../../arcademodesetup.cpp" line="697"/>
-        <location filename="../../arcademodesetup.cpp" line="700"/>
+        <location filename="../../arcademodesetup.cpp" line="691"/>
+        <location filename="../../arcademodesetup.cpp" line="694"/>
         <source>good</source>
         <translation type="unfinished">bra</translation>
     </message>
@@ -826,7 +826,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="762"/>
-        <location filename="../../arcademodesetup.cpp" line="765"/>
+        <location filename="../../arcademodesetup.cpp" line="759"/>
         <source>Idle</source>
         <translation type="unfinished">Overksam</translation>
     </message>
@@ -913,102 +913,102 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">A&amp;vbryt</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="55"/>
+        <location filename="../../arcademodesetup.cpp" line="54"/>
         <source>Please enable joystick control!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="72"/>
+        <location filename="../../arcademodesetup.cpp" line="71"/>
         <source>Category</source>
         <translation type="unfinished">Kategori</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="75"/>
+        <location filename="../../arcademodesetup.cpp" line="74"/>
         <source>Version</source>
         <translation type="unfinished">Version</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="183"/>
-        <location filename="../../arcademodesetup.cpp" line="184"/>
+        <location filename="../../arcademodesetup.cpp" line="177"/>
+        <location filename="../../arcademodesetup.cpp" line="178"/>
         <source>Scanning key sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="486"/>
-        <location filename="../../arcademodesetup.cpp" line="488"/>
-        <location filename="../../arcademodesetup.cpp" line="506"/>
-        <location filename="../../arcademodesetup.cpp" line="684"/>
+        <location filename="../../arcademodesetup.cpp" line="480"/>
+        <location filename="../../arcademodesetup.cpp" line="482"/>
+        <location filename="../../arcademodesetup.cpp" line="500"/>
+        <location filename="../../arcademodesetup.cpp" line="678"/>
         <source>?</source>
         <translation type="unfinished">?</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="587"/>
+        <location filename="../../arcademodesetup.cpp" line="581"/>
         <source>Choose QMC2 Arcade&apos;s executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="587"/>
-        <location filename="../../arcademodesetup.cpp" line="608"/>
+        <location filename="../../arcademodesetup.cpp" line="581"/>
+        <location filename="../../arcademodesetup.cpp" line="602"/>
         <source>All files (*)</source>
         <translation type="unfinished">Alla filer (*)</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="594"/>
+        <location filename="../../arcademodesetup.cpp" line="588"/>
         <source>Choose QMC2 Arcade&apos;s working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="601"/>
+        <location filename="../../arcademodesetup.cpp" line="595"/>
         <source>Choose QMC2 Arcade&apos;s configuration path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="608"/>
+        <location filename="../../arcademodesetup.cpp" line="602"/>
         <source>Choose filtered list file for export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="618"/>
+        <location filename="../../arcademodesetup.cpp" line="612"/>
         <source>FATAL: arcade mode: cannot open &apos;%1&apos; for writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="642"/>
+        <location filename="../../arcademodesetup.cpp" line="636"/>
         <source>WARNING: arcade mode: the name filter regular expression is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="644"/>
+        <location filename="../../arcademodesetup.cpp" line="638"/>
         <source>Filtering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="697"/>
+        <location filename="../../arcademodesetup.cpp" line="691"/>
         <source>imperfect</source>
         <translation type="unfinished">ofullständig</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="732"/>
+        <location filename="../../arcademodesetup.cpp" line="726"/>
         <source>Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="740"/>
+        <location filename="../../arcademodesetup.cpp" line="734"/>
         <source>Exporting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="755"/>
+        <location filename="../../arcademodesetup.cpp" line="749"/>
         <source>ROM</source>
         <translation type="unfinished">ROM</translation>
     </message>
     <message>
-        <location filename="../../arcademodesetup.cpp" line="756"/>
+        <location filename="../../arcademodesetup.cpp" line="750"/>
         <source>CHD</source>
         <translation type="unfinished">CHD</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../arcademodesetup.cpp" line="767"/>
+        <location filename="../../arcademodesetup.cpp" line="761"/>
         <source>arcade mode: exported %n filtered set(s) to &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>

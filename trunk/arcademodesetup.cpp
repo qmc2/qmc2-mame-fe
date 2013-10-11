@@ -46,8 +46,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 {
 	setupUi(this);
 
-	// FIXME: WIP
-#if QMC2_JOYSTICK == 0 || !defined(QMC2_WIP_ENABLED)
+#if QMC2_JOYSTICK == 0
 	tabWidget->removeTab(tabWidget->indexOf(tabJoystick));
 #else
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl", false).toBool() ) {
@@ -120,11 +119,6 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 		comboBoxConsoleType->setCurrentIndex(index);
 	checkBoxDebugKeys->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugKeys", false).toBool());
 	checkBoxDebugJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy", false).toBool());
-
-	// FIXME: WIP
-#if !defined(QMC2_WIP_ENABLED)
-	checkBoxDebugJoy->hide();
-#endif
 
 	// game list filter
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());

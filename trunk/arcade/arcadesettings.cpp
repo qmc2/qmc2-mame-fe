@@ -630,18 +630,49 @@ bool ArcadeSettings::compressEmuInfoDB()
     return value(QString("%1/GUI/CompressEmuInfoDB").arg(frontEndPrefix)).toBool();
 }
 
-int ArcadeSettings::joystickAxisMinimum(int jsIndex, int axis)
-{
-    return value(QString("%1/Joystick/%2/Axis%3Minimum").arg(frontEndPrefix).arg(jsIndex).arg(axis)).toInt();
-}
-
-int ArcadeSettings::joystickAxisMaximum(int jsIndex, int axis)
-{
-    return value(QString("%1/Joystick/%2/Axis%3Maximum").arg(frontEndPrefix).arg(jsIndex).arg(axis)).toInt();
-}
-
 QStringList ArcadeSettings::activeImageFormats(QString imageType)
 {
     return value(QString("%1/ActiveImageFormats/%2").arg(frontEndPrefix).arg(imageType)).toStringList();
 }
 
+#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
+int ArcadeSettings::joystickAxisMinimum(int joystickIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Minimum").arg(frontEndPrefix).arg(joystickIndex).arg(axis), -32767).toInt();
+}
+
+int ArcadeSettings::joystickAxisMaximum(int joystickIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Maximum").arg(frontEndPrefix).arg(joystickIndex).arg(axis), 32768).toInt();
+}
+
+bool ArcadeSettings::joystickAxisEnabled(int joystickIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Enabled").arg(frontEndPrefix).arg(joystickIndex).arg(axis), true).toBool();
+}
+
+int ArcadeSettings::joystickIndex()
+{
+    return value(QString("%1/Joystick/Index").arg(frontEndPrefix), 0).toInt();
+}
+
+bool ArcadeSettings::joystickEnabled()
+{
+    return value(QString("%1/Joystick/EnableJoystickControl").arg(frontEndPrefix), false).toBool();
+}
+
+int ArcadeSettings::joystickEventTimeout()
+{
+    return value(QString("%1/Joystick/EventTimeout").arg(frontEndPrefix), 25).toInt();
+}
+
+bool ArcadeSettings::joystickAutoRepeat()
+{
+    return value(QString("%1/Joystick/AutoRepeat").arg(frontEndPrefix), true).toBool();
+}
+
+int ArcadeSettings::joystickAutoRepeatTimeout()
+{
+    return value(QString("%1/Joystick/AutoRepeatTimeout").arg(frontEndPrefix), 250).toInt();
+}
+#endif
