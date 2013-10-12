@@ -32,6 +32,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern Gamelist *qmc2Gamelist;
 extern Options *qmc2Options;
 extern KeyPressFilter *qmc2KeyPressFilter;
+extern bool qmc2SuppressQtMessages;
 
 int qmc2ArcadeModeSortCriteria = 0;
 int qmc2ArcadeModeSortOrder = 0;
@@ -335,6 +336,9 @@ void ArcadeModeSetup::scanCustomJoyFunction(QTreeWidgetItem *item, int /*column*
 	if ( !item->parent() || qmc2Options->joystick == NULL )
 		return;
 
+	bool saveSQM = qmc2SuppressQtMessages;
+	qmc2SuppressQtMessages = true;
+
 	JoystickFunctionScanner joyFunctionScanner(qmc2Options->joystick, true, this);
 
 	if ( joyFunctionScanner.exec() == QDialog::Accepted ) {
@@ -348,6 +352,8 @@ void ArcadeModeSetup::scanCustomJoyFunction(QTreeWidgetItem *item, int /*column*
 		item->setText(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM, joyFuncText);
 	} else if ( joyFunctionScanner.clearClicked )
 		item->setText(QMC2_ARCADE_JOYMAP_COLUMN_CUSTOM, QString());
+
+	qmc2SuppressQtMessages = saveSQM;
 }
 
 void ArcadeModeSetup::loadJoyFunctionMaps()

@@ -9,7 +9,7 @@ class KeySequenceScanner : public QDialog, public Ui::KeySequenceScanner
 	Q_OBJECT
 
 	public:
-		QTimer animTimer;
+		QTimer *animTimer;
 		int animSeq;
 		int keySequence;
 		Qt::KeyboardModifiers seqModifiers;
@@ -19,6 +19,7 @@ class KeySequenceScanner : public QDialog, public Ui::KeySequenceScanner
 		bool clearClicked;
 
 		KeySequenceScanner(QWidget *parent = 0, bool special = false, bool onlyOne = false, bool showClearButton = false);
+		~KeySequenceScanner();
 
 	public slots:
 		void animationTimeout();
