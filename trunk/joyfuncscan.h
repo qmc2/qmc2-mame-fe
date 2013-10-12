@@ -12,12 +12,13 @@ class JoystickFunctionScanner : public QDialog, public Ui::JoystickFunctionScann
 	Q_OBJECT
 
 	public:
-		QTimer animTimer;
+		QTimer *animTimer;
 		int animSeq;
 		int joyIndex;
 		bool clearClicked;
 
 		JoystickFunctionScanner(Joystick *joystick, bool showClearButton = false, QWidget *parent = 0);
+		~JoystickFunctionScanner();
 
 	public slots:
 		void animationTimeout();

@@ -25,10 +25,16 @@ KeySequenceScanner::KeySequenceScanner(QWidget *parent, bool special, bool onlyO
 		setWindowTitle(tr("Scanning shortcut"));
 	}
 	keySequence = 0;
+
 	animSeq = 0;
-	animationTimeout();
-	connect(&animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
-	animTimer.start(QMC2_ANIMATION_TIMEOUT);
+	animTimer = new QTimer(this);
+	connect(animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
+	QTimer::singleShot(0, this, SLOT(animationTimeout()));
+}
+
+KeySequenceScanner::~KeySequenceScanner()
+{
+	delete animTimer;
 }
 
 void KeySequenceScanner::hideEvent(QHideEvent *e)
@@ -77,8 +83,11 @@ void KeySequenceScanner::animationTimeout()
 			labelKeySequence->setText(">   <");
 			break;
 	}
+
 	if ( ++animSeq > 9 )
 		animSeq = 0;
+
+	animTimer->start(QMC2_ANIMATION_TIMEOUT);
 }
 
 void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
@@ -86,7 +95,7 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
 	keySequence = event->key();
 	seqModifiers = event->modifiers();
 	if ( keySequence != 0 && keySequence != Qt::Key_unknown ) {
-		animTimer.stop();
+		animTimer->stop();
 		keySequence += seqModifiers;
 		if ( seqModifiers & Qt::KeypadModifier )
 			keySequence -= Qt::KeypadModifier;
@@ -118,33 +127,33 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
 			else {
 				pushButtonOk->setEnabled(false);
 				animSeq = 0;
-				animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				animTimer->start(QMC2_ANIMATION_TIMEOUT);
 			}
 		} else if ( specialKey ) {
 			if ( words.isEmpty() ) {
 				pushButtonOk->setEnabled(false);
 				animSeq = 0;
-				animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				animTimer->start(QMC2_ANIMATION_TIMEOUT);
 			} else {
 				pushButtonOk->setEnabled(!labelKeySequence->text().endsWith("??"));
 				if ( labelKeySequence->text() == "??" ) {
 			  		pushButtonOk->setEnabled(false);
 			  		animSeq = 0;
-				  	animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				  	animTimer->start(QMC2_ANIMATION_TIMEOUT);
 				}
 			}
 		} else if ( labelKeySequence->text().endsWith("??") ) {
 			pushButtonOk->setEnabled(false);
 			if ( labelKeySequence->text() == "??" ) {
 				animSeq = 0;
-				animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				animTimer->start(QMC2_ANIMATION_TIMEOUT);
 			}
 		} else
 		pushButtonOk->setEnabled(true);
 	} else {
 		pushButtonOk->setEnabled(false);
 		animationTimeout();
-		animTimer.start(QMC2_ANIMATION_TIMEOUT);
+		animTimer->start(QMC2_ANIMATION_TIMEOUT);
 	}
 
 	event->accept();
@@ -155,7 +164,7 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
 	keySequence = event->key();
 	if ( seqModifiers != event->modifiers() && labelKeySequence->text().endsWith("??") ) {
 		seqModifiers = event->modifiers();
-		animTimer.stop();
+		animTimer->stop();
 		keySequence += seqModifiers;
 		if ( seqModifiers & Qt::KeypadModifier )
 			keySequence -= Qt::KeypadModifier;
@@ -187,26 +196,26 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
 			else {
 				pushButtonOk->setEnabled(false);
 				animSeq = 0;
-				animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				animTimer->start(QMC2_ANIMATION_TIMEOUT);
 			}
 		} else if ( specialKey ) {
 			if ( words.isEmpty() ) {
 				pushButtonOk->setEnabled(false);
 				animSeq = 0;
-				animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				animTimer->start(QMC2_ANIMATION_TIMEOUT);
 			} else {
 				pushButtonOk->setEnabled(!labelKeySequence->text().endsWith("??"));
 				if ( labelKeySequence->text() == "??" ) {
 					pushButtonOk->setEnabled(false);
 					animSeq = 0;
-					animTimer.start(QMC2_ANIMATION_TIMEOUT);
+					animTimer->start(QMC2_ANIMATION_TIMEOUT);
 				}
 			}
 		} else if ( labelKeySequence->text().endsWith("??") ) {
 			pushButtonOk->setEnabled(false);
 			if ( labelKeySequence->text() == "??" ) {
 				animSeq = 0;
-				animTimer.start(QMC2_ANIMATION_TIMEOUT);
+				animTimer->start(QMC2_ANIMATION_TIMEOUT);
 			}
 		} else
 			pushButtonOk->setEnabled(true);
