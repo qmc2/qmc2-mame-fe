@@ -675,4 +675,14 @@ int ArcadeSettings::joystickAutoRepeatTimeout()
 {
     return value(QString("%1/Joystick/AutoRepeatTimeout").arg(frontEndPrefix), 250).toInt();
 }
+
+int ArcadeSettings::joystickDeadzone(int joystickIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Deadzone").arg(frontEndPrefix).arg(joystickIndex).arg(axis), 0).toInt();
+}
+
+int ArcadeSettings::joystickSensitivity(int joystickIndex, int axis)
+{
+    return value(QString("%1/Joystick/%2/Axis%3Sensitivity").arg(frontEndPrefix).arg(joystickIndex).arg(axis), 0).toInt();
+}
 #endif

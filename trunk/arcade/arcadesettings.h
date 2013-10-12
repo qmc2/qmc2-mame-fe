@@ -164,6 +164,8 @@ public slots:
     int joystickEventTimeout();
     bool joystickAutoRepeat();
     int joystickAutoRepeatTimeout();
+    int joystickDeadzone(int, int);
+    int joystickSensitivity(int, int);
 #endif
 };
 
