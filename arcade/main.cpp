@@ -138,7 +138,7 @@ void showHelp()
     helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     helpMessage += "-nojoy           Disable joystick    N/A\n";
-    helpMessage += "-joy             Use given joystick  N/A\n";
+    helpMessage += QString("-joy             Use given joystick  SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
     helpMessage += "-debugjoy        Debug joy-mapping   N/A\n";
 #endif
 #else
@@ -157,7 +157,7 @@ void showHelp()
     helpMessage += "-debugkeys       Debug key-mapping   N/A\n";
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     helpMessage += "-nojoy           Disable joystick    N/A\n";
-    helpMessage += "-joy             Use given joystick  N/A\n";
+    helpMessage += QString("-joy             Use given joystick  SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
     helpMessage += "-debugjoy        Debug joy-mapping   N/A\n";
 #endif
 #endif
