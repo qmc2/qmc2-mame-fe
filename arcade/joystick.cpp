@@ -50,6 +50,12 @@ bool Joystick::open(int stick)
         QMC2_ARCADE_LOG_STR(tr("SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6").arg(stick).arg(joystickNames[stick]).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
         joystickTimer.start(eventTimeout);
         jsIndex = stick;
+        deadzones.clear();
+        sensitivities.clear();
+        for (int axis = 0; axis < numAxes; axis++) {
+            deadzones[axis] = globalConfig->joystickDeadzone(jsIndex, axis);
+            sensitivities[axis] = globalConfig->joystickSensitivity(jsIndex, axis);
+        }
         return true;
     } else {
         QMC2_ARCADE_LOG_STR(tr("ERROR: couldn't open SDL joystick #%1").arg(stick));
