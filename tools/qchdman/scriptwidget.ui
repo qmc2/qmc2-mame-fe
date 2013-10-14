@@ -33,6 +33,23 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonRun">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Run this script</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qchdman.qrc">
+         <normaloff>:/images/run.png</normaloff>:/images/run.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="toolButtonStop">
        <property name="enabled">
         <bool>false</bool>
@@ -49,23 +66,6 @@
        <property name="icon">
         <iconset resource="qchdman.qrc">
          <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonRun">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Run this script</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qchdman.qrc">
-         <normaloff>:/images/run.png</normaloff>:/images/run.png</iconset>
        </property>
       </widget>
      </item>
@@ -88,6 +88,9 @@
       <property name="toolTip">
        <string>Script log</string>
       </property>
+      <property name="lineWrapMode">
+       <enum>QPlainTextEdit::NoWrap</enum>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -97,9 +100,10 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonRun</tabstop>
+  <tabstop>toolButtonStop</tabstop>
   <tabstop>textEditScript</tabstop>
+  <tabstop>plainTextEditLog</tabstop>
  </tabstops>
  <resources>
   <include location="qchdman.qrc"/>
