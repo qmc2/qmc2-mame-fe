@@ -13,6 +13,8 @@
 extern Settings *globalConfig;
 extern quint64 runningProjects;
 
+QStringList MainWindow::projectTypes;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -39,7 +41,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION);
     nextProjectID = 0;
 
-    projectTypes << "Info" << "Verify" << "Copy" << "CreateRaw" << "CreateHD" << "CreateCD" << "CreateLD" << "ExtractRaw" << "ExtractHD" << "ExtractCD" << "ExtractLD" << "DumpMeta" << "AddMeta" << "DelMeta";
+    if ( projectTypes.isEmpty() )
+        projectTypes << "Info" << "Verify" << "Copy" << "CreateRaw" << "CreateHD" << "CreateCD" << "CreateLD" << "ExtractRaw" << "ExtractHD" << "ExtractCD" << "ExtractLD" << "DumpMeta" << "AddMeta" << "DelMeta";
 
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
         on_actionWindowViewModeWindowed_triggered();

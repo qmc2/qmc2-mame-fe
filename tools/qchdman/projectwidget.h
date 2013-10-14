@@ -7,6 +7,11 @@
 #include <QComboBox>
 #endif
 
+#include "scriptengine.h"
+#include "macros.h"
+
+class ScriptEngine;
+
 namespace Ui {
 class ProjectWidget;
 }
@@ -36,6 +41,8 @@ public:
 class ProjectWidget : public QWidget
 {
     Q_OBJECT
+
+    friend class ScriptEngine;
 
 public:
     bool terminatedOnDemand;
@@ -71,9 +78,11 @@ public:
     QLinearGradient linearGradient;
     bool isScriptElement;
     QString status;
+    QString scriptId;
+    ScriptEngine *scriptEngine;
 
-    explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false);
-    ~ProjectWidget();
+    explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false, int type = QCHDMAN_PRJ_UNKNOWN, QString sId = QString(), ScriptEngine *sEngine = NULL);
+    virtual ~ProjectWidget();
 
 public slots:
     // Info

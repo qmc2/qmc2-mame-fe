@@ -11,6 +11,7 @@
 #include "macros.h"
 
 class ScriptWidget;
+class ProjectWidget;
 
 class ScriptEngine : public QObject
 {
@@ -31,6 +32,10 @@ public slots:
     void projectCreateFromString(QString id, QString buffer);
     void projectDestroy(QString id);
     QString projectStatus(QString id);
+
+    // Info
+    void projectSetInfoInputFile(QString id, QString file);
+    void projectSetInfoVerbose(QString id, bool verbose);
 
     void runProjects(QString idList);
     void stopProjects(QString idList);

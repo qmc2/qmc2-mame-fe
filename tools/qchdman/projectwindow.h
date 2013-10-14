@@ -20,8 +20,8 @@ public:
     ProjectWidget *projectWidget;
     ScriptWidget *scriptWidget;
 
-    ProjectWindow(QString pn = QString(), int type = QCHDMAN_MDI_PROJECT, QWidget *parent = 0);
-    ~ProjectWindow();
+    explicit ProjectWindow(QString pn = QString(), int type = QCHDMAN_MDI_PROJECT, QWidget *parent = 0);
+    virtual ~ProjectWindow();
 
     void setProjectName(QString);
 

@@ -99,7 +99,7 @@
 // project states (for scripting)
 #define QCHDMAN_PRJSTAT_UNKNOWN     "unknown"
 #define QCHDMAN_PRJSTAT_IDLE        "idle"
-#define QCHDMAN_PRJSTAT_STARTED     "started"
+#define QCHDMAN_PRJSTAT_RUNNING     "running"
 #define QCHDMAN_PRJSTAT_FINISHED    "finished"
 #define QCHDMAN_PRJSTAT_TERMINATED  "terminated"
 #define QCHDMAN_PRJSTAT_CRASHED     "crashed"
