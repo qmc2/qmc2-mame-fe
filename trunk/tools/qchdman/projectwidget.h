@@ -157,9 +157,11 @@ public slots:
     void copyStderrToClipboard();
     void copyCommandToClipboard();
     void updateCompression(QComboBox *, QStringList *, int);
-    void load(const QString &fileName = QString());
-    void save();
-    void saveAs(const QString &fileName = QString());
+    void load(const QString &fileName = QString(), QString *buffer = NULL);
+    void save(QString *buffer = NULL);
+    void saveAs(const QString &fileName = QString(), QString *buffer = NULL);
+    QString toString();
+    void fromString(QString);
     void triggerSaveAs();
     void triggerUpdate() { on_comboBoxProjectType_currentIndexChanged(-1); }
     void clone();

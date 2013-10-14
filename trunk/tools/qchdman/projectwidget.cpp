@@ -1423,18 +1423,28 @@ void ProjectWidget::updateCompression(QComboBox *cb, QStringList *cmp, int index
     cb->blockSignals(false);
 }
 
-void ProjectWidget::load(const QString &fileName)
+void ProjectWidget::load(const QString &fileName, QString *buffer)
 {
     QString fName = fileName;
-    if ( fName.isEmpty() ) {
+
+    if ( buffer == NULL && fName.isEmpty() ) {
         fName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
         if ( fName.isNull() )
             return;
     }
 
     QFile loadFile(fName);
-    if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-        QTextStream ts(&loadFile);
+    QTextStream ts;
+    QByteArray ba;
+    QBuffer baBuffer(&ba);
+
+    if ( buffer != NULL ) {
+        baBuffer.open(QBuffer::ReadWrite);
+        ts.setDevice(&baBuffer);
+    } else if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) )
+        ts.setDevice(&loadFile);
+
+    if ( ts.device() ) {
         int projectType = QCHDMAN_PRJ_UNKNOWN;
         while ( !ts.atEnd() && projectType == QCHDMAN_PRJ_UNKNOWN ) {
             QString line = ts.readLine().trimmed();
@@ -1771,7 +1781,12 @@ void ProjectWidget::load(const QString &fileName)
             qApp->processEvents();
             on_comboBoxProjectType_currentIndexChanged(projectType);
         }
-        loadFile.close();
+
+        if ( buffer != NULL )
+            *buffer = QString(ba);
+        else
+            loadFile.close();
+
         if ( !isScriptElement ) {
             ((ProjectWindow *)parentWidget())->projectName = fName;
             parentWidget()->setWindowTitle(fName);
@@ -1781,7 +1796,7 @@ void ProjectWidget::load(const QString &fileName)
         mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(fName), QCHDMAN_STATUS_MSGTIME);
 }
 
-void ProjectWidget::save()
+void ProjectWidget::save(QString *buffer)
 {
     QString projectName;
 
@@ -1791,16 +1806,16 @@ void ProjectWidget::save()
     if ( projectName.startsWith(tr("Noname-%1").arg("")) )
         askFileName = true;
 
-    saveAs(projectName);
+    saveAs(projectName, buffer);
 
     askFileName = false;
 }
 
-void ProjectWidget::saveAs(const QString &fileName)
+void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
 {
     QString projectName = fileName;
 
-    if ( projectName.isEmpty() || askFileName ) {
+    if ( buffer == NULL && (projectName.isEmpty() || askFileName) ) {
         if ( !isScriptElement )
             projectName = ((ProjectWindow *)parentWidget())->projectName;
         if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
@@ -1813,8 +1828,17 @@ void ProjectWidget::saveAs(const QString &fileName)
     }
 
     QFile saveFile(projectName);
-    if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
-        QTextStream ts(&saveFile);
+    QTextStream ts;
+    QByteArray ba;
+    QBuffer baBuffer(&ba);
+
+    if ( buffer != NULL ) {
+        baBuffer.open(QBuffer::ReadWrite);
+        ts.setDevice(&baBuffer);
+    } else if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) )
+        ts.setDevice(&saveFile);
+
+    if ( ts.device() ) {
         int projectType = ui->comboBoxProjectType->currentIndex();
         ts << "# " << tr("Qt CHDMAN project file -- please do not edit manually") << "\n";
         ts << "ApplicationVersion = " << QCHDMAN_APP_VERSION << "\n";
@@ -1986,7 +2010,12 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "DelMetaIndex = " << ui->spinBoxDelMetaIndex->value() << "\n";
             break;
         }
-        saveFile.close();
+
+        if ( buffer != NULL )
+            *buffer = QString(ba);
+        else
+            saveFile.close();
+
         if ( !isScriptElement ) {
             ((ProjectWindow *)parentWidget())->projectName = projectName;
             parentWidget()->setWindowTitle(projectName);
@@ -1995,6 +2024,18 @@ void ProjectWidget::saveAs(const QString &fileName)
         mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), QCHDMAN_STATUS_MSGTIME);
     } else
         mainWindow->statusBar()->showMessage(tr("Failed saving project '%1'").arg(projectName), QCHDMAN_STATUS_MSGTIME);
+}
+
+QString ProjectWidget::toString()
+{
+    QString buffer;
+    save(&buffer);
+    return buffer;
+}
+
+void ProjectWidget::fromString(QString buffer)
+{
+    load(QString(), &buffer);
 }
 
 void ProjectWidget::triggerSaveAs()
