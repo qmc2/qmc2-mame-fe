@@ -29,10 +29,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mdiArea->setTabsClosable(true);
 #endif
 
-#if !defined(QCHDMAN_WIP_ENABLED)
-    ui->actionProjectNewScript->setVisible(false);
-#endif
-
     preferencesDialog = new PreferencesDialog(this);
 
     restoreGeometry(globalConfig->mainWindowGeometry());
@@ -54,6 +50,13 @@ MainWindow::MainWindow(QWidget *parent) :
         QFile f(file);
         if ( f.exists() )
             ui->menuProjectRecent->addAction(file, this, SLOT(loadRecentFile()));
+    }
+
+    recentScripts = globalConfig->mainWindowRecentScripts();
+    foreach (QString script, recentScripts) {
+        QFile f(script);
+        if ( f.exists() )
+            ui->menuProjectRecentScripts->addAction(script, this, SLOT(loadRecentScript()));
     }
 
     // sub-window icons
@@ -337,7 +340,7 @@ void MainWindow::on_actionProjectNewScript_triggered(bool checked)
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !fileName.isNull() ) {
         ProjectWindow *projectWindow = new ProjectWindow(fileName, QCHDMAN_MDI_PROJECT, ui->mdiArea);
         projectWindow->show();
@@ -348,15 +351,27 @@ void MainWindow::on_actionProjectLoad_triggered(bool)
     }
 }
 
+void MainWindow::on_actionProjectLoadScript_triggered(bool checked)
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose script file"), QString(), tr("All files (*)") + ";;" + tr("Script files (*.scr)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !fileName.isNull() ) {
+        ProjectWindow *projectWindow = new ProjectWindow(fileName, QCHDMAN_MDI_SCRIPT, ui->mdiArea);
+        projectWindow->show();
+        if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+            if ( globalConfig->preferencesMaximizeWindows() )
+                projectWindow->showMaximized();
+        projectWindow->scriptWidget->load(fileName);
+    }
+}
+
 void MainWindow::on_actionProjectSave_triggered(bool)
 {
     ProjectWindow *projectWindow = (ProjectWindow *)ui->mdiArea->activeSubWindow();
     if ( projectWindow ) {
-        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT )
             projectWindow->projectWidget->save();
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
-        }
+        else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT )
+            projectWindow->scriptWidget->save();
     }
 }
 
@@ -369,7 +384,9 @@ void MainWindow::on_actionProjectSaveAs_triggered(bool)
             projectWindow->projectWidget->saveAs();
             projectWindow->projectWidget->askFileName = false;
         } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+            projectWindow->scriptWidget->askFileName = true;
+            projectWindow->scriptWidget->saveAs();
+            projectWindow->scriptWidget->askFileName = false;
         }
     }
 }
@@ -382,7 +399,8 @@ void MainWindow::on_actionProjectSaveAll_triggered(bool)
             ProjectWidget *projectWidget = (ProjectWidget *)projectWindow->widget();
             projectWidget->save();
         } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+            ScriptWidget *scriptWidget = (ScriptWidget *)projectWindow->widget();
+            scriptWidget->save();
         }
     }
 }
@@ -588,6 +606,23 @@ void MainWindow::addRecentFile(const QString &fileName)
     }
 }
 
+void MainWindow::addRecentScript(const QString &fileName)
+{
+    if ( !fileName.isEmpty() ) {
+        recentScripts.removeAll(fileName);
+        recentScripts.insert(0, fileName);
+        if ( recentScripts.count() > QCHDMAN_MAX_RECENT_FILES )
+            recentScripts.removeAt(recentScripts.count() - 1);
+        ui->menuProjectRecentScripts->clear();
+        foreach (QString file, recentScripts) {
+            QFile f(file);
+            if ( f.exists() )
+                ui->menuProjectRecentScripts->addAction(file, this, SLOT(loadRecentScript()));
+        }
+        globalConfig->setMainWindowRecentScripts(recentScripts);
+    }
+}
+
 void MainWindow::loadRecentFile()
 {
     QAction *action = (QAction *)sender();
@@ -602,6 +637,22 @@ void MainWindow::loadRecentFile()
         if ( globalConfig->preferencesMaximizeWindows() )
             projectWindow->showMaximized();
     projectWindow->projectWidget->load(action->text());
+}
+
+void MainWindow::loadRecentScript()
+{
+    QAction *action = (QAction *)sender();
+    QFile f(action->text());
+    if ( !f.exists() ) {
+        statusBar()->showMessage(tr("Script '%1' doesn't exist"), QCHDMAN_STATUS_MSGTIME);
+        return;
+    }
+    ProjectWindow *projectWindow = new ProjectWindow(action->text(), QCHDMAN_MDI_SCRIPT, ui->mdiArea);
+    projectWindow->show();
+    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+        if ( globalConfig->preferencesMaximizeWindows() )
+            projectWindow->showMaximized();
+    projectWindow->scriptWidget->load(action->text());
 }
 
 void MainWindow::enableActions(bool enable)

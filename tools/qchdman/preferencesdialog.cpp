@@ -17,14 +17,6 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     ui(new Ui::PreferencesDialog)
 {
     ui->setupUi(this);
-
-#if !defined(QCHDMAN_WIP_ENABLED)
-    ui->labelEditorFont->hide();
-    ui->fontComboBoxEditorFont->hide();
-    ui->labelEditorFontSize->hide();
-    ui->spinBoxEditorFontSize->hide();
-#endif
-
     ui->comboBoxStyle->addItems(QStyleFactory::keys());
     restoreSettings();
 }

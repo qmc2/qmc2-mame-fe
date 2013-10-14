@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QStatusBar>
+#include <QApplication>
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
@@ -28,7 +29,7 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement, int type, QStr
     isScriptElement = scriptElement;
     scriptId = sId;
     scriptEngine = sEngine;
-    status = "idle";
+    status = QCHDMAN_PRJSTAT_IDLE;
     chdmanProc = NULL;
     terminatedOnDemand = askFileName = false;
     needsTabbedUiAdjustment = needsWindowedUiAdjustment = true;
@@ -713,7 +714,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     if ( exitStatus == QProcess::CrashExit ) {
         if ( terminatedOnDemand ) {
             statusString = tr("terminated");
-            status = QCHDMAN_PRJSTAT_FINISHED;
+            status = QCHDMAN_PRJSTAT_TERMINATED;
         } else {
             statusString = tr("crashed");
             status = QCHDMAN_PRJSTAT_CRASHED;
@@ -1452,7 +1453,7 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
     QString fName = fileName;
 
     if ( buffer == NULL && fName.isEmpty() ) {
-        fName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+        fName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
         if ( fName.isNull() )
             return;
     }
@@ -1843,7 +1844,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
         if ( !isScriptElement )
             projectName = ((ProjectWindow *)parentWidget())->projectName;
         if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
-            QString s = QFileDialog::getSaveFileName(this, tr("Choose file"), projectName, tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+            QString s = QFileDialog::getSaveFileName(this, tr("Choose project file"), projectName, tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
             if ( s.isNull() )
                 return;
             else
@@ -1864,7 +1865,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
 
     if ( ts.device() ) {
         int projectType = ui->comboBoxProjectType->currentIndex();
-        ts << "# " << tr("Qt CHDMAN project file -- please do not edit manually") << "\n";
+        ts << "# " << tr("Qt CHDMAN GUI project file -- please do not edit manually") << "\n";
         ts << "ApplicationVersion = " << QCHDMAN_APP_VERSION << "\n";
         ts << "ProjectFormatVersion = " << QCHDMAN_PRJ_FMT_VERSION << "\n";
         ts << "ProjectType = " << mainWindow->projectTypes[projectType] << "\n";

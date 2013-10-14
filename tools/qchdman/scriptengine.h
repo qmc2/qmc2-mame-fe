@@ -18,6 +18,8 @@ class ScriptEngine : public QObject
     Q_OBJECT
 
 public:
+    bool externalStop;
+
     explicit ScriptEngine(ScriptWidget *parent);
     virtual ~ScriptEngine();
 

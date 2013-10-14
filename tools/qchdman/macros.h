@@ -5,8 +5,9 @@
 #define STR(s)                      #s
 #define XSTR(s)                     STR(s)
 
-// project file format version
+// project & script file format versions
 #define QCHDMAN_PRJ_FMT_VERSION     1
+#define QCHDMAN_SCR_FMT_VERSION     1
 
 // app name, title, version, ...
 #define QCHDMAN_APP_NAME            QString("qchdman")
@@ -69,6 +70,9 @@
 
 // wait time between consecutive kill retries
 #define QCHDMAN_KILL_WAIT           100
+
+// time between process state polls when synchronizing projects
+#define QCHDMAN_PROCESS_POLL_TIME   50
 
 // view modes
 #define QCHDMAN_VIEWMODE_WINDOWED   QMdiArea::SubWindowView
