@@ -1,4 +1,6 @@
 #include "scriptengine.h"
+#include "mainwindow.h"
+#include "ui_projectwidget.h"
 
 ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     QObject(parent)
@@ -31,7 +33,15 @@ void ScriptEngine::log(QString message)
 
 void ScriptEngine::projectCreate(QString id, QString type)
 {
-    // FIXME
+    if ( mProjectMap.contains(id) )
+        log(tr("warning") + ": ScriptEngine::projectCreate(): " + tr("project '%1' already exists").arg(id));
+    else {
+        int typeIndex = MainWindow::projectTypeIndex(type);
+        if ( typeIndex >= 0 )
+            mProjectMap[id] = new ProjectWidget(0, true, typeIndex, id, this);
+        else
+            log(tr("warning") + ": ScriptEngine::projectCreate(): " + tr("project type '%1' doesn't exists - valid types are: %2").arg(id).arg(MainWindow::projectTypes.join(", ")));
+    }
 }
 
 void ScriptEngine::projectCreateFromFile(QString id, QString fileName)
@@ -46,7 +56,11 @@ void ScriptEngine::projectCreateFromString(QString id, QString buffer)
 
 void ScriptEngine::projectDestroy(QString id)
 {
-    // FIXME
+    if ( mProjectMap.contains(id) ) {
+        delete mProjectMap[id];
+        mProjectMap.remove(id);
+    } else
+        log(tr("warning") + ": ScriptEngine::projectDestroy(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
 QString ScriptEngine::projectStatus(QString id)
@@ -57,14 +71,44 @@ QString ScriptEngine::projectStatus(QString id)
         return QCHDMAN_PRJSTAT_UNKNOWN;
 }
 
+void ScriptEngine::projectSetInfoInputFile(QString id, QString file)
+{
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditInfoInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetInfoInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetInfoVerbose(QString id, bool verbose)
+{
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->checkBoxInfoVerbose->setChecked(verbose);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetInfoVerbose(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
 void ScriptEngine::runProjects(QString idList)
 {
-    // FIXME
+    foreach (QString id, idList.split(", ", QString::SkipEmptyParts)) {
+        if ( mProjectMap.contains(id) ) {
+            if ( mProjectMap[id]->status == QCHDMAN_PRJSTAT_RUNNING )
+                log(tr("warning") + ": ScriptEngine::runProjects(): " + tr("project '%1' is already running").arg(id));
+            else
+                mProjectMap[id]->run();
+        } else
+            log(tr("warning") + ": ScriptEngine::runProjects(): " + tr("project '%1' doesn't exists").arg(id));
+    }
 }
 
 void ScriptEngine::stopProjects(QString idList)
 {
-    // FIXME
+    foreach (QString id, idList.split(", ", QString::SkipEmptyParts)) {
+        if ( mProjectMap.contains(id) ) {
+            if ( mProjectMap[id]->status == QCHDMAN_PRJSTAT_RUNNING )
+                mProjectMap[id]->stop();
+        } else
+            log(tr("warning") + ": ScriptEngine::stopProjects(): " + tr("project '%1' doesn't exists").arg(id));
+    }
 }
 
 void ScriptEngine::syncProjects(QString idList)

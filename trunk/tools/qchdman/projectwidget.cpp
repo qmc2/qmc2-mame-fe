@@ -19,13 +19,15 @@ extern Settings *globalConfig;
 extern MainWindow *mainWindow;
 extern quint64 runningProjects;
 
-ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement) :
+ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement, int type, QString sId, ScriptEngine *sEngine) :
     QWidget(parent),
     ui(new Ui::ProjectWidget)
 {
     ui->setupUi(this);
 
     isScriptElement = scriptElement;
+    scriptId = sId;
+    scriptEngine = sEngine;
     status = "idle";
     chdmanProc = NULL;
     terminatedOnDemand = askFileName = false;
@@ -204,6 +206,9 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement) :
     connect(ui->spinBoxCreateHDHeads, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
     connect(ui->spinBoxCreateHDSectors, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
     connect(ui->spinBoxCreateHDSectorSize, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
+
+    if ( type != QCHDMAN_PRJ_UNKNOWN )
+        setProjectType(type);
 
     QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -694,7 +699,7 @@ void ProjectWidget::started()
 #else
     log(tr("process started: PID = %1").arg(chdmanProc->pid()));
 #endif
-    status = QCHDMAN_PRJSTAT_STARTED;
+    status = QCHDMAN_PRJSTAT_RUNNING;
     ui->toolButtonStop->setEnabled(true);
     ui->progressBar->setFormat(tr("Running"));
     emit progressFormatChanged(tr("Running"));
@@ -1354,9 +1359,14 @@ void ProjectWidget::init()
 
 void ProjectWidget::log(QString message)
 {
-    message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
-    ui->plainTextEditProjectLog->appendPlainText(message);
-    ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
+    if ( isScriptElement ) {
+        message.prepend(projectTypeName + ": " + scriptId + ": ");
+        scriptEngine->log(message);
+    } else {
+        message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
+        ui->plainTextEditProjectLog->appendPlainText(message);
+        ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
+    }
 }
 
 void ProjectWidget::setLogFont(QFont f)

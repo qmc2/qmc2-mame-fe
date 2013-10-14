@@ -26,7 +26,6 @@ public:
     QTimer statusTimer;
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
-    QStringList projectTypes;
     QStringList recentFiles;
     QMap<QString, QString> compressionTypes;
     QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
@@ -37,12 +36,16 @@ public:
     QMap<int, QList<int> > copyTypes;
     QMap<int, QIcon> iconMap;
 
+    static QStringList projectTypes;
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
     QMdiArea *mdiArea();
     ProjectWindow *createProjectWindow(int type = QCHDMAN_MDI_PROJECT);
     QString humanReadable(qreal);
+
+    static int projectTypeIndex(QString typeName) { return projectTypes.indexOf(typeName); }
 
 public slots:
     // Project menu

@@ -52,7 +52,7 @@ void ScriptWidget::on_toolButtonStop_clicked()
 
 void ScriptWidget::log(QString message)
 {
-    message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + tr("Script") + ": ");
+    message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
     ui->plainTextEditLog->appendPlainText(message);
     ui->plainTextEditLog->verticalScrollBar()->setValue(ui->plainTextEditLog->verticalScrollBar()->maximum());
 }
