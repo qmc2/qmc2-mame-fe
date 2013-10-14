@@ -69,6 +69,10 @@ public slots:
     QString preferencesLogFont() { return value("Preferences/LogFont", qApp->font().toString()).toString(); }
     void setPreferencesLogFontSize(int size) { setValue("Preferences/LogFontSize", size); }
     int preferencesLogFontSize() { return value("Preferences/LogFontSize", qApp->font().pointSize()).toInt(); }
+    void setPreferencesEditorFont(QString font) { setValue("Preferences/EditorFont", font); }
+    QString preferencesEditorFont() { return value("Preferences/EditorFont", qApp->font().toString()).toString(); }
+    void setPreferencesEditorFontSize(int size) { setValue("Preferences/EditorFontSize", size); }
+    int preferencesEditorFontSize() { return value("Preferences/EditorFontSize", qApp->font().pointSize()).toInt(); }
     void setPreferencesChdmanBinary(QString path) { setValue("Preferences/ChdmanBinary", path); }
     QString preferencesChdmanBinary() { return value("Preferences/ChdmanBinary", QString()).toString(); }
     void setPreferencesPreferredCHDInputPath(QString path) { setValue("Preferences/PreferredCHDInputPath", path); }

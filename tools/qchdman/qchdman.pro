@@ -1,6 +1,6 @@
 VERSION = 0.1
 
-QT += core gui
+QT += core gui script
 TARGET = qchdman
 TEMPLATE = app
 
@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     projectwidget.cpp \
     preferencesdialog.cpp \
     aboutdialog.cpp \
-    scriptwidget.cpp
+    scriptwidget.cpp \
+    scriptengine.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \
@@ -55,7 +56,8 @@ HEADERS  += mainwindow.h \
     settings.h \
     preferencesdialog.h \
     aboutdialog.h \
-    scriptwidget.h
+    scriptwidget.h \
+    scriptengine.h
 
 FORMS += mainwindow.ui \
     projectwidget.ui \

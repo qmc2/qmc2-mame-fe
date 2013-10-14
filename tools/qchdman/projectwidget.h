@@ -70,6 +70,7 @@ public:
     QIcon currentIcon;
     QLinearGradient linearGradient;
     bool isScriptElement;
+    QString status;
 
     explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false);
     ~ProjectWidget();
