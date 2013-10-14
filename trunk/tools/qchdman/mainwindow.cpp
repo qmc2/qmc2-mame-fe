@@ -445,11 +445,6 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
         }
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT )
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT )
-            if ( (ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_TABBED && projectWindow == ui->mdiArea->activeSubWindow()) || ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_WINDOWED )
-                QTimer::singleShot(0, projectWindow->scriptWidget, SLOT(doPendingResize()));
-            else
-                projectWindow->scriptWidget->resizePending = true;
     }
 }
 
@@ -466,12 +461,6 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
         ProjectWindow *projectWindow = (ProjectWindow *)w;
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT )
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            if ( (ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_TABBED && projectWindow == ui->mdiArea->activeSubWindow()) || ui->mdiArea->viewMode() == QCHDMAN_VIEWMODE_WINDOWED )
-                QTimer::singleShot(0, projectWindow->scriptWidget, SLOT(doPendingResize()));
-            else
-                projectWindow->scriptWidget->resizePending = true;
-        }
     }
 }
 
@@ -648,9 +637,6 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
                 projectWindow->projectWidget->needsTabbedUiAdjustment = false;
             }
             projectWindow->projectWidget->needsWindowedUiAdjustment = true;
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            if ( projectWindow->scriptWidget->resizePending )
-                projectWindow->scriptWidget->doPendingResize();
         }
     } else {
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
@@ -709,10 +695,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
                     projectWidget->chdmanProc->terminate();
             }
             break;
-            case QCHDMAN_MDI_SCRIPT: {
-                ScriptWidget *scriptWidget = (ScriptWidget *)w->widget();
-                scriptWidget->doCleanUp();
-            }
+            case QCHDMAN_MDI_SCRIPT:
             break;
         }
     }

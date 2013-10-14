@@ -17,6 +17,14 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     ui(new Ui::PreferencesDialog)
 {
     ui->setupUi(this);
+
+#if !defined(QCHDMAN_WIP_ENABLED)
+    ui->labelEditorFont->hide();
+    ui->fontComboBoxEditorFont->hide();
+    ui->labelEditorFontSize->hide();
+    ui->spinBoxEditorFontSize->hide();
+#endif
+
     ui->comboBoxStyle->addItems(QStyleFactory::keys());
     restoreSettings();
 }
@@ -48,6 +56,8 @@ void PreferencesDialog::applySettings()
     qApp->setFont(f);
     globalConfig->setPreferencesLogFont(ui->fontComboBoxLogFont->currentFont().toString());
     globalConfig->setPreferencesLogFontSize(ui->spinBoxLogFontSize->value());
+    globalConfig->setPreferencesEditorFont(ui->fontComboBoxEditorFont->currentFont().toString());
+    globalConfig->setPreferencesEditorFontSize(ui->spinBoxEditorFontSize->value());
     globalConfig->setPreferencesShowHelpTexts(ui->checkBoxShowProjectHelp->isChecked());
     globalConfig->setPreferencesMaximizeWindows(ui->checkBoxMaximizeWindows->isChecked());
     globalConfig->setPreferencesNativeFileDialogs(ui->checkBoxNativeFileDialogs->isChecked());
@@ -141,6 +151,10 @@ void PreferencesDialog::restoreSettings()
         f = qApp->font();
     ui->fontComboBoxLogFont->setCurrentFont(f);
     ui->spinBoxLogFontSize->setValue(globalConfig->preferencesLogFontSize());
+    if ( !f.fromString(globalConfig->preferencesEditorFont()) )
+        f = qApp->font();
+    ui->fontComboBoxEditorFont->setCurrentFont(f);
+    ui->spinBoxEditorFontSize->setValue(globalConfig->preferencesEditorFontSize());
     ui->checkBoxShowProjectHelp->setChecked(globalConfig->preferencesShowHelpTexts());
     ui->checkBoxMaximizeWindows->setChecked(globalConfig->preferencesMaximizeWindows());
     ui->checkBoxNativeFileDialogs->setChecked(globalConfig->preferencesNativeFileDialogs());

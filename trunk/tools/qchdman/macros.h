@@ -96,6 +96,15 @@
 #define QCHDMAN_1G                  QCHDMAN_ONE_GIGABYTE
 #define QCHDMAN_1T                  QCHDMAN_ONE_TERABYTE
 
+// project states (for scripting)
+#define QCHDMAN_PRJSTAT_UNKNOWN     "unknown"
+#define QCHDMAN_PRJSTAT_IDLE        "idle"
+#define QCHDMAN_PRJSTAT_STARTED     "started"
+#define QCHDMAN_PRJSTAT_FINISHED    "finished"
+#define QCHDMAN_PRJSTAT_TERMINATED  "terminated"
+#define QCHDMAN_PRJSTAT_CRASHED     "crashed"
+#define QCHDMAN_PRJSTAT_ERROR       "error"
+
 // debugging macros
 #define QCHDMAN_PRINT_TXT(t)        printf("%s\n", #t); fflush(stdout);
 #define QCHDMAN_PRINT_STR(s)        printf("%s = %s\n", #s, (const char *)s.toLocal8Bit()); fflush(stdout);

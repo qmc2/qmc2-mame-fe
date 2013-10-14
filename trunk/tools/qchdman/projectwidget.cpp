@@ -26,6 +26,7 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement) :
     ui->setupUi(this);
 
     isScriptElement = scriptElement;
+    status = "idle";
     chdmanProc = NULL;
     terminatedOnDemand = askFileName = false;
     needsTabbedUiAdjustment = needsWindowedUiAdjustment = true;
@@ -693,6 +694,7 @@ void ProjectWidget::started()
 #else
     log(tr("process started: PID = %1").arg(chdmanProc->pid()));
 #endif
+    status = QCHDMAN_PRJSTAT_STARTED;
     ui->toolButtonStop->setEnabled(true);
     ui->progressBar->setFormat(tr("Running"));
     emit progressFormatChanged(tr("Running"));
@@ -702,11 +704,15 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     runningProjects--;
     QString statusString = tr("normal");
+    status = QCHDMAN_PRJSTAT_FINISHED;
     if ( exitStatus == QProcess::CrashExit ) {
-        if ( terminatedOnDemand )
+        if ( terminatedOnDemand ) {
             statusString = tr("terminated");
-        else
+            status = QCHDMAN_PRJSTAT_FINISHED;
+        } else {
             statusString = tr("crashed");
+            status = QCHDMAN_PRJSTAT_CRASHED;
+        }
     }
     QTime execTime;
     execTime = execTime.addMSecs(projectTimer.elapsed());
@@ -804,25 +810,33 @@ void ProjectWidget::error(QProcess::ProcessError processError)
     switch ( processError ) {
     case QProcess::FailedToStart:
         errString = tr("failed to start");
+        status = QCHDMAN_PRJSTAT_ERROR;
         break;
     case QProcess::Crashed:
         errString = tr("crashed");
-        if ( terminatedOnDemand )
+        status = QCHDMAN_PRJSTAT_CRASHED;
+        if ( terminatedOnDemand ) {
             doLog = false;
+            status = QCHDMAN_PRJSTAT_TERMINATED;
+        }
         else
         break;
     case QProcess::Timedout:
         errString = tr("timed out");
+        status = QCHDMAN_PRJSTAT_ERROR;
         break;
     case QProcess::WriteError:
         errString = tr("write error");
+        status = QCHDMAN_PRJSTAT_ERROR;
         break;
     case QProcess::ReadError:
         errString = tr("read error");
+        status = QCHDMAN_PRJSTAT_ERROR;
         break;
     case QProcess::UnknownError:
     default:
         errString = tr("unknown");
+        status = QCHDMAN_PRJSTAT_ERROR;
         break;
     }
 

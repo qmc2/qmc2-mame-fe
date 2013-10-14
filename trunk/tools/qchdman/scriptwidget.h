@@ -2,7 +2,11 @@
 #define SCRIPTWIDGET_H
 
 #include <QtGui>
+
 #include "projectwidget.h"
+#include "scriptengine.h"
+
+class ScriptEngine;
 
 namespace Ui {
 class ScriptWidget;
@@ -14,39 +18,16 @@ class ScriptWidget : public QWidget
     
 public:
     explicit ScriptWidget(QWidget *parent = 0);
-    ~ScriptWidget();
-
-    bool resizePending;
+    virtual ~ScriptWidget();
 
 public slots:
-    // Callbacks
-    void on_toolButtonInputOutput_toggled(bool enable);
     void on_toolButtonRun_clicked();
     void on_toolButtonStop_clicked();
-    void on_toolButtonAddGroup_clicked();
-    void on_toolButtonRemoveGroup_clicked();
-    void on_toolButtonAddProject_clicked();
-    void on_toolButtonRemoveProject_clicked();
-    void on_toolButtonAddCommand_clicked();
-    void on_toolButtonRemoveCommand_clicked();
-
-    // Other
-    void doCleanUp();
-    void doPendingResize();
-    void changeVariableName();
-    void tableWidgetInputOutput_horizontalHeader_customContextMenuRequested(const QPoint &);
-    void tableWidgetInputOutput_sectionClicked(int);
-
-protected:
-    void resizeEvent(QResizeEvent *);
+    void log(QString);
 
 private:
     Ui::ScriptWidget *ui;
-    int groupSeqNum, projectSeqNum, commandSeqNum;
-    int lastWidgetWidth;
-    QMenu *ioHeaderMenu;
-    QStringList ioVariableNames;
-    int ioHeaderLogicalIndex;
+    ScriptEngine *scriptEngine;
 };
 
 #endif // SCRIPTWIDGET_H
