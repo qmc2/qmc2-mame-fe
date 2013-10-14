@@ -27,6 +27,7 @@ public:
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
     QStringList recentFiles;
+    QStringList recentScripts;
     QMap<QString, QString> compressionTypes;
     QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
     QString preferredCHDInputFolder;
@@ -52,6 +53,7 @@ public slots:
     void on_actionProjectNew_triggered(bool checked = true);
     void on_actionProjectNewScript_triggered(bool checked = true);
     void on_actionProjectLoad_triggered(bool checked = true);
+    void on_actionProjectLoadScript_triggered(bool checked = true);
     void on_actionProjectSave_triggered(bool checked = true);
     void on_actionProjectSaveAs_triggered(bool checked = true);
     void on_actionProjectSaveAll_triggered(bool checked = true);
@@ -77,7 +79,9 @@ public slots:
     void applySettings();
     void updateSubWindows();
     void addRecentFile(const QString &);
+    void addRecentScript(const QString &);
     void loadRecentFile();
+    void loadRecentScript();
     void enableActions(bool enable = true);
     void disableActions() { enableActions(false); }
     void disableActionsRequiringTwo();

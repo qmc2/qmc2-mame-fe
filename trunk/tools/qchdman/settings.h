@@ -104,6 +104,8 @@ public slots:
     int mainWindowViewMode() { return value("MainWindow/ViewMode", QCHDMAN_VIEWMODE_WINDOWED).toInt(); }
     void setMainWindowRecentFiles(QStringList recentFiles) { setValue("MainWindow/RecentFiles", recentFiles); }
     QStringList mainWindowRecentFiles() { return value("MainWindow/RecentFiles", QStringList()).toStringList(); }
+    void setMainWindowRecentScripts(QStringList recentScripts) { setValue("MainWindow/RecentScripts", recentScripts); }
+    QStringList mainWindowRecentScripts() { return value("MainWindow/RecentScripts", QStringList()).toStringList(); }
 };
 
 #endif // SETTINGS_H

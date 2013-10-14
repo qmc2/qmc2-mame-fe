@@ -34,18 +34,25 @@
    </property>
    <widget class="QMenu" name="menuProject">
     <property name="title">
-     <string>&amp;Project</string>
+     <string>&amp;File</string>
     </property>
     <widget class="QMenu" name="menuProjectRecent">
      <property name="title">
-      <string>Recent</string>
+      <string>Recent projects</string>
+     </property>
+    </widget>
+    <widget class="QMenu" name="menuProjectRecentScripts">
+     <property name="title">
+      <string>Recent scripts</string>
      </property>
     </widget>
     <addaction name="actionProjectNew"/>
     <addaction name="actionProjectNewScript"/>
     <addaction name="separator"/>
     <addaction name="actionProjectLoad"/>
+    <addaction name="actionProjectLoadScript"/>
     <addaction name="menuProjectRecent"/>
+    <addaction name="menuProjectRecentScripts"/>
     <addaction name="separator"/>
     <addaction name="actionProjectSave"/>
     <addaction name="actionProjectSaveAs"/>
@@ -91,7 +98,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionProjectNew">
    <property name="text">
-    <string>New</string>
+    <string>New project</string>
    </property>
    <property name="statusTip">
     <string>Create a new project</string>
@@ -102,7 +109,7 @@
   </action>
   <action name="actionProjectLoad">
    <property name="text">
-    <string>Load...</string>
+    <string>Load project...</string>
    </property>
    <property name="statusTip">
     <string>Load existing project from file</string>
@@ -119,7 +126,7 @@
     <string>Save</string>
    </property>
    <property name="statusTip">
-    <string>Save project to file</string>
+    <string>Save project or script to file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -133,7 +140,7 @@
     <string>Save as...</string>
    </property>
    <property name="statusTip">
-    <string>Save project under a different name</string>
+    <string>Save project or script under a different name</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
@@ -158,7 +165,7 @@
     <string>Next</string>
    </property>
    <property name="statusTip">
-    <string>Select next project window</string>
+    <string>Select next window</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+N</string>
@@ -172,7 +179,7 @@
     <string>Previous</string>
    </property>
    <property name="statusTip">
-    <string>Select previous project window</string>
+    <string>Select previous window</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+P</string>
@@ -186,7 +193,7 @@
     <string>Tile</string>
    </property>
    <property name="statusTip">
-    <string>Tile project windows</string>
+    <string>Tile windows</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+T</string>
@@ -200,7 +207,7 @@
     <string>Cascade</string>
    </property>
    <property name="statusTip">
-    <string>Cascade project windows</string>
+    <string>Cascade windows</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+C</string>
@@ -214,7 +221,7 @@
     <string>Close</string>
    </property>
    <property name="statusTip">
-    <string>Close active project window</string>
+    <string>Close active window</string>
    </property>
   </action>
   <action name="actionWindowCloseAll">
@@ -225,7 +232,7 @@
     <string>Close all</string>
    </property>
    <property name="statusTip">
-    <string>Close all project windows</string>
+    <string>Close all windows</string>
    </property>
   </action>
   <action name="actionHelpAbout">
@@ -255,11 +262,6 @@
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionNo_recent_files">
-   <property name="text">
-    <string>No recent files</string>
-   </property>
-  </action>
   <action name="actionWindowViewModeWindowed">
    <property name="checkable">
     <bool>true</bool>
@@ -268,7 +270,7 @@
     <string>Windowed</string>
    </property>
    <property name="statusTip">
-    <string>View projects in windowed mode</string>
+    <string>View in windowed mode</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+W</string>
@@ -282,7 +284,7 @@
     <string>Tabbed</string>
    </property>
    <property name="statusTip">
-    <string>View projects in tabbed mode</string>
+    <string>View in tabbed mode</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+T</string>
@@ -296,7 +298,7 @@
     <string>Save all</string>
    </property>
    <property name="statusTip">
-    <string>Save all projects</string>
+    <string>Save all projects or scripts</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+S</string>
@@ -311,6 +313,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="actionProjectLoadScript">
+   <property name="text">
+    <string>Load script...</string>
+   </property>
+   <property name="statusTip">
+    <string>Load existing script from file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
    </property>
   </action>
  </widget>
