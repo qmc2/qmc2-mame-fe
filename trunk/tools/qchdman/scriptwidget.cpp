@@ -87,12 +87,14 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
         if ( foundECMAScriptStart ) {
             bool foundECMAScriptEnd = false;
             QString ecmaScript;
+            QString lineSep;
             while ( !ts.atEnd() && !foundECMAScriptEnd ) {
                 QString line = ts.readLine();
                 if ( line.trimmed() == "]" )
                     foundECMAScriptEnd = true;
                 else
-                    ecmaScript += line + "\n";
+                    ecmaScript += lineSep + line;
+                lineSep = "\n";
             }
             ui->textEditScript->setPlainText(ecmaScript);
         }
