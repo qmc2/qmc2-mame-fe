@@ -2,6 +2,7 @@
 #define SCRIPTENGINE_H
 
 #include <QtScript>
+#include <QtScriptTools>
 #include <QObject>
 #include <QStringList>
 #include <QMap>
@@ -45,6 +46,7 @@ public slots:
 
 private:
     QScriptEngine *mEngine;
+    QScriptEngineDebugger *mEngineDebugger;
     QMap<QString, ProjectWidget *> mProjectMap;
     ScriptWidget *mScriptWidget;
 };

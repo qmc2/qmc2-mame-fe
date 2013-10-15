@@ -1,6 +1,6 @@
 VERSION = 0.2
 
-QT += core gui script
+QT += core gui script scripttools
 TARGET = qchdman
 TEMPLATE = app
 

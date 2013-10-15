@@ -11,6 +11,8 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
 {
     mEngine = new QScriptEngine(this);
     mEngine->globalObject().setProperty("scriptEngine", mEngine->newQObject(this));
+    mEngineDebugger = new QScriptEngineDebugger(this);
+    mEngineDebugger->attachTo(mEngine);
     mScriptWidget = parent;
     externalStop = false;
 }
@@ -20,18 +22,23 @@ ScriptEngine::~ScriptEngine()
     foreach (QString id, mProjectMap.keys())
         projectDestroy(id);
     mProjectMap.clear();
+    mEngineDebugger->detach();
+    delete mEngineDebugger;
     delete mEngine;
 }
 
 void ScriptEngine::runScript(QString script)
 {
     mEngine->evaluate(script);
+    mEngine->collectGarbage();
 }
 
 void ScriptEngine::stopScript()
 {
-    if ( mEngine->isEvaluating() )
+    if ( mEngine->isEvaluating() ) {
         mEngine->abortEvaluation();
+        mEngine->collectGarbage();
+    }
 }
 
 void ScriptEngine::log(QString message)
