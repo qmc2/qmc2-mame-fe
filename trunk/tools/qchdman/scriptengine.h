@@ -61,8 +61,21 @@ public slots:
     void projectSetCopyInputBytes(QString id, int bytes);
     void projectSetCopyInputHunks(QString id, int hunks);
     void projectSetCopyCompressors(QString id, QString compressors);
+    void projectSetCopyProcessors(QString id, int processors);
 
     // properties for project-type 'CreateRaw'
+    void projectSetCreateRawInputFile(QString id, QString file);
+    void projectSetCreateRawOutputFile(QString id, QString file);
+    void projectSetCreateRawParentOutputFile(QString id, QString file);
+    void projectSetCreateRawForce(QString id, bool force);
+    void projectSetCreateRawInputStartByte(QString id, int byte);
+    void projectSetCreateRawInputStartHunk(QString id, int hunk);
+    void projectSetCreateRawInputBytes(QString id, int bytes);
+    void projectSetCreateRawInputHunks(QString id, int hunks);
+    void projectSetCreateRawHunkSize(QString id, int size);
+    void projectSetCreateRawUnitSize(QString id, int size);
+    void projectSetCreateRawCompressors(QString id, QString compressors);
+    void projectSetCreateRawProcessors(QString id, int processors);
 
     // properties for project-type 'CreateHD'
 
