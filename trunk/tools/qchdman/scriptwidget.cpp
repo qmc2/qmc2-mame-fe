@@ -4,6 +4,7 @@
 #include "scriptwidget.h"
 #include "mainwindow.h"
 #include "settings.h"
+#include "ecmascripthighlighter.h"
 #include "macros.h"
 
 extern Settings *globalConfig;
@@ -33,6 +34,8 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     scriptEngine = new ScriptEngine(this);
 
     askFileName = false;
+
+    new ECMAScriptHighlighter(ui->textEditScript->document());
 }
 
 ScriptWidget::~ScriptWidget()
