@@ -66,7 +66,7 @@ void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowSt
 
         projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
     } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
-        // FIXME
+        // FIXME (?)
     }
 }
 

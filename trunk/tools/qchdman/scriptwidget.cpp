@@ -1,4 +1,8 @@
+#include <QTimer>
 #include <QTime>
+#include <QPixmap>
+#include <QPainter>
+#include <QIcon>
 
 #include "ui_scriptwidget.h"
 #include "scriptwidget.h"
@@ -35,6 +39,12 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
 
     askFileName = false;
 
+    // linear gradient from red over yellow to green (this assumes that sub-window icons are in 64x64)
+    linearGradient = QLinearGradient(QPointF(0, 0), QPointF(63, 0));
+    linearGradient.setColorAt(0.0, QColor(255, 0, 0, 192));
+    linearGradient.setColorAt(0.5, QColor(220, 220, 0, 192));
+    linearGradient.setColorAt(1.0, QColor(0, 255, 0, 192));
+
     new ECMAScriptHighlighter(ui->textEditScript->document());
 }
 
@@ -49,14 +59,35 @@ void ScriptWidget::on_toolButtonRun_clicked()
     ui->plainTextEditLog->clear();
     ui->toolButtonRun->setEnabled(false);
     ui->toolButtonStop->setEnabled(true);
+    scriptEngine->externalStop = false;
+    ui->progressBar->setFormat(tr("Running"));
     scriptEngine->runScript(ui->textEditScript->toPlainText());
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
+    QTimer::singleShot(0, this, SLOT(resetProgressBar()));
 }
 
 void ScriptWidget::on_toolButtonStop_clicked()
 {
+    scriptEngine->externalStop = true;
     scriptEngine->stopScript();
+    ui->toolButtonRun->setEnabled(true);
+    ui->toolButtonStop->setEnabled(false);
+    QTimer::singleShot(0, this, SLOT(resetProgressBar()));
+}
+
+void ScriptWidget::on_progressBar_valueChanged(int value)
+{
+    qreal percent = (qreal)value / (qreal)(ui->progressBar->maximum() - ui->progressBar->minimum());
+    QPixmap pm(QIcon(":/images/script.png").pixmap(64, 64));
+    QPainter p(&pm);
+    int w = int((qreal)pm.height() * percent) + 1;
+    p.fillRect(0, 47, 64, 16, QColor(64, 64, 64, 64));
+    p.fillRect(0, 47, w, 16, QBrush(linearGradient));
+    p.end();
+    QIcon icon;
+    icon.addPixmap(pm);
+    parentWidget()->setWindowIcon(icon);
 }
 
 void ScriptWidget::log(QString message)
@@ -186,6 +217,14 @@ void ScriptWidget::triggerSaveAs()
     askFileName = true;
     saveAs();
     askFileName = false;
+}
+
+void ScriptWidget::resetProgressBar()
+{
+    ui->progressBar->setFormat(tr("Idle"));
+    ui->progressBar->setRange(0, 100);
+    ui->progressBar->setValue(0);
+    parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
 }
 
 void ScriptWidget::closeEvent(QCloseEvent *)
