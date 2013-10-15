@@ -15,7 +15,9 @@ class ScriptWidget;
 class ScriptWidget : public QWidget
 {
     Q_OBJECT
-    
+
+    friend class ScriptEngine;
+
 public:
     bool askFileName;
 
@@ -26,6 +28,7 @@ public slots:
     // Callbacks
     void on_toolButtonRun_clicked();
     void on_toolButtonStop_clicked();
+    void on_progressBar_valueChanged(int);
 
     // Other
     void log(QString);
@@ -35,6 +38,7 @@ public slots:
     QString toString();
     void fromString(QString);
     void triggerSaveAs();
+    void resetProgressBar();
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -42,6 +46,7 @@ protected:
 private:
     Ui::ScriptWidget *ui;
     ScriptEngine *scriptEngine;
+    QLinearGradient linearGradient;
 };
 
 #endif // SCRIPTWIDGET_H
