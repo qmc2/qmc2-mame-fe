@@ -5096,7 +5096,10 @@ void MainWindow::emuSelector_currentIndexChanged(const QString &text)
     pushButtonCurrentEmulatorOptionsImportFromFile->setEnabled(false);
   }
 
-  qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)), qmc2UseDefaultEmulator);
+  if ( qmc2UseDefaultEmulator )
+    qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)));
+  else
+    qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)), text);
 }
 
 void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int column)
