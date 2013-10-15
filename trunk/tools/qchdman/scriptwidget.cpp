@@ -47,7 +47,11 @@ ScriptWidget::~ScriptWidget()
 void ScriptWidget::on_toolButtonRun_clicked()
 {
     ui->plainTextEditLog->clear();
+    ui->toolButtonRun->setEnabled(false);
+    ui->toolButtonStop->setEnabled(true);
     scriptEngine->runScript(ui->textEditScript->toPlainText());
+    ui->toolButtonRun->setEnabled(true);
+    ui->toolButtonStop->setEnabled(false);
 }
 
 void ScriptWidget::on_toolButtonStop_clicked()
