@@ -1458,11 +1458,11 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
 
     QFile loadFile(fName);
     QTextStream ts;
-    QByteArray ba;
+    QByteArray ba(buffer != NULL ? buffer->toLocal8Bit().constData() : "");
     QBuffer baBuffer(&ba);
 
     if ( buffer != NULL ) {
-        baBuffer.open(QBuffer::ReadWrite);
+        baBuffer.open(QBuffer::ReadOnly);
         ts.setDevice(&baBuffer);
     } else if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) )
         ts.setDevice(&loadFile);
@@ -1806,7 +1806,7 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
         }
 
         if ( buffer != NULL )
-            *buffer = QString(ba);
+            baBuffer.close();
         else
             loadFile.close();
 
@@ -1856,7 +1856,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
     QBuffer baBuffer(&ba);
 
     if ( buffer != NULL ) {
-        baBuffer.open(QBuffer::ReadWrite);
+        baBuffer.open(QBuffer::WriteOnly);
         ts.setDevice(&baBuffer);
     } else if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) )
         ts.setDevice(&saveFile);
@@ -2034,9 +2034,10 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
             break;
         }
 
-        if ( buffer != NULL )
+        if ( buffer != NULL ) {
+            baBuffer.close();
             *buffer = QString(ba);
-        else
+        } else
             saveFile.close();
 
         if ( !isScriptElement ) {

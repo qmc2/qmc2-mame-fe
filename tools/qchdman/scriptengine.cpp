@@ -103,6 +103,22 @@ void ScriptEngine::projectCreateFromString(QString id, QString buffer)
     }
 }
 
+void ScriptEngine::projectClone(QString sourceId, QString destinationId)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectClone(QString sourceId = %1, QString sourceId = %2)").arg(sourceId).arg(destinationId)));
+
+    if ( mProjectMap.contains(sourceId) ) {
+        if ( mProjectMap.contains(destinationId) )
+            log(tr("warning") + ": ScriptEngine::projectClone(): " + tr("project '%1' already exists").arg(destinationId));
+        else {
+            QString buffer;
+            mProjectMap[sourceId]->save(&buffer);
+            projectCreateFromString(destinationId, buffer);
+        }
+    } else
+        log(tr("warning") + ": ScriptEngine::projectClone(): " + tr("project '%1' doesn't exists").arg(sourceId));
+}
+
 void ScriptEngine::projectDestroy(QString id)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectDestroy(QString id = %1)").arg(id)));
