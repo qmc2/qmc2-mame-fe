@@ -35,12 +35,13 @@ public slots:
     void progressSetRange(int min, int max);
     void progressSetValue(int value);
 
-    // project creation / destruction / status
+    // project creation / destruction / status / return code
     void projectCreate(QString id, QString type);
     void projectCreateFromFile(QString id, QString fileName);
     void projectCreateFromString(QString id, QString buffer);
     void projectDestroy(QString id);
     QString projectStatus(QString id);
+    int projectReturnCode(QString id);
 
     // properties for project-type 'Info'
     void projectSetInfoInputFile(QString id, QString file);
@@ -78,6 +79,21 @@ public slots:
     void projectSetCreateRawProcessors(QString id, int processors);
 
     // properties for project-type 'CreateHD'
+    void projectSetCreateHDInputFile(QString id, QString file);
+    void projectSetCreateHDOutputFile(QString id, QString file);
+    void projectSetCreateHDParentOutputFile(QString id, QString file);
+    void projectSetCreateHDForce(QString id, bool force);
+    void projectSetCreateHDInputStartByte(QString id, int byte);
+    void projectSetCreateHDInputStartHunk(QString id, int hunk);
+    void projectSetCreateHDInputBytes(QString id, int bytes);
+    void projectSetCreateHDInputHunks(QString id, int hunks);
+    void projectSetCreateHDHunkSize(QString id, int size);
+    void projectSetCreateHDCompressors(QString id, QString compressors);
+    void projectSetCreateHDProcessors(QString id, int processors);
+    void projectSetCreateHDSectorSize(QString id, int sectorSize);
+    void projectSetCreateHDCylinders(QString id, int cylinders);
+    void projectSetCreateHDHeads(QString id, int heads);
+    void projectSetCreateHDSectors(QString id, int sectors);
 
     // properties for project-type 'CreateCD'
 
