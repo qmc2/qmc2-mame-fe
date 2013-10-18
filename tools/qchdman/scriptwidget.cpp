@@ -3,6 +3,8 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QIcon>
+#include <QFont>
+#include <QFontMetrics>
 
 #include "ui_scriptwidget.h"
 #include "scriptwidget.h"
@@ -13,6 +15,7 @@
 
 extern Settings *globalConfig;
 extern MainWindow *mainWindow;
+extern quint64 runningScripts;
 
 ScriptWidget::ScriptWidget(QWidget *parent) :
     QWidget(parent),
@@ -22,15 +25,7 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
 
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
 
-    QFont f;
-
-    f.fromString(globalConfig->preferencesEditorFont());
-    f.setPointSize(globalConfig->preferencesEditorFontSize());
-    ui->textEditScript->setFont(f);
-
-    f.fromString(globalConfig->preferencesLogFont());
-    f.setPointSize(globalConfig->preferencesLogFontSize());
-    ui->plainTextEditLog->setFont(f);
+    adjustFonts();
 
     QList<int> sizes;
     sizes << 700 << 300;
@@ -61,7 +56,9 @@ void ScriptWidget::on_toolButtonRun_clicked()
     ui->toolButtonStop->setEnabled(true);
     scriptEngine->externalStop = false;
     ui->progressBar->setFormat(tr("Running"));
+    runningScripts++;
     scriptEngine->runScript(ui->textEditScript->toPlainText());
+    runningScripts--;
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     QTimer::singleShot(0, this, SLOT(resetProgressBar()));
@@ -88,6 +85,22 @@ void ScriptWidget::on_progressBar_valueChanged(int value)
     QIcon icon;
     icon.addPixmap(pm);
     parentWidget()->setWindowIcon(icon);
+}
+
+void ScriptWidget::adjustFonts()
+{
+    QFont f;
+
+    f.fromString(globalConfig->preferencesEditorFont());
+    f.setPointSize(globalConfig->preferencesEditorFontSize());
+    ui->textEditScript->setFont(f);
+
+    QFontMetrics fm(f);
+    ui->textEditScript->setTabStopWidth(fm.width(' ') * 8);
+
+    f.fromString(globalConfig->preferencesLogFont());
+    f.setPointSize(globalConfig->preferencesLogFontSize());
+    ui->plainTextEditLog->setFont(f);
 }
 
 void ScriptWidget::log(QString message)
@@ -207,9 +220,9 @@ QString ScriptWidget::toString()
     return buffer;
 }
 
-void ScriptWidget::fromString(QString)
+void ScriptWidget::fromString(QString buffer)
 {
-    // FIXME
+    load(QString(), &buffer);
 }
 
 void ScriptWidget::triggerSaveAs()
@@ -230,4 +243,5 @@ void ScriptWidget::resetProgressBar()
 void ScriptWidget::closeEvent(QCloseEvent *)
 {
     scriptEngine->externalStop = true;
+    scriptEngine->stopScript();
 }

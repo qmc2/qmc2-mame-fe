@@ -6,6 +6,7 @@
 #include "macros.h"
 
 quint64 runningProjects = 0;
+quint64 runningScripts = 0;
 MainWindow *mainWindow = NULL;
 Settings *globalConfig = NULL;
 

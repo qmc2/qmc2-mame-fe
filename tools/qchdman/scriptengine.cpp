@@ -30,6 +30,7 @@ ScriptEngine::~ScriptEngine()
 
 void ScriptEngine::runScript(QString script)
 {
+    externalStop = false;
     cleanUpProjects();
     mScriptWidget->on_progressBar_valueChanged(0);
     mEngine->evaluate(script);
@@ -38,10 +39,11 @@ void ScriptEngine::runScript(QString script)
 
 void ScriptEngine::stopScript()
 {
-    QStringList projectList = mProjectMap.keys();
-    stopProjects(projectList.join(","));
+    externalStop = true;
     mEngine->abortEvaluation();
     mEngine->collectGarbage();
+    QStringList projectList = mProjectMap.keys();
+    stopProjects(projectList.join(","));
     cleanUpProjects();
 }
 
@@ -578,6 +580,9 @@ void ScriptEngine::runProjects(QString idList)
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::runProjects(QString idList = %1)").arg(idList)));
 
     foreach (QString id, idList.split(",", QString::SkipEmptyParts)) {
+        if ( externalStop )
+            break;
+
         id = id.trimmed();
         if ( mProjectMap.contains(id) ) {
             if ( mProjectMap[id]->status == QCHDMAN_PRJSTAT_RUNNING )
@@ -586,7 +591,7 @@ void ScriptEngine::runProjects(QString idList)
                 mProjectMap[id]->on_toolButtonRun_clicked();
                 bool started = false;
                 bool error = false;
-                while ( !started && !error && !externalStop ) {
+                while ( !started && !error && !externalStop && mProjectMap[id]->chdmanProc ) {
                     started = mProjectMap[id]->chdmanProc->waitForStarted(QCHDMAN_PROCESS_POLL_TIME);
                     error = started ? mProjectMap[id]->status != QCHDMAN_PRJSTAT_RUNNING : mErrorStates.contains(mProjectMap[id]->status);
                     qApp->processEvents();
@@ -600,9 +605,6 @@ void ScriptEngine::runProjects(QString idList)
             }
         } else if ( !externalStop )
             log(tr("warning") + ": ScriptEngine::runProjects(): " + tr("project '%1' doesn't exists").arg(id));
-
-        if ( externalStop )
-            break;
     }
 }
 
@@ -617,7 +619,7 @@ void ScriptEngine::stopProjects(QString idList)
                 mProjectMap[id]->on_toolButtonStop_clicked();
                 bool finished = false;
                 bool error = false;
-                while ( !finished && !error ) {
+                while ( !finished && !error && mProjectMap[id]->chdmanProc ) {
                     finished = mProjectMap[id]->chdmanProc->waitForFinished(QCHDMAN_PROCESS_POLL_TIME);
                     error = finished ? mProjectMap[id]->status != QCHDMAN_PRJSTAT_RUNNING : mErrorStates.contains(mProjectMap[id]->status);
                     qApp->processEvents();
@@ -633,12 +635,15 @@ void ScriptEngine::syncProjects(QString idList)
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::syncProjects(QString idList = %1)").arg(idList)));
 
     foreach (QString id, idList.split(",", QString::SkipEmptyParts)) {
+        if ( externalStop )
+            break;
+
         id = id.trimmed();
         if ( mProjectMap.contains(id) ) {
            if ( mProjectMap[id]->status == QCHDMAN_PRJSTAT_RUNNING ) {
                bool finished = false;
                bool error = false;
-               while ( !finished && !error && !externalStop ) {
+               while ( !finished && !error && !externalStop && mProjectMap[id]->chdmanProc ) {
                    finished = mProjectMap[id]->chdmanProc->waitForFinished(QCHDMAN_PROCESS_POLL_TIME);
                    error = finished ? mProjectMap[id]->status != QCHDMAN_PRJSTAT_RUNNING : mErrorStates.contains(mProjectMap[id]->status);
                    qApp->processEvents();
@@ -646,9 +651,6 @@ void ScriptEngine::syncProjects(QString idList)
            }
         } else if ( !externalStop )
             log(tr("warning") + ": ScriptEngine::syncProjects(): " + tr("project '%1' doesn't exists").arg(id));
-
-        if ( externalStop )
-            break;
     }
 }
 

@@ -12,6 +12,7 @@
 
 extern Settings *globalConfig;
 extern quint64 runningProjects;
+extern quint64 runningScripts;
 
 QStringList MainWindow::projectTypes;
 
@@ -545,27 +546,29 @@ QString MainWindow::humanReadable(qreal value)
 
 void MainWindow::updateStatus()
 {
-    statisticsLabel->setText(" " + tr("Running projects: %1").arg(runningProjects) + " ");
+    statisticsLabel->setText(" " + tr("Running scripts / projects: %1 / %2").arg(runningScripts).arg(runningProjects) + " ");
 }
 
 void MainWindow::applySettings()
 {
     qApp->processEvents();
-    QFont f;
-    f.fromString(globalConfig->preferencesLogFont());
-    f.setPointSize(globalConfig->preferencesLogFontSize());
+    QFont logFont;
+    logFont.fromString(globalConfig->preferencesLogFont());
+    logFont.setPointSize(globalConfig->preferencesLogFontSize());
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
         ProjectWindow *projectWindow = (ProjectWindow *)w;
         if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
             ProjectWidget *projectWidget = (ProjectWidget *)projectWindow->widget();
             if ( projectWidget ) {
-                projectWidget->setLogFont(f);
+                projectWidget->setLogFont(logFont);
                 projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
                 projectWidget->needsTabbedUiAdjustment = true;
                 projectWidget->needsWindowedUiAdjustment = true;
             }
         } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
+            ScriptWidget *scriptWidget = (ScriptWidget *)projectWindow->widget();
+            if ( scriptWidget )
+                scriptWidget->adjustFonts();
         }
     }
     preferredCHDInputFolder = globalConfig->preferencesPreferredCHDInputPath();
@@ -583,8 +586,6 @@ void MainWindow::updateSubWindows()
             projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
             projectWidget->needsTabbedUiAdjustment = true;
             projectWidget->needsWindowedUiAdjustment = true;
-        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_SCRIPT ) {
-            // FIXME
         }
     }
 }
@@ -720,7 +721,22 @@ void MainWindow::resizeEvent(QResizeEvent *)
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     closeOk = true;
-    forceQuit = false;
+
+    if ( runningScripts > 0 ) {
+        switch ( QMessageBox::question(this, tr("Confirm"),
+                                       tr("There are %n script(s) currently running.\n\nProceed?", "", runningScripts),
+                                       QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
+        case QMessageBox::Yes:
+            break;
+        case QMessageBox::No:
+        default:
+            closeOk = false;
+            QTimer::singleShot(100, this, SLOT(resetCloseFlag()));
+            e->ignore();
+            return;
+            break;
+        }
+    }
 
     if ( runningProjects > 0 ) {
         switch ( QMessageBox::question(this, tr("Confirm"),
@@ -729,7 +745,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
                                        tr("There are %1 projects currently running.\n\nClosing their windows will kill the external processes!\n\nProceed?").arg(runningProjects),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
-            forceQuit = true;
             break;
         case QMessageBox::No:
         default:
@@ -745,11 +760,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
         switch ( ((ProjectWindow *)w)->subWindowType ) {
             case QCHDMAN_MDI_PROJECT: {
                 ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
-                if ( projectWidget->chdmanProc && projectWidget->chdmanProc->state() == QProcess::Running )
-                    projectWidget->chdmanProc->terminate();
+                if ( projectWidget )
+                    if ( projectWidget->chdmanProc && projectWidget->chdmanProc->state() == QProcess::Running )
+                        projectWidget->chdmanProc->terminate();
             }
-            break;
-            case QCHDMAN_MDI_SCRIPT:
             break;
         }
     }
