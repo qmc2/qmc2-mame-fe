@@ -367,116 +367,131 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="79"/>
+        <location filename="../mainwindow.cpp" line="80"/>
         <source>avhu (A/V Huffman)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="80"/>
+        <location filename="../mainwindow.cpp" line="81"/>
         <source>cdfl (CD FLAC)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="81"/>
+        <location filename="../mainwindow.cpp" line="82"/>
         <source>cdlz (CD LZMA)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="83"/>
         <source>cdzl (CD Deflate)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="83"/>
+        <location filename="../mainwindow.cpp" line="84"/>
         <source>flac (FLAC)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="84"/>
+        <location filename="../mainwindow.cpp" line="85"/>
         <source>huff (Huffman)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="86"/>
         <source>lzma (LZMA)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="86"/>
+        <location filename="../mainwindow.cpp" line="87"/>
         <source>zlib (Deflate)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="343"/>
-        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="357"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="343"/>
+        <location filename="../mainwindow.cpp" line="344"/>
         <source>Choose project file</source>
         <translation>Projekt Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="343"/>
+        <location filename="../mainwindow.cpp" line="344"/>
         <source>Project files (*.prj)</source>
         <translation>Projekt Dateien (*.prj)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="357"/>
         <source>Choose script file</source>
         <translation>Skript Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="357"/>
         <source>Script files (*.scr)</source>
         <translation>Skript Dateien (*.scr)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="519"/>
-        <location filename="../mainwindow.cpp" line="533"/>
+        <location filename="../mainwindow.cpp" line="520"/>
+        <location filename="../mainwindow.cpp" line="534"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="522"/>
-        <location filename="../mainwindow.cpp" line="536"/>
+        <location filename="../mainwindow.cpp" line="523"/>
+        <location filename="../mainwindow.cpp" line="537"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="525"/>
-        <location filename="../mainwindow.cpp" line="539"/>
+        <location filename="../mainwindow.cpp" line="526"/>
+        <location filename="../mainwindow.cpp" line="540"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="528"/>
+        <location filename="../mainwindow.cpp" line="529"/>
         <source> TB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="548"/>
-        <source>Running projects: %1</source>
-        <translation>Aktive Projekte: %1</translation>
+        <location filename="../mainwindow.cpp" line="549"/>
+        <source>Running scripts / projects: %1 / %2</source>
+        <translation>Laufende Skripte / Projekte: %1 / %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="631"/>
+        <location filename="../mainwindow.cpp" line="632"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Projekt &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="647"/>
+        <location filename="../mainwindow.cpp" line="648"/>
         <source>Script &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Skript &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="726"/>
+        <location filename="../mainwindow.cpp" line="742"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../mainwindow.cpp" line="727"/>
+        <source>There are %n script(s) currently running.
+
+Proceed?</source>
+        <translation>
+            <numerusform>%n Skript wird gerade ausgeführt.
+
+Fortfahren?</numerusform>
+            <numerusform>%n Skripte werden gerade ausgeführt.
+
+Fortfahren?</numerusform>
+        </translation>
+    </message>
     <message>
-        <location filename="../mainwindow.cpp" line="728"/>
+        <location filename="../mainwindow.cpp" line="744"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -489,7 +504,7 @@ Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="729"/>
+        <location filename="../mainwindow.cpp" line="745"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
@@ -1924,8 +1939,8 @@ Meta-Daten einer CHD entfernen.
         <location filename="../projectwidget.cpp" line="1935"/>
         <location filename="../projectwidget.cpp" line="1956"/>
         <location filename="../projectwidget.cpp" line="1974"/>
-        <location filename="../projectwidget.cpp" line="2109"/>
-        <location filename="../projectwidget.cpp" line="2215"/>
+        <location filename="../projectwidget.cpp" line="2110"/>
+        <location filename="../projectwidget.cpp" line="2216"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
@@ -1933,8 +1948,8 @@ Meta-Daten einer CHD entfernen.
         <location filename="../projectwidget.cpp" line="133"/>
         <location filename="../projectwidget.cpp" line="1052"/>
         <location filename="../projectwidget.cpp" line="1440"/>
-        <location filename="../projectwidget.cpp" line="2107"/>
-        <location filename="../projectwidget.cpp" line="2213"/>
+        <location filename="../projectwidget.cpp" line="2108"/>
+        <location filename="../projectwidget.cpp" line="2214"/>
         <source>none</source>
         <translation>Keine</translation>
     </message>
@@ -2411,22 +2426,22 @@ Meta-Daten einer CHD entfernen.
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="2047"/>
+        <location filename="../projectwidget.cpp" line="2048"/>
         <source>Project &apos;%1&apos; saved</source>
         <translation>Projekt &apos;%1&apos; gespeichert</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="2049"/>
+        <location filename="../projectwidget.cpp" line="2050"/>
         <source>Failed saving project &apos;%1&apos;</source>
         <translation>Projekt &apos;%1&apos; konnte nicht gespeichert werden</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="2176"/>
+        <location filename="../projectwidget.cpp" line="2177"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
         <translation>Klonen nach &apos;%1&apos; wird noch nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="2282"/>
+        <location filename="../projectwidget.cpp" line="2283"/>
         <source>morphing to &apos;%1&apos; is not supported yet</source>
         <translation>Umwandeln in &apos;%1&apos; wird noch nicht unterstützt</translation>
     </message>
@@ -2466,134 +2481,138 @@ Fortfahren?</translation>
 <context>
     <name>ScriptEngine</name>
     <message>
-        <location filename="../scriptengine.cpp" line="72"/>
-        <location filename="../scriptengine.cpp" line="78"/>
-        <location filename="../scriptengine.cpp" line="87"/>
-        <location filename="../scriptengine.cpp" line="99"/>
-        <location filename="../scriptengine.cpp" line="114"/>
-        <location filename="../scriptengine.cpp" line="135"/>
-        <location filename="../scriptengine.cpp" line="137"/>
-        <location filename="../scriptengine.cpp" line="147"/>
-        <location filename="../scriptengine.cpp" line="157"/>
-        <location filename="../scriptengine.cpp" line="167"/>
-        <location filename="../scriptengine.cpp" line="177"/>
-        <location filename="../scriptengine.cpp" line="187"/>
-        <location filename="../scriptengine.cpp" line="197"/>
-        <location filename="../scriptengine.cpp" line="207"/>
-        <location filename="../scriptengine.cpp" line="217"/>
-        <location filename="../scriptengine.cpp" line="227"/>
-        <location filename="../scriptengine.cpp" line="237"/>
-        <location filename="../scriptengine.cpp" line="247"/>
-        <location filename="../scriptengine.cpp" line="257"/>
-        <location filename="../scriptengine.cpp" line="267"/>
-        <location filename="../scriptengine.cpp" line="277"/>
-        <location filename="../scriptengine.cpp" line="287"/>
-        <location filename="../scriptengine.cpp" line="297"/>
-        <location filename="../scriptengine.cpp" line="307"/>
-        <location filename="../scriptengine.cpp" line="317"/>
-        <location filename="../scriptengine.cpp" line="327"/>
-        <location filename="../scriptengine.cpp" line="337"/>
-        <location filename="../scriptengine.cpp" line="347"/>
-        <location filename="../scriptengine.cpp" line="357"/>
-        <location filename="../scriptengine.cpp" line="367"/>
-        <location filename="../scriptengine.cpp" line="377"/>
-        <location filename="../scriptengine.cpp" line="387"/>
-        <location filename="../scriptengine.cpp" line="397"/>
-        <location filename="../scriptengine.cpp" line="407"/>
-        <location filename="../scriptengine.cpp" line="417"/>
-        <location filename="../scriptengine.cpp" line="427"/>
-        <location filename="../scriptengine.cpp" line="437"/>
-        <location filename="../scriptengine.cpp" line="447"/>
-        <location filename="../scriptengine.cpp" line="457"/>
-        <location filename="../scriptengine.cpp" line="467"/>
-        <location filename="../scriptengine.cpp" line="477"/>
-        <location filename="../scriptengine.cpp" line="487"/>
-        <location filename="../scriptengine.cpp" line="497"/>
-        <location filename="../scriptengine.cpp" line="507"/>
-        <location filename="../scriptengine.cpp" line="517"/>
-        <location filename="../scriptengine.cpp" line="527"/>
-        <location filename="../scriptengine.cpp" line="537"/>
-        <location filename="../scriptengine.cpp" line="547"/>
-        <location filename="../scriptengine.cpp" line="557"/>
-        <location filename="../scriptengine.cpp" line="568"/>
-        <location filename="../scriptengine.cpp" line="586"/>
-        <location filename="../scriptengine.cpp" line="611"/>
-        <location filename="../scriptengine.cpp" line="632"/>
-        <location filename="../scriptengine.cpp" line="648"/>
+        <location filename="../scriptengine.cpp" line="75"/>
+        <location filename="../scriptengine.cpp" line="81"/>
+        <location filename="../scriptengine.cpp" line="90"/>
+        <location filename="../scriptengine.cpp" line="102"/>
+        <location filename="../scriptengine.cpp" line="115"/>
+        <location filename="../scriptengine.cpp" line="122"/>
+        <location filename="../scriptengine.cpp" line="133"/>
+        <location filename="../scriptengine.cpp" line="154"/>
+        <location filename="../scriptengine.cpp" line="156"/>
+        <location filename="../scriptengine.cpp" line="166"/>
+        <location filename="../scriptengine.cpp" line="176"/>
+        <location filename="../scriptengine.cpp" line="186"/>
+        <location filename="../scriptengine.cpp" line="196"/>
+        <location filename="../scriptengine.cpp" line="206"/>
+        <location filename="../scriptengine.cpp" line="216"/>
+        <location filename="../scriptengine.cpp" line="226"/>
+        <location filename="../scriptengine.cpp" line="236"/>
+        <location filename="../scriptengine.cpp" line="246"/>
+        <location filename="../scriptengine.cpp" line="256"/>
+        <location filename="../scriptengine.cpp" line="266"/>
+        <location filename="../scriptengine.cpp" line="276"/>
+        <location filename="../scriptengine.cpp" line="286"/>
+        <location filename="../scriptengine.cpp" line="296"/>
+        <location filename="../scriptengine.cpp" line="306"/>
+        <location filename="../scriptengine.cpp" line="316"/>
+        <location filename="../scriptengine.cpp" line="326"/>
+        <location filename="../scriptengine.cpp" line="336"/>
+        <location filename="../scriptengine.cpp" line="346"/>
+        <location filename="../scriptengine.cpp" line="356"/>
+        <location filename="../scriptengine.cpp" line="366"/>
+        <location filename="../scriptengine.cpp" line="376"/>
+        <location filename="../scriptengine.cpp" line="386"/>
+        <location filename="../scriptengine.cpp" line="396"/>
+        <location filename="../scriptengine.cpp" line="406"/>
+        <location filename="../scriptengine.cpp" line="416"/>
+        <location filename="../scriptengine.cpp" line="426"/>
+        <location filename="../scriptengine.cpp" line="436"/>
+        <location filename="../scriptengine.cpp" line="446"/>
+        <location filename="../scriptengine.cpp" line="456"/>
+        <location filename="../scriptengine.cpp" line="466"/>
+        <location filename="../scriptengine.cpp" line="476"/>
+        <location filename="../scriptengine.cpp" line="486"/>
+        <location filename="../scriptengine.cpp" line="496"/>
+        <location filename="../scriptengine.cpp" line="506"/>
+        <location filename="../scriptengine.cpp" line="516"/>
+        <location filename="../scriptengine.cpp" line="526"/>
+        <location filename="../scriptengine.cpp" line="536"/>
+        <location filename="../scriptengine.cpp" line="546"/>
+        <location filename="../scriptengine.cpp" line="556"/>
+        <location filename="../scriptengine.cpp" line="566"/>
+        <location filename="../scriptengine.cpp" line="576"/>
+        <location filename="../scriptengine.cpp" line="590"/>
+        <location filename="../scriptengine.cpp" line="608"/>
+        <location filename="../scriptengine.cpp" line="630"/>
+        <location filename="../scriptengine.cpp" line="654"/>
+        <location filename="../scriptengine.cpp" line="667"/>
         <source>warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="../scriptengine.cpp" line="72"/>
-        <location filename="../scriptengine.cpp" line="87"/>
-        <location filename="../scriptengine.cpp" line="99"/>
+        <location filename="../scriptengine.cpp" line="75"/>
+        <location filename="../scriptengine.cpp" line="90"/>
+        <location filename="../scriptengine.cpp" line="102"/>
+        <location filename="../scriptengine.cpp" line="115"/>
         <source>project &apos;%1&apos; already exists</source>
         <translation>Projekt &apos;%1&apos; existiert bereits</translation>
     </message>
     <message>
-        <location filename="../scriptengine.cpp" line="78"/>
+        <location filename="../scriptengine.cpp" line="81"/>
         <source>project type &apos;%1&apos; doesn&apos;t exists - valid types are: %2</source>
         <translation>Projekt-Typ &apos;%1&apos; existiert nicht - gültige Typen sind: %2</translation>
     </message>
     <message>
-        <location filename="../scriptengine.cpp" line="114"/>
-        <location filename="../scriptengine.cpp" line="137"/>
-        <location filename="../scriptengine.cpp" line="147"/>
-        <location filename="../scriptengine.cpp" line="157"/>
-        <location filename="../scriptengine.cpp" line="167"/>
-        <location filename="../scriptengine.cpp" line="177"/>
-        <location filename="../scriptengine.cpp" line="187"/>
-        <location filename="../scriptengine.cpp" line="197"/>
-        <location filename="../scriptengine.cpp" line="207"/>
-        <location filename="../scriptengine.cpp" line="217"/>
-        <location filename="../scriptengine.cpp" line="227"/>
-        <location filename="../scriptengine.cpp" line="237"/>
-        <location filename="../scriptengine.cpp" line="247"/>
-        <location filename="../scriptengine.cpp" line="257"/>
-        <location filename="../scriptengine.cpp" line="267"/>
-        <location filename="../scriptengine.cpp" line="277"/>
-        <location filename="../scriptengine.cpp" line="287"/>
-        <location filename="../scriptengine.cpp" line="297"/>
-        <location filename="../scriptengine.cpp" line="307"/>
-        <location filename="../scriptengine.cpp" line="317"/>
-        <location filename="../scriptengine.cpp" line="327"/>
-        <location filename="../scriptengine.cpp" line="337"/>
-        <location filename="../scriptengine.cpp" line="347"/>
-        <location filename="../scriptengine.cpp" line="357"/>
-        <location filename="../scriptengine.cpp" line="367"/>
-        <location filename="../scriptengine.cpp" line="377"/>
-        <location filename="../scriptengine.cpp" line="387"/>
-        <location filename="../scriptengine.cpp" line="397"/>
-        <location filename="../scriptengine.cpp" line="407"/>
-        <location filename="../scriptengine.cpp" line="417"/>
-        <location filename="../scriptengine.cpp" line="427"/>
-        <location filename="../scriptengine.cpp" line="437"/>
-        <location filename="../scriptengine.cpp" line="447"/>
-        <location filename="../scriptengine.cpp" line="457"/>
-        <location filename="../scriptengine.cpp" line="467"/>
-        <location filename="../scriptengine.cpp" line="477"/>
-        <location filename="../scriptengine.cpp" line="487"/>
-        <location filename="../scriptengine.cpp" line="497"/>
-        <location filename="../scriptengine.cpp" line="507"/>
-        <location filename="../scriptengine.cpp" line="517"/>
-        <location filename="../scriptengine.cpp" line="527"/>
-        <location filename="../scriptengine.cpp" line="537"/>
-        <location filename="../scriptengine.cpp" line="547"/>
-        <location filename="../scriptengine.cpp" line="557"/>
-        <location filename="../scriptengine.cpp" line="586"/>
-        <location filename="../scriptengine.cpp" line="611"/>
-        <location filename="../scriptengine.cpp" line="632"/>
-        <location filename="../scriptengine.cpp" line="648"/>
+        <location filename="../scriptengine.cpp" line="122"/>
+        <location filename="../scriptengine.cpp" line="133"/>
+        <location filename="../scriptengine.cpp" line="156"/>
+        <location filename="../scriptengine.cpp" line="166"/>
+        <location filename="../scriptengine.cpp" line="176"/>
+        <location filename="../scriptengine.cpp" line="186"/>
+        <location filename="../scriptengine.cpp" line="196"/>
+        <location filename="../scriptengine.cpp" line="206"/>
+        <location filename="../scriptengine.cpp" line="216"/>
+        <location filename="../scriptengine.cpp" line="226"/>
+        <location filename="../scriptengine.cpp" line="236"/>
+        <location filename="../scriptengine.cpp" line="246"/>
+        <location filename="../scriptengine.cpp" line="256"/>
+        <location filename="../scriptengine.cpp" line="266"/>
+        <location filename="../scriptengine.cpp" line="276"/>
+        <location filename="../scriptengine.cpp" line="286"/>
+        <location filename="../scriptengine.cpp" line="296"/>
+        <location filename="../scriptengine.cpp" line="306"/>
+        <location filename="../scriptengine.cpp" line="316"/>
+        <location filename="../scriptengine.cpp" line="326"/>
+        <location filename="../scriptengine.cpp" line="336"/>
+        <location filename="../scriptengine.cpp" line="346"/>
+        <location filename="../scriptengine.cpp" line="356"/>
+        <location filename="../scriptengine.cpp" line="366"/>
+        <location filename="../scriptengine.cpp" line="376"/>
+        <location filename="../scriptengine.cpp" line="386"/>
+        <location filename="../scriptengine.cpp" line="396"/>
+        <location filename="../scriptengine.cpp" line="406"/>
+        <location filename="../scriptengine.cpp" line="416"/>
+        <location filename="../scriptengine.cpp" line="426"/>
+        <location filename="../scriptengine.cpp" line="436"/>
+        <location filename="../scriptengine.cpp" line="446"/>
+        <location filename="../scriptengine.cpp" line="456"/>
+        <location filename="../scriptengine.cpp" line="466"/>
+        <location filename="../scriptengine.cpp" line="476"/>
+        <location filename="../scriptengine.cpp" line="486"/>
+        <location filename="../scriptengine.cpp" line="496"/>
+        <location filename="../scriptengine.cpp" line="506"/>
+        <location filename="../scriptengine.cpp" line="516"/>
+        <location filename="../scriptengine.cpp" line="526"/>
+        <location filename="../scriptengine.cpp" line="536"/>
+        <location filename="../scriptengine.cpp" line="546"/>
+        <location filename="../scriptengine.cpp" line="556"/>
+        <location filename="../scriptengine.cpp" line="566"/>
+        <location filename="../scriptengine.cpp" line="576"/>
+        <location filename="../scriptengine.cpp" line="608"/>
+        <location filename="../scriptengine.cpp" line="630"/>
+        <location filename="../scriptengine.cpp" line="654"/>
+        <location filename="../scriptengine.cpp" line="667"/>
         <source>project &apos;%1&apos; doesn&apos;t exists</source>
         <translation>Projekt &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../scriptengine.cpp" line="135"/>
+        <location filename="../scriptengine.cpp" line="154"/>
         <source>project &apos;%1&apos; hasn&apos;t run yet</source>
         <translation>Projekt &apos;%1&apos; wurde noch nicht ausgeführt</translation>
     </message>
     <message>
-        <location filename="../scriptengine.cpp" line="568"/>
+        <location filename="../scriptengine.cpp" line="590"/>
         <source>project &apos;%1&apos; is already running</source>
         <translation>Projekt &apos;%1&apos; läuft bereits</translation>
     </message>
@@ -2607,7 +2626,7 @@ Fortfahren?</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="31"/>
-        <location filename="../scriptwidget.cpp" line="224"/>
+        <location filename="../scriptwidget.cpp" line="237"/>
         <source>Idle</source>
         <translation>Untätig</translation>
     </message>
@@ -2632,51 +2651,51 @@ Fortfahren?</translation>
         <translation>Skript-Ausführung beenden</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="63"/>
+        <location filename="../scriptwidget.cpp" line="58"/>
         <source>Running</source>
         <translation>Wird ausgeführt</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="105"/>
-        <location filename="../scriptwidget.cpp" line="163"/>
+        <location filename="../scriptwidget.cpp" line="118"/>
+        <location filename="../scriptwidget.cpp" line="176"/>
         <source>Choose script file</source>
         <translation>Skript Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="105"/>
-        <location filename="../scriptwidget.cpp" line="163"/>
+        <location filename="../scriptwidget.cpp" line="118"/>
+        <location filename="../scriptwidget.cpp" line="176"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="105"/>
-        <location filename="../scriptwidget.cpp" line="163"/>
+        <location filename="../scriptwidget.cpp" line="118"/>
+        <location filename="../scriptwidget.cpp" line="176"/>
         <source>Script files (*.scr)</source>
         <translation>Skript Dateien (*.scr)</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="141"/>
+        <location filename="../scriptwidget.cpp" line="154"/>
         <source>Failed loading script &apos;%1&apos;</source>
         <translation>Skript &apos;%1&apos; konnte nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="148"/>
-        <location filename="../scriptwidget.cpp" line="162"/>
+        <location filename="../scriptwidget.cpp" line="161"/>
+        <location filename="../scriptwidget.cpp" line="175"/>
         <source>Noname-%1</source>
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="183"/>
+        <location filename="../scriptwidget.cpp" line="196"/>
         <source>Qt CHDMAN GUI script file -- please do not edit manually</source>
         <translation>Qt CHDMAN GUI Skript Datei -- bitte nicht manuell editieren</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="198"/>
+        <location filename="../scriptwidget.cpp" line="211"/>
         <source>Script &apos;%1&apos; saved</source>
         <translation>Skript &apos;%1&apos; gespeichert</translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="200"/>
+        <location filename="../scriptwidget.cpp" line="213"/>
         <source>Failed saving script &apos;%1&apos;</source>
         <translation>Skript &apos;%1&apos; konnte nicht gespeichert werden</translation>
     </message>

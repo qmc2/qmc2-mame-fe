@@ -24,6 +24,8 @@ public:
     explicit ScriptWidget(QWidget *parent = 0);
     virtual ~ScriptWidget();
 
+    ScriptEngine *engine() { return scriptEngine; }
+
 public slots:
     // Callbacks
     void on_toolButtonRun_clicked();
@@ -31,6 +33,7 @@ public slots:
     void on_progressBar_valueChanged(int);
 
     // Other
+    void adjustFonts();
     void log(QString);
     void load(const QString &fileName = QString(), QString *buffer = NULL);
     void save(QString *buffer = NULL);
