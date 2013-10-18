@@ -1359,7 +1359,7 @@ void ProjectWidget::init()
 void ProjectWidget::log(QString message)
 {
     if ( isScriptElement ) {
-        message.prepend(projectTypeName + ": " + scriptId + ": ");
+        message.prepend(scriptId + ": " + projectTypeName + ": ");
         scriptEngine->log(message);
     } else {
         message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
