@@ -39,6 +39,7 @@ public slots:
     void projectCreate(QString id, QString type);
     void projectCreateFromFile(QString id, QString fileName);
     void projectCreateFromString(QString id, QString buffer);
+    void projectClone(QString sourceId, QString destinationId);
     void projectDestroy(QString id);
     QString projectStatus(QString id);
     int projectReturnCode(QString id);
