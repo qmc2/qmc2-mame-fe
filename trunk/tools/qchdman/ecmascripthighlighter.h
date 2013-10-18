@@ -29,6 +29,7 @@ private:
     QTextCharFormat mMultiLineCommentFormat;
     QTextCharFormat mQuotationFormat;
     QTextCharFormat mFunctionFormat;
+    QTextCharFormat mScriptEngineFormat;
 };
 
 #endif // ECMASCRIPTHIGHLIGHTER_H

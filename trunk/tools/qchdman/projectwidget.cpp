@@ -33,6 +33,7 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement, int type, QStr
     chdmanProc = NULL;
     terminatedOnDemand = askFileName = false;
     needsTabbedUiAdjustment = needsWindowedUiAdjustment = true;
+    lastRc = -1;
 
     // prepare HD geometry template selector
     ui->comboBoxCreateHDFromTemplate->addItem(tr("Select"));
@@ -665,7 +666,6 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     connect(chdmanProc, SIGNAL(readyReadStandardOutput()), this, SLOT(readyReadStandardOutput()));
     connect(chdmanProc, SIGNAL(readyReadStandardError()), this, SLOT(readyReadStandardError()));
     connect(chdmanProc, SIGNAL(started()), this, SLOT(started()));
-    connect(chdmanProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(stateChanged(QProcess::ProcessState)));
 
     ui->plainTextEditProjectLog->clear();
     log(tr("starting process"));
@@ -694,6 +694,7 @@ void ProjectWidget::on_toolButtonStop_clicked()
 void ProjectWidget::started()
 {
     projectTimer.start();
+    lastRc = 0;
     runningProjects++;
 #if defined(Q_OS_WIN)
     log(tr("process started: PID = %1").arg(chdmanProc->pid()->dwProcessId));
@@ -720,6 +721,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
             status = QCHDMAN_PRJSTAT_CRASHED;
         }
     }
+    lastRc = exitCode;
     QTime execTime;
     execTime = execTime.addMSecs(projectTimer.elapsed());
     log(tr("process finished: exitCode = %1, exitStatus = %2, execTime = %3").arg(exitCode).arg(statusString).arg(execTime.toString("hh:mm:ss.zzz")));
@@ -857,11 +859,7 @@ void ProjectWidget::error(QProcess::ProcessError processError)
     ui->progressBar->setFormat(tr("Idle"));
     emit progressFormatChanged(tr("Idle"));
     ui->progressBar->setValue(0);
-}
-
-void ProjectWidget::stateChanged(QProcess::ProcessState)
-{
-    // NOP
+    lastRc = -1;
 }
 
 void ProjectWidget::on_toolButtonBrowseInfoInputFile_clicked()

@@ -80,6 +80,7 @@ public:
     QString status;
     QString scriptId;
     ScriptEngine *scriptEngine;
+    int lastRc;
 
     explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false, int type = QCHDMAN_PRJ_UNKNOWN, QString sId = QString(), ScriptEngine *sEngine = NULL);
     virtual ~ProjectWidget();
@@ -188,7 +189,6 @@ public slots:
     void readyReadStandardOutput();
     void readyReadStandardError();
     void error(QProcess::ProcessError);
-    void stateChanged(QProcess::ProcessState);
 
 signals:
     void progressFormatChanged(QString);

@@ -21,6 +21,16 @@ ECMAScriptHighlighter::ECMAScriptHighlighter(QTextDocument *parent) :
         mHighlightingRules.append(rule);
     }
 
+    keywords.clear();
+    keywords << "scriptEngine" << "qchdman";
+    mScriptEngineFormat.setForeground(Qt::darkMagenta);
+    mScriptEngineFormat.setFontWeight(QFont::Bold);
+    foreach (QString keyword, keywords) {
+        rule.pattern = QRegExp("\\b" + keyword + "\\b");
+        rule.format = mScriptEngineFormat;
+        mHighlightingRules.append(rule);
+    }
+
     mSingleLineCommentFormat.setForeground(Qt::red);
     rule.pattern = QRegExp("//[^\n]*");
     rule.format = mSingleLineCommentFormat;
