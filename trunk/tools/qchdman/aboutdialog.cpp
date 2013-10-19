@@ -14,6 +14,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
+    setModal(true);
 
 #if QCHDMAN_SVN_REV == 0
     QString credits = "<p><font size=\"+2\"><b>" + QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION + "</b></font></p>" +

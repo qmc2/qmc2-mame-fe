@@ -21,6 +21,12 @@ class ScriptWidget : public QWidget
 public:
     bool askFileName;
     bool isRunning;
+    QMenu *menuActions;
+    QAction *actionLoad;
+    QAction *actionSave;
+    QAction *actionSaveAs;
+    QAction *actionClone;
+    QAction *actionCopyLogToClipboard;
 
     explicit ScriptWidget(QWidget *parent = 0);
     virtual ~ScriptWidget();
@@ -43,6 +49,8 @@ public slots:
     void fromString(QString);
     void triggerSaveAs();
     void resetProgressBar();
+    void clone();
+    void copyLogToClipboard();
 
 private:
     Ui::ScriptWidget *ui;

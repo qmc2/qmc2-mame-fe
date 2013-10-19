@@ -1451,7 +1451,7 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
     QString projectName = fileName;
 
     if ( buffer == NULL && projectName.isEmpty() ) {
-        projectName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+        projectName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("Project files (*.prj)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
         if ( projectName.isNull() )
             return;
     }
@@ -1810,7 +1810,7 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
         else
             loadFile.close();
 
-        if ( !isScriptElement ) {
+        if ( !isScriptElement && !projectName.isEmpty() ) {
             ((ProjectWindow *)parentWidget())->projectName = projectName;
             parentWidget()->setWindowTitle(projectName);
             mainWindow->addRecentFile(projectName);
@@ -2080,7 +2080,7 @@ void ProjectWidget::clone()
     int cloneType = cloneActionMap[action];
 
     if ( copyGroups.contains(cloneType) ) {
-        ProjectWindow *projectWindow = mainWindow->createProjectWindow();
+        ProjectWindow *projectWindow = mainWindow->createProjectWindow(QCHDMAN_MDI_PROJECT);
         ProjectWidget *projectWidget = projectWindow->projectWidget;
         projectWidget->setProjectType(cloneType);
         QList<QWidget *> sourceWidgets = copyGroups[ui->comboBoxProjectType->currentIndex()];

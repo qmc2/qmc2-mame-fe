@@ -14,52 +14,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="23"/>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="24"/>
+        <location filename="../aboutdialog.cpp" line="25"/>
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="24"/>
+        <location filename="../aboutdialog.cpp" line="25"/>
         <source>All Rights Reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="25"/>
+        <location filename="../aboutdialog.cpp" line="26"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="28"/>
+        <location filename="../aboutdialog.cpp" line="29"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="30"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>See the</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="30"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>GNU General Public License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="30"/>
+        <location filename="../aboutdialog.cpp" line="31"/>
         <source>for more details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="32"/>
         <source>Qt CHDMAN GUI is part of the</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="31"/>
+        <location filename="../aboutdialog.cpp" line="32"/>
         <source>QMC2 project</source>
         <translation type="unfinished"></translation>
     </message>
@@ -407,77 +407,77 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="344"/>
-        <location filename="../mainwindow.cpp" line="357"/>
+        <location filename="../mainwindow.cpp" line="345"/>
+        <location filename="../mainwindow.cpp" line="358"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="345"/>
         <source>Choose project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="344"/>
+        <location filename="../mainwindow.cpp" line="345"/>
         <source>Project files (*.prj)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="357"/>
+        <location filename="../mainwindow.cpp" line="358"/>
         <source>Choose script file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="357"/>
+        <location filename="../mainwindow.cpp" line="358"/>
         <source>Script files (*.scr)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="520"/>
-        <location filename="../mainwindow.cpp" line="534"/>
-        <source> KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="523"/>
         <location filename="../mainwindow.cpp" line="537"/>
-        <source> MB</source>
+        <source> KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="526"/>
         <location filename="../mainwindow.cpp" line="540"/>
-        <source> GB</source>
+        <source> MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="529"/>
+        <location filename="../mainwindow.cpp" line="543"/>
+        <source> GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="532"/>
         <source> TB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>Running scripts / projects: %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="632"/>
+        <location filename="../mainwindow.cpp" line="635"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="648"/>
+        <location filename="../mainwindow.cpp" line="651"/>
         <source>Script &apos;%1&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="727"/>
-        <location filename="../mainwindow.cpp" line="745"/>
+        <location filename="../mainwindow.cpp" line="730"/>
+        <location filename="../mainwindow.cpp" line="756"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="728"/>
+        <location filename="../mainwindow.cpp" line="731"/>
         <source>There are %n script(s) currently running.
 
 Proceed?</source>
@@ -488,7 +488,7 @@ Proceed?</source>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="747"/>
+        <location filename="../mainwindow.cpp" line="758"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -497,7 +497,7 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="759"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
@@ -753,32 +753,32 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="91"/>
+        <location filename="../preferencesdialog.cpp" line="92"/>
         <source>Choose CHDMAN binary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="91"/>
+        <location filename="../preferencesdialog.cpp" line="92"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="98"/>
+        <location filename="../preferencesdialog.cpp" line="99"/>
         <source>Choose preferred CHD input path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="105"/>
+        <location filename="../preferencesdialog.cpp" line="106"/>
         <source>Choose preferred non-CHD input path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="112"/>
+        <location filename="../preferencesdialog.cpp" line="113"/>
         <source>Choose preferred CHD output path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="119"/>
+        <location filename="../preferencesdialog.cpp" line="120"/>
         <source>Choose preferred non-CHD output path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2397,82 +2397,112 @@ Proceed?</source>
 <context>
     <name>ScriptWidget</name>
     <message>
-        <location filename="../scriptwidget.ui" line="25"/>
+        <location filename="../scriptwidget.ui" line="17"/>
         <source>Script status / progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="31"/>
-        <location filename="../scriptwidget.cpp" line="241"/>
+        <location filename="../scriptwidget.ui" line="23"/>
+        <location filename="../scriptwidget.cpp" line="264"/>
         <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="44"/>
+        <location filename="../scriptwidget.ui" line="36"/>
         <source>Run this script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="81"/>
+        <location filename="../scriptwidget.ui" line="73"/>
+        <source>Tools menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.ui" line="91"/>
         <source>Script editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="89"/>
+        <location filename="../scriptwidget.ui" line="99"/>
         <source>Script log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.ui" line="64"/>
+        <location filename="../scriptwidget.ui" line="56"/>
         <source>Terminate the running script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="58"/>
+        <location filename="../scriptwidget.cpp" line="45"/>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.cpp" line="46"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.cpp" line="47"/>
+        <source>Save as...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.cpp" line="48"/>
+        <source>Clone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.cpp" line="49"/>
+        <source>Copy log to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scriptwidget.cpp" line="71"/>
         <source>Running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="121"/>
-        <location filename="../scriptwidget.cpp" line="179"/>
+        <location filename="../scriptwidget.cpp" line="134"/>
+        <location filename="../scriptwidget.cpp" line="201"/>
         <source>Choose script file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="121"/>
-        <location filename="../scriptwidget.cpp" line="179"/>
+        <location filename="../scriptwidget.cpp" line="134"/>
+        <location filename="../scriptwidget.cpp" line="201"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="121"/>
-        <location filename="../scriptwidget.cpp" line="179"/>
+        <location filename="../scriptwidget.cpp" line="134"/>
+        <location filename="../scriptwidget.cpp" line="201"/>
         <source>Script files (*.scr)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="157"/>
+        <location filename="../scriptwidget.cpp" line="179"/>
         <source>Failed loading script &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="164"/>
-        <location filename="../scriptwidget.cpp" line="178"/>
+        <location filename="../scriptwidget.cpp" line="186"/>
+        <location filename="../scriptwidget.cpp" line="200"/>
         <source>Noname-%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="199"/>
+        <location filename="../scriptwidget.cpp" line="221"/>
         <source>Qt CHDMAN GUI script file -- please do not edit manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="215"/>
+        <location filename="../scriptwidget.cpp" line="238"/>
         <source>Script &apos;%1&apos; saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scriptwidget.cpp" line="217"/>
+        <location filename="../scriptwidget.cpp" line="240"/>
         <source>Failed saving script &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
