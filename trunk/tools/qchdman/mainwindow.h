@@ -9,6 +9,7 @@
 
 #include "preferencesdialog.h"
 #include "projectwindow.h"
+#include "aboutdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,7 @@ public:
     QTimer statusTimer;
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
+    AboutDialog *aboutDialog;
     QStringList recentFiles;
     QStringList recentScripts;
     QMap<QString, QString> compressionTypes;
