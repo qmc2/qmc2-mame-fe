@@ -721,16 +721,19 @@ void MainWindow::resizeEvent(QResizeEvent *)
 void MainWindow::closeEvent(QCloseEvent *e)
 {
     closeOk = true;
+    forceQuit = false;
 
     if ( runningScripts > 0 ) {
         switch ( QMessageBox::question(this, tr("Confirm"),
                                        tr("There are %n script(s) currently running.\n\nProceed?", "", runningScripts),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
+            forceQuit = true;
             break;
         case QMessageBox::No:
         default:
             closeOk = false;
+            forceQuit = false;
             QTimer::singleShot(100, this, SLOT(resetCloseFlag()));
             e->ignore();
             return;
@@ -745,10 +748,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
                                        tr("There are %1 projects currently running.\n\nClosing their windows will kill the external processes!\n\nProceed?").arg(runningProjects),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
+            forceQuit = true;
             break;
         case QMessageBox::No:
         default:
             closeOk = false;
+            forceQuit = false;
             QTimer::singleShot(100, this, SLOT(resetCloseFlag()));
             e->ignore();
             return;
@@ -756,24 +761,18 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
-    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
-        switch ( ((ProjectWindow *)w)->subWindowType ) {
-            case QCHDMAN_MDI_PROJECT: {
+    if ( closeOk ) {
+        foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+            if ( ((ProjectWindow *)w)->subWindowType == QCHDMAN_MDI_PROJECT ) {
                 ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
-                if ( projectWidget )
+                if ( projectWidget ) {
                     if ( projectWidget->chdmanProc && projectWidget->chdmanProc->state() == QProcess::Running )
                         projectWidget->chdmanProc->terminate();
+                }
             }
-            break;
+            QTimer::singleShot(0, w, SLOT(close()));
         }
-    }
 
-    ui->mdiArea->closeAllSubWindows();
-    qApp->processEvents();
-
-    QList<QMdiSubWindow *>subWindowList = ui->mdiArea->subWindowList();
-
-    if ( subWindowList.isEmpty() && closeOk ) {
         globalConfig->setMainWindowState(saveState());
         globalConfig->setMainWindowGeometry(saveGeometry());
 
@@ -781,7 +780,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
             delete preferencesDialog;
 
         e->accept();
-        delete globalConfig;
+        qApp->processEvents();
+        globalConfig->deleteLater();
     } else
         e->ignore();
 }

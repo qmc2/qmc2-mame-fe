@@ -32,7 +32,7 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     ui->splitter->setSizes(sizes);
     scriptEngine = new ScriptEngine(this);
 
-    askFileName = false;
+    askFileName = isRunning = false;
 
     // linear gradient from red over yellow to green (this assumes that sub-window icons are in 64x64)
     linearGradient = QLinearGradient(QPointF(0, 0), QPointF(63, 0));
@@ -57,7 +57,9 @@ void ScriptWidget::on_toolButtonRun_clicked()
     scriptEngine->externalStop = false;
     ui->progressBar->setFormat(tr("Running"));
     runningScripts++;
+    isRunning = true;
     scriptEngine->runScript(ui->textEditScript->toPlainText());
+    isRunning = false;
     runningScripts--;
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
@@ -68,6 +70,7 @@ void ScriptWidget::on_toolButtonStop_clicked()
 {
     scriptEngine->externalStop = true;
     scriptEngine->stopScript();
+    isRunning = false;
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     QTimer::singleShot(0, this, SLOT(resetProgressBar()));
@@ -150,7 +153,7 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
             ui->textEditScript->setPlainText(ecmaScript);
         }
         mainWindow->addRecentScript(scriptName);
-    } else
+    } else if ( !scriptName.isEmpty() )
         mainWindow->statusBar()->showMessage(tr("Failed loading script '%1'").arg(scriptName), QCHDMAN_STATUS_MSGTIME);
 }
 
@@ -208,8 +211,9 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
         ((ProjectWindow *)parentWidget())->projectName = scriptName;
         parentWidget()->setWindowTitle(scriptName);
         mainWindow->addRecentScript(scriptName);
+        if ( !scriptName.isEmpty() )
         mainWindow->statusBar()->showMessage(tr("Script '%1' saved").arg(scriptName), QCHDMAN_STATUS_MSGTIME);
-    } else
+    } else if ( !scriptName.isEmpty() )
         mainWindow->statusBar()->showMessage(tr("Failed saving script '%1'").arg(scriptName), QCHDMAN_STATUS_MSGTIME);
 }
 
@@ -238,10 +242,4 @@ void ScriptWidget::resetProgressBar()
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(0);
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
-}
-
-void ScriptWidget::closeEvent(QCloseEvent *)
-{
-    scriptEngine->externalStop = true;
-    scriptEngine->stopScript();
 }
