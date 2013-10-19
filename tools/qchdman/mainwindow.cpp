@@ -6,7 +6,6 @@
 #include "ui_mainwindow.h"
 #include "projectwindow.h"
 #include "projectwidget.h"
-#include "aboutdialog.h"
 #include "macros.h"
 #include "settings.h"
 
@@ -31,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     preferencesDialog = new PreferencesDialog(this);
+    aboutDialog = new AboutDialog(this);
 
     restoreGeometry(globalConfig->mainWindowGeometry());
     restoreState(globalConfig->mainWindowState());
@@ -491,8 +491,7 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
 
 void MainWindow::on_actionHelpAbout_triggered(bool)
 {
-    AboutDialog aboutDialog(this);
-    aboutDialog.exec();
+    aboutDialog->show();
 }
 
 void MainWindow::on_actionHelpAboutQt_triggered(bool)
