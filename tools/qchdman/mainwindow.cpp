@@ -322,6 +322,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    globalConfig->deleteLater();
 }
 
 QMdiArea *MainWindow::mdiArea()
@@ -341,7 +342,7 @@ void MainWindow::on_actionProjectNewScript_triggered(bool checked)
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("Project files (*.prj)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !fileName.isNull() ) {
         ProjectWindow *projectWindow = new ProjectWindow(fileName, QCHDMAN_MDI_PROJECT, ui->mdiArea);
         projectWindow->show();
@@ -354,7 +355,7 @@ void MainWindow::on_actionProjectLoad_triggered(bool)
 
 void MainWindow::on_actionProjectLoadScript_triggered(bool checked)
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose script file"), QString(), tr("All files (*)") + ";;" + tr("Script files (*.scr)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose script file"), QString(), tr("Script files (*.scr)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !fileName.isNull() ) {
         ProjectWindow *projectWindow = new ProjectWindow(fileName, QCHDMAN_MDI_SCRIPT, ui->mdiArea);
         projectWindow->show();
@@ -408,7 +409,7 @@ void MainWindow::on_actionProjectSaveAll_triggered(bool)
 
 void MainWindow::on_actionProjectPreferences_triggered(bool)
 {
-    preferencesDialog->exec();
+    preferencesDialog->show();
 }
 
 void MainWindow::on_actionProjectExit_triggered(bool)
@@ -458,7 +459,9 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
         ui->actionWindowCascade->setEnabled(true);
         ui->actionWindowTile->setEnabled(true);
     }
+
     applySettings();
+
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
         ProjectWindow *projectWindow = (ProjectWindow *)w;
         if ( globalConfig->preferencesMaximizeWindows() ) {
@@ -741,11 +744,19 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
-    if ( runningProjects > 0 ) {
+    int runningIndependentProjects = 0;
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWindow *pw = (ProjectWindow *)w;
+        if ( pw->subWindowType == QCHDMAN_MDI_PROJECT )
+            if ( !pw->projectWidget->isScriptElement && pw->projectWidget->status == QCHDMAN_PRJSTAT_RUNNING )
+                runningIndependentProjects++;
+    }
+
+    if ( runningIndependentProjects > 0 ) {
         switch ( QMessageBox::question(this, tr("Confirm"),
-                                       runningProjects == 1 ?
+                                       runningIndependentProjects == 1 ?
                                        tr("There is 1 project currently running.\n\nClosing its window will kill the external process!\n\nProceed?") :
-                                       tr("There are %1 projects currently running.\n\nClosing their windows will kill the external processes!\n\nProceed?").arg(runningProjects),
+                                       tr("There are %1 projects currently running.\n\nClosing their windows will kill the external processes!\n\nProceed?").arg(runningIndependentProjects),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
             forceQuit = true;
@@ -780,8 +791,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
             delete preferencesDialog;
 
         e->accept();
-        qApp->processEvents();
-        globalConfig->deleteLater();
     } else
         e->ignore();
+
+    qApp->processEvents();
 }

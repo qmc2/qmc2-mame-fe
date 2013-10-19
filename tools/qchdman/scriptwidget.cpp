@@ -40,6 +40,19 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     linearGradient.setColorAt(0.5, QColor(220, 220, 0, 192));
     linearGradient.setColorAt(1.0, QColor(0, 255, 0, 192));
 
+    // setup tools menu
+    menuActions = new QMenu(this);
+    actionLoad = menuActions->addAction(tr("Load"), this, SLOT(load()));
+    actionSave = menuActions->addAction(tr("Save"), this, SLOT(save()));
+    actionSaveAs = menuActions->addAction(tr("Save as..."), this, SLOT(triggerSaveAs()));
+    actionClone = menuActions->addAction(tr("Clone"), this, SLOT(clone()));
+    actionCopyLogToClipboard = menuActions->addAction(tr("Copy log to clipboard"), this, SLOT(copyLogToClipboard()));
+    menuActions->insertSeparator(actionSave);
+    menuActions->insertSeparator(actionClone);
+    menuActions->insertSeparator(actionCopyLogToClipboard);
+    ui->toolButtonActions->setMenu(menuActions);
+
+    // syntax-highlighter
     new ECMAScriptHighlighter(ui->textEditScript->document());
 }
 
@@ -118,18 +131,18 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
     QString scriptName = fileName;
 
     if ( buffer == NULL && scriptName.isEmpty() ) {
-        scriptName = QFileDialog::getOpenFileName(this, tr("Choose script file"), QString(), tr("All files (*)") + ";;" + tr("Script files (*.scr)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+        scriptName = QFileDialog::getOpenFileName(this, tr("Choose script file"), QString(), tr("Script files (*.scr)")  + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
         if ( scriptName.isNull() )
             return;
     }
 
     QFile loadFile(scriptName);
     QTextStream ts;
-    QByteArray ba;
+    QByteArray ba(buffer != NULL ? buffer->toLocal8Bit().constData() : "");
     QBuffer baBuffer(&ba);
 
     if ( buffer != NULL ) {
-        baBuffer.open(QBuffer::ReadWrite);
+        baBuffer.open(QBuffer::ReadOnly);
         ts.setDevice(&baBuffer);
     } else if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) )
         ts.setDevice(&loadFile);
@@ -152,7 +165,16 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
             }
             ui->textEditScript->setPlainText(ecmaScript);
         }
-        mainWindow->addRecentScript(scriptName);
+
+        if ( buffer != NULL ) {
+            baBuffer.close();
+        } else
+            loadFile.close();
+
+        if ( !scriptName.isEmpty() ) {
+            parentWidget()->setWindowTitle(scriptName);
+            mainWindow->addRecentScript(scriptName);
+        }
     } else if ( !scriptName.isEmpty() )
         mainWindow->statusBar()->showMessage(tr("Failed loading script '%1'").arg(scriptName), QCHDMAN_STATUS_MSGTIME);
 }
@@ -190,7 +212,7 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
     QBuffer baBuffer(&ba);
 
     if ( buffer != NULL ) {
-        baBuffer.open(QBuffer::ReadWrite);
+        baBuffer.open(QBuffer::WriteOnly);
         ts.setDevice(&baBuffer);
     } else if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) )
         ts.setDevice(&saveFile);
@@ -203,9 +225,10 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
         ts << ui->textEditScript->toPlainText() << "\n";
         ts << "]\n";
 
-        if ( buffer != NULL )
+        if ( buffer != NULL ) {
+            baBuffer.close();
             *buffer = QString(ba);
-        else
+        } else
             saveFile.close();
 
         ((ProjectWindow *)parentWidget())->projectName = scriptName;
@@ -242,4 +265,15 @@ void ScriptWidget::resetProgressBar()
     ui->progressBar->setRange(0, 100);
     ui->progressBar->setValue(0);
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
+}
+
+void ScriptWidget::clone()
+{
+    ProjectWindow *projectWindow = mainWindow->createProjectWindow(QCHDMAN_MDI_SCRIPT);
+    projectWindow->scriptWidget->fromString(toString());
+}
+
+void ScriptWidget::copyLogToClipboard()
+{
+    qApp->clipboard()->setText(ui->plainTextEditLog->toPlainText());
 }

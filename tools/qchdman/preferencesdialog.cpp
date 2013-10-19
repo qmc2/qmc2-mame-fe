@@ -17,6 +17,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     ui(new Ui::PreferencesDialog)
 {
     ui->setupUi(this);
+    setModal(true);
     ui->comboBoxStyle->addItems(QStyleFactory::keys());
     restoreSettings();
 }
