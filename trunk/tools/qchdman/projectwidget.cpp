@@ -1448,15 +1448,15 @@ void ProjectWidget::updateCompression(QComboBox *cb, QStringList *cmp, int index
 
 void ProjectWidget::load(const QString &fileName, QString *buffer)
 {
-    QString fName = fileName;
+    QString projectName = fileName;
 
-    if ( buffer == NULL && fName.isEmpty() ) {
-        fName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-        if ( fName.isNull() )
+    if ( buffer == NULL && projectName.isEmpty() ) {
+        projectName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+        if ( projectName.isNull() )
             return;
     }
 
-    QFile loadFile(fName);
+    QFile loadFile(projectName);
     QTextStream ts;
     QByteArray ba(buffer != NULL ? buffer->toLocal8Bit().constData() : "");
     QBuffer baBuffer(&ba);
@@ -1811,12 +1811,12 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
             loadFile.close();
 
         if ( !isScriptElement ) {
-            ((ProjectWindow *)parentWidget())->projectName = fName;
-            parentWidget()->setWindowTitle(fName);
-            mainWindow->addRecentFile(fName);
+            ((ProjectWindow *)parentWidget())->projectName = projectName;
+            parentWidget()->setWindowTitle(projectName);
+            mainWindow->addRecentFile(projectName);
         }
-    } else
-        mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(fName), QCHDMAN_STATUS_MSGTIME);
+    } else if ( !projectName.isEmpty() )
+        mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(projectName), QCHDMAN_STATUS_MSGTIME);
 }
 
 void ProjectWidget::save(QString *buffer)
@@ -2045,8 +2045,10 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
             parentWidget()->setWindowTitle(projectName);
             mainWindow->addRecentFile(projectName);
         }
-        mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), QCHDMAN_STATUS_MSGTIME);
-    } else
+
+        if ( !projectName.isEmpty() )
+            mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), QCHDMAN_STATUS_MSGTIME);
+    } else if ( !projectName.isEmpty() )
         mainWindow->statusBar()->showMessage(tr("Failed saving project '%1'").arg(projectName), QCHDMAN_STATUS_MSGTIME);
 }
 

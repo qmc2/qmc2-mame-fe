@@ -65,8 +65,6 @@ void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowSt
             return;
 
         projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-    } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
-        // FIXME (?)
     }
 }
 
@@ -86,10 +84,11 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
 
     if ( subWindowType == QCHDMAN_MDI_PROJECT ) {
         if ( mainWindow->forceQuit ) {
-            projectWidget->log(tr("terminating process"));
-            while ( projectWidget->chdmanProc->state() == QProcess::Running && !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
-                projectWidget->chdmanProc->kill();
-                qApp->processEvents();
+            if ( projectWidget->chdmanProc ) {
+                while ( projectWidget->chdmanProc->state() == QProcess::Running && !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
+                    projectWidget->chdmanProc->kill();
+                    qApp->processEvents();
+                }
             }
             e->accept();
             deleteLater();
@@ -107,8 +106,7 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
                                                tr("Project '%1' is currently running.\n\nClosing its window will kill the external process!\n\nProceed?").arg(windowTitle()),
                                                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
                 case QMessageBox::Yes:
-                    projectWidget->log(tr("terminating process"));
-                    while ( projectWidget->chdmanProc->state() == QProcess::Running && !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
+                   while ( projectWidget->chdmanProc->state() == QProcess::Running && !projectWidget->chdmanProc->waitForFinished(QCHDMAN_KILL_WAIT) ) {
                         projectWidget->chdmanProc->kill();
                         qApp->processEvents();
                     }
@@ -124,7 +122,35 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
                 closeOk = mainWindow->closeOk;
         }
     } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
-        // FIXME
+        if ( mainWindow->forceQuit ) {
+            scriptWidget->engine()->stopScript();
+            e->accept();
+            deleteLater();
+            return;
+        }
+
+        if ( !mainWindow->closeOk ) {
+            e->ignore();
+            return;
+        }
+
+        if ( scriptWidget->isRunning ) {
+            switch ( QMessageBox::question(this, tr("Confirm"),
+                                           tr("Script '%1' is currently running.\n\nProceed?").arg(windowTitle()),
+                                           QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
+            case QMessageBox::Yes:
+                scriptWidget->engine()->stopScript();
+                closeOk = true;
+                break;
+            case QMessageBox::No:
+            default:
+                closeOk = false;
+                mainWindow->closeOk = false;
+                QTimer::singleShot(100, mainWindow, SLOT(resetCloseFlag()));
+                break;
+            }
+        } else
+            closeOk = mainWindow->closeOk;
     }
 
     if ( closeOk ) {
