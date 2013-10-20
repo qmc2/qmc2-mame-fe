@@ -18,20 +18,23 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     mScriptWidget = parent;
     externalStop = false;
     mErrorStates << QCHDMAN_PRJSTAT_CRASHED << QCHDMAN_PRJSTAT_ERROR;
+    mEntryListIterator = NULL;
 }
 
 ScriptEngine::~ScriptEngine()
 {
-    cleanUpProjects();
+    destroyProjects();
     mEngineDebugger->detach();
     delete mEngineDebugger;
     delete mEngine;
+    if ( mEntryListIterator )
+        delete mEntryListIterator;
 }
 
 void ScriptEngine::runScript(QString script)
 {
     externalStop = false;
-    cleanUpProjects();
+    destroyProjects();
     mScriptWidget->on_progressBar_valueChanged(0);
     mEngine->evaluate(script);
     mEngine->collectGarbage();
@@ -44,12 +47,91 @@ void ScriptEngine::stopScript()
     mEngine->collectGarbage();
     QStringList projectList = mProjectMap.keys();
     stopProjects(projectList.join(","));
-    cleanUpProjects();
+    destroyProjects();
 }
 
 void ScriptEngine::log(QString message)
 {
     mScriptWidget->log(message);
+}
+
+void ScriptEngine::dirStartEntryList(QString path, QString filter, bool subDirs)
+{
+    if ( mEntryListIterator )
+        delete mEntryListIterator;
+
+    QStringList nameFilters;
+
+    if ( filter.isEmpty() )
+        nameFilters << "*";
+    else
+        nameFilters = filter.split(QRegExp(",.*"), QString::SkipEmptyParts);
+
+    if ( subDirs )
+        mEntryListIterator = new QDirIterator(path, nameFilters, QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive);
+    else
+        mEntryListIterator = new QDirIterator(path, nameFilters, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive);
+}
+
+bool ScriptEngine::dirHasNextEntry()
+{
+    return mEntryListIterator->hasNext();
+}
+
+QString ScriptEngine::dirNextEntry()
+{
+    if ( mEntryListIterator->hasNext() )
+        return mEntryListIterator->next();
+    else
+        return QString();
+}
+
+QStringList ScriptEngine::dirEntryList(QString path, QString filter, bool sort, bool ascending)
+{
+    QStringList nameFilters;
+
+    if ( filter.isEmpty() )
+        nameFilters << "*";
+    else
+        nameFilters = filter.split(QRegExp(",.*"), QString::SkipEmptyParts);
+
+    mEntryListDir.setPath(path);
+    mEntryListDir.setFilter(QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive);
+    mEntryListDir.setNameFilters(nameFilters);
+
+    if ( sort ) {
+        if ( ascending )
+            mEntryListDir.setSorting(QDir::Name);
+        else
+            mEntryListDir.setSorting(QDir::Name | QDir::Reversed);
+    } else
+        mEntryListDir.setSorting(QDir::Name | QDir::Unsorted);
+
+    return mEntryListDir.entryList();
+}
+
+QStringList ScriptEngine::dirSubDirList(QString path, QString filter, bool sort, bool ascending)
+{
+    QStringList nameFilters;
+
+    if ( filter.isEmpty() )
+        nameFilters << "*";
+    else
+        nameFilters = filter.split(QRegExp(",.*"), QString::SkipEmptyParts);
+
+    mEntryListDir.setPath(path);
+    mEntryListDir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive);
+    mEntryListDir.setNameFilters(nameFilters);
+
+    if ( sort ) {
+        if ( ascending )
+            mEntryListDir.setSorting(QDir::Name);
+        else
+            mEntryListDir.setSorting(QDir::Name | QDir::Reversed);
+    } else
+        mEntryListDir.setSorting(QDir::Name | QDir::Unsorted);
+
+    return mEntryListDir.entryList();
 }
 
 void ScriptEngine::progressSetRange(int min, int max)
@@ -579,6 +661,11 @@ void ScriptEngine::runProjects(QString idList)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::runProjects(QString idList = %1)").arg(idList)));
 
+    if ( idList.isEmpty() ) {
+        QStringList projectIds = mProjectMap.keys();
+        idList = projectIds.join(",");
+    }
+
     foreach (QString id, idList.split(",", QString::SkipEmptyParts)) {
         if ( externalStop )
             break;
@@ -612,6 +699,11 @@ void ScriptEngine::stopProjects(QString idList)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::stopProjects(QString idList = %1)").arg(idList)));
 
+    if ( idList.isEmpty() ) {
+        QStringList projectIds = mProjectMap.keys();
+        idList = projectIds.join(",");
+    }
+
     foreach (QString id, idList.split(",", QString::SkipEmptyParts)) {
         id = id.trimmed();
         if ( mProjectMap.contains(id) ) {
@@ -633,6 +725,11 @@ void ScriptEngine::stopProjects(QString idList)
 void ScriptEngine::syncProjects(QString idList)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::syncProjects(QString idList = %1)").arg(idList)));
+
+    if ( idList.isEmpty() ) {
+        QStringList projectIds = mProjectMap.keys();
+        idList = projectIds.join(",");
+    }
 
     foreach (QString id, idList.split(",", QString::SkipEmptyParts)) {
         if ( externalStop )
@@ -658,6 +755,11 @@ void ScriptEngine::destroyProjects(QString idList)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::destroyProjects(QString idList = %1)").arg(idList)));
 
+    if ( idList.isEmpty() ) {
+        QStringList projectIds = mProjectMap.keys();
+        idList = projectIds.join(",");
+    }
+
     foreach (QString id, idList.split(",", QString::SkipEmptyParts)) {
         id = id.trimmed();
         if ( mProjectMap.contains(id) )
@@ -665,11 +767,4 @@ void ScriptEngine::destroyProjects(QString idList)
         else
             log(tr("warning") + ": ScriptEngine::destroyProjects(): " + tr("project '%1' doesn't exists").arg(id));
     }
-}
-
-void ScriptEngine::cleanUpProjects()
-{
-    foreach (QString id, mProjectMap.keys())
-        projectDestroy(id);
-    mProjectMap.clear();
 }

@@ -6,6 +6,8 @@
 #include <QObject>
 #include <QStringList>
 #include <QMap>
+#include <QDir>
+#include <QDirIterator>
 
 #include "projectwidget.h"
 #include "scriptwidget.h"
@@ -30,6 +32,13 @@ public:
 public slots:
     // print a message to the script-log
     void log(QString message);
+
+    // find files in folders
+    void dirStartEntryList(QString path, QString filter, bool subDirs = false);
+    bool dirHasNextEntry();
+    QString dirNextEntry();
+    QStringList dirEntryList(QString path, QString filter = QString(), bool sort = true, bool ascending = true);
+    QStringList dirSubDirList(QString path, QString filter = QString(), bool sort = true, bool ascending = true);
 
     // progress-bar
     void progressSetRange(int min, int max);
@@ -115,10 +124,10 @@ public slots:
     // properties for project-type 'DelMeta'
 
     // run / stop / synchronize / destroy projects
-    void runProjects(QString idList);
-    void stopProjects(QString idList);
-    void syncProjects(QString idList);
-    void destroyProjects(QString idList);
+    void runProjects(QString idList = QString());
+    void stopProjects(QString idList = QString());
+    void syncProjects(QString idList = QString());
+    void destroyProjects(QString idList = QString());
 
 private:
     QScriptEngine *mEngine;
@@ -126,8 +135,8 @@ private:
     QMap<QString, ProjectWidget *> mProjectMap;
     ScriptWidget *mScriptWidget;
     QStringList mErrorStates;
-
-    void cleanUpProjects();
+    QDir mEntryListDir;
+    QDirIterator *mEntryListIterator;
 };
 
 #endif // SCRIPTENGINE_H
