@@ -23,8 +23,9 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
 
 ScriptEngine::~ScriptEngine()
 {
-    destroyProjects();
+    externalStop = true;
     mEngineDebugger->detach();
+    destroyProjects();
     delete mEngineDebugger;
     delete mEngine;
     if ( mEntryListIterator )
@@ -45,14 +46,14 @@ void ScriptEngine::stopScript()
     externalStop = true;
     mEngine->abortEvaluation();
     mEngine->collectGarbage();
-    QStringList projectList = mProjectMap.keys();
-    stopProjects(projectList.join(","));
+    stopProjects();
     destroyProjects();
 }
 
 void ScriptEngine::log(QString message)
 {
-    mScriptWidget->log(message);
+    if ( !externalStop )
+        mScriptWidget->log(message);
 }
 
 void ScriptEngine::dirStartEntryList(QString path, QString filter, bool subDirs)
