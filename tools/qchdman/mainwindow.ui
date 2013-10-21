@@ -92,6 +92,7 @@
     <addaction name="actionHelpAboutQt"/>
     <addaction name="separator"/>
     <addaction name="actionHelpWiki"/>
+    <addaction name="actionHelpForum"/>
    </widget>
    <addaction name="menuProject"/>
    <addaction name="menuWindow"/>
@@ -334,6 +335,14 @@
    </property>
    <property name="statusTip">
     <string>Open our wiki in the default browser</string>
+   </property>
+  </action>
+  <action name="actionHelpForum">
+   <property name="text">
+    <string>Forum...</string>
+   </property>
+   <property name="statusTip">
+    <string>Open our forum in the default browser</string>
    </property>
   </action>
  </widget>
