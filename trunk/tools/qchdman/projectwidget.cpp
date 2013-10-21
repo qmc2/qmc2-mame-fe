@@ -1842,7 +1842,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
         if ( !isScriptElement )
             projectName = ((ProjectWindow *)parentWidget())->projectName;
         if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
-            QString s = QFileDialog::getSaveFileName(this, tr("Choose project file"), projectName, tr("All files (*)") + ";;" + tr("Project files (*.prj)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+            QString s = QFileDialog::getSaveFileName(this, tr("Choose project file"), projectName, tr("Project files (*.prj)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
             if ( s.isNull() )
                 return;
             else
