@@ -5,6 +5,9 @@
 #include <QIcon>
 #include <QFont>
 #include <QFontMetrics>
+#include <QScrollBar>
+#include <QFileDialog>
+#include <QStatusBar>
 
 #include "ui_scriptwidget.h"
 #include "scriptwidget.h"
