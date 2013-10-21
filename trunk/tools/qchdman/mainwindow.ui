@@ -89,10 +89,11 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionHelpAbout"/>
-    <addaction name="actionHelpAboutQt"/>
     <addaction name="separator"/>
     <addaction name="actionHelpWiki"/>
     <addaction name="actionHelpForum"/>
+    <addaction name="separator"/>
+    <addaction name="actionHelpAboutQt"/>
    </widget>
    <addaction name="menuProject"/>
    <addaction name="menuWindow"/>
