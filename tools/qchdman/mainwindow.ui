@@ -90,6 +90,8 @@
     </property>
     <addaction name="actionHelpAbout"/>
     <addaction name="actionHelpAboutQt"/>
+    <addaction name="separator"/>
+    <addaction name="actionHelpWiki"/>
    </widget>
    <addaction name="menuProject"/>
    <addaction name="menuWindow"/>
@@ -324,6 +326,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+L</string>
+   </property>
+  </action>
+  <action name="actionHelpWiki">
+   <property name="text">
+    <string>Wiki...</string>
+   </property>
+   <property name="statusTip">
+    <string>Open our wiki in the default browser</string>
    </property>
   </action>
  </widget>
