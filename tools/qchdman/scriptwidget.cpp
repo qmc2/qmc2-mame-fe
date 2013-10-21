@@ -201,7 +201,7 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
     if ( buffer == NULL && (scriptName.isEmpty() || askFileName) ) {
         scriptName = ((ProjectWindow *)parentWidget())->projectName;
         if ( scriptName.startsWith(tr("Noname-%1").arg("")) || scriptName.isEmpty() || askFileName ) {
-            QString s = QFileDialog::getSaveFileName(this, tr("Choose script file"), scriptName, tr("All files (*)") + ";;" + tr("Script files (*.scr)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+            QString s = QFileDialog::getSaveFileName(this, tr("Choose script file"), scriptName, tr("Script files (*.scr)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
             if ( s.isNull() )
                 return;
             else
