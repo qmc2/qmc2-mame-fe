@@ -21,8 +21,9 @@ private:
     };
     QVector<HighlightingRule> mHighlightingRules;
 
-    QRegExp mCommentStartExpression;
-    QRegExp mCommentEndExpression;
+    QRegExp mMultiLineCommentStartExpression;
+    QRegExp mMultiLineCommentEndExpression;
+    QRegExp mSingleLineCommentExpression;
 
     QTextCharFormat mKeywordFormat;
     QTextCharFormat mSingleLineCommentFormat;
