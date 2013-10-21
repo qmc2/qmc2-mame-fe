@@ -31,26 +31,24 @@ ECMAScriptHighlighter::ECMAScriptHighlighter(QTextDocument *parent) :
         mHighlightingRules.append(rule);
     }
 
-    mSingleLineCommentFormat.setForeground(Qt::red);
-    rule.pattern = QRegExp("//[^\n]*");
-    rule.format = mSingleLineCommentFormat;
-    mHighlightingRules.append(rule);
-
-    mMultiLineCommentFormat.setForeground(Qt::red);
-
     mQuotationFormat.setForeground(Qt::darkGreen);
-    rule.pattern = QRegExp("\".*\"");
+    rule.pattern = QRegExp("\"[^\"]*\"|'[^']*'");
     rule.format = mQuotationFormat;
     mHighlightingRules.append(rule);
 
     mFunctionFormat.setForeground(Qt::blue);
-    mFunctionFormat.setFontItalic(true);
     rule.pattern = QRegExp("\\b[A-Za-z0-9_]+(?=\\()");
     rule.format = mFunctionFormat;
     mHighlightingRules.append(rule);
 
-    mCommentStartExpression = QRegExp("/\\*");
-    mCommentEndExpression = QRegExp("\\*/");
+    mSingleLineCommentExpression = QRegExp("(?=[^\"]*)//(?=[^\"]*)|(?=[^']*)//(?=[^']*)");
+    mSingleLineCommentFormat.setForeground(Qt::darkGray);
+    mSingleLineCommentFormat.setFontItalic(true);
+
+    mMultiLineCommentStartExpression = QRegExp("(?=[^\"]*)/\\*(?=[^\"]*)|(?=[^']*)/\\*(?=[^']*)");
+    mMultiLineCommentEndExpression = QRegExp("(?=[^\"]*)\\*/(?=[^\"]*)|(?=[^']*)\\*/(?=[^']*)");
+    mMultiLineCommentFormat.setForeground(Qt::darkGray);
+    mMultiLineCommentFormat.setFontItalic(true);
 }
 
 void ECMAScriptHighlighter::highlightBlock(const QString &text)
@@ -68,19 +66,30 @@ void ECMAScriptHighlighter::highlightBlock(const QString &text)
     setCurrentBlockState(0);
 
     int startIndex = 0;
-    if ( previousBlockState() != 1 )
-        startIndex = mCommentStartExpression.indexIn(text);
-
-    while ( startIndex >= 0 ) {
-        int endIndex = mCommentEndExpression.indexIn(text, startIndex);
-        int commentLength;
-        if ( endIndex == -1 ) {
-            setCurrentBlockState(1);
-            commentLength = text.length() - startIndex;
-        } else {
-            commentLength = endIndex - startIndex + mCommentEndExpression.matchedLength();
+    bool isSingleLineComment = false;
+    if ( previousBlockState() != 1 ) {
+        startIndex = mMultiLineCommentStartExpression.indexIn(text);
+        int singleLineCommentIndex = mSingleLineCommentExpression.indexIn(text);
+        if ( singleLineCommentIndex >= 0 && (singleLineCommentIndex < startIndex || startIndex < 0) ) {
+            isSingleLineComment = true;
+            startIndex = singleLineCommentIndex;
         }
-        setFormat(startIndex, commentLength, mMultiLineCommentFormat);
-        startIndex = mCommentStartExpression.indexIn(text, startIndex + commentLength);
+    }
+
+    if ( isSingleLineComment )
+        setFormat(startIndex, text.length() - startIndex, mSingleLineCommentFormat);
+    else {
+        while ( startIndex >= 0 ) {
+            int endIndex = mMultiLineCommentEndExpression.indexIn(text, startIndex);
+            int commentLength;
+            if ( endIndex == -1 ) {
+                setCurrentBlockState(1);
+                commentLength = text.length() - startIndex;
+            } else {
+                commentLength = endIndex - startIndex + mMultiLineCommentEndExpression.matchedLength();
+            }
+            setFormat(startIndex, commentLength, mMultiLineCommentFormat);
+            startIndex = mMultiLineCommentStartExpression.indexIn(text, startIndex + commentLength);
+        }
     }
 }
