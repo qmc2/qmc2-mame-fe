@@ -1,6 +1,8 @@
 #include <QtGui>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -497,6 +499,11 @@ void MainWindow::on_actionHelpAbout_triggered(bool)
 void MainWindow::on_actionHelpAboutQt_triggered(bool)
 {
     QApplication::aboutQt();
+}
+
+void MainWindow::on_actionHelpWiki_triggered(bool checked)
+{
+    QDesktopServices::openUrl(QUrl::fromUserInput("http://wiki.batcom-it.net/index.php?title=Qt_CHDMAN_GUI"));
 }
 
 ProjectWindow *MainWindow::createProjectWindow(int type)
