@@ -501,9 +501,14 @@ void MainWindow::on_actionHelpAboutQt_triggered(bool)
     QApplication::aboutQt();
 }
 
-void MainWindow::on_actionHelpWiki_triggered(bool checked)
+void MainWindow::on_actionHelpWiki_triggered(bool)
 {
     QDesktopServices::openUrl(QUrl::fromUserInput("http://wiki.batcom-it.net/index.php?title=Qt_CHDMAN_GUI"));
+}
+
+void MainWindow::on_actionHelpForum_triggered(bool)
+{
+    QDesktopServices::openUrl(QUrl::fromUserInput("http://forums.bannister.org/ubbthreads.php?ubb=postlist&Board=12"));
 }
 
 ProjectWindow *MainWindow::createProjectWindow(int type)
