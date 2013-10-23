@@ -29,10 +29,14 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
 
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
 
-    // prepare use of 'tweaked' script editor
+    // prepare use of 'tweaked' script-editor
     delete ui->plainTextEditScript;
     ui->plainTextEditScript = new ScriptEditor(this);
     ui->splitter->insertWidget(0, ui->plainTextEditScript);
+
+    // newly set tab-stops affected by above tweak
+    setTabOrder(ui->toolButtonActions, ui->plainTextEditScript);
+    setTabOrder(ui->plainTextEditScript, ui->plainTextEditLog);
 
     adjustFonts();
 
