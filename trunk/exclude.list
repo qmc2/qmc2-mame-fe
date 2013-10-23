@@ -4263,6 +4263,8 @@ qmc2/tools/qchdman/.svn/text-base/qchdman.pro.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.pro.user.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.qrc.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.rc.svn-base
+qmc2/tools/qchdman/.svn/text-base/scripteditor.cpp.svn-base
+qmc2/tools/qchdman/.svn/text-base/scripteditor.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptengine.cpp.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptengine.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptwidget.cpp.svn-base
