@@ -86,12 +86,12 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QTextEdit" name="textEditScript">
+     <widget class="QPlainTextEdit" name="plainTextEditScript">
       <property name="toolTip">
        <string>Script editor</string>
       </property>
       <property name="lineWrapMode">
-       <enum>QTextEdit::NoWrap</enum>
+       <enum>QPlainTextEdit::NoWrap</enum>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="plainTextEditLog">
@@ -113,7 +113,7 @@
   <tabstop>toolButtonRun</tabstop>
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonActions</tabstop>
-  <tabstop>textEditScript</tabstop>
+  <tabstop>plainTextEditScript</tabstop>
   <tabstop>plainTextEditLog</tabstop>
  </tabstops>
  <resources>

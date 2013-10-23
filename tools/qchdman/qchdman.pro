@@ -48,7 +48,8 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     scriptwidget.cpp \
     scriptengine.cpp \
-    ecmascripthighlighter.cpp
+    ecmascripthighlighter.cpp \
+    scripteditor.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \
@@ -59,7 +60,8 @@ HEADERS  += mainwindow.h \
     aboutdialog.h \
     scriptwidget.h \
     scriptengine.h \
-    ecmascripthighlighter.h
+    ecmascripthighlighter.h \
+    scripteditor.h
 
 FORMS += mainwindow.ui \
     projectwidget.ui \
