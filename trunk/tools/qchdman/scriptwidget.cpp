@@ -11,6 +11,7 @@
 
 #include "ui_scriptwidget.h"
 #include "scriptwidget.h"
+#include "scripteditor.h"
 #include "mainwindow.h"
 #include "settings.h"
 #include "ecmascripthighlighter.h"
@@ -27,6 +28,11 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     ui->setupUi(this);
 
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
+
+    // prepare use of 'tweaked' script editor
+    delete ui->plainTextEditScript;
+    ui->plainTextEditScript = new ScriptEditor(this);
+    ui->splitter->insertWidget(0, ui->plainTextEditScript);
 
     adjustFonts();
 
@@ -56,7 +62,7 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     ui->toolButtonActions->setMenu(menuActions);
 
     // syntax-highlighter
-    new ECMAScriptHighlighter(ui->textEditScript->document());
+    new ECMAScriptHighlighter(ui->plainTextEditScript->document());
 }
 
 ScriptWidget::~ScriptWidget()
@@ -74,7 +80,7 @@ void ScriptWidget::on_toolButtonRun_clicked()
     ui->progressBar->setFormat(tr("Running"));
     runningScripts++;
     isRunning = true;
-    scriptEngine->runScript(ui->textEditScript->toPlainText());
+    scriptEngine->runScript(ui->plainTextEditScript->toPlainText());
     isRunning = false;
     runningScripts--;
     ui->toolButtonRun->setEnabled(true);
@@ -112,10 +118,10 @@ void ScriptWidget::adjustFonts()
 
     f.fromString(globalConfig->preferencesEditorFont());
     f.setPointSize(globalConfig->preferencesEditorFontSize());
-    ui->textEditScript->setFont(f);
+    ui->plainTextEditScript->setFont(f);
 
     QFontMetrics fm(f);
-    ui->textEditScript->setTabStopWidth(fm.width(' ') * 8);
+    ui->plainTextEditScript->setTabStopWidth(fm.width(' ') * 8);
 
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
@@ -166,7 +172,7 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
                     ecmaScript += lineSep + line;
                 lineSep = "\n";
             }
-            ui->textEditScript->setPlainText(ecmaScript);
+            ui->plainTextEditScript->setPlainText(ecmaScript);
         }
 
         if ( buffer != NULL ) {
@@ -225,7 +231,7 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
         ts << "ApplicationVersion = " << QCHDMAN_APP_VERSION << "\n";
         ts << "ScriptFormatVersion = " << QCHDMAN_SCR_FMT_VERSION << "\n";
         ts << "ECMAScript [" << "\n";
-        ts << ui->textEditScript->toPlainText() << "\n";
+        ts << ui->plainTextEditScript->toPlainText() << "\n";
         ts << "]\n";
 
         if ( buffer != NULL ) {
