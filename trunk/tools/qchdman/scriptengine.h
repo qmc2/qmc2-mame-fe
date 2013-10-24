@@ -52,6 +52,7 @@ public slots:
     void projectDestroy(QString id);
     QString projectStatus(QString id);
     int projectReturnCode(QString id);
+    void projectSetType(QString id, QString type);
 
     // properties for project-type 'Info'
     void projectSetInfoInputFile(QString id, QString file);
@@ -117,40 +118,71 @@ public slots:
 
     // properties for project-type 'CreateHD'
     void projectSetCreateHDInputFile(QString id, QString file);
+    QString projectGetCreateHDInputFile(QString id);
     void projectSetCreateHDOutputFile(QString id, QString file);
+    QString projectGetCreateHDOutputFile(QString id);
     void projectSetCreateHDParentOutputFile(QString id, QString file);
+    QString projectGetCreateHDParentOutputFile(QString id);
     void projectSetCreateHDForce(QString id, bool force);
+    bool projectGetCreateHDForce(QString id);
     void projectSetCreateHDInputStartByte(QString id, int byte);
+    int projectGetCreateHDInputStartByte(QString id);
     void projectSetCreateHDInputStartHunk(QString id, int hunk);
+    int projectGetCreateHDInputStartHunk(QString id);
     void projectSetCreateHDInputBytes(QString id, int bytes);
+    int projectGetCreateHDInputBytes(QString id);
     void projectSetCreateHDInputHunks(QString id, int hunks);
+    int projectGetCreateHDInputHunks(QString id);
     void projectSetCreateHDHunkSize(QString id, int size);
+    int projectGetCreateHDHunkSize(QString id);
     void projectSetCreateHDCompressors(QString id, QString compressors);
+    QString projectGetCreateHDCompressors(QString id);
     void projectSetCreateHDProcessors(QString id, int processors);
+    int projectGetCreateHDProcessors(QString id);
     void projectSetCreateHDSectorSize(QString id, int sectorSize);
+    int projectGetCreateHDSectorSize(QString id);
     void projectSetCreateHDCylinders(QString id, int cylinders);
+    int projectGetCreateHDCylinders(QString id);
     void projectSetCreateHDHeads(QString id, int heads);
+    int projectGetCreateHDHeads(QString id);
     void projectSetCreateHDSectors(QString id, int sectors);
+    int projectGetCreateHDSectors(QString id);
 
     // properties for project-type 'CreateCD'
     void projectSetCreateCDInputFile(QString id, QString file);
+    QString projectGetCreateCDInputFile(QString id);
     void projectSetCreateCDOutputFile(QString id, QString file);
+    QString projectGetCreateCDOutputFile(QString id);
     void projectSetCreateCDParentOutputFile(QString id, QString file);
+    QString projectGetCreateCDParentOutputFile(QString id);
     void projectSetCreateCDForce(QString id, bool force);
+    bool projectGetCreateCDForce(QString id);
     void projectSetCreateCDHunkSize(QString id, int size);
+    int projectGetCreateCDHunkSize(QString id);
     void projectSetCreateCDCompressors(QString id, QString compressors);
+    QString projectGetCreateCDCompressors(QString id);
     void projectSetCreateCDProcessors(QString id, int processors);
+    int projectGetCreateCDProcessors(QString id);
 
     // properties for project-type 'CreateLD'
     void projectSetCreateLDInputFile(QString id, QString file);
+    QString projectGetCreateLDInputFile(QString id);
     void projectSetCreateLDOutputFile(QString id, QString file);
+    QString projectGetCreateLDOutputFile(QString id);
     void projectSetCreateLDParentOutputFile(QString id, QString file);
+    QString projectGetCreateLDParentOutputFile(QString id);
     void projectSetCreateLDForce(QString id, bool force);
+    bool projectGetCreateLDForce(QString id);
     void projectSetCreateLDInputStartFrame(QString id, int frame);
+    int projectGetCreateLDInputStartFrame(QString id);
     void projectSetCreateLDInputFrames(QString id, int frames);
+    int projectGetCreateLDInputFrames(QString id);
     void projectSetCreateLDHunkSize(QString id, int size);
+    int projectGetCreateLDHunkSize(QString id);
     void projectSetCreateLDCompressors(QString id, QString compressors);
+    QString projectGetCreateLDCompressors(QString id);
     void projectSetCreateLDProcessors(QString id, int processors);
+    int projectGetCreateLDProcessors(QString id);
 
     // properties for project-type 'ExtractRaw'
 
