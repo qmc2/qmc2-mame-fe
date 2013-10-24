@@ -5,10 +5,12 @@ SYNOPSIS
   qchdman [-config_path path]
 
 DESCRIPTION
-  Qt CHDMAN GUI - or qchdman in short - is a Qt based graphical front-end for CHDMAN, the 'MAME Compressed Hunks of Data (CHD) manager'.
+  Qt CHDMAN GUI - or qchdman in short - is an approach to creating a graphical user interface for 'chdman', MAME's Compressed Hunks
+  of Data manager, which is implemented as a tool used purely from command line. In a way qchdman is just a front-end, making it easier
+  for not-so-technically-inclined users to even work with 'chdman'. However, at the same time it adds platform-independent scripting
+  capabilities and ease-of-use features which should make it an interesting add-on for everyone.
 
-  At the current stage of development, qchdman supports all available operation modes of CHDMAN, called 'project types' in qchdman.
-  Future versions will also support some way of scripting to allow for freely customizable batch operations for repeating work.
+  For details, please see qchdman's wiki page at this URL: http://wiki.batcom-it.net/index.php?title=Qt_CHDMAN_GUI
 
 OPTIONS
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to store qchdman's
