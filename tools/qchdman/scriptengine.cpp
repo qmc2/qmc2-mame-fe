@@ -242,6 +242,8 @@ int ScriptEngine::projectReturnCode(QString id)
         log(tr("warning") + ": ScriptEngine::projectReturnCode(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+// Info
+
 void ScriptEngine::projectSetInfoInputFile(QString id, QString file)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetInfoInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
@@ -250,6 +252,18 @@ void ScriptEngine::projectSetInfoInputFile(QString id, QString file)
         mProjectMap[id]->ui->lineEditInfoInputFile->setText(file);
     else
         log(tr("warning") + ": ScriptEngine::projectSetInfoInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetInfoInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetInfoInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditInfoInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetInfoInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
 }
 
 void ScriptEngine::projectSetInfoVerbose(QString id, bool verbose)
@@ -262,6 +276,20 @@ void ScriptEngine::projectSetInfoVerbose(QString id, bool verbose)
         log(tr("warning") + ": ScriptEngine::projectSetInfoVerbose(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+bool ScriptEngine::projectGetInfoVerbose(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetInfoVerbose(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->checkBoxInfoVerbose->isChecked();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetInfoVerbose(): " + tr("project '%1' doesn't exists").arg(id));
+        return false;
+    }
+}
+
+// Verify
+
 void ScriptEngine::projectSetVerifyInputFile(QString id, QString file)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetVerifyInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
@@ -270,6 +298,18 @@ void ScriptEngine::projectSetVerifyInputFile(QString id, QString file)
         mProjectMap[id]->ui->lineEditVerifyInputFile->setText(file);
     else
         log(tr("warning") + ": ScriptEngine::projectSetVerifyInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetVerifyInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetVerifyInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditVerifyInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetVerifyInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
 }
 
 void ScriptEngine::projectSetVerifyParentInputFile(QString id, QString file)
@@ -282,6 +322,20 @@ void ScriptEngine::projectSetVerifyParentInputFile(QString id, QString file)
         log(tr("warning") + ": ScriptEngine::projectSetVerifyParentInputFile(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+QString ScriptEngine::projectGetVerifyParentInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetVerifyParentInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditVerifyParentInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectSetVerifyParentInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+// Copy
+
 void ScriptEngine::projectSetCopyInputFile(QString id, QString file)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
@@ -290,6 +344,18 @@ void ScriptEngine::projectSetCopyInputFile(QString id, QString file)
         mProjectMap[id]->ui->lineEditCopyInputFile->setText(file);
     else
         log(tr("warning") + ": ScriptEngine::projectSetCopyInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetCopyInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCopyInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
 }
 
 void ScriptEngine::projectSetCopyParentInputFile(QString id, QString file)
@@ -302,6 +368,18 @@ void ScriptEngine::projectSetCopyParentInputFile(QString id, QString file)
         log(tr("warning") + ": ScriptEngine::projectSetCopyParentInputFile(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+QString ScriptEngine::projectGetCopyParentInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyParentInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCopyParentInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyParentInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
 void ScriptEngine::projectSetCopyOutputFile(QString id, QString file)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyOutputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
@@ -310,6 +388,18 @@ void ScriptEngine::projectSetCopyOutputFile(QString id, QString file)
         mProjectMap[id]->ui->lineEditCopyOutputFile->setText(file);
     else
         log(tr("warning") + ": ScriptEngine::projectSetCopyOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetCopyOutputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyOutputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCopyOutputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
 }
 
 void ScriptEngine::projectSetCopyParentOutputFile(QString id, QString file)
@@ -322,6 +412,18 @@ void ScriptEngine::projectSetCopyParentOutputFile(QString id, QString file)
         log(tr("warning") + ": ScriptEngine::projectSetCopyParentOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+QString ScriptEngine::projectGetCopyParentOutputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyParentOutputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCopyParentOutputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyParentOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
 void ScriptEngine::projectSetCopyForce(QString id, bool force)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyForce(QString id = %1, bool force = %2)").arg(id).arg(force)));
@@ -330,6 +432,18 @@ void ScriptEngine::projectSetCopyForce(QString id, bool force)
         mProjectMap[id]->ui->checkBoxCopyForce->setChecked(force);
     else
         log(tr("warning") + ": ScriptEngine::projectSetCopyForce(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+bool ScriptEngine::projectGetCopyForce(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyForce(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->checkBoxCopyForce->isChecked();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyForce(): " + tr("project '%1' doesn't exists").arg(id));
+        return false;
+    }
 }
 
 void ScriptEngine::projectSetCopyInputStartByte(QString id, int byte)
@@ -342,6 +456,18 @@ void ScriptEngine::projectSetCopyInputStartByte(QString id, int byte)
         log(tr("warning") + ": ScriptEngine::projectSetCopyInputStartByte(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+int ScriptEngine::projectGetCopyInputStartByte(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyInputStartByte(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxCopyInputStartByte->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyInputStartByte(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
 void ScriptEngine::projectSetCopyInputStartHunk(QString id, int hunk)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputStartHunk(QString id = %1, bool hunk = %2)").arg(id).arg(hunk)));
@@ -350,6 +476,18 @@ void ScriptEngine::projectSetCopyInputStartHunk(QString id, int hunk)
         mProjectMap[id]->ui->spinBoxCopyInputStartHunk->setValue(hunk);
     else
         log(tr("warning") + ": ScriptEngine::projectSetCopyInputStartHunk(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetCopyInputStartHunk(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyInputStartHunk(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxCopyInputStartHunk->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyInputStartHunk(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
 }
 
 void ScriptEngine::projectSetCopyInputBytes(QString id, int bytes)
@@ -362,6 +500,18 @@ void ScriptEngine::projectSetCopyInputBytes(QString id, int bytes)
         log(tr("warning") + ": ScriptEngine::projectSetCopyInputBytes(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+int ScriptEngine::projectGetCopyInputBytes(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyInputBytes(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxCopyInputBytes->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyInputBytes(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
 void ScriptEngine::projectSetCopyInputHunks(QString id, int hunks)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputHunks(QString id = %1, bool hunks = %2)").arg(id).arg(hunks)));
@@ -370,6 +520,18 @@ void ScriptEngine::projectSetCopyInputHunks(QString id, int hunks)
         mProjectMap[id]->ui->spinBoxCopyInputHunks->setValue(hunks);
     else
         log(tr("warning") + ": ScriptEngine::projectSetCopyInputHunks(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetCopyInputHunks(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyInputHunks(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxCopyInputHunks->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyInputHunks(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
 }
 
 void ScriptEngine::projectSetCopyCompressors(QString id, QString compressors)
@@ -382,6 +544,18 @@ void ScriptEngine::projectSetCopyCompressors(QString id, QString compressors)
         log(tr("warning") + ": ScriptEngine::projectSetCopyCompressors(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+QString ScriptEngine::projectGetCopyCompressors(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyCompressors(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->copyCompressors.join(",");
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyCompressors(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
 void ScriptEngine::projectSetCopyProcessors(QString id, int processors)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyProcessors(QString id = %1, int processors = %2)").arg(id).arg(processors)));
@@ -391,6 +565,20 @@ void ScriptEngine::projectSetCopyProcessors(QString id, int processors)
     else
         log(tr("warning") + ": ScriptEngine::projectSetCopyProcessors(): " + tr("project '%1' doesn't exists").arg(id));
 }
+
+int ScriptEngine::projectGetCopyProcessors(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyProcessors(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxCopyProcessors->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyProcessors(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+// CreateRaw
 
 void ScriptEngine::projectSetCreateRawInputFile(QString id, QString file)
 {
@@ -511,6 +699,8 @@ void ScriptEngine::projectSetCreateRawProcessors(QString id, int processors)
     else
         log(tr("warning") + ": ScriptEngine::projectSetCreateRawProcessors(): " + tr("project '%1' doesn't exists").arg(id));
 }
+
+// CreateHD
 
 void ScriptEngine::projectSetCreateHDInputFile(QString id, QString file)
 {
@@ -662,6 +852,8 @@ void ScriptEngine::projectSetCreateHDSectors(QString id, int sectors)
         log(tr("warning") + ": ScriptEngine::projectSetCreateHDSectors(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
+// CreateCD
+
 void ScriptEngine::projectSetCreateCDInputFile(QString id, QString file)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateCDInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
@@ -731,6 +923,8 @@ void ScriptEngine::projectSetCreateCDProcessors(QString id, int processors)
     else
         log(tr("warning") + ": ScriptEngine::projectSetCreateCDProcessors(): " + tr("project '%1' doesn't exists").arg(id));
 }
+
+// CreateLD
 
 void ScriptEngine::projectSetCreateLDInputFile(QString id, QString file)
 {
