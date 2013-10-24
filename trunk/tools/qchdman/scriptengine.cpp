@@ -1200,6 +1200,35 @@ int ScriptEngine::projectGetCreateHDSectors(QString id)
     }
 }
 
+void ScriptEngine::projectSetCreateHDChsFromTemplate(QString id, QString vendorName, QString diskName)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateHDChsFromTemplate(QString id = %1, QString vendorName = %2, QString diskName = %3)").arg(id).arg(vendorName).arg(diskName)));
+
+    if ( mProjectMap.contains(id) ) {
+        QList<DiskGeometry> geoList = MainWindow::hardDiskTemplates[vendorName];
+        bool found = false;
+        DiskGeometry geo;
+        for (int i = 0; i < geoList.count() && !found; i++) {
+            geo = geoList[i];
+            found = ( geo.name == diskName );
+        }
+        if ( found ) {
+            if ( found ) {
+                mProjectMap[id]->ui->spinBoxCreateHDCylinders->setValue(geo.cyls);
+                mProjectMap[id]->ui->spinBoxCreateHDHeads->setValue(geo.heads);
+                mProjectMap[id]->ui->spinBoxCreateHDSectors->setValue(geo.sectors);
+                mProjectMap[id]->ui->spinBoxCreateHDSectorSize->setValue(geo.sectorSize);
+                int noneIndex = mProjectMap[id]->ui->comboBoxCreateHDCompression->findText(tr("none"));
+                if ( noneIndex >= 0 )
+                    mProjectMap[id]->ui->comboBoxCreateHDCompression->setCurrentIndex(noneIndex);
+            }
+            mProjectMap[id]->ui->comboBoxCreateHDFromTemplate->setCurrentIndex(0);
+        } else
+            log(tr("warning") + ": ScriptEngine::projectSetCreateHDChsFromTemplate(): " + tr("CHS template for vendorName = '%1', diskName = '%2' doesn't exist").arg(vendorName).arg(diskName));
+    } else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateHDChsFromTemplate(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
 // CreateCD
 
 void ScriptEngine::projectSetCreateCDInputFile(QString id, QString file)

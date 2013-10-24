@@ -31,7 +31,6 @@ public:
     QStringList recentFiles;
     QStringList recentScripts;
     QMap<QString, QString> compressionTypes;
-    QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
     QString preferredCHDInputFolder;
     QString preferredInputFolder;
     QString preferredCHDOutputFolder;
@@ -40,6 +39,7 @@ public:
     QMap<int, QIcon> iconMap;
 
     static QStringList projectTypes;
+    static QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
