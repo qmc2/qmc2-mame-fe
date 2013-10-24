@@ -91,17 +91,29 @@ public slots:
 
     // properties for project-type 'CreateRaw'
     void projectSetCreateRawInputFile(QString id, QString file);
+    QString projectGetCreateRawInputFile(QString id);
     void projectSetCreateRawOutputFile(QString id, QString file);
+    QString projectGetCreateRawOutputFile(QString id);
     void projectSetCreateRawParentOutputFile(QString id, QString file);
+    QString projectGetCreateRawParentOutputFile(QString id);
     void projectSetCreateRawForce(QString id, bool force);
+    bool projectGetCreateRawForce(QString id);
     void projectSetCreateRawInputStartByte(QString id, int byte);
+    int projectGetCreateRawInputStartByte(QString id);
     void projectSetCreateRawInputStartHunk(QString id, int hunk);
+    int projectGetCreateRawInputStartHunk(QString id);
     void projectSetCreateRawInputBytes(QString id, int bytes);
+    int projectGetCreateRawInputBytes(QString id);
     void projectSetCreateRawInputHunks(QString id, int hunks);
+    int projectGetCreateRawInputHunks(QString id);
     void projectSetCreateRawHunkSize(QString id, int size);
+    int projectGetCreateRawHunkSize(QString id);
     void projectSetCreateRawUnitSize(QString id, int size);
+    int projectGetCreateRawUnitSize(QString id);
     void projectSetCreateRawCompressors(QString id, QString compressors);
+    QString projectGetCreateRawCompressors(QString id);
     void projectSetCreateRawProcessors(QString id, int processors);
+    int projectGetCreateRawProcessors(QString id);
 
     // properties for project-type 'CreateHD'
     void projectSetCreateHDInputFile(QString id, QString file);
