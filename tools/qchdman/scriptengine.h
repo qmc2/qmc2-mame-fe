@@ -148,6 +148,7 @@ public slots:
     int projectGetCreateHDHeads(QString id);
     void projectSetCreateHDSectors(QString id, int sectors);
     int projectGetCreateHDSectors(QString id);
+    void projectSetCreateHDChsFromTemplate(QString id, QString vendorName, QString diskName);
 
     // properties for project-type 'CreateCD'
     void projectSetCreateCDInputFile(QString id, QString file);

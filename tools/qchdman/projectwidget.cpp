@@ -38,7 +38,7 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement, int type, QStr
     // prepare HD geometry template selector
     ui->comboBoxCreateHDFromTemplate->addItem(tr("Select"));
     ui->comboBoxCreateHDFromTemplate->insertSeparator(1);
-    QMapIterator<QString, QList<DiskGeometry> > it(mainWindow->hardDiskTemplates);
+    QMapIterator<QString, QList<DiskGeometry> > it(MainWindow::hardDiskTemplates);
     while ( it.hasNext() ) {
        it.next();
        foreach (DiskGeometry geo, it.value())
@@ -1035,14 +1035,14 @@ void ProjectWidget::on_comboBoxCreateHDFromTemplate_currentIndexChanged(int inde
 {
     if ( index > 0 ) {
         QStringList entryInfo = ui->comboBoxCreateHDFromTemplate->currentText().split(": ", QString::SkipEmptyParts);
-        QString category = entryInfo[0];
-        QString entry = entryInfo[1].remove(QRegExp(" \\(.*\\)$"));
-        QList<DiskGeometry> geoList = mainWindow->hardDiskTemplates[category];
+        QString vendorName = entryInfo[0];
+        QString diskName = entryInfo[1].remove(QRegExp(" \\(.*\\)$"));
+        QList<DiskGeometry> geoList = MainWindow::hardDiskTemplates[vendorName];
         bool found = false;
         DiskGeometry geo;
         for (int i = 0; i < geoList.count() && !found; i++) {
             geo = geoList[i];
-            found = ( geo.name == entry );
+            found = ( geo.name == diskName );
         }
         if ( found ) {
             ui->spinBoxCreateHDCylinders->setValue(geo.cyls);

@@ -16,6 +16,7 @@ extern quint64 runningProjects;
 extern quint64 runningScripts;
 
 QStringList MainWindow::projectTypes;
+QMap<QString, QList<DiskGeometry> > MainWindow::hardDiskTemplates;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
