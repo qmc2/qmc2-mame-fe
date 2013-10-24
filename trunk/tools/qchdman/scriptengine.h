@@ -106,6 +106,13 @@ public slots:
     void projectSetCreateHDSectors(QString id, int sectors);
 
     // properties for project-type 'CreateCD'
+    void projectSetCreateCDInputFile(QString id, QString file);
+    void projectSetCreateCDOutputFile(QString id, QString file);
+    void projectSetCreateCDParentOutputFile(QString id, QString file);
+    void projectSetCreateCDForce(QString id, bool force);
+    void projectSetCreateCDHunkSize(QString id, int size);
+    void projectSetCreateCDCompressors(QString id, QString compressors);
+    void projectSetCreateCDProcessors(QString id, int processors);
 
     // properties for project-type 'CreateLD'
 
