@@ -55,6 +55,7 @@ public slots:
     void projectSetType(QString id, QString type);
     QString projectGetType(QString id);
     void projectToWindow(QString id);
+    void projectCloneToWindow(QString sourceId);
 
     // properties for project-type 'Info'
     void projectSetInfoInputFile(QString id, QString file);
