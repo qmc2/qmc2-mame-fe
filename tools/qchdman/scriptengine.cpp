@@ -11,6 +11,8 @@
 //#define QCHDMAN_SCRIPT_ENGINE_DEBUG(x) ;
 //#endif
 
+extern MainWindow *mainWindow;
+
 ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     QObject(parent)
 {
@@ -62,6 +64,8 @@ void ScriptEngine::log(QString message)
 
 void ScriptEngine::dirStartEntryList(QString path, QString filter, bool subDirs)
 {
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::dirStartEntryList(QString path = %1, QString filter = %2, bool subDirs = %3)").arg(path).arg(filter).arg(subDirs)));
+
     if ( mEntryListIterator )
         delete mEntryListIterator;
 
@@ -80,11 +84,15 @@ void ScriptEngine::dirStartEntryList(QString path, QString filter, bool subDirs)
 
 bool ScriptEngine::dirHasNextEntry()
 {
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::dirHasNextEntry(")));
+
     return mEntryListIterator->hasNext();
 }
 
 QString ScriptEngine::dirNextEntry()
 {
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::dirNextEntry(")));
+
     if ( mEntryListIterator->hasNext() )
         return mEntryListIterator->next();
     else
@@ -93,6 +101,8 @@ QString ScriptEngine::dirNextEntry()
 
 QStringList ScriptEngine::dirEntryList(QString path, QString filter, bool sort, bool ascending)
 {
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::dirEntryList(QString path = %1, QString filter = %2, bool sort = %3, bool ascending = %4)").arg(path).arg(filter).arg(sort).arg(ascending)));
+
     QStringList nameFilters;
 
     if ( filter.isEmpty() )
@@ -117,6 +127,8 @@ QStringList ScriptEngine::dirEntryList(QString path, QString filter, bool sort, 
 
 QStringList ScriptEngine::dirSubDirList(QString path, QString filter, bool sort, bool ascending)
 {
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::dirSubDirList(QString path = %1, QString filter = %2, bool sort = %3, bool ascending = %4)").arg(path).arg(filter).arg(sort).arg(ascending)));
+
     QStringList nameFilters;
 
     if ( filter.isEmpty() )
@@ -264,6 +276,18 @@ QString ScriptEngine::projectGetType(QString id)
         log(tr("warning") + ": ScriptEngine::projectGetType(): " + tr("project '%1' doesn't exists").arg(id));
         return QString();
     }
+}
+
+void ScriptEngine::projectToWindow(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectToWindow(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) ) {
+        ProjectWindow *projectWindow = mainWindow->createProjectWindow(QCHDMAN_MDI_PROJECT);
+        projectWindow->projectWidget->fromString(mProjectMap[id]->toString());
+        projectDestroy(id);
+    } else
+        log(tr("warning") + ": ScriptEngine::projectToWindow(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
 // Info
