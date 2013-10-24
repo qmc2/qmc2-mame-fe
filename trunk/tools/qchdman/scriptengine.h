@@ -55,24 +55,39 @@ public slots:
 
     // properties for project-type 'Info'
     void projectSetInfoInputFile(QString id, QString file);
+    QString projectGetInfoInputFile(QString id);
     void projectSetInfoVerbose(QString id, bool verbose);
+    bool projectGetInfoVerbose(QString id);
 
     // properties for project-type 'Verify'
     void projectSetVerifyInputFile(QString id, QString file);
+    QString projectGetVerifyInputFile(QString id);
     void projectSetVerifyParentInputFile(QString id, QString file);
+    QString projectGetVerifyParentInputFile(QString id);
 
     // properties for project-type 'Copy'
     void projectSetCopyInputFile(QString id, QString file);
+    QString projectGetCopyInputFile(QString id);
     void projectSetCopyParentInputFile(QString id, QString file);
+    QString projectGetCopyParentInputFile(QString id);
     void projectSetCopyOutputFile(QString id, QString file);
+    QString projectGetCopyOutputFile(QString id);
     void projectSetCopyParentOutputFile(QString id, QString file);
+    QString projectGetCopyParentOutputFile(QString id);
     void projectSetCopyForce(QString id, bool force);
+    bool projectGetCopyForce(QString id);
     void projectSetCopyInputStartByte(QString id, int byte);
+    int projectGetCopyInputStartByte(QString id);
     void projectSetCopyInputStartHunk(QString id, int hunk);
+    int projectGetCopyInputStartHunk(QString id);
     void projectSetCopyInputBytes(QString id, int bytes);
+    int projectGetCopyInputBytes(QString id);
     void projectSetCopyInputHunks(QString id, int hunks);
+    int projectGetCopyInputHunks(QString id);
     void projectSetCopyCompressors(QString id, QString compressors);
+    QString projectGetCopyCompressors(QString id);
     void projectSetCopyProcessors(QString id, int processors);
+    int projectGetCopyProcessors(QString id);
 
     // properties for project-type 'CreateRaw'
     void projectSetCreateRawInputFile(QString id, QString file);
