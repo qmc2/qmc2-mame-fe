@@ -283,11 +283,21 @@ void ScriptEngine::projectToWindow(QString id)
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectToWindow(QString id = %1)").arg(id)));
 
     if ( mProjectMap.contains(id) ) {
-        ProjectWindow *projectWindow = mainWindow->createProjectWindow(QCHDMAN_MDI_PROJECT);
-        projectWindow->projectWidget->fromString(mProjectMap[id]->toString());
+        projectCloneToWindow(id);
         projectDestroy(id);
     } else
         log(tr("warning") + ": ScriptEngine::projectToWindow(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectCloneToWindow(QString sourceId)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectCloneToWindow(QString id = %1)").arg(sourceId)));
+
+    if ( mProjectMap.contains(sourceId) ) {
+        ProjectWindow *projectWindow = mainWindow->createProjectWindow(QCHDMAN_MDI_PROJECT);
+        projectWindow->projectWidget->fromString(mProjectMap[sourceId]->toString());
+    } else
+        log(tr("warning") + ": ScriptEngine::projectCloneToWindow(): " + tr("project '%1' doesn't exists").arg(sourceId));
 }
 
 // Info
