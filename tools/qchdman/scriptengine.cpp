@@ -151,6 +151,22 @@ QStringList ScriptEngine::dirSubDirList(QString path, QString filter, bool sort,
     return mEntryListDir.entryList();
 }
 
+void ScriptEngine::dumpHardDiskTemplates()
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::dumpHardDiskTemplates()")));
+
+    foreach (QString vendorName, MainWindow::hardDiskTemplates.keys())
+        foreach (DiskGeometry geo, MainWindow::hardDiskTemplates[vendorName])
+            log(QString("vendorName = %1, diskName = %2, sectorSize = %3, cylinders = %4, heads = %5, sectors = %6, volumeSize = %7").
+                arg(vendorName).
+                arg(geo.name).
+                arg(geo.sectorSize).
+                arg(geo.cyls).
+                arg(geo.heads).
+                arg(geo.sectors).
+                arg(mainWindow->humanReadable((qreal)geo.cyls * (qreal)geo.heads * (qreal)geo.sectors * (qreal)geo.sectorSize)));
+}
+
 void ScriptEngine::progressSetRange(int min, int max)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::progressSetRange(int min = %1, int max = %2)").arg(min).arg(max)));
