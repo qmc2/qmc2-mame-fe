@@ -40,6 +40,9 @@ public slots:
     QStringList dirEntryList(QString path, QString filter = QString(), bool sort = true, bool ascending = true);
     QStringList dirSubDirList(QString path, QString filter = QString(), bool sort = true, bool ascending = true);
 
+    // dump hard-disk templates
+    void dumpHardDiskTemplates();
+
     // progress-bar
     void progressSetRange(int min, int max);
     void progressSetValue(int value);
