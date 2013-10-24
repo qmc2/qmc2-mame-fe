@@ -91,6 +91,8 @@ public slots:
     int projectGetCopyInputBytes(QString id);
     void projectSetCopyInputHunks(QString id, int hunks);
     int projectGetCopyInputHunks(QString id);
+    void projectSetCopyHunkSize(QString id, int size);
+    int projectGetCopyHunkSize(QString id);
     void projectSetCopyCompressors(QString id, QString compressors);
     QString projectGetCopyCompressors(QString id);
     void projectSetCopyProcessors(QString id, int processors);

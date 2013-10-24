@@ -222,7 +222,7 @@ void ScriptEngine::projectCreateFromString(QString id, QString buffer)
 
 void ScriptEngine::projectClone(QString sourceId, QString destinationId)
 {
-    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectClone(QString sourceId = %1, QString sourceId = %2)").arg(sourceId).arg(destinationId)));
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectClone(QString sourceId = %1, QString destinationId = %2)").arg(sourceId).arg(destinationId)));
 
     if ( mProjectMap.contains(sourceId) ) {
         if ( mProjectMap.contains(destinationId) )
@@ -522,7 +522,7 @@ bool ScriptEngine::projectGetCopyForce(QString id)
 
 void ScriptEngine::projectSetCopyInputStartByte(QString id, int byte)
 {
-    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputStartByte(QString id = %1, bool byte = %2)").arg(id).arg(byte)));
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputStartByte(QString id = %1, int byte = %2)").arg(id).arg(byte)));
 
     if ( mProjectMap.contains(id) )
         mProjectMap[id]->ui->spinBoxCopyInputStartByte->setValue(byte);
@@ -544,7 +544,7 @@ int ScriptEngine::projectGetCopyInputStartByte(QString id)
 
 void ScriptEngine::projectSetCopyInputStartHunk(QString id, int hunk)
 {
-    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputStartHunk(QString id = %1, bool hunk = %2)").arg(id).arg(hunk)));
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputStartHunk(QString id = %1, int hunk = %2)").arg(id).arg(hunk)));
 
     if ( mProjectMap.contains(id) )
         mProjectMap[id]->ui->spinBoxCopyInputStartHunk->setValue(hunk);
@@ -566,7 +566,7 @@ int ScriptEngine::projectGetCopyInputStartHunk(QString id)
 
 void ScriptEngine::projectSetCopyInputBytes(QString id, int bytes)
 {
-    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputBytes(QString id = %1, bool bytes = %2)").arg(id).arg(bytes)));
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputBytes(QString id = %1, int bytes = %2)").arg(id).arg(bytes)));
 
     if ( mProjectMap.contains(id) )
         mProjectMap[id]->ui->spinBoxCopyInputBytes->setValue(bytes);
@@ -588,7 +588,7 @@ int ScriptEngine::projectGetCopyInputBytes(QString id)
 
 void ScriptEngine::projectSetCopyInputHunks(QString id, int hunks)
 {
-    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputHunks(QString id = %1, bool hunks = %2)").arg(id).arg(hunks)));
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyInputHunks(QString id = %1, int hunks = %2)").arg(id).arg(hunks)));
 
     if ( mProjectMap.contains(id) )
         mProjectMap[id]->ui->spinBoxCopyInputHunks->setValue(hunks);
@@ -604,6 +604,28 @@ int ScriptEngine::projectGetCopyInputHunks(QString id)
         return mProjectMap[id]->ui->spinBoxCopyInputHunks->value();
     else {
         log(tr("warning") + ": ScriptEngine::projectGetCopyInputHunks(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+void ScriptEngine::projectSetCopyHunkSize(QString id, int size)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCopyHunkSize(QString id = %1, int size = %2)").arg(id).arg(size)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxCopyHunkSize->setValue(size);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCopyHunkSize(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetCopyHunkSize(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetCopyHunkSize(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxCopyHunkSize->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetCopyHunkSize(): " + tr("project '%1' doesn't exists").arg(id));
         return -1;
     }
 }
