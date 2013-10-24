@@ -5,7 +5,11 @@
 #include "ui_projectwidget.h"
 #include "ui_scriptwidget.h"
 
+//#if defined(QCHDMAN_DEBUG)
 #define QCHDMAN_SCRIPT_ENGINE_DEBUG(x) x
+//#else
+//#define QCHDMAN_SCRIPT_ENGINE_DEBUG(x) ;
+//#endif
 
 ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     QObject(parent)
@@ -726,6 +730,96 @@ void ScriptEngine::projectSetCreateCDProcessors(QString id, int processors)
         mProjectMap[id]->ui->spinBoxCreateCDProcessors->setValue(processors);
     else
         log(tr("warning") + ": ScriptEngine::projectSetCreateCDProcessors(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDInputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCreateLDInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDOutputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDOutputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCreateLDOutputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDParentOutputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDParentOutputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditCreateLDParentOutputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDParentOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDForce(QString id, bool force)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDForce(QString id = %1, bool force = %2)").arg(id).arg(force)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->checkBoxCreateLDForce->setChecked(force);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDForce(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDInputStartFrame(QString id, int frame)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDInputStartFrame(QString id = %1, bool hunk = %2)").arg(id).arg(frame)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxCreateLDInputStartFrame->setValue(frame);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDInputStartFrame(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDInputFrames(QString id, int frames)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDInputFrames(QString id = %1, bool hunks = %2)").arg(id).arg(frames)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxCreateLDInputFrames->setValue(frames);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDInputFrames(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDHunkSize(QString id, int size)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDHunkSize(QString id = %1, bool size = %2)").arg(id).arg(size)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxCreateLDHunkSize->setValue(size);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDHunkSize(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDCompressors(QString id, QString compressors)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDCompressors(QString id = %1, QString compressors = %2)").arg(id).arg(compressors)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->createLDCompressors = compressors.split(",", QString::SkipEmptyParts);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDCompressors(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+void ScriptEngine::projectSetCreateLDProcessors(QString id, int processors)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetCreateLDProcessors(QString id = %1, int processors = %2)").arg(id).arg(processors)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxCreateLDProcessors->setValue(processors);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetCreateLDProcessors(): " + tr("project '%1' doesn't exists").arg(id));
 }
 
 void ScriptEngine::runProjects(QString idList)

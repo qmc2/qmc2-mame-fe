@@ -115,6 +115,15 @@ public slots:
     void projectSetCreateCDProcessors(QString id, int processors);
 
     // properties for project-type 'CreateLD'
+    void projectSetCreateLDInputFile(QString id, QString file);
+    void projectSetCreateLDOutputFile(QString id, QString file);
+    void projectSetCreateLDParentOutputFile(QString id, QString file);
+    void projectSetCreateLDForce(QString id, bool force);
+    void projectSetCreateLDInputStartFrame(QString id, int frame);
+    void projectSetCreateLDInputFrames(QString id, int frames);
+    void projectSetCreateLDHunkSize(QString id, int size);
+    void projectSetCreateLDCompressors(QString id, QString compressors);
+    void projectSetCreateLDProcessors(QString id, int processors);
 
     // properties for project-type 'ExtractRaw'
 
