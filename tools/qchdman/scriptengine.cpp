@@ -240,6 +240,8 @@ int ScriptEngine::projectReturnCode(QString id)
             log(tr("warning") + ": ScriptEngine::projectReturnCode(): " + tr("project '%1' hasn't run yet").arg(id));
     } else
         log(tr("warning") + ": ScriptEngine::projectReturnCode(): " + tr("project '%1' doesn't exists").arg(id));
+
+    return -1;
 }
 
 void ScriptEngine::projectSetType(QString id, QString type)
@@ -250,6 +252,18 @@ void ScriptEngine::projectSetType(QString id, QString type)
         mProjectMap[id]->setProjectType(MainWindow::projectTypeIndex(type));
     else
         log(tr("warning") + ": ScriptEngine::projectSetType(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetType(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetType(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return MainWindow::projectTypes[mProjectMap[id]->ui->comboBoxProjectType->currentIndex()];
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetType(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
 }
 
 // Info

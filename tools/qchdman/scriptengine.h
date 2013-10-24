@@ -53,6 +53,7 @@ public slots:
     QString projectStatus(QString id);
     int projectReturnCode(QString id);
     void projectSetType(QString id, QString type);
+    QString projectGetType(QString id);
 
     // properties for project-type 'Info'
     void projectSetInfoInputFile(QString id, QString file);
