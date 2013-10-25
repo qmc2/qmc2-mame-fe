@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QProcess>
 
 #include "scriptengine.h"
 #include "mainwindow.h"
@@ -165,6 +166,19 @@ void ScriptEngine::dumpHardDiskTemplates()
                 arg(geo.heads).
                 arg(geo.sectors).
                 arg(mainWindow->humanReadable((qreal)geo.cyls * (qreal)geo.heads * (qreal)geo.sectors * (qreal)geo.sectorSize)));
+}
+
+int ScriptEngine::runShellCommand(QString command, bool detached)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::runShellCommand(QString command = %1, bool detached = %2)").arg(command).arg(detached)));
+
+    if ( detached ) {
+        if ( QProcess::startDetached(command) )
+            return 0;
+        else
+            return 1;
+    } else
+        return QProcess::execute(command);
 }
 
 void ScriptEngine::progressSetRange(int min, int max)
