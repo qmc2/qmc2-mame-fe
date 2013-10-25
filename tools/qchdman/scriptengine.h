@@ -43,6 +43,9 @@ public slots:
     // dump hard-disk templates
     void dumpHardDiskTemplates();
 
+    // shell commands
+    int runShellCommand(QString command, bool detached = false);
+
     // progress-bar
     void progressSetRange(int min, int max);
     void progressSetValue(int value);
