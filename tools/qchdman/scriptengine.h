@@ -197,6 +197,22 @@ public slots:
     int projectGetCreateLDProcessors(QString id);
 
     // properties for project-type 'ExtractRaw'
+    void projectSetExtractRawInputFile(QString id, QString file);
+    QString projectGetExtractRawInputFile(QString id);
+    void projectSetExtractRawParentInputFile(QString id, QString file);
+    QString projectGetExtractRawParentInputFile(QString id);
+    void projectSetExtractRawOutputFile(QString id, QString file);
+    QString projectGetExtractRawOutputFile(QString id);
+    void projectSetExtractRawForce(QString id, bool force);
+    bool projectGetExtractRawForce(QString id);
+    void projectSetExtractRawInputStartByte(QString id, int byte);
+    int projectGetExtractRawInputStartByte(QString id);
+    void projectSetExtractRawInputStartHunk(QString id, int hunk);
+    int projectGetExtractRawInputStartHunk(QString id);
+    void projectSetExtractRawInputBytes(QString id, int bytes);
+    int projectGetExtractRawInputBytes(QString id);
+    void projectSetExtractRawInputHunks(QString id, int hunks);
+    int projectGetExtractRawInputHunks(QString id);
 
     // properties for project-type 'ExtractHD'
 
