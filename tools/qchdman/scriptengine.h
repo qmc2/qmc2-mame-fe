@@ -215,6 +215,22 @@ public slots:
     int projectGetExtractRawInputHunks(QString id);
 
     // properties for project-type 'ExtractHD'
+    void projectSetExtractHDInputFile(QString id, QString file);
+    QString projectGetExtractHDInputFile(QString id);
+    void projectSetExtractHDParentInputFile(QString id, QString file);
+    QString projectGetExtractHDParentInputFile(QString id);
+    void projectSetExtractHDOutputFile(QString id, QString file);
+    QString projectGetExtractHDOutputFile(QString id);
+    void projectSetExtractHDForce(QString id, bool force);
+    bool projectGetExtractHDForce(QString id);
+    void projectSetExtractHDInputStartByte(QString id, int byte);
+    int projectGetExtractHDInputStartByte(QString id);
+    void projectSetExtractHDInputStartHunk(QString id, int hunk);
+    int projectGetExtractHDInputStartHunk(QString id);
+    void projectSetExtractHDInputBytes(QString id, int bytes);
+    int projectGetExtractHDInputBytes(QString id);
+    void projectSetExtractHDInputHunks(QString id, int hunks);
+    int projectGetExtractHDInputHunks(QString id);
 
     // properties for project-type 'ExtractCD'
 
