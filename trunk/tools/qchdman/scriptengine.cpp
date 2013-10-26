@@ -20,20 +20,25 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     mEngine = new QScriptEngine(this);
     mEngine->globalObject().setProperty("scriptEngine", mEngine->newQObject(this));
     mEngine->globalObject().setProperty("qchdman", mEngine->newQObject(this));
-    mEngineDebugger = new QScriptEngineDebugger(this);
-    mEngineDebugger->attachTo(mEngine);
     mScriptWidget = parent;
     externalStop = false;
     mErrorStates << QCHDMAN_PRJSTAT_CRASHED << QCHDMAN_PRJSTAT_ERROR;
     mEntryListIterator = NULL;
+    mEngineDebugger = NULL;
 }
 
 ScriptEngine::~ScriptEngine()
 {
     externalStop = true;
-    mEngineDebugger->detach();
-    destroyProjects();
-    delete mEngineDebugger;
+    if ( mEngineDebugger ) {
+        mEngineDebugger->standardWindow()->close();
+        qApp->processEvents();
+        mEngineDebugger->detach();
+        mEngineDebugger->deleteLater();
+        mEngineDebugger = NULL;
+    }
+    if ( !mProjectMap.isEmpty() )
+        destroyProjects();
     delete mEngine;
     if ( mEntryListIterator )
         delete mEntryListIterator;
@@ -42,8 +47,18 @@ ScriptEngine::~ScriptEngine()
 void ScriptEngine::runScript(QString script)
 {
     externalStop = false;
-    destroyProjects();
+    if ( !mProjectMap.isEmpty() )
+        destroyProjects();
     mScriptWidget->on_progressBar_valueChanged(0);
+    if ( mEngineDebugger ) {
+        mEngineDebugger->standardWindow()->close();
+        qApp->processEvents();
+        mEngineDebugger->detach();
+        mEngineDebugger->deleteLater();
+        mEngineDebugger = NULL;
+    }
+    mEngineDebugger = new QScriptEngineDebugger(this);
+    mEngineDebugger->attachTo(mEngine);
     mEngine->evaluate(script);
     mEngine->collectGarbage();
 }
@@ -53,8 +68,17 @@ void ScriptEngine::stopScript()
     externalStop = true;
     mEngine->abortEvaluation();
     mEngine->collectGarbage();
-    stopProjects();
-    destroyProjects();
+    if ( !mProjectMap.isEmpty() ) {
+        stopProjects();
+        destroyProjects();
+    }
+    if ( mEngineDebugger ) {
+        mEngineDebugger->standardWindow()->close();
+        qApp->processEvents();
+        mEngineDebugger->detach();
+        mEngineDebugger->deleteLater();
+        mEngineDebugger = NULL;
+    }
 }
 
 void ScriptEngine::log(QString message)
