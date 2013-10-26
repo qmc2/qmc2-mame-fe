@@ -1849,6 +1849,184 @@ int ScriptEngine::projectGetExtractRawInputHunks(QString id)
     }
 }
 
+// ExtractHD
+
+void ScriptEngine::projectSetExtractHDInputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditExtractHDInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetExtractHDInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditExtractHDInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetExtractHDParentInputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDParentInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditExtractHDParentInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDParentInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetExtractHDParentInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDParentInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditExtractHDParentInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDParentInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetExtractHDOutputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDOutputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditExtractHDOutputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetExtractHDOutputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDOutputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditExtractHDOutputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetExtractHDForce(QString id, bool force)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDForce(QString id = %1, bool force = %2)").arg(id).arg(force)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->checkBoxExtractHDForce->setChecked(force);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDForce(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+bool ScriptEngine::projectGetExtractHDForce(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDForce(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->checkBoxExtractHDForce->isChecked();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDForce(): " + tr("project '%1' doesn't exists").arg(id));
+        return false;
+    }
+}
+
+void ScriptEngine::projectSetExtractHDInputStartByte(QString id, int byte)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDInputStartByte(QString id = %1, bool byte = %2)").arg(id).arg(byte)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxExtractHDInputStartByte->setValue(byte);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDInputStartByte(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetExtractHDInputStartByte(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDInputStartByte(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxExtractHDInputStartByte->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDInputStartByte(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+void ScriptEngine::projectSetExtractHDInputStartHunk(QString id, int hunk)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDInputStartHunk(QString id = %1, bool hunk = %2)").arg(id).arg(hunk)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxExtractHDInputStartHunk->setValue(hunk);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDInputStartHunk(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetExtractHDInputStartHunk(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDInputStartHunk(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxExtractHDInputStartHunk->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDInputStartHunk(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+void ScriptEngine::projectSetExtractHDInputBytes(QString id, int bytes)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDInputBytes(QString id = %1, bool bytes = %2)").arg(id).arg(bytes)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxExtractHDInputBytes->setValue(bytes);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDInputBytes(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetExtractHDInputBytes(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDInputBytes(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxExtractHDInputBytes->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDInputBytes(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+void ScriptEngine::projectSetExtractHDInputHunks(QString id, int hunks)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetExtractHDInputHunks(QString id = %1, bool bytes = %2)").arg(id).arg(hunks)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxExtractHDInputHunks->setValue(hunks);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetExtractHDInputHunks(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetExtractHDInputHunks(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetExtractHDInputHunks(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxExtractHDInputHunks->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetExtractHDInputHunks(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
 void ScriptEngine::runProjects(QString idList)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::runProjects(QString idList = %1)").arg(idList)));
