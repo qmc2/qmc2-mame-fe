@@ -192,6 +192,8 @@ public slots:
 
 signals:
     void progressFormatChanged(QString);
+    void processStarted(ProjectWidget *);
+    void processFinished(ProjectWidget *);
 
 private:
     Ui::ProjectWidget *ui;

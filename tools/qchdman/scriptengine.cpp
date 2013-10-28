@@ -38,7 +38,7 @@ ScriptEngine::~ScriptEngine()
         mEngineDebugger->standardWindow()->close();
         qApp->processEvents();
         mEngineDebugger->detach();
-        mEngineDebugger->deleteLater();
+        delete mEngineDebugger;
         mEngineDebugger = NULL;
     }
     if ( !mProjectMap.isEmpty() )
@@ -58,9 +58,10 @@ void ScriptEngine::runScript(QString script)
         mEngineDebugger->standardWindow()->close();
         qApp->processEvents();
         mEngineDebugger->detach();
-        mEngineDebugger->deleteLater();
+        delete mEngineDebugger;
         mEngineDebugger = NULL;
     }
+    disconnectScriptSignals();
     mEngineDebugger = new QScriptEngineDebugger(this);
     mEngineDebugger->attachTo(mEngine);
     mEngine->evaluate(script);
@@ -73,6 +74,7 @@ void ScriptEngine::stopScript()
     mInputOk = false;
     mEngine->abortEvaluation();
     mEngine->collectGarbage();
+    disconnectScriptSignals();
     if ( !mProjectMap.isEmpty() ) {
         stopProjects();
         destroyProjects();
@@ -81,9 +83,15 @@ void ScriptEngine::stopScript()
         mEngineDebugger->standardWindow()->close();
         qApp->processEvents();
         mEngineDebugger->detach();
-        mEngineDebugger->deleteLater();
+        delete mEngineDebugger;
         mEngineDebugger = NULL;
     }
+}
+
+void ScriptEngine::disconnectScriptSignals()
+{
+    disconnect(SIGNAL(projectStarted(QString)));
+    disconnect(SIGNAL(projectFinished(QString)));
 }
 
 void ScriptEngine::log(QString message)
@@ -279,9 +287,11 @@ void ScriptEngine::projectCreate(QString id, QString type)
         log(tr("warning") + ": ScriptEngine::projectCreate(): " + tr("project '%1' already exists").arg(id));
     else {
         int typeIndex = MainWindow::projectTypeIndex(type);
-        if ( typeIndex >= 0 )
+        if ( typeIndex >= 0 ) {
             mProjectMap[id] = new ProjectWidget(0, true, typeIndex, id, this);
-        else
+            connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)), Qt::DirectConnection);
+            connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)), Qt::DirectConnection);
+        } else
             log(tr("warning") + ": ScriptEngine::projectCreate(): " + tr("project type '%1' doesn't exists - valid types are: %2").arg(id).arg(MainWindow::projectTypes.join(", ")));
     }
 }
@@ -295,6 +305,8 @@ void ScriptEngine::projectCreateFromFile(QString id, QString fileName)
     else {
         mProjectMap[id] = new ProjectWidget(0, true, QCHDMAN_PRJ_UNKNOWN, id, this);
         mProjectMap[id]->load(fileName);
+        connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)), Qt::DirectConnection);
+        connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)), Qt::DirectConnection);
     }
 }
 
@@ -307,6 +319,8 @@ void ScriptEngine::projectCreateFromString(QString id, QString buffer)
     else {
         mProjectMap[id] = new ProjectWidget(0, true, QCHDMAN_PRJ_UNKNOWN, id, this);
         mProjectMap[id]->load(QString(), &buffer);
+        connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)), Qt::DirectConnection);
+        connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)), Qt::DirectConnection);
     }
 }
 
@@ -2213,4 +2227,18 @@ void ScriptEngine::destroyProjects(QString idList)
         else
             log(tr("warning") + ": ScriptEngine::destroyProjects(): " + tr("project '%1' doesn't exists").arg(id));
     }
+}
+
+void ScriptEngine::processStarted(ProjectWidget *projectWidget)
+{
+    QString id = mProjectMap.key(projectWidget, "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND");
+    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" )
+        emit projectStarted(id);
+}
+
+void ScriptEngine::processFinished(ProjectWidget *projectWidget)
+{
+    QString id = mProjectMap.key(projectWidget, "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND");
+    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" )
+        emit projectFinished(id);
 }

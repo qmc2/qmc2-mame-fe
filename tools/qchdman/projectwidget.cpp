@@ -705,6 +705,7 @@ void ProjectWidget::started()
     ui->toolButtonStop->setEnabled(true);
     ui->progressBar->setFormat(tr("Running"));
     emit progressFormatChanged(tr("Running"));
+    emit processStarted(this);
 }
 
 void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -736,6 +737,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     ui->progressBar->setFormat(tr("Idle"));
     emit progressFormatChanged(tr("Idle"));
     ui->progressBar->setValue(0);
+    emit processFinished(this);
 }
 
 void ProjectWidget::readyReadStandardOutput()

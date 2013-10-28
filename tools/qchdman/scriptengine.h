@@ -28,6 +28,7 @@ public:
 
     void runScript(QString script);
     void stopScript();
+    void disconnectScriptSignals();
 
 public slots:
     // print a message to the script-log
@@ -256,6 +257,14 @@ public slots:
     void stopProjects(QString idList = QString());
     void syncProjects(QString idList = QString());
     void destroyProjects(QString idList = QString());
+
+    // slots for internal use
+    void processStarted(ProjectWidget *projectWidget);
+    void processFinished(ProjectWidget *projectWidget);
+
+signals:
+    void projectStarted(QString id);
+    void projectFinished(QString id);
 
 private:
     QScriptEngine *mEngine;
