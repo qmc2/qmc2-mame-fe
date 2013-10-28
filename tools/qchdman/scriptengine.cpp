@@ -9,11 +9,11 @@
 #include "ui_projectwidget.h"
 #include "ui_scriptwidget.h"
 
-//#if defined(QCHDMAN_DEBUG)
+#if defined(QCHDMAN_DEBUG)
 #define QCHDMAN_SCRIPT_ENGINE_DEBUG(x) x
-//#else
-//#define QCHDMAN_SCRIPT_ENGINE_DEBUG(x) ;
-//#endif
+#else
+#define QCHDMAN_SCRIPT_ENGINE_DEBUG(x) ;
+#endif
 
 extern MainWindow *mainWindow;
 extern Settings *globalConfig;
