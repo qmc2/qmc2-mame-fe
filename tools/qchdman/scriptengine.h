@@ -46,9 +46,9 @@ public slots:
     // run shell commands
     int runShellCommand(QString command, bool detached = false);
 
-    // retrieving user input
+    // retrieve user input
     QString inputGetFilePath(QString initialPath = QString(), QString filter = QString(), QString windowTitle = QString());
-    QString inputGetFolderPath(QString initialPath = QString(), QString filter = QString(), QString windowTitle = QString());
+    QString inputGetFolderPath(QString initialPath = QString(), QString windowTitle = QString());
     QString inputGetStringValue(QString initialValue = QString(), QString windowTitle = QString(), QString labelText = QString());
     QString inputGetListItem(QString initialValue = QString(), QStringList itemList = QStringList(), bool editable = false, QString windowTitle = QString(), QString labelText = QString());
     int inputGetIntValue(int initialValue = 0, QString windowTitle = QString(), QString labelText = QString());
