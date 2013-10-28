@@ -25,11 +25,10 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     mEngine->globalObject().setProperty("scriptEngine", mEngine->newQObject(this));
     mEngine->globalObject().setProperty("qchdman", mEngine->newQObject(this));
     mScriptWidget = parent;
-    externalStop = false;
+    externalStop = mInputOk = false;
     mErrorStates << QCHDMAN_PRJSTAT_CRASHED << QCHDMAN_PRJSTAT_ERROR;
     mEntryListIterator = NULL;
     mEngineDebugger = NULL;
-    mInputOk = false;
 }
 
 ScriptEngine::~ScriptEngine()
@@ -51,7 +50,7 @@ ScriptEngine::~ScriptEngine()
 
 void ScriptEngine::runScript(QString script)
 {
-    externalStop = false;
+    externalStop = mInputOk = false;
     if ( !mProjectMap.isEmpty() )
         destroyProjects();
     mScriptWidget->on_progressBar_valueChanged(0);
@@ -71,6 +70,7 @@ void ScriptEngine::runScript(QString script)
 void ScriptEngine::stopScript()
 {
     externalStop = true;
+    mInputOk = false;
     mEngine->abortEvaluation();
     mEngine->collectGarbage();
     if ( !mProjectMap.isEmpty() ) {
