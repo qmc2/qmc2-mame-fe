@@ -6,11 +6,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>264</width>
-    <height>421</height>
+    <width>276</width>
+    <height>460</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <widget class="QProgressBar" name="progressBar">
      <property name="toolTip">
@@ -94,16 +94,80 @@
        <enum>QPlainTextEdit::NoWrap</enum>
       </property>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEditLog">
-      <property name="toolTip">
-       <string>Script log</string>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::South</enum>
       </property>
-      <property name="lineWrapMode">
-       <enum>QPlainTextEdit::NoWrap</enum>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
+      <widget class="QWidget" name="tabScriptLog">
+       <attribute name="title">
+        <string>Script log</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayoutScriptLog">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QPlainTextEdit" name="plainTextEditLog">
+          <property name="toolTip">
+           <string>Script log</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QPlainTextEdit::NoWrap</enum>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabProjectMonitor">
+       <attribute name="title">
+        <string>Project monitor</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayoutProjectMonitor">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QTreeWidget" name="treeWidgetProjectMonitor">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="rootIsDecorated">
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="allColumnsShowFocus">
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Project ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Progress</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Command</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
    </item>
@@ -114,7 +178,9 @@
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonActions</tabstop>
   <tabstop>plainTextEditScript</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>plainTextEditLog</tabstop>
+  <tabstop>treeWidgetProjectMonitor</tabstop>
  </tabstops>
  <resources>
   <include location="qchdman.qrc"/>

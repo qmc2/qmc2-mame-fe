@@ -1,6 +1,29 @@
 #ifndef MACROS_H
 #define MACROS_H
 
+#include <Qt>
+
+// global OS macros for supported target operating systems
+#if (defined(Q_OS_UNIX) || defined(Q_OS_LINUX)) && !defined(Q_OS_MAC)
+#define QCHDMAN_OS_UNIX
+#if defined(Q_OS_LINUX)
+#define QCHDMAN_OS_LINUX
+#define QCHDMAN_OS_NAME             QString("Linux")
+#else
+#define QCHDMAN_OS_NAME             QString("UNIX")
+#endif
+#elif defined(Q_OS_MAC)
+#define QCHDMAN_OS_MAC
+#define QCHDMAN_OS_NAME             QString("Darwin")
+#elif defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
+#define QCHDMAN_OS_WIN
+#define QCHDMAN_OS_NAME             QString("Windows")
+#else
+#warning "Target OS is not supported -- Qt CHDMAN GUI currently supports Linux/UNIX, Windows and Mac OS X!"
+#define QCHDMAN_OS_UNKNOWN
+#define QCHDMAN_OS_NAME             QString("Unknown")
+#endif
+
 // make a string out of a non-string constant
 #define STR(s)                      #s
 #define XSTR(s)                     STR(s)
@@ -108,6 +131,15 @@
 #define QCHDMAN_PRJSTAT_TERMINATED  "terminated"
 #define QCHDMAN_PRJSTAT_CRASHED     "crashed"
 #define QCHDMAN_PRJSTAT_ERROR       "error"
+
+// script-log / project-monitor tab indizes
+#define QCHDMAN_SCRIPT_MON_INDEX    0
+#define QCHDMAN_SCRIPT_LOG_INDEX    1
+
+// project-monitor columns
+#define QCHDMAN_PRJMON_ID           0
+#define QCHDMAN_PRJMON_PROGRESS     1
+#define QCHDMAN_PRJMON_COMMAND      2
 
 // debugging macros
 #define QCHDMAN_PRINT_TXT(t)        printf("%s\n", #t); fflush(stdout);
