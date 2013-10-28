@@ -43,10 +43,18 @@ public slots:
     // dump hard-disk templates
     void dumpHardDiskTemplates();
 
-    // shell commands
+    // run shell commands
     int runShellCommand(QString command, bool detached = false);
 
-    // progress-bar
+    // retrieving user input
+    QString inputGetFilePath(QString initialPath = QString(), QString filter = QString(), QString windowTitle = QString());
+    QString inputGetFolderPath(QString initialPath = QString(), QString filter = QString(), QString windowTitle = QString());
+    QString inputGetStringValue(QString initialValue = QString(), QString windowTitle = QString(), QString labelText = QString());
+    QString inputGetListItem(QString initialValue = QString(), QStringList itemList = QStringList(), bool editable = false, QString windowTitle = QString(), QString labelText = QString());
+    int inputGetIntValue(int initialValue = 0, QString windowTitle = QString(), QString labelText = QString());
+    double inputGetDoubleValue(double initialValue = 0.0, int decimals = 1, QString windowTitle = QString(), QString labelText = QString());
+
+    // control the progress-bar
     void progressSetRange(int min, int max);
     void progressSetValue(int value);
 

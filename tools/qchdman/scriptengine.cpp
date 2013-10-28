@@ -1,8 +1,11 @@
 #include <QApplication>
 #include <QProcess>
+#include <QInputDialog>
+#include <QFileDialog>
 
 #include "scriptengine.h"
 #include "mainwindow.h"
+#include "settings.h"
 #include "ui_projectwidget.h"
 #include "ui_scriptwidget.h"
 
@@ -13,6 +16,7 @@
 //#endif
 
 extern MainWindow *mainWindow;
+extern Settings *globalConfig;
 
 ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     QObject(parent)
@@ -203,6 +207,49 @@ int ScriptEngine::runShellCommand(QString command, bool detached)
             return 1;
     } else
         return QProcess::execute(command);
+}
+
+QString ScriptEngine::inputGetFilePath(QString initialPath, QString filter, QString windowTitle)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetFilePath(QString initialPath = %1, QString filter = %2, QString windowTitle = %3)").arg(initialPath).arg(filter).arg(windowTitle)));
+
+    return QFileDialog::getOpenFileName(mScriptWidget, windowTitle.isEmpty() ? tr("Choose file") : windowTitle, initialPath, filter, 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+}
+
+QString ScriptEngine::inputGetFolderPath(QString initialPath, QString filter, QString windowTitle)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetFolderPath(QString initialPath = %1, QString filter = %2, QString windowTitle = %3)").arg(initialPath).arg(filter).arg(windowTitle)));
+
+    return QFileDialog::getExistingDirectory(mScriptWidget, windowTitle.isEmpty() ? tr("Choose folder") : windowTitle, initialPath, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+}
+
+QString ScriptEngine::inputGetStringValue(QString initialValue, QString windowTitle, QString labelText)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetStringValue(QString initialValue = %1, QString windowTitle = %2, QString labelText = %3)").arg(initialValue).arg(windowTitle).arg(labelText)));
+
+    return QInputDialog::getText(mScriptWidget, windowTitle.isEmpty() ? tr("Input text") : windowTitle, labelText.isEmpty() ? tr("Input text") : labelText, QLineEdit::Normal, initialValue);
+}
+
+QString ScriptEngine::inputGetListItem(QString initialValue, QStringList itemList, bool editable, QString windowTitle, QString labelText)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetListItem(QString initialValue = %1, QStringList itemList = ..., bool editable = %2, QString windowTitle = %3, QString labelText = %4)").arg(initialValue).arg(editable).arg(windowTitle).arg(labelText)));
+
+    int currentIndex = itemList.indexOf(initialValue);
+    return QInputDialog::getItem(mScriptWidget, windowTitle.isEmpty() ? tr("Choose item") : windowTitle, labelText.isEmpty() ? tr("Choose item") : labelText, itemList, currentIndex < 0 ? 0 : currentIndex, editable);
+}
+
+int ScriptEngine::inputGetIntValue(int initialValue, QString windowTitle, QString labelText)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetIntValue(int initialValue = %1, QString windowTitle = %2, QString labelText = %3)").arg(initialValue).arg(windowTitle).arg(labelText)));
+
+    return QInputDialog::getInt(mScriptWidget, windowTitle.isEmpty() ? tr("Input value") : windowTitle, labelText.isEmpty() ? tr("Input value") : labelText, initialValue);
+}
+
+double ScriptEngine::inputGetDoubleValue(double initialValue, int decimals, QString windowTitle, QString labelText)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetDoubleValue(double initialValue = %1, int decimals = %2, QString windowTitle = %3, QString labelText = %4)").arg(initialValue).arg(decimals).arg(windowTitle).arg(labelText)));
+
+    return QInputDialog::getDouble(mScriptWidget, windowTitle.isEmpty() ? tr("Input value") : windowTitle, labelText.isEmpty() ? tr("Input value") : labelText, initialValue, -2147483647, 2147483647, decimals);
 }
 
 void ScriptEngine::progressSetRange(int min, int max)
