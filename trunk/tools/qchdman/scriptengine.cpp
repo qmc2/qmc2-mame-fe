@@ -219,9 +219,9 @@ QString ScriptEngine::inputGetFilePath(QString initialPath, QString filter, QStr
     return chosenFile;
 }
 
-QString ScriptEngine::inputGetFolderPath(QString initialPath, QString filter, QString windowTitle)
+QString ScriptEngine::inputGetFolderPath(QString initialPath, QString windowTitle)
 {
-    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetFolderPath(QString initialPath = %1, QString filter = %2, QString windowTitle = %3)").arg(initialPath).arg(filter).arg(windowTitle)));
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::inputGetFolderPath(QString initialPath = %1, QString windowTitle = %2)").arg(initialPath).arg(windowTitle)));
 
     QString chosenFolder = QFileDialog::getExistingDirectory(mScriptWidget, windowTitle.isEmpty() ? tr("Choose folder") : windowTitle, initialPath, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     mInputOk = !chosenFolder.isNull();
