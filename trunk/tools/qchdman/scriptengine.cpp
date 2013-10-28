@@ -29,6 +29,7 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     mErrorStates << QCHDMAN_PRJSTAT_CRASHED << QCHDMAN_PRJSTAT_ERROR;
     mEntryListIterator = NULL;
     mEngineDebugger = NULL;
+    mRunningProjects = 0;
 }
 
 ScriptEngine::~ScriptEngine()
@@ -289,8 +290,9 @@ void ScriptEngine::projectCreate(QString id, QString type)
         int typeIndex = MainWindow::projectTypeIndex(type);
         if ( typeIndex >= 0 ) {
             mProjectMap[id] = new ProjectWidget(0, true, typeIndex, id, this);
-            connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)), Qt::DirectConnection);
-            connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)), Qt::DirectConnection);
+            connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)));
+            connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)));
+            connect(mProjectMap[id], SIGNAL(progressValueChanged(ProjectWidget*,int)), this, SLOT(monitorUpdateProgress(ProjectWidget*,int)));
         } else
             log(tr("warning") + ": ScriptEngine::projectCreate(): " + tr("project type '%1' doesn't exists - valid types are: %2").arg(id).arg(MainWindow::projectTypes.join(", ")));
     }
@@ -305,8 +307,9 @@ void ScriptEngine::projectCreateFromFile(QString id, QString fileName)
     else {
         mProjectMap[id] = new ProjectWidget(0, true, QCHDMAN_PRJ_UNKNOWN, id, this);
         mProjectMap[id]->load(fileName);
-        connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)), Qt::DirectConnection);
-        connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)), Qt::DirectConnection);
+        connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)));
+        connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)));
+        connect(mProjectMap[id], SIGNAL(progressValueChanged(ProjectWidget*,int)), this, SLOT(monitorUpdateProgress(ProjectWidget*,int)));
     }
 }
 
@@ -319,8 +322,9 @@ void ScriptEngine::projectCreateFromString(QString id, QString buffer)
     else {
         mProjectMap[id] = new ProjectWidget(0, true, QCHDMAN_PRJ_UNKNOWN, id, this);
         mProjectMap[id]->load(QString(), &buffer);
-        connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)), Qt::DirectConnection);
-        connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)), Qt::DirectConnection);
+        connect(mProjectMap[id], SIGNAL(processStarted(ProjectWidget*)), this, SLOT(processStarted(ProjectWidget*)));
+        connect(mProjectMap[id], SIGNAL(processFinished(ProjectWidget*)), this, SLOT(processFinished(ProjectWidget*)));
+        connect(mProjectMap[id], SIGNAL(progressValueChanged(ProjectWidget*,int)), this, SLOT(monitorUpdateProgress(ProjectWidget*,int)));
     }
 }
 
@@ -2229,16 +2233,70 @@ void ScriptEngine::destroyProjects(QString idList)
     }
 }
 
+void ScriptEngine::waitForRunningProjects(int numProjects)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::waitForRunningProjects(int numProjects = %1)").arg(numProjects)));
+
+    int previouslyRunningProjects = runningProjects();
+    while ( (previouslyRunningProjects - runningProjects() < numProjects) && !externalStop ) {
+        foreach (QString id, mProjectMap.keys()) {
+            if ( externalStop || (previouslyRunningProjects - runningProjects() >= numProjects) )
+                break;
+
+            if ( mProjectMap[id]->status == QCHDMAN_PRJSTAT_RUNNING ) {
+                mProjectMap[id]->chdmanProc->waitForFinished(QCHDMAN_PROCESS_POLL_TIME);
+                qApp->processEvents();
+            }
+        }
+    }
+}
+
+// Slots for internal use
+
 void ScriptEngine::processStarted(ProjectWidget *projectWidget)
 {
     QString id = mProjectMap.key(projectWidget, "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND");
-    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" )
+    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" ) {
+        mRunningProjects++;
         emit projectStarted(id);
+        QTreeWidgetItem *projectItem = new QTreeWidgetItem(mScriptWidget->ui->treeWidgetProjectMonitor);
+        projectItem->setText(QCHDMAN_PRJMON_ID, id);
+        QProgressBar *progressBar = new QProgressBar(mScriptWidget->ui->treeWidgetProjectMonitor);
+        progressBar->setRange(0, 100);
+        progressBar->setValue(0);
+        mScriptWidget->ui->treeWidgetProjectMonitor->setItemWidget(projectItem, QCHDMAN_PRJMON_PROGRESS, progressBar);
+        projectItem->setText(QCHDMAN_PRJMON_PROGRESS, "000");
+        QString command = globalConfig->preferencesChdmanBinary();
+        foreach (QString arg, projectWidget->arguments) {
+            if ( arg.contains(QRegExp("\\s")) )
+                command += " \"" + arg + "\"";
+            else
+                command += " " + arg;
+        }
+        projectItem->setText(QCHDMAN_PRJMON_COMMAND, command);
+    }
 }
 
 void ScriptEngine::processFinished(ProjectWidget *projectWidget)
 {
     QString id = mProjectMap.key(projectWidget, "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND");
-    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" )
+    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" ) {
+        mRunningProjects--;
         emit projectFinished(id);
+        QList<QTreeWidgetItem *> itemList = mScriptWidget->ui->treeWidgetProjectMonitor->findItems(id, Qt::MatchExactly, QCHDMAN_PRJMON_ID);
+        if ( itemList.count() > 0 )
+            delete mScriptWidget->ui->treeWidgetProjectMonitor->takeTopLevelItem(mScriptWidget->ui->treeWidgetProjectMonitor->indexOfTopLevelItem(itemList[0]));
+    }
+}
+
+void ScriptEngine::monitorUpdateProgress(ProjectWidget *projectWidget, int progressValue)
+{
+    QString id = mProjectMap.key(projectWidget, "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND");
+    if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" ) {
+        QList<QTreeWidgetItem *> itemList = mScriptWidget->ui->treeWidgetProjectMonitor->findItems(id, Qt::MatchExactly, QCHDMAN_PRJMON_ID);
+        if ( itemList.count() > 0 ) {
+            ((QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(itemList[0], QCHDMAN_PRJMON_PROGRESS))->setValue(progressValue);
+            itemList[0]->setText(QCHDMAN_PRJMON_PROGRESS, QString::number(progressValue).rightJustified(3, QLatin1Char('0')));
+        }
+    }
 }

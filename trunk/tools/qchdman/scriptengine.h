@@ -47,6 +47,9 @@ public slots:
     // run shell commands
     int runShellCommand(QString command, bool detached = false);
 
+    // determine OS name
+    QString operatingSystemName() { return QCHDMAN_OS_NAME; }
+
     // retrieve user input
     QString inputGetFilePath(QString initialPath = QString(), QString filter = QString(), QString windowTitle = QString());
     QString inputGetFolderPath(QString initialPath = QString(), QString windowTitle = QString());
@@ -257,10 +260,15 @@ public slots:
     void stopProjects(QString idList = QString());
     void syncProjects(QString idList = QString());
     void destroyProjects(QString idList = QString());
+    void waitForRunningProjects(int numProjects = 1);
+
+    // number of running projects (for this engine)
+    int runningProjects() { return mRunningProjects; }
 
     // slots for internal use
     void processStarted(ProjectWidget *projectWidget);
     void processFinished(ProjectWidget *projectWidget);
+    void monitorUpdateProgress(ProjectWidget *projectWidget, int progressValue);
 
 signals:
     void projectStarted(QString id);
@@ -274,6 +282,7 @@ private:
     QStringList mErrorStates;
     QDir mEntryListDir;
     QDirIterator *mEntryListIterator;
+    int mRunningProjects;
     bool mInputOk;
 };
 

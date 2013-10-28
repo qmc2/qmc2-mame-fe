@@ -179,6 +179,7 @@ public slots:
     void morph();
     void run();
     void stop();
+    void signalProgressUpdate(int);
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked(bool refreshArgsOnly = false);
     void on_toolButtonStop_clicked();
@@ -192,6 +193,7 @@ public slots:
 
 signals:
     void progressFormatChanged(QString);
+    void progressValueChanged(ProjectWidget *, int);
     void processStarted(ProjectWidget *);
     void processFinished(ProjectWidget *);
 

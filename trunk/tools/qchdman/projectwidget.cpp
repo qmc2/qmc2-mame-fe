@@ -208,6 +208,7 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement, int type, QStr
     connect(ui->spinBoxCreateHDHeads, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
     connect(ui->spinBoxCreateHDSectors, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
     connect(ui->spinBoxCreateHDSectorSize, SIGNAL(valueChanged(int)), this, SLOT(updateCreateHDDiskCapacity()));
+    connect(ui->progressBar, SIGNAL(valueChanged(int)), this, SLOT(signalProgressUpdate(int)));
 
     if ( type != QCHDMAN_PRJ_UNKNOWN )
         setProjectType(type);
@@ -2297,4 +2298,9 @@ void ProjectWidget::stop()
 {
     if ( ui->toolButtonStop->isEnabled() )
         ui->toolButtonStop->animateClick();
+}
+
+void ProjectWidget::signalProgressUpdate(int value)
+{
+    emit progressValueChanged(this, value);
 }
