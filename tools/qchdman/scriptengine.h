@@ -53,6 +53,7 @@ public slots:
     QString inputGetListItem(QString initialValue = QString(), QStringList itemList = QStringList(), bool editable = false, QString windowTitle = QString(), QString labelText = QString());
     int inputGetIntValue(int initialValue = 0, QString windowTitle = QString(), QString labelText = QString());
     double inputGetDoubleValue(double initialValue = 0.0, int decimals = 1, QString windowTitle = QString(), QString labelText = QString());
+    bool inputOk() { return mInputOk; }
 
     // control the progress-bar
     void progressSetRange(int min, int max);
@@ -264,6 +265,7 @@ private:
     QStringList mErrorStates;
     QDir mEntryListDir;
     QDirIterator *mEntryListIterator;
+    bool mInputOk;
 };
 
 #endif // SCRIPTENGINE_H
