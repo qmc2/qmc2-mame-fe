@@ -29,15 +29,14 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
 
     parentWidget()->setWindowIcon(QIcon(":/images/script.png"));
 
-    // prepare use of 'tweaked' script-editor
+    // use our 'tweaked' line-numbering script-editor
     delete ui->plainTextEditScript;
     ui->plainTextEditScript = new ScriptEditor(this);
     ui->splitter->insertWidget(0, ui->plainTextEditScript);
 
-    // newly set tab-stops affected by above tweak
-    setTabOrder(ui->toolButtonActions, ui->plainTextEditScript);
-    setTabOrder(ui->plainTextEditScript, ui->plainTextEditLog);
+    askFileName = isRunning = false;
 
+    // log-limit spin-box
     spinBoxLimitScriptLog = new QSpinBox(this);
     spinBoxLimitScriptLog->setToolTip(tr("Maximum number of lines held in script log"));
     spinBoxLimitScriptLog->setPrefix(tr("Limit") + ": ");
@@ -49,14 +48,23 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     spinBoxLimitScriptLog->setKeyboardTracking(false);
     ui->tabWidget->setCornerWidget(spinBoxLimitScriptLog, Qt::BottomRightCorner);
 
+    // newly set tab-stops
+    setTabOrder(ui->toolButtonActions, ui->plainTextEditScript);
+    setTabOrder(ui->plainTextEditScript, ui->plainTextEditLog);
+    setTabOrder(ui->plainTextEditLog, ui->treeWidgetProjectMonitor);
+    setTabOrder(ui->treeWidgetProjectMonitor, ui->tabWidget);
+    setTabOrder(ui->tabWidget, spinBoxLimitScriptLog);
+    setTabOrder(spinBoxLimitScriptLog, ui->toolButtonRun);
+
+    // adjust fonts and restore settings
     adjustFonts();
     restoreSettings();
 
+    // set script-log's maximumBlockCount when the spin-box value changes
     connect(spinBoxLimitScriptLog, SIGNAL(valueChanged(int)), this, SLOT(setLogLimit(int)));
 
+    // script-engine
     scriptEngine = new ScriptEngine(this);
-
-    askFileName = isRunning = false;
 
     // linear gradient from red over yellow to green (this assumes that sub-window icons are in 64x64)
     linearGradient = QLinearGradient(QPointF(0, 0), QPointF(63, 0));
@@ -64,7 +72,7 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     linearGradient.setColorAt(0.5, QColor(220, 220, 0, 192));
     linearGradient.setColorAt(1.0, QColor(0, 255, 0, 192));
 
-    // setup tools menu
+    // setup tools-menu
     menuActions = new QMenu(this);
     actionLoad = menuActions->addAction(tr("Load"), this, SLOT(load()));
     actionSave = menuActions->addAction(tr("Save"), this, SLOT(save()));
@@ -135,12 +143,23 @@ void ScriptWidget::adjustFonts()
     f.setPointSize(globalConfig->preferencesEditorFontSize());
     ui->plainTextEditScript->setFont(f);
 
-    QFontMetrics fm(f);
-    ui->plainTextEditScript->setTabStopWidth(fm.width(' ') * 8);
+    QFontMetrics fmEditorFont(f);
+    ui->plainTextEditScript->setTabStopWidth(fmEditorFont.width(' ') * 8);
 
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
     ui->plainTextEditLog->setFont(f);
+
+    f.fromString(globalConfig->preferencesAppFont());
+    f.setPointSize(globalConfig->preferencesAppFontSize());
+
+    QFontMetrics fmAppFont(f);
+    for (int i = 0; i < ui->treeWidgetProjectMonitor->topLevelItemCount(); i++) {
+        QTreeWidgetItem *item = ui->treeWidgetProjectMonitor->topLevelItem(i);
+        QProgressBar *progressBar = (QProgressBar *)ui->treeWidgetProjectMonitor->itemWidget(item, QCHDMAN_PRJMON_PROGRESS);
+        if ( progressBar )
+            progressBar->setFixedHeight(fmAppFont.height() + 2);
+    }
 }
 
 void ScriptWidget::log(QString message)
@@ -338,7 +357,6 @@ void ScriptWidget::on_tabWidget_currentChanged(int index)
 {
     if ( index == QCHDMAN_SCRIPT_LOG_INDEX ) {
         spinBoxLimitScriptLog->show();
-        ui->plainTextEditLog->centerCursor();
         ui->plainTextEditLog->verticalScrollBar()->setValue(ui->plainTextEditLog->verticalScrollBar()->maximum());
     } else
         spinBoxLimitScriptLog->hide();
