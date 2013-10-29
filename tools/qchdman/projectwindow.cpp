@@ -123,6 +123,7 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
         }
     } else if ( subWindowType == QCHDMAN_MDI_SCRIPT ) {
         if ( mainWindow->forceQuit ) {
+            scriptWidget->saveSettings();
             scriptWidget->engine()->stopScript();
             e->accept();
             deleteLater();
@@ -151,6 +152,9 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
             }
         } else
             closeOk = mainWindow->closeOk;
+
+        if ( closeOk )
+            scriptWidget->saveSettings();
     }
 
     if ( closeOk ) {
