@@ -38,8 +38,21 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     setTabOrder(ui->toolButtonActions, ui->plainTextEditScript);
     setTabOrder(ui->plainTextEditScript, ui->plainTextEditLog);
 
+    spinBoxLimitScriptLog = new QSpinBox(this);
+    spinBoxLimitScriptLog->setToolTip(tr("Maximum number of lines held in script log"));
+    spinBoxLimitScriptLog->setPrefix(tr("Limit") + ": ");
+    spinBoxLimitScriptLog->setSpecialValueText(tr("No limit"));
+    spinBoxLimitScriptLog->setRange(0, 100000);
+    spinBoxLimitScriptLog->setWrapping(true);
+    spinBoxLimitScriptLog->setSingleStep(100);
+    spinBoxLimitScriptLog->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    spinBoxLimitScriptLog->setKeyboardTracking(false);
+    ui->tabWidget->setCornerWidget(spinBoxLimitScriptLog, Qt::BottomRightCorner);
+
     adjustFonts();
     restoreSettings();
+
+    connect(spinBoxLimitScriptLog, SIGNAL(valueChanged(int)), this, SLOT(setLogLimit(int)));
 
     scriptEngine = new ScriptEngine(this);
 
@@ -134,7 +147,6 @@ void ScriptWidget::log(QString message)
 {
     message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
     ui->plainTextEditLog->appendPlainText(message);
-    ui->plainTextEditLog->verticalScrollBar()->setValue(ui->plainTextEditLog->verticalScrollBar()->maximum());
 }
 
 void ScriptWidget::load(const QString &fileName, QString *buffer)
@@ -291,6 +303,7 @@ void ScriptWidget::copyLogToClipboard()
 
 void ScriptWidget::saveSettings()
 {
+    globalConfig->setScriptWidgetLogLimit(spinBoxLimitScriptLog->value());
     globalConfig->setScriptWidgetTabIndex(ui->tabWidget->currentIndex());
     globalConfig->setScriptWidgetSplitterState(ui->splitter->saveState());
     globalConfig->setScriptWidgetProjectMonitorHeaderState(ui->treeWidgetProjectMonitor->header()->saveState());
@@ -298,11 +311,35 @@ void ScriptWidget::saveSettings()
 
 void ScriptWidget::restoreSettings()
 {
+    spinBoxLimitScriptLog->setValue(globalConfig->scriptWidgetLogLimit());
+    setLogLimit(globalConfig->scriptWidgetLogLimit());
     ui->tabWidget->setCurrentIndex(globalConfig->scriptWidgetTabIndex());
+    on_tabWidget_currentChanged(globalConfig->scriptWidgetTabIndex());
     QByteArray splitterState = globalConfig->scriptWidgetSplitterState();
     if ( !splitterState.isNull() )
         ui->splitter->restoreState(globalConfig->scriptWidgetSplitterState());
     else
         ui->splitter->setSizes(QList<int>() << 700 << 300);
     ui->treeWidgetProjectMonitor->header()->restoreState(globalConfig->scriptWidgetProjectMonitorHeaderState());
+}
+
+void ScriptWidget::setLogLimit(int limit)
+{
+    if ( limit < 100 ) {
+        spinBoxLimitScriptLog->blockSignals(true);
+        spinBoxLimitScriptLog->setValue(0);
+        spinBoxLimitScriptLog->blockSignals(false);
+        ui->plainTextEditLog->setMaximumBlockCount(0);
+    } else
+        ui->plainTextEditLog->setMaximumBlockCount(limit);
+}
+
+void ScriptWidget::on_tabWidget_currentChanged(int index)
+{
+    if ( index == QCHDMAN_SCRIPT_LOG_INDEX ) {
+        spinBoxLimitScriptLog->show();
+        ui->plainTextEditLog->centerCursor();
+        ui->plainTextEditLog->verticalScrollBar()->setValue(ui->plainTextEditLog->verticalScrollBar()->maximum());
+    } else
+        spinBoxLimitScriptLog->hide();
 }

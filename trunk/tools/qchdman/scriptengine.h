@@ -8,6 +8,7 @@
 #include <QMap>
 #include <QDir>
 #include <QDirIterator>
+#include <QThread>
 
 #include "projectwidget.h"
 #include "scriptwidget.h"
@@ -50,6 +51,9 @@ public slots:
     // determine OS name
     QString operatingSystemName() { return QCHDMAN_OS_NAME; }
 
+    // number of CPUs
+    int numberOfCPUs() { return QThread::idealThreadCount(); }
+
     // retrieve user input
     QString inputGetFilePath(QString initialPath = QString(), QString filter = QString(), QString windowTitle = QString());
     QString inputGetFolderPath(QString initialPath = QString(), QString windowTitle = QString());
@@ -59,9 +63,10 @@ public slots:
     double inputGetDoubleValue(double initialValue = 0.0, int decimals = 1, QString windowTitle = QString(), QString labelText = QString());
     bool inputOk() { return mInputOk; }
 
-    // control the progress-bar
+    // progress bar
     void progressSetRange(int min, int max);
     void progressSetValue(int value);
+    int progressGetValue();
 
     // project creation / destruction / status / return code
     void projectCreate(QString id, QString type);

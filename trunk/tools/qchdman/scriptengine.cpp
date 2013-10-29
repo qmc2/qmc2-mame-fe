@@ -280,6 +280,13 @@ void ScriptEngine::progressSetValue(int value)
     mScriptWidget->ui->progressBar->setValue(value);
 }
 
+int ScriptEngine::progressGetValue()
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::progressGetValue()")));
+
+    return mScriptWidget->ui->progressBar->value();
+}
+
 void ScriptEngine::projectCreate(QString id, QString type)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectCreate(QString id = %1, QString type = %2)").arg(id).arg(type)));
@@ -2262,6 +2269,7 @@ void ScriptEngine::processStarted(ProjectWidget *projectWidget)
         QTreeWidgetItem *projectItem = new QTreeWidgetItem(mScriptWidget->ui->treeWidgetProjectMonitor);
         projectItem->setText(QCHDMAN_PRJMON_ID, id);
         QProgressBar *progressBar = new QProgressBar(mScriptWidget->ui->treeWidgetProjectMonitor);
+        progressBar->setAutoFillBackground(true);
         progressBar->setRange(0, 100);
         progressBar->setValue(0);
         mScriptWidget->ui->treeWidgetProjectMonitor->setItemWidget(projectItem, QCHDMAN_PRJMON_PROGRESS, progressBar);
@@ -2284,8 +2292,19 @@ void ScriptEngine::processFinished(ProjectWidget *projectWidget)
         mRunningProjects--;
         emit projectFinished(id);
         QList<QTreeWidgetItem *> itemList = mScriptWidget->ui->treeWidgetProjectMonitor->findItems(id, Qt::MatchExactly, QCHDMAN_PRJMON_ID);
-        if ( itemList.count() > 0 )
-            delete mScriptWidget->ui->treeWidgetProjectMonitor->takeTopLevelItem(mScriptWidget->ui->treeWidgetProjectMonitor->indexOfTopLevelItem(itemList[0]));
+        if ( itemList.count() > 0 ) {
+            QTreeWidgetItem *item = itemList[0];
+            if ( item->isSelected() ) {
+                mScriptWidget->ui->treeWidgetProjectMonitor->clearSelection();
+                mScriptWidget->ui->treeWidgetProjectMonitor->setCurrentIndex(QModelIndex());
+            }
+            QProgressBar *progressBar = (QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(item, QCHDMAN_PRJMON_PROGRESS);
+            if ( progressBar ) {
+                mScriptWidget->ui->treeWidgetProjectMonitor->removeItemWidget(item, QCHDMAN_PRJMON_PROGRESS);
+                delete progressBar;
+            }
+            delete mScriptWidget->ui->treeWidgetProjectMonitor->takeTopLevelItem(mScriptWidget->ui->treeWidgetProjectMonitor->indexOfTopLevelItem(item));
+        }
     }
 }
 
@@ -2295,8 +2314,9 @@ void ScriptEngine::monitorUpdateProgress(ProjectWidget *projectWidget, int progr
     if ( id != "QCHDMAN_SCRIPT_ENGINE_NO_PROJECT_ID_FOUND" ) {
         QList<QTreeWidgetItem *> itemList = mScriptWidget->ui->treeWidgetProjectMonitor->findItems(id, Qt::MatchExactly, QCHDMAN_PRJMON_ID);
         if ( itemList.count() > 0 ) {
-            ((QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(itemList[0], QCHDMAN_PRJMON_PROGRESS))->setValue(progressValue);
-            itemList[0]->setText(QCHDMAN_PRJMON_PROGRESS, QString::number(progressValue).rightJustified(3, QLatin1Char('0')));
+            QTreeWidgetItem *item = itemList[0];
+            ((QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(item, QCHDMAN_PRJMON_PROGRESS))->setValue(progressValue);
+            item->setText(QCHDMAN_PRJMON_PROGRESS, QString::number(progressValue).rightJustified(3, QLatin1Char('0')));
         }
     }
 }
