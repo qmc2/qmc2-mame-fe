@@ -39,10 +39,8 @@ ScriptWidget::ScriptWidget(QWidget *parent) :
     setTabOrder(ui->plainTextEditScript, ui->plainTextEditLog);
 
     adjustFonts();
+    restoreSettings();
 
-    QList<int> sizes;
-    sizes << 700 << 300;
-    ui->splitter->setSizes(sizes);
     scriptEngine = new ScriptEngine(this);
 
     askFileName = isRunning = false;
@@ -289,4 +287,22 @@ void ScriptWidget::clone()
 void ScriptWidget::copyLogToClipboard()
 {
     qApp->clipboard()->setText(ui->plainTextEditLog->toPlainText());
+}
+
+void ScriptWidget::saveSettings()
+{
+    globalConfig->setScriptWidgetTabIndex(ui->tabWidget->currentIndex());
+    globalConfig->setScriptWidgetSplitterState(ui->splitter->saveState());
+    globalConfig->setScriptWidgetProjectMonitorHeaderState(ui->treeWidgetProjectMonitor->header()->saveState());
+}
+
+void ScriptWidget::restoreSettings()
+{
+    ui->tabWidget->setCurrentIndex(globalConfig->scriptWidgetTabIndex());
+    QByteArray splitterState = globalConfig->scriptWidgetSplitterState();
+    if ( !splitterState.isNull() )
+        ui->splitter->restoreState(globalConfig->scriptWidgetSplitterState());
+    else
+        ui->splitter->setSizes(QList<int>() << 700 << 300);
+    ui->treeWidgetProjectMonitor->header()->restoreState(globalConfig->scriptWidgetProjectMonitorHeaderState());
 }

@@ -8,7 +8,12 @@
 #include <QSize>
 #include <QFont>
 #include <QLocale>
+#include <QVariantList>
+#include <QList>
+
 #include "macros.h"
+
+Q_DECLARE_METATYPE(QList<int>)
 
 class Settings : public QSettings
 {
@@ -83,7 +88,6 @@ public slots:
     QString preferencesPreferredInputPath() { return value("Preferences/PreferredInputPath", QString()).toString(); }
     void setPreferencesPreferredOutputPath(QString path) { setValue("Preferences/PreferredOutputPath", path); }
     QString preferencesPreferredOutputPath() { return value("Preferences/PreferredOutputPath", QString()).toString(); }
-
     void setPreferencesShowHelpTexts(bool enable) { setValue("Preferences/ShowHelpTexts", enable); }
     bool preferencesShowHelpTexts() { return value("Preferences/ShowHelpTexts", false).toBool(); }
     void setPreferencesMaximizeWindows(bool enable) { setValue("Preferences/MaximizeWindows", enable); }
@@ -98,14 +102,22 @@ public slots:
     // MainWindow
     void setMainWindowState(QByteArray state) { setValue("MainWindow/State", state); }
     QByteArray mainWindowState() { return value("MainWindow/State", QByteArray()).toByteArray(); }
-    void setMainWindowGeometry(QByteArray geom) { setValue("MainWindow/Geometry", geom); };
+    void setMainWindowGeometry(QByteArray geom) { setValue("MainWindow/Geometry", geom); }
     QByteArray mainWindowGeometry() { return value("MainWindow/Geometry", QByteArray()).toByteArray(); }
-    void setMainWindowViewMode(int mode) { setValue("MainWindow/ViewMode", mode); };
+    void setMainWindowViewMode(int mode) { setValue("MainWindow/ViewMode", mode); }
     int mainWindowViewMode() { return value("MainWindow/ViewMode", QCHDMAN_VIEWMODE_WINDOWED).toInt(); }
     void setMainWindowRecentFiles(QStringList recentFiles) { setValue("MainWindow/RecentFiles", recentFiles); }
     QStringList mainWindowRecentFiles() { return value("MainWindow/RecentFiles", QStringList()).toStringList(); }
     void setMainWindowRecentScripts(QStringList recentScripts) { setValue("MainWindow/RecentScripts", recentScripts); }
     QStringList mainWindowRecentScripts() { return value("MainWindow/RecentScripts", QStringList()).toStringList(); }
+
+    // ScriptWidget
+    void setScriptWidgetProjectMonitorHeaderState(QByteArray state) { setValue("ScriptWidget/ProjectMonitorHeaderState", state); }
+    QByteArray scriptWidgetProjectMonitorHeaderState() { return value("ScriptWidget/ProjectMonitorHeaderState", QByteArray()).toByteArray(); }
+    void setScriptWidgetSplitterState(QByteArray state) { setValue("ScriptWidget/SplitterState", state); }
+    QByteArray scriptWidgetSplitterState() { return value("ScriptWidget/SplitterState", QByteArray()).toByteArray(); }
+    void setScriptWidgetTabIndex(int index) { setValue("ScriptWidget/TabIndex", index); }
+    int scriptWidgetTabIndex() { return value("ScriptWidget/TabIndex", 0).toInt(); }
 };
 
 #endif // SETTINGS_H

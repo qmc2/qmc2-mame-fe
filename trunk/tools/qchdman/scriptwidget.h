@@ -51,6 +51,8 @@ public slots:
     void resetProgressBar();
     void clone();
     void copyLogToClipboard();
+    void saveSettings();
+    void restoreSettings();
 
 private:
     Ui::ScriptWidget *ui;
