@@ -99,7 +99,7 @@
        <enum>QTabWidget::South</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabScriptLog">
        <attribute name="title">
@@ -111,9 +111,6 @@
         </property>
         <item row="0" column="0">
          <widget class="QPlainTextEdit" name="plainTextEditLog">
-          <property name="toolTip">
-           <string>Script log</string>
-          </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
@@ -141,6 +138,9 @@
            <enum>QFrame::NoFrame</enum>
           </property>
           <property name="rootIsDecorated">
+           <bool>false</bool>
+          </property>
+          <property name="itemsExpandable">
            <bool>false</bool>
           </property>
           <property name="sortingEnabled">

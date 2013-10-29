@@ -1367,7 +1367,6 @@ void ProjectWidget::log(QString message)
     } else {
         message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
         ui->plainTextEditProjectLog->appendPlainText(message);
-        ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
     }
 }
 

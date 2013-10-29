@@ -8,12 +8,8 @@
 #include <QSize>
 #include <QFont>
 #include <QLocale>
-#include <QVariantList>
-#include <QList>
 
 #include "macros.h"
-
-Q_DECLARE_METATYPE(QList<int>)
 
 class Settings : public QSettings
 {
@@ -118,6 +114,8 @@ public slots:
     QByteArray scriptWidgetSplitterState() { return value("ScriptWidget/SplitterState", QByteArray()).toByteArray(); }
     void setScriptWidgetTabIndex(int index) { setValue("ScriptWidget/TabIndex", index); }
     int scriptWidgetTabIndex() { return value("ScriptWidget/TabIndex", 0).toInt(); }
+    void setScriptWidgetLogLimit(int limit) { setValue("ScriptWidget/LogLimit", limit); }
+    int scriptWidgetLogLimit() { return value("ScriptWidget/LogLimit", 1000).toInt(); }
 };
 
 #endif // SETTINGS_H

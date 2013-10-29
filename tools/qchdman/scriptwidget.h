@@ -27,6 +27,7 @@ public:
     QAction *actionSaveAs;
     QAction *actionClone;
     QAction *actionCopyLogToClipboard;
+    QSpinBox *spinBoxLimitScriptLog;
 
     explicit ScriptWidget(QWidget *parent = 0);
     virtual ~ScriptWidget();
@@ -53,6 +54,8 @@ public slots:
     void copyLogToClipboard();
     void saveSettings();
     void restoreSettings();
+    void setLogLimit(int limit = 0);
+    void on_tabWidget_currentChanged(int);
 
 private:
     Ui::ScriptWidget *ui;

@@ -133,8 +133,8 @@
 #define QCHDMAN_PRJSTAT_ERROR       "error"
 
 // script-log / project-monitor tab indizes
-#define QCHDMAN_SCRIPT_MON_INDEX    0
-#define QCHDMAN_SCRIPT_LOG_INDEX    1
+#define QCHDMAN_SCRIPT_LOG_INDEX    0
+#define QCHDMAN_SCRIPT_MON_INDEX    1
 
 // project-monitor columns
 #define QCHDMAN_PRJMON_ID           0
