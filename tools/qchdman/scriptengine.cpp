@@ -2,6 +2,7 @@
 #include <QProcess>
 #include <QInputDialog>
 #include <QFileDialog>
+#include <QFontMetrics>
 
 #include "scriptengine.h"
 #include "mainwindow.h"
@@ -2268,11 +2269,14 @@ void ScriptEngine::processStarted(ProjectWidget *projectWidget)
         emit projectStarted(id);
         QTreeWidgetItem *projectItem = new QTreeWidgetItem(mScriptWidget->ui->treeWidgetProjectMonitor);
         projectItem->setText(QCHDMAN_PRJMON_ID, id);
+        projectItem->setForeground(QCHDMAN_PRJMON_PROGRESS, mScriptWidget->ui->treeWidgetProjectMonitor->viewport()->palette().base());
         QProgressBar *progressBar = new QProgressBar(mScriptWidget->ui->treeWidgetProjectMonitor);
-        progressBar->setAutoFillBackground(true);
+        mScriptWidget->ui->treeWidgetProjectMonitor->setItemWidget(projectItem, QCHDMAN_PRJMON_PROGRESS, progressBar);
         progressBar->setRange(0, 100);
         progressBar->setValue(0);
-        mScriptWidget->ui->treeWidgetProjectMonitor->setItemWidget(projectItem, QCHDMAN_PRJMON_PROGRESS, progressBar);
+        progressBar->setAutoFillBackground(true);
+        QFontMetrics fm(qApp->font());
+        progressBar->setFixedHeight(fm.height() + 2);
         projectItem->setText(QCHDMAN_PRJMON_PROGRESS, "000");
         QString command = globalConfig->preferencesChdmanBinary();
         foreach (QString arg, projectWidget->arguments) {
@@ -2298,12 +2302,14 @@ void ScriptEngine::processFinished(ProjectWidget *projectWidget)
                 mScriptWidget->ui->treeWidgetProjectMonitor->clearSelection();
                 mScriptWidget->ui->treeWidgetProjectMonitor->setCurrentIndex(QModelIndex());
             }
+            mScriptWidget->ui->treeWidgetProjectMonitor->setUpdatesEnabled(false);
             QProgressBar *progressBar = (QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(item, QCHDMAN_PRJMON_PROGRESS);
             if ( progressBar ) {
                 mScriptWidget->ui->treeWidgetProjectMonitor->removeItemWidget(item, QCHDMAN_PRJMON_PROGRESS);
                 delete progressBar;
             }
             delete mScriptWidget->ui->treeWidgetProjectMonitor->takeTopLevelItem(mScriptWidget->ui->treeWidgetProjectMonitor->indexOfTopLevelItem(item));
+            mScriptWidget->ui->treeWidgetProjectMonitor->setUpdatesEnabled(true);
         }
     }
 }
@@ -2315,7 +2321,9 @@ void ScriptEngine::monitorUpdateProgress(ProjectWidget *projectWidget, int progr
         QList<QTreeWidgetItem *> itemList = mScriptWidget->ui->treeWidgetProjectMonitor->findItems(id, Qt::MatchExactly, QCHDMAN_PRJMON_ID);
         if ( itemList.count() > 0 ) {
             QTreeWidgetItem *item = itemList[0];
-            ((QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(item, QCHDMAN_PRJMON_PROGRESS))->setValue(progressValue);
+            QProgressBar *progressBar = (QProgressBar *)mScriptWidget->ui->treeWidgetProjectMonitor->itemWidget(item, QCHDMAN_PRJMON_PROGRESS);
+            if ( progressBar )
+                progressBar->setValue(progressValue);
             item->setText(QCHDMAN_PRJMON_PROGRESS, QString::number(progressValue).rightJustified(3, QLatin1Char('0')));
         }
     }

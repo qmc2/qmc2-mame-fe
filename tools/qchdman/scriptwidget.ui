@@ -99,7 +99,7 @@
        <enum>QTabWidget::South</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabScriptLog">
        <attribute name="title">
@@ -139,6 +139,9 @@
           </property>
           <property name="rootIsDecorated">
            <bool>false</bool>
+          </property>
+          <property name="uniformRowHeights">
+           <bool>true</bool>
           </property>
           <property name="itemsExpandable">
            <bool>false</bool>

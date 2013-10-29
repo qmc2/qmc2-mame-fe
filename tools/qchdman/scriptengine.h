@@ -8,6 +8,7 @@
 #include <QMap>
 #include <QDir>
 #include <QDirIterator>
+#include <QProgressBar>
 #include <QThread>
 
 #include "projectwidget.h"
