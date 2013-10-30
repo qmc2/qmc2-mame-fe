@@ -2,6 +2,7 @@
 #define SCRIPTWIDGET_H
 
 #include <QtGui>
+#include <QSpinBox>
 
 #include "projectwidget.h"
 #include "scriptengine.h"
