@@ -25,6 +25,7 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     mEngine = new QScriptEngine(this);
     mEngine->globalObject().setProperty("scriptEngine", mEngine->newQObject(this));
     mEngine->globalObject().setProperty("qchdman", mEngine->newQObject(this));
+    mEngine->setProcessEventsInterval(QCHDMAN_SCR_EVENT_INTERVAL);
     mScriptWidget = parent;
     externalStop = mInputOk = false;
     mErrorStates << QCHDMAN_PRJSTAT_CRASHED << QCHDMAN_PRJSTAT_ERROR;

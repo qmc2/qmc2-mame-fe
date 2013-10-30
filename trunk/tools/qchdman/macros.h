@@ -97,6 +97,9 @@
 // time between process state polls when synchronizing projects
 #define QCHDMAN_PROCESS_POLL_TIME   50
 
+// script engine's "process events" interval
+#define QCHDMAN_SCR_EVENT_INTERVAL  10
+
 // view modes
 #define QCHDMAN_VIEWMODE_WINDOWED   QMdiArea::SubWindowView
 #define QCHDMAN_VIEWMODE_TABBED     QMdiArea::TabbedView
