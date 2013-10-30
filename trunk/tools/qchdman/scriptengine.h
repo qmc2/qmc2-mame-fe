@@ -278,10 +278,38 @@ public slots:
     int projectGetExtractLDInputFrames(QString id);
 
     // properties for project-type 'DumpMeta'
+    void projectSetDumpMetaInputFile(QString id, QString file);
+    QString projectGetDumpMetaInputFile(QString id);
+    void projectSetDumpMetaOutputFile(QString id, QString file);
+    QString projectGetDumpMetaOutputFile(QString id);
+    void projectSetDumpMetaForce(QString id, bool force);
+    bool projectGetDumpMetaForce(QString id);
+    void projectSetDumpMetaTag(QString id, QString tag);
+    QString projectGetDumpMetaTag(QString id);
+    void projectSetDumpMetaIndex(QString id, int index);
+    int projectGetDumpMetaIndex(QString id);
 
     // properties for project-type 'AddMeta'
+    void projectSetAddMetaInputFile(QString id, QString file);
+    QString projectGetAddMetaInputFile(QString id);
+    void projectSetAddMetaValueFile(QString id, QString file);
+    QString projectGetAddMetaValueFile(QString id);
+    void projectSetAddMetaValueText(QString id, QString text);
+    QString projectGetAddMetaValueText(QString id);
+    void projectSetAddMetaTag(QString id, QString tag);
+    QString projectGetAddMetaTag(QString id);
+    void projectSetAddMetaIndex(QString id, int index);
+    int projectGetAddMetaIndex(QString id);
+    void projectSetAddMetaNoCheckSum(QString id, bool noCheckSum);
+    bool projectGetAddMetaNoCheckSum(QString id);
 
     // properties for project-type 'DelMeta'
+    void projectSetDelMetaInputFile(QString id, QString file);
+    QString projectGetDelMetaInputFile(QString id);
+    void projectSetDelMetaTag(QString id, QString tag);
+    QString projectGetDelMetaTag(QString id);
+    void projectSetDelMetaIndex(QString id, int index);
+    int projectGetDelMetaIndex(QString id);
 
     // run / stop / synchronize / destroy projects
     void runProjects(QString idList = QString());

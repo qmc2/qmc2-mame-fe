@@ -2375,6 +2375,322 @@ int ScriptEngine::projectGetExtractLDInputFrames(QString id)
     }
 }
 
+// DumpMeta
+
+void ScriptEngine::projectSetDumpMetaInputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDumpMetaInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditDumpMetaInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDumpMetaInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetDumpMetaInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDumpMetaInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditDumpMetaInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDumpMetaInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetDumpMetaOutputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDumpMetaOutputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditDumpMetaOutputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDumpMetaOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetDumpMetaOutputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDumpMetaOutputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditDumpMetaOutputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDumpMetaOutputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetDumpMetaForce(QString id, bool force)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDumpMetaForce(QString id = %1, bool force = %2)").arg(id).arg(force)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->checkBoxDumpMetaForce->setChecked(force);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDumpMetaForce(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+bool ScriptEngine::projectGetDumpMetaForce(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDumpMetaForce(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->checkBoxDumpMetaForce->isChecked();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDumpMetaForce(): " + tr("project '%1' doesn't exists").arg(id));
+        return false;
+    }
+}
+
+void ScriptEngine::projectSetDumpMetaTag(QString id, QString tag)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDumpMetaTag(QString id = %1, QString tag = %2)").arg(id).arg(tag)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditDumpMetaTag->setText(tag);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDumpMetaTag(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetDumpMetaTag(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDumpMetaTag(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditDumpMetaTag->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDumpMetaTag(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetDumpMetaIndex(QString id, int index)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDumpMetaIndex(QString id = %1, int index = %2)").arg(id).arg(index)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxDumpMetaIndex->setValue(index);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDumpMetaIndex(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetDumpMetaIndex(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDumpMetaIndex(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxDumpMetaIndex->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDumpMetaIndex(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+// AddMeta
+
+void ScriptEngine::projectSetAddMetaInputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetAddMetaInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditAddMetaInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetAddMetaInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetAddMetaInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetAddMetaInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditAddMetaInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetAddMetaInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetAddMetaValueFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetAddMetaValueFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditAddMetaValueFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetAddMetaValueFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetAddMetaValueFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetAddMetaValueFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditAddMetaValueFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetAddMetaValueFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetAddMetaValueText(QString id, QString text)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetAddMetaValueText(QString id = %1, QString text = %2)").arg(id).arg(text)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditAddMetaValueText->setText(text);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetAddMetaValueText(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetAddMetaValueText(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetAddMetaValueText(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditAddMetaValueText->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetAddMetaValueText(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetAddMetaTag(QString id, QString tag)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetAddMetaTag(QString id = %1, QString tag = %2)").arg(id).arg(tag)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditAddMetaTag->setText(tag);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetAddMetaTag(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetAddMetaTag(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetAddMetaTag(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditAddMetaTag->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetAddMetaTag(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetAddMetaIndex(QString id, int index)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetAddMetaIndex(QString id = %1, int index = %2)").arg(id).arg(index)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxAddMetaIndex->setValue(index);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetAddMetaIndex(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetAddMetaIndex(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetAddMetaIndex(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxAddMetaIndex->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetAddMetaIndex(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+void ScriptEngine::projectSetAddMetaNoCheckSum(QString id, bool noCheckSum)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetAddMetaNoCheckSum(QString id = %1, bool noCheckSum = %2)").arg(id).arg(noCheckSum)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->checkBoxAddMetaNoCheckSum->setChecked(noCheckSum);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetAddMetaNoCheckSum(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+bool ScriptEngine::projectGetAddMetaNoCheckSum(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetAddMetaNoCheckSum(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->checkBoxAddMetaNoCheckSum->isChecked();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetAddMetaNoCheckSum(): " + tr("project '%1' doesn't exists").arg(id));
+        return false;
+    }
+}
+
+// DelMeta
+
+void ScriptEngine::projectSetDelMetaInputFile(QString id, QString file)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDelMetaInputFile(QString id = %1, QString file = %2)").arg(id).arg(file)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditDelMetaInputFile->setText(file);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDelMetaInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetDelMetaInputFile(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDelMetaInputFile(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditDelMetaInputFile->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDelMetaInputFile(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetDelMetaTag(QString id, QString tag)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDelMetaTag(QString id = %1, QString tag = %2)").arg(id).arg(tag)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->lineEditDelMetaTag->setText(tag);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDelMetaTag(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+QString ScriptEngine::projectGetDelMetaTag(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDelMetaTag(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->lineEditDelMetaTag->text();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDelMetaTag(): " + tr("project '%1' doesn't exists").arg(id));
+        return QString();
+    }
+}
+
+void ScriptEngine::projectSetDelMetaIndex(QString id, int index)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectSetDelMetaIndex(QString id = %1, int index = %2)").arg(id).arg(index)));
+
+    if ( mProjectMap.contains(id) )
+        mProjectMap[id]->ui->spinBoxDelMetaIndex->setValue(index);
+    else
+        log(tr("warning") + ": ScriptEngine::projectSetDelMetaIndex(): " + tr("project '%1' doesn't exists").arg(id));
+}
+
+int ScriptEngine::projectGetDelMetaIndex(QString id)
+{
+    QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::projectGetDelMetaIndex(QString id = %1)").arg(id)));
+
+    if ( mProjectMap.contains(id) )
+        return mProjectMap[id]->ui->spinBoxDelMetaIndex->value();
+    else {
+        log(tr("warning") + ": ScriptEngine::projectGetDelMetaIndex(): " + tr("project '%1' doesn't exists").arg(id));
+        return -1;
+    }
+}
+
+// project control & synchronization
+
 void ScriptEngine::runProjects(QString idList)
 {
     QCHDMAN_SCRIPT_ENGINE_DEBUG(log(QString("DEBUG: ScriptEngine::runProjects(QString idList = %1)").arg(idList)));
