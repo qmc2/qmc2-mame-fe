@@ -252,8 +252,30 @@ public slots:
     int projectGetExtractHDInputHunks(QString id);
 
     // properties for project-type 'ExtractCD'
+    void projectSetExtractCDInputFile(QString id, QString file);
+    QString projectGetExtractCDInputFile(QString id);
+    void projectSetExtractCDParentInputFile(QString id, QString file);
+    QString projectGetExtractCDParentInputFile(QString id);
+    void projectSetExtractCDOutputFile(QString id, QString file);
+    QString projectGetExtractCDOutputFile(QString id);
+    void projectSetExtractCDOutputBinFile(QString id, QString file);
+    QString projectGetExtractCDOutputBinFile(QString id);
+    void projectSetExtractCDForce(QString id, bool force);
+    bool projectGetExtractCDForce(QString id);
 
     // properties for project-type 'ExtractLD'
+    void projectSetExtractLDInputFile(QString id, QString file);
+    QString projectGetExtractLDInputFile(QString id);
+    void projectSetExtractLDParentInputFile(QString id, QString file);
+    QString projectGetExtractLDParentInputFile(QString id);
+    void projectSetExtractLDOutputFile(QString id, QString file);
+    QString projectGetExtractLDOutputFile(QString id);
+    void projectSetExtractLDForce(QString id, bool force);
+    bool projectGetExtractLDForce(QString id);
+    void projectSetExtractLDInputStartFrame(QString id, int frame);
+    int projectGetExtractLDInputStartFrame(QString id);
+    void projectSetExtractLDInputFrames(QString id, int frames);
+    int projectGetExtractLDInputFrames(QString id);
 
     // properties for project-type 'DumpMeta'
 
@@ -271,6 +293,7 @@ public slots:
     // number of running projects (for this engine)
     int runningProjects() { return mRunningProjects; }
 
+private slots:
     // slots for internal use
     void processStarted(ProjectWidget *projectWidget);
     void processFinished(ProjectWidget *projectWidget);
