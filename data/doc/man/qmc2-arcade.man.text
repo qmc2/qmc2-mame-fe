@@ -15,9 +15,9 @@ DESCRIPTION
   game's/machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
 
   The main GUI also has a specific dialog for setting up all relevant back-end default options (-theme, -console, -graphicssystem and
-  -language), for producing a filtered game/machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or joystick-
-  functions (also optional). Default values for back-end options can also be configured inside QMC2 Arcade provided the chosen qml_theme
-  supports it (which all of the available themes do).
+  -language), for producing a filtered game/machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or
+  joystick-functions (also optional). Default values for back-end options can also be configured inside QMC2 Arcade provided the chosen
+  qml_theme supports it (which all of the available themes do).
 
   Changed back-end default options will require a restart of QMC2 Arcade to take effect. Specifying them on the command line will overwrite
   the current defaults temporarily, but will not change their stored default values. Note that the -language back-end default option is a shared
