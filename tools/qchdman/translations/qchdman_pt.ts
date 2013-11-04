@@ -194,67 +194,67 @@
     <message>
         <location filename="../mainwindow.ui" line="37"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Arquivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="41"/>
         <source>Recent projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Projetos recentes</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="46"/>
         <source>Recent scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Scripts recentes</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="105"/>
         <source>New project</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo projeto</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="116"/>
         <source>Load project...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir projeto...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="133"/>
         <source>Save project or script to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar projeto ou script para um arquivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="147"/>
         <source>Save project or script under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar projeto ou script sob um novo nome</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="172"/>
         <source>Select next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar próxima janela</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="186"/>
         <source>Select previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar janela anterior</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="200"/>
         <source>Tile windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Janelas lado a lado</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="214"/>
         <source>Cascade windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Janelas em cascata</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="228"/>
         <source>Close active window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar janela ativa</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="239"/>
         <source>Close all windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar todas as janelas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="244"/>
@@ -294,52 +294,52 @@
     <message>
         <location filename="../mainwindow.ui" line="277"/>
         <source>View in windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver em modo janela</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="291"/>
         <source>View in tabbed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver em abas</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="305"/>
         <source>Save all projects or scripts</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar todos os projetos ou scripts</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="324"/>
         <source>Load script...</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir script...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="327"/>
         <source>Load existing script from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir script existente de um arquivo</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
         <source>Ctrl+Shift+L</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="335"/>
         <source>Wiki...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="338"/>
         <source>Open our wiki in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nossa wiki no navegador padrão</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="343"/>
         <source>Forum...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fórum...</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="346"/>
         <source>Open our forum in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nosso fórum no navegador padrão</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="274"/>
@@ -435,22 +435,22 @@
     <message>
         <location filename="../mainwindow.cpp" line="348"/>
         <source>Choose project file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de projeto</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="348"/>
         <source>Project files (*.prj)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de projeto (*.prj)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="361"/>
         <source>Choose script file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de script</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="361"/>
         <source>Script files (*.scr)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de script (*.scr)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="535"/>
@@ -478,7 +478,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="564"/>
         <source>Running scripts / projects: %1 / %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Scripts / projetos em execução: %1 / %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="647"/>
@@ -488,7 +488,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="663"/>
         <source>Script &apos;%1&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Script &apos;%1&apos; não existe</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="742"/>
@@ -501,9 +501,13 @@
         <source>There are %n script(s) currently running.
 
 Proceed?</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Existe %n script em execução.
+
+Continuar?</numerusform>
+            <numerusform>Existem %n scripts em execução.
+
+Continuar?</numerusform>
         </translation>
     </message>
     <message>
@@ -601,12 +605,12 @@ Deseja continuar?</translation>
     <message>
         <location filename="../preferencesdialog.ui" line="263"/>
         <source>Maximize new project or script windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximizar janelas de novos projetos ou scripts</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="266"/>
         <source>Maximize windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximizar janelas</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="276"/>
@@ -752,12 +756,12 @@ Deseja continuar?</translation>
         <location filename="../preferencesdialog.ui" line="311"/>
         <location filename="../preferencesdialog.ui" line="318"/>
         <source>Editor font</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte do editor</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="338"/>
         <source>Editor font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da fonte do editor</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="346"/>
@@ -2157,7 +2161,7 @@ Remover meta-dados de um CHD.
     <message>
         <location filename="../projectwidget.cpp" line="1868"/>
         <source>Qt CHDMAN GUI project file -- please do not edit manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de projeto do Qt CHDMAN GUI -- por favor não editar manualmente</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1837"/>
@@ -2423,13 +2427,13 @@ Remover meta-dados de um CHD.
         <location filename="../projectwidget.cpp" line="1456"/>
         <location filename="../projectwidget.cpp" line="1847"/>
         <source>Choose project file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de projeto</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1456"/>
         <location filename="../projectwidget.cpp" line="1847"/>
         <source>Project files (*.prj)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de projeto (*.prj)</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1821"/>
@@ -2494,7 +2498,9 @@ Deseja continuar?</translation>
         <source>Script &apos;%1&apos; is currently running.
 
 Proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Script &apos;%1&apos; em execução
+
+Continuar?</translation>
     </message>
 </context>
 <context>
@@ -2502,28 +2508,28 @@ Proceed?</source>
     <message>
         <location filename="../scriptengine.cpp" line="226"/>
         <source>Choose file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um arquivo</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="235"/>
         <source>Choose folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha uma pasta</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="244"/>
         <source>Input text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto de entrada</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="252"/>
         <source>Choose item</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um ítem</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="259"/>
         <location filename="../scriptengine.cpp" line="266"/>
         <source>Input value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor de entrada</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="295"/>
@@ -2697,7 +2703,7 @@ Proceed?</source>
         <location filename="../scriptengine.cpp" line="2221"/>
         <location filename="../scriptengine.cpp" line="2239"/>
         <source>warning</source>
-        <translation type="unfinished"></translation>
+        <translation>aviso</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="295"/>
@@ -2705,12 +2711,12 @@ Proceed?</source>
         <location filename="../scriptengine.cpp" line="328"/>
         <location filename="../scriptengine.cpp" line="344"/>
         <source>project &apos;%1&apos; already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>projeto &apos;%1&apos; já existe</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="304"/>
         <source>project type &apos;%1&apos; doesn&apos;t exists - valid types are: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>tipo de projeto &apos;%1&apos; não existe - tipos válidos: %2</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="351"/>
@@ -2876,27 +2882,27 @@ Proceed?</source>
         <location filename="../scriptengine.cpp" line="2221"/>
         <location filename="../scriptengine.cpp" line="2239"/>
         <source>project &apos;%1&apos; doesn&apos;t exists</source>
-        <translation type="unfinished"></translation>
+        <translation>projeto &apos;%1&apos; não existe</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="383"/>
         <source>project &apos;%1&apos; hasn&apos;t run yet</source>
-        <translation type="unfinished"></translation>
+        <translation>projeto &apos;%1&apos; não foi executado ainda</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="1408"/>
         <source>none</source>
-        <translation type="unfinished">nenhum</translation>
+        <translation>nenhum</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="1414"/>
         <source>CHS template for vendorName = &apos;%1&apos;, diskName = &apos;%2&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Modelo de CHS para vendorName = &apos;%1&apos;, diskName = &apos;%2&apos; não existe</translation>
     </message>
     <message>
         <location filename="../scriptengine.cpp" line="2147"/>
         <source>project &apos;%1&apos; is already running</source>
-        <translation type="unfinished"></translation>
+        <translation>projeto &apos;%1&apos; já está executando</translation>
     </message>
 </context>
 <context>
@@ -2920,37 +2926,37 @@ Proceed?</source>
     <message>
         <location filename="../scriptwidget.ui" line="73"/>
         <source>Tools menu</source>
-        <translation type="unfinished">Menu de ferramentas</translation>
+        <translation>Menu de ferramentas</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="91"/>
         <source>Script editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor de scripts</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="106"/>
         <source>Script log</source>
-        <translation type="unfinished"></translation>
+        <translation>Registro do script</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="129"/>
         <source>Project monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Monitor de projeto</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="151"/>
         <source>Project ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID do Projeto</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="156"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="161"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando</translation>
     </message>
     <message>
         <location filename="../scriptwidget.ui" line="56"/>
@@ -2960,91 +2966,91 @@ Proceed?</source>
     <message>
         <location filename="../scriptwidget.cpp" line="42"/>
         <source>Maximum number of lines held in script log</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero máximo de linhas no registro do script</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="43"/>
         <source>Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Limite</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="44"/>
         <source>No limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem limite</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="69"/>
         <source>Load</source>
-        <translation type="unfinished">Carregar</translation>
+        <translation>Carregar</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="70"/>
         <source>Save</source>
-        <translation type="unfinished">Salvar</translation>
+        <translation>Salvar</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="71"/>
         <source>Save as...</source>
-        <translation type="unfinished">Salvar como...</translation>
+        <translation>Salvar como...</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="72"/>
         <source>Clone</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonar</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="73"/>
         <source>Copy log to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar registro para a área de transferência</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="95"/>
         <source>Running</source>
-        <translation type="unfinished">Executando</translation>
+        <translation>Executando</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="157"/>
         <location filename="../scriptwidget.cpp" line="224"/>
         <source>Choose script file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de script</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="157"/>
         <location filename="../scriptwidget.cpp" line="224"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="157"/>
         <location filename="../scriptwidget.cpp" line="224"/>
         <source>Script files (*.scr)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de script (*.scr)</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="202"/>
         <source>Failed loading script &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha carregando script &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="209"/>
         <location filename="../scriptwidget.cpp" line="223"/>
         <source>Noname-%1</source>
-        <translation type="unfinished">Semnome-%1</translation>
+        <translation>Semnome-%1</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="244"/>
         <source>Qt CHDMAN GUI script file -- please do not edit manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de script do Qt CHDMAN GUI -- por favor não editar manualmente</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="261"/>
         <source>Script &apos;%1&apos; saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Script &apos;%1&apos; salvo</translation>
     </message>
     <message>
         <location filename="../scriptwidget.cpp" line="263"/>
         <source>Failed saving script &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha salvando script &apos;%1&apos;</translation>
     </message>
 </context>
 </TS>

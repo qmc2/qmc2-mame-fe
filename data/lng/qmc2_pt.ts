@@ -518,17 +518,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="70"/>
         <location filename="../../arcademodesetup.ui" line="73"/>
         <source>Disable joystick function mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitar mapeamento de funções do joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="93"/>
         <source>Log debug messages of key-sequence mapping events to the console</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrar mensagens de debug de mapeamento de sequência de teclas no console</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="96"/>
         <source>Debug key-sequence mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Depurar mapeamento de sequência de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="103"/>
@@ -608,12 +608,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="342"/>
         <source>Log debug messages of joystick function mapping events to the console</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrar mensagens de debug de mapeamento de funções do joystick no console</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="345"/>
         <source>Debug joystick function mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Depurar mapeamento de funções do joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="377"/>
@@ -644,13 +644,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="978"/>
         <location filename="../../arcademodesetup.ui" line="1005"/>
         <source>Double-click to scan or clear a joystck function mapped to a key-sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique duplo para escanear ou limpar uma função do joystick mapeada para uma sequência de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="990"/>
         <location filename="../../arcademodesetup.ui" line="1017"/>
         <source>Joystick function</source>
-        <translation type="unfinished">Função do joystick</translation>
+        <translation>Função do joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="605"/>
@@ -845,12 +845,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="354"/>
         <location filename="../../arcademodesetup.ui" line="357"/>
         <source>Force use of joystick at specified index</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar uso do joystick no índice especificado</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="364"/>
         <source>Joystick index</source>
-        <translation type="unfinished"></translation>
+        <translation>Índice do joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="457"/>
@@ -886,13 +886,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="904"/>
         <location filename="../../arcademodesetup.ui" line="972"/>
         <source>ToxicWaste</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="910"/>
         <location filename="../../arcademodesetup.ui" line="937"/>
         <source>Double-click to scan or clear a custom key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Clique duplo para escanear ou limpar uma sequência de teclas personalizada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="917"/>
@@ -900,19 +900,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="985"/>
         <location filename="../../arcademodesetup.ui" line="1012"/>
         <source>Function / Key-sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Função / sequência de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="922"/>
         <location filename="../../arcademodesetup.ui" line="949"/>
         <source>Custom key-sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência de teclas personalizada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="931"/>
         <location filename="../../arcademodesetup.ui" line="999"/>
         <source>darkone</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="962"/>
@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="54"/>
         <source>Please enable joystick control!</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor habilite o controle por joystick!</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="71"/>
@@ -948,7 +948,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="182"/>
         <location filename="../../arcademodesetup.cpp" line="183"/>
         <source>Scanning key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Escaneando sequência de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="490"/>
@@ -6245,12 +6245,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../joyfuncscan.ui" line="93"/>
         <source>Clear joystick function</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar função do joystick</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="96"/>
         <source>Clear</source>
-        <translation type="unfinished">Limpar</translation>
+        <translation>Limpar</translation>
     </message>
 </context>
 <context>
@@ -6365,12 +6365,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../keyseqscan.ui" line="93"/>
         <source>Clear custom key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar sequência de teclas personalizada</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="96"/>
         <source>Clear</source>
-        <translation type="unfinished">Limpar</translation>
+        <translation>Limpar</translation>
     </message>
 </context>
 <context>
@@ -15447,82 +15447,82 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../arcade/keysequences.h" line="15"/>
         <source>Cursor up</source>
-        <translation type="unfinished">Cursor para cima</translation>
+        <translation>Cursor para cima</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="16"/>
         <source>Cursor down</source>
-        <translation type="unfinished">Cursor para baixo</translation>
+        <translation>Cursor para baixo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="17"/>
         <source>Cursor left</source>
-        <translation type="unfinished">Cursor para esquerda</translation>
+        <translation>Cursor para esquerda</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="18"/>
         <source>Cursor right</source>
-        <translation type="unfinished">Cursor para direita</translation>
+        <translation>Cursor para direita</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="19"/>
         <source>Page up</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="20"/>
         <source>Page down</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="21"/>
         <source>Start of list</source>
-        <translation type="unfinished"></translation>
+        <translation>Começo da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="22"/>
         <source>End of list</source>
-        <translation type="unfinished"></translation>
+        <translation>Fim da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="23"/>
         <location filename="../../arcade/keysequences.h" line="42"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sair</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="24"/>
         <location filename="../../arcade/keysequences.h" line="25"/>
         <location filename="../../arcade/keysequences.h" line="41"/>
         <source>Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar emulação</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="35"/>
         <location filename="../../arcade/keysequences.h" line="36"/>
         <location filename="../../arcade/keysequences.h" line="37"/>
         <source>Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar modo tela cheia / janela</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="38"/>
         <source>Focus search box</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar foco à caixa de busca</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="39"/>
         <source>Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar barra de menu</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="40"/>
         <source>Toggle preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar preferências</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="43"/>
         <source>Flip cabinet / game-card</source>
-        <translation type="unfinished"></translation>
+        <translation>Virar gabinete / cartão de jogo (game-card)</translation>
     </message>
 </context>
 <context>
