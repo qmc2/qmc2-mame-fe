@@ -508,82 +508,82 @@
     <message>
         <location filename="../keysequences.h" line="15"/>
         <source>Cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor para cima</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="16"/>
         <source>Cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor para baixo</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="17"/>
         <source>Cursor left</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor para esquerda</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="18"/>
         <source>Cursor right</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor para direita</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="19"/>
         <source>Page up</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="20"/>
         <source>Page down</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="21"/>
         <source>Start of list</source>
-        <translation type="unfinished"></translation>
+        <translation>Início da lista</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="22"/>
         <source>End of list</source>
-        <translation type="unfinished"></translation>
+        <translation>Fim da lista</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="23"/>
         <location filename="../keysequences.h" line="42"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sair</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="24"/>
         <location filename="../keysequences.h" line="25"/>
         <location filename="../keysequences.h" line="41"/>
         <source>Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar emulação</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="35"/>
         <location filename="../keysequences.h" line="36"/>
         <location filename="../keysequences.h" line="37"/>
         <source>Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar modo tela cheia / janela</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="38"/>
         <source>Focus search box</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar foco à caixa de busca</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="39"/>
         <source>Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar barra de menu</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="40"/>
         <source>Toggle preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar preferências</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="43"/>
         <source>Flip cabinet / game-card</source>
-        <translation type="unfinished"></translation>
+        <translation>Virar gabinete / cartão de jogo (game-card)</translation>
     </message>
 </context>
 <context>
@@ -706,7 +706,7 @@
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="922"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="921"/>
         <source>Auto-stop animation and wave effect?</source>
-        <translation type="unfinished"></translation>
+        <translation>Para automaticamente a animação e o efeito de onda?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="951"/>
