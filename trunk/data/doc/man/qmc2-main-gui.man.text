@@ -16,7 +16,7 @@ OPTIONS
 
   -cc  This command line option will instruct QMC2 to clear (remove) all emulator related cache files while starting up in order to forcibly reload this data from the emulator.
 
-  qt_arguments  See http://qt-project.org/doc/qt-4.8/qapplication.html#QApplication for more information. Note, however, that QMC2 will overwrite most of the available Qt arguments with its saved settings in qmc2.ini (see.
+  qt_arguments  See http://qt-project.org/doc/qt-4.8/qapplication.html#QApplication for more information. Note, however, that QMC2 will overwrite most of the available Qt arguments with its saved settings in CONFIG_PATH/qmc2.ini.
 
 FILES
   SYS_CONF_DIR/qmc2/qmc2.ini  System-wide default configuration (optional)
