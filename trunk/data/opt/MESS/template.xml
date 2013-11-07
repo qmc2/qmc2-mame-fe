@@ -834,7 +834,7 @@
       <description lang="us" text="HTTP server's listen port"/>
       <description lang="de" text="Listen Port des HTTP Servers"/>
     </option>
-    <option default="web" name="http_path" type="file">
+    <option default="web" name="http_path" type="directory">
       <description lang="us" text="Path to web files"/>
       <description lang="de" text="Pfad zu Web-Dateien"/>
     </option>
