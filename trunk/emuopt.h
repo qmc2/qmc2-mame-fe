@@ -113,8 +113,8 @@ class EmulatorOptions : public QTreeWidget
     QModelIndex item2index(QTreeWidgetItem *item, int column) const { return indexFromItem(item, column); }
 
   public slots:
-    void load(bool overwrite = false);
-    void save();
+    void load(bool overwrite = false, QString optName = QString());
+    void save(QString optName = QString());
     void restoreHeaderState();
     void saveHeaderState();
     void addChoices(QString, QStringList, QStringList, QString defaultChoice = QString(), bool sort = true);

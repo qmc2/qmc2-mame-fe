@@ -106,10 +106,10 @@ void EmulatorOptionActions::on_toolButtonStore_clicked()
 		globalValue = "<UNSET>";
 
 	currentValue = myItem->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-	QList<QTreeWidgetItem *> il;
 
 	if ( isGlobal ) {
 		if ( qmc2EmulatorOptions ) {
+			QList<QTreeWidgetItem *> il;
 			switch ( QMessageBox::question(this, tr("Confirm"), 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 						       tr("An open game-specific emulator configuration has been detected.\nUse local value for option '%1', overwrite with global value or don't apply?").arg(optionName),
@@ -118,21 +118,18 @@ void EmulatorOptionActions::on_toolButtonStore_clicked()
 #endif
 						       tr("&Local"), tr("&Overwrite"), tr("Do&n't apply"), 0, 2) ) {
 				case 0:
-					if ( currentValue == defaultValue )
-						qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName);
-					else
-						qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName, currentValue);
+					qmc2GlobalEmulatorOptions->save(optionName);
+					qmc2GlobalEmulatorOptions->load(false, optionName);
 					break;
 
 				case 1:
 					systemName = qmc2EmulatorOptions->settingsGroup.split("/").last();
-					if ( currentValue == defaultValue ) {
-						qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName);
+					if ( currentValue == defaultValue )
 						globalValue = "<UNSET>";
-					} else {
-						qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName, currentValue);
+					else
 						globalValue = currentValue;
-					}
+					qmc2GlobalEmulatorOptions->save(optionName);
+					qmc2GlobalEmulatorOptions->load(false, optionName);
 					qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Configuration/" + systemName + "/" + optionName);
 					il = qmc2EmulatorOptions->findItems(optionName, Qt::MatchRecursive | Qt::MatchExactly, QMC2_EMUOPT_COLUMN_OPTION);
 					if ( !il.isEmpty() ) {
@@ -150,10 +147,8 @@ void EmulatorOptionActions::on_toolButtonStore_clicked()
 			QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(updateAllEmuOptActions()));
 			QTimer::singleShot(0, qmc2EmulatorOptions, SLOT(updateAllEmuOptActions()));
 		} else {
-			if ( currentValue == defaultValue )
-				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName);
-			else
-				qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName, currentValue);
+			qmc2GlobalEmulatorOptions->save(optionName);
+			qmc2GlobalEmulatorOptions->load(false, optionName);
 			QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(updateAllEmuOptActions()));
 		}
 	} else {
