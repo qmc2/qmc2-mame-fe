@@ -320,7 +320,7 @@
       <description lang="pt" text="Automaticamente ajustar a velocidade do jogo para manter a taxa de refresh menor que a da tela"/>
       <description lang="es" text="Ajusta automáticamente la velocidad del juego para mantener el refresco de pantalla por debajo del monitor"/>
     </option>
-    <option default="true" name="multithreading" type="bool">
+    <option default="false" name="multithreading" type="bool">
       <description lang="us" text="Enable multithreading; this enables rendering and blitting on a separate thread"/>
       <description lang="de" text="Multi-Threading aktivieren; Render- und Blit-Operationen werden in eigenen Threads ausgeführt"/>
       <description lang="pl" text="Włącz wielowątkowość; ta opcja włącza renderowanie i rozmywanie w oddzielnym wątku"/>
