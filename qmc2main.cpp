@@ -4467,12 +4467,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         // save & cleanup existing game/machine specific emulator settings
         QString selectedEmulator;
         if ( qmc2EmulatorOptions ) {
+          qmc2EmulatorOptions->save();
           selectedEmulator = comboBoxEmuSelector->currentText();
           if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
             qmc2Config->remove(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator");
           else
             qmc2Config->setValue(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator", selectedEmulator);
-          qmc2EmulatorOptions->save();
           QLayout *vbl = configWidget->layout();
           if ( vbl ) delete vbl;
           delete labelEmuSelector;
@@ -4511,7 +4511,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         // emulator options
         qmc2EmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/" + gameName, configWidget);
         qmc2EmulatorOptions->load();
-	qmc2EmulatorOptions->show();
 
 #if defined(QMC2_EMUTYPE_MAME)
 	QString defaultChoice;
