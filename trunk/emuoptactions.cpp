@@ -1,15 +1,15 @@
 #include <QApplication>
 #include <QFontMetrics>
-#include <QSettings>
 #include <QMessageBox>
 
+#include "settings.h"
 #include "emuoptactions.h"
 #include "emuopt.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 extern EmulatorOptions *qmc2EmulatorOptions;
 

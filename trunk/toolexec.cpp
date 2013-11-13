@@ -1,12 +1,11 @@
-#include <QSettings>
-
+#include "settings.h"
 #include "toolexec.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args, QString workDir)
   : QDialog(parent)

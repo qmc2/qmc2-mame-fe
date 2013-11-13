@@ -5,7 +5,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	: QDialog(parent)

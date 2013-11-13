@@ -1,12 +1,11 @@
-#include <QSettings>
-
+#include "settings.h"
 #include "docbrowser.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 DocBrowser::DocBrowser(QWidget *parent)
 #if defined(QMC2_OS_WIN)

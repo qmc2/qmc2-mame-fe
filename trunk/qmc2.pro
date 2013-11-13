@@ -110,6 +110,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarestatefilter.cpp \
 			additionalartworksetup.cpp \
 			imageformatsetup.cpp \
+			settings.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -189,6 +190,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			additionalartworksetup.h \
 			imageformatsetup.h \
 			macros.h \
+			settings.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
 			minizip/zip.h \

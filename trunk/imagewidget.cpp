@@ -8,15 +8,15 @@
 #include <QClipboard>
 #include <QCache>
 #include <QTreeWidgetItem>
-#include <QSettings>
 
+#include "settings.h"
 #include "imagewidget.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;

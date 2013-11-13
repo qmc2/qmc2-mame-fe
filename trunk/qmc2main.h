@@ -9,6 +9,8 @@
 #include <QNetworkReply>
 #include <QWidgetAction>
 #include <QProxyStyle>
+
+#include "settings.h"
 #include "ui_qmc2main.h"
 #include "ui_options.h"
 #include "macros.h"

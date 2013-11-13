@@ -20,7 +20,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern Gamelist *qmc2Gamelist;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;

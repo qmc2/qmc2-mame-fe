@@ -1,12 +1,13 @@
 #ifndef ARCADESETTINGS_H
 #define ARCADESETTINGS_H
 
-#include <QSettings>
 #include <QLocale>
 #include <QSize>
 #include <QStringList>
 
-class ArcadeSettings : public QSettings
+#include "../settings.h"
+
+class ArcadeSettings : public Settings
 {
     Q_OBJECT
 

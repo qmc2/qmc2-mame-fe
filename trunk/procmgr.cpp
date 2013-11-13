@@ -1,7 +1,7 @@
 #include <QtGui>
-#include <QSettings>
 #include <QMap>
 
+#include "settings.h"
 #include "procmgr.h"
 #include "qmc2main.h"
 #include "embedder.h"
@@ -16,7 +16,7 @@ extern QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 ProcessManager::ProcessManager(QWidget *parent)
 	: QObject(parent)

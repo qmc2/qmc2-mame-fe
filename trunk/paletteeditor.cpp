@@ -1,12 +1,12 @@
 #include <QApplication>
-#include <QSettings>
 
+#include "settings.h"
 #include "paletteeditor.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern QPalette qmc2CustomPalette;
 
 QStringList PaletteEditor::colorNames;

@@ -29,6 +29,7 @@ SOURCES += main.cpp \
     processmanager.cpp \
     joystick.cpp \
     pointer.cpp \
+    ../settings.cpp \
     ../zlib/zutil.c \
     ../zlib/uncompr.c \
     ../zlib/trees.c \
@@ -82,6 +83,7 @@ HEADERS += \
     joystick.h \
     wheel.h \
     pointer.h \
+    ../settings.h \
     ../zlib/zutil.h \
     ../zlib/zlib.h \
     ../zlib/zconf.h \

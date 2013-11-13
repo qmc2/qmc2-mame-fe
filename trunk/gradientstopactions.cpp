@@ -1,9 +1,8 @@
-#include <QSettings>
-
+#include "settings.h"
 #include "gradientstopactions.h"
 #include "macros.h"
 
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 GradientStopActions::GradientStopActions(QTreeWidgetItem *item, QWidget *parent)
 	: QWidget(parent)

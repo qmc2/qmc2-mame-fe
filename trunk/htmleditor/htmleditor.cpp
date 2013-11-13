@@ -72,7 +72,7 @@
             SIGNAL(changed()), SLOT(adjustActions()));
 
 // external global variables
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2CleaningUp;
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QTreeWidgetItem *qmc2CurrentItem;

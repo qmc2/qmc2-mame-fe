@@ -1,8 +1,8 @@
 #include <QApplication>
 #include <QNetworkAccessManager>
-#include <QSettings>
 #include <QToolTip>
 
+#include "settings.h"
 #include "qmc2main.h"
 #include "macros.h"
 #include "downloaditem.h"
@@ -10,7 +10,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *parent)
   : QTreeWidgetItem(parent)

@@ -1,14 +1,14 @@
 #include <QApplication>
 #include <QFileDialog>
-#include <QSettings>
 #include "fileeditwidget.h"
 
+#include "settings.h"
 #include "qmc2main.h"
 #include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern QString qmc2FileEditStartPath;
 extern Options *qmc2Options;
 

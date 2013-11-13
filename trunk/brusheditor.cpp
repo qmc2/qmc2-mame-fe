@@ -1,4 +1,3 @@
-#include <QSettings>
 #include <QApplication>
 #include <QFileDialog>
 #include <QColorDialog>
@@ -6,6 +5,7 @@
 #include <QDoubleSpinBox>
 #include <QPalette>
 
+#include "settings.h"
 #include "brusheditor.h"
 #include "colorwidget.h"
 #include "gradientstopactions.h"
@@ -14,7 +14,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
 QStringList BrushEditor::patternNames;

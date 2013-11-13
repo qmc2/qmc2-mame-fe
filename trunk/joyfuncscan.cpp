@@ -1,6 +1,6 @@
 #if QMC2_JOYSTICK == 1
 
-#include <QSettings>
+#include "settings.h"
 #include "joyfuncscan.h"
 #include "macros.h"
 #include "options.h"
@@ -9,7 +9,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Options *qmc2Options;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 JoystickFunctionScanner::JoystickFunctionScanner(Joystick *joystick, bool showClearButton, QWidget *parent)
 	: QDialog(parent)

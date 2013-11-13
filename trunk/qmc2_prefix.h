@@ -31,7 +31,6 @@
 #include <QProcess>
 #include <QScrollBar>
 #include <QSet>
-#include <QSettings>
 #include <QSpinBox>
 #include <QStringList>
 #include <QStyleFactory>
@@ -43,6 +42,7 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
+#include "settings.h"
 #include "macros.h"
 
 #endif /* __cplusplus */

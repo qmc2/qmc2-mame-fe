@@ -1,7 +1,6 @@
 #if defined(QMC2_YOUTUBE_ENABLED)
 
 #include <QtTest>
-#include <QSettings>
 #include <QClipboard>
 #include <QInputDialog>
 #include <QImageReader>
@@ -12,6 +11,7 @@
 #include <QMap>
 #include <QCache>
 
+#include "settings.h"
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
@@ -20,7 +20,7 @@
 #include "videoitemwidget.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;

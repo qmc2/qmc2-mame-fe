@@ -1,6 +1,6 @@
-#include <QSettings>
 #include <QIcon>
 
+#include "settings.h"
 #include "imageformatsetup.h"
 #include "imagewidget.h"
 #include "qmc2main.h"
@@ -8,7 +8,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
 QStringList ImageFormatSetup::artworkClassPrefixes;

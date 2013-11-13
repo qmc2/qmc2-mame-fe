@@ -49,7 +49,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Options *qmc2Options;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern EmulatorOptions *qmc2EmulatorOptions;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
 extern ROMAlyzer *qmc2ROMAlyzer;

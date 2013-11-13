@@ -1,13 +1,13 @@
-#include <QSettings>
 #include <QFileDialog>
 
+#include "settings.h"
 #include "mawsqdlsetup.h"
 #include "options.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
 MawsQuickDownloadSetup::MawsQuickDownloadSetup(QWidget *parent)

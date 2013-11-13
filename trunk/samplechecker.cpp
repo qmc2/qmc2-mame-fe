@@ -1,10 +1,10 @@
-#include <QSettings>
 #include <QTimer>
 #include <QMap>
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
 
+#include "settings.h"
 #include "samplechecker.h"
 #include "gamelist.h"
 #include "qmc2main.h"
@@ -15,7 +15,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern ProcessManager *qmc2ProcessManager;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2SampleCheckActive;

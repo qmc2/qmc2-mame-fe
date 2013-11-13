@@ -1,5 +1,6 @@
-#include <QSettings>
 #include <QFileDialog>
+
+#include "settings.h"
 #include "imagechecker.h"
 #include "preview.h"
 #include "flyer.h"
@@ -23,7 +24,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QMap<QString, QIcon> qmc2IconMap;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
