@@ -1,4 +1,3 @@
-#include <QSettings>
 #include <QLineEdit>
 #include <QToolButton>
 #include <QCheckBox>
@@ -10,6 +9,7 @@
 #include <QList>
 #include <QIcon>
 
+#include "settings.h"
 #include "additionalartworksetup.h"
 #include "fileeditwidget.h"
 #include "direditwidget.h"
@@ -18,7 +18,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
 AdditionalArtworkSetup::AdditionalArtworkSetup(QWidget *parent)

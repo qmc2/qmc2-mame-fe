@@ -6,7 +6,7 @@
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 #ifndef QMC2_DEBUG
 #define QMC2_DEBUG

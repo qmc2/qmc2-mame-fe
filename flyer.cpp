@@ -1,10 +1,9 @@
-#include <QSettings>
-
+#include "settings.h"
 #include "flyer.h"
 #include "macros.h"
 
 // external global variables
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2UseFlyerFile;
 extern bool qmc2ScaledFlyer;
 

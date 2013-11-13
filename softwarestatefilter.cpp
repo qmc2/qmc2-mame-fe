@@ -1,15 +1,15 @@
 #include <QFont>
 #include <QFontMetrics>
-#include <QSettings>
 #include <QApplication>
 
+#include "settings.h"
 #include "softwarestatefilter.h"
 #include "softwarelist.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern SoftwareList *qmc2SoftwareList;
 
 SoftwareStateFilter::SoftwareStateFilter(QWidget *parent)

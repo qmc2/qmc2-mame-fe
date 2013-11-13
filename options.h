@@ -1,9 +1,6 @@
 #ifndef _OPTIONS_H_
 #define _OPTIONS_H_
 
-#include <QSettings>
-#include "ui_options.h"
-
 #include <QWidget>
 #include <QMap>
 #include <QLabel>
@@ -11,6 +8,9 @@
 #include <QCheckBox>
 #include <QSpinBox>
 #include <QScrollArea>
+
+#include "settings.h"
+#include "ui_options.h"
 #include "macros.h"
 
 #if QMC2_JOYSTICK == 1
@@ -77,7 +77,7 @@ class Options : public QDialog, public Ui::Options
   Q_OBJECT
 
   public:
-    QSettings *config;
+    Settings *config;
     bool applied;
     bool cancelClicked;
 #if QMC2_JOYSTICK == 1

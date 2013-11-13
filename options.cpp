@@ -129,7 +129,7 @@ extern DocBrowser *qmc2DocBrowser;
 extern int qmc2SortCriteria;
 extern Qt::SortOrder qmc2SortOrder;
 extern QMap<QString, QString> qmc2GamelistNameMap;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
 extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
@@ -213,7 +213,7 @@ Options::Options(QWidget *parent)
   if ( !userScopeDir.exists() )
     userScopeDir.mkdir(userScopePath);
 
-  config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
+  config = new Settings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
   QWebSettings::enablePersistentStorage(userScopePath);
 
@@ -1108,55 +1108,55 @@ void Options::on_pushButtonApply_clicked()
 
 #if defined(QMC2_EMUTYPE_MAME)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePreviewFile);
-  needReopenPreviewFile |= (config->value("MAME/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
+  needReopenPreviewFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
   qmc2UsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
   config->setValue("MAME/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
   config->setValue("MAME/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
   needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseFlyerFile);
-  needReopenFlyerFile |= (config->value("MAME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
+  needReopenFlyerFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
   qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
   config->setValue("MAME/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
   config->setValue("MAME/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
   needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseIconFile);
-  needReopenIconFile |= (config->value("MAME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
+  needReopenIconFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
   qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
   config->setValue("MAME/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
   config->setValue("MAME/FilesAndDirectories/IconFile", lineEditIconFile->text());
   needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseCabinetFile);
-  needReopenCabinetFile |= (config->value("MAME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
+  needReopenCabinetFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
   qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
   config->setValue("MAME/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
   config->setValue("MAME/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
   needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseControllerFile);
-  needReopenControllerFile |= (config->value("MAME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
+  needReopenControllerFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
   qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
   config->setValue("MAME/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
   config->setValue("MAME/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
   needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseMarqueeFile);
-  needReopenMarqueeFile |= (config->value("MAME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
+  needReopenMarqueeFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
   qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
   config->setValue("MAME/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
   config->setValue("MAME/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
   needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseTitleFile);
-  needReopenTitleFile |= (config->value("MAME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
+  needReopenTitleFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
   qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("MAME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("MAME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePCBFile);
-  needReopenPCBFile |= (config->value("MAME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
+  needReopenPCBFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
   qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("MAME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("MAME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
   needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseSoftwareSnapFile);
-  needReopenSoftwareSnapFile |= (config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
+  needReopenSoftwareSnapFile |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
   qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
@@ -1168,65 +1168,65 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
   config->setValue("MAME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
   s = lineEditGameInfoDB->text();
-  needManualReload |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
-  invalidateGameInfoDB |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
+  needManualReload |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
+  invalidateGameInfoDB |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
   config->setValue("MAME/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
   s = lineEditEmuInfoDB->text();
-  needManualReload |= (config->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
-  invalidateEmuInfoDB |= (config->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
+  needManualReload |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
+  invalidateEmuInfoDB |= (QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
   config->setValue("MAME/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
   config->setValue("MAME/FilesAndDirectories/CatverIni", lineEditCatverIniFile->text());
 #elif defined(QMC2_EMUTYPE_MESS)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePreviewFile);
-  needReopenPreviewFile |= (config->value("MESS/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
+  needReopenPreviewFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
   qmc2UsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
   config->setValue("MESS/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
   config->setValue("MESS/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
   needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseFlyerFile);
-  needReopenFlyerFile |= (config->value("MESS/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
+  needReopenFlyerFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
   qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
   config->setValue("MESS/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
   config->setValue("MESS/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
   needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseIconFile);
-  needReopenIconFile |= (config->value("MESS/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
+  needReopenIconFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
   qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
   config->setValue("MESS/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
   config->setValue("MESS/FilesAndDirectories/IconFile", lineEditIconFile->text());
   needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseCabinetFile);
-  needReopenCabinetFile |= (config->value("MESS/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
+  needReopenCabinetFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
   qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
   config->setValue("MESS/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
   config->setValue("MESS/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
   needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseControllerFile);
-  needReopenControllerFile |= (config->value("MESS/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
+  needReopenControllerFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
   qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
   config->setValue("MESS/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
   config->setValue("MESS/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
   needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseMarqueeFile);
-  needReopenMarqueeFile |= (config->value("MESS/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
+  needReopenMarqueeFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
   qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
   config->setValue("MESS/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
   config->setValue("MESS/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
   needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseTitleFile);
-  needReopenTitleFile |= (config->value("MESS/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
+  needReopenTitleFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
   qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("MESS/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("MESS/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePCBFile);
-  needReopenPCBFile |= (config->value("MESS/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
+  needReopenPCBFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
   qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("MESS/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("MESS/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
   needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseSoftwareSnapFile);
-  needReopenSoftwareSnapFile |= (config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
+  needReopenSoftwareSnapFile |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
   qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
@@ -1238,65 +1238,65 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
   config->setValue("MESS/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
   s = lineEditGameInfoDB->text();
-  needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
-  invalidateGameInfoDB |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
+  needManualReload |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
+  invalidateGameInfoDB |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   config->setValue("MESS/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
   s = lineEditEmuInfoDB->text();
-  needManualReload |= (config->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
-  invalidateEmuInfoDB |= (config->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
+  needManualReload |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
+  invalidateEmuInfoDB |= (QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
   config->setValue("MESS/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
   config->setValue("MESS/FilesAndDirectories/CategoryIni", lineEditCategoryIniFile->text());
 #elif defined(QMC2_EMUTYPE_UME)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePreviewFile);
-  needReopenPreviewFile |= (config->value("UME/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
+  needReopenPreviewFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
   qmc2UsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
   config->setValue("UME/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
   config->setValue("UME/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
   needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseFlyerFile);
-  needReopenFlyerFile |= (config->value("UME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
+  needReopenFlyerFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
   qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
   config->setValue("UME/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
   config->setValue("UME/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
   needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseIconFile);
-  needReopenIconFile |= (config->value("UME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
+  needReopenIconFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
   qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
   config->setValue("UME/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
   config->setValue("UME/FilesAndDirectories/IconFile", lineEditIconFile->text());
   needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseCabinetFile);
-  needReopenCabinetFile |= (config->value("UME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
+  needReopenCabinetFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
   qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
   config->setValue("UME/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
   config->setValue("UME/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
   needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseControllerFile);
-  needReopenControllerFile |= (config->value("UME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
+  needReopenControllerFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
   qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
   config->setValue("UME/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
   config->setValue("UME/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
   needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseMarqueeFile);
-  needReopenMarqueeFile |= (config->value("UME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
+  needReopenMarqueeFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
   qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
   config->setValue("UME/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
   config->setValue("UME/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
   needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseTitleFile);
-  needReopenTitleFile |= (config->value("UME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
+  needReopenTitleFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
   qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("UME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("UME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePCBFile);
-  needReopenPCBFile |= (config->value("UME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
+  needReopenPCBFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
   qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("UME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("UME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
   needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseSoftwareSnapFile);
-  needReopenSoftwareSnapFile |= (config->value("UME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
+  needReopenSoftwareSnapFile |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
   qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("UME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
@@ -1308,12 +1308,12 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
   config->setValue("UME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
   s = lineEditGameInfoDB->text();
-  needManualReload |= (config->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
-  invalidateGameInfoDB |= (config->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
+  needManualReload |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
+  invalidateGameInfoDB |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
   config->setValue("UME/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
   s = lineEditEmuInfoDB->text();
-  needManualReload |= (config->value("UME/FilesAndDirectories/EmuInfoDB").toString() != s);
-  invalidateEmuInfoDB |= (config->value("UME/FilesAndDirectories/EmuInfoDB").toString() != s);
+  needManualReload |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/EmuInfoDB").toString() != s);
+  invalidateEmuInfoDB |= (QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/EmuInfoDB").toString() != s);
   config->setValue("UME/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
   config->setValue("UME/FilesAndDirectories/CatverIni", lineEditCatverIniFile->text());
   config->setValue("UME/FilesAndDirectories/CategoryIni", lineEditCategoryIniFile->text());
@@ -2095,7 +2095,7 @@ void Options::on_pushButtonApply_clicked()
 		  if ( needReopenFile ) {
 			  if ( iw->useZip() ) {
 				  iw->imageFileMap.clear();
-				  foreach (QString filePath, iw->imageZip().split(";", QString::SkipEmptyParts)) {
+				  foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
 					  unzFile imageFile = unzOpen(filePath.toLocal8Bit());
 					  if ( imageFile == NULL )
 						  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(iw->imageType()).arg(filePath));
@@ -2191,7 +2191,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     QFile f(fn);
     f.copy(fn + ".bak");
     f.remove();
-    config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
+    config = new Settings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
     qmc2Config = config;
   }
 
@@ -2288,207 +2288,205 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   
   // Files / Directories
 #if defined(QMC2_YOUTUBE_ENABLED)
-  QString youTubeCachePath = config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
-  QDir youTubeCacheDir(youTubeCachePath);
-  youTubeCachePath = youTubeCacheDir.absolutePath();
+  QDir youTubeCacheDir(config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString());
   if ( !youTubeCacheDir.exists() )
-    youTubeCacheDir.mkdir(youTubeCachePath);
-  config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", youTubeCachePath);
+    youTubeCacheDir.mkdir(youTubeCacheDir.absolutePath());
+  config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString());
 #endif
-  lineEditDataDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", QMC2_DEFAULT_DATA_PATH + "/").toString());
+  lineEditDataDirectory->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", QMC2_DEFAULT_DATA_PATH + "/").toString());
 #if defined(QMC2_EMUTYPE_MAME)
 #if defined(QMC2_SDLMAME)
-  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmame.log").toString());
+  lineEditTemporaryFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+  lineEditFrontendLogFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmame.log").toString());
 #elif defined(QMC2_MAME)
-  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-mame.log").toString());
+  lineEditTemporaryFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+  lineEditFrontendLogFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-mame.log").toString());
 #endif
-  lineEditPreviewDirectory->setText(config->value("MAME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
-  lineEditPreviewFile->setText(config->value("MAME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  lineEditPreviewDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
+  lineEditPreviewFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
   qmc2UsePreviewFile = config->value("MAME/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
-  lineEditFlyerDirectory->setText(config->value("MAME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
-  lineEditFlyerFile->setText(config->value("MAME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  lineEditFlyerDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
+  lineEditFlyerFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
   qmc2UseFlyerFile = config->value("MAME/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
-  lineEditIconDirectory->setText(config->value("MAME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
-  lineEditIconFile->setText(config->value("MAME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  lineEditIconDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
+  lineEditIconFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
   qmc2UseIconFile = config->value("MAME/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
-  lineEditCabinetDirectory->setText(config->value("MAME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
-  lineEditCabinetFile->setText(config->value("MAME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  lineEditCabinetDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
+  lineEditCabinetFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
   qmc2UseCabinetFile = config->value("MAME/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
-  lineEditControllerDirectory->setText(config->value("MAME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
-  lineEditControllerFile->setText(config->value("MAME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  lineEditControllerDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
+  lineEditControllerFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
   qmc2UseControllerFile = config->value("MAME/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
-  lineEditMarqueeDirectory->setText(config->value("MAME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
-  lineEditMarqueeFile->setText(config->value("MAME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
+  lineEditMarqueeDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
+  lineEditMarqueeFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
   qmc2UseMarqueeFile = config->value("MAME/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
-  lineEditTitleDirectory->setText(config->value("MAME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
-  lineEditTitleFile->setText(config->value("MAME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  lineEditTitleDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
+  lineEditTitleFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
   qmc2UseTitleFile = config->value("MAME/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
-  lineEditPCBDirectory->setText(config->value("MAME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
-  lineEditPCBFile->setText(config->value("MAME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  lineEditPCBDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  lineEditPCBFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
   qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
-  lineEditSoftwareSnapDirectory->setText(config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
-  lineEditSoftwareSnapFile->setText(config->value("MAME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  lineEditSoftwareSnapDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
+  lineEditSoftwareSnapFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
   qmc2UseSoftwareSnapFile = config->value("MAME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
-  lineEditSoftwareNotesFolder->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
-  lineEditSoftwareNotesTemplate->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
+  lineEditSoftwareNotesFolder->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
+  lineEditSoftwareNotesTemplate->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
-  lineEditSystemNotesFolder->setText(config->value("MAME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
-  lineEditSystemNotesTemplate->setText(config->value("MAME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+  lineEditSystemNotesFolder->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
+  lineEditSystemNotesTemplate->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
   checkBoxUseSystemNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
-  lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
-  lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
-  lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
+  lineEditGameInfoDB->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditEmuInfoDB->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
+  lineEditCatverIniFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
   checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
 #elif defined(QMC2_EMUTYPE_MESS)
 #if defined(QMC2_SDLMESS)
-  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
-  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmess.log").toString());
+  lineEditTemporaryFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+  lineEditFrontendLogFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmess.log").toString());
 #elif defined(QMC2_MESS)
-  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
-  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-mess.log").toString());
+  lineEditTemporaryFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+  lineEditFrontendLogFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-mess.log").toString());
 #endif
-  lineEditPreviewDirectory->setText(config->value("MESS/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
-  lineEditPreviewFile->setText(config->value("MESS/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  lineEditPreviewDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
+  lineEditPreviewFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
   qmc2UsePreviewFile = config->value("MESS/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
-  lineEditFlyerDirectory->setText(config->value("MESS/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
-  lineEditFlyerFile->setText(config->value("MESS/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  lineEditFlyerDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
+  lineEditFlyerFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
   qmc2UseFlyerFile = config->value("MESS/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
-  lineEditIconDirectory->setText(config->value("MESS/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
-  lineEditIconFile->setText(config->value("MESS/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  lineEditIconDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
+  lineEditIconFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
   qmc2UseIconFile = config->value("MESS/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
-  lineEditCabinetDirectory->setText(config->value("MESS/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
-  lineEditCabinetFile->setText(config->value("MESS/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  lineEditCabinetDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
+  lineEditCabinetFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
   qmc2UseCabinetFile = config->value("MESS/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
-  lineEditControllerDirectory->setText(config->value("MESS/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
-  lineEditControllerFile->setText(config->value("MESS/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  lineEditControllerDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
+  lineEditControllerFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
   qmc2UseControllerFile = config->value("MESS/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
-  lineEditMarqueeDirectory->setText(config->value("MESS/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
-  lineEditMarqueeFile->setText(config->value("MESS/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/logos.zip").toString());
+  lineEditMarqueeDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
+  lineEditMarqueeFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/logos.zip").toString());
   qmc2UseMarqueeFile = config->value("MESS/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Logo file") : tr("Logo directory"));
-  lineEditTitleDirectory->setText(config->value("MESS/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
-  lineEditTitleFile->setText(config->value("MESS/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  lineEditTitleDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
+  lineEditTitleFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
   qmc2UseTitleFile = config->value("MESS/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
-  lineEditPCBDirectory->setText(config->value("MESS/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
-  lineEditPCBFile->setText(config->value("MESS/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  lineEditPCBDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  lineEditPCBFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
   qmc2UsePCBFile = config->value("MESS/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
-  lineEditSoftwareSnapDirectory->setText(config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
-  lineEditSoftwareSnapFile->setText(config->value("MESS/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  lineEditSoftwareSnapDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
+  lineEditSoftwareSnapFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
   qmc2UseSoftwareSnapFile = config->value("MESS/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
-  lineEditSoftwareNotesFolder->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
-  lineEditSoftwareNotesTemplate->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
+  lineEditSoftwareNotesFolder->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
+  lineEditSoftwareNotesTemplate->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
-  lineEditSystemNotesFolder->setText(config->value("MESS/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
-  lineEditSystemNotesTemplate->setText(config->value("MESS/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+  lineEditSystemNotesFolder->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
+  lineEditSystemNotesTemplate->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
   checkBoxUseSystemNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
-  lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
-  lineEditEmuInfoDB->setText(config->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
-  lineEditCategoryIniFile->setText(config->value("MESS/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
+  lineEditGameInfoDB->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
+  lineEditEmuInfoDB->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
+  lineEditCategoryIniFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
   checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool());
 #elif defined(QMC2_EMUTYPE_UME)
 #if defined(QMC2_SDLUME)
-  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
-  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlume.log").toString());
+  lineEditTemporaryFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlume.tmp").toString());
+  lineEditFrontendLogFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlume.log").toString());
 #elif defined(QMC2_UME)
-  lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
-  lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-ume.log").toString());
+  lineEditTemporaryFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-ume.tmp").toString());
+  lineEditFrontendLogFile->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-ume.log").toString());
 #endif
-  lineEditPreviewDirectory->setText(config->value("UME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
-  lineEditPreviewFile->setText(config->value("UME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  lineEditPreviewDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
+  lineEditPreviewFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
   qmc2UsePreviewFile = config->value("UME/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
-  lineEditFlyerDirectory->setText(config->value("UME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
-  lineEditFlyerFile->setText(config->value("UME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  lineEditFlyerDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
+  lineEditFlyerFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
   qmc2UseFlyerFile = config->value("UME/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
-  lineEditIconDirectory->setText(config->value("UME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
-  lineEditIconFile->setText(config->value("UME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  lineEditIconDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
+  lineEditIconFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
   qmc2UseIconFile = config->value("UME/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
-  lineEditCabinetDirectory->setText(config->value("UME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
-  lineEditCabinetFile->setText(config->value("UME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  lineEditCabinetDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
+  lineEditCabinetFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
   qmc2UseCabinetFile = config->value("UME/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
-  lineEditControllerDirectory->setText(config->value("UME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
-  lineEditControllerFile->setText(config->value("UME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  lineEditControllerDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
+  lineEditControllerFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
   qmc2UseControllerFile = config->value("UME/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
-  lineEditMarqueeDirectory->setText(config->value("UME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
-  lineEditMarqueeFile->setText(config->value("UME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
+  lineEditMarqueeDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
+  lineEditMarqueeFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
   qmc2UseMarqueeFile = config->value("UME/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
-  lineEditTitleDirectory->setText(config->value("UME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
-  lineEditTitleFile->setText(config->value("UME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  lineEditTitleDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
+  lineEditTitleFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
   qmc2UseTitleFile = config->value("UME/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
-  lineEditPCBDirectory->setText(config->value("UME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
-  lineEditPCBFile->setText(config->value("UME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  lineEditPCBDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  lineEditPCBFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
   qmc2UsePCBFile = config->value("UME/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
-  lineEditSoftwareSnapDirectory->setText(config->value("UME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
-  lineEditSoftwareSnapFile->setText(config->value("UME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  lineEditSoftwareSnapDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
+  lineEditSoftwareSnapFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
   qmc2UseSoftwareSnapFile = config->value("UME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
-  lineEditSoftwareNotesFolder->setText(config->value("UME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
-  lineEditSoftwareNotesTemplate->setText(config->value("UME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
+  lineEditSoftwareNotesFolder->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
+  lineEditSoftwareNotesTemplate->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
   checkBoxUseSoftwareNotesTemplate->setChecked(config->value("UME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
-  lineEditSystemNotesFolder->setText(config->value("UME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
-  lineEditSystemNotesTemplate->setText(config->value("UME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
+  lineEditSystemNotesFolder->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
+  lineEditSystemNotesTemplate->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
   checkBoxUseSystemNotesTemplate->setChecked(config->value("UME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
-  lineEditGameInfoDB->setText(config->value("UME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
-  lineEditEmuInfoDB->setText(config->value("UME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
-  lineEditCatverIniFile->setText(config->value("UME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
+  lineEditGameInfoDB->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditEmuInfoDB->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
+  lineEditCatverIniFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
   checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
-  lineEditCategoryIniFile->setText(config->value("UME/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
+  lineEditCategoryIniFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
   checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool());
 #endif
-  lineEditSoftwareInfoDB->setText(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditSoftwareInfoDB->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
 
   // Gamelist
   checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool());
@@ -2601,12 +2599,12 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // Network / Proxy
   checkBoxRestoreCookies->setChecked(config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool());
-  lineEditCookieDatabase->setText(config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", userScopePath + "/qmc2-" + QMC2_EMU_NAME_VARIANT.toLower() + "-cookies.db").toString());
-  lineEditZipTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
+  lineEditCookieDatabase->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", userScopePath + "/qmc2-" + QMC2_EMU_NAME_VARIANT.toLower() + "-cookies.db").toString());
+  lineEditZipTool->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
   lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
-  lineEditRomTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
+  lineEditRomTool->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
   lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ \"$DESCRIPTION$\"").toString());
-  lineEditRomToolWorkingDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
+  lineEditRomToolWorkingDirectory->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
   checkBoxCopyToolOutput->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", true).toBool());
   checkBoxCloseToolDialog->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool());
 
@@ -2624,18 +2622,18 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // Files and directories
 #if defined(QMC2_EMUTYPE_MAME)
-  lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
-  lineEditWorkingDirectory->setText(config->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
+  lineEditExecutableFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
+  lineEditWorkingDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
-  lineEditMESSVariantExe->setText(config->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
-  lineEditUMEVariantExe->setText(config->value("MAME/FilesAndDirectories/UMEVariantExe", "").toString());
+  lineEditMESSVariantExe->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
+  lineEditUMEVariantExe->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
-  lineEditEmulatorLogFile->setText(config->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
-  lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
-  lineEditGamelistCacheFile->setText(config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
-  lineEditROMStateCacheFile->setText(config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
-  //lineEditSlotInfoCacheFile->setText(config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
-  lineEditSoftwareListCache->setText(config->value("MAME/FilesAndDirectories/SoftwareListCache", userScopePath + "/mame.swl").toString());
+  lineEditEmulatorLogFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
+  lineEditListXMLCache->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
+  lineEditGamelistCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
+  lineEditROMStateCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
+  //lineEditSlotInfoCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
+  lineEditSoftwareListCache->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/SoftwareListCache", userScopePath + "/mame.swl").toString());
   QString mawsCachePath = config->value("MAME/FilesAndDirectories/MAWSCacheDirectory", userScopePath + "/maws/").toString();
   QDir mawsCacheDir(mawsCachePath);
   mawsCachePath = mawsCacheDir.absolutePath();
@@ -2643,61 +2641,59 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     mawsCacheDir.mkdir(mawsCachePath);
   lineEditMAWSCacheDirectory->setText(mawsCachePath);
 #if defined(QMC2_SDLMAME)
-  lineEditOptionsTemplateFile->setText(config->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml").toString());
+  lineEditOptionsTemplateFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml").toString());
 #elif defined(QMC2_MAME)
-  lineEditOptionsTemplateFile->setText(config->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml").toString());
+  lineEditOptionsTemplateFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml").toString());
 #endif
-  lineEditFavoritesFile->setText(config->value("MAME/FilesAndDirectories/FavoritesFile", userScopePath + "/mame.fav").toString());
-  lineEditHistoryFile->setText(config->value("MAME/FilesAndDirectories/HistoryFile", userScopePath + "/mame.hst").toString());
+  lineEditFavoritesFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/FavoritesFile", userScopePath + "/mame.fav").toString());
+  lineEditHistoryFile->setText(QMC2_SETTINGS_RAW(config)->value("MAME/FilesAndDirectories/HistoryFile", userScopePath + "/mame.hst").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
-  lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
-  lineEditWorkingDirectory->setText(config->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
+  lineEditExecutableFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
+  lineEditWorkingDirectory->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
-  lineEditMAMEVariantExe->setText(config->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
-  lineEditUMEVariantExe->setText(config->value("MESS/FilesAndDirectories/UMEVariantExe", "").toString());
+  lineEditMAMEVariantExe->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
+  lineEditUMEVariantExe->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
-  lineEditEmulatorLogFile->setText(config->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
-  lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
-  lineEditGamelistCacheFile->setText(config->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
-  lineEditROMStateCacheFile->setText(config->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
-  lineEditSlotInfoCacheFile->setText(config->value("MESS/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString());
-  lineEditSoftwareListCache->setText(config->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString());
-  lineEditGeneralSoftwareFolder->setText(config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
+  lineEditEmulatorLogFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
+  lineEditListXMLCache->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
+  lineEditGamelistCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
+  lineEditROMStateCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
+  lineEditSlotInfoCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString());
+  lineEditSoftwareListCache->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString());
+  lineEditGeneralSoftwareFolder->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
 #if defined(QMC2_SDLMESS)
-  lineEditOptionsTemplateFile->setText(config->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml").toString());
+  lineEditOptionsTemplateFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml").toString());
 #elif defined(QMC2_MESS)
-  lineEditOptionsTemplateFile->setText(config->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MESS/template.xml").toString());
+  lineEditOptionsTemplateFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MESS/template.xml").toString());
 #endif
-  lineEditFavoritesFile->setText(config->value("MESS/FilesAndDirectories/FavoritesFile", userScopePath + "/mess.fav").toString());
-  lineEditHistoryFile->setText(config->value("MESS/FilesAndDirectories/HistoryFile", userScopePath + "/mess.hst").toString());
+  lineEditFavoritesFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/FavoritesFile", userScopePath + "/mess.fav").toString());
+  lineEditHistoryFile->setText(QMC2_SETTINGS_RAW(config)->value("MESS/FilesAndDirectories/HistoryFile", userScopePath + "/mess.hst").toString());
 #elif defined(QMC2_EMUTYPE_UME)
-  lineEditExecutableFile->setText(config->value("UME/FilesAndDirectories/ExecutableFile", "").toString());
-  lineEditWorkingDirectory->setText(config->value("UME/FilesAndDirectories/WorkingDirectory", "").toString());
+  lineEditExecutableFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/ExecutableFile", "").toString());
+  lineEditWorkingDirectory->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
-  lineEditMAMEVariantExe->setText(config->value("UME/FilesAndDirectories/MAMEVariantExe", "").toString());
-  lineEditMESSVariantExe->setText(config->value("UME/FilesAndDirectories/MESSVariantExe", "").toString());
+  lineEditMAMEVariantExe->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/MAMEVariantExe", "").toString());
+  lineEditMESSVariantExe->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/MESSVariantExe", "").toString());
 #endif
-  lineEditEmulatorLogFile->setText(config->value("UME/FilesAndDirectories/LogFile", userScopePath + "/ume.log").toString());
-  lineEditListXMLCache->setText(config->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString());
-  lineEditGamelistCacheFile->setText(config->value("UME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/ume.glc").toString());
-  lineEditROMStateCacheFile->setText(config->value("UME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/ume.rsc").toString());
-  lineEditSlotInfoCacheFile->setText(config->value("UME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString());
-  lineEditSoftwareListCache->setText(config->value("UME/FilesAndDirectories/SoftwareListCache", userScopePath + "/ume.swl").toString());
-  lineEditGeneralSoftwareFolder->setText(config->value("UME/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
+  lineEditEmulatorLogFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/LogFile", userScopePath + "/ume.log").toString());
+  lineEditListXMLCache->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString());
+  lineEditGamelistCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/ume.glc").toString());
+  lineEditROMStateCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/ume.rsc").toString());
+  lineEditSlotInfoCacheFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString());
+  lineEditSoftwareListCache->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/SoftwareListCache", userScopePath + "/ume.swl").toString());
+  lineEditGeneralSoftwareFolder->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
 #if defined(QMC2_SDLUME)
-  lineEditOptionsTemplateFile->setText(config->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml").toString());
+  lineEditOptionsTemplateFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLUME/template.xml").toString());
 #elif defined(QMC2_UME)
-  lineEditOptionsTemplateFile->setText(config->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/UME/template.xml").toString());
+  lineEditOptionsTemplateFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/UME/template.xml").toString());
 #endif
-  lineEditFavoritesFile->setText(config->value("UME/FilesAndDirectories/FavoritesFile", userScopePath + "/ume.fav").toString());
-  lineEditHistoryFile->setText(config->value("UME/FilesAndDirectories/HistoryFile", userScopePath + "/ume.hst").toString());
+  lineEditFavoritesFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/FavoritesFile", userScopePath + "/ume.fav").toString());
+  lineEditHistoryFile->setText(QMC2_SETTINGS_RAW(config)->value("UME/FilesAndDirectories/HistoryFile", userScopePath + "/ume.hst").toString());
 #endif
-  QString swStateCachePath = config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString();
-  lineEditSoftwareStateCache->setText(swStateCachePath);
-  QDir swStateCacheDir(swStateCachePath);
-  swStateCachePath = swStateCacheDir.absolutePath();
+  QDir swStateCacheDir(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString());
   if ( !swStateCacheDir.exists() )
-	  swStateCacheDir.mkdir(swStateCachePath);
+	  swStateCacheDir.mkdir(swStateCacheDir.absolutePath());
+  lineEditSoftwareStateCache->setText(QMC2_SETTINGS_RAW(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString());
 
   // Additional emulators
   tableWidgetRegisteredEmulators->clearContents();
@@ -2742,7 +2738,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     QFile f(fn + ".bak");
     f.copy(fn);
     f.remove();
-    config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
+    config = new Settings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
     qmc2Config = config;
   }
 

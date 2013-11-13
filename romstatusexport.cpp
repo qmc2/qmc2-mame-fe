@@ -14,7 +14,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Options *qmc2Options;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2WidgetsEnabled;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern Gamelist *qmc2Gamelist;

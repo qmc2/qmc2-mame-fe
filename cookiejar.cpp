@@ -1,15 +1,16 @@
 #include <QDir>
-#include <QSettings>
 #include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMultiMap>
+
+#include "settings.h"
 #include "cookiejar.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 {

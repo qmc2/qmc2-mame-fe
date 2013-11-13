@@ -224,7 +224,7 @@ bool Welcome::checkConfig()
 #endif
   QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DYNAMIC_DOT_PATH);
 
-  startupConfig = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
+  startupConfig = new Settings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
 #if defined(QMC2_SDLMAME)
   variant = "qmc2-sdlmame";

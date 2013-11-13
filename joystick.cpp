@@ -1,13 +1,13 @@
 #if QMC2_JOYSTICK == 1
 
-#include <QSettings>
+#include "settings.h"
 #include "joystick.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2JoystickIsCalibrating;
 
 Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay)

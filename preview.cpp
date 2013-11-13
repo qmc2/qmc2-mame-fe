@@ -1,10 +1,9 @@
-#include <QSettings>
-
+#include "settings.h"
 #include "preview.h"
 #include "macros.h"
 
 // external global variables
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2UsePreviewFile;
 extern bool qmc2ScaledPreview;
 

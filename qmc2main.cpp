@@ -94,7 +94,7 @@
 MainWindow *qmc2MainWindow = NULL;
 Gamelist *qmc2Gamelist = NULL;
 Options *qmc2Options = NULL;
-QSettings *qmc2Config = NULL;
+Settings *qmc2Config = NULL;
 EmulatorOptions *qmc2GlobalEmulatorOptions = NULL;
 EmulatorOptions *qmc2EmulatorOptions = NULL;
 ProcessManager *qmc2ProcessManager = NULL;
@@ -2045,9 +2045,10 @@ void MainWindow::on_actionPlay_triggered(bool)
 
   QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
   QString workingDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString();
+  QStringList argsResolved = Settings::stResolve(args);
 
   // start game/machine
-  qmc2ProcessManager->process(qmc2ProcessManager->start(command, args, true, workingDirectory, softwareLists, softwareNames));
+  qmc2ProcessManager->process(qmc2ProcessManager->start(command, argsResolved, true, workingDirectory, softwareLists, softwareNames));
 
   qmc2AutoMinimizedWidgets.clear();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {

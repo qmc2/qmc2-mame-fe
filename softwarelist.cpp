@@ -17,7 +17,7 @@
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;

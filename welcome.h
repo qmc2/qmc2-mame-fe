@@ -1,8 +1,8 @@
 #ifndef _WELCOME_H_
 #define _WELCOME_H_
 
-#include <QSettings>
 #include "ui_welcome.h"
+#include "settings.h"
 #include "macros.h"
 
 class Welcome : public QDialog, public Ui::Welcome

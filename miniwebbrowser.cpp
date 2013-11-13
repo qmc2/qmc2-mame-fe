@@ -3,7 +3,6 @@
 #include <QNetworkAccessManager>
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QSettings>
 #include <QDir>
 #if QT_VERSION >= 0x050000
 #include <QtWebKitWidgets/QWebFrame>
@@ -14,6 +13,7 @@
 #endif
 #include <QWebHistory>
 
+#include "settings.h"
 #include "miniwebbrowser.h"
 #include "macros.h"
 #include "qmc2main.h"
@@ -21,7 +21,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 QCache<QString, QIcon> MiniWebBrowser::iconCache;
 QStringList MiniWebBrowser::supportedSchemes;

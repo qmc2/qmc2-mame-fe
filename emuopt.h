@@ -5,13 +5,13 @@
 #include <QModelIndex>
 #include <QCheckBox>
 #include <QTreeWidget>
-#include <QSettings>
 #include <QMap>
 #include <QTimer>
 #include <QTime>
 #include <QKeyEvent>
 #include <QXmlStreamReader>
 
+#include "settings.h"
 #include "macros.h"
 #include "iconlineedit.h"
 

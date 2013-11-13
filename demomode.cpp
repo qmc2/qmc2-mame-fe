@@ -1,8 +1,8 @@
 #include <QMap>
 #include <QTreeWidgetItem>
 #include <QStringList>
-#include <QSettings>
 
+#include "settings.h"
 #include "demomode.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -16,7 +16,7 @@ extern QString qmc2DemoGame;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern QMap<QString, QString *> qmc2CategoryMap;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)

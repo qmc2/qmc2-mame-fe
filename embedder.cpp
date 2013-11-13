@@ -17,7 +17,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern bool qmc2FifoIsOpen;
 
 #if defined(QMC2_OS_WIN)

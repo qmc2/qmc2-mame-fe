@@ -1,13 +1,13 @@
-#include <QSettings>
 #include <QColorDialog>
 
+#include "settings.h"
 #include "colorwidget.h"
 #include "brusheditor.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 ColorWidget::ColorWidget(QString gname, QString cname, QPalette::ColorGroup group, QPalette::ColorRole role, QColor color, QBrush brush, QWidget *parent, bool showBrushButton, bool simpleTxt)
 	: QWidget(parent)

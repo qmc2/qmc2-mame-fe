@@ -1,17 +1,18 @@
 #include <QTableView>
-#include <QSettings>
 #include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QNetworkAccessManager>
 #include <QSortFilterProxyModel>
+
+#include "settings.h"
 #include "qmc2main.h"
 #include "macros.h"
 #include "cookiemanager.h"
 #include "cookiejar.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
 
 CookieManager::CookieManager(QWidget *parent) : QDialog(parent)

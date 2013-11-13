@@ -1,14 +1,17 @@
-#include "customidsetup.h"
-#include "macros.h"
+
+#include <QtCore>
 #if QT_VERSION >= 0x050000
 #include <QMenu>
 #endif
 
+#include "settings.h"
+#include "customidsetup.h"
+#include "macros.h"
 #if defined(QMC2_DEBUG)
 #include "qmc2main.h"
 extern MainWindow *qmc2MainWindow;
 #endif
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 
 CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 	: QDialog(parent)

@@ -2,11 +2,11 @@
 
 #if QMC2_USE_PHONON_API
 
-#include <QSettings>
+#include "settings.h"
 #include "audioeffects.h"
 #include "qmc2main.h"
 
-extern QSettings *qmc2Config;
+extern Settings *qmc2Config;
 extern MainWindow *qmc2MainWindow;
 
 AudioEffectDialog::AudioEffectDialog(QWidget *parent)

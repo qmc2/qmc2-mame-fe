@@ -4,7 +4,7 @@
 extern int emulatorMode;
 
 ArcadeSettings::ArcadeSettings(QString theme)
-    : QSettings(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_APP_NAME)
+    : Settings(QSettings::IniFormat, QSettings::UserScope, QMC2_ARCADE_APP_NAME)
 {
     arcadeTheme = theme;
     switch ( emulatorMode ) {
