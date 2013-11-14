@@ -591,9 +591,8 @@ endif
 endif
 ifeq '$(DISTCFG)' '1'
 DISTCFGFILE = $(shell scripts/os-detect.sh | $(GREP) "Distribution cfg-file" | $(COLRM) 1 30)
-DIST = $(shell scripts/os-detect.sh | $(GREP) "Distribution / OS version" | $(COLRM) 1 30)
 ifeq ($(wildcard $(DISTCFGFILE)),)
-$(info No distribution specific configuration found for '$(DIST)')
+$(info No distribution specific configuration found for '$(shell scripts/os-detect.sh | $(GREP) "Distribution / OS version" | $(COLRM) 1 30)')
 else
 include $(DISTCFGFILE)
 endif
