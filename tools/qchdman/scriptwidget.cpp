@@ -13,11 +13,11 @@
 #include "scriptwidget.h"
 #include "scripteditor.h"
 #include "mainwindow.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 #include "ecmascripthighlighter.h"
 #include "macros.h"
 
-extern Settings *globalConfig;
+extern QtChdmanGuiSettings *globalConfig;
 extern MainWindow *mainWindow;
 extern quint64 runningScripts;
 

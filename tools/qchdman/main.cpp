@@ -2,13 +2,13 @@
 #include <QApplication>
 
 #include "mainwindow.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 #include "macros.h"
 
 quint64 runningProjects = 0;
 quint64 runningScripts = 0;
 MainWindow *mainWindow = NULL;
-Settings *globalConfig = NULL;
+QtChdmanGuiSettings *globalConfig = NULL;
 
 int main(int argc, char *argv[])
 {
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(QCHDMAN_ORG_DOMAIN);
     QCoreApplication::setApplicationName(QCHDMAN_APP_NAME);
     QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_DYN_DOT_PATH);
-    globalConfig = new Settings();
+    globalConfig = new QtChdmanGuiSettings();
     globalConfig->setApplicationVersion(QCHDMAN_APP_VERSION);
 
     // load translations

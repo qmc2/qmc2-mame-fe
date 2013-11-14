@@ -7,9 +7,9 @@
 #include "scriptwidget.h"
 #include "mainwindow.h"
 #include "macros.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 
-extern Settings *globalConfig;
+extern QtChdmanGuiSettings *globalConfig;
 extern MainWindow *mainWindow;
 
 ProjectWindow::ProjectWindow(QString pn, int type, QWidget *parent) :
