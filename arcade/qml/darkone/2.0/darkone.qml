@@ -897,11 +897,13 @@ Rectangle {
                 }
                 case Qt.Key_End: {
                     positionViewAtEnd();
+                    currentIndex = gameListModelCount - 1;
                     event.accepted = true;
                     break;
                 }
                 case Qt.Key_Home: {
                     positionViewAtBeginning();
+                    currentIndex = 0;
                     event.accepted = true;
                     break;
                 }
