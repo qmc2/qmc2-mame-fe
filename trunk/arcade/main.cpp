@@ -329,6 +329,15 @@ int main(int argc, char *argv[])
     globalConfig = new ArcadeSettings(theme);
     globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
+    // set default font
+    QString font = globalConfig->defaultFont();
+    if ( ! font.isEmpty() ) {
+      QFont f;
+      f.fromString(font);
+      app->setFont(f); 
+    }
+
+    // set language
     QString language = globalConfig->defaultLanguage();
     if ( QMC2_ARCADE_CLI_LANG_VAL )
         language = QMC2_ARCADE_CLI_LANG;

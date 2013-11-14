@@ -181,6 +181,16 @@ QString ArcadeSettings::defaultLanguage()
     return value(QString("%1/GUI/Language").arg(frontEndPrefix)).toString();
 }
 
+void ArcadeSettings::setDefaultFont(QString font)
+{
+    setValue(QString("%1/GUI/Font").arg(frontEndPrefix), font);
+}
+
+QString ArcadeSettings::defaultFont()
+{
+    return value(QString("%1/GUI/Font").arg(frontEndPrefix)).toString();
+}
+
 void ArcadeSettings::setFpsVisible(bool visible)
 {
     setValue(QString("Arcade/%1/fpsVisible").arg(arcadeTheme), visible);
