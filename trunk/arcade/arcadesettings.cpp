@@ -178,7 +178,7 @@ void ArcadeSettings::setDefaultLanguage(QString lang)
 
 QString ArcadeSettings::defaultLanguage()
 {
-    return value(QString("%1/GUI/Language").arg(frontEndPrefix)).toString();
+    return value(QString("%1/GUI/Language").arg(frontEndPrefix), "us").toString();
 }
 
 void ArcadeSettings::setDefaultFont(QString font)
