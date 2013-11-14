@@ -892,45 +892,52 @@ Rectangle {
                                                        "lastVisibleItem: '" + lastVisibleItem() + "', " +
                                                        "itemsPerPage: '" + height / (gameListView.itemHeight + 10) + "'");
                                            return lastVisibleItem() - firstVisibleItem() + 1 }
+        function listUp() {
+            if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
+                currentIndex -= (itemsPerPage() - 1)
+                gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
+            } else {
+                gameListView.positionViewAtBeginning();
+                currentIndex = 0;
+            }
+        }
+        function listDown() {
+            if ( currentIndex + (itemsPerPage() - 1) < gameListModelCount ) {
+                currentIndex += (itemsPerPage() - 1)
+                gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
+            } else {
+                gameListView.positionViewAtEnd();
+                currentIndex = gameListModelCount - 1;
+            }
+        }
+
         Keys.onPressed: {
             if (!keepLightOn) {
                 lightOutTimer.restart();
                 lightOutScreenTimer.restart();
             }
             if (lightOut)
-                 DarkoneJS.lightToggle(1);
+                DarkoneJS.lightToggle(1);
             switch ( event.key ) {
                 case Qt.Key_PageUp: {
-                    if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
-                        currentIndex -= (itemsPerPage() - 1)
-                        gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
-                    } else {
-                        gameListView.positionViewAtBeginning();
-                        currentIndex = 0;
-                    }
+                    listUp();                    
                     event.accepted = true;
                     break;
                 }
                 case Qt.Key_PageDown: {
-                    if ( currentIndex + (itemsPerPage() - 1) < gameListModelCount ) {
-                        currentIndex += (itemsPerPage() - 1)
-                        gameListView.positionViewAtIndex(currentIndex, ListView.Contain);
-                    } else {
-                        gameListView.positionViewAtEnd();
-                        currentIndex = gameListModelCount - 1;
-                    }
-                    event.accepted = true;
-                    break;
-                }
-                case Qt.Key_End: {
-                    positionViewAtEnd();
-                    currentIndex = gameListModelCount - 1;                    
+                    listDown();                    
                     event.accepted = true;
                     break;
                 }
                 case Qt.Key_Home: {
                     positionViewAtBeginning();
                     currentIndex = 0;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_End: {
+                    positionViewAtEnd();
+                    currentIndex = gameListModelCount - 1;
                     event.accepted = true;
                     break;
                 }
@@ -941,6 +948,39 @@ Rectangle {
                         DarkoneJS.launch();
                     }
                     break;
+                }
+                default: {
+                    if ( event.modifiers & Qt.ControlModifier ) { 
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            switch ( event.key ) {
+                                case Qt.Key_Up: {
+                                    positionViewAtBeginning();
+                                    currentIndex = 0;
+                                    event.accepted = true;
+                                    break;
+                                }
+                                case Qt.Key_Down: {
+                                    positionViewAtEnd();
+                                    currentIndex = gameListModelCount - 1;
+                                    event.accepted = true;
+                                    break;
+                                }
+                            }
+                        } else {
+                            switch ( event.key ) {
+                                case Qt.Key_Up: {
+                                    listUp();                    
+                                    event.accepted = true;
+                                    break;
+                                }
+                                case Qt.Key_Down: {
+                                    listDown();                    
+                                    event.accepted = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1931,8 +1971,8 @@ Rectangle {
                     DarkoneJS.listToggle();
                 event.accepted = true;
                 break;
-           }
-           case Qt.Key_Escape: {
+            }
+            case Qt.Key_Escape: {
                 if ( searchTextInput.focus )
                     searchTextInput.focus = false;
                 else if ( preferencesDialog.state == "shown" )
@@ -1979,7 +2019,7 @@ Rectangle {
                             event.accepted = true;
                             break;
                         }
-                        case Qt.Key_M: {
+                        case Qt.Key_T: {
                             darkone.toolbarHidden = !darkone.toolbarHidden;
                             event.accepted = true;
                             break;
@@ -1992,7 +2032,7 @@ Rectangle {
                             event.accepted = true;
                             break;
                         }
-                        case Qt.Key_F: {
+                        case Qt.Key_S: {
                             if ( !darkone.toolbarHidden ) {
                                 searchTextInput.text = "";
                                 searchTextInput.focus = true;
