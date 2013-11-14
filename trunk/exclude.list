@@ -328,7 +328,7 @@ qmc2/arch/Linux/.svn/prop-base/openSUSE_11.4.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/openSUSE_12.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/openSUSE_12.2.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/openSUSE_12.3.cfg.svn-base
-qmc2/arch/Linux/.svn/prop-base/openSUSE_13.1_Beta_1.cfg.svn-base
+qmc2/arch/Linux/.svn/prop-base/openSUSE_13.1.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.0.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.2.cfg.svn-base
@@ -359,7 +359,7 @@ qmc2/arch/Linux/.svn/text-base/openSUSE_11.4.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE_12.1.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE_12.2.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE_12.3.cfg.svn-base
-qmc2/arch/Linux/.svn/text-base/openSUSE_13.1_Beta_1.cfg.svn-base
+qmc2/arch/Linux/.svn/text-base/openSUSE_13.1.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Yellow_Dog_Linux.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Yellow_Dog_Linux_release_6.0.cfg.svn-base
@@ -4134,6 +4134,8 @@ qmc2/.svn/text-base/samplechecker.h.svn-base
 qmc2/.svn/text-base/samplechecker.ui.svn-base
 qmc2/.svn/text-base/SDLMain_tmpl.h.svn-base
 qmc2/.svn/text-base/SDLMain_tmpl.m.svn-base
+qmc2/.svn/text-base/settings.cpp.svn-base
+qmc2/.svn/text-base/settings.h.svn-base
 qmc2/.svn/text-base/softwarelist.cpp.svn-base
 qmc2/.svn/text-base/softwarelist.h.svn-base
 qmc2/.svn/text-base/softwarelist.ui.svn-base
@@ -4263,6 +4265,7 @@ qmc2/tools/qchdman/.svn/text-base/qchdman.pro.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.pro.user.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.qrc.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.rc.svn-base
+qmc2/tools/qchdman/.svn/text-base/qchdmansettings.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/scripteditor.cpp.svn-base
 qmc2/tools/qchdman/.svn/text-base/scripteditor.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptengine.cpp.svn-base
@@ -4270,7 +4273,6 @@ qmc2/tools/qchdman/.svn/text-base/scriptengine.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptwidget.cpp.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptwidget.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/scriptwidget.ui.svn-base
-qmc2/tools/qchdman/.svn/text-base/settings.h.svn-base
 qmc2/tools/qchdman/translations/.svn
 qmc2/tools/qchdman/translations/.svn/prop-base/qchdman_de.qm.svn-base
 qmc2/tools/qchdman/translations/.svn/prop-base/qchdman_es.qm.svn-base
