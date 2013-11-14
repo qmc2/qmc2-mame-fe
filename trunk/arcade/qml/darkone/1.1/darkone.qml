@@ -2020,7 +2020,7 @@ Rectangle {
                             break;
                         }
                         case Qt.Key_T: {
-                            darkone.toolbarHidden = !darkone.toolbarHidden;
+                            DarkoneJS.toolbarToggle();
                             event.accepted = true;
                             break;
                         }
