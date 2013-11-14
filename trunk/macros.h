@@ -496,7 +496,9 @@
 						(uchar)*((a) + 5) * (quint64)65536ULL + \
 						(uchar)*((a) + 6) * (quint64)256ULL + \
 						(uchar)*((a) + 7))
-#define QMC2_SETTINGS_RAW(settings)  static_cast<QSettings*>((settings))
+
+// static cast to QSettings
+#define QMC2_QSETTINGS_CAST(settings)		static_cast<QSettings*>((settings))
 
 // additional pre-compile checks
 #define QMC2_USE_PHONON_API			(QMC2_PHONON == 1)

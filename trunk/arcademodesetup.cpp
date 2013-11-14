@@ -95,20 +95,20 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 
 	// general settings
 #if defined(QMC2_OS_WIN)
-	lineEditExecutableFile->setText(QMC2_SETTINGS_RAW(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "\\" + "qmc2-arcade.exe").toString());
+	lineEditExecutableFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "\\" + "qmc2-arcade.exe").toString());
 #elif defined(QMC2_OS_MAC)
 	defaultPath = QFileInfo(QCoreApplication::applicationDirPath() + "../../../../qmc2-arcade.app/Contents/MacOS/qmc2-arcade").absoluteFilePath();
-	lineEditExecutableFile->setText(QMC2_SETTINGS_RAW(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", defaultPath).toString());
+	lineEditExecutableFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", defaultPath).toString());
 #else
-	lineEditExecutableFile->setText(QMC2_SETTINGS_RAW(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "/" + "qmc2-arcade").toString());
+	lineEditExecutableFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QCoreApplication::applicationDirPath() + "/" + "qmc2-arcade").toString());
 #endif
 	tmpString = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
 	if ( !tmpString.isEmpty() )
 		defaultPath = QFileInfo(tmpString).absolutePath();
 	else
 		defaultPath.clear();
-	lineEditWorkingDirectory->setText(QMC2_SETTINGS_RAW(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory", defaultPath).toString());
-	lineEditConfigurationPath->setText(QMC2_SETTINGS_RAW(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath", QMC2_DYNAMIC_DOT_PATH).toString());
+	lineEditWorkingDirectory->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory", defaultPath).toString());
+	lineEditConfigurationPath->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_FRONTEND_PREFIX + "Arcade/ConfigurationPath", QMC2_DYNAMIC_DOT_PATH).toString());
 	index = comboBoxGraphicsSystem->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/GraphicsSystem", "raster").toString());
 	if ( index > 0 )
 		comboBoxGraphicsSystem->setCurrentIndex(index);
@@ -130,7 +130,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
 	checkBoxTaggedSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/TaggedSetsOnly", false).toBool());
 	checkBoxUseFilteredList->setChecked(qmc2Config->value(QMC2_ARCADE_PREFIX + "UseFilteredList", false).toBool());
-	lineEditFilteredListFile->setText(QMC2_SETTINGS_RAW(qmc2Config)->value(QMC2_ARCADE_PREFIX + "FilteredListFile", qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile", QString()).toString() + ".filtered").toString());
+	lineEditFilteredListFile->setText(QMC2_QSETTINGS_CAST(qmc2Config)->value(QMC2_ARCADE_PREFIX + "FilteredListFile", qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GamelistCacheFile", QString()).toString() + ".filtered").toString());
 	toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectC", true).toBool());
 	toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectM", true).toBool());
 	toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/SelectI", false).toBool());
