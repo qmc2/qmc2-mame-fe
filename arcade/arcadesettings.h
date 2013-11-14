@@ -55,6 +55,8 @@ public slots:
 #endif
     void setDefaultLanguage(QString);
     QString defaultLanguage();
+    void setDefaultFont(QString);
+    QString defaultFont();
 
     // theme-specific settings (general)
     void setFpsVisible(bool);
