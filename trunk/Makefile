@@ -583,23 +583,19 @@ VERSION_MINOR = 42
 ifneq '$(ARCH)' 'Windows'
 include arch/default.cfg
 ifeq '$(OSCFG)' '1'
-OSCFGFILEEXISTS = $(shell ls "arch/$(ARCH).cfg" 2>/dev/null) 
-ifeq 'arch/$(ARCH).cfg' '$(OSCFGFILEEXISTS)'
-include arch/$(ARCH).cfg
-$(info Arch specific cfg found for '$(ARCH)')
+ifeq ($(wildcard arch/$(ARCH).cfg),)
+$(info No operating system specific configuration found for '$(ARCH)')
 else
-$(info No arch specific cfg found for '$(ARCH)')
+include arch/$(ARCH).cfg
 endif
 endif
 ifeq '$(DISTCFG)' '1'
 DISTCFGFILE = $(shell scripts/os-detect.sh | $(GREP) "Distribution cfg-file" | $(COLRM) 1 30)
-DISTCFGFILEEXISTS = $(shell ls "$(DISTCFGFILE)" 2>/dev/null)
 DIST = $(shell scripts/os-detect.sh | $(GREP) "Distribution / OS version" | $(COLRM) 1 30)
-ifeq '$(DISTCFGFILE)' '$(DISTCFGFILEEXISTS)'
-include $(DISTCFGFILE)
-$(info Distribution specific cfg found for '$(DIST)')
+ifeq ($(wildcard $(DISTCFGFILE)),)
+$(info No distribution specific configuration found for '$(DIST)')
 else
-$(info No distribution specific cfg found for '$(DIST)')
+include $(DISTCFGFILE)
 endif
 endif
 else
