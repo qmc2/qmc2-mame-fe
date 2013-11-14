@@ -9,9 +9,9 @@
 #include "projectwindow.h"
 #include "projectwidget.h"
 #include "macros.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 
-extern Settings *globalConfig;
+extern QtChdmanGuiSettings *globalConfig;
 extern quint64 runningProjects;
 extern quint64 runningScripts;
 

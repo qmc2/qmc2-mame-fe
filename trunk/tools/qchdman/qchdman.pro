@@ -49,19 +49,21 @@ SOURCES += main.cpp\
     scriptwidget.cpp \
     scriptengine.cpp \
     ecmascripthighlighter.cpp \
-    scripteditor.cpp
+    scripteditor.cpp \
+    ..\..\settings.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \
     projectwindow.h \
     projectwidget.h \
-    settings.h \
     preferencesdialog.h \
     aboutdialog.h \
     scriptwidget.h \
     scriptengine.h \
     ecmascripthighlighter.h \
-    scripteditor.h
+    scripteditor.h \
+    qchdmansettings.h \
+    ../../settings.h
 
 FORMS += mainwindow.ui \
     projectwidget.ui \

@@ -7,9 +7,9 @@
 #include "ui_preferencesdialog.h"
 #include "mainwindow.h"
 #include "macros.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 
-extern Settings *globalConfig;
+extern QtChdmanGuiSettings *globalConfig;
 extern MainWindow *mainWindow;
 
 PreferencesDialog::PreferencesDialog(QWidget *parent) :

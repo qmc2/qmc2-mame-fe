@@ -4,9 +4,9 @@
 #include "ui_aboutdialog.h"
 #include "mainwindow.h"
 #include "macros.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 
-extern Settings *globalConfig;
+extern QtChdmanGuiSettings *globalConfig;
 extern MainWindow *mainWindow;
 
 AboutDialog::AboutDialog(QWidget *parent) :

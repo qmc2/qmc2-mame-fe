@@ -6,7 +6,7 @@
 
 #include "scriptengine.h"
 #include "mainwindow.h"
-#include "settings.h"
+#include "qchdmansettings.h"
 #include "ui_projectwidget.h"
 #include "ui_scriptwidget.h"
 
@@ -17,7 +17,7 @@
 #endif
 
 extern MainWindow *mainWindow;
-extern Settings *globalConfig;
+extern QtChdmanGuiSettings *globalConfig;
 
 ScriptEngine::ScriptEngine(ScriptWidget *parent) :
     QObject(parent)

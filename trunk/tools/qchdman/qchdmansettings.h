@@ -1,5 +1,5 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef QCHDMANSETTINGS_H
+#define QCHDMANSETTINGS_H
 
 #include <QApplication>
 #include <QSettings>
@@ -10,15 +10,16 @@
 #include <QLocale>
 
 #include "macros.h"
+#include "../../settings.h"
 
-class Settings : public QSettings
+class QtChdmanGuiSettings : public Settings
 {
     Q_OBJECT
 
 public:
     QMap<QString, QLocale::Language> languageMap;
 
-    Settings() : QSettings(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_APP_NAME)
+    QtChdmanGuiSettings() : Settings(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_APP_NAME)
     {
         languageMap["de"] = QLocale::German;
         languageMap["es"] = QLocale::Spanish;
@@ -32,7 +33,7 @@ public:
         languageMap["us"] = QLocale::English;
     }
 
-    ~Settings()
+    ~QtChdmanGuiSettings()
     {
         sync();
     }
