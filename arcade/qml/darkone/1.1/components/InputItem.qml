@@ -67,7 +67,7 @@ Item {
         height: parent.height + 1
         width: parent.width
         anchors.top: parent.top
-        anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+        anchors.topMargin: 0
         anchors.left: textPrefix == "" ? parent.left : textPrefixText.right
         anchors.leftMargin: textPrefix == "" ? 0 : 5
         smooth: true
