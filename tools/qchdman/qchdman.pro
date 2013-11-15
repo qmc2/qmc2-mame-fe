@@ -50,7 +50,7 @@ SOURCES += main.cpp\
     scriptengine.cpp \
     ecmascripthighlighter.cpp \
     scripteditor.cpp \
-    ..\..\settings.cpp
+    ../../settings.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \

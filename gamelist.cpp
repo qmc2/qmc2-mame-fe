@@ -3294,7 +3294,7 @@ void Gamelist::verifyReadyReadStandardOutput()
         romName = words[1].remove("\"");
         bool isBIOS = qmc2BiosROMs.contains(romName);
         bool isDevice = qmc2DeviceROMs.contains(romName);
-        if ( qmc2GamelistItemMap.count(romName) == 1 ) {
+        if ( qmc2GamelistItemMap.contains(romName) ) {
           QTreeWidgetItem *romItem = qmc2GamelistItemMap[romName];
           QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[romName];
           QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[romName];
