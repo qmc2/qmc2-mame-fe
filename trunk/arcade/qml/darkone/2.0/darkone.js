@@ -216,7 +216,7 @@ function round(number, dp) {
     return Math.round(number * Math.pow(10, dp)) / Math.pow(10, dp)
 }
 
-function zoom(zoom) {
+function zoom(vzoom) {
     darkone.debug && console.log(
         "[zoom] " +
 //        "scale: window (x,y): ' " + round(scaleFactorX(), 2) + "," + round(scaleFactorY(), 2) + "', " +
@@ -234,46 +234,47 @@ function zoom(zoom) {
         "overlayScreen.height: '" + overlayScreen.height + "', " +
         "overlayScaleMax: '" + overlayScaleMax + "'");
 
-      switch(typeof(zoom)) {
+      switch(typeof(vzoom)) {
           case "string":
-              if (zoom == "max") {
+              darkone.debug && console.log("[zoom] extreme hit: '" + vzoom + "'");
+              if (vzoom == "max") {
                   darkone.debug && console.log("[zoom max 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                  zoom = round(baseHeight / overlayScreen.height, 2);
-                  darkone.zoomDuration = Math.max(200, Math.abs(zoom - darkone.overlayScale) * 100 * 8);
-                  darkone.debug && console.log("[zoom max] zoom: '" + zoom + "', " +
+                  vzoom = round(baseHeight / overlayScreen.height, 2);
+                  darkone.zoomDuration = Math.max(200, Math.abs(vzoom - darkone.overlayScale) * 100 * 8);
+                  darkone.debug && console.log("[zoom max] vzoom: '" + vzoom + "', " +
                                                           "duration: '" + darkone.zoomDuration + "'");
-                  darkone.overlayScale = zoom;
+                  darkone.overlayScale = vzoom;
                   darkone.debug && console.log("[zoom max 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
-              } else if (zoom == "min") {
-                  zoom = round(overlayScaleMin, 2);
-                  darkone.zoomDuration = Math.max(200, Math.abs(darkone.overlayScale - zoom) * 100 * 8);
-                  darkone.overlayScale = zoom;
+              } else if (vzoom == "min") {
+                  vzoom = round(overlayScaleMin, 2);
+                  darkone.zoomDuration = Math.max(200, Math.abs(darkone.overlayScale - vzoom) * 100 * 8);
+                  darkone.overlayScale = vzoom;
               }
               break;
         default:
-            darkone.zoomDuration = Math.max(200, Math.abs(zoom - darkone.overlayScale) * 100 * 8);
-            darkone.debug && console.log("[zoom] zoom: " + zoom + ", " +
+            darkone.zoomDuration = Math.max(200, Math.abs(vzoom - darkone.overlayScale) * 100 * 8);
+            darkone.debug && console.log("[zoom] vzoom: " + vzoom + ", " +
                                                 "duration: " + darkone.zoomDuration + ",");
-            if (zoom > 1) {
+            if (vzoom > 1) {
                 darkone.debug && console.log("[zoom > 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
                 darkone.debug && console.log("[zoom] testing on: '" +
-                    round(((overlayScreen.height * darkone.overlayScale * zoom) / baseHeight), 2) + " > 0.95'");
-                if (((overlayScreen.height * darkone.overlayScale * zoom) / baseHeight ) > 0.95)
-                    DarkoneJS.zoom("max");
+                    round(((overlayScreen.height * darkone.overlayScale * vzoom) / baseHeight), 2) + " > 0.95'");
+                if (((overlayScreen.height * darkone.overlayScale * vzoom) / baseHeight ) > 0.95)
+                    zoom("max");
                 else
-                    darkone.overlayScale = round(darkone.overlayScale * zoom, 2);
+                    darkone.overlayScale = round(darkone.overlayScale * vzoom, 2);
                 darkone.debug && console.log("[zoom > 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                               "overlayScreen.scale: '" + overlayScreen.scale + "'");
-            } else if (zoom < 1) {
+            } else if (vzoom < 1) {
                 darkone.debug && console.log("[zoom < 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                if (darkone.overlayScale * zoom < overlayScaleMin)
-                    DarkoneJS.zoom("min");
+                if (darkone.overlayScale * vzoom < overlayScaleMin)
+                    zoom("min");
                 else
-                    darkone.overlayScale = round(darkone.overlayScale * zoom, 2);
+                    darkone.overlayScale = round(darkone.overlayScale * vzoom, 2);
                 darkone.debug && console.log("[zoom < 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
             }
