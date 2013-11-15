@@ -398,11 +398,15 @@ int main(int argc, char *argv[])
         app->installEventFilter(&keyEventFilter);
 
 #if QT_VERSION < 0x050000
-        viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
+        viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+        viewer->setStyleSheet("background-color: black");
 #else
-        // FIXME: add missing functionality
+        viewer->setTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION);
+        viewer->winId(); // see QTBUG-33370 QQuickView does not set icon correctly
+        viewer->setIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
+        viewer->setColor(QColor(0,0,0,255));
 #endif
 
         QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
