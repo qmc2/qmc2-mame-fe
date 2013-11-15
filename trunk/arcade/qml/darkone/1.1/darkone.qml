@@ -1895,9 +1895,8 @@ Rectangle {
             width: 40
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            anchors.rightMargin: (overlayButtonBlock.x + overlayButtonBlock.width / 2) - (width / 2)
+            anchors.rightMargin: overlay.anchors.rightMargin + overlay.width - overlayButtonBlock.x - (overlayButtonBlock.width / 2) - (width / 2);    property bool debug: true
             opacity: 0.5
-            color: "transparent"
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
                 GradientStop { position: 0.25; color: DarkoneJS.gameStatusColour() }
