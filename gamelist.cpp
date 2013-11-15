@@ -3811,9 +3811,9 @@ void Gamelist::createCategoryView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
-			if ( !baseItem )
+			if ( !qmc2GamelistItemMap.contains(gameName) )
 				continue;
+			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
 			QString *categoryPtr = it.value();
 			QString category;
 			if ( categoryPtr )
@@ -4030,9 +4030,9 @@ void Gamelist::createVersionView()
 			QString gameName = it.key();
 			if ( gameName.isEmpty() )
 				continue;
-			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
-			if ( !baseItem )
+			if ( !qmc2GamelistItemMap.contains(gameName) )
 				continue;
+			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
 			QString *versionPtr = it.value();
 			QString version;
 			if ( versionPtr )
