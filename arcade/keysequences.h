@@ -66,7 +66,9 @@
                                                                              << "Shift+Tab" \
                                                                              << "Ctrl+Up" \
                                                                              << "Ctrl+Left" \
+                                                                             << "Plus" \
                                                                              << "Ctrl+Shift+Up" \
+                                                                             << "Minus" \
                                                                              << "Ctrl+Shift+Down" \
                                                                              << "Ctrl+P" \
                                                                              << "Ctrl+O" \
@@ -96,6 +98,8 @@
                                                                              << QObject::tr("Previous widget") \
                                                                              << QObject::tr("Previous widget") \
                                                                              << QObject::tr("Zoom in") \
+                                                                             << QObject::tr("Zoom in") \
+                                                                             << QObject::tr("Zoom out") \
                                                                              << QObject::tr("Zoom out") \
                                                                              << QObject::tr("Start emulation") \
                                                                              << QObject::tr("Toggle options") \

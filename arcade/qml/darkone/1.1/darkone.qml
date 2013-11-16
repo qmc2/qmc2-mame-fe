@@ -2001,42 +2001,72 @@ Rectangle {
                 }
                 break;
             }
+            case Qt.Key_Plus: {
+                DarkoneJS.zoom(1.1);
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_Minus: {
+                DarkoneJS.zoom(0.9);
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_D: {
+                debug = !debug;
+                event.accepted = true;
+                break;
+            }
             default: {
                 if ( event.modifiers & Qt.ControlModifier) {
-                    switch ( event.key ) {
-                        case Qt.Key_Q: {
-                            Qt.quit();
-                            break;
-                        }
-                        case Qt.Key_P: {
-                            !darkone.ignoreLaunch && DarkoneJS.launch();
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_O: {
-                            preferencesDialog.state = preferencesDialog.state == "shown" ? "hidden" : "shown";
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_T: {
-                            DarkoneJS.toolbarToggle();
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_X: {
-                            if ( confirmQuitDialog.state == "hidden" )
-                                confirmQuitDialog.state = "shown";
-                            else
-                                confirmQuitDialog.state = "hidden";
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_S: {
-                            if ( !darkone.toolbarHidden ) {
-                                searchTextInput.text = "";
-                                searchTextInput.focus = true;
+                    if ( event.modifiers & Qt.ShiftModifier ) {
+                        switch ( event.key ) {
+                            case Qt.Key_Up: {
+                                DarkoneJS.zoom(1.1);
+                                event.accepted = true;
+                                break;
                             }
-                            break;
+                            case Qt.Key_Down: {
+                                DarkoneJS.zoom(0.9);
+                                event.accepted = true;
+                                break;
+                            }
+                        }
+                    } else {
+                        switch ( event.key ) {
+                            case Qt.Key_Q: {
+                                Qt.quit();
+                                break;
+                            }
+                            case Qt.Key_P: {
+                                !darkone.ignoreLaunch && DarkoneJS.launch();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_O: {
+                                preferencesDialog.state = preferencesDialog.state == "shown" ? "hidden" : "shown";
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_T: {
+                                DarkoneJS.toolbarToggle();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_X: {
+                                if ( confirmQuitDialog.state == "hidden" )
+                                    confirmQuitDialog.state = "shown";
+                                else
+                                    confirmQuitDialog.state = "hidden";
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_S: {
+                                if ( !darkone.toolbarHidden ) {
+                                    searchTextInput.text = "";
+                                    searchTextInput.focus = true;
+                                }
+                                break;
+                            }
                         }
                     }
                 } else if ( !darkone.toolbarHidden ) {
