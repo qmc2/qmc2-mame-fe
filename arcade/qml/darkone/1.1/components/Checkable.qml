@@ -39,13 +39,12 @@
 ****************************************************************************/
 
 import QtQuick 1.1
-import QtQuick.Controls 1.0;
 
 QtObject {
     id: root
     property bool checked: false
     property variant value: null
-    property ExclusiveGroup exclusiveGroup: null
+    property QtObject exclusiveGroup: null
     property bool enabled: false
 
     onEnabledChanged: {
@@ -74,7 +73,7 @@ QtObject {
             // Note that we don't need to remove the previous group,
             // since it is watching the 'exclusiveGroup' property changes
             // in this item and will automatically remove us.
-            exclusiveGroup.bindCheckable(root);
+            exclusiveGroup.__add(root);
         }
     }
 
