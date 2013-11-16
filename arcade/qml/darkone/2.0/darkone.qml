@@ -1,6 +1,7 @@
 import QtQuick 2.0;
+import QtQuick.Controls 1.0;
 import "./components";
-import "darkone.js" as DarkoneJS
+import "darkone.js" as DarkoneJS;
 
 Rectangle {
     id: darkone
@@ -1368,7 +1369,7 @@ Rectangle {
             opacity: 0.5
             smooth: true
         }
-        CheckableGroup { id: group }
+        ExclusiveGroup { id: group }
         Rectangle {
             Checkable {
                 id: checkable1
