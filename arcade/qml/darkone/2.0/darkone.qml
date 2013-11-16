@@ -61,6 +61,7 @@ Rectangle {
     PropertyAnimation { id: fadeIn; target: darkone; property: "opacity"; duration: 2000; from: 0; to: 1.0; easing.type: Easing.InExpo; }
     onToolbarAutoHideChanged: { debug && console.log("toolbarAutoHide: '" + toolbarAutoHide + "'"); }
     onLastIndexChanged: { debug && console.log("lastIndex: '" + lastIndex + "'"); }
+    onColourSchemeChanged: { DarkoneJS.colourScheme(colourScheme); }
     Component.onCompleted: initTimer.start()
     Connections {
         target: viewer;
@@ -1393,8 +1394,7 @@ Rectangle {
                 id: colourScheme1ButtonMouseArea
                 anchors.fill: parent
                 onClicked: { parent.checked = true;
-                             darkone.colourScheme = "dark";
-                             DarkoneJS.colourScheme(darkone.colourScheme); }
+                             darkone.colourScheme = "dark"; }
             }
             onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
             KeyNavigation.up: KeyNavigation.backtab
@@ -1448,8 +1448,7 @@ Rectangle {
                 id: colourScheme2ButtonMouseArea
                 anchors.fill: parent
                 onClicked: { parent.checked = true;
-                             darkone.colourScheme = "metal";
-                             DarkoneJS.colourScheme(darkone.colourScheme); }
+                             darkone.colourScheme = "metal"; }
             }
             onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
             KeyNavigation.up: KeyNavigation.backtab

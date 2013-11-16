@@ -505,6 +505,8 @@ function validateSpecialKey(k) {
 }
 
 function colourScheme(scheme) {
+    if (darkone.colourScheme != scheme )
+        darkone.colourScheme = scheme;
     switch (scheme) {
         case "dark" :
             colourScheme1Button.checked = true;
@@ -525,8 +527,8 @@ function colourScheme(scheme) {
             colour3 = "#aaaaaa";
             colour4 = "#000000";
             colour5 = "#999999";
-            textColour1 = "#222222"
-            textColour2 = "#0000ff"
+            textColour1 = "#222222";
+            textColour2 = "#0000ff";
             break;
     }
     darkone.debug && console.log("[colourScheme] scheme: '" + scheme + "', " +
