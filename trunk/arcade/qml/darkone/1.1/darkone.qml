@@ -1,5 +1,4 @@
 import QtQuick 1.1;
-import QtQuick.Controls 1.0;
 import "./components";
 import Wheel 1.0;
 import Pointer 1.0;
@@ -1396,7 +1395,7 @@ Rectangle {
             opacity: 0.5
             smooth: true
         }
-        ExclusiveGroup { id: group }
+        CheckableGroup { id: group }
         Rectangle {
             Checkable {
                 id: checkable1
