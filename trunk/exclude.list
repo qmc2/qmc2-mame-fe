@@ -17,6 +17,7 @@ qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/CheckableGroup.js.svn-base
 qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/CheckableGroup.qml.svn-base
 qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/Checkable.qml.svn-base
 qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/CheckBox.qml.svn-base
+qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/CheckItem.qml.svn-base
 qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/CycleItem.qml.svn-base
 qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/InputItem.qml.svn-base
 qmc2/arcade/qml/darkone/1.1/components/.svn/text-base/SliderItem.qml.svn-base
@@ -60,6 +61,7 @@ qmc2/arcade/qml/darkone/2.0/components/.svn
 qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/Button.qml.svn-base
 qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/Checkable.qml.svn-base
 qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/CheckBox.qml.svn-base
+qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/CheckItem.qml.svn-base
 qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/CycleItem.qml.svn-base
 qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/InputItem.qml.svn-base
 qmc2/arcade/qml/darkone/2.0/components/.svn/text-base/SliderItem.qml.svn-base
