@@ -1963,6 +1963,12 @@ Rectangle {
                         }
                     } else {
                         switch ( event.key ) {
+                            case Qt.Key_L: {
+                                if (preferencesDialog.state == "hidden")
+                                    DarkoneJS.listToggle();
+                                event.accepted = true;
+                                break;
+                            }
                             case Qt.Key_Q: {
                                 Qt.quit();
                                 break;
