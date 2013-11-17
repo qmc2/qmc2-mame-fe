@@ -791,6 +791,7 @@ qmc2/data/img/circles/.svn/prop-base/terminate.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/thumbnail.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/time.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/toolbox.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/trafficlight_green.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/trafficlight_off.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/trafficlight_red.png.svn-base
@@ -1044,6 +1045,7 @@ qmc2/data/img/circles/.svn/text-base/terminate.png.svn-base
 qmc2/data/img/circles/.svn/text-base/thumbnail.png.svn-base
 qmc2/data/img/circles/.svn/text-base/time.png.svn-base
 qmc2/data/img/circles/.svn/text-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/circles/.svn/text-base/toolbox.png.svn-base
 qmc2/data/img/circles/.svn/text-base/trafficlight_green.png.svn-base
 qmc2/data/img/circles/.svn/text-base/trafficlight_off.png.svn-base
 qmc2/data/img/circles/.svn/text-base/trafficlight_red.png.svn-base
@@ -1298,6 +1300,7 @@ qmc2/data/img/classic/.svn/prop-base/terminate.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/thumbnail.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/time.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/toolbox.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/trafficlight_green.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/trafficlight_off.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/trafficlight_red.png.svn-base
@@ -1551,6 +1554,7 @@ qmc2/data/img/classic/.svn/text-base/terminate.png.svn-base
 qmc2/data/img/classic/.svn/text-base/thumbnail.png.svn-base
 qmc2/data/img/classic/.svn/text-base/time.png.svn-base
 qmc2/data/img/classic/.svn/text-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/classic/.svn/text-base/toolbox.png.svn-base
 qmc2/data/img/classic/.svn/text-base/trafficlight_green.png.svn-base
 qmc2/data/img/classic/.svn/text-base/trafficlight_off.png.svn-base
 qmc2/data/img/classic/.svn/text-base/trafficlight_red.png.svn-base
@@ -1805,6 +1809,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/terminate.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/thumbnail.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/time.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/toolbox.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/trafficlight_green.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/trafficlight_off.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/trafficlight_red.png.svn-base
@@ -2058,6 +2063,7 @@ qmc2/data/img/crazy-black/.svn/text-base/terminate.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/thumbnail.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/time.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/toolbox.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/trafficlight_green.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/trafficlight_off.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/trafficlight_red.png.svn-base
@@ -2312,6 +2318,7 @@ qmc2/data/img/crazy/.svn/prop-base/terminate.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/thumbnail.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/time.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/toolbox.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/trafficlight_green.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/trafficlight_off.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/trafficlight_red.png.svn-base
@@ -2565,6 +2572,7 @@ qmc2/data/img/crazy/.svn/text-base/terminate.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/thumbnail.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/time.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/toolbox.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/trafficlight_green.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/trafficlight_off.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/trafficlight_red.png.svn-base
@@ -2819,6 +2827,7 @@ qmc2/data/img/cubes/.svn/prop-base/terminate.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/thumbnail.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/time.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/toolbox.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/trafficlight_green.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/trafficlight_off.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/trafficlight_red.png.svn-base
@@ -3072,6 +3081,7 @@ qmc2/data/img/cubes/.svn/text-base/terminate.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/thumbnail.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/time.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/toolbox.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/trafficlight_green.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/trafficlight_off.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/trafficlight_red.png.svn-base
@@ -3326,6 +3336,7 @@ qmc2/data/img/.svn/prop-base/terminate.png.svn-base
 qmc2/data/img/.svn/prop-base/thumbnail.png.svn-base
 qmc2/data/img/.svn/prop-base/time.png.svn-base
 qmc2/data/img/.svn/prop-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/.svn/prop-base/toolbox.png.svn-base
 qmc2/data/img/.svn/prop-base/trafficlight_green.png.svn-base
 qmc2/data/img/.svn/prop-base/trafficlight_off.png.svn-base
 qmc2/data/img/.svn/prop-base/trafficlight_red.png.svn-base
@@ -3579,6 +3590,7 @@ qmc2/data/img/.svn/text-base/terminate.png.svn-base
 qmc2/data/img/.svn/text-base/thumbnail.png.svn-base
 qmc2/data/img/.svn/text-base/time.png.svn-base
 qmc2/data/img/.svn/text-base/toggle_fullscreen.png.svn-base
+qmc2/data/img/.svn/text-base/toolbox.png.svn-base
 qmc2/data/img/.svn/text-base/trafficlight_green.png.svn-base
 qmc2/data/img/.svn/text-base/trafficlight_off.png.svn-base
 qmc2/data/img/.svn/text-base/trafficlight_red.png.svn-base
