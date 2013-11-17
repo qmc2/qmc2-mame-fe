@@ -1539,9 +1539,7 @@ void Options::on_pushButtonApply_clicked()
     // (re)connect joystick callbacks to main widget
     joystick->disconnect(qmc2MainWindow);
     if ( config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl").toBool() ) {
-      if ( !joystick->open(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index").toInt()) ) {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't initialize joystick"));
-      } else {
+      if ( joystick->open(config->value(QMC2_FRONTEND_PREFIX + "Joystick/Index").toInt()) ) {
         connect(joystick, SIGNAL(axisValueChanged(int, int)), qmc2MainWindow, SLOT(joystickAxisValueChanged(int, int)));
         connect(joystick, SIGNAL(buttonValueChanged(int, bool)), qmc2MainWindow, SLOT(joystickButtonValueChanged(int, bool)));
         connect(joystick, SIGNAL(hatValueChanged(int, int)), qmc2MainWindow, SLOT(joystickHatValueChanged(int, int)));
