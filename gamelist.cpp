@@ -355,7 +355,8 @@ void Gamelist::enableWidgets(bool enable)
     if ( qmc2ROMAlyzer->groupBoxDatabase->isChecked() )
       qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setEnabled(enable);
 #endif
-  }
+  } else
+    qmc2MainWindow->actionROMAlyzer->setEnabled(enable);
   qmc2MainWindow->pushButtonSelectRomFilter->setEnabled(enable);
   qmc2MainWindow->actionLaunchArcade->setEnabled(enable);
   qmc2MainWindow->actionArcadeSetup->setEnabled(enable);
