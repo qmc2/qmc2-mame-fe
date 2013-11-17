@@ -1396,113 +1396,44 @@ Rectangle {
             opacity: 0.5
             smooth: true
         }
-        CheckableGroup { id: group }
-        Rectangle {
-            Checkable {
-                id: checkable1
-                exclusiveGroup: group
-                enabled: true
-            }
-            property alias exclusiveGroup: checkable1.exclusiveGroup
-            property alias checked: checkable1.checked
+        CheckableGroup { id: checkGroup }
+        CheckItem {
             id: colourScheme1Button
             property int index: prefsColourSchemeText.index + 1
-            opacity: 0.5
-            height: parent.itemHeight - 2
-            width: height
+            exclusiveGroup: checkGroup
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) + 2
             anchors.left: parent.left
-            anchors.leftMargin: 13
-            radius: height / 2
-            smooth: true
-            MouseArea {
-                id: colourScheme1ButtonMouseArea
-                anchors.fill: parent
-                onClicked: { parent.checked = true;
-                             darkone.colourScheme = "dark"; }
-            }
-            onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
+            anchors.leftMargin: 10
+            height: parent.itemHeight - 2
+            text: "dark"
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            onCheckedChanged: { if ( checked ) { darkone.colourScheme = text; } }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: launchZoomCheckBox
             KeyNavigation.tab: colourScheme2Button
         }
-        Text {
-            id: colourScheme1Text
-            opacity: 0.8
-            anchors.left: colourScheme1Button.right
-            anchors.leftMargin: 6
-            anchors.verticalCenter: colourScheme1Button.verticalCenter
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-            text: qsTr("dark")
-            font.pixelSize: parent.itemTextSize
-            color: textColour1
-            smooth: true
-            MouseArea {
-                id: colourScheme1TextMouseArea
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: { parent.opacity += 0.2; }
-                onExited: { parent.opacity -= 0.2; }
-            }
-            Component.onCompleted: {
-                colourScheme1TextMouseArea.clicked.connect(colourScheme1ButtonMouseArea.clicked);
-            }
-        }
-        Rectangle {
-            Checkable {
-                id: checkable2
-                exclusiveGroup: group
-                enabled: true
-            }
-            property alias exclusiveGroup: checkable2.exclusiveGroup
-            property alias checked: checkable2.checked
+        CheckItem {
             id: colourScheme2Button
             property int index: prefsColourSchemeText.index + 2
-            opacity: 0.5
-            height: parent.itemHeight - 2
-            width: height
+            exclusiveGroup: checkGroup
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) - 2
             anchors.left: parent.left
-            anchors.leftMargin: 13
-            radius: height / 2
-            smooth: true
-            MouseArea {
-                id: colourScheme2ButtonMouseArea
-                anchors.fill: parent
-                onClicked: { parent.checked = true;
-                             darkone.colourScheme = "metal"; }
-            }
-            onCheckedChanged: { opacity = checked ? 1.0 : 0.5 }
+            anchors.leftMargin: 10
+            height: parent.itemHeight - 2
+            text: "metal"
+            textSize: parent.itemTextSize
+            textColour: textColour1
+            activeColour: textColour2
+            onCheckedChanged: { if ( checked ) { darkone.colourScheme = text; } }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme1Button
             KeyNavigation.tab: backendParamNamesCycleItem
-        }
-        Text {
-            opacity: 0.8
-            anchors.left: colourScheme2Button.right
-            anchors.leftMargin: 6
-            anchors.verticalCenter: colourScheme2Button.verticalCenter
-            anchors.verticalCenterOffset: 0
-            verticalAlignment: Text.AlignVCenter
-            text: qsTr("metal")
-            font.pixelSize: parent.itemTextSize
-            color: textColour1
-            smooth: true
-            MouseArea {
-                id: colourScheme2TextMouseArea
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: { parent.opacity += 0.2; }
-                onExited: { parent.opacity -= 0.2; }
-            }
-            Component.onCompleted: {
-                colourScheme2TextMouseArea.clicked.connect(colourScheme2ButtonMouseArea.clicked);
-            }
         }
 
         /**********
