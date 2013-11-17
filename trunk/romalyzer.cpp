@@ -612,8 +612,9 @@ void ROMAlyzer::analyze()
   log(tr("determining list of machines to analyze"));
 #endif
 
-  if ( wizardSearch || quickSearch ) {
-    // two simple cases: the checksum wizard doesn't use any wild-cards, same holds for tagged sets --> no need to search!
+  QRegExp wildcardRx("(\\*|\\?)");
+  if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditGames->text().simplified()) == -1 ) {
+    // no wild-cards => no need to search!
     analyzerList = patternList;
     analyzerList.sort();
   } else {
