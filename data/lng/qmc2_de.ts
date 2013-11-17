@@ -15463,102 +15463,119 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../arcade/keysequences.h" line="46"/>
         <location filename="../../arcade/keysequences.h" line="47"/>
-        <location filename="../../arcade/keysequences.h" line="110"/>
+        <location filename="../../arcade/keysequences.h" line="104"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
+        <location filename="../../arcade/keysequences.h" line="78"/>
+        <source>Zoom in / List top</source>
+        <translation>Zoom + / Anfang der Liste</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="79"/>
+        <source>Zoom out / List bottom</source>
+        <translation>Zoom - / Ende der Liste</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="80"/>
+        <source>Previous widget / List page up</source>
+        <translation>Vorheriges Widget / Liste eine Seite rauf</translation>
+    </message>
+    <message>
         <location filename="../../arcade/keysequences.h" line="81"/>
+        <source>Next widget / List page down</source>
+        <translation>Nächstes Widget / Liste eine Seite runter</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="82"/>
         <source>Select</source>
         <translation>Auswählen</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="82"/>
+        <location filename="../../arcade/keysequences.h" line="83"/>
         <source>List up</source>
         <translation>Liste rauf</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="83"/>
         <location filename="../../arcade/keysequences.h" line="84"/>
         <source>List page up</source>
         <translation>Liste eine Seite rauf</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="85"/>
-        <location filename="../../arcade/keysequences.h" line="86"/>
         <source>List top</source>
         <translation>Anfang der Liste</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="87"/>
+        <location filename="../../arcade/keysequences.h" line="86"/>
         <source>List down</source>
         <translation>Liste runter</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="88"/>
-        <location filename="../../arcade/keysequences.h" line="89"/>
+        <location filename="../../arcade/keysequences.h" line="87"/>
         <source>List page down</source>
         <translation>Liste eine Seite runter</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="90"/>
-        <location filename="../../arcade/keysequences.h" line="91"/>
+        <location filename="../../arcade/keysequences.h" line="88"/>
         <source>List bottom</source>
         <translation>Ende der Liste</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="92"/>
+        <location filename="../../arcade/keysequences.h" line="89"/>
         <source>Hide list</source>
         <translation>Liste verstecken</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="93"/>
+        <location filename="../../arcade/keysequences.h" line="90"/>
         <source>Show list</source>
         <translation>Liste anzeigen</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="94"/>
-        <location filename="../../arcade/keysequences.h" line="95"/>
-        <location filename="../../arcade/keysequences.h" line="96"/>
+        <location filename="../../arcade/keysequences.h" line="91"/>
+        <location filename="../../arcade/keysequences.h" line="92"/>
         <source>Next widget</source>
         <translation>Nächstes Widget</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="97"/>
-        <location filename="../../arcade/keysequences.h" line="98"/>
-        <location filename="../../arcade/keysequences.h" line="99"/>
+        <location filename="../../arcade/keysequences.h" line="93"/>
+        <location filename="../../arcade/keysequences.h" line="94"/>
         <source>Previous widget</source>
         <translation>Vorheriges Widget</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="100"/>
-        <location filename="../../arcade/keysequences.h" line="101"/>
+        <location filename="../../arcade/keysequences.h" line="95"/>
         <source>Zoom in</source>
         <translation>Zoom +</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="102"/>
-        <location filename="../../arcade/keysequences.h" line="103"/>
+        <location filename="../../arcade/keysequences.h" line="96"/>
         <source>Zoom out</source>
         <translation>Zoom -</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="105"/>
+        <location filename="../../arcade/keysequences.h" line="98"/>
         <source>Toggle options</source>
         <translation>Optionen ein-/ausschalten</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="106"/>
+        <location filename="../../arcade/keysequences.h" line="99"/>
+        <source>Toggle list</source>
+        <translation>Liste ein-/ausschalten</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="100"/>
         <source>Toggle toolbar</source>
         <translation>Werkzeugleiste ein-/ausschalten</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="107"/>
+        <location filename="../../arcade/keysequences.h" line="101"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="109"/>
+        <location filename="../../arcade/keysequences.h" line="103"/>
         <source>Abort game launch</source>
         <translation>Spielstart abbrechen</translation>
     </message>
@@ -15566,7 +15583,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../arcade/keysequences.h" line="12"/>
         <location filename="../../arcade/keysequences.h" line="13"/>
         <location filename="../../arcade/keysequences.h" line="45"/>
-        <location filename="../../arcade/keysequences.h" line="104"/>
+        <location filename="../../arcade/keysequences.h" line="97"/>
         <source>Start emulation</source>
         <translation>Emulation starten</translation>
     </message>
@@ -15574,7 +15591,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../arcade/keysequences.h" line="14"/>
         <location filename="../../arcade/keysequences.h" line="15"/>
         <location filename="../../arcade/keysequences.h" line="16"/>
-        <location filename="../../arcade/keysequences.h" line="108"/>
+        <location filename="../../arcade/keysequences.h" line="102"/>
         <source>Toggle full-screen / windowed mode</source>
         <translation>Vollbild- / Fenster-Modus umschalten</translation>
     </message>
