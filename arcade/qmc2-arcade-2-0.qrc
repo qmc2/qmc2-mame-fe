@@ -37,6 +37,7 @@
         <file>qml/darkone/2.0/components/Button.qml</file>
         <file>qml/darkone/2.0/components/CheckBox.qml</file>
         <file>qml/darkone/2.0/components/Checkable.qml</file>
+        <file>qml/darkone/2.0/components/CheckItem.qml</file>
         <file>qml/darkone/2.0/components/Slider.qml</file>
         <file>qml/darkone/2.0/components/SliderItem.qml</file>
         <file>qml/darkone/2.0/components/InputItem.qml</file>

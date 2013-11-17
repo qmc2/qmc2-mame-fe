@@ -39,6 +39,7 @@
         <file>qml/darkone/1.1/components/Checkable.qml</file>
         <file>qml/darkone/1.1/components/CheckableGroup.qml</file>
         <file>qml/darkone/1.1/components/CheckableGroup.js</file>
+        <file>qml/darkone/1.1/components/CheckItem.qml</file>
         <file>qml/darkone/1.1/components/Slider.qml</file>
         <file>qml/darkone/1.1/components/SliderItem.qml</file>
         <file>qml/darkone/1.1/components/InputItem.qml</file>
