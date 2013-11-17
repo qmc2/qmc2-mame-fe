@@ -34,6 +34,26 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonToolsMenu">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Tools menu</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::InstantPopup</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButtonAnalyze">
        <property name="enabled">
         <bool>false</bool>
@@ -1780,6 +1800,7 @@
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>lineEditGames</tabstop>
+  <tabstop>toolButtonToolsMenu</tabstop>
   <tabstop>pushButtonAnalyze</tabstop>
   <tabstop>pushButtonPause</tabstop>
   <tabstop>tabWidgetAnalysis</tabstop>

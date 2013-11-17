@@ -184,8 +184,10 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     quint64 chdManagerTotalHunks;
     QMenu *romFileContextMenu;
     QMenu *romSetContextMenu;
+    QMenu *toolsMenu;
     QAction *actionRewriteSet;
     QAction *actionAnalyzeDeviceRefs;
+    QAction *actionImportFromDataFile;
     QString currentFilesSHA1Checksum;
     QString currentFilesCrcChecksum;
     QStringList wizardSelectedSets;
@@ -260,6 +262,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void runSetRewriter();
     void copyToClipboard();
     void analyzeDeviceRefs();
+    void importFromDataFile();
 
     // CHD manager process control
     void chdManagerStarted();

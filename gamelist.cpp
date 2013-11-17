@@ -342,6 +342,8 @@ void Gamelist::enableWidgets(bool enable)
   if ( qmc2ROMStatusExporter )
     qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
   if ( qmc2ROMAlyzer ) {
+    qmc2ROMAlyzer->pushButtonAnalyze->setEnabled(enable);
+    qmc2ROMAlyzer->toolButtonToolsMenu->setEnabled(enable);
     if ( qmc2ROMAlyzer->groupBoxCHDManager->isChecked() ) {
       qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
       qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);

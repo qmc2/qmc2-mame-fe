@@ -2,6 +2,8 @@
 #include <QHeaderView>
 #include <QDir>
 #include <QFileInfo>
+#include <QFile>
+#include <QTextStream>
 #include <QScrollBar>
 #include <QTest>
 #include <QMap>
@@ -182,6 +184,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
+
+  // setup tools-menu
+  toolsMenu = new QMenu(this);
+  actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
+  toolButtonToolsMenu->setMenu(toolsMenu);
+
 #if defined(QMC2_OS_MAC)
   setParent(qmc2MainWindow, Qt::Dialog);
 #endif
@@ -221,6 +229,7 @@ void ROMAlyzer::adjustIconSizes()
   toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
   toolButtonBrowseSetRewriterAdditionalRomPath->setIconSize(iconSize);
+  toolButtonToolsMenu->setIconSize(iconSize);
   pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
   pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
   pushButtonSetRenamerSearch->setIconSize(iconSize);
@@ -599,6 +608,7 @@ void ROMAlyzer::analyze()
   pushButtonPause->setEnabled(true);
   pushButtonPause->setText(tr("&Pause"));
   lineEditGames->setEnabled(false);
+  toolButtonToolsMenu->setEnabled(false);
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
   tabSetRenamer->setEnabled(false);
   QTime analysisTimer, elapsedTime(0, 0, 0, 0);
@@ -1121,6 +1131,7 @@ void ROMAlyzer::analyze()
   pushButtonPause->setVisible(false);
   pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
   lineEditGames->setEnabled(true);
+  toolButtonToolsMenu->setEnabled(true);
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(true);
   tabSetRenamer->setEnabled(true);
 
@@ -2545,6 +2556,35 @@ void ROMAlyzer::analyzeDeviceRefs()
 			lineEditGames->setText(deviceRefs.join(" "));
 			QTimer::singleShot(0, this, SLOT(analyze()));
 		}
+	}
+}
+
+void ROMAlyzer::importFromDataFile()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::importFromDataFile()");
+#endif
+
+	QString storedPath;
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath") )
+		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath").toString();
+	QString dataFilePath = QFileDialog::getOpenFileName(this, tr("Choose data file to import"), storedPath, tr("Data files (*.dat)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !dataFilePath.isNull() ) {
+		QStringList nameList;
+		QFile dataFile(dataFilePath);
+		if ( dataFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			QTextStream ts(&dataFile);
+			QString pattern = "<game name=\"";
+			while ( !ts.atEnd() ) {
+				QString line = ts.readLine().trimmed();
+				if ( line.startsWith(pattern) )
+					nameList << line.mid(pattern.length(), line.indexOf("\"", pattern.length()) - pattern.length());
+			}
+			dataFile.close();
+			if ( !nameList.isEmpty() )
+				lineEditGames->setText(nameList.join(" "));
+		}
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/LastDataFilePath", dataFilePath);
 	}
 }
 
