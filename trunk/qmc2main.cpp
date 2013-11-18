@@ -3354,7 +3354,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( pattern.isEmpty() ) {
 		listWidgetSearch->clear();
 		lastSearchText.clear();
-		lastNegatedMatch = false;
+		lastNegatedMatch = negatedMatch;
 		return;
 	}
 
@@ -3362,6 +3362,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		return;
 
 	searchActive = true;
+	lastSearchText = pattern;
 
 	progressBarSearch->setVisible(true);
 	progressBarSearch->setRange(0, treeWidgetGamelist->topLevelItemCount() * (negatedMatch ? 2 : 1));
@@ -3445,12 +3446,10 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
 		}
-		lastSearchText = comboBoxSearch->currentText();
-		lastNegatedMatch = negatedMatch;
-	} else {
+	} else
 		lastSearchText.clear();
-		lastNegatedMatch = false;
-	}
+
+	lastNegatedMatch = negatedMatch;
 
 	progressBarSearch->setVisible(false);
 	progressBarSearch->reset();
