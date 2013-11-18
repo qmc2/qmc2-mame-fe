@@ -750,6 +750,19 @@
               </property>
              </widget>
             </item>
+            <item row="2" column="0">
+             <widget class="QProgressBar" name="progressBarSearch">
+              <property name="toolTip">
+               <string>Search progress</string>
+              </property>
+              <property name="statusTip">
+               <string>Search progress</string>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="tabFavorites">

@@ -1742,11 +1742,11 @@ data\lng\qt_pl.qm: data\lng\qt_pl.ts
 data\lng\qt_pt.qm: data\lng\qt_pt.ts
 	$(LREL)
 
-data\lng\qt_sv.qm: data\lng\qt_sv.ts
-	$(LREL)
-
 #data\lng\qt_ro.qm: data\lng\qt_ro.ts
 #	$(LREL)
+
+data\lng\qt_sv.qm: data\lng\qt_sv.ts
+	$(LREL)
 
 #data\lng\qt_us.qm: data\lng\qt_us.ts
 #	$(LREL)

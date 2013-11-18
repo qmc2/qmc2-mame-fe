@@ -448,6 +448,13 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
+  progressBarSearch->setVisible(false);
+#if defined(QMC2_EMUTYPE_MESS)
+  progressBarSearch->setFormat(tr("Searching machines - %p%"));
+#else
+  progressBarSearch->setFormat(tr("Searching games - %p%"));
+#endif
+
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   qmc2ActiveViews << treeWidgetGamelist << treeWidgetHierarchy << treeWidgetCategoryView << treeWidgetVersionView;
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -3322,63 +3329,129 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 void MainWindow::comboBoxSearch_editTextChanged_delayed()
 {
 	static bool searchActive = false;
+	static bool stopSearch = false;
+	static QString lastSearchText;
+	static bool lastNegatedMatch = false;
 
-	if ( searchActive )
+	searchTimer.stop();
+
+	if ( qmc2CleaningUp )
 		return;
+
+	if ( searchActive ) {
+		stopSearch = true;
+		searchTimer.start(QMC2_SEARCH_DELAY/10);
+		return;
+	} else
+		stopSearch = false;
 
 	if ( treeWidgetGamelist->topLevelItemCount() == 1 )
 		if ( treeWidgetGamelist->topLevelItem(0)->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 			return;
 
-	searchActive = true;
-
-	searchTimer.stop();
-
 	QString pattern = comboBoxSearch->currentText();
 
-	// easy pattern match
-	if ( !pattern.isEmpty() ) {
-		pattern = "*" + pattern.replace(' ', "* *") + "*";
-		pattern.replace(QString("*^"), "");
-		pattern.replace(QString("$*"), "");
+	if ( pattern.isEmpty() ) {
+		listWidgetSearch->clear();
+		return;
 	}
+
+	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch )
+		return;
+
+	searchActive = true;
+
+	progressBarSearch->setVisible(true);
+	progressBarSearch->setRange(0, treeWidgetGamelist->topLevelItemCount() * (negatedMatch ? 2 : 1));
+	progressBarSearch->setValue(0);
+
+	// easy pattern match
+	pattern = "*" + pattern.replace(' ', "* *") + "*";
+	pattern.replace(QString("*^"), "");
+	pattern.replace(QString("$*"), "");
 
 	listWidgetSearch->clear();
-	QList<QTreeWidgetItem *> matches = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
-	QList<QTreeWidgetItem *> matchesByShortName = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_NAME);
+
+	QRegExp patternRx = QRegExp(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
+
+	QString currentItemText;
+	if ( qmc2CurrentItem )
+		currentItemText = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+
+	QList<QTreeWidgetItem *> matches;
+	QList<QListWidgetItem *> itemList;
+	QListWidgetItem *currentItemPendant = NULL;
+
+	for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
+		QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
+		QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
+		if ( itemText.contains(patternRx) || item->text(QMC2_GAMELIST_COLUMN_NAME).contains(patternRx) ) {
+			matches << item;
+			if ( !negatedMatch ) {
+				itemList << new QListWidgetItem();
+				itemList.last()->setText(itemText);
+				if ( currentItemText == itemText )
+					currentItemPendant = itemList.last();
+			}
+		}
+		progressBarSearch->setValue(progressBarSearch->value() + 1);
+		if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
+			foreach (QListWidgetItem *item, itemList)
+				listWidgetSearch->addItem(item);
+			itemList.clear();
+			qmc2Gamelist->numSearchGames = listWidgetSearch->count();
+			labelGamelistStatus->setText(qmc2Gamelist->status());
+			if ( currentItemPendant ) {
+				listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
+				listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
+			}
+			qApp->processEvents();
+		}
+	}
 
 	if ( negatedMatch ) {
-		QList<QTreeWidgetItem *> positiveMatches = matches;
-		QList<QTreeWidgetItem *> positiveMatchesByShortName = matchesByShortName;
-		matches.clear();
-		matchesByShortName.clear();
-		foreach (QTreeWidgetItem *item, treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME) )
-			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
-				matches << item;
-		foreach (QTreeWidgetItem *item, treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_NAME) )
-			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
-				matchesByShortName << item;
+		for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
+			QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
+			if ( !matches.contains(item) ) {
+				QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
+				itemList << new QListWidgetItem();
+				itemList.last()->setText(itemText);
+				if ( currentItemText == itemText )
+					currentItemPendant = itemList.last();
+			}
+			progressBarSearch->setValue(progressBarSearch->value() + 1);
+			if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
+				foreach (QListWidgetItem *item, itemList)
+					listWidgetSearch->addItem(item);
+				itemList.clear();
+				qmc2Gamelist->numSearchGames = listWidgetSearch->count();
+				labelGamelistStatus->setText(qmc2Gamelist->status());
+				if ( currentItemPendant ) {
+					listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
+					listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
+				}
+				qApp->processEvents();
+			}
+		}
+
 	}
 
-	int i;
-
-	for (i = 0; i < matchesByShortName.count(); i++) {
-		QTreeWidgetItem *item = matchesByShortName[i];
-		if ( !matches.contains(item) )
-			matches.append(item);
+	if ( !stopSearch && !qmc2CleaningUp ) {
+		foreach (QListWidgetItem *item, itemList)
+			listWidgetSearch->addItem(item);
+		if ( currentItemPendant ) {
+			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
+			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
+		}
+		lastSearchText = comboBoxSearch->currentText();
+		lastNegatedMatch = negatedMatch;
+	} else {
+		lastSearchText.clear();
+		lastNegatedMatch = false;
 	}
 
-	for (i = 0; i < matches.count(); i++) {
-		QListWidgetItem *item = new QListWidgetItem(listWidgetSearch);
-		item->setText(matches.at(i)->text(QMC2_GAMELIST_COLUMN_GAME));
-	}
-
-	listWidgetSearch->sortItems();
-
-	qmc2Gamelist->numSearchGames = matches.count();
-	labelGamelistStatus->setText(qmc2Gamelist->status());
-
-	QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+	progressBarSearch->setVisible(false);
+	progressBarSearch->reset();
 
 	searchActive = false;
 }
@@ -3390,7 +3463,7 @@ void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
 		tabWidgetGamelist->setCurrentWidget(tabSearch);
 		tabWidgetGamelist->blockSignals(false);
 	}
-	comboBoxSearch_editTextChanged_delayed();
+	searchTimer.start(QMC2_SEARCH_DELAY/10);
 	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
 }
 
