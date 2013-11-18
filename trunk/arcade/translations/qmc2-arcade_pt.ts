@@ -1137,56 +1137,68 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         <translation>comportamento</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1182"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1156"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1183"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1157"/>
         <source>FPS counter</source>
         <translation>contador de QPS</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1211"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1185"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1212"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1186"/>
         <source>lights out in</source>
         <translation>apagar luzes em</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1212"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1186"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1213"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1187"/>
         <source>secs</source>
         <translation>segs</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1262"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1236"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1263"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1237"/>
         <source>scale</source>
         <translation>escala</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1284"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1258"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1285"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1259"/>
         <source>effects</source>
         <translation>efeitos</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1336"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1310"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1339"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1313"/>
         <source>launch flash?</source>
         <translation>flash na inicialização?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1358"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1332"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1361"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1335"/>
         <source>launch zoom?</source>
         <translation>zoom na inicialização?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1381"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1355"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1384"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1358"/>
         <source>colour scheme</source>
         <translation>esquema de cor</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1450"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1426"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1412"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1386"/>
+        <source>dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1434"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1408"/>
+        <source>metal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1459"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1433"/>
         <source>backend</source>
         <translation></translation>
     </message>
@@ -1197,20 +1209,20 @@ terem efeito, por favor reinicie o Arcade do QMC2!</translation>
         <translation>ordenar por nome?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1157"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1131"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1158"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1132"/>
         <source>auto-hide toolbar</source>
         <translation>auto-ocultar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1313"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1287"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1314"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1288"/>
         <source>back lighting</source>
         <translation>luz de fundo</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1819"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1795"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1828"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1802"/>
         <source>FPS</source>
         <translation>QPS</translation>
     </message>
