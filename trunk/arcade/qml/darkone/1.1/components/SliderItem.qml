@@ -1,7 +1,7 @@
 import QtQuick 1.1
 
 Item {
-    id: sliderItem
+    id: root
     property bool debug: false
 
     height: 12
@@ -27,16 +27,17 @@ Item {
     property real textOpacity: opacity - opacityDiff
     onOpacityChanged: { textOpacity: opacity - opacityDiff; }
 
+    signal entered();
     signal clicked();
     Component.onCompleted: {
+        mouseArea.entered.connect(entered);
         mouseArea.clicked.connect(clicked);
+        textPrefixMouseArea.clicked.connect(mouseArea.clicked);
+        textSuffixMouseArea.clicked.connect(mouseArea.clicked);
     }
 
     onActiveFocusChanged: {
         debug && console.log("[slideritem] activeFocus: '" + activeFocus + "'");
-        slider.focus = true;
-    }
-    onClicked: {
         slider.focus = true;
     }
     MouseArea {
@@ -51,10 +52,13 @@ Item {
         onExited: {
             textOpacity = resetOpacity;
         }
+        onClicked: {
+            slider.focus = true;
+        }
     }
 
     Text {
-        id: textPrefixText
+        id: textPrefix
         opacity: textOpacity
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
@@ -64,6 +68,7 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+        MouseArea { id: textPrefixMouseArea }        
     }
     Slider {
         id: slider
@@ -71,12 +76,12 @@ Item {
         height: parent.height - 2
         anchors.verticalCenter: parent.verticalCenter
         anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
-        anchors.left: textPrefix == "" ? parent.left : textPrefixText.right
+        anchors.left: textPrefix == "" ? parent.left : textPrefix.right
         anchors.leftMargin: textPrefix == "" ? 0 : 5
         smooth: true
     }
     Text {
-        id: textSuffixText
+        id: textSuffix
         opacity: textOpacity
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
@@ -87,5 +92,6 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+        MouseArea { id: textSuffixMouseArea }        
     }
 }

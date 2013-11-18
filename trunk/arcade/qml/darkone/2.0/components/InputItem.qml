@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 Item {
-    id: inputItem
+    id: root
     property bool debug: false
 
     height: 12
@@ -23,17 +23,19 @@ Item {
     onOpacityChanged: { textOpacity: opacity - opacityDiff; }
 
     signal accepted();
+    signal entered();
     signal clicked();
     Component.onCompleted: {
-        textInput.accepted.connect(accepted);
+        mouseArea.entered.connect(entered);
         mouseArea.clicked.connect(clicked);
+        textInput.accepted.connect(accepted);
+        textPrefixMouseArea.clicked.connect(mouseArea.clicked);
+        textInputMouseArea.clicked.connect(mouseArea.clicked);
+        textSuffixMouseArea.clicked.connect(mouseArea.clicked);
     }
 
     onActiveFocusChanged: {
         debug && console.log("[inputitem] activeFocus: '" + activeFocus + "'");
-        textInput.focus = true;
-    }
-    onClicked: {
         textInput.focus = true;
     }
     MouseArea {
@@ -48,6 +50,9 @@ Item {
         onExited: {
             textOpacity = resetOpacity;
         }
+        onClicked: {
+            textInput.focus = true;
+        }
     }
 
     Text {
@@ -61,6 +66,7 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+        MouseArea { id: textPrefixMouseArea }
     }
     Rectangle {
         id: inputBox
@@ -84,7 +90,7 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 2
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: inputItem.textSize
+            font.pixelSize: root.textSize
             smooth: true
             cursorDelegate: Rectangle {
                 color: "black"
@@ -92,6 +98,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 visible: parent.activeFocus
             }
+            MouseArea { id: textInputMouseArea }
         }
     }
     Text {
@@ -106,5 +113,6 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+        MouseArea { id: textSuffixMouseArea }
     }
 }
