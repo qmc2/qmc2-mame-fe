@@ -55,7 +55,7 @@ Rectangle {
             case Qt.Key_Return:
             case Qt.Key_Space: {
                 if ( !(event.modifiers & Qt.AltModifier) ) {
-                    clicked();
+                    root.checked = !root.checked;
                     event.accepted = true;
                 }
                 break;
