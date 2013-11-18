@@ -39,35 +39,53 @@
  **
  ****************************************************************************/
 
+/* 
+ * modified: Pete Beardmore
+ * date: 2012, 2013
+ */ 
+
 import QtQuick 1.1
 
 Item {
-    id: slider; width: 400; height: 16
+    id: root
+    property bool debug: false
 
     // value is read/write.
     property real value: 1
-    onValueChanged: updatePos();
     property real maximum: 1
     property real minimum: 1
-    property int xMax: width - handle.width - 4
-    onXMaxChanged: updatePos();
-    onMinimumChanged: updatePos();
-
+    property int xMin: 2
+    property int xMax: width - handle.width - 4 - activeFocusBorder / 2
     property string fgColour1: "lightgray"
     property string fgColour2: "gray"
     property string bgColour1: "black"
     property string bgColour2: "black"
     property string activeColour: "red"
     property int slidePercentage: 1
+    property int heightReset: root.height - 2 * activeFocusBorder / 2
+    property int activeFocusBorder: 2
+
+    width: 400
+    height: 16
+
+    onValueChanged: updatePos();
+    onXMaxChanged: updatePos();
+    onMinimumChanged: updatePos();
+    onActiveFocusChanged: {
+        debug && console.log("[slider] root.activeFocus: '" + root.activeFocus + "'," +
+                                      "root.height: '" + root.height + "'," +
+                                      "root.heightReset: '" + root.heightReset + "'");
+        updatePos();
+    }
 
     function updatePos() {
         if (maximum > minimum) {
-            var pos = 2 + (value - minimum) * slider.xMax / (maximum - minimum);
-            pos = Math.min(pos, width - handle.width - 2);
-            pos = Math.max(pos, 2);
-            handle.x = pos;
+            var pos = root.xMin + ( ((root.xMax - root.xMin)/(maximum - minimum)) * (value - minimum) );
+            pos = Math.min(pos, xMax);
+            pos = Math.max(pos, xMin);
+            handle.x = root.activeFocus ? pos + activeFocusBorder / 2 : pos;
         } else {
-            handle.x = 2;
+            handle.x = root.activeFocus ? root.xMin + activeFocusBorder / 2 : root.xMin;
         }
     }
     function slide(change) {
@@ -76,43 +94,56 @@ Item {
 
     Rectangle {
         id: sliderBackground
-        anchors.fill: parent
-        border.width: slider.activeFocus ? 2 : 0
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: root.activeFocus ? 0 : activeFocusBorder / 2
+        anchors.right: parent.right
+        anchors.rightMargin: root.activeFocus ? 0 : activeFocusBorder / 2
+        height: root.activeFocus ? root.height : root.heightReset
+        width: root.activeFocus ? root.width : root.width - 4
+        radius: root.activeFocus ? 3 + activeFocusBorder / 2 : 3
+        smooth: true
+        border.width: root.activeFocus ? activeFocusBorder : 0
         border.color: parent.activeColour
-        radius: 3
         gradient: Gradient {
             GradientStop { position: 0.0; color: bgColour1 }
             GradientStop { position: 1.0; color: bgColour2 }
         }
-    }
 
-    Rectangle {
-        id: handle; smooth: true
-        y: 1; width: 15; height: slider.height - 2; radius: 4
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: fgColour1 }
-            GradientStop { position: 1.0; color: fgColour2 }
-        }
-
-        MouseArea {
-            id: mouse
-            anchors.fill: parent; drag.target: parent
-            drag.axis: Drag.XAxis; drag.minimumX: 2; drag.maximumX: slider.xMax + 2
-            onPositionChanged: { value = (maximum - minimum) * (handle.x-2) / slider.xMax + minimum; }
+        Rectangle {
+            id: handle;
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 0
+            height: root.heightReset - 2
+            width: 15
+            radius: 4
+            smooth: true
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: fgColour1 }
+                GradientStop { position: 1.0; color: fgColour2 }
+            }
+            MouseArea {
+                id: mouse
+                anchors.fill: parent; drag.target: parent
+                drag.axis: Drag.XAxis
+                drag.minimumX: root.activeFocus ? root.xMin + activeFocusBorder : root.xMin
+                drag.maximumX: root.activeFocus ? root.xMax + activeFocusBorder : root.xMax
+                onPositionChanged: { value = minimum + ( (((root.activeFocus ? handle.x - activeFocusBorder / 2 : handle.x ) - root.xMin) / (root.xMax - root.xMin)) * (maximum - minimum) ) }
+            }
         }
     }
     Keys.onPressed: {
-       switch ( event.key ) {
-           case Qt.Key_Left: {
-               slide(-slidePercentage)
-               event.accepted = true;
-               break;
-           }
-           case Qt.Key_Right: {
-               slide(slidePercentage)
-               event.accepted = true;
-               break;
-           }
-       }
+        switch ( event.key ) {
+            case Qt.Key_Left: {
+                slide(-slidePercentage)
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_Right: {
+                slide(slidePercentage)
+                event.accepted = true;
+                break;
+            }
+        }
     }
 }
