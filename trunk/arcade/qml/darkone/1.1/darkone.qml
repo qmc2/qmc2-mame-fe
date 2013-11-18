@@ -1406,7 +1406,7 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             height: parent.itemHeight - 2
-            text: "dark"
+            text: qsTr("dark")
             textSize: parent.itemTextSize
             textColour: textColour1
             activeColour: textColour2
@@ -1425,7 +1425,7 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             height: parent.itemHeight - 2
-            text: "metal"
+            text: qsTr("metal")
             textSize: parent.itemTextSize
             textColour: textColour1
             activeColour: textColour2
