@@ -3353,6 +3353,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 	if ( pattern.isEmpty() ) {
 		listWidgetSearch->clear();
+		lastSearchText.clear();
+		lastNegatedMatch = false;
 		return;
 	}
 
