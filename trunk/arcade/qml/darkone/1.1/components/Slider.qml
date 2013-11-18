@@ -71,7 +71,7 @@ Item {
         }
     }
     function slide(change) {
-        value = Math.max(minimum, value + (change / 100) * (maximum - minimum))
+        value = Math.min(maximum, Math.max(minimum, value + (change / 100) * (maximum - minimum)))
     }
 
     Rectangle {
