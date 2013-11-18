@@ -19,7 +19,19 @@ Item {
     property real textOpacity: opacity - opacityDiff
     property int heightDiff: 2
     property alias heightReset: root.height
+
     onActiveColourChanged: { checkOuter.border.color = activeFocus ? activeColour : "transparent"; }
+    onCheckedChanged: { checkInner.opacity = checked ? 1.0 : 0.5 }
+
+    signal entered();
+    signal clicked();
+    Component.onCompleted: {
+        mouseArea.entered.connect(entered);
+        mouseArea.clicked.connect(clicked);
+        checkOuterMouseArea.clicked.connect(mouseArea.clicked);
+        checkInnerMouseArea.clicked.connect(mouseArea.clicked);
+        textTextMouseArea.clicked.connect(mouseArea.clicked);
+    }
 
     MouseArea {
         id: mouseArea
@@ -33,15 +45,34 @@ Item {
         onExited: {
             textOpacity = opacityReset;
         }
-        onClicked: { checked = true;
-                     focus = true; }
+        onClicked: { root.checked = true;
+                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," + 
+                                                      "checkOuter.focus: '" + checkOuter.focus + "'," +
+                                                      "checkInner.focus: '" + checkInner.focus + "'," +
+                                                      "textText.focus: '" + textText.focus + "'");
+                     root.focus = true;
+                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," + 
+                                                      "checkOuter.focus: '" + checkOuter.focus + "'," +
+                                                      "checkInner.focus: '" + checkInner.focus + "'," +
+                                                      "textText.focus: '" + textText.focus + "'"); }
+
     }
-    onCheckedChanged: { checkInner.opacity = checked ? 1.0 : 0.5 }
     onActiveFocusChanged: {
         debug && console.log("[checkItem] activeFocus: '" + activeFocus + "'");
         checkInner.height = activeFocus ? checkInner.height - heightDiff : heightReset;
         checkOuter.border.width = activeFocus ? 2 : 0;
         checkOuter.border.color = activeFocus ? activeColour : "transparent";
+    }
+    Keys.onPressed: {
+        switch ( event.key ) {
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+            case Qt.Key_Space: {
+                checked = true;
+                event.accepted = true;
+                break;
+            }
+        }
     }
 
     Checkable {
@@ -73,7 +104,9 @@ Item {
             width: height
             radius: height / 2
             smooth: true
+            MouseArea { id: checkInnerMouseArea }
         }
+        MouseArea { id: checkOuterMouseArea }
     }
     Text {
         id: textText
@@ -87,14 +120,6 @@ Item {
         font.pixelSize: parent.textSize
         color: parent.textColour
         smooth: true
-    }
-    Keys.onPressed: {
-        switch ( event.key ) {
-            case Qt.Key_Space: {
-                checked = true;
-                event.accepted = true;
-                break;
-            }
-        }
+        MouseArea { id: textTextMouseArea }
     }
 }

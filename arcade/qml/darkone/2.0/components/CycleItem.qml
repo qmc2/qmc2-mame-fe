@@ -25,10 +25,16 @@ Item {
     property real textOpacity: opacity - opacityDiff
     onOpacityChanged: { textOpacity: opacity - opacityDiff; }
 
+    signal entered();
     signal clicked();
     Component.onCompleted: {
-         mouseAreaText.clicked.connect(clicked);
-         value = items[1];
+        mouseArea.entered.connect(entered);
+        textPrefixMouseArea.clicked.connect(mouseArea.clicked);
+        prevButtonMouseArea.clicked.connect(clicked);
+        textMouseArea.clicked.connect(clicked);
+        nextButtonMouseArea.clicked.connect(clicked);
+        textSuffixMouseArea.clicked.connect(mouseArea.clicked);
+        value = items[1];
     }
 
     onActiveFocusChanged: {
@@ -88,7 +94,7 @@ Item {
     }
 
     Text {
-        id: textPrefixText
+        id: textPrefix
         opacity: textOpacity
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
@@ -98,13 +104,14 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+        MouseArea { id: textPrefixMouseArea }        
     }
     Rectangle {
         id: cycler
-        anchors.left: textPrefix == "" ? parent.left : textPrefixText.right
+        anchors.left: textPrefix == "" ? parent.left : textPrefix.right
         anchors.leftMargin: textPrefix == "" ? 0 : 5
         height: parent.height
-        width: cyclerWidth > -1 ? cyclerWidth : parent.width - textPrefixText.paintedWidth - textSuffixText.paintedWidth
+        width: cyclerWidth > -1 ? cyclerWidth : parent.width - textPrefix.paintedWidth - textSuffix.paintedWidth
         color: "transparent"
         Image {
             id: prevButton
@@ -117,6 +124,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             smooth: true
             MouseArea {
+                id: prevButtonMouseArea
                 anchors.fill: parent
                 hoverEnabled: true
                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
@@ -153,10 +161,7 @@ Item {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             smooth: true
-            MouseArea {
-                id: mouseAreaText
-                anchors.fill: parent
-            }
+            MouseArea { id: textMouseArea }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.left: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
@@ -174,6 +179,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             smooth: true
             MouseArea {
+                id: nextButtonMouseArea
                 anchors.fill: parent
                 hoverEnabled: true
                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
@@ -196,7 +202,7 @@ Item {
         }
     }
     Text {
-        id: textSuffixText
+        id: textSuffix
         opacity: textOpacity
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
@@ -207,5 +213,6 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+        MouseArea { id: textSuffixMouseArea }        
     }
 }

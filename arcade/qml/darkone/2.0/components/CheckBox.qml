@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 Rectangle {
-    id: checkboxContainer
+    id: root
     property bool debug: false
 
     property variant text
@@ -20,15 +20,13 @@ Rectangle {
     Component.onCompleted: {
         mouseArea.entered.connect(entered);
         mouseArea.clicked.connect(clicked);
+        checkboxMarkMouseArea.clicked.connect(mouseArea.clicked)
+        checkboxTextMouseArea.clicked.connect(mouseArea.clicked)
     }
 
     onActiveFocusChanged: {
         debug && console.log("[checkbox] activeFocus: '" + activeFocus + "'")
         checkboxMark.focus = true;
-    }
-    onClicked: {
-        checkboxMark.focus = true;
-        checked = !checked;
     }
     MouseArea {
         id: mouseArea
@@ -46,14 +44,32 @@ Rectangle {
             debug && console.log("[checkbox exited 2] checkboxText.opacity: '" + checkboxText.opacity + "', " +
                                                      "resetOpacity: '" + resetOpacity + "'");
         }
+        onClicked: {
+            root.checked = !root.checked;
+            root.focus = true;
+        }
     }
+    Keys.onPressed: {
+        switch ( event.key ) {
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+            case Qt.Key_Space: {
+                if ( !(event.modifiers & Qt.AltModifier) ) {
+                    clicked();
+                    event.accepted = true;
+                }
+                break;
+            }
+        }
+    }
+
     Rectangle {
         id: checkboxMark
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
-        anchors.left: checkboxContainer.left
+        anchors.left: root.left
         anchors.leftMargin: 0
         border.width: activeFocus ? 2 : 0
         border.color: parent.activeColour
@@ -68,12 +84,9 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 1
             fillMode: Image.PreserveAspectFit
-            visible: checkboxContainer.checked
+            visible: root.checked
         }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: { focus = true; checkboxContainer.clicked() }
-        }
+        MouseArea { id: checkboxMarkMouseArea }        
     }
     Text {
         id: checkboxText
@@ -84,18 +97,6 @@ Rectangle {
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
         smooth: true
-    }
-    Keys.onPressed: {
-        switch ( event.key ) {
-            case Qt.Key_Enter:
-            case Qt.Key_Return:
-            case Qt.Key_Space: {
-                if ( !(event.modifiers & Qt.AltModifier) ) {
-                    clicked();
-                    event.accepted = true;
-                }
-                break;
-            }
-        }
+        MouseArea { id: checkboxTextMouseArea }        
     }
 }
