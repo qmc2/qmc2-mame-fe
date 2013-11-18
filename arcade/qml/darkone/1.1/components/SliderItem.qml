@@ -25,6 +25,7 @@ Item {
     property real opacityDiff: 0.2
     property real resetOpacity: 0
     property real textOpacity: opacity - opacityDiff
+
     onOpacityChanged: { textOpacity: opacity - opacityDiff; }
 
     signal entered();
@@ -72,10 +73,9 @@ Item {
     }
     Slider {
         id: slider
-        property int index: prefsText.index + 5
-        height: parent.height - 2
+        height: parent.height
         anchors.verticalCenter: parent.verticalCenter
-        anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+        anchors.verticalCenterOffset: 0
         anchors.left: textPrefix == "" ? parent.left : textPrefix.right
         anchors.leftMargin: textPrefix == "" ? 0 : 5
         smooth: true
