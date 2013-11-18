@@ -1128,14 +1128,15 @@ Rectangle {
             onEntered: {
                 debug && console.log("[sortByNameCheckbox] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
-            onClicked: { sortByName = checked;
-                         var desc = gameListModel[gameListView.currentIndex].description
-                         viewer.saveSettings();
-                         viewer.loadGamelist();
-                         gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
-                         gameListView.positionViewAtIndex(lastIndex, ListView.Center);
-                         debug && console.log("[sortByName] desc: '" + desc + "', " +
-                                                           "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
+            onCheckedChanged: {
+                 sortByName = checked;
+                 var desc = gameListModel[gameListView.currentIndex].description
+                 viewer.saveSettings();
+                 viewer.loadGamelist();
+                 gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
+                 gameListView.positionViewAtIndex(lastIndex, ListView.Center);
+                 debug && console.log("[sortByName] desc: '" + desc + "', " +
+                                      "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
             }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
@@ -1162,7 +1163,7 @@ Rectangle {
             onEntered: {
                 debug && console.log("[autoHideToolbarCheckBox entered] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
-            onClicked: toolbarAutoHide = checked;
+            onCheckedChanged: { toolbarAutoHide = checked; }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: sortByNameCheckBox
@@ -1187,7 +1188,7 @@ Rectangle {
             onEntered: {
                 debug && console.log("[fpsCheckBox entered] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
-            onClicked: {
+            onCheckedChanged: {
                 fpsVisible = checked;
                 resetIgnoreLaunchTimer.restart();
                 toolbarShowFpsLock = checked ? toolbarAutoHide : false;
@@ -1315,8 +1316,10 @@ Rectangle {
             textColour: textColour1
             activeColour: textColour2
             smooth: true
-            onClicked: { backLightOpacity = checked ? darkone.opacity : 0;
-                         backLight = checked; }
+            onCheckedChanged: {
+                backLightOpacity = checked ? darkone.opacity : 0;
+                backLight = checked;
+            }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: overlayScaleSliderItem
@@ -1338,7 +1341,7 @@ Rectangle {
             textColour: textColour1
             activeColour: textColour2
             smooth: true
-            onClicked: launchFlash = checked;
+            onCheckedChanged: { launchFlash = checked; }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: backLightCheckBox
@@ -1360,7 +1363,7 @@ Rectangle {
             textColour: textColour1
             activeColour: textColour2
             smooth: true
-            onClicked: launchZoom = checked;
+            onCheckedChanged: { launchZoom = checked; }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: launchFlashCheckBox
@@ -1410,7 +1413,10 @@ Rectangle {
             textSize: parent.itemTextSize
             textColour: textColour1
             activeColour: textColour2
-            onCheckedChanged: { if ( checked ) { darkone.colourScheme = text; } }
+            onCheckedChanged: { 
+                if ( checked ) { darkone.colourScheme = text; }
+                debug && console.log("[colourScheme1Button] checked: '" + checked + "'");
+            }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: launchZoomCheckBox
@@ -1429,7 +1435,10 @@ Rectangle {
             textSize: parent.itemTextSize
             textColour: textColour1
             activeColour: textColour2
-            onCheckedChanged: { if ( checked ) { darkone.colourScheme = text; } }
+            onCheckedChanged: {
+                if ( checked ) { darkone.colourScheme = text; }
+                debug && console.log("[colourScheme2Button] checked: '" + checked + "'");
+            }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme1Button
@@ -1825,7 +1834,7 @@ Rectangle {
             width: 40
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            anchors.rightMargin: overlay.anchors.rightMargin + overlay.width - overlayButtonBlock.x - (overlayButtonBlock.width / 2) - (width / 2);    property bool debug: true
+            anchors.rightMargin: overlay.anchors.rightMargin + overlay.width - overlayButtonBlock.x - (overlayButtonBlock.width / 2) - (width / 2);
             opacity: 0.5
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
