@@ -3355,27 +3355,36 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		listWidgetSearch->clear();
 		lastSearchText.clear();
 		lastNegatedMatch = negatedMatch;
+		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
+		labelGamelistStatus->setText(qmc2Gamelist->status());
 		return;
 	}
 
 	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch )
 		return;
 
-	searchActive = true;
-	lastSearchText = pattern;
-
-	progressBarSearch->setVisible(true);
-	progressBarSearch->setRange(0, treeWidgetGamelist->topLevelItemCount() * (negatedMatch ? 2 : 1));
-	progressBarSearch->setValue(0);
+	QString patternCopy = pattern;
 
 	// easy pattern match
-	pattern = "*" + pattern.replace(' ', "* *") + "*";
-	pattern.replace(QString("*^"), "");
-	pattern.replace(QString("$*"), "");
+	pattern.replace("*", ".*").replace("?", ".").replace(' ', ".* .*").replace(".*^", "").replace("$.*", "").replace("(", "\\(").replace(")", "\\)");
 
 	listWidgetSearch->clear();
 
-	QRegExp patternRx = QRegExp(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
+	QRegExp patternRx = QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
+	if ( !patternRx.isValid() ) {
+		lastSearchText.clear();
+		lastNegatedMatch = negatedMatch;
+		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
+		labelGamelistStatus->setText(qmc2Gamelist->status());
+		return;
+	}
+
+	searchActive = true;
+	lastSearchText = patternCopy;
+
+	progressBarSearch->setVisible(true);
+	progressBarSearch->setRange(0, treeWidgetGamelist->topLevelItemCount());
+	progressBarSearch->setValue(0);
 
 	QString currentItemText;
 	if ( qmc2CurrentItem )
@@ -3388,14 +3397,15 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
 		QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
-		if ( itemText.contains(patternRx) || item->text(QMC2_GAMELIST_COLUMN_NAME).contains(patternRx) ) {
+		bool matched = itemText.indexOf(patternRx) > -1 || item->text(QMC2_GAMELIST_COLUMN_NAME).indexOf(patternRx) > -1;
+		if ( negatedMatch )
+			matched = !matched;
+		if ( matched ) {
 			matches << item;
-			if ( !negatedMatch ) {
-				itemList << new QListWidgetItem();
-				itemList.last()->setText(itemText);
-				if ( currentItemText == itemText )
-					currentItemPendant = itemList.last();
-			}
+			itemList << new QListWidgetItem();
+			itemList.last()->setText(itemText);
+			if ( currentItemText == itemText )
+				currentItemPendant = itemList.last();
 		}
 		progressBarSearch->setValue(progressBarSearch->value() + 1);
 		if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
@@ -3412,36 +3422,11 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		}
 	}
 
-	if ( negatedMatch ) {
-		for (int i = 0; i < treeWidgetGamelist->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
-			QTreeWidgetItem *item = treeWidgetGamelist->topLevelItem(i);
-			if ( !matches.contains(item) ) {
-				QString itemText = item->text(QMC2_GAMELIST_COLUMN_GAME);
-				itemList << new QListWidgetItem();
-				itemList.last()->setText(itemText);
-				if ( currentItemText == itemText )
-					currentItemPendant = itemList.last();
-			}
-			progressBarSearch->setValue(progressBarSearch->value() + 1);
-			if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
-				foreach (QListWidgetItem *item, itemList)
-					listWidgetSearch->addItem(item);
-				itemList.clear();
-				qmc2Gamelist->numSearchGames = listWidgetSearch->count();
-				labelGamelistStatus->setText(qmc2Gamelist->status());
-				if ( currentItemPendant ) {
-					listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
-					listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
-				}
-				qApp->processEvents();
-			}
-		}
-
-	}
-
 	if ( !stopSearch && !qmc2CleaningUp ) {
 		foreach (QListWidgetItem *item, itemList)
 			listWidgetSearch->addItem(item);
+		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
+		labelGamelistStatus->setText(qmc2Gamelist->status());
 		if ( currentItemPendant ) {
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
