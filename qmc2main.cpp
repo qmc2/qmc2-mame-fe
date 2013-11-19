@@ -488,7 +488,7 @@ MainWindow::MainWindow(QWidget *parent)
   comboBoxToolbarSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxToolbarSearch->setStatusTip(tr("Search for machines"));
 #endif
-  comboBoxToolbarSearch->setToolTip(comboBoxToolbarSearch->toolTip() + " - " + tr("note: the reg-exp special characters $, (, ), +, ?, [, ,], ^, {, | and } must be escaped when they are meant literally!"));
+  comboBoxToolbarSearch->setToolTip(comboBoxToolbarSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
   comboBoxToolbarSearch->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
   widgetActionToolbarSearch = new QWidgetAction(this);
   widgetActionToolbarSearch->setDefaultWidget(comboBoxToolbarSearch);
@@ -711,7 +711,7 @@ MainWindow::MainWindow(QWidget *parent)
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
 
-  comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the reg-exp special characters $, (, ), +, ?, [, ,], ^, {, | and } must be escaped when they are meant literally!"));
+  comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
 
   // detail tabs are movable
   tabWidgetGameDetail->setMovable(true);
@@ -3369,7 +3369,34 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	QString patternCopy = pattern;
 
 	// easy pattern match
-	pattern.replace("*", ".*").replace("?", ".").replace(' ', ".* .*").replace(".*^", "").replace("$.*", "");
+	int pos = 0;
+	QRegExp rxAsterisk("(\\*)");
+	while ( (pos = rxAsterisk.indexIn(pattern, pos)) != -1 ) {
+		int matchedLength = rxAsterisk.matchedLength();
+		if ( pos > 0 ) {
+			if ( pattern[pos - 1] != '\\' ) {
+				pattern.replace(pos, 1, ".*");
+				matchedLength = 2;
+			}
+		} else {
+			pattern.replace(pos, 1, ".*");
+			matchedLength = 2;
+		}
+		pos += matchedLength;
+	}
+
+	pos = 0;
+	QRegExp rxQuestionMark("(\\?)");
+	while ( (pos = rxQuestionMark.indexIn(pattern, pos)) != -1 ) {
+		if ( pos > 0 ) {
+			if ( pattern[pos - 1] != '\\' )
+				pattern.replace(pos, 1, ".");
+		} else
+			pattern.replace(pos, 1, ".");
+		pos += rxQuestionMark.matchedLength();
+	}
+
+	pattern.replace(' ', ".* .*").replace(".*^", "").replace("$.*", "");
 
 	listWidgetSearch->clear();
 
