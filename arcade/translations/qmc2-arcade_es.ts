@@ -1184,13 +1184,17 @@ take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/darkone/1.1/darkone.js" line="513"/>
         <location filename="../qml/darkone/1.1/darkone.qml" line="1412"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="513"/>
         <location filename="../qml/darkone/2.0/darkone.qml" line="1386"/>
         <source>dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/darkone/1.1/darkone.js" line="524"/>
         <location filename="../qml/darkone/1.1/darkone.qml" line="1434"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="524"/>
         <location filename="../qml/darkone/2.0/darkone.qml" line="1408"/>
         <source>metal</source>
         <translation type="unfinished"></translation>
