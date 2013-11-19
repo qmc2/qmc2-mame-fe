@@ -508,7 +508,7 @@ function colourScheme(scheme) {
     if (darkone.colourScheme != scheme )
         darkone.colourScheme = scheme;
     switch (scheme) {
-        case "dark" :
+        case qsTr("dark"):
             colourScheme1Button.checked = true;
             colourScheme1Button.opacity = 1.0;
             colour1 = "#777777"; // gradient 1
@@ -519,7 +519,7 @@ function colourScheme(scheme) {
             textColour1 = "#eeeeee"; // primary text
             textColour2 = "#1769ff"; // list highlighted
             break;
-        case "metal":
+        case qsTr("metal"):
             colourScheme2Button.checked = true;
             colourScheme2Button.opacity = 1.0;
             colour1 = "#000000";
