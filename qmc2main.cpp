@@ -488,6 +488,7 @@ MainWindow::MainWindow(QWidget *parent)
   comboBoxToolbarSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxToolbarSearch->setStatusTip(tr("Search for machines"));
 #endif
+  comboBoxToolbarSearch->setToolTip(comboBoxToolbarSearch->toolTip() + " - " + tr("note: the reg-exp special characters $, (, ), +, ?, [, ,], ^, {, | and } must be escaped when they are meant literally!"));
   comboBoxToolbarSearch->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
   widgetActionToolbarSearch = new QWidgetAction(this);
   widgetActionToolbarSearch->setDefaultWidget(comboBoxToolbarSearch);
@@ -709,6 +710,8 @@ MainWindow::MainWindow(QWidget *parent)
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
+
+  comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the reg-exp special characters $, (, ), +, ?, [, ,], ^, {, | and } must be escaped when they are meant literally!"));
 
   // detail tabs are movable
   tabWidgetGameDetail->setMovable(true);
@@ -3366,7 +3369,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	QString patternCopy = pattern;
 
 	// easy pattern match
-	pattern.replace("*", ".*").replace("?", ".").replace(' ', ".* .*").replace(".*^", "").replace("$.*", "").replace("(", "\\(").replace(")", "\\)");
+	pattern.replace("*", ".*").replace("?", ".").replace(' ', ".* .*").replace(".*^", "").replace("$.*", "");
 
 	listWidgetSearch->clear();
 
