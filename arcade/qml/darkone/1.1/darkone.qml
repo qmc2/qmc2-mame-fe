@@ -376,6 +376,7 @@ Rectangle {
                             id: overlayText
                             anchors.fill: parent
                             text: DarkoneJS.data("text")
+                            textFormat: Text.RichText
                             color: "white"
                             font.bold: false
                             font.pixelSize: 8
@@ -469,6 +470,7 @@ Rectangle {
                     Text {
                           id: overlayDataTitle
                           text: DarkoneJS.gameCardHeader()
+                          textFormat: Text.RichText
                           font.pixelSize: 10
                           anchors.top: parent.top
                           anchors.topMargin: 5

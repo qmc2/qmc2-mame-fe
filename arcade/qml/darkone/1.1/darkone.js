@@ -343,10 +343,9 @@ function gameCardHeader() {
     if (!initialised)
         return ""
 
-          var gameObject = gameListModel[gameListView.currentIndex];
-    return "<style type='text/css'>p,h2 { margin:0px }</style><h2>" + gameObject.description + "</h2><p>" + qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p>";
+    var gameObject = gameListModel[gameListView.currentIndex];
+    return "<html><head><style type='text/css'>p, h2 { margin: 0px; }</style></head><h2>" + gameObject.description + "</h2><p>" + qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p></html>";
 }
-
 
 // find datatype (object) by (property) name in (object) dataTypes, and return an 'adjacent' datatype's name
 // type: key (property) of datatype to find in datatypes
@@ -456,7 +455,7 @@ function data(type) {
             info.match(qsTr("no info available")) ? darkone.infoMissing = true : darkone.infoMissing = false;
             darkone.debug && console.log("[data] infoMissing: '" + darkone.infoMissing + "', " +
                                                 "info: '" + "info" + "'")
-            return type == "" ? "" : "<style type='text/css'>p,h3 { margin:0px }</style>" + "<h3>" + type + "</h3>" + "<p>" + info + "</p>";
+            return type == "" ? "" : "<html><head><style type='text/css'>p, h3 { margin: 0px; }</style></head>" + "<h3>" + type + "</h3>" + "<p>" + info + "</p></html>";
             break;
         case "name":
             return dataTypes[darkone.dataTypeCurrent].name;
