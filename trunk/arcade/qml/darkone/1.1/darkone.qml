@@ -1054,11 +1054,11 @@ Rectangle {
         states: [
             State {
                 name: "hidden"
-                PropertyChanges { target: preferencesDialog; opacity: 0.0 }
+                PropertyChanges { target: preferencesDialog; visible: false; }
             },
             State {
                 name: "shown"
-                PropertyChanges { target: preferencesDialog; opacity: 1.0 }
+                PropertyChanges { target: preferencesDialog; visible: true; }
             }
         ]
         transitions: Transition {
