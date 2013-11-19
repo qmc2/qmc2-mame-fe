@@ -1465,9 +1465,6 @@ Rectangle {
             image: "../images/arrow.png"
             imageWidth: 14
             imageRotation: 0
-            Component.onCompleted: {
-                clicked.connect(backendParamValuesCycleItem.clicked);
-            }
             onValueChanged: {
                 debug && console.log("[preferences params names 1] param " +
                                          "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
@@ -1543,7 +1540,7 @@ Rectangle {
             image: "../images/arrow.png"
             imageWidth: 14
             imageRotation: 0
-            onClicked: {
+            onSelect: {
                 debug && console.log("[preferences] param values: '" +
                                           viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
                                          "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "'");
@@ -1553,11 +1550,10 @@ Rectangle {
                     selectedItem = value;
                     viewer.setCliParamValue(backendParamNamesCycleItem.value, value);
                 }
-
             }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: colourScheme2Button
+            KeyNavigation.backtab: backendParamNamesCycleItem
             KeyNavigation.tab: sortByNameCheckBox
         }
     } // focusScope

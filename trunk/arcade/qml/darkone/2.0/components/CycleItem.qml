@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 Item {
-    id: cycleItem
+    id: root
     property bool debug: false
 
     height: 12
@@ -20,20 +20,31 @@ Item {
     property int textSize: 10
     property string textColour: "white"
     property string activeColour: "blue"
+    property int activeBorderWidth: 1
     property real opacityDiff: 0.2
     property real resetOpacity: 0
     property real textOpacity: opacity - opacityDiff
     onOpacityChanged: { textOpacity: opacity - opacityDiff; }
 
+    signal select();
     signal entered();
+    signal exited();
     signal clicked();
     Component.onCompleted: {
         mouseArea.entered.connect(entered);
-        textPrefixMouseArea.clicked.connect(mouseArea.clicked);
-        prevButtonMouseArea.clicked.connect(clicked);
-        textMouseArea.clicked.connect(clicked);
-        nextButtonMouseArea.clicked.connect(clicked);
-        textSuffixMouseArea.clicked.connect(mouseArea.clicked);
+        textPrefixMouseArea.entered.connect(mouseArea.entered);
+        prevButtonMouseArea.entered.connect(mouseArea.entered);
+        textMouseArea.entered.connect(mouseArea.entered);
+        nextButtonMouseArea.entered.connect(mouseArea.entered);
+        textSuffixMouseArea.entered.connect(mouseArea.entered);
+        mouseArea.exited.connect(exited);
+        textPrefixMouseArea.exited.connect(mouseArea.exited);
+        prevButtonMouseArea.exited.connect(mouseArea.exited);
+        textMouseArea.exited.connect(mouseArea.exited);
+        nextButtonMouseArea.exited.connect(mouseArea.exited);
+        textSuffixMouseArea.exited.connect(mouseArea.exited);
+        mouseArea.clicked.connect(clicked);
+        textMouseArea.clicked.connect(mouseArea.clicked);
         value = items[1];
     }
 
@@ -52,6 +63,10 @@ Item {
         }
         onExited: {
             textOpacity = resetOpacity;
+        }
+        onClicked: {
+            textText.focus = true;
+            select();            
         }
     }
 
@@ -116,11 +131,11 @@ Item {
         Image {
             id: prevButton
             opacity: 0.75
-            width: cycleItem.imageWidth > -1 ? cycleItem.imageWidth : parent.height
+            width: root.imageWidth > -1 ? root.imageWidth : parent.height
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            source: cycleItem.image
-            rotation: cycleItem.imageRotation + 180
+            source: root.image
+            rotation: root.imageRotation + 180
             fillMode: Image.PreserveAspectFit
             smooth: true
             MouseArea {
@@ -128,54 +143,97 @@ Item {
                 anchors.fill: parent
                 hoverEnabled: true
                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
-                onClicked: value = cycle(-1);
+                onClicked: { 
+                    textText.focus = true;
+                    value = cycle(-1);
+                }
             }
-            KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.right: KeyNavigation.tab
-            KeyNavigation.tab: textText
             Keys.onPressed: {
                 switch ( event.key ) {
                     case Qt.Key_Enter:
                     case Qt.Key_Return:
                     case Qt.Key_Space: {
-                        cycle(-1);
+                        value = cycle(-1);
                         event.accepted = true;
                         break;
                     }
                 }
             }
         }
-        Text {
-            id: textText
-            anchors.verticalCenter: parent.verticalCenter
+        Rectangle {
             anchors.left: prevButton.right
             anchors.leftMargin: 5
             anchors.right: nextButton.left
             anchors.rightMargin: 5
-            text: value
-            font.bold: selectedItem != "" && selectedItem == value ? true : false
-//            font.pixelSize: selectedItem != "" && selectedItem == value ? cycleItem.textSize + 1 : cycleItem.textSize
-            font.pixelSize: cycleItem.textSize
-            color: selectedItem != "" && selectedItem == value ? cycleItem.activeColour : cycleItem.textColour
-            elide: Text.ElideRight
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            smooth: true
-            MouseArea { id: textMouseArea }
-            KeyNavigation.up: KeyNavigation.backtab
-            KeyNavigation.left: KeyNavigation.backtab
-            KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.right: KeyNavigation.backtab
-            KeyNavigation.backtab: prevButton
-            KeyNavigation.tab: nextButton
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            color: "transparent"
+
+            Rectangle {
+                id: borderTop
+                anchors.top: parent.top
+                anchors.topMargin: -2
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Math.min(parent.width, textText.paintedWidth + 8)
+                height: activeBorderWidth
+                visible: textText.activeFocus ? true : false
+                color: activeColour 
+            }
+            Text {
+                id: textText
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 2
+                anchors.right: parent.right
+                text: value
+                font.bold: selectedItem != "" && selectedItem == value ? true : false
+                font.pixelSize: root.textSize
+                color: selectedItem != "" && selectedItem == value ? root.activeColour : root.textColour
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                smooth: true
+                MouseArea { id: textMouseArea }
+                Keys.onPressed: {
+                    switch ( event.key ) {
+                        case Qt.Key_Left: {
+                            value = cycle(-1);
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_Right: {
+                            value = cycle(1);
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return:
+                        case Qt.Key_Space: {
+                            select();
+                            event.accepted = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            Rectangle {
+                id: borderBottom
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: -2
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Math.min(parent.width, textText.paintedWidth + 8)
+                height: activeBorderWidth
+                visible: textText.activeFocus ? true : false
+                color: activeColour 
+            }
         }
         Image {
             id: nextButton
             opacity: 0.75
-            width: cycleItem.imageWidth > -1 ? cycleItem.imageWidth : parent.height
+            width: root.imageWidth > -1 ? root.imageWidth : parent.height
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            source: cycleItem.image
+            source: root.image
             fillMode: Image.PreserveAspectFit
             smooth: true
             MouseArea {
@@ -183,17 +241,17 @@ Item {
                 anchors.fill: parent
                 hoverEnabled: true
                 onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
-                onClicked: value = cycle(1);
+                onClicked: { 
+                    textText.focus = true;
+                    value = cycle(1);
+                }
             }
-            KeyNavigation.up: KeyNavigation.backtab
-            KeyNavigation.left: KeyNavigation.backtab
-            KeyNavigation.backtab: textText
             Keys.onPressed: {
                 switch ( event.key ) {
                     case Qt.Key_Enter:
                     case Qt.Key_Return:
                     case Qt.Key_Space: {
-                        cycle(1);
+                        value = cycle(1);
                         event.accepted = true;
                         break;
                     }
