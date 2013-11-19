@@ -1414,7 +1414,7 @@ Rectangle {
             textColour: textColour1
             activeColour: textColour2
             onCheckedChanged: { 
-                if ( checked ) { darkone.colourScheme = text; }
+                if ( checked ) { darkone.colourScheme = "dark"; }
                 debug && console.log("[colourScheme1Button] checked: '" + checked + "'");
             }
             KeyNavigation.up: KeyNavigation.backtab
@@ -1436,7 +1436,7 @@ Rectangle {
             textColour: textColour1
             activeColour: textColour2
             onCheckedChanged: {
-                if ( checked ) { darkone.colourScheme = text; }
+                if ( checked ) { darkone.colourScheme = "metal"; }
                 debug && console.log("[colourScheme2Button] checked: '" + checked + "'");
             }
             KeyNavigation.up: KeyNavigation.backtab

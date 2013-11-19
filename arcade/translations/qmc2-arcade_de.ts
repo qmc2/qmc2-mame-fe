@@ -1186,17 +1186,13 @@ QMC2 Arcade neu starten!</translation>
         <translation>Farb Schema</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="513"/>
         <location filename="../qml/darkone/1.1/darkone.qml" line="1412"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="513"/>
         <location filename="../qml/darkone/2.0/darkone.qml" line="1386"/>
         <source>dark</source>
         <translation>dunkel</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="524"/>
         <location filename="../qml/darkone/1.1/darkone.qml" line="1434"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="524"/>
         <location filename="../qml/darkone/2.0/darkone.qml" line="1408"/>
         <source>metal</source>
         <translation>metallisch</translation>
@@ -1226,8 +1222,8 @@ QMC2 Arcade neu starten!</translation>
         <translation>Hintergrundbeleuchtung?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1828"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1802"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1824"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1798"/>
         <source>FPS</source>
         <translation>FPS</translation>
     </message>
