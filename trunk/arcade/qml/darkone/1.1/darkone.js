@@ -386,17 +386,32 @@ function adjDataType(type, offset) {
     return target;
 }
 
-function data(type) {
+function datatypeKeys() { 
+    var items = [];
+    var l;
+    for (l in dataTypes)
+    {
+      darkone.debug && console.log("[datatypeKeys] key: '" + dataTypes[l].key + "'");
+      items.push(dataTypes[l].key);
+    }
+    return items;
+}
 
-    if (!initialised)
-        return ""
+function data(type) {
 
     darkone.debug && console.log("[data] type: '" + type + "', " +
                                         "dataTypeCurrent: '" + darkone.dataTypeCurrent + "', " +
                                         "dataTypePrimary: '" + darkone.dataTypePrimary + "', " +
                                         "dataTypeSecondary: '" + darkone.dataTypeSecondary + "'");
     switch (type) {
+        case "name":
+            return dataTypes[darkone.dataTypeCurrent].name;
+            break;
+
         case "image":
+            if (!initialised)
+                return ""
+
             var image = ""
             var image2 = ""
             if (darkone.dataHidden) {
@@ -427,7 +442,11 @@ function data(type) {
             darkone.debug && console.log("[data] using image path: '" + image + "'");
             return image;
             break;
+
         case "text":
+            if (!initialised)
+                return ""
+
             var info = ""
             var type = ""
             if (darkone.dataHidden) {
@@ -456,9 +475,6 @@ function data(type) {
             darkone.debug && console.log("[data] infoMissing: '" + darkone.infoMissing + "', " +
                                                 "info: '" + "info" + "'")
             return type == "" ? "" : "<html><head><style type='text/css'>p, h3 { margin: 0px; }</style></head>" + "<h3>" + type + "</h3>" + "<p>" + info + "</p></html>";
-            break;
-        case "name":
-            return dataTypes[darkone.dataTypeCurrent].name;
             break;
     }
 }
