@@ -977,8 +977,10 @@ Rectangle {
         opacity: 1.0
         state: "hidden"
         focus: false
+
         MouseArea {
             anchors.fill: parent;
+            cursorShape: Qt.ArrowCursor
             hoverEnabled: true
             onClicked: {
                 debug && console.log("[preferences onClick 1] focus: '" + focus + "'");
