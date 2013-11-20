@@ -1104,14 +1104,16 @@ Rectangle {
                 debug && console.log("[sortByNameCheckbox] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
             onCheckedChanged: {
-                 sortByName = checked;
-                 var desc = gameListModel[gameListView.currentIndex].description
-                 viewer.saveSettings();
-                 viewer.loadGamelist();
-                 gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
-                 gameListView.positionViewAtIndex(lastIndex, ListView.Center);
-                 debug && console.log("[sortByName] desc: '" + desc + "', " +
-                                      "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
+                if (darkone.initialised) {
+                    sortByName = checked;
+                    var desc = gameListModel[gameListView.currentIndex].description
+                    viewer.saveSettings();
+                    viewer.loadGamelist();
+                    gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
+                    gameListView.positionViewAtIndex(lastIndex, ListView.Center);
+                    debug && console.log("[sortByName] desc: '" + desc + "', " +
+                                        "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
+                }
             }
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
