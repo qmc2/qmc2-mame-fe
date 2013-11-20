@@ -15,6 +15,7 @@ Item {
     property variant items: ["item1", "item2", "item3", "item4", "item5"]
     property string selectedItem: ""
     property string value: ""
+    property string text: ""
     property string textPrefix: ""
     property string textSuffix: ""
     property int textSize: 10
@@ -45,9 +46,9 @@ Item {
         textSuffixMouseArea.exited.connect(mouseArea.exited);
         mouseArea.clicked.connect(clicked);
         textMouseArea.clicked.connect(mouseArea.clicked);
-        value = items[1];
+        value = items[0];
     }
-
+    onItemsChanged: { value = items[0]; }
     onActiveFocusChanged: {
         debug && console.log("[cycleitem] activeFocus: '" + activeFocus + "'")
         textText.focus = true;
@@ -114,17 +115,17 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
         anchors.left: parent.left
-        text: parent.textPrefix
-        font.pixelSize: parent.textSize
-        color: parent.textColour
+        text: root.textPrefix
+        font.pixelSize: root.textSize
+        color: root.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
         MouseArea { id: textPrefixMouseArea }        
     }
     Rectangle {
         id: cycler
-        anchors.left: textPrefix == "" ? parent.left : textPrefix.right
-        anchors.leftMargin: textPrefix == "" ? 0 : 5
+        anchors.left: root.textPrefix == "" ? parent.left : textPrefix.right
+        anchors.leftMargin: root.textPrefix == "" ? 0 : 5
         height: parent.height
         width: cyclerWidth > -1 ? cyclerWidth : parent.width - textPrefix.paintedWidth - textSuffix.paintedWidth
         color: "transparent"
@@ -185,7 +186,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 2
                 anchors.right: parent.right
-                text: value
+                text: root.text != "" ? root.text : value 
                 font.bold: selectedItem != "" && selectedItem == value ? true : false
                 font.pixelSize: root.textSize
                 color: selectedItem != "" && selectedItem == value ? root.activeColour : root.textColour
@@ -266,9 +267,9 @@ Item {
         anchors.verticalCenterOffset: 0
         anchors.left: cycler.right
         anchors.leftMargin: 5
-        text: parent.textSuffix
-        font.pixelSize: parent.textSize
-        color: parent.textColour
+        text: root.textSuffix
+        font.pixelSize: root.textSize
+        color: root.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
         MouseArea { id: textSuffixMouseArea }        

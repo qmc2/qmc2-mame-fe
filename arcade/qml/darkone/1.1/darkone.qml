@@ -580,58 +580,31 @@ Rectangle {
                             smooth: true
                         }
                     }
-                    Image {
-                        id: overlayDataTypePreviousButton
-                        opacity: 0.5
-                        height: 12
-                        anchors.top: parent.top
-                        anchors.topMargin: 5 + 1 + (parent.height - 5 - 1 - height) / 2
-                        anchors.left: parent.left
-                        anchors.leftMargin: parent.width / 4
-                        source: "images/arrow.png"
-                        mirror: true
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
-                            onClicked: {
-                                dataTypeCurrent = DarkoneJS.adjDataType(dataTypeCurrent, -1);
-                                searchTextInput.focus = false;
-                            }
-                        }
-                    }
-                    Text {
-                        id: overlayDataTypeText
-                        text: DarkoneJS.data("name")
-                        color: "white"
-                        font.bold: true
-                        font.pixelSize: 12
+                    CycleItem {
+                        id: overlayDataTypeCycleItem
+                        property int index: prefsBackendText.index + 1
                         anchors.fill: parent
                         anchors.topMargin: 5 + 1
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        smooth: true
-                    }
-                    Image {
-                        id: overlayDataTypeNextButton
-                        opacity: 0.5
-                        height: 12
-                        anchors.top: parent.top
-                        anchors.topMargin: 5 + 1 + (parent.height - 5 - 1 - height) / 2
-                        anchors.right: parent.right
+                        anchors.leftMargin: parent.width / 4
                         anchors.rightMargin: parent.width / 4
-                        source: "images/arrow.png"
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
-                            onClicked: { dataTypeCurrent = DarkoneJS.adjDataType(dataTypeCurrent, 1); }
+                        height: parent.itemHeight
+                        width: parent.width / 2
+                        textSize: 12
+                        textColour: "white"
+                        items: DarkoneJS.datatypeKeys();
+                        image: "../images/arrow.png"
+                        imageWidth: 16
+                        imageRotation: 0
+                        activeColour: "transparent"
+                        onValueChanged: {
+                            dataTypeCurrent = value;
+                            text = DarkoneJS.data("name");
+                        }
+                        Component.onCompleted: {
+                            value = dataTypeCurrent;
+                            text = DarkoneJS.data("name");
                         }
                     }
                 }
