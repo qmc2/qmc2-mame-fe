@@ -775,7 +775,10 @@ Rectangle {
                     PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
              } }
         ]
-        onCurrentIndexChanged: { darkone.lastIndex = currentIndex; }
+        onCurrentIndexChanged: { 
+            if ( darkone.initialised )
+                darkone.lastIndex = currentIndex;
+        }
 
         /* item */
         delegate: Component {
