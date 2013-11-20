@@ -1,6 +1,9 @@
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 
 #include <QApplication>
+#if QT_VERSION >= 0x050000
+#include <QWindow>
+#endif
 
 #include "joystickmanager.h"
 #include "arcadesettings.h"
@@ -34,8 +37,17 @@ JoystickManager::~JoystickManager()
 
 void JoystickManager::mapJoystickFunction(QString joystickFunction)
 {
-    QWidget *focusWidget = QApplication::focusWidget();
-    if ( focusWidget ) {
+    QObject *focusObject = NULL;
+
+#if QT_VERSION < 0x050000
+    focusObject = QApplication::focusWidget();
+#else
+    QWindow *focusWindow = QApplication::focusWindow();
+    if ( focusWindow )
+        focusObject = focusWindow->focusObject();
+#endif
+
+    if ( focusObject ) {
         QString mappedKeySequence = mJoyFunctionMap->mapJoyFunction(joystickFunction);
         if ( mappedKeySequence != joystickFunction ) {
             // emulate a key-event for the mapped joystick-function
@@ -61,7 +73,7 @@ void JoystickManager::mapJoystickFunction(QString joystickFunction)
                 mods |= Qt::MetaModifier;
             }
             QKeyEvent *emulatedKeyEvent = new QKeyEvent(QKeyEvent::KeyPress, key, mods);
-            qApp->postEvent(focusWidget, emulatedKeyEvent);
+            qApp->postEvent(focusObject, emulatedKeyEvent);
         }
     }
 }
