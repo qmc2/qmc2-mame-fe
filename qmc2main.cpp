@@ -3361,7 +3361,8 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		qmc2Gamelist->numSearchGames = listWidgetSearch->count();
 		labelGamelistStatus->setText(qmc2Gamelist->status());
 		return;
-	}
+	} else if ( listWidgetSearch->count() == 0 )
+		lastSearchText.clear();
 
 	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch )
 		return;
