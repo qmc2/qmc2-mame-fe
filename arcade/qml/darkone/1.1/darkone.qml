@@ -1002,6 +1002,11 @@ Rectangle {
         opacity: 1.0
         state: "hidden"
         focus: false
+
+        CursorShapeArea {
+            anchors.fill: parent
+            cursorShape: Qt.ArrowCursor
+        }
         MouseArea {
             anchors.fill: parent;
             hoverEnabled: true
