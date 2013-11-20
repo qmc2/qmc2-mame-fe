@@ -4533,7 +4533,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
             qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
-            if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", true).toBool() )
+            if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", false).toBool() )
               QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(createMawsQuickLinksMenu()));
           }
         }
@@ -9584,7 +9584,7 @@ void MainWindow::mawsLoadFinished(bool ok)
           mawsCacheFile.close();
         }
       }
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", true).toBool() )
+      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", false).toBool() )
         QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(createMawsQuickLinksMenu()));
     }
 #ifdef QMC2_DEBUG
