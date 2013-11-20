@@ -31,9 +31,10 @@ function init() {
         viewer.loadGamelist();
         darkone.debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
-        gameListView.currentIndex = lastIndex < gameListModelCount && lastIndex > -1 ? lastIndex : 0;
+        darkone.lastIndex = (darkone.lastIndex < gameListModelCount && darkone.lastIndex > -1) ? darkone.lastIndex : 0;
+        gameListView.currentIndex = darkone.lastIndex
         gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
-        darkone.debug && console.log("[init] lastIndex: '" + lastIndex + "', " +
+        darkone.debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
         darkone.debug && console.log("[init 1] resetScale: '" + resetScale + "', " +
