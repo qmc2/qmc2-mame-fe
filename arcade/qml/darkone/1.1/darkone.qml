@@ -310,7 +310,7 @@ Rectangle {
                                        dataHidden = !dataHidden; }
                 }
                 CursorShapeArea {
-                    anchors.fill: darkone.focus ? parent : undefined
+                    anchors.fill: parent
                     cursorShape: Qt.CrossCursor
                 }
                 Behavior on anchors.topMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
@@ -414,7 +414,7 @@ Rectangle {
                 state: "hidden"
                 color: "transparent"
                 CursorShapeArea {
-                    anchors.fill: darkone.focus ? parent : undefined
+                    anchors.fill: parent
                     cursorShape: Qt.CrossCursor
                 }
                 transitions: [
@@ -530,7 +530,7 @@ Rectangle {
                                          debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
                         }
                         CursorShapeArea {
-                            anchors.fill: darkone.focus ? parent : undefined
+                            anchors.fill: parent
                             cursorShape: Qt.CrossCursor
                         }
                         Text {
@@ -564,7 +564,7 @@ Rectangle {
                                          debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
                         }
                         CursorShapeArea {
-                            anchors.fill: darkone.focus ? parent : undefined
+                            anchors.fill: parent
                             cursorShape: Qt.CrossCursor
                         }
                         Text {
@@ -683,7 +683,7 @@ Rectangle {
                 }
             }
             CursorShapeArea {
-                anchors.fill: darkone.focus ? parent : undefined
+                anchors.fill: parent
                 cursorShape: Qt.CrossCursor
             }
         }
@@ -710,7 +710,7 @@ Rectangle {
                 }
             }
             CursorShapeArea {
-                anchors.fill: darkone.focus ? parent : undefined
+                anchors.fill: parent
                 cursorShape: Qt.CrossCursor
             }
         }
@@ -742,6 +742,10 @@ Rectangle {
         preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
         currentIndex: darkone.lastIndex > -1 ? darkone.lastIndex : 0
 
+        CursorShapeArea {
+            anchors.fill: parent
+            cursorShape: Qt.ArrowCursor
+        }
         states: [
             State {
                 name: "hidden"
@@ -1843,7 +1847,7 @@ Rectangle {
                     }
                 }
                 CursorShapeArea {
-                    anchors.fill: darkone.focus ? parent : undefined
+                    anchors.fill: parent
                     cursorShape: Qt.CrossCursor
                 }
             }
