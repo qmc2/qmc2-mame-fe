@@ -72,8 +72,7 @@ void JoystickManager::mapJoystickFunction(QString joystickFunction)
                 key -= Qt::MetaModifier;
                 mods |= Qt::MetaModifier;
             }
-            QKeyEvent *emulatedKeyEvent = new QKeyEvent(QKeyEvent::KeyPress, key, mods);
-            qApp->postEvent(focusObject, emulatedKeyEvent);
+            qApp->postEvent(focusObject, new QKeyEvent(QKeyEvent::KeyPress, key, mods));
         }
     }
 }
