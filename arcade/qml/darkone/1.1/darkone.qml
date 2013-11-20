@@ -740,7 +740,6 @@ Rectangle {
         keyNavigationWraps: false
         preferredHighlightBegin: (height / 2) - (gameListView.itemHeight / 2)
         preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
-        currentIndex: darkone.lastIndex > -1 ? darkone.lastIndex : 0
 
         CursorShapeArea {
             anchors.fill: parent
