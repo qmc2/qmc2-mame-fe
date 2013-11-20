@@ -63,7 +63,7 @@ Rectangle {
     onToolbarAutoHideChanged: { debug && console.log("toolbarAutoHide: '" + toolbarAutoHide + "'"); }
     onLastIndexChanged: { debug && console.log("lastIndex: '" + lastIndex + "'"); }
     onColourSchemeChanged: { DarkoneJS.colourScheme(colourScheme); }
-    Component.onCompleted: initTimer.start()
+    Component.onCompleted: { initTimer.start(); }
     Connections {
         target: viewer;
         onEmulatorStarted: DarkoneJS.gameOn();
@@ -738,9 +738,10 @@ Rectangle {
         maximumFlickVelocity: 5000
         interactive: true
         keyNavigationWraps: false
-        currentIndex: darkone.lastIndex || 0
         preferredHighlightBegin: (height / 2) - (gameListView.itemHeight / 2)
         preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
+        currentIndex: darkone.lastIndex > -1 ? darkone.lastIndex : 0
+
         states: [
             State {
                 name: "hidden"
@@ -1115,7 +1116,7 @@ Rectangle {
                     gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
                     gameListView.positionViewAtIndex(lastIndex, ListView.Center);
                     debug && console.log("[sortByName] desc: '" + desc + "', " +
-                                        "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
+                                         "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
                 }
             }
             KeyNavigation.up: KeyNavigation.backtab
