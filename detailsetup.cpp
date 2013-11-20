@@ -514,7 +514,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 						if ( baseUrl == QMC2_MAWS_BASE_URL ) {
 							QStringList items;
 							items << tr("Yes") << tr("No");
-							bool mawsQuickDownloadEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", true).toBool();
+							bool mawsQuickDownloadEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", false).toBool();
 							QString mawsQuickDownload = QInputDialog::getItem(this, tr("MAWS configuration (2/2)"), tr("Enable MAWS quick download?"), items, mawsQuickDownloadEnabled ? 0 : 1, false, &ok);
 							if ( ok && !mawsQuickDownload.isEmpty() )
 								qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", mawsQuickDownload == tr("Yes"));
