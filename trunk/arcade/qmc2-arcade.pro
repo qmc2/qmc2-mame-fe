@@ -173,7 +173,7 @@ macx {
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += gui quick qml
+    QT += gui quick qml testlib
 }
 
 QT += svg

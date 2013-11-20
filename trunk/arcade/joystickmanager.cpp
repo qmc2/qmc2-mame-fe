@@ -3,6 +3,7 @@
 #include <QApplication>
 #if QT_VERSION >= 0x050000
 #include <QWindow>
+#include <QTest>
 #endif
 
 #include "joystickmanager.h"
@@ -37,17 +38,13 @@ JoystickManager::~JoystickManager()
 
 void JoystickManager::mapJoystickFunction(QString joystickFunction)
 {
-    QObject *focusObject = NULL;
-
 #if QT_VERSION < 0x050000
-    focusObject = QApplication::focusWidget();
+    QWidget *focusInstance = QApplication::focusWidget();
 #else
-    QWindow *focusWindow = QApplication::focusWindow();
-    if ( focusWindow )
-        focusObject = focusWindow->focusObject();
+    QWindow *focusInstance = QApplication::focusWindow();
 #endif
 
-    if ( focusObject ) {
+    if ( focusInstance ) {
         QString mappedKeySequence = mJoyFunctionMap->mapJoyFunction(joystickFunction);
         if ( mappedKeySequence != joystickFunction ) {
             // emulate a key-event for the mapped joystick-function
@@ -72,7 +69,11 @@ void JoystickManager::mapJoystickFunction(QString joystickFunction)
                 key -= Qt::MetaModifier;
                 mods |= Qt::MetaModifier;
             }
-            qApp->postEvent(focusObject, new QKeyEvent(QKeyEvent::KeyPress, key, mods));
+#if QT_VERSION < 0x050000
+            qApp->postEvent(focusInstance, new QKeyEvent(QKeyEvent::KeyPress, key, mods));
+#else
+            QTest::sendKeyEvent(QTest::Press, focusInstance, (Qt::Key) key, mappedKeySequence, mods);
+#endif
         }
     }
 }
