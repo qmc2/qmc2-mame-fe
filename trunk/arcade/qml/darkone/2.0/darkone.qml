@@ -716,6 +716,11 @@ Rectangle {
         preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
         currentIndex: darkone.lastIndex > -1 ? darkone.lastIndex : 0
 
+        MouseArea {
+            id: gameListViewMouseArea
+            anchors.fill: parent
+            cursorShape: Qt.ArrowCursor
+        }
         states: [
             State {
                 name: "hidden"
