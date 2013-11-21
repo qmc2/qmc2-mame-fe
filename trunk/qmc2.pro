@@ -227,6 +227,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		} else {
 			!win32 {
 				LIBS += -lSDL -lX11
+				SOURCES += x11_tools.cpp
 			}
 		}
 		win32 {

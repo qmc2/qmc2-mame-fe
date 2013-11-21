@@ -73,6 +73,7 @@
 #include "toolexec.h"
 #if defined(QMC2_OS_UNIX)
 #include "keyseqscan.h"
+#include "x11_tools.h"
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
@@ -5486,48 +5487,22 @@ void MainWindow::action_embedEmulator_triggered()
     }
 
 #if defined(QMC2_OS_UNIX)
-    // run "xwininfo -root -all" to find the window ID
-    QString command = QString(XSTR(QMC2_XWININFO));
-    QStringList args, winIdList;
-    args << "-root" << "-all";
+    QList<WId> winIdList;
     int xwininfoRetries = 0;
-    while ( winIdList.count() < 1 && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
-      QProcess commandProc;
-      bool commandProcStarted = false;
-      int retries = 0;
-      commandProc.start(command, args);
-      bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
-      while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-        started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
-	qApp->processEvents();
-      }
-      if ( started ) {
-        commandProcStarted = true;
-        bool commandProcRunning = (commandProc.state() == QProcess::Running);
-        while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
-          qApp->processEvents();
-          commandProcRunning = (commandProc.state() == QProcess::Running);
-        }
-      } else {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start XWININFO within a reasonable time frame, giving up"));
-        break;
-      }
-      QStringList ssl = QString(commandProc.readAllStandardOutput()).split("\n");
+    while ( winIdList.isEmpty() && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
 #if defined(QMC2_EMUTYPE_MAME)
-      QString regExp = QString("*MAME:*%1*\"QMC2-MAME-ID-%2\"*").arg(gameName).arg(gameID);
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MAME-ID-%2").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_MESS)
-      QString regExp = QString("*MESS:*%1*\"QMC2-MESS-ID-%2\"*").arg(gameName).arg(gameID);
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MESS-ID-%2").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_UME)
-      QString regExp = QString("*UME:*%1*\"QMC2-UME-ID-%2\"*").arg(gameName).arg(gameID);
-#else
-      QString regExp;
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-UME-ID-%2").arg(gameID)));
 #endif
-      foreach (QString s, ssl) {
-        if ( s.contains(QRegExp(regExp, Qt::CaseSensitive, QRegExp::Wildcard)) ) {
-          s = s.trimmed().split(" ")[0];
-          winIdList << s;
-        }
-      }
+	
+	if ( windowId )
+		winIdList << windowId;
+
+	if ( winIdList.isEmpty() && xwininfoRetries <= QMC2_MAX_XWININFO_RETRIES )
+		QTest::qWait(QMC2_XWININFO_DELAY);
     }
 #elif defined(QMC2_OS_WIN)
     QList<WId> winIdList;
@@ -5565,8 +5540,8 @@ void MainWindow::action_embedEmulator_triggered()
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
 #if defined(QMC2_OS_UNIX)
-      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
-      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
+      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
+      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
 #elif defined(QMC2_OS_WIN)
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg((qulonglong)winIdList[0]));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);

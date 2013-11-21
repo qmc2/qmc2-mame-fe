@@ -490,16 +490,6 @@ MKSPEC =
 endif
 endif
 
-# >>> XWININFO <<<
-#
-# Specify the command to be used to run 'xwininfo'.
-#
-# This is only used by the emulator embedder feature on X11 platforms!
-#
-ifndef XWININFO
-XWININFO = xwininfo
-endif
-
 # >>> DATABASE <<<
 #
 # Enable (1) or disable (0) the use of any optional features that make use of
@@ -721,7 +711,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
+DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
@@ -1562,7 +1552,6 @@ endif
 	@$(ECHO) "VARIANT_LAUNCHER       Enable the QMC2 variant launcher (0, 1)       $(VARIANT_LAUNCHER)"
 	@$(ECHO) "WC_COMPRESSION         Compress MAWS web-cache data (0, 1)           $(WC_COMPRESSION)"
 	@$(ECHO) "WIP                    Enable unfinished code (0, 1)                 $(WIP)"
-	@$(ECHO) "XWININFO               X11 xwininfo command                          $(XWININFO)"
 	@$(ECHO) "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
 	@$(ECHO) ""

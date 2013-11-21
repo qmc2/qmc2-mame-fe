@@ -1,6 +1,7 @@
+#include "windows_tools.h"
+
 #if defined(QMC2_OS_WIN)
 
-#include "windows_tools.h"
 #include <psapi.h>
 
 // To ensure correct resolution of symbols, add psapi.lib to LIBS
