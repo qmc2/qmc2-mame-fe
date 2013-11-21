@@ -668,10 +668,11 @@
 // X11 and Windows only: embedder snapshot item default size (100% zoom)
 #define QMC2_EMBED_SNAPSHOT_DEFAULT_ITEM_SIZE	50.0
 
-// maximum number of retries to find an emulator window via xwininfo (the emulator may need longer to get ready)
-#define QMC2_MAX_XWININFO_RETRIES		10
+// maximum number of retries to find an emulator window via xlib (we'll wait for up to a second for the emulator to get ready)
+#define QMC2_MAX_XWININFO_RETRIES		20
+#define QMC2_XWININFO_DELAY			50
 
-// same for the Windows world (we'll wait for up to a second for the emulator to get ready)
+// same for the Windows world
 #define QMC2_MAX_WININFO_RETRIES		20
 #define QMC2_WININFO_DELAY			50
 
