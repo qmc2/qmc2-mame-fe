@@ -4,37 +4,47 @@ import Wheel 1.0;
 import Pointer 1.0;
 import "darkone.js" as DarkoneJS;
 
+FocusScope {
+    id: darkoneFocusScope
+    focus: true
+ 
+    width: darkone.width
+    height: darkone.height
+  
+    // global properties
+    property alias fps: darkone.fps
+    property alias debug: darkone.debug
+    property alias debug2: darkone.debug2
+
+    // restored properties
+    property alias lastIndex: darkone.lastIndex
+    property alias toolbarHidden: darkone.toolbarHidden
+    property alias listHidden: darkone.listHidden
+    property alias fullScreen: darkone.fullScreen
+    property alias fpsVisible: darkone.fpsVisible
+    property alias sortByName: darkone.sortByName
+    property alias launchFlash: darkone.launchFlash
+    property alias launchZoom: darkone.launchZoom
+    property alias dataTypePrimary: darkone.dataTypePrimary
+    property alias dataTypeSecondary: darkone.dataTypeSecondary
+    property alias lightTimeout: darkone.lightTimeout
+    property alias backLight: darkone.backLight
+    property alias toolbarAutoHide: darkone.toolbarAutoHide
+    property alias overlayScale: darkone.overlayScale
+    property alias colourScheme: darkone.colourScheme
+ 
 Rectangle {
     id: darkone
+    focus: true
     z: 0
+    anchors.fill: parent   
+    width: DarkoneJS.baseWidth
+    height: DarkoneJS.baseHeight
 
-    property bool initialised: false
-    property int fps: 0
-    property bool ignoreLaunch: false
-    property bool dataHidden: true
-    property bool keepLightOn: false
-    property bool lightOut: true
-    property bool lightOutScreen: true
-    property string dataTypeCurrent: "title"
-    property int zoomDuration: 250
-    property int listDuration: 750
-    property int flashes: 4
-    property int overlayDuration: 0
-    property int toolbarHideIn: 0
-    property bool preferencesLaunchLock: false
-    property bool toolbarShowMenuLock: false
-    property bool toolbarShowFpsLock: false
-    property bool infoMissing: true
-    property real backLightOpacity: 0
-    property string colour1: "#000000"
-    property string colour2: "#000000"
-    property string colour3: "#000000"
-    property string colour4: "#000000"
-    property string colour5: "#000000"
-    property string textColour1: "#000000"
-    property string textColour2: "#000000"
-    property string version: ""
+    // global properties
     property bool debug: false
+    property bool debug2: false
+    property int fps: 0
 
     // restored properties
     property int lastIndex: -1
@@ -53,23 +63,78 @@ Rectangle {
     property real overlayScale: 1
     property string colourScheme: "dark"
 
-    width: DarkoneJS.baseWidth
-    height: DarkoneJS.baseHeight
+    property bool initialised: false
+    property bool ignoreLaunch: false
+    property bool dataHidden: true
+    property bool keepLightOn: false
+    property bool lightOut: true
+    property bool lightOutScreen: true
+    property string dataTypeCurrent: "title"
+    property int zoomDuration: 250
+    property int listDuration: 750
+    property int overlayDuration: 0
+    property int flashes: 4
+    property int toolbarHideIn: 0
+    property bool preferencesLaunchLock: false
+    property bool toolbarShowMenuLock: false
+    property bool toolbarShowFpsLock: false
+    property bool infoMissing: true
+    property real backLightOpacity: 0
+    property string colour1: "#000000"
+    property string colour2: "#000000"
+    property string colour3: "#000000"
+    property string colour4: "#000000"
+    property string colour5: "#000000"
+    property string textColour1: "#000000"
+    property string textColour2: "#000000"
+    property string version: ""
+
     color: "black"
     opacity: 0
     state: "off"
 
-    PropertyAnimation { id: fadeIn; target: darkone; property: "opacity"; duration: 2000; from: 0; to: 1.0; easing.type: Easing.InExpo; }
-    onToolbarAutoHideChanged: { debug && console.log("toolbarAutoHide: '" + toolbarAutoHide + "'"); }
-    onLastIndexChanged: { debug && console.log("lastIndex: '" + lastIndex + "'"); }
-    onColourSchemeChanged: { DarkoneJS.colourScheme(colourScheme); }
     Component.onCompleted: { initTimer.start(); }
     Connections {
         target: viewer;
         onEmulatorStarted: DarkoneJS.gameOn();
         onEmulatorFinished: DarkoneJS.gameOver();
     }
+
+    onToolbarAutoHideChanged: { debug && console.log("toolbarAutoHide: '" + darkone.toolbarAutoHide + "'"); }
+    onLastIndexChanged: { debug && console.log("lastIndex: '" + darkone.lastIndex + "'"); }
+    onColourSchemeChanged: { DarkoneJS.colourScheme(colourScheme); }
     onStateChanged: state == "off" ? lightOffAnimation.start() : lightOnAnimation.start()
+    onLightOutChanged: { debug && console.log("[darkone] darkone.lightOut: '" + darkone.lightOut + ", " +
+                                                        "state before: '" + darkone.state + "'");
+                         darkone.lightOut ? darkone.state = "off" : darkone.state = "on"; }
+    onLightOutScreenChanged: { debug && console.log("[darkone] darkone.lightOutScreen: '" + darkone.lightOutScreen + ", " +
+                                                              "overlayScreen.state orig: '" + overlayScreen.state + "', " +
+                                                              "backLightOpacity: '" + darkone.backLightOpacity + "'");
+                              if (darkone.lightOutScreen) {
+                                  darkone.backLightOpacity = 0;
+                                  overlayScreen.state = "off"
+                               } else {
+                                  if (backLight)
+                                     darkone.backLightOpacity = 1.0;
+                                  overlayScreen.state = "on";
+                               } }
+    onDataHiddenChanged: { darkone.dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
+    onInfoMissingChanged: { darkone.infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
+    onOverlayScaleChanged: { overlayScaleSliderItem.value = darkone.overlayScale; }
+    onFullScreenChanged: {
+        if ( !DarkoneJS.initialising ) {
+            if ( darkone.fullScreen ) {
+                viewer.switchToFullScreen();
+                fullScreenToggleButton.state = "fullscreen";
+            } else {
+                viewer.switchToWindowed();
+                fullScreenToggleButton.state = "windowed";
+            }
+        }
+    }
+    onFocusChanged: { debug2 && focus && DarkoneJS.inFocus(); }
+
+    PropertyAnimation { id: fadeIn; target: darkone; property: "opacity"; duration: 2000; from: 0; to: 1.0; easing.type: Easing.InExpo; }
     SequentialAnimation {
         id: lightOnAnimation
         PropertyAnimation { target: overlayCabinet; property: "opacity"; duration: 150; from: 0; to: 1.0; easing.type: Easing.InExpo; }
@@ -89,53 +154,134 @@ Rectangle {
         PropertyAnimation { target: overlayCabinet; property: "opacity"; duration: 5; from: 1.0; to: 0.1; easing.type: Easing.InExpo; }
         PropertyAnimation { target: overlayTextFlick; property: "opacity"; duration: 5; from: 1.0; to: 0; easing.type: Easing.InExpo; }
     }
-    onLightOutChanged: { debug && console.log("[darkone] lightOut: '" + lightOut + ", " +
-                                                        "state before: '" + darkone.state + "'");
-                         lightOut ? darkone.state = "off" : darkone.state = "on"; }
-    onLightOutScreenChanged: { debug && console.log("[darkone] lightOutScreen: '" + lightOutScreen + ", " +
-                                                              "overlayScreen.state orig: '" + overlayScreen.state + "', " +
-                                                              "backLightOpacity: '" + backLightOpacity + "'");
-                              if (lightOutScreen) {
-                                  backLightOpacity = 0;
-                                  overlayScreen.state = "off"
-                               } else {
-                                  if (backLight)
-                                     backLightOpacity = 1.0;
-                                  overlayScreen.state = "on";
-                               } }
-    onDataHiddenChanged: { dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
-    onInfoMissingChanged: { infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
-    onOverlayScaleChanged: { overlayScaleSliderItem.value = overlayScale; }
-    onFullScreenChanged: {
-        if ( !DarkoneJS.initialising ) {
-            if ( fullScreen ) {
-                viewer.switchToFullScreen();
-                fullScreenToggleButton.state = "fullscreen";
-            } else {
-                viewer.switchToWindowed();
-                fullScreenToggleButton.state = "windowed";
-            }
-        }
-    }
 
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
-        onPositionChanged: { if (!keepLightOn) {
+        onPositionChanged: { if (!darkone.keepLightOn) {
                                  lightOutTimer.restart();
                                  lightOutScreenTimer.restart();
                              }
-                             if (lightOut)
+                             if (darkone.lightOut)
                                  DarkoneJS.lightToggle(1);
         }
     }
-
+    // global key events
+    Keys.onPressed: {
+        debug2 && console.log("[keys] darkone: '" + DarkoneJS.keyEvent2String(event) + "'")
+        switch ( event.key ) {
+            case Qt.Key_Left: {
+                if (!darkone.listHidden)
+                    DarkoneJS.listToggle();
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_Right: {
+                if (listHidden && preferences.state == "hidden")
+                    DarkoneJS.listToggle();
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_Escape: {
+                if ( searchTextInput.focus )
+                    searchTextInput.focus = false;
+                else if ( preferences.state == "shown" )
+                    preferences.state = "hidden";
+                else if ( launchFlashTimer.running ) {
+                    launchFlashTimer.stop();
+                    DarkoneJS.flashCounter = 0;
+                    DarkoneJS.inGame = true; // fake game over
+                    DarkoneJS.gameOver();
+                }
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_F1:
+                break;
+            case Qt.Key_F11: {
+                darkone.fullScreen = !darkone.fullScreen;
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_Plus: {
+                DarkoneJS.zoom(1.1);
+                event.accepted = true;
+                break;
+            }
+            case Qt.Key_Minus: {
+                DarkoneJS.zoom(0.9);
+                event.accepted = true;
+                break;
+            }
+            default: {
+                if ( event.modifiers & Qt.AltModifier) {
+                    switch ( event.key ) {
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return: {
+                            darkone.fullScreen = !darkone.fullScreen;
+                            event.accepted = true;
+                            break;
+                        }
+                    }
+                } else if ( event.modifiers & Qt.ControlModifier) {
+                    if ( event.modifiers & Qt.ShiftModifier ) {
+                    } else {
+                        switch ( event.key ) {
+                            case Qt.Key_D: {
+                                debug = !debug;
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_K: {
+                                debug2 = !debug2;
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_L: {
+                                if (preferences.state == "hidden")
+                                    DarkoneJS.listToggle();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Q: {
+                                Qt.quit();
+                                break;
+                            }
+                            case Qt.Key_P: {
+                                !darkone.ignoreLaunch && DarkoneJS.launch();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_O: {
+                                preferences.state = preferences.state == "shown" ? "hidden" : "shown";
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_T: {
+                                DarkoneJS.toolbarToggle();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_S: {
+                                if ( !darkone.toolbarHidden ) {
+                                    searchTextInput.text = "";
+                                    searchTextInput.focus = true;
+                                    searchTextInput.forceActiveFocus();
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     Timer {
         id: initTimer
         interval: 5
         running: false
         repeat: true
-        onTriggered: DarkoneJS.init()
+        onTriggered: { DarkoneJS.init(); }
     }
     Timer {
         id: resetIgnoreLaunchTimer
@@ -173,37 +319,37 @@ Rectangle {
         running: false
         repeat: true
         onTriggered: {
-            if (toolbarHideIn == 0) {
+            if (darkone.toolbarHideIn == 0) {
                 hideToolbarTimer.stop();
-                toolbarHideIn = 3;
-                toolbarAutoHide && DarkoneJS.toolbarToggle(-1);
+                darkone.toolbarHideIn = 3;
+                darkone.toolbarAutoHide && DarkoneJS.toolbarToggle(-1);
             } else
-                toolbarHideIn -= 1;
+                darkone.toolbarHideIn -= 1;
         }
     }
     Timer {
         id: lightOutTimer
-        interval: lightTimeout * 1000
+        interval: darkone.lightTimeout * 1000
         running: false
         repeat: true
         onTriggered: DarkoneJS.lightToggle(-1);
     }
     Timer {
         id: lightOutScreenTimer
-        interval: lightTimeout * 1000 + 2500
+        interval: darkone.lightTimeout * 1000 + 2500
         running: false
         repeat: true
-        onTriggered: { lightOutScreen = true;
+        onTriggered: { darkone.lightOutScreen = true;
                        lightOutScreenTimer.stop(); }
     }
 
-//FocusScope {
 
 /***
 * overlay
 */
     Rectangle {
         id: overlay
+        focus: true // darkoneFocusScope
         z: 0
         opacity: debug ? 0.25 : 1.0
         width: (DarkoneJS.overlayWidth() - 15 - 15)
@@ -216,21 +362,152 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 15
-        Behavior on width { PropertyAnimation { duration: overlayDuration; easing.type: Easing.InOutQuad } }
+
+        Behavior on width { PropertyAnimation { duration: darkone.overlayDuration; easing.type: Easing.InOutQuad } }
+
+        onActiveFocusChanged: {
+            debug2 && focus && DarkoneJS.inFocus();
+            if ( focus )
+                overlayScreen.focus = true;
+        }
         MouseArea {
             anchors.fill: parent
-            onClicked: { debug && console.log("[overlay] clicked");
-                         searchTextInput.focus = false; }
+            onClicked: {
+                debug && console.log("[overlay] clicked");
+                overlay.focus = true;
+            }
         }
         WheelArea {
             anchors.fill: parent
             onWheel: {
                        DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
-                       debug && console.log("[overlay] wheel event: overlayScale: '" + overlayScale + "', " +
+                       debug && console.log("[overlay] wheel event: darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                                    "zoom: '" + (1 + (0.1) * (delta / Math.abs(delta))) + "'");
             }
         }
-
+        // overlay key events
+        Keys.onPressed: {
+            debug2 && console.log("[keys] overlay: '" + DarkoneJS.keyEvent2String(event) + "'")
+            switch( event.key ) {
+                case Qt.Key_1: {
+                    if ( ! darkone.dataHidden )
+                        darkone.dataTypePrimary = darkone.dataTypeCurrent
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_2: {
+                    if ( ! darkone.dataHidden )
+                        darkone.dataTypeSecondary = darkone.dataTypeCurrent
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_F: {
+                    if ( event.modifiers & Qt.AltModifier ) {
+                        darkone.fullScreen = !darkone.fullScreen;
+                        event.accepted = true;
+                    }
+                    break;
+                }
+                case Qt.Key_Enter:
+                case Qt.Key_Return: {
+                    darkone.dataHidden = !darkone.dataHidden
+                    if ( ! darkone.dataHidden )
+                       overlayDataTypeCycleItem.focus = true;
+                    else
+                       overlay.focus = true;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_D: {
+                    debug = !debug;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_K: {
+                    debug2 = !debug2;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_P: {
+                    !darkone.ignoreLaunch && DarkoneJS.launch();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Tab: {
+                    if ( event.modifiers & Qt.ShiftModifier ) {
+                        if ( !darkone.toolbarHidden )
+                            toolbarFocusScope.focus = true;
+                        else if ( !darkone.listHidden )
+                            gameListView.focus = true;
+                    } else {
+                        if ( !darkone.listHidden )
+                            gameListView.focus = true;
+                        else if ( !darkone.toolbarHidden )
+                            toolbarFocusScope.focus = true;
+                    }
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Up: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            DarkoneJS.zoom(1.1);
+                            event.accepted = true;
+                            break;                        
+                        } else {
+                            // scroll page
+                            if ( overlayText.text != "" ) {
+                                overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
+                                overlayTextFlick.returnToBounds();
+                            }
+                            event.accepted = true;
+                            break;
+                        }
+                    } else {
+                        // scroll line
+                        if ( overlayText.text != "" ) {
+                            overlayTextFlick.contentY += overlayTextFlick.height / 10
+                            overlayTextFlick.returnToBounds();
+                        }
+                        event.accepted = true;
+                        break;
+                    }
+                }
+                case Qt.Key_Down: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            DarkoneJS.zoom(0.9);
+                            event.accepted = true;
+                            break;                        
+                        } else {
+                            // scroll page
+                            if ( overlayText.text != "" ) {
+                                overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
+                                overlayTextFlick.returnToBounds();
+                            }
+                            event.accepted = true;
+                            break;
+                        }
+                    } else {
+                        // scroll line
+                        if ( overlayText.text != "" ) {
+                            overlayTextFlick.contentY -= overlayTextFlick.height / 10
+                            overlayTextFlick.returnToBounds();
+                        }
+                        event.accepted = true;
+                        break;
+                    }
+                }
+                case Qt.Key_Left:
+                case Qt.Key_Right: {
+                    if ( ! darkone.dataHidden )
+                        event.accepted = true
+                    break;
+                }
+                default: {
+                }
+            }
+        }
 
 /***
 * screen
@@ -239,39 +516,28 @@ Rectangle {
             id: overlayScreen
             z: 1
             width: 348
-            height: 256
-            scale: DarkoneJS.scaleFactorY() * overlayScale
+            height: 254
+            scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             // keep the screen still under scaling, ensure margin of 30% of non-screen space
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (height * scale))
+            anchors.topMargin: (((scale * height) - height - 4) / 2) + 0.3 * (darkone.height - 20 - (height * scale))
             anchors.horizontalCenter: parent.horizontalCenter
             smooth: true
             opacity: 1.0
-            border.color: debug ? "blue" : "transparent"
-            border.width: debug ? 2 : 0
+            border.color: debug ? "blue" : "black"
+            border.width: debug ? 2 : 1
             color: debug ? "white" : "#181818"
             state: "on"
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                onDoubleClicked: { debug && console.log("[overlayScreen] double-clicked");
-                                   dataHidden = !dataHidden; }
-                onEntered: { debug && console.log("[overlayScreen] entered"); }
-                onPositionChanged: { if (!keepLightOn) {
-                                         lightOutTimer.restart();
-                                         lightOutScreenTimer.restart();
-                                     }
-                                     if (lightOut)
-                                         DarkoneJS.lightToggle(1);
-                }
-            }
+            focus: true
+
+            Behavior on scale { PropertyAnimation { id: "overlayScreenScaleAnimation"; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
             transitions: [
                 Transition {
                     from: "on"
                     to: "off"
                     ParallelAnimation {
                         PropertyAnimation { target: overlayScreen; property: "opacity"; from: 1.0; to: 0.1; duration: 500; easing.type: Easing.OutExpo }
-                        PropertyAnimation { target: overlayLighting; property: "opacity"; from: backLightOpacity; to: 0; duration: 500; easing.type: Easing.OutExpo }
+                        PropertyAnimation { target: overlayLighting; property: "opacity"; from: darkone.backLightOpacity; to: 0; duration: 500; easing.type: Easing.OutExpo }
 
                     }
                 },
@@ -280,13 +546,60 @@ Rectangle {
                     to: "on"
                     ParallelAnimation {
                         PropertyAnimation { target: overlayScreen; property: "opacity"; from: 0.1; to: 1.0; duration: 500; easing.type: Easing.OutExpo }
-                        PropertyAnimation { target: overlayLighting; property: "opacity"; from: 0; to: backLightOpacity; duration: 500; easing.type: Easing.OutExpo }
+                        PropertyAnimation { target: overlayLighting; property: "opacity"; from: 0; to: darkone.backLightOpacity; duration: 500; easing.type: Easing.OutExpo }
                     }
                 }
             ]
-            Behavior on scale { PropertyAnimation { id: "overlayScreenScaleAnimation"; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
+
+            onActiveFocusChanged: {
+                if ( darkone.initialised )
+                    debug2 && focus && DarkoneJS.inFocus();
+                    if ( !darkone.dataHidden )
+                        overlayDataTypeCycleItem.focus = true;
+            }
             onStateChanged: { debug && console.log("[overlayScreen] state changed, state: '" + state + "', " +
-                                                                   "backLightOpacity: '" + backLightOpacity + "'"); }
+                                                                   "backLightOpacity: '" + darkone.backLightOpacity + "'"); }
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: { 
+                    parent.forceActiveFocus();
+                }
+                onDoubleClicked: { debug && console.log("[overlayScreen] double-clicked");
+                                   darkone.dataHidden = !darkone.dataHidden; }
+                onEntered: { debug && console.log("[overlayScreen] entered");
+                             debug2 && console.log(overlayDataTypeCycleItem.focus + "|" + overlayDataTypeCycleItem.activeFocus); }
+                onPositionChanged: { if (!darkone.keepLightOn) {
+                                         lightOutTimer.restart();
+                                         lightOutScreenTimer.restart();
+                                     }
+                                     if (darkone.lightOut)
+                                         DarkoneJS.lightToggle(1);
+                }
+            }
+
+            Rectangle {
+                id: overlayScreenBorderTop
+                z: parent.z + 15
+                anchors.top: parent.top
+                anchors.topMargin: - 1
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width - 2
+                height: 3
+                visible: parent.focus || overlayDataTypeCycleItem.focus
+                color: darkone.textColour2
+            }
+            Rectangle {
+                id: overlayScreenBorderBottom
+                z: parent.z + 15
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: - 1
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width - 2
+                height: 3
+                visible: parent.focus || overlayDataTypeCycleItem.focus
+                color: darkone.textColour2
+            }
 
 
 /***
@@ -304,17 +617,18 @@ Rectangle {
                 smooth: true
                 state: "shown"
                 color: "transparent"
-                MouseArea {
-                    anchors.fill: parent
-                    onDoubleClicked: { debug && console.log("[overlayDisplay] double-clicked");
-                                       dataHidden = !dataHidden; }
-                }
+
+                Behavior on anchors.topMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
+                Behavior on anchors.bottomMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
                 CursorShapeArea {
                     anchors.fill: parent
                     cursorShape: Qt.CrossCursor
                 }
-                Behavior on anchors.topMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
-                Behavior on anchors.bottomMargin { PropertyAnimation { duration: darkone.zoomDuration; easing.type: Easing.Linear } }
+                MouseArea {
+                    anchors.fill: parent
+                    onDoubleClicked: { debug && console.log("[overlayDisplay] double-clicked");
+                                       darkone.dataHidden = !darkone.dataHidden; }
+                }
 
                 Image {
                     id: overlayImage
@@ -326,10 +640,11 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.centerIn: parent
                     fillMode: Image.PreserveAspectFit
+ 
                     MouseArea {
                         anchors.fill: parent
                         onDoubleClicked: { debug && console.log("[overlayImage] double-clicked");
-                                           dataHidden = !dataHidden; }
+                                           darkone.dataHidden = !darkone.dataHidden; }
                     }
                     WheelArea {
                         anchors.fill: parent
@@ -361,10 +676,11 @@ Rectangle {
                         flickableDirection: Flickable.VerticalFlick
                         clip: true
                         maximumFlickVelocity : 100
+
                         MouseArea {
                             anchors.fill: parent
                             onDoubleClicked: { debug && console.log("[overlayTextFlick] double-clicked");
-                                               dataHidden = !dataHidden; }
+                                               darkone.dataHidden = !darkone.dataHidden; }
                         }
                         WheelArea {
                             anchors.fill: parent
@@ -372,6 +688,7 @@ Rectangle {
                                 DarkoneJS.zoom(1 + (0.1) * (delta / Math.abs(delta)));
                             }
                         }
+
                         Text {
                             id: overlayText
                             anchors.fill: parent
@@ -385,6 +702,7 @@ Rectangle {
                             wrapMode: Text.WordWrap
                             smooth: true
                             state: "found"
+
                             states: [
                                 State {
                                     name: "found"
@@ -413,10 +731,8 @@ Rectangle {
                 opacity: 1.0
                 state: "hidden"
                 color: "transparent"
-                CursorShapeArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.CrossCursor
-                }
+
+                Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
                 transitions: [
                     Transition {
                         from: "hidden"
@@ -453,7 +769,12 @@ Rectangle {
                         }
                     }
                 ]
-                Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
+
+                CursorShapeArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.CrossCursor
+                }
+
                 Rectangle {
                     id: overlayDataHeader
                     height: overlayDataTitle.paintedHeight + 10
@@ -463,10 +784,12 @@ Rectangle {
                     opacity: 0
                     smooth: true
                     color: debug ? "yellow" : "transparent"
+
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: { dataHidden = !dataHidden; }
+                        onClicked: { darkone.dataHidden = !darkone.dataHidden; }
                     }
+
                     Text {
                           id: overlayDataTitle
                           text: DarkoneJS.gameCardHeader()
@@ -480,9 +803,10 @@ Rectangle {
                           verticalAlignment: Text.AlignVCenter
                           color: "white"
                           wrapMode: Text.WordWrap
+
                           onTextChanged: { debug &&  console.log("[overlayDataHeader] changed");
                                            parent.height = paintedHeight + 5;  // force update
-                                           if (!dataHidden)
+                                           if (!darkone.dataHidden)
                                                overlayDisplay.anchors.topMargin = paintedHeight + 5
                                          } // force update
                     }
@@ -496,6 +820,7 @@ Rectangle {
                     color: debug ? "red" : parent.color
                     opacity: 0
                     smooth: true
+
                     MouseArea {
                         anchors.fill: parent
                         onClicked: { debug && console.log("[overlayDataNav] clicked"); }
@@ -524,15 +849,17 @@ Rectangle {
                         border.width: 2
                         border.color: "black"
                         opacity: 0.75
+
+                        CursorShapeArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.CrossCursor
+                        }
                         MouseArea {
                             anchors.fill: parent
                             onClicked: { darkone.dataTypePrimary = darkone.dataTypeCurrent;
                                          debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
                         }
-                        CursorShapeArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.CrossCursor
-                        }
+
                         Text {
                             id: overlayDataTypeSetPrimaryText
                             text: "1"
@@ -558,15 +885,17 @@ Rectangle {
                         border.width: 2
                         border.color: "black"
                         opacity: 0.75
+
+                        CursorShapeArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.CrossCursor
+                        }
                         MouseArea {
                             anchors.fill: parent
                             onClicked: { darkone.dataTypeSecondary = darkone.dataTypeCurrent;
                                          debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
                         }
-                        CursorShapeArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.CrossCursor
-                        }
+
                         Text {
                             id: overlayDataTypeSetSecondaryText
                             text: "2"
@@ -598,13 +927,21 @@ Rectangle {
                         imageWidth: 16
                         imageRotation: 0
                         activeColour: "transparent"
-                        onValueChanged: {
-                            dataTypeCurrent = value;
+                        passKeyEvents: true
+
+                        Component.onCompleted: {
+                            value = darkone.dataTypeCurrent;
                             text = DarkoneJS.data("name");
                         }
-                        Component.onCompleted: {
-                            value = dataTypeCurrent;
+
+                        onValueChanged: {
+                            darkone.dataTypeCurrent = value;
                             text = DarkoneJS.data("name");
+                        }
+                        onFocusChanged: { debug2 && focus && DarkoneJS.inFocus(); }
+
+                        Keys.onPressed: {
+                            debug2 && console.log("[keys] overlayDataTypeCycleItem: '" + DarkoneJS.keyEvent2String(event) + "'")
                         }
                     }
                 }
@@ -620,14 +957,15 @@ Rectangle {
             z: 2
             source: "images/cabinet.png"
             fillMode: Image.PreserveAspectFit
-            scale: DarkoneJS.scaleFactorY() * overlayScale
+            scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             //keep the cabinet still under scaling, then shift it by the same amount as the screen is shift, then offet the image to match the screen
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (559 * scale)
+            anchors.topMargin: (((scale * height) - height - 2) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (560 * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
-            anchors.horizontalCenterOffset: 3 + 2 * overlayScale
+            anchors.horizontalCenterOffset: 3 + 2 * darkone.overlayScale
             smooth: true
             opacity: 1.0
+
             Behavior on scale { ParallelAnimation {
                                   PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear }
                                   PropertyAnimation { target: overlayLighting; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } } }
@@ -643,14 +981,14 @@ Rectangle {
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
             smooth: true
-            opacity: backLight ? backLightOpacity : 0
+            opacity: darkone.backLight ? darkone.backLightOpacity : 0
         }
         Rectangle {
             id: overlayStateBlock
             z: 0
             width: 150
             height: 275
-            scale: DarkoneJS.scaleFactorY() * overlayScale
+            scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) + (300 * scale)
             anchors.horizontalCenter: overlayCabinet.horizontalCenter
@@ -658,6 +996,7 @@ Rectangle {
             color: DarkoneJS.gameStatusColour()
             smooth: true
             opacity: 0.0
+
             Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
         }
         Rectangle {
@@ -665,26 +1004,28 @@ Rectangle {
             z: 2
             width: 25
             height: 35
-            scale: DarkoneJS.scaleFactorY() * overlayScale
+            scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) + (319 * scale)
             anchors.horizontalCenter: overlayCabinet.horizontalCenter
-            anchors.horizontalCenterOffset: 2 * overlayScale
+            anchors.horizontalCenterOffset: 2 * darkone.overlayScale
             color: debug ? "white" : "transparent"
+
             Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0; }
-                onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5; }
-                onClicked: { if (!ignoreLaunch) {
-                                 gameListView.positionViewAtIndex(lastIndex, ListView.Center);
-                                 DarkoneJS.launch(); }
-                }
-            }
+
             CursorShapeArea {
                 anchors.fill: parent
                 cursorShape: Qt.CrossCursor
+            }
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0; }
+                onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5; }
+                onClicked: { if (!darkone.ignoreLaunch) {
+                                 gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                 DarkoneJS.launch(); }
+                }
             }
         }
         Rectangle {
@@ -692,38 +1033,56 @@ Rectangle {
             z: 2
             width: 120
             height: 40
-            scale: DarkoneJS.scaleFactorY() * overlayScale
+            scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) + (500 * scale)
             anchors.horizontalCenter: overlayCabinet.horizontalCenter
-            anchors.horizontalCenterOffset: 1 * overlayScale
+            anchors.horizontalCenterOffset: 1 * darkone.overlayScale
             color: debug ? "white" : "transparent"
+
             Behavior on scale { PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } }
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0; }
-                onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5; }
-                onClicked: { if (!ignoreLaunch) {
-                                 gameListView.positionViewAtIndex(lastIndex, ListView.Center);
-                                 DarkoneJS.launch(); }
-                }
-            }
             CursorShapeArea {
                 anchors.fill: parent
                 cursorShape: Qt.CrossCursor
             }
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0; }
+                onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5; }
+                onClicked: { if (!darkone.ignoreLaunch) {
+                                 gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                 DarkoneJS.launch(); }
+                }
+            }
         }
     } // overlay
+
+
 
 /***
 * list
 */
+
+    Rectangle {
+        id: gameListViewBorder
+        z: gameListView.z + 15
+        anchors.left: darkone.left
+        anchors.leftMargin: 8
+        anchors.top: darkone.top
+        anchors.topMargin: gameListView.itemHeight + 1
+        width: 2
+        height: gameListView.height - 2
+        color: darkone.textColour2
+        visible: gameListView.activeFocus ? true : false
+    }
+
     ListView {
         id: gameListView
+        focus: false // darkoneFocusScope
         property int itemHeight: 24
         z: 3
-        height: parent.height - (toolbarHidden ? 2 : toolbar.height) - gameListView.itemHeight - gameListView.itemHeight
+        height: parent.height - (darkone.toolbarHidden ? 2 : toolbar.height) - gameListView.itemHeight - gameListView.itemHeight
         width: DarkoneJS.listWidth()
         anchors.top: parent.top
         anchors.topMargin: gameListView.itemHeight
@@ -741,10 +1100,6 @@ Rectangle {
         preferredHighlightBegin: (height / 2) - (gameListView.itemHeight / 2)
         preferredHighlightEnd: (height / 2) + (gameListView.itemHeight / 2)
 
-        CursorShapeArea {
-            anchors.fill: parent
-            cursorShape: Qt.ArrowCursor
-        }
         states: [
             State {
                 name: "hidden"
@@ -784,20 +1139,22 @@ Rectangle {
                     PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
                     // animate
                     ParallelAnimation {
-                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad }
+                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
 
-                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: listDuration; easing.type: Easing.InOutQuad } } } },
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad } }
+                    PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; } } },
             Transition {
                 from: "shown"
                 to: "hidden"
                 SequentialAnimation {
+                    PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                     // ensure correct initial position
                     PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: DarkoneJS.listWidth() +15; duration: 0; easing.type: Easing.Linear }
                     PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: anchors.leftMargin; to: DarkoneJS.listWidth() + 15; duration: 0; easing.type: Easing.Linear }
                     // animate
                     ParallelAnimation {
-                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad }
-                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: listDuration; easing.type: Easing.InOutQuad } }
+                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: darkone.listDuration; easing.type: Easing.InOutQuad } }
                     // make invisible (set in the state property)
                     PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
                     PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
@@ -805,67 +1162,6 @@ Rectangle {
                     PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
              } }
         ]
-        onCurrentIndexChanged: { 
-            if ( darkone.initialised )
-                darkone.lastIndex = currentIndex;
-        }
-
-        /* item */
-        delegate: Component {
-            id: gameListItemDelegate
-            Rectangle {
-                width: parent.width
-                height: gameListView.itemHeight
-                id: gameListItemBackground
-                smooth: true
-                border.color: "#333333"
-                border.width: 1
-                gradient: Gradient {
-                              GradientStop { position: 0.0; color: colour1 }
-                              GradientStop { position: 0.2; color: colour2 }
-                              GradientStop { position: 0.7; color: colour3 }
-                              GradientStop { position: 1.0; color: colour4 } }
-                opacity: 0.75
-                Text {
-                    property bool fontResized: false
-                    id: gameListItemText
-                    anchors.fill: parent
-                    anchors.margins: 10
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    text: model.modelData.description
-                    color: gameListItemBackground.ListView.isCurrentItem ? textColour2: textColour1
-                    font.bold: true
-                    font.pixelSize: 13
-                    elide: Text.ElideRight
-                    smooth: true
-                }
-                MouseArea {
-                    id: gameListItemMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    acceptedButtons: Qt.LeftButton
-                    onContainsMouseChanged: {
-                        if ( mapToItem(toolbar, mouseX, mouseY).y < 0 ) {
-                            if ( containsMouse )
-                                DarkoneJS.itemEntered(gameListItemText, gameListItemBackground, mapToItem(toolbar, mouseX, mouseY));
-                            else
-                                DarkoneJS.itemExited(gameListItemText, gameListItemBackground, mapToItem(toolbar, mouseX, mouseY));
-                        }
-                    }
-                    onDoubleClicked: { if (!ignoreLaunch) {
-                                          gameListView.currentIndex = index;
-                                          gameListView.positionViewAtIndex(lastIndex, ListView.Center) ;
-                                          DarkoneJS.launch(); }
-                    }
-                    onClicked: {
-                        gameListView.currentIndex = index;
-                        debug && console.log("[gameListView] setting index: '" + index + "'")
-                        searchTextInput.focus = false;
-                    }
-                }
-            }
-        }
 
         function firstVisibleItem() { return - Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
         function lastVisibleItem() { return + Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
@@ -874,7 +1170,7 @@ Rectangle {
                                                        "firstVisibleItem: '" + firstVisibleItem() + "', " +
                                                        "lastVisibleItem: '" + lastVisibleItem() + "', " +
                                                        "itemsPerPage: '" + height / (gameListView.itemHeight + 10) + "'");
-                                           return lastVisibleItem() - firstVisibleItem() + 1 }
+                                      return lastVisibleItem() - firstVisibleItem() + 1 }
         function listUp() {
             if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
                 currentIndex -= (itemsPerPage() - 1)
@@ -894,21 +1190,44 @@ Rectangle {
             }
         }
 
+        onCurrentIndexChanged: { 
+            if ( darkone.initialised )
+                darkone.lastIndex = currentIndex;
+        }
+
+        CursorShapeArea {
+            anchors.fill: parent
+            cursorShape: Qt.ArrowCursor
+        }
+        // gameListView key events
         Keys.onPressed: {
-            if (!keepLightOn) {
+            debug2 && console.log("[keys] gameListView: '" + DarkoneJS.keyEvent2String(event) + "'")
+            if (!darkone.keepLightOn) {
                 lightOutTimer.restart();
                 lightOutScreenTimer.restart();
             }
-            if (lightOut)
+            if (darkone.lightOut)
                 DarkoneJS.lightToggle(1);
             switch ( event.key ) {
+                case Qt.Key_Tab: {
+                    if ( event.modifiers & Qt.ShiftModifier )
+                        overlay.focus = true;
+                    else {
+                        if ( !darkone.toolbarHidden )
+                            toolbarFocusScope.focus = true;
+                        else
+                            overlay.focus = true;
+                    }
+                    event.accepted = true;
+                    break;
+                }
                 case Qt.Key_PageUp: {
-                    listUp();                    
+                    listUp();
                     event.accepted = true;
                     break;
                 }
                 case Qt.Key_PageDown: {
-                    listDown();                    
+                    listDown();
                     event.accepted = true;
                     break;
                 }
@@ -926,8 +1245,8 @@ Rectangle {
                 }
                 case Qt.Key_Enter:
                 case Qt.Key_Return: {
-                    if ( !searchTextInput.focus && !(event.modifiers & Qt.AltModifier) && !ignoreLaunch ) {
-                        gameListView.positionViewAtIndex(lastIndex, ListView.Center);
+                    if ( !(event.modifiers & Qt.AltModifier) && !darkone.ignoreLaunch ) {
+                        gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                         DarkoneJS.launch();
                     }
                     break;
@@ -952,18 +1271,78 @@ Rectangle {
                         } else {
                             switch ( event.key ) {
                                 case Qt.Key_Up: {
-                                    listUp();                    
+                                    listUp();
                                     event.accepted = true;
                                     break;
                                 }
                                 case Qt.Key_Down: {
-                                    listDown();                    
+                                    listDown();
                                     event.accepted = true;
                                     break;
                                 }
                             }
                         }
                     }
+                }
+            }
+        }
+
+        // item
+        delegate: Component {
+            id: gameListItemDelegate
+            Rectangle {
+                width: parent.width
+                height: gameListView.itemHeight
+                id: gameListItemBackground
+                smooth: true
+                border.color: "#333333"
+                border.width: 1
+                gradient: Gradient {
+                              GradientStop { position: 0.0; color: darkone.colour1 }
+                              GradientStop { position: 0.2; color: darkone.colour2 }
+                              GradientStop { position: 0.7; color: darkone.colour3 }
+                              GradientStop { position: 1.0; color: darkone.colour4 } }
+                opacity: 0.75
+
+                MouseArea {
+                    id: gameListItemMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    acceptedButtons: Qt.LeftButton
+                    onContainsMouseChanged: {
+                        if ( mapToItem(toolbar, mouseX, mouseY).y < 0 ) {
+                            if ( containsMouse )
+                                DarkoneJS.itemEntered(gameListItemText, gameListItemBackground, mapToItem(toolbar, mouseX, mouseY));
+                            else
+                                DarkoneJS.itemExited(gameListItemText, gameListItemBackground, mapToItem(toolbar, mouseX, mouseY));
+                        }
+                    }
+                    onDoubleClicked: { if (!darkone.ignoreLaunch) {
+                                          gameListView.currentIndex = index;
+                                          gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center) ;
+                                          DarkoneJS.launch(); }
+                    }
+                    onClicked: {
+                        gameListView.currentIndex = index;
+                        debug && console.log("[gameListView] setting index: '" + index + "'");
+                        gameListView.focus = true;
+                        gameListView.forceActiveFocus();
+                    }
+                }
+
+                Text {
+                    property bool fontResized: false
+                    id: gameListItemText
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    text: model.modelData.description
+                    color: gameListItemBackground.ListView.isCurrentItem ? darkone.textColour2: darkone.textColour1
+                    font.bold: true
+                    font.pixelSize: 13
+                    elide: Text.ElideRight
+                    smooth: true
                 }
             }
         }
@@ -975,33 +1354,67 @@ Rectangle {
 */
 
     FocusScope {
-
     id: preferencesFocusScope
-    focus: true
-//    x: preferencesDialog.x;
-//    y: preferencesDialog.y;
-    x: preferencesButton.x - 10
-    y: parent.height - toolbar.height - 5 - height
-    width: preferencesDialog.width;
-    height: preferencesDialog.height;
+    focus: false // darkoneFocusScope
 
     Rectangle {
-        id: preferencesDialog
+        id: preferences
         z: 4
+        y: darkone.height - toolbar.height - 5 - height
+        x: preferencesButton.x - 10
         property int itemHeight: 12
         property int itemSpacing: 6
         property int itemTextSize: 9
-        smooth: true
-//        x: preferencesButton.x - 10
-//        y: parent.height - toolbar.height - 5 - height
-        width: 175
+        property string activeColour: darkone.textColour2
         height: (itemHeight + itemSpacing) * 19 + 10
-        border.color: "transparent"
-        border.width: 1
-        color: colour5
+        width: 175
+        smooth: true
+        border.color: parent.focus ? activeColour : "transparent";
+        border.width: parent.focus ? 1 : 0;
+//        border.color: "transparent"
+//        border.width: 1
+        color: darkone.colour5
         opacity: 1.0
         state: "hidden"
-        focus: false
+
+        states: [
+            State {
+                name: "hidden"
+                PropertyChanges { target: preferences; visible: false; }
+            },
+            State {
+                name: "shown"
+                PropertyChanges { target: preferences; visible: true; }
+            }
+        ]
+        transitions: Transition {
+            from: "hidden"
+            to: "shown"
+            reversible: true
+            PropertyAnimation { property: "opacity"; duration: 100 }
+        }
+
+        onStateChanged: {
+            if ( state == "shown" ) {
+                console.log("preferences state: '" + state + "'");
+                darkone.ignoreLaunch = true;
+                darkone.preferencesLaunchLock = true;
+                darkone.toolbarShowMenuLock = true;
+                overlayScaleSliderItem.maximum = DarkoneJS.overlayScaleMax * 1.5;
+                overlayScaleSliderItem.minimum = DarkoneJS.overlayScaleMin;
+                overlayScaleSliderItem.value = darkone.overlayScale;
+                preferencesFocusScope.focus = true;
+            } else {
+                console.log("preferences state: '" + state + "'");
+                darkone.preferencesLaunchLock = false;
+                darkone.ignoreLaunch = false;
+                darkone.toolbarShowMenuLock = false;
+                overlay.focus = true;
+            }
+        }
+        onFocusChanged: {
+            debug2 && focus && DarkoneJS.inFocus();
+        }
 
         CursorShapeArea {
             anchors.fill: parent
@@ -1012,46 +1425,28 @@ Rectangle {
             hoverEnabled: true
             onClicked: {
                 debug && console.log("[preferences onClick 1] focus: '" + focus + "'");
-                focus = true;
-                debug && console.log("[preferences onClick 2] focus: '" + focus + "'"); }
+                preferencesFocusScope.focus = true;
+                debug && console.log("[preferences onClick 2] focus: '" + focus + "'");
+           }
         }
-        onFocusChanged: {
-            debug && console.log("[preferences onFocus] focus: '" + focus + "'");
-            border.color = debug && activeFocus ? "green" : "transparent";
-            darkone.focus = !focus;
-        }
-        onStateChanged: {
-            if ( state == "shown" ) {
-                ignoreLaunch = true;
-                preferencesLaunchLock = true;
-                sortByName.focus = true;
-                toolbarShowMenuLock = true;
-                overlayScaleSliderItem.maximum = DarkoneJS.overlayScaleMax * 1.5;
-                overlayScaleSliderItem.minimum = DarkoneJS.overlayScaleMin;
-                overlayScaleSliderItem.value = overlayScale;
-            } else {
-                preferencesLaunchLock = false;
-                ignoreLaunch = false;
-                toolbarShowMenuLock = false;
-                focus = false;
+        // preferences key events
+        Keys.onPressed: {
+            debug2 && console.log("[keys] preferences: '" + DarkoneJS.keyEvent2String(event) + "'")
+            switch( event.key ) {
+                case Qt.Key_Tab: {
+                    if ( event.modifiers & Qt.ShiftModifier ) {
+                        backendParamValuesCycleItem.focus = true;
+                        backendParamValuesCycleItem.forceActiveFocus()
+                    } else {
+                        sortByNameCheckBox.focus = true;
+                        sortByNameCheckBox.forceActiveFocus();
+                    }
+                    event.accepted = true;
+                    break;
+                }
             }
         }
-        states: [
-            State {
-                name: "hidden"
-                PropertyChanges { target: preferencesDialog; visible: false; }
-            },
-            State {
-                name: "shown"
-                PropertyChanges { target: preferencesDialog; visible: true; }
-            }
-        ]
-        transitions: Transition {
-            from: "hidden"
-            to: "shown"
-            reversible: true
-            PropertyAnimation { property: "opacity"; duration: 100 }
-        }
+
         Text {
             id: headerText
             property int index: 1
@@ -1061,9 +1456,9 @@ Rectangle {
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing) - parent.itemSpacing
             anchors.left: parent.left
             anchors.leftMargin: 10
-            font.pixelSize: parent.itemTextSize + 3
+            font.pixelSize: preferences.itemTextSize + 3
             font.bold: true
-            color: textColour1
+            color: darkone.textColour1
             smooth: true
         }
 
@@ -1079,9 +1474,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             text: qsTr("behaviour")
-            font.pixelSize: parent.itemTextSize + 2
+            font.pixelSize: preferences.itemTextSize + 2
             font.bold: true
-            color: textColour1
+            color: darkone.textColour1
             smooth: true
         }
         Rectangle {
@@ -1092,12 +1487,13 @@ Rectangle {
             anchors.leftMargin: 7
             anchors.right: parent.right
             anchors.rightMargin: 10
-            color: textColour1
+            color: darkone.textColour1
             opacity: 0.5
             smooth: true
         }
         CheckBox {
             id: sortByNameCheckBox
+            focus: true // preferencesFocusScope
             property int index: prefsText.index + 1
             height: parent.itemHeight
             anchors.top: parent.top
@@ -1108,10 +1504,11 @@ Rectangle {
             anchors.rightMargin: 10
             checked: sortByName
             text: qsTr("sort by name?")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             smooth: true
+
             onEntered: {
                 debug && console.log("[sortByNameCheckbox] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
@@ -1122,11 +1519,12 @@ Rectangle {
                     viewer.saveSettings();
                     viewer.loadGamelist();
                     gameListView.currentIndex = viewer.findIndex(desc, gameListView.currentIndex);
-                    gameListView.positionViewAtIndex(lastIndex, ListView.Center);
+                    gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                     debug && console.log("[sortByName] desc: '" + desc + "', " +
                                          "result: '" + viewer.findIndex(desc, gameListView.currentIndex) + "'");
                 }
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: backendParamValuesCycleItem
@@ -1143,16 +1541,18 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: toolbarAutoHide
+            checked: darkone.toolbarAutoHide
             text: qsTr("auto-hide toolbar")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             smooth: true
+
             onEntered: {
                 debug && console.log("[autoHideToolbarCheckBox entered] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
-            onCheckedChanged: { toolbarAutoHide = checked; }
+            onCheckedChanged: { darkone.toolbarAutoHide = checked; }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: sortByNameCheckBox
@@ -1168,20 +1568,22 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: fpsVisible
+            checked: darkone.fpsVisible
             text: qsTr("FPS counter")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             smooth: true
+
             onEntered: {
                 debug && console.log("[fpsCheckBox entered] focus: '" + focus + ", activeFocus: '" + activeFocus + "'");
             }
             onCheckedChanged: {
-                fpsVisible = checked;
+                darkone.fpsVisible = checked;
                 resetIgnoreLaunchTimer.restart();
-                toolbarShowFpsLock = checked ? toolbarAutoHide : false;
+                darkone.toolbarShowFpsLock = checked ? darkone.toolbarAutoHide : false;
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: autoHideToolbarCheckBox
@@ -1200,19 +1602,20 @@ Rectangle {
             anchors.rightMargin: 10
             textPrefix: qsTr("lights out in")
             textSuffix: qsTr("secs")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             inputColour: "black"
-            text: lightTimeout
+            text: darkone.lightTimeout
+
             onAccepted: {
                 text = text.replace(/([^0-9.])/g, '');
                 var valid = text.match(/^(|\d+|\d+\.*\d+)$/g) &&
                               parseFloat(text) >= 5 ? true : false
                 if (valid) {
                     inputColour = "black"
-                    lightTimeout = parseFloat(text);
-                    darkone.keepLightOn = lightTimeout == 0 ? true : false;
+                    darkone.lightTimeout = parseFloat(text);
+                    darkone.keepLightOn = darkone.lightTimeout == 0 ? true : false;
                     if (darkone.keepLightOn) {
                         lightOutTimer.stop();
                         lightOutScreenTimer.stop();
@@ -1227,6 +1630,7 @@ Rectangle {
             }
             onFocusChanged: { if (focus)
                                   text = text.replace(/([^0-9.])/g, ''); }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: fpsCheckBox
@@ -1242,18 +1646,20 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
-            fgColour1: colour3
-            fgColour2: colour4
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
+            fgColour1: darkone.colour3
+            fgColour2: darkone.colour4
             bgColour1: "white"
             bgColour2: "white"
             textPrefix: qsTr("scale")
-            textSuffix: DarkoneJS.round(100 * overlayScale / DarkoneJS.overlayScaleMax, 0) + "%"
+            textSuffix: DarkoneJS.round(100 * darkone.overlayScale / DarkoneJS.overlayScaleMax, 0) + "%"
             sliderWidth: 85
             slidePercentage: 4
-            onValueChanged: overlayScale = DarkoneJS.round(value, 2);
+
+            onValueChanged: darkone.overlayScale = DarkoneJS.round(value, 2);
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: lightOutInputItem
@@ -1272,9 +1678,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             text: qsTr("effects")
-            font.pixelSize: parent.itemTextSize + 2
+            font.pixelSize: preferences.itemTextSize + 2
             font.bold: true
-            color: textColour1
+            color: darkone.textColour1
             smooth: true
         }
         Rectangle {
@@ -1285,7 +1691,7 @@ Rectangle {
             anchors.leftMargin: 7
             anchors.right: parent.right
             anchors.rightMargin: 10
-            color: textColour1
+            color: darkone.textColour1
             opacity: 0.5
             smooth: true
         }
@@ -1299,16 +1705,18 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: backLight
+            checked: darkone.backLight
             text: qsTr("back lighting")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             smooth: true
+
             onCheckedChanged: {
-                backLightOpacity = checked ? darkone.opacity : 0;
-                backLight = checked;
+                darkone.backLightOpacity = checked ? darkone.opacity : 0;
+                darkone.backLight = checked;
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: overlayScaleSliderItem
@@ -1324,13 +1732,15 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: launchFlash
+            checked: darkone.launchFlash
             text: qsTr("launch flash?")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             smooth: true
-            onCheckedChanged: { launchFlash = checked; }
+
+            onCheckedChanged: { darkone.launchFlash = checked; }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: backLightCheckBox
@@ -1346,13 +1756,15 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
-            checked: launchZoom
+            checked: darkone.launchZoom
             text: qsTr("launch zoom?")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             smooth: true
-            onCheckedChanged: { launchZoom = checked; }
+
+            onCheckedChanged: { darkone.launchZoom = checked; }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: launchFlashCheckBox
@@ -1371,9 +1783,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             text: qsTr("colour scheme")
-            font.pixelSize: parent.itemTextSize + 2
+            font.pixelSize: preferences.itemTextSize + 2
             font.bold: true
-            color: textColour1
+            color: darkone.textColour1
             smooth: true
         }
         Rectangle {
@@ -1384,7 +1796,7 @@ Rectangle {
             anchors.leftMargin: 7
             anchors.right: parent.right
             anchors.rightMargin: 10
-            color: textColour1
+            color: darkone.textColour1
             opacity: 0.5
             smooth: true
         }
@@ -1399,13 +1811,15 @@ Rectangle {
             anchors.leftMargin: 10
             height: parent.itemHeight - 2
             text: qsTr("dark")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
+
             onCheckedChanged: { 
                 if ( checked ) { darkone.colourScheme = "dark"; }
                 debug && console.log("[colourScheme1Button] checked: '" + checked + "'");
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: launchZoomCheckBox
@@ -1421,13 +1835,15 @@ Rectangle {
             anchors.leftMargin: 10
             height: parent.itemHeight - 2
             text: qsTr("metal")
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
+
             onCheckedChanged: {
                 if ( checked ) { darkone.colourScheme = "metal"; }
                 debug && console.log("[colourScheme2Button] checked: '" + checked + "'");
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme1Button
@@ -1446,9 +1862,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             text: qsTr("backend")
-            font.pixelSize: parent.itemTextSize + 2
+            font.pixelSize: preferences.itemTextSize + 2
             font.bold: true
-            color: textColour1
+            color: darkone.textColour1
             smooth: true
         }
         Rectangle {
@@ -1459,7 +1875,7 @@ Rectangle {
             anchors.leftMargin: 7
             anchors.right: parent.right
             anchors.rightMargin: 10
-            color: textColour1
+            color: darkone.textColour1
             opacity: 0.5
             smooth: true
         }
@@ -1473,13 +1889,14 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             textPrefix: "param:"
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             items: viewer.cliParamNames()
             image: "../images/arrow.png"
             imageWidth: 14
             imageRotation: 0
+
             onValueChanged: {
                 debug && console.log("[preferences params names 1] param " +
                                          "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
@@ -1498,6 +1915,7 @@ Rectangle {
                                          "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
 
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: colourScheme2Button
@@ -1512,10 +1930,11 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 10
             text: "desc:   "
-            font.pixelSize: parent.itemTextSize
+            font.pixelSize: preferences.itemTextSize
             font.bold: false
-            color: textColour1
+            color: darkone.textColour1
             smooth: true
+
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
@@ -1532,8 +1951,8 @@ Rectangle {
             anchors.right: parent.right
             anchors.rightMargin: 10
             text: viewer.cliParamDescription(backendParamNamesCycleItem.value)
-            font.pixelSize: parent.itemTextSize + 1
-            color: textColour1
+            font.pixelSize: preferences.itemTextSize + 1
+            color: darkone.textColour1
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
@@ -1548,13 +1967,14 @@ Rectangle {
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
             anchors.left: parent.left
             anchors.leftMargin: 10
-            textSize: parent.itemTextSize
-            textColour: textColour1
-            activeColour: textColour2
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
             textPrefix: "value: "
             image: "../images/arrow.png"
             imageWidth: 14
             imageRotation: 0
+
             onSelect: {
                 debug && console.log("[preferences] param values: '" +
                                           viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
@@ -1566,67 +1986,143 @@ Rectangle {
                     viewer.setCliParamValue(backendParamNamesCycleItem.value, value);
                 }
             }
+
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: backendParamNamesCycleItem
             KeyNavigation.tab: sortByNameCheckBox
         }
-    } // focusScope
     }
+    } // focusScope
 
 
 /***
 * toolbar
 */
+    FocusScope {
+        id: toolbarFocusScope
+        focus: false // darkoneFocusScope
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        width: toolbar.width
+        height: toolbar.height
+
+        onActiveFocusChanged: {
+            debug2 && focus && DarkoneJS.inFocus();
+//            searchTextInput.forceActiveFocus(); // hack!! bug?
+        }
+
+    Rectangle {
+        id: toolbarBorder
+        z: toolbar.z + 15
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: toolbar.height + 1
+        anchors.left: parent.left
+        anchors.leftMargin: 1
+        height: 2
+        width: darkone.width - 2
+        color: darkone.textColour2
+        visible: parent.activeFocus || searchTextInput.activeFocus
+    }
+
     Rectangle {
         id: toolbar
-        x: 0
         z: 4
-        width: DarkoneJS.baseWidth * DarkoneJS.scaleFactorX()
-        height: 36
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
+        width: DarkoneJS.baseWidth * DarkoneJS.scaleFactorX()
+        height: 36
         opacity: 0.75
         smooth: true
         state: "shown"
         gradient: Gradient {
-            GradientStop { position: 0.0; color: colour1 }
-            GradientStop { position: 0.2; color: colour2 }
-            GradientStop { position: 0.7; color: colour3 }
-            GradientStop { position: 1.0; color: colour4 }
+            GradientStop { position: 0.0; color: darkone.colour1 }
+            GradientStop { position: 0.2; color: darkone.colour2 }
+            GradientStop { position: 0.7; color: darkone.colour3 }
+            GradientStop { position: 1.0; color: darkone.colour4 }
         }
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: { toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); }
-            onExited: { hideToolbarTimer.start(); }
-            onPositionChanged: { if (!keepLightOn) {
-                                     lightOutTimer.restart();
-                                     lightOutScreenTimer.restart();
-                                 }
-                                 if (lightOut)
-                                     DarkoneJS.lightToggle(1);
-            }
-        }
+
         transitions: [
             Transition {
                 from: "hidden"
                 to: "shown"
-                ParallelAnimation {
-                    PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: -(toolbar.height - 2); to: 0; duration: 500; easing.type: Easing.OutCubic }
-                    PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: 2 + gameListView.itemHeight; to: toolbar.height + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
+                SequentialAnimation {
+                    ParallelAnimation {
+                        PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: -(toolbar.height - 2); to: 0; duration: 500; easing.type: Easing.OutCubic }
+                        PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: 2 + gameListView.itemHeight; to: toolbar.height + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
+                    }
+                    PropertyAnimation { target: toolbarBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                 }
             },
             Transition {
                 from: "shown"
                 to: "hidden"
-                ParallelAnimation {
-                    PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: 0; to: -(toolbar.height - 2); duration: 500; easing.type: Easing.OutCubic }
-                    PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: toolbar.height + gameListView.itemHeight; to: 2 + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
+                SequentialAnimation {
+                    PropertyAnimation { target: toolbarBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                    ParallelAnimation {
+                        PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: 0; to: -(toolbar.height - 2); duration: 500; easing.type: Easing.OutCubic }
+                        PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: toolbar.height + gameListView.itemHeight; to: 2 + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
+                    }
                 }
             }
         ]
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: { darkone.toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); }
+            onExited: { hideToolbarTimer.start(); }
+            onPositionChanged: { if (!darkone.keepLightOn) {
+                                     lightOutTimer.restart();
+                                     lightOutScreenTimer.restart();
+                                 }
+                                 if (darkone.lightOut)
+                                     DarkoneJS.lightToggle(1);
+            }
+        }
+        // toolbar key events
+        Keys.onPressed: {
+            debug2 && console.log("[keys] gameListView: '" + DarkoneJS.keyEvent2String(event) + "'")
+            if ( darkone.toolbarHidden )
+                console.log("[toolbar] error: key press in hidden state")
+            else {
+                switch ( event.key ) {
+                    case Qt.Key_Tab: {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            if ( !darkone.listHidden )
+                                gameListView.forceActiveFocus();
+                            else
+                                overlay.forceActiveFocus();
+                        } else
+                            overlay.forceActiveFocus();
+                        event.accepted = true;
+                        break;
+                    }   
+                    default: {
+                        if ( DarkoneJS.validateKey(event.text) ) {
+                            searchTextInput.forceActiveFocus();
+                            searchTextInput.text += event.text;
+                            event.accepted = true;
+                            break;
+                        } else if ( DarkoneJS.validateSpecialKey(event.text) ) {
+                            searchTextInput.forceActiveFocus();
+                            switch ( event.text ) {
+                                case "\b": {
+                                    if ( searchTextInput.text.length > 0)
+                                        searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1)
+                                    event.accepted = true;
+                                    break;
+;                               }
+                            }
+                        }
+                    }
+                    break;
+                } // switch
+            }
+        }
+
         Item {
             id: searchBox
             width: DarkoneJS.listWidth()
@@ -1635,6 +2131,7 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: 15
             opacity: 1.0
+
             Image {
                 id: searchButton
                 source: "images/find.png"
@@ -1645,10 +2142,11 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 opacity: 0.75
+
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: { toolbarAutoHide && toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); parent.opacity = 1.0 }
+                    onEntered: { darkone.toolbarAutoHide && darkone.toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); parent.opacity = 1.0 }
                     onExited: { hideToolbarTimer.start(); parent.opacity = 0.75 }
                     onClicked: {
                         parent.opacity = 1.0;
@@ -1666,6 +2164,7 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 radius: height - 2
                 smooth: true
+             
                 TextInput {
                     id: searchTextInput
                     anchors.verticalCenter: parent.verticalCenter
@@ -1677,7 +2176,8 @@ Rectangle {
                     anchors.rightMargin: 8
                     font.pointSize: parent.height - 6
                     smooth: true
-                    focus: false
+                    focus: true // toolbarFocusScope
+
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
                         color: "black"
@@ -1686,10 +2186,10 @@ Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: parent.activeFocus
                     }
+
                     onAccepted: { gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
                                   gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
                     }
-                    onFocusChanged: darkone.focus = !focus;
                 }
             }
             Image {
@@ -1702,6 +2202,7 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 opacity: 0.75
+
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
@@ -1719,15 +2220,16 @@ Rectangle {
             id: showListButton
             source: "images/list_toggle.png"
             height: 18
-            anchors.bottom: parent.bottom
+            anchors.bottom: toolbar.bottom
             anchors.bottomMargin: (toolbar.height - height) / 2
             anchors.left: searchBox.right
             anchors.leftMargin: 15
             fillMode: Image.PreserveAspectFit
             opacity: 0.75
-            rotation: listHidden ? 90 : 270
+            rotation: darkone.listHidden ? 90 : 270
             smooth: true
             z: 5
+
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
@@ -1746,21 +2248,20 @@ Rectangle {
             smooth: true
             opacity: 0.75
             fillMode: Image.PreserveAspectFit
+
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
                 onEntered: parent.opacity = 1.0
                 onExited: parent.opacity = 0.6
                 onClicked: {
-                    debug && console.log("[preferencesButton clicked] state: '" + preferencesDialog.state + "'")
-                    debug && DarkoneJS.info("[preferencesButton clicked]", preferencesDialog)
+                    debug && console.log("[preferencesButton clicked] state: '" + preferences.state + "'")
+                    debug && DarkoneJS.info("[preferencesButton clicked]", preferences)
                     parent.opacity = 1.0;
-                    if (preferencesDialog.state == "shown") {
-                        preferencesDialog.state = "hidden";
-                        searchTextInput.focus = true;
+                    if (preferences.state == "shown") {
+                        preferences.state = "hidden";
                     } else {
-                        preferencesDialog.state = "shown";
-                        searchTextInput.focus = false;
+                        preferences.state = "shown";
                     }
                 }
             }
@@ -1776,6 +2277,18 @@ Rectangle {
             smooth: true
             opacity: 0.75
             fillMode: Image.PreserveAspectFit
+
+            states: [
+                State {
+                    name: "fullscreen"
+                    PropertyChanges { target: fullScreenToggleButton; source: "images/windowed.png" }
+                },
+                State {
+                    name: "windowed"
+                    PropertyChanges { target: fullScreenToggleButton; source: "images/fullscreen.png" }
+                }
+            ]
+
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
@@ -1790,26 +2303,15 @@ Rectangle {
                         darkone.fullScreen = false;
                     }
                     parent.opacity = 1.0;
-                    searchTextInput.focus = false;
                 }
             }
-            states: [
-                State {
-                    name: "fullscreen"
-                    PropertyChanges { target: fullScreenToggleButton; source: "images/windowed.png" }
-                },
-                State {
-                    name: "windowed"
-                    PropertyChanges { target: fullScreenToggleButton; source: "images/fullscreen.png" }
-                }
-            ]
         }
         Text {
             id: fpsText
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: fullScreenToggleButton.right
             anchors.leftMargin: 15
-            color: textColour1
+            color: darkone.textColour1
             text: qsTr("FPS") + ": " + darkone.fps.toString()
             visible: darkone.fpsVisible
         }
@@ -1827,6 +2329,7 @@ Rectangle {
                 GradientStop { position: 0.75; color: DarkoneJS.gameStatusColour() }
                 GradientStop { position: 1.0; color: "transparent" }
             }
+
             Image {
                 id: launchButton
                 source: "images/launch.png"
@@ -1834,25 +2337,26 @@ Rectangle {
                 width: 40
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
+
+                CursorShapeArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.CrossCursor
+                }
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     onEntered: { parent.opacity = 1.0
                                  parent.parent.opacity = 1.0
-                                 overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 1.0;
+                                 overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0;
                     }
                     onExited: { parent.opacity = 0.75
                                 parent.parent.opacity = 0.5
-                                overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5;
+                                overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5;
                     }
-                    onClicked: { if (!ignoreLaunch) {
-                                     gameListView.positionViewAtIndex(lastIndex, ListView.Center);
+                    onClicked: { if (!darkone.ignoreLaunch) {
+                                     gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
                                      DarkoneJS.launch(); }
                     }
-                }
-                CursorShapeArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.CrossCursor
                 }
             }
         }
@@ -1866,6 +2370,7 @@ Rectangle {
             smooth: true
             opacity: 0.25
             fillMode: Image.PreserveAspectFit
+
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
@@ -1878,145 +2383,7 @@ Rectangle {
                 }
             }
         }
-    }
-
-    focus: true
-    Keys.onPressed: {
-        switch ( event.key ) {
-            case Qt.Key_Left: {
-                if (!listHidden)
-                    DarkoneJS.listToggle();
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Right: {
-                if (listHidden && preferencesDialog.state == "hidden")
-                    DarkoneJS.listToggle();
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Escape: {
-                if ( searchTextInput.focus )
-                    searchTextInput.focus = false;
-                else if ( preferencesDialog.state == "shown" )
-                    preferencesDialog.state = "hidden";
-                else if ( launchFlashTimer.running ) {
-                    launchFlashTimer.stop();
-                    DarkoneJS.flashCounter = 0;
-                    DarkoneJS.inGame = true; // fake game over
-                    DarkoneJS.gameOver();
-                }
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_F1:
-                break;
-            case Qt.Key_F11: {
-                fullScreen = !fullScreen;
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_F:
-            case Qt.Key_Enter:
-            case Qt.Key_Return: {
-                if ( event.modifiers & Qt.AltModifier ) {
-                    fullScreen = !fullScreen;
-                    event.accepted = true;
-                }
-                break;
-            }
-            case Qt.Key_Plus: {
-                DarkoneJS.zoom(1.1);
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Minus: {
-                DarkoneJS.zoom(0.9);
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_D: {
-                debug = !debug;
-                event.accepted = true;
-                break;
-            }
-            default: {
-                if ( event.modifiers & Qt.ControlModifier) {
-                    if ( event.modifiers & Qt.ShiftModifier ) {
-                        switch ( event.key ) {
-                            case Qt.Key_Up: {
-                                DarkoneJS.zoom(1.1);
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_Down: {
-                                DarkoneJS.zoom(0.9);
-                                event.accepted = true;
-                                break;
-                            }
-                        }
-                    } else {
-                        switch ( event.key ) {
-                            case Qt.Key_L: {
-                                if (preferencesDialog.state == "hidden")
-                                    DarkoneJS.listToggle();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_Q: {
-                                Qt.quit();
-                                break;
-                            }
-                            case Qt.Key_P: {
-                                !darkone.ignoreLaunch && DarkoneJS.launch();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_O: {
-                                preferencesDialog.state = preferencesDialog.state == "shown" ? "hidden" : "shown";
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_T: {
-                                DarkoneJS.toolbarToggle();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_X: {
-                                if ( confirmQuitDialog.state == "hidden" )
-                                    confirmQuitDialog.state = "shown";
-                                else
-                                    confirmQuitDialog.state = "hidden";
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_S: {
-                                if ( !darkone.toolbarHidden ) {
-                                    searchTextInput.text = "";
-                                    searchTextInput.focus = true;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                } else if ( !darkone.toolbarHidden ) {
-                    if ( DarkoneJS.validateKey(event.text) ) {
-                        searchTextInput.text += event.text;
-                        searchTextInput.focus = true;
-                    } else if ( DarkoneJS.validateSpecialKey(event.text) ) {
-                        searchTextInput.focus = true;
-                        switch ( event.text ) {
-                        case "\b":
-                            if ( searchTextInput.text.length > 0)
-                                searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
-                            break;
-                        }
-                    }
-                }
-            }
         }
     }
-    Keys.forwardTo: [gameListView]
-//}
-
-}
+} // darkone
+} // darkoneFocusScope
