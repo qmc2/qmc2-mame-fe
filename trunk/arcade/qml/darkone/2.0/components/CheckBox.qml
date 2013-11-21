@@ -23,7 +23,10 @@ Rectangle {
         checkboxMarkMouseArea.clicked.connect(mouseArea.clicked)
         checkboxTextMouseArea.clicked.connect(mouseArea.clicked)
     }
-
+    onFocusChanged: {
+        debug && console.log("[checkbox] focus: '" + focus + "'")
+        checkboxMark.focus = true;
+    }
     onActiveFocusChanged: {
         debug && console.log("[checkbox] activeFocus: '" + activeFocus + "'")
         checkboxMark.focus = true;

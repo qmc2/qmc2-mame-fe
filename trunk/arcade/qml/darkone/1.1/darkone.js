@@ -24,42 +24,43 @@ function init() {
     if (!darkone.initialised && darkone.lastIndex == -1) {
         overlayScaleMax = baseHeight / overlayScreen.height;
         overlayScaleMin = overlayScaleMax * 0.10;
-        darkone.debug && console.log("[init] overlayScreen.height: '" + overlayScreen.height + "', " +
+        debug && console.log("[init] overlayScreen.height: '" + overlayScreen.height + "', " +
                                             "overlayScaleMax: '" + overlayScaleMax + "'");
         viewer.loadSettings();
         colourScheme(darkone.colourScheme);
         viewer.loadGamelist();
-        darkone.debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
+        debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.lastIndex = (darkone.lastIndex < gameListModelCount && darkone.lastIndex > -1) ? darkone.lastIndex : 0;
         gameListView.currentIndex = darkone.lastIndex
         gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
-        darkone.debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
+        debug && console.log("[init] lastIndex: '" + darkone.lastIndex + "', " +
                                             "gameListModelCount: '" + gameListModelCount + "'");
         darkone.dataTypeCurrent = darkone.dataTypePrimary;
-        darkone.debug && console.log("[init 1] resetScale: '" + resetScale + "', " +
+        debug && console.log("[init 1] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
         resetScale = darkone.overlayScale;
         darkone.overlayScale = Math.min(darkone.overlayScale, overlayScaleMax) / 2;
-        darkone.debug && console.log("[init 2] resetScale: '" + resetScale + "', " +
+        debug && console.log("[init 2] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
 
         listToggle(1 - (darkone.listHidden * 2));
-        if (fpsVisible)
-            toolbarShowFpsLock = true;
-        if (!keepLightOn) {
+        if (darkone.fpsVisible)
+            darkone.toolbarShowFpsLock = true;
+        if (!darkone.keepLightOn) {
             lightOutTimer.start();
             lightOutScreenTimer.start();
         }
         darkone.keepLightOn = (darkone.lightTimeout == 0) ? true : false;
         toolbarToggle(darkone.toolbarAutoHide ? -1 : 1);
+        overlay.focus = true;
         fadeIn.start();
     } else if(!fadeIn.running) {
         darkone.initialised = true;
         initTimer.stop();
         //power
-        lightOut = false;
-        lightOutScreen = false;
+        darkone.lightOut = false;
+        darkone.lightOutScreen = false;
         //immediate user interaction may have caused a light-on event which means the zoom may
         //have already been reset. check before we call zoom with a negative argument!
         if (resetScale != -1) {
@@ -102,7 +103,7 @@ function overlayWidth() {
 }
 
 function itemEntered(itemText, itemBackground, itemCurrent) {
-    darkone.debug && console.log("[itemEntered] " +
+    debug && console.log("[itemEntered] " +
                                  "listWidth: '" + listWidth() + "', " +
                                  "overlayWidth: '" + overlayWidth() + "'");
     if ( !itemText.fontResized ) {
@@ -122,72 +123,74 @@ function itemExited(itemText, itemBackground, itemCurrent) {
 }
 
 function toolbarToggle(force) {
-    darkone.debug && console.log("[toolbarToggle 1] " +
+    debug && console.log("[toolbarToggle 1] " +
                                  "toolbarHidden: '" + darkone.toolbarHidden + "', " +
                                  "toolbarAutoHide: '" + darkone.toolbarAutoHide + "', " +
                                  "force: '" + force + "'");
     if (force > 0 || (darkone.toolbarHidden && !force)) {
         toolbar.state = "shown"
         darkone.toolbarHidden = false;
+        toolbarFocusScope.focus = true;
     } else if ((force < 0 || (!darkone.toolbarHidden && !force)) &&
-                !toolbarShowMenuLock && !toolbarShowFpsLock) {
+                !darkone.toolbarShowMenuLock && !darkone.toolbarShowFpsLock) {
         toolbar.state = "hidden"
         darkone.toolbarHidden = true;
+        overlay.focus = true;
     }
-    searchTextInput.focus = false;
-    darkone.debug && console.log("[toolbarToggle 2] " +
+    debug && console.log("[toolbarToggle 2] " +
                                  "toolbarHidden: '" + darkone.toolbarHidden + "', " +
                                  "toolbarAutoHide: '" + darkone.toolbarAutoHide + "', " +
                                  "force: '" + force + "'");
 }
 
 function listToggle(force) {
-    darkone.debug && console.log("[listToggle 1] " +
+    debug && console.log("[listToggle 1] " +
                                  "listHidden: '" + darkone.listHidden + "', " +
                                  "force: '" + force + "'");
-    if (toolbarShowMenuLock)
+    if (darkone.toolbarShowMenuLock)
         return
     darkone.overlayDuration = 1000;
     resetOverlaySnapTimer.start();
     if (force > 0 || (darkone.listHidden && !force)) {
-        gameListView.state = "shown"
+        gameListView.state = "shown";
         darkone.listHidden = false;
         showListButton.rotation = 270;
+        gameListView.focus = true;
     } else if (force < 0 || (!darkone.listHidden && !force)) {
-        gameListView.state = "hidden"
+        gameListView.state = "hidden";
         darkone.listHidden = true;
         showListButton.rotation = 90;
+        overlay.focus = true;
     }
-    searchTextInput.focus = false;
-    darkone.debug && console.log("[listToggle 2] " +
+    debug && console.log("[listToggle 2] " +
                                  "listHidden: '" + darkone.listHidden + "', " +
                                  "force: '" + force + "'");
 }
 
 function lightToggle(force) {
-    if (!initialised || fadeIn.running)
+    if (!darkone.initialised || fadeIn.running)
         return   
     if (force > 0 || (darkone.lightOff && !force)) {
-        ignoreLaunch = preferencesLaunchLock ? true : false
-        lightOut = false;
-        lightOutScreen = false;
+        darkone.ignoreLaunch = darkone.preferencesLaunchLock ? true : false
+        darkone.lightOut = false;
+        darkone.lightOutScreen = false;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
-        darkone.debug && console.log("[lightToggle on 1] resetScale: '" + resetScale + "', " +
+        debug && console.log("[lightToggle on 1] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
         if (resetScale != -1) {
             zoom(resetScale / darkone.overlayScale);
             resetScale = -1;
         }
-        darkone.debug && console.log("[lightToggle on 2] resetScale: '" + resetScale + "', " +
+        debug && console.log("[lightToggle on 2] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
-        if (!keepLightOn) {
+        if (!darkone.keepLightOn) {
             lightOutTimer.restart();
             lightOutScreenTimer.restart();
         }
     } else if (force < 0 || (!darkone.lightOff && !force)) {
-        ignoreLaunch = true
-        darkone.debug && console.log("[lightToggle off 1] resetScale: '" + resetScale + "', " +
+        darkone.ignoreLaunch = true
+        debug && console.log("[lightToggle off 1] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
         if (resetListHidden)
            //do NOT interfere with whatever else is expecting to 'reset listHidden (aka show the list)'
@@ -206,10 +209,10 @@ function lightToggle(force) {
             resetScale = darkone.overlayScale;
             zoom(0.5);
         }
-        darkone.debug && console.log("[lightToggle off 2] resetScale: '" + resetScale + "', " +
+        debug && console.log("[lightToggle off 2] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
         lightOutTimer.stop();
-        lightOut = true;
+        darkone.lightOut = true;
     }
 }
 
@@ -218,7 +221,7 @@ function round(number, dp) {
 }
 
 function zoom(vzoom) {
-    darkone.debug && console.log(
+    debug && console.log(
         "[zoom] " +
 //        "scale: window (x,y): ' " + round(scaleFactorX(), 2) + "," + round(scaleFactorY(), 2) + "', " +
 //        "scale: screen: '" + round(darkone.overlayScale, 2) + "', " +
@@ -237,16 +240,16 @@ function zoom(vzoom) {
 
       switch(typeof(vzoom)) {
           case "string":
-              darkone.debug && console.log("[zoom] extreme hit: '" + vzoom + "'");
+              debug && console.log("[zoom] extreme hit: '" + vzoom + "'");
               if (vzoom == "max") {
-                  darkone.debug && console.log("[zoom max 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                  debug && console.log("[zoom max 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
                   vzoom = round(baseHeight / overlayScreen.height, 2);
                   darkone.zoomDuration = Math.max(200, Math.abs(vzoom - darkone.overlayScale) * 100 * 8);
-                  darkone.debug && console.log("[zoom max] vzoom: '" + vzoom + "', " +
+                  debug && console.log("[zoom max] vzoom: '" + vzoom + "', " +
                                                           "duration: '" + darkone.zoomDuration + "'");
                   darkone.overlayScale = vzoom;
-                  darkone.debug && console.log("[zoom max 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                  debug && console.log("[zoom max 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                             "overlayScreen.scale: '" + overlayScreen.scale + "'");
               } else if (vzoom == "min") {
                   vzoom = round(overlayScaleMin, 2);
@@ -256,27 +259,27 @@ function zoom(vzoom) {
               break;
         default:
             darkone.zoomDuration = Math.max(200, Math.abs(vzoom - darkone.overlayScale) * 100 * 8);
-            darkone.debug && console.log("[zoom] vzoom: " + vzoom + ", " +
+            debug && console.log("[zoom] vzoom: " + vzoom + ", " +
                                                 "duration: " + darkone.zoomDuration + ",");
             if (vzoom > 1) {
-                darkone.debug && console.log("[zoom > 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                debug && console.log("[zoom > 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
-                darkone.debug && console.log("[zoom] testing on: '" +
+                debug && console.log("[zoom] testing on: '" +
                     round(((overlayScreen.height * darkone.overlayScale * vzoom) / baseHeight), 2) + " > 0.95'");
                 if (((overlayScreen.height * darkone.overlayScale * vzoom) / baseHeight ) > 0.95)
                     zoom("max");
                 else
                     darkone.overlayScale = round(darkone.overlayScale * vzoom, 2);
-                darkone.debug && console.log("[zoom > 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                debug && console.log("[zoom > 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                               "overlayScreen.scale: '" + overlayScreen.scale + "'");
             } else if (vzoom < 1) {
-                darkone.debug && console.log("[zoom < 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                debug && console.log("[zoom < 1 1] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
                 if (darkone.overlayScale * vzoom < overlayScaleMin)
                     zoom("min");
                 else
                     darkone.overlayScale = round(darkone.overlayScale * vzoom, 2);
-                darkone.debug && console.log("[zoom < 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                debug && console.log("[zoom < 1 2] darkone.overlayScale: '" + darkone.overlayScale + "', " +
                                                           "overlayScreen.scale: '" + overlayScreen.scale + "'");
             }
             break;
@@ -302,11 +305,11 @@ function launchDelay() {
 }
 
 function launch() {
-     searchTextInput.focus = false;
      resetListHidden = !darkone.listHidden;
      listToggle(-1);
      resetToolbarHidden = !darkone.toolbarHidden;
      toolbarToggle(-1);
+     gameListView.focus = true;
      resetScale = darkone.overlayScale;
      if (!darkone.launchFlash) {
          darkone.launchZoom && zoom("max");
@@ -317,31 +320,34 @@ function launch() {
 }
 
 function gameOn() {
-     darkone.debug && console.log("[gameOn]");
+     debug && console.log("[gameOn]");
      inGame = true;
 }
 
 function gameOver() {
     if (inGame) {
-        darkone.debug && console.log("[gameOver] resetScale: '" + resetScale + "', " +
+        debug && console.log("[gameOver] resetScale: '" + resetScale + "', " +
                                                 "resetToolbarHidden: '" + resetToolbarHidden + "', " +
                                                 "resetListHidden: '" + resetListHidden + "'");
         inGame = false;
         launchButton.opacity = 0.5;
-        overlayStateBlock.opacity = (lightOnAnimation.running || lightOut) ? 0 : 0.5;
+        overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5;
         resetListHidden && listToggle(1);
         resetToolbarHidden && toolbarToggle(1);
         if (darkone.launchZoom && resetScale != -1) {
            zoom(resetScale / darkone.overlayScale);
            resetScale = -1;
         }
-        !darkone.toolbarHidden ? searchTextInput.focus = true : true;
+        if ( !darkone.listHidden )
+            gameListView.focus = true;
+        else
+            overlay.focus = true;       
     }
 }
 
 function gameCardHeader() {
 
-    if (!initialised)
+    if (!darkone.initialised)
         return ""
 
     var gameObject = gameListModel[gameListView.currentIndex];
@@ -381,7 +387,7 @@ function adjDataType(type, offset) {
         else if (offset < 0)
             target = current
     }
-    darkone.debug && console.log("[adjDataType] type: '" + type + "', " +
+    debug && console.log("[adjDataType] type: '" + type + "', " +
                                                 "offset: '" + offset + "', " +
                                                 "target: '" + target + "'");
     return target;
@@ -392,7 +398,7 @@ function datatypeKeys() {
     var l;
     for (l in dataTypes)
     {
-      darkone.debug && console.log("[datatypeKeys] key: '" + dataTypes[l].key + "'");
+      debug && console.log("[datatypeKeys] key: '" + dataTypes[l].key + "'");
       items.push(dataTypes[l].key);
     }
     return items;
@@ -400,7 +406,7 @@ function datatypeKeys() {
 
 function data(type) {
 
-    darkone.debug && console.log("[data] type: '" + type + "', " +
+    debug && console.log("[data] type: '" + type + "', " +
                                         "dataTypeCurrent: '" + darkone.dataTypeCurrent + "', " +
                                         "dataTypePrimary: '" + darkone.dataTypePrimary + "', " +
                                         "dataTypeSecondary: '" + darkone.dataTypeSecondary + "'");
@@ -410,7 +416,7 @@ function data(type) {
             break;
 
         case "image":
-            if (!initialised)
+            if (!darkone.initialised)
                 return ""
 
             var image = ""
@@ -419,13 +425,13 @@ function data(type) {
                 if (dataTypes[darkone.dataTypePrimary].type == "image") {
                      if ( viewer.loadImage(dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id) != "" ) {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id;
-                         darkone.debug && console.log("[data] success using image path: '" + image + "'");
+                         debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
                 if (image == "" && dataTypes[darkone.dataTypeSecondary].type == "image") {
                     if ( viewer.loadImage(dataTypes[darkone.dataTypeSecondary].path + "/" + gameListModel[gameListView.currentIndex].id) != "") {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypeSecondary].path + "/" + gameListModel[gameListView.currentIndex].id;
-                         darkone.debug && console.log("[data] success using image path: '" + image + "'");
+                         debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
                 if (image == "" && ( dataTypes[darkone.dataTypePrimary].type == "image" || dataTypes[darkone.dataTypeSecondary].type == "image"))
@@ -434,18 +440,18 @@ function data(type) {
                 if (dataTypes[darkone.dataTypeCurrent].type == "image") {
                     if ( viewer.loadImage(dataTypes[darkone.dataTypeCurrent].path + "/" + gameListModel[gameListView.currentIndex].id) != "") {
                          image = "image://qmc2/" + dataTypes[darkone.dataTypeCurrent].path + "/" + gameListModel[gameListView.currentIndex].id;
-                         darkone.debug && console.log("[data] success using image path: '" + image + "'");
+                         debug && console.log("[data] success using image path: '" + image + "'");
                     }
                 }
                 if (image == "" && dataTypes[darkone.dataTypeCurrent].type == "image")
                    image = "image://qmc2/ttl/default" // default
             }
-            darkone.debug && console.log("[data] using image path: '" + image + "'");
+            debug && console.log("[data] using image path: '" + image + "'");
             return image;
             break;
 
         case "text":
-            if (!initialised)
+            if (!darkone.initialised)
                 return ""
 
             var info = ""
@@ -455,14 +461,14 @@ function data(type) {
                      type = dataTypes[darkone.dataTypePrimary].text
                      info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypePrimary].key);
                      if (!info.match(qsTr("no info available"))) {
-                         darkone.debug && console.log("[data] using text type: '" + type + "'");
+                         debug && console.log("[data] using text type: '" + type + "'");
                      }
                 }
                 if (type == "" && dataTypes[darkone.dataTypeSecondary].type == "text") {
                     type = dataTypes[darkone.dataTypeSecondary].text
                     info = viewer.requestInfo(gameListModel[gameListView.currentIndex].id, dataTypes[darkone.dataTypeSecondary].key);
                     if (!info.match(qsTr("no info available"))) {
-                        darkone.debug && console.log("[data] using text type: '" + type + "'");
+                        debug && console.log("[data] using text type: '" + type + "'");
                     }
                 }
             }
@@ -473,7 +479,7 @@ function data(type) {
                 }
             }
             info.match(qsTr("no info available")) ? darkone.infoMissing = true : darkone.infoMissing = false;
-            darkone.debug && console.log("[data] infoMissing: '" + darkone.infoMissing + "', " +
+            debug && console.log("[data] infoMissing: '" + darkone.infoMissing + "', " +
                                                 "info: '" + "info" + "'")
             return type == "" ? "" : "<html><head><style type='text/css'>p, h3 { margin: 0px; }</style></head>" + "<h3>" + type + "</h3>" + "<p>" + info + "</p></html>";
             break;
@@ -482,10 +488,10 @@ function data(type) {
 
 function gameStatusColour() {
 
-    if (!initialised)
+    if (!darkone.initialised)
         return "transparent"
 
-    darkone.debug && console.log("romState: '" + gameListModel[gameListView.currentIndex].romState + "'");
+    debug && console.log("romState: '" + gameListModel[gameListView.currentIndex].romState + "'");
     switch ( gameListModel[gameListView.currentIndex].romState ) {
     case 0:
         // correct
@@ -512,12 +518,36 @@ function validateKey(k) {
     else
         return true;
 }
-
 function validateSpecialKey(k) {
     if ( /[^\b$]/.test(k) || k == "" )
         return false;
     else
         return true;
+}
+function keyEvent2String(e) {
+
+    var mods = "";
+    if ( e.modifiers & Qt.ControlModifier )
+        mods += "C-"
+    if ( e.modifiers & Qt.ShiftModifier )
+        mods += "S-"
+    if ( e.modifiers & Qt.AltModifier )
+        mods += "M-"
+        
+    if ( e.text.trim() != "" )
+        return mods + e.text;
+    else {
+        switch ( e.key ) {
+            case Qt.Key_Up: return mods + "up"; break;
+            case Qt.Key_Down: return mods + "down"; break;
+            case Qt.Key_Left: return mods + "left"; break;
+            case Qt.Key_Right: return mods + "right"; break;
+            case Qt.Key_Tab: case Qt.Key_Backtab: return mods + "tab"; break;
+            case Qt.Key_Space: return mods + "space"; break;
+            case Qt.Key_Enter: case Qt.Key_Return: return mods + "enter"; break;
+            default: return mods + "undefined"
+        }
+    }
 }
 
 function colourScheme(scheme) {
@@ -527,27 +557,38 @@ function colourScheme(scheme) {
         case "dark":
             colourScheme1Button.checked = true;
             colourScheme1Button.opacity = 1.0;
-            colour1 = "#777777"; // gradient 1
-            colour2 = "#000000"; // gradient 2
-            colour3 = "#333333"; // gradient 3
-            colour4 = "#222222"; // gradient 4
-            colour5 = "#111111"; // menu
-            textColour1 = "#eeeeee"; // primary text
-            textColour2 = "#1769ff"; // list highlighted
+            darkone.colour1 = "#777777"; // gradient 1
+            darkone.colour2 = "#000000"; // gradient 2
+            darkone.colour3 = "#333333"; // gradient 3
+            darkone.colour4 = "#222222"; // gradient 4
+            darkone.colour5 = "#111111"; // menu
+            darkone.textColour1 = "#eeeeee"; // primary text
+            darkone.textColour2 = "#1769ff"; // list highlighted
             break;
         case "metal":
             colourScheme2Button.checked = true;
             colourScheme2Button.opacity = 1.0;
-            colour1 = "#000000";
-            colour2 = "#ffffff";
-            colour3 = "#aaaaaa";
-            colour4 = "#000000";
-            colour5 = "#999999";
-            textColour1 = "#222222";
-            textColour2 = "#0000ff";
+            darkone.colour1 = "#000000";
+            darkone.colour2 = "#ffffff";
+            darkone.colour3 = "#aaaaaa";
+            darkone.colour4 = "#000000";
+            darkone.colour5 = "#999999";
+            darkone.textColour1 = "#222222";
+            darkone.textColour2 = "#0000ff";
             break;
     }
-    darkone.debug && console.log("[colourScheme] scheme: '" + scheme + "', " +
+    debug && console.log("[colourScheme] scheme: '" + scheme + "', " +
                                                 "colourScheme1Button.checked: '" + colourScheme1Button.checked + "', " +
                                                 "colourScheme2Button.checked: '" + colourScheme2Button.checked + "'")
+}
+function inFocus() {
+    debug2 && console.log("\n[inFocus]\n" +
+        "darkoneFocusScope: '" + darkoneFocusScope.focus + "|" + darkoneFocusScope.activeFocus + "'\n" + 
+        "gameListView: '" + gameListView.focus + "|" + gameListView.activeFocus + "'\n" +
+        "overlay: '" + overlay.focus + "|"  + overlay.activeFocus + "'\n" +
+        "overlayScreen: '" + overlayScreen.focus + "|"  + overlayScreen.activeFocus + "'\n" +
+        "overlayDataTypeCycleItem: '" + overlayDataTypeCycleItem.focus + "|"  + overlayDataTypeCycleItem.activeFocus + "'\n" +
+        "preferencesFocusScope: '" + preferencesFocusScope.focus + "|" + preferencesFocusScope.activeFocus + "'\n" +
+        "toolbarFocusScope: '" + toolbarFocusScope.focus + "|" + toolbarFocusScope.activeFocus + "'\n" +
+        "")
 }
