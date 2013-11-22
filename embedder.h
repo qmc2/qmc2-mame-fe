@@ -35,6 +35,8 @@ class Embedder : public QWidget
 {
 	Q_OBJECT
 
+	friend class EmbedContainer;
+
 	public:
 		bool embedded;
 		bool optionsShown;
