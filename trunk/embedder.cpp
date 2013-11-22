@@ -161,7 +161,6 @@ void Embedder::embed()
 	QTimer::singleShot(0, this, SLOT(updateWindow()));
 	checkTimer.start(250);
 #endif
-	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
 }
 
