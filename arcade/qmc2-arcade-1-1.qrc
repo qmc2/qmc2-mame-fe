@@ -57,6 +57,7 @@
         <file>qml/darkone/1.1/images/launch.png</file>
         <file>qml/darkone/1.1/images/cabinet.png</file>
         <file>qml/darkone/1.1/images/preferences.png</file>
+        <file>qml/darkone/1.1/images/screenlight.png</file>
         <file>qml/darkone/1.1/images/backlight.png</file>
         <file>qml/darkone/1.1/images/windowed.png</file>
     </qresource>

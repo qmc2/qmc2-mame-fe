@@ -109,8 +109,14 @@ public slots:
     bool listHidden();
     void setSortByName(bool);
     bool sortByName();
+    void setScreenLight(bool);
+    bool screenLight();
+    void setScreenLightOpacity(double);
+    double screenLightOpacity();
     void setBackLight(bool);
     bool backLight();
+    void setBackLightOpacity(double);
+    double backLightOpacity();
     void setToolbarAutoHide(bool);
     bool toolbarAutoHide();
     void setLaunchFlash(bool);
