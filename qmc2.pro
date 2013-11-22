@@ -3,7 +3,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
 		greaterThan(QT_MAJOR_VERSION, 4) {
-			QT += testlib widgets webkitwidgets
+			QT += testlib widgets webkitwidgets x11extras
 		} else {
 			CONFIG += qtestlib
 		}
@@ -226,7 +226,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKE_INFO_PLIST = arch/Darwin/Info.plist
 		} else {
 			!win32 {
-				QT += x11extras
 				LIBS += -lSDL -lX11
 				SOURCES += x11_tools.cpp
 			}
