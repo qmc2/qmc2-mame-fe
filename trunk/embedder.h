@@ -29,7 +29,6 @@ class EmbedContainer : public QWidget
 
 	private:
 		Embedder *embedder;
-		QWidget *embeddedWidget;
 };
 
 class Embedder : public QWidget
