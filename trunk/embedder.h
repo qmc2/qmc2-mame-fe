@@ -15,22 +15,6 @@
 #include "embedderopt.h"
 #endif
 
-class Embedder;
-
-class EmbedContainer : public QWidget
-{
-	Q_OBJECT
-
-	public:
-		EmbedContainer(QWidget *parent = 0);
-
-	protected:
-		void resizeEvent(QResizeEvent *);
-
-	private:
-		Embedder *embedder;
-};
-
 class Embedder : public QWidget
 {
 	Q_OBJECT
@@ -41,7 +25,6 @@ class Embedder : public QWidget
 		bool embedded;
 		bool optionsShown;
 		WId embeddedWinId;
-		EmbedContainer *embedContainer;
 		EmbedderOptions *embedderOptions;
 		QGridLayout *gridLayout;
 		QString gameName;
@@ -53,6 +36,9 @@ class Embedder : public QWidget
 		bool isPaused;
 		bool resuming;
 		bool pausing;
+		QX11EmbedContainer *embedContainer;
+#elif defined(QMC2_OS_WIN)
+		QWidget *embedContainer;
 #endif
 		QIcon iconRunning;
 		QIcon iconPaused;
@@ -75,12 +61,15 @@ class Embedder : public QWidget
 		void resume();
 		void showEventDelayed();
 		void hideEventDelayed();
+		void clientEmbedded();
+		void clientError(QX11EmbedContainer::Error);
 #endif
 
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+		void resizeEvent(QResizeEvent *);
 
 	signals:
 		void closing();
