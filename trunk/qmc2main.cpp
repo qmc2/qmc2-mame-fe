@@ -5543,7 +5543,7 @@ void MainWindow::action_embedEmulator_triggered()
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
 #elif defined(QMC2_OS_WIN)
-      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg((qulonglong)winIdList[0]));
+      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);
 #endif
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
@@ -5557,7 +5557,14 @@ void MainWindow::action_embedEmulator_triggered()
 	// replace the default 'X' icon with something more suitable (the only way I found to accomplish this is by setting a style-sheet)
 	tabBar->setStyleSheet("QTabBar::close-button { image: url(:/data/img/release.png); subcontrol-position: right; } QTabBar::close-button:hover { image: url(:/data/img/release_alternate.png); }");
 
+        QFont f;
+        f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+        QFontMetrics fm(f);
+        int baseSize = fm.height() + 2;
+        QSize optionsButtonSize(2 * baseSize, baseSize + 2);
+
         QToolButton *optionsButton = new QToolButton(tabBar);
+	optionsButton->setFixedSize(optionsButtonSize);
         optionsButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	optionsButton->setText(" ");
         optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
@@ -5595,14 +5602,11 @@ void MainWindow::action_embedEmulator_triggered()
 	optionsButton->setMenu(optionsMenu);
 
         tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
-        embedder->adjustIconSizes();
+
+	QTimer::singleShot(0, embedder, SLOT(embed()));
       }
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
-      qApp->processEvents();
-#if defined(QMC2_OS_UNIX)
-      QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, embedder, SLOT(forceFocus()));
-#endif
     } else {
       success = false;
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
