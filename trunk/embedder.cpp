@@ -535,7 +535,6 @@ void EmbedContainer::resizeEvent(QResizeEvent *e)
 	if ( embedder->embeddedWinId && !embedder->updatingWindow )
 		SetWindowPos(embedder->embeddedWinId, HWND_TOPMOST, 0, 0, e->size().width(), e->size().height(), SWP_SHOWWINDOW);
 #endif
-	qApp->processEvents();
 }
 
 #endif
