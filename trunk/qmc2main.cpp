@@ -5543,7 +5543,7 @@ void MainWindow::action_embedEmulator_triggered()
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
 #elif defined(QMC2_OS_WIN)
-      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
+      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);
 #endif
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));

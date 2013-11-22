@@ -156,7 +156,7 @@ void Embedder::embed()
 	fullScreen = false;
 	embedded = true;
 	embeddingWindow = false;
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg("0x" + QString::number(windowHandle, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
 	SetParent(windowHandle, embedContainer->winId());
 	QTimer::singleShot(0, this, SLOT(updateWindow()));
 	checkTimer.start(250);
@@ -191,7 +191,7 @@ void Embedder::release()
 	UpdateWindow(windowHandle);
 	qmc2MainWindow->raise();
 	qmc2MainWindow->activateWindow();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number(windowHandle, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
 	windowHandle = embeddedWinId = 0;
 	releasingWindow = false;
 #endif
