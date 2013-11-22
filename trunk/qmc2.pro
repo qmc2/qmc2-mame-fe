@@ -226,6 +226,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKE_INFO_PLIST = arch/Darwin/Info.plist
 		} else {
 			!win32 {
+				QT += x11extras
 				LIBS += -lSDL -lX11
 				SOURCES += x11_tools.cpp
 			}
