@@ -37,10 +37,6 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	isPaused = currentlyPaused;
 #endif
 
-	setAttribute(Qt::WA_NativeWindow);
-	setAttribute(Qt::WA_DontCreateNativeAncestors);
-	createWinId();
-
 	embedContainer = new EmbedContainer(this);
 
 	setFocusPolicy(Qt::WheelFocus);
@@ -119,8 +115,6 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 
 	embedderOptions = NULL;
 	optionsShown = false;
-
-	QTimer::singleShot(0, this, SLOT(embed()));
 }
 
 void Embedder::embed()
@@ -136,7 +130,6 @@ void Embedder::embed()
 	QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
 	int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
 	if ( tabBar ) {
-		adjustIconSizes();
 #if defined(QMC2_OS_UNIX)
 		tabBar->setTabIcon(index, iconUnknown);
 #elif defined(QMC2_OS_WIN)
@@ -150,16 +143,26 @@ void Embedder::embed()
   	XReparentWindow(QX11Info::display(), embeddedWinId, embedContainer->winId(), 0, 0);
 	XMoveResizeWindow(QX11Info::display(), embeddedWinId, 0, 0, embedContainer->size().width(), embedContainer->size().height());
 	embedded = true;
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = 0x%2").arg(gameID).arg((qulonglong)embeddedWinId));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg("0x" + QString::number(embeddedWinId, 16)));
+	int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+	if ( qmc2FifoIsOpen ) {
+		if ( isPaused )
+			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconPaused);
+		else
+			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconRunning);
+	} else
+		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
 #elif defined(QMC2_OS_WIN)
 	fullScreen = false;
 	embedded = true;
 	embeddingWindow = false;
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg((qulonglong)windowHandle));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg("0x" + QString::number(windowHandle, 16)));
 	SetParent(windowHandle, embedContainer->winId());
 	QTimer::singleShot(0, this, SLOT(updateWindow()));
 	checkTimer.start(250);
 #endif
+	qApp->processEvents();
+	QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
 }
 
 void Embedder::release()
@@ -173,7 +176,7 @@ void Embedder::release()
 	XReparentWindow(QX11Info::display(), embeddedWinId, qApp->desktop()->winId(), 0, 0);
 	XMoveResizeWindow(QX11Info::display(), embeddedWinId, 0, 0, nativeResolution.width(), nativeResolution.height());
 	XFlush(QX11Info::display());
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(embeddedWinId, 16)));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number(embeddedWinId, 16)));
 	QTimer::singleShot(QMC2_EMBED_RELEASE_DELAY, qmc2MainWindow, SLOT(raise()));
 #elif defined(QMC2_OS_WIN)
 	checkTimer.stop();
@@ -188,7 +191,7 @@ void Embedder::release()
 	UpdateWindow(windowHandle);
 	qmc2MainWindow->raise();
 	qmc2MainWindow->activateWindow();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg((qulonglong)embeddedWinId));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number(windowHandle, 16)));
 	windowHandle = embeddedWinId = 0;
 	releasingWindow = false;
 #endif
@@ -298,17 +301,18 @@ void Embedder::adjustIconSizes()
 	// serious hack to access the tab bar without sub-classing from QTabWidget ;)
 	QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
 	int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QToolButton *optionsButton = (QToolButton *)tabBar->tabButton(index, QTabBar::LeftSide);
 	QToolButton *releaseButton = (QToolButton *)tabBar->tabButton(index, QTabBar::RightSide);
 	int baseSize = fm.height() + 2;
-	QSize optionsButtonSize(2 * baseSize, baseSize);
+	QSize optionsButtonSize(2 * baseSize, baseSize + 2);
 	QSize releaseButtonSize(baseSize, baseSize);
-	optionsButton->setFixedSize(optionsButtonSize + QSize(0, 2));
-	releaseButton->setFixedSize(releaseButtonSize);
+	if ( optionsButton )
+		optionsButton->setFixedSize(optionsButtonSize);
+	if ( releaseButton )
+		releaseButton->setFixedSize(releaseButtonSize);
 	tabBar->setIconSize(optionsButtonSize);
 }
 
@@ -510,13 +514,16 @@ void Embedder::updateWindow()
 EmbedContainer::EmbedContainer(QWidget *parent)
 	: QWidget(parent)
 {
-	embedder = ((Embedder *)parentWidget());
-	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setObjectName("QMC2_EMBED_CONTAINER");
-	setAutoFillBackground(true);
+	embedder = ((Embedder *)parentWidget());
+
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
 	QPalette pal = palette();
 	pal.setColor(QPalette::Window, Qt::black);
 	setPalette(pal);
+
+	setAutoFillBackground(true);
 }
 
 void EmbedContainer::resizeEvent(QResizeEvent *e)
@@ -528,6 +535,7 @@ void EmbedContainer::resizeEvent(QResizeEvent *e)
 	if ( embedder->embeddedWinId && !embedder->updatingWindow )
 		SetWindowPos(embedder->embeddedWinId, HWND_TOPMOST, 0, 0, e->size().width(), e->size().height(), SWP_SHOWWINDOW);
 #endif
+	qApp->processEvents();
 }
 
 #endif
