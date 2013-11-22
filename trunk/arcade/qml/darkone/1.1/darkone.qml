@@ -29,6 +29,9 @@ FocusScope {
     property alias dataTypeSecondary: darkone.dataTypeSecondary
     property alias lightTimeout: darkone.lightTimeout
     property alias backLight: darkone.backLight
+    property alias backLightOpacity: darkone.backLightOpacity
+    property alias screenLight: darkone.screenLight
+    property alias screenLightOpacity: darkone.screenLightOpacity
     property alias toolbarAutoHide: darkone.toolbarAutoHide
     property alias overlayScale: darkone.overlayScale
     property alias colourScheme: darkone.colourScheme
@@ -58,7 +61,10 @@ Rectangle {
     property string dataTypePrimary: ""
     property string dataTypeSecondary: ""
     property real lightTimeout: 60
+    property bool screenLight: true
+    property real screenLightOpacity: 0
     property bool backLight: true
+    property real backLightOpacity: 0
     property bool toolbarAutoHide: true
     property real overlayScale: 1
     property string colourScheme: "dark"
@@ -79,7 +85,6 @@ Rectangle {
     property bool toolbarShowMenuLock: false
     property bool toolbarShowFpsLock: false
     property bool infoMissing: true
-    property real backLightOpacity: 0
     property string colour1: "#000000"
     property string colour2: "#000000"
     property string colour3: "#000000"
@@ -109,13 +114,16 @@ Rectangle {
                          darkone.lightOut ? darkone.state = "off" : darkone.state = "on"; }
     onLightOutScreenChanged: { debug && console.log("[darkone] darkone.lightOutScreen: '" + darkone.lightOutScreen + ", " +
                                                               "overlayScreen.state orig: '" + overlayScreen.state + "', " +
-                                                              "backLightOpacity: '" + darkone.backLightOpacity + "'");
+                                                              "screenLightOpacity: '" + darkone.screenLightOpacity + "'");
                               if (darkone.lightOutScreen) {
-                                  darkone.backLightOpacity = 0;
+                                  overlayScreenLight.visible = false;
+                                  overlayBackLight.visible = false;
                                   overlayScreen.state = "off"
                                } else {
+                                  if (screenLight)
+                                     overlayScreenLight.visible = true;
                                   if (backLight)
-                                     darkone.backLightOpacity = 1.0;
+                                     overlayBackLight.visible = true;
                                   overlayScreen.state = "on";
                                } }
     onDataHiddenChanged: { darkone.dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
@@ -372,7 +380,6 @@ Rectangle {
                     debug2 && focus && DarkoneJS.inFocus();
             }
         }
-
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -518,12 +525,12 @@ Rectangle {
         Rectangle {
             id: overlayScreen
             z: 1
-            width: 348
-            height: 254
+            width: 354
+            height: 262 - 10
             scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             // keep the screen still under scaling, ensure margin of 30% of non-screen space
-            anchors.topMargin: (((scale * height) - height - 4) / 2) + 0.3 * (darkone.height - 20 - (height * scale))
+            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (height * scale))
             anchors.horizontalCenter: parent.horizontalCenter
             smooth: true
             opacity: 1.0
@@ -540,7 +547,7 @@ Rectangle {
                     to: "off"
                     ParallelAnimation {
                         PropertyAnimation { target: overlayScreen; property: "opacity"; from: 1.0; to: 0.1; duration: 500; easing.type: Easing.OutExpo }
-                        PropertyAnimation { target: overlayLighting; property: "opacity"; from: darkone.backLightOpacity; to: 0; duration: 500; easing.type: Easing.OutExpo }
+                        PropertyAnimation { target: overlayBackLight; property: "opacity"; from: darkone.screenLightOpacity; to: 0; duration: 500; easing.type: Easing.OutExpo }
 
                     }
                 },
@@ -549,7 +556,7 @@ Rectangle {
                     to: "on"
                     ParallelAnimation {
                         PropertyAnimation { target: overlayScreen; property: "opacity"; from: 0.1; to: 1.0; duration: 500; easing.type: Easing.OutExpo }
-                        PropertyAnimation { target: overlayLighting; property: "opacity"; from: 0; to: darkone.backLightOpacity; duration: 500; easing.type: Easing.OutExpo }
+                        PropertyAnimation { target: overlayBackLight; property: "opacity"; from: 0; to: darkone.screenLightOpacity; duration: 500; easing.type: Easing.OutExpo }
                     }
                 }
             ]
@@ -561,7 +568,7 @@ Rectangle {
                         overlayDataTypeCycleItem.focus = true;
             }
             onStateChanged: { debug && console.log("[overlayScreen] state changed, state: '" + state + "', " +
-                                                                   "backLightOpacity: '" + darkone.backLightOpacity + "'"); }
+                                                                   "screenLightOpacity: '" + darkone.screenLightOpacity + "'"); }
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
@@ -585,9 +592,9 @@ Rectangle {
                 id: overlayScreenBorderTop
                 z: parent.z + 15
                 anchors.top: parent.top
-                anchors.topMargin: - 1
+                anchors.topMargin: -2
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 2
+                width: parent.width
                 height: 3
                 visible: parent.focus || overlayDataTypeCycleItem.focus
                 color: darkone.textColour2
@@ -596,9 +603,9 @@ Rectangle {
                 id: overlayScreenBorderBottom
                 z: parent.z + 15
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: - 1
+                anchors.bottomMargin: -2
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 2
+                width: parent.width
                 height: 3
                 visible: parent.focus || overlayDataTypeCycleItem.focus
                 color: darkone.textColour2
@@ -963,24 +970,37 @@ Rectangle {
             scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
             anchors.top: parent.top
             //keep the cabinet still under scaling, then shift it by the same amount as the screen is shift, then offet the image to match the screen
-            anchors.topMargin: (((scale * height) - height - 2) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (560 * scale)
+            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (558 * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
-            anchors.horizontalCenterOffset: 3 + 2 * darkone.overlayScale
+            anchors.horizontalCenterOffset: 0 - 1.5 * darkone.overlayScale // manual screen/cabinet alignment tweaks
             smooth: true
             opacity: 1.0
 
             Behavior on scale { ParallelAnimation {
                                   PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear }
-                                  PropertyAnimation { target: overlayLighting; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } } }
+                                  PropertyAnimation { target: overlayBackLight; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } } }
+        }
+        Image {
+            z: 5
+            id: overlayScreenLight
+            source: "images/screenlight.png"
+            fillMode: Image.PreserveAspectFit
+            scale: overlayCabinet.scale
+            anchors.top: parent.top
+            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (558 * scale)
+            anchors.horizontalCenter: overlayScreen.horizontalCenter
+            anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
+            smooth: true
+            opacity: darkone.screenLight ? darkone.screenLightOpacity : 0
         }
         Image {
             z: 0
-            id: overlayLighting
+            id: overlayBackLight
             source: "images/backlight.png"
             fillMode: Image.PreserveAspectFit
             scale: overlayCabinet.scale
             anchors.top: parent.top
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (559 * scale)
+            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (558 * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
             smooth: true
@@ -1369,13 +1389,11 @@ Rectangle {
         property int itemSpacing: 6
         property int itemTextSize: 9
         property string activeColour: darkone.textColour2
-        height: (itemHeight + itemSpacing) * 19 + 10
+        height: (itemHeight + itemSpacing) * 22 + 10
         width: 175
         smooth: true
         border.color: parent.focus ? activeColour : "transparent";
         border.width: parent.focus ? 1 : 0;
-//        border.color: "transparent"
-//        border.width: 1
         color: darkone.colour5
         opacity: 1.0
         state: "hidden"
@@ -1399,7 +1417,6 @@ Rectangle {
 
         onStateChanged: {
             if ( state == "shown" ) {
-                console.log("preferences state: '" + state + "'");
                 darkone.ignoreLaunch = true;
                 darkone.preferencesLaunchLock = true;
                 darkone.toolbarShowMenuLock = true;
@@ -1408,7 +1425,6 @@ Rectangle {
                 overlayScaleSliderItem.value = darkone.overlayScale;
                 preferencesFocusScope.focus = true;
             } else {
-                console.log("preferences state: '" + state + "'");
                 darkone.preferencesLaunchLock = false;
                 darkone.ignoreLaunch = false;
                 darkone.toolbarShowMenuLock = false;
@@ -1666,7 +1682,7 @@ Rectangle {
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
             KeyNavigation.backtab: lightOutInputItem
-            KeyNavigation.tab: backLightCheckBox
+            KeyNavigation.tab: screenLightCheckBox
         }
 
         /********
@@ -1699,8 +1715,67 @@ Rectangle {
             smooth: true
         }
         CheckBox {
-            id: backLightCheckBox
+            id: screenLightCheckBox
             property int index: prefsEffectsText.index + 1
+            height: parent.itemHeight
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            checked: darkone.screenLight
+            text: qsTr("screen lighting")
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
+            smooth: true
+
+            onCheckedChanged: {
+                overlayScreenLight.visible = darkone.opacity == 0 ? false : true
+                darkone.screenLight = checked;
+            }
+
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: overlayScaleSliderItem
+            KeyNavigation.tab: screenLightOpacitySliderItem
+        }
+        SliderItem {
+            id: screenLightOpacitySliderItem
+            property int index: prefsEffectsText.index + 2
+            height: parent.itemHeight
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
+            fgColour1: darkone.colour3
+            fgColour2: darkone.colour4
+            bgColour1: "white"
+            bgColour2: "white"
+            textPrefix: qsTr("screen light opacity")
+            textSuffix: DarkoneJS.round(100 * darkone.screenLightOpacity, 0) + "%"
+            sliderWidth: 50
+            slidePercentage: 5
+            minimum: 0
+            maximum: 1
+            value: darkone.screenLightOpacity;
+
+            onValueChanged: darkone.screenLightOpacity = DarkoneJS.round(value, 2);
+
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: screenLightCheckBox
+            KeyNavigation.tab: backLightCheckBox
+        }
+        CheckBox {
+            id: backLightCheckBox
+            property int index: prefsEffectsText.index + 3
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1716,18 +1791,50 @@ Rectangle {
             smooth: true
 
             onCheckedChanged: {
-                darkone.backLightOpacity = checked ? darkone.opacity : 0;
+                overlayBackLight.visible = darkone.opacity == 0 ? false : true
                 darkone.backLight = checked;
             }
 
             KeyNavigation.up: KeyNavigation.backtab
             KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: overlayScaleSliderItem
+            KeyNavigation.backtab: screenLightOpacitySliderItem
+            KeyNavigation.tab: backLightOpacitySliderItem
+        }
+        SliderItem {
+            id: backLightOpacitySliderItem
+            property int index: prefsEffectsText.index + 4
+            height: parent.itemHeight
+            anchors.top: parent.top
+            anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            textSize: preferences.itemTextSize
+            textColour: darkone.textColour1
+            activeColour: darkone.textColour2
+            fgColour1: darkone.colour3
+            fgColour2: darkone.colour4
+            bgColour1: "white"
+            bgColour2: "white"
+            textPrefix: qsTr("back light opacity  ")
+            textSuffix: DarkoneJS.round(100 * darkone.backLightOpacity, 0) + "%"
+            sliderWidth: 50
+            slidePercentage: 4
+            minimum: 0
+            maximum: 1
+            value: darkone.backLightOpacity;
+
+            onValueChanged: darkone.backLightOpacity = DarkoneJS.round(value, 2);
+
+            KeyNavigation.up: KeyNavigation.backtab
+            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: backLightCheckBox
             KeyNavigation.tab: launchFlashCheckBox
         }
         CheckBox {
             id: launchFlashCheckBox
-            property int index: prefsEffectsText.index + 2
+            property int index: prefsEffectsText.index + 5
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1751,7 +1858,7 @@ Rectangle {
         }
         CheckBox {
             id: launchZoomCheckBox
-            property int index: prefsEffectsText.index + 3
+            property int index: prefsEffectsText.index + 6
             height: parent.itemHeight
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1779,7 +1886,7 @@ Rectangle {
         */
         Text {
             id: prefsColourSchemeText
-            property int index: 12
+            property int index: 15
             opacity: 1.0
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)
@@ -1858,7 +1965,7 @@ Rectangle {
         */
         Text {
             id: prefsBackendText
-            property int index: 15
+            property int index: 18
             opacity: 1.0
             anchors.top: parent.top
             anchors.topMargin: index * (parent.itemHeight + parent.itemSpacing)

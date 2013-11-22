@@ -418,6 +418,24 @@ bool ArcadeSettings::toolbarAutoHide()
     return value(QString("Arcade/%1/toolbarAutoHide").arg(arcadeTheme), true).toBool();
 }
 
+void ArcadeSettings::setScreenLight(bool screenLight)
+{
+    setValue(QString("Arcade/%1/screenLight").arg(arcadeTheme), screenLight);
+}
+bool ArcadeSettings::screenLight()
+{
+    return value(QString("Arcade/%1/screenLight").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setScreenLightOpacity(double screenLightOpacity)
+{
+    setValue(QString("Arcade/%1/screenLightOpacity").arg(arcadeTheme), screenLightOpacity);
+}
+double ArcadeSettings::screenLightOpacity()
+{
+    return value(QString("Arcade/%1/screenLightOpacity").arg(arcadeTheme), 0.5).toDouble();
+}
+
 void ArcadeSettings::setBackLight(bool backLight)
 {
     setValue(QString("Arcade/%1/backLight").arg(arcadeTheme), backLight);
@@ -425,6 +443,15 @@ void ArcadeSettings::setBackLight(bool backLight)
 bool ArcadeSettings::backLight()
 {
     return value(QString("Arcade/%1/backLight").arg(arcadeTheme), false).toBool();
+}
+
+void ArcadeSettings::setBackLightOpacity(double backLightOpacity)
+{
+    setValue(QString("Arcade/%1/backLightOpacity").arg(arcadeTheme), backLightOpacity);
+}
+double ArcadeSettings::backLightOpacity()
+{
+    return value(QString("Arcade/%1/backLightOpacity").arg(arcadeTheme), 0.75).toDouble();
 }
 
 void ArcadeSettings::setLaunchFlash(bool launchFlash)

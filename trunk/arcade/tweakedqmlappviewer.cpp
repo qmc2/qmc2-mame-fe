@@ -201,7 +201,10 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("toolbarHidden", globalConfig->toolbarHidden());
         rootObject()->setProperty("fpsVisible", globalConfig->fpsVisible());
         rootObject()->setProperty("sortByName", globalConfig->sortByName());
+        rootObject()->setProperty("screenLight", globalConfig->screenLight());
+        rootObject()->setProperty("screenLightOpacity", globalConfig->screenLightOpacity());
         rootObject()->setProperty("backLight", globalConfig->backLight());
+        rootObject()->setProperty("backLightOpacity", globalConfig->backLightOpacity());
         rootObject()->setProperty("toolbarAutoHide", globalConfig->toolbarAutoHide());
         rootObject()->setProperty("launchFlash", globalConfig->launchFlash());
         rootObject()->setProperty("launchZoom", globalConfig->launchZoom());
@@ -259,7 +262,10 @@ void TweakedQmlApplicationViewer::saveSettings()
         globalConfig->setFullScreen(rootObject()->property("fullScreen").toBool());
         globalConfig->setFpsVisible(rootObject()->property("fpsVisible").toBool());
         globalConfig->setSortByName(rootObject()->property("sortByName").toBool());
+        globalConfig->setScreenLight(rootObject()->property("screenLight").toBool());
+        globalConfig->setScreenLightOpacity(rootObject()->property("screenLightOpacity").toDouble());
         globalConfig->setBackLight(rootObject()->property("backLight").toBool());
+        globalConfig->setBackLightOpacity(rootObject()->property("backLightOpacity").toDouble());
         globalConfig->setToolbarAutoHide(rootObject()->property("toolbarAutoHide").toBool());
         globalConfig->setLaunchFlash(rootObject()->property("launchFlash").toBool());
         globalConfig->setLaunchZoom(rootObject()->property("launchZoom").toBool());
