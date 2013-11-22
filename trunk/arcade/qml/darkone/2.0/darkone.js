@@ -53,10 +53,10 @@ function init() {
         }
         darkone.keepLightOn = (darkone.lightTimeout == 0) ? true : false;
         toolbarToggle(darkone.toolbarAutoHide ? -1 : 1);
-        overlay.focus = true;
         fadeIn.start();
     } else if(!fadeIn.running) {
         darkone.initialised = true;
+        overlay.focus = true;
         initTimer.stop();
         //power
         darkone.lightOut = false;
