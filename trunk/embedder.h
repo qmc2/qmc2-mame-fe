@@ -15,6 +15,22 @@
 #include "embedderopt.h"
 #endif
 
+class Embedder;
+
+class EmbedContainer : public QWidget
+{
+	Q_OBJECT
+
+	public:
+		EmbedContainer(QWidget *parent = 0);
+
+	protected:
+		void resizeEvent(QResizeEvent *);
+
+	private:
+		Embedder *embedder;
+};
+
 class Embedder : public QWidget
 {
 	Q_OBJECT
@@ -22,12 +38,8 @@ class Embedder : public QWidget
 	public:
 		bool embedded;
 		bool optionsShown;
-		WId winId;
-#if defined(QMC2_OS_UNIX)
-		QX11EmbedContainer *embedContainer;
-#elif defined(QMC2_OS_WIN)
-		QWidget *embedContainer;
-#endif
+		WId embeddedWinId;
+		EmbedContainer *embedContainer;
 		EmbedderOptions *embedderOptions;
 		QGridLayout *gridLayout;
 		QString gameName;
@@ -46,16 +58,11 @@ class Embedder : public QWidget
 		QIcon iconUnknown;
 
 		Embedder(QString name, QString id, WId wid, bool currentlyPaused = false, QWidget *parent = 0, QIcon icon = QIcon());
-		~Embedder();
 
 	public slots:
 		void embed();
-		void embed(WId wid) { winId = wid; embed(); }
+		void embed(WId wid) { embeddedWinId = wid; embed(); }
 		void release();
-#if defined(QMC2_OS_UNIX)
-		void clientEmbedded();
-		void clientError(QX11EmbedContainer::Error);
-#endif
 		void clientClosed();
 		void toggleOptions();
 		void adjustIconSizes();
@@ -72,7 +79,6 @@ class Embedder : public QWidget
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
-		void resizeEvent(QResizeEvent *);
 
 	signals:
 		void closing();

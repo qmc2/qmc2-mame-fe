@@ -27,134 +27,104 @@ extern ProcessManager *qmc2ProcessManager;
 #endif
 
 Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWidget *parent, QIcon icon)
-    : QWidget(parent)
+	: QWidget(parent)
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, bool currentlyPaused = %4, QWidget *parent = %5, ...)").arg(name).arg(id).arg((qulonglong)wid).arg(currentlyPaused).arg((qulonglong)parent));
+	gameName = name;
+	gameID = id;
+	embeddedWinId = wid;
+#if defined(QMC2_OS_UNIX)
+	embedded = pauseKeyPressed = pausing = resuming = false;
+	isPaused = currentlyPaused;
 #endif
 
-  gameName = name;
-  gameID = id;
-  winId = wid;
-#if defined(QMC2_OS_UNIX)
-  embedded = pauseKeyPressed = pausing = resuming = false;
-  isPaused = currentlyPaused;
-#endif
+	setAttribute(Qt::WA_NativeWindow);
+	setAttribute(Qt::WA_DontCreateNativeAncestors);
+	createWinId();
 
-  setAttribute(Qt::WA_NativeWindow);
-  setAttribute(Qt::WA_DontCreateNativeAncestors);
-  createWinId();
+	embedContainer = new EmbedContainer(this);
+
+	setFocusPolicy(Qt::WheelFocus);
+	setFocusProxy(embedContainer);
+
+	gridLayout = new QGridLayout(this);
+	gridLayout->getContentsMargins(&cmLeft, &cmTop, &cmRight, &cmBottom);
+	gridLayout->setContentsMargins(0, 0, 0, 0);
+	gridLayout->setRowStretch(0, 0);
+	gridLayout->setRowStretch(1, 4);
+	gridLayout->setColumnStretch(0, 4);
+	gridLayout->addWidget(embedContainer, 1, 0);
+	setLayout(gridLayout);
 
 #if defined(QMC2_OS_UNIX)
-  embedContainer = new QX11EmbedContainer(this);
+	if ( icon.isNull() ) {
+		iconRunning = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png"));
+		iconPaused = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png"));
+		iconStopped = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png"));
+		iconUnknown = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png"));
+	} else {
+		QPainter p;
+		QPixmap pm(128, 64);
+		QPixmap pmStatus;
+		QPixmap pmIcon = icon.pixmap(icon.actualSize(QSize(64, 64))).scaled(64, 64, Qt::KeepAspectRatioByExpanding);
+		pmIcon.setMask(pmIcon.createMaskFromColor(QColor(255, 255, 255), Qt::MaskInColor));
+
+		pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")).pixmap(64, 64);
+		pm.fill(Qt::transparent);
+		p.begin(&pm);
+		p.setBackgroundMode(Qt::TransparentMode);
+		p.drawPixmap(0, 0, pmStatus);
+		p.drawPixmap(64, 0, pmIcon);
+		p.end();
+		iconRunning = QIcon(pm);
+
+		pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")).pixmap(64, 64);
+		pm.fill(Qt::transparent);
+		p.begin(&pm);
+		p.setBackgroundMode(Qt::TransparentMode);
+		p.drawPixmap(0, 0, pmStatus);
+		p.drawPixmap(64, 0, pmIcon);
+		p.end();
+		iconPaused = QIcon(pm);
+
+		pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png")).pixmap(64, 64);
+		pm.fill(Qt::transparent);
+		p.begin(&pm);
+		p.setBackgroundMode(Qt::TransparentMode);
+		p.drawPixmap(0, 0, pmStatus);
+		p.drawPixmap(64, 0, pmIcon);
+		p.end();
+		iconStopped = QIcon(pm);
+
+		pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")).pixmap(64, 64);
+		pm.fill(Qt::transparent);
+		p.begin(&pm);
+		p.setBackgroundMode(Qt::TransparentMode);
+		p.drawPixmap(0, 0, pmStatus);
+		p.drawPixmap(64, 0, pmIcon);
+		p.end();
+		iconUnknown = QIcon(pm);
+	}
 #elif defined(QMC2_OS_WIN)
-  embedContainer = new QWidget(this);
-#endif
-  embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  embedContainer->setObjectName("QMC2_EMBED_CONTAINER");
-  embedContainer->setAutoFillBackground(true);
-  QPalette pal = embedContainer->palette();
-  pal.setColor(QPalette::Window, Qt::black);
-  embedContainer->setPalette(pal);
-
-  setFocusPolicy(Qt::WheelFocus);
-  setFocusProxy(embedContainer);
-
-  gridLayout = new QGridLayout(this);
-  gridLayout->getContentsMargins(&cmLeft, &cmTop, &cmRight, &cmBottom);
-  gridLayout->setContentsMargins(0, 0, 0, 0);
-  gridLayout->setRowStretch(0, 0);
-  gridLayout->setRowStretch(1, 4);
-  gridLayout->setColumnStretch(0, 4);
-  gridLayout->addWidget(embedContainer, 1, 0);
-  setLayout(gridLayout);
-
-#if defined(QMC2_OS_UNIX)
-  connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
-  connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
-  connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
-
-  if ( icon.isNull() ) {
-	  iconRunning = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png"));
-	  iconPaused = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png"));
-	  iconStopped = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png"));
-	  iconUnknown = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png"));
-  } else {
-	  QPainter p;
-	  QPixmap pm(128, 64);
-	  QPixmap pmStatus;
-	  QPixmap pmIcon = icon.pixmap(icon.actualSize(QSize(64, 64))).scaled(64, 64, Qt::KeepAspectRatioByExpanding);
-	  pmIcon.setMask(pmIcon.createMaskFromColor(QColor(255, 255, 255), Qt::MaskInColor));
-
-	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")).pixmap(64, 64);
-	  pm.fill(Qt::transparent);
-	  p.begin(&pm);
-	  p.setBackgroundMode(Qt::TransparentMode);
-	  p.drawPixmap(0, 0, pmStatus);
-	  p.drawPixmap(64, 0, pmIcon);
-	  p.end();
-	  iconRunning = QIcon(pm);
-
-	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")).pixmap(64, 64);
-	  pm.fill(Qt::transparent);
-	  p.begin(&pm);
-	  p.setBackgroundMode(Qt::TransparentMode);
-	  p.drawPixmap(0, 0, pmStatus);
-	  p.drawPixmap(64, 0, pmIcon);
-	  p.end();
-	  iconPaused = QIcon(pm);
-
-	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png")).pixmap(64, 64);
-	  pm.fill(Qt::transparent);
-	  p.begin(&pm);
-	  p.setBackgroundMode(Qt::TransparentMode);
-	  p.drawPixmap(0, 0, pmStatus);
-	  p.drawPixmap(64, 0, pmIcon);
-	  p.end();
-	  iconStopped = QIcon(pm);
-
-	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")).pixmap(64, 64);
-	  pm.fill(Qt::transparent);
-	  p.begin(&pm);
-	  p.setBackgroundMode(Qt::TransparentMode);
-	  p.drawPixmap(0, 0, pmStatus);
-	  p.drawPixmap(64, 0, pmIcon);
-	  p.end();
-	  iconUnknown = QIcon(pm);
-  }
-#elif defined(QMC2_OS_WIN)
-  windowHandle = winId;
-  embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
-  connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkWindow()));
-  iconUnknown = icon;
-  RECT wR, cR;
-  GetWindowRect(windowHandle, &wR);
-  GetClientRect(windowHandle, &cR);
-  SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
-  originalRect = QRect(wR.left, wR.top, wR.right - wR.left, wR.bottom - wR.top);
-  nativeResolution = QRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top).size();
+	windowHandle = embeddedWinId;
+	embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
+	connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkWindow()));
+	iconUnknown = icon;
+	RECT wR, cR;
+	GetWindowRect(windowHandle, &wR);
+	GetClientRect(windowHandle, &cR);
+	SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
+	originalRect = QRect(wR.left, wR.top, wR.right - wR.left, wR.bottom - wR.top);
+	nativeResolution = QRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top).size();
 #endif
 
-  embedderOptions = NULL;
-  optionsShown = false;
+	embedderOptions = NULL;
+	optionsShown = false;
 
-  QTimer::singleShot(0, this, SLOT(embed()));
-}
-
-Embedder::~Embedder()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::~Embedder()"));
-#endif
-
+	QTimer::singleShot(0, this, SLOT(embed()));
 }
 
 void Embedder::embed()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
-#endif
-
 #if defined(QMC2_OS_WIN)
 	if ( embeddingWindow || releasingWindow )
 		return;
@@ -176,8 +146,11 @@ void Embedder::embed()
 	}
 
 #if defined(QMC2_OS_UNIX)
-	nativeResolution = QPixmap::grabWindow(winId).size();
-  	embedContainer->embedClient(winId);
+	nativeResolution = QPixmap::grabWindow(embeddedWinId).size();
+  	XReparentWindow(QX11Info::display(), embeddedWinId, embedContainer->winId(), 0, 0);
+	XMoveResizeWindow(QX11Info::display(), embeddedWinId, 0, 0, embedContainer->size().width(), embedContainer->size().height());
+	embedded = true;
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = 0x%2").arg(gameID).arg((qulonglong)embeddedWinId));
 #elif defined(QMC2_OS_WIN)
 	fullScreen = false;
 	embedded = true;
@@ -191,20 +164,16 @@ void Embedder::embed()
 
 void Embedder::release()
 {
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::release()"));
-#endif
-
 #if defined(QMC2_OS_WIN)
 	SetWindowPos(windowHandle, HWND_BOTTOM, originalRect.x(), originalRect.y(), originalRect.width(), originalRect.height(), SWP_HIDEWINDOW);
 #endif
 	embedded = false;
 	embedContainer->clearFocus();
 #if defined(QMC2_OS_UNIX)
-	embedContainer->discardClient();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
-	XUnmapWindow(QX11Info::display(), winId);
-	XMapRaised(QX11Info::display(), winId);
+	XReparentWindow(QX11Info::display(), embeddedWinId, qApp->desktop()->winId(), 0, 0);
+	XMoveResizeWindow(QX11Info::display(), embeddedWinId, 0, 0, nativeResolution.width(), nativeResolution.height());
+	XFlush(QX11Info::display());
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(embeddedWinId, 16)));
 	QTimer::singleShot(QMC2_EMBED_RELEASE_DELAY, qmc2MainWindow, SLOT(raise()));
 #elif defined(QMC2_OS_WIN)
 	checkTimer.stop();
@@ -219,146 +188,60 @@ void Embedder::release()
 	UpdateWindow(windowHandle);
 	qmc2MainWindow->raise();
 	qmc2MainWindow->activateWindow();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg((qulonglong)winId));
-	windowHandle = winId = 0;
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg((qulonglong)embeddedWinId));
+	windowHandle = embeddedWinId = 0;
 	releasingWindow = false;
 #endif
 }
 
-#if defined(QMC2_OS_UNIX)
-void Embedder::clientEmbedded()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientEmbedded()"));
-#endif
-
-  embedded = true;
-
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
-
-  // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
-  QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
-
-  int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-
-  if ( qmc2FifoIsOpen ) {
-    if ( isPaused )
-      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconPaused);
-    else
-      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconRunning);
-  } else
-    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
-
-  forceFocus();
-}
-
-void Embedder::clientError(QX11EmbedContainer::Error error)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientError(QX11EmbedContainer::Error error = %1)").arg((int)error));
-#endif
-
-  switch ( error ) {
-    case QX11EmbedContainer::InvalidWindowID:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: invalid window ID = 0x%1").arg(QString::number(winId, 16)));
-      break;
-
-    case QX11EmbedContainer::Unknown:
-    default:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: unknown error, window ID = 0x%1").arg(QString::number(winId, 16)));
-      break;
-  }
-
-  emit closing();
-}
-#endif
-
 void Embedder::clientClosed()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
-#endif
+	embedded = false;
 
-#if defined(QMC2_OS_UNIX)
-  if ( embedded )
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 closed, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
-#endif
-
-  embedded = false;
-
-  emit closing();
+	emit closing();
 }
 
 void Embedder::closeEvent(QCloseEvent *e)
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
-#endif
+	if ( embedded )
+		release();
 
-  if ( embedded )
-    release();
+	if ( embedderOptions )
+		delete embedderOptions;
 
-  if ( embedderOptions )
-    delete embedderOptions;
-
-  QWidget::closeEvent(e);
+	QWidget::closeEvent(e);
 }
 
 void Embedder::showEvent(QShowEvent *e)
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
-    QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
+	if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
+		QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
 #if defined(QMC2_OS_WIN)
-  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
+	QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
 #endif
 
 #if defined(QMC2_OS_UNIX)
-  if ( embedded )
-    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
+	if ( embedded )
+		QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
 
-  if ( !qmc2FifoIsOpen ) {
-    int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
-  }
+	if ( !qmc2FifoIsOpen ) {
+		int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
+	}
 #endif
 
-  QWidget::showEvent(e);
+	QWidget::showEvent(e);
 }
 
 void Embedder::hideEvent(QHideEvent *e)
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 #if defined(QMC2_OS_UNIX)
-  if ( embedded )
-    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(hideEventDelayed()));
+	if ( embedded )
+		QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(hideEventDelayed()));
 #endif
 
-  QWidget::hideEvent(e);
-}
-
-void Embedder::resizeEvent(QResizeEvent *e)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-	QWidget::resizeEvent(e);
-
-#if defined(QMC2_OS_WIN)
-	if ( embedded ) {
-		embedContainer->resize(size());
-		if ( windowHandle && !updatingWindow )
-			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
-	}
-#endif
+	QWidget::hideEvent(e);
 }
 
 #if defined(QMC2_OS_UNIX)
@@ -387,54 +270,46 @@ void Embedder::hideEventDelayed()
 
 void Embedder::toggleOptions()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::toggleOptions()"));
-#endif
-
-  optionsShown = !optionsShown;
-  if ( optionsShown ) {
-    gridLayout->setRowStretch(0, 1);
-    gridLayout->setRowStretch(1, 4);
-    gridLayout->setContentsMargins(cmLeft, cmTop, cmRight, cmBottom);
-    if ( !embedderOptions ) {
-      embedderOptions = new EmbedderOptions(this);
-      embedderOptions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-      gridLayout->addWidget(embedderOptions, 0, 0);
-    }
-    embedderOptions->show();
-  } else {
-    gridLayout->setRowStretch(0, 0);
-    gridLayout->setRowStretch(1, 4);
-    gridLayout->setContentsMargins(0, 0, 0, 0);
-    if ( embedderOptions )
-      embedderOptions->hide();
-  }
+	optionsShown = !optionsShown;
+	if ( optionsShown ) {
+		if ( !embedderOptions ) {
+			embedderOptions = new EmbedderOptions(this);
+			embedderOptions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+			gridLayout->addWidget(embedderOptions, 0, 0);
+		}
+		gridLayout->setContentsMargins(cmLeft, cmTop, cmRight, cmBottom);
+		gridLayout->setRowStretch(0, 1);
+		gridLayout->setRowStretch(1, 4);
+		embedderOptions->show();
+	} else {
+		gridLayout->setContentsMargins(0, 0, 0, 0);
+		gridLayout->setRowStretch(0, 0);
+		gridLayout->setRowStretch(1, 4);
+		if ( embedderOptions )
+			embedderOptions->hide();
+	}
 #if defined(QMC2_OS_WIN)
-  QTimer::singleShot(0, this, SLOT(updateWindow()));
+	QTimer::singleShot(0, this, SLOT(updateWindow()));
 #endif
 }
 
 void Embedder::adjustIconSizes()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::adjustIconSizes()"));
-#endif
+	// serious hack to access the tab bar without sub-classing from QTabWidget ;)
+	QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
+	int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
 
-  // serious hack to access the tab bar without sub-classing from QTabWidget ;)
-  QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
-  int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-
-  QFont f;
-  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
-  QFontMetrics fm(f);
-  QToolButton *optionsButton = (QToolButton *)tabBar->tabButton(index, QTabBar::LeftSide);
-  QToolButton *releaseButton = (QToolButton *)tabBar->tabButton(index, QTabBar::RightSide);
-  int baseSize = fm.height() + 2;
-  QSize optionsButtonSize(2 * baseSize, baseSize);
-  QSize releaseButtonSize(baseSize, baseSize);
-  optionsButton->setFixedSize(optionsButtonSize + QSize(0, 2));
-  releaseButton->setFixedSize(releaseButtonSize);
-  tabBar->setIconSize(optionsButtonSize);
+	QFont f;
+	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+	QFontMetrics fm(f);
+	QToolButton *optionsButton = (QToolButton *)tabBar->tabButton(index, QTabBar::LeftSide);
+	QToolButton *releaseButton = (QToolButton *)tabBar->tabButton(index, QTabBar::RightSide);
+	int baseSize = fm.height() + 2;
+	QSize optionsButtonSize(2 * baseSize, baseSize);
+	QSize releaseButtonSize(baseSize, baseSize);
+	optionsButton->setFixedSize(optionsButtonSize + QSize(0, 2));
+	releaseButton->setFixedSize(releaseButtonSize);
+	tabBar->setIconSize(optionsButtonSize);
 }
 
 void Embedder::forceFocus()
@@ -496,7 +371,7 @@ void Embedder::simulatePauseKey()
 {
 	XKeyEvent xev;
 	xev.display = QX11Info::display();
-	xev.window = winId;
+	xev.window = embeddedWinId;
 	xev.root = qApp->desktop()->winId();
 	xev.subwindow = 0;
 	xev.time = QX11Info::appTime();
@@ -631,5 +506,28 @@ void Embedder::updateWindow()
 }
 
 #endif
+
+EmbedContainer::EmbedContainer(QWidget *parent)
+	: QWidget(parent)
+{
+	embedder = ((Embedder *)parentWidget());
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	setObjectName("QMC2_EMBED_CONTAINER");
+	setAutoFillBackground(true);
+	QPalette pal = palette();
+	pal.setColor(QPalette::Window, Qt::black);
+	setPalette(pal);
+}
+
+void EmbedContainer::resizeEvent(QResizeEvent *e)
+{
+#if defined(QMC2_OS_UNIX)
+	if ( embedder->embeddedWinId )
+		XMoveResizeWindow(QX11Info::display(), embedder->embeddedWinId, 0, 0, e->size().width(), e->size().height());
+#elif defined(QMC2_OS_WIN)
+	if ( embedder->embeddedWinId && !embedder->updatingWindow )
+		SetWindowPos(embedder->embeddedWinId, HWND_TOPMOST, 0, 0, e->size().width(), e->size().height(), SWP_SHOWWINDOW);
+#endif
+}
 
 #endif

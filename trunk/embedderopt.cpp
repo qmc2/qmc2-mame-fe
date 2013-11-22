@@ -103,7 +103,7 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
 #endif
 
 	Embedder *embedder = (Embedder *)parent();
-	QPixmap pm = QPixmap::grabWindow(embedder->winId);
+	QPixmap pm = QPixmap::grabWindow(embedder->embeddedWinId);
 	QRect rect = pm.rect();
 	QSize size = embedder->nativeResolution;
 	size.scale(rect.size(), Qt::KeepAspectRatio);
