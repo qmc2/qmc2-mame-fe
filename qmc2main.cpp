@@ -5539,7 +5539,9 @@ void MainWindow::action_embedEmulator_triggered()
         qmc2LastListIndex = tabWidgetGamelist->currentIndex();
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
+      tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
 #if defined(QMC2_OS_UNIX)
+      qApp->syncX();
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
 #elif defined(QMC2_OS_WIN)
@@ -5548,14 +5550,16 @@ void MainWindow::action_embedEmulator_triggered()
 #endif
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistDescriptionMap[gameName]));
+      tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
       if ( tabBar ) {
+        // replace the default 'X' icon with something more suitable (the only way I found to accomplish this is by setting a style-sheet)
+        tabBar->setStyleSheet("QTabBar::close-button { image: url(:/data/img/release.png); subcontrol-position: right; } QTabBar::close-button:hover { image: url(:/data/img/release_alternate.png); }");
+
         int index = tabWidgetEmbeddedEmulators->indexOf(embedder);
         tabBar->tabButton(index, QTabBar::RightSide)->setToolTip(tr("Release emulator"));
-	// replace the default 'X' icon with something more suitable (the only way I found to accomplish this is by setting a style-sheet)
-	tabBar->setStyleSheet("QTabBar::close-button { image: url(:/data/img/release.png); subcontrol-position: right; } QTabBar::close-button:hover { image: url(:/data/img/release_alternate.png); }");
 
         QFont f;
         f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
@@ -5564,9 +5568,9 @@ void MainWindow::action_embedEmulator_triggered()
         QSize optionsButtonSize(2 * baseSize, baseSize + 2);
 
         QToolButton *optionsButton = new QToolButton(tabBar);
-	optionsButton->setFixedSize(optionsButtonSize);
+        optionsButton->setFixedSize(optionsButtonSize);
         optionsButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-	optionsButton->setText(" ");
+        optionsButton->setText(" ");
         optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
         optionsButton->setToolTip(tr("Toggle embedder options (hold down for menu)"));
         optionsButton->setStatusTip(tr("Toggle embedder options (hold down for menu)"));
@@ -5599,14 +5603,12 @@ void MainWindow::action_embedEmulator_triggered()
         action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
         connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_CopyCommand_activated()));
 
-	optionsButton->setMenu(optionsMenu);
+        optionsButton->setMenu(optionsMenu);
 
         tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
 
-	QTimer::singleShot(0, embedder, SLOT(embed()));
+        QTimer::singleShot(0, embedder, SLOT(embed()));
       }
-      tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
-      tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
     } else {
       success = false;
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
