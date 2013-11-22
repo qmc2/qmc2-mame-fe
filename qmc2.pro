@@ -3,7 +3,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
 		greaterThan(QT_MAJOR_VERSION, 4) {
-			QT += testlib widgets webkitwidgets x11extras
+			QT += testlib widgets webkitwidgets
 		} else {
 			CONFIG += qtestlib
 		}
@@ -228,6 +228,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			!win32 {
 				LIBS += -lSDL -lX11
 				SOURCES += x11_tools.cpp
+				greaterThan(QT_MAJOR_VERSION, 4) {
+					QT += x11extras
+				}
 			}
 		}
 		win32 {
