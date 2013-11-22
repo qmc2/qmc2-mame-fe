@@ -364,11 +364,14 @@ Rectangle {
 
         Behavior on width { PropertyAnimation { duration: darkone.overlayDuration; easing.type: Easing.InOutQuad } }
 
-        onActiveFocusChanged: {
-            debug2 && focus && DarkoneJS.inFocus();
-            if ( focus )
+        onFocusChanged: {
+            if ( focus ) {
                 overlayScreen.focus = true;
+                if ( darkone.initialised )
+                    debug2 && focus && DarkoneJS.inFocus();
+            }
         }
+
         MouseArea {
             anchors.fill: parent
             onClicked: {
