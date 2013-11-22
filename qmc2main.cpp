@@ -5491,11 +5491,11 @@ void MainWindow::action_embedEmulator_triggered()
     int xwininfoRetries = 0;
     while ( winIdList.isEmpty() && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
 #if defined(QMC2_EMUTYPE_MAME)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MAME-ID-%2").arg(gameID)));
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_MESS)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MESS-ID-%2").arg(gameID)));
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MESS-ID-%1").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_UME)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-UME-ID-%2").arg(gameID)));
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-UME-ID-%1").arg(gameID)));
 #endif
 	
 	if ( windowId )
