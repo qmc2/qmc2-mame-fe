@@ -514,7 +514,7 @@ EmbedContainer::EmbedContainer(QWidget *parent)
 	: QWidget(parent)
 {
 	setObjectName("QMC2_EMBED_CONTAINER");
-	embedder = ((Embedder *)parentWidget());
+	embedder = (Embedder *)parentWidget();
 
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
