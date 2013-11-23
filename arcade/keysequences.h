@@ -47,19 +47,22 @@
                                                                              << QObject::tr("Exit") \
                                                                              << QObject::tr("Flip cabinet / game-card")
 // darkone-specific key-sequences
-#define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        (stringList) << "Ctrl+Shift+Up" \
-                                                                             << "Ctrl+Shift+Down" \
-                                                                             << "Ctrl+Up" \
+#define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        (stringList) << "Ctrl+Up" \
                                                                              << "Ctrl+Down" \
-                                                                             << "Space" \
-                                                                             << "Up" \
-                                                                             << "PgUp" \
-                                                                             << "Home" \
-                                                                             << "Down" \
-                                                                             << "PgDown" \
-                                                                             << "End" \
                                                                              << "Left" \
                                                                              << "Right" \
+                                                                             << "Up" \
+                                                                             << "Down" \
+                                                                             << "Enter" \
+                                                                             << "Esc" \
+                                                                             << "Ctrl+Shift+Up" \
+                                                                             << "Ctrl+Shift+Down" \
+                                                                             << "PgUp" \
+                                                                             << "PgDown" \
+                                                                             << "Home" \
+                                                                             << "End" \
+                                                                             << "1" \
+                                                                             << "2" \
                                                                              << "Tab" \
                                                                              << "Ctrl+Right" \
                                                                              << "Shift+Tab" \
@@ -67,40 +70,41 @@
                                                                              << "Plus" \
                                                                              << "Minus" \
                                                                              << "Ctrl+P" \
+                                                                             << "Ctrl+S" \
                                                                              << "Ctrl+O" \
                                                                              << "Ctrl+L" \
                                                                              << "Ctrl+T" \
-                                                                             << "Ctrl+S" \
                                                                              << "Alt+F" \
-                                                                             << "Esc" \
                                                                              << "Ctrl+Q"
 // darkone-specific key-sequence descriptions
-#define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)       (stringList)  << QObject::tr("Zoom in / List top") \
-                                                                             << QObject::tr("Zoom out / List bottom") \
-                                                                             << QObject::tr("Previous widget / List page up") \
-                                                                             << QObject::tr("Next widget / List page down") \
-                                                                             << QObject::tr("Select") \
-                                                                             << QObject::tr("List up") \
-                                                                             << QObject::tr("List page up") \
-                                                                             << QObject::tr("List top") \
-                                                                             << QObject::tr("List down") \
-                                                                             << QObject::tr("List page down") \
-                                                                             << QObject::tr("List bottom") \
-                                                                             << QObject::tr("Hide list") \
-                                                                             << QObject::tr("Show list") \
-                                                                             << QObject::tr("Next widget") \
-                                                                             << QObject::tr("Next widget") \
-                                                                             << QObject::tr("Previous widget") \
-                                                                             << QObject::tr("Previous widget") \
-                                                                             << QObject::tr("Zoom in") \
-                                                                             << QObject::tr("Zoom out") \
-                                                                             << QObject::tr("Start emulation") \
-                                                                             << QObject::tr("Toggle options") \
-                                                                             << QObject::tr("Toggle list") \
-                                                                             << QObject::tr("Toggle toolbar") \
-                                                                             << QObject::tr("Search") \
-                                                                             << QObject::tr("Toggle full-screen / windowed mode") \
-                                                                             << QObject::tr("Abort game launch") \
-                                                                             << QObject::tr("Exit")
+#define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)       (stringList)  << QObject::tr("[context] Previous component / List page up / Info page up") \
+                                                                             << QObject::tr("[context] Next component / List page down / Info page down") \
+                                                                             << QObject::tr("[context] Hide list / Previous item / Slide left / Cycle backwards") \
+                                                                             << QObject::tr("[context] Show list / Next item / Slide right / Cycle forwards") \
+                                                                             << QObject::tr("[context] Show toolbar / List up / Info up / Previous widget") \
+                                                                             << QObject::tr("[context] Hide toolbar / List down / Info down / Next widget") \
+                                                                             << QObject::tr("[context] Select / Set / Toggle details / Start emulation") \
+                                                                             << QObject::tr("[context] Abort game launch / Hide preferences") \
+                                                                             << QObject::tr("[context] Zoom in / List top") \
+                                                                             << QObject::tr("[context] Zoom out / List bottom") \
+                                                                             << QObject::tr("[context] List page up / Flick page up") \
+                                                                             << QObject::tr("[context] List page down / Flick page down") \
+                                                                             << QObject::tr("[context] List top") \
+                                                                             << QObject::tr("[context] List bottom") \
+                                                                             << QObject::tr("[context] Set primary display data item") \
+                                                                             << QObject::tr("[context] Set secondary display data item") \
+                                                                             << QObject::tr("[global] Next widget") \
+                                                                             << QObject::tr("[global] Next widget") \
+                                                                             << QObject::tr("[global] Previous widget") \
+                                                                             << QObject::tr("[global] Previous widget") \
+                                                                             << QObject::tr("[global] Zoom in") \
+                                                                             << QObject::tr("[global] Zoom out") \
+                                                                             << QObject::tr("[global] Start emulation") \
+                                                                             << QObject::tr("[global] Search") \
+                                                                             << QObject::tr("[global] Toggle preferences") \
+                                                                             << QObject::tr("[global] Toggle list") \
+                                                                             << QObject::tr("[global] Toggle toolbar") \
+                                                                             << QObject::tr("[global] Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("[global] Exit")
 
 #endif // KEYSEQUENCES_H

@@ -177,109 +177,120 @@ Rectangle {
     // global key events
     Keys.onPressed: {
         debug2 && console.log("[keys] darkone: '" + DarkoneJS.keyEvent2String(event) + "'")
-        switch ( event.key ) {
-            case Qt.Key_Left: {
-                if (!darkone.listHidden)
-                    DarkoneJS.listToggle();
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Right: {
-                if (listHidden && preferences.state == "hidden")
-                    DarkoneJS.listToggle();
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Escape: {
-                if ( searchTextInput.focus )
-                    searchTextInput.focus = false;
-                else if ( preferences.state == "shown" )
-                    preferences.state = "hidden";
-                else if ( launchFlashTimer.running ) {
-                    launchFlashTimer.stop();
-                    DarkoneJS.flashCounter = 0;
-                    DarkoneJS.inGame = true; // fake game over
-                    DarkoneJS.gameOver();
+        if ( event.modifiers & Qt.AltModifier) {
+            switch ( event.key ) {
+                case Qt.Key_Enter:
+                case Qt.Key_Return: {
+                    darkone.fullScreen = !darkone.fullScreen;
+                    event.accepted = true;
+                    break;
                 }
-                event.accepted = true;
-                break;
             }
-            case Qt.Key_F1:
-                break;
-            case Qt.Key_F11: {
-                darkone.fullScreen = !darkone.fullScreen;
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Plus: {
-                DarkoneJS.zoom(1.1);
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Minus: {
-                DarkoneJS.zoom(0.9);
-                event.accepted = true;
-                break;
-            }
-            default: {
-                if ( event.modifiers & Qt.AltModifier) {
-                    switch ( event.key ) {
-                        case Qt.Key_Enter:
-                        case Qt.Key_Return: {
-                            darkone.fullScreen = !darkone.fullScreen;
-                            event.accepted = true;
-                            break;
-                        }
+        } else if ( event.modifiers & Qt.ControlModifier) {
+            if ( event.modifiers & Qt.ShiftModifier ) {
+            } else {
+                switch ( event.key ) {
+                    case Qt.Key_D: {
+                        debug = !debug;
+                        event.accepted = true;
+                        break;
                     }
-                } else if ( event.modifiers & Qt.ControlModifier) {
-                    if ( event.modifiers & Qt.ShiftModifier ) {
-                    } else {
-                        switch ( event.key ) {
-                            case Qt.Key_D: {
-                                debug = !debug;
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_K: {
-                                debug2 = !debug2;
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_L: {
-                                if (preferences.state == "hidden")
-                                    DarkoneJS.listToggle();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_Q: {
-                                Qt.quit();
-                                break;
-                            }
-                            case Qt.Key_P: {
-                                !darkone.ignoreLaunch && DarkoneJS.launch();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_O: {
-                                preferences.state = preferences.state == "shown" ? "hidden" : "shown";
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_T: {
-                                DarkoneJS.toolbarToggle();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_S: {
-                                if ( !darkone.toolbarHidden ) {
-                                    searchTextInput.text = "";
-                                    searchTextInput.focus = true;
-                                    searchTextInput.forceActiveFocus();
-                                }
-                                break;
-                            }
-                        }
+                    case Qt.Key_K: {
+                        debug2 = !debug2;
+                        event.accepted = true;
+                        break;
                     }
+                    case Qt.Key_L: {
+                        if (preferences.state == "hidden")
+                            DarkoneJS.listToggle();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_Q: {
+                        Qt.quit();
+                        break;
+                    }
+                    case Qt.Key_P: {
+                        !darkone.ignoreLaunch && DarkoneJS.launch();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_O: {
+                        preferences.state = preferences.state == "shown" ? "hidden" : "shown";
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_T: {
+                        DarkoneJS.toolbarToggle();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_S: {
+                        if ( !darkone.toolbarHidden ) {
+                            searchTextInput.text = "";
+                            searchTextInput.focus = true;
+                            searchTextInput.forceActiveFocus();
+                        }
+                        break;
+                    }
+                }
+            }
+        } else {
+            switch ( event.key ) {
+                case Qt.Key_Left: {
+                    if (!darkone.listHidden)
+                        DarkoneJS.listToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Right: {
+                    if (darkone.listHidden && preferences.state == "hidden")
+                        DarkoneJS.listToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Up: {
+                    if (!darkone.toolbarHidden)
+                        DarkoneJS.toolbarToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Down: {
+                    if (darkone.toolbarHidden && toolbar.state == "hidden")
+                        DarkoneJS.toolbarToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Escape: {
+                    if ( searchTextInput.focus )
+                        searchTextInput.focus = false;
+                    else if ( preferences.state == "shown" )
+                        preferences.state = "hidden";
+                    else if ( launchFlashTimer.running ) {
+                        launchFlashTimer.stop();
+                        DarkoneJS.flashCounter = 0;
+                        DarkoneJS.inGame = true; // fake game over
+                        DarkoneJS.gameOver();
+                    }
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_F1:
+                    break;
+                case Qt.Key_F11: {
+                    darkone.fullScreen = !darkone.fullScreen;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Plus: {
+                    DarkoneJS.zoom(1.1);
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Minus: {
+                    DarkoneJS.zoom(0.9);
+                    event.accepted = true;
+                    break;
                 }
             }
         }
@@ -443,19 +454,46 @@ Rectangle {
                     event.accepted = true;
                     break;
                 }
-                case Qt.Key_Tab: {
-                    if ( event.modifiers & Qt.ShiftModifier ) {
-                        if ( !darkone.toolbarHidden )
-                            toolbarFocusScope.focus = true;
-                        else if ( !darkone.listHidden )
-                            gameListView.focus = true;
-                    } else {
-                        if ( !darkone.listHidden )
-                            gameListView.focus = true;
-                        else if ( !darkone.toolbarHidden )
-                            toolbarFocusScope.focus = true;
+                case Qt.Key_Backtab: {
+                    if ( !darkone.toolbarHidden ) {
+                        toolbarFocusScope.focus = true;
+                        event.accepted = true;
+                    } else if ( !darkone.listHidden ) {
+                        gameListView.focus = true;
+                        event.accepted = true;
                     }
-                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Tab: {
+                    if ( !darkone.listHidden ) {
+                        gameListView.focus = true;
+                        event.accepted = true;
+                    } else if ( !darkone.toolbarHidden ) {
+                        toolbarFocusScope.focus = true;
+                        event.accepted = true;
+                    }
+                    break;
+                }
+                case Qt.Key_PageUp: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( overlayText.text != "" ) {
+                            // scroll page
+                            overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
+                            overlayTextFlick.returnToBounds();
+                            event.accepted = true;
+                        }
+                    }
+                    break;
+                }
+                case Qt.Key_PageDown: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( overlayText.text != "" ) {
+                            // scroll page
+                            overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
+                            overlayTextFlick.returnToBounds();
+                            event.accepted = true;
+                        }
+                    }
                     break;
                 }
                 case Qt.Key_Up: {
@@ -465,21 +503,29 @@ Rectangle {
                             event.accepted = true;
                             break;                        
                         } else {
-                            // scroll page
                             if ( overlayText.text != "" ) {
+                                // scroll page
                                 overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
                                 overlayTextFlick.returnToBounds();
+                                event.accepted = true;
+                            } else {
+                                if ( !darkone.toolbarHidden ) {
+                                    toolbarFocusScope.focus = true;
+                                    event.accepted = true;
+                                } else if ( !darkone.listHidden ) {
+                                    gameListView.focus = true;
+                                    event.accepted = true;
+                                }
                             }
-                            event.accepted = true;
                             break;
                         }
                     } else {
-                        // scroll line
                         if ( overlayText.text != "" ) {
+                            // scroll line
                             overlayTextFlick.contentY += overlayTextFlick.height / 10
                             overlayTextFlick.returnToBounds();
+                            event.accepted = true;
                         }
-                        event.accepted = true;
                         break;
                     }
                 }
@@ -488,30 +534,61 @@ Rectangle {
                         if ( event.modifiers & Qt.ShiftModifier ) {
                             DarkoneJS.zoom(0.9);
                             event.accepted = true;
-                            break;                        
+                            break;
                         } else {
-                            // scroll page
                             if ( overlayText.text != "" ) {
+                                // scroll page
                                 overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
                                 overlayTextFlick.returnToBounds();
+                                event.accepted = true;
+                            } else {
+                                if ( !darkone.listHidden ) {
+                                    gameListView.focus = true;
+                                    event.accepted = true;
+                                } else if ( !darkone.toolbarHidden ) {
+                                    toolbarFocusScope.focus = true;
+                                    event.accepted = true;
+                                }
                             }
-                            event.accepted = true;
                             break;
                         }
                     } else {
-                        // scroll line
                         if ( overlayText.text != "" ) {
+                            // scroll line
                             overlayTextFlick.contentY -= overlayTextFlick.height / 10
                             overlayTextFlick.returnToBounds();
+                            event.accepted = true;
                         }
-                        event.accepted = true;
                         break;
                     }
                 }
                 case Qt.Key_Left:
+                    if ( event.modifiers & Qt.ControlModifier ) {
+                        if ( !darkone.toolbarHidden ) {
+                            toolbarFocusScope.focus = true;
+                            event.accepted = true
+                        } else if ( !darkone.listHidden ) {
+                            gameListView.focus = true;
+                            event.accepted = true
+                        }
+                    } else {
+                        if ( ! darkone.dataHidden )
+                            event.accepted = true
+                    }
+                    break;
                 case Qt.Key_Right: {
-                    if ( ! darkone.dataHidden )
-                        event.accepted = true
+                    if ( event.modifiers & Qt.ControlModifier ) {
+                        if ( !darkone.listHidden ) {
+                            gameListView.focus = true;
+                            event.accepted = true
+                        } else if ( !darkone.toolbarHidden ) {
+                            toolbarFocusScope.focus = true;
+                            event.accepted = true
+                        }
+                    } else {
+                        if ( ! darkone.dataHidden )
+                            event.accepted = true
+                    }
                     break;
                 }
                 default: {
@@ -1232,15 +1309,16 @@ Rectangle {
             if (darkone.lightOut)
                 DarkoneJS.lightToggle(1);
             switch ( event.key ) {
+                case Qt.Key_Backtab: {
+                    overlay.focus = true;
+                    event.accepted = true;
+                    break;
+                }
                 case Qt.Key_Tab: {
-                    if ( event.modifiers & Qt.ShiftModifier )
+                    if ( !darkone.toolbarHidden )
+                        toolbarFocusScope.focus = true;
+                    else
                         overlay.focus = true;
-                    else {
-                        if ( !darkone.toolbarHidden )
-                            toolbarFocusScope.focus = true;
-                        else
-                            overlay.focus = true;
-                    }
                     event.accepted = true;
                     break;
                 }
@@ -1300,6 +1378,19 @@ Rectangle {
                                 }
                                 case Qt.Key_Down: {
                                     listDown();
+                                    event.accepted = true;
+                                    break;
+                                }
+                                case Qt.Key_Left: {
+                                    overlay.focus = true;
+                                    event.accepted = true;
+                                    break;
+                                }
+                                case Qt.Key_Right: {
+                                    if ( !darkone.toolbarHidden )
+                                        toolbarFocusScope.focus = true;
+                                    else
+                                        overlay.focus = true;
                                     event.accepted = true;
                                     break;
                                 }
@@ -2120,7 +2211,6 @@ Rectangle {
 
         onActiveFocusChanged: {
             debug2 && focus && DarkoneJS.inFocus();
-//            searchTextInput.forceActiveFocus(); // hack!! bug?
         }
 
     Rectangle {
@@ -2194,22 +2284,43 @@ Rectangle {
         }
         // toolbar key events
         Keys.onPressed: {
-            debug2 && console.log("[keys] gameListView: '" + DarkoneJS.keyEvent2String(event) + "'")
+            debug2 && console.log("[keys] toolbar: '" + DarkoneJS.keyEvent2String(event) + "'")
             if ( darkone.toolbarHidden )
                 console.log("[toolbar] error: key press in hidden state")
             else {
                 switch ( event.key ) {
+                    case Qt.Key_Backtab: {
+                        if ( !darkone.listHidden )
+                            gameListView.forceActiveFocus();
+                        else
+                            overlay.forceActiveFocus();
+                        event.accepted = true;
+                        break;
+                    }
                     case Qt.Key_Tab: {
-                        if ( event.modifiers & Qt.ShiftModifier ) {
+                        overlay.forceActiveFocus();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_Left:
+                    case Qt.Key_Up: {
+                        if ( event.modifiers & Qt.ControlModifier ) {
                             if ( !darkone.listHidden )
                                 gameListView.forceActiveFocus();
                             else
                                 overlay.forceActiveFocus();
-                        } else
-                            overlay.forceActiveFocus();
-                        event.accepted = true;
+                            event.accepted = true;
+                        }
                         break;
-                    }   
+                    }
+                    case Qt.Key_Right:
+                    case Qt.Key_Down: {
+                        if ( event.modifiers & Qt.ControlModifier ) {
+                            overlay.forceActiveFocus();
+                            event.accepted = true;
+                        }
+                        break;
+                    }
                     default: {
                         if ( DarkoneJS.validateKey(event.text) ) {
                             searchTextInput.forceActiveFocus();
@@ -2220,7 +2331,7 @@ Rectangle {
                             searchTextInput.forceActiveFocus();
                             switch ( event.text ) {
                                 case "\b": {
-                                    if ( searchTextInput.text.length > 0)
+                                    if ( searchTextInput.text.length > 0 )
                                         searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1)
                                     event.accepted = true;
                                     break;
@@ -2252,6 +2363,7 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 opacity: 0.75
+                focus: true // toolbarFocusScope
 
                 MouseArea {
                     anchors.fill: parent
@@ -2286,7 +2398,6 @@ Rectangle {
                     anchors.rightMargin: 8
                     font.pointSize: parent.height - 6
                     smooth: true
-                    focus: true // toolbarFocusScope
 
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
@@ -2299,6 +2410,31 @@ Rectangle {
 
                     onAccepted: { gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
                                   gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
+                    }
+
+                    Keys.onPressed : {
+                        debug2 && console.log("[keys] searchTextInput: '" + DarkoneJS.keyEvent2String(event) + "'")
+                        switch ( event.key ) {
+                            case Qt.Key_Left:
+                            case Qt.Key_Up: {
+                                if ( event.modifiers & Qt.ControlModifier ) {
+                                    if ( !darkone.listHidden )
+                                        gameListView.forceActiveFocus();
+                                    else
+                                        overlay.forceActiveFocus();
+                                    event.accepted = true;
+                                }
+                                break;
+                            }
+                            case Qt.Key_Right:
+                            case Qt.Key_Down: {
+                                if ( event.modifiers & Qt.ControlModifier ) {
+                                    overlay.forceActiveFocus();
+                                    event.accepted = true;
+                                }
+                                break;
+                            }
+                        }
                     }
                 }
             }
