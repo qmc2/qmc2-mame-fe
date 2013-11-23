@@ -4148,7 +4148,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
      return;
   }
 
-  if ( qmc2CleaningUp )
+  if ( qmc2CleaningUp || qmc2DetailSetup->appliedDetailList.isEmpty() || currentIndex == -1 )
     return;
 
 #ifdef QMC2_DEBUG

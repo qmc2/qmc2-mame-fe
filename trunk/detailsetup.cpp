@@ -380,9 +380,9 @@ void DetailSetup::saveDetail()
 
 	int oldIndex = appliedDetailList[qmc2MainWindow->tabWidgetGameDetail->currentIndex()];
 
-	appliedDetailList.clear();
-  
 	qmc2MainWindow->tabWidgetGameDetail->clear();
+
+	appliedDetailList.clear();
 
 	QStringList activeIndexList;
 	foreach (int i, activeDetailList)
