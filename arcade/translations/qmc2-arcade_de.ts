@@ -963,100 +963,100 @@ QMC2 Arcade neu starten!</translation>
         <translation>Lade globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="218"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="221"/>
         <source>Saving global and theme-specific settings</source>
         <translation>Speichere globale und Themen-spezifische Einstellungen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="288"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="294"/>
         <source>Activating full-screen display</source>
         <translation>Aktiviere Vollbild-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="311"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="317"/>
         <source>Activating windowed display</source>
         <translation>Aktiviere Fenster-Darstellung</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="332"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="338"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="334"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="340"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="336"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="342"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="338"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="344"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="341"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="347"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="370"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="376"/>
         <source>WARNING: filtered list file &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible, falling back to the full %2</source>
         <translation>WARNUNG: Die gefilterte Listen-Datei &apos;%1&apos; existiert nicht oder kann nicht geöffnet werden, verwende stattdessen die volle %2</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="372"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="381"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="418"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="422"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="378"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="387"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="424"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="428"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
         <source>game list</source>
         <translation>Spieleliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="372"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="381"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="418"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="422"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="378"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="387"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="424"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="428"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
         <source>machine list</source>
         <translation>Maschinenliste</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="380"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="386"/>
         <source>Loading %1 from &apos;%2&apos;</source>
         <translation>Lade %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="397"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="403"/>
         <source>WARNING: Can&apos;t open ROM state cache file &apos;%1&apos;, please check permissions</source>
         <translation>WARNUNG: Kann ROM Status Cache Datei &apos;%1&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="400"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="406"/>
         <source>WARNING: The ROM state cache file &apos;%1&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>WARNUNG: Die ROM Status Cache Datei &apos;%1&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="417"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="423"/>
         <source>FATAL: Can&apos;t open %1 cache file &apos;%2&apos;, please check permissions</source>
         <translation>FATAL: Kann die %1-Cache Datei &apos;%2&apos; nicht öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="421"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="427"/>
         <source>FATAL: The %1 cache file &apos;%2&apos; doesn&apos;t exist, please run main front-end executable to create it</source>
         <translation>FATAL: Die %1-Cache Datei &apos;%2&apos; existiert nicht, bitte Haupt-Frontend ausführen um diese zu erstellen</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="432"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="438"/>
         <source>Done (loading %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Lade &apos;%1&apos; von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../tweakedqmlappviewer.cpp" line="433"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
         <source>%n non-device set(s) loaded</source>
         <translation>
             <numerusform>%n unterstütztes Set (ohne Geräte-Sets)</numerusform>
@@ -1064,39 +1064,39 @@ QMC2 Arcade neu starten!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="445"/>
         <source>Starting emulator #%1 for %2 ID &apos;%3&apos;</source>
         <translation>Starte Emulator #%1 für %2 mit der ID &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="445"/>
         <source>game</source>
         <translation>Spiel</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="439"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="445"/>
         <source>machine</source>
         <translation>Maschine</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="456"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="462"/>
         <source>WARNING: TweakedQmlApplicationViewer::requestInfo(): unsupported info class &apos;%1&apos;</source>
         <translation>WARNUNG: TweakedQmlApplicationViewer::requestInfo(): Nicht unterstützte Info-Klasse &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="457"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="463"/>
         <source>no info available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="584"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="606"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="590"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="612"/>
         <source>Stopping QML viewer</source>
         <translation>Beende QML Viewer</translation>
     </message>
     <message>
-        <location filename="../tweakedqmlappviewer.cpp" line="587"/>
-        <location filename="../tweakedqmlappviewer.cpp" line="609"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="593"/>
+        <location filename="../tweakedqmlappviewer.cpp" line="615"/>
         <source>QML viewer stopped - please close the console window to exit</source>
         <translation>QML Viewer gestoppt - bitte zum Beenden Konsolenfenster schließen</translation>
     </message>
@@ -1104,126 +1104,144 @@ QMC2 Arcade neu starten!</translation>
 <context>
     <name>darkone</name>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="349"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="349"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="356"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="356"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="349"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="349"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="356"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="356"/>
         <source>ROM state</source>
         <translation>ROM Status</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="440"/>
-        <location filename="../qml/darkone/1.1/darkone.js" line="447"/>
-        <location filename="../qml/darkone/1.1/darkone.js" line="458"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="440"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="447"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="458"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="465"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="472"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="483"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="465"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="472"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="483"/>
         <source>no info available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1071"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1045"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1472"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1442"/>
         <source>Preferences</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1094"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1068"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1495"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1465"/>
         <source>behaviour</source>
         <translation>Verhalten</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1183"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1157"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1591"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1561"/>
         <source>FPS counter</source>
         <translation>FPS-Zähler</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1212"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1186"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1622"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1592"/>
         <source>lights out in</source>
         <translation>Licht aus in</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1213"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1187"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1623"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1593"/>
         <source>secs</source>
         <translation>Sekunden</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1263"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1237"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1675"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1645"/>
         <source>scale</source>
         <translation>Skalieren</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1285"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1259"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1699"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1669"/>
         <source>effects</source>
         <translation>Effekte</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1339"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1313"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1728"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1698"/>
+        <source>screen lighting</source>
+        <translation>Bildschirmbeleuchtung</translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1761"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1731"/>
+        <source>screen light opacity</source>
+        <translation>Undurchsichtigkeit</translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1820"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1790"/>
+        <source>back light opacity  </source>
+        <translation>Undurchsichtigkeit</translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1846"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1816"/>
         <source>launch flash?</source>
         <translation>Start Flash?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1361"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1335"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1870"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1840"/>
         <source>launch zoom?</source>
         <translation>Start Zoom?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1384"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1358"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1895"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1865"/>
         <source>colour scheme</source>
         <translation>Farb Schema</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1412"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1386"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1923"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1893"/>
         <source>dark</source>
         <translation>dunkel</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1434"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1408"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1947"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1917"/>
         <source>metal</source>
         <translation>metallisch</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1459"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1433"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1974"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1944"/>
         <source>backend</source>
         <translation>Backend</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1123"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1097"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1525"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1495"/>
         <source>sort by name?</source>
         <translation>Nach Namen sortieren?</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1158"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1132"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1564"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1534"/>
         <source>auto-hide toolbar</source>
-        <translation>Werkzeugleiste ausblenden?</translation>
+        <translation>Werkzeugleiste ausblenden</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1314"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1288"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1787"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1757"/>
         <source>back lighting</source>
-        <translation>Hintergrundbeleuchtung?</translation>
+        <translation>Hintergrundbeleuchtung</translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1824"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1798"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2425"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2395"/>
         <source>FPS</source>
         <translation>FPS</translation>
     </message>
