@@ -80,6 +80,7 @@ Rectangle {
     property int listDuration: 750
     property int overlayDuration: 0
     property int flashes: 4
+    property int activeBorderSize: 2
     property int toolbarHideIn: 0
     property bool preferencesLaunchLock: false
     property bool toolbarShowMenuLock: false
@@ -603,11 +604,13 @@ Rectangle {
             id: overlayScreen
             z: 1
             width: 354
-            height: 262 - 10
+            height: 259 - 2 * (darkone.activeBorderSize + 1)
             scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
+            // keep the screen still under scaling. then ensure margin of 30% of surrounding space. adjusted to account for screen border
+            property real scaleOffsetReal: ((scale * (height + 2 * (darkone.activeBorderSize + 1))) - (height + 2 * (darkone.activeBorderSize + 1))) / 2
+            property real surroundOffsetReal: darkone.height - 20 - (height * scale)
             anchors.top: parent.top
-            // keep the screen still under scaling, ensure margin of 30% of non-screen space
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (height * scale))
+            anchors.topMargin: scaleOffsetReal + 0.3 * surroundOffsetReal - ((darkone.activeBorderSize + 1) * scale)
             anchors.horizontalCenter: parent.horizontalCenter
             smooth: true
             opacity: 1.0
@@ -669,10 +672,10 @@ Rectangle {
                 id: overlayScreenBorderTop
                 z: parent.z + 15
                 anchors.top: parent.top
-                anchors.topMargin: -2
+                anchors.topMargin: -(darkone.activeBorderSize + 1)
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width
-                height: 3
+                height: (darkone.activeBorderSize + 1)
                 visible: parent.focus || overlayDataTypeCycleItem.focus
                 color: darkone.textColour2
             }
@@ -680,10 +683,10 @@ Rectangle {
                 id: overlayScreenBorderBottom
                 z: parent.z + 15
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: -2
+                anchors.bottomMargin: -(darkone.activeBorderSize + 1)
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width
-                height: 3
+                height: (darkone.activeBorderSize + 1)
                 visible: parent.focus || overlayDataTypeCycleItem.focus
                 color: darkone.textColour2
             }
@@ -1045,9 +1048,11 @@ Rectangle {
             source: "images/cabinet.png"
             fillMode: Image.PreserveAspectFit
             scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
+            // keep the item still under scaling relative to screen, shift it by the same amount as the screen is shifted in its surrounding space, then offet the image to match the screen position. adjusted to account for screen border
+            property real scaleOffsetReal: ((scale * height) - height) / 2
+            property real imageOffsetReal: 555
             anchors.top: parent.top
-            //keep the cabinet still under scaling, then shift it by the same amount as the screen is shift, then offet the image to match the screen
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (558 * scale)
+            anchors.topMargin: scaleOffsetReal + 0.3 * (overlayScreen.surroundOffsetReal -2 * (darkone.activeBorderSize + 1)) - (imageOffsetReal * scale) - ((darkone.activeBorderSize + 1) * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: 0 - 1.5 * darkone.overlayScale // manual screen/cabinet alignment tweaks
             smooth: true
@@ -1063,8 +1068,11 @@ Rectangle {
             source: "images/screenlight.png"
             fillMode: Image.PreserveAspectFit
             scale: overlayCabinet.scale
+            // keep the item still under scaling relative to screen, shift it by the same amount as the screen is shifted in its surrounding space , then offet the image to match the screen position. adjusted to account for screen border
+            property real scaleOffsetReal: ((scale * height) - height) / 2
+            property real imageOffsetReal: 555
             anchors.top: parent.top
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (558 * scale)
+            anchors.topMargin: scaleOffsetReal + 0.3 * (overlayScreen.surroundOffsetReal -2 * (darkone.activeBorderSize + 1)) - (imageOffsetReal * scale) - ((darkone.activeBorderSize + 1) * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
             smooth: true
@@ -1076,8 +1084,11 @@ Rectangle {
             source: "images/backlight.png"
             fillMode: Image.PreserveAspectFit
             scale: overlayCabinet.scale
+            // keep the item still under scaling relative to screen, shift it by the same amount as the screen is shifted in its surrounding space , then offet the image to match the screen position. adjusted to account for screen border
+            property real scaleOffsetReal: ((scale * height) - height) / 2
+            property real imageOffsetReal: 555
             anchors.top: parent.top
-            anchors.topMargin: (((scale * height) - height) / 2) + 0.3 * (darkone.height - 20 - (overlayScreen.height * overlayScreen.scale)) - (558 * scale)
+            anchors.topMargin: scaleOffsetReal + 0.3 * (overlayScreen.surroundOffsetReal -2 * (darkone.activeBorderSize + 1)) - (imageOffsetReal * scale) - ((darkone.activeBorderSize + 1) * scale)
             anchors.horizontalCenter: overlayScreen.horizontalCenter
             anchors.horizontalCenterOffset: overlayCabinet.anchors.horizontalCenterOffset
             smooth: true
