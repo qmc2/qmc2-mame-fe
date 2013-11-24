@@ -67,7 +67,7 @@
                                                                              << "2" \
                                                                              << "Tab" \
                                                                              << "Ctrl+Right" \
-                                                                             << "Shift+Tab" \
+                                                                             << "Backtab" \
                                                                              << "Ctrl+Left" \
                                                                              << "Plus" \
                                                                              << "Minus" \
@@ -92,10 +92,10 @@
                                                                              << QObject::tr("[context] List bottom") \
                                                                              << QObject::tr("[context] Set primary display data item") \
                                                                              << QObject::tr("[context] Set secondary display data item") \
-                                                                             << QObject::tr("[global] Next widget") \
-                                                                             << QObject::tr("[global] Next widget") \
-                                                                             << QObject::tr("[global] Previous widget") \
-                                                                             << QObject::tr("[global] Previous widget") \
+                                                                             << QObject::tr("[global] Next component") \
+                                                                             << QObject::tr("[global] Next component") \
+                                                                             << QObject::tr("[global] Previous component") \
+                                                                             << QObject::tr("[global] Previous component") \
                                                                              << QObject::tr("[global] Zoom in") \
                                                                              << QObject::tr("[global] Zoom out") \
                                                                              << QObject::tr("[global] Search") \
