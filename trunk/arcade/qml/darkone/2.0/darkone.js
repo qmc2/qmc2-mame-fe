@@ -45,6 +45,7 @@ function init() {
                                             "overlayScale: '" + darkone.overlayScale + "'");
 
         listToggle(1 - (darkone.listHidden * 2));
+        gameListViewBorder.opacity = darkone.listHidden ? 0 : 1;
         if (darkone.fpsVisible)
             darkone.toolbarShowFpsLock = true;
         if (!darkone.keepLightOn) {
@@ -53,6 +54,7 @@ function init() {
         }
         darkone.keepLightOn = (darkone.lightTimeout == 0) ? true : false;
         toolbarToggle(darkone.toolbarAutoHide ? -1 : 1);
+        toolbarBorder.opacity = darkone.toolbarHidden ? 0 : 1;
         fadeIn.start();
     } else if(!fadeIn.running) {
         darkone.initialised = true;
@@ -128,12 +130,10 @@ function toolbarToggle(force) {
                                  "toolbarAutoHide: '" + darkone.toolbarAutoHide + "', " +
                                  "force: '" + force + "'");
     if (force > 0 || (darkone.toolbarHidden && !force)) {
-        toolbar.state = "shown"
         darkone.toolbarHidden = false;
         toolbarFocusScope.focus = true;
     } else if ((force < 0 || (!darkone.toolbarHidden && !force)) &&
                 !darkone.toolbarShowMenuLock && !darkone.toolbarShowFpsLock) {
-        toolbar.state = "hidden"
         darkone.toolbarHidden = true;
         overlay.focus = true;
     }
@@ -152,12 +152,10 @@ function listToggle(force) {
     darkone.overlayDuration = 1000;
     resetOverlaySnapTimer.start();
     if (force > 0 || (darkone.listHidden && !force)) {
-        gameListView.state = "shown";
         darkone.listHidden = false;
         showListButton.rotation = 270;
         gameListView.focus = true;
     } else if (force < 0 || (!darkone.listHidden && !force)) {
-        gameListView.state = "hidden";
         darkone.listHidden = true;
         showListButton.rotation = 90;
         overlay.focus = true;

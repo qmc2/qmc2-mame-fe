@@ -126,6 +126,8 @@ Rectangle {
                                      overlayBackLight.visible = true;
                                   overlayScreen.state = "on";
                                } }
+    onListHiddenChanged: { darkone.listHidden ? gameListView.state = "hidden" : gameListView.state = "shown"; }
+    onToolbarHiddenChanged: { darkone.toolbarHidden ? toolbar.state = "hidden" : toolbar.state = "shown"; }
     onDataHiddenChanged: { darkone.dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
     onInfoMissingChanged: { darkone.infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
     onOverlayScaleChanged: { overlayScaleSliderItem.value = darkone.overlayScale; }
@@ -256,7 +258,7 @@ Rectangle {
                     break;
                 }
                 case Qt.Key_Down: {
-                    if (darkone.toolbarHidden && toolbar.state == "hidden")
+                    if (darkone.toolbarHidden)
                         DarkoneJS.toolbarToggle();
                     event.accepted = true;
                     break;
@@ -1137,7 +1139,7 @@ Rectangle {
         width: 2
         height: gameListView.height - 2
         color: darkone.textColour2
-        visible: gameListView.activeFocus ? true : false
+        visible: gameListView.activeFocus
     }
 
     ListView {
