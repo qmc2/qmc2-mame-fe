@@ -2,18 +2,20 @@
 #define KEYSEQUENCES_H
 
 // common key-sequences
-#define QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(stringList)         (stringList) << "Enter" \
-                                                                             << "Return" \
+#define QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(stringList)         (stringList) << "Ctrl+P" \
                                                                              << "F11" \
                                                                              << "Alt+Enter" \
-                                                                             << "Alt+Return"
+                                                                             << "Alt+Return" \
+                                                                             << "Alt+F" \
+                                                                             << "Ctrl+O"
 
 // common key-sequence descriptions
-#define QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(stringList)         (stringList) << QObject::tr("Start emulation") \
-                                                                             << QObject::tr("Start emulation") \
-                                                                             << QObject::tr("Toggle full-screen / windowed mode") \
-                                                                             << QObject::tr("Toggle full-screen / windowed mode") \
-                                                                             << QObject::tr("Toggle full-screen / windowed mode")
+#define QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(stringList)         (stringList) << QObject::tr("[global] Start emulation") \
+                                                                             << QObject::tr("[global] Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("[global] Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("[global] Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("[global] Toggle full-screen / windowed mode") \
+                                                                             << QObject::tr("[global] Toggle preferences")
 // toxicwaste-specific key-sequences
 #define QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(stringList)    (stringList) << "Up" \
                                                                              << "Down" \
@@ -25,27 +27,27 @@
                                                                              << "End" \
                                                                              << "Ctrl+F" \
                                                                              << "Ctrl+M" \
-                                                                             << "Ctrl+O" \
-                                                                             << "Ctrl+P" \
+                                                                             << "Enter" \
+                                                                             << "Return" \
                                                                              << "Esc" \
                                                                              << "Ctrl+X" \
                                                                              << "Ctrl+Backspace"
 // toxicwaste-specific key-sequence dscriptions
-#define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << QObject::tr("Cursor up") \
-                                                                             << QObject::tr("Cursor down") \
-                                                                             << QObject::tr("Cursor left") \
-                                                                             << QObject::tr("Cursor right") \
-                                                                             << QObject::tr("Page up") \
-                                                                             << QObject::tr("Page down") \
-                                                                             << QObject::tr("Start of list") \
-                                                                             << QObject::tr("End of list") \
-                                                                             << QObject::tr("Focus search box") \
-                                                                             << QObject::tr("Toggle menu-bar") \
-                                                                             << QObject::tr("Toggle preferences") \
-                                                                             << QObject::tr("Start emulation") \
-                                                                             << QObject::tr("Exit") \
-                                                                             << QObject::tr("Exit") \
-                                                                             << QObject::tr("Flip cabinet / game-card")
+#define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << QObject::tr("[global] Cursor up") \
+                                                                             << QObject::tr("[global] Cursor down") \
+                                                                             << QObject::tr("[global] Cursor left") \
+                                                                             << QObject::tr("[global] Cursor right") \
+                                                                             << QObject::tr("[global] Page up") \
+                                                                             << QObject::tr("[global] Page down") \
+                                                                             << QObject::tr("[global] Start of list") \
+                                                                             << QObject::tr("[global] End of list") \
+                                                                             << QObject::tr("[global] Focus search box") \
+                                                                             << QObject::tr("[global] Toggle menu-bar") \
+                                                                             << QObject::tr("[global] Start emulation") \
+                                                                             << QObject::tr("[global] Start emulation") \
+                                                                             << QObject::tr("[global] Exit") \
+                                                                             << QObject::tr("[global] Exit") \
+                                                                             << QObject::tr("[global] Flip cabinet / game-card")
 // darkone-specific key-sequences
 #define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        (stringList) << "Ctrl+Up" \
                                                                              << "Ctrl+Down" \
@@ -69,12 +71,9 @@
                                                                              << "Ctrl+Left" \
                                                                              << "Plus" \
                                                                              << "Minus" \
-                                                                             << "Ctrl+P" \
                                                                              << "Ctrl+S" \
-                                                                             << "Ctrl+O" \
                                                                              << "Ctrl+L" \
                                                                              << "Ctrl+T" \
-                                                                             << "Alt+F" \
                                                                              << "Ctrl+Q"
 // darkone-specific key-sequence descriptions
 #define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)       (stringList)  << QObject::tr("[context] Previous component / List page up / Info page up") \
@@ -99,12 +98,9 @@
                                                                              << QObject::tr("[global] Previous widget") \
                                                                              << QObject::tr("[global] Zoom in") \
                                                                              << QObject::tr("[global] Zoom out") \
-                                                                             << QObject::tr("[global] Start emulation") \
                                                                              << QObject::tr("[global] Search") \
-                                                                             << QObject::tr("[global] Toggle preferences") \
                                                                              << QObject::tr("[global] Toggle list") \
                                                                              << QObject::tr("[global] Toggle toolbar") \
-                                                                             << QObject::tr("[global] Toggle full-screen / windowed mode") \
                                                                              << QObject::tr("[global] Exit")
 
 #endif // KEYSEQUENCES_H
