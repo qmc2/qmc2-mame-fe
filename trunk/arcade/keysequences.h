@@ -16,7 +16,7 @@
                                                                              << QObject::tr("[global] Toggle full-screen / windowed mode") \
                                                                              << QObject::tr("[global] Toggle full-screen / windowed mode") \
                                                                              << QObject::tr("[global] Toggle preferences")
-// toxicwaste-specific key-sequences
+// ToxicWaste-specific key-sequences
 #define QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(stringList)    (stringList) << "Up" \
                                                                              << "Down" \
                                                                              << "Left" \
@@ -32,7 +32,7 @@
                                                                              << "Esc" \
                                                                              << "Ctrl+X" \
                                                                              << "Ctrl+Backspace"
-// toxicwaste-specific key-sequence dscriptions
+// ToxicWaste-specific key-sequence descriptions
 #define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << QObject::tr("[global] Cursor up") \
                                                                              << QObject::tr("[global] Cursor down") \
                                                                              << QObject::tr("[global] Cursor left") \

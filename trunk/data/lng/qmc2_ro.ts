@@ -15471,220 +15471,202 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>video player: eroare XML: eroare fatala la linia %1, coloana %2: %3</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="34"/>
-        <source>Cursor up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="35"/>
-        <source>Cursor down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="36"/>
-        <source>Cursor left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="37"/>
-        <source>Cursor right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="38"/>
-        <source>Page up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="39"/>
-        <source>Page down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="40"/>
-        <source>Start of list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="41"/>
-        <source>End of list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="46"/>
-        <location filename="../../arcade/keysequences.h" line="47"/>
-        <source>Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="80"/>
+        <location filename="../../arcade/keysequences.h" line="79"/>
         <source>[context] Previous component / List page up / Info page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="81"/>
+        <location filename="../../arcade/keysequences.h" line="80"/>
         <source>[context] Next component / List page down / Info page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="82"/>
+        <location filename="../../arcade/keysequences.h" line="81"/>
         <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="83"/>
+        <location filename="../../arcade/keysequences.h" line="82"/>
         <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="84"/>
+        <location filename="../../arcade/keysequences.h" line="83"/>
         <source>[context] Show toolbar / List up / Info up / Previous widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="85"/>
+        <location filename="../../arcade/keysequences.h" line="84"/>
         <source>[context] Hide toolbar / List down / Info down / Next widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="86"/>
+        <location filename="../../arcade/keysequences.h" line="85"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="87"/>
+        <location filename="../../arcade/keysequences.h" line="86"/>
         <source>[context] Abort game launch / Hide preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="88"/>
+        <location filename="../../arcade/keysequences.h" line="87"/>
         <source>[context] Zoom in / List top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="89"/>
+        <location filename="../../arcade/keysequences.h" line="88"/>
         <source>[context] Zoom out / List bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="90"/>
+        <location filename="../../arcade/keysequences.h" line="89"/>
         <source>[context] List page up / Flick page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="91"/>
+        <location filename="../../arcade/keysequences.h" line="90"/>
         <source>[context] List page down / Flick page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="92"/>
+        <location filename="../../arcade/keysequences.h" line="91"/>
         <source>[context] List top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="93"/>
+        <location filename="../../arcade/keysequences.h" line="92"/>
         <source>[context] List bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="94"/>
+        <location filename="../../arcade/keysequences.h" line="93"/>
         <source>[context] Set primary display data item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="95"/>
+        <location filename="../../arcade/keysequences.h" line="94"/>
         <source>[context] Set secondary display data item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../arcade/keysequences.h" line="95"/>
         <location filename="../../arcade/keysequences.h" line="96"/>
-        <location filename="../../arcade/keysequences.h" line="97"/>
         <source>[global] Next widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../arcade/keysequences.h" line="97"/>
         <location filename="../../arcade/keysequences.h" line="98"/>
-        <location filename="../../arcade/keysequences.h" line="99"/>
         <source>[global] Previous widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="100"/>
+        <location filename="../../arcade/keysequences.h" line="99"/>
         <source>[global] Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="101"/>
+        <location filename="../../arcade/keysequences.h" line="100"/>
         <source>[global] Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="102"/>
+        <location filename="../../arcade/keysequences.h" line="13"/>
+        <location filename="../../arcade/keysequences.h" line="46"/>
+        <location filename="../../arcade/keysequences.h" line="47"/>
         <source>[global] Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="103"/>
+        <location filename="../../arcade/keysequences.h" line="101"/>
         <source>[global] Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="104"/>
+        <location filename="../../arcade/keysequences.h" line="18"/>
         <source>[global] Toggle preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="105"/>
+        <location filename="../../arcade/keysequences.h" line="36"/>
+        <source>[global] Cursor up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="37"/>
+        <source>[global] Cursor down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="38"/>
+        <source>[global] Cursor left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="39"/>
+        <source>[global] Cursor right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="40"/>
+        <source>[global] Page up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="41"/>
+        <source>[global] Page down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="42"/>
+        <source>[global] Start of list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="43"/>
+        <source>[global] End of list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="44"/>
+        <source>[global] Focus search box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="45"/>
+        <source>[global] Toggle menu-bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="50"/>
+        <source>[global] Flip cabinet / game-card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="102"/>
         <source>[global] Toggle list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="106"/>
+        <location filename="../../arcade/keysequences.h" line="103"/>
         <source>[global] Toggle toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="107"/>
-        <source>[global] Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="108"/>
-        <source>[global] Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="12"/>
-        <location filename="../../arcade/keysequences.h" line="13"/>
-        <location filename="../../arcade/keysequences.h" line="45"/>
-        <source>Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="14"/>
         <location filename="../../arcade/keysequences.h" line="15"/>
         <location filename="../../arcade/keysequences.h" line="16"/>
-        <source>Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="42"/>
-        <source>Focus search box</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="43"/>
-        <source>Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="44"/>
-        <source>Toggle preferences</source>
+        <location filename="../../arcade/keysequences.h" line="17"/>
+        <source>[global] Toggle full-screen / windowed mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="48"/>
-        <source>Flip cabinet / game-card</source>
+        <location filename="../../arcade/keysequences.h" line="49"/>
+        <location filename="../../arcade/keysequences.h" line="104"/>
+        <source>[global] Exit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
