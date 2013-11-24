@@ -15467,127 +15467,150 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../arcade/keysequences.h" line="46"/>
         <location filename="../../arcade/keysequences.h" line="47"/>
-        <location filename="../../arcade/keysequences.h" line="104"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../../arcade/keysequences.h" line="78"/>
-        <source>Zoom in / List top</source>
-        <translation>Zoom + / Anfang der Liste</translation>
-    </message>
-    <message>
-        <location filename="../../arcade/keysequences.h" line="79"/>
-        <source>Zoom out / List bottom</source>
-        <translation>Zoom - / Ende der Liste</translation>
-    </message>
-    <message>
         <location filename="../../arcade/keysequences.h" line="80"/>
-        <source>Previous widget / List page up</source>
-        <translation>Vorheriges Widget / Liste eine Seite rauf</translation>
+        <source>[context] Previous component / List page up / Info page up</source>
+        <translation>[Kontext] Liste eine Seite rauf / Eine Seite rauf blättern</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="81"/>
-        <source>Next widget / List page down</source>
-        <translation>Nächstes Widget / Liste eine Seite runter</translation>
+        <source>[context] Next component / List page down / Info page down</source>
+        <translation>[Kontext] Nächste Komponente / Liste eine Seite runter / Info eine Seite runter</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="82"/>
-        <source>Select</source>
-        <translation>Auswählen</translation>
+        <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
+        <translation>[Kontext] Liste verstecken / Vorheriges Element / Nach links gleiten / Zurück drehen</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="83"/>
-        <source>List up</source>
-        <translation>Liste rauf</translation>
+        <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
+        <translation>[Kontext] Liste anzeigen / Nächstes Element / Nach rechts gleiten / Vorwärts drehen</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="84"/>
-        <source>List page up</source>
-        <translation>Liste eine Seite rauf</translation>
+        <source>[context] Show toolbar / List up / Info up / Previous widget</source>
+        <translation>[Kontext] Werkzeugleiste anzeigen / Liste rauf / Info rauf / Vorheriges Widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="85"/>
-        <source>List top</source>
-        <translation>Anfang der Liste</translation>
+        <source>[context] Hide toolbar / List down / Info down / Next widget</source>
+        <translation>[Kontext] Werkzeugleiste verstecken / Liste runter / Info runter / Nächstes Widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="86"/>
-        <source>List down</source>
-        <translation>Liste runter</translation>
+        <source>[context] Select / Set / Toggle details / Start emulation</source>
+        <translation>[Kontext] Auswählen / Setzen / Umschalten von Details / Emulation starten</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="87"/>
-        <source>List page down</source>
-        <translation>Liste eine Seite runter</translation>
+        <source>[context] Abort game launch / Hide preferences</source>
+        <translation>[Kontext] Spielstart abbrechen / Vorgaben verstecken</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="88"/>
-        <source>List bottom</source>
-        <translation>Ende der Liste</translation>
+        <source>[context] Zoom in / List top</source>
+        <translation>[Kontext] Zoom + / Anfang der Liste</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="89"/>
-        <source>Hide list</source>
-        <translation>Liste verstecken</translation>
+        <source>[context] Zoom out / List bottom</source>
+        <translation>[Kontext] Zoom - / Ende der Liste</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="90"/>
-        <source>Show list</source>
-        <translation>Liste anzeigen</translation>
+        <source>[context] List page up / Flick page up</source>
+        <translation>[Kontext] Liste eine Seite rauf / Eine Seite rauf blättern</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="91"/>
+        <source>[context] List page down / Flick page down</source>
+        <translation>[Kontext] Liste eine Seite rauf / Eine Seite rauf blättern</translation>
+    </message>
+    <message>
         <location filename="../../arcade/keysequences.h" line="92"/>
-        <source>Next widget</source>
-        <translation>Nächstes Widget</translation>
+        <source>[context] List top</source>
+        <translation>[Kontext] Anfang der Liste</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="93"/>
+        <source>[context] List bottom</source>
+        <translation>[Kontext] Ende der Liste</translation>
+    </message>
+    <message>
         <location filename="../../arcade/keysequences.h" line="94"/>
-        <source>Previous widget</source>
-        <translation>Vorheriges Widget</translation>
+        <source>[context] Set primary display data item</source>
+        <translation>[Kontext] Liste eine Seite rauf / Eine Seite rauf blättern</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="95"/>
-        <source>Zoom in</source>
-        <translation>Zoom +</translation>
+        <source>[context] Set secondary display data item</source>
+        <translation>[Kontext] Liste eine Seite rauf / Eine Seite rauf blättern</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="96"/>
-        <source>Zoom out</source>
-        <translation>Zoom -</translation>
+        <location filename="../../arcade/keysequences.h" line="97"/>
+        <source>[global] Next widget</source>
+        <translation>[Global] Nächstes Widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="98"/>
-        <source>Toggle options</source>
-        <translation>Optionen ein-/ausschalten</translation>
-    </message>
-    <message>
         <location filename="../../arcade/keysequences.h" line="99"/>
-        <source>Toggle list</source>
-        <translation>Liste ein-/ausschalten</translation>
+        <source>[global] Previous widget</source>
+        <translation>[Global] Vorheriges Widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="100"/>
-        <source>Toggle toolbar</source>
-        <translation>Werkzeugleiste ein-/ausschalten</translation>
+        <source>[global] Zoom in</source>
+        <translation>[Global] Zoom +</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="101"/>
-        <source>Search</source>
-        <translation>Suchen</translation>
+        <source>[global] Zoom out</source>
+        <translation>[Global] Zoom -</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="102"/>
+        <source>[global] Start emulation</source>
+        <translation>[Global] Emulation starten</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="103"/>
-        <source>Abort game launch</source>
-        <translation>Spielstart abbrechen</translation>
+        <source>[global] Search</source>
+        <translation>[Global] Suchen</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="104"/>
+        <source>[global] Toggle preferences</source>
+        <translation>[Global] Vorgaben ein-/ausschalten</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="105"/>
+        <source>[global] Toggle list</source>
+        <translation>[Global] Liste ein-/ausschalten</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="106"/>
+        <source>[global] Toggle toolbar</source>
+        <translation>[Global] Werkzeugleiste ein-/auschalten</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="107"/>
+        <source>[global] Toggle full-screen / windowed mode</source>
+        <translation>[Global] Vollbild- / Fenster-Modus umschalten</translation>
+    </message>
+    <message>
+        <location filename="../../arcade/keysequences.h" line="108"/>
+        <source>[global] Exit</source>
+        <translation>[Global] Beenden</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="12"/>
         <location filename="../../arcade/keysequences.h" line="13"/>
         <location filename="../../arcade/keysequences.h" line="45"/>
-        <location filename="../../arcade/keysequences.h" line="97"/>
         <source>Start emulation</source>
         <translation>Emulation starten</translation>
     </message>
@@ -15595,7 +15618,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../arcade/keysequences.h" line="14"/>
         <location filename="../../arcade/keysequences.h" line="15"/>
         <location filename="../../arcade/keysequences.h" line="16"/>
-        <location filename="../../arcade/keysequences.h" line="102"/>
         <source>Toggle full-screen / windowed mode</source>
         <translation>Vollbild- / Fenster-Modus umschalten</translation>
     </message>
