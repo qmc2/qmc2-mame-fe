@@ -586,18 +586,6 @@
         <translation>[Kontext] Sekundäres Anzeige-Element auswählen</translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="95"/>
-        <location filename="../keysequences.h" line="96"/>
-        <source>[global] Next widget</source>
-        <translation>[Global] Nächstes Widget</translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="97"/>
-        <location filename="../keysequences.h" line="98"/>
-        <source>[global] Previous widget</source>
-        <translation>[Global] Vorheriges Widget</translation>
-    </message>
-    <message>
         <location filename="../keysequences.h" line="99"/>
         <source>[global] Zoom in</source>
         <translation>[Global] Zoom +</translation>
@@ -678,6 +666,18 @@
         <location filename="../keysequences.h" line="50"/>
         <source>[global] Flip cabinet / game-card</source>
         <translation>[Global] Gehäuse / Spiel-Karte umdrehen</translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="95"/>
+        <location filename="../keysequences.h" line="96"/>
+        <source>[global] Next component</source>
+        <translation>[Global] Nächste Komponente</translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="97"/>
+        <location filename="../keysequences.h" line="98"/>
+        <source>[global] Previous component</source>
+        <translation>[Global] Vorherige Komponente</translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="102"/>

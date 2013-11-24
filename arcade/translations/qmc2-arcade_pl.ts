@@ -590,18 +590,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="95"/>
-        <location filename="../keysequences.h" line="96"/>
-        <source>[global] Next widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="97"/>
-        <location filename="../keysequences.h" line="98"/>
-        <source>[global] Previous widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../keysequences.h" line="99"/>
         <source>[global] Zoom in</source>
         <translation type="unfinished"></translation>
@@ -681,6 +669,18 @@
     <message>
         <location filename="../keysequences.h" line="50"/>
         <source>[global] Flip cabinet / game-card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="95"/>
+        <location filename="../keysequences.h" line="96"/>
+        <source>[global] Next component</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="97"/>
+        <location filename="../keysequences.h" line="98"/>
+        <source>[global] Previous component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
