@@ -1899,11 +1899,31 @@ void Options::on_pushButtonApply_clicked()
       }
       qmc2ExpandedGamelistItems.clear();
       qApp->processEvents();
-      qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-      qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+      qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
+      qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(false);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(false);
+#endif
+      qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+      qApp->processEvents();
+      qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+      qApp->processEvents();
+      if ( qmc2MainWindow->treeWidgetCategoryView->topLevelItemCount() > 0 ) {
+	      qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+	      qApp->processEvents();
+      }
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+      if ( qmc2MainWindow->treeWidgetVersionView->topLevelItemCount() > 0 ) {
+	      qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+	      qApp->processEvents();
+      }
+#endif
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+      qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
+      qmc2MainWindow->treeWidgetCategoryView->setUpdatesEnabled(true);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+      qmc2MainWindow->treeWidgetVersionView->setUpdatesEnabled(true);
 #endif
       qmc2SortingActive = false;
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
