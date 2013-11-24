@@ -1202,6 +1202,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: 15
         model: gameListModel
+        state: "shown"
         spacing: 10
         clip: true
         orientation: ListView.Vertical
