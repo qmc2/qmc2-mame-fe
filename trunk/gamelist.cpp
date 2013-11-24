@@ -1771,6 +1771,7 @@ void Gamelist::parse()
 #endif
     }
   } 
+
   if ( gamelistCache.isOpen() )
     gamelistCache.close();
 
@@ -2049,8 +2050,6 @@ void Gamelist::parse()
         itemList << gameDescriptionItem;
       }
 
-      qmc2MainWindow->progressBarGamelist->setValue(numGames);
-
       if ( numGames % qmc2GamelistResponsiveness == 0 ) {
         qmc2MainWindow->progressBarGamelist->setValue(numGames);
         qmc2MainWindow->labelGamelistStatus->setText(status());
@@ -2058,6 +2057,7 @@ void Gamelist::parse()
       }
     }
   }
+
   if ( gamelistCache.isOpen() )
     gamelistCache.close();
 
@@ -2312,24 +2312,21 @@ void Gamelist::parse()
 #elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
+
+  // final update of progress bar and game/machine list stats
+  qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->maximum());
+  qmc2MainWindow->labelGamelistStatus->setText(status());
   qApp->processEvents();
-  QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
-  for (int i = 0; i < itemList.count(); i++) {
-    if ( itemList[i]->childCount() > 1 ) {
-      qmc2MainWindow->treeWidgetGamelist->collapseItem(itemList[i]);
-      QList<QTreeWidgetItem *> childrenList = itemList[i]->takeChildren();
-      int j;
-      for (j = 0; j < childrenList.count(); j++)
-        delete childrenList[j];
-      QTreeWidgetItem *nameItem = new QTreeWidgetItem(itemList[i]);
-      nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-      nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME)]);
-      qApp->processEvents();
-    }
-  }
+
+  // sort the master-list
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+  qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
   qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
   qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+  qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
   qApp->processEvents();
+
   QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetGamelist->currentItem();
   if ( ci ) {
     if ( ci->isSelected() ) {
