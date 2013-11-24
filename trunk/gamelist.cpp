@@ -2325,7 +2325,6 @@ void Gamelist::parse()
   qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
   qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
   qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
-  qApp->processEvents();
 
   QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetGamelist->currentItem();
   if ( ci ) {
