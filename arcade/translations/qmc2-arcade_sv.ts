@@ -506,220 +506,202 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="34"/>
-        <source>Cursor up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="35"/>
-        <source>Cursor down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="36"/>
-        <source>Cursor left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="37"/>
-        <source>Cursor right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="38"/>
-        <source>Page up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="39"/>
-        <source>Page down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="40"/>
-        <source>Start of list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="41"/>
-        <source>End of list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="46"/>
-        <location filename="../keysequences.h" line="47"/>
-        <source>Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="80"/>
+        <location filename="../keysequences.h" line="79"/>
         <source>[context] Previous component / List page up / Info page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="81"/>
+        <location filename="../keysequences.h" line="80"/>
         <source>[context] Next component / List page down / Info page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="82"/>
+        <location filename="../keysequences.h" line="81"/>
         <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="83"/>
+        <location filename="../keysequences.h" line="82"/>
         <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="84"/>
+        <location filename="../keysequences.h" line="83"/>
         <source>[context] Show toolbar / List up / Info up / Previous widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="85"/>
+        <location filename="../keysequences.h" line="84"/>
         <source>[context] Hide toolbar / List down / Info down / Next widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="86"/>
+        <location filename="../keysequences.h" line="85"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="87"/>
+        <location filename="../keysequences.h" line="86"/>
         <source>[context] Abort game launch / Hide preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="88"/>
+        <location filename="../keysequences.h" line="87"/>
         <source>[context] Zoom in / List top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="89"/>
+        <location filename="../keysequences.h" line="88"/>
         <source>[context] Zoom out / List bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="90"/>
+        <location filename="../keysequences.h" line="89"/>
         <source>[context] List page up / Flick page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="91"/>
+        <location filename="../keysequences.h" line="90"/>
         <source>[context] List page down / Flick page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="92"/>
+        <location filename="../keysequences.h" line="91"/>
         <source>[context] List top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="93"/>
+        <location filename="../keysequences.h" line="92"/>
         <source>[context] List bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="94"/>
+        <location filename="../keysequences.h" line="93"/>
         <source>[context] Set primary display data item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="95"/>
+        <location filename="../keysequences.h" line="94"/>
         <source>[context] Set secondary display data item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../keysequences.h" line="95"/>
         <location filename="../keysequences.h" line="96"/>
-        <location filename="../keysequences.h" line="97"/>
         <source>[global] Next widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../keysequences.h" line="97"/>
         <location filename="../keysequences.h" line="98"/>
-        <location filename="../keysequences.h" line="99"/>
         <source>[global] Previous widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="100"/>
+        <location filename="../keysequences.h" line="99"/>
         <source>[global] Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="101"/>
+        <location filename="../keysequences.h" line="100"/>
         <source>[global] Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="102"/>
+        <location filename="../keysequences.h" line="13"/>
+        <location filename="../keysequences.h" line="46"/>
+        <location filename="../keysequences.h" line="47"/>
         <source>[global] Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="103"/>
+        <location filename="../keysequences.h" line="101"/>
         <source>[global] Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="104"/>
+        <location filename="../keysequences.h" line="18"/>
         <source>[global] Toggle preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="105"/>
+        <location filename="../keysequences.h" line="36"/>
+        <source>[global] Cursor up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="37"/>
+        <source>[global] Cursor down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="38"/>
+        <source>[global] Cursor left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="39"/>
+        <source>[global] Cursor right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="40"/>
+        <source>[global] Page up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="41"/>
+        <source>[global] Page down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="42"/>
+        <source>[global] Start of list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="43"/>
+        <source>[global] End of list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="44"/>
+        <source>[global] Focus search box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="45"/>
+        <source>[global] Toggle menu-bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="50"/>
+        <source>[global] Flip cabinet / game-card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../keysequences.h" line="102"/>
         <source>[global] Toggle list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="106"/>
+        <location filename="../keysequences.h" line="103"/>
         <source>[global] Toggle toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="107"/>
-        <source>[global] Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="108"/>
-        <source>[global] Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="12"/>
-        <location filename="../keysequences.h" line="13"/>
-        <location filename="../keysequences.h" line="45"/>
-        <source>Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="14"/>
         <location filename="../keysequences.h" line="15"/>
         <location filename="../keysequences.h" line="16"/>
-        <source>Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="42"/>
-        <source>Focus search box</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="43"/>
-        <source>Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../keysequences.h" line="44"/>
-        <source>Toggle preferences</source>
+        <location filename="../keysequences.h" line="17"/>
+        <source>[global] Toggle full-screen / windowed mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../keysequences.h" line="48"/>
-        <source>Flip cabinet / game-card</source>
+        <location filename="../keysequences.h" line="49"/>
+        <location filename="../keysequences.h" line="104"/>
+        <source>[global] Exit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1124,144 +1106,144 @@ take effect, please restart QMC2 Arcade!</source>
 <context>
     <name>darkone</name>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="356"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="356"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="354"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="354"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="356"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="356"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="354"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="354"/>
         <source>ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.js" line="465"/>
-        <location filename="../qml/darkone/1.1/darkone.js" line="472"/>
-        <location filename="../qml/darkone/1.1/darkone.js" line="483"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="465"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="472"/>
-        <location filename="../qml/darkone/2.0/darkone.js" line="483"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="463"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="470"/>
+        <location filename="../qml/darkone/1.1/darkone.js" line="481"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="463"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="470"/>
+        <location filename="../qml/darkone/2.0/darkone.js" line="481"/>
         <source>no info available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1574"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1522"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1577"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1525"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1597"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1545"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1600"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1548"/>
         <source>behaviour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1693"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1641"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1696"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1644"/>
         <source>FPS counter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1724"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1672"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1727"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1675"/>
         <source>lights out in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1725"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1673"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1728"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1676"/>
         <source>secs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1777"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1725"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1780"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1728"/>
         <source>scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1801"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1749"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1804"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1752"/>
         <source>effects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1830"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1778"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1833"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1781"/>
         <source>screen lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1863"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1811"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1866"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1814"/>
         <source>screen light opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1922"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1870"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1925"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1873"/>
         <source>back light opacity  </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1948"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1896"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1951"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1899"/>
         <source>launch flash?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1972"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1920"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1975"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1923"/>
         <source>launch zoom?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1997"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1945"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2000"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1948"/>
         <source>colour scheme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2025"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1973"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2028"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1976"/>
         <source>dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2049"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1997"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2052"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2000"/>
         <source>metal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2076"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2024"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2079"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2027"/>
         <source>backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1627"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1575"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1630"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1578"/>
         <source>sort by name?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1666"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1614"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1669"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1617"/>
         <source>auto-hide toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1889"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1837"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1892"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1840"/>
         <source>back lighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2572"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2520"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2575"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2523"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
