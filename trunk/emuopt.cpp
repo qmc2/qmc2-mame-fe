@@ -389,7 +389,7 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
 void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 	QVariant value = index.data();
-	if ( value.isValid() && qVariantCanConvert<bool>(value)) {
+	if ( value.isValid() && value.canConvert(QVariant::Bool) ) {
 		QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(mTreeWidget->indexWidget(index));
 		if ( checkBoxEditor ) {
 			QPalette pal = option.palette;
