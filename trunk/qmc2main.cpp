@@ -299,6 +299,7 @@ extern QMap<QString, QString> softwareListXmlDataCache;
 #if defined(QMC2_OS_WIN)
 extern QMap<HWND, QString> winWindowMap;
 #endif
+extern QString qmc2CurrentStyleName;
 
 void MainWindow::log(char logOrigin, QString message)
 {
@@ -433,9 +434,10 @@ MainWindow::MainWindow(QWidget *parent)
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
 
-  // connections for style/style-sheet setup requests
+  // connections for style/style-sheet/palette setup requests
   connect(this, SIGNAL(styleSetupRequested(QString)), this, SLOT(setupStyle(QString)));
   connect(this, SIGNAL(styleSheetSetupRequested(QString)), this, SLOT(setupStyleSheet(QString)));
+  connect(this, SIGNAL(paletteSetupRequested(QString)), this, SLOT(setupPalette(QString)));
 
   setupUi(this);
 
@@ -6918,156 +6920,150 @@ void MainWindow::showEvent(QShowEvent *e)
 
 void MainWindow::init()
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::init()");
-#endif
+	if ( qmc2SplashScreen ) {
+		qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
+		qmc2SplashScreen->show();
+		qmc2SplashScreen->raise();
+		qmc2SplashScreen->repaint();
+		qApp->processEvents();
+		QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
+	}
 
-  if ( qmc2SplashScreen ) {
-	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
-	qmc2SplashScreen->show();
-	qmc2SplashScreen->raise();
-	qmc2SplashScreen->repaint();
-	qApp->processEvents();
-	QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
-  }
-
-  // tool-bar customization
-  qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
+	// tool-bar customization
+	qmc2ToolBarCustomizer = new ToolBarCustomizer(qmc2Options);
 
 #if defined(QMC2_OS_MAC)
-  bool isShown = qmc2Options->isVisible();
-  qmc2Options->setParent(this, Qt::Dialog);
-  if ( isShown )
-    qmc2Options->show();
+	bool isShown = qmc2Options->isVisible();
+	qmc2Options->setParent(this, Qt::Dialog);
+	if ( isShown )
+		qmc2Options->show();
 #endif
 
 #if defined(QMC2_EMUTYPE_MESS)
-  treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
-  treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
-  treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+	treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+	treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+	treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
 
 #if QMC2_USE_PHONON_API
-  QTimer::singleShot(0, this, SLOT(on_toolButtonAudioSetupEffects_clicked()));
+	QTimer::singleShot(0, this, SLOT(on_toolButtonAudioSetupEffects_clicked()));
 #endif
 
-  createFifo();
-  qmc2GhostImagePixmap.load(":/data/img/ghost.png");
-  qmc2GhostImagePixmap.isGhost = true;
-  QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
-  emit styleSetupRequested(myStyle);
-  if ( qApp->styleSheet().isEmpty() ) {
-    QString myStyleSheet = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", "").toString();
-    emit styleSheetSetupRequested(myStyleSheet);
-  }
-  progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
+	qmc2GhostImagePixmap.load(":/data/img/ghost.png");
+	qmc2GhostImagePixmap.isGhost = true;
+	progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
-  // make sure the logs get scrolled to their maxima
-  textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
-  textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+	// make sure the logs are crolled to their maxima
+	textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+	textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
 
-  setUpdatesEnabled(true);
+	setUpdatesEnabled(true);
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
-    qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
-  else
-    qmc2LastListIndex = 0;
+	createFifo();
+
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
+		qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
+	else
+		qmc2LastListIndex = 0;
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-  if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
-    qmc2LastListIndex = 0;
+	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
+		qmc2LastListIndex = 0;
 #endif
 
-  tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
-  on_tabWidgetGamelist_currentChanged(qmc2LastListIndex);
+	tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
+	on_tabWidgetGamelist_currentChanged(qmc2LastListIndex);
+	floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
+	reloadImageFormats();
 
-  qmc2EarlyStartup = false;
+	qmc2EarlyStartup = false;
 
-  QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
-  activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
+	// make sure the current detail's tab header is shown
+	QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
 
-  // make sure the current detail's tab header is shown
-  QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
+	// trigger initial load
+	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
 
-  floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
+	// signal setup requests for style, style-sheet and palette
+	signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
+	signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
+	signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
 
-  reloadImageFormats();
+	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
 
 void MainWindow::setupStyle(QString styleName)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::setupStyle(QString &styleName = %1").arg(styleName));
-#endif
-
 	QStyle *newStyle;
-	if ( styleName != tr("Default") ) {
+	if ( styleName != "Default" ) {
 		if ( QStyleFactory::keys().contains(styleName) )
 			newStyle = QStyleFactory::create(styleName);
-		else
+		else {
 			newStyle = QStyleFactory::create(qmc2DefaultStyle);
-	} else
+			styleName = "Default";
+		}
+	} else {
 		newStyle = QStyleFactory::create(qmc2DefaultStyle);
+		styleName = "Default";
+	}
 
-#if QT_VERSION >= 0x050000
-	if ( !proxyStyle )
-		proxyStyle = new ProxyStyle;
-	proxyStyle->setBaseStyle(newStyle);
-	QApplication::setStyle(proxyStyle);
-#else
-	QApplication::setStyle(newStyle);
-#endif
-
-	if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
+	if ( newStyle ) {
+		log(QMC2_LOG_FRONTEND, tr("setting GUI style '%1'").arg(styleName));
 		if ( !qmc2StandardPalettes.contains(styleName) )
 			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
-
-  		qmc2Options->loadCustomPalette(styleName);
-
-		QPalette newPalette;
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool() )
-			newPalette = qmc2StandardPalettes[styleName];
-		else
-			newPalette = qmc2CustomPalette;
-
-		qApp->setPalette(newPalette);
-
-		if ( !qmc2EarlyStartup ) {    // work around for an annoying Qt bug
-			menuBar()->setPalette(newPalette);
-			toolbar->setPalette(newPalette);
-		}
-	}
+		if ( !proxyStyle )
+			proxyStyle = new ProxyStyle;
+		proxyStyle->setBaseStyle(newStyle);
+		qApp->setStyle(proxyStyle);
+		qmc2CurrentStyleName = styleName;
+	} else
+		log(QMC2_LOG_FRONTEND, tr("WARNING: GUI style '%1' not found").arg(styleName));
 }
 
 void MainWindow::setupStyleSheet(QString styleSheetName)
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::setupStyleSheet(QString &styleSheetName = %1").arg(styleSheetName));
-#endif
+	static QString oldStyleSheetName;
 
-  static QString oldStyleSheetName = "";
+	if ( !styleSheetName.isEmpty() ) {
+		QFile f(styleSheetName);
+		if ( f.open(QIODevice::ReadOnly) ) {
+			if ( styleSheetName != oldStyleSheetName )
+				log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
+			if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", false).toBool() )
+				QDir::setCurrent(QFileInfo(f).absolutePath());
+			qApp->setStyleSheet(f.readAll());
+			f.close();
+		} else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: can't open style sheet '%1'").arg(styleSheetName));
+	} else {
+		if ( !qApp->styleSheet().isEmpty() )
+			log(QMC2_LOG_FRONTEND, tr("removing current style sheet"));
+		qApp->setStyleSheet(QString());
+	}
 
-  if ( !styleSheetName.isEmpty() ) {
-    QFile f(styleSheetName);
-    if ( f.open(QIODevice::ReadOnly) ) {
-      if ( styleSheetName != oldStyleSheetName )
-        log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
-      if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", false).toBool() )
-        QDir::setCurrent(QFileInfo(f).absolutePath());
-      qApp->setStyleSheet("");
-      qApp->setStyleSheet(f.readAll());
-      f.close();
-    } else
-      log(QMC2_LOG_FRONTEND, tr("FATAL: can't open style sheet file '%1', please check").arg(styleSheetName));
-  } else {
-    if ( !qApp->styleSheet().isEmpty() )
-      log(QMC2_LOG_FRONTEND, tr("removing current style sheet"));
-    qApp->setStyleSheet("");
-  }
+	oldStyleSheetName = styleSheetName;
+}
 
-  oldStyleSheetName = styleSheetName;
+void MainWindow::setupPalette(QString styleName)
+{
+	if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
+		qmc2Options->loadCustomPalette(styleName);
 
-  qApp->processEvents();
+		QPalette newPalette;
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool() ) {
+			newPalette = qmc2StandardPalettes[styleName];
+			log(QMC2_LOG_FRONTEND, tr("using default color palette for GUI style '%1'").arg(styleName));
+		} else {
+			newPalette = qmc2CustomPalette;
+			log(QMC2_LOG_FRONTEND, tr("using custom color palette"));
+		}
+
+		qApp->setPalette(newPalette);
+
+		// work around for an annoying Qt bug
+		menuBar()->setPalette(newPalette);
+		toolbar->setPalette(newPalette);
+	}
 }
 
 void MainWindow::viewFullDetail()

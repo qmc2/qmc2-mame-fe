@@ -434,6 +434,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void init();
 		void setupStyle(QString);
 		void setupStyleSheet(QString);
+		void setupPalette(QString);
 		void viewFullDetail();
 		void viewParentClones();
 		void loadGameInfoDB();
@@ -529,6 +530,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		void signalStyleSetupRequested(QString style) { emit styleSetupRequested(style); }
 		void signalStyleSheetSetupRequested(QString styleSheet) { emit styleSheetSetupRequested(styleSheet); }
+		void signalPaletteSetupRequested(QString style) { emit paletteSetupRequested(style); }
 
 	protected:
 		void closeEvent(QCloseEvent *);
@@ -538,6 +540,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 	signals:
 		void styleSetupRequested(QString);
 		void styleSheetSetupRequested(QString);
+		void paletteSetupRequested(QString);
 };
 
 #endif
