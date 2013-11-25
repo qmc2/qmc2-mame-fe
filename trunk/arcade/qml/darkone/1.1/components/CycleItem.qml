@@ -34,6 +34,7 @@ FocusScope {
         root.exited.connect(exited);
         root.clicked.connect(clicked);
     }
+
     Item {
         id: root
 
@@ -81,11 +82,13 @@ FocusScope {
             textMouseArea.clicked.connect(mouseArea.clicked);
             value = items[0];
         }
+
         onOpacityChanged: { textOpacity: opacity - opacityDiff; }
         onItemsChanged: { value = items[0]; }
         onFocusChanged: {
             debug && console.log("[cycleitem] focus: '" + focus + "', activeFocus: '" + activeFocus + "'")
         }
+
         MouseArea {
             id: mouseArea
             anchors.fill: parent
@@ -100,7 +103,7 @@ FocusScope {
             }
             onClicked: {
                 textText.focus = true;
-                select();            
+                select();
             }
         }
 
@@ -153,7 +156,8 @@ FocusScope {
             color: root.textColour
             verticalAlignment: Text.AlignVCenter
             smooth: true
-            MouseArea { id: textPrefixMouseArea }        
+
+            MouseArea { id: textPrefixMouseArea }
         }
         Rectangle {
             id: cycler
@@ -162,6 +166,7 @@ FocusScope {
             height: parent.height
             width: cyclerWidth > -1 ? cyclerWidth : parent.width - textPrefix.paintedWidth - textSuffix.paintedWidth
             color: "transparent"
+
             Image {
                 id: prevButton
                 opacity: 0.75
@@ -172,12 +177,13 @@ FocusScope {
                 rotation: root.imageRotation + 180
                 fillMode: Image.PreserveAspectFit
                 smooth: true
+
                 MouseArea {
                     id: prevButtonMouseArea
                     anchors.fill: parent
                     hoverEnabled: true
                     onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
-                    onClicked: { 
+                    onClicked: {
                         textText.focus = true;
                         value = root.cycle(-1);
                     }
@@ -211,7 +217,7 @@ FocusScope {
                     width: Math.min(parent.width, textText.paintedWidth + 8)
                     height: activeBorderWidth
                     visible: textText.activeFocus ? true : false
-                    color: activeColour 
+                    color: activeColour
                 }
                 Text {
                     id: textText
@@ -219,7 +225,7 @@ FocusScope {
                     anchors.left: parent.left
                     anchors.leftMargin: 2
                     anchors.right: parent.right
-                    text: root.text != "" ? root.text : value 
+                    text: root.text != "" ? root.text : value
                     font.bold: selectedItem != "" && selectedItem == value ? true : false
                     font.pixelSize: root.textSize
                     color: selectedItem != "" && selectedItem == value ? root.activeColour : root.textColour
@@ -260,7 +266,7 @@ FocusScope {
                     width: Math.min(parent.width, textText.paintedWidth + 8)
                     height: activeBorderWidth
                     visible: textText.activeFocus ? true : false
-                    color: activeColour 
+                    color: activeColour
                 }
             }
             Image {
@@ -272,12 +278,13 @@ FocusScope {
                 source: root.image
                 fillMode: Image.PreserveAspectFit
                 smooth: true
+
                 MouseArea {
                     id: nextButtonMouseArea
                     anchors.fill: parent
                     hoverEnabled: true
                     onContainsMouseChanged: containsMouse ? parent.opacity = 1.0 : parent.opacity = 0.75
-                    onClicked: { 
+                    onClicked: {
                         textText.focus = true;
                         value = root.cycle(1);
                     }
@@ -307,7 +314,8 @@ FocusScope {
             color: root.textColour
             verticalAlignment: Text.AlignVCenter
             smooth: true
-            MouseArea { id: textSuffixMouseArea }        
+
+            MouseArea { id: textSuffixMouseArea }
         }
     }
 }

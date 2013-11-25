@@ -69,7 +69,7 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
-        MouseArea { id: textPrefixMouseArea }        
+        MouseArea { id: textPrefixMouseArea }
     }
     Slider {
         id: slider
@@ -92,6 +92,6 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
-        MouseArea { id: textSuffixMouseArea }        
+        MouseArea { id: textSuffixMouseArea }
     }
 }

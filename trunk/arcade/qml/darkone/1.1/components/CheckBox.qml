@@ -89,7 +89,7 @@ Rectangle {
             fillMode: Image.PreserveAspectFit
             visible: root.checked
         }
-        MouseArea { id: checkboxMarkMouseArea }        
+        MouseArea { id: checkboxMarkMouseArea }
     }
     Text {
         id: checkboxText
@@ -100,6 +100,6 @@ Rectangle {
         anchors.left: checkboxMark.right
         anchors.leftMargin: 5
         smooth: true
-        MouseArea { id: checkboxTextMouseArea }        
+        MouseArea { id: checkboxTextMouseArea }
     }
 }
