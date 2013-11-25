@@ -8240,11 +8240,6 @@ Einbettung wiederholen?</translation>
         <translation>Willkommen bei QMC2 v%1!</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7011"/>
-        <source>setting GUI style &apos;%1&apos;</source>
-        <translation>Verwende GUI Style &apos;%1&apos;</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="7037"/>
         <source>WARNING: can&apos;t open style sheet &apos;%1&apos;</source>
         <translation>WARNUNG: kann Style-Sheet &apos;%1&apos; nicht öffnen</translation>
@@ -8425,6 +8420,11 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator-Einstellungen übe
         <location filename="../../qmc2main.cpp" line="6884"/>
         <source>destroying network access manager</source>
         <translation>Zerstöre Netzwerk-Access-Manager</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="7011"/>
+        <source>setting GUI style to &apos;%1&apos;</source>
+        <translation>Setze GUI Style auf &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7020"/>

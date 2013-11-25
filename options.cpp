@@ -914,8 +914,8 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   static int oldCacheSize = 0;
-  static QString oldStyleName = "";
-  static QString oldStyleSheet = "";
+  static QString oldStyleName;
+  static QString oldStyleSheet;
   QString s;
   int i;
   bool needRestart = false,
@@ -1014,6 +1014,8 @@ void Options::on_pushButtonApply_clicked()
 
   if ( !qmc2EarlyStartup ) {
 	// style
+	if ( oldStyleName.isEmpty() )
+		oldStyleName = qmc2CurrentStyleName;
 	QString styleName = comboBoxStyle->currentText();
 	if ( styleName == QObject::tr("Default") )
 		styleName = "Default";
