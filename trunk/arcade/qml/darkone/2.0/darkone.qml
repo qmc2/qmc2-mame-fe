@@ -583,8 +583,10 @@ FocusScope {
                 // keep the screen still under scaling. then ensure margin of 30% of surrounding space. adjusted to account for screen border
                 property real scaleOffsetReal: ((scale * (height + 2 * (darkone.activeBorderSize + 1))) - (height + 2 * (darkone.activeBorderSize + 1))) / 2
                 property real surroundOffsetReal: darkone.height - 20 - (height * scale)
+                property real fix: -3
                 anchors.top: parent.top
-                anchors.topMargin: scaleOffsetReal + 0.3 * surroundOffsetReal - ((darkone.activeBorderSize + 1 + 0.5) * scale )
+                // note that the additional 'fix' parameter is purely a hack to ensure borders are always visible
+                anchors.topMargin: scaleOffsetReal + 0.3 * (surroundOffsetReal + fix) - ((darkone.activeBorderSize + 1) * scale)
                 anchors.horizontalCenter: parent.horizontalCenter
                 smooth: true
                 opacity: 1.0
@@ -1006,9 +1008,11 @@ FocusScope {
                 scale: DarkoneJS.scaleFactorY() * darkone.overlayScale
                 // keep the item still under scaling relative to screen, shift it by the same amount as the screen is shifted in its surrounding space, then offet the image to match the screen position. adjusted to account for screen border
                 property real scaleOffsetReal: ((scale * height) - height) / 2
-                property real imageOffsetReal: 555
+                property real imageOffsetReal: 554
+                property real fix: -6
                 anchors.top: parent.top
-                anchors.topMargin: scaleOffsetReal + 0.3 * (overlayScreen.surroundOffsetReal -2 * (darkone.activeBorderSize + 1)) - (imageOffsetReal * scale) - ((darkone.activeBorderSize + 1 + 0.5) * scale)
+                // note that the additional 'fix' parameter is purely a hack to ensure borders are always visible
+                anchors.topMargin: scaleOffsetReal + 0.3 * (overlayScreen.surroundOffsetReal - 2 * (darkone.activeBorderSize + 1) + fix) - (imageOffsetReal * scale) - ((darkone.activeBorderSize + 1) * scale)
                 anchors.horizontalCenter: overlayScreen.horizontalCenter
                 anchors.horizontalCenterOffset: 0 - 1.5 * darkone.overlayScale // manual screen/cabinet alignment tweaks
                 smooth: true
