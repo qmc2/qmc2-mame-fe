@@ -471,6 +471,28 @@ FocusScope {
                         }
                         break;
                     }
+                    case Qt.Key_PageUp: {
+                        if ( event.modifiers & Qt.ControlModifier) {
+                            if ( overlayText.text != "" ) {
+                                // scroll page
+                                overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
+                                overlayTextFlick.returnToBounds();
+                                event.accepted = true;
+                            }
+                        }
+                        break;
+                    }
+                    case Qt.Key_PageDown: {
+                        if ( event.modifiers & Qt.ControlModifier) {
+                            if ( overlayText.text != "" ) {
+                                // scroll page
+                                overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
+                                overlayTextFlick.returnToBounds();
+                                event.accepted = true;
+                            }
+                        }
+                        break;
+                    }
                     case Qt.Key_Up: {
                         if ( event.modifiers & Qt.ControlModifier) {
                             if ( event.modifiers & Qt.ShiftModifier ) {
