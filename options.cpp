@@ -1012,24 +1012,25 @@ void Options::on_pushButtonApply_clicked()
   needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() != s);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
 
-  s = lineEditStyleSheet->text();
-  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", s);
-  bool newStyleSheet = false;
-  if ( s != oldStyleSheet ) {
-    oldStyleSheet = s;
-    newStyleSheet = true;
-  }
   if ( !qmc2EarlyStartup ) {
-    // style sheet
-    if ( newStyleSheet )
-      qmc2MainWindow->setupStyleSheet(s);
-    // style
-    s = comboBoxStyle->currentText();
-    qmc2CurrentStyleName = s;
-    if ( s == QObject::tr("Default") ) s = "Default";
-    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", s);
-    qmc2MainWindow->setupStyle(s);
-    oldStyleName = s;
+	QString styleSheetName = lineEditStyleSheet->text();
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
+	bool newStyleSheet = false;
+	if ( styleSheetName != oldStyleSheet ) {
+		oldStyleSheet = s;
+		newStyleSheet = true;
+	}
+	// style
+	QString styleName = comboBoxStyle->currentText();
+	qmc2CurrentStyleName = styleName;
+	if ( styleName == QObject::tr("Default") )
+		styleName = "Default";
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
+	qmc2MainWindow->signalStyleSetupRequested(styleName);
+	oldStyleName = styleName;
+	// style sheet
+	if ( newStyleSheet )
+		qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
   }
 
 #if QMC2_JOYSTICK == 1
