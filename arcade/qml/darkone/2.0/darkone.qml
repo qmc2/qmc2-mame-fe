@@ -1899,7 +1899,7 @@ FocusScope {
 
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
-                    KeyNavigation.backtab: backLightCheckBox
+                    KeyNavigation.backtab: backLightOpacitySliderItem
                     KeyNavigation.tab: launchZoomCheckBox
                 }
                 CheckBox {
