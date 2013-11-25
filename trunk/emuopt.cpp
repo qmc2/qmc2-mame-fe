@@ -385,6 +385,23 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
   }
 }
 
+void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+	 QVariant value = index.data();
+	 if ( value.isValid() && qVariantCanConvert<bool>(value)) {
+		 QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(myTreeWidget->indexWidget(index));
+		 if ( checkBoxEditor ) {
+			 QPalette pal = option.palette;
+			 if ( option.state & QStyle::State_Selected ) {
+				 pal.setBrush(QPalette::Window, option.palette.brush(QPalette::Highlight));
+				 pal.setBrush(QPalette::WindowText, option.palette.brush(QPalette::HighlightedText));
+			 }
+			 checkBoxEditor->setPalette(pal);
+		 }
+	 }
+	 QStyledItemDelegate::paint(painter, option, index);
+}
+
 EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   : QTreeWidget(parent)
 {
