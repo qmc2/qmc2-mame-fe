@@ -8327,11 +8327,6 @@ Sair mesmo assim?</translation>
         <translation>Bem vindo ao QMC2 v%1!</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7011"/>
-        <source>setting GUI style &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="7031"/>
         <source>loading style sheet &apos;%1&apos;</source>
         <translation>carregando estilos &apos;%1&apos;</translation>
@@ -8809,6 +8804,11 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
         <location filename="../../qmc2main.cpp" line="9725"/>
         <source>No titles</source>
         <translation>Sem títulos</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="7011"/>
+        <source>setting GUI style to &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7020"/>

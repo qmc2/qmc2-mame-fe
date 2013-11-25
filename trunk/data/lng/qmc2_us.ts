@@ -8583,6 +8583,11 @@ Should they be killed on exit?</translation>
         <translation></translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="7011"/>
+        <source>setting GUI style to &apos;%1&apos;</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../../qmc2main.cpp" line="7020"/>
         <source>WARNING: GUI style &apos;%1&apos; not found</source>
         <translation></translation>
@@ -10309,11 +10314,6 @@ Retry embedding?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="6924"/>
         <source>Welcome to QMC2 v%1!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="7011"/>
-        <source>setting GUI style &apos;%1&apos;</source>
         <translation></translation>
     </message>
     <message>

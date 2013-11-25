@@ -7008,7 +7008,7 @@ void MainWindow::setupStyle(QString styleName)
 	}
 
 	if ( newStyle ) {
-		log(QMC2_LOG_FRONTEND, tr("setting GUI style '%1'").arg(styleName));
+		log(QMC2_LOG_FRONTEND, tr("setting GUI style to '%1'").arg(styleName));
 		if ( !qmc2StandardPalettes.contains(styleName) )
 			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
 		if ( !proxyStyle )
@@ -7046,16 +7046,20 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
 
 void MainWindow::setupPalette(QString styleName)
 {
+	static QPalette oldPalette;
+
 	if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
 		qmc2Options->loadCustomPalette(styleName);
 
 		QPalette newPalette;
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool() ) {
 			newPalette = qmc2StandardPalettes[styleName];
-			log(QMC2_LOG_FRONTEND, tr("using default color palette for GUI style '%1'").arg(styleName));
+			if ( oldPalette != newPalette )
+				log(QMC2_LOG_FRONTEND, tr("using default color palette for GUI style '%1'").arg(styleName));
 		} else {
 			newPalette = qmc2CustomPalette;
-			log(QMC2_LOG_FRONTEND, tr("using custom color palette"));
+			if ( oldPalette != newPalette )
+				log(QMC2_LOG_FRONTEND, tr("using custom color palette"));
 		}
 
 		qApp->setPalette(newPalette);
@@ -7063,7 +7067,10 @@ void MainWindow::setupPalette(QString styleName)
 		// work around for an annoying Qt bug
 		menuBar()->setPalette(newPalette);
 		toolbar->setPalette(newPalette);
-	}
+
+		oldPalette = newPalette;
+	} else
+		oldPalette = QPalette();
 }
 
 void MainWindow::viewFullDetail()

@@ -8547,11 +8547,6 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7011"/>
-        <source>setting GUI style &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.cpp" line="7037"/>
         <source>WARNING: can&apos;t open style sheet &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
@@ -10508,6 +10503,11 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../qmc2main.cpp" line="6924"/>
         <source>Welcome to QMC2 v%1!</source>
         <translation>Witamy w QMC2 w wersji %1!</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="7011"/>
+        <source>setting GUI style to &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7020"/>

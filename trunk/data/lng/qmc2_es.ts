@@ -9456,6 +9456,11 @@ Se sobrescribirá los datos existentes en caché.
         <translation>Descargando página ProjectMESS para sistema &apos;%1&apos;, por favor espera...</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="7011"/>
+        <source>setting GUI style to &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../qmc2main.cpp" line="7020"/>
         <source>WARNING: GUI style &apos;%1&apos; not found</source>
         <translation type="unfinished"></translation>
@@ -10134,11 +10139,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6924"/>
         <source>Welcome to QMC2 v%1!</source>
         <translation>¡Bienvenido a QMC2 v%1!</translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="7011"/>
-        <source>setting GUI style &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7031"/>
