@@ -1013,24 +1013,22 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
 
   if ( !qmc2EarlyStartup ) {
-	QString styleSheetName = lineEditStyleSheet->text();
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
-	bool newStyleSheet = false;
-	if ( styleSheetName != oldStyleSheet ) {
-		oldStyleSheet = s;
-		newStyleSheet = true;
-	}
 	// style
 	QString styleName = comboBoxStyle->currentText();
-	qmc2CurrentStyleName = styleName;
 	if ( styleName == QObject::tr("Default") )
 		styleName = "Default";
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
-	qmc2MainWindow->signalStyleSetupRequested(styleName);
-	oldStyleName = styleName;
+	if ( styleName != oldStyleName )
+		qmc2MainWindow->signalStyleSetupRequested(styleName);
+	qmc2CurrentStyleName = oldStyleName = styleName;
 	// style sheet
-	if ( newStyleSheet )
+	QString styleSheetName = lineEditStyleSheet->text();
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
+	if ( styleSheetName != oldStyleSheet )
 		qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
+	oldStyleSheet = styleSheetName;
+	qApp->processEvents();
+	qmc2MainWindow->signalPaletteSetupRequested(styleName);
   }
 
 #if QMC2_JOYSTICK == 1
