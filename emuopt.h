@@ -27,6 +27,7 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
     virtual void setEditorData(QWidget *, const QModelIndex &) const;
     virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const;
     virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
+    virtual void paint(QPainter *, const QStyleOptionViewItem &, const QModelIndex &) const;
 
     static QString boolToString(bool b) { return (b ? QString("true") : QString("false")); }
     static bool stringToBool(QString s) { return (s == "true" ? true : false); }
