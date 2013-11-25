@@ -1772,7 +1772,7 @@ FocusScope {
                     bgColour2: "white"
                     textPrefix: qsTr("scale")
                     textSuffix: DarkoneJS.round(100 * darkone.overlayScale / DarkoneJS.overlayScaleMax, 0) + "%"
-                    sliderWidth: 85
+                    textSuffixWidth: 25
                     slidePercentage: 4
 
                     onValueChanged: darkone.overlayScale = DarkoneJS.round(value, 2);
@@ -1856,9 +1856,9 @@ FocusScope {
                     fgColour2: darkone.colour4
                     bgColour1: "white"
                     bgColour2: "white"
-                    textPrefix: qsTr("screen light opacity")
+                    textPrefix: qsTr("opacity")
                     textSuffix: DarkoneJS.round(100 * darkone.screenLightOpacity, 0) + "%"
-                    sliderWidth: 50
+                    textSuffixWidth: 25
                     slidePercentage: 5
                     minimum: 0
                     maximum: 1
@@ -1915,9 +1915,9 @@ FocusScope {
                     fgColour2: darkone.colour4
                     bgColour1: "white"
                     bgColour2: "white"
-                    textPrefix: qsTr("back light opacity  ")
+                    textPrefix: qsTr("opacity")
                     textSuffix: DarkoneJS.round(100 * darkone.backLightOpacity, 0) + "%"
-                    sliderWidth: 50
+                    textSuffixWidth: 25
                     slidePercentage: 4
                     minimum: 0
                     maximum: 1
