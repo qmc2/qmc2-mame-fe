@@ -64,7 +64,7 @@ Item {
                 color: !mouseArea.pressed ? activePalette.button : activePalette.dark
             }
         }
-        MouseArea { id: containerMouseArea }        
+        MouseArea { id: containerMouseArea }
     }
     SystemPalette {
         id: activePalette
@@ -76,6 +76,6 @@ Item {
         color: activePalette.buttonText
         font.pixelSize: 12
         smooth: true
-        MouseArea { id: textMouseArea }        
+        MouseArea { id: textMouseArea }
     }
 }

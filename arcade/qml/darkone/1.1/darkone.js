@@ -167,7 +167,7 @@ function listToggle(force) {
 
 function lightToggle(force) {
     if (!darkone.initialised || fadeIn.running)
-        return   
+        return
     if (force > 0 || (darkone.lightOff && !force)) {
         darkone.ignoreLaunch = darkone.preferencesLaunchLock ? true : false
         darkone.lightOut = false;
@@ -339,7 +339,7 @@ function gameOver() {
         if ( !darkone.listHidden )
             gameListView.focus = true;
         else
-            overlay.focus = true;       
+            overlay.focus = true;
     }
 }
 
@@ -391,7 +391,7 @@ function adjDataType(type, offset) {
     return target;
 }
 
-function datatypeKeys() { 
+function datatypeKeys() {
     var items = [];
     var l;
     for (l in dataTypes)
@@ -531,7 +531,7 @@ function keyEvent2String(e) {
         mods += "S-"
     if ( e.modifiers & Qt.AltModifier )
         mods += "M-"
-        
+
     if ( e.text.trim() != "" )
         return mods + e.text;
     else {
@@ -581,7 +581,7 @@ function colourScheme(scheme) {
 }
 function inFocus() {
     debug2 && console.log("\n[inFocus]\n" +
-        "darkoneFocusScope: '" + darkoneFocusScope.focus + "|" + darkoneFocusScope.activeFocus + "'\n" + 
+        "darkoneFocusScope: '" + darkoneFocusScope.focus + "|" + darkoneFocusScope.activeFocus + "'\n" +
         "gameListView: '" + gameListView.focus + "|" + gameListView.activeFocus + "'\n" +
         "overlay: '" + overlay.focus + "|"  + overlay.activeFocus + "'\n" +
         "overlayScreen: '" + overlayScreen.focus + "|"  + overlayScreen.activeFocus + "'\n" +

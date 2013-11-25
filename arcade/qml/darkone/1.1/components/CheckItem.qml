@@ -46,12 +46,12 @@ Item {
             textOpacity = opacityReset;
         }
         onClicked: { root.checked = true;
-                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," + 
+                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," +
                                                       "checkOuter.focus: '" + checkOuter.focus + "'," +
                                                       "checkInner.focus: '" + checkInner.focus + "'," +
                                                       "textText.focus: '" + textText.focus + "'");
                      root.focus = true;
-                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," + 
+                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," +
                                                       "checkOuter.focus: '" + checkOuter.focus + "'," +
                                                       "checkInner.focus: '" + checkInner.focus + "'," +
                                                       "textText.focus: '" + textText.focus + "'"); }
@@ -87,7 +87,7 @@ Item {
         anchors.leftMargin: 2
         height: parent.height
         width: height
-        opacity: 1.0 
+        opacity: 1.0
         radius: height / 2
         color: "transparent"
         border.width: 2
