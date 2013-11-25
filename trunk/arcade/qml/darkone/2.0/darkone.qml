@@ -264,9 +264,7 @@ Rectangle {
                     break;
                 }
                 case Qt.Key_Escape: {
-                    if ( searchTextInput.focus )
-                        searchTextInput.focus = false;
-                    else if ( preferences.state == "shown" )
+                    if ( preferences.state == "shown" )
                         preferences.state = "hidden";
                     else if ( launchFlashTimer.running ) {
                         launchFlashTimer.stop();
@@ -2284,20 +2282,22 @@ Rectangle {
                         break;
                     }
                     default: {
-                        if ( DarkoneJS.validateKey(event.text) ) {
-                            searchTextInput.forceActiveFocus();
-                            searchTextInput.text += event.text;
-                            event.accepted = true;
-                            break;
-                        } else if ( DarkoneJS.validateSpecialKey(event.text) ) {
-                            searchTextInput.forceActiveFocus();
-                            switch ( event.text ) {
-                                case "\b": {
-                                    if ( searchTextInput.text.length > 0 )
-                                        searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1)
-                                    event.accepted = true;
-                                    break;
-;                               }
+                        if ( event.modifiers & Qt.NoModifier ) {
+                            if ( DarkoneJS.validateKey(event.text) ) {
+                                searchTextInput.forceActiveFocus();
+                                searchTextInput.text += event.text;
+                                event.accepted = true;
+                                break;
+                            } else if ( DarkoneJS.validateSpecialKey(event.text) ) {
+                                searchTextInput.forceActiveFocus();
+                                switch ( event.text ) {
+                                    case "\b": {
+                                        if ( searchTextInput.text.length > 0 )
+                                            searchTextInput.text = searchTextInput.text.substring(0, searchTextInput.text.length - 1);
+                                        event.accepted = true;
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
@@ -2325,7 +2325,6 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 opacity: 0.75
-                focus: true // toolbarFocusScope
 
                 MouseArea {
                     anchors.fill: parent
@@ -2348,7 +2347,7 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 radius: height - 2
                 smooth: true
-             
+
                 TextInput {
                     id: searchTextInput
                     anchors.verticalCenter: parent.verticalCenter
@@ -2360,6 +2359,7 @@ Rectangle {
                     anchors.rightMargin: 8
                     font.pointSize: parent.height - 6
                     smooth: true
+                    focus: true // toolbarFocusScope
 
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
@@ -2374,30 +2374,7 @@ Rectangle {
                                   gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
                     }
 
-                    Keys.onPressed : {
-                        debug2 && console.log("[keys] searchTextInput: '" + DarkoneJS.keyEvent2String(event) + "'")
-                        switch ( event.key ) {
-                            case Qt.Key_Left:
-                            case Qt.Key_Up: {
-                                if ( event.modifiers & Qt.ControlModifier ) {
-                                    if ( !darkone.listHidden )
-                                        gameListView.forceActiveFocus();
-                                    else
-                                        overlay.forceActiveFocus();
-                                    event.accepted = true;
-                                }
-                                break;
-                            }
-                            case Qt.Key_Right:
-                            case Qt.Key_Down: {
-                                if ( event.modifiers & Qt.ControlModifier ) {
-                                    overlay.forceActiveFocus();
-                                    event.accepted = true;
-                                }
-                                break;
-                            }
-                        }
-                    }
+                    Keys.forwardTo: [toolbar]
                 }
             }
             Image {
