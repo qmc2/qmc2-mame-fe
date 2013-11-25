@@ -12,7 +12,9 @@ Item {
     property string textSuffix: ""
     property string textColour: "white"
     property int textSize: 10
-    property alias sliderWidth: slider.width
+    property int sliderWidth 
+    property int textPrefixWidth
+    property int textSuffixWidth
     property alias activeColour: slider.activeColour
     property alias fgColour1: slider.fgColour1
     property alias fgColour2: slider.fgColour2
@@ -41,6 +43,7 @@ Item {
         debug && console.log("[slideritem] activeFocus: '" + activeFocus + "'");
         slider.focus = true;
     }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -69,6 +72,10 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+
+        Component.onCompleted: { if (parent.textPrefixWidth)
+                                     parent.textPrefixWidth; }
+
         MouseArea { id: textPrefixMouseArea }
     }
     Slider {
@@ -78,7 +85,7 @@ Item {
         anchors.verticalCenterOffset: 0
         anchors.left: textPrefix == "" ? parent.left : textPrefix.right
         anchors.leftMargin: textPrefix == "" ? 0 : 5
-        smooth: true
+        width: sliderWidth ? sliderWidth : parent.width - (textPrefix == "" ? 0 : 5 + (textPrefixWidth || textPrefix.paintedWidth)) - (textSuffix == "" ? 0 : 5 + (textSuffixWidth || textSuffix.paintedWidth))
     }
     Text {
         id: textSuffix
@@ -86,12 +93,17 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
         anchors.left: slider.right
-        anchors.leftMargin: 5
+        anchors.leftMargin: textSuffix == "" ? 0 : 5
+        anchors.rightMargin: 5
         text: parent.textSuffix
         font.pixelSize: parent.textSize
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+
+        Component.onCompleted: { if (parent.textSuffixWidth)
+                                     parent.textSuffixWidth; }
+
         MouseArea { id: textSuffixMouseArea }
     }
 }
