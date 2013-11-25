@@ -422,8 +422,6 @@ MainWindow::MainWindow(QWidget *parent)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::MainWindow(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
-  setupUi(this);
-
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
  
   qmc2StartupDefaultFont = new QFont(qApp->font());
@@ -435,9 +433,11 @@ MainWindow::MainWindow(QWidget *parent)
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
 
-  // initial setup of the application style
-  QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
-  setupStyle(myStyle);
+  // connections for style/style-sheet setup requests
+  connect(this, SIGNAL(styleSetupRequested(QString)), this, SLOT(setupStyle(QString)));
+  connect(this, SIGNAL(styleSheetSetupRequested(QString)), this, SLOT(setupStyleSheet(QString)));
+
+  setupUi(this);
 
   // palette-editor related
   PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
@@ -448,7 +448,6 @@ MainWindow::MainWindow(QWidget *parent)
 			    << "BDiagPattern" << "FDiagPattern" << "DiagCrossPattern";
   BrushEditor::gradientTypeNames << "Linear" << "Radial" << "Conical";
   BrushEditor::gradientSpreadNames << "PadSpread" << "RepeatSpread" << "ReflectSpread";
-
 
   progressBarSearch->setVisible(false);
 #if defined(QMC2_EMUTYPE_MESS)
@@ -6956,10 +6955,10 @@ void MainWindow::init()
   qmc2GhostImagePixmap.load(":/data/img/ghost.png");
   qmc2GhostImagePixmap.isGhost = true;
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
-  setupStyle(myStyle);
+  emit styleSetupRequested(myStyle);
   if ( qApp->styleSheet().isEmpty() ) {
     QString myStyleSheet = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", "").toString();
-    setupStyleSheet(myStyleSheet);
+    emit styleSheetSetupRequested(myStyleSheet);
   }
   progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 
@@ -7019,8 +7018,6 @@ void MainWindow::setupStyle(QString styleName)
 	QApplication::setStyle(newStyle);
 #endif
 
-	qApp->processEvents();
-
 	if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
 		if ( !qmc2StandardPalettes.contains(styleName) )
 			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
@@ -7039,8 +7036,6 @@ void MainWindow::setupStyle(QString styleName)
 			menuBar()->setPalette(newPalette);
 			toolbar->setPalette(newPalette);
 		}
-
-		qApp->processEvents();
 	}
 }
 

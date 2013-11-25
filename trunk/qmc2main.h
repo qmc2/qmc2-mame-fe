@@ -527,9 +527,17 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void comboBoxToolbarSearch_activated(const QString &);
 		void comboBoxToolbarSearch_activated() { comboBoxToolbarSearch_activated(comboBoxToolbarSearch->currentText()); }
 
+		void signalStyleSetupRequested(QString style) { emit styleSetupRequested(style); }
+		void signalStyleSheetSetupRequested(QString styleSheet) { emit styleSheetSetupRequested(styleSheet); }
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
+
+
+	signals:
+		void styleSetupRequested(QString);
+		void styleSheetSetupRequested(QString);
 };
 
 #endif
