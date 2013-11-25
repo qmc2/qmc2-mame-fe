@@ -422,6 +422,8 @@ MainWindow::MainWindow(QWidget *parent)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::MainWindow(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
+  setupUi(this);
+
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
  
   qmc2StartupDefaultFont = new QFont(qApp->font());
@@ -429,6 +431,13 @@ MainWindow::MainWindow(QWidget *parent)
   isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = false;
   comboBoxEmuSelector = NULL;
   proxyStyle = NULL;
+
+  // remember the default style
+  qmc2DefaultStyle = QApplication::style()->objectName();
+
+  // initial setup of the application style
+  QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
+  setupStyle(myStyle);
 
   // palette-editor related
   PaletteEditor::colorNames << "Window" << "WindowText" << "Base" << "AlternateBase" << "Text" << "BrightText" << "Button"
@@ -440,14 +449,6 @@ MainWindow::MainWindow(QWidget *parent)
   BrushEditor::gradientTypeNames << "Linear" << "Radial" << "Conical";
   BrushEditor::gradientSpreadNames << "PadSpread" << "RepeatSpread" << "ReflectSpread";
 
-  // remember the default style
-  qmc2DefaultStyle = QApplication::style()->objectName();
-
-  // initial setup of the application style
-  QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
-  setupStyle(myStyle);
-
-  setupUi(this);
 
   progressBarSearch->setVisible(false);
 #if defined(QMC2_EMUTYPE_MESS)
@@ -711,8 +712,8 @@ MainWindow::MainWindow(QWidget *parent)
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
-
   comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
+  setWindowTitle(windowTitle() + " [Qt " + qVersion() + "]");
 
   // detail tabs are movable
   tabWidgetGameDetail->setMovable(true);
@@ -1588,10 +1589,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::~MainWindow()");
-#endif
-
+	if ( qmc2StartupDefaultFont )
+		delete qmc2StartupDefaultFont;
 }
 
 void MainWindow::tabWidgetGameDetail_tabMoved(int from, int to)

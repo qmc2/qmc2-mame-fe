@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(globalConfig->mainWindowGeometry());
     restoreState(globalConfig->mainWindowState());
 
-    setWindowTitle(QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION);
+    setWindowTitle(QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION + " [Qt " + qVersion() + "]");
     nextProjectID = 0;
 
     if ( projectTypes.isEmpty() )
