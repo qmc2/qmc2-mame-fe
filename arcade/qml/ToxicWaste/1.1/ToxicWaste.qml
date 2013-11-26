@@ -1494,6 +1494,8 @@ Rectangle {
                     font.pointSize: parent.height - 2
                     smooth: true
                     focus: false
+                    autoScroll: true
+                    clip: true
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
                         color: "black"
