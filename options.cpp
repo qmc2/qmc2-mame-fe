@@ -2159,10 +2159,8 @@ void Options::on_pushButtonApply_clicked()
 
   if ( !qmc2EarlyStartup ) {
 	// style
-	if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) ) {
+	if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) )
 		qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
-		qApp->processEvents();
-	}
 	if ( oldStyleName.isEmpty() )
 		oldStyleName = qmc2CurrentStyleName;
 	QString styleName = comboBoxStyle->currentText();
@@ -2179,8 +2177,6 @@ void Options::on_pushButtonApply_clicked()
 	if ( styleSheetName != oldStyleSheet || styleSheetName.isEmpty() )
 		qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
 	oldStyleSheet = styleSheetName;
-
-	qApp->processEvents();
 
 	// palette
 	qmc2MainWindow->signalPaletteSetupRequested(styleName);
