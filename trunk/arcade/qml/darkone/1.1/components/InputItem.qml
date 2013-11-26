@@ -38,6 +38,7 @@ Item {
         debug && console.log("[inputitem] activeFocus: '" + activeFocus + "'");
         textInput.focus = true;
     }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -66,6 +67,7 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+
         MouseArea { id: textPrefixMouseArea }
     }
     Rectangle {
@@ -80,6 +82,7 @@ Item {
         color: "white"
         border.width: textInput.activeFocus ? 2 : 0
         border.color: activeColour
+
         TextInput {
             id: textInput
             anchors.verticalCenter: parent.verticalCenter
@@ -91,13 +94,17 @@ Item {
             anchors.rightMargin: 2
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: root.textSize
+            autoScroll: true
+            clip: true
             smooth: true
+
             cursorDelegate: Rectangle {
                 color: "black"
                 width: 1
                 anchors.verticalCenter: parent.verticalCenter
                 visible: parent.activeFocus
             }
+
             MouseArea { id: textInputMouseArea }
         }
     }
@@ -113,6 +120,7 @@ Item {
         color: parent.textColour
         verticalAlignment: Text.AlignVCenter
         smooth: true
+
         MouseArea { id: textSuffixMouseArea }
     }
 }

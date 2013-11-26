@@ -2453,6 +2453,8 @@ FocusScope {
                             anchors.rightMargin: 8
                             font.pointSize: parent.height - 6
                             smooth: true
+                            autoScroll: true
+                            clip: true
                             focus: true // toolbarFocusScope
 
                             cursorDelegate: Rectangle {
