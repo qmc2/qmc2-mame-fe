@@ -1495,6 +1495,7 @@ Rectangle {
                     focus: false
                     autoScroll: true
                     clip: true
+                    selectByMouse: true
                     cursorDelegate: Rectangle {
                         id: searchTextCursorDelegate
                         color: "black"

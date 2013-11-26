@@ -2455,6 +2455,7 @@ FocusScope {
                             smooth: true
                             autoScroll: true
                             clip: true
+                            selectByMouse: true
                             focus: true // toolbarFocusScope
 
                             cursorDelegate: Rectangle {
