@@ -7009,10 +7009,12 @@ void MainWindow::setupStyle(QString styleName)
 		log(QMC2_LOG_FRONTEND, tr("setting GUI style to '%1'").arg(styleName));
 		if ( !qmc2StandardPalettes.contains(styleName) )
 			qmc2StandardPalettes[styleName] = newStyle->standardPalette();
-		if ( !proxyStyle )
+		if ( !proxyStyle ) {
 			proxyStyle = new ProxyStyle;
-		proxyStyle->setBaseStyle(newStyle);
-		qApp->setStyle(proxyStyle);
+			proxyStyle->setBaseStyle(newStyle);
+			qApp->setStyle(proxyStyle);
+		} else
+			proxyStyle->setBaseStyle(newStyle);
 		qmc2CurrentStyleName = styleName;
 	} else
 		log(QMC2_LOG_FRONTEND, tr("WARNING: GUI style '%1' not found").arg(styleName));
@@ -7068,7 +7070,7 @@ void MainWindow::setupPalette(QString styleName)
 
 		oldPalette = newPalette;
 	} else
-		oldPalette = QPalette();
+		oldPalette = qApp->palette();
 }
 
 void MainWindow::viewFullDetail()

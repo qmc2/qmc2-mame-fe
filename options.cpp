@@ -1012,31 +1012,6 @@ void Options::on_pushButtonApply_clicked()
   needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() != s);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
 
-  if ( !qmc2EarlyStartup ) {
-	// style
-	if ( oldStyleName.isEmpty() )
-		oldStyleName = qmc2CurrentStyleName;
-	QString styleName = comboBoxStyle->currentText();
-	if ( styleName == QObject::tr("Default") )
-		styleName = "Default";
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
-	if ( styleName != oldStyleName )
-		qmc2MainWindow->signalStyleSetupRequested(styleName);
-	qmc2CurrentStyleName = oldStyleName = styleName;
-
-	// style sheet
-	QString styleSheetName = lineEditStyleSheet->text();
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
-	if ( styleSheetName != oldStyleSheet )
-		qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
-	oldStyleSheet = styleSheetName;
-
-	qApp->processEvents();
-
-	// palette
-	qmc2MainWindow->signalPaletteSetupRequested(styleName);
-  }
-
 #if QMC2_JOYSTICK == 1
   if ( joystickTestWidget )
     joystickTestWidget->cleanupPalette();
@@ -1755,7 +1730,7 @@ void Options::on_pushButtonApply_clicked()
   config->sync();
   applied = true;
   if ( qmc2GuiReady )
-	QTimer::singleShot(0, this, SLOT(apply()));
+    apply();
 
   if ( invalidateGameInfoDB ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -2180,6 +2155,35 @@ void Options::on_pushButtonApply_clicked()
 #endif
     qmc2AutomaticReload = true;
     QTimer::singleShot(0, qmc2MainWindow->actionReload, SLOT(trigger()));
+  }
+
+  if ( !qmc2EarlyStartup ) {
+	// style
+	if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) ) {
+		qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
+		qApp->processEvents();
+	}
+	if ( oldStyleName.isEmpty() )
+		oldStyleName = qmc2CurrentStyleName;
+	QString styleName = comboBoxStyle->currentText();
+	if ( styleName == QObject::tr("Default") )
+		styleName = "Default";
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
+	if ( styleName != oldStyleName )
+		qmc2MainWindow->signalStyleSetupRequested(styleName);
+	qmc2CurrentStyleName = oldStyleName = styleName;
+
+	// style sheet
+	QString styleSheetName = lineEditStyleSheet->text();
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
+	if ( styleSheetName != oldStyleSheet || styleSheetName.isEmpty() )
+		qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
+	oldStyleSheet = styleSheetName;
+
+	qApp->processEvents();
+
+	// palette
+	qmc2MainWindow->signalPaletteSetupRequested(styleName);
   }
 
   pushButtonApply->setEnabled(true);
