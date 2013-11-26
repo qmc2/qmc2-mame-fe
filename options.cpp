@@ -1023,13 +1023,17 @@ void Options::on_pushButtonApply_clicked()
 	if ( styleName != oldStyleName )
 		qmc2MainWindow->signalStyleSetupRequested(styleName);
 	qmc2CurrentStyleName = oldStyleName = styleName;
+
 	// style sheet
 	QString styleSheetName = lineEditStyleSheet->text();
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
 	if ( styleSheetName != oldStyleSheet )
 		qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
 	oldStyleSheet = styleSheetName;
+
 	qApp->processEvents();
+
+	// palette
 	qmc2MainWindow->signalPaletteSetupRequested(styleName);
   }
 
@@ -1751,7 +1755,7 @@ void Options::on_pushButtonApply_clicked()
   config->sync();
   applied = true;
   if ( qmc2GuiReady )
-    apply();
+	QTimer::singleShot(0, this, SLOT(apply()));
 
   if ( invalidateGameInfoDB ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
