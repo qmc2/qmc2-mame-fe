@@ -96,6 +96,7 @@ Item {
             font.pixelSize: root.textSize
             autoScroll: true
             clip: true
+            selectByMouse: true
             smooth: true
 
             cursorDelegate: Rectangle {
