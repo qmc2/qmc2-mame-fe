@@ -301,119 +301,118 @@ extern QMap<HWND, QString> winWindowMap;
 #endif
 extern QString qmc2CurrentStyleName;
 
-void MainWindow::log(char logOrigin, QString message)
+void MainWindow::log(char logTarget, QString message)
 {
-  if ( !qmc2GuiReady )
-    return;
+	if ( !qmc2GuiReady )
+		return;
 
-  QString timeString = QTime::currentTime().toString("hh:mm:ss.zzz");
+	QString timeString = QTime::currentTime().toString("hh:mm:ss.zzz");
 
-  // count subsequent message duplicates
-  switch ( logOrigin ) {
-    case QMC2_LOG_FRONTEND:
-      if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) ) return;
-      if ( message == qmc2LastFrontendLogMessage ) {
-        qmc2FrontendLogMessageRepeatCount++;
-	qmc2LogFrontendMutex.unlock();
-        return;
-      } else {
-        qmc2LastFrontendLogMessage = message;
-        if ( qmc2FrontendLogMessageRepeatCount > 0 )
-          message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastFrontendLogMessage;
-        qmc2FrontendLogMessageRepeatCount = 0;
-      }
-      break;
+	// count subsequent message duplicates
+	switch ( logTarget ) {
+		case QMC2_LOG_FRONTEND:
+			if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
+				return;
+			if ( message == qmc2LastFrontendLogMessage ) {
+				qmc2FrontendLogMessageRepeatCount++;
+				qmc2LogFrontendMutex.unlock();
+				return;
+			} else {
+				qmc2LastFrontendLogMessage = message;
+				if ( qmc2FrontendLogMessageRepeatCount > 0 )
+					message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastFrontendLogMessage;
+				qmc2FrontendLogMessageRepeatCount = 0;
+			}
+			break;
 
-    case QMC2_LOG_EMULATOR:
-      if( !qmc2LogEmulatorMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) ) return;
-      if ( message == qmc2LastEmulatorLogMessage ) {
-        qmc2EmulatorLogMessageRepeatCount++;
-        qmc2LogEmulatorMutex.unlock();
-        return;
-      } else {
-        qmc2LastEmulatorLogMessage = message;
-        if ( qmc2EmulatorLogMessageRepeatCount > 0 )
-          message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastEmulatorLogMessage;
-        qmc2EmulatorLogMessageRepeatCount = 0;
-      }
-      break;
+		case QMC2_LOG_EMULATOR:
+			if( !qmc2LogEmulatorMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
+				return;
+			if ( message == qmc2LastEmulatorLogMessage ) {
+				qmc2EmulatorLogMessageRepeatCount++;
+				qmc2LogEmulatorMutex.unlock();
+				return;
+			} else {
+				qmc2LastEmulatorLogMessage = message;
+				if ( qmc2EmulatorLogMessageRepeatCount > 0 )
+					message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastEmulatorLogMessage;
+				qmc2EmulatorLogMessageRepeatCount = 0;
+			}
+			break;
 
-    default:
-      break;
-  }
+		default:
+			return;
+	}
 
-  QString msg = timeString + ": " + message;
+	QString msg = timeString + ": " + message;
 
-  QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-  QString defaultEmuLogPath, defaultFrontendLogPath;
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+	QString defaultEmuLogPath, defaultFrontendLogPath;
 #if defined(QMC2_SDLMAME)
-  defaultFrontendLogPath = userScopePath + "/qmc2-sdlmame.log";
-  defaultEmuLogPath = userScopePath + "/mame.log";
+	defaultFrontendLogPath = userScopePath + "/qmc2-sdlmame.log";
+	defaultEmuLogPath = userScopePath + "/mame.log";
 #elif defined(QMC2_SDLMESS)
-  defaultFrontendLogPath = userScopePath + "/qmc2-sdlmess.log";
-  defaultEmuLogPath = userScopePath + "/mess.log";
+	defaultFrontendLogPath = userScopePath + "/qmc2-sdlmess.log";
+	defaultEmuLogPath = userScopePath + "/mess.log";
 #elif defined(QMC2_SDLUME)
-  defaultFrontendLogPath = userScopePath + "/qmc2-sdlume.log";
-  defaultEmuLogPath = userScopePath + "/ume.log";
+	defaultFrontendLogPath = userScopePath + "/qmc2-sdlume.log";
+	defaultEmuLogPath = userScopePath + "/ume.log";
 #elif defined(QMC2_MAME)
-  defaultFrontendLogPath = userScopePath + "/qmc2-mame.log";
-  defaultEmuLogPath = userScopePath + "/mame.log";
+	defaultFrontendLogPath = userScopePath + "/qmc2-mame.log";
+	defaultEmuLogPath = userScopePath + "/mame.log";
 #elif defined(QMC2_MESS)
-  defaultFrontendLogPath = userScopePath + "/qmc2-mess.log";
-  defaultEmuLogPath = userScopePath + "/mess.log";
+	defaultFrontendLogPath = userScopePath + "/qmc2-mess.log";
+	defaultEmuLogPath = userScopePath + "/mess.log";
 #elif defined(QMC2_UME)
-  defaultFrontendLogPath = userScopePath + "/qmc2-ume.log";
-  defaultEmuLogPath = userScopePath + "/ume.log";
+	defaultFrontendLogPath = userScopePath + "/qmc2-ume.log";
+	defaultEmuLogPath = userScopePath + "/ume.log";
 #endif
 
-  switch ( logOrigin ) {
-    case QMC2_LOG_FRONTEND:
-      textBrowserFrontendLog->appendPlainText(msg);
-      if ( !qmc2FrontendLogFile )
-        if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
-          qmc2LogFrontendMutex.unlock();
-          return;
-        }
-      if ( qmc2FrontendLogFile->handle() == -1 ) {
-        if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
-          qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
-        else {
-          qmc2LogFrontendMutex.unlock();
-          return;
-        }
-      }
-      qmc2FrontendLogStream << msg << "\n";
-      qmc2FrontendLogStream.flush();
-      break;
+	switch ( logTarget ) {
+		case QMC2_LOG_FRONTEND:
+			textBrowserFrontendLog->appendPlainText(msg);
+			if ( !qmc2FrontendLogFile )
+				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
+					qmc2LogFrontendMutex.unlock();
+					return;
+				}
+			if ( qmc2FrontendLogFile->handle() == -1 ) {
+				if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
+					qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
+				else {
+					qmc2LogFrontendMutex.unlock();
+					return;
+				}
+			}
+			qmc2FrontendLogStream << msg << "\n";
+			qmc2FrontendLogStream.flush();
+			break;
 
-    case QMC2_LOG_EMULATOR:
-      textBrowserEmulatorLog->appendPlainText(msg);
-      if ( !qmc2EmulatorLogFile ) {
-        if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
-          qmc2LogEmulatorMutex.unlock();
-          return;
-        }
-      }
-      if ( qmc2EmulatorLogFile->handle() == -1 ) {
-        if ( qmc2EmulatorLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
-          qmc2EmulatorLogStream.setDevice(qmc2EmulatorLogFile);
-        else {
-          qmc2LogEmulatorMutex.unlock();
-          return;
-        }
-      }
-      qmc2EmulatorLogStream << msg << "\n";
-      qmc2EmulatorLogStream.flush();
-      break;
+		case QMC2_LOG_EMULATOR:
+			textBrowserEmulatorLog->appendPlainText(msg);
+			if ( !qmc2EmulatorLogFile ) {
+				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
+					qmc2LogEmulatorMutex.unlock();
+					return;
+				}
+			}
+			if ( qmc2EmulatorLogFile->handle() == -1 ) {
+				if ( qmc2EmulatorLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
+					qmc2EmulatorLogStream.setDevice(qmc2EmulatorLogFile);
+				else {
+					qmc2LogEmulatorMutex.unlock();
+					return;
+				}
+			}
+			qmc2EmulatorLogStream << msg << "\n";
+			qmc2EmulatorLogStream.flush();
+			break;
+	}
 
-    default:
-      break;
-  }
-
-  if ( logOrigin == QMC2_LOG_FRONTEND )
-    qmc2LogFrontendMutex.unlock();
-  else
-    qmc2LogEmulatorMutex.unlock();
+	if ( logTarget == QMC2_LOG_FRONTEND )
+		qmc2LogFrontendMutex.unlock();
+	else
+		qmc2LogEmulatorMutex.unlock();
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -792,7 +791,6 @@ MainWindow::MainWindow(QWidget *parent)
 
   // restore layout
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
-    log(QMC2_LOG_FRONTEND, tr("restoring main widget layout"));
     menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
     QSize hSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter").toSize();
     QSize vSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter").toSize();
@@ -863,6 +861,11 @@ MainWindow::MainWindow(QWidget *parent)
     vSplitterSizesSoftwareDetail = splitterSizes;
     floatToggleButtonSoftwareDetail->setChecked(true);
   }
+
+  // signal setup requests for style, style-sheet and palette
+  signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
+  signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
+  signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
 
   on_actionFullscreenToggle_triggered();
 
@@ -6984,11 +6987,6 @@ void MainWindow::init()
 	// trigger initial load
 	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
 
-	// signal setup requests for style, style-sheet and palette
-	signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
-	signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
-	signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
-
 	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
 
@@ -11563,38 +11561,38 @@ void myQtMessageHandler(QtMsgType type, const char *msg)
 void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
 #endif
 {
-  if ( qmc2SuppressQtMessages )
-    return;
+	if ( qmc2SuppressQtMessages )
+		return;
 
-  QString msgString;
+	QString msgString;
 
-  switch ( type ) {
-    case QtDebugMsg:
-      msgString = "QtDebugMsg: " + QString(msg);
-      break;
+	switch ( type ) {
+		case QtDebugMsg:
+			msgString = "QtDebugMsg: " + QString(msg);
+			break;
 
-    case QtWarningMsg:
-      msgString = "QtWarningMsg: " + QString(msg);
-      break;
+		case QtWarningMsg:
+			msgString = "QtWarningMsg: " + QString(msg);
+			break;
 
-    case QtCriticalMsg:
-      msgString = "QtCriticalMsg: " + QString(msg);
-      break;
+		case QtCriticalMsg:
+			msgString = "QtCriticalMsg: " + QString(msg);
+			break;
 
-    case QtFatalMsg:
-      msgString = "QtFatalMsg: " + QString(msg);
-      break;
+		case QtFatalMsg:
+			msgString = "QtFatalMsg: " + QString(msg);
+			break;
 
-    default:
-      return;
-  }
+		default:
+			return;
+	}
 
-  if ( qmc2GuiReady )
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
-  else {
-    printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit(), (const char *)msgString.toLocal8Bit());
-    fflush(stdout);
-  }
+	if ( qmc2GuiReady )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
+	else {
+		printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toLocal8Bit().constData(), msgString.toLocal8Bit().constData());
+		fflush(stdout);
+	}
 }
 
 void prepareShortcuts()
