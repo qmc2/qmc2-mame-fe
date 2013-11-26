@@ -588,5 +588,6 @@ function inFocus() {
         "overlayDataTypeCycleItem: '" + overlayDataTypeCycleItem.focus + "|"  + overlayDataTypeCycleItem.activeFocus + "'\n" +
         "preferencesFocusScope: '" + preferencesFocusScope.focus + "|" + preferencesFocusScope.activeFocus + "'\n" +
         "toolbarFocusScope: '" + toolbarFocusScope.focus + "|" + toolbarFocusScope.activeFocus + "'\n" +
+        "searchTextInput: '" + searchTextInput.focus + "|" + searchTextInput.activeFocus + "'\n" +
         "")
 }
