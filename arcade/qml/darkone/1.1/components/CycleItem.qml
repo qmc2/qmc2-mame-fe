@@ -189,13 +189,17 @@ FocusScope {
                     }
                 }
                 Keys.onPressed: {
-                    switch ( event.key ) {
-                        case Qt.Key_Enter:
-                        case Qt.Key_Return:
-                        case Qt.Key_Space: {
-                            value = root.cycle(-1);
-                            event.accepted = !passKeyEvents;
-                            break;
+                    if ( ! (event.modifiers & Qt.ControlModifier) &&
+                         ! (event.modifiers & Qt.ShiftModifier) &&
+                         ! (event.modifiers & Qt.AltModifier) ) {
+                        switch ( event.key ) {
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return:
+                            case Qt.Key_Space: {
+                                value = root.cycle(-1);
+                                event.accepted = !passKeyEvents;
+                                break;
+                            }
                         }
                     }
                 }
@@ -237,23 +241,27 @@ FocusScope {
 
                     MouseArea { id: textMouseArea }
                     Keys.onPressed: {
-                        switch ( event.key ) {
-                            case Qt.Key_Left: {
-                                value = root.cycle(-1);
-                                event.accepted = !passKeyEvents;
-                                break;
-                            }
-                            case Qt.Key_Right: {
-                                value = root.cycle(1);
-                                event.accepted = !passKeyEvents;
-                                break;
-                            }
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return:
-                            case Qt.Key_Space: {
-                                root.select();
-                                event.accepted = !passKeyEvents;
-                                break;
+                        if ( ! (event.modifiers & Qt.ControlModifier) &&
+                             ! (event.modifiers & Qt.ShiftModifier) &&
+                             ! (event.modifiers & Qt.AltModifier) ) {
+                            switch ( event.key ) {
+                                case Qt.Key_Left: {
+                                    value = root.cycle(-1);
+                                    event.accepted = !passKeyEvents;
+                                    break;
+                                }
+                                case Qt.Key_Right: {
+                                    value = root.cycle(1);
+                                    event.accepted = !passKeyEvents;
+                                    break;
+                                }
+                                case Qt.Key_Enter:
+                                case Qt.Key_Return:
+                                case Qt.Key_Space: {
+                                    root.select();
+                                    event.accepted = !passKeyEvents;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -290,13 +298,17 @@ FocusScope {
                     }
                 }
                 Keys.onPressed: {
-                    switch ( event.key ) {
-                        case Qt.Key_Enter:
-                        case Qt.Key_Return:
-                        case Qt.Key_Space: {
-                            value = root.cycle(1);
-                            event.accepted = !passKeyEvents;
-                            break;
+                    if ( ! (event.modifiers & Qt.ControlModifier) &&
+                         ! (event.modifiers & Qt.ShiftModifier) &&
+                         ! (event.modifiers & Qt.AltModifier) ) {
+                        switch ( event.key ) {
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return:
+                            case Qt.Key_Space: {
+                                value = root.cycle(1);
+                                event.accepted = !passKeyEvents;
+                                break;
+                            }
                         }
                     }
                 }
