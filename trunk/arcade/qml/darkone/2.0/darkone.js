@@ -510,18 +510,6 @@ function gameStatusColour() {
     }
 }
 
-function validateKey(k) {
-    if ( /[^a-zA-Z0-9\*\?$]/.test(k) || k == "" )
-        return false;
-    else
-        return true;
-}
-function validateSpecialKey(k) {
-    if ( /[^\b$]/.test(k) || k == "" )
-        return false;
-    else
-        return true;
-}
 function keyEvent2String(e) {
 
     var mods = "";
@@ -579,6 +567,7 @@ function colourScheme(scheme) {
                                                 "colourScheme1Button.checked: '" + colourScheme1Button.checked + "', " +
                                                 "colourScheme2Button.checked: '" + colourScheme2Button.checked + "'")
 }
+
 function inFocus() {
     debug2 && console.log("\n[inFocus]\n" +
         "darkoneFocusScope: '" + darkoneFocusScope.focus + "|" + darkoneFocusScope.activeFocus + "'\n" +
@@ -587,6 +576,7 @@ function inFocus() {
         "overlayScreen: '" + overlayScreen.focus + "|"  + overlayScreen.activeFocus + "'\n" +
         "overlayDataTypeCycleItem: '" + overlayDataTypeCycleItem.focus + "|"  + overlayDataTypeCycleItem.activeFocus + "'\n" +
         "preferencesFocusScope: '" + preferencesFocusScope.focus + "|" + preferencesFocusScope.activeFocus + "'\n" +
+        "toolbar: '" + toolbar.focus + "|" + toolbar.activeFocus + "'\n" +
         "toolbarFocusScope: '" + toolbarFocusScope.focus + "|" + toolbarFocusScope.activeFocus + "'\n" +
         "searchTextInput: '" + searchTextInput.focus + "|" + searchTextInput.activeFocus + "'\n" +
         "")
