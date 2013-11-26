@@ -143,7 +143,14 @@ FocusScope {
                 }
             }
         }
-        onFocusChanged: { debug2 && focus && DarkoneJS.inFocus(); }
+        onFocusChanged: {
+            debug2 && console.log("[focus] darkone: '" + focus + "'" );
+            debug2 && focus && DarkoneJS.inFocus();
+        }
+        onActiveFocusChanged: {
+            debug2 && console.log("[activeFocus] darkone: '" + activeFocus + "'" );
+            debug2 && activeFocus && DarkoneJS.inFocus();
+        }
 
         PropertyAnimation { id: fadeIn; target: darkone; property: "opacity"; duration: 2000; from: 0; to: 1.0; easing.type: Easing.InExpo; }
         SequentialAnimation {
@@ -230,7 +237,6 @@ FocusScope {
                         }
                         case Qt.Key_S: {
                             if ( !darkone.toolbarHidden ) {
-                                searchTextInput.text = "";
                                 searchTextInput.focus = true;
                                 searchTextInput.forceActiveFocus();
                             }
@@ -386,12 +392,22 @@ FocusScope {
             Behavior on width { PropertyAnimation { duration: darkone.overlayDuration; easing.type: Easing.InOutQuad } }
 
             onFocusChanged: {
-                if ( focus ) {
-                    overlayScreen.focus = true;
-                    if ( darkone.initialised )
-                        debug2 && focus && DarkoneJS.inFocus();
+                if ( darkone.initialised ) {
+                    debug2 && console.log("[focus] overlay: '" + focus + "'" );
+                    debug2 && focus && DarkoneJS.inFocus();
                 }
+                if ( focus )
+                    overlayScreen.focus = true;
             }
+            onActiveFocusChanged: {
+                if ( darkone.initialised ) {
+                    debug2 && console.log("[activeFocus] overlay: '" + activeFocus + "'" );
+                    debug2 && activeFocus && DarkoneJS.inFocus();
+                }
+                if ( activeFocus )
+                    overlayScreen.focus = true;
+            }
+
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
@@ -641,14 +657,25 @@ FocusScope {
                     }
                 ]
 
-                onActiveFocusChanged: {
-                    if ( darkone.initialised )
+                onFocusChanged: {
+                    if ( darkone.initialised ) {
+                        debug2 && console.log("[focus] overlayScreen: '" + focus + "'" );
                         debug2 && focus && DarkoneJS.inFocus();
-                        if ( !darkone.dataHidden )
-                            overlayDataTypeCycleItem.focus = true;
+                    }
+                    if ( !darkone.dataHidden )
+                        overlayDataTypeCycleItem.focus = true;
+                }
+                onActiveFocusChanged: {
+                    if ( darkone.initialised ) {
+                        debug2 && console.log("[activeFocus] overlayScreen: '" + activeFocus + "'" );
+                        debug2 && activeFocus && DarkoneJS.inFocus();
+                    }
+                    if ( !darkone.dataHidden )
+                        overlayDataTypeCycleItem.focus = true;
                 }
                 onStateChanged: { debug && console.log("[overlayScreen] state changed, state: '" + state + "', " +
                                                                        "screenLightOpacity: '" + darkone.screenLightOpacity + "'"); }
+
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
@@ -666,6 +693,9 @@ FocusScope {
                                          if (darkone.lightOut)
                                              DarkoneJS.lightToggle(1);
                     }
+                }
+                Keys.onPressed: {
+                    debug2 && console.log("[keys] overlayScreen: '" + DarkoneJS.keyEvent2String(event) + "'")
                 }
 
                 Rectangle {
@@ -1027,7 +1057,14 @@ FocusScope {
                                 darkone.dataTypeCurrent = value;
                                 text = DarkoneJS.data("name");
                             }
-                            onFocusChanged: { debug2 && focus && DarkoneJS.inFocus(); }
+                            onFocusChanged: {
+                                debug2 && console.log("[focus] overlayDataCycleItem: '" + focus + "'" );
+                                debug2 && focus && DarkoneJS.inFocus();
+                            }
+                            onActiveFocusChanged: {
+                                debug2 && console.log("[activeFocus] overlayDataCycleItem: '" + activeFocus + "'" );
+                                debug2 && activeFocus && DarkoneJS.inFocus();
+                            }
 
                             Keys.onPressed: {
                                 debug2 && console.log("[keys] overlayDataTypeCycleItem: '" + DarkoneJS.keyEvent2String(event) + "'")
@@ -1298,6 +1335,14 @@ FocusScope {
                 }
             }
 
+            onFocusChanged: {
+                debug2 && console.log("[focus] gameListView: '" + focus + "'" );
+                debug2 && focus && DarkoneJS.inFocus();
+            }
+            onActiveFocusChanged: {
+                debug2 && console.log("[activeFocus] gameListView: '" + activeFocus + "'" );
+                debug2 && activeFocus && DarkoneJS.inFocus();
+            }
             onCurrentIndexChanged: {
                 if ( darkone.initialised )
                     darkone.lastIndex = currentIndex;
@@ -1397,8 +1442,10 @@ FocusScope {
                                     case Qt.Key_Right: {
                                         if ( !darkone.toolbarHidden )
                                             toolbarFocusScope.focus = true;
-                                        else
+                                        else {
                                             overlay.focus = true;
+                                            console.log("setting overlay focus: true")
+                                        }
                                         event.accepted = true;
                                         break;
                                     }
@@ -1530,7 +1577,12 @@ FocusScope {
                     }
                 }
                 onFocusChanged: {
+                    debug2 && console.log("[focus] preferences: '" + focus + "'" );
                     debug2 && focus && DarkoneJS.inFocus();
+                }
+                onActiveFocusChanged: {
+                    debug2 && console.log("[activeFocus] preferences: '" + activeFocus + "'" );
+                    debug2 && activeFocus && DarkoneJS.inFocus();
                 }
 
                 CursorShapeArea {
@@ -2216,8 +2268,13 @@ FocusScope {
             width: toolbar.width
             height: toolbar.height
 
-            onActiveFocusChanged: {
+            onFocusChanged: {
+                debug2 && console.log("[focus] toolbarFocusScope: '" + focus + "'" );
                 debug2 && focus && DarkoneJS.inFocus();
+            }
+            onActiveFocusChanged: {
+                debug2 && console.log("[activeFocus] toolbarFocusScope: '" + activeFocus + "'" );
+                debug2 && activeFocus && DarkoneJS.inFocus();
             }
 
             Rectangle {
@@ -2295,41 +2352,47 @@ FocusScope {
                     if ( darkone.toolbarHidden )
                         console.log("[toolbar] error: key press in hidden state")
                     else {
-                        switch ( event.key ) {
-                            case Qt.Key_Backtab: {
-                                if ( !darkone.listHidden )
-                                    gameListView.forceActiveFocus();
-                                else
-                                    overlay.forceActiveFocus();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_Tab: {
-                                overlay.forceActiveFocus();
-                                event.accepted = true;
-                                break;
-                            }
-                            case Qt.Key_Left:
-                            case Qt.Key_Up: {
-                                if ( event.modifiers & Qt.ControlModifier ) {
+                        if ( event.modifiers & Qt.ControlModifier ) {
+                            switch ( event.key ) {
+                                case Qt.Key_Left:
+                                case Qt.Key_Up: {
                                     if ( !darkone.listHidden )
                                         gameListView.forceActiveFocus();
                                     else
                                         overlay.forceActiveFocus();
                                     event.accepted = true;
+                                    break;
                                 }
-                                break;
-                            }
-                            case Qt.Key_Right:
-                            case Qt.Key_Down: {
-                                if ( event.modifiers & Qt.ControlModifier ) {
+                                case Qt.Key_Right:
+                                case Qt.Key_Down: {
                                     overlay.forceActiveFocus();
                                     event.accepted = true;
+                                    break;
                                 }
-                                break;
                             }
-                            default: {
-                                if ( event.modifiers & Qt.NoModifier ) {
+                        } else {
+                            switch ( event.key ) {
+                                case Qt.Key_Backtab: {
+                                    if (!searchTextInput.activeFocus)
+                                         searchTextInput.focus = true;
+                                    else {
+                                        if ( !darkone.listHidden )
+                                            gameListView.forceActiveFocus();
+                                        else
+                                            overlay.forceActiveFocus();
+                                        event.accepted = true;
+                                    }
+                                    break;
+                                }
+                                case Qt.Key_Tab: {
+                                    if (!searchTextInput.activeFocus)
+                                         searchTextInput.focus = true;
+                                    else
+                                         overlay.forceActiveFocus();
+                                    event.accepted = true;
+                                    break;
+                                }
+                                default: {
                                     if ( DarkoneJS.validateKey(event.text) ) {
                                         searchTextInput.forceActiveFocus();
                                         searchTextInput.text += event.text;
@@ -2345,11 +2408,21 @@ FocusScope {
                                                 break;
                                             }
                                         }
+                                    } else {
+                                        switch ( event.key ) {
+                                            case Qt.Key_Left:
+                                            case Qt.Key_Up:
+                                            case Qt.Key_Right:
+                                            case Qt.Key_Down: {
+                                                event.accepted = true;
+                                                break;
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                            break;
-                        } // switch
+                                break;
+                            } // switch
+                        }
                     }
                 }
 
@@ -2382,7 +2455,7 @@ FocusScope {
                                 parent.opacity = 1.0;
                                 gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
                                 gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
-                                searchTextInput.focus = false;
+                                toolbar.focus = true;
                             }
                         }
                     }
@@ -2420,8 +2493,22 @@ FocusScope {
                             onAccepted: { gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
                                           gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
                             }
+                            onFocusChanged: {
+                                if ( darkone.initialised ) {
+                                    debug2 && console.log("[focus] searchTextInput: '" + focus + "'" );
+                                    debug2 && focus && DarkoneJS.inFocus();
+                                }
+                            }
+                            onActiveFocusChanged: {
+                                if ( darkone.initialised ) {
+                                    debug2 && console.log("[activeFocus] searchTextInput: '" + activeFocus + "'" );
+                                    debug2 && activeFocus && DarkoneJS.inFocus();
+                                }
+                            }
 
-                            Keys.forwardTo: [toolbar]
+                            Keys.onPressed: {
+                                debug2 && console.log("[keys] searchTextInput: '" + DarkoneJS.keyEvent2String(event) + "'");
+                            }
                         }
                     }
                     Image {
@@ -2443,7 +2530,7 @@ FocusScope {
                             onClicked: {
                                 parent.opacity = 1.0;
                                 searchTextInput.text = "";
-                                searchTextInput.focus = false;
+                                toolbar.focus = true;
                             }
                         }
                     }
