@@ -863,9 +863,9 @@ MainWindow::MainWindow(QWidget *parent)
   }
 
   // signal setup requests for style, style-sheet and palette
-  signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
+  signalStyleSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
   signalStyleSheetSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
-  signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString());
+  signalPaletteSetupRequested(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString());
 
   on_actionFullscreenToggle_triggered();
 
