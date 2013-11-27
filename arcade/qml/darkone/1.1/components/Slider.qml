@@ -126,8 +126,8 @@ Item {
                 id: mouse
                 anchors.fill: parent; drag.target: parent
                 drag.axis: Drag.XAxis
-                drag.minimumX: root.activeFocus ? root.xMin + activeFocusBorder : root.xMin
-                drag.maximumX: root.activeFocus ? root.xMax + activeFocusBorder : root.xMax
+                drag.minimumX: root.activeFocus ? root.xMin + activeFocusBorder / 2 : root.xMin
+                drag.maximumX: root.activeFocus ? root.xMax + activeFocusBorder / 2 : root.xMax
                 onPositionChanged: { value = minimum + ( (((root.activeFocus ? handle.x - activeFocusBorder / 2 : handle.x ) - root.xMin) / (root.xMax - root.xMin)) * (maximum - minimum) ) }
             }
         }
