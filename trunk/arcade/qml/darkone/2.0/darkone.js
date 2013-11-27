@@ -6,6 +6,7 @@ var lastitemBackground;
 var resetScale;
 var resetListHidden;
 var resetToolbarHidden;
+var resetFocused;
 var flashCounter = 0;
 var inGame = false;
 var overlayScaleMin = 0;
@@ -19,6 +20,8 @@ var dataTypes = { "title": { key: "title", name: "title image", type: "image", p
                   "pcb": { key: "pcb", name: "pcb image", type: "image", path: "pcb" },
                   "gameinfo": { key: "gameinfo", name: "game info", type: "text", text: "[game info]" },
                   "emuinfo": { key: "emuinfo", name: "emulator info", type: "text", text: "[emulator info]" } }
+var focused = [];
+var borders = false;
 
 function init() {
     if (!darkone.initialised && darkone.lastIndex == -1) {
@@ -58,7 +61,6 @@ function init() {
         fadeIn.start();
     } else if(!fadeIn.running) {
         darkone.initialised = true;
-        overlay.focus = true;
         initTimer.stop();
         //power
         darkone.lightOut = false;
@@ -69,6 +71,9 @@ function init() {
             zoom(resetScale / darkone.overlayScale);
             resetScale = -1;
         }
+        focused = ["overlay"];
+        resetFocused = ""
+        focus(1);
     }
 }
 
@@ -134,8 +139,9 @@ function toolbarToggle(force) {
         toolbarFocusScope.focus = true;
     } else if ((force < 0 || (!darkone.toolbarHidden && !force)) &&
                 !darkone.toolbarShowMenuLock && !darkone.toolbarShowFpsLock) {
+
         darkone.toolbarHidden = true;
-        overlay.focus = true;
+        toolbarFocusScope.focus && focus(1);
     }
     debug && console.log("[toolbarToggle 2] " +
                                  "toolbarHidden: '" + darkone.toolbarHidden + "', " +
@@ -148,7 +154,7 @@ function listToggle(force) {
                                  "listHidden: '" + darkone.listHidden + "', " +
                                  "force: '" + force + "'");
     if (darkone.toolbarShowMenuLock)
-        return
+        return;
     darkone.overlayDuration = 1000;
     resetOverlaySnapTimer.start();
     if (force > 0 || (darkone.listHidden && !force)) {
@@ -158,7 +164,7 @@ function listToggle(force) {
     } else if (force < 0 || (!darkone.listHidden && !force)) {
         darkone.listHidden = true;
         showListButton.rotation = 90;
-        overlay.focus = true;
+        gameListView.focus && focus(1);
     }
     debug && console.log("[listToggle 2] " +
                                  "listHidden: '" + darkone.listHidden + "', " +
@@ -167,7 +173,7 @@ function listToggle(force) {
 
 function lightToggle(force) {
     if (!darkone.initialised || fadeIn.running)
-        return
+        return;
     if (force > 0 || (darkone.lightOff && !force)) {
         darkone.ignoreLaunch = darkone.preferencesLaunchLock ? true : false
         darkone.lightOut = false;
@@ -185,8 +191,11 @@ function lightToggle(force) {
         if (!darkone.keepLightOn) {
             lightOutTimer.restart();
             lightOutScreenTimer.restart();
-        }
+        }        
+        resetFocused = "";
+        focus(1);
     } else if (force < 0 || (!darkone.lightOff && !force)) {
+        focus(-1);
         darkone.ignoreLaunch = true
         debug && console.log("[lightToggle off 1] resetScale: '" + resetScale + "', " +
                                             "overlayScale: '" + darkone.overlayScale + "'");
@@ -215,7 +224,7 @@ function lightToggle(force) {
 }
 
 function round(number, dp) {
-    return Math.round(number * Math.pow(10, dp)) / Math.pow(10, dp)
+    return Math.round(number * Math.pow(10, dp)) / Math.pow(10, dp);
 }
 
 function zoom(vzoom) {
@@ -346,7 +355,7 @@ function gameOver() {
 function gameCardHeader() {
 
     if (!darkone.initialised)
-        return ""
+        return "";
 
     var gameObject = gameListModel[gameListView.currentIndex];
     return "<html><head><style type='text/css'>p, h2 { margin: 0px; }</style></head><h2>" + gameObject.description + "</h2><p>" + qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p></html>";
@@ -415,7 +424,7 @@ function data(type) {
 
         case "image":
             if (!darkone.initialised)
-                return ""
+                return "";
 
             var image = ""
             var image2 = ""
@@ -450,7 +459,7 @@ function data(type) {
 
         case "text":
             if (!darkone.initialised)
-                return ""
+                return "";
 
             var info = ""
             var type = ""
@@ -487,7 +496,7 @@ function data(type) {
 function gameStatusColour() {
 
     if (!darkone.initialised)
-        return "transparent"
+        return "transparent";
 
     debug && console.log("romState: '" + gameListModel[gameListView.currentIndex].romState + "'");
     switch ( gameListModel[gameListView.currentIndex].romState ) {
@@ -531,7 +540,7 @@ function keyEvent2String(e) {
             case Qt.Key_Tab: case Qt.Key_Backtab: return mods + "tab"; break;
             case Qt.Key_Space: return mods + "space"; break;
             case Qt.Key_Enter: case Qt.Key_Return: return mods + "enter"; break;
-            default: return mods + "undefined"
+            default: return mods + "undefined";
         }
     }
 }
@@ -580,4 +589,70 @@ function inFocus() {
         "toolbarFocusScope: '" + toolbarFocusScope.focus + "|" + toolbarFocusScope.activeFocus + "'\n" +
         "searchTextInput: '" + searchTextInput.focus + "|" + searchTextInput.activeFocus + "'\n" +
         "")
+}
+
+function focus(vFocus) {
+
+    if (!darkone.initialised || fadeIn.running)
+        return;
+
+    debug3 && console.log("\n\n[focus()] vFocus: '" + vFocus + "', type: '" + typeof(vFocus) + "'\n" +
+                          "          resetFocused: '" + resetFocused + "', focused[]: '" + focused + "'\n");
+
+    if (resetFocused == "") {
+        switch ( typeof(vFocus) ) {
+            case "string":
+                debug3 && console.log("[focus+] focused[]: '" + focused + "'");
+                focused.push(vFocus);
+                debug3 && console.log("[focus+] focused[]: '" + focused + "'");
+                break;
+
+            default: 
+                if (vFocus > 0) {
+                    var bSet = false;
+                    var last = ""
+                    while (focused.length > 0 && !bSet) {
+                        debug3 && console.log("[focus-] focused[]: '" + focused + "'");
+                        last = focused.pop();
+                        debug3 && console.log("[focus-] focused[]: '" + focused + "'");
+                        switch ( focused[focused.length - 1] ) {
+                            case "overlay": {
+                                debug3 && console.log("[focus=]: '" + focused[focused.length - 1] + "'");
+                                overlay.focus = "true";
+                                bSet = true;
+                                break;
+                            }
+                            case "gameListView": {
+                                if (!darkone.listHidden) {
+                                    debug3 && console.log("[focus=]: '" + focused[focused.length - 1] + "'");
+                                    gameListView.focus = "true";
+                                    bSet = true;
+                                }
+                                break;
+                            }
+                            case "toolbarFocusScope": {
+                                if (!darkone.toolbarHidden) {
+                                    debug3 && console.log("[focus=]: '" + focused[focused.length - 1] + "'");
+                                    toolbarFocusScope.focus = "true";
+                                    bSet = true;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    if (focused.length > 25)
+                        focused = focused.slice(focused.length - 10, focused.length - 1);
+                    if (!bSet) {
+                        focused = ["overlay"];
+                        overlay.focus = true;
+                    }
+                    darkone.activeBorders = true;
+                } else {
+                    resetFocused = focused[focused.length - 1] || "overlay";
+                    debug3 && console.log("[focus?] resetFocused: '" + resetFocused + "', focused[]: '" + focused + "'");
+                    darkone.activeBorders = false;
+                }
+                break;
+        }
+    }
 }

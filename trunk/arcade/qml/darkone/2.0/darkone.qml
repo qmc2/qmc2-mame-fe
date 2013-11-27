@@ -14,6 +14,7 @@ FocusScope {
     property alias fps: darkone.fps
     property alias debug: darkone.debug
     property alias debug2: darkone.debug2
+    property alias debug3: darkone.debug3
 
     // restored properties
     property alias lastIndex: darkone.lastIndex
@@ -46,6 +47,7 @@ FocusScope {
         // global properties
         property bool debug: false
         property bool debug2: false
+        property bool debug3: false
         property int fps: 0
 
         // restored properties
@@ -69,6 +71,7 @@ FocusScope {
         property string colourScheme: "dark"
 
         property bool initialised: false
+        property bool activeBorders: false
         property bool ignoreLaunch: false
         property bool dataHidden: true
         property bool keepLightOn: false
@@ -403,11 +406,13 @@ FocusScope {
 
             onFocusChanged: {
                 if ( darkone.initialised ) {
-                    debug2 && console.log("[focus] overlay: '" + focus + "'" );
-                    debug2 && focus && DarkoneJS.inFocus();
+                    (debug2 || debug3) && console.log("[focus] overlay: '" + focus + "'" );
+                    (debug2 || debug3) && focus && DarkoneJS.inFocus();
                 }
-                if ( focus )
+                if ( focus ) {
+                    DarkoneJS.focus("overlay");
                     overlayScreen.focus = true;
+                }
             }
             onActiveFocusChanged: {
                 if ( darkone.initialised ) {
@@ -720,7 +725,7 @@ FocusScope {
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width
                     height: (darkone.activeBorderSize + 1)
-                    visible: parent.focus || overlayDataTypeCycleItem.focus
+                    visible: (parent.focus || overlayDataTypeCycleItem.focus) && darkone.activeBorders
                     color: darkone.textColour2
                 }
                 Rectangle {
@@ -731,7 +736,7 @@ FocusScope {
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width
                     height: (darkone.activeBorderSize + 1)
-                    visible: parent.focus || overlayDataTypeCycleItem.focus
+                    visible: (parent.focus || overlayDataTypeCycleItem.focus) && darkone.activeBorders
                     color: darkone.textColour2
                 }
 
@@ -1218,7 +1223,7 @@ FocusScope {
             width: 2
             height: gameListView.height - 2
             color: darkone.textColour2
-            visible: gameListView.activeFocus
+            visible: gameListView.activeFocus && darkone.activeBorders
         }
 
         ListView {
@@ -1336,8 +1341,10 @@ FocusScope {
             }
 
             onFocusChanged: {
-                debug2 && console.log("[focus] gameListView: '" + focus + "'" );
-                debug2 && focus && DarkoneJS.inFocus();
+                (debug2 || debug3) && console.log("[focus] gameListView: '" + focus + "'" );
+                (debug2 || debug3) && focus && DarkoneJS.inFocus();
+                if ( focus )
+                    DarkoneJS.focus("gameListView");
             }
             onActiveFocusChanged: {
                 debug2 && console.log("[activeFocus] gameListView: '" + activeFocus + "'" );
@@ -1439,10 +1446,8 @@ FocusScope {
                                     case Qt.Key_Right: {
                                         if ( !darkone.toolbarHidden )
                                             toolbarFocusScope.focus = true;
-                                        else {
+                                        else
                                             overlay.focus = true;
-                                            console.log("setting overlay focus: true")
-                                        }
                                         event.accepted = true;
                                         break;
                                     }
@@ -2258,7 +2263,7 @@ FocusScope {
             height: 2
             width: darkone.width - 2
             color: darkone.textColour2
-            visible: toolbarFocusScope.focus
+            visible: toolbarFocusScope.focus && darkone.activeBorders
         }
 
         FocusScope {
@@ -2267,8 +2272,10 @@ FocusScope {
             focus: false // darkoneFocusScope
 
             onFocusChanged: {
-                debug2 && console.log("[focus] toolbarFocusScope: '" + focus + "'" );
-                debug2 && focus && DarkoneJS.inFocus();
+                (debug2 || debug3) && console.log("[focus] toolbarFocusScope: '" + focus + "'" );
+                (debug2 || debug3) && focus && DarkoneJS.inFocus();
+                if ( focus )
+                    DarkoneJS.focus("toolbarFocusScope");
             }
             onActiveFocusChanged: {
                 debug2 && console.log("[activeFocus] toolbarFocusScope: '" + activeFocus + "'" );
@@ -2350,7 +2357,7 @@ FocusScope {
                     darkone.lights();
 
                     if ( darkone.toolbarHidden )
-                        console.log("[toolbar] error: key press in hidden state")
+                        debug2 && console.log("[toolbar] error: key press in hidden state")
                     else {
                         if ( event.modifiers & Qt.ControlModifier ) {
                             switch ( event.key ) {
