@@ -167,6 +167,7 @@ void TweakedQmlApplicationViewer::loadSettings()
 
     // load global arcade settings
     rootObject()->setProperty("version", globalConfig->applicationVersion());
+    rootObject()->setProperty("qtVersion", qVersion());
 
     // load theme-specific arcade settings
     switch ( themeIndex() ) {

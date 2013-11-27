@@ -11,10 +11,12 @@ FocusScope {
     height: darkone.height
 
     // global properties
-    property alias fps: darkone.fps
     property alias debug: darkone.debug
     property alias debug2: darkone.debug2
     property alias debug3: darkone.debug3
+    property alias version: darkone.version
+    property alias qtVersion: darkone.qtVersion
+    property alias fps: darkone.fps
 
     // restored properties
     property alias lastIndex: darkone.lastIndex
@@ -48,6 +50,8 @@ FocusScope {
         property bool debug: false
         property bool debug2: false
         property bool debug3: false
+        property string version: ""
+        property string qtVersion: ""
         property int fps: 0
 
         // restored properties
@@ -95,7 +99,6 @@ FocusScope {
         property string colour5: "#000000"
         property string textColour1: "#000000"
         property string textColour2: "#000000"
-        property string version: ""
 
         color: "black"
         opacity: 0
@@ -182,6 +185,15 @@ FocusScope {
             }
             if (darkone.lightOut)
                 DarkoneJS.lightToggle(1);
+        }
+        function setCursor(mousearea, qtVersion) {
+            // see QTBUG-33157 cannot overide non-default cursorshape
+            // in lower layers using the default Qt.ArrowCursor
+            if (DarkoneJS.version("max", "5.2.0", qtVersion)) {
+                mousearea.cursorShape = Qt.BlankCursor;
+                mousearea.cursorShape = Qt.ArrowCursor;
+            }
+            return Qt.ArrowCursor;
         }
 
         MouseArea {
@@ -1356,8 +1368,12 @@ FocusScope {
             }
 
             MouseArea {
-                cursorShape: Qt.ArrowCursor
+                id: gameListViewMouseArea
+                anchors.fill: parent
+                cursorShape: darkone.setCursor(gameListViewMouseArea, darkone.qtVersion)
+                acceptedButtons: Qt.NoButton
             }
+
             // gameListView key events
             Keys.onPressed: {
                 debug2 && console.log("[keys] gameListView: '" + DarkoneJS.keyEvent2String(event) + "'")
@@ -1588,8 +1604,9 @@ FocusScope {
                 }
 
                 MouseArea {
-                    anchors.fill: parent;
-                    cursorShape: Qt.ArrowCursor
+                    id: preferencesMouseArea
+                    anchors.fill: parent
+                    cursorShape: darkone.setCursor(preferencesMouseArea, darkone.qtVersion)
                     hoverEnabled: true
                     onClicked: {
                         debug && console.log("[preferences onClick 1] focus: '" + focus + "'");

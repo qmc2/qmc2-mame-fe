@@ -12,10 +12,12 @@ FocusScope {
     height: darkone.height
 
     // global properties
-    property alias fps: darkone.fps
     property alias debug: darkone.debug
     property alias debug2: darkone.debug2
     property alias debug3: darkone.debug3
+    property alias version: darkone.version
+    property alias qtVersion: darkone.qtVersion
+    property alias fps: darkone.fps
 
     // restored properties
     property alias lastIndex: darkone.lastIndex
@@ -49,6 +51,8 @@ FocusScope {
         property bool debug: false
         property bool debug2: false
         property bool debug3: false
+        property string version: ""
+        property string qtVersion: ""
         property int fps: 0
 
         // restored properties
@@ -96,7 +100,6 @@ FocusScope {
         property string colour5: "#000000"
         property string textColour1: "#000000"
         property string textColour2: "#000000"
-        property string version: ""
 
         color: "black"
         opacity: 0

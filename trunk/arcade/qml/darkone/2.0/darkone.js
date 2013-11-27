@@ -656,3 +656,40 @@ function focus(vFocus) {
         }
     }
 }
+
+function version(maxmin, verTarget, verCheck) {
+
+    var verTargetPart = verTarget.match(/(\d*)\.(\d*)\.(\d*)/);
+    var verCheckPart = verCheck.match(/(\d*)\.(\d*)\.(\d*)/);
+    var bMet;
+    if (verTargetPart != null && verCheckPart != null) {
+        if (verTargetPart.length != verCheckPart.length) {
+            bMet = false;
+            debug && console.log("[version] comparison failed. version types differ");
+        } else {
+            bMet = true;
+            var bContinue = true;
+            while (verTargetPart.length > 0 && bContinue) {
+                switch (maxmin) {
+                    case "min":
+                        if (verCheckPart[0] > verTargetPart[0])
+                            bContinue = false;
+                        else if (verCheckPart[0] < verTargetPart[0])
+                            bMet = bContinue = false;
+                        break;
+                    case "max":
+                        if (verCheckPart[0] < verTargetPart[0])
+                            bContinue = false;
+                        else if (verCheckPart[0] > verTargetPart[0])
+                            bMet = bContinue = false;
+                        break;
+                }
+                verTargetPart.shift();
+                verCheckPart.shift();
+            }
+        }
+    }
+    debug2 && console.log("[version] maxmin: '" + maxmin + "', verTarget: '" + verTarget + "', verCheck: '" + verCheck + "', result: '" + bMet + "'");
+
+    return bMet;
+}
