@@ -142,10 +142,10 @@ FocusScope {
             if ( !DarkoneJS.initialising ) {
                 if ( darkone.fullScreen ) {
                     viewer.switchToFullScreen();
-                    fullScreenToggleButton.state = "fullscreen";
+                    fullScreenButton.state = "fullscreen";
                 } else {
                     viewer.switchToWindowed();
-                    fullScreenToggleButton.state = "windowed";
+                    fullScreenButton.state = "windowed";
                 }
             }
         }
@@ -2294,6 +2294,27 @@ FocusScope {
             color: darkone.textColour2
             visible: toolbarFocusScope.focus && darkone.activeBorders
         }
+        Rectangle {
+            id: toolbarItemBorderBottom
+            z: parent.z + 15
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 2 + darkone.activeBorderSize
+            width: 0
+            height: darkone.activeBorderSize - 1
+            visible: toolbarFocusScope.focus && !toolbar.focus && darkone.activeBorders
+            color: darkone.textColour2
+        }
+        Rectangle {
+            id: toolbarItemBorderTop
+            z: parent.z + 15
+            x: toolbarItemBorderBottom.x
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: toolbar.height - 1 - (2 + darkone.activeBorderSize)
+            width: toolbarItemBorderBottom.width
+            height: toolbarItemBorderBottom.height
+            visible: toolbarItemBorderBottom.visible
+            color: darkone.textColour2
+        }
 
         FocusScope {
             id: toolbarFocusScope
@@ -2382,6 +2403,7 @@ FocusScope {
                         // lights
                         darkone.lights();
                     }
+                    onClicked: { toolbarFocusScope.focus = true; }
                 }
                 // toolbar key events
                 Keys.onPressed: {
@@ -2479,7 +2501,14 @@ FocusScope {
                         opacity: 0.75
 
                         onFocusChanged: { debug2 && console.log("[focus] searchButton: '" + focus + "'" ); }
-                        onActiveFocusChanged: { debug2 && console.log("[activeFocus] searchButton: '" + activeFocus + "'" ); }
+                        onActiveFocusChanged: {
+                            debug2 && console.log("[activeFocus] searchButton: '" + activeFocus + "'" );
+                            if (activeFocus) {
+                                toolbarItemBorderBottom.x = searchButton.mapToItem(null, 0, 0).x;
+                                toolbarItemBorderBottom.anchors.leftMargin = searchButton.leftMargin || 0;
+                                toolbarItemBorderBottom.width = searchButton.width;
+                            }
+                        }
 
                         MouseArea {
                             anchors.fill: parent
@@ -2509,6 +2538,11 @@ FocusScope {
                         anchors.verticalCenter: parent.verticalCenter
                         radius: height - 2
                         smooth: true
+
+                        onFocusChanged: { debug2 && console.log("[focus] searchTextInputBox: '" + focus + "'" ); }
+                        onActiveFocusChanged: {
+                            debug2 && console.log("[activeFocus] searchTextInputBox: '" + activeFocus + "'" );
+                        }
 
                         TextInput {
                             id: searchTextInput
@@ -2548,6 +2582,11 @@ FocusScope {
                                     debug2 && console.log("[activeFocus] searchTextInput: '" + activeFocus + "'" );
                                     debug2 && activeFocus && DarkoneJS.inFocus();
                                 }
+                                if (activeFocus) {
+                                    toolbarItemBorderBottom.x = searchTextInputBox.mapToItem(null, 0, 0).x;
+                                    toolbarItemBorderBottom.anchors.leftMargin = searchTextInputBox.leftMargin || 0;
+                                    toolbarItemBorderBottom.width = searchTextInputBox.width;
+                                }
                             }
 
                             KeyNavigation.up: KeyNavigation.backtab
@@ -2581,8 +2620,18 @@ FocusScope {
                         smooth: true
                         opacity: 0.75
 
-                        onFocusChanged: { debug2 && console.log("[focus] clearButton: '" + focus + "'" ); }
-                        onActiveFocusChanged: { debug2 && console.log("[activeFocus] clearButton: '" + activeFocus + "'" ); }
+                        onFocusChanged: {
+                            debug2 && console.log("[focus] clearButton: '" + focus + "'" );
+                        }
+                        onActiveFocusChanged: {
+                            debug2 && console.log("[activeFocus] clearButton: '" + activeFocus + "'" );
+                            if (activeFocus) {
+                                toolbarItemBorderBottom.x = clearButton.mapToItem(null, 0, 0).x;
+                                toolbarItemBorderBottom.anchors.leftMargin = clearButton.leftMargin || 0;
+                                toolbarItemBorderBottom.width = clearButton.width;
+                            }
+                        }
+
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
@@ -2604,6 +2653,7 @@ FocusScope {
                     id: showListButton
                     source: "images/list_toggle.png"
                     height: 18
+                    width: height
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: (parent.height - height) / 2
                     anchors.left: searchBox.right
@@ -2615,7 +2665,14 @@ FocusScope {
                     z: 5
 
                     onFocusChanged: { debug2 && console.log("[focus] showListButton: '" + focus + "'" ); }
-                    onActiveFocusChanged: { debug2 && console.log("[activeFocus] showListButton: '" + activeFocus + "'" ); }
+                    onActiveFocusChanged: {
+                        debug2 && console.log("[activeFocus] showListButton: '" + activeFocus + "'" );
+                        if (activeFocus) {
+                            toolbarItemBorderBottom.x = showListButton.mapToItem(null, 0, 0).x;
+                            toolbarItemBorderBottom.anchors.leftMargin = showListButton.leftMargin || 0;
+                            toolbarItemBorderBottom.width = showListButton.width;
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -2648,7 +2705,14 @@ FocusScope {
                     fillMode: Image.PreserveAspectFit
 
                     onFocusChanged: { debug2 && console.log("[focus] preferencesButton: '" + focus + "'" ); }
-                    onActiveFocusChanged: { debug2 && console.log("[activeFocus] preferencesButton: '" + activeFocus + "'" ); }
+                    onActiveFocusChanged: {
+                        debug2 && console.log("[activeFocus] preferencesButton: '" + activeFocus + "'" );
+                        if (activeFocus) {
+                            toolbarItemBorderBottom.x = preferencesButton.mapToItem(null, 0, 0).x;
+                            toolbarItemBorderBottom.anchors.leftMargin = preferences.leftMargin || 0;
+                            toolbarItemBorderBottom.width = preferencesButton.width;
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -2669,10 +2733,10 @@ FocusScope {
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: showListButton
-                    KeyNavigation.tab: fullScreenToggleButton
+                    KeyNavigation.tab: fullScreenButton
                 }
                 Image {
-                    id: fullScreenToggleButton
+                    id: fullScreenButton
                     height: 16
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: preferencesButton.right
@@ -2686,16 +2750,23 @@ FocusScope {
                     states: [
                         State {
                             name: "fullscreen"
-                            PropertyChanges { target: fullScreenToggleButton; source: "images/windowed.png" }
+                            PropertyChanges { target: fullScreenButton; source: "images/windowed.png" }
                         },
                         State {
                             name: "windowed"
-                            PropertyChanges { target: fullScreenToggleButton; source: "images/fullscreen.png" }
+                            PropertyChanges { target: fullScreenButton; source: "images/fullscreen.png" }
                         }
                     ]
 
-                    onFocusChanged: { debug2 && console.log("[focus] fullScreenToggleButton: '" + focus + "'" ); }
-                    onActiveFocusChanged: { debug2 && console.log("[activeFocus] fullScreenToggleButton: '" + activeFocus + "'" ); }
+                    onFocusChanged: { debug2 && console.log("[focus] fullScreenButton: '" + focus + "'" ); }
+                    onActiveFocusChanged: {
+                        debug2 && console.log("[activeFocus] fullScreenButton: '" + activeFocus + "'" );
+                        if (activeFocus) {
+                            toolbarItemBorderBottom.x = fullScreenButton.mapToItem(null, 0, 0).x;
+                            toolbarItemBorderBottom.anchors.leftMargin = fullScreen.leftMargin || 0;
+                            toolbarItemBorderBottom.width = fullScreenButton.width;
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -2703,11 +2774,11 @@ FocusScope {
                         onEntered: parent.opacity = 1.0
                         onExited: parent.opacity = 0.6
                         onClicked: {
-                            if ( fullScreenToggleButton.state == "windowed" ) {
-                                fullScreenToggleButton.state = "fullscreen"
+                            if ( fullScreenButton.state == "windowed" ) {
+                                fullScreenButton.state = "fullscreen"
                                 darkone.fullScreen = true;
                             } else {
-                                fullScreenToggleButton.state = "windowed"
+                                fullScreenButton.state = "windowed"
                                 darkone.fullScreen = false;
                             }
                             parent.opacity = 1.0;
@@ -2716,12 +2787,12 @@ FocusScope {
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: preferencesButton
-                    KeyNavigation.tab: launchBox
+                    KeyNavigation.tab: launchButton
                 }
                 Text {
                     id: fpsText
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: fullScreenToggleButton.right
+                    anchors.left: fullScreenButton.right
                     anchors.leftMargin: 15
                     color: darkone.textColour1
                     text: qsTr("FPS") + ": " + darkone.fps.toString()
@@ -2747,7 +2818,7 @@ FocusScope {
 
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
-                    KeyNavigation.backtab: fullScreenToggleButton
+                    KeyNavigation.backtab: fullScreenButton
                     KeyNavigation.tab: exitButton
 
                     Image {
@@ -2758,6 +2829,15 @@ FocusScope {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                         focus: true // toolbarFocusScope
+
+                        onActiveFocusChanged: {
+                            debug2 && console.log("[activeFocus] launchButton: '" + activeFocus + "'" );
+                            if (activeFocus) {
+                                toolbarItemBorderBottom.x = launchBox.mapToItem(null, 0, 0).x;
+                                toolbarItemBorderBottom.anchors.leftMargin = launchBox.leftMargin || 0;
+                                toolbarItemBorderBottom.width = launchBox.width;
+                            }
+                        }
 
                         CursorShapeArea {
                             anchors.fill: parent
@@ -2793,7 +2873,14 @@ FocusScope {
                     fillMode: Image.PreserveAspectFit
 
                     onFocusChanged: { debug2 && console.log("[focus] exitButton: '" + focus + "'" ); }
-                    onActiveFocusChanged: { debug2 && console.log("[activeFocus] exitButton: '" + activeFocus + "'" ); }
+                    onActiveFocusChanged: {
+                        debug2 && console.log("[activeFocus] exitButton: '" + activeFocus + "'" );
+                        if (activeFocus) {
+                            toolbarItemBorderBottom.x = exitButton.mapToItem(null, 0, 0).x;
+                            toolbarItemBorderBottom.anchors.leftMargin = exitButton.leftMargin || 0;
+                            toolbarItemBorderBottom.width = exitButton.width;
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -2808,7 +2895,7 @@ FocusScope {
                     }
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
-                    KeyNavigation.backtab: launchBox
+                    KeyNavigation.backtab: launchButton
                     Keys.onTabPressed: {
                         toolbar.cycling = true;
                         toolbar.focus = true;
