@@ -631,6 +631,8 @@ void Options::apply()
   pushButtonApply->setIconSize(iconSize);
   pushButtonRestore->setIconSize(iconSize);
   pushButtonDefault->setIconSize(iconSize);
+  pushButtonOk->setIconSize(iconSize);
+  pushButtonCancel->setIconSize(iconSize);
   toolButtonBrowseStyleSheet->setIconSize(iconSize);
   toolButtonBrowseFont->setIconSize(iconSize);
   toolButtonBrowseLogFont->setIconSize(iconSize);
