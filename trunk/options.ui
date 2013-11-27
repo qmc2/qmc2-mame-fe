@@ -58,7 +58,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>496</width>
-                <height>625</height>
+                <height>622</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -890,9 +890,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-196</y>
-                <width>496</width>
-                <height>733</height>
+                <y>0</y>
+                <width>349</width>
+                <height>731</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2558,8 +2558,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>509</height>
+                <width>508</width>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3209,8 +3209,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>509</height>
+                <width>249</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3331,8 +3331,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>509</height>
+                <width>342</width>
+                <height>209</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3794,8 +3794,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>513</width>
-                <height>509</height>
+                <width>374</width>
+                <height>455</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4930,7 +4930,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>236</width>
-                <height>211</height>
+                <height>223</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -5264,7 +5264,7 @@
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
+         <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -5292,6 +5292,10 @@
        <property name="text">
         <string>&amp;Ok</string>
        </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+       </property>
        <property name="autoDefault">
         <bool>false</bool>
        </property>
@@ -5304,6 +5308,10 @@
        </property>
        <property name="text">
         <string>&amp;Cancel</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
        </property>
       </widget>
      </item>
