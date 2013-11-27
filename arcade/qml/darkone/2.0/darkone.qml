@@ -372,7 +372,7 @@ FocusScope {
             onTriggered: {
                 if (darkone.toolbarHideIn == 0) {
                     hideToolbarTimer.stop();
-                    darkone.toolbarHideIn = 3;
+                    darkone.toolbarHideIn = 5;
                     darkone.toolbarAutoHide && DarkoneJS.toolbarToggle(-1);
                 } else
                     darkone.toolbarHideIn -= 1;
@@ -2402,6 +2402,8 @@ FocusScope {
 
                     // lights
                     darkone.lights();
+                    // hide timer  
+                    hideToolbarTimer.stop();
 
                     if ( darkone.toolbarHidden )
                         debug2 && console.log("[toolbar] error: key press in hidden state")
