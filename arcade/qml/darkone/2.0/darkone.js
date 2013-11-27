@@ -615,16 +615,16 @@ function focus(vFocus) {
                         debug3 && console.log("[focus-] focused[]: '" + focused + "'");
                         last = focused.pop();
                         debug3 && console.log("[focus-] focused[]: '" + focused + "'");
-                        switch ( focused[focused.length - 1] ) {
+                        switch ( last ) {
                             case "overlay": {
-                                debug3 && console.log("[focus=]: '" + focused[focused.length - 1] + "'");
+                                debug3 && console.log("[focus=]: '" + last + "'");
                                 overlay.focus = "true";
                                 bSet = true;
                                 break;
                             }
                             case "gameListView": {
                                 if (!darkone.listHidden) {
-                                    debug3 && console.log("[focus=]: '" + focused[focused.length - 1] + "'");
+                                    debug3 && console.log("[focus=]: '" + last + "'");
                                     gameListView.focus = "true";
                                     bSet = true;
                                 }
@@ -632,7 +632,7 @@ function focus(vFocus) {
                             }
                             case "toolbarFocusScope": {
                                 if (!darkone.toolbarHidden) {
-                                    debug3 && console.log("[focus=]: '" + focused[focused.length - 1] + "'");
+                                    debug3 && console.log("[focus=]: '" + last + "'");
                                     toolbarFocusScope.focus = "true";
                                     bSet = true;
                                 }

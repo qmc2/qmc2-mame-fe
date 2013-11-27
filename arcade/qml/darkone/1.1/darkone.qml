@@ -1598,7 +1598,7 @@ FocusScope {
                         darkone.preferencesLaunchLock = false;
                         darkone.ignoreLaunch = false;
                         darkone.toolbarShowMenuLock = false;
-                        overlay.focus = true;
+                        DarkoneJS.focus(1);
                     }
                 }
                 onFocusChanged: {
