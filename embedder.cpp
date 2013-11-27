@@ -181,7 +181,6 @@ void Embedder::release()
 	qApp->syncX();
 	XUnmapWindow(QX11Info::display(), embeddedWinId);
 	XMapWindow(QX11Info::display(), embeddedWinId);
-	XMapSubwindows(QX11Info::display(), embeddedWinId);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg("0x" + QString::number(embeddedWinId, 16)));
 	QTimer::singleShot(QMC2_EMBED_RELEASE_DELAY, qmc2MainWindow, SLOT(raise()));
 #elif defined(QMC2_OS_WIN)
