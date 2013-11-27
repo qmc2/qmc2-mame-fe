@@ -2302,6 +2302,8 @@ FocusScope {
                 (debug2 || debug3) && focus && DarkoneJS.inFocus();
                 if ( focus )
                     DarkoneJS.focus("toolbarFocusScope");
+                else
+                    hideToolbarTimer.start();
             }
             onActiveFocusChanged: {
                 debug2 && console.log("[activeFocus] toolbarFocusScope: '" + activeFocus + "'" );
@@ -2368,7 +2370,10 @@ FocusScope {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: { darkone.toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); }
+                    onEntered: {
+                        darkone.toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle();
+                        hideToolbarTimer.stop();
+                    }
                     onExited: { hideToolbarTimer.start(); }
                     onPositionChanged: {
                         // lights
