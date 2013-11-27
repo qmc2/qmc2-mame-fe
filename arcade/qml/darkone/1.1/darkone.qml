@@ -2312,6 +2312,7 @@ FocusScope {
             anchors.bottomMargin: toolbar.height - 1 - (2 + darkone.activeBorderSize)
             width: toolbarItemBorderBottom.width
             height: toolbarItemBorderBottom.height
+            opacity: toolbarItemBorderBottom.opacity
             visible: toolbarItemBorderBottom.visible
             color: darkone.textColour2
         }
@@ -2367,12 +2368,14 @@ FocusScope {
                                 PropertyAnimation { target: gameListView; property: "anchors.bottomMargin"; from: 2 + gameListView.itemHeight; to: toolbar.height + gameListView.itemHeight; duration: 500; easing.type: Easing.OutCubic }
                             }
                             PropertyAnimation { target: toolbarBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                            PropertyAnimation { target: toolbarItemBorderBottom; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                         }
                     },
                     Transition {
                         from: "shown"
                         to: "hidden"
                         SequentialAnimation {
+                            PropertyAnimation { target: toolbarItemBorderBottom; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                             PropertyAnimation { target: toolbarBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                             ParallelAnimation {
                                 PropertyAnimation { target: toolbar; property: "anchors.bottomMargin"; from: 0; to: -(toolbar.height - 2); duration: 500; easing.type: Easing.OutCubic }
