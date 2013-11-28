@@ -7,10 +7,17 @@
 #include <QtXml>
 #include <QtNetwork>
 #include <QDesktopWidget>
+#if QT_VERSION >= 0x050000
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QVideoWidget>
+#endif
 
 #include "ui_youtubevideoplayer.h"
 #include "videoitemwidget.h"
+#if QT_VERSION < 0x050000
 #include "qmc2_phonon.h"
+#endif
 
 // supported YouTube formats (see http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs)
 #define YOUTUBE_FORMAT_COUNT		7
@@ -177,8 +184,6 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		bool pausedByHideEvent;
 		bool forcedExit;
 		bool fullyLoaded;
-		QSlider *privateSeekSlider;
-		QToolButton *privateMuteButton;
 		QList<int> availableFormats;
 		int bestAvailableFormat;
 		int currentFormat;
@@ -191,11 +196,23 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = NULL, bool videoInfoOnly = false);
 		QString indexToFormat(int);
 
+#if QT_VERSION < 0x050000
 		bool isPlaying() { return mVideoPlayer->isPlaying(); }
 		bool isPaused() { return mVideoPlayer->isPaused(); }
 		bool hasVideo() { return mVideoPlayer->mediaObject()->hasVideo(); }
 		Phonon::VideoPlayer *videoPlayer() { return mVideoPlayer; }
 		Phonon::VideoWidget *videoWidget() { return mVideoPlayer->videoWidget(); }
+		Phonon::AudioOutput *audioOutput() { return mVideoPlayer->audioOutput(); }
+		Phonon::MediaObject *mediaObject() { return mVideoPlayer->mediaObject(); }
+#else
+		bool isPlaying() { return mVideoPlayer->state() == QMediaPlayer::PlayingState; }
+		bool isPaused() { return mVideoPlayer->state() == QMediaPlayer::PausedState; }
+		bool hasVideo() { return mVideoPlayer->isVideoAvailable(); }
+		QMediaPlayer *videoPlayer() { return mVideoPlayer; }
+		QVideoWidget *videoWidget() { return mVideoWidget; }
+		QMediaPlayer *audioOutput() { return mVideoPlayer; }
+		QMediaPlayer *mediaObject() { return mVideoPlayer; }
+#endif
 
 	public slots:
 		void play() { mVideoPlayer->play(); }
@@ -228,6 +245,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void searchRequestFinished();
 
 		void on_toolButtonPlayPause_clicked();
+		void on_toolButtonMute_toggled(bool);
 		void on_comboBoxPreferredFormat_activated(int);
 		void on_toolBox_currentChanged(int);
 		void on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *);
@@ -237,6 +255,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_lineEditSearchString_textChanged(const QString &);
 		void on_toolButtonSuggest_clicked();
 		void on_toolButtonSearch_clicked();
+		void on_volumeSlider_valueChanged(int);
+		void on_seekSlider_valueChanged(int);
 
 		void playAttachedVideo();
 		void playSearchedVideo();
@@ -263,13 +283,20 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void goFullScreen();
 
 		void videoPlayer_customContextMenuRequested(const QPoint &);
+		void videoPlayer_durationChanged(qint64);
 
 	protected:
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
 
 	private:
+#if QT_VERSION < 0x050000
 		Phonon::VideoPlayer *mVideoPlayer;
+#else
+		QMediaPlayer *mVideoPlayer;
+		QMediaPlaylist *mVideoPlaylist;
+		QVideoWidget *mVideoWidget;
+#endif
 };
 
 class YouTubeXmlHandler : public QXmlDefaultHandler
