@@ -28,6 +28,8 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
+//#define QMC2_DEBUG
+
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -40,6 +42,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	mySetID = sID;
 	mySetName = sName;
 
+#if QT_VERSION < 0x050000
 	mVideoPlayer = new Phonon::VideoPlayer(this);
 	mVideoPlayer->setContextMenuPolicy(Qt::CustomContextMenu);
 	mVideoPlayer->setPalette(Qt::black);
@@ -47,16 +50,20 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(mVideoPlayer, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
 	gridLayoutVideoPlayer->removeWidget(widgetVideoPlayerPlaceholder);
 	delete widgetVideoPlayerPlaceholder;
-	gridLayoutVideoPlayer->addWidget(mVideoPlayer, 0, 0, 1, 6);
+	gridLayoutVideoPlayer->addWidget(mVideoPlayer, 0, 0, 1, gridLayoutVideoPlayer->columnCount());
 	videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
 	videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
+	connect(mediaObject(), SIGNAL(seekableChanged(bool)), seekSlider, SLOT(setEnabled(bool)));
+	connect(mediaObject(), SIGNAL(totalTimeChanged(qint64)), this, SLOT(videoPlayer_durationChanged(qint64)));
+#else
+	// FIXME
+#endif
 
 	videoOverlayWidget = new VideoOverlayWidget(videoWidget());
 
 	toolButtonPlayPause->setEnabled(false);
 	toolButtonSearch->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
-	mVideoPlayer->audioOutput()->setVolume(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 0.5).toDouble());
 	toolBox->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", YOUTUBE_SEARCH_VIDEO_PAGE).toInt());
 	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
 	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
@@ -68,15 +75,9 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 #endif
 	spinBoxResultsPerRequest->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", 10).toInt());
 
-	// serious hack to access the volume slider's tool button object
-	privateMuteButton = volumeSlider->findChild<QToolButton *>();
-	if ( privateMuteButton ) {
-		privateMuteButton->setCheckable(true);
-		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-		privateMuteButton->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", false).toBool());
-		privateMuteButton->setToolTip(tr("Mute / unmute audio output"));
-		mVideoPlayer->audioOutput()->setMuted(privateMuteButton->isChecked());
-	}
+	toolButtonMute->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", false).toBool());
+	toolButtonMute->setToolTip(tr("Mute / unmute audio output"));
+	volumeSlider->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 50).toInt());
 
 	currentVideoID.clear();
 	currentVideoAuthor.clear();
@@ -106,13 +107,18 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
 	videoSeqNum = 0;
 
+#if QT_VERSION < 0x050000
 	mVideoPlayer->mediaObject()->setTickInterval(1000);
-	volumeSlider->setAudioOutput(mVideoPlayer->audioOutput());
-	seekSlider->setMediaObject(mVideoPlayer->mediaObject());
+#else
+	mVideoPlayer->setNotifyInterval(1000);
+#endif
+
+	volumeSlider->setToolTip(tr("Volume level"));
 	seekSlider->setToolTip(tr("Video progress"));
-	connect(mVideoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
-	connect(mVideoPlayer->mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
-	connect(mVideoPlayer->mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
+	labelSeekSlider->setText(tr("Remaining") + " --:--:--");
+	connect(mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
+	connect(mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
+	connect(mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
 	connect(mVideoPlayer, SIGNAL(finished()), this, SLOT(videoFinished()));
 
 	progressBarBufferStatus->setValue(0);
@@ -342,7 +348,11 @@ void YouTubeVideoPlayer::saveSettings()
 #endif
 
   	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", comboBoxPreferredFormat->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", mVideoPlayer->audioOutput()->volume());
+#if QT_VERSION < 0x050000
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", int(audioOutput()->volume() * 100));
+#else
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", audioOutput()->volume());
+#endif
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", toolBox->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
@@ -364,10 +374,7 @@ void YouTubeVideoPlayer::saveSettings()
 			qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), attachedVideos);
 	}
 
-	// serious hack to access the volume slider's tool button object
-	privateMuteButton = volumeSlider->findChild<QToolButton *>();
-	if ( privateMuteButton )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", privateMuteButton->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", toolButtonMute->isChecked());
 }
 
 void YouTubeVideoPlayer::setSuggestorAppendString()
@@ -916,14 +923,7 @@ void YouTubeVideoPlayer::adjustIconSizes()
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
 	comboBoxPreferredFormat->setIconSize(iconSize);
 	toolButtonPlayPause->setIconSize(iconSize);
-	seekSlider->setIconSize(iconSize);
-	volumeSlider->setIconSize(iconSize);
-	// serious hack to access the volume slider's tool button object
-	privateMuteButton = volumeSlider->findChild<QToolButton *>();
-	if ( privateMuteButton ) {
-		privateMuteButton->setIconSize(iconSize);
-		privateMuteButton->setFixedHeight(toolButtonPlayPause->height());
-	}
+	toolButtonMute->setIconSize(iconSize);
 	toolButtonSuggest->setIconSize(iconSize);
 	toolButtonSearch->setIconSize(iconSize);
 	toolBox->setItemIcon(YOUTUBE_ATTACHED_VIDEOS_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/movie.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
@@ -938,12 +938,9 @@ void YouTubeVideoPlayer::videoFinished()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoFinished()");
 #endif
 
-	// serious hack to access the seekSlider's slider object
-	privateSeekSlider = seekSlider->findChild<QSlider *>();
-	if ( privateSeekSlider )
-		privateSeekSlider->setValue(0);
+	seekSlider->setValue(0);
 
-	labelPlayingTime->setText("--:--:--");
+	labelSeekSlider->setText(tr("Remaining") + " --:--:--");
 	toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 	videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 	progressBarBufferStatus->setValue(0);
@@ -960,8 +957,11 @@ void YouTubeVideoPlayer::videoTick(qint64 time)
 #endif
 
 	QTime hrTime;
-	hrTime = hrTime.addMSecs(mVideoPlayer->mediaObject()->remainingTime());
-	labelPlayingTime->setText(hrTime.toString("hh:mm:ss"));
+	hrTime = hrTime.addMSecs(mediaObject()->remainingTime());
+	labelSeekSlider->setText(tr("Remaining") + " " + hrTime.toString("hh:mm:ss"));
+	seekSlider->blockSignals(true);
+	seekSlider->setValue((int)time);
+	seekSlider->blockSignals(false);
 }
 
 void YouTubeVideoPlayer::videoBufferStatus(int percentFilled)
@@ -986,10 +986,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 
 	switch ( newState ) {
 		case Phonon::LoadingState:
-			// serious hack to access the seekSlider's slider object
-			privateSeekSlider = seekSlider->findChild<QSlider *>();
-			if ( privateSeekSlider )
-				privateSeekSlider->setValue(0);
+			seekSlider->setValue(0);
 			progressBarBufferStatus->setValue(0);
 			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 		case Phonon::BufferingState:
@@ -1001,9 +998,9 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			remainingTime = mVideoPlayer->mediaObject()->remainingTime();
 			if ( remainingTime > 0 ) {
 				hrTime = hrTime.addMSecs(remainingTime);
-				labelPlayingTime->setText(hrTime.toString("hh:mm:ss"));
+				labelSeekSlider->setText(tr("Remaining") + " " + hrTime.toString("hh:mm:ss"));
 			} else
-				labelPlayingTime->setText("--:--:--");
+				labelSeekSlider->setText(tr("Remaining") + " --:--:--");
 			break;
 		case Phonon::PlayingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
@@ -1015,7 +1012,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		case Phonon::PausedState:
 			if ( loadOnly ) {
 				loadOnly = false;
-				mVideoPlayer->audioOutput()->setMuted(isMuted);
+				audioOutput()->setMuted(isMuted);
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
 			toolButtonPlayPause->setEnabled(true);
@@ -1028,17 +1025,14 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			videoOverlayWidget->showMessage(tr("Video playback error: %1").arg(mVideoPlayer->mediaObject()->errorString()), 4000);
 			if ( loadOnly ) {
 				loadOnly = false;
-				mVideoPlayer->audioOutput()->setMuted(isMuted);
+				audioOutput()->setMuted(isMuted);
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			videoMenuPlayPauseAction->setEnabled(!currentVideoID.isEmpty());
-			labelPlayingTime->setText("--:--:--");
-			// serious hack to access the seekSlider's slider object
-			privateSeekSlider = seekSlider->findChild<QSlider *>();
-			if ( privateSeekSlider )
-				privateSeekSlider->setValue(0);
+			labelSeekSlider->setText(tr("Remaining") + " --:--:--");
+			seekSlider->setValue(0);
 			progressBarBufferStatus->setValue(0);
 			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 			break;
@@ -1046,18 +1040,15 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		default:
 			if ( loadOnly ) {
 				loadOnly = false;
-				mVideoPlayer->audioOutput()->setMuted(isMuted);
+				audioOutput()->setMuted(isMuted);
 			}
 			comboBoxPreferredFormat->setEnabled(true);
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			videoMenuPlayPauseAction->setEnabled(!currentVideoID.isEmpty());
-			labelPlayingTime->setText("--:--:--");
-			// serious hack to access the seekSlider's slider object
-			privateSeekSlider = seekSlider->findChild<QSlider *>();
-			if ( privateSeekSlider )
-				privateSeekSlider->setValue(0);
+			labelSeekSlider->setText(tr("Remaining") + " --:--:--");
+			seekSlider->setValue(0);
 			progressBarBufferStatus->setValue(0);
 			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 			break;
@@ -1076,7 +1067,7 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 	if ( url.isValid() ) {
 		loadOnly = true;
 		if ( !isMuted )
-			mVideoPlayer->audioOutput()->setMuted(true);
+			audioOutput()->setMuted(true);
 		mVideoPlayer->load(Phonon::MediaSource(QUrl::fromEncoded(url.toString().toLatin1().constData())));
 		pause();
 		if ( !playedVideos.contains(videoID) ) playedVideos << videoID;
@@ -1352,6 +1343,20 @@ void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 		playVideo(currentVideoID);
 }
 
+void YouTubeVideoPlayer::on_toolButtonMute_toggled(bool mute)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolButtonMute_toggled(bool mute = %1)").arg(mute));
+#endif
+
+	audioOutput()->setMuted(mute);
+
+	if ( mute )
+		toolButtonMute->setIcon(QIcon(QString::fromUtf8(":/data/img/no_sound.png")));
+	else
+		toolButtonMute->setIcon(QIcon(QString::fromUtf8(":/data/img/sound.png")));
+}
+
 void YouTubeVideoPlayer::on_comboBoxPreferredFormat_activated(int index)
 {
 #ifdef QMC2_DEBUG
@@ -1565,6 +1570,15 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 	}
 }
 
+void YouTubeVideoPlayer::videoPlayer_durationChanged(qint64 duration)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoPlayer_durationChanged(qint64 duration = %1)").arg(duration));
+#endif
+
+	seekSlider->setMaximum((int)duration);
+}
+
 void YouTubeVideoPlayer::on_lineEditSearchString_textChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
@@ -1625,6 +1639,33 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	connect(searchRequestReply, SIGNAL(readyRead()), this, SLOT(searchRequestReadyRead()));
 	connect(searchRequestReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(searchRequestError(QNetworkReply::NetworkError)));
 	connect(searchRequestReply, SIGNAL(finished()), this, SLOT(searchRequestFinished()));
+}
+
+void YouTubeVideoPlayer::on_volumeSlider_valueChanged(int volume)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_volumeSlider_valueChanged(int volume = %1)").arg(volume));
+#endif
+
+#if QT_VERSION < 0x050000
+	audioOutput()->setVolume((double)volume / 100.0);
+#else
+	audioOutput()->setVolume(volume);
+#endif
+	labelVolumeSlider->setText(tr("Volume") + " " + QString::number(volume) + "%");
+}
+
+void YouTubeVideoPlayer::on_seekSlider_valueChanged(int position)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_seekSlider_valueChanged(int volume = %1)").arg(position));
+#endif
+
+#if QT_VERSION < 0x050000
+	mediaObject()->seek(position);
+#else
+	videoPlayer()->setPosition(position);
+#endif
 }
 
 void YouTubeVideoPlayer::updateAttachedVideoInfoImages()

@@ -516,8 +516,9 @@ endif
 #
 # Enable (1) or disable (0) support for game/machine 'attached' YouTube videos.
 #
-# Note that this feature requires Phonon and will thus be disabled automatically
-# when Phonon has been disabled (PHONON=0)!
+# With Qt 4 this feature requires Phonon and will thus be disabled automatically
+# when Phonon has been disabled globally (PHONON=0)! In case of Qt 5 we use the
+# QtMultimedia module where Phonon isn't required.
 #
 # You'll also need a decent back-end that supports FLV and MP4 video formats
 # (codecs). Take a look at the README (section 2, software requirements) for
@@ -760,7 +761,9 @@ DEFINES += QMC2_DATABASE_ENABLED
 endif
 
 ifeq '$(PHONON)' '0'
+#ifneq '$(QMAKEV)' '3'
 YOUTUBE = 0
+#endif
 endif
 
 ifeq '$(YOUTUBE)' '1'
