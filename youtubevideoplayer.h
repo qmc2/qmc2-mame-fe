@@ -6,12 +6,11 @@
 #include <QtGui>
 #include <QtXml>
 #include <QtNetwork>
-#if QT_VERSION >= 0x050000
 #include <QDesktopWidget>
-#endif
 
 #include "ui_youtubevideoplayer.h"
 #include "videoitemwidget.h"
+#include "qmc2_phonon.h"
 
 // supported YouTube formats (see http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs)
 #define YOUTUBE_FORMAT_COUNT		7
@@ -192,7 +191,17 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = NULL, bool videoInfoOnly = false);
 		QString indexToFormat(int);
 
+		bool isPlaying() { return mVideoPlayer->isPlaying(); }
+		bool isPaused() { return mVideoPlayer->isPaused(); }
+		bool hasVideo() { return mVideoPlayer->mediaObject()->hasVideo(); }
+		Phonon::VideoPlayer *videoPlayer() { return mVideoPlayer; }
+		Phonon::VideoWidget *videoWidget() { return mVideoPlayer->videoWidget(); }
+
 	public slots:
+		void play() { mVideoPlayer->play(); }
+		void pause() { mVideoPlayer->pause(); }
+		void stop() { mVideoPlayer->stop(); }
+
 		void init();
 		void adjustIconSizes();
 		void saveSettings();
@@ -225,7 +234,6 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_listWidgetSearchResults_itemActivated(QListWidgetItem *);
 		void on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &);
 		void on_listWidgetSearchResults_customContextMenuRequested(const QPoint &);
-		void on_videoPlayer_customContextMenuRequested(const QPoint &);
 		void on_lineEditSearchString_textChanged(const QString &);
 		void on_toolButtonSuggest_clicked();
 		void on_toolButtonSearch_clicked();
@@ -254,9 +262,14 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void attachVideoById(QString);
 		void goFullScreen();
 
+		void videoPlayer_customContextMenuRequested(const QPoint &);
+
 	protected:
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+
+	private:
+		Phonon::VideoPlayer *mVideoPlayer;
 };
 
 class YouTubeXmlHandler : public QXmlDefaultHandler
@@ -266,7 +279,6 @@ class YouTubeXmlHandler : public QXmlDefaultHandler
 		QString currentText;
 		QString id, title, author;
 		bool isEntry;
-		YouTubeVideoPlayer *videoPlayer;
 
 		YouTubeXmlHandler(QListWidget *, YouTubeVideoPlayer *);
 
@@ -274,6 +286,9 @@ class YouTubeXmlHandler : public QXmlDefaultHandler
 		bool endElement(const QString &, const QString &, const QString &);
 		bool characters(const QString &);
 		bool fatalError(const QXmlParseException &);
+
+	private:
+		YouTubeVideoPlayer *mVideoPlayer;
 };
 
 #endif

@@ -279,7 +279,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( procMap.count() == 0 && videoWasPlaying )
 		if ( qmc2YouTubeWidget )
 			if ( qmc2YouTubeWidget->isVisible() )
-				QTimer::singleShot(QMC2_VIDEOPLAYER_RESUME_DELAY, qmc2YouTubeWidget->videoPlayer, SLOT(play()));
+				QTimer::singleShot(QMC2_VIDEOPLAYER_RESUME_DELAY, qmc2YouTubeWidget, SLOT(play()));
 #endif
 #endif
 
@@ -327,9 +327,9 @@ void ProcessManager::started()
 		musicWasPlaying = false;
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( qmc2YouTubeWidget ) {
-		videoWasPlaying = qmc2YouTubeWidget->videoPlayer->isPlaying();
+		videoWasPlaying = qmc2YouTubeWidget->isPlaying();
 		if ( videoWasPlaying )
-			qmc2YouTubeWidget->videoPlayer->pause();
+			qmc2YouTubeWidget->pause();
 	} else
 		videoWasPlaying = false;
 #endif

@@ -21,15 +21,15 @@
       <enum>Qt::CustomContextMenu</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageAttachedVideos">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>715</width>
-        <height>336</height>
+        <width>303</width>
+        <height>102</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -162,8 +162,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>715</width>
-        <height>336</height>
+        <width>705</width>
+        <height>332</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -173,17 +173,10 @@
       <attribute name="label">
        <string>Video player</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutVideoPlayer" rowstretch="1,0" columnstretch="0,0,0,1,0,0">
+      <layout class="QGridLayout" name="gridLayoutVideoPlayer" rowstretch="1,0" columnstretch="0,0,0,0,0,0">
        <property name="margin">
         <number>0</number>
        </property>
-       <item row="0" column="0" colspan="6">
-        <widget class="Phonon::VideoPlayer" name="videoPlayer">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreferredFormat">
          <property name="sizePolicy">
@@ -196,7 +189,10 @@
           <string>Select the preferred video format (automatically falls back to the next available format)</string>
          </property>
          <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToContents</enum>
+          <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+         </property>
+         <property name="minimumContentsLength">
+          <number>10</number>
          </property>
          <item>
           <property name="text">
@@ -344,6 +340,9 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0" colspan="6">
+        <widget class="QWidget" name="widgetVideoPlayerPlaceholder" native="true"/>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="pageSearchVideos">
@@ -351,8 +350,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>715</width>
-        <height>336</height>
+        <width>221</width>
+        <height>105</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -507,11 +506,6 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <customwidgets>
-  <customwidget>
-   <class>Phonon::VideoPlayer</class>
-   <extends>QWidget</extends>
-   <header location="global">phonon/videoplayer.h</header>
-  </customwidget>
   <customwidget>
    <class>Phonon::SeekSlider</class>
    <extends>QWidget</extends>

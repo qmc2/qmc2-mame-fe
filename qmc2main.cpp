@@ -2827,8 +2827,8 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget )
-	  if ( qmc2YouTubeWidget->videoPlayer->videoWidget()->isFullScreen() ) {
-		  qmc2YouTubeWidget->videoPlayer->videoWidget()->setFullScreen(false);
+	  if ( qmc2YouTubeWidget->videoWidget()->isFullScreen() ) {
+		  qmc2YouTubeWidget->videoWidget()->setFullScreen(false);
 		  qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
 		  qApp->processEvents();
 		  if ( windowState() & Qt::WindowFullScreen )
@@ -2895,7 +2895,7 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 #if defined(QMC2_YOUTUBE_ENABLED)
     bool youTubeWasPlaying = false;
     if ( qmc2YouTubeWidget )
-      youTubeWasPlaying = qmc2YouTubeWidget->videoPlayer->isPlaying();
+      youTubeWasPlaying = qmc2YouTubeWidget->isPlaying();
 #endif
 #if QT_VERSION < 0x040800
     hide();
@@ -2923,8 +2923,8 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 #if defined(QMC2_YOUTUBE_ENABLED)
     if ( qmc2YouTubeWidget && youTubeWasPlaying ) {
 	    qApp->processEvents();
-	    if ( !qmc2YouTubeWidget->videoPlayer->isPlaying() )
-		    QTimer::singleShot(0, qmc2YouTubeWidget->videoPlayer, SLOT(play()));
+	    if ( !qmc2YouTubeWidget->isPlaying() )
+		    QTimer::singleShot(0, qmc2YouTubeWidget->videoPlayer(), SLOT(play()));
     }
 #endif
   }
@@ -4295,8 +4295,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	  if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
 		  qmc2YouTubeWidget->saveSettings();
 		  qmc2YouTubeWidget->forcedExit = true;
-		  if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
-			  qmc2YouTubeWidget->videoPlayer->stop();
+		  if ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
+			  qmc2YouTubeWidget->stop();
 		  QLayout *vbl = tabYouTube->layout();
 		  if ( vbl ) delete vbl;
 		  qmc2YouTubeWidget->close();
@@ -4331,8 +4331,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( qmc2YouTubeWidget ) {
             qmc2YouTubeWidget->saveSettings();
             qmc2YouTubeWidget->forcedExit = true;
-            if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
-              qmc2YouTubeWidget->videoPlayer->stop();
+            if ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
+              qmc2YouTubeWidget->stop();
             QLayout *vbl = tabYouTube->layout();
             if ( vbl ) delete vbl;
             qmc2YouTubeWidget->close();
@@ -6506,8 +6506,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
     log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
     qmc2YouTubeWidget->saveSettings();
     qmc2YouTubeWidget->forcedExit = true;
-    if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
-      qmc2YouTubeWidget->videoPlayer->stop();
+    if ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
+      qmc2YouTubeWidget->stop();
     qmc2YouTubeWidget->close();
     qmc2YouTubeWidget->deleteLater();
     qmc2YouTubeWidget = NULL;
