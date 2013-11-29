@@ -29,7 +29,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-#define QMC2_DEBUG
+//#define QMC2_DEBUG
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
