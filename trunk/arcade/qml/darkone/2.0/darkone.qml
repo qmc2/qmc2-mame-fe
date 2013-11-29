@@ -98,6 +98,8 @@ FocusScope {
         property string colour5: "#000000"
         property string textColour1: "#000000"
         property string textColour2: "#000000"
+        property int itemLeftMargin: 15
+        property int itemRightMargin: 15
 
         color: "black"
         opacity: 0
@@ -1257,19 +1259,12 @@ FocusScope {
             states: [
                 State {
                     name: "hidden"
-                    PropertyChanges { target: showListButton; anchors.left: toolbar.left; }
-                    PropertyChanges { target: gameListView; anchors.leftMargin: -DarkoneJS.listWidth() - 5 }
-                    PropertyChanges { target: gameListView; opacity: 0 }
-                    PropertyChanges { target: searchBox; opacity: 0 }
                 },
                 State {
                     name: "shown"
-                    PropertyChanges { target: showListButton; anchors.left: searchBox.right; }
-                    PropertyChanges { target: gameListView; anchors.leftMargin: 15 }
-                    PropertyChanges { target: gameListView; opacity: 1.0 }
-                    PropertyChanges { target: searchBox; opacity: 1.0 }
                 }
             ]
+
             transitions: [
                 //note: here we jump through hoops for an issue where by if a list is hidden in non-fullscreen, and
                 //then fullscreen is enabled, the leftMargin isn't updated and so the (hidden) list is partially viewable.
@@ -1284,37 +1279,37 @@ FocusScope {
                     to: "shown"
                     SequentialAnimation {
                         // ensure correct initial position
-                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -DarkoneJS.listWidth() - 5; duration: 0; easing.type: Easing.Linear }
-                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -DarkoneJS.listWidth() - 5; duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: searchBox; property: "x"; from: gameListView.anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
                         // make visible (set in the state property)
                         PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
                         PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
-                        // re-anchor show/hide list button (set in the state property)
-                        PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
                         // animate
                         ParallelAnimation {
-                            PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
-
-                            PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -DarkoneJS.listWidth() - 5; to: 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad } }
-                        PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; } } },
+                            PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: searchBox; property: "x"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: showListButton; property: "x"; from: darkone.itemLeftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
+                        // enable borders
+                        PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                    } },
                 Transition {
                     from: "shown"
                     to: "hidden"
                     SequentialAnimation {
+                        // disable borders
                         PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                         // ensure correct initial position
-                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: DarkoneJS.listWidth() +15; duration: 0; easing.type: Easing.Linear }
-                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: anchors.leftMargin; to: DarkoneJS.listWidth() + 15; duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: searchBox; property: "x"; from: gameListView.anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
                         // animate
                         ParallelAnimation {
-                            PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
-                            PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: 15; to: -DarkoneJS.listWidth() - 5; duration: darkone.listDuration; easing.type: Easing.InOutQuad } }
+                            PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: searchBox; property: "x"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: showListButton; property: "x"; from: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
                         // make invisible (set in the state property)
                         PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
                         PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
-                        // re-anchor show/hide list button (set in the state property)
-                        PropertyAnimation { target: showListButton; property: "anchors.left"; duration: 0; }
-                 } }
+                } }
             ]
 
             function firstVisibleItem() { return - Math.floor(((height / 2) / (gameListView.itemHeight + 10))); } // relatives 'work'
@@ -1344,6 +1339,15 @@ FocusScope {
                 }
             }
 
+            onStateChanged: {
+                if (state == "hidden") {
+                    if (DarkoneJS.resetFocused == "" && !darkone.toolbarHidden) {
+                        if (toolbar.activeItem.parent == searchBox ||
+                            toolbar.activeItem.parent.parent == searchBox)
+                            showListButton.focus = true;
+                    }
+                }
+            }
             onFocusChanged: {
                 (debug2 || debug3) && console.log("[focus] gameListView: '" + focus + "'" );
                 (debug2 || debug3) && focus && DarkoneJS.inFocus();
@@ -2277,11 +2281,12 @@ FocusScope {
         Rectangle {
             id: toolbarItemBorderBottom
             z: parent.z + 15
+            x: toolbar.activeItem ? (toolbar.activeItem.parent == toolbar ? toolbar.activeItem.x : toolbar.activeItem.mapToItem(null, 0, 0).x) : 0 
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 2 + darkone.activeBorderSize
-            width: 0
+            width: toolbar.activeItem ? toolbar.activeItem.width : 0
             height: darkone.activeBorderSize - 1
-            visible: toolbarFocusScope.focus && !toolbar.focus && darkone.activeBorders
+            visible: toolbarFocusScope.focus && darkone.activeBorders && toolbar.activeItemBorders
             color: darkone.textColour2
         }
         Rectangle {
@@ -2324,6 +2329,8 @@ FocusScope {
                 id: toolbar
                 z: 4
                 property bool cycling: false
+                property bool activeItemBorders: true
+                property Item activeItem
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 0
@@ -2473,8 +2480,7 @@ FocusScope {
                     width: DarkoneJS.listWidth()
                     height: 24
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 15
+                    x: gameListView.anchors.leftMargin
                     opacity: 1.0
 
                     Image {
@@ -2488,21 +2494,23 @@ FocusScope {
                         smooth: true
                         opacity: 0.75
 
-                        onFocusChanged: { debug2 && console.log("[focus] searchButton: '" + focus + "'" ); }
+                        onFocusChanged: {
+                            debug2 && console.log("[focus] searchButton: '" + focus + "'" );
+                        }
                         onActiveFocusChanged: {
                             debug2 && console.log("[activeFocus] searchButton: '" + activeFocus + "'" );
                             if (activeFocus) {
-                                toolbarItemBorderBottom.x = searchButton.mapToItem(null, 0, 0).x;
-                                toolbarItemBorderBottom.anchors.leftMargin = searchButton.leftMargin || 0;
-                                toolbarItemBorderBottom.width = searchButton.width;
-                            }
+                                toolbar.activeItem = searchButton;
+                                toolbar.activeItemBorders = true;
+                            } else
+                                toolbar.activeItemBorders = false;
                         }
 
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
                             onEntered: { darkone.toolbarAutoHide && darkone.toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle(); hideToolbarTimer.stop(); parent.opacity = 1.0 }
-                            onExited: { hideToolbarTimer.start(); parent.opacity = 0.75 }
+                            onExited: { hideToolbarTimer.restart(); parent.opacity = 0.75 }
                             onClicked: {
                                 parent.opacity = 1.0;
                                 gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
@@ -2563,6 +2571,7 @@ FocusScope {
                             autoScroll: true
                             clip: true
                             selectByMouse: true
+                            focus: true // toolbarFocusScope
 
                             cursorDelegate: Rectangle {
                                 id: searchTextCursorDelegate
@@ -2588,10 +2597,14 @@ FocusScope {
                                     debug2 && activeFocus && DarkoneJS.inFocus();
                                 }
                                 if (activeFocus) {
-                                    toolbarItemBorderBottom.x = searchTextInputBox.mapToItem(null, 0, 0).x;
-                                    toolbarItemBorderBottom.anchors.leftMargin = searchTextInputBox.leftMargin || 0;
-                                    toolbarItemBorderBottom.width = searchTextInputBox.width;
-                                }
+                                    if (darkone.listHidden)
+                                        showListButton.focus = true;
+                                    else {
+                                        toolbar.activeItem = searchTextInputBox;
+                                        toolbar.activeItemBorders = true;
+                                    }
+                                } else
+                                    toolbar.activeItemBorders = false;
                             }
 
                             KeyNavigation.up: KeyNavigation.backtab
@@ -2630,14 +2643,13 @@ FocusScope {
                             debug2 && console.log("[focus] clearButton: '" + focus + "'" );
                         }
                         onActiveFocusChanged: {
-                            debug2 && console.log("[activeFocus] clearButton: '" + activeFocus + "'" );
                             if (activeFocus) {
-                                toolbarItemBorderBottom.x = clearButton.mapToItem(null, 0, 0).x;
-                                toolbarItemBorderBottom.anchors.leftMargin = clearButton.leftMargin || 0;
-                                toolbarItemBorderBottom.width = clearButton.width;
-                            }
+                                toolbar.activeItem = clearButton;
+                                toolbar.activeItemBorders = true;
+                            } else
+                                toolbar.activeItemBorders = false;
+                            debug2 && console.log("[activeFocus] clearButton: '" + activeFocus + "'" );
                         }
-
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
@@ -2671,26 +2683,27 @@ FocusScope {
                 Image {
                     id: showListButton
                     source: "images/list_toggle.png"
+                    x: searchBox.x + searchBox.width + 15
                     height: 18
                     width: height
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: (parent.height - height) / 2
-                    anchors.left: searchBox.right
-                    anchors.leftMargin: 15
                     fillMode: Image.PreserveAspectFit
                     opacity: 0.75
                     rotation: darkone.listHidden ? 90 : 270
                     smooth: true
                     z: 5
 
-                    onFocusChanged: { debug2 && console.log("[focus] showListButton: '" + focus + "'" ); }
+                    onFocusChanged: {
+                        debug2 && console.log("[focus] showListButton: '" + focus + "'" );
+                    }
                     onActiveFocusChanged: {
                         debug2 && console.log("[activeFocus] showListButton: '" + activeFocus + "'" );
                         if (activeFocus) {
-                            toolbarItemBorderBottom.x = showListButton.mapToItem(null, 0, 0).x;
-                            toolbarItemBorderBottom.anchors.leftMargin = showListButton.leftMargin || 0;
-                            toolbarItemBorderBottom.width = showListButton.width;
-                        }
+                            toolbar.activeItem = showListButton;
+                            toolbar.activeItemBorders = true;
+                        } else
+                            toolbar.activeItemBorders = false;
                     }
 
                     MouseArea {
@@ -2737,23 +2750,24 @@ FocusScope {
                 }
                 Image {
                     id: preferencesButton
+                    x: showListButton.x + showListButton.width + 10
                     height: 16
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: showListButton.right
-                    anchors.leftMargin: 10
                     source: "images/preferences.png"
                     smooth: true
                     opacity: 0.75
                     fillMode: Image.PreserveAspectFit
 
-                    onFocusChanged: { debug2 && console.log("[focus] preferencesButton: '" + focus + "'" ); }
+                    onFocusChanged: {
+                        debug2 && console.log("[focus] preferencesButton: '" + focus + "'" );
+                    }
                     onActiveFocusChanged: {
                         debug2 && console.log("[activeFocus] preferencesButton: '" + activeFocus + "'" );
                         if (activeFocus) {
-                            toolbarItemBorderBottom.x = preferencesButton.mapToItem(null, 0, 0).x;
-                            toolbarItemBorderBottom.anchors.leftMargin = preferences.leftMargin || 0;
-                            toolbarItemBorderBottom.width = preferencesButton.width;
-                        }
+                            toolbar.activeItem = preferencesButton;
+                            toolbar.activeItemBorders = true;
+                        } else
+                            toolbar.activeItemBorders = false;
                     }
 
                     MouseArea {
@@ -2794,10 +2808,9 @@ FocusScope {
                 }
                 Image {
                     id: fullScreenButton
+                    x: preferencesButton.x + preferencesButton.width + 10
                     height: 16
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: preferencesButton.right
-                    anchors.leftMargin: 10
                     source: "images/fullscreen.png"
                     state: darkone.fullScreen ? "fullscreen" : "windowed"
                     smooth: true
@@ -2815,14 +2828,16 @@ FocusScope {
                         }
                     ]
 
-                    onFocusChanged: { debug2 && console.log("[focus] fullScreenButton: '" + focus + "'" ); }
+                    onFocusChanged: {
+                        debug2 && console.log("[focus] fullScreenButton: '" + focus + "'" );
+                    }
                     onActiveFocusChanged: {
                         debug2 && console.log("[activeFocus] fullScreenButton: '" + activeFocus + "'" );
                         if (activeFocus) {
-                            toolbarItemBorderBottom.x = fullScreenButton.mapToItem(null, 0, 0).x;
-                            toolbarItemBorderBottom.anchors.leftMargin = fullScreen.leftMargin || 0;
-                            toolbarItemBorderBottom.width = fullScreenButton.width;
-                        }
+                            toolbar.activeItem = fullScreenButton;
+                            toolbar.activeItemBorders = true;
+                        } else
+                            toolbar.activeItemBorders = false;
                     }
 
                     MouseArea {
@@ -2878,8 +2893,8 @@ FocusScope {
                     height: 20
                     width: 40
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: parent.right
                     anchors.rightMargin: overlay.anchors.rightMargin + overlay.width - overlayButtonBlock.x - (overlayButtonBlock.width / 2) - (width / 2);
+                    anchors.right: parent.right
                     opacity: 0.5
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: "transparent" }
@@ -2918,15 +2933,17 @@ FocusScope {
                         width: 40
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
-                        focus: true // toolbarFocusScope
 
+                        onFocusChanged: {
+                            debug2 && console.log("[focus] launchButton: '" + activeFocus + "'" );
+                        }
                         onActiveFocusChanged: {
                             debug2 && console.log("[activeFocus] launchButton: '" + activeFocus + "'" );
                             if (activeFocus) {
-                                toolbarItemBorderBottom.x = launchBox.mapToItem(null, 0, 0).x;
-                                toolbarItemBorderBottom.anchors.leftMargin = launchBox.leftMargin || 0;
-                                toolbarItemBorderBottom.width = launchBox.width;
-                            }
+                                toolbar.activeItem = launchBox;
+                                toolbar.activeItemBorders = true;
+                            } else
+                                toolbar.activeItemBorders = false;
                         }
 
                         MouseArea {
@@ -2959,14 +2976,16 @@ FocusScope {
                     opacity: 0.25
                     fillMode: Image.PreserveAspectFit
 
-                    onFocusChanged: { debug2 && console.log("[focus] exitButton: '" + focus + "'" ); }
+                    onFocusChanged: {
+                        debug2 && console.log("[focus] exitButton: '" + focus + "'" );
+                    }
                     onActiveFocusChanged: {
                         debug2 && console.log("[activeFocus] exitButton: '" + activeFocus + "'" );
                         if (activeFocus) {
-                            toolbarItemBorderBottom.x = exitButton.mapToItem(null, 0, 0).x;
-                            toolbarItemBorderBottom.anchors.leftMargin = exitButton.leftMargin || 0;
-                            toolbarItemBorderBottom.width = exitButton.width;
-                        }
+                            toolbar.activeItem = exitButton;
+                            toolbar.activeItemBorders = true;
+                        } else
+                            toolbar.activeItemBorders = false;
                     }
 
                     MouseArea {
