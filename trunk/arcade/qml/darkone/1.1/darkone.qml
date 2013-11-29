@@ -264,6 +264,13 @@ FocusScope {
                 }
             } else {
                 switch ( event.key ) {
+                    case Qt.Key_Backtab:
+                    case Qt.Key_Tab: {
+                        debug2 && console.log("[keys] tab: \"let me fall through your cracks again\"");
+                        overlay.focus = true;
+                        event.accepted = true;
+                        break;
+                    }
                     case Qt.Key_Left: {
                         if (!darkone.listHidden)
                             DarkoneJS.listToggle();
@@ -2418,6 +2425,8 @@ FocusScope {
                     darkone.lights();
                     // hide timer  
                     hideToolbarTimer.stop();
+                    // searchTextInput hack
+                    searchTextInput.Keys.forwardTo = [];
 
                     if ( darkone.toolbarHidden )
                         debug2 && console.log("[toolbar] error: key press in hidden state")
