@@ -2392,6 +2392,8 @@ FocusScope {
                 onActiveFocusChanged: {
                     debug2 && console.log("[activeFocus] toolbar: '" + activeFocus + "'" );
                     debug2 && activeFocus && DarkoneJS.inFocus();
+                    if (activeFocus) 
+                        toolbar.activeItemBorders = false;
                 }
 
                 MouseArea {
@@ -2515,8 +2517,7 @@ FocusScope {
                             if (activeFocus) {
                                 toolbar.activeItem = searchButton;
                                 toolbar.activeItemBorders = true;
-                            } else
-                                toolbar.activeItemBorders = false;
+                            } 
                         }
 
                         MouseArea {
@@ -2616,8 +2617,7 @@ FocusScope {
                                         toolbar.activeItem = searchTextInputBox;
                                         toolbar.activeItemBorders = true;
                                     }
-                                } else
-                                    toolbar.activeItemBorders = false;
+                                }
                             }
 
                             KeyNavigation.up: KeyNavigation.backtab
@@ -2656,12 +2656,11 @@ FocusScope {
                             debug2 && console.log("[focus] clearButton: '" + focus + "'" );
                         }
                         onActiveFocusChanged: {
+                            debug2 && console.log("[activeFocus] clearButton: '" + activeFocus + "'" );
                             if (activeFocus) {
                                 toolbar.activeItem = clearButton;
                                 toolbar.activeItemBorders = true;
-                            } else
-                                toolbar.activeItemBorders = false;
-                            debug2 && console.log("[activeFocus] clearButton: '" + activeFocus + "'" );
+                            }
                         }
                         MouseArea {
                             anchors.fill: parent
@@ -2717,8 +2716,7 @@ FocusScope {
                         if (activeFocus) {
                             toolbar.activeItem = showListButton;
                             toolbar.activeItemBorders = true;
-                        } else
-                            toolbar.activeItemBorders = false;
+                        }
                     }
 
                     MouseArea {
@@ -2782,8 +2780,7 @@ FocusScope {
                         if (activeFocus) {
                             toolbar.activeItem = preferencesButton;
                             toolbar.activeItemBorders = true;
-                        } else
-                            toolbar.activeItemBorders = false;
+                        }
                     }
 
                     MouseArea {
@@ -2852,8 +2849,7 @@ FocusScope {
                         if (activeFocus) {
                             toolbar.activeItem = fullScreenButton;
                             toolbar.activeItemBorders = true;
-                        } else
-                            toolbar.activeItemBorders = false;
+                        }
                     }
 
                     MouseArea {
@@ -2946,8 +2942,7 @@ FocusScope {
                             if (activeFocus) {
                                 toolbar.activeItem = launchBox;
                                 toolbar.activeItemBorders = true;
-                            } else
-                                toolbar.activeItemBorders = false;
+                            }
                         }
 
                         CursorShapeArea {
@@ -2991,8 +2986,7 @@ FocusScope {
                         if (activeFocus) {
                             toolbar.activeItem = exitButton;
                             toolbar.activeItemBorders = true;
-                        } else
-                            toolbar.activeItemBorders = false;
+                        }
                     }
 
                     MouseArea {
