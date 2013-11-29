@@ -115,7 +115,7 @@ FocusScope {
         onToolbarAutoHideChanged: { debug && console.log("toolbarAutoHide: '" + darkone.toolbarAutoHide + "'"); }
         onLastIndexChanged: { debug && console.log("lastIndex: '" + darkone.lastIndex + "'"); }
         onColourSchemeChanged: { DarkoneJS.colourScheme(colourScheme); }
-        onStateChanged: state == "off" ? lightOffAnimation.start() : lightOnAnimation.start()
+        onStateChanged: { state == "off" ? lightOffAnimation.start() : lightOnAnimation.start(); }
         onLightOutChanged: { debug && console.log("[darkone] darkone.lightOut: '" + darkone.lightOut + ", " +
                                                             "state before: '" + darkone.state + "'");
                              darkone.lightOut ? darkone.state = "off" : darkone.state = "on"; }
@@ -138,17 +138,6 @@ FocusScope {
         onDataHiddenChanged: { darkone.dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
         onInfoMissingChanged: { darkone.infoMissing ? overlayText.state = "missing" : overlayText.state = "found"; }
         onOverlayScaleChanged: { overlayScaleSliderItem.value = darkone.overlayScale; }
-        onFullScreenChanged: {
-            if ( !DarkoneJS.initialising ) {
-                if ( darkone.fullScreen ) {
-                    viewer.switchToFullScreen();
-                    fullScreenButton.state = "fullscreen";
-                } else {
-                    viewer.switchToWindowed();
-                    fullScreenButton.state = "windowed";
-                }
-            }
-        }
         onFocusChanged: {
             debug2 && console.log("[focus] darkone: '" + focus + "'" );
             debug2 && focus && DarkoneJS.inFocus();
@@ -216,7 +205,7 @@ FocusScope {
                 switch ( event.key ) {
                     case Qt.Key_Enter:
                     case Qt.Key_Return: {
-                        darkone.fullScreen = !darkone.fullScreen;
+                        DarkoneJS.fullScreenToggle()
                         event.accepted = true;
                         break;
                     }
@@ -328,7 +317,7 @@ FocusScope {
                     case Qt.Key_F1:
                         break;
                     case Qt.Key_F11: {
-                        darkone.fullScreen = !darkone.fullScreen;
+                        DarkoneJS.fullScreenToggle()
                         event.accepted = true;
                         break;
                     }
@@ -480,7 +469,7 @@ FocusScope {
                     }
                     case Qt.Key_F: {
                         if ( event.modifiers & Qt.AltModifier ) {
-                            darkone.fullScreen = !darkone.fullScreen;
+                            DarkoneJS.fullScreenToggle()
                             event.accepted = true;
                         }
                         break;
@@ -1287,35 +1276,35 @@ FocusScope {
                     SequentialAnimation {
                         // ensure correct initial position
                         PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
-                        PropertyAnimation { target: searchBox; property: "x"; from: gameListView.anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
-                        // make visible (set in the state property)
-                        PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
-                        PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: gameListView.anchors.leftMargin; to: -5 - DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        // show list / search box
+                        PropertyAnimation { target: gameListView; property: "opacity"; from: 0; to: 1.0; duration: 0; }
+                        PropertyAnimation { target: searchBox; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                         // animate
                         ParallelAnimation {
                             PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
-                            PropertyAnimation { target: searchBox; property: "x"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
-                            PropertyAnimation { target: showListButton; property: "x"; from: darkone.itemLeftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
-                        // enable borders
+                            PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: -5 - DarkoneJS.listWidth(); to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: showListButton; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
+                        // show borders
                         PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 0; to: 1.0; duration: 0; }
                     } },
                 Transition {
                     from: "shown"
                     to: "hidden"
                     SequentialAnimation {
-                        // disable borders
+                        // hide border
                         PropertyAnimation { target: gameListViewBorder; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                         // ensure correct initial position
                         PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
-                        PropertyAnimation { target: searchBox; property: "x"; from: gameListView.anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
+                        PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: gameListView.anchors.leftMargin; to: darkone.itemLeftMargin + DarkoneJS.listWidth(); duration: 0; easing.type: Easing.Linear }
                         // animate
                         ParallelAnimation {
                             PropertyAnimation { target: gameListView; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
-                            PropertyAnimation { target: searchBox; property: "x"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
-                            PropertyAnimation { target: showListButton; property: "x"; from: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
-                        // make invisible (set in the state property)
-                        PropertyAnimation { target: gameListView; property: "opacity"; duration: 0; }
-                        PropertyAnimation { target: searchBox; property: "opacity"; duration: 0; }
+                            PropertyAnimation { target: searchBox; property: "anchors.leftMargin"; from: darkone.itemLeftMargin; to: -5 - DarkoneJS.listWidth(); duration: darkone.listDuration; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { target: showListButton; property: "anchors.leftMargin"; from: darkone.itemLeftMargin + DarkoneJS.listWidth() + 15; to: darkone.itemLeftMargin; duration: darkone.listDuration; easing.type: Easing.InOutQuad; } }
+                        // hide list / search box
+                        PropertyAnimation { target: gameListView; property: "opacity"; from: 1.0; to: 0; duration: 0; }
+                        PropertyAnimation { target: searchBox; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                 } }
             ]
 
@@ -1353,7 +1342,7 @@ FocusScope {
                             toolbar.activeItem.parent.parent == searchBox)
                             showListButton.focus = true;
                     }
-                }
+                } 
             }
             onFocusChanged: {
                 (debug2 || debug3) && console.log("[focus] gameListView: '" + focus + "'" );
@@ -2288,7 +2277,8 @@ FocusScope {
         Rectangle {
             id: toolbarItemBorderBottom
             z: parent.z + 15
-            x: toolbar.activeItem ? (toolbar.activeItem.parent == toolbar ? toolbar.activeItem.x : toolbar.activeItem.mapToItem(null, 0, 0).x) : 0 
+            anchors.left: parent.left
+            anchors.leftMargin: toolbar.activeItem ? (toolbar.activeItem.parent == toolbar ? toolbar.activeItem.x : toolbar.activeItem.mapToItem(null, 0, 0).x) : 0
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 2 + darkone.activeBorderSize
             width: toolbar.activeItem ? toolbar.activeItem.width : 0
@@ -2299,7 +2289,8 @@ FocusScope {
         Rectangle {
             id: toolbarItemBorderTop
             z: parent.z + 15
-            x: toolbarItemBorderBottom.x
+            anchors.left: parent.left
+            anchors.leftMargin: toolbarItemBorderBottom.anchors.leftMargin
             anchors.bottom: parent.bottom
             anchors.bottomMargin: toolbar.height - 1 - (2 + darkone.activeBorderSize)
             width: toolbarItemBorderBottom.width
@@ -2488,8 +2479,9 @@ FocusScope {
                     id: searchBox
                     width: DarkoneJS.listWidth()
                     height: 24
+                    anchors.left: toolbar.left
+                    anchors.leftMargin: darkone.itemLeftMargin
                     anchors.verticalCenter: parent.verticalCenter
-                    x: gameListView.anchors.leftMargin
                     opacity: 1.0
 
                     Image {
@@ -2692,11 +2684,13 @@ FocusScope {
                 Image {
                     id: showListButton
                     source: "images/list_toggle.png"
-                    x: searchBox.x + searchBox.width + 15
                     height: 18
                     width: height
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: (parent.height - height) / 2
+                    anchors.left: toolbar.left
+                    // important: ensure behaviour is based on actual state and not 'secondary/wrapper' boolean darkone.listHidden
+                    anchors.leftMargin: darkone.itemLeftMargin + (gameListView.state == "hidden" ? 0 : DarkoneJS.listWidth() + 15);
                     fillMode: Image.PreserveAspectFit
                     opacity: 0.75
                     rotation: darkone.listHidden ? 90 : 270
@@ -2759,8 +2753,9 @@ FocusScope {
                 }
                 Image {
                     id: preferencesButton
-                    x: showListButton.x + showListButton.width + 10
                     height: 16
+                    anchors.left: toolbar.left
+                    anchors.leftMargin: showListButton.anchors.leftMargin + showListButton.width + 10
                     anchors.verticalCenter: parent.verticalCenter
                     source: "images/preferences.png"
                     smooth: true
@@ -2816,8 +2811,9 @@ FocusScope {
                 }
                 Image {
                     id: fullScreenButton
-                    x: preferencesButton.x + preferencesButton.width + 10
                     height: 16
+                    anchors.left: toolbar.left
+                    anchors.leftMargin: preferencesButton.anchors.leftMargin + preferencesButton.width + 10
                     anchors.verticalCenter: parent.verticalCenter
                     source: "images/fullscreen.png"
                     state: darkone.fullScreen ? "fullscreen" : "windowed"
@@ -2854,13 +2850,7 @@ FocusScope {
                         onEntered: parent.opacity = 1.0
                         onExited: parent.opacity = 0.6
                         onClicked: {
-                            if ( fullScreenButton.state == "windowed" ) {
-                                fullScreenButton.state = "fullscreen"
-                                darkone.fullScreen = true;
-                            } else {
-                                fullScreenButton.state = "windowed"
-                                darkone.fullScreen = false;
-                            }
+                            DarkoneJS.fullScreenToggle();
                             parent.opacity = 1.0;
                         }
                     }
@@ -2874,13 +2864,7 @@ FocusScope {
                             case Qt.Key_Space:
                             case Qt.Key_Enter:
                             case Qt.Key_Return: {
-                                if ( fullScreenButton.state == "windowed" ) {
-                                    fullScreenButton.state = "fullscreen"
-                                    darkone.fullScreen = true;
-                                } else {
-                                    fullScreenButton.state = "windowed"
-                                    darkone.fullScreen = false;
-                                }
+                                DarkoneJS.fullScreenToggle();
                                 event.accepted = true;
                                 break;
                             }
