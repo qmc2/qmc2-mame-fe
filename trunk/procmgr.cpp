@@ -26,12 +26,15 @@ ProcessManager::ProcessManager(QWidget *parent)
 #endif
 
 	procCount = 0;
+
 #if QMC2_USE_PHONON_API
 	musicWasPlaying = sentPlaySignal = false;
+#endif
+
 #if defined(QMC2_YOUTUBE_ENABLED)
 	videoWasPlaying = true;
 #endif
-#endif
+
 	launchForeignID = false;
 }
 
@@ -275,12 +278,13 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 		sentPlaySignal = true;
 		QTimer::singleShot(QMC2_AUDIOPLAYER_RESUME_DELAY, qmc2MainWindow, SLOT(on_actionAudioPlayTrack_triggered()));
 	}
+#endif
+
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( procMap.count() == 0 && videoWasPlaying )
 		if ( qmc2YouTubeWidget )
 			if ( qmc2YouTubeWidget->isVisible() )
 				QTimer::singleShot(QMC2_VIDEOPLAYER_RESUME_DELAY, qmc2YouTubeWidget, SLOT(play()));
-#endif
 #endif
 
 	if ( !qmc2AutoMinimizedWidgets.isEmpty() )
@@ -325,6 +329,8 @@ void ProcessManager::started()
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionAudioPauseTrack_triggered()));
 	} else if ( procMap.count() == 1 )
 		musicWasPlaying = false;
+#endif
+
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( qmc2YouTubeWidget ) {
 		videoWasPlaying = qmc2YouTubeWidget->isPlaying();
@@ -332,7 +338,6 @@ void ProcessManager::started()
 			qmc2YouTubeWidget->pause();
 	} else
 		videoWasPlaying = false;
-#endif
 #endif
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
