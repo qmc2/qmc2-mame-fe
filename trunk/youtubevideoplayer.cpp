@@ -10,6 +10,7 @@
 #include <QDir>
 #include <QMap>
 #include <QCache>
+#include <QApplication>
 
 #include "settings.h"
 #include "macros.h"
@@ -28,7 +29,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-//#define QMC2_DEBUG
+#define QMC2_DEBUG
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -283,13 +284,14 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	connect(action, SIGNAL(triggered()), this, SLOT(setSuggestorAppendString()));
 	toolButtonSuggest->setMenu(menuSuggestButton);
-	if ( autoSuggestAction->isChecked() )
-		on_toolButtonSuggest_clicked();
 
 	imageDownloadManager = new QNetworkAccessManager(this);
 	connect(imageDownloadManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(imageDownloadFinished(QNetworkReply *)));
 
 	lineEditSearchString->setPlaceholderText(tr("Enter search string"));
+
+	if ( autoSuggestAction->isChecked() )
+		QTimer::singleShot(0, this, SLOT(on_toolButtonSuggest_clicked()));
 
 	QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
 	QTimer::singleShot(250, this, SLOT(init()));
@@ -422,6 +424,7 @@ void YouTubeVideoPlayer::loadNullVideo()
 	currentVideoID.clear();
 	currentVideoAuthor.clear();
 	currentVideoTitle.clear();
+
 	if ( isPlaying() || isPaused() )
 		stop();
 }
@@ -1526,6 +1529,27 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 				play();
 			else if ( currentVideoID != viw->videoID || !isPlaying() )
 				playVideo(viw->videoID);
+		}
+	}
+}
+
+void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemSelectionChanged()");
+#endif
+
+	for (int i = 0; i < listWidgetAttachedVideos->count(); i++) {
+		QListWidgetItem *item = listWidgetAttachedVideos->item(i);
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( viw ) {
+			if ( item->isSelected() ) {
+				viw->setBackgroundRole(QPalette::Highlight);
+				viw->setForegroundRole(QPalette::HighlightedText);
+			} else {
+				viw->setBackgroundRole(QPalette::Window);
+				viw->setForegroundRole(QPalette::WindowText);
+			}
 		}
 	}
 }
