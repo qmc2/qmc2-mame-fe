@@ -2515,12 +2515,29 @@ FocusScope {
                                 focus = true;
                             }
                         }
-                        KeyNavigation.up: KeyNavigation.backtab
-                        KeyNavigation.down: KeyNavigation.tab
-                        KeyNavigation.tab: searchTextInput
+                        Keys.onUpPressed: {
+                            toolbar.cycling = true;
+                            toolbar.focus = true;
+                        }
                         Keys.onBacktabPressed: {
                             toolbar.cycling = true;
                             toolbar.focus = true;
+                        }
+                        KeyNavigation.down: KeyNavigation.tab
+                        KeyNavigation.tab: searchTextInput
+                        Keys.onPressed: {
+                            darkone.lights();
+                            switch ( event.key ) {
+                                case Qt.Key_Space:
+                                case Qt.Key_Enter:
+                                case Qt.Key_Return: {
+                                    gameListView.currentIndex = viewer.findIndex(searchTextInput.text, gameListView.currentIndex)
+                                    gameListView.positionViewAtIndex(gameListView.currentIndex, ListView.Center);
+                                    focus = true;
+                                    event.accepted = true;
+                                    break;
+                                }
+                            }
                         }
                     }
                     Rectangle {
@@ -2640,6 +2657,19 @@ FocusScope {
                         KeyNavigation.down: KeyNavigation.tab
                         KeyNavigation.backtab: searchTextInput
                         KeyNavigation.tab: showListButton
+                        Keys.onPressed: {
+                            darkone.lights();
+                            switch ( event.key ) {
+                                case Qt.Key_Space:
+                                case Qt.Key_Enter:
+                                case Qt.Key_Return: {
+                                    searchTextInput.text = "";
+                                    searchTextInput.focus = true;
+                                    event.accepted = true;
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
                 Image {
@@ -2672,7 +2702,18 @@ FocusScope {
                         hoverEnabled: true
                         onEntered: parent.opacity = 1.0
                         onExited: parent.opacity = 0.75
-                        onClicked: { DarkoneJS.listToggle(); }
+                        onClicked: {
+                            DarkoneJS.listToggle();
+                            toolbarFocusScope.focus = true;
+                        }
+                    }
+                    Keys.onUpPressed: {
+                        if ( ! darkone.listHidden )
+                            clearButton.focus = true;
+                        else {
+                            toolbar.cycling = true;
+                            toolbar.focus = true;
+                        }
                     }
                     Keys.onBacktabPressed: {
                         if ( ! darkone.listHidden )
@@ -2682,9 +2723,21 @@ FocusScope {
                             toolbar.focus = true;
                         }
                     }
-                    KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.tab: preferencesButton
+                    Keys.onPressed: {
+                        darkone.lights();
+                        switch ( event.key ) {
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                DarkoneJS.listToggle();
+                                toolbarFocusScope.focus = true;
+                                event.accepted = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 Image {
                     id: preferencesButton
@@ -2727,6 +2780,21 @@ FocusScope {
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: showListButton
                     KeyNavigation.tab: fullScreenButton
+                    Keys.onPressed: {
+                        darkone.lights();
+                        switch ( event.key ) {
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                if (preferences.state == "shown")
+                                    preferences.state = "hidden";
+                                else
+                                    preferences.state = "shown";
+                                event.accepted = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 Image {
                     id: fullScreenButton
@@ -2781,6 +2849,24 @@ FocusScope {
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: preferencesButton
                     KeyNavigation.tab: launchButton
+                    Keys.onPressed: {
+                        darkone.lights();
+                        switch ( event.key ) {
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                if ( fullScreenButton.state == "windowed" ) {
+                                    fullScreenButton.state = "fullscreen"
+                                    darkone.fullScreen = true;
+                                } else {
+                                    fullScreenButton.state = "windowed"
+                                    darkone.fullScreen = false;
+                                }
+                                event.accepted = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 Text {
                     id: fpsText
@@ -2813,6 +2899,21 @@ FocusScope {
                     KeyNavigation.down: KeyNavigation.tab
                     KeyNavigation.backtab: fullScreenButton
                     KeyNavigation.tab: exitButton
+                    Keys.onPressed: {
+                        darkone.lights();
+                        switch ( event.key ) {
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                if (!darkone.ignoreLaunch) {
+                                    gameListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                    DarkoneJS.launch();
+                                }
+                                event.accepted = true;
+                                break;
+                            }
+                        }
+                    }
 
                     Image {
                         id: launchButton
@@ -2883,12 +2984,27 @@ FocusScope {
                             Qt.quit();
                         }
                     }
-                    KeyNavigation.up: KeyNavigation.backtab
-                    KeyNavigation.down: KeyNavigation.tab
-                    KeyNavigation.backtab: launchButton
+                    Keys.onDownPressed: {
+                        toolbar.cycling = true;
+                        toolbar.focus = true;
+                    }
                     Keys.onTabPressed: {
                         toolbar.cycling = true;
                         toolbar.focus = true;
+                    }
+                    KeyNavigation.up: KeyNavigation.backtab
+                    KeyNavigation.backtab: launchButton
+                    Keys.onPressed: {
+                        darkone.lights();
+                        switch ( event.key ) {
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                darkone.ignoreLaunch = true;
+                                Qt.quit();
+                                break;
+                            }
+                        }
                     }
                 }
             } // toolbar
