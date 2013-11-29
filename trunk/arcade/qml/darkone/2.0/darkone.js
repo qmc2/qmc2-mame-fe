@@ -312,11 +312,12 @@ function launchDelay() {
 }
 
 function launch() {
+     focus(-1);
+     darkone.forceActiveFocus();
      resetListHidden = !darkone.listHidden;
      listToggle(-1);
      resetToolbarHidden = !darkone.toolbarHidden;
      toolbarToggle(-1);
-     gameListView.focus = true;
      resetScale = darkone.overlayScale;
      if (!darkone.launchFlash) {
          darkone.launchZoom && zoom("max");
@@ -345,10 +346,8 @@ function gameOver() {
            zoom(resetScale / darkone.overlayScale);
            resetScale = -1;
         }
-        if ( !darkone.listHidden )
-            gameListView.focus = true;
-        else
-            overlay.focus = true;
+        resetFocused = ""
+        focus(1);
     }
 }
 
@@ -602,19 +601,22 @@ function focus(vFocus) {
     if (resetFocused == "") {
         switch ( typeof(vFocus) ) {
             case "string":
-                debug3 && console.log("[focus+] focused[]: '" + focused + "'");
-                focused.push(vFocus);
-                debug3 && console.log("[focus+] focused[]: '" + focused + "'");
+                var bAdd = true;
+                if (focused.length > 0)
+                    bAdd = focused[focused.length - 1] != vFocus
+                if (bAdd) {
+                    debug3 && console.log("[focus+] focused[]: '" + focused + "'");
+                    focused.push(vFocus);
+                    debug3 && console.log("[focus+] focused[]: '" + focused + "'");
+                }
                 break;
-
             default: 
                 if (vFocus > 0) {
                     var bSet = false;
                     var last = ""
                     while (focused.length > 0 && !bSet) {
-                        debug3 && console.log("[focus-] focused[]: '" + focused + "'");
-                        last = focused.pop();
-                        debug3 && console.log("[focus-] focused[]: '" + focused + "'");
+                        debug3 && console.log("[focus?] focused[]: '" + focused + "'");
+                        last = focused[focused.length - 1];
                         switch ( last ) {
                             case "overlay": {
                                 debug3 && console.log("[focus=]: '" + last + "'");
@@ -638,6 +640,11 @@ function focus(vFocus) {
                                 }
                                 break;
                             }
+                        }
+                        if (!bSet) { 
+                            debug3 && console.log("[focus-] focused[]: '" + focused + "'");
+                            focused.pop();
+                            debug3 && console.log("[focus-] focused[]: '" + focused + "'");
                         }
                     }
                     if (focused.length > 25)
