@@ -168,6 +168,16 @@ function listToggle(force) {
                                  "force: '" + force + "'");
 }
 
+function fullScreenToggle() {
+    if ( darkone.initialised ) {
+        if ( darkone.fullScreen )
+            viewer.switchToWindowed();
+        else
+            viewer.switchToFullScreen();
+        darkone.fullScreen = !darkone.fullScreen;
+    }
+}
+
 function lightToggle(force) {
     if (!darkone.initialised || fadeIn.running)
         return;
