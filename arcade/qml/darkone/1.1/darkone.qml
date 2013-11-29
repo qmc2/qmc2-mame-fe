@@ -2791,11 +2791,10 @@ FocusScope {
                             debug && console.log("[preferencesButton clicked] state: '" + preferences.state + "'")
                             debug && DarkoneJS.info("[preferencesButton clicked]", preferences)
                             parent.opacity = 1.0;
-                            if (preferences.state == "shown") {
+                            if (preferences.state == "shown")
                                 preferences.state = "hidden";
-                            } else {
+                            else
                                 preferences.state = "shown";
-                            }
                         }
                     }
                     KeyNavigation.up: KeyNavigation.backtab

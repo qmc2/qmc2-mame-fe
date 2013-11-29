@@ -139,7 +139,6 @@ function toolbarToggle(force) {
         toolbarFocusScope.focus = true;
     } else if ((force < 0 || (!darkone.toolbarHidden && !force)) &&
                 !darkone.toolbarShowMenuLock && !darkone.toolbarShowFpsLock) {
-
         darkone.toolbarHidden = true;
         toolbarFocusScope.focus && focus(1);
     }
@@ -159,11 +158,9 @@ function listToggle(force) {
     resetOverlaySnapTimer.start();
     if (force > 0 || (darkone.listHidden && !force)) {
         darkone.listHidden = false;
-        showListButton.rotation = 270;
         gameListView.focus = true;
     } else if (force < 0 || (!darkone.listHidden && !force)) {
         darkone.listHidden = true;
-        showListButton.rotation = 90;
         gameListView.focus && focus(1);
     }
     debug && console.log("[listToggle 2] " +
@@ -545,7 +542,7 @@ function keyEvent2String(e) {
 }
 
 function colourScheme(scheme) {
-    if (darkone.colourScheme != scheme )
+    if (darkone.colourScheme != scheme)
         darkone.colourScheme = scheme;
     switch (scheme) {
         case "dark":
