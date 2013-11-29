@@ -254,6 +254,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_comboBoxPreferredFormat_activated(int);
 		void on_toolBox_currentChanged(int);
 		void on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *);
+		void on_listWidgetAttachedVideos_itemSelectionChanged();
 		void on_listWidgetSearchResults_itemActivated(QListWidgetItem *);
 		void on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &);
 		void on_listWidgetSearchResults_customContextMenuRequested(const QPoint &);
