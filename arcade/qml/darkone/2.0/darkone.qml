@@ -225,13 +225,23 @@ FocusScope {
                 if ( event.modifiers & Qt.ShiftModifier ) {
                 } else {
                     switch ( event.key ) {
-                        case Qt.Key_D: {
+                        case Qt.Key_B: {
+                            darkone.activeBorders = !darkone.activeBorders;
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_1: {
                             debug = !debug;
                             event.accepted = true;
                             break;
                         }
-                        case Qt.Key_K: {
+                        case Qt.Key_2: {
                             debug2 = !debug2;
+                            event.accepted = true;
+                            break;
+                        }
+                        case Qt.Key_3: {
+                            debug3 = !debug3;
                             event.accepted = true;
                             break;
                         }
@@ -482,16 +492,6 @@ FocusScope {
                            overlayDataTypeCycleItem.focus = true;
                         else
                            overlay.focus = true;
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_D: {
-                        debug = !debug;
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_K: {
-                        debug2 = !debug2;
                         event.accepted = true;
                         break;
                     }
