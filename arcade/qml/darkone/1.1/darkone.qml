@@ -2388,6 +2388,8 @@ FocusScope {
                 onFocusChanged: {
                     debug2 && console.log("[focus] toolbar: '" + focus + "'" );
                     debug2 && focus && DarkoneJS.inFocus();
+                    if (!toolbar.cycling)
+                        toolbarFocusScope.focus = true;
                 }
                 onActiveFocusChanged: {
                     debug2 && console.log("[activeFocus] toolbar: '" + activeFocus + "'" );
