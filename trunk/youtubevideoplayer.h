@@ -203,7 +203,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		Phonon::VideoWidget *videoWidget() { return mVideoPlayer->videoWidget(); }
 		Phonon::AudioOutput *audioOutput() { return mVideoPlayer->audioOutput(); }
 		Phonon::MediaObject *mediaObject() { return mVideoPlayer->mediaObject(); }
-		qint64 remainingTime() { mediaObject()->remainingTime(); }
+		qint64 remainingTime() { return mediaObject()->remainingTime(); }
 #else
 		bool isPlaying() { return videoPlayer()->state() == QMediaPlayer::PlayingState; }
 		bool isPaused() { return videoPlayer()->state() == QMediaPlayer::PausedState; }
