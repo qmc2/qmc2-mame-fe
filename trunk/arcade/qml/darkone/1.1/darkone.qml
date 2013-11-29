@@ -88,7 +88,6 @@ FocusScope {
         property int overlayDuration: 0
         property int flashes: 4
         property int activeBorderSize: 2
-        property int toolbarHideIn: 0
         property bool preferencesLaunchLock: false
         property bool toolbarShowMenuLock: false
         property bool toolbarShowFpsLock: false
@@ -358,17 +357,10 @@ FocusScope {
                            } } }
         Timer {
             id: hideToolbarTimer
-            interval: 500
+            interval: 4000
             running: false
-            repeat: true
-            onTriggered: {
-                if (darkone.toolbarHideIn == 0) {
-                    hideToolbarTimer.stop();
-                    darkone.toolbarHideIn = 5;
-                    darkone.toolbarAutoHide && DarkoneJS.toolbarToggle(-1);
-                } else
-                    darkone.toolbarHideIn -= 1;
-            }
+            repeat: false
+            onTriggered: { darkone.toolbarAutoHide && DarkoneJS.toolbarToggle(-1); }
         }
         Timer {
             id: lightOutTimer
@@ -2325,10 +2317,11 @@ FocusScope {
             onFocusChanged: {
                 (debug2 || debug3) && console.log("[focus] toolbarFocusScope: '" + focus + "'" );
                 (debug2 || debug3) && focus && DarkoneJS.inFocus();
-                if ( focus )
+                if ( focus ) {
                     DarkoneJS.focus("toolbarFocusScope");
-                else
-                    hideToolbarTimer.start();
+                    hideToolbarTimer.stop();
+                } else
+                    hideToolbarTimer.restart();
             }
             onActiveFocusChanged: {
                 debug2 && console.log("[activeFocus] toolbarFocusScope: '" + activeFocus + "'" );
@@ -2403,7 +2396,7 @@ FocusScope {
                         darkone.toolbarHidden && !DarkoneJS.inGame && DarkoneJS.toolbarToggle();
                         hideToolbarTimer.stop();
                     }
-                    onExited: { hideToolbarTimer.start(); }
+                    onExited: { hideToolbarTimer.restart(); }
                     onPositionChanged: {
                         // lights
                         darkone.lights();
@@ -2620,6 +2613,7 @@ FocusScope {
                             Keys.priority: Keys.BeforeItem
                             Keys.onPressed: {
                                 debug2 && console.log("[keys] searchTextInput: '" + DarkoneJS.keyEvent2String(event) + "'");
+                                darkone.lights();
                                 Keys.forwardTo = []; // reset forwarding
                                 if ( darkone.listHidden ) {
                                     debug2 && console.log("[searchInputText] error: key press in hidden state");
