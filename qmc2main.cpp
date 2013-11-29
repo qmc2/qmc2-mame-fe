@@ -4289,7 +4289,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  break;
   }
 
-#if QMC2_USE_PHONON_API
+#if defined(QMC2_YOUTUBE_ENABLED)
   // depending on the codec, an unused YT widget may still cause load on the system, so we destroy it when it's no longer required...
   if ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] != QMC2_YOUTUBE_INDEX ) {
 	  if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
@@ -6501,6 +6501,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2AudioEffectDialog->close();
     delete qmc2AudioEffectDialog;
   }
+#endif
+
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget ) {
     log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
@@ -6512,7 +6514,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2YouTubeWidget->deleteLater();
     qmc2YouTubeWidget = NULL;
   }
-#endif
 #endif
 
   if ( listWidgetFavorites->count() > 0 )

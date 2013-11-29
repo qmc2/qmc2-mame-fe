@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		isEmpty(TARGET):TARGET = qmc2
 		greaterThan(QT_MAJOR_VERSION, 4) {
 			QT += testlib widgets webkitwidgets
+			contains(DEFINES, "QMC2_YOUTUBE_ENABLED"): QT += multimedia multimediawidgets
 		} else {
 			CONFIG += qtestlib
 		}

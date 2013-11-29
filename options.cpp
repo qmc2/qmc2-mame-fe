@@ -61,9 +61,9 @@
 #endif
 #if QMC2_USE_PHONON_API
 #include "audioeffects.h"
+#endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
-#endif
 #endif
 #include "htmleditor/htmleditor.h"
 #include "customidsetup.h"
@@ -156,9 +156,9 @@ extern MiniWebBrowser *qmc2ProjectMESS;
 extern SoftwareList *qmc2SoftwareList;
 #if QMC2_USE_PHONON_API
 extern AudioEffectDialog *qmc2AudioEffectDialog;
+#endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
-#endif
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern QFont *qmc2StartupDefaultFont;
@@ -777,10 +777,10 @@ void Options::apply()
   qmc2MainWindow->toolButtonAudioSetupEffects->setIconSize(iconSize);
   if ( qmc2AudioEffectDialog )
     QTimer::singleShot(0, qmc2AudioEffectDialog, SLOT(adjustIconSizes()));
+#endif
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget )
     QTimer::singleShot(0, qmc2YouTubeWidget, SLOT(adjustIconSizes()));
-#endif
 #endif
   if ( qmc2ROMStatusExporter )
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));

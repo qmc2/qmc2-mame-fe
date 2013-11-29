@@ -28,7 +28,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-//#define QMC2_DEBUG
+#define QMC2_DEBUG
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -44,19 +44,38 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 
 #if QT_VERSION < 0x050000
 	mVideoPlayer = new Phonon::VideoPlayer(this);
-	mVideoPlayer->setContextMenuPolicy(Qt::CustomContextMenu);
-	mVideoPlayer->setPalette(Qt::black);
-	mVideoPlayer->setAutoFillBackground(true);
-	connect(mVideoPlayer, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
+	videoPlayer()->setContextMenuPolicy(Qt::CustomContextMenu);
+	videoWidget()->setPalette(Qt::black);
+	videoWidget()->setAutoFillBackground(true);
+	connect(videoPlayer(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
 	gridLayoutVideoPlayer->removeWidget(widgetVideoPlayerPlaceholder);
 	delete widgetVideoPlayerPlaceholder;
-	gridLayoutVideoPlayer->addWidget(mVideoPlayer, 0, 0, 1, gridLayoutVideoPlayer->columnCount());
+	gridLayoutVideoPlayer->addWidget(videoPlayer(), 0, 0, 1, gridLayoutVideoPlayer->columnCount());
 	videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
 	videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
 	connect(mediaObject(), SIGNAL(seekableChanged(bool)), seekSlider, SLOT(setEnabled(bool)));
 	connect(mediaObject(), SIGNAL(totalTimeChanged(qint64)), this, SLOT(videoPlayer_durationChanged(qint64)));
+	connect(mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
+	connect(mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
+	connect(mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
+	connect(videoPlayer(), SIGNAL(finished()), this, SLOT(videoFinished()));
 #else
-	// FIXME
+	mVideoPlayer = new QMediaPlayer(this);
+	mVideoWidget = new QVideoWidget(this);
+	videoPlayer()->setVideoOutput(mVideoWidget);
+	videoWidget()->setAspectRatioMode(Qt::KeepAspectRatio);
+	videoWidget()->setContextMenuPolicy(Qt::CustomContextMenu);
+	videoWidget()->setPalette(Qt::black);
+	videoWidget()->setAutoFillBackground(true);
+	connect(videoWidget(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
+	gridLayoutVideoPlayer->removeWidget(widgetVideoPlayerPlaceholder);
+	delete widgetVideoPlayerPlaceholder;
+	gridLayoutVideoPlayer->addWidget(videoWidget(), 0, 0, 1, gridLayoutVideoPlayer->columnCount());
+	connect(mediaObject(), SIGNAL(seekableChanged(bool)), seekSlider, SLOT(setEnabled(bool)));
+	connect(mediaObject(), SIGNAL(durationChanged(qint64)), this, SLOT(videoPlayer_durationChanged(qint64)));
+	connect(mediaObject(), SIGNAL(positionChanged(qint64)), this, SLOT(videoTick(qint64)));
+	connect(mediaObject(), SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(videoStateChanged(QMediaPlayer::State)));
+	connect(mediaObject(), SIGNAL(bufferStatusChanged(int)), this, SLOT(videoBufferStatus(int)));
 #endif
 
 	videoOverlayWidget = new VideoOverlayWidget(videoWidget());
@@ -71,7 +90,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "Arcade").toString();
 #else
-	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "").toString();
+	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", QString()).toString();
 #endif
 	spinBoxResultsPerRequest->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", 10).toInt());
 
@@ -108,18 +127,14 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	videoSeqNum = 0;
 
 #if QT_VERSION < 0x050000
-	mVideoPlayer->mediaObject()->setTickInterval(1000);
+	mediaObject()->setTickInterval(1000);
 #else
-	mVideoPlayer->setNotifyInterval(1000);
+	videoPlayer()->setNotifyInterval(1000);
 #endif
 
 	volumeSlider->setToolTip(tr("Volume level"));
 	seekSlider->setToolTip(tr("Video progress"));
 	labelSeekSlider->setText(tr("Remaining") + " --:--:--");
-	connect(mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
-	connect(mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
-	connect(mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
-	connect(mVideoPlayer, SIGNAL(finished()), this, SLOT(videoFinished()));
 
 	progressBarBufferStatus->setValue(0);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
@@ -291,9 +306,9 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		disconnect(videoOverlayWidget);
 		delete videoOverlayWidget;
 	}
-	if ( mVideoPlayer ) {
-		disconnect(mVideoPlayer);
-		delete mVideoPlayer;
+	if ( videoPlayer() ) {
+		disconnect(videoPlayer());
+		delete videoPlayer();
 	}
 	if ( menuAttachedVideos ) {
 		disconnect(menuAttachedVideos);
@@ -613,7 +628,12 @@ void YouTubeVideoPlayer::playMovieFile(QString &filePath)
 	if ( fi.exists() ) {
 		currentVideoID = "#:" + filePath;
 		loadOnly = false;
-		mVideoPlayer->play(Phonon::MediaSource(filePath));
+#if QT_VERSION < 0x050000
+		videoPlayer()->play(Phonon::MediaSource(filePath));
+#else
+		videoPlayer()->setMedia(QUrl::fromLocalFile(filePath));
+		play();
+#endif
 		comboBoxPreferredFormat->setEnabled(false);
 		if ( !playedVideos.contains(currentVideoID) ) playedVideos << currentVideoID;
 	}
@@ -876,7 +896,9 @@ void YouTubeVideoPlayer::init()
 	if ( forcedExit )
 		return;
 
-	videoWidget()->resize(mVideoPlayer->size());
+#if QT_VERSION < 0x050000
+	videoWidget()->resize(videoPlayer()->size());
+#endif
 
 	QStringList attachedVideos = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList();
 	foreach(QString vid, attachedVideos ) {
@@ -957,7 +979,7 @@ void YouTubeVideoPlayer::videoTick(qint64 time)
 #endif
 
 	QTime hrTime;
-	hrTime = hrTime.addMSecs(mediaObject()->remainingTime());
+	hrTime = hrTime.addMSecs(remainingTime());
 	labelSeekSlider->setText(tr("Remaining") + " " + hrTime.toString("hh:mm:ss"));
 	seekSlider->blockSignals(true);
 	seekSlider->setValue((int)time);
@@ -975,6 +997,7 @@ void YouTubeVideoPlayer::videoBufferStatus(int percentFilled)
 	videoOverlayWidget->showMessage(tr("Buffering: %1%").arg(percentFilled));
 }
 
+#if QT_VERSION < 0x050000
 void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State oldState)
 {
 #ifdef QMC2_DEBUG
@@ -982,7 +1005,6 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 #endif
 
 	QTime hrTime;
-	qint64 remainingTime;
 
 	switch ( newState ) {
 		case Phonon::LoadingState:
@@ -995,9 +1017,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			toolButtonPlayPause->setEnabled(false);
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			videoMenuPlayPauseAction->setEnabled(false);
-			remainingTime = mVideoPlayer->mediaObject()->remainingTime();
-			if ( remainingTime > 0 ) {
-				hrTime = hrTime.addMSecs(remainingTime);
+			if ( remainingTime() > 0 ) {
+				hrTime = hrTime.addMSecs(remainingTime());
 				labelSeekSlider->setText(tr("Remaining") + " " + hrTime.toString("hh:mm:ss"));
 			} else
 				labelSeekSlider->setText(tr("Remaining") + " --:--:--");
@@ -1021,8 +1042,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			videoOverlayWidget->showMessage(tr("Paused"));
 			break;
 		case Phonon::ErrorState:
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: playback error: %1").arg(mVideoPlayer->mediaObject()->errorString()));
-			videoOverlayWidget->showMessage(tr("Video playback error: %1").arg(mVideoPlayer->mediaObject()->errorString()), 4000);
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: playback error: %1").arg(mediaObject()->errorString()));
+			videoOverlayWidget->showMessage(tr("Video playback error: %1").arg(mediaObject()->errorString()), 4000);
 			if ( loadOnly ) {
 				loadOnly = false;
 				audioOutput()->setMuted(isMuted);
@@ -1054,6 +1075,54 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			break;
 	}
 }
+#else
+void YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state = %1)").arg(state));
+#endif
+
+	QTime hrTime;
+
+	switch ( state ) {
+		case QMediaPlayer::PlayingState:
+			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
+			toolButtonPlayPause->setEnabled(true);
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
+			videoMenuPlayPauseAction->setEnabled(true);
+			videoOverlayWidget->showMessage(tr("Playing"));
+			break;
+		case QMediaPlayer::PausedState:
+			if ( loadOnly ) {
+				loadOnly = false;
+				audioOutput()->setMuted(isMuted);
+			}
+			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
+			toolButtonPlayPause->setEnabled(true);
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
+			videoMenuPlayPauseAction->setEnabled(true);
+			videoOverlayWidget->showMessage(tr("Paused"));
+			break;
+		case QMediaPlayer::StoppedState:
+		default:
+			if ( loadOnly ) {
+				loadOnly = false;
+				audioOutput()->setMuted(isMuted);
+			}
+			comboBoxPreferredFormat->setEnabled(true);
+			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			videoMenuPlayPauseAction->setEnabled(!currentVideoID.isEmpty());
+			labelSeekSlider->setText(tr("Remaining") + " --:--:--");
+			seekSlider->setValue(0);
+			progressBarBufferStatus->setValue(0);
+			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
+			QTimer::singleShot(0, this, SLOT(videoFinished()));
+			break;
+	}
+}
+#endif
 
 void YouTubeVideoPlayer::loadVideo(QString &videoID)
 {
@@ -1063,12 +1132,16 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
-	isMuted = mVideoPlayer->audioOutput()->isMuted();
+	isMuted = audioOutput()->isMuted();
 	if ( url.isValid() ) {
 		loadOnly = true;
 		if ( !isMuted )
 			audioOutput()->setMuted(true);
-		mVideoPlayer->load(Phonon::MediaSource(QUrl::fromEncoded(url.toString().toLatin1().constData())));
+#if QT_VERSION < 0x050000
+		videoPlayer()->load(Phonon::MediaSource(QUrl::fromEncoded(url.toString().toLatin1().constData())));
+#else
+		videoPlayer()->setMedia(QUrl::fromEncoded(url.toString().toLatin1().constData()));
+#endif
 		pause();
 		if ( !playedVideos.contains(videoID) ) playedVideos << videoID;
 	}
@@ -1084,7 +1157,12 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 	QUrl url = getVideoStreamUrl(videoID);
 	if ( url.isValid() ) {
 		loadOnly = false;
-		mVideoPlayer->play(Phonon::MediaSource(QUrl::fromEncoded(url.toString().toLatin1().constData())));
+#if QT_VERSION < 0x050000
+		videoPlayer()->play(Phonon::MediaSource(QUrl::fromEncoded(url.toString().toLatin1().constData())));
+#else
+		videoPlayer()->setMedia(QUrl::fromEncoded(url.toString().toLatin1().constData()));
+		play();
+#endif
 		comboBoxPreferredFormat->setEnabled(true);
 		if ( !playedVideos.contains(videoID) ) playedVideos << videoID;
 	}
@@ -1231,7 +1309,11 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 						QUrl decodedUrl;
 						if ( !sig.isEmpty() )
 							url += "&signature=" + sig;
-						decodedUrl.setEncodedUrl(url.toLatin1());
+//#if QT_VERSION < 0x050000
+//						decodedUrl.setEncodedUrl(url.toLatin1());
+//#else
+						decodedUrl = QUrl::fromEncoded(url.toLatin1());
+//#endif
 #ifdef QMC2_DEBUG
 						printf("decodedUrl[%s] = %s\n", (const char *)itag.toLatin1(), (const char *)decodedUrl.toString().toLatin1());
 #endif
@@ -1565,7 +1647,11 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 		else
 			videoMenuFullscreenAction->setText(tr("Full screen (return with toggle-key)"));
 
-		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(mVideoPlayer->mapToGlobal(p), menuVideoPlayer));
+#if QT_VERSION < 0x050000
+		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer()->mapToGlobal(p), menuVideoPlayer));
+#else
+		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoWidget()->mapToGlobal(p), menuVideoPlayer));
+#endif
 		menuVideoPlayer->show();
 	}
 }
