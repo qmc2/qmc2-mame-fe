@@ -1,6 +1,7 @@
 #ifndef _QMC2_MAIN_H_
 #define _QMC2_MAIN_H_
 
+#include <qglobal.h>
 #include <QApplication>
 #include <QCloseEvent>
 #include <QSocketNotifier>

@@ -1,6 +1,7 @@
 #ifndef _EMBEDDEROPT_H_
 #define _EMBEDDEROPT_H_
 
+#include <qglobal.h>
 #include <QtGui>
 #include "macros.h"
 
