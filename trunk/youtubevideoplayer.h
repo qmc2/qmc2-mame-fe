@@ -216,9 +216,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 #endif
 
 	public slots:
-		void play() { mVideoPlayer->play(); }
-		void pause() { mVideoPlayer->pause(); }
-		void stop() { mVideoPlayer->stop(); }
+		void play() { videoPlayer()->play(); }
+		void pause() { videoPlayer()->pause(); }
+		void stop() { videoPlayer()->stop(); }
 
 		void init();
 		void adjustIconSizes();

@@ -62,9 +62,7 @@ About::About(QWidget *parent)
     case QSysInfo::MV_10_4: macVersion = tr("Mac OS X 10.4"); break;
     case QSysInfo::MV_10_5: macVersion = tr("Mac OS X 10.5"); break;
     case QSysInfo::MV_10_6: macVersion = tr("Mac OS X 10.6"); break;
-#if QT_VERSION >= 0x040800
     case QSysInfo::MV_10_7: macVersion = tr("Mac OS X 10.7"); break;
-#endif
 #if QT_VERSION >= 0x040803
     case QSysInfo::MV_10_8: macVersion = tr("Mac OS X 10.8"); break;
 #endif
