@@ -112,9 +112,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
   webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setText(tr("Copy image"));
   webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-#if QT_VERSION >= 0x040800
   webViewBrowser->pageAction(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy image address"));
-#endif
   webViewBrowser->pageAction(QWebPage::Back)->setText(tr("Go back"));
   webViewBrowser->pageAction(QWebPage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
   webViewBrowser->pageAction(QWebPage::Forward)->setText(tr("Go forward"));

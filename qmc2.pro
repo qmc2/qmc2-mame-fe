@@ -1,5 +1,5 @@
 greaterThan(QT_MAJOR_VERSION, 3) {
-	greaterThan(QT_MINOR_VERSION, 6)|greaterThan(QT_MAJOR_VERSION, 4) {
+	greaterThan(QT_MINOR_VERSION, 7)|greaterThan(QT_MAJOR_VERSION, 4) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
 		greaterThan(QT_MAJOR_VERSION, 4) {
@@ -256,8 +256,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			}
 		}
 	} else {
-		error(Qt $$QT_VERSION is insufficient -- Qt 4.7.0+ required)
+		error(Qt $$QT_VERSION is insufficient -- Qt 4.8.0+ required)
 	}
 } else {
-	error(Qt $$QT_VERSION is insufficient -- Qt 4.7.0+ required)
+	error(Qt $$QT_VERSION is insufficient -- Qt 4.8.0+ required)
 }

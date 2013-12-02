@@ -26,12 +26,6 @@ BrushEditor::BrushEditor(QWidget *parent)
 {
 	setupUi(this);
 
-#if QT_VERSION < 0x040800
-	labelRadialRadius->setText(tr("Radius (C)"));
-	labelRadialFocalRadius->setVisible(false);
-	doubleSpinBoxRadialFocalRadius->setVisible(false);
-#endif
-
 	frameImagePreview->setAutoFillBackground(true);
 	framePatternColor->setAutoFillBackground(true);
 	framePatternPreview->setAutoFillBackground(true);
@@ -222,11 +216,7 @@ void BrushEditor::updateGradientPreview()
 				gradient = QLinearGradient(doubleSpinBoxLinearStartPointX->value(), doubleSpinBoxLinearStartPointY->value(), doubleSpinBoxLinearEndPointX->value(), doubleSpinBoxLinearEndPointY->value());
 				break;
 			case QMC2_BRUSHEDITOR_GRADIENT_RADIAL:
-#if QT_VERSION >= 0x040800
 				gradient = QRadialGradient(doubleSpinBoxRadialCenterPointX->value(), doubleSpinBoxRadialCenterPointY->value(), doubleSpinBoxRadialCenterRadius->value(), doubleSpinBoxRadialFocalPointX->value(), doubleSpinBoxRadialFocalPointY->value(), doubleSpinBoxRadialFocalRadius->value());
-#else
-				gradient = QRadialGradient(doubleSpinBoxRadialCenterPointX->value(), doubleSpinBoxRadialCenterPointY->value(), doubleSpinBoxRadialCenterRadius->value(), doubleSpinBoxRadialFocalPointX->value(), doubleSpinBoxRadialFocalPointY->value());
-#endif
 				break;
 			case QMC2_BRUSHEDITOR_GRADIENT_CONICAL:
 				gradient = QConicalGradient(doubleSpinBoxConicalCenterPointX->value(), doubleSpinBoxConicalCenterPointY->value(), doubleSpinBoxConicalAngle->value());

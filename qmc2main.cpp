@@ -2897,10 +2897,6 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
     if ( qmc2YouTubeWidget )
       youTubeWasPlaying = qmc2YouTubeWidget->isPlaying();
 #endif
-#if QT_VERSION < 0x040800
-    hide();
-    qApp->processEvents();
-#endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false).toBool() ) {
         showMaximized();
