@@ -3,6 +3,7 @@
 #ifndef _YOUTUBEVIDEOPLAYER_H_
 #define _YOUTUBEVIDEOPLAYER_H_
 
+#include <qglobal.h>
 #include <QtGui>
 #include <QtXml>
 #include <QtNetwork>

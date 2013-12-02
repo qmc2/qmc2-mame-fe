@@ -1,7 +1,7 @@
 #ifndef _EMBEDDER_H_
 #define _EMBEDDER_H_
 
-#include <Qt>
+#include <qglobal.h>
 #include "macros.h"
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
