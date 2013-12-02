@@ -29,7 +29,9 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-//#define QMC2_DEBUG
+#if QT_VERSION >= 0x050000
+#define QMC2_DEBUG
+#endif
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -799,8 +801,7 @@ void YouTubeVideoPlayer::goFullScreen()
 			videoOverlayWidget->showMessage(tr("Full-screen mode -- press %1 to return to windowed mode").arg(keySeq), 4000);
 		else
 			videoOverlayWidget->showMessage(tr("Full-screen mode -- press toggle-key to return to windowed mode"), 4000);
-	} else
-		videoWidget()->setFullScreen(false);
+	}
 }
 
 void YouTubeVideoPlayer::attachVideoById(QString id)
@@ -984,10 +985,10 @@ void YouTubeVideoPlayer::videoFinished()
 void YouTubeVideoPlayer::videoTick(qint64 time)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoTick(quint64 time = %1)").arg(time));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoTick(qint64 time = %1)").arg(time));
 #endif
 
-	QTime hrTime;
+	QTime hrTime(0, 0, 0, 0);
 	hrTime = hrTime.addMSecs(remainingTime());
 	labelSeekSlider->setText(tr("Remaining") + " " + hrTime.toString("hh:mm:ss"));
 	seekSlider->blockSignals(true);
@@ -1013,7 +1014,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoStateChanged(Phonon::State newState = %1, Phonon::State oldState = %2)").arg(newState).arg(oldState));
 #endif
 
-	QTime hrTime;
+	QTime hrTime(0, 0, 0, 0);
 
 	switch ( newState ) {
 		case Phonon::LoadingState:
@@ -1091,7 +1092,7 @@ void YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoStateChanged(QMediaPlayer::State state = %1)").arg(state));
 #endif
 
-	QTime hrTime;
+	QTime hrTime(0, 0, 0, 0);
 
 	switch ( state ) {
 		case QMediaPlayer::PlayingState:
@@ -1213,7 +1214,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	connect(videoInfoReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(videoInfoError(QNetworkReply::NetworkError)));
 	connect(videoInfoReply, SIGNAL(finished()), this, SLOT(videoInfoFinished()));
 
-	QTime timer;
+	QTime timer(0, 0, 0, 0);
 	bool timeoutOccurred = false;
 	timer.start();
 	while ( !viFinished && !viError && !timeoutOccurred ) {
@@ -1844,7 +1845,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		connect(videoImageReply, SIGNAL(readyRead()), this, SLOT(videoImageReadyRead()));
 		connect(videoImageReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(videoImageError(QNetworkReply::NetworkError)));
 		connect(videoImageReply, SIGNAL(finished()), this, SLOT(videoImageFinished()));
-		QTime timer;
+		QTime timer(0, 0, 0, 0);
 		bool timeoutOccurred = false;
 		timer.start();
 		while ( !forcedExit && !vimgFinished && !vimgError && !timeoutOccurred ) {
