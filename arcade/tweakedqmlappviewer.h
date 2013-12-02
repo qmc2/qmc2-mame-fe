@@ -1,6 +1,7 @@
 #ifndef TWEAKEDQMLAPPVIEWER_H
 #define TWEAKEDQMLAPPVIEWER_H
 
+#include <qglobal.h>
 #include <QTimer>
 #include <QStringList>
 #include <QMap>
