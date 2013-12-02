@@ -1,7 +1,7 @@
 #ifndef CURSORSHAPEAREA_H
 #define CURSORSHAPEAREA_H
 
-#include <Qt>
+#include <qglobal.h>
 
 #if QT_VERSION < 0x050000
 #include <QDeclarativeItem>

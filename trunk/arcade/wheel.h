@@ -1,7 +1,7 @@
 #ifndef WHEELAREA_H
 #define WHEELAREA_H
 
-#include <Qt>
+#include <qglobal.h>
 
 #if QT_VERSION < 0x050000 // we use the standard MouseArea's wheel events for Qt version >= 5.0.0
 

@@ -1,6 +1,7 @@
 #ifndef ARCADESETTINGS_H
 #define ARCADESETTINGS_H
 
+#include <qglobal.h>
 #include <QLocale>
 #include <QSize>
 #include <QStringList>
