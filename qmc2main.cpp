@@ -2828,7 +2828,11 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget )
 	  if ( qmc2YouTubeWidget->videoWidget()->isFullScreen() ) {
+#if QT_VERSION < 0x050000
 		  qmc2YouTubeWidget->videoWidget()->setFullScreen(false);
+#else
+		  qmc2YouTubeWidget->switchToWindowed();
+#endif
 		  qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
 		  qApp->processEvents();
 		  if ( windowState() & Qt::WindowFullScreen )

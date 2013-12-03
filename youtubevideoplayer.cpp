@@ -63,6 +63,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(videoPlayer(), SIGNAL(finished()), this, SLOT(videoFinished()));
 	connect(videoPlayer(), SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(videoPlayer_customContextMenuRequested(const QPoint &)));
 #else
+	mFullscreenVideoWidget = NULL;
 	mVideoWidget = new QVideoWidget(this);
 	mVideoPlayer = new QMediaPlayer(this, (QMediaPlayer::Flags)(QMediaPlayer::VideoSurface | QMediaPlayer::StreamPlayback));
 	videoWidget()->setAspectRatioMode(Qt::KeepAspectRatio);
@@ -206,7 +207,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/toggle_fullscreen.png")));
 	videoMenuFullscreenAction = action;
-	connect(action, SIGNAL(triggered()), this, SLOT(goFullScreen()));
+	connect(action, SIGNAL(triggered()), this, SLOT(switchToFullScreen()));
 	menuVideoPlayer->addSeparator();
 	s = tr("Copy video URL");
 	action = menuVideoPlayer->addAction(s);
@@ -315,9 +316,13 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		delete videoPlayer();
 	}
 #if QT_VERSION >= 0x050000
-	if ( videoWidget() ) {
-		disconnect(videoWidget());
-		delete videoWidget();
+	if ( mVideoWidget ) {
+		disconnect(mVideoWidget);
+		delete mVideoWidget;
+	}
+	if ( mFullscreenVideoWidget ) {
+		disconnect(mFullscreenVideoWidget);
+		delete mFullscreenVideoWidget;
 	}
 #endif
 	if ( menuAttachedVideos ) {
@@ -788,12 +793,13 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 	}
 }
 
-void YouTubeVideoPlayer::goFullScreen()
+void YouTubeVideoPlayer::switchToFullScreen()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::goFullScreen()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::switchToFullScreen()");
 #endif
 
+#if QT_VERSION < 0x050000
 	if ( !videoWidget()->isFullScreen() ) {
 		videoWidget()->setFullScreen(true);
 		QString keySeq = qmc2CustomShortcutMap["F11"];
@@ -802,6 +808,42 @@ void YouTubeVideoPlayer::goFullScreen()
 		else
 			videoOverlayWidget->showMessage(tr("Full-screen mode -- press toggle-key to return to windowed mode"), 4000);
 	}
+#else
+	if ( !mFullscreenVideoWidget ) {
+		mFullscreenVideoWidget = new QVideoWidget(0);
+		mFullscreenVideoWidget->setFullScreen(true);
+		mFullscreenVideoWidget->setAspectRatioMode(Qt::KeepAspectRatio);
+		mFullscreenVideoWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+		mFullscreenVideoWidget->setPalette(Qt::black);
+		mFullscreenVideoWidget->setAutoFillBackground(true);
+		mFullscreenVideoWidget->show();
+		qApp->processEvents();
+		videoPlayer()->setVideoOutput(videoWidget());
+		videoOverlayWidget->setVideoWidget(videoWidget());
+		QString keySeq = qmc2CustomShortcutMap["F11"];
+		if ( !keySeq.isEmpty() )
+			videoOverlayWidget->showMessage(tr("Full-screen mode -- press %1 to return to windowed mode").arg(keySeq), 4000);
+		else
+			videoOverlayWidget->showMessage(tr("Full-screen mode -- press toggle-key to return to windowed mode"), 4000);
+	}
+#endif
+}
+
+void YouTubeVideoPlayer::switchToWindowed()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::switchToWindowed()");
+#endif
+
+#if QT_VERSION >= 0x050000
+	if ( mFullscreenVideoWidget ) {
+		mFullscreenVideoWidget->hide();
+		videoPlayer()->setVideoOutput(mVideoWidget);
+		delete mFullscreenVideoWidget;
+		mFullscreenVideoWidget = NULL;
+		videoOverlayWidget->setVideoWidget(videoWidget());
+	}
+#endif
 }
 
 void YouTubeVideoPlayer::attachVideoById(QString id)
@@ -1687,6 +1729,7 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 #else
 		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoWidget()->mapToGlobal(p), menuVideoPlayer));
 #endif
+
 		menuVideoPlayer->show();
 	}
 }
