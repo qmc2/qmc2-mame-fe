@@ -29,10 +29,6 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-#if QT_VERSION >= 0x050000
-#define QMC2_DEBUG
-#endif
-
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -1368,7 +1364,8 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 #else
 						if ( !sig.isEmpty() )
 							url += "%2526signature%253D" + sig;
-						decodedUrl = QUrl::fromPercentEncoding(url.replace("http%253A%252F%252F", "http://").replace("%252F", "/").replace("%252C", "%2C").toLatin1());
+						url.replace("http%253A%252F%252F", "http://").replace("%252F", "/").replace("%253F", "?").replace("%2526", "&").replace("%253D", "=").replace("%2525", "%25").replace("%25", "%");
+						decodedUrl = QUrl(url, QUrl::StrictMode);
 #endif
 #ifdef QMC2_DEBUG
 						printf("decodedUrl[%s] = %s\n", itag.toLatin1().constData(), decodedUrl.toString().toLatin1().constData());
@@ -1400,7 +1397,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 				videoUrl = formatToUrlMap[indexToFormat(i)];
 #ifdef QMC2_DEBUG
 				QString fmtStr = indexToFormat(i);
-				printf(">>>>\n\nSelected format / stream URL for video ID '%s':\n>>>>\n%s\t%s\n>>>>\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
+				printf(">>>>\n\nSelected format / stream URL for video ID '%s':\n>>>>\n[%s]\t%s\n>>>>\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
 #endif
 				currentFormat = i;
 				comboBoxPreferredFormat->setItemText(i, "[" + youTubeFormatNames[i] + "]");
@@ -1916,11 +1913,11 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages(): downloading thumbnail for video ID '%1' from '%2'").arg(viw->videoID).arg(thumbnail_url));
 #endif
 					imageDownloadManager->get(QNetworkRequest(QUrl(thumbnail_url)));
-				} else {
+				}
 #ifdef QMC2_DEBUG
+			       	else if ( !viw->videoID.startsWith("#:") )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages(): thumbnail URL for video ID '%1' not found!").arg(viw->videoID));
 #endif
-				}
 			}
 		}
 	}
