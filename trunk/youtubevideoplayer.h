@@ -70,6 +70,7 @@ class VideoOverlayWidget : public QWidget
 		VideoOverlayWidget(QWidget *parent = 0) : QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint)
 		{
 			hide();
+			setVideoWidget(parent);
 			setAttribute(Qt::WA_TransparentForMouseEvents);
 			setAttribute(Qt::WA_NoSystemBackground);
 			setAttribute(Qt::WA_TranslucentBackground);
@@ -77,16 +78,19 @@ class VideoOverlayWidget : public QWidget
 			connect(&clearMessageTimer, SIGNAL(timeout()), this, SLOT(clearMessage()));
 		}
 
+		void setVideoWidget(QWidget *widget) { mVideoWidget = widget; }
+		QWidget *videoWidget() { return mVideoWidget; }
+
 	public slots:
 		void showMessage(QString message, int timeout = 2000)
 		{
-			if ( parentWidget()->isVisible() ) {
+			if ( videoWidget()->isVisible() ) {
 				QRect r;
 				messageText = message;
-				if ( parentWidget()->isFullScreen() )
+				if ( videoWidget()->isFullScreen() )
 					r = qApp->desktop()->rect();
 				else
-					r = parentWidget()->rect();
+					r = videoWidget()->rect();
 				QFont f(qApp->font());
 				f.setWeight(QFont::Bold);
 				QFontMetrics fm(f);
@@ -94,13 +98,13 @@ class VideoOverlayWidget : public QWidget
 				r = fm.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, messageText);
 				r.adjust(-adjRect.width()*2, -adjRect.height(), +adjRect.width()*2, +adjRect.height());
 				int myHeight = r.height();
-				if ( parentWidget()->isFullScreen() )
+				if ( videoWidget()->isFullScreen() )
 					r.setBottom(qApp->desktop()->rect().bottom());
 				else
-					r.setBottom(parentWidget()->rect().bottom());
+					r.setBottom(videoWidget()->rect().bottom());
 				r.setTop(r.bottom() - myHeight);
 				resize(r.size());
-				move(parentWidget()->mapToGlobal(r.topLeft()));
+				move(videoWidget()->mapToGlobal(r.topLeft()));
 				show();
 				repaint();
 				clearMessageTimer.start(timeout);
@@ -118,7 +122,7 @@ class VideoOverlayWidget : public QWidget
 	protected:
 		void paintEvent(QPaintEvent *)
 		{
-			if ( !messageText.isEmpty() && parentWidget()->isVisible() ) {
+			if ( !messageText.isEmpty() && videoWidget()->isVisible() ) {
 				QPainter p;
 				p.begin(this);
 				QRect r = rect();
@@ -137,6 +141,7 @@ class VideoOverlayWidget : public QWidget
 	private:
 		QString messageText;
 		QTimer clearMessageTimer;
+		QWidget *mVideoWidget;
 };
 
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
@@ -210,7 +215,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		bool isPaused() { return videoPlayer()->state() == QMediaPlayer::PausedState; }
 		bool hasVideo() { return videoPlayer()->isVideoAvailable(); }
 		QMediaPlayer *videoPlayer() { return mVideoPlayer; }
-		QVideoWidget *videoWidget() { return mVideoWidget; }
+		QVideoWidget *videoWidget() { if ( mFullscreenVideoWidget ) return mFullscreenVideoWidget; else return mVideoWidget; }
 		QMediaPlayer *audioOutput() { return mVideoPlayer; }
 		QMediaPlayer *mediaObject() { return mVideoPlayer; }
 		qint64 remainingTime() { return videoPlayer()->duration() - videoPlayer()->position(); }
@@ -287,7 +292,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void imageDownloadFinished(QNetworkReply *);
 		void attachVideo(QString, QString, QString);
 		void attachVideoById(QString);
-		void goFullScreen();
+		void switchToFullScreen();
+		void switchToWindowed();
 
 		void videoPlayer_customContextMenuRequested(const QPoint &);
 		void videoPlayer_durationChanged(qint64);
@@ -302,6 +308,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 #else
 		QMediaPlayer *mVideoPlayer;
 		QVideoWidget *mVideoWidget;
+		QVideoWidget *mFullscreenVideoWidget;
 #endif
 };
 

@@ -4,100 +4,100 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../about.cpp" line="133"/>
+        <location filename="../../about.cpp" line="131"/>
         <source>Version </source>
         <translation>Version​‎ </translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="135"/>
+        <location filename="../../about.cpp" line="133"/>
         <source>SVN r%1</source>
         <translation>SVN r%1</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="137"/>
+        <location filename="../../about.cpp" line="135"/>
         <source>built for</source>
         <translation>compilé pour</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="153"/>
+        <location filename="../../about.cpp" line="151"/>
         <source>Copyright</source>
         <translation>Copyright</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="153"/>
+        <location filename="../../about.cpp" line="151"/>
         <source>Germany</source>
         <translation>Allemagne</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="157"/>
+        <location filename="../../about.cpp" line="155"/>
         <source>Project homepage:</source>
         <translation>Site Web du projet:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="158"/>
+        <location filename="../../about.cpp" line="156"/>
         <source>Development site:</source>
         <translation>Site Web de développement:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="159"/>
+        <location filename="../../about.cpp" line="157"/>
         <source>QMC2 development mailing list:</source>
         <translation>mailing-list de développement de QMC2:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="160"/>
+        <location filename="../../about.cpp" line="158"/>
         <source>List subscription:</source>
         <translation>Souscrire à la liste:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="161"/>
+        <location filename="../../about.cpp" line="159"/>
         <source>Bug tracking system:</source>
         <translation>Système de débug:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="168"/>
         <source>Build OS:</source>
         <translation>Système:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="177"/>
+        <location filename="../../about.cpp" line="175"/>
         <source>Emulator version:</source>
         <translation>Version de l&apos;émulateur:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="179"/>
+        <location filename="../../about.cpp" line="177"/>
         <source>Qt version:</source>
         <translation>Version de QT:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="179"/>
-        <location filename="../../about.cpp" line="187"/>
+        <location filename="../../about.cpp" line="177"/>
+        <location filename="../../about.cpp" line="185"/>
         <source>Compile-time:</source>
         <translation>Compilation:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="179"/>
-        <location filename="../../about.cpp" line="187"/>
-        <location filename="../../about.cpp" line="190"/>
+        <location filename="../../about.cpp" line="177"/>
+        <location filename="../../about.cpp" line="185"/>
+        <location filename="../../about.cpp" line="188"/>
         <source>Run-time:</source>
         <translation>Exécution:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="183"/>
+        <location filename="../../about.cpp" line="181"/>
         <source>Build key:</source>
         <translation>Clef de compilation:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="185"/>
+        <location filename="../../about.cpp" line="183"/>
         <source>Qt library paths:</source>
         <translation>chemins des libs Qt:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="190"/>
+        <location filename="../../about.cpp" line="188"/>
         <source>Phonon backend / supported MIME types:</source>
         <translation>Phonon backend / Types MIME supportés:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="202"/>
+        <location filename="../../about.cpp" line="200"/>
         <source>Environment variables:</source>
         <translation>Variables d&apos;environnement:</translation>
     </message>
@@ -165,77 +165,77 @@ p, li { white-space: pre-wrap; }
         <translation>Informations système</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="199"/>
+        <location filename="../../about.cpp" line="197"/>
         <source>Total: %1 MB</source>
         <translation>Total: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="199"/>
+        <location filename="../../about.cpp" line="197"/>
         <source>Free: %1 MB</source>
         <translation>Libre: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="199"/>
+        <location filename="../../about.cpp" line="197"/>
         <source>Used: %1 MB</source>
         <translation>Utilisé: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="199"/>
+        <location filename="../../about.cpp" line="197"/>
         <source>Physical memory:</source>
         <translation>Mémoire physique:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="201"/>
+        <location filename="../../about.cpp" line="199"/>
         <source>Number of CPUs:</source>
         <translation>Nombre de CPUs:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="201"/>
+        <location filename="../../about.cpp" line="199"/>
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="176"/>
         <source>Template information:</source>
         <translation>Information du template:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="66"/>
+        <location filename="../../about.cpp" line="65"/>
         <source>Mac OS X 10.7</source>
         <translation type="unfinished">Mac OS X 10.7</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="71"/>
+        <location filename="../../about.cpp" line="69"/>
         <source>Mac (unknown)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="80"/>
+        <location filename="../../about.cpp" line="78"/>
         <source>Windows 7 or Windows Server 2008 R2 (Windows 6.1)</source>
         <translation>Windows 7 ou Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="82"/>
+        <location filename="../../about.cpp" line="80"/>
         <source>Windows 8 (Windows 6.2)</source>
         <translation type="unfinished">Windows 2000 (Windows 5.0) {8 ?} {6.2)?}</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="176"/>
         <source>Emulator:</source>
         <translation>Emulateur:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="176"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="176"/>
         <source>Format:</source>
         <translation>Format:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="187"/>
+        <location filename="../../about.cpp" line="185"/>
         <source>SDL version:</source>
         <translation>Version SDL:</translation>
     </message>
@@ -260,58 +260,58 @@ p, li { white-space: pre-wrap; }
         <translation>Mac OS X 10.6</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="69"/>
+        <location filename="../../about.cpp" line="67"/>
         <source>Mac OS X 10.8</source>
         <translation type="unfinished">Mac OS X 10.8</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="75"/>
+        <location filename="../../about.cpp" line="73"/>
         <source>Windows NT (Windows 4.0)</source>
         <translation>Windows NT (Windows 4.0)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="76"/>
+        <location filename="../../about.cpp" line="74"/>
         <source>Windows 2000 (Windows 5.0)</source>
         <translation>Windows 2000 (Windows 5.0)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="77"/>
+        <location filename="../../about.cpp" line="75"/>
         <source>Windows XP (Windows 5.1)</source>
         <translation>Windows XP (Windows 5.1)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="78"/>
+        <location filename="../../about.cpp" line="76"/>
         <source>Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)</source>
         <translation>Windows Server 2003, Windows Server 2003 R2, Windows Home Server ou Windows XP Professional x64 Edition (Windows 5.2)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="79"/>
+        <location filename="../../about.cpp" line="77"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
         <translation>Windows Vista or Windows Server 2008 (Windows 6.0)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="84"/>
+        <location filename="../../about.cpp" line="82"/>
         <source>Windows (unknown)</source>
         <translation>Windows (inconnu)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="159"/>
+        <location filename="../../about.cpp" line="157"/>
         <source>subscription required</source>
         <translation>inscription requise</translation>
     </message>
     <message>
+        <location filename="../../about.cpp" line="171"/>
         <location filename="../../about.cpp" line="173"/>
-        <location filename="../../about.cpp" line="175"/>
         <source>Running OS:</source>
         <translation>Système d&apos;exploitation:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="132"/>
+        <location filename="../../about.cpp" line="130"/>
         <source>Qt 4 based multi-platform/multi-emulator front end</source>
         <translation>Front-end multi-plateformes/multi-émulateurs en QT4</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="190"/>
+        <location filename="../../about.cpp" line="188"/>
         <source>Phonon version:</source>
         <translation>version de Phonon: </translation>
     </message>
@@ -1176,7 +1176,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../brusheditor.ui" line="281"/>
-        <location filename="../../brusheditor.cpp" line="317"/>
+        <location filename="../../brusheditor.cpp" line="307"/>
         <source>Choose pattern color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1299,22 +1299,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="30"/>
-        <source>Radius (C)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../brusheditor.cpp" line="305"/>
+        <location filename="../../brusheditor.cpp" line="295"/>
         <source>Choose image file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="305"/>
+        <location filename="../../brusheditor.cpp" line="295"/>
         <source>Supported image files (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../brusheditor.cpp" line="305"/>
+        <location filename="../../brusheditor.cpp" line="295"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
@@ -6869,7 +6864,7 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../qmc2main.cpp" line="4598"/>
         <location filename="../../qmc2main.cpp" line="5048"/>
         <location filename="../../qmc2main.cpp" line="5169"/>
-        <location filename="../../qmc2main.cpp" line="6692"/>
+        <location filename="../../qmc2main.cpp" line="6693"/>
         <source>Default</source>
         <translation>Par défaut</translation>
     </message>
@@ -7119,12 +7114,12 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../qmc2main.cpp" line="5409"/>
         <location filename="../../qmc2main.cpp" line="6042"/>
         <location filename="../../qmc2main.cpp" line="6058"/>
-        <location filename="../../qmc2main.cpp" line="7118"/>
-        <location filename="../../qmc2main.cpp" line="7140"/>
-        <location filename="../../qmc2main.cpp" line="9283"/>
-        <location filename="../../qmc2main.cpp" line="9300"/>
-        <location filename="../../qmc2main.cpp" line="9388"/>
-        <location filename="../../qmc2main.cpp" line="9405"/>
+        <location filename="../../qmc2main.cpp" line="7119"/>
+        <location filename="../../qmc2main.cpp" line="7141"/>
+        <location filename="../../qmc2main.cpp" line="9284"/>
+        <location filename="../../qmc2main.cpp" line="9301"/>
+        <location filename="../../qmc2main.cpp" line="9389"/>
+        <location filename="../../qmc2main.cpp" line="9406"/>
         <source>Waiting for data...</source>
         <translation>En attente de données...</translation>
     </message>
@@ -7165,7 +7160,7 @@ Voulez-vous choisir un nom différent?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2257"/>
-        <location filename="../../qmc2main.cpp" line="6527"/>
+        <location filename="../../qmc2main.cpp" line="6528"/>
         <source>saving game selection</source>
         <translation>enregistre la sélection de jeu</translation>
     </message>
@@ -7305,9 +7300,9 @@ Etes-vous sûr(e) de vouloir vérifier les ROMS ?</translation>
         <location filename="../../qmc2main.cpp" line="6190"/>
         <location filename="../../qmc2main.cpp" line="6218"/>
         <location filename="../../qmc2main.cpp" line="6250"/>
-        <location filename="../../qmc2main.cpp" line="8084"/>
-        <location filename="../../qmc2main.cpp" line="9916"/>
-        <location filename="../../qmc2main.cpp" line="9983"/>
+        <location filename="../../qmc2main.cpp" line="8085"/>
+        <location filename="../../qmc2main.cpp" line="9917"/>
+        <location filename="../../qmc2main.cpp" line="9984"/>
         <source>All files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
@@ -7375,73 +7370,73 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>échec (sauvegarde des infos de la vidéo YouTube)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6534"/>
+        <location filename="../../qmc2main.cpp" line="6535"/>
         <source>saving main widget layout</source>
         <translation>sauvegarde du layout principal</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6640"/>
-        <location filename="../../qmc2main.cpp" line="6672"/>
+        <location filename="../../qmc2main.cpp" line="6641"/>
+        <location filename="../../qmc2main.cpp" line="6673"/>
         <source>saving current game&apos;s favorite software</source>
         <translation>sauvegarde du logiciel favori pour le jeu actuel</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6653"/>
+        <location filename="../../qmc2main.cpp" line="6654"/>
         <source>saving current machine&apos;s favorite software</source>
         <translation>sauvegarde du logiciel favori pour la machine actuelle</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6687"/>
+        <location filename="../../qmc2main.cpp" line="6688"/>
         <source>destroying current game&apos;s emulator configuration</source>
         <translation>destruction de la configuration de l&apos;émulateur pour le jeu sélectionné</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6699"/>
+        <location filename="../../qmc2main.cpp" line="6700"/>
         <source>destroying global emulator options</source>
         <translation>destruction des option globales de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6710"/>
+        <location filename="../../qmc2main.cpp" line="6711"/>
         <source>destroying preview</source>
         <translation>destruction de la capture</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6714"/>
+        <location filename="../../qmc2main.cpp" line="6715"/>
         <source>destroying flyer</source>
         <translation>destruction du flyer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6736"/>
+        <location filename="../../qmc2main.cpp" line="6737"/>
         <source>destroying PCB</source>
         <translation>destruction du PCB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6740"/>
+        <location filename="../../qmc2main.cpp" line="6741"/>
         <source>destroying about dialog</source>
         <translation>destruction de la fenêtre &apos;A propos&apos;</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6754"/>
+        <location filename="../../qmc2main.cpp" line="6755"/>
         <source>destroying MAWS quick download setup</source>
         <translation>destruction de la configuration de téléchargement rapide MAWS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6765"/>
+        <location filename="../../qmc2main.cpp" line="6766"/>
         <source>destroying image checker</source>
         <translation>destruction du vérificateur d&apos;images</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6770"/>
+        <location filename="../../qmc2main.cpp" line="6771"/>
         <source>destroying sample checker</source>
         <translation>destruction du vérificateur de samples</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6775"/>
+        <location filename="../../qmc2main.cpp" line="6776"/>
         <source>destroying ROMAlyzer</source>
         <translation>destruction de ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6796"/>
+        <location filename="../../qmc2main.cpp" line="6797"/>
         <source>destroying demo mode dialog</source>
         <translation>destruction de la fenêtre du mode Démo</translation>
     </message>
@@ -7451,17 +7446,17 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>déconnecte l&apos;audio du mixer audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6506"/>
+        <location filename="../../qmc2main.cpp" line="6508"/>
         <source>destroying YouTube video widget</source>
         <translation>destruction du widget de vidéo YouTube</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6852"/>
+        <location filename="../../qmc2main.cpp" line="6853"/>
         <source>destroying process manager</source>
         <translation>destruction du manager de processus</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6862"/>
+        <location filename="../../qmc2main.cpp" line="6863"/>
         <source>killing %n running emulator(s) on exit</source>
         <translation>
             <numerusform>tue %n émulateur(s) en fonctionnement à la sortie        </numerusform>
@@ -7469,7 +7464,7 @@ Faut-il les tuer à la sortie ?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="6865"/>
+        <location filename="../../qmc2main.cpp" line="6866"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation>
             <numerusform>conserve %n émulateur(s) en fonctionnement        </numerusform>
@@ -7477,12 +7472,12 @@ Faut-il les tuer à la sortie ?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6887"/>
+        <location filename="../../qmc2main.cpp" line="6888"/>
         <source>destroying network access manager</source>
         <translation>destruction du manager de connection réseau</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6891"/>
+        <location filename="../../qmc2main.cpp" line="6892"/>
         <source>so long and thanks for all the fish</source>
         <translation>Salut, et encore merci pour le poisson</translation>
     </message>
@@ -7587,7 +7582,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="1313"/>
         <location filename="../../qmc2main.cpp" line="1353"/>
         <location filename="../../qmc2main.cpp" line="1385"/>
-        <location filename="../../qmc2main.cpp" line="9612"/>
+        <location filename="../../qmc2main.cpp" line="9613"/>
         <source>Icon</source>
         <translation>Icône</translation>
     </message>
@@ -8529,37 +8524,37 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Informations détaillées du jeu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6804"/>
+        <location filename="../../qmc2main.cpp" line="6805"/>
         <source>destroying game info DB</source>
         <translation>Destruction de history.dat DB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7344"/>
+        <location filename="../../qmc2main.cpp" line="7345"/>
         <source>loading game info DB</source>
         <translation>Chargement de history.dat DB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7464"/>
+        <location filename="../../qmc2main.cpp" line="7465"/>
         <source>WARNING: missing &apos;$end&apos; in game info DB %1</source>
         <translation>ATTENTION: &apos;$end&apos; manquant dans history.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7471"/>
+        <location filename="../../qmc2main.cpp" line="7472"/>
         <source>WARNING: missing &apos;$bio&apos; in game info DB %1</source>
         <translation>ATTENTION: &apos;$bio&apos; manquant dans history.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7478"/>
+        <location filename="../../qmc2main.cpp" line="7479"/>
         <source>WARNING: missing &apos;$info&apos; in game info DB %1</source>
         <translation>ATTENTION: &apos;$info&apos; manquant dans history.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7492"/>
+        <location filename="../../qmc2main.cpp" line="7493"/>
         <source>WARNING: can&apos;t open game info DB %1</source>
         <translation>ATTENTION: impossible d&apos;ouvrir history.dat DB %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="7501"/>
+        <location filename="../../qmc2main.cpp" line="7502"/>
         <source>%n game info record(s) loaded</source>
         <translation>
             <numerusform>%n informations chargées depuis history.dat</numerusform>
@@ -8567,7 +8562,7 @@ Faut-il les tuer à la sortie ?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7500"/>
+        <location filename="../../qmc2main.cpp" line="7501"/>
         <source>done (loading game info DB, elapsed time = %1)</source>
         <translation>fait (chargement de history.dat DB, temps écoulé = %1)</translation>
     </message>
@@ -8592,52 +8587,52 @@ Faut-il les tuer à la sortie ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6822"/>
+        <location filename="../../qmc2main.cpp" line="6823"/>
         <source>destroying emulator info DB</source>
         <translation>destruction de mameinfo.dat</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7009"/>
+        <location filename="../../qmc2main.cpp" line="7010"/>
         <source>setting GUI style to &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7020"/>
+        <location filename="../../qmc2main.cpp" line="7021"/>
         <source>WARNING: GUI style &apos;%1&apos; not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7538"/>
+        <location filename="../../qmc2main.cpp" line="7539"/>
         <source>loading emulator info DB</source>
         <translation>chargement de mameinfo.dat</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7635"/>
+        <location filename="../../qmc2main.cpp" line="7636"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info DB %1</source>
         <translation>ATTENTION: &apos;$end&apos; manquant dans mameinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7638"/>
+        <location filename="../../qmc2main.cpp" line="7639"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info DB %1</source>
         <translation>ATTENTION: &apos;$mame&apos; manquant dans mameinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7641"/>
+        <location filename="../../qmc2main.cpp" line="7642"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info DB %1</source>
         <translation>ATTENTION: &apos;$info&apos; manquant dans mameinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7651"/>
+        <location filename="../../qmc2main.cpp" line="7652"/>
         <source>WARNING: can&apos;t open emulator info DB %1</source>
         <translation>ATTENTION: impossible d&apos;ouvrir mameinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7654"/>
+        <location filename="../../qmc2main.cpp" line="7655"/>
         <source>done (loading emulator info DB, elapsed time = %1)</source>
         <translation>fait (chargement de mameinfo.dat DB, temps écoulé = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="7655"/>
+        <location filename="../../qmc2main.cpp" line="7656"/>
         <source>%n emulator info record(s) loaded</source>
         <translation>
             <numerusform>%n informations chargées depuis mameinfo.dat</numerusform>
@@ -8656,12 +8651,12 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Contrôle de l&apos;é&amp;mulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7503"/>
+        <location filename="../../qmc2main.cpp" line="7504"/>
         <source>invalidating game info DB</source>
         <translation>invalidation de history.dat DB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7657"/>
+        <location filename="../../qmc2main.cpp" line="7658"/>
         <source>invalidating emulator info DB</source>
         <translation>invalidation de mameinfo.dat DB</translation>
     </message>
@@ -8901,8 +8896,8 @@ Faut-il les tuer à la sortie ?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2005"/>
-        <location filename="../../qmc2main.cpp" line="8244"/>
-        <location filename="../../qmc2main.cpp" line="8254"/>
+        <location filename="../../qmc2main.cpp" line="8245"/>
+        <location filename="../../qmc2main.cpp" line="8255"/>
         <source>%vs (%ms total)</source>
         <translation>%vs (%ms total)</translation>
     </message>
@@ -8970,21 +8965,21 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Commande</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8575"/>
-        <location filename="../../qmc2main.cpp" line="8649"/>
-        <location filename="../../qmc2main.cpp" line="8659"/>
+        <location filename="../../qmc2main.cpp" line="8576"/>
+        <location filename="../../qmc2main.cpp" line="8650"/>
+        <location filename="../../qmc2main.cpp" line="8660"/>
         <source>running</source>
         <translation>en fonctionnement</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8591"/>
+        <location filename="../../qmc2main.cpp" line="8592"/>
         <source>stopped</source>
         <translation>stoppé</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5549"/>
-        <location filename="../../qmc2main.cpp" line="8643"/>
-        <location filename="../../qmc2main.cpp" line="8657"/>
+        <location filename="../../qmc2main.cpp" line="8644"/>
+        <location filename="../../qmc2main.cpp" line="8658"/>
         <source>paused</source>
         <translation>en pause</translation>
     </message>
@@ -9001,24 +8996,24 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>&amp;Copier la commande</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8424"/>
+        <location filename="../../qmc2main.cpp" line="8425"/>
         <source>WARNING: can&apos;t create SDLMAME output notifier FIFO, path = %1</source>
         <translation>ATTENTION: impossible de créer la notification de sortie FIFO pour SDLMAME, répertoire = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8464"/>
+        <location filename="../../qmc2main.cpp" line="8465"/>
         <source>SDLMAME output notifier FIFO created</source>
         <translation>notification de sortie FIFO pour SDLMAME créée</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8468"/>
-        <location filename="../../qmc2main.cpp" line="8471"/>
+        <location filename="../../qmc2main.cpp" line="8469"/>
+        <location filename="../../qmc2main.cpp" line="8472"/>
         <source>WARNING: can&apos;t open SDLMAME output notifier FIFO for reading, path = %1</source>
         <translation>ATTENTION: impossible de lire la notification de sortie FIFO pour SDLMAME, répertoire = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8608"/>
-        <location filename="../../qmc2main.cpp" line="8686"/>
+        <location filename="../../qmc2main.cpp" line="8609"/>
+        <location filename="../../qmc2main.cpp" line="8687"/>
         <source>unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation>notification de sortie MAME inattendue: jeu = %1, classe = %2, quoi = %3, état = %4</translation>
     </message>
@@ -9124,7 +9119,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Avance rapide dans le morceau</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8084"/>
+        <location filename="../../qmc2main.cpp" line="8085"/>
         <source>Select one or more audio files</source>
         <translation>Sélectionner un ou plusieurs fichiers audio</translation>
     </message>
@@ -9153,7 +9148,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Baisser / Monter le volume sur pause / reprise</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8346"/>
+        <location filename="../../qmc2main.cpp" line="8347"/>
         <source>audio player: track info: title = &apos;%1&apos;, artist = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</source>
         <translation>lecteur audio: info du morceau: titre = &apos;%1&apos;, artiste = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</translation>
     </message>
@@ -9204,29 +9199,29 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6780"/>
+        <location filename="../../qmc2main.cpp" line="6781"/>
         <source>destroying ROM status exporter</source>
         <translation>destruction de l&apos;export de statut de ROM</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8436"/>
+        <location filename="../../qmc2main.cpp" line="8437"/>
         <source>WARNING: can&apos;t create SDLMESS output notifier FIFO, path = %1</source>
         <translation>ATTENTION: n&apos;a pu créer de notifieur FIFO pour la sortie SDLMESS, répertoire = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8475"/>
+        <location filename="../../qmc2main.cpp" line="8476"/>
         <source>SDLMESS output notifier FIFO created</source>
         <translation>Notifieur de sortie FIFO pour SDLMESS créé</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8479"/>
-        <location filename="../../qmc2main.cpp" line="8482"/>
+        <location filename="../../qmc2main.cpp" line="8480"/>
+        <location filename="../../qmc2main.cpp" line="8483"/>
         <source>WARNING: can&apos;t open SDLMESS output notifier FIFO for reading, path = %1</source>
         <translation>ATTENTION: impossible d&apos;ouvrir le notifieur de sortie FIFO pour SDLMESS en lecture, répertoire = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8610"/>
-        <location filename="../../qmc2main.cpp" line="8688"/>
+        <location filename="../../qmc2main.cpp" line="8611"/>
+        <location filename="../../qmc2main.cpp" line="8689"/>
         <source>unhandled MESS output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation>notification de sortie MESS: jeu = %1, classe= %2, quoi = %3, état = %4</translation>
     </message>
@@ -9375,7 +9370,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Analyse le jeu actuel avec ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6689"/>
+        <location filename="../../qmc2main.cpp" line="6690"/>
         <source>destroying current machine&apos;s emulator configuration</source>
         <translation>destruction de la configuration d&apos;émulateur pour la machine actuelle</translation>
     </message>
@@ -9418,7 +9413,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Afficher la description de la machine uniquement si la liste des machines n&apos;est pas visible en raison du layout en cours</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6659"/>
+        <location filename="../../qmc2main.cpp" line="6660"/>
         <source>saving current machine&apos;s device configurations</source>
         <translation>sauvegarde des configurations des périphériques de la machine actuelle</translation>
     </message>
@@ -9549,52 +9544,52 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6703"/>
+        <location filename="../../qmc2main.cpp" line="6704"/>
         <source>destroying game list</source>
         <translation>destruction de la liste des jeux</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6705"/>
+        <location filename="../../qmc2main.cpp" line="6706"/>
         <source>destroying machine list</source>
         <translation>destruction de la liste des machines</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6806"/>
+        <location filename="../../qmc2main.cpp" line="6807"/>
         <source>destroying machine info DB</source>
         <translation>Destruction de sysinfo.dat DB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7346"/>
+        <location filename="../../qmc2main.cpp" line="7347"/>
         <source>loading machine info DB</source>
         <translation>chargement de sysinfo.dat DB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7466"/>
+        <location filename="../../qmc2main.cpp" line="7467"/>
         <source>WARNING: missing &apos;$end&apos; in machine info DB %1</source>
         <translation>ATTENTION: &apos;$end&apos; manquant dans sysinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7473"/>
+        <location filename="../../qmc2main.cpp" line="7474"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info DB %1</source>
         <translation>ATTENTION: &apos;$bio&apos; manquant dans sysinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7480"/>
+        <location filename="../../qmc2main.cpp" line="7481"/>
         <source>WARNING: missing &apos;$info&apos; in machine info DB %1</source>
         <translation>ATTENTION: &apos;$info&apos; manquant dans sysinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7494"/>
+        <location filename="../../qmc2main.cpp" line="7495"/>
         <source>WARNING: can&apos;t open machine info DB %1</source>
         <translation>ATTENTION: impossible d&apos;ouvrir sysinfo.dat DB %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7505"/>
+        <location filename="../../qmc2main.cpp" line="7506"/>
         <source>done (loading machine info DB, elapsed time = %1)</source>
         <translation>fait (chargement de sysinfo.dat DB, temps écoulé = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="7506"/>
+        <location filename="../../qmc2main.cpp" line="7507"/>
         <source>%n machine info record(s) loaded</source>
         <translation>
             <numerusform>%n informations chargées depuis sysinfo.dat</numerusform>
@@ -9602,7 +9597,7 @@ Faut-il les tuer à la sortie ?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7508"/>
+        <location filename="../../qmc2main.cpp" line="7509"/>
         <source>invalidating machine info DB</source>
         <translation>invalidation de sysinfo.dat DB</translation>
     </message>
@@ -9742,12 +9737,12 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Afficher la description de la machine sous les images</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6718"/>
+        <location filename="../../qmc2main.cpp" line="6719"/>
         <source>destroying cabinet</source>
         <translation>destruction du cabinet</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6722"/>
+        <location filename="../../qmc2main.cpp" line="6723"/>
         <source>destroying controller</source>
         <translation>destruction du contrôleur</translation>
     </message>
@@ -9772,12 +9767,12 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Titr&amp;e</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6726"/>
+        <location filename="../../qmc2main.cpp" line="6727"/>
         <source>destroying marquee</source>
         <translation>destruction du marquee</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6731"/>
+        <location filename="../../qmc2main.cpp" line="6732"/>
         <source>destroying title</source>
         <translation>destruction du titre</translation>
     </message>
@@ -9787,7 +9782,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Configurer les onglets</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6785"/>
+        <location filename="../../qmc2main.cpp" line="6786"/>
         <source>destroying detail setup</source>
         <translation>Détruire la configuration des onglets</translation>
     </message>
@@ -9886,42 +9881,42 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Stopper les téléchargements sélectionnés</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6744"/>
+        <location filename="../../qmc2main.cpp" line="6745"/>
         <source>destroying MiniWebBrowser</source>
         <translation>destruction du MiniWebBrowser</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6750"/>
+        <location filename="../../qmc2main.cpp" line="6751"/>
         <source>destroying MAWS lookup</source>
         <translation>destruction de l&apos;aperçu MAWS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9983"/>
+        <location filename="../../qmc2main.cpp" line="9984"/>
         <source>Choose file to store download</source>
         <translation>Choisir le fichier pour stocker le téléchargement</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7031"/>
+        <location filename="../../qmc2main.cpp" line="7032"/>
         <source>loading style sheet &apos;%1&apos;</source>
         <translation>chargement de la feuille de style &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7040"/>
+        <location filename="../../qmc2main.cpp" line="7041"/>
         <source>removing current style sheet</source>
         <translation>enlever la feuille de style actuelle</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9599"/>
+        <location filename="../../qmc2main.cpp" line="9600"/>
         <source>Quick download links for MAWS data usable by QMC2</source>
         <translation>Téléchargement rapide des liens des données de MAWS utilisables par QMC2</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9755"/>
+        <location filename="../../qmc2main.cpp" line="9756"/>
         <source>Setup...</source>
         <translation>Configurer...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9618"/>
+        <location filename="../../qmc2main.cpp" line="9619"/>
         <source>Cabinet art</source>
         <translation>Borne Art</translation>
     </message>
@@ -10309,62 +10304,62 @@ Re-essayer l&apos;embarquement?</translation>
         <translation>destruction de la fenêtre des effets audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6678"/>
+        <location filename="../../qmc2main.cpp" line="6679"/>
         <source>saving current game&apos;s device configurations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6760"/>
+        <location filename="../../qmc2main.cpp" line="6761"/>
         <source>destroying ProjectMESS lookup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6790"/>
+        <location filename="../../qmc2main.cpp" line="6791"/>
         <source>destroying tool-bar customization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6837"/>
+        <location filename="../../qmc2main.cpp" line="6838"/>
         <source>destroying software info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6927"/>
+        <location filename="../../qmc2main.cpp" line="6928"/>
         <source>Welcome to QMC2 v%1!</source>
         <translation>Bienvenue dans QMC2 v%1!</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7037"/>
+        <location filename="../../qmc2main.cpp" line="7038"/>
         <source>WARNING: can&apos;t open style sheet &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7058"/>
+        <location filename="../../qmc2main.cpp" line="7059"/>
         <source>using default color palette for GUI style &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7062"/>
+        <location filename="../../qmc2main.cpp" line="7063"/>
         <source>using custom color palette</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7276"/>
+        <location filename="../../qmc2main.cpp" line="7277"/>
         <source>loading YouTube video info map</source>
         <translation>chargement de la carte d&apos;info de vidéo YouTube</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7297"/>
+        <location filename="../../qmc2main.cpp" line="7298"/>
         <source>YouTube index - %p%</source>
         <translation>YouTube index - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7326"/>
+        <location filename="../../qmc2main.cpp" line="7327"/>
         <source>done (loading YouTube video info map)</source>
         <translation>fait (chargement de la carte d&apos;info de vidéo YouTube)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="7327"/>
+        <location filename="../../qmc2main.cpp" line="7328"/>
         <source>%n video info record(s) loaded</source>
         <translation>
             <numerusform>%n information de vidéo chargée</numerusform>
@@ -10372,42 +10367,42 @@ Re-essayer l&apos;embarquement?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7374"/>
+        <location filename="../../qmc2main.cpp" line="7375"/>
         <source>Game info - %p%</source>
         <translation>Info du jeu - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7376"/>
+        <location filename="../../qmc2main.cpp" line="7377"/>
         <source>Machine info - %p%</source>
         <translation>Info de la machine - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7563"/>
+        <location filename="../../qmc2main.cpp" line="7564"/>
         <source>Emu info - %p%</source>
         <translation>Info de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7685"/>
+        <location filename="../../qmc2main.cpp" line="7686"/>
         <source>loading software info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7710"/>
+        <location filename="../../qmc2main.cpp" line="7711"/>
         <source>Software info - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7793"/>
+        <location filename="../../qmc2main.cpp" line="7794"/>
         <source>WARNING: can&apos;t open software info DB %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7796"/>
+        <location filename="../../qmc2main.cpp" line="7797"/>
         <source>done (loading software info DB, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="7797"/>
+        <location filename="../../qmc2main.cpp" line="7798"/>
         <source>%n software info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -10415,205 +10410,205 @@ Re-essayer l&apos;embarquement?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7799"/>
+        <location filename="../../qmc2main.cpp" line="7800"/>
         <source>invalidating software info DB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8096"/>
+        <location filename="../../qmc2main.cpp" line="8097"/>
         <source>Add URL</source>
         <translation>
 Ajouter une URL</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8096"/>
+        <location filename="../../qmc2main.cpp" line="8097"/>
         <source>Enter valid MP3 stream URL:</source>
         <translation>Entrer une URL de stream MP3 valide:</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8360"/>
+        <location filename="../../qmc2main.cpp" line="8361"/>
         <source>Buffering %p%</source>
         <translation>Mise en cache %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8448"/>
+        <location filename="../../qmc2main.cpp" line="8449"/>
         <source>WARNING: can&apos;t create SDLUME output notifier FIFO, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8486"/>
+        <location filename="../../qmc2main.cpp" line="8487"/>
         <source>SDLUME output notifier FIFO created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8490"/>
-        <location filename="../../qmc2main.cpp" line="8493"/>
+        <location filename="../../qmc2main.cpp" line="8491"/>
+        <location filename="../../qmc2main.cpp" line="8494"/>
         <source>WARNING: can&apos;t open SDLUME output notifier FIFO for reading, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8612"/>
-        <location filename="../../qmc2main.cpp" line="8690"/>
+        <location filename="../../qmc2main.cpp" line="8613"/>
+        <location filename="../../qmc2main.cpp" line="8691"/>
         <source>unhandled UME output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9870"/>
+        <location filename="../../qmc2main.cpp" line="9871"/>
         <source>Cabinet</source>
         <translation>Borne</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9872"/>
+        <location filename="../../qmc2main.cpp" line="9873"/>
         <source>Controller</source>
         <translation>Contrôleur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9878"/>
+        <location filename="../../qmc2main.cpp" line="9879"/>
         <source>PCB</source>
         <translation>PCB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10561"/>
-        <location filename="../../qmc2main.cpp" line="10595"/>
+        <location filename="../../qmc2main.cpp" line="10562"/>
+        <location filename="../../qmc2main.cpp" line="10596"/>
         <source>Play tagged - %p%</source>
         <translation>Jouer taggé - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10631"/>
+        <location filename="../../qmc2main.cpp" line="10632"/>
         <source>Add favorites - %p%</source>
         <translation>Ajouter aux favoris - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10664"/>
-        <location filename="../../qmc2main.cpp" line="10692"/>
-        <location filename="../../qmc2main.cpp" line="10732"/>
+        <location filename="../../qmc2main.cpp" line="10665"/>
+        <location filename="../../qmc2main.cpp" line="10693"/>
+        <location filename="../../qmc2main.cpp" line="10733"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
         <translation>merci de patienter pendant l&apos;activité en cours et tenter de nouveau (cette opération ne peut fonctionner qu&apos;exclusivement)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10738"/>
+        <location filename="../../qmc2main.cpp" line="10739"/>
         <source>ROM tool tagged - %p%</source>
         <translation>outil de ROM taggé - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10955"/>
-        <location filename="../../qmc2main.cpp" line="11091"/>
+        <location filename="../../qmc2main.cpp" line="10956"/>
+        <location filename="../../qmc2main.cpp" line="11092"/>
         <source>Tag - %p%</source>
         <translation>Tagger - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10999"/>
-        <location filename="../../qmc2main.cpp" line="11136"/>
+        <location filename="../../qmc2main.cpp" line="11000"/>
+        <location filename="../../qmc2main.cpp" line="11137"/>
         <source>Untag - %p%</source>
         <translation>Enlever le tag - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11043"/>
-        <location filename="../../qmc2main.cpp" line="11181"/>
+        <location filename="../../qmc2main.cpp" line="11044"/>
+        <location filename="../../qmc2main.cpp" line="11182"/>
         <source>Invert tag - %p%</source>
         <translation>Inverser le tag - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11398"/>
+        <location filename="../../qmc2main.cpp" line="11399"/>
         <source>Software detail</source>
         <translation>Détail du logiciel</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11494"/>
+        <location filename="../../qmc2main.cpp" line="11495"/>
         <source>WARNING: the ROM path is either not specified or the directory doesn&apos;t exist (or isn&apos;t accessible)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11495"/>
+        <location filename="../../qmc2main.cpp" line="11496"/>
         <source>Check ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11496"/>
+        <location filename="../../qmc2main.cpp" line="11497"/>
         <source>The ROM path is either not specified or the directory couldn&apos;t be found (or isn&apos;t accessible).
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9874"/>
+        <location filename="../../qmc2main.cpp" line="9875"/>
         <source>Flyer</source>
         <translation>Flyer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9876"/>
+        <location filename="../../qmc2main.cpp" line="9877"/>
         <source>Marquee</source>
         <translation>Marquee</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9649"/>
+        <location filename="../../qmc2main.cpp" line="9650"/>
         <source>No cabinet art</source>
         <translation>Pas de borne Art</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9661"/>
+        <location filename="../../qmc2main.cpp" line="9662"/>
         <source>Previews</source>
         <translation>Captures d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9707"/>
-        <location filename="../../qmc2main.cpp" line="9880"/>
+        <location filename="../../qmc2main.cpp" line="9708"/>
+        <location filename="../../qmc2main.cpp" line="9881"/>
         <source>preview</source>
         <translation>capture d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9692"/>
+        <location filename="../../qmc2main.cpp" line="9693"/>
         <source>No previews</source>
         <translation>Pas de captures d&apos;écrans</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9714"/>
+        <location filename="../../qmc2main.cpp" line="9715"/>
         <source>Titles</source>
         <translation>Titres</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9747"/>
-        <location filename="../../qmc2main.cpp" line="9882"/>
+        <location filename="../../qmc2main.cpp" line="9748"/>
+        <location filename="../../qmc2main.cpp" line="9883"/>
         <source>title</source>
         <translation>titre</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9732"/>
+        <location filename="../../qmc2main.cpp" line="9733"/>
         <source>No titles</source>
         <translation>Pas de titres</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9916"/>
+        <location filename="../../qmc2main.cpp" line="9917"/>
         <source>Choose file to store the icon</source>
         <translation>Choisir le fichier pour stocker l&apos;icône</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9922"/>
+        <location filename="../../qmc2main.cpp" line="9923"/>
         <source>icon image for &apos;%1&apos; stored as &apos;%2&apos;</source>
         <translation>l&apos;icône de &apos;%1&apos; a été enregistré comme &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9929"/>
+        <location filename="../../qmc2main.cpp" line="9930"/>
         <source>FATAL: icon image for &apos;%1&apos; couldn&apos;t be stored as &apos;%2&apos;</source>
         <translation>FATAL: l&apos;icône de &apos;%1&apos; n&apos;a pas pû être enregistré comme &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10078"/>
+        <location filename="../../qmc2main.cpp" line="10079"/>
         <source>Physical memory:</source>
         <translation>Mémoire physique:</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10078"/>
+        <location filename="../../qmc2main.cpp" line="10079"/>
         <source>Total: %1 MB</source>
         <translation>Total: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10078"/>
+        <location filename="../../qmc2main.cpp" line="10079"/>
         <source>Free: %1 MB</source>
         <translation>Libre: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10078"/>
+        <location filename="../../qmc2main.cpp" line="10079"/>
         <source>Used: %1 MB</source>
         <translation>Utilisé: %1 MB</translation>
     </message>
@@ -10948,14 +10943,14 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../miniwebbrowser.ui" line="145"/>
         <location filename="../../miniwebbrowser.ui" line="148"/>
-        <location filename="../../miniwebbrowser.cpp" line="118"/>
+        <location filename="../../miniwebbrowser.cpp" line="116"/>
         <source>Go back</source>
         <translation>Précédent</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="99"/>
         <location filename="../../miniwebbrowser.ui" line="102"/>
-        <location filename="../../miniwebbrowser.cpp" line="120"/>
+        <location filename="../../miniwebbrowser.cpp" line="118"/>
         <source>Go forward</source>
         <translation>Suivant</translation>
     </message>
@@ -11080,40 +11075,40 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation>Copier l&apos;image</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="116"/>
+        <location filename="../../miniwebbrowser.cpp" line="115"/>
         <source>Copy image address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="122"/>
+        <location filename="../../miniwebbrowser.cpp" line="120"/>
         <source>Reload</source>
         <translation>Recharger</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="124"/>
+        <location filename="../../miniwebbrowser.cpp" line="122"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="126"/>
+        <location filename="../../miniwebbrowser.cpp" line="124"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="129"/>
+        <location filename="../../miniwebbrowser.cpp" line="127"/>
         <source>Inspect</source>
         <translation>Inspecter</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="642"/>
+        <location filename="../../miniwebbrowser.cpp" line="640"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>ATTENTION: réponse réseau invalide et/ou erreur réseau</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="676"/>
+        <location filename="../../miniwebbrowser.cpp" line="674"/>
+        <location filename="../../miniwebbrowser.cpp" line="679"/>
         <location filename="../../miniwebbrowser.cpp" line="681"/>
-        <location filename="../../miniwebbrowser.cpp" line="683"/>
-        <location filename="../../miniwebbrowser.cpp" line="686"/>
+        <location filename="../../miniwebbrowser.cpp" line="684"/>
         <source>MiniWebBrowser</source>
         <translation type="unfinished">MiniNavigateurWeb</translation>
     </message>
@@ -14870,158 +14865,158 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>ProcessManager</name>
     <message>
-        <location filename="../../procmgr.cpp" line="76"/>
+        <location filename="../../procmgr.cpp" line="79"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; is not a directory -- ignored</source>
         <translation>ATTENTION: ProcessManager::start(): le répertoire de travail &apos;%1&apos; n&apos;est pas un répertoire -- ignoré</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="78"/>
+        <location filename="../../procmgr.cpp" line="81"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; does not exist -- ignored</source>
         <translation>ATTENTION: ProcessManager::start(): le répertoire de travail &apos;%1&apos; n&apos;existe pas -- ignoré</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="120"/>
-        <location filename="../../procmgr.cpp" line="122"/>
+        <location filename="../../procmgr.cpp" line="123"/>
+        <location filename="../../procmgr.cpp" line="125"/>
         <source>starting emulator #%1, command = %2</source>
         <translation>lancement de l&apos;émulateur #%1, commande = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="154"/>
+        <location filename="../../procmgr.cpp" line="157"/>
         <source>terminating emulator #%1, PID = %2</source>
         <translation>Sortie de l&apos;émulateur #%1, PID = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="186"/>
+        <location filename="../../procmgr.cpp" line="189"/>
         <source>killing emulator #%1, PID = %2</source>
         <translation>tue l&apos;émulateur  #%1, PID = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="217"/>
+        <location filename="../../procmgr.cpp" line="220"/>
         <source>stdout[#%1]:</source>
         <translation>stdout[#%1]:</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="235"/>
+        <location filename="../../procmgr.cpp" line="238"/>
         <source>stderr[#%1]:</source>
         <translation>stderr[#%1]:</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="268"/>
+        <location filename="../../procmgr.cpp" line="271"/>
         <source>emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4</source>
         <translation>sortie de l&apos;emulateur #%1, code de sortie = %2, statut de sortie = %3, emulateurs restants = %4</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="268"/>
+        <location filename="../../procmgr.cpp" line="271"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="268"/>
+        <location filename="../../procmgr.cpp" line="271"/>
         <source>crashed</source>
         <translation>crashé</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="319"/>
+        <location filename="../../procmgr.cpp" line="323"/>
         <source>emulator #%1 started, PID = %2, running emulators = %3</source>
         <translation>emulateur #%1 démarré, PID = %2, emulateurs en fonctionnement = %3</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="358"/>
+        <location filename="../../procmgr.cpp" line="363"/>
         <source>FATAL: failed to start emulator #%1</source>
         <translation>FATAL: échec de lancement de l&apos;émulateur #%1</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="364"/>
+        <location filename="../../procmgr.cpp" line="369"/>
         <source>WARNING: emulator #%1 crashed</source>
         <translation>ATTENTION: l&apos;émulateur #%1 a crashé</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="367"/>
+        <location filename="../../procmgr.cpp" line="372"/>
         <source>WARNING: failed to write to emulator #%1</source>
         <translation>ATTENTION: échec d&apos;écriture pour l&apos;émulateur #%1</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="370"/>
+        <location filename="../../procmgr.cpp" line="375"/>
         <source>WARNING: failed to read from emulator #%1</source>
         <translation>ATTENTION: échec de lecture pour l&apos;émulateur #%1</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="373"/>
+        <location filename="../../procmgr.cpp" line="378"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
         <translation>ATTENTION: erreur non gérée pour l&apos;émulateir #%1, code d&apos;erreur = %2</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="390"/>
+        <location filename="../../procmgr.cpp" line="395"/>
         <source>no error</source>
         <translation>pas d&apos;erreur</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="391"/>
+        <location filename="../../procmgr.cpp" line="396"/>
         <source>failed validity checks</source>
         <translation>échec des tests de validité</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="392"/>
+        <location filename="../../procmgr.cpp" line="397"/>
         <source>missing files</source>
         <translation>fichiers manquants</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="393"/>
+        <location filename="../../procmgr.cpp" line="398"/>
         <source>fatal error</source>
         <translation>erreur fatale</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="394"/>
+        <location filename="../../procmgr.cpp" line="399"/>
         <source>device initialization error</source>
         <translation>erreur d&apos;initialisation de périphérique</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="396"/>
+        <location filename="../../procmgr.cpp" line="401"/>
         <source>game doesn&apos;t exist</source>
         <translation>le jeu n&apos;existe pas</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="398"/>
+        <location filename="../../procmgr.cpp" line="403"/>
         <source>machine doesn&apos;t exist</source>
         <translation>la machine n&apos;existe pas</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="400"/>
+        <location filename="../../procmgr.cpp" line="405"/>
         <source>invalid configuration</source>
         <translation>configuration invalide</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="401"/>
+        <location filename="../../procmgr.cpp" line="406"/>
         <source>identified all non-ROM files</source>
         <translation>tous les fichiers non-ROM identifié</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="402"/>
+        <location filename="../../procmgr.cpp" line="407"/>
         <source>identified some files but not all</source>
         <translation>certains fichiers identifiés mais pas tous</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="403"/>
+        <location filename="../../procmgr.cpp" line="408"/>
         <source>identified no files</source>
         <translation>aucun fichier identifié</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="404"/>
+        <location filename="../../procmgr.cpp" line="409"/>
         <source>unknown error</source>
         <translation>erreur inconnue</translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="177"/>
+        <location filename="../../procmgr.cpp" line="180"/>
         <source>WARNING: ProcessManager::terminate(ushort index = %1): trying to terminate a null process</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="200"/>
+        <location filename="../../procmgr.cpp" line="203"/>
         <source>WARNING: ProcessManager::kill(ushort index = %1): trying to kill a null process</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../procmgr.cpp" line="265"/>
+        <location filename="../../procmgr.cpp" line="268"/>
         <source>WARNING: ProcessManager::finished(...): trying to remove a null item</source>
         <translation></translation>
     </message>
@@ -15137,7 +15132,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4655"/>
-        <location filename="../../qmc2main.cpp" line="11898"/>
+        <location filename="../../qmc2main.cpp" line="11899"/>
         <source>Import from...</source>
         <translation>Importer depuis...</translation>
     </message>
@@ -15148,75 +15143,75 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Importer la configuration MAME spécifique du jeu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11784"/>
+        <location filename="../../qmc2main.cpp" line="11785"/>
         <source>Setting up the GUI, please wait...</source>
         <translation>Configuration du GUI, patientez svp...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11834"/>
-        <location filename="../../qmc2main.cpp" line="11838"/>
+        <location filename="../../qmc2main.cpp" line="11835"/>
+        <location filename="../../qmc2main.cpp" line="11839"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation>M.A.M.E. Catalog / Launcher II v</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11836"/>
+        <location filename="../../qmc2main.cpp" line="11837"/>
         <source>U.M.E. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11842"/>
+        <location filename="../../qmc2main.cpp" line="11843"/>
         <source>SVN r%1</source>
         <translation>SVN r%1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11877"/>
+        <location filename="../../qmc2main.cpp" line="11878"/>
         <source>processing global emulator configuration</source>
         <translation>traitement de la configuration globale de l&apos;émulateur </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11887"/>
+        <location filename="../../qmc2main.cpp" line="11888"/>
         <source>Export to...</source>
         <translation>Exporter vers...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11889"/>
         <location filename="../../qmc2main.cpp" line="11890"/>
+        <location filename="../../qmc2main.cpp" line="11891"/>
         <source>Export global MAME configuration</source>
         <translation>Exporter la configuration globale de MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11895"/>
         <location filename="../../qmc2main.cpp" line="11896"/>
+        <location filename="../../qmc2main.cpp" line="11897"/>
         <source>Export global UME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11900"/>
         <location filename="../../qmc2main.cpp" line="11901"/>
+        <location filename="../../qmc2main.cpp" line="11902"/>
         <source>Import global MAME configuration</source>
         <translation>Importer la configuration globale de MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11906"/>
         <location filename="../../qmc2main.cpp" line="11907"/>
+        <location filename="../../qmc2main.cpp" line="11908"/>
         <source>Import global UME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11916"/>
-        <location filename="../../qmc2main.cpp" line="11926"/>
+        <location filename="../../qmc2main.cpp" line="11917"/>
+        <location filename="../../qmc2main.cpp" line="11927"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation>&lt;rep.ini&gt;/mame.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11920"/>
-        <location filename="../../qmc2main.cpp" line="11930"/>
+        <location filename="../../qmc2main.cpp" line="11921"/>
+        <location filename="../../qmc2main.cpp" line="11931"/>
         <source>&lt;inipath&gt;/ume.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11922"/>
-        <location filename="../../qmc2main.cpp" line="11932"/>
+        <location filename="../../qmc2main.cpp" line="11923"/>
+        <location filename="../../qmc2main.cpp" line="11933"/>
         <source>Select file...</source>
         <translation>Choisir le fichier...</translation>
     </message>
@@ -15263,19 +15258,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>nom du jeu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11864"/>
+        <location filename="../../qmc2main.cpp" line="11865"/>
         <source>OpenGL features enabled</source>
         <translation>fonctions OpenGL activées</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11892"/>
         <location filename="../../qmc2main.cpp" line="11893"/>
+        <location filename="../../qmc2main.cpp" line="11894"/>
         <source>Export global MESS configuration</source>
         <translation>Exporter la configuration MESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11903"/>
         <location filename="../../qmc2main.cpp" line="11904"/>
+        <location filename="../../qmc2main.cpp" line="11905"/>
         <source>Import global MESS configuration</source>
         <translation>Importer la configuration MESS</translation>
     </message>
@@ -15292,13 +15287,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>nom de la machine</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11873"/>
+        <location filename="../../qmc2main.cpp" line="11874"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>Support du joystick SDL activé - Utilise SDL v%1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11918"/>
-        <location filename="../../qmc2main.cpp" line="11928"/>
+        <location filename="../../qmc2main.cpp" line="11919"/>
+        <location filename="../../qmc2main.cpp" line="11929"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
@@ -15315,17 +15310,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Importer la configuration MESS spécifique de la machine</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11832"/>
+        <location filename="../../qmc2main.cpp" line="11833"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation>M.E.S.S. Catalog / Launcher II v</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="11868"/>
+        <location filename="../../qmc2main.cpp" line="11869"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Phonon actif - Utilise Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1977"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2141"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation>lecteur vidéo: erreur XML: erreur fatal ligne %1, colonne %2: %3</translation>
     </message>
@@ -20533,49 +20528,49 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="201"/>
-        <location filename="../../youtubevideoplayer.cpp" line="96"/>
+        <location filename="../../youtubevideoplayer.cpp" line="119"/>
         <source>FLV 240P</source>
         <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="210"/>
-        <location filename="../../youtubevideoplayer.cpp" line="97"/>
+        <location filename="../../youtubevideoplayer.cpp" line="120"/>
         <source>FLV 360P</source>
         <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="219"/>
-        <location filename="../../youtubevideoplayer.cpp" line="98"/>
+        <location filename="../../youtubevideoplayer.cpp" line="121"/>
         <source>MP4 360P</source>
         <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="228"/>
-        <location filename="../../youtubevideoplayer.cpp" line="99"/>
+        <location filename="../../youtubevideoplayer.cpp" line="122"/>
         <source>FLV 480P</source>
         <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="237"/>
-        <location filename="../../youtubevideoplayer.cpp" line="100"/>
+        <location filename="../../youtubevideoplayer.cpp" line="123"/>
         <source>MP4 720P</source>
         <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="246"/>
-        <location filename="../../youtubevideoplayer.cpp" line="101"/>
+        <location filename="../../youtubevideoplayer.cpp" line="124"/>
         <source>MP4 1080P</source>
         <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="255"/>
-        <location filename="../../youtubevideoplayer.cpp" line="102"/>
+        <location filename="../../youtubevideoplayer.cpp" line="125"/>
         <source>MP4 3072P</source>
         <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="273"/>
-        <location filename="../../youtubevideoplayer.cpp" line="178"/>
+        <location filename="../../youtubevideoplayer.cpp" line="197"/>
         <source>Start / pause / resume video playback</source>
         <translation>Joue / pause / reprise de la lecture vidéo</translation>
     </message>
@@ -20586,19 +20581,20 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="323"/>
-        <location filename="../../youtubevideoplayer.cpp" line="118"/>
-        <location filename="../../youtubevideoplayer.cpp" line="943"/>
-        <location filename="../../youtubevideoplayer.cpp" line="961"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1001"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1003"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1034"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1050"/>
+        <location filename="../../youtubevideoplayer.cpp" line="141"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1017"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1035"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1074"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1076"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1107"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1123"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1169"/>
         <source>Remaining</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1655"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1819"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20643,272 +20639,277 @@ p, li { white-space: pre-wrap; }
         <translation>Suggérer un pattern de recherche (laisser appuyé pour le menu)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="79"/>
+        <location filename="../../youtubevideoplayer.cpp" line="102"/>
         <source>Mute / unmute audio output</source>
         <translation>Coupe / Ouvre la sortie audio</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="116"/>
+        <location filename="../../youtubevideoplayer.cpp" line="139"/>
         <source>Volume level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="117"/>
+        <location filename="../../youtubevideoplayer.cpp" line="140"/>
         <source>Video progress</source>
         <translation>Progression de la vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="125"/>
-        <location filename="../../youtubevideoplayer.cpp" line="947"/>
-        <location filename="../../youtubevideoplayer.cpp" line="974"/>
-        <location filename="../../youtubevideoplayer.cpp" line="991"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1037"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1053"/>
+        <location filename="../../youtubevideoplayer.cpp" line="144"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1021"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1048"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1065"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1110"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1126"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1172"/>
         <source>Current buffer fill level: %1%</source>
         <translation>Niveau de cache actuel: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="132"/>
-        <location filename="../../youtubevideoplayer.cpp" line="232"/>
+        <location filename="../../youtubevideoplayer.cpp" line="151"/>
+        <location filename="../../youtubevideoplayer.cpp" line="251"/>
         <source>Play this video</source>
         <translation>Joue cette vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="139"/>
-        <location filename="../../youtubevideoplayer.cpp" line="193"/>
-        <location filename="../../youtubevideoplayer.cpp" line="243"/>
+        <location filename="../../youtubevideoplayer.cpp" line="158"/>
+        <location filename="../../youtubevideoplayer.cpp" line="212"/>
+        <location filename="../../youtubevideoplayer.cpp" line="262"/>
         <source>Copy video URL</source>
         <translation>Copier l&apos;URL de la vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="145"/>
-        <location filename="../../youtubevideoplayer.cpp" line="199"/>
-        <location filename="../../youtubevideoplayer.cpp" line="248"/>
+        <location filename="../../youtubevideoplayer.cpp" line="164"/>
+        <location filename="../../youtubevideoplayer.cpp" line="218"/>
+        <location filename="../../youtubevideoplayer.cpp" line="267"/>
         <source>Copy video URL (no country filter)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="151"/>
-        <location filename="../../youtubevideoplayer.cpp" line="205"/>
-        <location filename="../../youtubevideoplayer.cpp" line="253"/>
+        <location filename="../../youtubevideoplayer.cpp" line="170"/>
+        <location filename="../../youtubevideoplayer.cpp" line="224"/>
+        <location filename="../../youtubevideoplayer.cpp" line="272"/>
         <source>Copy author URL</source>
         <translation>Copier l&apos;URL de l&apos;auteur</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="157"/>
-        <location filename="../../youtubevideoplayer.cpp" line="211"/>
+        <location filename="../../youtubevideoplayer.cpp" line="176"/>
+        <location filename="../../youtubevideoplayer.cpp" line="230"/>
         <source>Paste video URL</source>
         <translation>Coller l&apos;URL de la vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="164"/>
-        <location filename="../../youtubevideoplayer.cpp" line="218"/>
+        <location filename="../../youtubevideoplayer.cpp" line="183"/>
+        <location filename="../../youtubevideoplayer.cpp" line="237"/>
         <source>Local movie file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="170"/>
+        <location filename="../../youtubevideoplayer.cpp" line="189"/>
         <source>Remove selected videos</source>
         <translation>Enlever les vidéos sélectionnées</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="186"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1566"/>
+        <location filename="../../youtubevideoplayer.cpp" line="205"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1725"/>
         <source>Full screen (return with toggle-key)</source>
         <translation>Plein écran (retour avec la touche de bascul)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="224"/>
-        <location filename="../../youtubevideoplayer.cpp" line="237"/>
+        <location filename="../../youtubevideoplayer.cpp" line="243"/>
+        <location filename="../../youtubevideoplayer.cpp" line="256"/>
         <source>Attach this video</source>
         <translation>Attacher cette vidéo</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="260"/>
+        <location filename="../../youtubevideoplayer.cpp" line="279"/>
         <source>Auto-suggest a search pattern?</source>
         <translation>Suggérer automatique un pattern de recherche?</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="261"/>
+        <location filename="../../youtubevideoplayer.cpp" line="280"/>
         <source>Auto-suggest</source>
         <translation>Auto-suggestion</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="266"/>
+        <location filename="../../youtubevideoplayer.cpp" line="285"/>
         <source>Enter string to be appended</source>
         <translation>Entrer la chaîne qui sera ajoutée</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="267"/>
+        <location filename="../../youtubevideoplayer.cpp" line="286"/>
         <source>Append...</source>
         <translation>Ajouter...</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="277"/>
+        <location filename="../../youtubevideoplayer.cpp" line="294"/>
         <source>Enter search string</source>
         <translation>Entrer la chaîne de recherche</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="388"/>
+        <location filename="../../youtubevideoplayer.cpp" line="418"/>
         <source>Appended string</source>
         <translation>Ajouter une chaîne</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="389"/>
+        <location filename="../../youtubevideoplayer.cpp" line="419"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
         <translation>Entrer la chaîne à ajouter quand un pattern est suggéré:</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="390"/>
+        <location filename="../../youtubevideoplayer.cpp" line="420"/>
         <source>Valid placeholder macros:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="588"/>
-        <location filename="../../youtubevideoplayer.cpp" line="600"/>
+        <location filename="../../youtubevideoplayer.cpp" line="619"/>
+        <location filename="../../youtubevideoplayer.cpp" line="631"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="589"/>
-        <location filename="../../youtubevideoplayer.cpp" line="601"/>
+        <location filename="../../youtubevideoplayer.cpp" line="620"/>
+        <location filename="../../youtubevideoplayer.cpp" line="632"/>
         <source>Choose movie file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="770"/>
+        <location filename="../../youtubevideoplayer.cpp" line="807"/>
+        <location filename="../../youtubevideoplayer.cpp" line="825"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
         <translation>Mode plein écran - presser %1 pour retourner au mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="772"/>
+        <location filename="../../youtubevideoplayer.cpp" line="809"/>
+        <location filename="../../youtubevideoplayer.cpp" line="827"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
         <translation>Mode plein écran - presser la touche de bacul pour retourner au mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="801"/>
+        <location filename="../../youtubevideoplayer.cpp" line="873"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="805"/>
+        <location filename="../../youtubevideoplayer.cpp" line="877"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
         <translation>lecteur vidéo: une vidéo avec l&apos;ID &apos;%1&apos; est déjà attachée, ignoré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="975"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1049"/>
         <source>Buffering: %1%</source>
         <translation>Mise en cache: %1%</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="993"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1067"/>
         <source>Loading</source>
         <translation>Chargement</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1010"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1083"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1145"/>
         <source>Playing</source>
         <translation>En lecture</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1021"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1094"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1156"/>
         <source>Paused</source>
         <translation>En pause</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1024"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1097"/>
         <source>video player: playback error: %1</source>
         <translation>lecteur vidéo: erreur de lecture: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1025"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1098"/>
         <source>Video playback error: %1</source>
         <translation>Erreur de lecture vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1101"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1233"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation>Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1189"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1321"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation>lecteur vidéo: info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1190"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1317"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1782"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1322"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1455"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1946"/>
         <source>Video info error: %1</source>
         <translation>Info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1278"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1416"/>
         <source>video player: video info error: timeout occurred</source>
         <translation>lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1279"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1417"/>
         <source>video info error: timeout occurred</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1283"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1421"/>
         <source>video info error: unknown reason</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1316"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1454"/>
         <source>video player: video info error: %1</source>
         <translation>lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1564"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1723"/>
         <source>Full screen (press %1 to return)</source>
         <translation>Plein écran (presser %1 pour revenir)</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1781"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1945"/>
         <source>video player: video image info error: %1</source>
         <translation>lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1813"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1977"/>
         <source>video player: search request error: %1</source>
         <translation>lecteur vidéo: erreur de recherche: %1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1841"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2005"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation>lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1874"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2038"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation>lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1880"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2044"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation>lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1897"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2061"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1899"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2063"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1901"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2065"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1903"/>
+        <location filename="../../youtubevideoplayer.cpp" line="2067"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
     </message>
