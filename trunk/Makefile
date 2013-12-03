@@ -760,8 +760,10 @@ ifeq '$(DATABASE)' '1'
 DEFINES += QMC2_DATABASE_ENABLED
 endif
 
+ifneq '$(QMAKEV)' '3'
 ifeq '$(PHONON)' '0'
 YOUTUBE = 0
+endif
 endif
 
 ifeq '$(YOUTUBE)' '1'
