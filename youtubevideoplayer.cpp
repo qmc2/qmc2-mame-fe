@@ -29,8 +29,6 @@ extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-//#define QMC2_DEBUG
-
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -1298,8 +1296,12 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 				 authorUrl.replace("$USER_ID$", author);
 			 } else if ( vInfo.startsWith("thumbnail_url=") ) {
 				 vInfo.replace(QRegExp("^thumbnail_url="), "");
+#if QT_VERSION < 0x050000
 				 debugUrl = QUrl::fromEncoded(vInfo.toLatin1());
 				 thumbnail_url = debugUrl.toString();
+#else
+				 thumbnail_url = vInfo.replace("http%3A%2F%2F", "http://").replace("%2F", "/");
+#endif
 			 } else if ( vInfo.startsWith("title") ) {
 				 vInfo.replace(QRegExp("^title="), "");
 				 debugUrl = QUrl::fromEncoded(vInfo.toLatin1());
@@ -1309,15 +1311,15 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 		}
 
 #ifdef QMC2_DEBUG
-		printf(">>>>\n\nSelected (decoded) info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
-		printf("status        = '%s'\n", (const char *)status.toLatin1());
-		printf("errorcode     = '%s'\n", (const char *)errorcode.toLatin1());
-		printf("errortext     = '%s'\n", (const char *)errortext.toLatin1());
-		printf("title         = '%s'\n", (const char *)title.toLatin1());
-		printf("author        = '%s'\n", (const char *)author.toLatin1());
-		printf("author_url    = '%s'\n", (const char *)authorUrl.toLatin1());
-		printf("thumbnail_url = '%s'\n>>>>\n", (const char *)thumbnail_url.toLatin1());
-		printf("\nAvailable formats / stream URLs for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
+		printf(">>>>\n\nSelected (decoded) info for video ID '%s':\n>>>>\n", videoID.toLatin1().constData());
+		printf("status        = '%s'\n", status.toLatin1().constData());
+		printf("errorcode     = '%s'\n", errorcode.toLatin1().constData());
+		printf("errortext     = '%s'\n", errortext.toLatin1().constData());
+		printf("title         = '%s'\n", title.toLatin1().constData());
+		printf("author        = '%s'\n", author.toLatin1().constData());
+		printf("author_url    = '%s'\n", authorUrl.toLatin1().constData());
+		printf("thumbnail_url = '%s'\n>>>>\n", thumbnail_url.toLatin1().constData());
+		printf("\nAvailable formats / stream URLs for video ID '%s':\n>>>>\n", videoID.toLatin1().constData());
 #endif
 
 		if ( status != "ok" ) {
@@ -1912,7 +1914,11 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 					break;
 				if ( vInfo.startsWith("thumbnail_url=") ) {
 					vInfo.replace(QRegExp("^thumbnail_url="), "");
+#if QT_VERSION < 0x050000
 					thumbnail_url = QUrl::fromEncoded(vInfo.toLatin1()).toString();
+#else
+					thumbnail_url = vInfo.replace("http%3A%2F%2F", "http://").replace("%2F", "/");
+#endif
 					break;
 				}
 			}
