@@ -219,8 +219,10 @@ Gamelist::~Gamelist()
     verifyProc->kill();
 
   clearCategoryNames();
+  qmc2CategoryMap.clear();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   clearVersionNames();
+  qmc2VersionMap.clear();
 #endif
 
   foreach (unzFile iconFile, qmc2IconFileMap)

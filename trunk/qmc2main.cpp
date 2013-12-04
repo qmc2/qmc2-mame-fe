@@ -122,7 +122,7 @@ QWidget *qmc2DetailSetupParent = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
 SoftwareSnap *qmc2SoftwareSnap = NULL;
 SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
-QString qmc2DriverName = "";
+QString qmc2DriverName;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
@@ -130,7 +130,7 @@ QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
 #if QMC2_USE_PHONON_API
 AudioEffectDialog *qmc2AudioEffectDialog = NULL;
-QString qmc2AudioLastIndividualTrack = "";
+QString qmc2AudioLastIndividualTrack;
 #endif
 DemoModeDialog *qmc2DemoModeDialog = NULL;
 bool qmc2ReloadActive = false;
@@ -188,9 +188,9 @@ QTextStream qmc2FrontendLogStream;
 QTextStream qmc2EmulatorLogStream;
 QTranslator *qmc2Translator = NULL;
 QTranslator *qmc2QtTranslator = NULL;
-QString qmc2LastFrontendLogMessage = "";
+QString qmc2LastFrontendLogMessage;
 quint64 qmc2FrontendLogMessageRepeatCount = 0;
-QString qmc2LastEmulatorLogMessage = "";
+QString qmc2LastEmulatorLogMessage;
 quint64 qmc2EmulatorLogMessageRepeatCount = 0;
 bool qmc2StopParser = false;
 QTreeWidgetItem *qmc2CurrentItem = NULL;
@@ -267,8 +267,8 @@ bool qmc2ShowGameName = false;
 bool qmc2ShowGameNameOnlyWhenRequired = true;
 QMutex qmc2LogFrontendMutex;
 QMutex qmc2LogEmulatorMutex;
-QString qmc2FileEditStartPath = "";
-QString qmc2DirectoryEditStartPath = "";
+QString qmc2FileEditStartPath;
+QString qmc2DirectoryEditStartPath;
 QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
@@ -8339,6 +8339,8 @@ void MainWindow::audioFade(int faderFunction)
 
 void MainWindow::audioMetaDataChanged()
 {
+  static QString lastTrackInfo;
+
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::audioMetaDataChanged()");
 #endif
@@ -8348,7 +8350,6 @@ void MainWindow::audioMetaDataChanged()
   QString albumMetaData = phononAudioPlayer->metaData(Phonon::AlbumMetaData).join(", ");
   QString genreMetaData = phononAudioPlayer->metaData(Phonon::GenreMetaData).join(", ");
   
-  static QString lastTrackInfo = "";
   QString trackInfo = tr("audio player: track info: title = '%1', artist = '%2', album = '%3', genre = '%4'").arg(titleMetaData).arg(artistMetaData).arg(albumMetaData).arg(genreMetaData);
   if ( trackInfo != lastTrackInfo ) {
     log(QMC2_LOG_FRONTEND, trackInfo);
