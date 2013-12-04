@@ -287,8 +287,6 @@ void ImageChecker::adjustIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-	QSize iconSizeMiddle = iconSize + QSize(2, 2);
-	QSize iconSizeLarge = iconSize + QSize(4, 4);
 
 	comboBoxImageType->setIconSize(iconSize);
 	toolButtonSelectSets->setIconSize(iconSize);

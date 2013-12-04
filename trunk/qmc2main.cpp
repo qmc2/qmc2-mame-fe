@@ -261,7 +261,6 @@ QMap<QString, QKeySequence> qmc2QtKeyMap;
 QMap<QString, QString> qmc2JoystickFunctionMap;
 bool qmc2JoystickIsCalibrating = false;
 #endif
-QString qmc2DefaultStyle;
 QSocketNotifier *qmc2FifoNotifier = NULL;
 bool qmc2ShowGameName = false;
 bool qmc2ShowGameNameOnlyWhenRequired = true;
@@ -431,7 +430,7 @@ MainWindow::MainWindow(QWidget *parent)
   proxyStyle = NULL;
 
   // remember the default style
-  qmc2DefaultStyle = QApplication::style()->objectName();
+  defaultStyle = QApplication::style()->objectName();
 
   // connections for style/style-sheet/palette setup requests
   connect(this, SIGNAL(styleSetupRequested(QString)), this, SLOT(setupStyle(QString)));
@@ -6998,11 +6997,11 @@ void MainWindow::setupStyle(QString styleName)
 		if ( QStyleFactory::keys().contains(styleName) )
 			newStyle = QStyleFactory::create(styleName);
 		else {
-			newStyle = QStyleFactory::create(qmc2DefaultStyle);
+			newStyle = QStyleFactory::create(defaultStyle);
 			styleName = "Default";
 		}
 	} else {
-		newStyle = QStyleFactory::create(qmc2DefaultStyle);
+		newStyle = QStyleFactory::create(defaultStyle);
 		styleName = "Default";
 	}
 

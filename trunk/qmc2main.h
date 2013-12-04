@@ -95,6 +95,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 	public:
 		bool isActiveState;
+		QString defaultStyle;
 		QTimer searchTimer;
 		QTimer updateTimer;
 		ProxyStyle *proxyStyle;
