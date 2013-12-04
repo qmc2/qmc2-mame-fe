@@ -152,7 +152,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_MEMORY_INFO_ENABLED)
 		QTimer memoryUpdateTimer;
 #endif
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 		QWidget *widgetEmbeddedEmus;
 		QWidget *embedderCornerWidget;
 		QHBoxLayout *embedderCornerLayout;
@@ -404,7 +404,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void pushButtonCurrentEmulatorOptionsSelectExportFile_clicked();
 		void pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
 		void pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 		void action_embedEmulator_triggered();
 		void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
 		void embedderOptions_toggled(bool);

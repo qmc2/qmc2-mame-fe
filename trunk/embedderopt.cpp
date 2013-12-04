@@ -1,7 +1,7 @@
 #include "embedderopt.h"
 #include "embedder.h"
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 
 #include <QCache>
 #include "gamelist.h"
