@@ -6,8 +6,6 @@
 #include "videoitemwidget.h"
 #include "youtubevideoplayer.h"
 
-//#define QMC2_DEBUG
-
 #ifdef QMC2_DEBUG
 #include "qmc2main.h"
 extern MainWindow *qmc2MainWindow;
