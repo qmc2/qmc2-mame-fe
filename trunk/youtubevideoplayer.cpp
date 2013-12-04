@@ -898,9 +898,9 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 	listWidgetItem->setSizeHint(QSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4));
 	VideoItemWidget *videoItemWidget;
 	if ( pixmapFound )
-		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, itemType, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, itemType, this, listWidgetAttachedVideos);
 	else
-		videoItemWidget = new VideoItemWidget(id, title, author, 0, itemType, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, 0, itemType, this, listWidgetAttachedVideos);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
 	qmc2YouTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
@@ -2114,8 +2114,8 @@ bool YouTubeXmlHandler::endElement(const QString &namespaceURI, const QString &l
 		printf("end of entry\n");
 #endif
 		QListWidgetItem *listWidgetItem = new QListWidgetItem(listWidget);
+		listWidget->setItemWidget(listWidgetItem, new VideoItemWidget(id, title, author, 0, VIDEOITEM_TYPE_YOUTUBE_SEARCH, mVideoPlayer, listWidget));
 		listWidgetItem->setSizeHint(QSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4));
-		listWidget->setItemWidget(listWidgetItem, new VideoItemWidget(id, title, author, 0, VIDEOITEM_TYPE_YOUTUBE_SEARCH, mVideoPlayer, mVideoPlayer));
 		isEntry = false;
 	} else if ( qName == "id" ) {
 		id = currentText.remove(0, currentText.lastIndexOf("/") + 1);
