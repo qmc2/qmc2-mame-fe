@@ -6,6 +6,8 @@
 #include "videoitemwidget.h"
 #include "youtubevideoplayer.h"
 
+//#define QMC2_DEBUG
+
 #ifdef QMC2_DEBUG
 #include "qmc2main.h"
 extern MainWindow *qmc2MainWindow;
@@ -15,7 +17,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, I
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., ImagePixmap *vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = %2, QString vAuthor = %3, ImagePixmap *vImage = %4, int vType = %5, void *vPlayer = %6, QWidget *parent = %7)").arg(vID).arg(vTitle).arg(vAuthor).arg((qulonglong)vImage).arg(vType).arg((qulonglong)vPlayer).arg((qulonglong)parent));
 #endif
 
 	setupUi(this);
@@ -28,40 +30,11 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, I
 	setAuthor(vAuthor);
 	if ( vType == VIDEOITEM_TYPE_YOUTUBE_SEARCH )
 		labelVideoImage->hide();
-	else
+	else if ( vImage )
 		setImage(vImage, true);
-	setTitle(vTitle);
-}
-
-VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, int vType, void *vPlayer, QWidget *parent)
-  : QWidget(parent)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
-#endif
-
-	setupUi(this);
-	textBrowserVideoTitle->setObjectName("QMC2_VIDEO_TITLE");
-	setAutoFillBackground(true);
-
-	myVideoPlayer = vPlayer;
-	setType(vType);
-	setID(vID);
-	setAuthor(vAuthor);
-	ImagePixmap ghostImage = ImagePixmap(QPixmap(QString::fromUtf8(":/data/img/ghost_video.png")));
-	if ( vType == VIDEOITEM_TYPE_YOUTUBE_SEARCH )
-		labelVideoImage->hide();
 	else
-		setImage(ghostImage, false);
+		setImage(ImagePixmap(QPixmap(QString::fromUtf8(":/data/img/ghost_video.png"))), false);
 	setTitle(vTitle);
-}
-
-VideoItemWidget::~VideoItemWidget()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: VideoItemWidget::~VideoItemWidget()");
-#endif
-
 }
 
 bool VideoItemWidget::closingState()
@@ -118,12 +91,13 @@ void VideoItemWidget::setImage(const ImagePixmap &vImage, bool valid)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(const ImagePixmap &vImage = ..., bool valid = %1)").arg(valid));
 #endif
 
-	if ( closingState() ) return;
+	if ( closingState() )
+		return;
 
 	videoImageValid = valid;
 	videoImage = vImage;
 	videoImage.imagePath = vImage.imagePath;
-	labelVideoImage->setPixmap(((QPixmap)videoImage).scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
 	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
@@ -134,7 +108,8 @@ void VideoItemWidget::setImage(ImagePixmap *vImage, bool valid)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setImage(ImagePixmap *vImage = %1, bool valid = %2)").arg((qulonglong)vImage).arg(valid));
 #endif
 
-	if ( closingState() ) return;
+	if ( closingState() )
+		return;
 
 	videoImageValid = valid;
 	videoImage = *vImage;
@@ -150,7 +125,8 @@ void VideoItemWidget::setID(QString vID)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setID(QString vID = %1)").arg(vID));
 #endif
 
-	if ( closingState() ) return;
+	if ( closingState() )
+		return;
 
 	if ( itemType == VIDEOITEM_TYPE_LOCAL_MOVIE )
 		videoImageValid = true;
@@ -167,7 +143,8 @@ void VideoItemWidget::setAuthor(QString vAuthor)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setAuthor(QString vAuthor = %1)").arg(vAuthor));
 #endif
 
-	if ( closingState() ) return;
+	if ( closingState() )
+		return;
 
 	videoAuthor = vAuthor;
 	if ( !videoTitle.isEmpty() )
@@ -180,7 +157,8 @@ void VideoItemWidget::setTitle(QString vTitle)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setTitle(QString vTitle = %1)").arg(vTitle));
 #endif
 
-	if ( closingState() ) return;
+	if ( closingState() )
+		return;
 
 	videoTitle = vTitle;
 
