@@ -7294,6 +7294,9 @@ void MainWindow::loadYouTubeVideoInfoMap()
 #endif
 		if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			QString oldFormat = progressBarGamelist->format();
+			int oldMinimum = progressBarGamelist->minimum();
+			int oldMaximum = progressBarGamelist->maximum();
+			int oldValue = progressBarGamelist->value();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				progressBarGamelist->setFormat(tr("YouTube index - %p%"));
 			else
@@ -7322,6 +7325,8 @@ void MainWindow::loadYouTubeVideoInfoMap()
 			}
 			progressBarGamelist->reset();
 			progressBarGamelist->setFormat(oldFormat);
+			progressBarGamelist->setRange(oldMinimum, oldMaximum);
+			progressBarGamelist->setValue(oldValue);
 		}
 	}
 	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info map)"));
