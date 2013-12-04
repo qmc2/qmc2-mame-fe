@@ -47,11 +47,11 @@ QMap<QString, QTreeWidgetItem *> EmulatorOptions::sectionItemMap;
 int EmulatorOptions::horizontalScrollPosition = 0;
 int EmulatorOptions::verticalScrollPosition = 0;
 
-QString optionDescription = "";
+QString optionDescription;
 int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
 int optionDecimals = QMC2_EMUOPT_DFLT_DECIMALS;
 QStringList optionChoices;
-QString optionPart = "";
+QString optionPart;
 
 #if defined(_MIN)
 #undef _MIN
