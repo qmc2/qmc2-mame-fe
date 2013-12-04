@@ -92,7 +92,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QAction *actionChooserOpenExternally;
 		QAction *actionChooserOpenFolder;
 		QAction *actionChooserPlay;
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 		QAction *actionChooserPlayEmbedded;
 #endif
 		DirectoryModel *dirModel;

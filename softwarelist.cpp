@@ -113,7 +113,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
 	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
 	toolButtonSoftwareStates->setIconSize(iconSize);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
 	toolButtonPlayEmbedded->setVisible(false);
@@ -142,7 +142,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playActivated()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 	s = tr("Play selected software (embedded)");
 	action = softwareListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -2623,7 +2623,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -2654,7 +2654,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -2685,7 +2685,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;

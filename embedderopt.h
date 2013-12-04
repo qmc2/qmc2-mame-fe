@@ -5,7 +5,7 @@
 #include <QtGui>
 #include "macros.h"
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if QMC2_EMBEDDER_ENABLED
 
 #include "ui_embedderopt.h"
 
