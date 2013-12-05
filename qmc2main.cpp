@@ -3785,7 +3785,9 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   } else
     labelGameStatus->setVisible(false);
 
+#if QMC2_EMBEDDER_ENABLED
   lastTabWidgetGamelistIndex = currentIndex;
+#endif
 }
 
 void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
