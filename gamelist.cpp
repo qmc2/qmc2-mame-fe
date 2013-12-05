@@ -3229,17 +3229,17 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
     qApp->processEvents();
-    QList<QTreeWidgetItem *> itemList = qmc2MainWindow->treeWidgetGamelist->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
-    for (int i = 0; i < itemList.count(); i++) {
-      if ( itemList[i]->childCount() > 1 ) {
-        qmc2MainWindow->treeWidgetGamelist->collapseItem(itemList[i]);
-        QList<QTreeWidgetItem *> childrenList = itemList[i]->takeChildren();
+    for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+      QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
+      if ( item->childCount() > 1 ) {
+        qmc2MainWindow->treeWidgetGamelist->collapseItem(item);
+        QList<QTreeWidgetItem *> childrenList = item->takeChildren();
         int j;
         for (j = 0; j < childrenList.count(); j++)
           delete childrenList[j];
-        QTreeWidgetItem *nameItem = new QTreeWidgetItem(itemList[i]);
+        QTreeWidgetItem *nameItem = new QTreeWidgetItem(item);
         nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-        nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[itemList[i]->text(QMC2_GAMELIST_COLUMN_GAME)]);
+        nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, qmc2GamelistNameMap[item->text(QMC2_GAMELIST_COLUMN_GAME)]);
         qApp->processEvents();
       }
     }
