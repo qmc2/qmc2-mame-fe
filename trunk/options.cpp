@@ -4359,8 +4359,6 @@ void Options::saveCustomPalette()
 #if QMC2_JOYSTICK == 1
 void Options::on_pushButtonRescanJoysticks_clicked()
 {
-	QWidget *sendingWidget = (QWidget *)sender();
-
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRescanJoysticks_clicked()");
 #endif

@@ -3620,7 +3620,9 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGamelist_currentChanged(int i = " + QString::number(currentIndex) + ")");
 #endif
 
+#if QMC2_EMBEDDER_ENABLED
   static int lastTabWidgetGamelistIndex = -1;
+#endif
 
   if ( !qmc2EarlyStartup ) {
     menuGamelistHeader->hide();
@@ -6292,9 +6294,14 @@ void MainWindow::mapJoystickFunction(QString function)
       return;
 #endif
     QKeySequence keySeq(shortcut);
-    uint i, key = 0;
-    for (i = 0; i < keySeq.count(); i++)
+    int key = 0;
+#if QT_VERSION < 0x050000
+    for (uint i = 0; i < keySeq.count(); i++)
       key += keySeq[i];
+#else
+    for (int i = 0; i < keySeq.count(); i++)
+      key += keySeq[i];
+#endif
     QKeyEvent *emulatedKeyEvent = new QKeyEvent(QEvent::KeyPress, key, Qt::NoModifier);
     qApp->postEvent(focusWidget, emulatedKeyEvent);
   }

@@ -130,7 +130,6 @@ void ImageCheckerThread::run()
 					QSize imageSize;
 					int byteCount;
 					QString readerError;
-					bool imageFound = false;
 					if ( imageWidget->useZip() ) {
 						int zlCount = 0;
 						foreach (unzFile zip, zipMap) {

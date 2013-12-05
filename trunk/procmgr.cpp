@@ -252,12 +252,9 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetEmulators->takeTopLevelItem(qmc2MainWindow->treeWidgetEmulators->indexOfTopLevelItem(il[0]));
 #if QMC2_EMBEDDER_ENABLED
 		Embedder *embedder = NULL;
-		int embedderIndex = -1;
 		for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
-			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
+			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) )
 				embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(j);
-				embedderIndex = j;
-			}
 		}
 		if ( embedder )
 			QTimer::singleShot(0, embedder, SLOT(clientClosed()));

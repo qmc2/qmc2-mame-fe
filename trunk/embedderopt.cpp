@@ -140,7 +140,6 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
-	Embedder *embedder = (Embedder *)parent();
 	if ( !snapshotViewer ) {
 		snapshotViewer = new SnapshotViewer(item, this);
 		connect(snapshotViewer, SIGNAL(scaleRequested(QListWidgetItem *)), this, SLOT(on_listWidgetSnapshots_itemPressed(QListWidgetItem *)));

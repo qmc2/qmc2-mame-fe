@@ -9,7 +9,7 @@
 
 Window x11SearchTree(Window window, QString titlePattern, QString classHintPattern)
 {
-	Window root_win, parent_win, *child_list, win_return = NULL;
+	Window root_win, parent_win, *child_list, win_return = 0;
 	unsigned int num_children;
 	if ( XQueryTree(QX11Info::display(), window, &root_win, &parent_win, &child_list, &num_children) ) {
 		char *win_name;
