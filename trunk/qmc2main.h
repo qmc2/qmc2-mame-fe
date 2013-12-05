@@ -153,7 +153,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_MEMORY_INFO_ENABLED)
 		QTimer memoryUpdateTimer;
 #endif
-#if QMC2_EMBEDDER_ENABLED
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		QWidget *widgetEmbeddedEmus;
 		QWidget *embedderCornerWidget;
 		QHBoxLayout *embedderCornerLayout;

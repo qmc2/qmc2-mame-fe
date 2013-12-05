@@ -849,7 +849,4 @@
 #define QMC2_SEARCH_RESULT_UPDATE		5000
 #endif
 
-// enable embedder code?
-#define QMC2_EMBEDDER_ENABLED			((defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN))
-
 #endif
