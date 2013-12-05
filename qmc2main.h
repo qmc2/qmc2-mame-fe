@@ -405,7 +405,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void pushButtonCurrentEmulatorOptionsSelectExportFile_clicked();
 		void pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
 		void pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
-#if QMC2_EMBEDDER_ENABLED
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		void action_embedEmulator_triggered();
 		void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
 		void embedderOptions_toggled(bool);
