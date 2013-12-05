@@ -1568,14 +1568,12 @@ void SoftwareList::checkSoftwareStates()
 		verifyProc->start(command, args);
 
 		verifyReadingStdout = false;
-		bool verifyProcStarted = false;
 		int retries = 0;
 		bool started = verifyProc->waitForStarted(QMC2_PROCESS_POLL_TIME);
 		while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES )
 			started = verifyProc->waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 
 		if ( started ) {
-			verifyProcStarted = true;
 			bool verifyProcRunning = (verifyProc->state() == QProcess::Running);
 			while ( !verifyProc->waitForFinished(QMC2_PROCESS_POLL_TIME) && verifyProcRunning ) {
 				qApp->processEvents();

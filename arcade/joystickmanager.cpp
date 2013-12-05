@@ -48,8 +48,9 @@ void JoystickManager::mapJoystickFunction(QString joystickFunction)
         QString mappedKeySequence = mJoyFunctionMap->mapJoyFunction(joystickFunction);
         if ( mappedKeySequence != joystickFunction ) {
             // emulate a key-event for the mapped joystick-function
-            if ( debugJoy )
+            if ( debugJoy ) {
                 QMC2_ARCADE_LOG_STR(QString("DEBUG: joystick-function '%1' triggered - emulating event for mapped key-sequence '%2'").arg(joystickFunction).arg(mappedKeySequence));
+	    }
             QKeySequence emulatedKeySequence(mappedKeySequence);
             Qt::KeyboardModifiers mods = Qt::NoModifier;
             int key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];

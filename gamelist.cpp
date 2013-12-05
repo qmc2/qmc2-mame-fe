@@ -4161,11 +4161,11 @@ QString Gamelist::romStatus(QString systemName, bool translated)
 					return "not found";
 				break;
 			case QMC2_ROMSTATE_CHAR_U:
+			default:
 				if ( translated )
 					return tr("unknown");
 				else
 					return "unknown";
-			default:
 				break;
 		}
 	} else {
