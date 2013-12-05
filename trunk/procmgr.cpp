@@ -1,3 +1,4 @@
+#include <qglobal.h>
 #include <QtGui>
 #include <QMap>
 
@@ -6,6 +7,7 @@
 #include "qmc2main.h"
 #include "embedder.h"
 #include "youtubevideoplayer.h"
+#include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
