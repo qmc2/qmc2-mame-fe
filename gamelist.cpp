@@ -1852,7 +1852,7 @@ void Gamelist::parse()
 	}
         QString gameCloneOf = value(gameElement, "cloneof");
         QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
-        GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
+        GamelistItem *gameDescriptionItem = new GamelistItem();
         gameDescriptionItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
         gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
         gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -2058,6 +2058,7 @@ void Gamelist::parse()
         qApp->processEvents();
       }
     }
+    qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
   }
 
   if ( gamelistCache.isOpen() )
@@ -2077,6 +2078,7 @@ void Gamelist::parse()
   // create parent/clone hierarchy tree
   qmc2MainWindow->treeWidgetHierarchy->clear();
   QMapIterator<QString, QStringList> i(qmc2HierarchyMap);
+  QList <QTreeWidgetItem *> itemList;
   while ( i.hasNext() ) {
     i.next();
     QString iValue = i.key();
@@ -2085,7 +2087,7 @@ void Gamelist::parse()
       continue;
     bool isBIOS = qmc2BiosROMs.contains(iValue);
     bool isDevice = qmc2DeviceROMs.contains(iValue);
-    GamelistItem *hierarchyItem = new GamelistItem(qmc2MainWindow->treeWidgetHierarchy);
+    GamelistItem *hierarchyItem = new GamelistItem();
     hierarchyItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
     hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     hierarchyItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
@@ -2259,7 +2261,10 @@ void Gamelist::parse()
 
       loadIcon(jValue, hierarchySubItem);
     }
+
+    itemList << hierarchyItem;
   }
+  qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
 
   QString sortCriteria = tr("?");
   switch ( qmc2SortCriteria ) {
