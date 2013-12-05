@@ -1,3 +1,4 @@
+#include <qglobal.h>
 #include <QMessageBox>
 #include <QCache>
 #include <QHeaderView>
