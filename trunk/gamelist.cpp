@@ -2078,7 +2078,8 @@ void Gamelist::parse()
   // create parent/clone hierarchy tree
   qmc2MainWindow->treeWidgetHierarchy->clear();
   QMapIterator<QString, QStringList> i(qmc2HierarchyMap);
-  QList <QTreeWidgetItem *> itemList;
+  QList<QTreeWidgetItem *> itemList;
+  QList<QTreeWidgetItem *> hideList;
   while ( i.hasNext() ) {
     i.next();
     QString iValue = i.key();
@@ -2088,7 +2089,8 @@ void Gamelist::parse()
     bool isBIOS = qmc2BiosROMs.contains(iValue);
     bool isDevice = qmc2DeviceROMs.contains(iValue);
     GamelistItem *hierarchyItem = new GamelistItem();
-    hierarchyItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
+    if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
+	    hideList << hierarchyItem;
     hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     hierarchyItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_GAME, iDescription);
@@ -2172,10 +2174,11 @@ void Gamelist::parse()
       QString jDescription = qmc2GamelistDescriptionMap[jValue];
       if ( jDescription.isEmpty() )
         continue;
-      GamelistItem *hierarchySubItem = new GamelistItem(hierarchyItem);
       isBIOS = qmc2BiosROMs.contains(jValue);
       isDevice = qmc2DeviceROMs.contains(jValue);
-      hierarchySubItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
+      GamelistItem *hierarchySubItem = new GamelistItem(hierarchyItem);
+      if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
+	      hideList << hierarchySubItem;
       hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
       hierarchySubItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_GAME, jDescription);
@@ -2265,6 +2268,8 @@ void Gamelist::parse()
     itemList << hierarchyItem;
   }
   qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
+  foreach (QTreeWidgetItem *hiddenItem, hideList)
+	  hiddenItem->setHidden(true);
 
   QString sortCriteria = tr("?");
   switch ( qmc2SortCriteria ) {
