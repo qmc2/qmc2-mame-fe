@@ -220,6 +220,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QMediaPlayer *mediaObject() { return mVideoPlayer; }
 		qint64 remainingTime() { return videoPlayer()->duration() - videoPlayer()->position(); }
 #endif
+		void showMessage(QString message, int timeout = 2000) { videoOverlayWidget->showMessage(message, timeout); }
+		void clearMessage() { videoOverlayWidget->clearMessage(); }
 
 	public slots:
 		void play() { videoPlayer()->play(); }
