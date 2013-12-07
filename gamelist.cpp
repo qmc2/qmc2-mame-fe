@@ -799,6 +799,7 @@ void Gamelist::load()
 #endif
 
   gamelistBuffer.clear();
+  xmlLines.clear();
 
   // try reading XML output from cache
   bool xmlCacheOkay = false;
@@ -849,7 +850,7 @@ void Gamelist::load()
 	      for (int l = 0; l < lc; l++) {
 		      if ( !lines[l].isEmpty() ) {
 			      singleXMLLine = lines[l];
-			      gamelistBuffer += singleXMLLine + "\n";
+			      xmlLines << singleXMLLine;
 		      }
 	      }
 	      if ( endsWithNewLine )
@@ -863,7 +864,6 @@ void Gamelist::load()
       }
       qmc2MainWindow->progressBarGamelist->setValue(listXMLCache.pos());
       qApp->processEvents();
-      gamelistBuffer += "\n";
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1777,12 +1777,14 @@ void Gamelist::parse()
   if ( gamelistCache.isOpen() )
     gamelistCache.close();
 
-  xmlLines.clear();
   xmlGamePositionMap.clear();
   qmc2XmlGamePositionMap.clear();
-  xmlLines = gamelistBuffer.split("\n");
-  gamelistBuffer.clear();
-  gamelistBuffer.squeeze();
+
+  if ( !gamelistBuffer.isEmpty() ) {
+	  xmlLines = gamelistBuffer.split("\n");
+	  gamelistBuffer.clear();
+	  gamelistBuffer.squeeze();
+  }
 
   if ( reparseGamelist && !qmc2StopParser ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -2999,8 +3001,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
       for (i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
         qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
         qmc2MainWindow->labelGamelistStatus->setText(status());
-	if ( i % 25 == 0 ) qApp->processEvents();
-        qApp->processEvents();
+	if ( i % 25 == 0 )
+		qApp->processEvents();
         QString gameName = remainingGames[i];
         bool isBIOS = qmc2BiosROMs.contains(gameName);
         bool isDevice = qmc2DeviceROMs.contains(gameName);
