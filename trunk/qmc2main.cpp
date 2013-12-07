@@ -2833,7 +2833,7 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 #else
 		  qmc2YouTubeWidget->switchToWindowed();
 #endif
-		  qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+		  qmc2YouTubeWidget->clearMessage();
 		  qApp->processEvents();
 		  if ( windowState() & Qt::WindowFullScreen )
 			  actionFullscreenToggle->setChecked(true);
@@ -4360,7 +4360,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_SOFTWARE_LIST_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2SoftwareList ) {
         if ( qmc2SoftwareList->isInitialLoad ) {
@@ -4405,7 +4405,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_DEVICE_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
         tabDevices->setUpdatesEnabled(false);
@@ -4435,7 +4435,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_PROJECTMESS_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
         tabMAWS->setUpdatesEnabled(false);
@@ -4481,7 +4481,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_MAWS_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
         tabMAWS->setUpdatesEnabled(false);
@@ -4556,7 +4556,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_CONFIG_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastConfigItem ) {
         QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
@@ -4711,7 +4711,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_GAMEINFO_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastGameInfoItem ) {
         tabGameInfo->setUpdatesEnabled(false);
@@ -4769,7 +4769,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_EMUINFO_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
         tabEmuInfo->setUpdatesEnabled(false);
@@ -4809,7 +4809,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_SYSTEM_NOTES_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastSystemNotesItem ) {
 	      qmc2LastSystemNotesItem = qmc2CurrentItem;
@@ -5043,7 +5043,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     default:
 #if defined(QMC2_YOUTUBE_ENABLED)
       if ( qmc2YouTubeWidget )
-	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+	      qmc2YouTubeWidget->clearMessage();
 #endif
       // if local emulator options exits and they are no longer needed, close & destroy them...
       if ( qmc2EmulatorOptions ) {
