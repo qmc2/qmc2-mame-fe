@@ -116,7 +116,6 @@ extern DemoModeDialog *qmc2DemoModeDialog;
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
-extern QMap<QString, int> qmc2XmlGamePositionMap;
 extern HtmlEditor *qmc2SystemNotesEditor;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
@@ -127,8 +126,6 @@ QMap<QString, QString> Gamelist::reverseTranslation;
 int numVerifyRoms = 0;
 QString verifyLastLine;
 QStringList verifiedList;
-QMap<QString, int> xmlGamePositionMap;
-QMap<QString, char> qmc2GamelistStatusMap;
 QMap<QString, QString *> qmc2CategoryMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 QMap<QString, QString *> qmc2VersionMap;
@@ -383,10 +380,10 @@ void Gamelist::load()
 
   qmc2ReloadActive = qmc2EarlyReloadActive = true;
   qmc2StopParser = false;
+  gameStatusMap.clear();
   qmc2GamelistItemMap.clear();
   qmc2GamelistNameMap.clear();
   qmc2GamelistDescriptionMap.clear();
-  qmc2GamelistStatusMap.clear();
   qmc2BiosROMs.clear();
   qmc2DeviceROMs.clear();
   qmc2HierarchyItemMap.clear();
@@ -1476,7 +1473,7 @@ void Gamelist::parse()
       QString line = tsRomCache.readLine();
       if ( !line.isNull() && !line.startsWith("#") ) {
         QStringList words = line.split(" ");
-        qmc2GamelistStatusMap[words[0]] = words[1].at(0).toLatin1();
+        gameStatusMap[words[0]] = words[1].at(0).toLatin1();
         cachedGamesCounter++;
       }
       if ( cachedGamesCounter % QMC2_ROMCACHE_RESPONSIVENESS == 0 ) {
@@ -1656,7 +1653,7 @@ void Gamelist::parse()
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 #endif
             }
-            switch ( qmc2GamelistStatusMap[gameName] ) {
+            switch ( gameStatusMap[gameName] ) {
               case 'C': 
                 numCorrectGames++;
                 if ( isBIOS ) {
@@ -1719,7 +1716,7 @@ void Gamelist::parse()
 
               default:
                 numUnknownGames++;
-                qmc2GamelistStatusMap[gameName] = 'U';
+                gameStatusMap[gameName] = 'U';
                 if ( isBIOS ) {
 			if ( showROMStatusIcons )
 				gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
@@ -1778,7 +1775,6 @@ void Gamelist::parse()
     gamelistCache.close();
 
   xmlGamePositionMap.clear();
-  qmc2XmlGamePositionMap.clear();
 
   if ( !gamelistBuffer.isEmpty() ) {
 	  xmlLines = gamelistBuffer.split("\n");
@@ -1944,7 +1940,7 @@ void Gamelist::parse()
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 #endif
         }
-        switch ( qmc2GamelistStatusMap[gameName] ) {
+        switch ( gameStatusMap[gameName] ) {
           case 'C': 
             numCorrectGames++;
             if ( isBIOS ) {
@@ -2007,7 +2003,7 @@ void Gamelist::parse()
 
           default:
             numUnknownGames++;
-            qmc2GamelistStatusMap[gameName] = 'U';
+            gameStatusMap[gameName] = 'U';
             if ( isBIOS ) {
 		    if ( showROMStatusIcons )
 			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
@@ -2111,7 +2107,7 @@ void Gamelist::parse()
 #endif
     }
     qmc2HierarchyItemMap[iValue] = hierarchyItem;
-    switch ( qmc2GamelistStatusMap[iValue] ) {
+    switch ( gameStatusMap[iValue] ) {
       case 'C': 
         if ( isBIOS ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
@@ -2156,6 +2152,7 @@ void Gamelist::parse()
         hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
         break;
 
+      case 'U':
       default:
         if ( isBIOS ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
@@ -2207,7 +2204,7 @@ void Gamelist::parse()
           if ( !qmc2EmuInfoDB.contains(baseItem->text(QMC2_GAMELIST_COLUMN_NAME)) )
             qmc2EmuInfoDB[baseItem->text(QMC2_GAMELIST_COLUMN_NAME)] = p;
       }
-      switch ( qmc2GamelistStatusMap[jValue] ) {
+      switch ( gameStatusMap[jValue] ) {
         case 'C': 
           if ( isBIOS ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
@@ -2252,6 +2249,7 @@ void Gamelist::parse()
           hierarchySubItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
           break;
 
+        case 'U':
         default:
           if ( isBIOS ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
@@ -3153,17 +3151,17 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	  if ( romRequired ) {
 		  romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
 		  hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
-                  qmc2GamelistStatusMap[gameName] = 'N';
+                  gameStatusMap[gameName] = 'N';
 	  } else {
 		  romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
 		  hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
-                  qmc2GamelistStatusMap[gameName] = 'C';
+                  gameStatusMap[gameName] = 'C';
 	  }
         } else {
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't find item map entry for '%1' - ROM state cannot be determined").arg(gameName));
           if ( romCache.isOpen() )
             tsRomCache << gameName << " U\n";
-          qmc2GamelistStatusMap[gameName] = 'U';
+          gameStatusMap[gameName] = 'U';
           numUnknownGames++;
         }
       }
@@ -3502,7 +3500,7 @@ void Gamelist::verifyReadyReadStandardOutput()
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyReadyReadStandardOutput(): " + romName + " " + romState);
 #endif
 
-          qmc2GamelistStatusMap[romName] = romState[0].toLatin1();
+          gameStatusMap[romName] = romState[0].toLatin1();
 
           verifiedList << romName;
 
@@ -3859,7 +3857,7 @@ void Gamelist::createCategoryView()
 			gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 			gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
-				switch ( qmc2GamelistStatusMap[gameName] ) {
+				switch ( gameStatusMap[gameName] ) {
 					case 'C':
 						if ( isBIOS )
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
@@ -3892,6 +3890,7 @@ void Gamelist::createCategoryView()
 						else
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 						break;
+					case 'U':
 					default:
 						if ( isBIOS )
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
@@ -4078,7 +4077,7 @@ void Gamelist::createVersionView()
 			gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 			gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
-				switch ( qmc2GamelistStatusMap[gameName] ) {
+				switch ( gameStatusMap[gameName] ) {
 					case 'C':
 						if ( isBIOS )
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
@@ -4111,6 +4110,7 @@ void Gamelist::createVersionView()
 						else
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 						break;
+					case 'U':
 					default:
 						if ( isBIOS )
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);

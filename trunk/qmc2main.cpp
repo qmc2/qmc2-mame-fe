@@ -272,7 +272,6 @@ QString qmc2DirectoryEditStartPath;
 QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
-QMap<QString, int> qmc2XmlGamePositionMap;
 QFont *qmc2StartupDefaultFont = NULL;
 int qmc2SoftwareSnapPosition = 0;
 QSplashScreen *qmc2SplashScreen = NULL;
@@ -5096,7 +5095,7 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 	if ( defaultChoice )
 		defaultChoice->clear();
 
-	int i = qmc2XmlGamePositionMap[gameName];
+	int i = qmc2Gamelist->xmlGamePositionMap[gameName];
 	if ( i <= 0 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QString s = "<game name=\"" + gameName + "\"";
@@ -5112,7 +5111,7 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 		}
 		if ( i < xmlLinesCount )
 			if ( qmc2Gamelist->xmlLines[i].contains(s) )
-				qmc2XmlGamePositionMap[gameName] = i;
+				qmc2Gamelist->xmlGamePositionMap[gameName] = i;
 	}
 	if ( i > 0 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

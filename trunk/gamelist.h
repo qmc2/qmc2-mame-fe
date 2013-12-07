@@ -62,6 +62,8 @@ class Gamelist : public QObject
     QTreeWidgetItem *checkedItem;
     bool autoRomCheck;
     QMap<QString, QString> driverNameMap;
+    QMap<QString, char> gameStatusMap;
+    QMap<QString, int> xmlGamePositionMap;
     bool mergeCategories;
     QChar oldRomState;
     QMap<QString, QString *> categoryNames;
