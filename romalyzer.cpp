@@ -38,7 +38,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
-QCache<QString, int> romalyzerXmlGamePositionCache;
+QCache<QString, int> ROMAlyzer::xmlGamePositionCache;
 
 /*
   HOWTO: Calculate the 32-bit CRC of a QByteArray with zlib:
@@ -590,7 +590,6 @@ void ROMAlyzer::analyze()
   myRomPath.replace("$HOME", QDir::homePath());
   romPaths = myRomPath.split(";", QString::SkipEmptyParts);
 
-  int i;
   QStringList analyzerList;
   QStringList patternList = lineEditGames->text().simplified().split(" ");
 
@@ -611,8 +610,8 @@ void ROMAlyzer::analyze()
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
   tabSetRenamer->setEnabled(false);
   QTime analysisTimer, elapsedTime(0, 0, 0, 0);
-  romalyzerXmlGamePositionCache.clear();
-  romalyzerXmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
+  xmlGamePositionCache.clear();
+  xmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
   analysisTimer.start();
   log(tr("analysis started"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -621,6 +620,7 @@ void ROMAlyzer::analyze()
   log(tr("determining list of machines to analyze"));
 #endif
 
+  int i = 0;
   QRegExp wildcardRx("(\\*|\\?)");
   if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditGames->text().simplified()) == -1 ) {
     // no wild-cards => no need to search!
@@ -645,16 +645,21 @@ void ROMAlyzer::analyze()
       progressBar->reset();
       QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
       i = 0;
+      bool matchAll = (lineEditGames->text().simplified() == "*");
       while ( it.hasNext() && !qmc2StopParser ) {
-        qApp->processEvents();
         it.next();
         progressBar->setValue(++i);
-        foreach (QString pattern, patternList) {
-          QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
-          if ( regexp.exactMatch(it.key()) )
-            if ( !analyzerList.contains(it.key()) )
-              analyzerList << it.key();
-        }
+	QString gameID = it.key();
+	if ( matchAll )
+		analyzerList << gameID;
+	else foreach (QString pattern, patternList) {
+		QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
+		if ( regexp.exactMatch(gameID) )
+			if ( !analyzerList.contains(gameID) )
+				analyzerList << gameID;
+	}
+	if ( i % QMC2_ROMALYZER_SEARCH_RESPONSE == 0 )
+		qApp->processEvents();
       }
       progressBar->reset();
       labelStatus->setText(tr("Idle"));
@@ -1174,7 +1179,7 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 		}
 	}
 
-	int *iCached = romalyzerXmlGamePositionCache[gameName];
+	int *iCached = xmlGamePositionCache[gameName];
 	if ( iCached )
 		i = *iCached;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1188,7 +1193,7 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 	}
 
 	if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
-		romalyzerXmlGamePositionCache.insert(gameName, new int(i));
+		xmlGamePositionCache.insert(gameName, new int(i));
 		if ( !includeDTD )
 			xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

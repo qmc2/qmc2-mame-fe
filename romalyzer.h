@@ -3,8 +3,10 @@
 
 #include <QtGui>
 #include <QtXml>
-#include "romdbmgr.h"
+#include <QCache>
 
+#include "macros.h"
+#include "romdbmgr.h"
 #include "ui_romalyzer.h"
 
 #define QMC2_ROMALYZER_PAGE_REPORT		0
@@ -37,7 +39,6 @@
 #define QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE	QMC2_ROMALYZER_CSWIZ_AMLVL_2
 #define QMC2_ROMALYZER_CSWIZ_AMLVL_3		3
 #define QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR	QMC2_ROMALYZER_CSWIZ_AMLVL_3
-#define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
 
 #define QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1	0
 #define QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC	1
@@ -53,7 +54,6 @@
 #define QMC2_ROMALYZER_SRTOOL_AMLVL_SELECT	QMC2_ROMALYZER_SRTOOL_AMLVL_1
 #define QMC2_ROMALYZER_SRTOOL_AMLVL_2		2
 #define QMC2_ROMALYZER_SRTOOL_AMLVL_RENAME	QMC2_ROMALYZER_SRTOOL_AMLVL_2
-#define renamerAutomationLevel			comboBoxSetRenamerAutomationLevel->currentIndex()
 
 #define QMC2_ROMALYZER_MERGE_STATUS_OK		0
 #define QMC2_ROMALYZER_MERGE_STATUS_WARN	1
@@ -66,8 +66,12 @@
 
 #define QMC2_ROMALYZER_PAUSE_TIMEOUT		250
 #define QMC2_ROMALYZER_FLASH_TIME		100
-
-#define QMC2_ROMALYZER_XMLPOSCACHE_SIZE		500
+#define QMC2_ROMALYZER_XMLPOSCACHE_SIZE		1000
+#if defined(QMC2_EMUTYPE_MESS)
+#define QMC2_ROMALYZER_SEARCH_RESPONSE		500
+#else
+#define QMC2_ROMALYZER_SEARCH_RESPONSE		5000
+#endif
 
 #define QMC2_ROMALYZER_FILE_TOO_BIG		"QMC2_FILE_TOO_BIG"
 #define QMC2_ROMALYZER_FILE_ERROR		"QMC2_FILE_ERROR"
@@ -139,145 +143,148 @@
 
 #define QMC2_CHD_CURRENT_VERSION		5
 
+#define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
+#define renamerAutomationLevel			comboBoxSetRenamerAutomationLevel->currentIndex()
+
 class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 {
-  public:
-    QString currentText;
-    QTreeWidgetItem *parentItem;
-    QTreeWidgetItem *childItem;
-    QList<QTreeWidgetItem *> childItems;
-    QStringList deviceReferences;
-    bool autoExpand;
-    bool autoScroll;
-    int emuStatus;
-    int fileCounter;
-    QBrush redBrush;
-    QBrush greenBrush;
-    QBrush blueBrush;
-    QBrush yellowBrush;
-    QBrush brownBrush;
-    QBrush greyBrush;
+	public:
+		QString currentText;
+		QTreeWidgetItem *parentItem;
+		QTreeWidgetItem *childItem;
+		QList<QTreeWidgetItem *> childItems;
+		QStringList deviceReferences;
+		bool autoExpand;
+		bool autoScroll;
+		int emuStatus;
+		int fileCounter;
+		QBrush redBrush;
+		QBrush greenBrush;
+		QBrush blueBrush;
+		QBrush yellowBrush;
+		QBrush brownBrush;
+		QBrush greyBrush;
 
-    ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = false, bool scroll = false);
-    ~ROMAlyzerXmlHandler();
+		ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = false, bool scroll = false);
+		~ROMAlyzerXmlHandler();
 
-    bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
-    bool endElement(const QString &, const QString &, const QString &);
-    bool characters(const QString &);
+		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
+		bool endElement(const QString &, const QString &, const QString &);
+		bool characters(const QString &);
 };
 
 class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QTimer animTimer;
-    QTime miscTimer;
-    int animSeq;
-    QStringList romPaths;
-    QStringList chdCompressionTypes;
-    QMap<QString, QString> chdCompressionTypesV5;
-    bool chdManagerRunning;
-    bool chdManagerMD5Success;
-    bool chdManagerSHA1Success;
-    quint64 chdManagerCurrentHunk;
-    quint64 chdManagerTotalHunks;
-    QMenu *romFileContextMenu;
-    QMenu *romSetContextMenu;
-    QMenu *toolsMenu;
-    QAction *actionRewriteSet;
-    QAction *actionAnalyzeDeviceRefs;
-    QAction *actionImportFromDataFile;
-    QString currentFilesSHA1Checksum;
-    QString currentFilesCrcChecksum;
-    QStringList wizardSelectedSets;
-    QMultiMap<QString, QStringList> setRewriterFileMap;
-    QString setRewriterSetName;
-    QTreeWidgetItem *setRewriterItem;
-    int setRewriterSetCount;
-    bool wizardSearch;
-    bool quickSearch;
+	public:
+		QTimer animTimer;
+		QTime miscTimer;
+		int animSeq;
+		QStringList romPaths;
+		QStringList chdCompressionTypes;
+		QMap<QString, QString> chdCompressionTypesV5;
+		bool chdManagerRunning;
+		bool chdManagerMD5Success;
+		bool chdManagerSHA1Success;
+		quint64 chdManagerCurrentHunk;
+		quint64 chdManagerTotalHunks;
+		QMenu *romFileContextMenu;
+		QMenu *romSetContextMenu;
+		QMenu *toolsMenu;
+		QAction *actionRewriteSet;
+		QAction *actionAnalyzeDeviceRefs;
+		QAction *actionImportFromDataFile;
+		QString currentFilesSHA1Checksum;
+		QString currentFilesCrcChecksum;
+		QStringList wizardSelectedSets;
+		QMultiMap<QString, QStringList> setRewriterFileMap;
+		QString setRewriterSetName;
+		QTreeWidgetItem *setRewriterItem;
+		int setRewriterSetCount;
+		bool wizardSearch;
+		bool quickSearch;
 #if defined(QMC2_DATABASE_ENABLED)
-    ROMDatabaseManager *dbManager;
-    QPalette savedCheckButtonPalette;
-    bool connectionCheckRunning;
+		ROMDatabaseManager *dbManager;
+		QPalette savedCheckButtonPalette;
+		bool connectionCheckRunning;
 #endif
+		static QCache<QString, int> xmlGamePositionCache;
 
-    ROMAlyzer(QWidget *);
-    ~ROMAlyzer();
+		ROMAlyzer(QWidget *);
+		~ROMAlyzer();
 
-    void saveState() { closeEvent(NULL); }
-    void log(QString);
-    bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = NULL);
-    bool readZipFileData(QString, QString, QByteArray *);
-    bool readFileData(QString, QString, QByteArray *);
-    bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
-    bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
-    static QString humanReadable(quint64, int digits = 2);
-    static QString &getXmlData(QString, bool includeDTD = false);
-    QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString,
-                              QByteArray *, QString *, QString *, bool *, bool *, int, QString *);
+		void saveState() { closeEvent(NULL); }
+		void log(QString);
+		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = NULL);
+		bool readZipFileData(QString, QString, QByteArray *);
+		bool readFileData(QString, QString, QByteArray *);
+		bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+		static QString humanReadable(quint64, int digits = 2);
+		static QString &getXmlData(QString, bool includeDTD = false);
+		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, int, QString *);
 
-  public slots:
-    // callback functions
-    void on_pushButtonAnalyze_clicked();
-    void on_pushButtonPause_clicked();
-    void on_pushButtonClose_clicked();
-    void on_pushButtonSearchForward_clicked();
-    void on_pushButtonSearchBackward_clicked();
-    void on_lineEditGames_textChanged(QString);
-    void on_treeWidgetChecksums_itemSelectionChanged();
-    void on_spinBoxMaxLogSize_valueChanged(int);
-    void on_toolButtonBrowseCHDManagerExecutableFile_clicked();
-    void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
-    void on_toolButtonBrowseSetRewriterOutputPath_clicked();
-    void on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked();
-    void on_toolButtonSaveLog_clicked();
+	public slots:
+		// callback functions
+		void on_pushButtonAnalyze_clicked();
+		void on_pushButtonPause_clicked();
+		void on_pushButtonClose_clicked();
+		void on_pushButtonSearchForward_clicked();
+		void on_pushButtonSearchBackward_clicked();
+		void on_lineEditGames_textChanged(QString);
+		void on_treeWidgetChecksums_itemSelectionChanged();
+		void on_spinBoxMaxLogSize_valueChanged(int);
+		void on_toolButtonBrowseCHDManagerExecutableFile_clicked();
+		void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
+		void on_toolButtonBrowseSetRewriterOutputPath_clicked();
+		void on_toolButtonBrowseSetRewriterAdditionalRomPath_clicked();
+		void on_toolButtonSaveLog_clicked();
 #if defined(QMC2_DATABASE_ENABLED)
-    void on_pushButtonDatabaseCheckConnection_clicked();
-    void on_toolButtonBrowseDatabaseOutputPath_clicked();
+		void on_pushButtonDatabaseCheckConnection_clicked();
+		void on_toolButtonBrowseDatabaseOutputPath_clicked();
 #endif
-    void on_checkBoxCalculateCRC_toggled(bool);
-    void on_checkBoxCalculateMD5_toggled(bool);
-    void on_checkBoxCalculateSHA1_toggled(bool);
-    void on_comboBoxChecksumWizardHashType_currentIndexChanged(int);
-    void on_lineEditChecksumWizardHash_textEdited(const QString &);
-    void on_pushButtonChecksumWizardSearch_clicked();
-    void on_treeWidgetChecksums_customContextMenuRequested(const QPoint &);
-    void on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
-    void on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
-    void on_pushButtonChecksumWizardRepairBadSets_clicked();
-    void on_tabWidgetAnalysis_currentChanged(int);
+		void on_checkBoxCalculateCRC_toggled(bool);
+		void on_checkBoxCalculateMD5_toggled(bool);
+		void on_checkBoxCalculateSHA1_toggled(bool);
+		void on_comboBoxChecksumWizardHashType_currentIndexChanged(int);
+		void on_lineEditChecksumWizardHash_textEdited(const QString &);
+		void on_pushButtonChecksumWizardSearch_clicked();
+		void on_treeWidgetChecksums_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
+		void on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
+		void on_pushButtonChecksumWizardRepairBadSets_clicked();
+		void on_tabWidgetAnalysis_currentChanged(int);
 
-    // miscellaneous slots
-    void animationTimeout();
-    void analyze();
-    void selectItem(QString);
-    void enableSearchEdit() { lineEditSearchString->setEnabled(true); }
-    void adjustIconSizes();
+		// miscellaneous slots
+		void animationTimeout();
+		void analyze();
+		void selectItem(QString);
+		void enableSearchEdit() { lineEditSearchString->setEnabled(true); }
+		void adjustIconSizes();
 #if defined(QMC2_DATABASE_ENABLED)
-    void resetDatabaseConnectionCheckButton();
+		void resetDatabaseConnectionCheckButton();
 #endif
-    void runChecksumWizard();
-    void runSetRewriter();
-    void copyToClipboard();
-    void analyzeDeviceRefs();
-    void importFromDataFile();
+		void runChecksumWizard();
+		void runSetRewriter();
+		void copyToClipboard();
+		void analyzeDeviceRefs();
+		void importFromDataFile();
 
-    // CHD manager process control
-    void chdManagerStarted();
-    void chdManagerFinished(int, QProcess::ExitStatus);
-    void chdManagerReadyReadStandardOutput();
-    void chdManagerReadyReadStandardError();
-    void chdManagerError(QProcess::ProcessError);
-    void chdManagerStateChanged(QProcess::ProcessState);
+		// CHD manager process control
+		void chdManagerStarted();
+		void chdManagerFinished(int, QProcess::ExitStatus);
+		void chdManagerReadyReadStandardOutput();
+		void chdManagerReadyReadStandardError();
+		void chdManagerError(QProcess::ProcessError);
+		void chdManagerStateChanged(QProcess::ProcessState);
 
-  protected:
-    void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    void hideEvent(QHideEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
+	protected:
+		void closeEvent(QCloseEvent *);
+		void showEvent(QShowEvent *);
+		void hideEvent(QHideEvent *);
+		void moveEvent(QMoveEvent *);
+		void resizeEvent(QResizeEvent *);
 };
 
 #endif

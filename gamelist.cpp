@@ -122,6 +122,7 @@ extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;
+QStringList Gamelist::romTypeNames;
 QMap<QString, QString> Gamelist::reverseTranslation;
 int numVerifyRoms = 0;
 QString verifyLastLine;
@@ -183,6 +184,9 @@ Gamelist::Gamelist(QObject *parent)
     reverseTranslation[QObject::tr("no")] = "no";
     reverseTranslation[QObject::tr("partially")] = "partially";
   }
+
+  if ( romTypeNames.isEmpty() )
+	  romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
 
 #if defined(QMC2_EMUTYPE_MAME)
   emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E.";
@@ -1628,14 +1632,7 @@ void Gamelist::parse()
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, gameSource);
-	    if ( hasROMs && hasCHDs )
-              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
-            else if ( hasROMs )
-              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
-            else if ( hasCHDs )
-              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
-            else
-              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
+	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
             if ( isDevice ) {
               if ( gamePlayers != tr("?") )
 	        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
@@ -1915,14 +1912,7 @@ void Gamelist::parse()
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, gameSource);
-	if ( hasROMs && hasCHDs )
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
-        else if ( hasROMs )
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
-        else if ( hasCHDs )
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
-        else
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
+	gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
         if ( isDevice ) {
           if ( gamePlayers != tr("?") )
 	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
