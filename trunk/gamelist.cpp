@@ -796,6 +796,7 @@ void Gamelist::load()
 #endif
 
   gamelistBuffer.clear();
+  gamelistBuffer.squeeze();
   xmlLines.clear();
 
   // try reading XML output from cache
