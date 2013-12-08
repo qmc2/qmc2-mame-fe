@@ -388,6 +388,9 @@
 // interval in milliseconds between activity checks
 #define QMC2_ACTIVITY_CHECK_INTERVAL		500
 
+// responsiveness when processing the set of "remaining games/machines" (sets remaining after an interrupted full audit / sets not mentioned during a full audit)
+#define QMC2_REMAINING_SETS_CHECK_RSP		100
+
 // emulator option types
 #define QMC2_EMUOPT_TYPE_UNKNOWN		0
 #define QMC2_EMUOPT_TYPE_BOOL			1
