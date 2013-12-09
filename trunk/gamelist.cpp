@@ -2790,91 +2790,96 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 void Gamelist::loadReadyReadStandardOutput()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
 #endif
 
-  // this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
-  qApp->processEvents();
+	// this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
+	qApp->processEvents();
 
 #if defined(QMC2_OS_WIN)
-  QString s = QString::fromUtf8(loadProc->readAllStandardOutput());
+	QString readBuffer = QString::fromUtf8(loadProc->readAllStandardOutput());
 #else
-  QString s = loadProc->readAllStandardOutput();
+	QString readBuffer = loadProc->readAllStandardOutput();
 #endif
-  bool endsWithSpace = s.endsWith(" ");
-  bool startWithSpace = s.startsWith(" ");
 
-  if ( qmc2StopParser )
-    loadProc->kill();
+	bool endsWithSpace = readBuffer.endsWith(" ");
+	bool startWithSpace = readBuffer.startsWith(" ");
 
-  s = s.simplified();
-  if ( startWithSpace )
-    s.prepend(" ");
+	if ( qmc2StopParser )
+		loadProc->kill();
 
-  // ensure XML elements are on individual lines
-  int i;
-  for (i = 0; i < s.length(); i++) {
-    if ( s[i] == '>' )
-      if ( i + 1 < s.length() ) {
-        if ( s[i + 1] == '<' )
-          s.insert(i + 1, "\n");
-        else if ( s[i + 1] == ' ' )
-          if ( i + 2 < s.length() )
-            if ( s[i + 2] == '<' )
-              s.replace(i + 1, 1, "\n");
-      }
-  }
+	readBuffer = readBuffer.simplified();
 
-  QStringList sl = s.split("\n");
-  int l, lc = sl.count();
-  for (l = 0; l < lc; l++) {
-	  QString singleXMLLine = sl[l];
-	  bool newLine = singleXMLLine.endsWith(">");
-	  if ( newLine ) {
-		  if ( singleXMLLine.endsWith("<description>") )
-			  newLine = false;
-		  else if ( singleXMLLine.endsWith("<year>") )
-			  newLine = false;
-		  else if ( singleXMLLine.endsWith("<manufacturer>") )
-			  newLine = false;
-		  if ( newLine ) {
-			  bool found = false;
-			  for (i = singleXMLLine.length() - 2; i > 0 && !found; i--)
-				  found = ( singleXMLLine[i] == '<' );
-			  if ( found && i == 0 )
-				  newLine = false;
-		  }
-	  }
-	  bool needsSpace = singleXMLLine.endsWith("\"");
-	  if ( needsSpace ) {
-		  bool found = false;
-		  bool stop = false;
-		  for (i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
-			  if ( singleXMLLine[i] == '\"' ) {
-				  if ( singleXMLLine[i - 1] == '=' )
-					  found = true;
-				  else
-					  stop = true;
-			  }
-		  }
-		  if ( !found )
-			  needsSpace = false;
-	  }
-	  needsSpace |= endsWithSpace;
-	  if ( newLine ) {
-		  if ( singleXMLLine[singleXMLLine.length() - 1].isSpace() )
-			  singleXMLLine.remove(singleXMLLine.length() - 1, 1);
-		  needsSpace = false;
-	  }
-	  gamelistBuffer += singleXMLLine + QString(needsSpace ? " " : "") + QString(newLine ? "\n" : "");
-	  if ( listXMLCache.isOpen() )
-		  tsListXMLCache << singleXMLLine << QString(needsSpace ? " " : "") << QString(newLine ? "\n" : "");
-  }
+	if ( startWithSpace )
+		readBuffer.prepend(" ");
+
+	// ensure XML elements are on individual lines
+	for (int i = 0; i < readBuffer.length(); i++) {
+		if ( readBuffer[i] == '>' ) {
+			if ( i + 1 < readBuffer.length() ) {
+				if ( readBuffer[i + 1] == '<' )
+					readBuffer.insert(i + 1, "\n");
+				else if ( readBuffer[i + 1] == ' ' ) {
+					if ( i + 2 < readBuffer.length() ) {
+						if ( readBuffer[i + 2] == '<' )
+							readBuffer.replace(i + 1, 1, "\n");
+					}
+				}
+			}
+		}
+	}
+
+	QStringList sl = readBuffer.split("\n");
+
+	for (int l = 0; l < sl.count(); l++) {
+		QString singleXMLLine = sl[l];
+		bool newLine = singleXMLLine.endsWith(">");
+		if ( newLine ) {
+			if ( singleXMLLine.endsWith("<description>") )
+				newLine = false;
+			else if ( singleXMLLine.endsWith("<year>") )
+				newLine = false;
+			else if ( singleXMLLine.endsWith("<manufacturer>") )
+				newLine = false;
+			if ( newLine ) {
+				bool found = false;
+				int i;
+				for (i = singleXMLLine.length() - 2; i > 0 && !found; i--)
+					found = (singleXMLLine[i] == '<');
+				if ( found && i == 0 )
+					newLine = false;
+			}
+		}
+		bool needsSpace = singleXMLLine.endsWith("\"");
+		if ( needsSpace ) {
+			bool found = false;
+			bool stop = false;
+			for (int i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
+				if ( singleXMLLine[i] == '\"' ) {
+					if ( singleXMLLine[i - 1] == '=' )
+						found = true;
+					else
+						stop = true;
+				}
+			}
+			if ( !found )
+				needsSpace = false;
+		}
+		needsSpace |= endsWithSpace;
+		if ( newLine ) {
+			if ( singleXMLLine[singleXMLLine.length() - 1].isSpace() )
+				singleXMLLine.remove(singleXMLLine.length() - 1, 1);
+			needsSpace = false;
+		}
+		gamelistBuffer += singleXMLLine + QString(needsSpace ? " " : "") + QString(newLine ? "\n" : "");
+		if ( listXMLCache.isOpen() )
+			tsListXMLCache << singleXMLLine << QString(needsSpace ? " " : "") << QString(newLine ? "\n" : "");
+	}
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + s.count("<game name="));
+	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<game name="));
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + s.count("<machine name="));
+	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<machine name="));
 #endif
 }
 
