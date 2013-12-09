@@ -844,16 +844,12 @@ void Gamelist::load()
       while ( (!ts.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
 	      readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
 	      bool endsWithNewLine = readBuffer.endsWith("\n");
-	      QStringList lines = readBuffer.split("\n");
+	      QStringList lines = readBuffer.split("\n", QString::SkipEmptyParts);
 	      int lc = lines.count();
 	      if ( !endsWithNewLine )
 		      lc -= 1;
-	      for (int l = 0; l < lc; l++) {
-		      if ( !lines[l].isEmpty() ) {
-			      singleXMLLine = lines[l];
-			      xmlLines << singleXMLLine;
-		      }
-	      }
+	      for (int l = 0; l < lc; l++)
+		      xmlLines << lines[l];
 	      if ( endsWithNewLine )
 		      readBuffer.clear();
 	      else
@@ -868,10 +864,10 @@ void Gamelist::load()
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      if ( singleXMLLine != "</mame>" && !qmc2StopParser ) {
+      if ( xmlLines.last() != "</mame>" && !qmc2StopParser ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 #elif defined(QMC2_EMUTYPE_MESS)
-      if ( singleXMLLine != "</mess>" && !qmc2StopParser ) {
+      if ( xmlLines.last() != "</mess>" && !qmc2StopParser ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 #endif
         xmlCacheOkay = false;
