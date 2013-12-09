@@ -739,11 +739,10 @@ void Gamelist::load()
   if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
     QTextStream ts(&qmc2Temp);
     qApp->processEvents();
-    QString s = ts.readAll();
-    qApp->processEvents();
+    numTotalGames = ts.readAll().count("\n") - 1;
     qmc2Temp.close();
     qmc2Temp.remove();
-    numTotalGames = s.split("\n").count() - 2;
+    qApp->processEvents();
     elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
   } else {
