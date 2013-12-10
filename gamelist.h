@@ -24,6 +24,7 @@ class Gamelist : public QObject
 		int numDevices;
 		int cachedGamesCounter;
 		int numTaggedSets;
+		int numVerifyRoms;
 		bool verifyCurrentOnly;
 		bool autoRomCheck;
 		bool mergeCategories;
@@ -58,8 +59,10 @@ class Gamelist : public QObject
 		QString emulatorType;
 		QString emulatorVersion;
 		QString gamelistBuffer;
+		QString verifyLastLine;
 		QStringList xmlLines;
 		QStringList emulatorIdentifiers;
+		QStringList verifiedList;
 		QMap<QString, QString> driverNameMap;
 		QMap<QString, char> gameStatusMap;
 		QMap<QString, int> xmlGamePositionMap;
