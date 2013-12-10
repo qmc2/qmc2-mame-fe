@@ -124,9 +124,6 @@ extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 QStringList Gamelist::phraseTranslatorList;
 QStringList Gamelist::romTypeNames;
 QMap<QString, QString> Gamelist::reverseTranslation;
-int numVerifyRoms = 0;
-QString verifyLastLine;
-QStringList verifiedList;
 QMap<QString, QString *> qmc2CategoryMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 QMap<QString, QString *> qmc2VersionMap;
@@ -140,7 +137,7 @@ Gamelist::Gamelist(QObject *parent)
 #endif
 
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numDevices = -1;
-  cachedGamesCounter = numTaggedSets = numSearchGames = 0;
+  cachedGamesCounter = numTaggedSets = numSearchGames = numVerifyRoms = 0;
   loadProc = verifyProc = NULL;
   checkedItem = NULL;
   emulatorVersion = tr("unknown");
@@ -2789,6 +2786,8 @@ void Gamelist::loadReadyReadStandardOutput()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
 #endif
 
+	static bool lastCharacterWasSpace = false;
+
 	// this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
 	qApp->processEvents();
 
@@ -2798,15 +2797,16 @@ void Gamelist::loadReadyReadStandardOutput()
 	QString readBuffer = loadProc->readAllStandardOutput();
 #endif
 
+	bool startsWithSpace = readBuffer.startsWith(" ") && !lastCharacterWasSpace;
 	bool endsWithSpace = readBuffer.endsWith(" ");
-	bool startWithSpace = readBuffer.startsWith(" ");
+	lastCharacterWasSpace = false;
 
 	if ( qmc2StopParser )
 		loadProc->kill();
 
 	readBuffer = readBuffer.simplified();
 
-	if ( startWithSpace )
+	if ( startsWithSpace )
 		readBuffer.prepend(" ");
 
 	// ensure XML elements are on individual lines
@@ -2831,11 +2831,7 @@ void Gamelist::loadReadyReadStandardOutput()
 		QString singleXMLLine = sl[l];
 		bool newLine = singleXMLLine.endsWith(">");
 		if ( newLine ) {
-			if ( singleXMLLine.endsWith("<description>") )
-				newLine = false;
-			else if ( singleXMLLine.endsWith("<year>") )
-				newLine = false;
-			else if ( singleXMLLine.endsWith("<manufacturer>") )
+			if ( singleXMLLine.indexOf(QRegExp("\\<description\\>$|\\<year\\>$|\\<manufacturer\\>$")) >= 0 )
 				newLine = false;
 			if ( newLine ) {
 				bool found = false;
@@ -2861,15 +2857,19 @@ void Gamelist::loadReadyReadStandardOutput()
 			if ( !found )
 				needsSpace = false;
 		}
+		int i = singleXMLLine.length() - 1;
+		while ( i >= 0 && singleXMLLine[i].isSpace() )
+			singleXMLLine.remove(i--, 1);
 		needsSpace |= endsWithSpace;
-		if ( newLine ) {
-			if ( singleXMLLine[singleXMLLine.length() - 1].isSpace() )
-				singleXMLLine.remove(singleXMLLine.length() - 1, 1);
-			needsSpace = false;
+		if ( newLine )
+			singleXMLLine += "\n";
+		else if ( needsSpace ) {
+			singleXMLLine += " ";
+			lastCharacterWasSpace = true;
 		}
-		gamelistBuffer += singleXMLLine + QString(needsSpace ? " " : "") + QString(newLine ? "\n" : "");
+		gamelistBuffer += singleXMLLine;
 		if ( listXMLCache.isOpen() )
-			tsListXMLCache << singleXMLLine << QString(needsSpace ? " " : "") << QString(newLine ? "\n" : "");
+			tsListXMLCache << singleXMLLine;
 	}
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
