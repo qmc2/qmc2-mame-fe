@@ -28,6 +28,7 @@ class Gamelist : public QObject
 		bool verifyCurrentOnly;
 		bool autoRomCheck;
 		bool mergeCategories;
+		char oldRomState;
 		QIcon qmc2UnknownImageIcon;
 		QIcon qmc2UnknownBIOSImageIcon;
 		QIcon qmc2UnknownDeviceImageIcon;
@@ -55,7 +56,6 @@ class Gamelist : public QObject
 		QTextStream tsRomCache;
 		QTextStream tsGamelistCache;
 		QTextStream tsListXMLCache;
-		QChar oldRomState;
 		QString emulatorType;
 		QString emulatorVersion;
 		QString gamelistBuffer;

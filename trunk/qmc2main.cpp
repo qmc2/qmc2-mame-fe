@@ -4255,27 +4255,29 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   } else
     labelGameStatus->setVisible(false);
 
+  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+
   // setup status indicator color
-  switch ( qmc2CurrentItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
-    case QMC2_ROMSTATE_CHAR_C:
+  switch ( qmc2Gamelist->gameStatusMap[gameName] ) {
+    case 'C':
       labelGameStatus->setPalette(qmc2StatusColorGreen);
       break;
 
-    case QMC2_ROMSTATE_CHAR_M:
+    case 'M':
       labelGameStatus->setPalette(qmc2StatusColorYellowGreen);
       break;
 
-    case QMC2_ROMSTATE_CHAR_I:
+    case 'I':
       labelGameStatus->setPalette(qmc2StatusColorRed);
       break;
 
-    case QMC2_ROMSTATE_CHAR_N:
+    case 'N':
       labelGameStatus->setPalette(qmc2StatusColorGrey);
       break;
 
-    case QMC2_ROMSTATE_CHAR_U:
-      labelGameStatus->setPalette(qmc2StatusColorBlue);
+    case 'U':
     default:
+      labelGameStatus->setPalette(qmc2StatusColorBlue);
       break;
   }
 
@@ -4322,7 +4324,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	  qmc2SystemNotesEditor->raise();
   }
 
-  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
   qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(gameName), tr("Default")).toString() == tr("Default");
 
   int left, top, right, bottom;
