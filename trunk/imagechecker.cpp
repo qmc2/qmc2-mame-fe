@@ -926,9 +926,8 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 						args[i] = filePath;
 #endif
 					} else if ( args[i] == "$FILELIST$" ) {
-						QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
-						for (j = 0; j < items.count(); j++) {
-							QString itemText = items[j]->text();
+						for (j = 0; j < listWidgetObsolete->count(); j++) {
+							QString itemText = listWidgetObsolete->item(i)->text();
 							if ( itemText.startsWith(filePath + ": ") ) {
 								itemText.remove(0, filePath.length() + 2);
 								addArgs << itemText;
@@ -964,7 +963,8 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			// unzipped images
 			progressBar->setFormat(tr("Removing obsolete files / folders"));
 			progressBar->setRange(0, listWidgetObsolete->count());
-			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
+			for (int i = 0; i < listWidgetObsolete->count(); i++) {
+				QListWidgetItem *item = listWidgetObsolete->item(i);
 				progressBar->setValue(++itemCount);
 				QString path = item->text();
 				QFileInfo fi(path);
@@ -1020,9 +1020,8 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 						args[i] = filePath;
 #endif
 					} else if ( args[i] == "$FILELIST$" ) {
-						QList<QListWidgetItem *> items = listWidgetObsolete->findItems("*", Qt::MatchWildcard); 
-						for (j = 0; j < items.count(); j++) {
-							QString itemText = items[j]->text();
+						for (j = 0; j < listWidgetObsolete->count(); j++) {
+							QString itemText = listWidgetObsolete->item(j)->text();
 							if ( itemText.startsWith(filePath + ": ") ) {
 								itemText.remove(0, filePath.length() + 2);
 								addArgs << itemText;
@@ -1058,7 +1057,8 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 			// unzipped icons
 			progressBar->setFormat(tr("Removing obsolete files / folders"));
 			progressBar->setRange(0, listWidgetObsolete->count());
-			foreach (QListWidgetItem *item, listWidgetObsolete->findItems("*", Qt::MatchWildcard)) {
+			for (int i = 0; i < listWidgetObsolete->count(); i++) {
+				QListWidgetItem *item = listWidgetObsolete->item(i);
 				progressBar->setValue(++itemCount);
 				QString path = item->text();
 				QFileInfo fi(path);

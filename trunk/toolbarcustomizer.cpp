@@ -181,8 +181,8 @@ void ToolBarCustomizer::on_pushButtonApply_clicked()
 	appliedActions.clear();
 	QToolBar *tb = qmc2MainWindow->toolbar;
 	tb->clear();
-	foreach (QListWidgetItem *item, listWidgetActiveActions->findItems("*", Qt::MatchWildcard)) {
-		QAction *action = activeToolBarActions[item];
+	for (int i = 0; i < listWidgetActiveActions->count(); i++) {
+		QAction *action = activeToolBarActions[listWidgetActiveActions->item(i)];
 		appliedActions << action->objectName();
 		if ( action->objectName() == "--" )
 			tb->addSeparator();

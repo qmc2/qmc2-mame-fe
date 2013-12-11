@@ -388,10 +388,9 @@ void YouTubeVideoPlayer::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", spinBoxResultsPerRequest->value());
 
 	if ( fullyLoaded ) {
-		QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
 		QStringList attachedVideos;
-		foreach (QListWidgetItem *item, il) {
-			VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		for (int i = 0; i < listWidgetAttachedVideos->count(); i++) {
+			VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(listWidgetAttachedVideos->item(i));
 			attachedVideos << viw->videoID;
 		}
 		if ( attachedVideos.isEmpty() )
