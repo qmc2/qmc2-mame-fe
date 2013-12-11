@@ -3143,8 +3143,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
   bool doFilter = true;
   if ( verifyCurrentOnly ) {
     QString gameName;
-    if ( verifiedList.isEmpty() && checkedItem && exitCode == 5 ) {
-	    // the set a device that has no ROMs and thus was declared as being "invalid" during the audit, but that isn't true :)
+    if ( verifiedList.isEmpty() && checkedItem && exitCode == QMC2_MAME_ERROR_NO_SUCH_GAME ) {
+	    // many device-sets that have no ROMs are declared as being "invalid" during the audit, but that isn't true :)
 	    gameName = checkedItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 	    QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
 	    if ( hierarchyItem ) {
