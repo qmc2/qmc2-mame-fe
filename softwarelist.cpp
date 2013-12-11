@@ -43,7 +43,7 @@ extern QMap<QString, QString> qmc2CustomShortcutMap;
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
 QMap<QString, QString> softwareListXmlDataCache;
-QMap<QString, QMap<QString, int> > softwareListStateMap;
+QMap<QString, QMap<QString, char> > softwareListStateMap;
 QString swlBuffer;
 QString swlLastLine;
 QString swlSelectedMountDevice;
@@ -1664,7 +1664,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 				if ( softwareStateFile.isOpen() )
 					softwareStateStream << softwareName << " N\n";
-				softwareListStateMap[listName][softwareName] = QMC2_ROMSTATE_INT_N;
+				softwareListStateMap[listName][softwareName] = 'N';
 				numSoftwareNotFound++;
 			} else {
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
@@ -1679,7 +1679,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 				if ( softwareStateFile.isOpen() )
 					softwareStateStream << softwareName << " U\n";
-				softwareListStateMap[listName][softwareName] = QMC2_ROMSTATE_INT_U;
+				softwareListStateMap[listName][softwareName] = 'U';
 				numSoftwareUnknown++;
 			}
 		}
@@ -1764,18 +1764,18 @@ void SoftwareList::verifyReadyReadStandardOutput()
 					}
 				}
 
-				int numericStatus = QMC2_ROMSTATE_INT_U;
+				char charStatus = 'U';
 				if ( status == "good" )
-					numericStatus = QMC2_ROMSTATE_INT_C;
+					charStatus = 'C';
 				else if ( status == "bad" )
-					numericStatus = QMC2_ROMSTATE_INT_I;
+					charStatus = 'I';
 				else if ( status == "available" )
-					numericStatus = QMC2_ROMSTATE_INT_M;
+					charStatus = 'M';
 
-				softwareListStateMap[listName][softwareName] = numericStatus;
+				softwareListStateMap[listName][softwareName] = charStatus;
 
-				switch ( numericStatus ) {
-					case QMC2_ROMSTATE_INT_C:
+				switch ( charStatus ) {
+					case 'C':
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "C");
 						if ( stateFilter->checkBoxStateFilter->isChecked() )
@@ -1790,7 +1790,7 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareStateStream << softwareName << " C\n";
 						numSoftwareCorrect++;
 						break;
-					case QMC2_ROMSTATE_INT_M:
+					case 'M':
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "M");
 						if ( stateFilter->checkBoxStateFilter->isChecked() )
@@ -1805,7 +1805,7 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareStateStream << softwareName << " M\n";
 						numSoftwareMostlyCorrect++;
 						break;
-					case QMC2_ROMSTATE_INT_I:
+					case 'I':
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "I");
 						if ( stateFilter->checkBoxStateFilter->isChecked() )
@@ -1820,7 +1820,7 @@ void SoftwareList::verifyReadyReadStandardOutput()
 							softwareStateStream << softwareName << " I\n";
 						numSoftwareIncorrect++;
 						break;
-					case QMC2_ROMSTATE_INT_U:
+					case 'U':
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "U");
 						if ( stateFilter->checkBoxStateFilter->isChecked() )
@@ -3306,31 +3306,31 @@ QString SoftwareList::softwareStatus(QString listName, QString softwareName, boo
 	if ( softwareListStateMap.contains(listName) ) {
 		if ( softwareListStateMap[listName].contains(softwareName) ) {
 			switch ( softwareListStateMap[listName][softwareName] ) {
-				case QMC2_ROMSTATE_INT_C:
+				case 'C':
 					if ( translated )
 						return tr("correct");
 					else
 						return "correct";
 					break;
-				case QMC2_ROMSTATE_INT_M:
+				case 'M':
 					if ( translated )
 						return tr("mostly correct");
 					else
 						return "mostly correct";
 					break;
-				case QMC2_ROMSTATE_INT_I:
+				case 'I':
 					if ( translated )
 						return tr("incorrect");
 					else
 						return "incorrect";
 					break;
-				case QMC2_ROMSTATE_INT_N:
+				case 'N':
 					if ( translated )
 						return tr("not found");
 					else
 						return "not found";
 					break;
-				case QMC2_ROMSTATE_INT_U:
+				case 'U':
 				default:
 					if ( translated )
 						return tr("unknown");
@@ -3420,20 +3420,20 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 			if ( words.count() > 1 ) {
 				switch ( words[1][0].toLatin1() ) {
 					case 'C':
-						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_C;
+						softwareListStateMap[listName][words[0]] = 'C';
 						break;
 					case 'M':
-						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_M;
+						softwareListStateMap[listName][words[0]] = 'M';
 						break;
 					case 'I':
-						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_I;
+						softwareListStateMap[listName][words[0]] = 'I';
 						break;
 					case 'N':
-						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_N;
+						softwareListStateMap[listName][words[0]] = 'N';
 						break;
 					case 'U':
 					default:
-						softwareListStateMap[listName][words[0]] = QMC2_ROMSTATE_INT_U;
+						softwareListStateMap[listName][words[0]] = 'U';
 						break;
 				}
 			}
@@ -3482,7 +3482,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() ) {
 			if ( softwareListStateMap[softwareListName].contains(softwareName) ) {
 				switch ( softwareListStateMap[softwareListName][softwareName] ) {
-					case QMC2_ROMSTATE_INT_C:
+					case 'C':
 						numCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "C");
@@ -3491,7 +3491,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 						else
 							softwareItem->setHidden(false);
 						break;
-					case QMC2_ROMSTATE_INT_M:
+					case 'M':
 						numMostlyCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_mostlycorrect.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "M");
@@ -3500,7 +3500,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 						else
 							softwareItem->setHidden(false);
 						break;
-					case QMC2_ROMSTATE_INT_I:
+					case 'I':
 						numIncorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_incorrect.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "I");
@@ -3509,7 +3509,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 						else
 							softwareItem->setHidden(false);
 						break;
-					case QMC2_ROMSTATE_INT_N:
+					case 'N':
 						numNotFound++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 						softwareItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "N");
@@ -3518,7 +3518,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 						else
 							softwareItem->setHidden(false);
 						break;
-					case QMC2_ROMSTATE_INT_U:
+					case 'U':
 					default:
 						numUnknown++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));

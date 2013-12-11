@@ -350,9 +350,9 @@
 #define QMC2_ROMSTATE_COUNT			5
 #define QMC2_ROMSTATE_INT_C			0
 #define QMC2_ROMSTATE_INT_M			1
-#define QMC2_ROMSTATE_INT_U			2
-#define QMC2_ROMSTATE_INT_I			3
-#define QMC2_ROMSTATE_INT_N			4
+#define QMC2_ROMSTATE_INT_I			2
+#define QMC2_ROMSTATE_INT_N			3
+#define QMC2_ROMSTATE_INT_U			4
 
 // indirectly controls the ROM state filter responsiveness (number of updates)
 #define QMC2_STATEFILTER_UPDATES		4
