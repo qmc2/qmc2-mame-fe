@@ -463,7 +463,8 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	args << machineName;
 
 	QList<QTreeWidgetItem *> allSlotItems;
-	foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 		allSlotItems << item;
 		insertChildItems(item, allSlotItems);
 	}
@@ -868,7 +869,8 @@ void MESSDeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOpt
 	// find parent slot
 	QTreeWidgetItem *parentItem = NULL;
 	QList<QTreeWidgetItem *> allSlotItems;
-	foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 		allSlotItems << item;
 		insertChildItems(item, allSlotItems);
 	}
@@ -925,8 +927,8 @@ void MESSDeviceConfigurator::checkRemovedSlots(QTreeWidgetItem *parentItem)
 #endif
 
 	if ( parentItem == NULL ) {
-		foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard))
-			checkRemovedSlots(item);
+		for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++)
+			checkRemovedSlots(treeWidgetSlotOptions->topLevelItem(i));
 	} else {
 		QList<QTreeWidgetItem *> itemsToDelete;
 		for (int i = 0; i < parentItem->childCount(); i++) {
@@ -954,7 +956,8 @@ void MESSDeviceConfigurator::checkRemovedSlots(QTreeWidgetItem *parentItem)
 QComboBox *MESSDeviceConfigurator::comboBoxByName(QString slotName, QTreeWidgetItem **returnItem)
 {
 	QList<QTreeWidgetItem *> allSlotItems;
-	foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 		allSlotItems << item;
 		insertChildItems(item, allSlotItems);
 	}
@@ -1062,12 +1065,11 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	// update file-chooser's device instance selector
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
 
-	QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 	QStringList instances;
-
 	extensionInstanceMap.clear();
-	foreach (QTreeWidgetItem *item, items) {
-		QString instance = item->text(QMC2_DEVCONFIG_COLUMN_NAME);
+
+	for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
+		QString instance = treeWidgetDeviceSetup->topLevelItem(i)->text(QMC2_DEVCONFIG_COLUMN_NAME);
 		if ( !instance.isEmpty() )
 			instances << instance;
 	}
@@ -1135,7 +1137,8 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	else {
 		// adjust tab orders for device-maps and slot-options
 		QTreeWidgetItem *lastItem = NULL;
-		foreach (QTreeWidgetItem *thisItem, treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard)) {
+		for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
+			QTreeWidgetItem *thisItem = treeWidgetDeviceSetup->topLevelItem(i);
 			if ( lastItem ) {
 				FileEditWidget *w1 = (FileEditWidget *)treeWidgetDeviceSetup->itemWidget(lastItem, QMC2_DEVCONFIG_COLUMN_FILE);
 				FileEditWidget *w2 = (FileEditWidget *)treeWidgetDeviceSetup->itemWidget(thisItem, QMC2_DEVCONFIG_COLUMN_FILE);
@@ -1322,13 +1325,13 @@ bool MESSDeviceConfigurator::load()
 	xmlReader.parse(xmlInputSource);
 
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
-	QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 	QStringList instances;
+	extensionInstanceMap.clear();
+
 	treeWidgetDeviceSetup->sortItems(QMC2_DEVCONFIG_COLUMN_NAME, Qt::AscendingOrder);
 
-	extensionInstanceMap.clear();
-	foreach (QTreeWidgetItem *item, items) {
-		QString instance = item->text(QMC2_DEVCONFIG_COLUMN_NAME);
+	for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
+		QString instance = treeWidgetDeviceSetup->topLevelItem(i)->text(QMC2_DEVCONFIG_COLUMN_NAME);
 		if ( !instance.isEmpty() )
 			instances << instance;
 	}
@@ -1599,9 +1602,9 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 	QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(cfgName, Qt::MatchExactly);
 	if ( matchedItemList.count() > 0 ) {
 		// save device configuration
-		QList<QTreeWidgetItem *> allItems = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 		QStringList instances, files;
-		foreach (QTreeWidgetItem *item, allItems) {
+		for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = treeWidgetDeviceSetup->topLevelItem(i);
 			QString fileName = item->data(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole).toString();
 			if ( !fileName.isEmpty() ) {
 				instances << item->data(QMC2_DEVCONFIG_COLUMN_NAME, Qt::EditRole).toString();
@@ -1613,7 +1616,8 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 
 		// save slot setup
 		QList<QTreeWidgetItem *> allSlotItems;
-		foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+		for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 			allSlotItems << item;
 			insertChildItems(item, allSlotItems);
 		}
@@ -1858,7 +1862,8 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 			if ( updateSlots ) {
 				QList<QTreeWidgetItem *> itemList;
 				QMap<QString, QTreeWidgetItem *> itemMap;
-				foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+				for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+					QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 					itemList << item;
 					insertChildItems(item, itemList);
 				}
@@ -2672,7 +2677,8 @@ void MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 
 					// save slot setup
 					QList<QTreeWidgetItem *> allSlotItems;
-					foreach (QTreeWidgetItem *item, treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+					for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+						QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 						allSlotItems << item;
 						insertChildItems(item, allSlotItems);
 					}

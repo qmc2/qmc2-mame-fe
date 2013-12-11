@@ -1533,7 +1533,8 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 			itemSelector.setWindowTitle(tr("Path selection"));
 			itemSelector.labelMessage->setText(tr("Multiple ini-paths detected. Select path(s) to export to:"));
 			itemSelector.listWidgetItems->setSelectionMode(QAbstractItemView::ExtendedSelection);
-			foreach (QListWidgetItem *item, itemSelector.listWidgetItems->findItems("*", Qt::MatchWildcard)) {
+			for (int i = 0; i < itemSelector.listWidgetItems->count(); i++) {
+				QListWidgetItem *item = itemSelector.listWidgetItems->item(i);
 				if ( writableIniPaths.contains(item->text()) ) {
 					item->setForeground(greenBrush);
 					item->setSelected(true);
@@ -1687,7 +1688,8 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 			itemSelector.setWindowTitle(tr("Path selection"));
 			itemSelector.labelMessage->setText(tr("Multiple ini-paths detected. Select path(s) to import from:"));
 			itemSelector.listWidgetItems->setSelectionMode(QAbstractItemView::ExtendedSelection);
-			foreach (QListWidgetItem *item, itemSelector.listWidgetItems->findItems("*", Qt::MatchWildcard)) {
+			for (int i = 0; i < itemSelector.listWidgetItems->count(); i++) {
+				QListWidgetItem *item = itemSelector.listWidgetItems->item(i);
 				if ( readableIniPaths.contains(item->text()) ) {
 					item->setForeground(greenBrush);
 					item->setSelected(true);

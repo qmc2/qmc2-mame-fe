@@ -1146,7 +1146,8 @@ bool SoftwareList::load()
 
 		QStringList compatFilters = systemSoftwareFilterMap[systemName];
 		for (int i = 0; i < softwareNames.count() && !interruptLoad; i++) {
-			if ( interruptLoad ) break;
+			if ( interruptLoad )
+				break;
 			QString software = softwareNames[i];
 			QList<QTreeWidgetItem *> matchedSoftware = treeWidgetKnownSoftware->findItems(software, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
 			QTreeWidgetItem *swItem = NULL;
@@ -1155,6 +1156,7 @@ bool SoftwareList::load()
 				SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
 				item->setText(QMC2_SWLIST_COLUMN_TITLE, swItem->text(QMC2_SWLIST_COLUMN_TITLE));
 				item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, swItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
+				item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, swItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
 				item->setIcon(QMC2_SWLIST_COLUMN_TITLE, swItem->icon(QMC2_SWLIST_COLUMN_TITLE));
 				if ( toolButtonCompatFilterToggle->isChecked() ) {
 					QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
@@ -1234,19 +1236,19 @@ bool SoftwareList::save()
 
 	qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Favorites/%1").arg(systemName));
 
-	QList<QTreeWidgetItem *> itemList = treeWidgetFavoriteSoftware->findItems("*", Qt::MatchWildcard);
-
 	QStringList softwareNames;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 	QStringList configNames;
 	bool onlyEmptyConfigNames = true;
 #endif
 
-	foreach (QTreeWidgetItem *item, itemList) {
+	for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
 		softwareNames << item->text(QMC2_SWLIST_COLUMN_NAME);
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		QString s = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
-		if ( !s.isEmpty() ) onlyEmptyConfigNames = false;
+		if ( !s.isEmpty() )
+			onlyEmptyConfigNames = false;
 		configNames << s;
 #endif
 	}
@@ -2109,6 +2111,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 			item->setText(QMC2_SWLIST_COLUMN_TITLE, si->text(QMC2_SWLIST_COLUMN_TITLE));
 			item->setIcon(QMC2_SWLIST_COLUMN_TITLE, si->icon(QMC2_SWLIST_COLUMN_TITLE));
 			item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, si->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
+			item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, si->whatsThis(QMC2_SWLIST_COLUMN_NAME));
 			QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 			bool showItem = !checked || compatList.isEmpty() || compatFilters.isEmpty();
 			for (int i = 0; i < compatList.count() && !showItem; i++)
@@ -2748,24 +2751,26 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 		QList<QTreeWidgetItem *> positiveMatchesByShortName = matchesByShortName;
 		matches.clear();
 		matchesByShortName.clear();
-		foreach (QTreeWidgetItem *item, treeWidgetKnownSoftware->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_TITLE) )
+		for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
 			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
 				matches << item;
-		foreach (QTreeWidgetItem *item, treeWidgetKnownSoftware->findItems("*", Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_NAME) )
+		}
+		for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount(); i++) {
+			QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
 			if ( !positiveMatches.contains(item) && !positiveMatchesByShortName.contains(item))
 				matchesByShortName << item;
+		}
 	}
 
-	int i;
-
-	for (i = 0; i < matchesByShortName.count(); i++) {
+	for (int i = 0; i < matchesByShortName.count(); i++) {
 		QTreeWidgetItem *item = matchesByShortName[i];
 		if ( !matches.contains(item) )
 			matches.append(item);
 	}
 
 	QStringList compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
-	for (i = 0; i < matches.count(); i++) {
+	for (int i = 0; i < matches.count(); i++) {
 		SoftwareItem *item = new SoftwareItem(treeWidgetSearchResults);
 		SoftwareItem *subItem = new SoftwareItem(item);
 		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
@@ -2773,12 +2778,13 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 		item->setText(QMC2_SWLIST_COLUMN_TITLE, matchItem->text(QMC2_SWLIST_COLUMN_TITLE));
 		item->setIcon(QMC2_SWLIST_COLUMN_TITLE, matchItem->icon(QMC2_SWLIST_COLUMN_TITLE));
 		item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, matchItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
+		item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, matchItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
 		if ( qmc2SoftwareList->toolButtonCompatFilterToggle->isChecked() ) {
 			QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 			bool showItem = compatList.isEmpty() || compatFilters.isEmpty();
-			for (int i = 0; i < compatList.count() && !showItem; i++)
-				for (int j = 0; j < compatFilters.count() && !showItem; j++)
-					showItem = (compatList[i] == compatFilters[j]);
+			for (int j = 0; j < compatList.count() && !showItem; j++)
+				for (int k = 0; k < compatFilters.count() && !showItem; k++)
+					showItem = (compatList[j] == compatFilters[k]);
 			item->setHidden(!showItem);
 		}
 		item->setText(QMC2_SWLIST_COLUMN_NAME, matchItem->text(QMC2_SWLIST_COLUMN_NAME));
@@ -3206,6 +3212,7 @@ void SoftwareList::loadFavoritesFromFile()
 								subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
 								item->setText(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_TITLE));
 								item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
+								item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
 								if ( toolButtonCompatFilterToggle->isChecked() ) {
 									QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
 									bool showItem = compatList.isEmpty() || compatFilters.isEmpty();

@@ -1882,7 +1882,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 					indexList = selectionModel->selectedIndexes();
 				if ( indexList.count() > 0 && instance != tr("No devices available") ) {
 					QList<QTreeWidgetItem *> allSlotItems;
-					foreach (QTreeWidgetItem *item, qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+					for (int i = 0; i < qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->topLevelItemCount(); i++) {
+						QTreeWidgetItem *item = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->topLevelItem(i);
 						allSlotItems << item;
 						qmc2MESSDeviceConfigurator->insertChildItems(item, allSlotItems);
 					}
@@ -2010,7 +2011,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 					}
 				} else {
 					QList<QTreeWidgetItem *> allSlotItems;
-					foreach (QTreeWidgetItem *item, qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard)) {
+					for (int i = 0; i < qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->topLevelItemCount(); i++) {
+						QTreeWidgetItem *item = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->topLevelItem(i);
 						allSlotItems << item;
 						qmc2MESSDeviceConfigurator->insertChildItems(item, allSlotItems);
 					}
@@ -6604,9 +6606,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 
 #if QMC2_USE_PHONON_API
-  QList<QListWidgetItem *> pl = listWidgetAudioPlaylist->findItems("*", Qt::MatchWildcard);
   QStringList psl;
-  foreach (QListWidgetItem *item, pl) psl << item->text();
+  for (int i = 0; i < listWidgetAudioPlaylist->count(); i++)
+	  psl << listWidgetAudioPlaylist->item(i)->text();
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList", psl);
   if ( listWidgetAudioPlaylist->currentItem() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", listWidgetAudioPlaylist->currentItem()->text());
