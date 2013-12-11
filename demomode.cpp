@@ -5,6 +5,7 @@
 #include "settings.h"
 #include "demomode.h"
 #include "qmc2main.h"
+#include "gamelist.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
@@ -18,6 +19,7 @@ extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
 extern Settings *qmc2Config;
 extern QMap<QString, QString *> qmc2CategoryMap;
+extern Gamelist *qmc2Gamelist;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)
   : QDialog(parent)
@@ -257,24 +259,24 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 					    continue;
 			    }
 		    }
-		    switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toLatin1() ) {
-			    case QMC2_ROMSTATE_CHAR_C:
+		    switch ( qmc2Gamelist->gameStatusMap[game] ) {
+			    case 'C':
 				    if ( toolButtonSelectC->isChecked() )
 					    selectedGames << game;
 				    break;
-			    case QMC2_ROMSTATE_CHAR_M:
+			    case 'M':
 				    if ( toolButtonSelectM->isChecked() )
 					    selectedGames << game;
 				    break;
-			    case QMC2_ROMSTATE_CHAR_I:
+			    case 'I':
 				    if ( toolButtonSelectI->isChecked() )
 					    selectedGames << game;
 				    break;
-			    case QMC2_ROMSTATE_CHAR_N:
+			    case 'N':
 				    if ( toolButtonSelectN->isChecked() )
 					    selectedGames << game;
 				    break;
-			    case QMC2_ROMSTATE_CHAR_U:
+			    case 'U':
 			    default:
 				    if ( toolButtonSelectU->isChecked() )
 					    selectedGames << game;
