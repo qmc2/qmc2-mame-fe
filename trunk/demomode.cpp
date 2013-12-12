@@ -18,7 +18,6 @@ extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
 extern Settings *qmc2Config;
-extern QMap<QString, QString *> qmc2CategoryMap;
 extern Gamelist *qmc2Gamelist;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)
@@ -148,7 +147,7 @@ void DemoModeDialog::updateCategoryFilter()
 #endif
 
 	QStringList categoryNames;
-	foreach (QString *category, qmc2CategoryMap.values())
+	foreach (QString *category, qmc2Gamelist->categoryMap.values())
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeDuplicates();
@@ -238,13 +237,13 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		    if ( !nameFilter.isEmpty() )
 			    if ( game.indexOf(nameFilterRegExp) < 0 )
 				    continue;
-		    QString *categoryPtr = qmc2CategoryMap[game];
+		    QString *categoryPtr = qmc2Gamelist->categoryMap[game];
 		    QString category;
 		    if ( categoryPtr )
 			    category = *categoryPtr;
 		    else
 			    category = tr("?");
-		    if ( qmc2DeviceROMs.contains(game) || (!qmc2CategoryMap.isEmpty() && excludedCategories.contains(category)) )
+		    if ( qmc2DeviceROMs.contains(game) || (!qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category)) )
 			    continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( !gameItem )

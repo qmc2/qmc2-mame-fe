@@ -58,7 +58,7 @@ class Gamelist : public QObject
 		QTextStream tsListXMLCache;
 		QString emulatorType;
 		QString emulatorVersion;
-		QString gamelistBuffer;
+		QString xmlDataBuffer;
 		QString verifyLastLine;
 		QStringList xmlLines;
 		QStringList emulatorIdentifiers;
@@ -67,8 +67,10 @@ class Gamelist : public QObject
 		QMap<QString, char> gameStatusMap;
 		QMap<QString, int> xmlGamePositionMap;
 		QMap<QString, QString *> categoryNames;
+		QMap<QString, QString *> categoryMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QMap<QString, QString *> versionNames;
+		QMap<QString, QString *> versionMap;
 #endif
 		QTreeWidgetItem *checkedItem;
 
