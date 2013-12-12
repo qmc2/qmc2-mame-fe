@@ -15,16 +15,13 @@
 #include "macros.h"
 #include "arcade/keysequences.h"
 #include "keyseqscan.h"
+#include "gamelist.h"
 #if QMC2_JOYSTICK == 1
 #include "joyfuncscan.h"
 #endif
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern QMap<QString, QString *> qmc2CategoryMap;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-extern QMap<QString, QString *> qmc2VersionMap;
-#endif
 extern QStringList qmc2BiosROMs;
 extern QStringList qmc2DeviceROMs;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
@@ -68,10 +65,10 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 #endif
 
 	// category and version maps
-	if ( !qmc2CategoryMap.isEmpty() )
+	if ( !qmc2Gamelist->categoryMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	if ( !qmc2VersionMap.isEmpty() )
+	if ( !qmc2Gamelist->versionMap.isEmpty() )
 		comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 #endif
 
@@ -485,7 +482,7 @@ bool ArcadeModeSetup::isWritableFile(QString fileName)
 void ArcadeModeSetup::updateCategoryFilter()
 {
 	QStringList categoryNames;
-	foreach (QString *category, qmc2CategoryMap.values())
+	foreach (QString *category, qmc2Gamelist->categoryMap.values())
 		if ( category )
 			categoryNames << *category;
 	categoryNames.removeDuplicates();
@@ -686,14 +683,14 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 				continue;
 
 		// category
-		QString *categoryPtr = qmc2CategoryMap[game];
+		QString *categoryPtr = qmc2Gamelist->categoryMap[game];
 		QString category;
 		if ( categoryPtr )
 			category = *categoryPtr;
 		else
 			category = tr("?");
 
-		if ( !qmc2CategoryMap.isEmpty() && excludedCategories.contains(category) )
+		if ( !qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category) )
 			continue;
 
 		GamelistItem *gameItem = (GamelistItem *)qmc2GamelistItemMap[game];
