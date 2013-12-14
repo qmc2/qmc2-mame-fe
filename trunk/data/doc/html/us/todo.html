@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.42, 02-DEC-2013</h3>
+<h3>TODO - v0.42, 14-DEC-2013</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -13,7 +13,7 @@
   <li>MAME/MESS output notifiers are not supported on Windows yet.</li>
   <li>The built-in <i>MiniWebBrowser</i> has a fairly restrictive set of features which is tailored to the uses of QMC2. It's not even <i>meant</i> to be a full-featured browser, even though it meanwhile supports most of the typical browser-functions.</li>
   <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it).</li>
-  <li>X11 only: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly.</li>
+  <li>X11 only: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly. Unfortunately, newer window-managers may cause additional problems with resizing. We hope that we can avoid all of this with our planned embedder port to Qt 5.</li>
   <li>The 'set repair' function (a feature of the ROMAlyzer's checksum wizard) only operates on ZIPs! There's no support for ROM sets stored as unzipped files in individual sub-directores yet.</li>
   <li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either 'north' or 'south'.</li>
   <li>Windows only: There's a known issue for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash of the emulator. To work around this, you have to <i>release</i> the emulator first; you can re-embed it later from the emulator control panel.</li>
@@ -32,12 +32,13 @@
 <p><b>Planned changes, new features and improvements</b></p>
 <ul>
   <li>QMC2 Arcade: add a MESS specific theme</li>
+  <li>Create a Qt 5 specific embedder (platform-independent with regard to embed handling, so will hopefully also work on Mac OS X)</li>
+  <li>Store and retrieve XML data from an SQLite 3 database, replacing the current XML cache (this should make loading much faster and at the same time greatly reduce the memory footprint)</li>
   <li>Add support for MAME's/MESS's new HTTP web-console &amp; JSON interface (note: Qt 4.8.x needs a newer QtWebKit to support <a href="http://tools.ietf.org/html/rfc6455" target="_blank">RFC 6455</a>, it only comes with support for the <a href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76" target="_blank">hixie-76</a> draft version of the WebSocket protocol, so this might be no option - QtWebKit in Qt 5.1.x has support for this, though)</li>
   <li>Morph game/machine favorites, play-history and search results into tree-widgets (like the game/machine list views) and let the user categorize his/her favorites freely (probably add support for folder-ini's as well)</li>
   <li>Add software-state info to the software-list export feature</li>
   <li>QMC2 Arcade: add support for dynamically changing background images based on the current game's category (category images being freely customizable)</li>
-  <li>Port all uses of Qt Phonon to Qt Multimedia as Phonon isn't part of Qt 5 (not even planned for future releases)</li>
-  <li>Rewrite embedder code for Qt 5 on X11 (i.e. replace the no longer existing QX11EmbedContainer/Widget classes with an own implementation)</li>
+  <li>Port all uses of Phonon to Qt Multimedia as Phonon isn't part of Qt 5 anymore (the YouTube video player has been ported already, the audio player is still missing though)</li>
   <li>Add a built-in PDF reader to directly support system documentation like <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's MESS manual collections</a> -- note that we've already integrated <a href="http://wiki.mozilla.org/PDF.js" target="_blank">PDF.js</a> to accomplish this through QtWebKit</li>
   <li>Add support for <b>multiple</b> images per image category</li>
   <li>Add a nicer 'quick-search' function (replacing the default keyboard-search implementation inherited from QAbstractItemView) to all 4 game/machine list views and the software-list views including a pop-up editor to display and customize the search string</li>
@@ -58,7 +59,6 @@
   <li>Add a joystick &amp; keyboard configurator for MAME and MESS</li>
   <li>Add support for MAME/MESS output notifications on Windows</li>
   <li>Create an improved setup wizard with QWizard</li>
-  <li>Extend the template syntax to include the version an option was added/removed and process such options only if the current MAME/MESS version lies within this range (both new attributes will be optional, though, meaning that if they are omitted QMC2 will process the respective option regardless of the current MAME/MESS version -- just as it works now) (do we really need that?)</li>
 </ul>
 </body>
 </html>
