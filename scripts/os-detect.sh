@@ -3,7 +3,7 @@
 
 OS="`uname -s`"
 UNAME="`uname -a`"
-DIST="`uname -r` (`uname -o`)"
+DIST="`uname -r`"
 
 if [ "${OS}" = "Linux" ] ; then
   if [ -f /etc/mandriva-release ] ; then
