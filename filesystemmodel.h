@@ -28,7 +28,7 @@ class DirectoryModel : public QFileSystemModel
 	public:
 		DirectoryModel(QObject *parent = 0) : QFileSystemModel(parent) {}
 
-		virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const
+		virtual QVariant headerData(int /*section*/, Qt::Orientation orientation, int role) const
 		{
 			if ( orientation == Qt::Horizontal ) {
 				switch ( role ) {
@@ -378,12 +378,12 @@ class FileSystemModel : public QAbstractItemModel
 			}
 		}
 
-		virtual Qt::ItemFlags flags(const QModelIndex &index) const
+		virtual Qt::ItemFlags flags(const QModelIndex &/*index*/) const
 		{
 			return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 		}
 
-		virtual int columnCount(const QModelIndex &parent = QModelIndex()) const
+		virtual int columnCount(const QModelIndex &/*parent = QModelIndex()*/) const
 		{
 			return LASTCOLUMN;
 		}
