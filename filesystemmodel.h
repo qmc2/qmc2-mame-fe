@@ -631,7 +631,7 @@ class FileSystemModel : public QAbstractItemModel
 				mZipEntrySizes.clear();
 				mZipEntryDates.clear();
 				mBreakZipScan = false;
-				// the zip-entry lists currently carry only one entry at time for better GUI response
+				// the zip-entry lists carry only one entry at a time for better GUI response
 				do {
 					if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
 						mZipEntryList << zipFileName;
@@ -640,8 +640,8 @@ class FileSystemModel : public QAbstractItemModel
 						time_t clock = time(NULL);
 						t = localtime(&clock);
 						t->tm_isdst = -1;
-						t->tm_sec  = (((int)zipInfo.dosDate) <<  1) & 0x3e;
-						t->tm_min  = (((int)zipInfo.dosDate) >>  5) & 0x3f;
+						t->tm_sec  = (((int)zipInfo.dosDate) << 1) & 0x3e;
+						t->tm_min  = (((int)zipInfo.dosDate) >> 5) & 0x3f;
 						t->tm_hour = (((int)zipInfo.dosDate) >> 11) & 0x1f;
 						t->tm_mday = (int)(zipInfo.dosDate >> 16) & 0x1f;
 						t->tm_mon  = ((int)(zipInfo.dosDate >> 21) & 0x0f) - 1;
