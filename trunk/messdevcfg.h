@@ -45,7 +45,6 @@ class MESSDeviceConfiguratorXmlHandler : public QXmlDefaultHandler
 		QMap<QString, QString> defaultSlotOptions;
 
 		MESSDeviceConfiguratorXmlHandler(QTreeWidget *);
-		~MESSDeviceConfiguratorXmlHandler();
 
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);

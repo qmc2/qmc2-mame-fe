@@ -3807,7 +3807,7 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 	QWidget::leaveEvent(e);
 }
 
-void SoftwareSnap::paintEvent(QPaintEvent *e)
+void SoftwareSnap::paintEvent(QPaintEvent *)
 {
 	QPainter p(this);
 	loadSnapshot();

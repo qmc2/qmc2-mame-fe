@@ -550,7 +550,7 @@ void SnapshotViewer::saveAs()
 	}
 }
 
-void SnapshotViewer::paintEvent(QPaintEvent *e)
+void SnapshotViewer::paintEvent(QPaintEvent *)
 {
 	QPainter p(this);
 	p.eraseRect(rect());

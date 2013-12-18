@@ -2743,27 +2743,11 @@ void MESSDeviceConfigurator::on_splitterFileChooser_splitterMoved(int, int)
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong) parent));
-#endif
-
 	parentTreeWidget = parent;
-}
-
-MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()
-{
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()");
-#endif
-
 }
 
 bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::startElement(...)");
-#endif
-
 	if ( qName == "device" ) {
 		deviceType = attributes.value("type");
 		deviceTag = attributes.value("tag");
@@ -2799,10 +2783,6 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 
 bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::endElement(...)");
-#endif
-
 	if ( qName == "device" ) {
 		foreach (QString instance, deviceInstances) {
 			if ( !instance.isEmpty() ) {
@@ -2823,12 +2803,8 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
 	return true;
 }
 
-bool MESSDeviceConfiguratorXmlHandler::characters(const QString &str)
+bool MESSDeviceConfiguratorXmlHandler::characters(const QString &)
 {
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::characters(const QString &str = %1)").arg(str));
-#endif
-
 	return true;
 }
 
