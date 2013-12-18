@@ -184,7 +184,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
-
   // setup tools-menu
   toolsMenu = new QMenu(this);
   actionImportFromDataFile = toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Import from data file"), this, SLOT(importFromDataFile()));
@@ -778,6 +777,7 @@ void ROMAlyzer::analyze()
 	QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
 	QTreeWidgetItem *parentItem = xmlHandler.parentItem;
 	QString sha1Calculated, md5Calculated, fallbackPath;
+	bool optionalRom = xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 
 	if ( wizardSearch ) {
 		QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
@@ -801,7 +801,8 @@ void ROMAlyzer::analyze()
 						 childItem->text(QMC2_ROMALYZER_COLUMN_MERGE),
 						 childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
 						 &data, &sha1Calculated, &md5Calculated,
-						 &zipped, &merged, fileCounter, &fallbackPath); 
+						 &zipped, &merged, fileCounter, &fallbackPath,
+						 optionalRom); 
 
 #ifdef QMC2_DEBUG
 	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, fileType = %4, crcExpected = %5, sha1Calculated = %6")
@@ -819,7 +820,10 @@ void ROMAlyzer::analyze()
 	if ( effectiveFile.isEmpty() ) {
 	  childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
 	  childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-	  childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
+	  if ( xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) )
+		  childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")).pixmap(QSize(64, 64), QIcon::Disabled)));
+	  else
+		  childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
 	  notFoundCounter++;
 	} else {
 	  QString fileStatus;
@@ -871,7 +875,10 @@ void ROMAlyzer::analyze()
 	  } else if ( effectiveFile == QMC2_ROMALYZER_FILE_NOT_FOUND || effectiveFile == QMC2_ROMALYZER_NO_DUMP ) {
 	    if ( hasDump ) {
 		    fileStatus = tr("not found");
-		    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
+		    if ( xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)) )
+			    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")).pixmap(QSize(64, 64), QIcon::Disabled)));
+		    else
+			    childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
 		    notFoundCounter++;
 		    QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
 		    if ( !mergeName.isEmpty() ) {
@@ -1212,13 +1219,8 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 	return xmlBuffer;
 }
 
-QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath)
+QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM)
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem = %1, QString gameName = %2, QString fileName = %3, QString wantedCRC = %4, QString merge = %5, QString mergeFile = %6, QString type = %7, QByteArray *fileData = ..., QString *sha1Str = ..., QString md5Str = ..., bool *isZipped = ..., bool *mergeUsed = ..., int fileCounter = ..., QString *fallbackPath = ...)")
-                     .arg((qulonglong)myItem).arg(gameName).arg(fileName).arg(wantedCRC).arg(merge).arg(mergeFile).arg(type));
-#endif
-
   static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
   static QCryptographicHash md5Hash(QCryptographicHash::Md5);
   static QString effectiveFile;
@@ -1739,7 +1741,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
 			      effectiveFile = QMC2_ROMALYZER_NO_DUMP;
 		      } else
-			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC));
+			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC) + QString(isOptionalROM ? " (" + tr("optional") + ")" : ""));
               }
               fn = fileName;
             }
@@ -1856,9 +1858,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
       if ( romofPosition > -1 ) {
         nextMerge = nextMerge.mid(romofPosition + 7);
         nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath);
+        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
       } else
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath);
+        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
     }
   }
 
@@ -3375,6 +3377,7 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
     currentText.clear();
     childItems.clear();
     deviceReferences.clear();
+    optionalROMs.clear();
   } else if ( qName == "rom" || qName == "disk" ) {
     fileCounter++;
     childItem = new QTreeWidgetItem(parentItem);
@@ -3404,6 +3407,8 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
     childItem->setText(QMC2_ROMALYZER_COLUMN_CRC, attributes.value("crc"));
     childItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, attributes.value("sha1"));
     childItem->setText(QMC2_ROMALYZER_COLUMN_MD5, attributes.value("md5"));
+    if ( attributes.value("optional") == "yes" )
+	    optionalROMs << attributes.value("crc");
   } else if ( qName == "device_ref" )
     deviceReferences << attributes.value("name");
 

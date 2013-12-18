@@ -154,6 +154,7 @@ class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 		QTreeWidgetItem *childItem;
 		QList<QTreeWidgetItem *> childItems;
 		QStringList deviceReferences;
+		QStringList optionalROMs;
 		bool autoExpand;
 		bool autoScroll;
 		int emuStatus;
@@ -223,7 +224,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
-		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, int, QString *);
+		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, int, QString *, bool);
 
 	public slots:
 		// callback functions
