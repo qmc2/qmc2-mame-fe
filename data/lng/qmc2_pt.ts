@@ -2246,12 +2246,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="444"/>
         <source>WARNING: invalid window ID %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ID de janela inválido %1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="448"/>
         <source>WARNING: unknown error, window ID = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: erro desconhecido, ID da janela = %1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="469"/>
@@ -8119,18 +8119,18 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="454"/>
         <source>Searching machines - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando máquinas - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="456"/>
         <source>Searching games - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando jogos - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="492"/>
         <location filename="../../qmc2main.cpp" line="714"/>
         <source>note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \ must be escaped when they are meant literally!</source>
-        <translation type="unfinished"></translation>
+        <translation>nota: os caracteres especiais $, (, ), *, +, ., ?, [, ], ^, {, |, } e \ devem ser precedidos pelo caracter de escape quando forem utilizados literalmente!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1294"/>
@@ -8324,12 +8324,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="7070"/>
         <source>using default color palette for GUI style &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>usando paleta de cor padrão para o estilo de interface &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7074"/>
         <source>using custom color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>usando paleta de cores personalizada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7288"/>
@@ -8793,17 +8793,17 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
     <message>
         <location filename="../../qmc2main.cpp" line="7021"/>
         <source>setting GUI style to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>configurando estilo da interface para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7032"/>
         <source>WARNING: GUI style &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: estilo de interface &apos;%1&apos; não encontrado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7049"/>
         <source>WARNING: can&apos;t open style sheet &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir folha de estilo &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9773"/>
@@ -9675,7 +9675,7 @@ Por favor verifique a opção &apos;rompath&apos; nas opções globais do emulad
         <location filename="../../qmc2main.ui" line="756"/>
         <location filename="../../qmc2main.ui" line="759"/>
         <source>Search progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso da busca</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="892"/>
@@ -15450,186 +15450,186 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../arcade/keysequences.h" line="79"/>
         <source>[context] Previous component / List page up / Info page up</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Componente anterior / Page up da lista / Page up da informação</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="80"/>
         <source>[context] Next component / List page down / Info page down</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Pŕoximo componente / Page down da lista / Page down da informação</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="81"/>
         <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Esconder lista / Ítem anterior / Deslizar para esquerda / Girar para trás</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="82"/>
         <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Mostrar lista / Próximo ítem / Deslizar para a direita / Girar para frente</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="83"/>
         <source>[context] Show toolbar / List up / Info up / Previous widget</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Mostrar barra de ferramentas / Lista para cima / Informação para cima / Widget anterior</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="84"/>
         <source>[context] Hide toolbar / List down / Info down / Next widget</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Esconder barra de ferramentas / Lista para baixo / Informação para baixo / Próximo Widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="85"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Selecionar / Definir / Alternar detalhes / Iniciar emulação</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="86"/>
         <source>[context] Abort game launch / Hide preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Abortar lançamento do jogo / esconder preferências</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="87"/>
         <source>[context] Zoom in / List top</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Mais zoom / Topo da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="88"/>
         <source>[context] Zoom out / List bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Menos zoom / Fim da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="89"/>
         <source>[context] List page up / Flick page up</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Page up da lista / Flick page up</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="90"/>
         <source>[context] List page down / Flick page down</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Page down da lista / Flick page down</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="91"/>
         <source>[context] List top</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Topo da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="92"/>
         <source>[context] List bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Fim da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="93"/>
         <source>[context] Set primary display data item</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Definir item de dados do display primário</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="94"/>
         <source>[context] Set secondary display data item</source>
-        <translation type="unfinished"></translation>
+        <translation>[contexto] Definir item de dados do display secundário</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="99"/>
         <source>[global] Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Mais zoom</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="100"/>
         <source>[global] Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Menos zoom</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="13"/>
         <location filename="../../arcade/keysequences.h" line="46"/>
         <location filename="../../arcade/keysequences.h" line="47"/>
         <source>[global] Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Iniciar emulação</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="101"/>
         <source>[global] Search</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Procurar</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="18"/>
         <source>[global] Toggle preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Alternar preferências</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="36"/>
         <source>[global] Cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor para cima</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="37"/>
         <source>[global] Cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor para baixo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="38"/>
         <source>[global] Cursor left</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor para a esquerda</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="39"/>
         <source>[global] Cursor right</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Cursor para a direita</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="40"/>
         <source>[global] Page up</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="41"/>
         <source>[global] Page down</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="42"/>
         <source>[global] Start of list</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Início da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="43"/>
         <source>[global] End of list</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Fim da lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="44"/>
         <source>[global] Focus search box</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Dar foco à caixa de busca</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="45"/>
         <source>[global] Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Alternar barra de menu</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="50"/>
         <source>[global] Flip cabinet / game-card</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Girar gabinete / cartão do jogo</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="95"/>
         <location filename="../../arcade/keysequences.h" line="96"/>
         <source>[global] Next component</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Próximo componente</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="97"/>
         <location filename="../../arcade/keysequences.h" line="98"/>
         <source>[global] Previous component</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Componente anterior</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="102"/>
         <source>[global] Toggle list</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Alternar lista</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="103"/>
         <source>[global] Toggle toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Alternar barra de ferramentas</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="14"/>
@@ -15637,14 +15637,14 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../arcade/keysequences.h" line="16"/>
         <location filename="../../arcade/keysequences.h" line="17"/>
         <source>[global] Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Alternar tela cheia / modo janela</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="48"/>
         <location filename="../../arcade/keysequences.h" line="49"/>
         <location filename="../../arcade/keysequences.h" line="104"/>
         <source>[global] Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Sair</translation>
     </message>
 </context>
 <context>
@@ -15802,7 +15802,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1739"/>
         <source>optional</source>
-        <translation type="unfinished"></translation>
+        <translation>opcional</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1759"/>
@@ -16304,7 +16304,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="190"/>
         <source>Import from data file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar de arquivo de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="896"/>
@@ -16787,12 +16787,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2572"/>
         <source>Choose data file to import</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de dados para importar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2572"/>
         <source>Data files (*.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de dados (*.dat)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2825"/>
@@ -17041,7 +17041,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="45"/>
         <source>Tools menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu de ferramentas</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="185"/>
@@ -20600,13 +20600,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="1123"/>
         <location filename="../../youtubevideoplayer.cpp" line="1169"/>
         <source>Remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>Restante</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
         <location filename="../../youtubevideoplayer.cpp" line="1824"/>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="394"/>
@@ -20656,7 +20656,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="135"/>
         <source>Volume level</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de volume</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="136"/>

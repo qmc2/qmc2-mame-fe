@@ -44,7 +44,7 @@ Description: QMC2 Arcade Mode
 
 Package: qchdman
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-script, libqt4-scripttools
 Description: QMC2's Qt chdman interface
  A Qt interface for chdman utility
 
