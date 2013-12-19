@@ -762,10 +762,13 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						slotName = slotWords[1];
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 2 ) {
 							slotOption = slotWords[2];
-							slotDeviceName = slotLine.trimmed();
-							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+\\S+\\s+"));
-							messSlotNameMap[slotOption] = slotDeviceName;
-							messSystemSlotMap[systemName][slotName] << slotOption;
+							if ( slotOption != "[none]" ) {
+								slotDeviceName = slotLine.trimmed();
+								slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+\\S+\\s+"));
+								messSlotNameMap[slotOption] = slotDeviceName;
+								messSystemSlotMap[systemName][slotName] << slotOption;
+							} else
+								messSystemSlotMap[systemName]["QMC2_UNUSED_SLOTS"] << slotName;
 						} else
 							messSystemSlotMap[systemName].remove(slotName);
 					} else {
@@ -777,19 +780,25 @@ bool MESSDeviceConfigurator::readSystemSlots()
 					if ( slotLine[13] == ' ' ) { // this isn't nice, but I see no other way at the moment...
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 ) {
 							slotOption = slotWords[0];
-							slotDeviceName = slotLine.trimmed();
-							slotDeviceName.remove(QRegExp("^\\S+\\s+"));
-							messSlotNameMap[slotOption] = slotDeviceName;
-							messSystemSlotMap[systemName][slotName] << slotOption;
+							if ( slotOption != "[none]" ) {
+								slotDeviceName = slotLine.trimmed();
+								slotDeviceName.remove(QRegExp("^\\S+\\s+"));
+								messSlotNameMap[slotOption] = slotDeviceName;
+								messSystemSlotMap[systemName][slotName] << slotOption;
+							} else
+								messSystemSlotMap[systemName]["QMC2_UNUSED_SLOTS"] << slotName;
 						}
 					} else {
 						slotName = slotWords[0];
 						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 1 ) {
 							slotOption = slotWords[1];
-							slotDeviceName = slotLine.trimmed();
-							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+"));
-							messSlotNameMap[slotOption] = slotDeviceName;
-							messSystemSlotMap[systemName][slotName] << slotOption;
+							if ( slotOption != "[none]" ) {
+								slotDeviceName = slotLine.trimmed();
+								slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+"));
+								messSlotNameMap[slotOption] = slotDeviceName;
+								messSystemSlotMap[systemName][slotName] << slotOption;
+							} else
+								messSystemSlotMap[systemName]["QMC2_UNUSED_SLOTS"] << slotName;
 						} else
 							messSystemSlotMap[systemName].remove(slotName);
 					}
@@ -1387,6 +1396,8 @@ bool MESSDeviceConfigurator::load()
 	while ( it.hasNext() ) {
 		it.next();
 		QString slotName = it.key();
+		if ( slotName == "QMC2_UNUSED_SLOTS" )
+			continue;
 		bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(slotName);
 		QStringList slotOptions;
 		QStringList slotOptionsShort;
@@ -2761,6 +2772,10 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 		deviceExtensions << attributes.value("name");
 	} else if ( qName == "slot" ) {
 		slotName = attributes.value("name");
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+		if ( messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName]["QMC2_UNUSED_SLOTS"].contains(slotName) )
+			return true;
+#endif
 		allSlots << slotName;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 		if ( !messSystemSlotMap[qmc2MESSDeviceConfigurator->messMachineName].contains(slotName) )
