@@ -186,6 +186,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QMenu *menuToolbarSearchOptions;
 		QAction *actionNegateSearch;
 		QAction *actionToolbarNegateSearch;
+		QList<QAction *> criticalActions;
 		bool negatedMatch;
 
 		static QColor qmc2StatusColorGreen;

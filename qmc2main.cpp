@@ -946,6 +946,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2GameMenu->addAction(tr("&Analyse ROM..."));
+  criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
@@ -998,6 +999,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2SearchMenu->addAction(tr("&Analyse ROM..."));
+  criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
@@ -1041,6 +1043,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2FavoritesMenu->addAction(tr("&Analyse ROM..."));
+  criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
@@ -1109,6 +1112,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2PlayedMenu->addAction(tr("&Analyse ROM..."));
+  criticalActions << action;
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
