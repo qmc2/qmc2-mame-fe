@@ -48,6 +48,39 @@
     </message>
 </context>
 <context>
+    <name>JoystickManager</name>
+    <message>
+        <location filename="../joystickmanager.cpp" line="52"/>
+        <source>joystick-function &apos;%1&apos; triggered - emulating event for mapped key-sequence &apos;%2&apos;</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>KeyEventFilter</name>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="40"/>
+        <source>key-sequence &apos;%1&apos; %2 - emulating event for mapped key-sequence &apos;%3&apos;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="40"/>
+        <location filename="../keyeventfilter.cpp" line="68"/>
+        <source>pressed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="40"/>
+        <location filename="../keyeventfilter.cpp" line="68"/>
+        <source>released</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="68"/>
+        <source>key-sequence &apos;%1&apos; %2 - default event processing</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>ProcessManager</name>
     <message>
         <location filename="../processmanager.cpp" line="106"/>

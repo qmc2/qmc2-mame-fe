@@ -37,8 +37,9 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
         if ( mappedKeySeq != pressedKeySeq ) {
             // emulate a key-event for the mapped key
             if ( debugKeys ) {
-                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released").arg(mappedKeySeq));
-	    }
+                QString debugString = "DEBUG: " + tr("key-sequence '%1' %2 - emulating event for mapped key-sequence '%3'").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? tr("pressed") : tr("released")).arg(mappedKeySeq);
+                QMC2_ARCADE_LOG_STR(debugString);
+            }
             QKeySequence emulatedKeySequence(mappedKeySeq);
             Qt::KeyboardModifiers mods = Qt::NoModifier;
             int key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
@@ -58,17 +59,19 @@ bool KeyEventFilter::eventFilter(QObject *object, QEvent *event)
                 key -= Qt::MetaModifier;
                 mods |= Qt::MetaModifier;
             }
-            QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods);
-            qApp->postEvent(object, emulatedKeyEvent);
+            qApp->postEvent(object, new QKeyEvent(event->type(), key, mods));
             // no further event processing
             return true;
-        } else
+        } else {
             // default event processing
             if ( debugKeys ) {
-                QMC2_ARCADE_LOG_STR(QString("DEBUG: key-sequence '%1' %2 - default event processing").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? "pressed" : "released"));
-	    }
+                QString debugString = "DEBUG: " + tr("key-sequence '%1' %2 - default event processing").arg(pressedKeySeq).arg(event->type() == QEvent::KeyPress ? tr("pressed") : tr("released"));
+                QMC2_ARCADE_LOG_STR(debugString);
+            }
             return QObject::eventFilter(object, event);
-    } else
+        }
+    } else {
         // default event processing
         return QObject::eventFilter(object, event);
+    }
 }
