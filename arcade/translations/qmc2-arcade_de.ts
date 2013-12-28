@@ -48,6 +48,39 @@
     </message>
 </context>
 <context>
+    <name>JoystickManager</name>
+    <message>
+        <location filename="../joystickmanager.cpp" line="52"/>
+        <source>joystick-function &apos;%1&apos; triggered - emulating event for mapped key-sequence &apos;%2&apos;</source>
+        <translation>Joystick-Funktion &apos;%1&apos; ausgelöst - emuliere Event für zugeordnete Tasten-Sequenz &apos;%2&apos;</translation>
+    </message>
+</context>
+<context>
+    <name>KeyEventFilter</name>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="40"/>
+        <source>key-sequence &apos;%1&apos; %2 - emulating event for mapped key-sequence &apos;%3&apos;</source>
+        <translation>Tasten-Sequenz &apos;%1&apos; %2 - emuliere Event für zugeordnete Tasten-Sequenz &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="40"/>
+        <location filename="../keyeventfilter.cpp" line="68"/>
+        <source>pressed</source>
+        <translation>gedrückt</translation>
+    </message>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="40"/>
+        <location filename="../keyeventfilter.cpp" line="68"/>
+        <source>released</source>
+        <translation>losgelassen</translation>
+    </message>
+    <message>
+        <location filename="../keyeventfilter.cpp" line="68"/>
+        <source>key-sequence &apos;%1&apos; %2 - default event processing</source>
+        <translation>Tasten-Sequenz &apos;%1&apos; %2 - Standard Event Verarbeitung</translation>
+    </message>
+</context>
+<context>
     <name>ProcessManager</name>
     <message>
         <location filename="../processmanager.cpp" line="106"/>
