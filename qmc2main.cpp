@@ -11490,7 +11490,7 @@ void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 void MainWindow::checkRomPath()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkRompath()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkRomPath()");
 #endif
 
 	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "CheckRomPath", true).toBool() )
@@ -11505,19 +11505,32 @@ void MainWindow::checkRomPath()
 	else
 		myRomPath = QDir::currentPath() + "/roms";
 
-	bool romPathFound = false;
+	bool allRomPathsOk = true;
+	QStringList pathsToCheck;
+
 	foreach (QString rompath, myRomPath.split(";", QString::SkipEmptyParts)) {
 		QDir romDir(rompath);
-		if ( romDir.exists() && romDir.isReadable() )
-			romPathFound = true;
+		if ( !romDir.exists() ) {
+			log(QMC2_LOG_FRONTEND, tr("WARNING: ROM path '%1' doesn't exist").arg(rompath));
+			allRomPathsOk = false;
+			pathsToCheck << rompath;
+		} else if ( !romDir.isReadable() ) {
+			log(QMC2_LOG_FRONTEND, tr("WARNING: ROM path '%1' isn't accessible").arg(rompath));;
+			allRomPathsOk = false;
+			pathsToCheck << rompath;
+		}
 	}
 
-	if ( !romPathFound ) {
-		log(QMC2_LOG_FRONTEND, tr("WARNING: the ROM path is either not specified or the directory doesn't exist (or isn't accessible)"));
-		switch ( QMessageBox::warning(this, tr("Check ROM path"),
-					      tr("The ROM path is either not specified or the directory couldn't be found (or isn't accessible).\n\n"
-					         "Please check the 'rompath' option in the global emulator configuration to fix this, otherwise ROMs will not be available to the emulator!"),
-					      QMessageBox::Ok | QMessageBox::Ignore, QMessageBox::Ok) ) {
+	if ( !allRomPathsOk ) {
+		QString message;
+		if ( pathsToCheck.count() == 1 ) {
+			message = tr("The ROM path '%1' doesn't exist or isn't accessible.\n\n"
+				     "Please check the 'rompath' option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!").arg(pathsToCheck[0]);
+		} else {
+			message = tr("The ROM paths\n\n%1\n\ndon't exist or aren't accessible.\n\n"
+				     "Please check the 'rompath' option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!").arg(pathsToCheck.join("\n"));
+		}
+		switch ( QMessageBox::warning(this, tr("Check ROM path"), message, QMessageBox::Ok | QMessageBox::Ignore, QMessageBox::Ok) ) {
 			case QMessageBox::Ignore:
 				qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "CheckRomPath", false);
 				break;
