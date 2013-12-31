@@ -1,3 +1,10 @@
+qmc2 (0.42-1) unstable; urgency=low
+
+  * New upstream release. Closes: #598846
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Tue, 31 Dec 2013 14:54:17 -0200
+
+
 qmc2 (0.41-1) unstable; urgency=low
 
   * New upstream release. Closes: #598846
