@@ -24,12 +24,14 @@ else
     then
       PPA_VERSION=
     else
-      PPA_VERSION=+ppa1~${UBUNTU_VERSION_NAME}${PACKAGE_REVISION}
+      PPA_VERSION=+ppa1~${UBUNTU_VERSION_NAME}
     fi
     QMC2_VERSION=${MAJOR_VERSION}.${MINOR_VERSION}${PPA_VERSION}
+    PACKAGE_VERSION=${QMC2_VERSION}-${PACKAGE_REVISION}
   else
-    PPA_VERSION=+ppa2~${UBUNTU_VERSION_NAME}${PACKAGE_REVISION}+${MAJOR_VERSION}.${MINOR_VERSION}~svn${SVN_REV}
-    QMC2_VERSION=${MAJOR_VERSION}.$(( $MINOR_VERSION - 1 ))${PPA_VERSION}
+  PPA_VERSION=+ppa2~${UBUNTU_VERSION_NAME}+${MAJOR_VERSION}.${MINOR_VERSION}~svn${SVN_REV}
+  QMC2_VERSION=${MAJOR_VERSION}.$(( $MINOR_VERSION - 1 ))${PPA_VERSION}
+  PACKAGE_VERSION=${QMC2_VERSION}-${PACKAGE_REVISION}
   fi
 
   
@@ -41,17 +43,17 @@ else
   then
     cd ..
   fi
-  mkdir qmc2_${QMC2_VERSION}
+  mkdir qmc2_${PACKAGE_VERSION}
 
   if [ x$2 = 'xstable' ]
   then
-    cp -a tags/${MAJOR_VERSION}.${MINOR_VERSION}/* qmc2_${QMC2_VERSION}/
+    cp -a tags/${MAJOR_VERSION}.${MINOR_VERSION}/* qmc2_${PACKAGE_VERSION}/
   else
-    cp -a trunk/* qmc2_${QMC2_VERSION}/
+    cp -a trunk/* qmc2_${PACKAGE_VERSION}/
   fi
   
     
-  cd qmc2_${QMC2_VERSION}
+  cd qmc2_${PACKAGE_VERSION}
   #remove the .svn files
   for i in `find . -name .svn`
   do
@@ -61,31 +63,31 @@ else
 
    #create orig file
   mkdir qmc2_${QMC2_VERSION}.orig
-  cp -a qmc2_${QMC2_VERSION}/* qmc2_${QMC2_VERSION}.orig/
+  cp -a qmc2_${PACKAGE_VERSION}/* qmc2_${QMC2_VERSION}.orig/
   tar cvjf qmc2_${QMC2_VERSION}.orig.tar.bz2 qmc2_${QMC2_VERSION}.orig
   rm -rf qmc2_${QMC2_VERSION}.orig
 
   #copy content on pkg-spec/Debian folder to debian folder inside release dir
-  mkdir qmc2_${QMC2_VERSION}/debian
-  cp -a qmc2_${QMC2_VERSION}/pkg-specs/Debian/* qmc2_${QMC2_VERSION}/debian/
-  rm qmc2_${QMC2_VERSION}/debian/*.sh
+  mkdir qmc2_${PACKAGE_VERSION}/debian
+  cp -a qmc2_${PACKAGE_VERSION}/pkg-specs/Debian/* qmc2_${PACKAGE_VERSION}/debian/
+  rm qmc2_${PACKAGE_VERSION}/debian/*.sh
 
   #add the changelog only if not debian (since debian is already in changelog
   if [ x$1 != 'xdebian' ]
   then
   sed -i "1 i\\
-qmc2 (${QMC2_VERSION}) ${UBUNTU_VERSION_NAME}; urgency=low\\
+qmc2 (${PACKAGE_VERSION}) ${UBUNTU_VERSION_NAME}; urgency=low\\
 \\
   * ${UBUNTU_VERSION_NAME} port\\
 \\
 \\
  -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  ${CURRENT_DATE}\\
 \\
-" qmc2_${QMC2_VERSION}/debian/changelog
+" qmc2_${PACKAGE_VERSION}/debian/changelog
   fi
 
   #build the package
-  cd qmc2_${QMC2_VERSION}
+  cd qmc2_${PACKAGE_VERSION}
   debuild -S -sa
   cd ..
 
@@ -93,11 +95,11 @@ qmc2 (${QMC2_VERSION}) ${UBUNTU_VERSION_NAME}; urgency=low\\
   then
     if [ x$1 = 'xdebian' ]
     then
-      dput mentors qmc2_${QMC2_VERSION}_source.changes
+      dput mentors qmc2_${PACKAGE_VERSION}_source.changes
     else
-      dput ppa qmc2_${QMC2_VERSION}_source.changes
+      dput ppa qmc2_${PACKAGE_VERSION}_source.changes
     fi
   else
-    dput unstable-ppa qmc2_${QMC2_VERSION}_source.changes
+    dput unstable-ppa qmc2_${PACKAGE_VERSION}_source.changes
   fi
 fi
