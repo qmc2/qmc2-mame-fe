@@ -8668,19 +8668,21 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="11514"/>
         <source>WARNING: ROM path &apos;%1&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: caminho de ROMs &apos;%1&apos; não existe</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11518"/>
         <source>WARNING: ROM path &apos;%1&apos; isn&apos;t accessible</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: caminho de ROMs &apos;%1&apos; não está acessível</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11527"/>
         <source>The ROM path &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible.
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>O caminho para as ROMs &apos;%1&apos; não existe ou está inacessível.
+
+Por favor verifique a opção &apos;rompath&apos; nas configurações globais de emulador para corrigir, caso contrário as ROMs provavelmente não estarão disponíveis para o emulador!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11530"/>
@@ -8691,7 +8693,13 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
 don&apos;t exist or aren&apos;t accessible.
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>Os caminhos para as ROMs
+
+&apos;%1&apos;
+
+não existem ou estão inacessíveis.
+
+Por favor verifique a opção &apos;rompath&apos; nas configurações globais de emulador para corrigir, caso contrário as ROMs provavelmente não estarão disponíveis para o emulador!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11533"/>

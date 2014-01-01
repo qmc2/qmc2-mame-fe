@@ -52,7 +52,7 @@
     <message>
         <location filename="../joystickmanager.cpp" line="52"/>
         <source>joystick-function &apos;%1&apos; triggered - emulating event for mapped key-sequence &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Função de joystick &apos;%1&apos; ativada - emulando evento para a sequência de teclas mapeada &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -60,24 +60,24 @@
     <message>
         <location filename="../keyeventfilter.cpp" line="40"/>
         <source>key-sequence &apos;%1&apos; %2 - emulating event for mapped key-sequence &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>sequência de teclas &apos;%1&apos; %2 - emulando evento para a sequência de teclas mapeada &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../keyeventfilter.cpp" line="40"/>
         <location filename="../keyeventfilter.cpp" line="68"/>
         <source>pressed</source>
-        <translation type="unfinished"></translation>
+        <translation>pressionada</translation>
     </message>
     <message>
         <location filename="../keyeventfilter.cpp" line="40"/>
         <location filename="../keyeventfilter.cpp" line="68"/>
         <source>released</source>
-        <translation type="unfinished"></translation>
+        <translation>solta</translation>
     </message>
     <message>
         <location filename="../keyeventfilter.cpp" line="68"/>
         <source>key-sequence &apos;%1&apos; %2 - default event processing</source>
-        <translation type="unfinished"></translation>
+        <translation>sequência de teclas &apos;%1&apos; %2 - processamento de eventos padrão</translation>
     </message>
 </context>
 <context>
