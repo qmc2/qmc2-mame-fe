@@ -2384,16 +2384,20 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>19</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="actionAbout"/>
     <addaction name="actionDocumentation"/>
     <addaction name="separator"/>
-    <addaction name="actionAbout"/>
+    <addaction name="actionWiki"/>
+    <addaction name="actionForum"/>
+    <addaction name="actionBugTracker"/>
+    <addaction name="separator"/>
     <addaction name="actionAboutQt"/>
    </widget>
    <widget class="QMenu" name="menu_Tools">
@@ -2685,10 +2689,10 @@
     <string>&amp;Documentation...</string>
    </property>
    <property name="toolTip">
-    <string>View online documentation</string>
+    <string>View offline documentation</string>
    </property>
    <property name="statusTip">
-    <string>View online documentation</string>
+    <string>View offline documentation</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
@@ -3949,6 +3953,51 @@
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionWiki">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/wikilogo.png</normaloff>:/data/img/wikilogo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wiki...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open our wiki in the default browser</string>
+   </property>
+   <property name="statusTip">
+    <string>Open our wiki in the default browser</string>
+   </property>
+  </action>
+  <action name="actionForum">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/forum.png</normaloff>:/data/img/forum.png</iconset>
+   </property>
+   <property name="text">
+    <string>Forum...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open our forum in the default browser</string>
+   </property>
+   <property name="statusTip">
+    <string>Open our forum in the default browser</string>
+   </property>
+  </action>
+  <action name="actionBugTracker">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/mantis.png</normaloff>:/data/img/mantis.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bug tracker...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open our bug-tracking system in the default browser</string>
+   </property>
+   <property name="statusTip">
+    <string>Open our bug-tracking system in the default browser</string>
    </property>
   </action>
  </widget>

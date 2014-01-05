@@ -512,6 +512,11 @@ void MainWindow::on_actionHelpForum_triggered(bool)
     QDesktopServices::openUrl(QUrl::fromUserInput("http://forums.bannister.org/ubbthreads.php?ubb=postlist&Board=12"));
 }
 
+void MainWindow::on_actionHelpBugTracker_triggered(bool checked)
+{
+    QDesktopServices::openUrl(QUrl::fromUserInput("http://tracker.batcom-it.net/view_all_bug_page.php"));
+}
+
 ProjectWindow *MainWindow::createProjectWindow(int type)
 {
     ProjectWindow *projectWindow = new ProjectWindow(QString(), type, ui->mdiArea);

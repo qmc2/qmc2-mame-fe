@@ -75,6 +75,7 @@
         <file>data/img/folders-off.png</file>
         <file>data/img/folders-on.png</file>
         <file>data/img/fonts.png</file>
+        <file>data/img/forum.png</file>
         <file>data/img/forward.png</file>
         <file>data/img/ghost.png</file>
         <file>data/img/ghost_video.png</file>
@@ -107,6 +108,7 @@
         <file>data/img/locale.png</file>
         <file>data/img/lock.png</file>
         <file>data/img/mame.png</file>
+        <file>data/img/mantis.png</file>
         <file>data/img/marquee.png</file>
         <file>data/img/maws.png</file>
         <file>data/img/maximize.png</file>
@@ -237,6 +239,7 @@
         <file>data/img/viewmagfit.png</file>
         <file>data/img/warning.png</file>
         <file>data/img/west.png</file>
+        <file>data/img/wikilogo.png</file>
         <file>data/img/wip.png</file>
         <file>data/img/wizard.png</file>
         <file>data/img/work.png</file>

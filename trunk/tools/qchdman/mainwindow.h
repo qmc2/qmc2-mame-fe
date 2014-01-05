@@ -77,6 +77,7 @@ public slots:
     void on_actionHelpAboutQt_triggered(bool checked = true);
     void on_actionHelpWiki_triggered(bool checked = true);
     void on_actionHelpForum_triggered(bool checked = true);
+    void on_actionHelpBugTracker_triggered(bool checked = true);
 
     // Other
     void updateStatus();

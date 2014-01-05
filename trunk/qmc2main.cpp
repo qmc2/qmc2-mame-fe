@@ -3244,24 +3244,31 @@ void MainWindow::on_actionDocumentation_triggered(bool)
 
 void MainWindow::on_actionAbout_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAbout_triggered(bool)");
-#endif
+	if ( !qmc2About )
+		qmc2About = new About(this);
 
-  if ( !qmc2About )
-    qmc2About = new About(this);
+	qmc2About->show();
+	qmc2About->raise();
+}
 
-  qmc2About->show();
-  qmc2About->raise();
+void MainWindow::on_actionWiki_triggered(bool)
+{
+	QDesktopServices::openUrl(QUrl::fromUserInput("http://wiki.batcom-it.net/index.php?title=The_'ultimate'_guide_to_QMC2"));
+}
+
+void MainWindow::on_actionForum_triggered(bool)
+{
+	QDesktopServices::openUrl(QUrl::fromUserInput("http://forums.bannister.org/ubbthreads.php?ubb=postlist&Board=12"));
+}
+
+void MainWindow::on_actionBugTracker_triggered(bool)
+{
+	QDesktopServices::openUrl(QUrl::fromUserInput("http://tracker.batcom-it.net/view_all_bug_page.php"));
 }
 
 void MainWindow::on_actionAboutQt_triggered(bool)
 {
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAboutQt_triggered(bool)");
-#endif
-
-  QMessageBox::aboutQt(this, tr("About Qt"));
+	QMessageBox::aboutQt(this, tr("About Qt"));
 }
 
 void MainWindow::on_actionArcadeSetup_triggered(bool)
