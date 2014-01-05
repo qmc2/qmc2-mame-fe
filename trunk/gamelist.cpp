@@ -1128,7 +1128,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     gameDescription.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     QString s = "<description>" + gameDescription + "</description>";
     gamePos = 0;
-    int xmlLinesCount = xmlLines.count();
+    int xmlLinesMax = xmlLines.count() - 1;
     while ( !xmlLines[gamePos].contains(s) ) {
       gamePos++;
       if ( gamePos % QMC2_PARSE_GAMELIST_RSP == 0 ) {
@@ -1139,10 +1139,10 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 		      qApp->processEvents();
 	      }
       }
-      if ( gamePos > xmlLinesCount )
+      if ( gamePos > xmlLinesMax )
 	      break;
     }
-    if ( gamePos < xmlLinesCount && xmlLines[gamePos].contains(s) ) {
+    if ( gamePos < xmlLinesMax && xmlLines[gamePos].contains(s) ) {
       xmlGamePositionMap[gameName] = gamePos;
       item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
       qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
