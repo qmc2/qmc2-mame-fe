@@ -29,7 +29,7 @@
      <x>0</x>
      <y>0</y>
      <width>821</width>
-     <height>19</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProject">
@@ -92,6 +92,7 @@
     <addaction name="separator"/>
     <addaction name="actionHelpWiki"/>
     <addaction name="actionHelpForum"/>
+    <addaction name="actionBugTracker"/>
     <addaction name="separator"/>
     <addaction name="actionHelpAboutQt"/>
    </widget>
@@ -344,6 +345,14 @@
    </property>
    <property name="statusTip">
     <string>Open our forum in the default browser</string>
+   </property>
+  </action>
+  <action name="actionBugTracker">
+   <property name="text">
+    <string>Bug tracker...</string>
+   </property>
+   <property name="statusTip">
+    <string>Open our bug-tracking system in the default browser</string>
    </property>
   </action>
  </widget>
