@@ -92,7 +92,7 @@
     <addaction name="separator"/>
     <addaction name="actionHelpWiki"/>
     <addaction name="actionHelpForum"/>
-    <addaction name="actionBugTracker"/>
+    <addaction name="actionHelpBugTracker"/>
     <addaction name="separator"/>
     <addaction name="actionHelpAboutQt"/>
    </widget>
@@ -347,7 +347,7 @@
     <string>Open our forum in the default browser</string>
    </property>
   </action>
-  <action name="actionBugTracker">
+  <action name="actionHelpBugTracker">
    <property name="text">
     <string>Bug tracker...</string>
    </property>
