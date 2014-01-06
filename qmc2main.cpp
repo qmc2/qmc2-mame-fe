@@ -1695,9 +1695,9 @@ void MainWindow::on_actionPlay_triggered(bool)
   else if ( !qmc2CurrentItem )
     return;
   else
-    gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+    gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 #else
-  gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -5110,28 +5110,28 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 		defaultChoice->clear();
 
 	int i = qmc2Gamelist->xmlGamePositionMap[gameName];
+	int xmlLinesMax = qmc2Gamelist->xmlLines.count() - 1;
 	if ( i <= 0 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QString s = "<game name=\"" + gameName + "\"";
 #elif defined(QMC2_EMUTYPE_MESS)
 		QString s = "<machine name=\"" + gameName + "\"";
 #endif
-		int xmlLinesCount = qmc2Gamelist->xmlLines.count();
 		i = 0;
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
 			i++;
-			if ( i >= xmlLinesCount )
+			if ( i > xmlLinesMax )
 				break;
 		}
-		if ( i < xmlLinesCount )
+		if ( i < xmlLinesMax )
 			if ( qmc2Gamelist->xmlLines[i].contains(s) )
 				qmc2Gamelist->xmlGamePositionMap[gameName] = i;
 	}
 	if ( i > 0 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
+		while ( i < xmlLinesMax && !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
 #elif defined(QMC2_EMUTYPE_MESS)
-		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
+		while ( i < xmlLinesMax && !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
 #endif
 			QString xmlLine = qmc2Gamelist->xmlLines[i++].simplified();
 
