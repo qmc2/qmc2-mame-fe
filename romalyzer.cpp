@@ -770,6 +770,7 @@ void ROMAlyzer::analyze()
 
       for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
 	progressBar->setValue(fileCounter + 1);
+	progressBar->setFormat(QString("%1 / %2").arg(fileCounter + 1).arg(xmlHandler.fileCounter));
 	qApp->processEvents();
 	QByteArray data;
 	bool zipped = false;
@@ -1045,6 +1046,7 @@ void ROMAlyzer::analyze()
 
       if ( xmlHandler.fileCounter == 0 )
 	progressBar->setRange(0, 1);
+      progressBar->setFormat(QString());
       progressBar->reset();
       qApp->processEvents();
 
@@ -1147,6 +1149,7 @@ void ROMAlyzer::analyze()
   tabSetRenamer->setEnabled(true);
 
   progressBar->reset();
+  progressBar->setFormat(QString());
   labelStatus->setText(tr("Idle"));
   qApp->processEvents();
   elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
@@ -2431,8 +2434,8 @@ void ROMAlyzer::runSetRewriter()
 
 	QString savedStatusText = labelStatus->text();
 	labelStatus->setText(tr("Reading '%1' - %2").arg(setRewriterSetName).arg(locale.toString(setRewriterSetCount)));
-	progressBar->setRange(0, setRewriterFileMap.count());
 	progressBar->reset();
+	progressBar->setFormat(QString("%1 / %2").arg(0).arg(setRewriterFileMap.count()));
 	qApp->processEvents();
 	QString modeString = tr("space-efficient");
 	if ( checkBoxSetRewriterSelfContainedSets->isChecked() ) modeString = tr("self-contained");
@@ -2446,6 +2449,7 @@ void ROMAlyzer::runSetRewriter()
 	QStringList uniqueCRCs;
 	while ( it.hasNext() && loadOkay ) {
 		progressBar->setValue(++count);
+		progressBar->setFormat(QString("%1 / %2").arg(count).arg(setRewriterFileMap.count()));
 		it.next();
 
 		QString fileCRC = it.key();
@@ -2489,6 +2493,7 @@ void ROMAlyzer::runSetRewriter()
 		}
 	}
 	progressBar->reset();
+	progressBar->setFormat(QString());
 
 	if ( loadOkay ) {
 		if ( !checkBoxSetRewriterSelfContainedSets->isChecked() ) {
@@ -2546,6 +2551,7 @@ void ROMAlyzer::runSetRewriter()
 	progressBar->setRange(0, 100);
 	progressBar->setValue(0);
 	progressBar->reset();
+	progressBar->setFormat(QString());
 	qApp->processEvents();
 }
 
@@ -2892,7 +2898,10 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 		QMapIterator<QString, QByteArray> it(*fileDataMap);
 		int count = 0;
 		while ( it.hasNext() && success ) {
-			if ( pBar ) pBar->setValue(++count);
+			if ( pBar ) {
+				pBar->setValue(++count);
+				pBar->setFormat(QString("%1 / %2").arg(count).arg(fileDataMap->count()));
+			}
 			it.next();
 			QString file = it.key();
 			QByteArray data = it.value();
@@ -2927,7 +2936,11 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 	} else
 		success = false;
 
-	if ( pBar ) pBar->reset();
+	if ( pBar ) {
+		pBar->reset();
+		pBar->setFormat(QString());
+	}
+
 	progressBarFileIO->reset();
 	progressBarFileIO->setInvertedAppearance(false);
 	return success;
