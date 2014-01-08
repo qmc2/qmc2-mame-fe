@@ -131,7 +131,35 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			zlib/inftrees.c \
 			zlib/trees.c \
 			zlib/uncompr.c \
-			zlib/zutil.c
+			zlib/zutil.c \
+			lzma/7zAlloc.c \
+			lzma/7zBuf2.c \
+			lzma/7zBuf.c \
+			lzma/7zCrc.c \
+			lzma/7zCrcOpt.c \
+			lzma/7zDec.c \
+			lzma/7zFile.c \
+			lzma/7zIn.c \
+			lzma/7zStream.c \
+			lzma/Alloc.c \
+			lzma/Bcj2.c \
+			lzma/Bra86.c \
+			lzma/Bra.c \
+			lzma/BraIA64.c \
+			lzma/CpuArch.c \
+			lzma/Delta.c \
+			lzma/LzFind.c \
+			lzma/Lzma2Dec.c \
+			lzma/Lzma2Enc.c \
+			lzma/Lzma86Dec.c \
+			lzma/Lzma86Enc.c \
+			lzma/LzmaDec.c \
+			lzma/LzmaEnc.c \
+			lzma/LzmaLib.c \
+			lzma/Ppmd7.c \
+			lzma/Ppmd7Dec.c \
+			lzma/Ppmd7Enc.c \
+			lzma/Sha256.c
 		HEADERS += qmc2main.h \
 			options.h \
 			docbrowser.h \
@@ -211,6 +239,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			data/lng/qmc2_us.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
+		DEFINES += _7ZIP_PPMD_SUPPPORT _7ZIP_ST
 
 		# platform specific stuff
 		macx {
