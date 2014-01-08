@@ -46,6 +46,7 @@ REM ############################################
 REM # TRY TO FIGURE OUT THE LOCAL SVN REVISION #
 REM ############################################
 
+echo Preparing VC++ project setup for QMC2 v%VERSION%.
 if exist %SVN_REV_COMMAND% goto :svnrevok
 echo Command not found: %SVN_REV_COMMAND%
 goto: svnrevend
