@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		}
 		QT += xml xmlpatterns webkit network sql svg
 		TEMPLATE = app
-		INCLUDEPATH += minizip/ zlib/
+		INCLUDEPATH += minizip zlib lzma
 		FORMS += qmc2main.ui \
 			options.ui \
 			docbrowser.ui \
