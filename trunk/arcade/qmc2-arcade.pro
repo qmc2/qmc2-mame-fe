@@ -190,4 +190,4 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 QT += svg
 
-INCLUDEPATH += ../zlib
+INCLUDEPATH += ../minizip ../zlib ../lzma
