@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-/* #define _7ZIP_PPMD_SUPPPORT */
+/* #define _7ZIP_PPMD_SUPPORT */
 
 #include "7z.h"
 
@@ -12,7 +12,7 @@
 #include "CpuArch.h"
 #include "LzmaDec.h"
 #include "Lzma2Dec.h"
-#ifdef _7ZIP_PPMD_SUPPPORT
+#ifdef _7ZIP_PPMD_SUPPORT
 #include "Ppmd7.h"
 #endif
 
@@ -26,7 +26,7 @@
 #define k_SPARC 0x03030805
 #define k_BCJ2  0x0303011B
 
-#ifdef _7ZIP_PPMD_SUPPPORT
+#ifdef _7ZIP_PPMD_SUPPORT
 
 #define k_PPMD 0x30401
 
@@ -247,7 +247,7 @@ static Bool IS_MAIN_METHOD(UInt32 m)
     case k_Copy:
     case k_LZMA:
     case k_LZMA2:
-    #ifdef _7ZIP_PPMD_SUPPPORT
+    #ifdef _7ZIP_PPMD_SUPPORT
     case k_PPMD:
     #endif
       return True;
@@ -402,7 +402,7 @@ static SRes SzFolder_Decode2(const CSzFolder *folder, const UInt64 *packSizes,
       }
       else
       {
-        #ifdef _7ZIP_PPMD_SUPPPORT
+        #ifdef _7ZIP_PPMD_SUPPORT
         RINOK(SzDecodePpmd(coder, inSize, inStream, outBufCur, outSizeCur, allocMain));
         #else
         return SZ_ERROR_UNSUPPORTED;

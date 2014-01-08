@@ -568,8 +568,9 @@ _LZMA_UINT32_IS_ULONG  - Define it if int is 16-bit on your compiler and long is
 
 _LZMA_NO_SYSTEM_SIZE_T  - Define it if you don't want to use size_t type.
 
+_7ZIP_PPMD_SUPPORT  - Define it if you want to support PPMD method in ANSI-C .7z decoder.
 
-_7ZIP_PPMD_SUPPPORT - Define it if you don't want to support PPMD method in AMSI-C .7z decoder.
+_7ZIP_ST  - Define it to use single-threaded compression/decompression only.
 
 
 C++ LZMA Encoder/Decoder 
