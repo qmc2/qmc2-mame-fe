@@ -220,9 +220,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			imageformatsetup.h \
 			macros.h \
 			settings.h \
-			minizip/ioapi.h \
-			minizip/unzip.h \
-			minizip/zip.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

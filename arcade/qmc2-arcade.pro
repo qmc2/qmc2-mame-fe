@@ -29,6 +29,10 @@ SOURCES += main.cpp \
     processmanager.cpp \
     joystick.cpp \
     pointer.cpp \
+    keyeventfilter.cpp \
+    keysequencemap.cpp \
+    joyfunctionmap.cpp \
+    joystickmanager.cpp \
     ../settings.cpp \
     ../zlib/zutil.c \
     ../zlib/uncompr.c \
@@ -48,10 +52,6 @@ SOURCES += main.cpp \
     ../minizip/zip.c \
     ../minizip/unzip.c \
     ../minizip/ioapi.c \
-    keyeventfilter.cpp \
-    keysequencemap.cpp \
-    joyfunctionmap.cpp \
-    joystickmanager.cpp \
     ../lzma/7zAlloc.c \
     ../lzma/7zBuf2.c \
     ../lzma/7zBuf.c \
@@ -95,8 +95,7 @@ OTHER_FILES += \
     qml/darkone/1.1/darkone.qml \
     qml/darkone/1.1/darkone.js \
     qml/darkone/2.0/darkone.qml \
-    qml/darkone/2.0/darkone.js \
-    ../zlib/README.zlib
+    qml/darkone/2.0/darkone.js
 
 HEADERS += \
     tweakedqmlappviewer.h \
@@ -111,27 +110,12 @@ HEADERS += \
     joystick.h \
     wheel.h \
     pointer.h \
-    ../settings.h \
-    ../zlib/zutil.h \
-    ../zlib/zlib.h \
-    ../zlib/zconf.h \
-    ../zlib/trees.h \
-    ../zlib/inftrees.h \
-    ../zlib/inflate.h \
-    ../zlib/inffixed.h \
-    ../zlib/inffast.h \
-    ../zlib/gzguts.h \
-    ../zlib/deflate.h \
-    ../zlib/crc32.h \
-    ../minizip/zip.h \
-    ../minizip/unzip.h \
-    ../minizip/ioapi.h \
-    ../minizip/crypt.h \
     keyeventfilter.h \
     keysequences.h \
     keysequencemap.h \
     joyfunctionmap.h \
-    joystickmanager.h
+    joystickmanager.h \
+    ../settings.h
 
 DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION
 
