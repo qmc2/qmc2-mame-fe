@@ -239,7 +239,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			data/lng/qmc2_us.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
-		DEFINES += _7ZIP_PPMD_SUPPPORT _7ZIP_ST
+		DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST
 
 		# platform specific stuff
 		macx {

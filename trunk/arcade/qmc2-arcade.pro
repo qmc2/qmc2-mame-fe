@@ -133,7 +133,7 @@ HEADERS += \
     joyfunctionmap.h \
     joystickmanager.h
 
-DEFINES += _7ZIP_PPMD_SUPPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION
+DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION
 
 RESOURCES += qmc2-arcade-common.qrc
 greaterThan(QT_MAJOR_VERSION, 4) {
