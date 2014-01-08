@@ -51,7 +51,35 @@ SOURCES += main.cpp \
     keyeventfilter.cpp \
     keysequencemap.cpp \
     joyfunctionmap.cpp \
-    joystickmanager.cpp
+    joystickmanager.cpp \
+    ../lzma/7zAlloc.c \
+    ../lzma/7zBuf2.c \
+    ../lzma/7zBuf.c \
+    ../lzma/7zCrc.c \
+    ../lzma/7zCrcOpt.c \
+    ../lzma/7zDec.c \
+    ../lzma/7zFile.c \
+    ../lzma/7zIn.c \
+    ../lzma/7zStream.c \
+    ../lzma/Alloc.c \
+    ../lzma/Bcj2.c \
+    ../lzma/Bra86.c \
+    ../lzma/Bra.c \
+    ../lzma/BraIA64.c \
+    ../lzma/CpuArch.c \
+    ../lzma/Delta.c \
+    ../lzma/LzFind.c \
+    ../lzma/Lzma2Dec.c \
+    ../lzma/Lzma2Enc.c \
+    ../lzma/Lzma86Dec.c \
+    ../lzma/Lzma86Enc.c \
+    ../lzma/LzmaDec.c \
+    ../lzma/LzmaEnc.c \
+    ../lzma/LzmaLib.c \
+    ../lzma/Ppmd7.c \
+    ../lzma/Ppmd7Dec.c \
+    ../lzma/Ppmd7Enc.c \
+    ../lzma/Sha256.c
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -105,7 +133,7 @@ HEADERS += \
     joyfunctionmap.h \
     joystickmanager.h
 
-DEFINES += QMC2_ARCADE_VERSION=$$VERSION
+DEFINES += _7ZIP_PPMD_SUPPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION
 
 RESOURCES += qmc2-arcade-common.qrc
 greaterThan(QT_MAJOR_VERSION, 4) {
