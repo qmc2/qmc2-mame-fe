@@ -112,7 +112,7 @@
 #define QMC2_VIEW_CATEGORY_INDEX		2
 #define QMC2_VIEW_VERSION_INDEX			3
 
-// logical column indizes in game/machine lists
+// logical column indexes in game/machine lists
 #define QMC2_GAMELIST_RESET			-1
 #define QMC2_GAMELIST_COLUMN_GAME		0
 #define QMC2_GAMELIST_COLUMN_TAG		1
@@ -143,7 +143,7 @@
 // when parsing entries in the game/machine list, process GUI events every this many XML lines
 #define QMC2_PARSE_GAMELIST_RSP			100000
 
-// logical column indizes in the emulator control panel
+// logical column indexes in the emulator control panel
 #define QMC2_EMUCONTROL_COLUMN_NUMBER		0
 #define QMC2_EMUCONTROL_COLUMN_ID		QMC2_EMUCONTROL_COLUMN_NUMBER
 #define QMC2_EMUCONTROL_COLUMN_GAME		1
@@ -155,7 +155,7 @@
 #define QMC2_EMUCONTROL_COLUMN_PID		6
 #define QMC2_EMUCONTROL_COLUMN_COMMAND		7
 
-// logical column indizes of the MESS device configurator
+// logical column indexes of the MESS device configurator
 #define QMC2_DEVCONFIG_COLUMN_NAME		0
 #define QMC2_DEVCONFIG_COLUMN_BRIEF		1
 #define QMC2_DEVCONFIG_COLUMN_TYPE		2
@@ -163,12 +163,12 @@
 #define QMC2_DEVCONFIG_COLUMN_EXT		4
 #define QMC2_DEVCONFIG_COLUMN_FILE		5
 
-// logical column indizes of the MESS device configurator's slot setup
+// logical column indexes of the MESS device configurator's slot setup
 #define QMC2_SLOTCONFIG_COLUMN_SLOT		0
 #define QMC2_SLOTCONFIG_COLUMN_OPTION		1
 #define QMC2_SLOTCONFIG_COLUMN_BIOS		2
 
-// indizes of the device-setup tabs of the MESS device configurator
+// indexes of the device-setup tabs of the MESS device configurator
 #define QMC2_DEVSETUP_TAB_DEVMAPPINGS		0
 #define QMC2_DEVSETUP_TAB_SLOTCONFIG		1
 #define QMC2_DEVSETUP_TAB_FILECHOOSER		2
@@ -181,16 +181,16 @@
 #define QMC2_FILECHOOSER_COLUMN_SIZE		1
 #define QMC2_FILECHOOSER_COLUMN_DATE		2
 
-// page indizes for the software list tool box
+// page indexes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE		0
 #define QMC2_SWLIST_FAVORITES_PAGE		1
 #define QMC2_SWLIST_SEARCH_PAGE			2
 
-// page indizes for the 'special' stacked-widget
+// page indexes for the 'special' stacked-widget
 #define QMC2_SPECIAL_DEFAULT_PAGE		0
 #define QMC2_SPECIAL_SOFTWARE_PAGE		1
 
-// mounter-selection indizes
+// mounter-selection indexes
 #define QMC2_SWLIST_MSEL_AUTO_MOUNT		0
 #define QMC2_SWLIST_MSEL_SEPARATOR		1
 #define QMC2_SWLIST_MSEL_DONT_MOUNT		2
@@ -204,7 +204,7 @@
 #define QMC2_SWSNAP_POS_BELOW_RIGHT		5
 #define QMC2_SWSNAP_POS_DISABLE_SNAPS		6
 
-// logical column indizes for software lists
+// logical column indexes for software lists
 #define QMC2_SWLIST_RESET			-1
 #define QMC2_SWLIST_COLUMN_TITLE		0
 #define QMC2_SWLIST_COLUMN_NAME			1
@@ -216,29 +216,29 @@
 #define QMC2_SWLIST_COLUMN_SUPPORTED		7
 #define QMC2_SWLIST_COLUMN_DEVICECFG		8 // used only in 'favorites'
 
-// logical column indizes for the audio effect list
+// logical column indexes for the audio effect list
 #define QMC2_AUDIOEFFECT_COLUMN_NAME		0
 #define QMC2_AUDIOEFFECT_COLUMN_DESC		1
 #define QMC2_AUDIOEFFECT_COLUMN_ENABLE		2
 #define QMC2_AUDIOEFFECT_COLUMN_SETUP		3
 
-// logical column indizes in emulator options
+// logical column indexes in emulator options
 #define QMC2_EMUOPT_COLUMN_OPTION		0
 #define QMC2_EMUOPT_COLUMN_VALUE		1
 #define QMC2_EMUOPT_COLUMN_ACTIONS		2
 
-// logical column indizes in download manager
+// logical column indexes in download manager
 #define QMC2_DOWNLOAD_COLUMN_STATUS		0
 #define QMC2_DOWNLOAD_COLUMN_PROGRESS		1
 
-// logical column indizes in the additional / registered / foreign emulator list
+// logical column indexes in the additional / registered / foreign emulator list
 #define QMC2_ADDTLEMUS_COLUMN_NAME		0
 #define QMC2_ADDTLEMUS_COLUMN_EXEC		1
 #define QMC2_ADDTLEMUS_COLUMN_WDIR		2
 #define QMC2_ADDTLEMUS_COLUMN_ARGS		3
 #define QMC2_ADDTLEMUS_COLUMN_CUID		4	// 'customize IDs' button
 
-// logical column indizes in the 'custom ID list' for additional / registered / foreign emulators
+// logical column indexes in the 'custom ID list' for additional / registered / foreign emulators
 #define QMC2_CUSTOMIDS_COLUMN_ID		0 
 #define QMC2_CUSTOMIDS_COLUMN_DESCRIPTION	1 
 
@@ -418,7 +418,7 @@
 
 #define QMC2_IMAGE_FORMAT_COUNT			12
 
-// image format setup column indizes
+// image format setup column indexes
 #define QMC2_IMGFMT_SETUP_COLUMN_NAME		0
 #define QMC2_IMGFMT_SETUP_COLUMN_DESC		1
 #define QMC2_IMGFMT_SETUP_COLUMN_EXT		2
@@ -719,7 +719,7 @@
 // X11 only: time (in ms) between KeyPress and KeyRelease events when simulating keys sent to an emulator
 #define QMC2_XKEYEVENT_TRANSITION_TIME		50
 
-// page indizes for the software detail widget
+// page indexes for the software detail widget
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #define QMC2_SWINFO_SNAPSHOT_PAGE		0
 #define QMC2_SWINFO_PROJECTMESS_PAGE		1
@@ -824,7 +824,7 @@
 #define QMC2_ARCADE_THEME_TOXICWASTE		0
 #define QMC2_ARCADE_THEME_DARKONE		1
 
-// arcade mode setup: column indizes for key-sequence and joystick-function maps
+// arcade mode setup: column indexes for key-sequence and joystick-function maps
 #define QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION	0
 #define QMC2_ARCADE_KEYMAP_COLUMN_CUSTOM	1
 #define QMC2_ARCADE_JOYMAP_COLUMN_FUNCTION	QMC2_ARCADE_KEYMAP_COLUMN_FUNCTION

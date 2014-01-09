@@ -56,7 +56,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 
 	adjustIconSizes();
 
-	// QSettings base-keys for key-sequence and joystick-function maps (take care that the indizes in the string-lists correspond to the QMC2_ARCADE_THEME_* macros!)
+	// QSettings base-keys for key-sequence and joystick-function maps (take care that the indexes in the string-lists correspond to the QMC2_ARCADE_THEME_* macros!)
 	if ( keySequenceMapBases.isEmpty() )
 		keySequenceMapBases << "Arcade/ToxicWaste/keySequenceMap" << "Arcade/darkone/keySequenceMap";
 #if QMC2_JOYSTICK == 1
