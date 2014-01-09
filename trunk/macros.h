@@ -340,6 +340,14 @@
 #define QMC2_SORT_BY_CATEGORY			10
 #define QMC2_SORT_BY_VERSION			11
 
+// ROM status export sort criteria
+#define QMC2_RSE_SORT_BY_DESCRIPTION		0
+#define QMC2_RSE_SORT_BY_ROM_STATE		1
+#define QMC2_RSE_SORT_BY_YEAR			2
+#define QMC2_RSE_SORT_BY_MANUFACTURER		3
+#define QMC2_RSE_SORT_BY_NAME			4
+#define QMC2_RSE_SORT_BY_ROMTYPES		5
+
 // gamelist cursor positioning mode
 #define QMC2_CURSOR_POS_VISIBLE			0
 #define QMC2_CURSOR_POS_TOP			1
