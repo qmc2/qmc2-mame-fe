@@ -33,8 +33,8 @@ ROMStatusExporter::ROMStatusExporter(QWidget *parent)
   exportListAutoCorrected = false;
 
 #if defined(QMC2_EMUTYPE_MESS)
-  comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_DESCRIPTION, tr("Machine description"));
-  comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_MACHINENAME, tr("Machine name"));
+  comboBoxSortCriteria->setItemText(QMC2_RSE_SORT_BY_DESCRIPTION, tr("Machine description"));
+  comboBoxSortCriteria->setItemText(QMC2_RSE_SORT_BY_NAME, tr("Machine name"));
 #endif
 
   pushButtonExport->setEnabled(qmc2WidgetsEnabled);
