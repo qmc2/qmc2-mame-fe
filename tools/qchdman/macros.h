@@ -75,7 +75,7 @@
 #define QCHDMAN_MDI_PROJECT         0
 #define QCHDMAN_MDI_SCRIPT          1
 
-// script (tree-widget) column indizes
+// script (tree-widget) column indexes
 #define QCHDMAN_SCRCOL_NAME         0
 #define QCHDMAN_SCRCOL_TYPE         1
 #define QCHDMAN_SCRCOL_SUBTYPE      2
@@ -135,7 +135,7 @@
 #define QCHDMAN_PRJSTAT_CRASHED     "crashed"
 #define QCHDMAN_PRJSTAT_ERROR       "error"
 
-// script-log / project-monitor tab indizes
+// script-log / project-monitor tab indexes
 #define QCHDMAN_SCRIPT_LOG_INDEX    0
 #define QCHDMAN_SCRIPT_MON_INDEX    1
 
