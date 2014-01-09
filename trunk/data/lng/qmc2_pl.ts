@@ -15272,7 +15272,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../gamelist.cpp" line="2276"/>
         <location filename="../../options.cpp" line="1856"/>
         <source>source file</source>
-        <translation type="unfinished"></translation>
+        <translation>plik źródłowy</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3152"/>
@@ -15483,7 +15483,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="1124"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
-        <translation type="unfinished"></translation>
+        <translation>informacje o stanach listy oprogramowania &apos;%1&apos;: W:%2 P:%3 Wp:%4 Np:%5 Nz:%6 Nn:%7</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3464"/>
@@ -16828,7 +16828,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="174"/>
         <source>Analyse referenced devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizuj urządzenia-odnośniki</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="181"/>
@@ -16908,7 +16908,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="1183"/>
         <source>WARNING: no DTD section in the XML data -- please clear the XML cache and reload all data</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: dane XML nie zawierają sekcji DTD -- proszę wyczyścić bufor XML i wczytać dane ponownie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1370"/>
@@ -17111,7 +17111,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="3011"/>
         <source>checksum wizard: FATAL: can&apos;t load repro template data from &apos;%1&apos; with expected CRC &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>asystent sum kontrolnych: FATALNIE :nie udało się wczytać danych o oczekiwanej sumie kontrolnej &apos;%2&apos; szablonu repro %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3165"/>
