@@ -3,4 +3,4 @@ It's included in the source RPM -- together with a patch to the global ini to
 make QMC2 work out of the box on this distribution.
 
 Get the latest version here:
-http://download1.rpmfusion.org/nonfree/fedora/development/source/SRPMS/repoview/qmc2.html
+http://download1.rpmfusion.org/nonfree/fedora/development/rawhide/source/SRPMS/repoview/qmc2.html
