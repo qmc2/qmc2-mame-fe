@@ -238,16 +238,13 @@ void ROMStatusExporter::exportToASCII()
   int maxYearColumnWidth = tr("Year").length();
   int maxRomTypesColumnWidth = tr("ROM types").length();
 
-  QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
   QMultiMap<QString, QTreeWidgetItem *> exportMap;
-  int i = 0;
-  while ( it.hasNext() && !qmc2StopParser ) {
-    progressBarExport->setValue(++i);
+  for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+    progressBarExport->setValue(i + 1);
     qApp->processEvents();
-    it.next();
-
+    QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
     QString translatedState;
-    switch ( qmc2Gamelist->gameStatusMap[it.value()->text(QMC2_GAMELIST_COLUMN_NAME)] ) {
+    switch ( qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)] ) {
       case 'C':
         if ( !toolButtonExportC->isChecked() )
           continue;
@@ -286,46 +283,46 @@ void ROMStatusExporter::exportToASCII()
     }
 
     switch ( comboBoxSortCriteria->currentIndex() ) {
-      case QMC2_SORT_BY_DESCRIPTION:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_GAME), it.value());
+      case QMC2_RSE_SORT_BY_DESCRIPTION:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_GAME), item);
         break;
 
-      case QMC2_SORT_BY_ROM_STATE:
-        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[it.value()->text(QMC2_GAMELIST_COLUMN_NAME)]), it.value());
+      case QMC2_RSE_SORT_BY_ROM_STATE:
+        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)]), item);
         break;
 
-      case QMC2_SORT_BY_YEAR:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_YEAR), it.value());
+      case QMC2_RSE_SORT_BY_YEAR:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_YEAR), item);
         break;
 
-      case QMC2_SORT_BY_MANUFACTURER:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_MANU), it.value());
+      case QMC2_RSE_SORT_BY_MANUFACTURER:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_MANU), item);
         break;
 
-      case QMC2_SORT_BY_NAME:
-        exportMap.insert(it.key(), it.value());
+      case QMC2_RSE_SORT_BY_NAME:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_NAME), item);
         break;
 
-      case QMC2_SORT_BY_ROMTYPES:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
+      case QMC2_RSE_SORT_BY_ROMTYPES:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_RTYPES), item);
         break;
 
       default:
         break;
     }
 
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_GAME).length() > maxDescriptionColumnWidth )
-      maxDescriptionColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_GAME).length();
-    if ( it.key().length() > maxNameColumnWidth )
-      maxNameColumnWidth = it.key().length();
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_MANU).length() > maxManufacturerColumnWidth )
-      maxManufacturerColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_MANU).length();
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_YEAR).length() > maxYearColumnWidth )
-      maxYearColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_YEAR).length();
+    if ( item->text(QMC2_GAMELIST_COLUMN_GAME).length() > maxDescriptionColumnWidth )
+      maxDescriptionColumnWidth = item->text(QMC2_GAMELIST_COLUMN_GAME).length();
+    if ( item->text(QMC2_GAMELIST_COLUMN_NAME).length() > maxNameColumnWidth )
+      maxNameColumnWidth = item->text(QMC2_GAMELIST_COLUMN_NAME).length();
+    if ( item->text(QMC2_GAMELIST_COLUMN_MANU).length() > maxManufacturerColumnWidth )
+      maxManufacturerColumnWidth = item->text(QMC2_GAMELIST_COLUMN_MANU).length();
+    if ( item->text(QMC2_GAMELIST_COLUMN_YEAR).length() > maxYearColumnWidth )
+      maxYearColumnWidth = item->text(QMC2_GAMELIST_COLUMN_YEAR).length();
     if ( translatedState.length() > maxStateColumnWidth )
       maxStateColumnWidth = translatedState.length();
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES).length() > maxRomTypesColumnWidth )
-      maxRomTypesColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES).length();
+    if ( item->text(QMC2_GAMELIST_COLUMN_RTYPES).length() > maxRomTypesColumnWidth )
+      maxRomTypesColumnWidth = item->text(QMC2_GAMELIST_COLUMN_RTYPES).length();
   }
 
   // truncate column widths if applicable...
@@ -357,7 +354,7 @@ void ROMStatusExporter::exportToASCII()
      << "\n";
 
   QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
-  i = 0;
+  int i = 0;
   bool ascendingOrder = (comboBoxSortOrder->currentIndex() == 0);
   bool showMoreChars = ( spinBoxASCIIColumnWidth->value() > 3 );
   if ( !ascendingOrder )
@@ -525,37 +522,34 @@ void ROMStatusExporter::exportToCSV()
   // create a sorted multi-map as export data...
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting and filtering export data"));
 
-  QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
   QMultiMap<QString, QTreeWidgetItem *> exportMap;
-  int i = 0;
-  while ( it.hasNext() && !qmc2StopParser ) {
-    progressBarExport->setValue(++i);
+  for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+    progressBarExport->setValue(i + 1);
     qApp->processEvents();
-    it.next();
-
+    QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
     switch ( comboBoxSortCriteria->currentIndex() ) {
-      case QMC2_SORT_BY_DESCRIPTION:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_GAME), it.value());
+      case QMC2_RSE_SORT_BY_DESCRIPTION:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_GAME), item);
         break;
 
-      case QMC2_SORT_BY_ROM_STATE:
-        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[it.value()->text(QMC2_GAMELIST_COLUMN_NAME)]), it.value());
+      case QMC2_RSE_SORT_BY_ROM_STATE:
+        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)]), item);
         break;
 
-      case QMC2_SORT_BY_YEAR:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_YEAR), it.value());
+      case QMC2_RSE_SORT_BY_YEAR:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_YEAR), item);
         break;
 
-      case QMC2_SORT_BY_MANUFACTURER:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_MANU), it.value());
+      case QMC2_RSE_SORT_BY_MANUFACTURER:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_MANU), item);
         break;
 
-      case QMC2_SORT_BY_NAME:
-        exportMap.insert(it.key(), it.value());
+      case QMC2_RSE_SORT_BY_NAME:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_NAME), item);
         break;
 
-      case QMC2_SORT_BY_ROMTYPES:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
+      case QMC2_RSE_SORT_BY_ROMTYPES:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_RTYPES), item);
         break;
 
       default:
@@ -574,7 +568,7 @@ void ROMStatusExporter::exportToCSV()
      << del << tr("ROM types") << del << "\n" << del << del << "\n";
 
   QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
-  i = 0;
+  int i = 0;
   bool ascendingOrder = (comboBoxSortOrder->currentIndex() == 0);
   if ( !ascendingOrder )
     itExport.toBack();
@@ -710,8 +704,8 @@ void ROMStatusExporter::exportToHTML()
   ts << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n"
      << "<html>\n"
      << "<head>\n"
-     << "  <meta http-equiv=\"CONTENT-TYPE\" content=\"text/html; charset=utf-8\">\n"
-     << "  <title>" << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << "</title>\n"
+     << "<meta http-equiv=\"CONTENT-TYPE\" content=\"text/html; charset=utf-8\">\n"
+     << "<title>" << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << "</title>\n"
      << "</head>\n"
      << "<body style=\"color: black; background-color: lightyellow;\" dir=\"ltr\" alink=\"#111111\" link=\"#111111\" vlink=\"#999999\">\n";
 
@@ -735,11 +729,11 @@ void ROMStatusExporter::exportToHTML()
        << "<p>\n"
        << "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
        << "<tr>\n"
-       << "  <td nowrap>" << tr("Emulator") << "</td><td nowrap>" << emulatorTarget << " " << qmc2Gamelist->emulatorVersion << "</td>\n"
+       << "<td nowrap>" << tr("Emulator") << "</td><td nowrap>" << emulatorTarget << " " << qmc2Gamelist->emulatorVersion << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Date") << "</td><td nowrap>" << QDate::currentDate().toString() << "</td>\n"
+       << "<td nowrap>" << tr("Date") << "</td><td nowrap>" << QDate::currentDate().toString() << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Time") << "</td><td nowrap>" << QTime::currentTime().toString() << "</td>\n"
+       << "<td nowrap>" << tr("Time") << "</td><td nowrap>" << QTime::currentTime().toString() << "</td>\n"
        << "</tr>\n"
        << "</table>\n"
        << "</p>\n";
@@ -751,17 +745,17 @@ void ROMStatusExporter::exportToHTML()
        << "<p>\n"
        << "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
        << "<tr>\n"
-       << "  <td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numGames) << "</td>\n"
+       << "<td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numGames) << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numCorrectGames) << "</td>\n"
+       << "<td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numCorrectGames) << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Mostly correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "</td>\n"
+       << "<td nowrap>" << tr("Mostly correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Incorrect") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numIncorrectGames) << "</td>\n"
+       << "<td nowrap>" << tr("Incorrect") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numIncorrectGames) << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Not found") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numNotFoundGames) << "</td>\n"
+       << "<td nowrap>" << tr("Not found") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numNotFoundGames) << "</td>\n"
        << "</tr>\n<tr>\n"
-       << "  <td nowrap>" << tr("Unknown") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numUnknownGames) << "</td>\n"
+       << "<td nowrap>" << tr("Unknown") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numUnknownGames) << "</td>\n"
        << "</tr>\n"
        << "</table>\n"
        << "</p>\n";
@@ -773,37 +767,34 @@ void ROMStatusExporter::exportToHTML()
   // create a sorted multi-map as export data...
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting and filtering export data"));
 
-  QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
   QMultiMap<QString, QTreeWidgetItem *> exportMap;
-  int i = 0;
-  while ( it.hasNext() && !qmc2StopParser ) {
-    progressBarExport->setValue(++i);
+  for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+    progressBarExport->setValue(i + 1);
     qApp->processEvents();
-    it.next();
-
+    QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
     switch ( comboBoxSortCriteria->currentIndex() ) {
-      case QMC2_SORT_BY_DESCRIPTION:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_GAME), it.value());
+      case QMC2_RSE_SORT_BY_DESCRIPTION:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_GAME), item);
         break;
 
-      case QMC2_SORT_BY_ROM_STATE:
-        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[it.value()->text(QMC2_GAMELIST_COLUMN_NAME)]), it.value());
+      case QMC2_RSE_SORT_BY_ROM_STATE:
+        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)]), item);
         break;
 
-      case QMC2_SORT_BY_YEAR:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_YEAR), it.value());
+      case QMC2_RSE_SORT_BY_YEAR:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_YEAR), item);
         break;
 
-      case QMC2_SORT_BY_MANUFACTURER:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_MANU), it.value());
+      case QMC2_RSE_SORT_BY_MANUFACTURER:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_MANU), item);
         break;
 
-      case QMC2_SORT_BY_NAME:
-        exportMap.insert(it.key(), it.value());
+      case QMC2_RSE_SORT_BY_NAME:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_NAME), item);
         break;
 
-      case QMC2_SORT_BY_ROMTYPES:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
+      case QMC2_RSE_SORT_BY_ROMTYPES:
+        exportMap.insert(item->text(QMC2_GAMELIST_COLUMN_RTYPES), item);
         break;
 
       default:
@@ -816,11 +807,11 @@ void ROMStatusExporter::exportToHTML()
 
   ts << "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
      << "<tr>\n"
-     << "  <td nowrap><b>" << tr("Name") << "</b></td><td nowrap><b>" << tr("Status") << "</b></td><td nowrap><b>" << tr("Description") << "</b></td><td nowrap><b>" << tr("Year") << "</b></td><td nowrap><b>" << tr("Manufacturer") << "</b></td><td nowrap><b>" << tr("ROM types") << "</td></b>\n"
+     << "<td nowrap><b>" << tr("Name") << "</b></td><td nowrap><b>" << tr("Status") << "</b></td><td nowrap><b>" << tr("Description") << "</b></td><td nowrap><b>" << tr("Year") << "</b></td><td nowrap><b>" << tr("Manufacturer") << "</b></td><td nowrap><b>" << tr("ROM types") << "</td></b>\n"
      << "</tr>\n";
 
   QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
-  i = 0;
+  int i = 0;
   bool ascendingOrder = (comboBoxSortOrder->currentIndex() == 0);
   if ( !ascendingOrder )
     itExport.toBack();
