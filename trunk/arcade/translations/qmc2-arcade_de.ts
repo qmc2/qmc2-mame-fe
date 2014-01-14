@@ -739,6 +739,123 @@
     </message>
 </context>
 <context>
+    <name>SevenZipFile</name>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="30"/>
+        <location filename="../../sevenzipfile.cpp" line="73"/>
+        <source>file name &apos;%1&apos; not found</source>
+        <translation>Dateiname &apos;%1&apos; nicht gefunden</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="41"/>
+        <location filename="../../sevenzipfile.cpp" line="84"/>
+        <source>archive not open</source>
+        <translation>Archiv nicht geöffnet</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="47"/>
+        <location filename="../../sevenzipfile.cpp" line="90"/>
+        <source>null-buffer not allowed</source>
+        <translation>Null-Puffer nicht erlaubt</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="96"/>
+        <source>7z encoding not supported yet</source>
+        <translation>7z Encodierung wird noch nicht unterstützt</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="105"/>
+        <source>no error</source>
+        <translation>kein Fehler</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="107"/>
+        <source>incorrect data</source>
+        <translation>ungültige Daten</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="109"/>
+        <source>out of memory</source>
+        <translation>Speicherplatz reicht nicht aus</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="111"/>
+        <source>incorrect CRC</source>
+        <translation>CRC ungültig</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="113"/>
+        <source>unsupported compression</source>
+        <translation>nicht unterstützte Kompression</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="115"/>
+        <source>incorrect properties</source>
+        <translation>ungültige Eigenschaften</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="117"/>
+        <source>premature end-of-file (input)</source>
+        <translation>vorzeitiges Dateiende (Eingabe)</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="119"/>
+        <source>premature end-of-file (output)</source>
+        <translation>vorzeitiges Dateiende (Ausgabe)</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="121"/>
+        <source>failed reading</source>
+        <translation>Lesen fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="123"/>
+        <source>failed writing</source>
+        <translation>Schreiben fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="125"/>
+        <source>failed signalling progress</source>
+        <translation>Fortschritts-Signalisierung fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="127"/>
+        <source>fatal error</source>
+        <translation>fataler Fehler</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="129"/>
+        <source>thread error</source>
+        <translation>Thread Fehler</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="131"/>
+        <source>invalid archive structure</source>
+        <translation>falsche Archiv Struktur</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="133"/>
+        <source>invalid header structure</source>
+        <translation>falsche Header Struktur</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="135"/>
+        <source>unknown error</source>
+        <translation>unbekannter Fehler</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="150"/>
+        <source>no file name specified</source>
+        <translation>kein Dateiname angegeben</translation>
+    </message>
+    <message>
+        <location filename="../../sevenzipfile.cpp" line="157"/>
+        <location filename="../../sevenzipfile.cpp" line="177"/>
+        <source>can&apos;t open archive &apos;%1&apos;</source>
+        <translation>kann Archiv &apos;%1&apos; nicht öffnen</translation>
+    </message>
+</context>
+<context>
     <name>ToxicWaste</name>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="62"/>

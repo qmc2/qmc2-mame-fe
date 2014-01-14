@@ -34,6 +34,7 @@ SOURCES += main.cpp \
     joyfunctionmap.cpp \
     joystickmanager.cpp \
     ../settings.cpp \
+    ../sevenzipfile.cpp \
     ../zlib/zutil.c \
     ../zlib/uncompr.c \
     ../zlib/trees.c \
@@ -115,7 +116,8 @@ HEADERS += \
     keysequencemap.h \
     joyfunctionmap.h \
     joystickmanager.h \
-    ../settings.h
+    ../settings.h \
+    ../sevenzipfile.h
 
 DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION
 
