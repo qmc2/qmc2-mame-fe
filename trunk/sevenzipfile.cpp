@@ -98,6 +98,22 @@ quint64 SevenZipFile::write(uint /*index*/, QByteArray *buffer)
     return 0;
 }
 
+int SevenZipFile::indexOfFile(QString name)
+{
+    for (int i = 0; i < itemList().count(); i++)
+        if ( itemList()[i].name() == name )
+            return i;
+    return -1;
+}
+
+int SevenZipFile::indexOfCrc(QString crc)
+{
+    for (int i = 0; i < itemList().count(); i++)
+        if ( itemList()[i].crc() == crc )
+            return i;
+    return -1;
+}
+
 QString SevenZipFile::errorCodeToString(SRes errorCode)
 {
     switch ( errorCode ) {
@@ -187,6 +203,7 @@ void SevenZipFile::close()
     if ( isOpen() ) {
         SzArEx_Free(db(), &m_allocImp);
         File_Close(&m_archiveStream.file);
+	itemList().clear();
         m_isOpen = false;
         emit closed();
     }
@@ -267,12 +284,4 @@ void SevenZipFile::createItemList()
             crc = QString::number(fileItem->Crc, 16).rightJustified(8, '0');
         itemList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
     }
-}
-
-int SevenZipFile::indexOfFile(QString name)
-{
-    for (int i = 0; i < itemList().count(); i++)
-        if ( itemList()[i].name() == name )
-            return i;
-    return -1;
 }

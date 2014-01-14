@@ -218,13 +218,14 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void saveState() { closeEvent(NULL); }
 		void log(QString);
 		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = NULL);
+		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
 		bool readFileData(QString, QString, QByteArray *);
 		bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
 		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
-		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, int, QString *, bool);
+		QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString, QByteArray *, QString *, QString *, bool *, bool *, bool *, int, QString *, bool);
 
 	public slots:
 		// callback functions
