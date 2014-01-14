@@ -17,6 +17,7 @@
 #include "macros.h"
 #include "unzip.h"
 #include "zip.h"
+#include "sevenzipfile.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -58,7 +59,7 @@ QCache<QString, int> ROMAlyzer::xmlGamePositionCache;
   <rompath> = <first_rompath>
   foreach <file> {
     1) try <rompath>/<game>/<file> - if okay skip to 7)
-    2) try <file> from <rompath>/<game>.zip - if okay skip to 7)
+    2) try <file> from <rompath>/<game>.7z/.zip - if okay skip to 7)
     3) if more <rompaths> exists, retry 1) and 2) for <rompath> = <next_rompath>
     4a) if a <merge> exists, retry 1), 2) and 3) for <romof>/<merge> instead of <game>/<file>
     4b) if <merge> is empty, retry 1), 2) and 3) for <romof>/<file> instead of <game>/<file>
@@ -773,6 +774,7 @@ void ROMAlyzer::analyze()
 	progressBar->setFormat(QString("%1 / %2").arg(fileCounter + 1).arg(xmlHandler.fileCounter));
 	qApp->processEvents();
 	QByteArray data;
+	bool sevenZipped = false;
 	bool zipped = false;
 	bool merged = false;
 	QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
@@ -802,14 +804,15 @@ void ROMAlyzer::analyze()
 						 childItem->text(QMC2_ROMALYZER_COLUMN_MERGE),
 						 childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
 						 &data, &sha1Calculated, &md5Calculated,
-						 &zipped, &merged, fileCounter, &fallbackPath,
+						 &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath,
 						 optionalRom); 
 
 #ifdef QMC2_DEBUG
-	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, fileType = %4, crcExpected = %5, sha1Calculated = %6")
+	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, isSevenZipped = %4, fileType = %5, crcExpected = %6, sha1Calculated = %7")
 		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
 		    .arg(effectiveFile)
 		    .arg(zipped ? "true" : "false")
+		    .arg(sevenZipped ? "true" : "false")
 		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM")) ? "ROM" : "CHD")
 		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ? QString("--") : childItem->text(QMC2_ROMALYZER_COLUMN_CRC))
 		    .arg(sha1Calculated.isEmpty() ? QString("--") : sha1Calculated));
@@ -1222,7 +1225,7 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 	return xmlBuffer;
 }
 
-QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM)
+QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *isSevenZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath, bool isOptionalROM)
 {
   static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
   static QCryptographicHash md5Hash(QCryptographicHash::Md5);
@@ -1246,7 +1249,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   QProgressBar *progressWidget;
   qint64 totalSize, myProgress, sizeLeft, len;
 
-  // search for file in ROM paths (first search for "game/file", then "file" in "game.zip"), load file data when found
+  // search for file in ROM paths (first search for "game/file", then search for "file" in "game.7z", then in "game.zip"), load file data when found
   int romPathCount = 0;
   foreach (QString romPath, romPaths) {
     romPathCount++;
@@ -1718,15 +1721,103 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
     }
 
     if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
+      filePath = romPath + "/" + gameName + ".7z";
+      if ( QFile::exists(filePath) ) {
+	      QFileInfo fi(filePath);
+	      if ( fi.isReadable() ) {
+		      // try loading data from a 7z archive
+		      SevenZipFile sevenZipFile(filePath);
+		      if ( sevenZipFile.open() ) {
+			      // identify file by CRC
+			      int index = sevenZipFile.indexOfCrc(wantedCRC);
+			      if ( index >= 0 ) {
+				      SevenZipMetaData metaData = sevenZipFile.itemList()[index];
+				      if ( sizeLimited ) {
+					      if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
+						      log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(metaData.name()).arg(filePath));
+						      *isSevenZipped = true;
+						      effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+						      if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
+						      continue;
+					      }
+				      }
+				      log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(metaData.name()).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
+				      QByteArray data;
+				      qApp->processEvents();
+				      quint64 readLength = sevenZipFile.read(index, &data);
+				      qApp->processEvents();
+				      if ( sevenZipFile.hasError() )
+					      log(tr("ERROR") + ": " + sevenZipFile.lastError());
+				      if ( readLength != metaData.size() )
+					      log(tr("WARNING") + ": " + tr("actual bytes read != file size in header") + " - " + tr("check archive integrity"));
+				      ulong crc = crc32(0, NULL, 0);
+				      crc = crc32(crc, (const Bytef *)data.data(), data.size());
+				      QString crcString = QString::number(crc, 16).rightJustified(8, '0');
+				      if ( crcString != wantedCRC )
+					      log(tr("WARNING") + ": " + tr("actual CRC != CRC in header") + " - " + tr("check archive integrity"));
+				      else {
+					      if ( !wantedCRC.isEmpty() ) {
+						      QStringList sl;
+						      //    fromName           fromPath    toName                                      fromZip
+						      sl << metaData.name() << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
+						      setRewriterFileMap.insert(wantedCRC, sl); 
+					      } else {
+						      if ( !crcString.isEmpty() ) {
+							      QStringList sl;
+							      //    fromName           fromPath    toName                                      fromZip
+							      sl << metaData.name() << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME) << "7z";
+							      setRewriterFileMap.insert(crcString, sl);
+							      if ( groupBoxSetRewriter->isChecked() )
+								      log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(metaData.name()).arg(filePath).arg(crcString));
+						      } else if ( groupBoxSetRewriter->isChecked() )
+							      log(tr("WARNING: unable to determine the CRC for '%1' from '%2', the set rewriter will NOT store this file in the new set").arg(metaData.name()).arg(filePath));
+					      }
+
+					      if ( calcSHA1 ) {
+						      sha1Hash.reset();
+						      sha1Hash.addData(data);
+						      *sha1Str = sha1Hash.result().toHex();
+					      }
+
+					      if ( calcMD5 ) {
+						      md5Hash.reset();
+						      md5Hash.addData(data);
+						      *md5Str = md5Hash.result().toHex();
+					      }
+
+					      if ( !isCHD )
+						      *fileData = data;
+
+					      effectiveFile = filePath;
+					      *isSevenZipped = true;
+				      }
+			      } else if ( mergeFile.isEmpty() ) {
+				      if ( !isCHD ) {
+					      if ( wantedCRC.isEmpty() ) {
+						      log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
+						      effectiveFile = QMC2_ROMALYZER_NO_DUMP;
+					      } else
+						      log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC) + QString(isOptionalROM ? " (" + tr("optional") + ")" : ""));
+				      }
+			      }
+		      } else
+			      log(tr("WARNING: found '%1' but can't open it for decompression - check file integrity").arg(filePath));
+	      } else
+		      log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
+      }
+
+      if ( !effectiveFile.isEmpty() || qmc2StopParser )
+	      break;
+
       filePath = romPath + "/" + gameName + ".zip";
       if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
       if ( QFile::exists(filePath) ) {
         QFileInfo fi(filePath);
         if ( fi.isReadable() ) {
-          // load data from ZIP
+          // try loading data from a ZIP archive
           unzFile zipFile = unzOpen((const char *)filePath.toLocal8Bit());
           if ( zipFile ) {
-            // identify file by CRC!
+            // identify file by CRC
             unz_file_info zipInfo;
             QMap<uLong, QString> crcIdentMap;
             uLong ulCRC = wantedCRC.toULong(0, 16);
@@ -1839,12 +1930,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           } else
             log(tr("WARNING: found '%1' but can't open it for decompression - check file integrity").arg(filePath));
         } else
-          log(tr("WARNING: found '%1' but can't read from it - check permission").arg(gameName));
+          log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
       }
     }
 
     if ( !effectiveFile.isEmpty() || qmc2StopParser )
-      break;
+	    break;
   }
 
   // try merges, if applicable...
@@ -1861,9 +1952,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
       if ( romofPosition > -1 ) {
         nextMerge = nextMerge.mid(romofPosition + 7);
         nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
+        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
       } else
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
+        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, isSevenZipped, mergeUsed, fileCounter, fallbackPath, isOptionalROM);
     }
   }
 
@@ -2457,6 +2548,7 @@ void ROMAlyzer::runSetRewriter()
 		QString filePath = it.value()[1];
 		QString outputFileName = it.value()[2];
 		bool fromZip = (it.value()[3] == "zip");
+		bool fromSevenZip = (it.value()[3] == "7z");
 
 		if ( checkBoxSetRewriterUniqueCRCs->isChecked() ) {
 			if ( uniqueCRCs.contains(fileCRC) ) {
@@ -2470,6 +2562,17 @@ void ROMAlyzer::runSetRewriter()
 		QByteArray fileData;
 		if ( fromZip ) {
 			if ( readZipFileData(filePath, fileCRC, &fileData) ) {
+				outputDataMap[outputFileName] = fileData;
+				uniqueCRCs << fileCRC;
+			} else {
+				if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+					log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
+					loadOkay = false;
+				} else
+					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
+			}
+		} else if ( fromSevenZip ) {
+			if ( readSevenZipFileData(filePath, fileCRC, &fileData) ) {
 				outputDataMap[outputFileName] = fileData;
 				uniqueCRCs << fileCRC;
 			} else {
@@ -2755,6 +2858,33 @@ bool ROMAlyzer::readFileData(QString fileName, QString crc, QByteArray *data)
 		ulong calculatedCrc = crc32(0, NULL, 0);
 		calculatedCrc = crc32(calculatedCrc, (const Bytef *)data->data(), data->size());
 		return ( QString::number(calculatedCrc, 16) == crc );
+	} else
+		return false;
+}
+
+// reads the file with the CRC 'crc' in the 7z archive 'fileName' and returns its data in 'data'
+bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *data)
+{
+	SevenZipFile sevenZipFile(fileName);
+	if ( sevenZipFile.open() ) {
+		int index = sevenZipFile.indexOfCrc(crc);
+		if ( index >= 0 ) {
+			SevenZipMetaData metaData = sevenZipFile.itemList()[index];
+			qApp->processEvents();
+			quint64 readLength = sevenZipFile.read(index, data);
+			qApp->processEvents();
+			if ( sevenZipFile.hasError() )
+				return false;
+			if ( readLength != metaData.size() )
+				return false;
+			ulong ulCrc = crc32(0, NULL, 0);
+			ulCrc = crc32(ulCrc, (const Bytef *)data->data(), data->size());
+			QString crcString = QString::number(ulCrc, 16).rightJustified(8, '0');
+			if ( crcString != crc )
+				return false;
+			return true;
+		} else
+			return false;
 	} else
 		return false;
 }

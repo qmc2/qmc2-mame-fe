@@ -60,6 +60,8 @@ public:
     quint64 read(uint index, QByteArray *buffer);
     quint64 write(QString name, QByteArray *buffer);
     quint64 write(uint index, QByteArray *buffer);
+    int indexOfFile(QString);
+    int indexOfCrc(QString);
 
 signals:
     void opened();
@@ -73,7 +75,6 @@ public slots:
 private:
     QDateTime convertFileTime(const CNtfsFileTime *ft);
     void createItemList();
-    int indexOfFile(QString);
     QString errorCodeToString(SRes errorCode);
     CSzArEx *db() { return &m_db; }
 
