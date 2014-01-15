@@ -3848,7 +3848,6 @@ void Options::on_toolButtonBrowseIconFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseIconFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed icon file"), lineEditIconFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditIconFile->setText(s);
@@ -3858,12 +3857,6 @@ void Options::on_toolButtonBrowseIconFile_clicked()
 			comboBoxIconFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed icon file"), lineEditIconFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditIconFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseCabinetFile_clicked()
