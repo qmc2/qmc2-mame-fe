@@ -1,3 +1,5 @@
+#include <QApplication>
+
 #include "sevenzipfile.h"
 
 SevenZipFile::SevenZipFile(QString fileName, QObject *parent) :
@@ -259,6 +261,8 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
     return dateTime;
 }
 
+#define QMC2_SEVENZIP_DB_READ_RESPONSE    50
+
 void SevenZipFile::createItemList()
 {
     itemList().clear();
@@ -266,6 +270,7 @@ void SevenZipFile::createItemList()
     if ( !isOpen() )
         return;
 
+    size_t offset = 0;
     for (uint i = 0; i < db()->db.NumFiles; i++)
     {
         const CSzFileItem *fileItem = db()->db.Files + i;
@@ -283,5 +288,7 @@ void SevenZipFile::createItemList()
         if ( fileItem->CrcDefined )
             crc = QString::number(fileItem->Crc, 16).rightJustified(8, '0');
         itemList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
+        if ( i % QMC2_SEVENZIP_DB_READ_RESPONSE == 0 )
+            qApp->processEvents();
     }
 }

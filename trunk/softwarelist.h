@@ -14,6 +14,7 @@
 #endif
 #include "ui_softwarelist.h"
 #include "unzip.h"
+#include "sevenzipfile.h"
 #include "swlistexport.h"
 #include "imagewidget.h"
 #include "softwarestatefilter.h"
@@ -102,6 +103,7 @@ class SoftwareSnap : public QWidget
 		QString entryName;
 		QPoint position;
 		QMap<QString, unzFile> snapFileMap;
+		QMap<QString, SevenZipFile *> snapFileMap7z;
 		SoftwareItem *myItem;
 		QTimer snapForcedResetTimer;
 		QMenu *contextMenu;
@@ -116,6 +118,9 @@ class SoftwareSnap : public QWidget
 
 		QString primaryPathFor(QString, QString);
 		void reloadActiveFormats();
+
+		bool useZip();
+		bool useSevenZip();
 
 	public slots:
 		void loadSnapshot();

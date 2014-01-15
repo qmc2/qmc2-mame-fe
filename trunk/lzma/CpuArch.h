@@ -138,15 +138,15 @@ enum
   CPU_FIRM_VIA
 };
 
-Bool x86cpuid_CheckAndRead(Cx86cpuid *p);
+Bool7z x86cpuid_CheckAndRead(Cx86cpuid *p);
 int x86cpuid_GetFirm(const Cx86cpuid *p);
 
 #define x86cpuid_GetFamily(p) (((p)->ver >> 8) & 0xFF00F)
 #define x86cpuid_GetModel(p) (((p)->ver >> 4) & 0xF00F)
 #define x86cpuid_GetStepping(p) ((p)->ver & 0xF)
 
-Bool CPU_Is_InOrder();
-Bool CPU_Is_Aes_Supported();
+Bool7z CPU_Is_InOrder();
+Bool7z CPU_Is_Aes_Supported();
 
 #endif
 

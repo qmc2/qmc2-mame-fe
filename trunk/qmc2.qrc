@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/" >
+        <file>data/img/7z-compressed.png</file>
         <file>data/img/activity_green.png</file>
         <file>data/img/activity_red.png</file>
         <file>data/img/add_to_favorites.png</file>

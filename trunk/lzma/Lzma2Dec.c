@@ -165,7 +165,7 @@ static void LzmaDec_UpdateWithUncompressed(CLzmaDec *p, const Byte *src, SizeT s
   p->processedPos += (UInt32)size;
 }
 
-void LzmaDec_InitDicAndState(CLzmaDec *p, Bool initDic, Bool initState);
+void LzmaDec_InitDicAndState(CLzmaDec *p, Bool7z initDic, Bool7z initState);
 
 SRes Lzma2Dec_DecodeToDic(CLzma2Dec *p, SizeT dicLimit,
     const Byte *src, SizeT *srcLen, ELzmaFinishMode finishMode, ELzmaStatus *status)
@@ -216,7 +216,7 @@ SRes Lzma2Dec_DecodeToDic(CLzma2Dec *p, SizeT dicLimit,
 
         if (p->state == LZMA2_STATE_DATA)
         {
-          Bool initDic = (p->control == LZMA2_CONTROL_COPY_RESET_DIC);
+          Bool7z initDic = (p->control == LZMA2_CONTROL_COPY_RESET_DIC);
           if (initDic)
             p->needInitProp = p->needInitState = True;
           else if (p->needInitDic)
@@ -246,8 +246,8 @@ SRes Lzma2Dec_DecodeToDic(CLzma2Dec *p, SizeT dicLimit,
         if (p->state == LZMA2_STATE_DATA)
         {
           int mode = LZMA2_GET_LZMA_MODE(p);
-          Bool initDic = (mode == 3);
-          Bool initState = (mode > 0);
+          Bool7z initDic = (mode == 3);
+          Bool7z initState = (mode > 0);
           if ((!initDic && p->needInitDic) || (!initState && p->needInitState))
             return SZ_ERROR_DATA;
           

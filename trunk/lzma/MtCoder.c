@@ -184,7 +184,7 @@ static SRes FullRead(ISeqInStream *stream, Byte *data, size_t *processedSize)
 
 #define GET_NEXT_THREAD(p) &p->mtCoder->threads[p->index == p->mtCoder->numThreads  - 1 ? 0 : p->index + 1]
 
-static SRes MtThread_Process(CMtThread *p, Bool *stop)
+static SRes MtThread_Process(CMtThread *p, Bool7z *stop)
 {
   CMtThread *next;
   *stop = True;
@@ -228,7 +228,7 @@ static THREAD_FUNC_RET_TYPE THREAD_FUNC_CALL_TYPE ThreadFunc(void *pp)
   CMtThread *p = (CMtThread *)pp;
   for (;;)
   {
-    Bool stop;
+    Bool7z stop;
     CMtThread *next = GET_NEXT_THREAD(p);
     SRes res = MtThread_Process(p, &stop);
     if (res != SZ_OK)

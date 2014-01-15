@@ -132,6 +132,7 @@ extern QMap<QString, QString> qmc2GamelistNameMap;
 extern Settings *qmc2Config;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
+extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 extern QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern KeyPressFilter *qmc2KeyPressFilter;
@@ -220,6 +221,18 @@ Options::Options(QWidget *parent)
   setupUi(this);
 
   cancelClicked = false;
+
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when "7z artwork support" is functional
+  comboBoxPreviewFileType->setVisible(false);
+  comboBoxFlyerFileType->setVisible(false);
+  comboBoxCabinetFileType->setVisible(false);
+  comboBoxControllerFileType->setVisible(false);
+  comboBoxMarqueeFileType->setVisible(false);
+  comboBoxTitleFileType->setVisible(false);
+  comboBoxPCBFileType->setVisible(false);
+  comboBoxSoftwareSnapFileType->setVisible(false);
+#endif
 
 #if !defined(QMC2_WIP_ENABLED)
   // FIXME: remove WIP clause when "additional artwork support" is functional
@@ -329,11 +342,11 @@ Options::Options(QWidget *parent)
   checkBoxScaledTitle->setVisible(false);
   checkBoxScaledMarquee->setText(tr("Scaled logo"));
   radioButtonMarqueeSelect->setText(tr("Logo directory"));
-  radioButtonMarqueeSelect->setToolTip(tr("Switch between specifying a logo directory or a ZIP-compressed logo file"));
+  radioButtonMarqueeSelect->setToolTip(tr("Switch between specifying a logo directory or a compressed logo file"));
   lineEditMarqueeDirectory->setToolTip(tr("Logo directory (read)"));
-  lineEditMarqueeFile->setToolTip(tr("ZIP-compressed logo file (read)"));
+  lineEditMarqueeFile->setToolTip(tr("Compressed logo file (read)"));
   toolButtonBrowseMarqueeDirectory->setToolTip(tr("Browse logo directory"));
-  toolButtonBrowseMarqueeFile->setToolTip(tr("Browse ZIP-compressed logo file"));
+  toolButtonBrowseMarqueeFile->setToolTip(tr("Browse compressed logo file"));
   radioButtonTitleSelect->setVisible(false);
   stackedWidgetTitle->setVisible(false);
   labelMAWSCacheDirectory->setVisible(false);
@@ -662,22 +675,31 @@ void Options::apply()
 #endif
   toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
   toolButtonBrowsePreviewFile->setIconSize(iconSize);
+  comboBoxPreviewFileType->setIconSize(iconSize);
   toolButtonBrowseFlyerDirectory->setIconSize(iconSize);
   toolButtonBrowseFlyerFile->setIconSize(iconSize);
+  comboBoxFlyerFileType->setIconSize(iconSize);
   toolButtonBrowseIconDirectory->setIconSize(iconSize);
   toolButtonBrowseIconFile->setIconSize(iconSize);
+  comboBoxIconFileType->setIconSize(iconSize);
   toolButtonBrowseCabinetDirectory->setIconSize(iconSize);
   toolButtonBrowseCabinetFile->setIconSize(iconSize);
+  comboBoxCabinetFileType->setIconSize(iconSize);
   toolButtonBrowseControllerDirectory->setIconSize(iconSize);
   toolButtonBrowseControllerFile->setIconSize(iconSize);
+  comboBoxControllerFileType->setIconSize(iconSize);
   toolButtonBrowseMarqueeDirectory->setIconSize(iconSize);
   toolButtonBrowseMarqueeFile->setIconSize(iconSize);
+  comboBoxMarqueeFileType->setIconSize(iconSize);
   toolButtonBrowseTitleDirectory->setIconSize(iconSize);
   toolButtonBrowseTitleFile->setIconSize(iconSize);
+  comboBoxTitleFileType->setIconSize(iconSize);
   toolButtonBrowsePCBDirectory->setIconSize(iconSize);
   toolButtonBrowsePCBFile->setIconSize(iconSize);
+  comboBoxPCBFileType->setIconSize(iconSize);
   toolButtonBrowseSoftwareSnapDirectory->setIconSize(iconSize);
   toolButtonBrowseSoftwareSnapFile->setIconSize(iconSize);
+  comboBoxSoftwareSnapFileType->setIconSize(iconSize);
   toolButtonBrowseSoftwareNotesFolder->setIconSize(iconSize);
   toolButtonBrowseSoftwareNotesTemplate->setIconSize(iconSize);
   toolButtonBrowseSystemNotesFolder->setIconSize(iconSize);
@@ -1095,54 +1117,63 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
   config->setValue("MAME/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
   config->setValue("MAME/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
+  config->setValue("MAME/FilesAndDirectories/PreviewFileType", comboBoxPreviewFileType->currentIndex());
   needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseFlyerFile);
   needReopenFlyerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
   qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
   config->setValue("MAME/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
   config->setValue("MAME/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
+  config->setValue("MAME/FilesAndDirectories/FlyerFileType", comboBoxFlyerFileType->currentIndex());
   needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseIconFile);
   needReopenIconFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
   qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
   config->setValue("MAME/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
   config->setValue("MAME/FilesAndDirectories/IconFile", lineEditIconFile->text());
+  config->setValue("MAME/FilesAndDirectories/IconFileType", comboBoxIconFileType->currentIndex());
   needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseCabinetFile);
   needReopenCabinetFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
   qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
   config->setValue("MAME/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
   config->setValue("MAME/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
+  config->setValue("MAME/FilesAndDirectories/CabinetFileType", comboBoxCabinetFileType->currentIndex());
   needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseControllerFile);
   needReopenControllerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
   qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
   config->setValue("MAME/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
   config->setValue("MAME/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
+  config->setValue("MAME/FilesAndDirectories/ControllerFileType", comboBoxControllerFileType->currentIndex());
   needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseMarqueeFile);
   needReopenMarqueeFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
   qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
   config->setValue("MAME/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
   config->setValue("MAME/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
+  config->setValue("MAME/FilesAndDirectories/MarqueeFileType", comboBoxMarqueeFileType->currentIndex());
   needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseTitleFile);
   needReopenTitleFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
   qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("MAME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("MAME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+  config->setValue("MAME/FilesAndDirectories/TitleFileType", comboBoxTitleFileType->currentIndex());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePCBFile);
   needReopenPCBFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
   qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("MAME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("MAME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+  config->setValue("MAME/FilesAndDirectories/PCBFileType", comboBoxPCBFileType->currentIndex());
   needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseSoftwareSnapFile);
   needReopenSoftwareSnapFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
   qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+  config->setValue("MAME/FilesAndDirectories/SoftwareSnapFileType", comboBoxSoftwareSnapFileType->currentIndex());
   config->setValue("MAME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   config->setValue("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("MAME/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
@@ -1165,54 +1196,63 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
   config->setValue("MESS/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
   config->setValue("MESS/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
+  config->setValue("MESS/FilesAndDirectories/PreviewFileType", comboBoxPreviewFileType->currentIndex());
   needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseFlyerFile);
   needReopenFlyerFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
   qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
   config->setValue("MESS/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
   config->setValue("MESS/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
+  config->setValue("MESS/FilesAndDirectories/FlyerFileType", comboBoxFlyerFileType->currentIndex());
   needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseIconFile);
   needReopenIconFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
   qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
   config->setValue("MESS/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
   config->setValue("MESS/FilesAndDirectories/IconFile", lineEditIconFile->text());
+  config->setValue("MESS/FilesAndDirectories/IconFileType", comboBoxIconFileType->currentIndex());
   needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseCabinetFile);
   needReopenCabinetFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
   qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
   config->setValue("MESS/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
   config->setValue("MESS/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
+  config->setValue("MESS/FilesAndDirectories/CabinetFileType", comboBoxCabinetFileType->currentIndex());
   needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseControllerFile);
   needReopenControllerFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
   qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
   config->setValue("MESS/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
   config->setValue("MESS/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
+  config->setValue("MESS/FilesAndDirectories/ControllerFileType", comboBoxControllerFileType->currentIndex());
   needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseMarqueeFile);
   needReopenMarqueeFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
   qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
   config->setValue("MESS/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
   config->setValue("MESS/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
+  config->setValue("MESS/FilesAndDirectories/MarqueeFileType", comboBoxMarqueeFileType->currentIndex());
   needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseTitleFile);
   needReopenTitleFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
   qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("MESS/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("MESS/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+  config->setValue("MESS/FilesAndDirectories/TitleFileType", comboBoxTitleFileType->currentIndex());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePCBFile);
   needReopenPCBFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
   qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("MESS/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("MESS/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+  config->setValue("MESS/FilesAndDirectories/PCBFileType", comboBoxPCBFileType->currentIndex());
   needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseSoftwareSnapFile);
   needReopenSoftwareSnapFile |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
   qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+  config->setValue("MESS/FilesAndDirectories/SoftwareSnapFileType", comboBoxSoftwareSnapFileType->currentIndex());
   config->setValue("MESS/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   config->setValue("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("MESS/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
@@ -1235,54 +1275,63 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
   config->setValue("UME/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
   config->setValue("UME/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
+  config->setValue("UME/FilesAndDirectories/PreviewFileType", comboBoxPreviewFileType->currentIndex());
   needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseFlyerFile);
   needReopenFlyerFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
   qmc2UseFlyerFile = (stackedWidgetFlyer->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
   config->setValue("UME/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
   config->setValue("UME/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
+  config->setValue("UME/FilesAndDirectories/FlyerFileType", comboBoxFlyerFileType->currentIndex());
   needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseIconFile);
   needReopenIconFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
   qmc2UseIconFile = (stackedWidgetIcon->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
   config->setValue("UME/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
   config->setValue("UME/FilesAndDirectories/IconFile", lineEditIconFile->text());
+  config->setValue("UME/FilesAndDirectories/IconFileType", comboBoxIconFileType->currentIndex());
   needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseCabinetFile);
   needReopenCabinetFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
   qmc2UseCabinetFile = (stackedWidgetCabinet->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
   config->setValue("UME/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
   config->setValue("UME/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
+  config->setValue("UME/FilesAndDirectories/CabinetFileType", comboBoxCabinetFileType->currentIndex());
   needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseControllerFile);
   needReopenControllerFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
   qmc2UseControllerFile = (stackedWidgetController->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
   config->setValue("UME/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
   config->setValue("UME/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
+  config->setValue("UME/FilesAndDirectories/ControllerFileType", comboBoxControllerFileType->currentIndex());
   needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseMarqueeFile);
   needReopenMarqueeFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
   qmc2UseMarqueeFile = (stackedWidgetMarquee->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
   config->setValue("UME/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
   config->setValue("UME/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
+  config->setValue("UME/FilesAndDirectories/MarqueeFileType", comboBoxMarqueeFileType->currentIndex());
   needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseTitleFile);
   needReopenTitleFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
   qmc2UseTitleFile = (stackedWidgetTitle->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("UME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("UME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+  config->setValue("UME/FilesAndDirectories/TitleFileType", comboBoxTitleFileType->currentIndex());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UsePCBFile);
   needReopenPCBFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
   qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("UME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("UME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+  config->setValue("UME/FilesAndDirectories/PCBFileType", comboBoxPCBFileType->currentIndex());
   needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (qmc2EarlyStartup && qmc2UseSoftwareSnapFile);
   needReopenSoftwareSnapFile |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
   qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
   config->setValue("UME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("UME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("UME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+  config->setValue("UME/FilesAndDirectories/SoftwareSnapFileType", comboBoxSoftwareSnapFileType->currentIndex());
   config->setValue("UME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   config->setValue("UME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("UME/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
@@ -2093,8 +2142,15 @@ void Options::on_pushButtonApply_clicked()
 			  case QMC2_IMGTYPE_PCB: needReopenFile |= needReopenPCBFile; break;
 		  }
 		  if ( needReopenFile ) {
+			  foreach (unzFile imageFile, iw->imageFileMap)
+				  unzClose(imageFile);
+			  foreach (SevenZipFile *imageFile, iw->imageFileMap7z) {
+				  imageFile->close();
+				  delete imageFile;
+			  }
+			  iw->imageFileMap.clear();
+			  iw->imageFileMap7z.clear();
 			  if ( iw->useZip() ) {
-				  iw->imageFileMap.clear();
 				  foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
 					  unzFile imageFile = unzOpen(filePath.toLocal8Bit());
 					  if ( imageFile == NULL )
@@ -2102,10 +2158,15 @@ void Options::on_pushButtonApply_clicked()
 					  else
 						  iw->imageFileMap[filePath] = imageFile;
 				  }
-			  } else {
-				  foreach (unzFile imageFile, iw->imageFileMap)
-					  unzClose(imageFile);
-				  iw->imageFileMap.clear();
+			  } else if ( iw->useSevenZip() ) {
+				  foreach (QString filePath, Settings::stResolve(iw->imageZip()).split(";", QString::SkipEmptyParts)) {
+					  SevenZipFile *imageFile = new SevenZipFile(filePath);
+					  if ( !imageFile->open() ) {
+						  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file %2").arg(iw->imageType()).arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
+						  delete imageFile;
+					  } else
+						  iw->imageFileMap7z[filePath] = imageFile;
+				  }
 			  }
 		  }
 		  iw->update();
@@ -2114,8 +2175,15 @@ void Options::on_pushButtonApply_clicked()
 
   if ( qmc2SoftwareSnap ) {
 	  if ( needReopenSoftwareSnapFile ) {
-		  if ( qmc2UseSoftwareSnapFile ) {
-			  qmc2SoftwareSnap->snapFileMap.clear();
+		  foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
+			  unzClose(imageFile);
+		  foreach (SevenZipFile *imageFile, qmc2SoftwareSnap->snapFileMap7z) {
+			  imageFile->close();
+			  delete imageFile;
+		  }
+		  qmc2SoftwareSnap->snapFileMap.clear();
+		  qmc2SoftwareSnap->snapFileMap7z.clear();
+		  if ( qmc2SoftwareSnap->useZip() ) {
 			  foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
 				  unzFile imageFile = unzOpen(filePath.toLocal8Bit());
 				  if ( imageFile == NULL )
@@ -2123,18 +2191,30 @@ void Options::on_pushButtonApply_clicked()
 				  else
 					  qmc2SoftwareSnap->snapFileMap[filePath] = imageFile;
 			  }
-		  } else {
-			  foreach (unzFile imageFile, qmc2SoftwareSnap->snapFileMap)
-				  unzClose(imageFile);
-			  qmc2SoftwareSnap->snapFileMap.clear();
+		  } else if ( qmc2SoftwareSnap->useSevenZip() ) {
+			  foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+				  SevenZipFile *imageFile = new SevenZipFile(filePath);
+				  if ( !imageFile->open() ) {
+					  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
+					  delete imageFile;
+				  } else
+					  qmc2SoftwareSnap->snapFileMap7z[filePath] = imageFile;
+			  }
 		  }
 	  }
 	  qmc2SoftwareSnap->update();
   }
 
   if ( needReopenIconFile ) {
-	  if ( qmc2UseIconFile ) {
-		  qmc2IconFileMap.clear();
+	  foreach (unzFile iconFile, qmc2IconFileMap)
+		  unzClose(iconFile);
+	  foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
+		  iconFile->close();
+		  delete iconFile;
+	  }
+	  qmc2IconFileMap.clear();
+	  qmc2IconFileMap7z.clear();
+	  if ( QMC2_ICON_FILETYPE_ZIP ) {
 		  foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 			  unzFile iconFile = unzOpen(filePath.toLocal8Bit());
 			  if ( iconFile == NULL )
@@ -2142,10 +2222,15 @@ void Options::on_pushButtonApply_clicked()
 			  else
 				  qmc2IconFileMap[filePath] = iconFile;
 		  }
-	  } else {
-		  foreach (unzFile iconFile, qmc2IconFileMap)
-			  unzClose(iconFile);
-		  qmc2IconFileMap.clear();
+	  } else if ( QMC2_ICON_FILETYPE_7Z ) {
+		  foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+			  SevenZipFile *iconFile = new SevenZipFile(filePath);
+			  if ( !iconFile->open() ) {
+				  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
+				  delete iconFile;
+			  } else
+				  qmc2IconFileMap7z[filePath] = iconFile;
+		  }
 	  }
   }
 
@@ -2329,46 +2414,55 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditPreviewDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
   lineEditPreviewFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  comboBoxPreviewFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UsePreviewFile = config->value("MAME/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
   lineEditFlyerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
   lineEditFlyerFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  comboBoxFlyerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseFlyerFile = config->value("MAME/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
   lineEditIconDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
   lineEditIconFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  comboBoxIconFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseIconFile = config->value("MAME/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
   lineEditCabinetDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
   lineEditCabinetFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  comboBoxCabinetFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseCabinetFile = config->value("MAME/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
   lineEditControllerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
   lineEditControllerFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  comboBoxControllerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseControllerFile = config->value("MAME/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
   lineEditMarqueeDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
   lineEditMarqueeFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
+  comboBoxMarqueeFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseMarqueeFile = config->value("MAME/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
   lineEditTitleDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   lineEditTitleFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  comboBoxTitleFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseTitleFile = config->value("MAME/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
   lineEditPCBDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
   lineEditPCBFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  comboBoxPCBFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditSoftwareSnapDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
   lineEditSoftwareSnapFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseSoftwareSnapFile = config->value("MAME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
@@ -2392,46 +2486,55 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditPreviewDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
   lineEditPreviewFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  comboBoxPreviewFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PreviewFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UsePreviewFile = config->value("MESS/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
   lineEditFlyerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
   lineEditFlyerFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  comboBoxFlyerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/FlyerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseFlyerFile = config->value("MESS/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
   lineEditIconDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
   lineEditIconFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  comboBoxIconFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseIconFile = config->value("MESS/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
   lineEditCabinetDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
   lineEditCabinetFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  comboBoxCabinetFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CabinetFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseCabinetFile = config->value("MESS/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
   lineEditControllerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
   lineEditControllerFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  comboBoxControllerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ControllerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseControllerFile = config->value("MESS/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
   lineEditMarqueeDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
   lineEditMarqueeFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/logos.zip").toString());
+  comboBoxMarqueeFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/MarqueeFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseMarqueeFile = config->value("MESS/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Logo file") : tr("Logo directory"));
   lineEditTitleDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   lineEditTitleFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  comboBoxTitleFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/TitleFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseTitleFile = config->value("MESS/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
   lineEditPCBDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
   lineEditPCBFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  comboBoxPCBFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/PCBFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UsePCBFile = config->value("MESS/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditSoftwareSnapDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
   lineEditSoftwareSnapFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SoftwareSnapFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseSoftwareSnapFile = config->value("MESS/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
@@ -2455,46 +2558,55 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditPreviewDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
   lineEditPreviewFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
+  comboBoxPreviewFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PreviewFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UsePreviewFile = config->value("UME/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
   lineEditFlyerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
   lineEditFlyerFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
+  comboBoxFlyerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/FlyerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseFlyerFile = config->value("UME/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
   lineEditIconDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
   lineEditIconFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
+  comboBoxIconFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseIconFile = config->value("UME/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
   lineEditCabinetDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
   lineEditCabinetFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
+  comboBoxCabinetFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CabinetFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseCabinetFile = config->value("UME/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
   lineEditControllerDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
   lineEditControllerFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
+  comboBoxControllerFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ControllerFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseControllerFile = config->value("UME/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
   lineEditMarqueeDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
   lineEditMarqueeFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
+  comboBoxMarqueeFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/MarqueeFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseMarqueeFile = config->value("UME/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
   lineEditTitleDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   lineEditTitleFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
+  comboBoxTitleFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/TitleFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseTitleFile = config->value("UME/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
   lineEditPCBDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
   lineEditPCBFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  comboBoxPCBFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/PCBFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UsePCBFile = config->value("UME/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditSoftwareSnapDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
   lineEditSoftwareSnapFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SoftwareSnapFileType", QMC2_IMG_FILETYPE_ZIP).toInt());
   qmc2UseSoftwareSnapFile = config->value("UME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
@@ -3685,127 +3797,239 @@ void Options::on_radioButtonSoftwareSnapSelect_clicked()
 void Options::on_toolButtonBrowsePreviewFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePreviewFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePreviewFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed preview file"), lineEditPreviewFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditPreviewFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed preview file"), lineEditPreviewFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditPreviewFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxPreviewFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxPreviewFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed preview file"), lineEditPreviewFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditPreviewFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseFlyerFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFlyerFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFlyerFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed flyer file"), lineEditFlyerFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditFlyerFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed flyer file"), lineEditFlyerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditFlyerFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxFlyerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxFlyerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed flyer file"), lineEditFlyerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditFlyerFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseIconFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseIconFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseIconFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed icon file"), lineEditIconFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditIconFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed icon file"), lineEditIconFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditIconFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxIconFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxIconFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed icon file"), lineEditIconFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditIconFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseCabinetFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCabinetFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCabinetFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed cabinet file"), lineEditCabinetFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditCabinetFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed cabinet file"), lineEditCabinetFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditCabinetFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxCabinetFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxCabinetFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed cabinet file"), lineEditCabinetFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditCabinetFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseControllerFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseControllerFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseControllerFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed controller file"), lineEditControllerFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditControllerFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed controller file"), lineEditControllerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditControllerFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxControllerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxControllerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed controller file"), lineEditControllerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditControllerFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseMarqueeFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeFile_clicked()");
 #endif
 
+#if defined(QMC2_WIP_ENABLED)
 #if defined(QMC2_EMUTYPE_MESS)
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed logo file"), lineEditMarqueeFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed logo file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 #else
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed marquee file"), lineEditMarqueeFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed marquee file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 #endif
-  if ( !s.isNull() )
-    lineEditMarqueeFile->setText(s);
-  raise();
+	if ( !s.isNull() ) {
+		lineEditMarqueeFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxMarqueeFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxMarqueeFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+#if defined(QMC2_EMUTYPE_MESS)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed logo file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed marquee file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+#endif
+	if ( !s.isNull() )
+		lineEditMarqueeFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseTitleFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTitleFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTitleFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed title file"), lineEditTitleFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditTitleFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed title file"), lineEditTitleFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditTitleFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxTitleFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxTitleFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed title file"), lineEditTitleFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditTitleFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowsePCBFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed PCB file"), lineEditPCBFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditPCBFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed PCB file"), lineEditPCBFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditPCBFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxPCBFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxPCBFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed PCB file"), lineEditPCBFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditPCBFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose software snap directory"), lineEditSoftwareSnapDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() ) {
-    if ( !s.endsWith("/") ) s += "/";
-    lineEditSoftwareSnapDirectory->setText(s);
-  }
-  raise();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose software snap directory"), lineEditSoftwareSnapDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditSoftwareSnapDirectory->setText(s);
+	}
+	raise();
 }
 
 void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapFile_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditSoftwareSnapFile->setText(s);
-  raise();
+#if defined(QMC2_WIP_ENABLED)
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() ) {
+		lineEditSoftwareSnapFile->setText(s);
+		if ( s.toLower().endsWith(".zip") )
+			comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_IMG_FILETYPE_ZIP);
+		else if ( s.toLower().endsWith(".7z") )
+			comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
+	}
+	raise();
+#else
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditSoftwareSnapFile->setText(s);
+	raise();
+#endif
 }
 
 void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()

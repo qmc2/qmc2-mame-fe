@@ -24,7 +24,12 @@ QString Marquee::imageDir()
 
 bool Marquee::useZip()
 {
-	return qmc2UseMarqueeFile;
+	return qmc2UseMarqueeFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool Marquee::useSevenZip()
+{
+	return qmc2UseMarqueeFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
 bool Marquee::scaledImage()

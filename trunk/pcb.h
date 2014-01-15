@@ -16,6 +16,7 @@ class PCB : public ImageWidget
 		virtual QString imageType() { return tr("PCB"); }
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_PCB; }
 		virtual bool useZip();
+		virtual bool useSevenZip();
 		virtual bool scaledImage();
 };
 

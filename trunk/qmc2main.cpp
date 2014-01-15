@@ -52,6 +52,7 @@
 #include "detailsetup.h"
 #include "miniwebbrowser.h"
 #include "unzip.h"
+#include "sevenzipfile.h"
 #include "downloaditem.h"
 #include "mawsqdlsetup.h"
 #include "embedder.h"
@@ -254,6 +255,7 @@ Qt::SortOrder qmc2SortOrder = Qt::AscendingOrder;
 bool qmc2SortingActive = false;
 QBitArray qmc2Filter;
 QMap<QString, unzFile> qmc2IconFileMap;
+QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 QStringList qmc2BiosROMs;
 QStringList qmc2DeviceROMs;
 KeyPressFilter *qmc2KeyPressFilter = NULL;

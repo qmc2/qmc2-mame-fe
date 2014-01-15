@@ -16,6 +16,7 @@ class Preview : public ImageWidget
 		virtual QString imageType() { return tr("preview"); }
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_PREVIEW; }
 		virtual bool useZip();
+		virtual bool useSevenZip();
 		virtual bool scaledImage();
 };
 

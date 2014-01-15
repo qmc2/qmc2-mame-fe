@@ -16,6 +16,7 @@ class Controller : public ImageWidget
 		virtual QString imageType() { return tr("controller"); }
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_CONTROLLER; }
 		virtual bool useZip();
+		virtual bool useSevenZip();
 		virtual bool scaledImage();
 };
 

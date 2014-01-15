@@ -37,7 +37,7 @@ typedef struct
   const Byte *end;
   const Byte *begin;
   UInt64 processed;
-  Bool extra;
+  Bool7z extra;
   SRes res;
   ILookInStream *inStream;
 } CByteInToLook;
@@ -122,7 +122,6 @@ static SRes SzDecodePpmd(CSzCoderInfo *coder, UInt64 inSize, ILookInStream *inSt
 }
 
 #endif
-
 
 static SRes SzDecodeLzma(CSzCoderInfo *coder, UInt64 inSize, ILookInStream *inStream,
     Byte *outBuffer, SizeT outSize, ISzAlloc *allocMain)
@@ -240,7 +239,7 @@ static SRes SzDecodeCopy(UInt64 inSize, ILookInStream *inStream, Byte *outBuffer
   return SZ_OK;
 }
 
-static Bool IS_MAIN_METHOD(UInt32 m)
+static Bool7z IS_MAIN_METHOD(UInt32 m)
 {
   switch(m)
   {
@@ -255,7 +254,7 @@ static Bool IS_MAIN_METHOD(UInt32 m)
   return False;
 }
 
-static Bool IS_SUPPORTED_CODER(const CSzCoderInfo *c)
+static Bool7z IS_SUPPORTED_CODER(const CSzCoderInfo *c)
 {
   return
       c->NumInStreams == 1 &&

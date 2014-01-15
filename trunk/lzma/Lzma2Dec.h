@@ -19,9 +19,9 @@ typedef struct
   UInt32 unpackSize;
   int state;
   Byte control;
-  Bool needInitDic;
-  Bool needInitState;
-  Bool needInitProp;
+  Bool7z needInitDic;
+  Bool7z needInitState;
+  Bool7z needInitProp;
 } CLzma2Dec;
 
 #define Lzma2Dec_Construct(p) LzmaDec_Construct(&(p)->decoder)

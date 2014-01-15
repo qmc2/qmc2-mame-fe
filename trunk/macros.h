@@ -305,6 +305,10 @@
 // maximium length of a single filename/path in a ZIP archive
 #define QMC2_MAX_PATH_LENGTH			1024
 
+// indexes in compressed image file type selectors
+#define QMC2_IMG_FILETYPE_ZIP			0
+#define QMC2_IMG_FILETYPE_7Z			1
+
 // search delay in milliseconds (so it doesn't hamper typing)
 #define QMC2_SEARCH_DELAY			250
 
@@ -836,6 +840,10 @@
 #else
 #define QMC2_SEARCH_RESULT_UPDATE		5000
 #endif
+
+// macros to determine ZIP / 7z compressed icon file type to use
+#define QMC2_ICON_FILETYPE_ZIP			qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ZIP
+#define QMC2_ICON_FILETYPE_7Z			qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_7Z
 
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)

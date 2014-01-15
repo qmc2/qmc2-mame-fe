@@ -16,6 +16,7 @@ class Flyer : public ImageWidget
 		virtual QString imageType() { return tr("flyer"); }
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_FLYER; }
 		virtual bool useZip();
+		virtual bool useSevenZip();
 		virtual bool scaledImage();
 };
 

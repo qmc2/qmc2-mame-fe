@@ -24,7 +24,12 @@ QString Title::imageDir()
 
 bool Title::useZip()
 {
-	return qmc2UseTitleFile;
+	return qmc2UseTitleFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool Title::useSevenZip()
+{
+	return qmc2UseTitleFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
 bool Title::scaledImage()
