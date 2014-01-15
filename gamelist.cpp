@@ -34,6 +34,7 @@
 #include "romalyzer.h"
 #include "macros.h"
 #include "unzip.h"
+#include "sevenzipfile.h"
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 #include "messdevcfg.h"
 #endif
@@ -101,6 +102,7 @@ extern int qmc2SortCriteria;
 extern Qt::SortOrder qmc2SortOrder;
 extern QBitArray qmc2Filter;
 extern QMap<QString, unzFile> qmc2IconFileMap;
+extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QStringList qmc2BiosROMs;
 extern QStringList qmc2DeviceROMs;
@@ -190,13 +192,22 @@ Gamelist::Gamelist(QObject *parent)
   emulatorIdentifiers << "UME" << "U.M.E.";
 #endif
 
-  if ( qmc2UseIconFile ) {
+  if ( QMC2_ICON_FILETYPE_ZIP ) {
 	  foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 		  unzFile iconFile = unzOpen(filePath.toLocal8Bit());
 		  if ( iconFile == NULL )
 			  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 		  else
 			  qmc2IconFileMap[filePath] = iconFile;
+	  }
+  } else if ( QMC2_ICON_FILETYPE_7Z ) {
+	  foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+		  SevenZipFile *iconFile = new SevenZipFile(filePath);
+		  if ( !iconFile->open() ) {
+			  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
+			  delete iconFile;
+		  } else
+			  qmc2IconFileMap7z[filePath] = iconFile;
 	  }
   }
 }
@@ -299,6 +310,15 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseTitleFile->setEnabled(enable);
   qmc2Options->toolButtonBrowsePCBDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowsePCBFile->setEnabled(enable);
+  qmc2Options->comboBoxIconFileType->setEnabled(enable);
+  qmc2Options->comboBoxPreviewFileType->setEnabled(enable);
+  qmc2Options->comboBoxFlyerFileType->setEnabled(enable);
+  qmc2Options->comboBoxCabinetFileType->setEnabled(enable);
+  qmc2Options->comboBoxControllerFileType->setEnabled(enable);
+  qmc2Options->comboBoxMarqueeFileType->setEnabled(enable);
+  qmc2Options->comboBoxTitleFileType->setEnabled(enable);
+  qmc2Options->comboBoxPCBFileType->setEnabled(enable);
+  qmc2Options->comboBoxSoftwareSnapFileType->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareSnapDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareNotesFolder->setEnabled(enable);
@@ -3584,64 +3604,116 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       QTime preloadTimer, elapsedTime(0, 0, 0, 0);
       int iconCount = 0;
       preloadTimer.start();
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
-      foreach (unzFile iconFile, qmc2IconFileMap) {
-	      unz_global_info unzGlobalInfo;
-	      if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
-		int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
-		QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		  qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
-		else
-		  qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-		qmc2MainWindow->progressBarGamelist->setRange(0, unzGlobalInfo.number_entry);
-		qmc2MainWindow->progressBarGamelist->reset();
-		qApp->processEvents();
-		if ( unzGoToFirstFile(iconFile) == UNZ_OK ) {
-		  do {
-		    char unzFileName[QMC2_MAX_PATH_LENGTH];
-		    iconCount++;
-		    if ( iconCount % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-		      qmc2MainWindow->progressBarGamelist->setValue(iconCount);
-		      qApp->processEvents();
-		    }
-		    if ( unzGetCurrentFileInfo(iconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
-		      QFileInfo fi(unzFileName);
-		      QString gameFileName = fi.fileName();
+      if ( QMC2_ICON_FILETYPE_ZIP ) {
+	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
+	      foreach (unzFile iconFile, qmc2IconFileMap) {
+		      unz_global_info unzGlobalInfo;
+		      if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
+			      int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
+			      QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+				      qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
+			      else
+				      qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+			      qmc2MainWindow->progressBarGamelist->setRange(0, unzGlobalInfo.number_entry);
+			      qmc2MainWindow->progressBarGamelist->reset();
+			      qApp->processEvents();
+			      if ( unzGoToFirstFile(iconFile) == UNZ_OK ) {
+				      int index = 0;
+				      do {
+					      char unzFileName[QMC2_MAX_PATH_LENGTH];
+					      if ( index % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
+						      qmc2MainWindow->progressBarGamelist->setValue(index);
+						      qApp->processEvents();
+					      }
+					      if ( unzGetCurrentFileInfo(iconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
+						      QFileInfo fi(unzFileName);
+						      QString gameFileName = fi.fileName();
 #ifdef QMC2_DEBUG
-		      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(gameFileName));
+						      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(gameFileName));
 #endif
-		      imageData.clear();
-		      if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {
-			while ( (len = unzReadCurrentFile(iconFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
-			  for (i = 0; i < len; i++)
-			    imageData += imageBuffer[i];
-			unzCloseCurrentFile(iconFile);
-			QPixmap iconPixmap;
-			if ( iconPixmap.loadFromData(imageData) ) {
-			  QFileInfo fi(gameFileName.toLower());
-			  qmc2IconMap[fi.baseName()] = QIcon(iconPixmap);
-			}
+						      imageData.clear();
+						      if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {
+							      while ( (len = unzReadCurrentFile(iconFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+								      for (i = 0; i < len; i++)
+									      imageData += imageBuffer[i];
+							      unzCloseCurrentFile(iconFile);
+							      QPixmap iconPixmap;
+							      if ( iconPixmap.loadFromData(imageData) ) {
+								      QFileInfo fi(gameFileName.toLower());
+								      qmc2IconMap[fi.baseName()] = QIcon(iconPixmap);
+								      iconCount++;
+							      }
+						      }
+					      }
+					      if ( index % qmc2GamelistResponsiveness == 0 ) {
+						      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+						      qApp->processEvents();
+						      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+					      }
+					      index++;
+				      } while ( unzGoToNextFile(iconFile) != UNZ_END_OF_LIST_OF_FILE );
+			      }
+			      qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+				      qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+			      else
+				      qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 		      }
-		    }
-		    if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
-		      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
-		      qApp->processEvents();
-		      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
-		    }
-		  } while ( unzGoToNextFile(iconFile) != UNZ_END_OF_LIST_OF_FILE );
-		}
-		qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-		  qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
-		else
-		  qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 	      }
+	      elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
+	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
+	      qmc2IconsPreloaded = true;
+      } else if ( QMC2_ICON_FILETYPE_7Z ) {
+	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from 7z archive"));
+	      foreach (SevenZipFile *sevenZipFile, qmc2IconFileMap7z) {
+		      int currentMax = qmc2MainWindow->progressBarGamelist->maximum();
+		      QString oldFormat = qmc2MainWindow->progressBarGamelist->format();
+		      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+			      qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon cache - %p%"));
+		      else
+			      qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+		      qmc2MainWindow->progressBarGamelist->setRange(0, sevenZipFile->itemList().count());
+		      qmc2MainWindow->progressBarGamelist->reset();
+		      qApp->processEvents();
+		      for (int index = 0; index < sevenZipFile->itemList().count(); index++) {
+			      if ( index % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
+				      qmc2MainWindow->progressBarGamelist->setValue(index);
+				      qApp->processEvents();
+			      }
+			      SevenZipMetaData metaData = sevenZipFile->itemList()[index];
+			      QFileInfo fi(metaData.name());
+			      QString gameFileName = fi.fileName();
+#ifdef QMC2_DEBUG
+			      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(gameFileName));
+#endif
+			      sevenZipFile->read(index, &imageData);
+			      if ( !sevenZipFile->hasError() ) {
+				      QPixmap iconPixmap;
+				      if ( iconPixmap.loadFromData(imageData) ) {
+					      QFileInfo fi(gameFileName.toLower());
+					      qmc2IconMap[fi.baseName()] = QIcon(iconPixmap);
+					      iconCount++;
+				      }
+			      }
+			      if ( index % qmc2GamelistResponsiveness == 0 ) {
+				      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+				      qApp->processEvents();
+				      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+			      }
+		      }
+		      qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
+		      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+			      qmc2MainWindow->progressBarGamelist->setFormat(oldFormat);
+		      else
+			      qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+	      }
+	      elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
+	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from 7z archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
+	      qmc2IconsPreloaded = true;
       }
-      elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
-      qmc2IconsPreloaded = true;
 
       if ( checkOnly )
         qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);

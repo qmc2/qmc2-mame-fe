@@ -52,7 +52,7 @@ typedef struct
 #define XzBlock_HasUnpackSize(p) (((p)->flags & XZ_BF_UNPACK_SIZE) != 0)
 
 SRes XzBlock_Parse(CXzBlock *p, const Byte *header);
-SRes XzBlock_ReadHeader(CXzBlock *p, ISeqInStream *inStream, Bool *isIndex, UInt32 *headerSizeRes);
+SRes XzBlock_ReadHeader(CXzBlock *p, ISeqInStream *inStream, Bool7z *isIndex, UInt32 *headerSizeRes);
 
 /* ---------- xz stream ---------- */
 
@@ -247,7 +247,7 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
     const Byte *src, SizeT *srcLen, /* int srcWasFinished, */ int finishMode,
     ECoderStatus *status);
 
-Bool XzUnpacker_IsStreamWasFinished(CXzUnpacker *p);
+Bool7z XzUnpacker_IsStreamWasFinished(CXzUnpacker *p);
 
 EXTERN_C_END
 

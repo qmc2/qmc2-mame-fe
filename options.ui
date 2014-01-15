@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>545</width>
-    <height>612</height>
+    <width>585</width>
+    <height>635</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>496</width>
+                <width>539</width>
                 <height>622</height>
                </rect>
               </property>
@@ -891,7 +891,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>349</width>
+                <width>539</width>
                 <height>731</height>
                </rect>
               </property>
@@ -960,8 +960,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed cabinet file (read)</string>
+                        <string>Compressed cabinet file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxCabinetFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -973,7 +1004,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed cabinet file</string>
+                        <string>Browse compressed cabinet file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1064,8 +1095,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed controller file (read)</string>
+                        <string>Compressed controller file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxControllerFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1077,7 +1139,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed controller file</string>
+                        <string>Browse compressed controller file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1151,8 +1213,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed marquee file (read)</string>
+                        <string>Compressed marquee file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxMarqueeFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1164,7 +1257,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed marquee file</string>
+                        <string>Browse compressed marquee file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1192,7 +1285,7 @@
                  <item row="16" column="0">
                   <widget class="QRadioButton" name="radioButtonTitleSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a title directory or a ZIP-compressed title file</string>
+                    <string>Switch between specifying a title directory or a compressed title file</string>
                    </property>
                    <property name="text">
                     <string>Title directory</string>
@@ -1467,7 +1560,7 @@
                  <item row="10" column="0">
                   <widget class="QRadioButton" name="radioButtonPreviewSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a preview directory or a ZIP-compressed preview file</string>
+                    <string>Switch between specifying a preview directory or a compressed preview file</string>
                    </property>
                    <property name="text">
                     <string>Preview directory</string>
@@ -1542,8 +1635,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed preview file (read)</string>
+                        <string>Compressed preview file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxPreviewFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1555,7 +1679,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed preview file</string>
+                        <string>Browse compressed preview file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1570,7 +1694,7 @@
                  <item row="11" column="0">
                   <widget class="QRadioButton" name="radioButtonFlyerSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a flyer directory or a ZIP-compressed flyer file</string>
+                    <string>Switch between specifying a flyer directory or a compressed flyer file</string>
                    </property>
                    <property name="text">
                     <string>Flyer directory</string>
@@ -1645,8 +1769,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed flyer file (read)</string>
+                        <string>Compressed flyer file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxFlyerFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1658,7 +1813,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed flyer file</string>
+                        <string>Browse compressed flyer file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1673,7 +1828,7 @@
                  <item row="12" column="0">
                   <widget class="QRadioButton" name="radioButtonIconSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying an icon directory or a ZIP-compressed icon file</string>
+                    <string>Switch between specifying an icon directory or a compressed icon file</string>
                    </property>
                    <property name="text">
                     <string>Icon directory</string>
@@ -1748,8 +1903,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed icon file (read)</string>
+                        <string>Compressed icon file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxIconFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1761,7 +1947,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed icon file</string>
+                        <string>Browse compressed icon file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1776,7 +1962,7 @@
                  <item row="13" column="0">
                   <widget class="QRadioButton" name="radioButtonCabinetSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</string>
+                    <string>Switch between specifying a cabinet directory or a compressed cabinet file</string>
                    </property>
                    <property name="text">
                     <string>Cabinet directory</string>
@@ -1792,7 +1978,7 @@
                  <item row="14" column="0">
                   <widget class="QRadioButton" name="radioButtonControllerSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a controller directory or a ZIP-compressed controller file</string>
+                    <string>Switch between specifying a controller directory or a compressed controller file</string>
                    </property>
                    <property name="text">
                     <string>Controller directory</string>
@@ -1808,7 +1994,7 @@
                  <item row="15" column="0">
                   <widget class="QRadioButton" name="radioButtonMarqueeSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a marquee directory or a ZIP-compressed marquee file</string>
+                    <string>Switch between specifying a marquee directory or a compressed marquee file</string>
                    </property>
                    <property name="text">
                     <string>Marquee directory</string>
@@ -1883,8 +2069,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed title file (read)</string>
+                        <string>Compressed title file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxTitleFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1896,7 +2113,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed title file</string>
+                        <string>Browse compressed title file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -1911,7 +2128,7 @@
                  <item row="17" column="0">
                   <widget class="QRadioButton" name="radioButtonPCBSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a PCB directory or a ZIP-compressed PCB file</string>
+                    <string>Switch between specifying a PCB directory or a compressed PCB file</string>
                    </property>
                    <property name="text">
                     <string>PCB directory</string>
@@ -1986,8 +2203,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed PCB file (read)</string>
+                        <string>Compressed PCB file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxPCBFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -1999,7 +2247,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed PCB file</string>
+                        <string>Browse compressed PCB file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -2073,8 +2321,39 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>ZIP-compressed software snap-shot file (read)</string>
+                        <string>Compressed software snap-shot file (read)</string>
                        </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBoxSoftwareSnapFileType">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Select compression format</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>ZIP</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>7z</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="qmc2.qrc">
+                          <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
+                        </property>
+                       </item>
                       </widget>
                      </item>
                      <item>
@@ -2086,7 +2365,7 @@
                         </sizepolicy>
                        </property>
                        <property name="toolTip">
-                        <string>Browse ZIP-compressed software snap-shot file</string>
+                        <string>Browse compressed software snap-shot file</string>
                        </property>
                        <property name="icon">
                         <iconset resource="qmc2.qrc">
@@ -2226,7 +2505,7 @@
                  <item row="18" column="0">
                   <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a software snap directory or a ZIP-compressed software snap file</string>
+                    <string>Switch between specifying a software snap directory or a compressed software snap file</string>
                    </property>
                    <property name="text">
                     <string>SW snap folder</string>
@@ -2558,8 +2837,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>508</width>
-                <height>248</height>
+                <width>553</width>
+                <height>536</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3209,8 +3488,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>39</height>
+                <width>553</width>
+                <height>536</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3331,8 +3610,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>342</width>
-                <height>209</height>
+                <width>553</width>
+                <height>536</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3794,8 +4073,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>374</width>
-                <height>455</height>
+                <width>553</width>
+                <height>536</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4930,7 +5209,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>236</width>
-                <height>223</height>
+                <height>214</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
@@ -5404,46 +5683,55 @@
   <tabstop>lineEditPreviewDirectory</tabstop>
   <tabstop>toolButtonBrowsePreviewDirectory</tabstop>
   <tabstop>lineEditPreviewFile</tabstop>
+  <tabstop>comboBoxPreviewFileType</tabstop>
   <tabstop>toolButtonBrowsePreviewFile</tabstop>
   <tabstop>radioButtonFlyerSelect</tabstop>
   <tabstop>lineEditFlyerDirectory</tabstop>
   <tabstop>toolButtonBrowseFlyerDirectory</tabstop>
   <tabstop>lineEditFlyerFile</tabstop>
+  <tabstop>comboBoxFlyerFileType</tabstop>
   <tabstop>toolButtonBrowseFlyerFile</tabstop>
   <tabstop>radioButtonIconSelect</tabstop>
   <tabstop>lineEditIconDirectory</tabstop>
   <tabstop>toolButtonBrowseIconDirectory</tabstop>
   <tabstop>lineEditIconFile</tabstop>
+  <tabstop>comboBoxIconFileType</tabstop>
   <tabstop>toolButtonBrowseIconFile</tabstop>
   <tabstop>radioButtonCabinetSelect</tabstop>
   <tabstop>lineEditCabinetDirectory</tabstop>
   <tabstop>toolButtonBrowseCabinetDirectory</tabstop>
   <tabstop>lineEditCabinetFile</tabstop>
+  <tabstop>comboBoxCabinetFileType</tabstop>
   <tabstop>toolButtonBrowseCabinetFile</tabstop>
   <tabstop>radioButtonControllerSelect</tabstop>
   <tabstop>lineEditControllerDirectory</tabstop>
   <tabstop>toolButtonBrowseControllerDirectory</tabstop>
   <tabstop>lineEditControllerFile</tabstop>
+  <tabstop>comboBoxControllerFileType</tabstop>
   <tabstop>toolButtonBrowseControllerFile</tabstop>
   <tabstop>radioButtonMarqueeSelect</tabstop>
   <tabstop>lineEditMarqueeDirectory</tabstop>
   <tabstop>toolButtonBrowseMarqueeDirectory</tabstop>
   <tabstop>lineEditMarqueeFile</tabstop>
+  <tabstop>comboBoxMarqueeFileType</tabstop>
   <tabstop>toolButtonBrowseMarqueeFile</tabstop>
   <tabstop>radioButtonTitleSelect</tabstop>
   <tabstop>lineEditTitleDirectory</tabstop>
   <tabstop>toolButtonBrowseTitleDirectory</tabstop>
   <tabstop>lineEditTitleFile</tabstop>
+  <tabstop>comboBoxTitleFileType</tabstop>
   <tabstop>toolButtonBrowseTitleFile</tabstop>
   <tabstop>radioButtonPCBSelect</tabstop>
   <tabstop>lineEditPCBDirectory</tabstop>
   <tabstop>toolButtonBrowsePCBDirectory</tabstop>
   <tabstop>lineEditPCBFile</tabstop>
+  <tabstop>comboBoxPCBFileType</tabstop>
   <tabstop>toolButtonBrowsePCBFile</tabstop>
   <tabstop>radioButtonSoftwareSnapSelect</tabstop>
   <tabstop>lineEditSoftwareSnapDirectory</tabstop>
   <tabstop>toolButtonBrowseSoftwareSnapDirectory</tabstop>
   <tabstop>lineEditSoftwareSnapFile</tabstop>
+  <tabstop>comboBoxSoftwareSnapFileType</tabstop>
   <tabstop>toolButtonBrowseSoftwareSnapFile</tabstop>
   <tabstop>pushButtonAdditionalArtworkSetup</tabstop>
   <tabstop>pushButtonImageFormats</tabstop>

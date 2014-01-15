@@ -40,8 +40,8 @@ typedef struct
   CLzmaEncHandle enc;
   UInt64 srcPos;
   Byte props;
-  Bool needInitState;
-  Bool needInitProp;
+  Bool7z needInitState;
+  Bool7z needInitProp;
 } CLzma2EncInt;
 
 static SRes Lzma2EncInt_Init(CLzma2EncInt *p, const CLzma2EncProps *props)
@@ -61,7 +61,7 @@ SRes LzmaEnc_PrepareForLzma2(CLzmaEncHandle pp, ISeqInStream *inStream, UInt32 k
     ISzAlloc *alloc, ISzAlloc *allocBig);
 SRes LzmaEnc_MemPrepare(CLzmaEncHandle pp, const Byte *src, SizeT srcLen,
     UInt32 keepWindowSize, ISzAlloc *alloc, ISzAlloc *allocBig);
-SRes LzmaEnc_CodeOneMemBlock(CLzmaEncHandle pp, Bool reInit,
+SRes LzmaEnc_CodeOneMemBlock(CLzmaEncHandle pp, Bool7z reInit,
     Byte *dest, size_t *destLen, UInt32 desiredPackSize, UInt32 *unpackSize);
 const Byte *LzmaEnc_GetCurBuf(CLzmaEncHandle pp);
 void LzmaEnc_Finish(CLzmaEncHandle pp);
@@ -76,7 +76,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
   size_t packSize = packSizeLimit;
   UInt32 unpackSize = LZMA2_UNPACK_SIZE_MAX;
   unsigned lzHeaderSize = 5 + (p->needInitProp ? 1 : 0);
-  Bool useCopyBlock;
+  Bool7z useCopyBlock;
   SRes res;
 
   *packSizeRes = 0;

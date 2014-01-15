@@ -13,6 +13,8 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "toolexec.h"
+#include "unzip.h"
+#include "sevenzipfile.h"
 #include "macros.h"
 
 // external global variables
@@ -42,6 +44,7 @@ extern Title *qmc2Title;
 #endif
 extern PCB *qmc2PCB;
 extern QMap<QString, unzFile> qmc2IconFileMap;
+extern QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 
 ImageCheckerThread::ImageCheckerThread(int tNum, ImageWidget *imgWidget, QObject *parent)
 	: QThread(parent)

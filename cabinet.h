@@ -16,6 +16,7 @@ class Cabinet : public ImageWidget
 		virtual QString imageType() { return tr("cabinet"); }
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_CABINET; }
 		virtual bool useZip();
+		virtual bool useSevenZip();
 		virtual bool scaledImage();
 };
 

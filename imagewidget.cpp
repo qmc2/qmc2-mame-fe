@@ -87,6 +87,14 @@ ImageWidget::ImageWidget(QWidget *parent)
 			else
 				imageFileMap[filePath] = imageFile;
 		}
+	} else if ( useSevenZip() ) {
+		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+			SevenZipFile *imageFile = new SevenZipFile(filePath);
+			if ( !imageFile->open() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
+			else
+				imageFileMap7z[filePath] = imageFile;
+		}
 	}
 
 	reloadActiveFormats();
@@ -101,6 +109,11 @@ ImageWidget::~ImageWidget()
 	if ( useZip() ) {
 		foreach (unzFile imageFile, imageFileMap)
 			unzClose(imageFile);
+	} else if ( useSevenZip() ) {
+		foreach (SevenZipFile *imageFile, imageFileMap7z) {
+			imageFile->close();
+			delete imageFile;
+		}
 	}
 }
 
@@ -155,13 +168,14 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 	while ( topLevelItem->parent() )
 		topLevelItem = topLevelItem->parent();
 
-	QString gameName = topLevelItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+	QString gameName = topLevelItem->text(QMC2_GAMELIST_COLUMN_NAME);
 	cacheKey = cachePrefix() + "_" + gameName;
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 	if ( !cpm ) {
 		qmc2CurrentItem = topLevelItem;
 		loadImage(gameName, gameName);
-	}
+	} else
+		currentPixmap = *cpm;
 
 	if ( scaledImage() )
 		drawScaledImage(&currentPixmap, &p);
@@ -195,8 +209,10 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 	bool fileOk = true;
 
+	QString cacheKey = cachePrefix() + "_" + onBehalfOf;
+
 	if ( useZip() ) {
-		// try loading image from ZIP(s)
+		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
 		int len, i;
 
@@ -233,7 +249,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 				if ( !checkOnly ) {
 					if ( fileOk ) {
-						qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount());
+						//printf("ZIP: Image loaded for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
 						QString parentName = qmc2ParentMap[gameName];
@@ -242,7 +259,63 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						} else {
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 							if ( !qmc2RetryLoadingImages )
-								qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+								qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+							//printf("ZIP: Using ghost image for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+						}
+					}
+				}
+
+				if ( fileOk )
+					break;
+			}
+
+			if ( fileOk )
+				break;
+		}
+	} else if ( useSevenZip() ) {
+		// try loading image from (semicolon-separated) 7z archive(s)
+		QByteArray imageData;
+		int len, i;
+
+		foreach (int format, activeFormats) {
+			QString formatName = formatNames[format];
+			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+				QString gameFile = gameName + "." + extension;
+
+				if ( fileName )
+					*fileName = gameFile;
+
+				foreach (SevenZipFile *imageFile, imageFileMap7z) {
+					int index = imageFile->indexOfFile(gameFile);
+					if ( index >= 0 ) {
+						imageFile->read(index, &imageData);
+						fileOk = !imageFile->hasError();
+					} else
+						fileOk = false;
+
+					if ( fileOk )
+						break;
+					else
+						imageData.clear();
+				}
+
+				if ( fileOk )
+					fileOk = pm.loadFromData(imageData, formatName.toLocal8Bit().constData());
+
+				if ( !checkOnly ) {
+					if ( fileOk ) {
+						//printf("7z: Image loaded for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+						currentPixmap = pm;
+					} else {
+						QString parentName = qmc2ParentMap[gameName];
+						if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
+							fileOk = loadImage(parentName, onBehalfOf);
+						} else {
+							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+							if ( !qmc2RetryLoadingImages )
+								qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+							//printf("7z: Using ghost image for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
 						}
 					}
 				}
@@ -296,7 +369,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					} else {
 						if ( pm.load(imagePath, formatName.toLocal8Bit().constData()) ) {
 							pm.imagePath = imagePath;
-							qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(pm), pm.toImage().byteCount());
+							//printf("Folder: Image loaded for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+							qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 							currentPixmap = pm;
 							fileOk = true;
 						} else {
@@ -306,7 +380,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							} else {
 								currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 								if ( !qmc2RetryLoadingImages )
-									qmc2ImagePixmapCache.insert(onBehalfOf, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+									qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
+								//printf("Folder: Using ghost image for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
 								fileOk = false;
 							}
 						}
@@ -330,7 +405,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 
 QString ImageWidget::primaryPathFor(QString gameName)
 {
-	if ( !useZip() ) {
+	if ( !useZip() && !useSevenZip() ) {
 		QStringList fl = imageDir().split(";", QString::SkipEmptyParts);
 		QString baseDirectory;
 		if ( fl.count() > 0 )
@@ -342,7 +417,7 @@ QString ImageWidget::primaryPathFor(QString gameName)
 
 bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
 {
-	if ( !useZip() ) {
+	if ( !useZip() && !useSevenZip() ) {
 		QString savePath = primaryPathFor(gameName);
 		if ( !savePath.isEmpty() ) {
 			bool goOn = true;
@@ -390,7 +465,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 	bool fileOk = true;
 
 	if ( useZip() ) {
-		// try loading image from ZIP(s)
+		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
 		int len, i;
 
@@ -457,6 +532,10 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 			if ( fileOk )
 				break;
 		}
+	} else if ( useSevenZip() ) {
+		// try loading image from (semicolon-separated) 7z archive(s)
+
+		// FIXME
 	} else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {

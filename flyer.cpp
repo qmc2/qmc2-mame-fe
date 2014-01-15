@@ -24,7 +24,12 @@ QString Flyer::imageDir()
 
 bool Flyer::useZip()
 {
-	return qmc2UseFlyerFile;
+	return qmc2UseFlyerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool Flyer::useSevenZip()
+{
+	return qmc2UseFlyerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
 bool Flyer::scaledImage()

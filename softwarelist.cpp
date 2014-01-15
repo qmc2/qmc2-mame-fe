@@ -3665,11 +3665,20 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	zoom = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapZoom", 100).toInt();
 
-	if ( qmc2UseSoftwareSnapFile ) {
+	if ( useZip() ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
 			snapFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
 			if ( snapFileMap[filePath] == NULL )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
+		}
+	} else if ( useSevenZip() ) {
+		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+			SevenZipFile *snapFile = new SevenZipFile(filePath);
+			if ( !snapFile->open() ) {
+				  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + snapFile->lastError());
+				  delete snapFile;
+			} else
+				snapFileMap7z[filePath] = snapFile;
 		}
 	}
 
@@ -3685,7 +3694,12 @@ SoftwareSnap::~SoftwareSnap()
 	if ( qmc2UseSoftwareSnapFile ) {
 		foreach (unzFile snapFile, snapFileMap)
 			unzClose(snapFile);
+		foreach (SevenZipFile *snapFile, snapFileMap7z) {
+			snapFile->close();
+			delete snapFile;
+		}
 		snapFileMap.clear();
+		snapFileMap7z.clear();
 	}
 }
 
@@ -3960,53 +3974,59 @@ void SoftwareSnap::loadSnapshot()
 
 	if ( !pmLoaded ) {
 		if ( qmc2UseSoftwareSnapFile ) {
-			// try loading image from ZIP(s)
-			if ( snapFileMap.isEmpty() ) {
-				foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
-					snapFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
-					if ( snapFileMap[filePath] == NULL )
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
-				}
-			}
-			foreach (unzFile snapFile, snapFileMap) {
-				if ( snapFile ) {
-					bool fileOk = true;
-					QByteArray imageData;
-					foreach (int format, activeFormats) {
-						QString formatName = ImageWidget::formatNames[format];
-						foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-							QString pathInZip = listName + "/" + entryName + "." + extension;
-							if ( unzLocateFile(snapFile, pathInZip.toLocal8Bit().constData(), 0) == UNZ_OK ) {
-								if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
-									char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-									int len;
-									while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-										for (int i = 0; i < len; i++)
-											imageData += imageBuffer[i];
-									}
-									unzCloseCurrentFile(snapFile);
-									fileOk = true;
-								} else
-									fileOk = false;
-							} else
-								fileOk = false;
-
-							if ( fileOk ) {
-								if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
-									pmLoaded = true;
-									qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
-									break;
-								}
-							}
-						}
-
-						if ( pmLoaded )
-							break;
+			if ( useZip() ) {
+				// try loading image from (semicolon-separated) ZIP archive(s)
+				if ( snapFileMap.isEmpty() ) {
+					foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+						snapFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+						if ( snapFileMap[filePath] == NULL )
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
 					}
 				}
+				foreach (unzFile snapFile, snapFileMap) {
+					if ( snapFile ) {
+						bool fileOk = true;
+						QByteArray imageData;
+						foreach (int format, activeFormats) {
+							QString formatName = ImageWidget::formatNames[format];
+							foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+								QString pathInZip = listName + "/" + entryName + "." + extension;
+								if ( unzLocateFile(snapFile, pathInZip.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+									if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
+										char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+										int len;
+										while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+											for (int i = 0; i < len; i++)
+												imageData += imageBuffer[i];
+										}
+										unzCloseCurrentFile(snapFile);
+										fileOk = true;
+									} else
+										fileOk = false;
+								} else
+									fileOk = false;
 
-				if ( pmLoaded )
-					break;
+								if ( fileOk ) {
+									if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+										pmLoaded = true;
+										qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+										break;
+									}
+								}
+							}
+
+							if ( pmLoaded )
+								break;
+						}
+					}
+
+					if ( pmLoaded )
+						break;
+				}
+			} else if ( useSevenZip() ) {
+				// try loading image from (semicolon-separated) 7z archive(s)
+
+				// FIXME
 			}
 		} else {
 			// try loading image from (semicolon-separated) software-snapshot folder(s)
@@ -4253,6 +4273,16 @@ void SoftwareSnap::reloadActiveFormats()
 		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
 	else for (int i = 0; i < imgFmts.count(); i++)
 		activeFormats << imgFmts[i].toInt();
+}
+
+bool SoftwareSnap::useZip()
+{
+	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool SoftwareSnap::useSevenZip()
+{
+	return qmc2UseSoftwareSnapFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
 SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
@@ -4529,7 +4559,12 @@ SoftwareSnapshot::~SoftwareSnapshot()
 	if ( qmc2UseSoftwareSnapFile ) {
 		foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap)
 			unzClose(snapFile);
+		foreach (SevenZipFile *snapFile, qmc2SoftwareSnap->snapFileMap7z) {
+			snapFile->close();
+			delete snapFile;
+		}
 		qmc2SoftwareSnap->snapFileMap.clear();
+		qmc2SoftwareSnap->snapFileMap7z.clear();
 	}
 }
 
@@ -4596,55 +4631,61 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 	currentSnapshotPixmap.imagePath.clear();
 
 	if ( qmc2UseSoftwareSnapFile ) {
-		// try loading image from ZIP(s)
-		if ( qmc2SoftwareSnap->snapFileMap.isEmpty() ) {
-			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
-				qmc2SoftwareSnap->snapFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
-				if ( qmc2SoftwareSnap->snapFileMap[filePath] == NULL )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
+		if ( qmc2SoftwareSnap->useZip() ) {
+			// try loading image from (semicolon-separated) ZIP archive(s)
+			if ( qmc2SoftwareSnap->snapFileMap.isEmpty() ) {
+				foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+					qmc2SoftwareSnap->snapFileMap[filePath] = unzOpen(filePath.toLocal8Bit());
+					if ( qmc2SoftwareSnap->snapFileMap[filePath] == NULL )
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(filePath));
+				}
 			}
-		}
-		foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap) {
-			if ( snapFile ) {
-				foreach (int format, activeFormats) {
-					QString formatName = ImageWidget::formatNames[format];
-					foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-						QByteArray imageData;
-						QString pathInZip = listName + "/" + entryName + "." + extension;
-						if ( unzLocateFile(snapFile, pathInZip.toLocal8Bit().constData(), 0) == UNZ_OK ) {
-							if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
-								char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-								int len;
-								while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
-									for (int i = 0; i < len; i++)
-										imageData += imageBuffer[i];
-								}
-								unzCloseCurrentFile(snapFile);
-								fileOk = true;
+			foreach (unzFile snapFile, qmc2SoftwareSnap->snapFileMap) {
+				if ( snapFile ) {
+					foreach (int format, activeFormats) {
+						QString formatName = ImageWidget::formatNames[format];
+						foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+							QByteArray imageData;
+							QString pathInZip = listName + "/" + entryName + "." + extension;
+							if ( unzLocateFile(snapFile, pathInZip.toLocal8Bit().constData(), 0) == UNZ_OK ) {
+								if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
+									char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+									int len;
+									while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+										for (int i = 0; i < len; i++)
+											imageData += imageBuffer[i];
+									}
+									unzCloseCurrentFile(snapFile);
+									fileOk = true;
+								} else
+									fileOk = false;
 							} else
 								fileOk = false;
-						} else
-							fileOk = false;
 
-						if ( fileOk ) {
-							if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
-								qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+							if ( fileOk ) {
+								if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+									qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+									break;
+								} else
+									fileOk = false;
+							}
+
+							if ( fileOk )
 								break;
-							} else
-								fileOk = false;
 						}
 
 						if ( fileOk )
 							break;
 					}
-
-					if ( fileOk )
-						break;
 				}
-			}
 
-			if ( fileOk )
-				break;
+				if ( fileOk )
+					break;
+			}
+		} else  if ( qmc2SoftwareSnap->useSevenZip() ) {
+			// try loading image from (semicolon-separated) 7z archive(s)
+
+			// FIXME
 		}
 	} else {
 		// try loading image from (semicolon-separated) software-snapshot folder(s)

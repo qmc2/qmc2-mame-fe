@@ -6,7 +6,7 @@ This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 
 #define kTopValue (1 << 24)
 
-Bool Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
+Bool7z Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
 {
   unsigned i;
   p->Code = 0;

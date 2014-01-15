@@ -24,7 +24,12 @@ QString Preview::imageDir()
 
 bool Preview::useZip()
 {
-	return qmc2UsePreviewFile;
+	return qmc2UsePreviewFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool Preview::useSevenZip()
+{
+	return qmc2UsePreviewFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
 bool Preview::scaledImage()

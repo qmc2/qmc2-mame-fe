@@ -24,7 +24,12 @@ QString Controller::imageDir()
 
 bool Controller::useZip()
 {
-	return qmc2UseControllerFile;
+	return qmc2UseControllerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
+}
+
+bool Controller::useSevenZip()
+{
+	return qmc2UseControllerFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
 }
 
 bool Controller::scaledImage()

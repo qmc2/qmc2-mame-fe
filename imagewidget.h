@@ -12,6 +12,7 @@
 #include <QGLWidget>
 #endif
 #include "unzip.h"
+#include "sevenzipfile.h"
 #include "macros.h"
 
 class ImagePixmap : public QPixmap
@@ -77,6 +78,7 @@ class ImageWidget : public QWidget
 
 	public:
 		QMap<QString, unzFile> imageFileMap;
+		QMap<QString, SevenZipFile*> imageFileMap7z;
 		ImagePixmap currentPixmap;
 		QMenu *contextMenu;
 		QString cacheKey;
@@ -103,6 +105,7 @@ class ImageWidget : public QWidget
 		virtual QString imageType() { return QString(); }
 		virtual int imageTypeNumeric() { return 0; }
 		virtual bool useZip() { return false; }
+		virtual bool useSevenZip() { return false; }
 		virtual bool scaledImage() { return false; }
 
 	protected:

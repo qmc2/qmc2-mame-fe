@@ -24,8 +24,14 @@ QString PCB::imageDir()
 
 bool PCB::useZip()
 {
-	return qmc2UsePCBFile;
+	return qmc2UsePCBFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFileType").toInt() == QMC2_IMG_FILETYPE_ZIP;
 }
+
+bool PCB::useSevenZip()
+{
+	return qmc2UsePCBFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBFileType").toInt() == QMC2_IMG_FILETYPE_7Z;
+}
+
 
 bool PCB::scaledImage()
 {

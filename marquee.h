@@ -20,6 +20,7 @@ class Marquee : public ImageWidget
 #endif
 		virtual int imageTypeNumeric() { return QMC2_IMGTYPE_MARQUEE; }
 		virtual bool useZip();
+		virtual bool useSevenZip();
 		virtual bool scaledImage();
 };
 
