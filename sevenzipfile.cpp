@@ -64,42 +64,6 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer)
     return sizeProcessed;
 }
 
-quint64 SevenZipFile::write(QString name, QByteArray *buffer)
-{
-    m_lastError.clear();
-
-    int index = indexOfFile(name);
-    if ( index >= 0 )
-        return write(index, buffer);
-    else {
-        m_lastError = tr("file name '%1' not found").arg(name);
-        emit error(lastError());
-        return 0;
-    }
-}
-
-quint64 SevenZipFile::write(uint /*index*/, QByteArray *buffer)
-{
-    m_lastError.clear();
-
-    if ( !isOpen() ) {
-        m_lastError = tr("archive not open");
-        emit error(lastError());
-        return 0;
-    }
-
-    if ( !buffer ) {
-        m_lastError = tr("null-buffer not allowed");
-        emit error(lastError());
-        return 0;
-    }
-
-    // FIXME
-    m_lastError = tr("7z encoding not supported yet");
-    emit error(lastError());
-    return 0;
-}
-
 int SevenZipFile::indexOfFile(QString name)
 {
     for (int i = 0; i < itemList().count(); i++)

@@ -58,8 +58,6 @@ public:
     QList<SevenZipMetaData> &itemList() { return m_itemList; }
     quint64 read(QString name, QByteArray *buffer);
     quint64 read(uint index, QByteArray *buffer);
-    quint64 write(QString name, QByteArray *buffer);
-    quint64 write(uint index, QByteArray *buffer);
     int indexOfFile(QString);
     int indexOfCrc(QString);
 
