@@ -6149,42 +6149,42 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4984"/>
+        <location filename="../../options.cpp" line="4977"/>
         <source>Axis %1:</source>
         <translation>Achse %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4993"/>
+        <location filename="../../options.cpp" line="4986"/>
         <source>Current value of axis %1</source>
         <translation>Aktueller Wert der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4997"/>
+        <location filename="../../options.cpp" line="4990"/>
         <source>DZ:</source>
         <translation>TZ:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4999"/>
+        <location filename="../../options.cpp" line="4992"/>
         <source>Deadzone of axis %1</source>
         <translation>Todeszone der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5005"/>
+        <location filename="../../options.cpp" line="4998"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5007"/>
+        <location filename="../../options.cpp" line="5000"/>
         <source>Sensitivity of axis %1</source>
         <translation>Empfindlichkeit der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4985"/>
+        <location filename="../../options.cpp" line="4978"/>
         <source>Reset calibration of axis %1</source>
         <translation>Kalibrierung der Achse %1 zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4980"/>
+        <location filename="../../options.cpp" line="4973"/>
         <source>Enable/disable axis %1</source>
         <translation>Achse %1 ein-/ausschalten</translation>
     </message>
@@ -6238,67 +6238,67 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="5228"/>
+        <location filename="../../options.cpp" line="5221"/>
         <source>A%1: %v</source>
         <translation>A%1: %v</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5229"/>
+        <location filename="../../options.cpp" line="5222"/>
         <source>Current value of axis %1</source>
         <translation>Aktueller Wert der Achse %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5239"/>
+        <location filename="../../options.cpp" line="5232"/>
         <source>B%1</source>
         <translation>K%1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5240"/>
+        <location filename="../../options.cpp" line="5233"/>
         <source>Current state of button %1</source>
         <translation>Aktueller Status von Knopf %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5250"/>
+        <location filename="../../options.cpp" line="5243"/>
         <source>H%1: 0</source>
         <translation>H%1: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5251"/>
+        <location filename="../../options.cpp" line="5244"/>
         <source>Current value of hat %1</source>
         <translation>Aktueller Wert von Coolie-Hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5261"/>
+        <location filename="../../options.cpp" line="5254"/>
         <source>T%1 DX: 0</source>
         <translation>T%1 DX: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5262"/>
+        <location filename="../../options.cpp" line="5255"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Aktuelles X-Delta von Trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5272"/>
+        <location filename="../../options.cpp" line="5265"/>
         <source>T%1 DY: 0</source>
         <translation>T%1 DY: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5273"/>
+        <location filename="../../options.cpp" line="5266"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Aktuelles Y-Delta von Trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5361"/>
+        <location filename="../../options.cpp" line="5354"/>
         <source>H%1: %2</source>
         <translation>H%1: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5395"/>
+        <location filename="../../options.cpp" line="5388"/>
         <source>T%1 DX: %2</source>
         <translation>T%1 DX: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="5396"/>
+        <location filename="../../options.cpp" line="5389"/>
         <source>T%1 DY: %2</source>
         <translation>T%1 DY: %2</translation>
     </message>
@@ -12356,9 +12356,9 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <location filename="../../options.cpp" line="3551"/>
         <location filename="../../options.cpp" line="3564"/>
         <location filename="../../options.cpp" line="3578"/>
-        <location filename="../../options.cpp" line="4055"/>
-        <location filename="../../options.cpp" line="4081"/>
-        <location filename="../../options.cpp" line="4339"/>
+        <location filename="../../options.cpp" line="4048"/>
+        <location filename="../../options.cpp" line="4074"/>
+        <location filename="../../options.cpp" line="4332"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -12704,7 +12704,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <location filename="../../options.ui" line="3574"/>
         <location filename="../../options.cpp" line="546"/>
         <location filename="../../options.cpp" line="547"/>
-        <location filename="../../options.cpp" line="4496"/>
+        <location filename="../../options.cpp" line="4489"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
@@ -13078,12 +13078,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4311"/>
+        <location filename="../../options.cpp" line="4304"/>
         <source>WARNING: shortcut map contains duplicates</source>
         <translation>WARNUNG: Tastaturkürzel-Definition enthält Duplikate</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4309"/>
+        <location filename="../../options.cpp" line="4302"/>
         <source>shortcut map is clean</source>
         <translation>Tastaturkürzel-Definition ist in Ordnung</translation>
     </message>
@@ -13147,7 +13147,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.cpp" line="3191"/>
-        <location filename="../../options.cpp" line="4339"/>
+        <location filename="../../options.cpp" line="4332"/>
         <source>Choose emulator executable file</source>
         <translation>Ausführbare Emulator Datei auswählen</translation>
     </message>
@@ -13299,10 +13299,10 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.ui" line="3682"/>
-        <location filename="../../options.cpp" line="4595"/>
-        <location filename="../../options.cpp" line="4622"/>
-        <location filename="../../options.cpp" line="4678"/>
-        <location filename="../../options.cpp" line="4767"/>
+        <location filename="../../options.cpp" line="4588"/>
+        <location filename="../../options.cpp" line="4615"/>
+        <location filename="../../options.cpp" line="4671"/>
+        <location filename="../../options.cpp" line="4760"/>
         <source>No joysticks found</source>
         <translation>Keine Joysticks gefunden</translation>
     </message>
@@ -13477,13 +13477,13 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
     </message>
     <message>
         <location filename="../../options.cpp" line="2855"/>
-        <location filename="../../options.cpp" line="4376"/>
+        <location filename="../../options.cpp" line="4369"/>
         <source>Custom IDs...</source>
         <translation>IDs festlegen...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2856"/>
-        <location filename="../../options.cpp" line="4377"/>
+        <location filename="../../options.cpp" line="4370"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable through the menu</source>
         <translation>Vordefinierte fremde IDs für diesen Emulator festlegen, diese können dann direkt aus dem Menü gestartet werden</translation>
     </message>
@@ -13506,7 +13506,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation type="obsolete">ZIP-komprimierte PCB-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4003"/>
+        <location filename="../../options.cpp" line="3996"/>
         <source>Choose software snap directory</source>
         <translation>Software Snapshot Verzeichnis auswählen</translation>
     </message>
@@ -13515,43 +13515,43 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation type="obsolete">ZIP-komprimierte Software Snapshot Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4041"/>
+        <location filename="../../options.cpp" line="4034"/>
         <source>Choose software notes folder</source>
         <translation>Ordner für SW-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4055"/>
+        <location filename="../../options.cpp" line="4048"/>
         <source>Choose software notes template</source>
         <translation>Vorlage für SW-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4055"/>
-        <location filename="../../options.cpp" line="4081"/>
+        <location filename="../../options.cpp" line="4048"/>
+        <location filename="../../options.cpp" line="4074"/>
         <source>HTML files (*.html *.htm)</source>
         <translation>HTML-Dateien (*.html *.htm)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4067"/>
+        <location filename="../../options.cpp" line="4060"/>
         <source>Choose system notes folder</source>
         <translation>Ordner für System-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4081"/>
+        <location filename="../../options.cpp" line="4074"/>
         <source>Choose system notes template</source>
         <translation>Vorlage für System-Notizen auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4606"/>
+        <location filename="../../options.cpp" line="4599"/>
         <source>ERROR: couldn&apos;t initialize SDL joystick support</source>
         <translation>FEHLER: konnte SDL Joystick Unterstützung nicht initialisieren</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4945"/>
+        <location filename="../../options.cpp" line="4938"/>
         <source>joystick map is clean</source>
         <translation>Joystick-Abbilding ist in Ordnung</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4947"/>
+        <location filename="../../options.cpp" line="4940"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation>WARNUNG: Joystick-Abbildung enthält Duplikate</translation>
     </message>
@@ -14400,36 +14400,35 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../options.cpp" line="3814"/>
         <location filename="../../options.cpp" line="3828"/>
         <location filename="../../options.cpp" line="3838"/>
-        <location filename="../../options.cpp" line="3852"/>
-        <location filename="../../options.cpp" line="3862"/>
-        <location filename="../../options.cpp" line="3876"/>
-        <location filename="../../options.cpp" line="3886"/>
-        <location filename="../../options.cpp" line="3900"/>
-        <location filename="../../options.cpp" line="3910"/>
-        <location filename="../../options.cpp" line="3925"/>
-        <location filename="../../options.cpp" line="3927"/>
-        <location filename="../../options.cpp" line="3939"/>
-        <location filename="../../options.cpp" line="3941"/>
-        <location filename="../../options.cpp" line="3956"/>
-        <location filename="../../options.cpp" line="3966"/>
-        <location filename="../../options.cpp" line="3980"/>
-        <location filename="../../options.cpp" line="3990"/>
-        <location filename="../../options.cpp" line="4018"/>
-        <location filename="../../options.cpp" line="4028"/>
+        <location filename="../../options.cpp" line="3851"/>
+        <location filename="../../options.cpp" line="3869"/>
+        <location filename="../../options.cpp" line="3879"/>
+        <location filename="../../options.cpp" line="3893"/>
+        <location filename="../../options.cpp" line="3903"/>
+        <location filename="../../options.cpp" line="3918"/>
+        <location filename="../../options.cpp" line="3920"/>
+        <location filename="../../options.cpp" line="3932"/>
+        <location filename="../../options.cpp" line="3934"/>
+        <location filename="../../options.cpp" line="3949"/>
+        <location filename="../../options.cpp" line="3959"/>
+        <location filename="../../options.cpp" line="3973"/>
+        <location filename="../../options.cpp" line="3983"/>
+        <location filename="../../options.cpp" line="4011"/>
+        <location filename="../../options.cpp" line="4021"/>
         <source>ZIP archives</source>
         <translation>ZIP Archive</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3804"/>
         <location filename="../../options.cpp" line="3828"/>
-        <location filename="../../options.cpp" line="3852"/>
-        <location filename="../../options.cpp" line="3876"/>
-        <location filename="../../options.cpp" line="3900"/>
-        <location filename="../../options.cpp" line="3925"/>
-        <location filename="../../options.cpp" line="3927"/>
-        <location filename="../../options.cpp" line="3956"/>
-        <location filename="../../options.cpp" line="3980"/>
-        <location filename="../../options.cpp" line="4018"/>
+        <location filename="../../options.cpp" line="3851"/>
+        <location filename="../../options.cpp" line="3869"/>
+        <location filename="../../options.cpp" line="3893"/>
+        <location filename="../../options.cpp" line="3918"/>
+        <location filename="../../options.cpp" line="3920"/>
+        <location filename="../../options.cpp" line="3949"/>
+        <location filename="../../options.cpp" line="3973"/>
+        <location filename="../../options.cpp" line="4011"/>
         <source>7z archives</source>
         <translation>7z Archive</translation>
     </message>
@@ -14438,22 +14437,21 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../options.cpp" line="3814"/>
         <location filename="../../options.cpp" line="3828"/>
         <location filename="../../options.cpp" line="3838"/>
-        <location filename="../../options.cpp" line="3852"/>
-        <location filename="../../options.cpp" line="3862"/>
-        <location filename="../../options.cpp" line="3876"/>
-        <location filename="../../options.cpp" line="3886"/>
-        <location filename="../../options.cpp" line="3900"/>
-        <location filename="../../options.cpp" line="3910"/>
-        <location filename="../../options.cpp" line="3925"/>
-        <location filename="../../options.cpp" line="3927"/>
-        <location filename="../../options.cpp" line="3939"/>
-        <location filename="../../options.cpp" line="3941"/>
-        <location filename="../../options.cpp" line="3956"/>
-        <location filename="../../options.cpp" line="3966"/>
-        <location filename="../../options.cpp" line="3980"/>
-        <location filename="../../options.cpp" line="3990"/>
-        <location filename="../../options.cpp" line="4018"/>
-        <location filename="../../options.cpp" line="4028"/>
+        <location filename="../../options.cpp" line="3851"/>
+        <location filename="../../options.cpp" line="3869"/>
+        <location filename="../../options.cpp" line="3879"/>
+        <location filename="../../options.cpp" line="3893"/>
+        <location filename="../../options.cpp" line="3903"/>
+        <location filename="../../options.cpp" line="3918"/>
+        <location filename="../../options.cpp" line="3920"/>
+        <location filename="../../options.cpp" line="3932"/>
+        <location filename="../../options.cpp" line="3934"/>
+        <location filename="../../options.cpp" line="3949"/>
+        <location filename="../../options.cpp" line="3959"/>
+        <location filename="../../options.cpp" line="3973"/>
+        <location filename="../../options.cpp" line="3983"/>
+        <location filename="../../options.cpp" line="4011"/>
+        <location filename="../../options.cpp" line="4021"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
@@ -14464,50 +14462,49 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Komprimierte Flyer-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3852"/>
-        <location filename="../../options.cpp" line="3862"/>
+        <location filename="../../options.cpp" line="3851"/>
         <source>Choose compressed icon file</source>
         <translation>Komprimierte Icon-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3876"/>
-        <location filename="../../options.cpp" line="3886"/>
+        <location filename="../../options.cpp" line="3869"/>
+        <location filename="../../options.cpp" line="3879"/>
         <source>Choose compressed cabinet file</source>
         <translation>Komprimierte Gehäuse-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3900"/>
-        <location filename="../../options.cpp" line="3910"/>
+        <location filename="../../options.cpp" line="3893"/>
+        <location filename="../../options.cpp" line="3903"/>
         <source>Choose compressed controller file</source>
         <translation>Komprimierte Controller-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3925"/>
-        <location filename="../../options.cpp" line="3939"/>
+        <location filename="../../options.cpp" line="3918"/>
+        <location filename="../../options.cpp" line="3932"/>
         <source>Choose compressed logo file</source>
         <translation>Komprimierte Logo Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3927"/>
-        <location filename="../../options.cpp" line="3941"/>
+        <location filename="../../options.cpp" line="3920"/>
+        <location filename="../../options.cpp" line="3934"/>
         <source>Choose compressed marquee file</source>
         <translation>Komprimierte Marquee Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3956"/>
-        <location filename="../../options.cpp" line="3966"/>
+        <location filename="../../options.cpp" line="3949"/>
+        <location filename="../../options.cpp" line="3959"/>
         <source>Choose compressed title file</source>
         <translation>Komprimierte Titel-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3980"/>
-        <location filename="../../options.cpp" line="3990"/>
+        <location filename="../../options.cpp" line="3973"/>
+        <location filename="../../options.cpp" line="3983"/>
         <source>Choose compressed PCB file</source>
         <translation>Komprimierte PCB-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4018"/>
-        <location filename="../../options.cpp" line="4028"/>
+        <location filename="../../options.cpp" line="4011"/>
+        <location filename="../../options.cpp" line="4021"/>
         <source>Choose compressed software snap file</source>
         <translation>Komprimierte Software Snapshot Datei auswählen</translation>
     </message>
@@ -14653,7 +14650,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../options.cpp" line="3358"/>
         <location filename="../../options.cpp" line="3432"/>
-        <location filename="../../options.cpp" line="4351"/>
+        <location filename="../../options.cpp" line="4344"/>
         <source>Choose working directory</source>
         <translation>Arbeitsverzeichnis auswählen</translation>
     </message>
@@ -19057,115 +19054,111 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <name>SevenZipFile</name>
     <message>
         <location filename="../../sevenzipfile.cpp" line="32"/>
-        <location filename="../../sevenzipfile.cpp" line="75"/>
         <source>file name &apos;%1&apos; not found</source>
         <translation>Dateiname &apos;%1&apos; nicht gefunden</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="43"/>
-        <location filename="../../sevenzipfile.cpp" line="86"/>
         <source>archive not open</source>
         <translation>Archiv nicht geöffnet</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="49"/>
-        <location filename="../../sevenzipfile.cpp" line="92"/>
         <source>null-buffer not allowed</source>
         <translation>Null-Puffer nicht erlaubt</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="98"/>
         <source>7z encoding not supported yet</source>
-        <translation>7z Encodierung wird noch nicht unterstützt</translation>
+        <translation type="obsolete">7z Encodierung wird noch nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="123"/>
+        <location filename="../../sevenzipfile.cpp" line="87"/>
         <source>no error</source>
         <translation>kein Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="125"/>
+        <location filename="../../sevenzipfile.cpp" line="89"/>
         <source>incorrect data</source>
         <translation>ungültige Daten</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="127"/>
+        <location filename="../../sevenzipfile.cpp" line="91"/>
         <source>out of memory</source>
         <translation>Speicherplatz reicht nicht aus</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="129"/>
+        <location filename="../../sevenzipfile.cpp" line="93"/>
         <source>incorrect CRC</source>
         <translation>CRC ungültig</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="131"/>
+        <location filename="../../sevenzipfile.cpp" line="95"/>
         <source>unsupported compression</source>
         <translation>nicht unterstützte Kompression</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="133"/>
+        <location filename="../../sevenzipfile.cpp" line="97"/>
         <source>incorrect properties</source>
         <translation>ungültige Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="135"/>
+        <location filename="../../sevenzipfile.cpp" line="99"/>
         <source>premature end-of-file (input)</source>
         <translation>vorzeitiges Dateiende (Eingabe)</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="137"/>
+        <location filename="../../sevenzipfile.cpp" line="101"/>
         <source>premature end-of-file (output)</source>
         <translation>vorzeitiges Dateiende (Ausgabe)</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="139"/>
+        <location filename="../../sevenzipfile.cpp" line="103"/>
         <source>failed reading</source>
         <translation>Lesen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="141"/>
+        <location filename="../../sevenzipfile.cpp" line="105"/>
         <source>failed writing</source>
         <translation>Schreiben fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="143"/>
+        <location filename="../../sevenzipfile.cpp" line="107"/>
         <source>failed signalling progress</source>
         <translation>Fortschritts-Signalisierung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="145"/>
+        <location filename="../../sevenzipfile.cpp" line="109"/>
         <source>fatal error</source>
         <translation>fataler Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="147"/>
+        <location filename="../../sevenzipfile.cpp" line="111"/>
         <source>thread error</source>
         <translation>Thread Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="149"/>
+        <location filename="../../sevenzipfile.cpp" line="113"/>
         <source>invalid archive structure</source>
         <translation>falsche Archiv Struktur</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="151"/>
+        <location filename="../../sevenzipfile.cpp" line="115"/>
         <source>invalid header structure</source>
         <translation>falsche Header Struktur</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="153"/>
+        <location filename="../../sevenzipfile.cpp" line="117"/>
         <source>unknown error</source>
         <translation>unbekannter Fehler</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="168"/>
+        <location filename="../../sevenzipfile.cpp" line="132"/>
         <source>no file name specified</source>
         <translation>kein Dateiname angegeben</translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="175"/>
-        <location filename="../../sevenzipfile.cpp" line="195"/>
+        <location filename="../../sevenzipfile.cpp" line="139"/>
+        <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
         <translation>kann Archiv &apos;%1&apos; nicht öffnen</translation>
     </message>
