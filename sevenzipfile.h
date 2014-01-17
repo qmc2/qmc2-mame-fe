@@ -8,6 +8,9 @@
 #include <QString>
 #include <QDateTime>
 #include <QByteArray>
+#include <QThread>
+#include <QWaitCondition>
+#include <QMutex>
 
 extern "C" {
 #include "lzma/7z.h"
@@ -43,6 +46,51 @@ private:
     QString m_crc;
 };
 
+class SevenZipExtractorThread : public QThread
+{
+    Q_OBJECT
+
+public:
+    explicit SevenZipExtractorThread(QObject *parent = 0);
+    ~SevenZipExtractorThread();
+
+    bool quitFlag() { return m_quitFlag; }
+    void setQuitFlag(bool flag) { m_quitFlag = flag; }
+    bool isActive() { return m_active; }
+    int fileCount() { return m_fileCount; }
+    void setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32 *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp);
+    SRes result() { return m_result; }
+    QMutex &waitMutex() { return m_waitMutex; }
+    QWaitCondition &waitCondition() { return m_waitCondition; }
+
+public slots:
+
+protected:
+    void run();
+
+signals:
+    void extracted(uint);
+    void failed(uint);
+
+private:
+    bool m_quitFlag;
+    bool m_active;
+    int m_fileCount;
+    CSzArEx *m_db;
+    ILookInStream *m_lookInStream;
+    uint m_fileIndex;
+    UInt32 *m_blockIndex;
+    Byte **m_buffer;
+    size_t *m_bufferSize;
+    size_t *m_offset;
+    size_t *m_sizeProcessed;
+    ISzAlloc *m_allocImp;
+    ISzAlloc *m_allocTempImp;
+    SRes m_result;
+    QMutex m_waitMutex;
+    QWaitCondition m_waitCondition;
+};
+
 class SevenZipFile : public QObject
 {
     Q_OBJECT
@@ -55,20 +103,25 @@ public:
     QString lastError() { return m_lastError; }
     bool hasError() { return !m_lastError.isEmpty(); }
     bool isOpen() { return m_isOpen; }
+    bool isFillingDictionary() { return m_fillingDictionary; }
     QList<SevenZipMetaData> &itemList() { return m_itemList; }
     quint64 read(QString name, QByteArray *buffer);
-    quint64 read(uint index, QByteArray *buffer);
-    int indexOfFile(QString);
-    int indexOfCrc(QString);
+    quint64 read(uint index, QByteArray *buffer, bool *async = 0);
+    int indexOfName(QString name);
+    int indexOfCrc(QString crc);
 
 signals:
     void opened();
     void closed();
     void error(QString);
+    void dataReady();
 
 public slots:
     bool open(QString fileName = QString());
     void close();
+
+private slots:
+    void asyncExtractionFinished(uint index);
 
 private:
     QDateTime convertFileTime(const CNtfsFileTime *ft);
@@ -81,14 +134,18 @@ private:
     ISzAlloc m_allocTempImp;
     CFileInStream m_archiveStream;
     CLookToRead m_lookStream;
-    UInt32 m_readBlockIndex;
-    size_t m_readBufferSize;
-    Byte *m_readBuffer;
-    QMap<uint, size_t> m_readOffsetMap;
+    UInt32 m_blockIndex;
+    size_t m_bufferSize;
+    size_t m_sizeProcessed;
+    Byte *m_buffer;
+    QMap<uint, size_t> m_offsetMap;
     QList<SevenZipMetaData> m_itemList;
     QString m_fileName;
     QString m_lastError;
+    SevenZipExtractorThread *m_extractor;
     bool m_isOpen;
+    bool m_firstExtraction;
+    bool m_fillingDictionary;
 };
 
 #endif // SEVENZIPFILE_H

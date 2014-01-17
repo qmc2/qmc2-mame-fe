@@ -8,6 +8,7 @@
 #include <QClipboard>
 #include <QCache>
 #include <QTreeWidgetItem>
+#include <QPainterPath>
 
 #include "settings.h"
 #include "imagewidget.h"
@@ -285,11 +286,21 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 				if ( fileName )
 					*fileName = gameFile;
 
+				bool isFillingDictionary = false;
 				foreach (SevenZipFile *imageFile, imageFileMap7z) {
-					int index = imageFile->indexOfFile(gameFile);
+					int index = imageFile->indexOfName(gameFile);
 					if ( index >= 0 ) {
-						imageFile->read(index, &imageData);
-						fileOk = !imageFile->hasError();
+						m_async = true;
+						disconnect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
+						quint64 readLength = imageFile->read(index, &imageData, &m_async);
+						if ( readLength == 0 && m_async ) {
+							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+							qmc2ImagePixmapCache.remove(cacheKey);
+							isFillingDictionary = true;
+							fileOk = true;
+							connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
+						} else
+							fileOk = !imageFile->hasError();
 					} else
 						fileOk = false;
 
@@ -313,9 +324,27 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-							if ( !qmc2RetryLoadingImages )
+							if ( !qmc2RetryLoadingImages && !isFillingDictionary )
 								qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(currentPixmap), currentPixmap.toImage().byteCount()); 
-							//printf("7z: Using ghost image for %s\n", cacheKey.toLocal8Bit().constData()); fflush(stdout);
+							else {
+								QPainter p;
+								QString message = tr("Decompressing archive, please wait...");
+								p.begin(&currentPixmap);
+								p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
+								QFont f(qApp->font());
+								f.setWeight(QFont::Bold);
+								QFontMetrics fm(f);
+								int adjustment = fm.height() / 2;
+								p.setFont(f);
+								QRect outerRect = p.boundingRect(currentPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
+								QPainterPath pp;
+								pp.addRoundedRect(outerRect, 5, 5);
+								p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+								p.setPen(QColor(255, 255, 0, 255));
+								p.drawText(currentPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
+								p.end();
+							}
+							//printf("7z: Using ghost image for %s%s\n", cacheKey.toLocal8Bit().constData(), isFillingDictionary ? " (filling up dictionary)" : ""); fflush(stdout);
 						}
 					}
 				}
@@ -613,6 +642,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 	if ( drawGameName ) {
 		// draw game/machine title
+		p->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 		QString title = qmc2GamelistDescriptionMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
 		QFont f(qApp->font());
 		f.setWeight(QFont::Bold);
@@ -626,8 +656,9 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 		r = p->boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, title);
 		r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
 		r.setBottom(rect().bottom());
-		p->setPen(QColor(255, 255, 255, 0));
-		p->fillRect(r, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+		QPainterPath pp;
+		pp.addRoundedRect(r, 5, 5);
+		p->fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
 		p->setPen(QPen(QColor(255, 255, 255, 255)));
 		p->drawText(r, Qt::AlignCenter | Qt::TextWordWrap, title);
 	}

@@ -7,6 +7,7 @@
 #include <QInputDialog>
 #include <QWidgetAction>
 #include <QLocale>
+#include <QPainterPath>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -4748,6 +4749,7 @@ void SoftwareSnapshot::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 	if ( qmc2ShowGameName ) {
 		// draw entry title
+		p->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 		QString title = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
 		QFont f(qApp->font());
 		f.setWeight(QFont::Bold);
@@ -4761,8 +4763,9 @@ void SoftwareSnapshot::drawCenteredImage(QPixmap *pm, QPainter *p)
 		r = p->boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, title);
 		r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
 		r.setBottom(rect().bottom());
-		p->setPen(QPen(QColor(255, 255, 255, 0)));
-		p->fillRect(r, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+		QPainterPath pp;
+		pp.addRoundedRect(r, 5, 5);
+		p->fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
 		p->setPen(QPen(QColor(255, 255, 255, 255)));
 		p->drawText(r, Qt::AlignCenter | Qt::TextWordWrap, title);
 	}
