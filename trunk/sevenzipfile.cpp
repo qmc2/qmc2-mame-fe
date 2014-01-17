@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QTest>
 
 #include "sevenzipfile.h"
 
@@ -6,26 +7,29 @@ SevenZipFile::SevenZipFile(QString fileName, QObject *parent) :
     QObject(parent)
 {
     m_fileName = fileName;
-    m_isOpen = false;
+    m_isOpen = m_fillingDictionary = false;
+    m_firstExtraction = true;
     m_allocImp.Alloc = SzAlloc;
     m_allocImp.Free = SzFree;
     m_allocTempImp.Alloc = SzAllocTemp;
     m_allocTempImp.Free = SzFreeTemp;
-    m_readBlockIndex = 0xFFFFFFFF;
-    m_readBuffer = 0;
-    m_readBufferSize = 0;
+    m_sizeProcessed = 0;
+    m_blockIndex = 0xFFFFFFFF;
+    m_buffer = 0;
+    m_bufferSize = 0;
+    m_extractor = 0;
 }
 
 SevenZipFile::~SevenZipFile()
 {
-    IAlloc_Free(&m_allocImp, m_readBuffer);
+    IAlloc_Free(&m_allocImp, m_buffer);
 }
 
 quint64 SevenZipFile::read(QString name, QByteArray *buffer)
 {
     m_lastError.clear();
 
-    int index = indexOfFile(name);
+    int index = indexOfName(name);
     if ( index >= 0 )
         return read(index, buffer);
     else {
@@ -35,7 +39,7 @@ quint64 SevenZipFile::read(QString name, QByteArray *buffer)
     }
 }
 
-quint64 SevenZipFile::read(uint index, QByteArray *buffer)
+quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 {
     m_lastError.clear();
 
@@ -51,20 +55,79 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer)
         return 0;
     }
 
-    buffer->clear();
-    size_t sizeProcessed = 0;
-    SRes result = SzArEx_Extract(db(), &m_lookStream.s, index, &m_readBlockIndex, &m_readBuffer, &m_readBufferSize, &m_readOffsetMap[index], &sizeProcessed, &m_allocImp, &m_allocTempImp);
-    if ( result == SZ_OK )
-        buffer->setRawData((const char *)(m_readBuffer + m_readOffsetMap[index]), sizeProcessed);
-    else {
-        m_lastError = errorCodeToString(result);
-        emit error(lastError());
-        sizeProcessed = -1;
+    if ( m_firstExtraction ) {
+        // do the first extraction in a separate thread because 7z decompresses the *complete* LZMA stream at once (and returns pointers to already decompressed data on subsequent extractions)
+        if ( !m_extractor ) {
+            m_extractor = new SevenZipExtractorThread(this);
+            connect(m_extractor, SIGNAL(extracted(uint)), this, SLOT(asyncExtractionFinished(uint)));
+            connect(m_extractor, SIGNAL(failed(uint)), this, SLOT(asyncExtractionFinished(uint)));
+            m_extractor->setParams(db(), &m_lookStream.s, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
+        }
+        if ( async && *async ) {
+            if ( m_extractor->isActive() )
+                return 0;
+            if ( m_extractor->fileCount() == 0 ) {
+                buffer->clear();
+                m_sizeProcessed = 0;
+                m_fillingDictionary = true;
+                m_extractor->waitCondition().wakeAll();
+            }
+            if ( isFillingDictionary() )
+                return 0;
+            if ( m_extractor->result() == SZ_OK )
+                buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
+            else {
+                m_lastError = tr("extraction of file '%1' (index %2) failed").arg(itemList()[index].name()).arg(index) +  " - " + errorCodeToString(m_extractor->result());
+                emit error(lastError());
+                m_sizeProcessed = 0;
+            }
+            delete m_extractor;
+            m_extractor = 0;
+            m_firstExtraction = false;
+            *async = false;
+            emit dataReady();
+            return m_sizeProcessed;
+        } else {
+            m_fillingDictionary = true;
+            buffer->clear();
+            m_sizeProcessed = 0;
+            while ( isFillingDictionary() ) {
+                m_extractor->waitCondition().wakeAll();
+                QTest::qWait(25);
+                qApp->processEvents();
+            }
+            if ( m_extractor->result() == SZ_OK )
+                buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
+            else {
+                m_lastError = tr("extraction of file '%1' (index %2) failed").arg(itemList()[index].name()).arg(index) +  " - " + errorCodeToString(m_extractor->result());
+                emit error(lastError());
+                m_sizeProcessed = 0;
+            }
+            delete m_extractor;
+            m_extractor = 0;
+            m_firstExtraction = false;
+            if ( async )
+                *async = false;
+            return m_sizeProcessed;
+        }
+    } else {
+        buffer->clear();
+        m_sizeProcessed = 0;
+        SRes result = SzArEx_Extract(db(), &m_lookStream.s, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
+        if ( result == SZ_OK )
+            buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
+        else {
+            m_lastError = tr("extraction of file '%1' (index %2) failed").arg(itemList()[index].name()).arg(index) +  " - " + errorCodeToString(result);
+            emit error(lastError());
+            m_sizeProcessed = 0;
+        }
+        if ( async )
+            *async = false;
+        return m_sizeProcessed;
     }
-    return sizeProcessed;
 }
 
-int SevenZipFile::indexOfFile(QString name)
+int SevenZipFile::indexOfName(QString name)
 {
     for (int i = 0; i < itemList().count(); i++)
         if ( itemList()[i].name() == name )
@@ -169,10 +232,15 @@ void SevenZipFile::close()
     if ( isOpen() ) {
         SzArEx_Free(db(), &m_allocImp);
         File_Close(&m_archiveStream.file);
-	itemList().clear();
+        itemList().clear();
         m_isOpen = false;
         emit closed();
     }
+}
+
+void SevenZipFile::asyncExtractionFinished(uint /*index*/)
+{
+    m_fillingDictionary = false;
 }
 
 #define QMC2_SEVENZIP_PERIOD_4       (4 * 365 + 1)
@@ -234,7 +302,6 @@ void SevenZipFile::createItemList()
     if ( !isOpen() )
         return;
 
-    size_t offset = 0;
     for (uint i = 0; i < db()->db.NumFiles; i++)
     {
         const CSzFileItem *fileItem = db()->db.Files + i;
@@ -254,5 +321,57 @@ void SevenZipFile::createItemList()
         itemList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
         if ( i % QMC2_SEVENZIP_DB_READ_RESPONSE == 0 )
             qApp->processEvents();
+    }
+}
+
+SevenZipExtractorThread::SevenZipExtractorThread(QObject *parent) :
+    QThread(parent)
+{
+    setQuitFlag(false);
+    m_result = SZ_OK;
+    m_active = false;
+    m_fileCount = 0;
+    start();
+}
+
+SevenZipExtractorThread::~SevenZipExtractorThread()
+{
+    setQuitFlag(true);
+    waitCondition().wakeAll();
+    wait();
+    quit();
+}
+
+void SevenZipExtractorThread::setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32 *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp)
+{
+    m_db = db;
+    m_lookInStream = lookInStream;
+    m_fileIndex = fileIndex;
+    m_blockIndex = blockIndex;
+    m_buffer = buffer;
+    m_bufferSize = bufferSize;
+    m_offset = offset;
+    m_sizeProcessed = sizeProcessed;
+    m_allocImp = allocImp;
+    m_allocTempImp = allocTempImp;
+}
+
+void SevenZipExtractorThread::run()
+{
+    while ( !quitFlag() ) {
+        m_active = false;
+        waitMutex().lock();
+        waitCondition().wait(&m_waitMutex);
+        waitMutex().unlock();
+        m_active = true;
+        m_fileCount++;
+        if ( !quitFlag() ) {
+            // we assume that all 7z params are set when we are triggered to go on!
+            m_result = SzArEx_Extract(m_db, m_lookInStream, m_fileIndex, m_blockIndex, m_buffer, m_bufferSize, m_offset, m_sizeProcessed, m_allocImp, m_allocTempImp);
+            if ( result() == SZ_OK )
+                emit extracted(m_fileIndex);
+            else
+                emit failed(m_fileIndex);
+        }
     }
 }

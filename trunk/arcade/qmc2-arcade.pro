@@ -188,6 +188,8 @@ macx {
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += gui quick qml testlib
+} else {
+    CONFIG += qtestlib
 }
 
 QT += svg
