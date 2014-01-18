@@ -14,7 +14,6 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
-#include "sevenzipfile.h"
 #include "macros.h"
 
 // external global variables
@@ -571,10 +570,10 @@ void SoftwareList::on_comboBoxDeviceConfiguration_currentIndexChanged(int index)
 #endif
 }
 
-QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStringList *mountList)
+QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface, QStringList *mountList)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::lookupMountDevice(QString device = %1, QString interface = %2, QStringList *mountList = %3)").arg(device).arg(interface).arg((qulonglong)mountList));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::lookupMountDevice(QString device = %1, QString deviceInterface = %2, QStringList *mountList = %3)").arg(device).arg(deviceInterface).arg((qulonglong)mountList));
 #endif
 
 	static QString softwareListDeviceName;
@@ -684,7 +683,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	}
 #endif
 
-	QStringList briefNames = deviceInstanceMap[interface];
+	QStringList briefNames = deviceInstanceMap[deviceInterface];
 	briefNames.sort();
 
 	if ( briefNames.contains(device) )
