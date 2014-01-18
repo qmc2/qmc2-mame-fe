@@ -309,6 +309,9 @@
 #define QMC2_IMG_FILETYPE_ZIP			0
 #define QMC2_IMG_FILETYPE_7Z			1
 
+// retry loading images from 7z archives every how many milliseconds (when the dictionary is being filled up)
+#define QMC2_IMG_7Z_DICT_FILL_DELAY		250
+
 // search delay in milliseconds (so it doesn't hamper typing)
 #define QMC2_SEARCH_DELAY			250
 
