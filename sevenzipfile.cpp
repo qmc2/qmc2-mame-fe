@@ -85,7 +85,6 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
             m_extractor = 0;
             m_firstExtraction = false;
             *async = false;
-            emit dataReady();
             return m_sizeProcessed;
         } else {
             m_fillingDictionary = true;
@@ -241,6 +240,7 @@ void SevenZipFile::close()
 void SevenZipFile::asyncExtractionFinished(uint /*index*/)
 {
     m_fillingDictionary = false;
+    emit dataReady();
 }
 
 #define QMC2_SEVENZIP_PERIOD_4       (4 * 365 + 1)
