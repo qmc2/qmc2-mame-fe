@@ -223,14 +223,7 @@ Options::Options(QWidget *parent)
   cancelClicked = false;
 
 #if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when "7z artwork support" is functional
-  comboBoxPreviewFileType->setVisible(false);
-  comboBoxFlyerFileType->setVisible(false);
-  comboBoxCabinetFileType->setVisible(false);
-  comboBoxControllerFileType->setVisible(false);
-  comboBoxMarqueeFileType->setVisible(false);
-  comboBoxTitleFileType->setVisible(false);
-  comboBoxPCBFileType->setVisible(false);
+  // FIXME: remove WIP clause when "7z support for software-snaps" is functional
   comboBoxSoftwareSnapFileType->setVisible(false);
 #endif
 
@@ -3804,7 +3797,6 @@ void Options::on_toolButtonBrowsePreviewFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePreviewFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed preview file"), lineEditPreviewFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditPreviewFile->setText(s);
@@ -3814,12 +3806,6 @@ void Options::on_toolButtonBrowsePreviewFile_clicked()
 			comboBoxPreviewFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed preview file"), lineEditPreviewFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditPreviewFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseFlyerFile_clicked()
@@ -3828,7 +3814,6 @@ void Options::on_toolButtonBrowseFlyerFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFlyerFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed flyer file"), lineEditFlyerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditFlyerFile->setText(s);
@@ -3838,12 +3823,6 @@ void Options::on_toolButtonBrowseFlyerFile_clicked()
 			comboBoxFlyerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed flyer file"), lineEditFlyerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditFlyerFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseIconFile_clicked()
@@ -3869,7 +3848,6 @@ void Options::on_toolButtonBrowseCabinetFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCabinetFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed cabinet file"), lineEditCabinetFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditCabinetFile->setText(s);
@@ -3879,12 +3857,6 @@ void Options::on_toolButtonBrowseCabinetFile_clicked()
 			comboBoxCabinetFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed cabinet file"), lineEditCabinetFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditCabinetFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseControllerFile_clicked()
@@ -3893,7 +3865,6 @@ void Options::on_toolButtonBrowseControllerFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseControllerFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed controller file"), lineEditControllerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditControllerFile->setText(s);
@@ -3903,12 +3874,6 @@ void Options::on_toolButtonBrowseControllerFile_clicked()
 			comboBoxControllerFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed controller file"), lineEditControllerFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditControllerFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseMarqueeFile_clicked()
@@ -3917,7 +3882,6 @@ void Options::on_toolButtonBrowseMarqueeFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMarqueeFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 #if defined(QMC2_EMUTYPE_MESS)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed logo file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 #else
@@ -3931,16 +3895,6 @@ void Options::on_toolButtonBrowseMarqueeFile_clicked()
 			comboBoxMarqueeFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-#if defined(QMC2_EMUTYPE_MESS)
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed logo file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed marquee file"), lineEditMarqueeFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-#endif
-	if ( !s.isNull() )
-		lineEditMarqueeFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseTitleFile_clicked()
@@ -3949,7 +3903,6 @@ void Options::on_toolButtonBrowseTitleFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTitleFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed title file"), lineEditTitleFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditTitleFile->setText(s);
@@ -3959,12 +3912,6 @@ void Options::on_toolButtonBrowseTitleFile_clicked()
 			comboBoxTitleFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed title file"), lineEditTitleFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditTitleFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowsePCBFile_clicked()
@@ -3973,7 +3920,6 @@ void Options::on_toolButtonBrowsePCBFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed PCB file"), lineEditPCBFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditPCBFile->setText(s);
@@ -3983,12 +3929,6 @@ void Options::on_toolButtonBrowsePCBFile_clicked()
 			comboBoxPCBFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed PCB file"), lineEditPCBFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditPCBFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()
@@ -4012,6 +3952,7 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 #endif
 
 #if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when "7z support for software-snaps" is functional
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditSoftwareSnapFile->setText(s);

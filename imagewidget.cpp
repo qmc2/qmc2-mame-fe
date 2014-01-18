@@ -354,6 +354,8 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 								p.end();
 							}
 							//printf("7z: Using ghost image for %s%s\n", cacheKey.toLocal8Bit().constData(), isFillingDictionary ? " (filling up dictionary)" : ""); fflush(stdout);
+							if ( isFillingDictionary )
+								QTimer::singleShot(QMC2_IMG_7Z_DICT_FILL_DELAY, this, SLOT(update()));
 						}
 					}
 				}
