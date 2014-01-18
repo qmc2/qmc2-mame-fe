@@ -129,6 +129,7 @@ class SoftwareSnap : public QWidget
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();
+		void sevenZipDataReady();
 		void zoomIn();
 		void zoomOut();
 		void resetZoom();

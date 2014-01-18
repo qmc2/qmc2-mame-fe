@@ -2164,8 +2164,10 @@ void Options::on_pushButtonApply_clicked()
 					  if ( !imageFile->open() ) {
 						  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file %2").arg(iw->imageType()).arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
 						  delete imageFile;
-					  } else
+					  } else {
 						  iw->imageFileMap7z[filePath] = imageFile;
+						  connect(imageFile, SIGNAL(dataReady()), iw, SLOT(sevenZipDataReady()));
+					  }
 				  }
 			  }
 		  }
@@ -2197,8 +2199,10 @@ void Options::on_pushButtonApply_clicked()
 				  if ( !imageFile->open() ) {
 					  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + imageFile->lastError());
 					  delete imageFile;
-				  } else
+				  } else {
 					  qmc2SoftwareSnap->snapFileMap7z[filePath] = imageFile;
+					  connect(imageFile, SIGNAL(dataReady()), qmc2SoftwareSnap, SLOT(sevenZipDataReady()));
+				  }
 			  }
 		  }
 	  }

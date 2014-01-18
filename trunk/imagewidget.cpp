@@ -91,11 +91,12 @@ ImageWidget::ImageWidget(QWidget *parent)
 	} else if ( useSevenZip() ) {
 		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
 			SevenZipFile *imageFile = new SevenZipFile(filePath);
-			connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
 			if ( !imageFile->open() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
-			else
+			else {
+				connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
 				imageFileMap7z[filePath] = imageFile;
+			}
 		}
 	}
 
@@ -199,9 +200,9 @@ void ImageWidget::refresh()
 
 void ImageWidget::sevenZipDataReady()
 {
-//#ifdef QMC2_DEBUG
+#ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::sevenZipDataReady()");
-//#endif
+#endif
 
 	update();
 }

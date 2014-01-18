@@ -3678,8 +3678,10 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 			if ( !snapFile->open() ) {
 				  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + snapFile->lastError());
 				  delete snapFile;
-			} else
+			} else {
 				snapFileMap7z[filePath] = snapFile;
+				connect(snapFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
+			}
 		}
 	}
 
@@ -4173,8 +4175,17 @@ void SoftwareSnap::refresh()
 {
 	if ( !myCacheKey.isEmpty() ) {
 		qmc2ImagePixmapCache.remove(myCacheKey);
-		repaint();
+		update();
 	}
+}
+
+void SoftwareSnap::sevenZipDataReady()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::sevenZipDataReady()");
+#endif
+
+	update();
 }
 
 void SoftwareSnap::resetSnapForced()
@@ -4615,7 +4626,7 @@ void SoftwareSnapshot::refresh()
 {
 	if ( !myCacheKey.isEmpty() ) {
 		qmc2ImagePixmapCache.remove(myCacheKey);
-		repaint();
+		update();
 	}
 }
 
