@@ -91,6 +91,7 @@ ImageWidget::ImageWidget(QWidget *parent)
 	} else if ( useSevenZip() ) {
 		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
 			SevenZipFile *imageFile = new SevenZipFile(filePath);
+			connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
 			if ( !imageFile->open() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else
@@ -196,6 +197,15 @@ void ImageWidget::refresh()
 	}
 }
 
+void ImageWidget::sevenZipDataReady()
+{
+//#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageWidget::sevenZipDataReady()");
+//#endif
+
+	update();
+}
+
 bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
 {
 #ifdef QMC2_DEBUG
@@ -291,14 +301,12 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 					int index = imageFile->indexOfName(gameFile);
 					if ( index >= 0 ) {
 						m_async = true;
-						disconnect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
 						quint64 readLength = imageFile->read(index, &imageData, &m_async);
 						if ( readLength == 0 && m_async ) {
 							currentPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
 							qmc2ImagePixmapCache.remove(cacheKey);
 							isFillingDictionary = true;
 							fileOk = true;
-							connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
 						} else
 							fileOk = !imageFile->hasError();
 					} else

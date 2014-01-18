@@ -122,7 +122,7 @@ class ImageWidget : public QWidget
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();
-		void sevenZipDataReady() { update(); };
+		void sevenZipDataReady();
 
 	private:
 		bool m_async;

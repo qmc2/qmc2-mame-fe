@@ -14,6 +14,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "iconlineedit.h"
+#include "sevenzipfile.h"
 #include "macros.h"
 
 // external global variables
