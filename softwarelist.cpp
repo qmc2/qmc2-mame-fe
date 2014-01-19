@@ -3611,6 +3611,7 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
+	setAttribute(Qt::WA_TranslucentBackground);
 	setFocusPolicy(Qt::NoFocus);
 	snapForcedResetTimer.setSingleShot(true);
 	connect(&snapForcedResetTimer, SIGNAL(timeout()), this, SLOT(resetSnapForced()));
@@ -3969,6 +3970,7 @@ void SoftwareSnap::loadSnapshot()
 
 	ImagePixmap pm;
 	bool pmLoaded = false;
+	bool drawFrame = true;
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
 	if ( cpm ) {
 		pmLoaded = true;
@@ -4028,8 +4030,78 @@ void SoftwareSnap::loadSnapshot()
 				}
 			} else if ( useSevenZip() ) {
 				// try loading image from (semicolon-separated) 7z archive(s)
+				if ( snapFileMap7z.isEmpty() ) {
+					foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+						SevenZipFile *snapFile = new SevenZipFile(filePath);
+						if ( !snapFile->open() ) {
+							  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + snapFile->lastError());
+							  delete snapFile;
+						} else {
+							snapFileMap7z[filePath] = snapFile;
+							connect(snapFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
+						}
+					}
+				}
+				foreach (SevenZipFile *snapFile, snapFileMap7z) {
+					if ( snapFile ) {
+						bool fileOk = true;
+						QByteArray imageData;
+						foreach (int format, activeFormats) {
+							QString formatName = ImageWidget::formatNames[format];
+							foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+								bool isFillingDictionary = false;
+								QString pathIn7z = listName + "/" + entryName + "." + extension;
+								int index = snapFile->indexOfName(pathIn7z);
+								if ( index >= 0 ) {
+									m_async = true;
+									quint64 readLength = snapFile->read(index, &imageData, &m_async);
+									if ( readLength == 0 && m_async ) {
+										qmc2ImagePixmapCache.remove(myCacheKey);
+										isFillingDictionary = true;
+										fileOk = true;
+									} else
+										fileOk = !snapFile->hasError();
+								} else
+									fileOk = false;
 
-				// FIXME
+								if ( fileOk ) {
+									if ( isFillingDictionary ) {
+										pm = qmc2MainWindow->qmc2GhostImagePixmap.scaledToHeight(qmc2MainWindow->qmc2GhostImagePixmap.height()/2, Qt::SmoothTransformation);
+										pm.isGhost = false;
+										QPainter p;
+										QString message = tr("Decompressing archive, please wait...");
+										p.begin(&pm);
+										p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
+										QFont f(qApp->font());
+										f.setWeight(QFont::Bold);
+										QFontMetrics fm(f);
+										int adjustment = fm.height() / 2;
+										p.setFont(f);
+										QRect outerRect = p.boundingRect(pm.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
+										QPainterPath pp;
+										pp.addRoundedRect(outerRect, 5, 5);
+										p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+										p.setPen(QColor(255, 255, 0, 255));
+										p.drawText(pm.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
+										p.end();
+										pmLoaded = true;
+										drawFrame = false;
+									} else if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+										pmLoaded = true;
+										qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+										break;
+									}
+								}
+							}
+
+							if ( pmLoaded )
+								break;
+						}
+					}
+
+					if ( pmLoaded )
+						break;
+				}
 			}
 		} else {
 			// try loading image from (semicolon-separated) software-snapshot folder(s)
@@ -4151,14 +4223,16 @@ void SoftwareSnap::loadSnapshot()
 		}
 		move(position);
 		QPalette pal = palette();
-		QPainter p;
-		p.begin(&pm);
-		p.setPen(QPen(QColor(0, 0, 0, 64), 1));
-		rect = pm.rect();
-		rect.setWidth(rect.width() - 1);
-		rect.setHeight(rect.height() - 1);
-		p.drawRect(rect);
-		p.end();
+		if ( drawFrame ) {
+			QPainter p;
+			p.begin(&pm);
+			p.setPen(QPen(QColor(0, 0, 0, 64), 1));
+			rect = pm.rect();
+			rect.setWidth(rect.width() - 1);
+			rect.setHeight(rect.height() - 1);
+			p.drawRect(rect);
+			p.end();
+		}
 		pal.setBrush(QPalette::Window, pm);
 		setPalette(pal);
 		showNormal();
@@ -4630,6 +4704,15 @@ void SoftwareSnapshot::refresh()
 	}
 }
 
+void SoftwareSnapshot::sevenZipDataReady()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnapshot::sevenZipDataReady()");
+#endif
+
+	update();
+}
+
 bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 {
 #ifdef QMC2_DEBUG
@@ -4696,8 +4779,74 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 			}
 		} else  if ( qmc2SoftwareSnap->useSevenZip() ) {
 			// try loading image from (semicolon-separated) 7z archive(s)
+			if ( qmc2SoftwareSnap->snapFileMap7z.isEmpty() ) {
+				foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareSnapFile").toString().split(";", QString::SkipEmptyParts)) {
+					SevenZipFile *snapFile = new SevenZipFile(filePath);
+					if ( !snapFile->open() ) {
+						  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file %1").arg(filePath) + " - " + tr("7z error") + ": " + snapFile->lastError());
+						  delete snapFile;
+					} else {
+						qmc2SoftwareSnap->snapFileMap7z[filePath] = snapFile;
+						connect(snapFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
+					}
+				}
+			}
+			foreach (SevenZipFile *snapFile, qmc2SoftwareSnap->snapFileMap7z) {
+				if ( snapFile ) {
+					QByteArray imageData;
+					foreach (int format, activeFormats) {
+						QString formatName = ImageWidget::formatNames[format];
+						foreach (QString extension, ImageWidget::formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+							bool isFillingDictionary = false;
+							QString pathIn7z = listName + "/" + entryName + "." + extension;
+							int index = snapFile->indexOfName(pathIn7z);
+							if ( index >= 0 ) {
+								m_async = true;
+								quint64 readLength = snapFile->read(index, &imageData, &m_async);
+								if ( readLength == 0 && m_async ) {
+									qmc2ImagePixmapCache.remove(myCacheKey);
+									isFillingDictionary = true;
+									fileOk = true;
+								} else
+									fileOk = !snapFile->hasError();
+							} else
+								fileOk = false;
 
-			// FIXME
+							if ( fileOk ) {
+								if ( isFillingDictionary ) {
+									currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+									QPainter p;
+									QString message = tr("Decompressing archive, please wait...");
+									p.begin(&currentSnapshotPixmap);
+									p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
+									QFont f(qApp->font());
+									f.setWeight(QFont::Bold);
+									QFontMetrics fm(f);
+									int adjustment = fm.height() / 2;
+									p.setFont(f);
+									QRect outerRect = p.boundingRect(currentSnapshotPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
+									QPainterPath pp;
+									pp.addRoundedRect(outerRect, 5, 5);
+									p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+									p.setPen(QColor(255, 255, 0, 255));
+									p.drawText(currentSnapshotPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
+									p.end();
+								} else if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
+									qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
+									break;
+								} else
+									fileOk = false;
+							}
+						}
+
+						if ( fileOk )
+							break;
+					}
+				}
+
+				if ( fileOk )
+					break;
+			}
 		}
 	} else {
 		// try loading image from (semicolon-separated) software-snapshot folder(s)

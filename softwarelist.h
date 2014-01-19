@@ -140,6 +140,9 @@ class SoftwareSnap : public QWidget
 		void enterEvent(QEvent *);
 		void leaveEvent(QEvent *);
 		void contextMenuEvent(QContextMenuEvent *);
+
+	private:
+		bool m_async;
 };
 
 // 'embedded' snapshot-viewer
@@ -171,10 +174,14 @@ class SoftwareSnapshot : public QWidget
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();
+		void sevenZipDataReady();
 
 	protected:
 		void paintEvent(QPaintEvent *);
 		void contextMenuEvent(QContextMenuEvent *);
+
+	private:
+		bool m_async;
 };
 
 class SoftwareList : public QWidget, public Ui::SoftwareList
