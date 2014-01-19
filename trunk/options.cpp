@@ -223,11 +223,6 @@ Options::Options(QWidget *parent)
   cancelClicked = false;
 
 #if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when "7z support for software-snaps" is functional
-  comboBoxSoftwareSnapFileType->setVisible(false);
-#endif
-
-#if !defined(QMC2_WIP_ENABLED)
   // FIXME: remove WIP clause when "additional artwork support" is functional
   pushButtonAdditionalArtworkSetup->setVisible(false);
 #endif
@@ -3951,8 +3946,6 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapFile_clicked()");
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when "7z support for software-snaps" is functional
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("7z archives") + " (*.7z);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() ) {
 		lineEditSoftwareSnapFile->setText(s);
@@ -3962,12 +3955,6 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
 			comboBoxSoftwareSnapFileType->setCurrentIndex(QMC2_IMG_FILETYPE_7Z);
 	}
 	raise();
-#else
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("ZIP archives") + " (*.zip);;" + tr("All files") + " (*)", 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditSoftwareSnapFile->setText(s);
-	raise();
-#endif
 }
 
 void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()
