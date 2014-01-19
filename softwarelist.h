@@ -118,6 +118,7 @@ class SoftwareSnap : public QWidget
 
 		QString primaryPathFor(QString, QString);
 		void reloadActiveFormats();
+		void enableWidgets(bool enable = true);
 
 		bool useZip();
 		bool useSevenZip();
@@ -166,6 +167,7 @@ class SoftwareSnapshot : public QWidget
 
 		QString toBase64();
 		void reloadActiveFormats();
+		void enableWidgets(bool enable = true);
 
 	public slots:
 		void drawCenteredImage(QPixmap *, QPainter *);

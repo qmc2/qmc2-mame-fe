@@ -771,6 +771,7 @@ FocusScope {
                         id: overlayImage
                         z: 0
                         source: DarkoneJS.data("image")
+                        asynchronous: true;
                         smooth: true
                         anchors.fill: parent
                         anchors.horizontalCenter: parent.horizontalCenter

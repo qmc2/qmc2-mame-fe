@@ -4086,6 +4086,7 @@ void SoftwareSnap::loadSnapshot()
 										p.end();
 										pmLoaded = true;
 										drawFrame = false;
+										enableWidgets(false);
 									} else if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
 										pmLoaded = true;
 										qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
@@ -4260,6 +4261,15 @@ void SoftwareSnap::sevenZipDataReady()
 #endif
 
 	update();
+	enableWidgets(true);
+}
+
+void SoftwareSnap::enableWidgets(bool enable)
+{
+	qmc2Options->radioButtonSoftwareSnapSelect->setEnabled(enable);
+	qmc2Options->lineEditSoftwareSnapFile->setEnabled(enable);
+	qmc2Options->comboBoxSoftwareSnapFileType->setEnabled(enable);
+	qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
 }
 
 void SoftwareSnap::resetSnapForced()
@@ -4711,7 +4721,17 @@ void SoftwareSnapshot::sevenZipDataReady()
 #endif
 
 	update();
+	enableWidgets(true);
 }
+
+void SoftwareSnapshot::enableWidgets(bool enable)
+{
+	qmc2Options->radioButtonSoftwareSnapSelect->setEnabled(enable);
+	qmc2Options->lineEditSoftwareSnapFile->setEnabled(enable);
+	qmc2Options->comboBoxSoftwareSnapFileType->setEnabled(enable);
+	qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
+}
+
 
 bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 {
@@ -4831,6 +4851,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 									p.setPen(QColor(255, 255, 0, 255));
 									p.drawText(currentSnapshotPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
 									p.end();
+									enableWidgets(false);
 								} else if ( pm.loadFromData(imageData, formatName.toLocal8Bit().constData()) ) {
 									qmc2ImagePixmapCache.insert(myCacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 									break;
