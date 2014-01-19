@@ -1123,7 +1123,7 @@ bool HtmlEditor::isZippedImage(QString imageType)
 	}
 
 	if ( imageWidget )
-		return imageWidget->useZip();
+		return imageWidget->useZip() || imageWidget->useSevenZip();
 	else
 		return false;
 }
@@ -1161,7 +1161,7 @@ QString HtmlEditor::getImageData(QString imageType)
 	}
 
 	if ( imageWidget ) {
-		QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+		QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 		QString cacheKey = imageType + "_" + gameName;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
