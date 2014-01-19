@@ -11,6 +11,7 @@
 #include <QPainterPath>
 
 #include "settings.h"
+#include "options.h"
 #include "imagewidget.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -18,6 +19,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
+extern Options *qmc2Options;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
@@ -205,6 +207,55 @@ void ImageWidget::sevenZipDataReady()
 #endif
 
 	update();
+	enableWidgets(true);
+}
+
+void ImageWidget::enableWidgets(bool enable)
+{
+	switch ( imageTypeNumeric() ) {
+		case QMC2_IMGTYPE_PREVIEW:
+			qmc2Options->radioButtonPreviewSelect->setEnabled(enable);
+			qmc2Options->lineEditPreviewFile->setEnabled(enable);
+			qmc2Options->comboBoxPreviewFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowsePreviewFile->setEnabled(enable);
+			break;
+		case QMC2_IMGTYPE_FLYER:
+			qmc2Options->radioButtonFlyerSelect->setEnabled(enable);
+			qmc2Options->lineEditFlyerFile->setEnabled(enable);
+			qmc2Options->comboBoxFlyerFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowseFlyerFile->setEnabled(enable);
+			break;
+		case QMC2_IMGTYPE_CABINET:
+			qmc2Options->radioButtonCabinetSelect->setEnabled(enable);
+			qmc2Options->lineEditCabinetFile->setEnabled(enable);
+			qmc2Options->comboBoxCabinetFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowseCabinetFile->setEnabled(enable);
+			break;
+		case QMC2_IMGTYPE_CONTROLLER:
+			qmc2Options->radioButtonControllerSelect->setEnabled(enable);
+			qmc2Options->lineEditControllerFile->setEnabled(enable);
+			qmc2Options->comboBoxControllerFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowseControllerFile->setEnabled(enable);
+			break;
+		case QMC2_IMGTYPE_MARQUEE:
+			qmc2Options->radioButtonMarqueeSelect->setEnabled(enable);
+			qmc2Options->lineEditMarqueeFile->setEnabled(enable);
+			qmc2Options->comboBoxMarqueeFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowseMarqueeFile->setEnabled(enable);
+			break;
+		case QMC2_IMGTYPE_TITLE:
+			qmc2Options->radioButtonTitleSelect->setEnabled(enable);
+			qmc2Options->lineEditTitleFile->setEnabled(enable);
+			qmc2Options->comboBoxTitleFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowseTitleFile->setEnabled(enable);
+			break;
+		case QMC2_IMGTYPE_PCB:
+			qmc2Options->radioButtonPCBSelect->setEnabled(enable);
+			qmc2Options->lineEditPCBFile->setEnabled(enable);
+			qmc2Options->comboBoxPCBFileType->setEnabled(enable);
+			qmc2Options->toolButtonBrowsePCBFile->setEnabled(enable);
+			break;
+	}
 }
 
 bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
@@ -352,6 +403,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 								p.setPen(QColor(255, 255, 0, 255));
 								p.drawText(currentPixmap.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
 								p.end();
+								enableWidgets(false);
 							}
 							//printf("7z: Using ghost image for %s%s\n", cacheKey.toLocal8Bit().constData(), isFillingDictionary ? " (filling up dictionary)" : ""); fflush(stdout);
 							if ( isFillingDictionary )

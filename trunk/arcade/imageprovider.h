@@ -20,6 +20,7 @@
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_TGA     11
 
 #include "../minizip/unzip.h"
+#include "../sevenzipfile.h"
 
 #if QT_VERSION < 0x050000
 #include <QDeclarativeImageProvider>
@@ -44,6 +45,7 @@ private:
     QString imageFolder(QString);
     QStringList mImageTypes;
     QMap<QString, unzFile> mZipFileMap;
+    QMap<QString, SevenZipFile *> mZipFileMap7z;
     QCache<QString, QImage> mImageCache;
     QCache<QString, QPixmap> mPixmapCache;
     QMap<QString, QList<int> > mActiveFormatsMap;
@@ -73,6 +75,7 @@ private:
     QString imageFolder(QString);
     QStringList mImageTypes;
     QMap<QString, unzFile> mZipFileMap;
+    QMap<QString, SevenZipFile *> mZipFileMap7z;
     QCache<QString, QImage> mImageCache;
     QCache<QString, QPixmap> mPixmapCache;
     QMap<QString, QList<int> > mActiveFormatsMap;

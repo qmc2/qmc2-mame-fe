@@ -144,6 +144,7 @@ Rectangle {
                     z: -1
                     Image {
                         id: previewImage
+                        asynchronous: true;
                         source: ToxicWaste.imageUrl(toxicWasteMain.cabinetImageType);
                         smooth: true
                         anchors.fill: parent
@@ -245,6 +246,7 @@ Rectangle {
                         color: "#202020"
                         Image {
                             id: imageViewer
+                            asynchronous: true
                             source: ToxicWaste.imageUrl(toxicWasteMain.secondaryImageType)
                             smooth: true
                             anchors.fill: parent

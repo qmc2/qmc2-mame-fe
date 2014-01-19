@@ -97,6 +97,7 @@ class ImageWidget : public QWidget
 		QString toBase64();
 		QString primaryPathFor(QString);
 		void reloadActiveFormats();
+		void enableWidgets(bool enable = true);
 
 		// these virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() { return QString(); }
