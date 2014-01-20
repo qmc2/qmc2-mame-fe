@@ -5907,108 +5907,108 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
 <context>
     <name>ImageWidget</name>
     <message>
-        <location filename="../../imagewidget.cpp" line="59"/>
+        <location filename="../../imagewidget.cpp" line="61"/>
         <source>Portable Network Graphics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="59"/>
+        <location filename="../../imagewidget.cpp" line="61"/>
         <source>Windows Bitmap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="59"/>
+        <location filename="../../imagewidget.cpp" line="61"/>
         <source>Graphic Interchange Format</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="59"/>
+        <location filename="../../imagewidget.cpp" line="61"/>
         <source>Joint Photographic Experts Group</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="59"/>
+        <location filename="../../imagewidget.cpp" line="61"/>
         <source>Portable Bitmap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>Portable Graymap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>Portable Pixmap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>Tagged Image File Format</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>X11 Bitmap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>X11 Pixmap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>Scalable Vector Graphics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="60"/>
+        <location filename="../../imagewidget.cpp" line="62"/>
         <source>Targa Image Format</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="62"/>
+        <location filename="../../imagewidget.cpp" line="64"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="68"/>
+        <location filename="../../imagewidget.cpp" line="70"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="77"/>
+        <location filename="../../imagewidget.cpp" line="79"/>
         <source>Refresh cache slot</source>
         <translation>Atualizar slot do cache</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="87"/>
-        <location filename="../../imagewidget.cpp" line="95"/>
+        <location filename="../../imagewidget.cpp" line="89"/>
+        <location filename="../../imagewidget.cpp" line="97"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
         <translation>FATAL: impossível abrir arquivo %1, por favor verifique as permissões de acesso para %2</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="165"/>
+        <location filename="../../imagewidget.cpp" line="167"/>
         <source>Waiting for data...</source>
         <translation>Aguardando dados...</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="340"/>
+        <location filename="../../imagewidget.cpp" line="391"/>
         <source>Decompressing archive, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="469"/>
+        <location filename="../../imagewidget.cpp" line="522"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: impossível criar um backup do arquivo de imagem existente &apos;%1&apos; como &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="484"/>
+        <location filename="../../imagewidget.cpp" line="537"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: impossível criar arquivo de imagem &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../imagewidget.cpp" line="490"/>
+        <location filename="../../imagewidget.cpp" line="543"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: impossível determinar caminho primário para o tipo de imagem &apos;%1&apos;</translation>
     </message>
@@ -15668,7 +15668,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="836"/>
         <location filename="../../softwarelist.cpp" line="3089"/>
         <location filename="../../softwarelist.cpp" line="3134"/>
-        <location filename="../../softwarelist.cpp" line="4440"/>
+        <location filename="../../softwarelist.cpp" line="4451"/>
         <source>Auto mount</source>
         <translation>Montar automaticamente</translation>
     </message>
@@ -15678,8 +15678,8 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="3114"/>
         <location filename="../../softwarelist.cpp" line="3120"/>
         <location filename="../../softwarelist.cpp" line="3138"/>
-        <location filename="../../softwarelist.cpp" line="4445"/>
-        <location filename="../../softwarelist.cpp" line="4449"/>
+        <location filename="../../softwarelist.cpp" line="4456"/>
+        <location filename="../../softwarelist.cpp" line="4460"/>
         <source>Not mounted</source>
         <translation>Não montado</translation>
     </message>
@@ -15687,14 +15687,14 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="843"/>
         <location filename="../../softwarelist.cpp" line="3101"/>
         <location filename="../../softwarelist.cpp" line="3142"/>
-        <location filename="../../softwarelist.cpp" line="4451"/>
+        <location filename="../../softwarelist.cpp" line="4462"/>
         <source>Mounted on:</source>
         <translation>Mointado em:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="835"/>
         <location filename="../../softwarelist.cpp" line="3107"/>
-        <location filename="../../softwarelist.cpp" line="4439"/>
+        <location filename="../../softwarelist.cpp" line="4450"/>
         <source>Don&apos;t mount</source>
         <translation>Não montar</translation>
     </message>
@@ -15704,30 +15704,30 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Aguardando por dados...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4404"/>
-        <location filename="../../softwarelist.cpp" line="4406"/>
+        <location filename="../../softwarelist.cpp" line="4415"/>
+        <location filename="../../softwarelist.cpp" line="4417"/>
         <source>Searching</source>
         <translation>Procurando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4418"/>
+        <location filename="../../softwarelist.cpp" line="4429"/>
         <source>Updating</source>
         <translation>Atualizando</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4430"/>
+        <location filename="../../softwarelist.cpp" line="4441"/>
         <source>Part:</source>
         <translation>Parte:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="845"/>
-        <location filename="../../softwarelist.cpp" line="4456"/>
+        <location filename="../../softwarelist.cpp" line="4467"/>
         <source>No mount device</source>
         <translation>Nenhum dispositivo montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="846"/>
-        <location filename="../../softwarelist.cpp" line="4457"/>
+        <location filename="../../softwarelist.cpp" line="4468"/>
         <source>Unmanaged</source>
         <translation>Não gerenciado</translation>
     </message>
@@ -15752,34 +15752,34 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>parcialmente</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4482"/>
+        <location filename="../../softwarelist.cpp" line="4493"/>
         <source>Data area:</source>
         <translation>Área de dados:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4485"/>
-        <location filename="../../softwarelist.cpp" line="4497"/>
-        <location filename="../../softwarelist.cpp" line="4511"/>
+        <location filename="../../softwarelist.cpp" line="4496"/>
+        <location filename="../../softwarelist.cpp" line="4508"/>
+        <location filename="../../softwarelist.cpp" line="4522"/>
         <source>Size:</source>
         <translation>Tamanho:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4494"/>
+        <location filename="../../softwarelist.cpp" line="4505"/>
         <source>Disk area:</source>
         <translation>Área do disco:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4514"/>
+        <location filename="../../softwarelist.cpp" line="4525"/>
         <source>CRC:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4529"/>
+        <location filename="../../softwarelist.cpp" line="4540"/>
         <source>SHA1:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4538"/>
+        <location filename="../../softwarelist.cpp" line="4549"/>
         <source>Info:</source>
         <translation>Informação:</translation>
     </message>
@@ -20427,37 +20427,37 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
 <context>
     <name>SoftwareSnapshot</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4615"/>
+        <location filename="../../softwarelist.cpp" line="4626"/>
         <source>Copy image to clipboard</source>
         <translation>Copiar imagem para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4621"/>
+        <location filename="../../softwarelist.cpp" line="4632"/>
         <source>Copy file path to clipboard</source>
         <translation>Copiar caminho do arquivo para a área de transferência</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4630"/>
+        <location filename="../../softwarelist.cpp" line="4641"/>
         <source>Refresh cache slot</source>
         <translation>Atualizar slot do cache</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4735"/>
+        <location filename="../../softwarelist.cpp" line="4756"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4786"/>
+        <location filename="../../softwarelist.cpp" line="4807"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4786"/>
+        <location filename="../../softwarelist.cpp" line="4807"/>
         <source>7z error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4819"/>
+        <location filename="../../softwarelist.cpp" line="4840"/>
         <source>Decompressing archive, please wait...</source>
         <translation type="unfinished"></translation>
     </message>

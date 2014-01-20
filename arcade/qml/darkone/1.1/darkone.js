@@ -430,10 +430,9 @@ function data(type) {
 
         case "image":
             if (!darkone.initialised)
-                return "";
+                return "image://qmc2/ghost";
 
             var image = ""
-            var image2 = ""
             if (darkone.dataHidden) {
                 if (dataTypes[darkone.dataTypePrimary].type == "image") {
                      if ( viewer.loadImage(dataTypes[darkone.dataTypePrimary].path + "/" + gameListModel[gameListView.currentIndex].id) != "" ) {
@@ -706,4 +705,14 @@ function version(maxmin, verTarget, verCheck) {
     debug2 && console.log("[version] maxmin: '" + maxmin + "', verTarget: '" + verTarget + "', verCheck: '" + verCheck + "', result: '" + bMet + "'");
 
     return bMet;
+}
+
+function updateCurrentIndex() {
+    if ( gameListView.currentIndex > 0 ) {
+        gameListView.currentIndex -= 1;
+        gameListView.currentIndex += 1;
+    } else {
+        gameListView.currentIndex += 1;
+        gameListView.currentIndex -= 1;
+    }
 }

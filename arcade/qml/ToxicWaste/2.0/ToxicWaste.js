@@ -235,3 +235,13 @@ function emulatorStopped() {
             backgroundAnim.opacity = 1.0;
     }
 }
+
+function updateCurrentIndex() {
+    if ( gamelistView.currentIndex > 0 ) {
+        gamelistView.currentIndex -= 1;
+        gamelistView.currentIndex += 1;
+    } else {
+        gamelistView.currentIndex += 1;
+        gamelistView.currentIndex -= 1;
+    }
+}

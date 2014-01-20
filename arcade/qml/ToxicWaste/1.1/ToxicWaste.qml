@@ -144,13 +144,17 @@ Rectangle {
                     z: -1
                     Image {
                         id: previewImage
-                        asynchronous: true;
-                        source: ToxicWaste.imageUrl(toxicWasteMain.cabinetImageType);
+                        cache: false
+                        source: ToxicWaste.imageUrl(toxicWasteMain.cabinetImageType)
                         smooth: true
                         anchors.fill: parent
                         anchors.centerIn: parent
                         anchors.margins: 1
                         fillMode: Image.PreserveAspectFit
+                        Connections {
+                            target: viewer
+                            onImageDataUpdated: ToxicWaste.updateCurrentIndex()
+                        }
                     }
                 }
                 WheelArea {
@@ -246,13 +250,17 @@ Rectangle {
                         color: "#202020"
                         Image {
                             id: imageViewer
-                            asynchronous: true
+                            cache: false
                             source: ToxicWaste.imageUrl(toxicWasteMain.secondaryImageType)
                             smooth: true
                             anchors.fill: parent
                             anchors.centerIn: parent
                             anchors.margins: 2
                             fillMode: Image.PreserveAspectFit
+                            Connections {
+                                target: viewer
+                                onImageDataUpdated: ToxicWaste.updateCurrentIndex()
+                            }
                         }
                         Rectangle {
                             id: imageTypeSelector

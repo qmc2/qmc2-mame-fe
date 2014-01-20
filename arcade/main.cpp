@@ -331,7 +331,7 @@ int main(int argc, char *argv[])
 
     // set default font
     QString font = globalConfig->defaultFont();
-    if ( ! font.isEmpty() ) {
+    if ( !font.isEmpty() ) {
       QFont f;
       f.fromString(font);
       app->setFont(f); 
