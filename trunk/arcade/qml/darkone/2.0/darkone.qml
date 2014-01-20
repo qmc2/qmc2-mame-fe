@@ -771,7 +771,7 @@ FocusScope {
                         id: overlayImage
                         z: 0
                         source: DarkoneJS.data("image")
-                        asynchronous: true;
+                        cache: false
                         smooth: true
                         anchors.fill: parent
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -786,6 +786,10 @@ FocusScope {
                             onWheel: {
                                 DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
                             }
+                        }
+                        Connections {
+                            target: viewer
+                            onImageDataUpdated: DarkoneJS.updateCurrentIndex()
                         }
                     }
 

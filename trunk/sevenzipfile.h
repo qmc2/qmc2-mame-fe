@@ -109,6 +109,8 @@ public:
     quint64 read(uint index, QByteArray *buffer, bool *async = 0);
     int indexOfName(QString name);
     int indexOfCrc(QString crc);
+    QString userData() { return m_userData; }
+    void setUserData(QString data) { m_userData = data; }
 
 signals:
     void opened();
@@ -146,6 +148,7 @@ private:
     bool m_isOpen;
     bool m_firstExtraction;
     bool m_fillingDictionary;
+    QString m_userData;
 };
 
 #endif // SEVENZIPFILE_H

@@ -93,6 +93,7 @@ public:
 signals:
     void emulatorStarted(int);
     void emulatorFinished(int);
+    void imageDataUpdated();
 
 public slots:
     void fpsReady();
@@ -121,6 +122,7 @@ public slots:
     void handleQuit();
 #endif
     int runningEmulators() { return processManager->runningProcesses(); }
+    void imageDataUpdate() { emit imageDataUpdated(); };
 
 private:
     bool initialised;

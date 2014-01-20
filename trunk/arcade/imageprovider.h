@@ -25,10 +25,12 @@
 #if QT_VERSION < 0x050000
 #include <QDeclarativeImageProvider>
 
-class ImageProvider : public QDeclarativeImageProvider
+class ImageProvider : public QObject, public QDeclarativeImageProvider
 {
+    Q_OBJECT
+
 public:
-    explicit ImageProvider(QDeclarativeImageProvider::ImageType);
+    explicit ImageProvider(QDeclarativeImageProvider::ImageType, QObject *parent = 0);
     virtual ~ImageProvider();
 
     QImage requestImage(const QString &, QSize *, const QSize &);
@@ -37,28 +39,39 @@ public:
 
     enum CacheClass { CacheClassImage, CacheClassPixmap };
 
+public slots:
+    void sevenZipDataReady();
+
+signals:
+    void imageDataUpdated();
+
 private:
     QString loadImage(const QString &id, const enum CacheClass cacheClass);
-    QString imageTypeToZipFile(QString);
+    QString imageTypeToFile(QString);
     QString imageTypeToLongName(QString);
     bool isZippedImageType(QString);
+    bool isSevenZippedImageType(QString);
     QString imageFolder(QString);
+
     QStringList mImageTypes;
-    QMap<QString, unzFile> mZipFileMap;
-    QMap<QString, SevenZipFile *> mZipFileMap7z;
+    QMap<QString, unzFile> mFileMapZip;
+    QMap<QString, SevenZipFile *> mFileMap7z;
     QCache<QString, QImage> mImageCache;
     QCache<QString, QPixmap> mPixmapCache;
     QMap<QString, QList<int> > mActiveFormatsMap;
     QStringList mFormatExtensions;
     QStringList mFormatNames;
+    QMap<QString, bool> mAsyncMap;
 };
 #else
 #include <QQuickImageProvider>
 
-class ImageProvider : public QQuickImageProvider
+class ImageProvider : public QObject, public QQuickImageProvider
 {
+    Q_OBJECT
+
 public:
-    explicit ImageProvider(QQuickImageProvider::ImageType);
+    explicit ImageProvider(QQuickImageProvider::ImageType, QObject *parent = 0);
     virtual ~ImageProvider();
 
     QImage requestImage(const QString &, QSize *, const QSize &);
@@ -67,12 +80,20 @@ public:
 
     enum CacheClass { CacheClassImage, CacheClassPixmap };
 
+public slots:
+    void sevenZipDataReady();
+
+signals:
+    void imageDataUpdated();
+
 private:
     QString loadImage(const QString &id, const enum CacheClass cacheClass);
     QString imageTypeToZipFile(QString);
     QString imageTypeToLongName(QString);
     bool isZippedImageType(QString);
+    bool isSevenZippedImageType(QString);
     QString imageFolder(QString);
+
     QStringList mImageTypes;
     QMap<QString, unzFile> mZipFileMap;
     QMap<QString, SevenZipFile *> mZipFileMap7z;
@@ -81,6 +102,7 @@ private:
     QMap<QString, QList<int> > mActiveFormatsMap;
     QStringList mFormatExtensions;
     QStringList mFormatNames;
+    QMap<QString, bool> mAsyncMap;
 };
 #endif
 

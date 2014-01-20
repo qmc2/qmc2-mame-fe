@@ -4074,6 +4074,7 @@ void SoftwareSnap::loadSnapshot()
 										p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 										QFont f(qApp->font());
 										f.setWeight(QFont::Bold);
+										f.setPointSize(f.pointSize() * 2);
 										QFontMetrics fm(f);
 										int adjustment = fm.height() / 2;
 										p.setFont(f);
@@ -4841,6 +4842,7 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 									p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 									QFont f(qApp->font());
 									f.setWeight(QFont::Bold);
+									f.setPointSize(f.pointSize() * 2);
 									QFontMetrics fm(f);
 									int adjustment = fm.height() / 2;
 									p.setFont(f);
