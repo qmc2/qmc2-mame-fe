@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.43, 09-JAN-2014</h3>
+<h3>README - v0.43, 22-JAN-2014</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -587,9 +587,8 @@ the joystick movements, button presses etc... it will just not react on them whi
 </ul>
 <h3><a name="7."></a>7. External tools and tool argument syntax</h3>
 <p>External tools like <i>zip</i> (on all platforms), <i>rm</i> (on UNIX and Mac OS X) or <i>del</i> (on Windows) are used for specific operations which weren't natively built into QMC2.</p>
-<p>For example, to remove obsolete image files from ZIP archives, QMC2 uses an external zip-tool and passes the files to be removed on the argument list when the zip-tool is started. We recommend to use Info-ZIP's zip 2.32+/3.0+ which is what we've tested. But it could be any zip program that supports the deletion of multiple entries from ZIP archives at once.</p>
-<p>Similarly, a second tool is needed for the deletion of files within file systems (when images are stored directory based, that is). We recommend the common <i>rm</i> command on UNIX and Mac OS X, and the simple shell command <i>del</i> on Windows. This tool also needs to support the deletion of multiple files in one step.</p> 
-<p>Finally, there's a third <i>generic</i> tool -- the so called <i>ROM tool</i> -- that can be used to call a program or script which does any external processing based on the game's/machine's ID and/or its long name (description). It is completely up to you what this tool might do... ideally, it should have some ROM management functionality, though :).</p> 
+<p>For example, to remove obsolete image files from ZIP or 7z archives, QMC2 uses an external program (zip or 7za) and passes the files to be removed on the argument list when the tool is started.</p>
+<p>A third (<i>generic</i>) tool -- the so called <i>ROM tool</i> -- can be used to call a program or script which does any external processing based on the game's/machine's ID and/or its long name (description). It is completely up to you what this tool might do... ideally, it should have some ROM management functionality, though :).</p> 
 <p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with real data before execution.</p>
 <p>The following macros exist:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
@@ -602,12 +601,12 @@ the joystick movements, button presses etc... it will just not react on them whi
     <tr>
       <td style="vertical-align: top;">$ARCHIVE$</td>
       <td style="vertical-align: top;">... the currently processed ZIP archive's filename (fully qualified)</td>
-      <td style="vertical-align: top;">Zip tool</td>
+      <td style="vertical-align: top;">Zip tool, 7-zip tool</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">$FILELIST$</td>
       <td style="vertical-align: top;">... the currently processed list of files ("file1 file2 ..." - fully qualified)</td>
-      <td style="vertical-align: top;">Zip tool</td>
+      <td style="vertical-align: top;">Zip tool, 7-zip tool</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">$ID$</td>

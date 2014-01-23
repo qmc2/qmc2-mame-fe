@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>635</height>
+    <width>591</width>
+    <height>641</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>539</width>
+                <width>545</width>
                 <height>622</height>
                </rect>
               </property>
@@ -891,7 +891,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>539</width>
+                <width>349</width>
                 <height>731</height>
                </rect>
               </property>
@@ -2837,8 +2837,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>553</width>
-                <height>536</height>
+                <width>505</width>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3488,8 +3488,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>553</width>
-                <height>536</height>
+                <width>249</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -3610,8 +3610,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>553</width>
-                <height>536</height>
+                <width>342</width>
+                <height>209</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -4073,8 +4073,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>553</width>
-                <height>536</height>
+                <width>545</width>
+                <height>543</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4146,7 +4146,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="5" column="0" colspan="2">
+                 <item row="6" column="0" colspan="2">
                   <spacer name="spacer10">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -4159,7 +4159,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="3" column="0" colspan="2">
+                 <item row="4" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBoxRomTool">
                    <property name="title">
                     <string>ROM tool</string>
@@ -4265,7 +4265,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="4" column="0">
+                 <item row="5" column="0">
                   <widget class="QCheckBox" name="checkBoxCopyToolOutput">
                    <property name="toolTip">
                     <string>Copy the tool's output to the front end log (keeping it for debugging)</string>
@@ -4275,7 +4275,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="1">
+                 <item row="5" column="1">
                   <widget class="QCheckBox" name="checkBoxCloseToolDialog">
                    <property name="toolTip">
                     <string>Automatically close the tool-executor dialog when the external process finished</string>
@@ -4490,6 +4490,72 @@
                        </widget>
                       </item>
                      </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="3" column="0" colspan="2">
+                  <widget class="QGroupBox" name="groupBoxSevenZipTool">
+                   <property name="title">
+                    <string>7-zip tool</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="labelSevenZipTool">
+                      <property name="text">
+                       <string>Command</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="lineEditSevenZipTool">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>External 7-zip tool, i.e. &quot;7za&quot; (read and execute)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QToolButton" name="toolButtonBrowseSevenZipTool">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Browse for 7-zip tool</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="qmc2.qrc">
+                        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="labelSevenZipToolRemovalArguments">
+                      <property name="text">
+                       <string>Arguments</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1" colspan="2">
+                     <widget class="QLineEdit" name="lineEditSevenZipToolRemovalArguments">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>7-zip tool argument list to remove entries from the 7-zip archive (i. e. &quot;d $ARCHIVE$ $FILELIST$&quot;)</string>
+                      </property>
+                     </widget>
                     </item>
                    </layout>
                   </widget>
@@ -5794,6 +5860,9 @@
   <tabstop>lineEditZipTool</tabstop>
   <tabstop>toolButtonBrowseZipTool</tabstop>
   <tabstop>lineEditZipToolRemovalArguments</tabstop>
+  <tabstop>lineEditSevenZipTool</tabstop>
+  <tabstop>toolButtonBrowseSevenZipTool</tabstop>
+  <tabstop>lineEditSevenZipToolRemovalArguments</tabstop>
   <tabstop>lineEditRomTool</tabstop>
   <tabstop>toolButtonBrowseRomTool</tabstop>
   <tabstop>lineEditRomToolWorkingDirectory</tabstop>

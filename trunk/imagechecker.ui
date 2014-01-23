@@ -157,12 +157,22 @@
      <item>
       <widget class="QProgressBar" name="progressBar">
        <property name="toolTip">
-        <string>Current status / progress</string>
+        <string>Current progress</string>
        </property>
        <property name="value">
         <number>0</number>
        </property>
-       <property name="format">
+       <property name="textVisible">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelStatus">
+       <property name="toolTip">
+        <string>Current status</string>
+       </property>
+       <property name="text">
         <string>Idle</string>
        </property>
       </widget>
