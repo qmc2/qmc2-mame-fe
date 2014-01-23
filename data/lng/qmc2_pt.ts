@@ -2213,12 +2213,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DirectoryModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="37"/>
+        <location filename="../../filesystemmodel.h" line="39"/>
         <source>Drives / Folders</source>
         <translation>Drives / Pastas</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="39"/>
+        <location filename="../../filesystemmodel.h" line="41"/>
         <source>Folders</source>
         <translation>Pastas</translation>
     </message>
@@ -2871,40 +2871,40 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Size</source>
         <translation>Tamanho</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="503"/>
-        <location filename="../../filesystemmodel.h" line="517"/>
+        <location filename="../../filesystemmodel.h" line="505"/>
+        <location filename="../../filesystemmodel.h" line="519"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="506"/>
-        <location filename="../../filesystemmodel.h" line="520"/>
+        <location filename="../../filesystemmodel.h" line="508"/>
+        <location filename="../../filesystemmodel.h" line="522"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="509"/>
-        <location filename="../../filesystemmodel.h" line="523"/>
+        <location filename="../../filesystemmodel.h" line="511"/>
+        <location filename="../../filesystemmodel.h" line="525"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="512"/>
+        <location filename="../../filesystemmodel.h" line="514"/>
         <source> TB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Date modified</source>
         <translation>Modificado</translation>
     </message>
@@ -6907,10 +6907,8 @@ Você quer escolher um nome diferente?</translation>
         <translation>Combinar mapeamento da escolha de arquivo com os mapeamentos de dispositivos atual</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="340"/>
-        <location filename="../../messdevcfg.ui" line="343"/>
         <source>Process ZIP contents on item activation</source>
-        <translation>Processar o conteúdo do ZIP na ativação do item</translation>
+        <translation type="obsolete">Processar o conteúdo do ZIP na ativação do item</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="664"/>
@@ -6923,6 +6921,12 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../messdevcfg.ui" line="320"/>
         <source>Filter files by allowed extensions for the current device instance</source>
         <translation>Filtrar arquivos por extensões permitidas para a instância de dispositivo atual</translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.ui" line="340"/>
+        <location filename="../../messdevcfg.ui" line="343"/>
+        <source>Process ZIP and 7z contents on item activation</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="363"/>
