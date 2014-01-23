@@ -714,6 +714,7 @@ void Options::apply()
   toolButtonBrowseListXMLCache->setIconSize(iconSize);
   toolButtonBrowseCookieDatabase->setIconSize(iconSize);
   toolButtonBrowseZipTool->setIconSize(iconSize);
+  toolButtonBrowseSevenZipTool->setIconSize(iconSize);
   toolButtonBrowseRomTool->setIconSize(iconSize);
   toolButtonBrowseRomToolWorkingDirectory->setIconSize(iconSize);
   pushButtonRedefineKeySequence->setIconSize(iconSize);
@@ -1571,7 +1572,7 @@ void Options::on_pushButtonApply_clicked()
   on_toolButtonMapJoystick_clicked();
 #endif
 
-  // Network / Proxy
+  // Network / Tools
   CookieJar *cj = NULL;
   bool restoreCookies = config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool();
   config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", checkBoxRestoreCookies->isChecked());
@@ -1583,6 +1584,8 @@ void Options::on_pushButtonApply_clicked()
   needChangeCookieJar |= cookieDatabase != lineEditCookieDatabase->text();
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", lineEditZipTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", lineEditZipToolRemovalArguments->text());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool", lineEditSevenZipTool->text());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments", lineEditSevenZipToolRemovalArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomTool", lineEditRomTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", lineEditRomToolArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", lineEditRomToolWorkingDirectory->text());
@@ -2726,11 +2729,13 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   }
 #endif
 
-  // Network / Proxy
+  // Network / Tools
   checkBoxRestoreCookies->setChecked(config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool());
   lineEditCookieDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", userScopePath + "/qmc2-" + QMC2_EMU_NAME_VARIANT.toLower() + "-cookies.db").toString());
   lineEditZipTool->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
   lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
+  lineEditSevenZipTool->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool", "7za").toString());
+  lineEditSevenZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments", "d $ARCHIVE$ $FILELIST$").toString());
   lineEditRomTool->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
   lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ \"$DESCRIPTION$\"").toString());
   lineEditRomToolWorkingDirectory->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
@@ -3326,6 +3331,18 @@ void Options::on_toolButtonBrowseZipTool_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose zip tool"), lineEditZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     lineEditZipTool->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseSevenZipTool_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSevenZipTool_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose 7-zip tool"), lineEditSevenZipTool->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+  if ( !s.isNull() )
+    lineEditSevenZipTool->setText(s);
   raise();
 }
 

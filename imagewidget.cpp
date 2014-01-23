@@ -543,17 +543,17 @@ bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't determine primary path for image-type '%1'").arg(imageType()));
 			return false;
 		}
-	} else // we don't support on-the-fly image replacement for zipped images yet!
+	} else // we don't support on-the-fly image replacement for zipped and 7-zipped images yet!
 		return false;
 }
 
-bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError)
+bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
 {
 	QImage image;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 
 	if ( fileName )
-		*fileName = "";
+		fileName->clear();
 
 	bool fileOk = true;
 
@@ -627,8 +627,80 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, QSize *sizeReturn, i
 		}
 	} else if ( useSevenZip() ) {
 		// try loading image from (semicolon-separated) 7z archive(s)
+		QByteArray imageData;
+		foreach (int format, activeFormats) {
+			QString formatName = formatNames[format];
+			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+				QString gameFile = gameName + "." + extension;
 
-		// FIXME
+				if ( fileName )
+					*fileName = gameFile;
+
+				if ( isFillingDict )
+					*isFillingDict = false;
+
+				if ( sevenZip == NULL ) {
+					foreach (SevenZipFile *imageFile, imageFileMap7z) {
+						int index = imageFile->indexOfName(gameFile);
+						if ( index >= 0 ) {
+							m_async = true;
+							quint64 readLength = imageFile->read(index, &imageData, &m_async);
+							if ( readLength == 0 && m_async ) {
+								if ( isFillingDict )
+									*isFillingDict = true;
+								fileOk = true;
+							} else
+								fileOk = !imageFile->hasError();
+						} else
+							fileOk = false;
+
+						if ( fileOk )
+							break;
+						else
+							imageData.clear();
+					}
+				} else {
+					int index = sevenZip->indexOfName(gameFile);
+					if ( index >= 0 ) {
+						if ( async )
+							*async = true;
+						quint64 readLength = sevenZip->read(index, &imageData, async);
+						if ( readLength == 0 && (async && *async) ) {
+							if ( isFillingDict )
+								*isFillingDict = true;
+							fileOk = true;
+						} else
+							fileOk = !sevenZip->hasError();
+					} else
+						fileOk = false;
+
+					if ( fileOk )
+						break;
+					else
+						imageData.clear();
+				}
+
+				bool ifd = isFillingDict ? *isFillingDict : false;
+				if ( fileOk && !ifd ) {
+					QBuffer buffer(&imageData);
+					QImageReader imageReader(&buffer, formatName.toLocal8Bit().constData());
+					fileOk = imageReader.read(&image);
+					if ( fileOk ) {
+						if ( sizeReturn )
+							*sizeReturn = image.size();
+						if ( bytesUsed )
+							*bytesUsed = image.byteCount();
+					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+						*readerError = imageReader.errorString();
+				}
+
+				if ( fileOk )
+					break;
+			}
+
+			if ( fileOk )
+				break;
+		}
 	} else {
 		// try loading image from (semicolon-separated) folder(s)
 		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {

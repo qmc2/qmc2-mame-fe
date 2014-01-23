@@ -339,6 +339,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseCookieDatabase->setEnabled(enable);
   qmc2Options->pushButtonManageCookies->setEnabled(enable ? qmc2Options->checkBoxRestoreCookies->isChecked() : false);
   qmc2Options->toolButtonBrowseZipTool->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSevenZipTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseRomTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);

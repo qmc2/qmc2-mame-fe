@@ -8,10 +8,11 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QStringList>
-#include "unzip.h"
 
 #include "ui_imagechecker.h"
 #include "imagewidget.h"
+#include "unzip.h"
+#include "sevenzipfile.h"
 
 class ImageCheckerThread : public QThread
 {
@@ -20,11 +21,13 @@ class ImageCheckerThread : public QThread
 	public:
 		bool exitThread;
 		bool isActive;
+		bool isWaiting;
 		int threadNumber;
 		quint64 scanCount;
 		quint64 foundCount;
 		quint64 missingCount;
 		QMap<QString, unzFile> zipMap;
+		QMap<QString, SevenZipFile *> sevenZipMap;
 		QStringList workUnit;
 		QStringList foundList;
 		QStringList missingList;
@@ -39,6 +42,10 @@ class ImageCheckerThread : public QThread
 		~ImageCheckerThread();
 
 		QString humanReadable(quint64);
+		bool isFillingDictionary() { return m_isFillingDictionary; }
+
+	public slots:
+		void sevenZipDataReady();
 
 	protected:
 		void run();
@@ -46,6 +53,10 @@ class ImageCheckerThread : public QThread
 	signals:
 		void log(const QString &);
 		void resultsReady(const QStringList &, const QStringList &, const QStringList &, const QStringList &);
+
+	private:
+		bool m_async;
+		bool m_isFillingDictionary;
 };
 
 class ImageChecker : public QDialog, public Ui::ImageChecker
@@ -75,8 +86,9 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
 		ImageChecker(QWidget *parent = 0);
 		~ImageChecker();
 
-		void recursiveFileList(const QString &, QStringList &);
-		void recursiveZipList(unzFile, QStringList &, QString prependString = QString());
+		void recursiveFileList(const QString &, QStringList *);
+		void recursiveZipList(unzFile, QStringList *, QString prependString = QString());
+		void recursiveSevenZipList(SevenZipFile *, QStringList *, QString prependString = QString());
 
 	public slots:
 		void on_listWidgetFound_itemSelectionChanged();

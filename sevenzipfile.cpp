@@ -229,12 +229,14 @@ void SevenZipFile::close()
     m_lastError.clear();
 
     if ( isOpen() ) {
-        SzArEx_Free(db(), &m_allocImp);
         File_Close(&m_archiveStream.file);
-        itemList().clear();
-        m_isOpen = false;
+        SzArEx_Free(db(), &m_allocImp);
         emit closed();
     }
+
+    itemList().clear();
+    m_isOpen = false;
+    m_firstExtraction = true;
 }
 
 void SevenZipFile::asyncExtractionFinished(uint /*index*/)

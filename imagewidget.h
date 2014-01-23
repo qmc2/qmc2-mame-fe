@@ -119,7 +119,7 @@ class ImageWidget : public QWidget
 		void drawScaledImage(QPixmap *, QPainter *);
 		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL, bool loadImages = true);
 		bool replaceImage(QString, QPixmap &);
-		bool checkImage(QString, unzFile zip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL);
+		bool checkImage(QString, unzFile zip = NULL, SevenZipFile *sevenZip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL, bool *async = NULL, bool *isFillingDict = NULL);
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();
