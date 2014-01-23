@@ -588,7 +588,7 @@ the joystick movements, button presses etc... it will just not react on them whi
 <h3><a name="7."></a>7. External tools and tool argument syntax</h3>
 <p>External tools are used for specific operations which aren't natively built into QMC2.</p>
 <p>For instance, to remove obsolete or corrupt image files from ZIP or 7z archives, QMC2 uses an external program (zip or 7za) and passes the files to be removed on the argument list when the tool is started.</p>
-<p>A third, called <i>ROM tool</i>, can be used to call any program or script which does some external processing based on the game's/machine's ID and/or its long name (description). It's completely up to you what this tool might do... ideally, it should have some ROM management / ROM related functionality, though :).</p> 
+<p>A third and more <i>generic</i> tool - the so called <i>ROM tool</i> - can be used to call any program or script which does some external processing based on the game's/machine's ID and/or its long name (description). It's completely up to you what this tool might do... ideally, it should have some ROM management / ROM related functionality, though :).</p> 
 <p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with <i>real</i> data before execution.</p>
 <p>The following macros exist:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
