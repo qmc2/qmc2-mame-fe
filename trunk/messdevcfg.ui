@@ -337,10 +337,10 @@
                  </sizepolicy>
                 </property>
                 <property name="toolTip">
-                 <string>Process ZIP contents on item activation</string>
+                 <string>Process ZIP and 7z contents on item activation</string>
                 </property>
                 <property name="statusTip">
-                 <string>Process ZIP contents on item activation</string>
+                 <string>Process ZIP and 7z contents on item activation</string>
                 </property>
                 <property name="icon">
                  <iconset resource="qmc2.qrc">

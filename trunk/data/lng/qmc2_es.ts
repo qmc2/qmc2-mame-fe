@@ -2213,12 +2213,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DirectoryModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="37"/>
+        <location filename="../../filesystemmodel.h" line="39"/>
         <source>Drives / Folders</source>
         <translation>Unidades / Carpetas</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="39"/>
+        <location filename="../../filesystemmodel.h" line="41"/>
         <source>Folders</source>
         <translation>Carpetas</translation>
     </message>
@@ -2871,40 +2871,40 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Size</source>
         <translation>Tamaño</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Date modified</source>
         <translation>Fecha de modificación</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="503"/>
-        <location filename="../../filesystemmodel.h" line="517"/>
+        <location filename="../../filesystemmodel.h" line="505"/>
+        <location filename="../../filesystemmodel.h" line="519"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="506"/>
-        <location filename="../../filesystemmodel.h" line="520"/>
+        <location filename="../../filesystemmodel.h" line="508"/>
+        <location filename="../../filesystemmodel.h" line="522"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="509"/>
-        <location filename="../../filesystemmodel.h" line="523"/>
+        <location filename="../../filesystemmodel.h" line="511"/>
+        <location filename="../../filesystemmodel.h" line="525"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="512"/>
+        <location filename="../../filesystemmodel.h" line="514"/>
         <source> TB</source>
         <translation></translation>
     </message>
@@ -6491,6 +6491,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation>Configuración de dispositivo activo</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="340"/>
+        <location filename="../../messdevcfg.ui" line="343"/>
+        <source>Process ZIP and 7z contents on item activation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../messdevcfg.ui" line="581"/>
         <location filename="../../messdevcfg.ui" line="584"/>
         <source>Remove current device configuration</source>
@@ -6634,10 +6640,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation>Mostrar solo los archivos con extensiones permitidas para el periférico actual</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="340"/>
-        <location filename="../../messdevcfg.ui" line="343"/>
         <source>Process ZIP contents on item activation</source>
-        <translation>Mostrar el contenido ZIP al seleccionar el archivo</translation>
+        <translation type="obsolete">Mostrar el contenido ZIP al seleccionar el archivo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="363"/>

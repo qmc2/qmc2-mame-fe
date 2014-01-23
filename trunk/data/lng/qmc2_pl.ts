@@ -2215,12 +2215,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DirectoryModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="37"/>
+        <location filename="../../filesystemmodel.h" line="39"/>
         <source>Drives / Folders</source>
         <translation>Sterowniki / foldery</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="39"/>
+        <location filename="../../filesystemmodel.h" line="41"/>
         <source>Folders</source>
         <translation>Foldery</translation>
     </message>
@@ -2874,40 +2874,40 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Size</source>
         <translation>Rozmiar</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="503"/>
-        <location filename="../../filesystemmodel.h" line="517"/>
+        <location filename="../../filesystemmodel.h" line="505"/>
+        <location filename="../../filesystemmodel.h" line="519"/>
         <source> KB</source>
         <translation> KB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="506"/>
-        <location filename="../../filesystemmodel.h" line="520"/>
+        <location filename="../../filesystemmodel.h" line="508"/>
+        <location filename="../../filesystemmodel.h" line="522"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="509"/>
-        <location filename="../../filesystemmodel.h" line="523"/>
+        <location filename="../../filesystemmodel.h" line="511"/>
+        <location filename="../../filesystemmodel.h" line="525"/>
         <source> GB</source>
         <translation> GB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="512"/>
+        <location filename="../../filesystemmodel.h" line="514"/>
         <source> TB</source>
         <translation> TB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="314"/>
+        <location filename="../../filesystemmodel.h" line="316"/>
         <source>Date modified</source>
         <translation>Data modyfikacji</translation>
     </message>
@@ -6515,6 +6515,12 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <translation>Aktywna konfiguracja urządzeń</translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.ui" line="340"/>
+        <location filename="../../messdevcfg.ui" line="343"/>
+        <source>Process ZIP and 7z contents on item activation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../messdevcfg.ui" line="581"/>
         <location filename="../../messdevcfg.ui" line="584"/>
         <source>Remove current device configuration</source>
@@ -6621,10 +6627,8 @@ Użyć wartości lokalnej dla opcji &apos;%1&apos;, nadpisać wartością global
         <translation>Filtruj pliki na podstawie rozszerzeń dozwolonych dla obecnej instancji urządzenia</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="340"/>
-        <location filename="../../messdevcfg.ui" line="343"/>
         <source>Process ZIP contents on item activation</source>
-        <translation>Przetwarzaj zawartość plików ZIP podczas aktywacji elementu</translation>
+        <translation type="obsolete">Przetwarzaj zawartość plików ZIP podczas aktywacji elementu</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="363"/>

@@ -15,9 +15,11 @@
 #include <QLocale>
 #include <QTest>
 
+#include <time.h>
+
 #include "macros.h"
 #include "unzip.h"
-#include <time.h>
+#include "sevenzipfile.h"
 
 #define QMC2_DIRENTRY_THRESHOLD		250
 
@@ -164,7 +166,7 @@ class FileSystemItem : public QObject
 					mAbsFilePath = parent->absoluteFilePath() + "\\" + path;
 					mFileInfo = QFileInfo(path);
 				} else
-					mIsArchive = mFileName.toLower().endsWith(".zip") && !mIsFolder;
+					mIsArchive = !mIsFolder && (mFileName.toLower().endsWith(".zip") || mFileName.toLower().endsWith(".7z"));
 			} else {
 				mAbsDirPath = path;
 				mFileInfo = QFileInfo();
@@ -621,41 +623,69 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !fileItem || fileItem == mRootItem || fileItem->fileCount() > 0 )
 				return;
 
-			unzFile zipFile = unzOpen((const char *)fileItem->absoluteFilePath().toLocal8Bit());
+			QString lowerCaseFilePath = fileItem->absoluteFilePath().toLower();
+			if ( lowerCaseFilePath.endsWith(".zip") ) {
+				unzFile zipFile = unzOpen((const char *)fileItem->absoluteFilePath().toLocal8Bit());
 
-			if ( zipFile ) {
-		  		char zipFileName[QMC2_ZIP_BUFFER_SIZE];
-				unz_file_info zipInfo;
-				int row = 0;
-				mZipEntryList.clear();
-				mZipEntrySizes.clear();
-				mZipEntryDates.clear();
-				mBreakZipScan = false;
-				// the zip-entry lists carry only one entry at a time for better GUI response
-				do {
-					if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
-						mZipEntryList << zipFileName;
-						mZipEntrySizes << zipInfo.uncompressed_size;
-						struct tm *t;
-						time_t clock = time(NULL);
-						t = localtime(&clock);
-						t->tm_isdst = -1;
-						t->tm_sec  = (((int)zipInfo.dosDate) << 1) & 0x3e;
-						t->tm_min  = (((int)zipInfo.dosDate) >> 5) & 0x3f;
-						t->tm_hour = (((int)zipInfo.dosDate) >> 11) & 0x1f;
-						t->tm_mday = (int)(zipInfo.dosDate >> 16) & 0x1f;
-						t->tm_mon  = ((int)(zipInfo.dosDate >> 21) & 0x0f) - 1;
-						t->tm_year = ((int)(zipInfo.dosDate >> 25) & 0x7f) + 80;
-						mZipEntryDates << QDateTime::fromTime_t(mktime(t));
-					}
-					insertRows(row, 1, index);
+				if ( zipFile ) {
+					char zipFileName[QMC2_ZIP_BUFFER_SIZE];
+					unz_file_info zipInfo;
+					int row = 0;
 					mZipEntryList.clear();
 					mZipEntrySizes.clear();
 					mZipEntryDates.clear();
-					row++;
-				} while ( unzGoToNextFile(zipFile) == UNZ_OK && !mBreakZipScan );
-				unzClose(zipFile);
-				mBreakZipScan = false;
+					mBreakZipScan = false;
+					// the zip-entry lists carry only one entry at a time for better GUI response
+					do {
+						if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
+							mZipEntryList << zipFileName;
+							mZipEntrySizes << zipInfo.uncompressed_size;
+							struct tm *t;
+							time_t clock = time(NULL);
+							t = localtime(&clock);
+							t->tm_isdst = -1;
+							t->tm_sec  = (((int)zipInfo.dosDate) << 1) & 0x3e;
+							t->tm_min  = (((int)zipInfo.dosDate) >> 5) & 0x3f;
+							t->tm_hour = (((int)zipInfo.dosDate) >> 11) & 0x1f;
+							t->tm_mday = (int)(zipInfo.dosDate >> 16) & 0x1f;
+							t->tm_mon  = ((int)(zipInfo.dosDate >> 21) & 0x0f) - 1;
+							t->tm_year = ((int)(zipInfo.dosDate >> 25) & 0x7f) + 80;
+							mZipEntryDates << QDateTime::fromTime_t(mktime(t));
+						}
+						insertRows(row, 1, index);
+						mZipEntryList.clear();
+						mZipEntrySizes.clear();
+						mZipEntryDates.clear();
+						row++;
+					} while ( unzGoToNextFile(zipFile) == UNZ_OK && !mBreakZipScan );
+					unzClose(zipFile);
+					mBreakZipScan = false;
+				}
+			} else if ( lowerCaseFilePath.endsWith(".7z") ) {
+				SevenZipFile sevenZipFile(fileItem->absoluteFilePath());
+				if ( sevenZipFile.open() ) {
+					int row = 0;
+					mZipEntryList.clear();
+					mZipEntrySizes.clear();
+					mZipEntryDates.clear();
+					mBreakZipScan = false;
+					uint fileIndex = 0;
+					// the zip-entry lists carry only one entry at a time for better GUI response
+					while ( fileIndex < sevenZipFile.itemList().count() && !mBreakZipScan ) {
+						SevenZipMetaData metaData = sevenZipFile.itemList()[fileIndex];
+						mZipEntryList << metaData.name();
+						mZipEntrySizes << metaData.size();
+						mZipEntryDates << metaData.date();
+						insertRows(row, 1, index);
+						mZipEntryList.clear();
+						mZipEntrySizes.clear();
+						mZipEntryDates.clear();
+						row++;
+						fileIndex++;
+					}
+					mBreakZipScan = false;
+					sevenZipFile.close();
+				}
 			}
 		}
 
