@@ -664,15 +664,14 @@ class FileSystemModel : public QAbstractItemModel
 			} else if ( lowerCaseFilePath.endsWith(".7z") ) {
 				SevenZipFile sevenZipFile(fileItem->absoluteFilePath());
 				if ( sevenZipFile.open() ) {
-					int row = 0;
+					uint row = 0;
 					mZipEntryList.clear();
 					mZipEntrySizes.clear();
 					mZipEntryDates.clear();
 					mBreakZipScan = false;
-					uint fileIndex = 0;
 					// the zip-entry lists carry only one entry at a time for better GUI response
-					while ( fileIndex < sevenZipFile.itemList().count() && !mBreakZipScan ) {
-						SevenZipMetaData metaData = sevenZipFile.itemList()[fileIndex];
+					while ( row < sevenZipFile.itemList().count() && !mBreakZipScan ) {
+						SevenZipMetaData metaData = sevenZipFile.itemList()[row];
 						mZipEntryList << metaData.name();
 						mZipEntrySizes << metaData.size();
 						mZipEntryDates << metaData.date();
@@ -681,7 +680,6 @@ class FileSystemModel : public QAbstractItemModel
 						mZipEntrySizes.clear();
 						mZipEntryDates.clear();
 						row++;
-						fileIndex++;
 					}
 					mBreakZipScan = false;
 					sevenZipFile.close();
