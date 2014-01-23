@@ -65,8 +65,8 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
 <p>QMC2's current major features include:</p>
 <ul>
   <li>Extremely fast drawing of game/machine images, optionally smoothly scaled (PNG images, buffered in a resizable LRU-cache)</li>
-  <li>Support for game/machine icons -- historically only PNG images, but when stored in ZIPs, nowadays also ICO format is supported</li>
-  <li>Icons and all game/machine images can either be stored as individual files in respective directories or they can be combined and compressed in ZIP archives</li>
+  <li>Support for game/machine icons -- historically only PNG images, but when icons are stored in a ZIP or 7z archive, <i>any</i> image format that Qt supports can be used (including ICO format)</li>
+  <li>Icons and all game/machine images can either be stored as individual files in respective directories or they can be combined and compressed in ZIP or 7z archives</li>
   <li>Easily extensible template-based emulator configuration scheme (defined through an external XML file)</li>
   <li>Cool editor for configuration of global and game/machine-specific emulator options, including a search function</li>
   <li>Support for all emulation-related extra information available through the emulator (displayed in a tree)</li>
@@ -92,7 +92,7 @@ As a result of this flexible design, QMC2 can be used for multiple emulators tod
   <li>Automatic caching of analysed game/machine data to speed up processing</li>
   <li>Import &amp; export of emulator configuration files (i. e. mame.ini/mess.ini)</li>
   <li>All short cuts and GUI control keys can be remapped</li>
-  <li>Removal of obsolete samples and image files (stored in directories or ZIP archives)</li>
+  <li>Removal of obsolete samples and image files (stored in directories or ZIP / 7z archives)</li>
   <li>Automatic caching of XML output from the emulator</li>
   <li>Built-in ROMAlyzer to deeply analyze a game's/machine's ROMs (including repair- and rewrite-functionality for zipped sets) and CHDs -- inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
   <li>Optional use of OpenGL features (currently only for image painting)</li>
@@ -248,10 +248,10 @@ and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_b
 <p>Since v0.2.b1, there is also a so called <i>ROMAlyzer</i> which allows to deeply scan individual (or multiple) games/machines for their exact ROM state. This work was inspired by <a href="credits.html#Carsten">Carsten Engel's</a> romalyzer.pl Perl script (see scripts/romalyzer.pl in the source distribution) - he also offered very helpful comments on ROM identification and how to handle CHDs. Thanks!</p>
 <p>ROMAlyzer features, tips and restrictions:</p>
 <ul>
-  <li>Imitates the emulator's way of finding ROMs, using their CRCs to identify the individual ROM files (in ZIPs).</li>
+  <li>Imitates the emulator's way of finding ROMs, using their CRCs to identify the individual ROM files (in ZIP or 7z archives).</li>
   <li>Uses the XML game/machine data to compare (expected) checksums and sizes as well as to know which ROM &amp; CHD files are required, if they need to be merged from other sets etc.</li>
-  <li>ZIP-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-archives with invalid file integrity) -- note that ZIPs are required to have no sub-directory structure, otherwise the results may vary (this is unsupported but <i>should</i> work).</li>
-  <li>ROMs which are stored in game/machine-directories (not ZIP-archived) will be loaded to calculate their hashes.</li>
+  <li>ZIP- and 7z-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-/7z-archives with invalid file integrity).</li>
+  <li>ROMs which are stored in game/machine-directories (not ZIP- or 7z-archived) will be loaded to calculate their hashes.</li>
   <li>All required hash algorithms are supported: CRC(-32), SHA1 and MD5.</li>
   <li>CHD verification is accomplished through the comparison of the header checksums with the expected hash values; you can optionally enable deeper file integrity verifications through the CHD manager (<i>chdman</i>) which is thus required to use this feature (slow).</li>
   <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME/MESS/UME release (the minimum required version is 0.145u1!). QMC2 assumes that CHD version 5 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
@@ -267,12 +267,13 @@ and/or <a href="http://qmc2.arcadehits.net/contrib/MESS/category.ini" target="_b
     </ul>
   </li>
   <li>The <i>checksum wizard</i> will allow you to search for an SHA1 or CRC checksum in all sets. You can use it to qualify the states and locations of the respective files and to automatically repair 'bad' sets when 'good' sets exist.</li>
-  <li>You can enable the so called <i>set rewriter</i> to recreate clean new ZIPs (does not include CHDs!). Things to note about the <i>set rewriter</i>:
+  <li>You can enable the so called <i>set rewriter</i> to recreate clean new ZIPs (or sets in sub-directories, reproduction in 7z format is not supported). Things to note about the <i>set rewriter</i>:
     <ul>
       <li><b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i>!</b></li>
       <li><b>NEVER use one of your primary ROM paths as the output directory for the <i>set rewriter</i>!</b></li>
       <li>When you have update ROMs, you can point the set rewriter to them (see 'additional ROM path'). You can enter a semicolon-separated list in the way as MAME/MESS/UME's <i>rompath</i> parameter accepts it to specify multiple paths!</b></li>
       <li>When the source data is bad and/or incomplete, the results will not be better. First get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up!</li>
+      <li>CHDs are not included.</li>
     </ul>
   <li>Take a look at the ROMAlyzer's log for a more detailed analysis report.</li>
 </ul>
@@ -600,7 +601,7 @@ the joystick movements, button presses etc... it will just not react on them whi
     </tr>
     <tr>
       <td style="vertical-align: top;">$ARCHIVE$</td>
-      <td style="vertical-align: top;">... the currently processed ZIP archive's filename (fully qualified)</td>
+      <td style="vertical-align: top;">... the currently processed ZIP or 7z archive's file name (fully qualified)</td>
       <td style="vertical-align: top;">Zip tool, 7-zip tool</td>
     </tr>
     <tr>
