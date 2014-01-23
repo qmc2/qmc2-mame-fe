@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.43, 22-JAN-2014</h3>
+<h3>README - v0.43, 23-JAN-2014</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -586,10 +586,10 @@ the joystick movements, button presses etc... it will just not react on them whi
 	    This is not really a problem and could be used for debugging purposes, but should normally be avoided because it eats some CPU cycles for no real use.</li>
 </ul>
 <h3><a name="7."></a>7. External tools and tool argument syntax</h3>
-<p>External tools like <i>zip</i> (on all platforms), <i>rm</i> (on UNIX and Mac OS X) or <i>del</i> (on Windows) are used for specific operations which weren't natively built into QMC2.</p>
-<p>For example, to remove obsolete image files from ZIP or 7z archives, QMC2 uses an external program (zip or 7za) and passes the files to be removed on the argument list when the tool is started.</p>
-<p>A third (<i>generic</i>) tool -- the so called <i>ROM tool</i> -- can be used to call a program or script which does any external processing based on the game's/machine's ID and/or its long name (description). It is completely up to you what this tool might do... ideally, it should have some ROM management functionality, though :).</p> 
-<p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with real data before execution.</p>
+<p>External tools are used for specific operations which aren't natively built into QMC2.</p>
+<p>For instance, to remove obsolete or corrupt image files from ZIP or 7z archives, QMC2 uses an external program (zip or 7za) and passes the files to be removed on the argument list when the tool is started.</p>
+<p>Another toll is the so called <i>ROM tool</i> which can be used to call any program or script which does some external processing based on the game's/machine's ID and/or its long name (description). It is completely up to you what this tool might do... ideally, it should have some ROM management / ROM related functionality, though :).</p> 
+<p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with <i>real</i> data before execution.</p>
 <p>The following macros exist:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
@@ -620,7 +620,7 @@ the joystick movements, button presses etc... it will just not react on them whi
     </tr>
   </tbody>
 </table>
-<p>Everything else will be passed as literal text at the position where it's specified (see <i>Front end</i> -&gt; <i>Proxy / Tools</i> in the setup dialog).</p>
+<p>Everything else will be passed as <i>literal text</i> at the position where it's specified (see <i>Front end</i> -&gt; <i>Network / Tools</i> in the setup dialog).</p>
 <p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.</p>
 <h3><a name="8."></a>8. Multi-platform support</h3>
 <p>As the front end code has been designed with portability in mind, QMC2 should work on any UNIX or UNIX-like
