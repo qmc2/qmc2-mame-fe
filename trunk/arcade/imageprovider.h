@@ -1,6 +1,7 @@
 #ifndef IMAGEPROVIDER_H
 #define IMAGEPROVIDER_H
 
+#include <qglobal.h>
 #include <QMap>
 #include <QCache>
 #include <QList>
@@ -88,15 +89,15 @@ signals:
 
 private:
     QString loadImage(const QString &id, const enum CacheClass cacheClass);
-    QString imageTypeToZipFile(QString);
+    QString imageTypeToFile(QString);
     QString imageTypeToLongName(QString);
     bool isZippedImageType(QString);
     bool isSevenZippedImageType(QString);
     QString imageFolder(QString);
 
     QStringList mImageTypes;
-    QMap<QString, unzFile> mZipFileMap;
-    QMap<QString, SevenZipFile *> mZipFileMap7z;
+    QMap<QString, unzFile> mFileMapZip;
+    QMap<QString, SevenZipFile *> mFileMap7z;
     QCache<QString, QImage> mImageCache;
     QCache<QString, QPixmap> mPixmapCache;
     QMap<QString, QList<int> > mActiveFormatsMap;
