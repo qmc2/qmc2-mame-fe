@@ -1230,7 +1230,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   static QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
   static QCryptographicHash md5Hash(QCryptographicHash::Md5);
   static QString effectiveFile;
-  static char buffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
+  static char buffer[QMC2_MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 
   effectiveFile.clear();
   fileData->clear();
@@ -2724,7 +2724,7 @@ void ROMAlyzer::copyToClipboard()
 				columnTitles << h;
 				QString t = item->text(header->logicalIndex(i));
 				firstRow << t;
-				columnWidths.append(MAX(t.length(), h.length()));
+				columnWidths.append(QMC2_MAX(t.length(), h.length()));
 			}
 		rows.append(firstRow);
 		for (int i = 0; i < item->childCount(); i++) {
@@ -3111,7 +3111,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		QByteArray templateData;
 		QString fn;
 		if ( sourceType == tr("ROM") ) {
-  			char ioBuffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
+  			char ioBuffer[QMC2_MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 			// load ROM image
 			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive

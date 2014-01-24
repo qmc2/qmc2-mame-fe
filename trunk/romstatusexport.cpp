@@ -327,12 +327,12 @@ void ROMStatusExporter::exportToASCII()
 
   // truncate column widths if applicable...
   if ( spinBoxASCIIColumnWidth->value() > 0 ) {
-    maxDescriptionColumnWidth = MIN(maxDescriptionColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxNameColumnWidth = MIN(maxNameColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxManufacturerColumnWidth = MIN(maxManufacturerColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxYearColumnWidth = MIN(maxYearColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxStateColumnWidth = MIN(maxStateColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxRomTypesColumnWidth = MIN(maxRomTypesColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxDescriptionColumnWidth = QMC2_MIN(maxDescriptionColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxNameColumnWidth = QMC2_MIN(maxNameColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxManufacturerColumnWidth = QMC2_MIN(maxManufacturerColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxYearColumnWidth = QMC2_MIN(maxYearColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxStateColumnWidth = QMC2_MIN(maxStateColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxRomTypesColumnWidth = QMC2_MIN(maxRomTypesColumnWidth, spinBoxASCIIColumnWidth->value());
   }
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (sorting, filtering and analyzing export data)"));

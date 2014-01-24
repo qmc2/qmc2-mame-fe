@@ -5153,7 +5153,7 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
 
   int i;
   int joyIndex = qmc2Options->comboBoxSelectJoysticks->currentIndex();
-  int maxRows = MAX(MAX(MAX(myJoystick->numAxes, myJoystick->numButtons), myJoystick->numHats), myJoystick->numTrackballs);
+  int maxRows = QMC2_MAX(QMC2_MAX(QMC2_MAX(myJoystick->numAxes, myJoystick->numButtons), myJoystick->numHats), myJoystick->numTrackballs);
 
   myLayout = new QGridLayout(this);
 
