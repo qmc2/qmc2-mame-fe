@@ -40,7 +40,7 @@
           <attribute name="title">
            <string>&amp;GUI</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_5">
+          <layout class="QGridLayout" name="gridLayout_0">
            <property name="margin">
             <number>0</number>
            </property>
@@ -61,9 +61,9 @@
                 <height>622</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_21">
+              <layout class="QGridLayout" name="gridLayout_1">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_99">
+                <layout class="QGridLayout" name="gridLayout_2">
                  <item row="17" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
                    <property name="toolTip">
@@ -874,7 +874,7 @@
           <attribute name="title">
            <string>F&amp;iles / Directories</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_10">
+          <layout class="QGridLayout" name="gridLayout_3">
            <property name="margin">
             <number>0</number>
            </property>
@@ -895,9 +895,9 @@
                 <height>731</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_6">
+              <layout class="QGridLayout" name="gridLayout_4">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_7">
+                <layout class="QGridLayout" name="gridLayout_5">
                  <item row="13" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetCabinet">
                    <property name="sizePolicy">
@@ -2820,7 +2820,7 @@
           <attribute name="title">
            <string>Game &amp;list</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_12">
+          <layout class="QGridLayout" name="gridLayout_6">
            <property name="margin">
             <number>0</number>
            </property>
@@ -2841,9 +2841,9 @@
                 <height>248</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_11">
+              <layout class="QGridLayout" name="gridLayout_7">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_1">
+                <layout class="QGridLayout" name="gridLayout_8">
                  <item row="0" column="0">
                   <widget class="QCheckBox" name="checkBoxRomStateFilter">
                    <property name="toolTip">
@@ -3471,7 +3471,7 @@
           <attribute name="title">
            <string>&amp;Shortcuts / Keys</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_15">
+          <layout class="QGridLayout" name="gridLayout_9">
            <property name="margin">
             <number>0</number>
            </property>
@@ -3492,9 +3492,9 @@
                 <height>39</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_14">
+              <layout class="QGridLayout" name="gridLayout_10">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_13">
+                <layout class="QGridLayout" name="gridLayout_11">
                  <item row="0" column="0">
                   <widget class="QPushButton" name="pushButtonRedefineKeySequence">
                    <property name="enabled">
@@ -3593,7 +3593,7 @@
           <attribute name="title">
            <string>&amp;Joystick</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_18">
+          <layout class="QGridLayout" name="gridLayout_12">
            <property name="margin">
             <number>0</number>
            </property>
@@ -3614,9 +3614,9 @@
                 <height>209</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_17">
+              <layout class="QGridLayout" name="gridLayout_13">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_16">
+                <layout class="QGridLayout" name="gridLayout_14">
                  <item row="0" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxEnableJoystickControl">
                    <property name="toolTip">
@@ -4056,7 +4056,7 @@
           <attribute name="title">
            <string>Network / &amp;Tools</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_19">
+          <layout class="QGridLayout" name="gridLayout_15">
            <property name="margin">
             <number>0</number>
            </property>
@@ -4077,9 +4077,9 @@
                 <height>543</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_2">
+              <layout class="QGridLayout" name="gridLayout_16">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_4">
+                <layout class="QGridLayout" name="gridLayout_17">
                  <item row="2" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBoxZipTool">
                    <property name="title">
@@ -4164,7 +4164,7 @@
                    <property name="title">
                     <string>ROM tool</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_98">
+                   <layout class="QGridLayout" name="gridLayout_18">
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelRomTool">
                       <property name="text">
@@ -4302,7 +4302,7 @@
                    <property name="checked">
                     <bool>false</bool>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_3">
+                   <layout class="QGridLayout" name="gridLayout_19">
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelHTTPProxyHost">
                       <property name="text">
@@ -4407,7 +4407,7 @@
                    <property name="title">
                     <string>Browser settings</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_97">
+                   <layout class="QGridLayout" name="gridLayout_20">
                     <item row="1" column="2">
                      <widget class="QToolButton" name="toolButtonBrowseCookieDatabase">
                       <property name="sizePolicy">
@@ -4499,7 +4499,7 @@
                    <property name="title">
                     <string>7-zip tool</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout">
+                   <layout class="QGridLayout" name="gridLayout_21">
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelSevenZipTool">
                       <property name="text">
@@ -4591,7 +4591,7 @@
           <attribute name="title">
            <string>F&amp;iles / Directories</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_20">
+          <layout class="QGridLayout" name="gridLayout_22">
            <property name="margin">
             <number>0</number>
            </property>
@@ -4612,9 +4612,9 @@
                 <height>467</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_8">
+              <layout class="QGridLayout" name="gridLayout_23">
                <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_9">
+                <layout class="QGridLayout" name="gridLayout_24">
                  <item row="0" column="0">
                   <layout class="QHBoxLayout" name="layout18">
                    <item>
@@ -5257,7 +5257,7 @@
           <attribute name="title">
            <string>Additional &amp;Emulators</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_0">
+          <layout class="QGridLayout" name="gridLayout_25">
            <property name="margin">
             <number>0</number>
            </property>
@@ -5278,7 +5278,7 @@
                 <height>214</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,0,0,0,0,0,0,0,0">
+              <layout class="QGridLayout" name="gridLayout_26" columnstretch="0,0,0,0,0,0,0,0,0">
                <item row="5" column="0" colspan="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
