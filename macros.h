@@ -44,8 +44,8 @@
 #define QMC2_1T					QMC2_ONE_TERABYTE
 
 // min/max of two constants
-#define MAX(a, b)				(((a) > (b)) ? (a) : (b))
-#define MIN(a, b)				(((a) < (b)) ? (a) : (b))
+#define QMC2_MAX(a, b)				(((a) > (b)) ? (a) : (b))
+#define QMC2_MIN(a, b)				(((a) < (b)) ? (a) : (b))
 
 // determine file existance
 #if !defined(QMC2_OS_WIN)

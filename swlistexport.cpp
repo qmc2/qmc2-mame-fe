@@ -219,7 +219,7 @@ void SoftwareListExporter::exportToASCII()
 	for (int i = 0; i < orderedColumns.count(); i++) {
 		QString headerName = columnNames[columnNamesUntranslated.indexOf(orderedColumns[i])];
 		if ( columnActivation[i] == "true" ) {
-			maxColumnWidth[headerName] = columnWidthLimited ? MIN(headerName.length(), maxLength) : headerName.length();
+			maxColumnWidth[headerName] = columnWidthLimited ? QMC2_MIN(headerName.length(), maxLength) : headerName.length();
 			headerNames << headerName;
 			columnIndexes << columnNamesUntranslated.indexOf(orderedColumns[i]);
 		}
@@ -237,7 +237,7 @@ void SoftwareListExporter::exportToASCII()
 				QString text = item->text(columnIndexes[j]);
 				QString headerName = headerNames[j];
 				if ( text.length() > maxColumnWidth[headerName] )
-					maxColumnWidth[headerName] = columnWidthLimited ? MIN(text.length(), maxLength) : text.length();
+					maxColumnWidth[headerName] = columnWidthLimited ? QMC2_MIN(text.length(), maxLength) : text.length();
 			}
 		}
 	}
