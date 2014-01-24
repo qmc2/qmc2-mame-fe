@@ -185,7 +185,7 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("confirmQuit", globalConfig->confirmQuit());
         rootObject()->setProperty("gameCardPage", globalConfig->gameCardPage());
         rootObject()->setProperty("autoPositionOverlay", globalConfig->autoPositionOverlay());
-        rootObject()->setProperty("overlayScale", std::max(0.0, std::min(10.0, globalConfig->overlayScale())));
+        rootObject()->setProperty("overlayScale", QMC2_ARCADE_MAX(0.0, QMC2_ARCADE_MIN(10.0, globalConfig->overlayScale())));
         rootObject()->setProperty("overlayOffsetX", globalConfig->overlayOffsetX());
         rootObject()->setProperty("overlayOffsetY", globalConfig->overlayOffsetY());
         rootObject()->setProperty("overlayOpacity", globalConfig->overlayOpacity());
@@ -210,8 +210,8 @@ void TweakedQmlApplicationViewer::loadSettings()
         rootObject()->setProperty("toolbarAutoHide", globalConfig->toolbarAutoHide());
         rootObject()->setProperty("launchFlash", globalConfig->launchFlash());
         rootObject()->setProperty("launchZoom", globalConfig->launchZoom());
-        rootObject()->setProperty("overlayScale", std::max(0.33, globalConfig->overlayScale()));
-        rootObject()->setProperty("lightTimeout", std::max(5.0, globalConfig->lightTimeout()));
+        rootObject()->setProperty("overlayScale", QMC2_ARCADE_MAX(0.33, globalConfig->overlayScale()));
+        rootObject()->setProperty("lightTimeout", QMC2_ARCADE_MAX(5.0, globalConfig->lightTimeout()));
         rootObject()->setProperty("colourScheme", globalConfig->colourScheme());
         break;
     }
