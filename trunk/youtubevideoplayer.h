@@ -8,6 +8,7 @@
 #include <QtXml>
 #include <QtNetwork>
 #include <QDesktopWidget>
+#include <QPainterPath>
 #if QT_VERSION >= 0x050000
 #include <QMediaPlayer>
 #include <QVideoWidget>
@@ -99,7 +100,7 @@ class VideoOverlayWidget : public QWidget
 				r.adjust(-adjRect.width()*2, -adjRect.height(), +adjRect.width()*2, +adjRect.height());
 				int myHeight = r.height();
 				if ( videoWidget()->isFullScreen() )
-					r.setBottom(qApp->desktop()->rect().bottom());
+					r.setBottom(qApp->desktop()->rect().bottom();
 				else
 					r.setBottom(videoWidget()->rect().bottom());
 				r.setTop(r.bottom() - myHeight);
@@ -130,7 +131,9 @@ class VideoOverlayWidget : public QWidget
 				f.setWeight(QFont::Bold);
 				p.setFont(f);
 				QFontMetrics fm(f);
-				p.fillRect(r, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+				QPainterPath pp;
+				pp.addRoundedRect(r, 5, 5);
+				p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
 				p.setPen(QPen(QColor(255, 255, 255, 255)));
 				p.drawText(r, Qt::AlignCenter | Qt::TextWordWrap, messageText);
 				p.end();
