@@ -33,6 +33,10 @@
 #include <QDir>
 #include <stdio.h>
 
+// min/max of two constants
+#define QMC2_ARCADE_MAX(a, b)           (((a) > (b)) ? (a) : (b))
+#define QMC2_ARCADE_MIN(a, b)           (((a) < (b)) ? (a) : (b))
+
 // application and ini related
 #define QMC2_ARCADE_ORG_DOMAIN          QString("qmc2.arcadehits.net")
 #define QMC2_ARCADE_ORG_NAME            QString("qmc2")
