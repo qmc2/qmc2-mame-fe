@@ -100,7 +100,7 @@ class VideoOverlayWidget : public QWidget
 				r.adjust(-adjRect.width()*2, -adjRect.height(), +adjRect.width()*2, +adjRect.height());
 				int myHeight = r.height();
 				if ( videoWidget()->isFullScreen() )
-					r.setBottom(qApp->desktop()->rect().bottom();
+					r.setBottom(qApp->desktop()->rect().bottom());
 				else
 					r.setBottom(videoWidget()->rect().bottom());
 				r.setTop(r.bottom() - myHeight);
