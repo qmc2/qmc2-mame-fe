@@ -6,6 +6,7 @@
 #if defined(QMC2_OS_WIN)
 
 #include <QtGui>
+#define NOMINMAX
 #include <windows.h>
 
 #define QMC2_WIN_MAX_PROCS	4096
