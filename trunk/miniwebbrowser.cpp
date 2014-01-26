@@ -183,7 +183,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   connect(&statusTimer, SIGNAL(timeout()), this, SLOT(statusTimeout()));
 
   // "activate" the combo box on pressing return
-  connect(comboBoxURL->lineEdit(), SIGNAL(returnPressed()), this, SLOT(on_comboBoxURL_activated()));
+  connect(comboBoxURL->lineEdit(), SIGNAL(returnPressed()), this, SLOT(comboBoxURL_activated()));
 
   adjustIconSizes();
 }
@@ -323,10 +323,10 @@ void MiniWebBrowser::postProcessPageActionInspect()
 #endif
 }
 
-void MiniWebBrowser::on_comboBoxURL_activated()
+void MiniWebBrowser::on_comboBoxURL_activated(int /*index*/)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_comboBoxURL_activated()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_comboBoxURL_activated(int)");
 #endif
 
   if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {

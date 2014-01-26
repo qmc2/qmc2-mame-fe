@@ -89,7 +89,8 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     ~MiniWebBrowser();
 
   public slots:
-    void on_comboBoxURL_activated();
+    void on_comboBoxURL_activated(int);
+    void comboBoxURL_activated() { on_comboBoxURL_activated(0); };
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
     void on_toolButtonBack_clicked();
