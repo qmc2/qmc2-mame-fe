@@ -86,7 +86,7 @@ public slots:
     void sevenZipDataReady();
 
 signals:
-    void imageDataUpdated();
+    void imageDataUpdated(QString);
 
 private:
     QString loadImage(const QString &id, const enum CacheClass cacheClass);

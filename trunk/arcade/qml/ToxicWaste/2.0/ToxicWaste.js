@@ -6,9 +6,12 @@ var initializing = true;
 
 function init() {
     viewer.loadSettings();
+    initializing = false;
+}
+
+function restoreLastIndex() {
     if ( lastIndex < gameListModelCount )
         gamelistView.positionViewAtIndex(lastIndex, ListView.Beginning);
-    initializing = false;
 }
 
 function scaleFactorX() {
