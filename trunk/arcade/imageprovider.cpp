@@ -21,7 +21,7 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
     : QObject(parent), QQuickImageProvider(type)
 #endif
 {
-    mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb";
+    mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws" << "ico";
     mImageCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);
     mPixmapCache.setMaxCost(QMC2_ARCADE_IMGCACHE_SIZE);
     foreach (QString imageType, mImageTypes) {
@@ -47,8 +47,12 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
         else for (int i = 0; i < activeFormats.count(); i++)
             mActiveFormatsMap[imageType] << activeFormats[i].toInt();
     }
-    mFormatExtensions << "png" << "bmp" << "gif" << "jpg, jpeg" << "pbm" << "pgm" << "ppm" << "tif, tiff" << "xbm" << "xpm" << "svg" << "tga";
-    mFormatNames << "PNG" << "BMP" << "GIF" << "JPG" << "PBM" << "PGM" << "PPM" << "TIFF" << "XBM" << "XPM" << "SVG" << "TGA";
+    // we support all formats for icons in this (hard-coded) order
+    mActiveFormatsMap["ico"] << QMC2_ARCADE_IMAGE_FORMAT_INDEX_ICO << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG << QMC2_ARCADE_IMAGE_FORMAT_INDEX_BMP << QMC2_ARCADE_IMAGE_FORMAT_INDEX_GIF << QMC2_ARCADE_IMAGE_FORMAT_INDEX_JPG
+                             << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PBM << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PGM << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PPM << QMC2_ARCADE_IMAGE_FORMAT_INDEX_TIFF << QMC2_ARCADE_IMAGE_FORMAT_INDEX_XBM
+                             << QMC2_ARCADE_IMAGE_FORMAT_INDEX_XPM << QMC2_ARCADE_IMAGE_FORMAT_INDEX_SVG << QMC2_ARCADE_IMAGE_FORMAT_INDEX_TGA;
+    mFormatExtensions << "png" << "bmp" << "gif" << "jpg, jpeg" << "pbm" << "pgm" << "ppm" << "tif, tiff" << "xbm" << "xpm" << "svg" << "tga" << "ico";
+    mFormatNames << "PNG" << "BMP" << "GIF" << "JPG" << "PBM" << "PGM" << "PPM" << "TIFF" << "XBM" << "XPM" << "SVG" << "TGA" << "ICO";
 }
 
 ImageProvider::~ImageProvider()
@@ -65,13 +69,14 @@ ImageProvider::~ImageProvider()
 QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
 {
     QImage image, result;
-    QString cacheKey;
+    QString cacheKey, cachePrefix;
 
-    if ( !id.isEmpty() )
+    if ( !id.isEmpty() ) {
        cacheKey = loadImage(id, CacheClassImage);
+       cachePrefix = id.split("/", QString::SkipEmptyParts)[0];
+    }
 
     if ( !cacheKey.isEmpty() ) {
-        QString cachePrefix = cacheKey.split("/", QString::SkipEmptyParts)[0];
         if ( mAsyncMap[cachePrefix] ) {
             image.load(QLatin1String(":/images/ghost.png"));
             QPainter p;
@@ -97,11 +102,19 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
             cacheKey = loadImage(id, CacheClassImage);
             if ( !cacheKey.isEmpty() )
                 image = *mImageCache.object(cacheKey);
-            else
+            else if ( cachePrefix == "ico" ) {
+                image = QImage(QSize(1, 1), QImage::Format_ARGB32);
+                image.fill(Qt::transparent);
+            } else
                 image.load(QLatin1String(":/images/ghost.png"));
         }
-    } else
-       image.load(QLatin1String(":/images/ghost.png"));
+    } else {
+        if ( cachePrefix == "ico" ) {
+            image = QImage(QSize(1, 1), QImage::Format_ARGB32);
+            image.fill(Qt::transparent);
+        } else
+            image.load(QLatin1String(":/images/ghost.png"));
+    }
 
     if ( requestedSize.isValid() )
         result = image.scaled(requestedSize, Qt::KeepAspectRatio);
@@ -117,13 +130,14 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
 QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
 {
     QPixmap image, result;
-    QString cacheKey;
+    QString cacheKey, cachePrefix;
 
-    if ( !id.isEmpty() )
+    if ( !id.isEmpty() ) {
        cacheKey = loadImage(id, CacheClassPixmap);
+       cachePrefix = id.split("/", QString::SkipEmptyParts)[0];
+    }
 
     if ( !cacheKey.isEmpty() ) {
-        QString cachePrefix = cacheKey.split("/", QString::SkipEmptyParts)[0];
         if ( mAsyncMap[cachePrefix] ) {
             image.load(QLatin1String(":/images/ghost.png"));
             QPainter p;
@@ -149,11 +163,19 @@ QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize
             cacheKey = loadImage(id, CacheClassPixmap);
             if ( !cacheKey.isEmpty() )
                 image = *mPixmapCache.object(cacheKey);
-            else
+            else if ( cachePrefix == "ico" ) {
+                image = QPixmap(QSize(1, 1));
+                image.fill(Qt::transparent);
+            } else
                 image.load(QLatin1String(":/images/ghost.png"));
         }
-    } else
-       image.load(QLatin1String(":/images/ghost.png"));
+    } else {
+        if ( cachePrefix == "ico" ) {
+            image = QPixmap(QSize(1, 1));
+            image.fill(Qt::transparent);
+        } else
+            image.load(QLatin1String(":/images/ghost.png"));
+    }
 
     if ( requestedSize.isValid() )
         result = image.scaled(requestedSize, Qt::KeepAspectRatio);
@@ -172,7 +194,7 @@ void ImageProvider::sevenZipDataReady()
     if ( sevenZipFile ) {
         QString cachePrefix = sevenZipFile->userData().split("/", QString::SkipEmptyParts)[0];
         mAsyncMap[cachePrefix] = false;
-        emit imageDataUpdated();
+        emit imageDataUpdated(cachePrefix);
     }
 }
 
@@ -209,7 +231,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
         } else
             QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): invalid image ID '%1' requested").arg(id));
     } else {
-        QString imageType = idWords[0]; 
+        QString imageType = idWords[0];
         QString gameId = idWords[1];
         QString cacheKey = imageType + "/" + gameId;
         switch ( cacheClass ) {
@@ -412,6 +434,10 @@ QString ImageProvider::imageTypeToFile(QString type)
         return globalConfig->titleFile();
     case QMC2_ARCADE_IMGTYPE_PCB:
         return globalConfig->pcbFile();
+    case QMC2_ARCADE_IMGTYPE_SWSNAP:
+        return globalConfig->swSnapFile();
+    case QMC2_ARCADE_IMGTYPE_ICON:
+        return globalConfig->iconFile();
     default:
         return QString();
     }
@@ -437,6 +463,10 @@ QString ImageProvider::imageTypeToLongName(QString type)
         return QObject::tr("title");
     case QMC2_ARCADE_IMGTYPE_PCB:
         return QObject::tr("PCB");
+    case QMC2_ARCADE_IMGTYPE_SWSNAP:
+        return QObject::tr("software snapshot");
+    case QMC2_ARCADE_IMGTYPE_ICON:
+        return QObject::tr("icon");
     default:
         return QString();
     }
@@ -459,6 +489,10 @@ bool ImageProvider::isZippedImageType(QString type)
         return globalConfig->titlesZipped();
     case QMC2_ARCADE_IMGTYPE_PCB:
         return globalConfig->pcbsZipped();
+    case QMC2_ARCADE_IMGTYPE_SWSNAP:
+        return globalConfig->swSnapsZipped();
+    case QMC2_ARCADE_IMGTYPE_ICON:
+        return globalConfig->iconsZipped();
     default:
         return false;
     }
@@ -481,6 +515,10 @@ bool ImageProvider::isSevenZippedImageType(QString type)
         return globalConfig->titlesSevenZipped();
     case QMC2_ARCADE_IMGTYPE_PCB:
         return globalConfig->pcbsSevenZipped();
+    case QMC2_ARCADE_IMGTYPE_SWSNAP:
+        return globalConfig->swSnapsSevenZipped();
+    case QMC2_ARCADE_IMGTYPE_ICON:
+        return globalConfig->iconsSevenZipped();
     default:
         return false;
     }
@@ -503,6 +541,10 @@ QString ImageProvider::imageFolder(QString type)
         return globalConfig->titleFolder();
     case QMC2_ARCADE_IMGTYPE_PCB:
         return globalConfig->pcbFolder();
+    case QMC2_ARCADE_IMGTYPE_SWSNAP:
+        return globalConfig->swSnapFolder();
+    case QMC2_ARCADE_IMGTYPE_ICON:
+        return globalConfig->iconFolder();
     default:
         return QString();
     }

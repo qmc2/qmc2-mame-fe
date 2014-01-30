@@ -113,7 +113,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
     setResizeMode(QQuickView::SizeRootObjectToView);
     imageProvider = new ImageProvider(QQuickImageProvider::Image);
 #endif
-    connect(imageProvider, SIGNAL(imageDataUpdated()), this, SLOT(imageDataUpdate()));
+    connect(imageProvider, SIGNAL(imageDataUpdated(QString)), this, SLOT(imageDataUpdate(QString)));
     engine()->addImageProvider(QString("qmc2"), imageProvider);
 
     infoProvider = new InfoProvider();

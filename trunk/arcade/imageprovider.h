@@ -19,6 +19,7 @@
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_XPM     9
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_SVG     10
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_TGA     11
+#define QMC2_ARCADE_IMAGE_FORMAT_INDEX_ICO     12
 
 #include "../minizip/unzip.h"
 #include "../sevenzipfile.h"
@@ -44,7 +45,7 @@ public slots:
     void sevenZipDataReady();
 
 signals:
-    void imageDataUpdated();
+    void imageDataUpdated(QString);
 
 private:
     QString loadImage(const QString &id, const enum CacheClass cacheClass);

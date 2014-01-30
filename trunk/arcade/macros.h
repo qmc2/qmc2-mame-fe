@@ -94,7 +94,7 @@
 #define QMC2_ARCADE_ZIP_BUFSIZE         64*1024
 
 // number of image- & pixmap-cache slots
-#define QMC2_ARCADE_IMGCACHE_SIZE       100
+#define QMC2_ARCADE_IMGCACHE_SIZE       1000
 
 // indexed QML themes
 #define QMC2_ARCADE_THEME_TOXICWASTE    0
@@ -165,9 +165,10 @@
 #define QMC2_ARCADE_IMGTYPE_CONTROLLER  3
 #define QMC2_ARCADE_IMGTYPE_MARQUEE     4
 #define QMC2_ARCADE_IMGTYPE_LOGO        QMC2_ARCADE_IMGTYPE_MARQUEE
-#define QMC2_ARCADE_IMGTYPE_TITLE       5
+#define QMC2_ARCADE_IMGTYPE_TITLE       5 // not used for MESS
 #define QMC2_ARCADE_IMGTYPE_PCB         6
 #define QMC2_ARCADE_IMGTYPE_SWSNAP      7
+#define QMC2_ARCADE_IMGTYPE_ICON        8
 
 // indexes in compressed image file type selectors
 #define QMC2_ARCADE_IMG_FILETYPE_ZIP    0

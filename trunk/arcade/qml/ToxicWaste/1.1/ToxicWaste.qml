@@ -153,7 +153,10 @@ Rectangle {
                         fillMode: Image.PreserveAspectFit
                         Connections {
                             target: viewer
-                            onImageDataUpdated: ToxicWaste.updateCurrentIndex()
+                            onImageDataUpdated: {
+                                if ( cachePrefix === ToxicWaste.cachePrefix(toxicWasteMain.cabinetImageType) )
+                                    previewImage.cache = true;
+                            }
                         }
                     }
                 }
@@ -259,7 +262,10 @@ Rectangle {
                             fillMode: Image.PreserveAspectFit
                             Connections {
                                 target: viewer
-                                onImageDataUpdated: ToxicWaste.updateCurrentIndex()
+                                onImageDataUpdated: {
+                                    if ( cachePrefix === ToxicWaste.cachePrefix(toxicWasteMain.secondaryImageType) )
+                                        imageViewer.cache = true;
+                                }
                             }
                         }
                         Rectangle {
@@ -578,6 +584,24 @@ Rectangle {
                 radius: 10
                 border.color: "black"
                 border.width: 2
+                Image {
+                    id: gamelistItemIcon
+                    cache: false
+                    source: ToxicWaste.imageUrlForId(model.modelData.id, "icon")
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.margins: 10
+                    smooth: true
+                    fillMode: Image.PreserveAspectFit
+                    height: parent.height / 3
+                    Connections {
+                        target: viewer
+                        onImageDataUpdated: {
+                            if ( cachePrefix === "ico" )
+                                gamelistItemIcon.cache = true;
+                        }
+                    }
+                }
                 Text {
                     property bool fontResized: false
                     id: gamelistItemText
@@ -587,9 +611,15 @@ Rectangle {
                     font.italic: true
                     font.pixelSize: parent.height / 3
                     elide: Text.ElideRight
-                    wrapMode: Text.WordWrap
-                    anchors.fill: parent
-                    anchors.margins: 10
+                    wrapMode: Text.NoWrap
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    anchors.left: gamelistItemIcon.right
+                    anchors.leftMargin: 0
+                    anchors.rightMargin: 10
+                    anchors.topMargin: 10
+                    anchors.bottomMargin: 10
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
@@ -602,14 +632,14 @@ Rectangle {
                     onContainsMouseChanged: {
                         if ( mapToItem(menuAndStatusBar, mouseX, mouseY).y < 0 ) {
                             if ( containsMouse )
-                                ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground);
+                                ToxicWaste.itemEntered(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
                             else
-                                ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground);
+                                ToxicWaste.itemExited(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
                         }
                     }
                     onDoubleClicked: {
                         gamelistView.currentIndex = index;
-                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground);
+                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
                         searchTextInput.focus = false;
                         launchButton.opacity = 1.0;
                         viewer.launchEmulator(gameListModel[gamelistView.currentIndex].id);
@@ -617,7 +647,7 @@ Rectangle {
                     }
                     onClicked: {
                         gamelistView.currentIndex = index;
-                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground);
+                        ToxicWaste.itemClicked(gamelistItemText, gamelistItemBackground, gamelistItemIcon);
                         searchTextInput.focus = false;
                     }
                 }
