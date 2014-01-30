@@ -93,7 +93,7 @@ public:
 signals:
     void emulatorStarted(int);
     void emulatorFinished(int);
-    void imageDataUpdated();
+    void imageDataUpdated(QString cachePrefix);
 
 public slots:
     void fpsReady();
@@ -122,7 +122,7 @@ public slots:
     void handleQuit();
 #endif
     int runningEmulators() { return processManager->runningProcesses(); }
-    void imageDataUpdate() { emit imageDataUpdated(); };
+    void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); };
 
 private:
     bool initialised;

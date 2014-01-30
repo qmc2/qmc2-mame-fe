@@ -788,7 +788,10 @@ FocusScope {
                         }
                         Connections {
                             target: viewer
-                            onImageDataUpdated: DarkoneJS.updateCurrentIndex()
+                            onImageDataUpdated: {
+                                if ( cachePrefix === DarkoneJS.dataTypes[darkone.dataTypeCurrent].path )
+                                    overlayImage.cache = true;
+                            }
                         }
                     }
 
@@ -882,8 +885,7 @@ FocusScope {
                             from: "hidden"
                             to: "shown"
                             SequentialAnimation {
-                                ParallelAnimation
-    {
+                                ParallelAnimation {
                                     PropertyAnimation { target: overlayDisplay; property: "anchors.topMargin"; from: 0; to: overlayDataHeader.height; duration: 450; easing.type: Easing.InExpo }
                                     PropertyAnimation { target: overlayDataHeader; property: "anchors.topMargin"; from: -overlayDataHeader.height - 5; to: 0; duration: 450; easing.type: Easing.InExpo }
                                     PropertyAnimation { target: overlayDataHeader; property: "opacity"; from: 0; to: 1.0; duration: 450; easing.type: Easing.InExpo }
@@ -891,7 +893,6 @@ FocusScope {
                                     PropertyAnimation { target: overlayDisplay; property: "anchors.bottomMargin"; from: 0; to: overlayDataNav.height; duration: 450; easing.type: Easing.InExpo }
                                     PropertyAnimation { target: overlayDataNav; property: "anchors.bottomMargin"; from: -overlayDataNav.height - 5; to: 0; duration: 450; easing.type: Easing.InExpo }
                                     PropertyAnimation { target: overlayDataNav; property: "opacity"; from: 0; to: 1.0; duration: 450; easing.type: Easing.OutExpo }
-
                                 }
                             }
                         },
@@ -900,7 +901,6 @@ FocusScope {
                             to: "hidden"
                             SequentialAnimation {
                                 ParallelAnimation {
-
                                     PropertyAnimation { target: overlayDisplay; property: "anchors.topMargin"; from: overlayDataHeader.height; to: 0; duration: 450; easing.type: Easing.OutExpo }
                                     PropertyAnimation { target: overlayDataHeader; property: "anchors.topMargin"; from: 0; to: -overlayDataHeader.height - 5; duration: 450; easing.type: Easing.OutExpo }
                                     PropertyAnimation { target: overlayDataHeader; property: "opacity"; from: 1.0; to: 0; duration: 450; easing.type: Easing.OutExpo }
@@ -908,7 +908,6 @@ FocusScope {
                                     PropertyAnimation { target: overlayDisplay; property: "anchors.bottomMargin"; from: overlayDataNav.height; to: 0; duration: 450; easing.type: Easing.OutExpo }
                                     PropertyAnimation { target: overlayDataNav; property: "anchors.bottomMargin"; from: 0; to: -overlayDataNav.height - 5; duration: 450; easing.type: Easing.OutExpo }
                                     PropertyAnimation { target: overlayDataNav; property: "opacity"; from: 1.0; to: 0; duration: 450; easing.type: Easing.OutExpo }
-
                                 }
                             }
                         }

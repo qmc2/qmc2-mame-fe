@@ -164,6 +164,14 @@ public slots:
     bool pcbsSevenZipped();
     QString pcbFile();
     QString pcbFolder();
+    bool swSnapsZipped();
+    bool swSnapsSevenZipped();
+    QString swSnapFile();
+    QString swSnapFolder();
+    bool iconsZipped();
+    bool iconsSevenZipped();
+    QString iconFile();
+    QString iconFolder();
     QString optionsTemplateFile();
     QString emulatorExecutablePath();
     QString emulatorWorkingDirectory();

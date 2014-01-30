@@ -19,7 +19,7 @@ function scaleFactorY() {
     return toxicWasteMain.height / baseHeight;
 }
 
-function itemEntered(itemText, itemBackground) {
+function itemEntered(itemText, itemBackground, itemIcon) {
     if ( !itemText.fontResized ) {
         if ( lastItemText !== undefined )
             itemExited(lastItemText, lastitemBackground);
@@ -28,22 +28,25 @@ function itemEntered(itemText, itemBackground) {
         itemText.fontResized = true;
         itemText.font.pixelSize += 5;
         itemBackground.opacity = 1;
+        itemIcon.height += 5;
     }
 }
 
-function itemExited(itemText, itemBackground) {
+function itemExited(itemText, itemBackground, itemIcon) {
     if ( itemText.fontResized ) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
         itemBackground.opacity = 0.8;
+        itemIcon.height -= 5;
     }
 }
 
-function itemClicked(itemText, itemBackground) {
+function itemClicked(itemText, itemBackground, itemIcon) {
     if ( itemText.fontResized ) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
         itemBackground.opacity = 0.8;
+        itemIcon.height -= 5;
     }
 }
 
@@ -170,6 +173,9 @@ function cachePrefix(imageType) {
     case "pcb":
         prefix = "pcb";
         break;
+    case "icon":
+        prefix = "ico";
+        break;
     case "preview":
     default:
         prefix = "prv";
@@ -180,6 +186,11 @@ function cachePrefix(imageType) {
 
 function imageUrl(imageType) {
     var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + gameListModel[gamelistView.currentIndex].id;
+    return imgUrl;
+}
+
+function imageUrlForId(id, imageType) {
+    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + id;
     return imgUrl;
 }
 
@@ -233,15 +244,5 @@ function emulatorStopped() {
             waveEffect.running = true;
         if ( toxicWasteMain.showBackgroundAnimation )
             backgroundAnim.opacity = 1.0;
-    }
-}
-
-function updateCurrentIndex() {
-    if ( gamelistView.currentIndex > 0 ) {
-        gamelistView.currentIndex -= 1;
-        gamelistView.currentIndex += 1;
-    } else {
-        gamelistView.currentIndex += 1;
-        gamelistView.currentIndex -= 1;
     }
 }

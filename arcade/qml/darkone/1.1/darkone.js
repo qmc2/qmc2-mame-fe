@@ -706,13 +706,3 @@ function version(maxmin, verTarget, verCheck) {
 
     return bMet;
 }
-
-function updateCurrentIndex() {
-    if ( gameListView.currentIndex > 0 ) {
-        gameListView.currentIndex -= 1;
-        gameListView.currentIndex += 1;
-    } else {
-        gameListView.currentIndex += 1;
-        gameListView.currentIndex -= 1;
-    }
-}

@@ -667,6 +667,46 @@ QString ArcadeSettings::pcbFolder()
     return value(QString("%1/FilesAndDirectories/PCBDirectory").arg(emulatorPrefix)).toString();
 }
 
+bool ArcadeSettings::swSnapsZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseSoftwareSnapFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/SoftwareSnapFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ZIP);
+}
+
+bool ArcadeSettings::swSnapsSevenZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseSoftwareSnapFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/SoftwareSnapFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+QString ArcadeSettings::swSnapFile()
+{
+    return value(QString("%1/FilesAndDirectories/SoftwareSnapFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::swSnapFolder()
+{
+    return value(QString("%1/FilesAndDirectories/SoftwareSnapDirectory").arg(emulatorPrefix)).toString();
+}
+
+bool ArcadeSettings::iconsZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseIconFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/IconFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_ZIP);
+}
+
+bool ArcadeSettings::iconsSevenZipped()
+{
+    return value(QString("%1/FilesAndDirectories/UseIconFile").arg(emulatorPrefix)).toBool() && (value(QString("%1/FilesAndDirectories/IconFileType").arg(emulatorPrefix)).toInt() == QMC2_ARCADE_IMG_FILETYPE_7Z);
+}
+
+QString ArcadeSettings::iconFile()
+{
+    return value(QString("%1/FilesAndDirectories/IconFile").arg(emulatorPrefix)).toString();
+}
+
+QString ArcadeSettings::iconFolder()
+{
+    return value(QString("%1/FilesAndDirectories/IconDirectory").arg(emulatorPrefix)).toString();
+}
+
 QString ArcadeSettings::optionsTemplateFile()
 {
     return value(QString("%1/FilesAndDirectories/OptionsTemplateFile").arg(emulatorPrefix)).toString();
