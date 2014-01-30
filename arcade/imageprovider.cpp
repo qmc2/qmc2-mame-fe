@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QApplication>
+#include <QTimer>
 
 #include "imageprovider.h"
 #include "arcadesettings.h"
@@ -31,6 +32,7 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
             if ( !mFileMapZip[imageType] ) {
                 QMC2_ARCADE_LOG_STR(QString("WARNING: Can't open %1 ZIP file '%2'").arg(imageTypeToLongName(imageType)).arg(imageTypeToFile(imageType)));
             }
+            emit imageDataUpdated(imageType);
         } else if ( isSevenZippedImageType(imageType) ) {
             SevenZipFile *imageFile = new SevenZipFile(imageTypeToFile(imageType));
             if ( imageFile->open() ) {
@@ -40,7 +42,8 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
                 QMC2_ARCADE_LOG_STR(QString("WARNING: Can't open %1 7z file '%2'").arg(imageTypeToLongName(imageType)).arg(imageTypeToFile(imageType)));
                 delete imageFile;
             }
-        }
+        } else
+            emit imageDataUpdated(imageType);
         QStringList activeFormats = globalConfig->activeImageFormats(imageType);
         if ( activeFormats.isEmpty() )
             mActiveFormatsMap[imageType] << QMC2_ARCADE_IMAGE_FORMAT_INDEX_PNG;

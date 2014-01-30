@@ -44,7 +44,18 @@ Rectangle {
         interval: 50
         running: false
         repeat: false
-        onTriggered: ToxicWaste.init()
+        onTriggered: {
+            ToxicWaste.init();
+            restoreLastIndexTimer.start();
+        }
+    }
+
+    Timer {
+        id: restoreLastIndexTimer
+        interval: 10
+        running: false
+        repeat: false
+        onTriggered: ToxicWaste.restoreLastIndex()
     }
 
     Component.onCompleted: initTimer.start()
@@ -612,17 +623,13 @@ Rectangle {
                     font.pixelSize: parent.height / 3
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                    anchors.left: gamelistItemIcon.right
-                    anchors.leftMargin: 0
-                    anchors.rightMargin: 10
-                    anchors.topMargin: 10
-                    anchors.bottomMargin: 10
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    anchors.leftMargin: gamelistItemIcon.width > 1 ? gamelistItemIcon.width + 10 : 10
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
                 }
                 MouseArea {
                     id: gamelistItemMouseArea
