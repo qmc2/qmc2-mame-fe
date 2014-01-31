@@ -81,24 +81,29 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
 
     if ( !cacheKey.isEmpty() ) {
         if ( mAsyncMap[cachePrefix] ) {
-            image.load(QLatin1String(":/images/ghost.png"));
-            QPainter p;
-            QString message = tr("Decompressing archive, please wait...");
-            p.begin(&image);
-            p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
-            QFont f(qApp->font());
-            f.setWeight(QFont::Bold);
-            f.setPointSize(f.pointSize() * 2);
-            QFontMetrics fm(f);
-            int adjustment = fm.height() / 2;
-            p.setFont(f);
-            QRect outerRect = p.boundingRect(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
-            QPainterPath pp;
-            pp.addRoundedRect(outerRect, 5, 5);
-            p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
-            p.setPen(QColor(255, 255, 0, 255));
-            p.drawText(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
-            p.end();
+            if ( cachePrefix == "ico" ) {
+                image = QImage(QSize(1, 1), QImage::Format_ARGB32);
+                image.fill(Qt::transparent);
+            } else {
+                image.load(QLatin1String(":/images/ghost.png"));
+                QPainter p;
+                QString message = tr("Decompressing archive, please wait...");
+                p.begin(&image);
+                p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
+                QFont f(qApp->font());
+                f.setWeight(QFont::Bold);
+                f.setPointSize(f.pointSize() * 2);
+                QFontMetrics fm(f);
+                int adjustment = fm.height() / 2;
+                p.setFont(f);
+                QRect outerRect = p.boundingRect(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
+                QPainterPath pp;
+                pp.addRoundedRect(outerRect, 5, 5);
+                p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+                p.setPen(QColor(255, 255, 0, 255));
+                p.drawText(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
+                p.end();
+            }
         } else if ( mImageCache.contains(cacheKey) ) {
             image = *mImageCache.object(cacheKey);
         } else {
@@ -142,24 +147,29 @@ QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize
 
     if ( !cacheKey.isEmpty() ) {
         if ( mAsyncMap[cachePrefix] ) {
-            image.load(QLatin1String(":/images/ghost.png"));
-            QPainter p;
-            QString message = tr("Decompressing archive, please wait...");
-            p.begin(&image);
-            p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
-            QFont f(qApp->font());
-            f.setWeight(QFont::Bold);
-            f.setPointSize(f.pointSize() * 2);
-            QFontMetrics fm(f);
-            int adjustment = fm.height() / 2;
-            p.setFont(f);
-            QRect outerRect = p.boundingRect(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
-            QPainterPath pp;
-            pp.addRoundedRect(outerRect, 5, 5);
-            p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
-            p.setPen(QColor(255, 255, 0, 255));
-            p.drawText(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
-            p.end();
+            if ( cachePrefix == "ico" ) {
+                image = QPixmap(QSize(1, 1));
+                image.fill(Qt::transparent);
+            } else {
+                image.load(QLatin1String(":/images/ghost.png"));
+                QPainter p;
+                QString message = tr("Decompressing archive, please wait...");
+                p.begin(&image);
+                p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
+                QFont f(qApp->font());
+                f.setWeight(QFont::Bold);
+                f.setPointSize(f.pointSize() * 2);
+                QFontMetrics fm(f);
+                int adjustment = fm.height() / 2;
+                p.setFont(f);
+                QRect outerRect = p.boundingRect(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message).adjusted(-adjustment, -adjustment, adjustment, adjustment);
+                QPainterPath pp;
+                pp.addRoundedRect(outerRect, 5, 5);
+                p.fillPath(pp, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+                p.setPen(QColor(255, 255, 0, 255));
+                p.drawText(image.rect(), Qt::AlignCenter | Qt::TextWordWrap, message);
+                p.end();
+            }
         } else if ( mPixmapCache.contains(cacheKey) ) {
             image = *mPixmapCache.object(cacheKey);
         } else {
