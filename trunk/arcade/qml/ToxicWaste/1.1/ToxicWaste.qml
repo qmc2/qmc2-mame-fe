@@ -630,9 +630,6 @@ Rectangle {
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    onPaintedWidthChanged: {
-                        viewer.log(paintedWidth);
-                    }
                 }
                 MouseArea {
                     id: gamelistItemMouseArea
