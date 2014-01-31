@@ -31,7 +31,8 @@ function itemEntered(itemText, itemBackground, itemIcon) {
         itemText.fontResized = true;
         itemText.font.pixelSize += 5;
         itemBackground.opacity = 1;
-        itemIcon.height += 5;
+        if ( itemIcon !== undefined )
+            itemIcon.height += 5;
     }
 }
 
@@ -40,7 +41,8 @@ function itemExited(itemText, itemBackground, itemIcon) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
         itemBackground.opacity = 0.8;
-        itemIcon.height -= 5;
+        if ( itemIcon !== undefined )
+            itemIcon.height -= 5;
     }
 }
 
@@ -49,7 +51,8 @@ function itemClicked(itemText, itemBackground, itemIcon) {
         itemText.fontResized = false;
         itemText.font.pixelSize -= 5;
         itemBackground.opacity = 0.8;
-        itemIcon.height -= 5;
+        if ( itemIcon !== undefined )
+            itemIcon.height -= 5;
     }
 }
 
@@ -189,11 +192,6 @@ function cachePrefix(imageType) {
 
 function imageUrl(imageType) {
     var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + gameListModel[gamelistView.currentIndex].id;
-    return imgUrl;
-}
-
-function imageUrlForId(id, imageType) {
-    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + id;
     return imgUrl;
 }
 

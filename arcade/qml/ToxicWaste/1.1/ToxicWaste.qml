@@ -14,6 +14,7 @@ Rectangle {
     property bool invertFlip: false
     property bool horizontalFlip: true
     property bool flipDirectionChanged: false
+    property bool iconsReady: false
 
     // restored properties
     property bool fpsVisible: false
@@ -21,6 +22,7 @@ Rectangle {
     property bool showShaderEffect: false
     property bool animateInForeground: false
     property bool fullScreen: false
+    property string cabinetImageType: "preview"
     property string secondaryImageType: "preview"
     property bool cabinetFlipped: false
     property int lastIndex: 0
@@ -35,13 +37,12 @@ Rectangle {
     property real overlayOpacity: 1
     property real backgroundOpacity: 0.7
     property real gameListOpacity: 1
-    property string cabinetImageType: "preview"
     property bool autoStopAnimations: true
 
     // delayed init
     Timer {
         id: initTimer
-        interval: 50
+        interval: 1
         running: false
         repeat: false
         onTriggered: {
@@ -52,7 +53,7 @@ Rectangle {
 
     Timer {
         id: restoreLastIndexTimer
-        interval: 10
+        interval: 1
         running: false
         repeat: false
         onTriggered: ToxicWaste.restoreLastIndex()
@@ -585,7 +586,7 @@ Rectangle {
             Rectangle {
                 id: gamelistItemBackground
                 smooth: true
-                anchors.fill: parent
+                anchors.fill: gamelistItemDelegate
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "lightgrey" }
                     GradientStop { position: 0.5; color: "white" }
@@ -597,19 +598,19 @@ Rectangle {
                 border.width: 2
                 Image {
                     id: gamelistItemIcon
-                    cache: false
-                    source: ToxicWaste.imageUrlForId(model.modelData.id, "icon")
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
+                    cache: toxicWasteMain.iconsReady
+                    source: "image://qmc2/ico/" + model.modelData.id
+                    anchors.left: gamelistItemBackground.left
+                    anchors.verticalCenter: gamelistItemBackground.verticalCenter
                     anchors.margins: 10
                     smooth: true
                     fillMode: Image.PreserveAspectFit
-                    height: parent.height / 3
+                    height: gamelistItemBackground.height / 3
                     Connections {
                         target: viewer
                         onImageDataUpdated: {
                             if ( cachePrefix === "ico" )
-                                gamelistItemIcon.cache = true;
+                                toxicWasteMain.iconsReady = true;
                         }
                     }
                 }
@@ -620,20 +621,22 @@ Rectangle {
                     color: "black"
                     font.bold: true
                     font.italic: true
-                    font.pixelSize: parent.height / 3
+                    font.pixelSize: gamelistItemBackground.height / 3
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
-                    anchors.fill: parent
+                    anchors.fill: gamelistItemBackground
                     anchors.margins: 10
                     anchors.leftMargin: gamelistItemIcon.width > 1 ? gamelistItemIcon.width + 10 : 10
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    onPaintedWidthChanged: {
+                        viewer.log(paintedWidth);
+                    }
                 }
                 MouseArea {
                     id: gamelistItemMouseArea
-                    anchors.fill: parent
+                    anchors.fill: gamelistItemBackground
                     hoverEnabled: true
                     acceptedButtons: Qt.LeftButton
                     onContainsMouseChanged: {
