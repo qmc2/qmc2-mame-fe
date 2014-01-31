@@ -624,9 +624,9 @@ Rectangle {
                     font.pixelSize: gamelistItemBackground.height / 3
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
-                    anchors.fill: gamelistItemBackground
-                    anchors.margins: 10
-                    anchors.leftMargin: gamelistItemIcon.width > 1 ? gamelistItemIcon.width + 10 : 10
+                    anchors.centerIn: gamelistItemBackground
+                    anchors.horizontalCenterOffset: gamelistItemIcon.width > 1 ? (paintedWidth + gamelistItemIcon.width + 40 < gamelistItemBackground.width ? 0 : gamelistItemIcon.width - 10) : 0
+                    width: gamelistItemIcon.width > 1 ? gamelistItemBackground.width - gamelistItemIcon.width - 20 : gamelistItemBackground.width - 20
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
