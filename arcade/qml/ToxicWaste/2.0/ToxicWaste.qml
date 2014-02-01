@@ -623,7 +623,7 @@ Rectangle {
                     elide: Text.ElideRight
                     wrapMode: Text.NoWrap
                     anchors.centerIn: gamelistItemBackground
-                    anchors.horizontalCenterOffset: gamelistItemIcon.width > 1 ? (paintedWidth + gamelistItemIcon.width + 40 < gamelistItemBackground.width ? 0 : gamelistItemIcon.width - 10) : 0
+                    anchors.horizontalCenterOffset: gamelistItemIcon.width > 1 ? (paintedWidth + gamelistItemIcon.width + 45 < gamelistItemBackground.width ? 0 : gamelistItemIcon.width - 10) : 0
                     width: gamelistItemIcon.width > 1 ? gamelistItemBackground.width - gamelistItemIcon.width - 20 : gamelistItemBackground.width - 20
                     smooth: true
                     verticalAlignment: Text.AlignVCenter
