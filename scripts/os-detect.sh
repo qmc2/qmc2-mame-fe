@@ -6,7 +6,9 @@ UNAME="`uname -a`"
 DIST="`uname -r`"
 
 if [ "${OS}" = "Linux" ] ; then
-  if [ -f /etc/mandriva-release ] ; then
+  if [ -f /etc/os-release ] ; then
+    DIST="`cat /etc/os-release | tr '\n' ' ' | sed 's/\ VERSION_ID.*//' | sed 's/\ (.*)//' | sed 's/NAME=//g' | sed 's/VERSION=//g' | sed 's/\"//g'`"
+  elif [ -f /etc/mandriva-release ] ; then
     DIST="`cat /etc/mandriva-release | sed 's/\ for .*//' | sed 's/\ (.*)//'`"
   elif [ -f /etc/redhat-release ] ; then
     DIST="`cat /etc/redhat-release | sed 's/\ (.*)//'`"
