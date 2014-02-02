@@ -1707,7 +1707,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           QString baseName = QFileInfo(filePath).baseName();
           QStringList chdPaths = romPaths;
           for (int i = 0; i < chdPaths.count(); i++)
-            chdPaths[i] = chdPaths[i] + QDir::separator() + baseName + ".chd";
+            chdPaths[i] = chdPaths[i] + QDir::separator() + gameName + QDir::separator() + baseName + ".chd";
           QString sP;
 	  if ( romPaths.count() > 1 )
 		  sP = tr("searched paths: %1").arg(chdPaths.join(", "));
