@@ -167,6 +167,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseWorkingDirectory_clicked();
     void on_toolButtonBrowseOptionsTemplateFile_clicked();
     void on_toolButtonBrowseListXMLCache_clicked();
+    void on_toolButtonBrowseXmlCacheDatabase_clicked();
     void on_toolButtonBrowseFont_clicked();
     void on_toolButtonBrowseLogFont_clicked();
     void on_toolButtonBrowseZipTool_clicked();
