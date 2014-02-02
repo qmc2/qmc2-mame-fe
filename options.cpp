@@ -223,8 +223,15 @@ Options::Options(QWidget *parent)
   cancelClicked = false;
 
 #if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when "additional artwork support" is functional
+  // FIXME: remove WIP clause when "additional artwork support" is working
   pushButtonAdditionalArtworkSetup->setVisible(false);
+#endif
+
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
+  labelXmlCacheDatabase->setVisible(false);
+  lineEditXmlCacheDatabase->setVisible(false);
+  toolButtonBrowseXmlCacheDatabase->setVisible(false);
 #endif
 
   qmc2StandardWorkDir = QDir::currentPath();
@@ -712,6 +719,7 @@ void Options::apply()
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
   toolButtonBrowseOptionsTemplateFile->setIconSize(iconSize);
   toolButtonBrowseListXMLCache->setIconSize(iconSize);
+  toolButtonBrowseXmlCacheDatabase->setIconSize(iconSize);
   toolButtonBrowseCookieDatabase->setIconSize(iconSize);
   toolButtonBrowseZipTool->setIconSize(iconSize);
   toolButtonBrowseSevenZipTool->setIconSize(iconSize);
@@ -1689,6 +1697,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+  config->setValue("MAME/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
   //config->setValue("MAME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
@@ -1710,6 +1719,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+  config->setValue("MESS/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
   config->setValue("MESS/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MESS/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
   config->setValue("MESS/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
@@ -1730,7 +1740,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
 #endif
   config->setValue("UME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
-  config->setValue("UME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+  config->setValue("UME/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
   config->setValue("UME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("UME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
   config->setValue("UME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
@@ -2764,6 +2774,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
   lineEditListXMLCache->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
+  lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
   lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
   //lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
@@ -2790,6 +2801,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
   lineEditListXMLCache->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
+  lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mess-xml-cache.db").toString());
   lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
   lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mess.sic").toString());
@@ -2811,6 +2823,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/LogFile", userScopePath + "/ume.log").toString());
   lineEditListXMLCache->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString());
+  lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/ume-xml-cache.db").toString());
   lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/ume.glc").toString());
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/ume.rsc").toString());
   lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/ume.sic").toString());
@@ -3308,6 +3321,18 @@ void Options::on_toolButtonBrowseListXMLCache_clicked()
   if ( !s.isNull() )
     lineEditListXMLCache->setText(s);
   raise();
+}
+
+void Options::on_toolButtonBrowseXmlCacheDatabase_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseXmlCacheDatabase_clicked()");
+#endif
+
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose XML cache database file"), lineEditXmlCacheDatabase->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditXmlCacheDatabase->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseCookieDatabase_clicked()

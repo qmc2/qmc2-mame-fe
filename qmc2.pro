@@ -97,6 +97,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			demomode.cpp \
 			audioeffects.cpp \
 			romdbmgr.cpp \
+			xmldbmgr.cpp \
 			customidsetup.cpp \
 			toolbarcustomizer.cpp \
 			iconlineedit.cpp \
@@ -205,6 +206,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			demomode.h \
 			audioeffects.h \
 			romdbmgr.h \
+			xmldbmgr.h \
 			customidsetup.h \
 			toolbarcustomizer.h \
 			iconlineedit.h \
