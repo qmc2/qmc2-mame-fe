@@ -27,9 +27,11 @@ class Gamelist : public QObject
 		int cachedGamesCounter;
 		int numTaggedSets;
 		int numVerifyRoms;
+		int uncommittedXmlDbRows;
 		bool verifyCurrentOnly;
 		bool autoRomCheck;
 		bool mergeCategories;
+		bool dtdBufferReady;
 		char oldRomState;
 		QIcon qmc2UnknownImageIcon;
 		QIcon qmc2UnknownBIOSImageIcon;

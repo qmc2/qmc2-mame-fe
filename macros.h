@@ -106,6 +106,9 @@
 // current format version of the XML cache database schema
 #define QMC2_XMLCACHE_VERSION			1
 
+// number of rows added to the XML cache database in *one* transaction
+#define QMC2_XMLCACHE_COMMIT			1000
+
 // column used for the game/machine icon
 #define QMC2_ICON_INDEX				2
 

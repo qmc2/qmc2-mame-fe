@@ -136,11 +136,11 @@ Gamelist::Gamelist(QObject *parent)
 #endif
 
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numDevices = -1;
-  cachedGamesCounter = numTaggedSets = numSearchGames = numVerifyRoms = 0;
+  uncommittedXmlDbRows = cachedGamesCounter = numTaggedSets = numSearchGames = numVerifyRoms = 0;
   loadProc = verifyProc = NULL;
   checkedItem = NULL;
   emulatorVersion = tr("unknown");
-  mergeCategories = autoRomCheck = verifyCurrentOnly = false;
+  mergeCategories = autoRomCheck = verifyCurrentOnly = dtdBufferReady = false;
 
   QString imgDir = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", "data/").toString() + "img/";
   qmc2UnknownImageIcon.addFile(imgDir + "sphere_blue.png");
@@ -991,6 +991,15 @@ void Gamelist::load()
       tsListXMLCache << "UME_VERSION\t" + emulatorVersion + "\n";
 #endif
     }
+#if defined(QMC2_WIP_ENABLED)
+    // FIXME: remove WIP clause when the "XML cache database" is working
+    uncommittedXmlDbRows = 0;
+    dtdBufferReady = false;
+    xmlDb()->recreateDatabase();
+    xmlDb()->setEmulatorVersion(emulatorVersion);
+    xmlDb()->setQmc2Version(XSTR(QMC2_VERSION));
+    xmlDb()->setXmlCacheVersion(QMC2_XMLCACHE_VERSION);
+#endif
     loadProc = new QProcess(this);
     connect(loadProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(loadError(QProcess::ProcessError)));
     connect(loadProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(loadFinished(int, QProcess::ExitStatus)));
@@ -2735,70 +2744,78 @@ void Gamelist::loadStarted()
 void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)loadProc));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)loadProc));
 #endif
 
-  bool invalidateListXmlCache = false;
-  if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
-    qmc2StopParser = invalidateListXmlCache = true;
-  }
+	bool invalidateListXmlCache = false;
+	if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
+		qmc2StopParser = invalidateListXmlCache = true;
+	}
 
-  QTime elapsedTime(0, 0, 0, 0);
-  elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-  qmc2MainWindow->progressBarGamelist->reset();
-  qmc2EarlyReloadActive = false;
-  if ( loadProc )
-    delete loadProc;
-  loadProc = NULL;
+	QTime elapsedTime(0, 0, 0, 0);
+	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2EarlyReloadActive = false;
+	if ( loadProc )
+		delete loadProc;
+	loadProc = NULL;
 
-  if ( romCache.isOpen() )
-    romCache.close();
+	if ( romCache.isOpen() )
+		romCache.close();
 
-  if ( listXMLCache.isOpen() )
-    listXMLCache.close();
+	if ( listXMLCache.isOpen() )
+		listXMLCache.close();
 
-  if ( invalidateListXmlCache ) {
-	  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
-	  listXMLCache.remove();
-  }
+	if ( invalidateListXmlCache ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
+		listXMLCache.remove();
+	}
 
-  parse();
-  loadFavorites();
-  loadPlayHistory();
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	if ( uncommittedXmlDbRows > 0 ) {
+		xmlDb()->commitTransaction();
+		uncommittedXmlDbRows = 0;
+	}
+#endif
 
-  // show game list
-  qmc2MainWindow->labelLoadingGamelist->setVisible(false);
-  qmc2MainWindow->treeWidgetGamelist->setVisible(true);
-  qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
-  qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+	parse();
+	loadFavorites();
+	loadPlayHistory();
 
-  if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
-	  if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
-		  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-			  case QMC2_VIEW_DETAIL_INDEX:
-				  qmc2MainWindow->treeWidgetGamelist->setFocus();
-				  break;
-			  case QMC2_VIEW_TREE_INDEX:
-				  qmc2MainWindow->treeWidgetHierarchy->setFocus();
-				  break;
-			  case QMC2_VIEW_CATEGORY_INDEX:
-				  qmc2MainWindow->treeWidgetCategoryView->setFocus();
-				  break;
+	// show game list
+	qmc2MainWindow->labelLoadingGamelist->setVisible(false);
+	qmc2MainWindow->treeWidgetGamelist->setVisible(true);
+	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
+	qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+
+	if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
+			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+				case QMC2_VIEW_DETAIL_INDEX:
+					qmc2MainWindow->treeWidgetGamelist->setFocus();
+					break;
+				case QMC2_VIEW_TREE_INDEX:
+					qmc2MainWindow->treeWidgetHierarchy->setFocus();
+					break;
+				case QMC2_VIEW_CATEGORY_INDEX:
+					qmc2MainWindow->treeWidgetCategoryView->setFocus();
+					break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			  case QMC2_VIEW_VERSION_INDEX:
-				  qmc2MainWindow->treeWidgetVersionView->setFocus();
-				  break;
+				case QMC2_VIEW_VERSION_INDEX:
+					qmc2MainWindow->treeWidgetVersionView->setFocus();
+					break;
 #endif
-			  default:
-				  qmc2MainWindow->treeWidgetGamelist->setFocus();
-				  break;
-		  }
-	  }
-  }
+				default:
+					qmc2MainWindow->treeWidgetGamelist->setFocus();
+					break;
+			}
+		}
+	}
 
-  qApp->processEvents();
+	qApp->processEvents();
 }
 
 void Gamelist::loadReadyReadStandardOutput()
@@ -2808,6 +2825,9 @@ void Gamelist::loadReadyReadStandardOutput()
 #endif
 
 	static bool lastCharacterWasSpace = false;
+	static QString dtdBuffer;
+	static QString setXmlBuffer;
+	static QString currentSetName;
 
 	// this makes the GUI much more responsive, but is HAS to be called before loadProc->readAllStandardOutput()!
 	qApp->processEvents();
@@ -2821,6 +2841,12 @@ void Gamelist::loadReadyReadStandardOutput()
 	bool startsWithSpace = readBuffer.startsWith(" ") && !lastCharacterWasSpace;
 	bool endsWithSpace = readBuffer.endsWith(" ");
 	lastCharacterWasSpace = false;
+
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	if ( uncommittedXmlDbRows == 0 )
+		xmlDb()->beginTransaction();
+#endif
 
 	if ( qmc2StopParser )
 		loadProc->kill();
@@ -2891,7 +2917,73 @@ void Gamelist::loadReadyReadStandardOutput()
 		xmlDataBuffer += singleXMLLine;
 		if ( listXMLCache.isOpen() )
 			tsListXMLCache << singleXMLLine;
+
+#if defined(QMC2_WIP_ENABLED)
+		// FIXME: remove WIP clause when the "XML cache database" is working
+		if ( !dtdBufferReady ) {
+#if defined(QMC2_EMUTYPE_MAME)
+			dtdBufferReady = singleXMLLine.startsWith("<mame build=");
+#elif defined(QMC2_EMUTYPE_MESS)
+			dtdBufferReady = singleXMLLine.startsWith("<mess build=");
+#elif defined(QMC2_EMUTYPE_UME)
+			dtdBufferReady = singleXMLLine.startsWith("<ume build=");
+#endif
+			if ( !dtdBufferReady ) {
+				if ( !singleXMLLine.startsWith("<?xml version=") )
+					dtdBuffer += singleXMLLine;
+			} else {
+				if ( dtdBuffer.endsWith("\n") )
+					dtdBuffer.remove(dtdBuffer.length() - 1, 1);
+				xmlDb()->setDtd(dtdBuffer);
+				dtdBuffer.clear();
+			}
+		} else {
+			if ( currentSetName.isEmpty() ) {
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				int startIndex = singleXMLLine.indexOf("<game name=\"");
+#elif defined(QMC2_EMUTYPE_MESS)
+				int startIndex = singleXMLLine.indexOf("<machine name=\"");
+#endif
+
+				if ( startIndex >= 0 ) {
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+					startIndex += 12;
+#elif defined(QMC2_EMUTYPE_MESS)
+					startIndex += 15;
+#endif
+					int endIndex = singleXMLLine.indexOf("\"", startIndex);
+					if ( endIndex >= 0 ) {
+						currentSetName = singleXMLLine.mid(startIndex, endIndex - startIndex);
+						setXmlBuffer += singleXMLLine;
+					}
+				}
+			} else {
+				setXmlBuffer += singleXMLLine;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+				int index = singleXMLLine.indexOf("</game>");
+#elif defined(QMC2_EMUTYPE_MESS)
+				int index = singleXMLLine.indexOf("</machine>");
+#endif
+				if ( index >= 0 ) {
+					if ( setXmlBuffer.endsWith("\n") )
+						setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
+					xmlDb()->setXml(currentSetName, setXmlBuffer);
+					uncommittedXmlDbRows++;
+					currentSetName.clear();
+					setXmlBuffer.clear();
+				}
+			}
+		}
+#endif
 	}
+
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	if ( uncommittedXmlDbRows >= QMC2_XMLCACHE_COMMIT ) {
+		xmlDb()->commitTransaction();
+		uncommittedXmlDbRows = 0;
+	}
+#endif
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<game name="));

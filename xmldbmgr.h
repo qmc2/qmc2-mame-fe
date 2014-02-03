@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSqlDatabase>
+#include <QSqlDriver>
 
 class XmlDatabaseManager : public QObject
 {
@@ -13,16 +14,20 @@ class XmlDatabaseManager : public QObject
 		~XmlDatabaseManager();
 
 		QString emulatorVersion();
-		void setEmulatorVersion(QString);
+		void setEmulatorVersion(QString emu_version);
 		QString qmc2Version();
-		void setQmc2Version(QString);
+		void setQmc2Version(QString qmc2_version);
 		int xmlCacheVersion();
-		void setXmlCacheVersion(int);
+		void setXmlCacheVersion(int xmlcache_version);
 		QString dtd();
-		void setDtd(QString);
+		void setDtd(QString dtd);
+		QString xml(QString id);
+		void setXml(QString id, QString xml);
 
 	public slots:
 		void recreateDatabase();
+		void beginTransaction() { m_db.driver()->beginTransaction(); }
+		void commitTransaction() { m_db.driver()->commitTransaction(); }
 
 	private:
 		mutable QSqlDatabase m_db;
