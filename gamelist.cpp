@@ -210,29 +210,44 @@ Gamelist::Gamelist(QObject *parent)
 			  qmc2IconFileMap7z[filePath] = iconFile;
 	  }
   }
+
+#if defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
+  m_xmlDb = new XmlDatabaseManager(this);
+#endif
 }
 
 Gamelist::~Gamelist()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::~Gamelist()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::~Gamelist()");
 #endif
 
-  if ( loadProc )
-    loadProc->kill();
+	if ( loadProc )
+		loadProc->kill();
 
-  if ( verifyProc )
-    verifyProc->kill();
+	if ( verifyProc )
+		verifyProc->kill();
 
-  clearCategoryNames();
-  categoryMap.clear();
+	clearCategoryNames();
+	categoryMap.clear();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  clearVersionNames();
-  versionMap.clear();
+	clearVersionNames();
+	versionMap.clear();
 #endif
 
-  foreach (unzFile iconFile, qmc2IconFileMap)
-    unzClose(iconFile);
+	foreach (unzFile iconFile, qmc2IconFileMap)
+		unzClose(iconFile);
+
+	foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
+		iconFile->close();
+		delete iconFile;
+	}
+
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	delete m_xmlDb;
+#endif
 }
 
 void Gamelist::enableWidgets(bool enable)

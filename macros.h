@@ -103,6 +103,9 @@
 // current format version of the GLC (game list cache)
 #define QMC2_GLC_VERSION			6
 
+// current format version of the XML cache database schema
+#define QMC2_XMLCACHE_VERSION			1
+
 // column used for the game/machine icon
 #define QMC2_ICON_INDEX				2
 

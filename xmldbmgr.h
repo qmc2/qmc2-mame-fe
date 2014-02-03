@@ -1,7 +1,8 @@
 #ifndef _XMLDBMGR_H_
 #define _XMLDBMGR_H_
 
-#include <QSqlQueryModel>
+#include <QObject>
+#include <QSqlDatabase>
 
 class XmlDatabaseManager : public QObject
 {
@@ -12,8 +13,10 @@ class XmlDatabaseManager : public QObject
 		~XmlDatabaseManager();
 
 	public slots:
+		void recreateDatabase();
 
 	private:
+		mutable QSqlDatabase m_db;
 };
 
 #endif

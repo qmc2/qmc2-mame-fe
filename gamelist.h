@@ -6,6 +6,8 @@
 #include <QIcon>
 #include <QTreeWidgetItem>
 #endif
+
+#include "xmldbmgr.h"
 #include "macros.h"
 
 class Gamelist : public QObject
@@ -84,6 +86,7 @@ class Gamelist : public QObject
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void clearVersionNames();
 #endif
+		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 
 		Gamelist(QObject *parent = 0);
 		~Gamelist();
@@ -126,6 +129,9 @@ class Gamelist : public QObject
 		void enableWidgets(bool enable = true);
 		void filter(bool initial = false);
 		bool loadIcon(QString, QTreeWidgetItem *, bool checkOnly = false, QString *fileName = NULL);
+
+	private:
+		XmlDatabaseManager *m_xmlDb;
 };
 
 class GamelistItem : public QTreeWidgetItem
