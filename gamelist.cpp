@@ -995,6 +995,7 @@ void Gamelist::load()
     // FIXME: remove WIP clause when the "XML cache database" is working
     uncommittedXmlDbRows = 0;
     dtdBufferReady = false;
+    xmlLineBuffer.clear();
     xmlDb()->recreateDatabase();
     xmlDb()->setEmulatorVersion(emulatorVersion);
     xmlDb()->setQmc2Version(XSTR(QMC2_VERSION));
@@ -2920,59 +2921,63 @@ void Gamelist::loadReadyReadStandardOutput()
 
 #if defined(QMC2_WIP_ENABLED)
 		// FIXME: remove WIP clause when the "XML cache database" is working
-		if ( !dtdBufferReady ) {
-#if defined(QMC2_EMUTYPE_MAME)
-			dtdBufferReady = singleXMLLine.startsWith("<mame build=");
-#elif defined(QMC2_EMUTYPE_MESS)
-			dtdBufferReady = singleXMLLine.startsWith("<mess build=");
-#elif defined(QMC2_EMUTYPE_UME)
-			dtdBufferReady = singleXMLLine.startsWith("<ume build=");
-#endif
+		xmlLineBuffer += singleXMLLine;
+		if ( xmlLineBuffer.endsWith("\n") ) {
 			if ( !dtdBufferReady ) {
-				if ( !singleXMLLine.startsWith("<?xml version=") )
-					dtdBuffer += singleXMLLine;
-			} else {
-				if ( dtdBuffer.endsWith("\n") )
-					dtdBuffer.remove(dtdBuffer.length() - 1, 1);
-				xmlDb()->setDtd(dtdBuffer);
-				dtdBuffer.clear();
-			}
-		} else {
-			if ( currentSetName.isEmpty() ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				int startIndex = singleXMLLine.indexOf("<game name=\"");
+#if defined(QMC2_EMUTYPE_MAME)
+				dtdBufferReady = xmlLineBuffer.startsWith("<mame build=");
 #elif defined(QMC2_EMUTYPE_MESS)
-				int startIndex = singleXMLLine.indexOf("<machine name=\"");
+				dtdBufferReady = xmlLineBuffer.startsWith("<mess build=");
+#elif defined(QMC2_EMUTYPE_UME)
+				dtdBufferReady = xmlLineBuffer.startsWith("<ume build=");
+#endif
+				if ( !dtdBufferReady ) {
+					if ( !xmlLineBuffer.startsWith("<?xml version=") )
+						dtdBuffer += xmlLineBuffer;
+				} else {
+					if ( dtdBuffer.endsWith("\n") )
+						dtdBuffer.remove(dtdBuffer.length() - 1, 1);
+					xmlDb()->setDtd(dtdBuffer);
+					dtdBuffer.clear();
+				}
+			} else {
+				if ( currentSetName.isEmpty() ) {
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+					int startIndex = xmlLineBuffer.indexOf("<game name=\"");
+#elif defined(QMC2_EMUTYPE_MESS)
+					int startIndex = xmlLineBuffer.indexOf("<machine name=\"");
 #endif
 
-				if ( startIndex >= 0 ) {
+					if ( startIndex >= 0 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-					startIndex += 12;
+						startIndex += 12;
 #elif defined(QMC2_EMUTYPE_MESS)
-					startIndex += 15;
+						startIndex += 15;
 #endif
-					int endIndex = singleXMLLine.indexOf("\"", startIndex);
-					if ( endIndex >= 0 ) {
-						currentSetName = singleXMLLine.mid(startIndex, endIndex - startIndex);
-						setXmlBuffer += singleXMLLine;
+						int endIndex = xmlLineBuffer.indexOf("\"", startIndex);
+						if ( endIndex >= 0 ) {
+							currentSetName = xmlLineBuffer.mid(startIndex, endIndex - startIndex);
+							setXmlBuffer += xmlLineBuffer;
+						}
+					}
+				} else {
+					setXmlBuffer += xmlLineBuffer;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+					int index = xmlLineBuffer.indexOf("</game>");
+#elif defined(QMC2_EMUTYPE_MESS)
+					int index = xmlLineBuffer.indexOf("</machine>");
+#endif
+					if ( index >= 0 ) {
+						if ( setXmlBuffer.endsWith("\n") )
+							setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
+						xmlDb()->setXml(currentSetName, setXmlBuffer);
+						uncommittedXmlDbRows++;
+						currentSetName.clear();
+						setXmlBuffer.clear();
 					}
 				}
-			} else {
-				setXmlBuffer += singleXMLLine;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				int index = singleXMLLine.indexOf("</game>");
-#elif defined(QMC2_EMUTYPE_MESS)
-				int index = singleXMLLine.indexOf("</machine>");
-#endif
-				if ( index >= 0 ) {
-					if ( setXmlBuffer.endsWith("\n") )
-						setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
-					xmlDb()->setXml(currentSetName, setXmlBuffer);
-					uncommittedXmlDbRows++;
-					currentSetName.clear();
-					setXmlBuffer.clear();
-				}
 			}
+			xmlLineBuffer.clear();
 		}
 #endif
 	}

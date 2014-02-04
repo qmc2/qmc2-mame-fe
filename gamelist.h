@@ -67,6 +67,7 @@ class Gamelist : public QObject
 		QStringList xmlLines;
 		QStringList emulatorIdentifiers;
 		QStringList verifiedList;
+		QString xmlLineBuffer;
 		QMap<QString, QString> driverNameMap;
 		QMap<QString, char> gameStatusMap;
 		QMap<QString, int> xmlGamePositionMap;
