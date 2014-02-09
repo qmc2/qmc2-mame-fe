@@ -2752,7 +2752,8 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
 		qmc2StopParser = invalidateListXmlCache = true;
-	}
+	} else if ( qmc2StopParser && exitStatus == QProcess::CrashExit )
+		qmc2StopParser = invalidateListXmlCache = true;
 
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
@@ -2776,9 +2777,11 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 #if defined(QMC2_WIP_ENABLED)
 	// FIXME: remove WIP clause when the "XML cache database" is working
-	if ( uncommittedXmlDbRows > 0 ) {
-		xmlDb()->commitTransaction();
-		uncommittedXmlDbRows = 0;
+	xmlDb()->commitTransaction();
+	uncommittedXmlDbRows = 0;
+	if ( invalidateListXmlCache ) {
+		//qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
+		xmlDb()->recreateDatabase();
 	}
 #endif
 

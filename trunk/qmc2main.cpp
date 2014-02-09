@@ -2706,6 +2706,12 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the XML cache file '%1', please check permissions").arg(fileName));
 	}
+
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	qmc2Gamelist->xmlDb()->recreateDatabase();
+#endif
+
 	softwareListXmlDataCache.clear();
 	systemSoftwareListMap.clear();
 	systemSoftwareFilterMap.clear();
