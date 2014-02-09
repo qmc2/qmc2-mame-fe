@@ -21,12 +21,11 @@ XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(userScopePath + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_xml_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
-		QSqlQuery query(m_db);
-		query.exec(QString("SELECT name FROM sqlite_master WHERE type='table' AND (name='%1' OR name='%1_metadata')").arg(m_tableBasename));
-		if ( query.size() != 2 )
+		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open XML cache database: error = '%1'").arg(m_db.lastError().text()));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open XML cache database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 }
 
 XmlDatabaseManager::~XmlDatabaseManager()
@@ -218,7 +217,7 @@ void XmlDatabaseManager::setXml(QString id, QString xml)
 			query.finish();
 		} else {
 			query.finish();
-			query.prepare(QString("UPDATE %1_metadata SET xml=:xml WHERE id=:id").arg(m_tableBasename));
+			query.prepare(QString("UPDATE %1 SET xml=:xml WHERE id=:id").arg(m_tableBasename));
 			query.bindValue(":id", id);
 			query.bindValue(":xml", xml);
 			if ( !query.exec() )
@@ -232,44 +231,36 @@ void XmlDatabaseManager::setXml(QString id, QString xml)
 void XmlDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);
-	bool success = true;
-	query.exec(QString("SELECT name FROM sqlite_master WHERE type='table' AND name='%1'").arg(m_tableBasename));
-	if ( query.next() ) {
-		query.finish();
-		if ( !query.exec(QString("DROP TABLE %1").arg(m_tableBasename)) ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			success = false;
-		}
+	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasename)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
 	}
-	if ( success ) {
-		query.exec(QString("SELECT name FROM sqlite_master WHERE type='table' AND name='%1_metadata'").arg(m_tableBasename));
-		if ( query.next() ) {
-			query.finish();
-			if ( !query.exec(QString("DROP TABLE %1_metadata").arg(m_tableBasename)) ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
-				success = false;
-			}
-		}
-		if ( success ) {
-			if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, xml TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasename)) ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
-				success = false;
-			}
-			query.finish();
-			if ( success ) {
-				if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasename)) ) {
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
-					success = false;
-				}
-				query.finish();
-				if ( success ) {
-					if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, dtd TEXT, emu_version TEXT, qmc2_version TEXT, xmlcache_version INTEGER)").arg(m_tableBasename)) ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
-						success = false;
-					}
-					query.finish();
-				}
-			}
-		}
+	query.finish();
+	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasename)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
 	}
+	query.finish();
+	if ( !query.exec(QString("DROP TABLE IF EXISTS %1_metadata").arg(m_tableBasename)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	query.finish();
+	query.exec("VACUUM");
+	query.finish();
+	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, xml TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasename)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	query.finish();
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasename)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	query.finish();
+	if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, dtd TEXT, emu_version TEXT, qmc2_version TEXT, xmlcache_version INTEGER)").arg(m_tableBasename)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return;
+	}
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("XML cache database '%1' initialized").arg(m_db.databaseName()));
 }
