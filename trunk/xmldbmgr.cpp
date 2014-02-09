@@ -16,6 +16,7 @@ XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	static quint64 connectionNumber = 0;
+	setLogActive(true);
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	m_db = QSqlDatabase::addDatabase("QSQLITE", "xmlcachedb-" + QString::number(connectionNumber++));
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(userScopePath + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
@@ -262,5 +263,6 @@ void XmlDatabaseManager::recreateDatabase()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return;
 	}
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("XML cache database '%1' initialized").arg(m_db.databaseName()));
+	if ( logActive() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("XML cache database '%1' initialized").arg(m_db.databaseName()));
 }

@@ -996,7 +996,9 @@ void Gamelist::load()
     uncommittedXmlDbRows = 0;
     dtdBufferReady = false;
     xmlLineBuffer.clear();
+    xmlDb()->setLogActive(false);
     xmlDb()->recreateDatabase();
+    xmlDb()->setLogActive(true);
     xmlDb()->setEmulatorVersion(emulatorVersion);
     xmlDb()->setQmc2Version(XSTR(QMC2_VERSION));
     xmlDb()->setXmlCacheVersion(QMC2_XMLCACHE_VERSION);
