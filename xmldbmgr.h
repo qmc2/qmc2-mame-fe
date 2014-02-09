@@ -23,6 +23,8 @@ class XmlDatabaseManager : public QObject
 		void setDtd(QString dtd);
 		QString xml(QString id);
 		void setXml(QString id, QString xml);
+		bool logActive() { return m_logActive; }
+		void setLogActive(bool enable) { m_logActive = enable; }
 
 	public slots:
 		void recreateDatabase();
@@ -32,6 +34,7 @@ class XmlDatabaseManager : public QObject
 	private:
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
+		bool m_logActive;
 };
 
 #endif
