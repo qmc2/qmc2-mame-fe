@@ -202,7 +202,10 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool loadFinishedFlag;
 		bool updatingMountDevices;
 		bool negatedMatch;
+#if !defined(QMC2_WIP_ENABLED)
+		// FIXME: remove WIP clause when the "XML cache database" is working
 		int cachedDeviceLookupPosition;
+#endif
 		int oldMax, oldMin;
 		bool verifyReadingStdout;
 		QAction *actionAddToFavorites;

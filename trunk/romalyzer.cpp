@@ -1177,6 +1177,14 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 
 	xmlBuffer.clear();
 
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	if ( includeDTD ) {
+		xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+		xmlBuffer += qmc2Gamelist->xmlDb()->dtd();
+	}
+	xmlBuffer += qmc2Gamelist->xmlDb()->xml(gameName);
+#else
 	int i = 0;
 	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
 	if ( includeDTD ) {
@@ -1221,6 +1229,7 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 		xmlBuffer += "</machine>\n";
 #endif
 	}
+#endif
 
 	return xmlBuffer;
 }
@@ -1946,7 +1955,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
     }
     if ( !mergeFile.isEmpty() && !qmc2StopParser ) {
       // romof is set, and the merge's file name is given
+#if defined(QMC2_WIP_ENABLED)
+      // FIXME: remove WIP clause when the "XML cache database" is working
+      QString nextMerge = getXmlData(merge).split("\n")[0];
+#else
       QString nextMerge = getXmlData(merge).split("\n")[1];
+#endif
       int romofPosition = nextMerge.indexOf("romof=");
       *mergeUsed = true;
       if ( romofPosition > -1 ) {
@@ -2349,6 +2363,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	pushButtonChecksumWizardSearch->setEnabled(false);
 	lineEditChecksumWizardHash->setEnabled(false);
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	int numXmlLines = qmc2Gamelist->xmlLines.count();
 
 	progressBar->setRange(0, numXmlLines);
@@ -2420,13 +2436,66 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">"));
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
-						if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT ) item->setSelected(true);
+						if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
+							item->setSelected(true);
 					}
 				}
 			}
 			i = j - 1;
 		}
 	}
+#else
+	// FIXME: this is the new (WIP-ified) code :)
+	progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
+	labelStatus->setText(tr("Checksum search"));
+
+	QString hashStartString;
+	int hashStartOffset;
+	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+			hashStartString = "crc=\"";
+			hashStartOffset = 5;
+			break;
+
+		default:
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+			hashStartString = "sha1=\"";
+			hashStartOffset = 6;
+			break;
+	}
+
+	for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
+		progressBar->setValue(i);
+		QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_GAMELIST_COLUMN_NAME);
+		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
+		for (int j = 0; j < xmlLines.count(); j++) {
+			QString xmlLine = xmlLines[j];
+			int hashPos = xmlLine.indexOf(hashStartString) + hashStartOffset;
+			if ( hashPos >= 0 ) {
+				QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
+				if ( currentChecksum == searchedChecksum ) {
+					int fileNamePos;
+					QString fileType;
+					if ( xmlLine.startsWith("<disk name=\"") ) {
+						fileType = tr("CHD");
+						fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
+					} else {
+						fileType = tr("ROM");
+						fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
+					}
+					QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
+					QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
+					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentGame);
+					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">"));
+					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
+					item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
+					if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
+						item->setSelected(true);
+				}
+			}
+		}
+	}
+#endif
 	progressBar->reset();
 	labelStatus->setText(tr("Idle"));
 	pushButtonChecksumWizardSearch->setEnabled(true);
