@@ -247,6 +247,7 @@ void XmlDatabaseManager::recreateDatabase()
 		return;
 	}
 	query.finish();
+	// vaccum'ing the database frees all disk-space previously used
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, xml TEXT, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasename)) ) {

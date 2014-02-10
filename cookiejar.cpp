@@ -22,13 +22,9 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open cookie database: error = '%1'").arg(db.lastError().text()));
 		return;
 	}
-	QSqlQuery query(db);
-	query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='qmc2_cookies'");
-	if ( !query.next() ) {
-		query.finish();
-		if ( !query.exec("CREATE TABLE qmc2_cookies (id INTEGER PRIMARY KEY, domain TEXT, name TEXT, value TEXT, path TEXT, expiry INTEGER, secure INTEGER, http_only INTEGER, CONSTRAINT qmc2_uniqueid UNIQUE (name, domain, path))") )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
-	}
+	QStringList tables = db.driver()->tables(QSql::Tables);
+	if ( tables.count() != 1 || !tables.contains("qmc2_cookies") )
+		recreateDatabase();
 }
 
 CookieJar::~CookieJar()
@@ -45,14 +41,14 @@ void CookieJar::recreateDatabase()
 		return;
 
 	QSqlQuery query(db);
-	query.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='qmc2_cookies'");
-	if ( query.next() ) {
-		query.finish();
-		if ( !query.exec("DROP TABLE qmc2_cookies") ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
-			return;
-		}
+	if ( !query.exec("DROP TABLE IF EXISTS qmc2_cookies") ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
+		return;
 	}
+	query.finish();
+	// vaccum'ing the database frees all disk-space previously used
+	query.exec("VACUUM");
+	query.finish();
 	if ( !query.exec("CREATE TABLE qmc2_cookies (id INTEGER PRIMARY KEY, domain TEXT, name TEXT, value TEXT, path TEXT, expiry INTEGER, secure INTEGER, http_only INTEGER, CONSTRAINT qmc2_uniqueid UNIQUE (name, domain, path))") )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create cookie database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(db.lastError().text()));
 	cookieMap.clear();
