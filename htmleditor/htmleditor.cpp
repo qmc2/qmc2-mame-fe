@@ -1191,6 +1191,8 @@ QString HtmlEditor::getImage(QString currentImage)
 		return currentImage;
 }
 
+#if !defined(QMC2_WIP_ENABLED)
+// FIXME: remove WIP clause when the "XML cache database" is working
 bool HtmlEditor::queryXml(QString queryString, bool sort)
 {
 	if ( xmlQueryBuffer == NULL ) {
@@ -1209,6 +1211,7 @@ bool HtmlEditor::queryXml(QString queryString, bool sort)
 	} else
 		return false;
 }
+#endif
 
 bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort)
 {

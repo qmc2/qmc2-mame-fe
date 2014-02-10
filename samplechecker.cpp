@@ -140,80 +140,104 @@ void SampleChecker::verify()
 	toolButtonSamplesRemoveObsolete->setEnabled(false);
 	sampleMap.clear();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("preparing sample-check: parsing XML data for relevant sample information"));
-	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
-	progressBar->setRange(0, xmlLinesCount);
-	progressBar->setValue(0);
-	progressBar->setFormat(tr("Parsing XML data"));
 	QString currentGameName, currentSampleOf;
 	bool hasSamples = false;
 	int sampleCount = 0;
 	QMap<QString, int> sampleCountMap;
-	for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
-		progressBar->setValue(gameListPos + 1);
-		if ( gameListPos % QMC2_CHECK_UPDATE_FAST == 0 || gameListPos == xmlLinesCount - 1)
+	progressBar->setFormat(tr("Parsing XML data"));
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
+	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
+	progressBar->setRange(0, xmlLinesCount);
+	progressBar->setValue(0);
+#else
+	// FIXME: this is the new (WIP-ified) code :)
+	int xmlRowCount = qmc2Gamelist->xmlDb()->xmlRowCount();
+	progressBar->setRange(0, xmlRowCount);
+	progressBar->setValue(0);
+	for (int rowCounter = 1; rowCounter < xmlRowCount; rowCounter++) {
+		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
+		int xmlLinesCount = xmlLines.count();
+		progressBar->setValue(rowCounter);
+		if ( rowCounter % QMC2_CHECK_UPDATE_FAST == 0 )
 			qApp->processEvents();
-		QString line = qmc2Gamelist->xmlLines[gameListPos];
-#if defined(QMC2_EMUTYPE_MESS)
-		int startIndex = line.indexOf("<machine name=\"");
-#else
-		int startIndex = line.indexOf("<game name=\"");
 #endif
-		int endIndex = -1;
-		if ( startIndex >= 0 ) {
-#if defined(QMC2_EMUTYPE_MESS)
-			startIndex += 15;
+		for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
+#if !defined(QMC2_WIP_ENABLED)
+			// FIXME: remove WIP clause when the "XML cache database" is working
+			progressBar->setValue(gameListPos + 1);
+			if ( gameListPos % QMC2_CHECK_UPDATE_FAST == 0 || gameListPos == xmlLinesCount - 1)
+				qApp->processEvents();
+			QString line = qmc2Gamelist->xmlLines[gameListPos];
 #else
-			startIndex += 12;
+			// FIXME: this is the new (WIP-ified) code :)
+			QString line = xmlLines[gameListPos];
 #endif
-			endIndex = line.indexOf("\"", startIndex);
-			if ( endIndex >= 0 )
-				currentGameName = line.mid(startIndex, endIndex - startIndex);
-			hasSamples = false;
-			sampleCount = 0;
-			startIndex = line.indexOf("sampleof=\"");
+#if defined(QMC2_EMUTYPE_MESS)
+			int startIndex = line.indexOf("<machine name=\"");
+#else
+			int startIndex = line.indexOf("<game name=\"");
+#endif
+			int endIndex = -1;
 			if ( startIndex >= 0 ) {
-				startIndex += 10;
+#if defined(QMC2_EMUTYPE_MESS)
+				startIndex += 15;
+#else
+				startIndex += 12;
+#endif
 				endIndex = line.indexOf("\"", startIndex);
-				if ( endIndex >= 0 ) {
-					currentSampleOf = line.mid(startIndex, endIndex - startIndex);
-					if ( currentSampleOf == currentGameName )
-						currentSampleOf.clear();
-				}
-				hasSamples = true;
-			}
-		} else if ( line.indexOf("<sample name=\"") >= 0 ) {
-			hasSamples |= true;
-			sampleCount++;
-		} else {
-#if defined(QMC2_EMUTYPE_MESS)
-			startIndex = line.indexOf("</machine>");
-#else
-			startIndex = line.indexOf("</game>");
-#endif
-			if ( startIndex >= 0 ) {
-				if ( !currentGameName.isEmpty() && hasSamples ) {
-					if ( currentSampleOf.isEmpty() ) {
-						sampleMap[currentGameName] = currentGameName;
-						sampleCountMap[currentGameName] = sampleCount;
-					} else {
-						if ( qmc2GamelistItemMap.contains(currentSampleOf) ) {
-							sampleMap[currentGameName] = currentSampleOf;
-							sampleCountMap[currentGameName] = sampleCount;
-						} else
-#if defined(QMC2_EMUTYPE_MESS)
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the machine '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MESS developers").arg(currentGameName).arg(currentSampleOf));
-#else
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
-#endif
-					}
-				}
-				currentGameName.clear();
-				currentSampleOf.clear();
+				if ( endIndex >= 0 )
+					currentGameName = line.mid(startIndex, endIndex - startIndex);
 				hasSamples = false;
 				sampleCount = 0;
+				startIndex = line.indexOf("sampleof=\"");
+				if ( startIndex >= 0 ) {
+					startIndex += 10;
+					endIndex = line.indexOf("\"", startIndex);
+					if ( endIndex >= 0 ) {
+						currentSampleOf = line.mid(startIndex, endIndex - startIndex);
+						if ( currentSampleOf == currentGameName )
+							currentSampleOf.clear();
+					}
+					hasSamples = true;
+				}
+			} else if ( line.indexOf("<sample name=\"") >= 0 ) {
+				hasSamples |= true;
+				sampleCount++;
+			} else {
+#if defined(QMC2_EMUTYPE_MESS)
+				startIndex = line.indexOf("</machine>");
+#else
+				startIndex = line.indexOf("</game>");
+#endif
+				if ( startIndex >= 0 ) {
+					if ( !currentGameName.isEmpty() && hasSamples ) {
+						if ( currentSampleOf.isEmpty() ) {
+							sampleMap[currentGameName] = currentGameName;
+							sampleCountMap[currentGameName] = sampleCount;
+						} else {
+							if ( qmc2GamelistItemMap.contains(currentSampleOf) ) {
+								sampleMap[currentGameName] = currentSampleOf;
+								sampleCountMap[currentGameName] = sampleCount;
+							} else
+#if defined(QMC2_EMUTYPE_MESS)
+								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the machine '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MESS developers").arg(currentGameName).arg(currentSampleOf));
+#else
+								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the game '%1' is referencing a non-existing sample-set (sampleof=\"%2\") -- please inform MAME developers").arg(currentGameName).arg(currentSampleOf));
+#endif
+						}
+					}
+					currentGameName.clear();
+					currentSampleOf.clear();
+					hasSamples = false;
+					sampleCount = 0;
+				}
 			}
 		}
+#if defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	}
+#endif
 
 	if ( qmc2StopParser ) {
 		progressBar->setFormat(tr("Idle"));

@@ -158,7 +158,10 @@ public slots:
     QString getImage(QString currentImage = QString());
     bool isZippedImage(QString imageType);
     QString getImageData(QString imageType);
+#if !defined(QMC2_WIP_ENABLED)
+    // FIXME: remove WIP clause when the "XML cache database" is working
     bool queryXml(QString queryString, bool sort = true);
+#endif
     bool queryLocalXml(QString id, QString queryString, bool sort = true);
     QStringList getXmlResult() { return xmlResult; }
 

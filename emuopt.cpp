@@ -1567,7 +1567,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 				return;
 			if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 				return;
-			fileName = "/" + qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".ini";
+			fileName = "/" + qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME) + ".ini";
 		}
 		for (int i = 0; i < iniPaths.count(); i++) {
 			QString fn(fileName);
@@ -1722,8 +1722,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 				return;
 			if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
 				return;
-			QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-			fileName = "/" + gameName + ".ini";
+			fileName = "/" + qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME) + ".ini";
 		}
 		for (int i = 0; i < iniPaths.count(); i++) {
 			QString fn(fileName);

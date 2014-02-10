@@ -22,9 +22,13 @@ class XmlDatabaseManager : public QObject
 		QString dtd();
 		void setDtd(QString dtd);
 		QString xml(QString id);
+		QString xml(int rowid);
 		void setXml(QString id, QString xml);
+
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
+
+		int xmlRowCount();
 
 	public slots:
 		void recreateDatabase();

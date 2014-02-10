@@ -2473,7 +2473,7 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
   QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool").toString();
   QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments").toString().split(" ");
   QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory").toString();
-  QString gameID = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  QString gameID = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
   QString gameDescription = qmc2GamelistDescriptionMap[gameID];
   QStringList newArgs;
   foreach (QString argument, args)
@@ -2502,7 +2502,7 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
   if ( !qmc2ROMAlyzer )
     qmc2ROMAlyzer = new ROMAlyzer(this);
 
-  qmc2ROMAlyzer->lineEditGames->setText(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
+  qmc2ROMAlyzer->lineEditGames->setText(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME));
 
   if ( qmc2ROMAlyzer->isHidden() )
     qmc2ROMAlyzer->show();
@@ -4042,7 +4042,7 @@ void MainWindow::scrollToCurrentItem()
 
     switch ( stackedWidgetView->currentIndex() ) {
       case QMC2_VIEWHIERARCHY_INDEX:
-        ci = qmc2HierarchyItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+        ci = qmc2HierarchyItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
         if ( ci ) {
           treeWidgetHierarchy->clearSelection();
           treeWidgetHierarchy->setCurrentItem(ci);
@@ -4051,7 +4051,7 @@ void MainWindow::scrollToCurrentItem()
         break;
 
       case QMC2_VIEWCATEGORY_INDEX:
-        ci = qmc2CategoryItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+        ci = qmc2CategoryItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
         if ( ci ) {
           treeWidgetCategoryView->clearSelection();
           treeWidgetCategoryView->setCurrentItem(ci);
@@ -4061,7 +4061,7 @@ void MainWindow::scrollToCurrentItem()
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
       case QMC2_VIEWVERSION_INDEX:
-        ci = qmc2VersionItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+        ci = qmc2VersionItemMap[ci->text(QMC2_GAMELIST_COLUMN_NAME)];
         if ( ci ) {
           treeWidgetVersionView->clearSelection();
           treeWidgetVersionView->setCurrentItem(ci);
@@ -4274,7 +4274,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   } else
     labelGameStatus->setVisible(false);
 
-  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 
   // setup status indicator color
   switch ( qmc2Gamelist->gameStatusMap[gameName] ) {
@@ -4367,7 +4367,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           gridLayout->getContentsMargins(&left, &top, &right, &bottom);
           QVBoxLayout *layout = new QVBoxLayout;
           layout->setContentsMargins(left, top, right, bottom);
-	  QString setID = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+	  QString setID = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
           qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2GamelistDescriptionMap[setID], tabYouTube);
           layout->addWidget(qmc2YouTubeWidget);
           tabYouTube->setLayout(layout);
@@ -4476,7 +4476,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabMAWS->setLayout(layout);
         QString projectMessUrl;
         QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
-        QString machName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QString machName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
         qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("ProjectMESS page for system '%1'").arg(machName));
 	if ( !qmc2MAWSCache.contains(machName) ) {
           projectMessUrl = QString(QMC2_PROJECTMESS_PATTERN_URL).arg(machName);
@@ -4746,10 +4746,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           }
           if ( qmc2LastGameInfoItem )
             if ( qmc2LastGameInfoItem->child(0) ) {
-              QByteArray *oldGameInfo = qmc2GameInfoDB[qmc2LastGameInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+              QByteArray *oldGameInfo = qmc2GameInfoDB[qmc2LastGameInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)];
               if ( !oldGameInfo ) {
                 // fall back to parent's game/machine info, if applicable
-		oldGameInfo = qmc2GameInfoDB[qmc2ParentMap[qmc2LastGameInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)]];
+		oldGameInfo = qmc2GameInfoDB[qmc2ParentMap[qmc2LastGameInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)]];
               }
               updateInfo = (newGameInfo != oldGameInfo || !oldGameInfo);
             }
@@ -4804,10 +4804,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           }
           if ( qmc2LastEmuInfoItem )
             if ( qmc2LastEmuInfoItem->child(0) ) {
-              QByteArray *oldEmuInfo = qmc2EmuInfoDB[qmc2LastEmuInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+              QByteArray *oldEmuInfo = qmc2EmuInfoDB[qmc2LastEmuInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)];
               if ( !oldEmuInfo ) {
                 // fall back to parent's emulator info, if applicable
-		oldEmuInfo = qmc2EmuInfoDB[qmc2ParentMap[qmc2LastEmuInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)]];
+		oldEmuInfo = qmc2EmuInfoDB[qmc2ParentMap[qmc2LastEmuInfoItem->text(QMC2_GAMELIST_COLUMN_NAME)]];
               }
               updateInfo = (newEmuInfo != oldEmuInfo || !oldEmuInfo);
             }
@@ -5117,6 +5117,8 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 	if ( defaultChoice )
 		defaultChoice->clear();
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	int i = qmc2Gamelist->xmlGamePositionMap[gameName];
 	int xmlLinesMax = qmc2Gamelist->xmlLines.count() - 1;
 	if ( i <= 0 ) {
@@ -5179,6 +5181,48 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 			}
 		}
 	}
+#else
+	// FIXME: this is the new (WIP-ified) code :)
+	QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
+	int i = 0;
+	while ( i < xmlLines.count() ) {
+		QString xmlLine = xmlLines[i++].simplified();
+		int index = xmlLine.indexOf("<" + optionElement);
+		if ( index >= 0 ) {
+			if ( optionAttribute.isEmpty() ) {
+				index = xmlLine.indexOf(">", index);
+				if ( index >= 0 ) {
+					xmlLine.remove(0, index + 1);
+					bool isDefaultChoice = false;
+					if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
+						isDefaultChoice = true;
+					xmlLine.replace("</" + optionElement + ">", "");
+					QTextDocument doc;
+					doc.setHtml(xmlLine);
+					xmlLine = doc.toPlainText();
+					xmlChoices << xmlLine;
+					if ( isDefaultChoice )
+						*defaultChoice = xmlLine;
+				}
+			} else {
+				QString prefix = optionAttribute + "=\"";
+				index = xmlLine.indexOf(prefix);
+				if ( index >= 0 ) {
+					xmlLine.remove(0, index + prefix.length());
+					index = xmlLine.indexOf("\"");
+					if ( index >= 0 ) {
+						QTextDocument doc;
+						doc.setHtml(xmlLine.left(index));
+						QString choice = doc.toPlainText();
+						xmlChoices << choice;
+						if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
+							*defaultChoice = choice;
+					}
+				}
+			}
+		}
+	}
+#endif
 	return xmlChoices;
 }
 
@@ -5216,9 +5260,9 @@ void MainWindow::emuSelector_currentIndexChanged(const QString &text)
   }
 
   if ( qmc2UseDefaultEmulator )
-    qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)));
+    qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)));
   else
-    qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)), text);
+    qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)), text);
 }
 
 void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int column)
@@ -6122,7 +6166,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
   switch ( index ) {
     case QMC2_VIEWHIERARCHY_INDEX:
       if ( !qmc2ReloadActive ) {
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
         QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemMap[gameName];
         treeWidgetHierarchy->clearSelection();
         if ( hierarchyItem ) {
@@ -6135,7 +6179,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 
     case QMC2_VIEWCATEGORY_INDEX:
       if ( !qmc2ReloadActive ) {
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
         QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
         treeWidgetCategoryView->clearSelection();
         if ( categoryItem ) {
@@ -6149,7 +6193,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     case QMC2_VIEWVERSION_INDEX:
       if ( !qmc2ReloadActive ) {
-        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
         QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
         treeWidgetVersionView->clearSelection();
         if ( versionItem ) {
@@ -6271,7 +6315,7 @@ void MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
     iniPath = ".";
     log(QMC2_LOG_FRONTEND, tr("WARNING: invalid inipath"));
   }
-  iniPath += "/" + qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".ini";
+  iniPath += "/" + qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME) + ".ini";
   QString s = QFileDialog::getOpenFileName(this, tr("Choose import file"), iniPath, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() )
     pushButtonCurrentEmulatorOptionsImportFromFile_clicked(s);
@@ -9544,7 +9588,7 @@ void MainWindow::mawsLoadFinished(bool ok)
 #endif
 
   if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
-    QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+    QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
     // only cache the ROM set page, don't cache followed pages
     if ( qmc2MAWSLookup->webViewBrowser->url().toString() == qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_DEFAULT_URL).toString().arg(gameName) ) {
 
@@ -9897,7 +9941,7 @@ void MainWindow::downloadMawsQuickLink()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::downloadMawsQuickLink()");
 #endif
 
-  QString saveName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".png";
+  QString saveName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME) + ".png";
   QString savePath;
 
   QStringList actionWords = action->text().split(" - ");
@@ -9938,7 +9982,7 @@ void MainWindow::storeMawsIcon()
 
   menuMAWSQuickLinks->setVisible(false);
 
-  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
   QString saveName = gameName + ".png";
   
   QString filePath;
@@ -9985,7 +10029,7 @@ void MainWindow::projectMessSystemLoadFinished(bool ok)
 
 	if ( ok ) {
 		QByteArray projectMessData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLocal8Bit());
-    		QString machName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+    		QString machName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 		if ( qmc2MAWSCache.contains(machName) )
 			qmc2MAWSCache.remove(machName);
 		qmc2MAWSCache.insert(machName, new QByteArray(projectMessData), projectMessData.size());

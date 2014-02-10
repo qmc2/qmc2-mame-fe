@@ -79,7 +79,11 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	currentItem = enteredItem = NULL;
 	snapForced = autoSelectSearchItem = interruptLoad = isLoading = isReady = fullyLoaded = updatingMountDevices = negatedMatch = false;
 	validData = autoMounted = true;
+
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	cachedDeviceLookupPosition = 0;
+#endif
 
 #if defined(QMC2_EMUTYPE_MAME)
 	comboBoxDeviceConfiguration->setVisible(false);
@@ -581,7 +585,13 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	QMap<QString, QStringList> deviceInstanceMap;
 	softwareListDeviceName.clear();
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	QStringList *xmlData = &qmc2Gamelist->xmlLines;
+#else
+	QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
+	QStringList *xmlData = &xmlLines;
+#endif
 	QStringList dynamicXmlData;
 	if ( comboBoxDeviceConfiguration->currentIndex() > 0 ) {
 		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(comboBoxDeviceConfiguration->currentText()));
@@ -619,12 +629,18 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	}
 
 	int i = 0;
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( xmlData == &qmc2Gamelist->xmlLines )
 		i = cachedDeviceLookupPosition;
+#endif
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	QString s = "<game name=\"" + systemName + "\"";
 	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( i < xmlData->count() && (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
+#endif
 	while ( i < xmlData->count() && !(*xmlData)[i].contains("</game>") ) {
 		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
@@ -634,7 +650,12 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 				startIndex += 11;
 				int endIndex = line.indexOf("\"", startIndex);
 				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
+#if !defined(QMC2_WIP_ENABLED)
+				// FIXME: remove WIP clause when the "XML cache database" is working
 				line = qmc2Gamelist->xmlLines[i++].simplified();
+#else
+				line = xmlLines[i++].simplified();
+#endif
 				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
 				QString devName = line.mid(startIndex, endIndex - startIndex);
@@ -654,7 +675,10 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 #elif defined(QMC2_EMUTYPE_MESS)
 	QString s = "<machine name=\"" + systemName + "\"";
 	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) ) i++;
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( i < xmlData->count() && (*xmlData)[i].contains(s) && xmlData == &qmc2Gamelist->xmlLines ) cachedDeviceLookupPosition = i - 1;
+#endif
 	while ( i < xmlData->count() && !(*xmlData)[i].contains("</machine>") ) {
 		QString line = (*xmlData)[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
@@ -717,6 +741,8 @@ void SoftwareList::getXmlData()
 		softwareList.clear();
 		int i = 0;
 		QString filter;
+#if !defined(QMC2_WIP_ENABLED)
+		// FIXME: remove WIP clause when the "XML cache database" is working
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		QString s = "<game name=\"" + systemName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) && !interruptLoad ) i++;
@@ -752,11 +778,48 @@ void SoftwareList::getXmlData()
 			}
 		}
 #endif
+#else
+		// FIXME: this is the new (WIP-ified) code :)
+		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		while ( !xmlLines[i].contains("</game>") && !interruptLoad ) {
+			QString line = xmlLines[i++].simplified();
+			if ( line.startsWith("<softwarelist name=\"") ) {
+				int startIndex = line.indexOf("\"") + 1;
+				int endIndex = line.indexOf("\"", startIndex);
+				softwareList << line.mid(startIndex, endIndex - startIndex); 
+				startIndex = line.indexOf(" filter=\"");
+				if ( startIndex >= 0 ) {
+					startIndex += 9;
+					endIndex = line.indexOf("\"", startIndex);
+					filter = line.mid(startIndex, endIndex - startIndex);
+				}
+			}
+		}
+#elif defined(QMC2_EMUTYPE_MESS)
+		while ( !xmlLines[i].contains("</machine>") && !interruptLoad ) {
+			QString line = xmlLines[i++].simplified();
+			if ( line.startsWith("<softwarelist name=\"") ) {
+				int startIndex = line.indexOf("\"") + 1;
+				int endIndex = line.indexOf("\"", startIndex);
+				softwareList << line.mid(startIndex, endIndex - startIndex); 
+				startIndex = line.indexOf(" filter=\"");
+				if ( startIndex >= 0 ) {
+					startIndex += 9;
+					endIndex = line.indexOf("\"", startIndex);
+					filter = line.mid(startIndex, endIndex - startIndex);
+				}
+			}
+		}
+#endif
+#endif
+
 		if ( softwareList.isEmpty() )
 			softwareList << "NO_SOFTWARE_LIST";
 		else
 			softwareList.sort();
 		systemSoftwareListMap[systemName] = softwareList;
+
 #ifdef QMC2_DEBUG
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
 #endif
@@ -885,7 +948,10 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	cachedDeviceLookupPosition = 0;
+#endif
 
 	if ( swlBuffer.isEmpty() && swlSupported ) {
 		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
