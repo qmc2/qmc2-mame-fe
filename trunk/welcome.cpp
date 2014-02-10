@@ -337,83 +337,83 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "HtmlEditor/WidgetState");
 			}
 		}
-			if ( oldMinor < 38 || (oldSvnRevision < 4304 && oldSvnRevision > 0) ) {
-				// remove deprecated keys: "SampleChecker/SelectGame"
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "SampleChecker/SelectGame") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "SampleChecker/SelectGame");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame");
+		if ( oldMinor < 38 || (oldSvnRevision < 4304 && oldSvnRevision > 0) ) {
+			// remove deprecated keys: "SampleChecker/SelectGame"
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "SampleChecker/SelectGame");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "SampleChecker/SelectGame") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "SampleChecker/SelectGame");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "SampleChecker/SelectGame");
+		}
+		if ( oldMinor < 38 || (oldSvnRevision < 4327 && oldSvnRevision > 0) ) {
+			// remove deprecated keys: "Tools/FileRemovalTool*"
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalToolArguments") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalToolArguments");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalTool") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalTool");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalToolArguments") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalToolArguments");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalTool") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalTool");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments");
+		}
+		if ( oldMinor < 38 || (oldSvnRevision < 4420 && oldSvnRevision > 0) ) {
+			// remove deprecated keys: "Configuration/Global/OptionColumnWidth" keys
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth") )
+				startupConfig->remove(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth");
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MESS + "Configuration/Global/OptionColumnWidth") )
+				startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS + "Configuration/Global/OptionColumnWidth");
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth") )
+				startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth");
+		}
+		if ( oldMinor < 38 || (oldSvnRevision < 4433 && oldSvnRevision > 0) ) {
+			// remove old "Arcade" keys (will be replaced by new ones)
+			if ( startupConfig->childGroups().contains("Arcade") ) {
+				startupConfig->beginGroup("Arcade");
+				startupConfig->remove("");
+				startupConfig->endGroup();
 			}
-			if ( oldMinor < 38 || (oldSvnRevision < 4327 && oldSvnRevision > 0) ) {
-				// remove deprecated keys: "Tools/FileRemovalTool*"
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalTool");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalToolArguments") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Tools/FileRemovalToolArguments");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalTool") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalTool");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalToolArguments") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Tools/FileRemovalToolArguments");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalTool") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalTool");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Tools/FileRemovalToolArguments");
-			}
-			if ( oldMinor < 38 || (oldSvnRevision < 4420 && oldSvnRevision > 0) ) {
-				// remove deprecated keys: "Configuration/Global/OptionColumnWidth" keys
-				if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth") )
-					startupConfig->remove(QMC2_EMULATOR_PREFIX_MAME + "Configuration/Global/OptionColumnWidth");
-				if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_MESS + "Configuration/Global/OptionColumnWidth") )
-					startupConfig->remove(QMC2_EMULATOR_PREFIX_MESS + "Configuration/Global/OptionColumnWidth");
-				if ( startupConfig->contains(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth") )
-					startupConfig->remove(QMC2_EMULATOR_PREFIX_UME + "Configuration/Global/OptionColumnWidth");
-			}
-			if ( oldMinor < 38 || (oldSvnRevision < 4433 && oldSvnRevision > 0) ) {
-				// remove old "Arcade" keys (will be replaced by new ones)
-				if ( startupConfig->childGroups().contains("Arcade") ) {
-					startupConfig->beginGroup("Arcade");
-					startupConfig->remove("");
-					startupConfig->endGroup();
-				}
-			}
-			if ( oldMinor < 39 || (oldSvnRevision < 4813 && oldSvnRevision > 0) ) {
-				// remove deprecated keys: "Gamelist/SortOnline" & "Gamelist/HideWhileLoading"
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/SortOnline") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/SortOnline");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/SortOnline") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/SortOnline");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Gamelist/SortOnline") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Gamelist/SortOnline");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/HideWhileLoading") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/HideWhileLoading");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/HideWhileLoading") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/HideWhileLoading");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading");
-			}
+		}
+		if ( oldMinor < 39 || (oldSvnRevision < 4813 && oldSvnRevision > 0) ) {
+			// remove deprecated keys: "Gamelist/SortOnline" & "Gamelist/HideWhileLoading"
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/SortOnline") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/SortOnline");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/SortOnline") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/SortOnline");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Gamelist/SortOnline") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Gamelist/SortOnline");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/HideWhileLoading") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Gamelist/HideWhileLoading");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/HideWhileLoading") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Gamelist/HideWhileLoading");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Gamelist/HideWhileLoading");
+		}
 #if defined(QMC2_OS_UNIX) || defined(QMC2_OS_WIN)
-			if ( oldMinor < 39 || (oldSvnRevision < 4818 && oldSvnRevision > 0) ) {
-				// remove deprecated keys: "Embedder/NativeSnapshotResolution"
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Embedder/NativeSnapshotResolution") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Embedder/NativeSnapshotResolution");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution");
-			}
+		if ( oldMinor < 39 || (oldSvnRevision < 4818 && oldSvnRevision > 0) ) {
+			// remove deprecated keys: "Embedder/NativeSnapshotResolution"
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Embedder/NativeSnapshotResolution");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Embedder/NativeSnapshotResolution") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Embedder/NativeSnapshotResolution");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution");
+		}
 #endif
 
-			if ( oldMinor < 40 || (oldSvnRevision < 5171 && oldSvnRevision > 0) ) {
-				// reset "Layout/MainWidget/EmulatorControlHeaderState"
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/EmulatorControlHeaderState") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/EmulatorControlHeaderState");
-				if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState") )
-					startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState");
-			}
+		if ( oldMinor < 40 || (oldSvnRevision < 5171 && oldSvnRevision > 0) ) {
+			// reset "Layout/MainWidget/EmulatorControlHeaderState"
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/EmulatorControlHeaderState") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_MESS + "Layout/MainWidget/EmulatorControlHeaderState");
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState") )
+				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState");
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
