@@ -31,7 +31,7 @@ FILES
 
   CONFIG_PATH/mame.rsc, CONFIG_PATH/mess.rsc, CONFIG_PATH/ume.rsc  ROM state cache
 
-  CONFIG_PATH/mame.lxc, CONFIG_PATH/mess.lxc, CONFIG_PATH/ume.lxc  XML data cache
+  CONFIG_PATH/mame-xml-cache.db, CONFIG_PATH/mess-xml-cache.db, CONFIG_PATH/ume-xml-cache.db  XML cache database (SQLite 3)
 
   CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Game/machine list cache
 
@@ -48,6 +48,10 @@ FILES
   CONFIG_PATH/maws/*.wc  NAWS web-cache (MAME only)
 
   CONFIG_PATH/LocalStorage/*.localstorage  Folder used by the built-in web-browser to create small database files for 'HTML5 localStorage' support
+
+  CONFIG_PATH/qmc2-sdlmame-cookies.db, CONFIG_PATH/qmc2-sdlmess-cookies.db, CONFIG_PATH/qmc2-sdlume-cookies.db  Permanent web-page cookie database (SQLite 3)
+
+  CONFIG_PATH/WebpageIcons.db  Web-page icon database (SQLite 3)
 
 SEE ALSO
   qmc2-arcade(6), qchdman(6)
