@@ -2736,6 +2736,7 @@ void ROMAlyzer::analyzeDeviceRefs()
 	QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
 	if ( !il.isEmpty() ) {
 		QStringList deviceRefs = il[0]->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
+		deviceRefs.removeDuplicates();
 		if ( !deviceRefs.isEmpty() ) {
 			lineEditGames->setText(deviceRefs.join(" "));
 			QTimer::singleShot(0, this, SLOT(analyze()));
