@@ -308,7 +308,10 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseOptionsTemplateFile->setEnabled(enable);
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   qmc2Options->toolButtonBrowseListXMLCache->setEnabled(enable);
+#endif
   qmc2Options->toolButtonBrowseXmlCacheDatabase->setEnabled(enable);
   qmc2Options->toolButtonBrowseFavoritesFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseHistoryFile->setEnabled(enable);
@@ -2820,6 +2823,8 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( romCache.isOpen() )
 		romCache.close();
 
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( listXMLCache.isOpen() )
 		listXMLCache.close();
 
@@ -2827,13 +2832,12 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 		listXMLCache.remove();
 	}
-
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
+#else
+	// FIXME: this is the new (WIP-ified) code :)
 	xmlDb()->commitTransaction();
 	uncommittedXmlDbRows = 0;
 	if ( invalidateListXmlCache ) {
-		//qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 		xmlDb()->recreateDatabase();
 	}
 #endif
