@@ -928,6 +928,7 @@ void Gamelist::load()
 #else
   // FIXME: this is the new (WIP-ified) code :)
   bool xmlCacheOkay = (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0);
+  qmc2EarlyReloadActive = false;
 #endif
 
   if ( qmc2StopParser ) {
