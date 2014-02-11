@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QTranslator>
 #include <QLocale>
+#include <QFile>
 #include <QDir>
 
 #include "welcome.h"
@@ -414,6 +415,18 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState");
 		}
+#if defined(QMC2_WIP_ENABLED)
+		// FIXME: remove WIP clause when the "XML cache database" is working
+		if ( oldMinor < 43 || (oldSvnRevision < 5640 && oldSvnRevision > 0) ) {
+			// remove the old list-xml-cache file and the deprecated "FilesAndDirectories/ListXMLCache" settings key
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache") ) {
+				QFile f(startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache").toString());
+				if ( f.exists() )
+					f.remove();
+				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache");
+			}
+		}
+#endif
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

@@ -232,6 +232,10 @@ Options::Options(QWidget *parent)
   labelXmlCacheDatabase->setVisible(false);
   lineEditXmlCacheDatabase->setVisible(false);
   toolButtonBrowseXmlCacheDatabase->setVisible(false);
+#else
+  labelListXMLCache->setVisible(false);
+  lineEditListXMLCache->setVisible(false);
+  toolButtonBrowseListXMLCache->setVisible(false);
 #endif
 
   qmc2StandardWorkDir = QDir::currentPath();
@@ -718,7 +722,10 @@ void Options::apply()
   toolButtonBrowseWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
   toolButtonBrowseOptionsTemplateFile->setIconSize(iconSize);
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   toolButtonBrowseListXMLCache->setIconSize(iconSize);
+#endif
   toolButtonBrowseXmlCacheDatabase->setIconSize(iconSize);
   toolButtonBrowseCookieDatabase->setIconSize(iconSize);
   toolButtonBrowseZipTool->setIconSize(iconSize);
@@ -1696,7 +1703,10 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/UMEVariantExe", lineEditUMEVariantExe->text());
 #endif
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+#endif
   config->setValue("MAME/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
@@ -1718,7 +1728,10 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/UMEVariantExe", lineEditUMEVariantExe->text());
 #endif
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+#endif
   config->setValue("MESS/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
   config->setValue("MESS/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MESS/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
@@ -1740,6 +1753,10 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
 #endif
   config->setValue("UME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
+  config->setValue("UME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
+#endif
   config->setValue("UME/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
   config->setValue("UME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("UME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
@@ -2773,7 +2790,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditUMEVariantExe->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   lineEditListXMLCache->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
+#endif
   lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
   lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
@@ -2800,7 +2820,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditUMEVariantExe->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/UMEVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   lineEditListXMLCache->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
+#endif
   lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mess-xml-cache.db").toString());
   lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
@@ -2822,7 +2845,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditMESSVariantExe->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/MESSVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/LogFile", userScopePath + "/ume.log").toString());
+#if !defined(QMC2_WIP_ENABLED)
+  // FIXME: remove WIP clause when the "XML cache database" is working
   lineEditListXMLCache->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString());
+#endif
   lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/ume-xml-cache.db").toString());
   lineEditGamelistCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/ume.glc").toString());
   lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/ume.rsc").toString());
@@ -3311,6 +3337,8 @@ void Options::on_toolButtonBrowseEmulatorLogFile_clicked()
   raise();
 }
 
+#if !defined(QMC2_WIP_ENABLED)
+// FIXME: remove WIP clause when the "XML cache database" is working
 void Options::on_toolButtonBrowseListXMLCache_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -3322,6 +3350,7 @@ void Options::on_toolButtonBrowseListXMLCache_clicked()
     lineEditListXMLCache->setText(s);
   raise();
 }
+#endif
 
 void Options::on_toolButtonBrowseXmlCacheDatabase_clicked()
 {

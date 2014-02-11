@@ -56,10 +56,8 @@ class Gamelist : public QObject
 		QTime miscTimer;
 		QFile romCache;
 		QFile gamelistCache;
-		QFile listXMLCache;
 		QTextStream tsRomCache;
 		QTextStream tsGamelistCache;
-		QTextStream tsListXMLCache;
 		QString emulatorType;
 		QString emulatorVersion;
 		QString verifyLastLine;
@@ -73,6 +71,8 @@ class Gamelist : public QObject
 		QMap<QString, int> xmlGamePositionMap;
 		QStringList xmlLines;
 		QString xmlDataBuffer;
+		QFile listXMLCache;
+		QTextStream tsListXMLCache;
 #endif
 		QMap<QString, QString *> categoryNames;
 		QMap<QString, QString *> categoryMap;
