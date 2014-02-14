@@ -145,13 +145,6 @@ void SampleChecker::verify()
 	int sampleCount = 0;
 	QMap<QString, int> sampleCountMap;
 	progressBar->setFormat(tr("Parsing XML data"));
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
-	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
-	progressBar->setRange(0, xmlLinesCount);
-	progressBar->setValue(0);
-#else
-	// FIXME: this is the new (WIP-ified) code :)
 	int xmlRowCount = qmc2Gamelist->xmlDb()->xmlRowCount();
 	progressBar->setRange(0, xmlRowCount);
 	progressBar->setValue(0);
@@ -161,18 +154,8 @@ void SampleChecker::verify()
 		progressBar->setValue(rowCounter);
 		if ( rowCounter % QMC2_CHECK_UPDATE_FAST == 0 )
 			qApp->processEvents();
-#endif
 		for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
-#if !defined(QMC2_WIP_ENABLED)
-			// FIXME: remove WIP clause when the "XML cache database" is working
-			progressBar->setValue(gameListPos + 1);
-			if ( gameListPos % QMC2_CHECK_UPDATE_FAST == 0 || gameListPos == xmlLinesCount - 1)
-				qApp->processEvents();
-			QString line = qmc2Gamelist->xmlLines[gameListPos];
-#else
-			// FIXME: this is the new (WIP-ified) code :)
 			QString line = xmlLines[gameListPos];
-#endif
 #if defined(QMC2_EMUTYPE_MESS)
 			int startIndex = line.indexOf("<machine name=\"");
 #else
@@ -234,10 +217,7 @@ void SampleChecker::verify()
 				}
 			}
 		}
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	}
-#endif
 
 	if ( qmc2StopParser ) {
 		progressBar->setFormat(tr("Idle"));

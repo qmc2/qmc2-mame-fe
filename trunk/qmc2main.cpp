@@ -2707,10 +2707,7 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the XML cache file '%1', please check permissions").arg(fileName));
 	}
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	qmc2Gamelist->xmlDb()->recreateDatabase();
-#endif
 
 	softwareListXmlDataCache.clear();
 	systemSoftwareListMap.clear();
@@ -5117,72 +5114,6 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 	if ( defaultChoice )
 		defaultChoice->clear();
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
-	int i = qmc2Gamelist->xmlGamePositionMap[gameName];
-	int xmlLinesMax = qmc2Gamelist->xmlLines.count() - 1;
-	if ( i <= 0 ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		QString s = "<game name=\"" + gameName + "\"";
-#elif defined(QMC2_EMUTYPE_MESS)
-		QString s = "<machine name=\"" + gameName + "\"";
-#endif
-		i = 0;
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
-			i++;
-			if ( i > xmlLinesMax )
-				break;
-		}
-		if ( i < xmlLinesMax )
-			if ( qmc2Gamelist->xmlLines[i].contains(s) )
-				qmc2Gamelist->xmlGamePositionMap[gameName] = i;
-	}
-	if ( i > 0 ) {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		while ( i < xmlLinesMax && !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
-#elif defined(QMC2_EMUTYPE_MESS)
-		while ( i < xmlLinesMax && !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
-#endif
-			QString xmlLine = qmc2Gamelist->xmlLines[i++].simplified();
-
-			int index = xmlLine.indexOf("<" + optionElement);
-			if ( index >= 0 ) {
-				if ( optionAttribute.isEmpty() ) {
-					index = xmlLine.indexOf(">", index);
-					if ( index >= 0 ) {
-						xmlLine.remove(0, index + 1);
-						bool isDefaultChoice = false;
-						if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
-							isDefaultChoice = true;
-						xmlLine.replace("</" + optionElement + ">", "");
-						QTextDocument doc;
-						doc.setHtml(xmlLine);
-						xmlLine = doc.toPlainText();
-						xmlChoices << xmlLine;
-						if ( isDefaultChoice )
-							*defaultChoice = xmlLine;
-					}
-				} else {
-					QString prefix = optionAttribute + "=\"";
-					index = xmlLine.indexOf(prefix);
-					if ( index >= 0 ) {
-						xmlLine.remove(0, index + prefix.length());
-						index = xmlLine.indexOf("\"");
-						if ( index >= 0 ) {
-							QTextDocument doc;
-							doc.setHtml(xmlLine.left(index));
-							QString choice = doc.toPlainText();
-							xmlChoices << choice;
-							if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
-								*defaultChoice = choice;
-						}
-					}
-				}
-			}
-		}
-	}
-#else
-	// FIXME: this is the new (WIP-ified) code :)
 	QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
 	int i = 0;
 	while ( i < xmlLines.count() ) {
@@ -5222,7 +5153,7 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 			}
 		}
 	}
-#endif
+
 	return xmlChoices;
 }
 

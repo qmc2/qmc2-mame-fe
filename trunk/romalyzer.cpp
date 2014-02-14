@@ -1177,59 +1177,11 @@ QString &ROMAlyzer::getXmlData(QString gameName, bool includeDTD)
 
 	xmlBuffer.clear();
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( includeDTD ) {
 		xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		xmlBuffer += qmc2Gamelist->xmlDb()->dtd();
 	}
 	xmlBuffer += qmc2Gamelist->xmlDb()->xml(gameName);
-#else
-	int i = 0;
-	int xmlLinesCount = qmc2Gamelist->xmlLines.count();
-	if ( includeDTD ) {
-		xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		while ( i < xmlLinesCount && !qmc2Gamelist->xmlLines[i].startsWith("<!") )
-			i++;
-		while ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].startsWith("<!") )
-			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-		if ( i >= xmlLinesCount ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: no DTD section in the XML data -- please clear the XML cache and reload all data"));
-			xmlBuffer.clear();
-			return xmlBuffer;
-		}
-	}
-
-	int *iCached = xmlGamePositionCache[gameName];
-	if ( iCached )
-		i = *iCached;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-	QString s = "<game name=\"" + gameName + "\"";
-#elif defined(QMC2_EMUTYPE_MESS)
-	QString s = "<machine name=\"" + gameName + "\"";
-#endif
-	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
-		i++;
-		if ( i > xmlLinesCount ) break;
-	}
-
-	if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
-		xmlGamePositionCache.insert(gameName, new int(i));
-		if ( !includeDTD )
-			xmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
-#elif defined(QMC2_EMUTYPE_MESS)
-		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-#endif
-			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		xmlBuffer += "</game>\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-		xmlBuffer += "</machine>\n";
-#endif
-	}
-#endif
 
 	return xmlBuffer;
 }
@@ -1955,12 +1907,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
     }
     if ( !mergeFile.isEmpty() && !qmc2StopParser ) {
       // romof is set, and the merge's file name is given
-#if defined(QMC2_WIP_ENABLED)
-      // FIXME: remove WIP clause when the "XML cache database" is working
       QString nextMerge = getXmlData(merge).split("\n")[0];
-#else
-      QString nextMerge = getXmlData(merge).split("\n")[1];
-#endif
       int romofPosition = nextMerge.indexOf("romof=");
       *mergeUsed = true;
       if ( romofPosition > -1 ) {
@@ -2363,89 +2310,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	pushButtonChecksumWizardSearch->setEnabled(false);
 	lineEditChecksumWizardHash->setEnabled(false);
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
-	int numXmlLines = qmc2Gamelist->xmlLines.count();
-
-	progressBar->setRange(0, numXmlLines);
-	labelStatus->setText(tr("Checksum search"));
-
-	QString hashStartString;
-	int hashStartOffset;
-	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
-			hashStartString = "crc=\"";
-			hashStartOffset = 5;
-			break;
-
-		default:
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
-			hashStartString = "sha1=\"";
-			hashStartOffset = 6;
-			break;
-	}
-
-	for (int i = 0; i < numXmlLines; i++) {
-		progressBar->setValue(i);
-		qApp->processEvents();
-		QString xmlLine = qmc2Gamelist->xmlLines[i];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		int gameNamePos = xmlLine.indexOf("<game name=\"");
-		if ( gameNamePos == 0 ) gameNamePos = 12;
-#elif defined(QMC2_EMUTYPE_MESS)
-		int gameNamePos = xmlLine.indexOf("<machine name=\"");
-		if ( gameNamePos == 0 ) gameNamePos = 15;
-#else
-		int gameNamePos = -1;
-#endif
-		if ( gameNamePos >= 0 ) {
-			QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
-			bool gameEnd = false;
-			int j;
-			for (j = i + 1; j < numXmlLines && !gameEnd; j++) {
-				xmlLine = qmc2Gamelist->xmlLines[j];
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-				if ( xmlLine.startsWith("</game>") ) {
-					gameEnd = true;
-					continue;
-				}
-#elif defined(QMC2_EMUTYPE_MESS)
-				if ( xmlLine.startsWith("</machine>") ) {
-					gameEnd = true;
-					continue;
-				}
-#else
-				continue;
-#endif
-				int hashPos = xmlLine.indexOf(hashStartString) + hashStartOffset;
-				if ( hashPos >= 0 ) {
-					QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
-					if ( currentChecksum == searchedChecksum ) {
-						int fileNamePos;
-						QString fileType;
-						if ( xmlLine.startsWith("<disk name=\"") ) {
-							fileType = tr("CHD");
-							fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
-						} else {
-							fileType = tr("ROM");
-							fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
-						}
-						QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
-						QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentGame);
-						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">"));
-						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
-						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
-						if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
-							item->setSelected(true);
-					}
-				}
-			}
-			i = j - 1;
-		}
-	}
-#else
-	// FIXME: this is the new (WIP-ified) code :)
 	progressBar->setRange(0, qmc2MainWindow->treeWidgetGamelist->topLevelItemCount());
 	labelStatus->setText(tr("Checksum search"));
 
@@ -2495,7 +2359,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 			}
 		}
 	}
-#endif
+
 	progressBar->reset();
 	labelStatus->setText(tr("Idle"));
 	pushButtonChecksumWizardSearch->setEnabled(true);

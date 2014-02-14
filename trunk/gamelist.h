@@ -66,14 +66,6 @@ class Gamelist : public QObject
 		QString xmlLineBuffer;
 		QMap<QString, QString> driverNameMap;
 		QMap<QString, char> gameStatusMap;
-#if !defined(QMC2_WIP_ENABLED)
-		// FIXME: remove WIP clause when the "XML cache database" is working
-		QMap<QString, int> xmlGamePositionMap;
-		QStringList xmlLines;
-		QString xmlDataBuffer;
-		QFile listXMLCache;
-		QTextStream tsListXMLCache;
-#endif
 		QMap<QString, QString *> categoryNames;
 		QMap<QString, QString *> categoryMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)

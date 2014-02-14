@@ -166,10 +166,6 @@ class Options : public QDialog, public Ui::Options
 #endif
     void on_toolButtonBrowseWorkingDirectory_clicked();
     void on_toolButtonBrowseOptionsTemplateFile_clicked();
-#if !defined(QMC2_WIP_ENABLED)
-    // FIXME: remove WIP clause when the "XML cache database" is working
-    void on_toolButtonBrowseListXMLCache_clicked();
-#endif
     void on_toolButtonBrowseXmlCacheDatabase_clicked();
     void on_toolButtonBrowseFont_clicked();
     void on_toolButtonBrowseLogFont_clicked();
