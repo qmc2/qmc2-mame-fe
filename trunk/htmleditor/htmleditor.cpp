@@ -1191,28 +1191,6 @@ QString HtmlEditor::getImage(QString currentImage)
 		return currentImage;
 }
 
-#if !defined(QMC2_WIP_ENABLED)
-// FIXME: remove WIP clause when the "XML cache database" is working
-bool HtmlEditor::queryXml(QString queryString, bool sort)
-{
-	if ( xmlQueryBuffer == NULL ) {
-		xmlDocument = new QByteArray(qmc2Gamelist->xmlLines.join("").toLocal8Bit());
-		xmlQueryBuffer = new QBuffer(xmlDocument);
-		xmlQueryBuffer->open(QIODevice::ReadOnly);
-		xmlQuery.bindVariable("xmlDocument", xmlQueryBuffer);
-	}
-	xmlQueryBuffer->seek(0);
-	xmlResult.clear();
-	xmlQuery.setQuery(queryString);
-	if ( xmlQuery.evaluateTo(&xmlResult) ) {
-		if ( sort )
-			qSort(xmlResult.begin(), xmlResult.end(), MainWindow::qStringListLessThan);
-		return true;
-	} else
-		return false;
-}
-#endif
-
 bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort)
 {
 	QByteArray localXmlDocument(ROMAlyzer::getXmlData(id, true).toLocal8Bit());
