@@ -405,7 +405,6 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Embedder/NativeSnapshotResolution");
 		}
 #endif
-
 		if ( oldMinor < 40 || (oldSvnRevision < 5171 && oldSvnRevision > 0) ) {
 			// reset "Layout/MainWidget/EmulatorControlHeaderState"
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_MAME + "Layout/MainWidget/EmulatorControlHeaderState") )
@@ -415,8 +414,6 @@ bool Welcome::checkConfig()
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState") )
 				startupConfig->remove(QMC2_FRONTEND_PREFIX_UME + "Layout/MainWidget/EmulatorControlHeaderState");
 		}
-#if defined(QMC2_WIP_ENABLED)
-		// FIXME: remove WIP clause when the "XML cache database" is working
 		if ( oldMinor < 43 || (oldSvnRevision < 5640 && oldSvnRevision > 0) ) {
 			// remove the old list-xml-cache file and the deprecated "FilesAndDirectories/ListXMLCache" settings key
 			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache") ) {
@@ -426,7 +423,6 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache");
 			}
 		}
-#endif
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

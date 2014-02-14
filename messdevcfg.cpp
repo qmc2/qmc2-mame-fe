@@ -30,10 +30,6 @@ extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern bool qmc2UseDefaultEmulator;
 extern Options *qmc2Options;
 
-#if !defined(QMC2_WIP_ENABLED)
-// FIXME: remove WIP clause when the "XML cache database" is working
-QMap<QString, QString> messXmlDataCache;
-#endif
 QList<FileEditWidget *> messFileEditWidgetList;
 QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
 QMap<QString, QString> messSlotNameMap;
@@ -604,37 +600,9 @@ QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlData(QString machineName = %1)").arg(machineName));
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	normalXmlBuffer += qmc2Gamelist->xmlDb()->xml(machineName);
 	return normalXmlBuffer;
-#else
-	normalXmlBuffer = messXmlDataCache[machineName];
-
-	if ( normalXmlBuffer.isEmpty() ) {
-
-		int i = 0;
-#if defined(QMC2_EMUTYPE_MESS)
-		QString s = "<machine name=\"" + machineName + "\"";
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-		normalXmlBuffer += "</machine>\n";
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		QString s = "<game name=\"" + machineName + "\"";
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		normalXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
-			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-		normalXmlBuffer += "</game>\n";
-#endif
-		messXmlDataCache[machineName] = normalXmlBuffer;
-	}
-
-	return normalXmlBuffer;
-#endif
 }
 
 bool MESSDeviceConfigurator::readSystemSlots()

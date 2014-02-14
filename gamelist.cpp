@@ -81,10 +81,6 @@ extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
-#if !defined(QMC2_WIP_ENABLED)
-// FIXME: remove WIP clause when the "XML cache database" is working
-extern QMap<QString, QString> messXmlDataCache;
-#endif
 extern QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
 extern QMap<QString, QString> messSlotNameMap;
 extern bool messSystemSlotsSupported;
@@ -214,10 +210,7 @@ Gamelist::Gamelist(QObject *parent)
 	  }
   }
 
-#if defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when the "XML cache database" is working
   m_xmlDb = new XmlDatabaseManager(this);
-#endif
 }
 
 Gamelist::~Gamelist()
@@ -247,10 +240,7 @@ Gamelist::~Gamelist()
 		delete iconFile;
 	}
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	delete m_xmlDb;
-#endif
 }
 
 void Gamelist::enableWidgets(bool enable)
@@ -308,10 +298,6 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseOptionsTemplateFile->setEnabled(enable);
-#if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when the "XML cache database" is working
-  qmc2Options->toolButtonBrowseListXMLCache->setEnabled(enable);
-#endif
   qmc2Options->toolButtonBrowseXmlCacheDatabase->setEnabled(enable);
   qmc2Options->toolButtonBrowseFavoritesFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseHistoryFile->setEnabled(enable);
@@ -466,10 +452,6 @@ void Gamelist::load()
     qmc2MESSDeviceConfigurator = NULL;
   }
   qmc2LastDeviceConfigItem = NULL;
-#if !defined(QMC2_WIP_ENABLED)
-// FIXME: remove WIP clause when the "XML cache database" is working
-  messXmlDataCache.clear();
-#endif
   messSystemSlotsSupported = true;
   messSystemSlotMap.clear();
   messSlotNameMap.clear();
@@ -843,93 +825,8 @@ void Gamelist::load()
 	  QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(updateCategoryFilter()));
 #endif
 
-#if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when the "XML cache database" is working
-  xmlDataBuffer.clear();
-  xmlDataBuffer.squeeze();
-  xmlLines.clear();
-
-  // try reading XML output from cache
-  bool xmlCacheOkay = false;
-#if defined(QMC2_EMUTYPE_MAME)
-  listXMLCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
-#elif defined(QMC2_EMUTYPE_MESS)
-  listXMLCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
-#elif defined(QMC2_EMUTYPE_UME)
-  listXMLCache.setFileName(qmc2Config->value("UME/FilesAndDirectories/ListXMLCache", userScopePath + "/ume.lxc").toString());
-#endif
-  listXMLCache.open(QIODevice::ReadOnly | QIODevice::Text);
-  if ( listXMLCache.isOpen() ) {
-    QTextStream ts(&listXMLCache);
-    QString singleXMLLine = ts.readLine();
-    singleXMLLine = ts.readLine();
-#if defined(QMC2_EMUTYPE_MAME)
-    if ( singleXMLLine.startsWith("MAME_VERSION") ) {
-#elif defined(QMC2_EMUTYPE_MESS)
-    if ( singleXMLLine.startsWith("MESS_VERSION") ) {
-#elif defined(QMC2_EMUTYPE_UME)
-    if ( singleXMLLine.startsWith("UME_VERSION") ) {
-#endif
-      QStringList words = singleXMLLine.split("\t");
-      if ( words.count() > 1 ) { 
-          if ( emulatorVersion == words[1] )
-            xmlCacheOkay = true;
-      }
-    }
-    if ( xmlCacheOkay ) {
-      QTime xmlElapsedTime(0, 0, 0, 0);
-      parseTimer.start();
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data from cache"));
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-        qmc2MainWindow->progressBarGamelist->setFormat(tr("XML cache - %p%"));
-      else
-        qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-      qmc2MainWindow->progressBarGamelist->setRange(0, listXMLCache.size());
-      qmc2MainWindow->progressBarGamelist->setValue(0);
-      int i = 0;
-      QString readBuffer;
-      while ( (!ts.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
-	      readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
-	      bool endsWithNewLine = readBuffer.endsWith("\n");
-	      QStringList lines = readBuffer.split("\n", QString::SkipEmptyParts);
-	      int lc = lines.count();
-	      if ( !endsWithNewLine )
-		      lc -= 1;
-	      for (int l = 0; l < lc; l++)
-		      xmlLines << lines[l];
-	      if ( endsWithNewLine )
-		      readBuffer.clear();
-	      else
-		      readBuffer = lines.last();
-	      if ( ++i % QMC2_XMLCACHE_RESPONSIVENESS == 0 ) {
-		      qmc2MainWindow->progressBarGamelist->setValue(listXMLCache.pos());
-		      qApp->processEvents();
-	      }
-      }
-      qmc2MainWindow->progressBarGamelist->setValue(listXMLCache.pos());
-      qApp->processEvents();
-      xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      if ( xmlLines.last() != "</mame>" && !qmc2StopParser ) {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
-#elif defined(QMC2_EMUTYPE_MESS)
-      if ( xmlLines.last() != "</mess>" && !qmc2StopParser ) {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
-#endif
-        xmlCacheOkay = false;
-      } else
-        qmc2EarlyReloadActive = false;
-    }
-  }
-
-  if ( listXMLCache.isOpen() )
-    listXMLCache.close();
-#else
-  // FIXME: this is the new (WIP-ified) code :)
   bool xmlCacheOkay = (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0);
   qmc2EarlyReloadActive = false;
-#endif
 
   if ( qmc2StopParser ) {
     qmc2MainWindow->progressBarGamelist->reset();
@@ -983,7 +880,7 @@ void Gamelist::load()
     qApp->processEvents();
   } else {
     loadTimer.start();
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data and (re)creating cache"));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data and recreating cache"));
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
       qmc2MainWindow->progressBarGamelist->setFormat(tr("XML data - %p%"));
     else
@@ -992,25 +889,6 @@ void Gamelist::load()
     args.clear();
     args << "-listxml";
 
-#if !defined(QMC2_WIP_ENABLED)
-    // FIXME: remove WIP clause when the "XML cache database" is working
-    listXMLCache.open(QIODevice::WriteOnly | QIODevice::Text);
-    if ( !listXMLCache.isOpen() )
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open XML data cache for writing, please check permissions"));
-    else {
-      tsListXMLCache.setDevice(&listXMLCache);
-      tsListXMLCache.reset();
-      tsListXMLCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_EMUTYPE_MAME)
-      tsListXMLCache << "MAME_VERSION\t" + emulatorVersion + "\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-      tsListXMLCache << "MESS_VERSION\t" + emulatorVersion + "\n";
-#elif defined(QMC2_EMUTYPE_UME)
-      tsListXMLCache << "UME_VERSION\t" + emulatorVersion + "\n";
-#endif
-    }
-#else
-    // FIXME: this is the new (WIP-ified) code :)
     uncommittedXmlDbRows = 0;
     dtdBufferReady = false;
     xmlLineBuffer.clear();
@@ -1020,7 +898,7 @@ void Gamelist::load()
     xmlDb()->setEmulatorVersion(emulatorVersion);
     xmlDb()->setQmc2Version(XSTR(QMC2_VERSION));
     xmlDb()->setXmlCacheVersion(QMC2_XMLCACHE_VERSION);
-#endif
+
     loadProc = new QProcess(this);
     connect(loadProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(loadError(QProcess::ProcessError)));
     connect(loadProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(loadFinished(int, QProcess::ExitStatus)));
@@ -1183,52 +1061,6 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 #endif
 
   QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
-#if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when the "XML cache database" is working
-  int gamePos = xmlGamePositionMap[gameName];
-  if ( gamePos <= 0 ) {
-    QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving game information for '%1'").arg(gameDescription));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving machine information for '%1'").arg(gameDescription));
-#endif
-    qApp->processEvents();
-    gameDescription.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
-    QString s = "<description>" + gameDescription + "</description>";
-    gamePos = 0;
-    int xmlLinesMax = xmlLines.count() - 1;
-    while ( !xmlLines[gamePos].contains(s) ) {
-      gamePos++;
-      if ( gamePos % QMC2_PARSE_GAMELIST_RSP == 0 ) {
-	      int dots = gamePos / QMC2_PARSE_GAMELIST_RSP - 3;
-	      if ( dots > 0 ) {
-		      item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data...") + QString(".").repeated(dots));
-		      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
-		      qApp->processEvents();
-	      }
-      }
-      if ( gamePos > xmlLinesMax )
-	      break;
-    }
-    if ( gamePos < xmlLinesMax && xmlLines[gamePos].contains(s) ) {
-      xmlGamePositionMap[gameName] = gamePos;
-      item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
-      qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
-    } else {
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find game information for '%1'").arg(gameDescription));
-#elif defined(QMC2_EMUTYPE_MESS)
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(gameDescription));
-#endif
-      return;
-    }
-  } else {
-      item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
-      qmc2MainWindow->treeWidgetGamelist->viewport()->update();
-  }
-#else
-  // FIXME: this is the new (WIP-ified) code :)
   QStringList xmlLines = xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
   if ( xmlLines.count() < 2 ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1241,7 +1073,6 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   int gamePos = 1;
   item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
   qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
-#endif
 
   qApp->processEvents();
 
@@ -1845,17 +1676,6 @@ void Gamelist::parse()
   if ( gamelistCache.isOpen() )
     gamelistCache.close();
 
-#if !defined(QMC2_WIP_ENABLED)
-  // FIXME: remove WIP clause when the "XML cache database" is working
-  xmlGamePositionMap.clear();
-
-  if ( !xmlDataBuffer.isEmpty() ) {
-	  xmlLines = xmlDataBuffer.split("\n");
-	  xmlDataBuffer.clear();
-	  xmlDataBuffer.squeeze();
-  }
-#endif
-
   if ( reparseGamelist && !qmc2StopParser ) {
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and (re)creating game list cache"));
@@ -1905,236 +1725,217 @@ void Gamelist::parse()
     qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
 
     QList <QTreeWidgetItem *> itemList;
-#if defined(QMC2_WIP_ENABLED)
-    // FIXME: remove WIP clause when the "XML cache database" is working
     int xmlRowCount = xmlDb()->xmlRowCount();
     for (int rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
       QStringList xmlLines = xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
       endParser = qmc2StopParser;
-#endif
-    for (int lineCounter = 0; lineCounter < xmlLines.count() && !endParser; lineCounter++) {
-#if !defined(QMC2_WIP_ENABLED)
-      // FIXME: remove WIP clause when the "XML cache database" is working
-      while ( !endParser && !xmlLines[lineCounter].contains("<description>") ) {
-        lineCounter++;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-        endParser = xmlLines[lineCounter].contains("</mame>") || qmc2StopParser;
-#elif defined(QMC2_EMUTYPE_MESS)
-        endParser = xmlLines[lineCounter].contains("</mess>") || qmc2StopParser;
-#endif
-      }
-#else
-      // FIXME: this is the new (WIP-ified) code :)
-      while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
-        lineCounter++;
-#endif
-      if ( !endParser && lineCounter < xmlLines.count() ) {
-        QString descriptionElement = xmlLines[lineCounter].simplified();
-        QString gameElement = xmlLines[lineCounter - 1].simplified();
-	if ( !gameElement.contains(" name=\"") )
-		continue;
-        bool isBIOS = ( value(gameElement, "isbios") == "yes" );
-        bool isDevice = ( value(gameElement, "isdevice") == "yes" );
-        QString gameName = value(gameElement, "name");
-        QString gameSource = value(gameElement, "sourcefile");
-	if ( gameName.isEmpty() ) {
+      for (int lineCounter = 0; lineCounter < xmlLines.count() && !endParser; lineCounter++) {
+	      while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
+		      lineCounter++;
+	      if ( !endParser && lineCounter < xmlLines.count() ) {
+		QString descriptionElement = xmlLines[lineCounter].simplified();
+		QString gameElement = xmlLines[lineCounter - 1].simplified();
+		if ( !gameElement.contains(" name=\"") )
+			continue;
+		bool isBIOS = ( value(gameElement, "isbios") == "yes" );
+		bool isDevice = ( value(gameElement, "isdevice") == "yes" );
+		QString gameName = value(gameElement, "name");
+		QString gameSource = value(gameElement, "sourcefile");
+		if ( gameName.isEmpty() ) {
 #if defined(QMC2_EMUTYPE_MAME)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
 #else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml").arg(lineCounter + 2));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MESS developers and include the offending output from -listxml").arg(lineCounter + 2));
 #endif
-		qApp->processEvents();
-		continue;
-	}
-        QString gameCloneOf = value(gameElement, "cloneof");
-        QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
-        GamelistItem *gameDescriptionItem = new GamelistItem();
-        gameDescriptionItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
-        gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
-        gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+			qApp->processEvents();
+			continue;
+		}
+		QString gameCloneOf = value(gameElement, "cloneof");
+		QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+		GamelistItem *gameDescriptionItem = new GamelistItem();
+		gameDescriptionItem->setHidden((isBIOS && !showBiosSets) || (isDevice && !showDeviceSets));
+		gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+		gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 
-        // find year & manufacturer and determine ROM/CHD requirements
-        bool endGame = false;
-        int i = lineCounter;
-        QString gameYear = tr("?"), gameManufacturer = tr("?"), gamePlayers = tr("?"), gameStatus = tr("?");
-        bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
-        while ( !endGame ) {
-          QString xmlLine = xmlLines[i];
-          if ( xmlLine.contains("<year>") ) {
-            gameYear = xmlLine.simplified().remove("<year>").remove("</year>");
-            yearFound = true;
-          } else if ( xmlLine.contains("<manufacturer>") ) {
-            gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
-            manufacturerFound = true;
-          } else if ( xmlLine.contains("<rom name") ) {
-            hasROMs = true;
-          } else if ( xmlLine.contains("<disk name") ) {
-            hasCHDs = true;
-          } else if ( xmlLine.contains("<input players") ) {
-            int playersPos = xmlLine.indexOf("input players=\"") + 15;
-            if ( playersPos >= 0 ) {
-              gamePlayers = xmlLine.mid(playersPos, xmlLine.indexOf("\"", playersPos) - playersPos);
-              playersFound = true;
-            }
-          } else if ( xmlLine.contains("<driver status") ) {
-            int statusPos = xmlLine.indexOf("driver status=\"") + 15;
-            if ( statusPos >= 0 ) {
-              gameStatus = xmlLine.mid(statusPos, xmlLine.indexOf("\"", statusPos) - statusPos);
-              statusFound = true;
-            }
-          }
+		// find year & manufacturer and determine ROM/CHD requirements
+		bool endGame = false;
+		int i = lineCounter;
+		QString gameYear = tr("?"), gameManufacturer = tr("?"), gamePlayers = tr("?"), gameStatus = tr("?");
+		bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
+		while ( !endGame ) {
+		  QString xmlLine = xmlLines[i];
+		  if ( xmlLine.contains("<year>") ) {
+		    gameYear = xmlLine.simplified().remove("<year>").remove("</year>");
+		    yearFound = true;
+		  } else if ( xmlLine.contains("<manufacturer>") ) {
+		    gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
+		    manufacturerFound = true;
+		  } else if ( xmlLine.contains("<rom name") ) {
+		    hasROMs = true;
+		  } else if ( xmlLine.contains("<disk name") ) {
+		    hasCHDs = true;
+		  } else if ( xmlLine.contains("<input players") ) {
+		    int playersPos = xmlLine.indexOf("input players=\"") + 15;
+		    if ( playersPos >= 0 ) {
+		      gamePlayers = xmlLine.mid(playersPos, xmlLine.indexOf("\"", playersPos) - playersPos);
+		      playersFound = true;
+		    }
+		  } else if ( xmlLine.contains("<driver status") ) {
+		    int statusPos = xmlLine.indexOf("driver status=\"") + 15;
+		    if ( statusPos >= 0 ) {
+		      gameStatus = xmlLine.mid(statusPos, xmlLine.indexOf("\"", statusPos) - statusPos);
+		      statusFound = true;
+		    }
+		  }
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-          endGame = xmlLine.contains("</game>") || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
+		  endGame = xmlLine.contains("</game>") || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
 #elif defined(QMC2_EMUTYPE_MESS)
-          endGame = xmlLine.contains("</machine>") || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
+		  endGame = xmlLine.contains("</machine>") || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
 #endif
-          i++;
-        }
+		  i++;
+		}
 
-        if ( !gameCloneOf.isEmpty() )
-          qmc2HierarchyMap[gameCloneOf].append(gameName);
-        else if ( !qmc2HierarchyMap.contains(gameName) )
-          qmc2HierarchyMap.insert(gameName, QStringList());
+		if ( !gameCloneOf.isEmpty() )
+		  qmc2HierarchyMap[gameCloneOf].append(gameName);
+		else if ( !qmc2HierarchyMap.contains(gameName) )
+		  qmc2HierarchyMap.insert(gameName, QStringList());
 
-        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_GAME, gameDescription);
-        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
-        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
-        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
-        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, gameSource);
-	gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
-        if ( isDevice ) {
-          if ( gamePlayers != tr("?") )
-	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
-          else
-	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
-	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
-	} else {
-	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
-	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
-        }
-        if ( useCatverIni || useCategoryIni ) {
-          QString *categoryString = categoryMap[gameName];
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
+		gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_GAME, gameDescription);
+		gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
+		gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
+		gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
+		gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_SRCFILE, gameSource);
+		gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
+		if ( isDevice ) {
+		  if ( gamePlayers != tr("?") )
+		    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+		  else
+		    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
+		  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
+		} else {
+		  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+		  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toLocal8Bit()));
+		}
+		if ( useCatverIni || useCategoryIni ) {
+		  QString *categoryString = categoryMap[gameName];
+		  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("Unknown"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-          QString *versionString = versionMap[gameName];
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
+		  QString *versionString = versionMap[gameName];
+		  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 #endif
-        }
-        switch ( gameStatusMap[gameName] ) {
-          case 'C': 
-            numCorrectGames++;
-            if ( isBIOS ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-		    qmc2BiosROMs << gameName;
-	    } else if ( isDevice ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-		    qmc2DeviceROMs << gameName;
-	    } else if ( showROMStatusIcons )
-		    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-            break;
+		}
+		switch ( gameStatusMap[gameName] ) {
+		  case 'C': 
+		    numCorrectGames++;
+		    if ( isBIOS ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+			    qmc2BiosROMs << gameName;
+		    } else if ( isDevice ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
+			    qmc2DeviceROMs << gameName;
+		    } else if ( showROMStatusIcons )
+			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+		    break;
 
-          case 'M': 
-            numMostlyCorrectGames++;
-            if ( isBIOS ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-		    qmc2BiosROMs << gameName;
-	    } else if ( isDevice ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
-		    qmc2DeviceROMs << gameName;
-	    } else if ( showROMStatusIcons )
-		    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-            break;
+		  case 'M': 
+		    numMostlyCorrectGames++;
+		    if ( isBIOS ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+			    qmc2BiosROMs << gameName;
+		    } else if ( isDevice ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
+			    qmc2DeviceROMs << gameName;
+		    } else if ( showROMStatusIcons )
+			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+		    break;
 
-          case 'I':
-            numIncorrectGames++;
-            if ( isBIOS ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-		    qmc2BiosROMs << gameName;
-	    } else if ( isDevice ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
-		    qmc2DeviceROMs << gameName;
-	    } else if ( showROMStatusIcons )
-		    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-            break;
+		  case 'I':
+		    numIncorrectGames++;
+		    if ( isBIOS ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+			    qmc2BiosROMs << gameName;
+		    } else if ( isDevice ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
+			    qmc2DeviceROMs << gameName;
+		    } else if ( showROMStatusIcons )
+			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+		    break;
 
-          case 'N':
-            numNotFoundGames++;
-            if ( isBIOS ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-		    qmc2BiosROMs << gameName;
-	    } else if ( isDevice ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-		    qmc2DeviceROMs << gameName;
-	    } else if ( showROMStatusIcons )
-		    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-            break;
+		  case 'N':
+		    numNotFoundGames++;
+		    if ( isBIOS ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+			    qmc2BiosROMs << gameName;
+		    } else if ( isDevice ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
+			    qmc2DeviceROMs << gameName;
+		    } else if ( showROMStatusIcons )
+			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+		    break;
 
-          default:
-            numUnknownGames++;
-            gameStatusMap[gameName] = 'U';
-            if ( isBIOS ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-		    qmc2BiosROMs << gameName;
-	    } else if ( isDevice ) {
-		    if ( showROMStatusIcons )
-			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
-		    qmc2DeviceROMs << gameName;
-	    } else if ( showROMStatusIcons )
-		    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-            break;
-        }
+		  default:
+		    numUnknownGames++;
+		    gameStatusMap[gameName] = 'U';
+		    if ( isBIOS ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+			    qmc2BiosROMs << gameName;
+		    } else if ( isDevice ) {
+			    if ( showROMStatusIcons )
+				    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
+			    qmc2DeviceROMs << gameName;
+		    } else if ( showROMStatusIcons )
+			    gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+		    break;
+		}
 
-        QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
-        nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
-        nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
+		QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
+		nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
+		nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
 #if defined(QMC2_EMUTYPE_MAME)
-        if ( qmc2GamelistItemMap.contains(gameName) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(gameName));
+		if ( qmc2GamelistItemMap.contains(gameName) )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(gameName));
 #elif defined(QMC2_EMUTYPE_MESS)
-        if ( qmc2GamelistItemMap.contains(gameName) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MESS developers").arg(gameName));
+		if ( qmc2GamelistItemMap.contains(gameName) )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MESS developers").arg(gameName));
 #elif defined(QMC2_EMUTYPE_UME)
-        if ( qmc2GamelistItemMap.contains(gameName) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(gameName));
+		if ( qmc2GamelistItemMap.contains(gameName) )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(gameName));
 #endif
-        qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-        qmc2GamelistDescriptionMap[gameName] = gameDescription;
-        qmc2GamelistNameMap[gameDescription] = gameName;
+		qmc2GamelistItemMap[gameName] = gameDescriptionItem;
+		qmc2GamelistDescriptionMap[gameName] = gameDescription;
+		qmc2GamelistNameMap[gameDescription] = gameName;
 
-        loadIcon(gameName, gameDescriptionItem);
+		loadIcon(gameName, gameDescriptionItem);
 
-        if ( gamelistCache.isOpen() )
-		tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
-				<< gameYear << "\t" << gameCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
-				<< (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
-				<< gamePlayers << "\t" << gameStatus << "\t" << (isDevice ? "1": "0") << "\t"
-				<< gameSource <<"\n";
+		if ( gamelistCache.isOpen() )
+			tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
+					<< gameYear << "\t" << gameCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
+					<< (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
+					<< gamePlayers << "\t" << gameStatus << "\t" << (isDevice ? "1": "0") << "\t"
+					<< gameSource <<"\n";
 
-        numGames++;
-        if ( isDevice ) numDevices++;
+		numGames++;
+		if ( isDevice ) numDevices++;
 
-        itemList << gameDescriptionItem;
-      }
+		itemList << gameDescriptionItem;
+	      }
 
-      if ( numGames % qmc2GamelistResponsiveness == 0 ) {
-        qmc2MainWindow->progressBarGamelist->setValue(numGames);
-        qmc2MainWindow->labelGamelistStatus->setText(status());
-        qApp->processEvents();
+	      if ( numGames % qmc2GamelistResponsiveness == 0 ) {
+		qmc2MainWindow->progressBarGamelist->setValue(numGames);
+		qmc2MainWindow->labelGamelistStatus->setText(status());
+		qApp->processEvents();
+	      }
       }
     }
-#if defined(QMC2_WIP_ENABLED)
-    // FIXME: remove WIP clause when the "XML cache database" is working
-    }
-#endif
     qmc2MainWindow->treeWidgetGamelist->addTopLevelItems(itemList);
   }
 
@@ -2814,7 +2615,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML data and recreating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	qmc2MainWindow->progressBarGamelist->reset();
 	qmc2EarlyReloadActive = false;
 	if ( loadProc )
@@ -2824,24 +2625,12 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( romCache.isOpen() )
 		romCache.close();
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
-	if ( listXMLCache.isOpen() )
-		listXMLCache.close();
-
-	if ( invalidateListXmlCache ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
-		listXMLCache.remove();
-	}
-#else
-	// FIXME: this is the new (WIP-ified) code :)
 	xmlDb()->commitTransaction();
 	uncommittedXmlDbRows = 0;
 	if ( invalidateListXmlCache ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML data cache is incomplete, invalidating XML data cache"));
 		xmlDb()->recreateDatabase();
 	}
-#endif
 
 	parse();
 	loadFavorites();
@@ -2904,11 +2693,8 @@ void Gamelist::loadReadyReadStandardOutput()
 	bool endsWithSpace = readBuffer.endsWith(" ");
 	lastCharacterWasSpace = false;
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( uncommittedXmlDbRows == 0 )
 		xmlDb()->beginTransaction();
-#endif
 
 	if ( qmc2StopParser )
 		loadProc->kill();
@@ -2977,16 +2763,6 @@ void Gamelist::loadReadyReadStandardOutput()
 			lastCharacterWasSpace = true;
 		}
 
-#if !defined(QMC2_WIP_ENABLED)
-		// FIXME: remove WIP clause when the "XML cache database" is working
-		xmlDataBuffer += singleXMLLine;
-
-		if ( listXMLCache.isOpen() )
-			tsListXMLCache << singleXMLLine;
-#endif
-
-#if defined(QMC2_WIP_ENABLED)
-		// FIXME: remove WIP clause when the "XML cache database" is working
 		xmlLineBuffer += singleXMLLine;
 		if ( xmlLineBuffer.endsWith("\n") ) {
 			if ( !dtdBufferReady ) {
@@ -3045,16 +2821,12 @@ void Gamelist::loadReadyReadStandardOutput()
 			}
 			xmlLineBuffer.clear();
 		}
-#endif
 	}
 
-#if defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
 	if ( uncommittedXmlDbRows >= QMC2_XMLCACHE_COMMIT ) {
 		xmlDb()->commitTransaction();
 		uncommittedXmlDbRows = 0;
 	}
-#endif
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + readBuffer.count("<game name="));
@@ -3165,10 +2937,6 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
         if ( romItem == qmc2CurrentItem ) qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
       }
     } else {
-#if !defined(QMC2_WIP_ENABLED)
-      // FIXME: remove WIP clause when the "XML cache database" is working
-      QMap<QString, int> systemPosMap;
-#endif
       if ( !remainingGames.isEmpty() && !qmc2StopParser )
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking real status of %n set(s) not mentioned during full audit", "", remainingGames.count()));
       for (i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
@@ -3188,54 +2956,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	// there are quite a number of sets in MESS and MAME that don't require any ROMs... many/most device-sets in particular
 	bool romRequired = true;
 	int xmlCounter = 0;
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove WIP clause when the "XML cache database" is working
-	bool xmlFound = false;
-	if ( systemPosMap.contains(gameName) ) {
-		xmlCounter = systemPosMap[gameName];
-		xmlFound = true;
-	} else {
-#if defined(QMC2_EMUTYPE_MESS)
-		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
-			QString xmlLine = xmlLines[xmlCounter];
-			xmlFound = xmlLine.contains(QString("<machine name=\"%1\"").arg(gameName));
-			if ( !xmlFound ) {
-				if ( xmlLine.contains("<machine name=\"") ) {
-					int gameNamePos = xmlLine.indexOf("<machine name=\"") + 15;
-					if ( xmlLine[gameNamePos] != '\"' ) {
-						QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
-						systemPosMap[currentGame] = xmlCounter + 1;
-					}
-				}
-			}
-			xmlCounter++;
-			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 )
-				qApp->processEvents();
-		}
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
-			QString xmlLine = xmlLines[xmlCounter];
-			xmlFound = xmlLine.contains(QString("<game name=\"%1\"").arg(gameName));
-			if ( !xmlFound ) {
-				if ( xmlLine.contains("<game name=\"") ) {
-					int gameNamePos = xmlLine.indexOf("<game name=\"") + 12;
-					if ( xmlLine[gameNamePos] != '\"' ) {
-						QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
-						systemPosMap[currentGame] = xmlCounter + 1;
-					}
-				}
-			}
-			xmlCounter++;
-			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 )
-				qApp->processEvents();
-		}
-#endif
-	}
-#else
-	// FIXME: this is the new (WIP-ified) code :)
 	QStringList xmlLines = xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
 	bool xmlFound = xmlLines.count() > 0;
-#endif
 	if ( xmlFound ) {
 		int romCounter = 0;
 		int chdCounter = 0;
@@ -4457,38 +4179,6 @@ QString Gamelist::lookupDriverName(QString systemName)
 	QString driverName = driverNameMap[systemName];
 
 	if ( driverName.isEmpty() ) {
-#if !defined(QMC2_WIP_ENABLED)
-		// FIXME: remove WIP clause when the "XML cache database" is working
-		int i = 0;
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		QString s = "<game name=\"" + systemName + "\"";
-		while ( !xmlLines[i].contains(s) ) i++;
-		QString line = xmlLines[i].simplified();
-		int startIndex = line.indexOf("sourcefile=\"");
-		if ( startIndex > 0 ) {
-			startIndex += 12;
-			int endIndex = line.indexOf("\"", startIndex);
-			driverName = line.mid(startIndex, endIndex - startIndex); 
-		}
-#elif defined(QMC2_EMUTYPE_MESS)
-		QString s = "<machine name=\"" + systemName + "\"";
-		while ( !xmlLines[i].contains(s) ) i++;
-		QString line = xmlLines[i].simplified();
-		int startIndex = line.indexOf("sourcefile=\"");
-		if ( startIndex > 0 ) {
-			startIndex += 12;
-			int endIndex = line.indexOf("\"", startIndex);
-			driverName = line.mid(startIndex, endIndex - startIndex); 
-		}
-#endif
-
-		if ( !driverName.isEmpty() ) {
-			QFileInfo fi(driverName);
-			driverName = fi.baseName();
-			driverNameMap[systemName] = driverName;
-		}
-#else
-		// FIXME: this is the new (WIP-ified) code :)
 		QString xml = xmlDb()->xml(systemName).simplified();
 		if ( !xml.isEmpty() ) {
 			int startIndex = xml.indexOf("sourcefile=\"");
@@ -4498,7 +4188,6 @@ QString Gamelist::lookupDriverName(QString systemName)
 				driverName = xml.mid(startIndex, endIndex - startIndex);
 			}
 		}
-#endif
 	}
 
 	return driverName;

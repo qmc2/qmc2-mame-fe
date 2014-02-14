@@ -146,12 +146,6 @@
 #define QMC2_GAMELIST_COLUMNS			12
 #define QMC2_MACHINELIST_COLUMNS		11
 
-#if !defined(QMC2_WIP_ENABLED)
-// FIXME: remove WIP clause when the "XML cache database" is working
-// when parsing entries in the game/machine list, process GUI events every this many XML lines
-#define QMC2_PARSE_GAMELIST_RSP			100000
-#endif
-
 // logical column indexes in the emulator control panel
 #define QMC2_EMUCONTROL_COLUMN_NUMBER		0
 #define QMC2_EMUCONTROL_COLUMN_ID		QMC2_EMUCONTROL_COLUMN_NUMBER
