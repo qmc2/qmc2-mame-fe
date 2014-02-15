@@ -553,17 +553,19 @@ void Gamelist::load()
   }
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
-  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
-    case QMC2_VIEW_CATEGORY_INDEX:
-      QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
-      break;
+  if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+		case QMC2_VIEW_CATEGORY_INDEX:
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
+			break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-    case QMC2_VIEW_VERSION_INDEX:
-      QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByVersion()));
-      break;
+		case QMC2_VIEW_VERSION_INDEX:
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByVersion()));
+			break;
 #endif
-    default:
-      break;
+		default:
+			break;
+	}
   }
 
   // determine emulator version and supported sets
