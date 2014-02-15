@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>552</width>
-    <height>372</height>
+    <width>657</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1867,6 +1867,12 @@
             <layout class="QHBoxLayout" name="horizontalLayoutAudioPlayer2">
              <item>
               <widget class="QToolButton" name="toolButtonAudioPreviousTrack">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Previous track</string>
                </property>
@@ -1881,6 +1887,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioNextTrack">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Next track</string>
                </property>
@@ -1895,6 +1907,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioFastBackward">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Fast backward</string>
                </property>
@@ -1918,6 +1936,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioFastForward">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Fast forward</string>
                </property>
@@ -1941,6 +1965,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioStopTrack">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Stop track</string>
                </property>
@@ -1958,6 +1988,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioPauseTrack">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Pause track</string>
                </property>
@@ -1975,6 +2011,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioPlayTrack">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Play track</string>
                </property>
@@ -2031,6 +2073,12 @@
             <layout class="QHBoxLayout" name="horizontalLayoutAudioPlayer1">
              <item>
               <widget class="QToolButton" name="toolButtonAudioAddTracks">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Browse for tracks to add to playlist</string>
                </property>
@@ -2045,6 +2093,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioAddURL">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Enter URL to add to playlist</string>
                </property>
@@ -2062,6 +2116,12 @@
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Remove selected tracks from playlist</string>
                </property>
@@ -2076,6 +2136,12 @@
              </item>
              <item>
               <widget class="QToolButton" name="toolButtonAudioSetupEffects">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Setup available audio effects</string>
                </property>
@@ -2089,7 +2155,26 @@
               </widget>
              </item>
              <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QCheckBox" name="checkBoxAudioPlayOnStart">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Start playing automatically when QMC2 has started</string>
                </property>
@@ -2103,6 +2188,12 @@
              </item>
              <item>
               <widget class="QCheckBox" name="checkBoxAudioShuffle">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Select random tracks from playlist</string>
                </property>
@@ -2116,6 +2207,12 @@
              </item>
              <item>
               <widget class="QCheckBox" name="checkBoxAudioPause">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Automatically pause audio playback when at least one emulator is running</string>
                </property>
@@ -2132,6 +2229,12 @@
              </item>
              <item>
               <widget class="QCheckBox" name="checkBoxAudioFade">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="toolTip">
                 <string>Fade in and out on pause / resume</string>
                </property>
@@ -2211,6 +2314,12 @@
            </item>
            <item row="1" column="0">
             <widget class="QPushButton" name="pushButtonClearFinishedDownloads">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="toolTip">
               <string>Clear finished / stopped downloads from list</string>
              </property>
@@ -2228,6 +2337,12 @@
            </item>
            <item row="1" column="1">
             <widget class="QPushButton" name="pushButtonReloadSelectedDownloads">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="toolTip">
               <string>Reload selected downloads</string>
              </property>
@@ -2245,6 +2360,12 @@
            </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="pushButtonStopSelectedDownloads">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="toolTip">
               <string>Stop selected downloads</string>
              </property>
@@ -2262,6 +2383,12 @@
            </item>
            <item row="1" column="3">
             <widget class="QCheckBox" name="checkBoxRemoveFinishedDownloads">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="toolTip">
               <string>Automatically remove successfully finished downloads from this list</string>
              </property>
@@ -2277,7 +2404,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>407</width>
+               <width>20</width>
                <height>20</height>
               </size>
              </property>
@@ -2383,7 +2510,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>552</width>
+     <width>657</width>
      <height>17</height>
     </rect>
    </property>
