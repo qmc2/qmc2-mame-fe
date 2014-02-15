@@ -3,6 +3,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMultiMap>
+#include <QUuid>
 
 #include "settings.h"
 #include "cookiejar.h"
@@ -14,9 +15,8 @@ extern Settings *qmc2Config;
 
 CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 {
-	static quint64 connectionNumber = 0;
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	db = QSqlDatabase::addDatabase("QSQLITE", "cookiesdb-" + QString::number(connectionNumber++));
+	db = QSqlDatabase::addDatabase("QSQLITE", "cookie-db-connection-" + QUuid::createUuid().toString());
 	db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/CookieDatabase", userScopePath + "/qmc2-" + QMC2_EMU_NAME_VARIANT.toLower() + "-cookies.db").toString());
 	if ( !db.open() ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open cookie database: error = '%1'").arg(db.lastError().text()));

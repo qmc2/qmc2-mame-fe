@@ -2,6 +2,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDir>
+#include <QUuid>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -15,10 +16,9 @@ extern Settings *qmc2Config;
 XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
-	static quint64 connectionNumber = 0;
 	setLogActive(true);
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	m_db = QSqlDatabase::addDatabase("QSQLITE", "xmlcachedb-" + QString::number(connectionNumber++));
+	m_db = QSqlDatabase::addDatabase("QSQLITE", "xml-cache-db-connection-" + QUuid::createUuid().toString());
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(userScopePath + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_xml_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
