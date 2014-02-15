@@ -514,6 +514,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void checkRomPath();
 		void negateSearchTriggered(bool);
 		void reloadImageFormats();
+		void updateTabWidgets();
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);

@@ -820,10 +820,6 @@ MainWindow::MainWindow(QWidget *parent)
     if ( vSplitterFlipped ) menuVerticalSplitter_FlipOrientation_activated();
     if ( hSplitterSwapped ) menuHorizontalSplitter_SwapLayouts_activated();
     if ( vSplitterSwapped ) menuVerticalSplitter_SwapWidgets_activated();
-    tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
-    tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
-    on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
-    tabWidgetSoftwareDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", 0).toInt());
     treeWidgetHierarchy->header()->setDefaultAlignment(Qt::AlignLeft);
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
@@ -3678,11 +3674,13 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 	      case QMC2_VIEW_CATEGORY_INDEX:
 		      treeWidgetCategoryView->activateWindow();
 		      treeWidgetCategoryView->setFocus();
+		      QTimer::singleShot(0, this, SLOT(viewByCategory()));
 		      break;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 	      case QMC2_VIEW_VERSION_INDEX:
 		      treeWidgetVersionView->activateWindow();
 		      treeWidgetVersionView->setFocus();
+		      QTimer::singleShot(0, this, SLOT(viewByVersion()));
 		      break;
 #endif
 	      case QMC2_VIEW_DETAIL_INDEX:
@@ -6987,8 +6985,13 @@ void MainWindow::init()
 
 	qmc2EarlyStartup = false;
 
-	// make sure the current detail's tab header is shown
-	QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
+		// make sure the current detail's tab header is shown
+		QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
+
+		// same for all other tab widgets
+		QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
+	}
 
 	// trigger initial load
 	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
@@ -9430,6 +9433,9 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index = %1)").arg(index));
 #endif
 
+  if ( tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX )
+	  return;
+
   switch ( index ) {
 	  case QMC2_VIEWGAMELIST_INDEX: {
 		  bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
@@ -11582,6 +11588,14 @@ void MainWindow::reloadImageFormats()
 		qmc2SoftwareSnapshot->reloadActiveFormats();
 
 	// FIXME: add support for additional artwork classes
+}
+
+void MainWindow::updateTabWidgets()
+{
+	tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
+	on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
+	tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
+	tabWidgetSoftwareDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", 0).toInt());
 }
 
 #if QT_VERSION < 0x050000
