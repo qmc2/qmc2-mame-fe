@@ -7726,10 +7726,12 @@ void MainWindow::loadSoftwareInfoDB()
 		QTextStream ts(&swInfoDB);
 		ts.setCodec(QTextCodec::codecForName("UTF-8"));
 		int recordsProcessed = 0;
+		QRegExp markRegExp("^\\$\\S+\\=\\S+\\,$");
+		QRegExp reduceLinesRegExp("(<br>){2,}");
 		while ( !ts.atEnd() && !qmc2StopParser ) {
 			QString singleLine = ts.readLine();
 			QString singleLineSimplified = singleLine.simplified();
-			bool containsMark = singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$"));
+			bool containsMark = singleLineSimplified.contains(markRegExp);
 			while ( !containsMark && !ts.atEnd() ) {
 				singleLine = ts.readLine();
 				singleLineSimplified = singleLine.simplified();
@@ -7737,7 +7739,7 @@ void MainWindow::loadSoftwareInfoDB()
 					progressBarGamelist->setValue(swInfoDB.pos());
 					qApp->processEvents();
 				}
-				containsMark = singleLineSimplified.contains(QRegExp("^\\$.*\\=.*\\,$"));
+				containsMark = singleLineSimplified.contains(markRegExp);
 			}
 			if ( containsMark && !singleLineSimplified.startsWith("$info=") ) {
 				QStringList infoWords = singleLineSimplified.mid(1).split("=", QString::SkipEmptyParts);
@@ -7763,10 +7765,10 @@ void MainWindow::loadSoftwareInfoDB()
 							singleLineSimplified = singleLine.simplified();
 							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
 							if ( !startsWithDollarEnd ) {
-								if ( !firstLine ) {
-									swInfoString.append(singleLine.trimmed() + "<br>");
-								} else if ( !singleLine.isEmpty() ) {
-									swInfoString.append("<b>" + singleLine.trimmed() + "</b><br>");
+								if ( !firstLine )
+									swInfoString.append(singleLine + "<br>");
+								else if ( !singleLine.isEmpty() ) {
+									swInfoString.append("<b>" + singleLine + "</b><br>");
 									firstLine = false;
 								}
 							}
@@ -7777,7 +7779,7 @@ void MainWindow::loadSoftwareInfoDB()
 						}
 						if ( startsWithDollarEnd ) {
 							// reduce the number of line breaks
-							swInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
+							swInfoString.replace(reduceLinesRegExp, "<p>");
 							if ( swInfoString.endsWith("<p>") )
 								swInfoString.remove(swInfoString.length() - 3, swInfoString.length() - 1);
 							QByteArray *swInfo;
