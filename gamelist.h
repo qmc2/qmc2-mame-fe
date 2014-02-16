@@ -124,6 +124,7 @@ class Gamelist : public QObject
 		void parse();
 		void parseGameDetail(QTreeWidgetItem *);
 		void insertAttributeItems(QTreeWidgetItem *, QString, QStringList, QStringList, bool translate = false);
+		void insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate = false);
 		void enableWidgets(bool enable = true);
 		void filter(bool initial = false);
 		bool loadIcon(QString, QTreeWidgetItem *, bool checkOnly = false, QString *fileName = NULL);
