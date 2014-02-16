@@ -866,6 +866,9 @@ MainWindow::MainWindow(QWidget *parent)
 
   on_actionFullscreenToggle_triggered();
 
+  actionSearchInternalBrowser->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", false).toBool());
+  on_actionSearchInternalBrowser_triggered(actionSearchInternalBrowser->isChecked());
+
   // context menus
   QAction *action;
   QString s;
@@ -948,6 +951,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+  qmc2GameMenu->addSeparator();
+  qmc2GameMenu->addMenu(menuSearchWeb);
 
   qmc2SearchMenu = new QMenu(0);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1001,6 +1006,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+  qmc2SearchMenu->addSeparator();
+  qmc2SearchMenu->addMenu(menuSearchWeb);
 
   qmc2FavoritesMenu = new QMenu(0);
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -1045,6 +1052,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+  qmc2FavoritesMenu->addSeparator();
+  qmc2FavoritesMenu->addMenu(menuSearchWeb);
   qmc2FavoritesMenu->addSeparator();
   s = tr("Remove from favorites");
   action = qmc2FavoritesMenu->addAction(tr("&Remove"));
@@ -1114,6 +1123,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
+  qmc2PlayedMenu->addSeparator();
+  qmc2PlayedMenu->addMenu(menuSearchWeb);
   qmc2PlayedMenu->addSeparator();
   s = tr("Remove from played");
   action = qmc2PlayedMenu->addAction(tr("&Remove"));
@@ -11241,6 +11252,77 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	}
 	progressBarGamelist->reset();
 	progressBarGamelist->setFormat(oldFormat);
+}
+
+void MainWindow::on_actionSearchGoogle_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchGoogle_triggered(bool)");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
+	url.replace(" ", "+");
+	url.prepend("http://www.google.com/search?q=");
+
+	if ( actionSearchInternalBrowser->isChecked() ) {
+		MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+		webBrowser->homeUrl = QUrl::fromUserInput(url);
+		webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+			webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+		else {
+			webBrowser->adjustSize();
+			webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+		}
+		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+		webBrowser->show();
+		webBrowser->webViewBrowser->load(webBrowser->homeUrl);
+	} else
+		QDesktopServices::openUrl(QUrl::fromUserInput(url));
+}
+
+void MainWindow::on_actionSearchWikipedia_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchWikipedia_triggered(bool)");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
+	url.replace(" ", "_");
+	url.prepend("http://en.wikipedia.org/wiki/Special:Search?search=");
+
+	if ( actionSearchInternalBrowser->isChecked() ) {
+		MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+		webBrowser->homeUrl = QUrl::fromUserInput(url);
+		webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+			webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+		else {
+			webBrowser->adjustSize();
+			webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+		}
+		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+		webBrowser->show();
+		webBrowser->webViewBrowser->load(webBrowser->homeUrl);
+	} else
+		QDesktopServices::openUrl(QUrl::fromUserInput(url));
+}
+
+void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
+{
+	if ( checked )
+		actionSearchInternalBrowser->setText(tr("Internal browser"));
+	else
+		actionSearchInternalBrowser->setText(tr("External browser"));
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", checked);
 }
 
 #if defined(QMC2_EMUTYPE_MESS)
