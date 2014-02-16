@@ -11296,7 +11296,7 @@ void MainWindow::on_actionSearchWikipedia_triggered(bool)
 
 	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
 	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
-	url.replace(" ", "_");
+	url.replace(" ", "+");
 	url.prepend("http://en.wikipedia.org/wiki/Special:Search?search=");
 
 	if ( actionSearchInternalBrowser->isChecked() ) {
