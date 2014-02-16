@@ -519,12 +519,12 @@ void MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message)
 
   if ( !message.isEmpty() ) {
     statusTimer.stop();
-    labelStatus->setVisible(true);
     QFont f(font());
     f.setPointSize(f.pointSize() - 2);
     labelStatus->setFont(f);
     labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(message + " ");
+    labelStatus->show();
   } else {
     labelStatus->clear();
     statusTimer.start(QMC2_BROWSER_STATUS_TIMEOUT);
@@ -569,12 +569,12 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
   
   if ( !link.isEmpty() ) {
     statusTimer.stop();
-    labelStatus->setVisible(true);
     QFont f(font());
     f.setPointSize(f.pointSize() - 2);
     labelStatus->setFont(f);
     labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(link + " ");
+    labelStatus->show();
   } else {
     labelStatus->clear();
     statusTimer.start(QMC2_BROWSER_STATUS_TIMEOUT);
@@ -605,7 +605,7 @@ void MiniWebBrowser::statusTimeout()
 #endif
 
   statusTimer.stop();
-  labelStatus->setVisible(false);
+  labelStatus->hide();
 }
 
 void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request)
