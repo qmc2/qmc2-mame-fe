@@ -10895,7 +10895,10 @@ void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
 		bool doToggle = true;
 		if ( focusWidget == treeWidgetGamelist ) {
 			QTreeWidgetItem *item = treeWidgetGamelist->selectedItems()[0];
-			while ( item->parent() ) item = item->parent();
+			if ( item->parent() )
+				doToggle = false;
+			while ( item->parent() )
+				item = item->parent();
 			qmc2CurrentItem = item;
 		} else if ( focusWidget == treeWidgetCategoryView ) {
 			QTreeWidgetItem *item = treeWidgetCategoryView->selectedItems()[0];
@@ -10936,7 +10939,10 @@ void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 		bool doToggle = true;
 		if ( focusWidget == treeWidgetGamelist ) {
 			QTreeWidgetItem *item = treeWidgetGamelist->selectedItems()[0];
-			while ( item->parent() ) item = item->parent();
+			if ( item->parent() )
+				doToggle = false;
+			while ( item->parent() )
+				item = item->parent();
 			qmc2CurrentItem = item;
 		} else if ( focusWidget == treeWidgetCategoryView ) {
 			QTreeWidgetItem *item = treeWidgetCategoryView->selectedItems()[0];
