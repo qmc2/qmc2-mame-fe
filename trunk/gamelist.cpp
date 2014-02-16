@@ -1041,19 +1041,30 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
 
 void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::insertAttributeItems(QTreeWidgetItem *parent = %1, QString element = %2, QStringList attributes = ..., QStringList descriptions = ..., translate = %3)").arg((qulonglong)parent).arg(element).arg(translate));
-#endif
+	QList<QTreeWidgetItem *> itemList;
+	for (int i = 0; i < attributes.count(); i++) {
+		QString valueString = value(element, attributes.at(i), translate);
+		if ( !valueString.isEmpty() ) {
+			QTreeWidgetItem *attributeItem = new QTreeWidgetItem();
+			attributeItem->setText(QMC2_GAMELIST_COLUMN_GAME, descriptions.at(i));
+			attributeItem->setText(QMC2_GAMELIST_COLUMN_ICON, tr(valueString.toLocal8Bit()));
+			itemList << attributeItem;
+		}
+	}
+	parent->addChildren(itemList);
+}
 
-  int i;
-  for (i = 0; i < attributes.count(); i++) {
-    QString valueString = value(element, attributes.at(i), translate);
-    if ( !valueString.isEmpty() ) {
-      QTreeWidgetItem *attributeItem = new QTreeWidgetItem(parent);
-      attributeItem->setText(QMC2_GAMELIST_COLUMN_GAME, descriptions.at(i));
-      attributeItem->setText(QMC2_GAMELIST_COLUMN_ICON, tr(valueString.toLocal8Bit()));
-    }
-  }
+void Gamelist::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate)
+{
+	for (int i = 0; i < attributes.count(); i++) {
+		QString valueString = value(element, attributes.at(i), translate);
+		if ( !valueString.isEmpty() ) {
+			QTreeWidgetItem *attributeItem = new QTreeWidgetItem();
+			attributeItem->setText(QMC2_GAMELIST_COLUMN_GAME, descriptions.at(i));
+			attributeItem->setText(QMC2_GAMELIST_COLUMN_ICON, tr(valueString.toLocal8Bit()));
+			itemList->append(attributeItem);
+		}
+	}
 }
 
 void Gamelist::parseGameDetail(QTreeWidgetItem *item)
@@ -1072,45 +1083,46 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 #endif
       return;
   }
+
   int gamePos = 1;
   item->child(0)->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Updating"));
   qmc2MainWindow->treeWidgetGamelist->viewport()->repaint();
-
   qApp->processEvents();
-
-  QTreeWidgetItem *childItem = item->takeChild(0);
-  delete childItem;
 
   QString element, content;
   QStringList attributes, descriptions;
+  QTreeWidgetItem *childItem = NULL;
+
+  QList<QTreeWidgetItem *> itemList;
 
   // game/machine element
   attributes << "name" << "sourcefile" << "isbios" << "isdevice" << "runnable" << "cloneof" << "romof" << "sampleof";
   descriptions << tr("Name") << tr("Source file") << tr("Is BIOS?") << tr("Is device?") << tr("Runnable") << tr("Clone of") << tr("ROM of") << tr("Sample of");
   element = xmlLines.at(gamePos - 1).simplified();
-  insertAttributeItems(item, element, attributes, descriptions, true);
+  insertAttributeItems(&itemList, element, attributes, descriptions, true);
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   while ( !xmlLines[gamePos].contains("</game>") ) {
 #elif defined(QMC2_EMUTYPE_MESS)
   while ( !xmlLines[gamePos].contains("</machine>") ) {
 #endif
+    childItem = NULL;
     element = xmlLines[gamePos].simplified();
     if ( element.contains("<year>") ) {
       content = element.remove("<year>").remove("</year>");
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Year"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, content);
     }
     if ( element.contains("<manufacturer>") ) {
       content = element.remove("<manufacturer>").remove("</manufacturer>");
       content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Manufacturer"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, content);
     }
     if ( element.contains("<rom ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("ROM"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
@@ -1120,12 +1132,12 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<device_ref ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Device reference"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
     }
     if ( element.contains("<chip ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Chip"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
@@ -1135,7 +1147,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<display ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Display"));
       attributes.clear();
       attributes << "type" << "rotate" << "flipx" << "width" << "height" << "refresh" << "pixclock" << "htotal" << "hbend" << "hbstart" << "vtotal" << "vbend" << "vbstart";
@@ -1144,7 +1156,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<sound ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Sound"));
       attributes.clear();
       attributes << "channels";
@@ -1153,7 +1165,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<input ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Input"));
       attributes.clear();
       attributes << "service" << "tilt" << "players" << "buttons" << "coins";
@@ -1176,7 +1188,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       }
     }
     if ( element.contains("<dipswitch ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("DIP switch"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", true));
 
@@ -1195,7 +1207,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       }
     }
     if ( element.contains("<configuration ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Configuration"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", true));
       attributes.clear();
@@ -1219,7 +1231,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       }
     }
     if ( element.contains("<driver ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Driver"));
       attributes.clear();
       attributes << "status" << "emulation" << "color" << "sound" << "graphic" << "cocktail" << "protection" << "savestate" << "palettesize";
@@ -1228,7 +1240,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<biosset ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("BIOS set"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
@@ -1238,12 +1250,12 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<sample ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Sample"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
     }
     if ( element.contains("<disk ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Disk"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
@@ -1253,7 +1265,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<adjuster ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Adjuster"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
@@ -1263,7 +1275,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<softwarelist ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Software list"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
@@ -1273,7 +1285,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<category ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Category"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", true));
 
@@ -1292,7 +1304,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       }
     }
     if ( element.contains("<device ") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Device"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "type", true));
       attributes.clear();
@@ -1323,7 +1335,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       }
     }
     if ( element.contains("<ramoption") ) {
-      childItem = new QTreeWidgetItem(item);
+      childItem = new QTreeWidgetItem();
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("RAM options"));
       while ( xmlLines[gamePos].contains("<ramoption") ) {
         QString subElement = xmlLines[gamePos].simplified();
@@ -1347,7 +1359,14 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 #endif
     }
     gamePos++;
+    if ( childItem )
+	    itemList << childItem;
   }
+
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
+  delete item->takeChild(0);
+  item->addChildren(itemList);
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 }
 
 void Gamelist::parse()
