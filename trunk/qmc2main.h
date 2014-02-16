@@ -232,6 +232,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionTagVisible_triggered(bool checked = false);
 		void on_actionUntagVisible_triggered(bool checked = false);
 		void on_actionInvertVisibleTags_triggered(bool checked = false);
+		void on_actionSearchGoogle_triggered(bool checked = false);
+		void on_actionSearchWikipedia_triggered(bool checked = false);
+		void on_actionSearchInternalBrowser_triggered(bool checked = false);
 
 		// arcade menu
 		void on_actionLaunchArcade_triggered(bool checked = false);

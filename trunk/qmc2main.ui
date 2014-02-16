@@ -2531,24 +2531,6 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <widget class="QMenu" name="menuAudioPlayer">
-     <property name="title">
-      <string>&amp;Audio player</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
-     </property>
-     <addaction name="actionAudioPlayTrack"/>
-     <addaction name="actionAudioPauseTrack"/>
-     <addaction name="actionAudioStopTrack"/>
-     <addaction name="actionAudioFastForward"/>
-     <addaction name="actionAudioFastBackward"/>
-     <addaction name="actionAudioNextTrack"/>
-     <addaction name="actionAudioPreviousTrack"/>
-     <addaction name="actionAudioRaiseVolume"/>
-     <addaction name="actionAudioLowerVolume"/>
-    </widget>
     <widget class="QMenu" name="menuCleanUp">
      <property name="title">
       <string>&amp;Clean up</string>
@@ -2572,6 +2554,24 @@
      <addaction name="separator"/>
      <addaction name="actionRecreateTemplateMap"/>
      <addaction name="actionCheckTemplateMap"/>
+    </widget>
+    <widget class="QMenu" name="menuAudioPlayer">
+     <property name="title">
+      <string>&amp;Audio player</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
+     </property>
+     <addaction name="actionAudioPlayTrack"/>
+     <addaction name="actionAudioPauseTrack"/>
+     <addaction name="actionAudioStopTrack"/>
+     <addaction name="actionAudioFastForward"/>
+     <addaction name="actionAudioFastBackward"/>
+     <addaction name="actionAudioNextTrack"/>
+     <addaction name="actionAudioPreviousTrack"/>
+     <addaction name="actionAudioRaiseVolume"/>
+     <addaction name="actionAudioLowerVolume"/>
     </widget>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
@@ -2646,6 +2646,19 @@
      <addaction name="actionUntagVisible"/>
      <addaction name="actionInvertVisibleTags"/>
     </widget>
+    <widget class="QMenu" name="menuSearchWeb">
+     <property name="title">
+      <string>Search web</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/world.png</normaloff>:/data/img/world.png</iconset>
+     </property>
+     <addaction name="actionSearchGoogle"/>
+     <addaction name="actionSearchWikipedia"/>
+     <addaction name="separator"/>
+     <addaction name="actionSearchInternalBrowser"/>
+    </widget>
     <addaction name="actionPlay"/>
     <addaction name="actionPlayTagged"/>
     <addaction name="separator"/>
@@ -2660,6 +2673,7 @@
     <addaction name="menuView"/>
     <addaction name="menuCheck"/>
     <addaction name="menuTag"/>
+    <addaction name="menuSearchWeb"/>
     <addaction name="separator"/>
     <addaction name="actionExitStop"/>
    </widget>
@@ -4125,6 +4139,54 @@
    </property>
    <property name="statusTip">
     <string>Open our bug-tracking system in the default browser</string>
+   </property>
+  </action>
+  <action name="actionSearchGoogle">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/google.png</normaloff>:/data/img/google.png</iconset>
+   </property>
+   <property name="text">
+    <string>Google</string>
+   </property>
+   <property name="toolTip">
+    <string>Search with Google</string>
+   </property>
+   <property name="statusTip">
+    <string>Search with Google</string>
+   </property>
+  </action>
+  <action name="actionSearchWikipedia">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/wikipedia.png</normaloff>:/data/img/wikipedia.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wikipedia</string>
+   </property>
+   <property name="toolTip">
+    <string>Search with Wikipedia</string>
+   </property>
+   <property name="statusTip">
+    <string>Search with Wikipedia</string>
+   </property>
+  </action>
+  <action name="actionSearchInternalBrowser">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/browser.png</normaloff>:/data/img/browser.png</iconset>
+   </property>
+   <property name="text">
+    <string>Internal browser</string>
+   </property>
+   <property name="toolTip">
+    <string>Use internal (or external) browser?</string>
+   </property>
+   <property name="statusTip">
+    <string>Use internal (or external) browser?</string>
    </property>
   </action>
  </widget>
