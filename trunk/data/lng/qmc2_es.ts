@@ -11120,174 +11120,168 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation>Mini Navegador Web</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="145"/>
-        <location filename="../../miniwebbrowser.ui" line="148"/>
-        <location filename="../../miniwebbrowser.cpp" line="116"/>
+        <location filename="../../miniwebbrowser.ui" line="189"/>
+        <location filename="../../miniwebbrowser.ui" line="192"/>
+        <location filename="../../miniwebbrowser.cpp" line="117"/>
         <source>Go back</source>
         <translation>Anterior</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="99"/>
-        <location filename="../../miniwebbrowser.ui" line="102"/>
-        <location filename="../../miniwebbrowser.cpp" line="118"/>
+        <location filename="../../miniwebbrowser.ui" line="212"/>
+        <location filename="../../miniwebbrowser.ui" line="215"/>
+        <location filename="../../miniwebbrowser.cpp" line="119"/>
         <source>Go forward</source>
         <translation>Siguiente</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="76"/>
-        <location filename="../../miniwebbrowser.ui" line="79"/>
+        <location filename="../../miniwebbrowser.ui" line="235"/>
+        <location filename="../../miniwebbrowser.ui" line="238"/>
         <source>Reload current URL</source>
         <translation>Recargar la URL actual</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="188"/>
-        <location filename="../../miniwebbrowser.ui" line="191"/>
+        <location filename="../../miniwebbrowser.ui" line="258"/>
+        <location filename="../../miniwebbrowser.ui" line="261"/>
         <source>Stop loading of current URL</source>
         <translation>Parar la carga de la URL actual</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="122"/>
-        <location filename="../../miniwebbrowser.ui" line="125"/>
+        <location filename="../../miniwebbrowser.ui" line="281"/>
+        <location filename="../../miniwebbrowser.ui" line="284"/>
         <source>Go home (first page)</source>
         <translation>Ir a la página de inicio</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="239"/>
-        <location filename="../../miniwebbrowser.ui" line="242"/>
+        <location filename="../../miniwebbrowser.ui" line="352"/>
+        <location filename="../../miniwebbrowser.ui" line="355"/>
         <source>Enter current URL</source>
         <translation>Introducir URL actual</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="165"/>
-        <location filename="../../miniwebbrowser.ui" line="168"/>
+        <location filename="../../miniwebbrowser.ui" line="377"/>
+        <location filename="../../miniwebbrowser.ui" line="380"/>
         <source>Load URL</source>
         <translation>Cargar URL</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="45"/>
-        <location filename="../../miniwebbrowser.ui" line="48"/>
-        <source>Current progress loading URL</source>
-        <translation>Progreso de carga de URL actual</translation>
-    </message>
-    <message>
-        <location filename="../../miniwebbrowser.ui" line="208"/>
-        <location filename="../../miniwebbrowser.ui" line="211"/>
+        <location filename="../../miniwebbrowser.ui" line="301"/>
+        <location filename="../../miniwebbrowser.ui" line="304"/>
         <source>Set zoom factor</source>
         <translation>Establecer nivel de zoom</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="214"/>
+        <location filename="../../miniwebbrowser.ui" line="307"/>
         <source> %</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="264"/>
+        <location filename="../../miniwebbrowser.ui" line="332"/>
         <source>Toggle display of the search bar</source>
         <translation>(des) activar la barra de búsqueda</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="300"/>
-        <location filename="../../miniwebbrowser.ui" line="303"/>
-        <location filename="../../miniwebbrowser.cpp" line="62"/>
+        <location filename="../../miniwebbrowser.ui" line="80"/>
+        <location filename="../../miniwebbrowser.ui" line="83"/>
         <location filename="../../miniwebbrowser.cpp" line="63"/>
+        <location filename="../../miniwebbrowser.cpp" line="64"/>
         <source>Enter search string</source>
         <translation>Introducir texto de búsqueda</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="316"/>
+        <location filename="../../miniwebbrowser.ui" line="137"/>
         <source>Case-sensitive</source>
         <translation>Diferencia entre mayúsculas y minúsculas</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="336"/>
+        <location filename="../../miniwebbrowser.ui" line="96"/>
         <source>Find previous occurrence</source>
         <translation>Encontrar coincidencia anterior</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="353"/>
+        <location filename="../../miniwebbrowser.ui" line="113"/>
         <source>Find next occurrence</source>
         <translation>Encontrar siguiente coincidencia</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="370"/>
+        <location filename="../../miniwebbrowser.ui" line="157"/>
         <source>Highlight matches</source>
         <translation>Resaltar coincidencias</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="66"/>
+        <location filename="../../miniwebbrowser.cpp" line="67"/>
         <source>Enter URL</source>
         <translation>Introducir URL</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="101"/>
+        <location filename="../../miniwebbrowser.cpp" line="102"/>
         <source>Open link</source>
         <translation>Abrir enlace</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="103"/>
+        <location filename="../../miniwebbrowser.cpp" line="104"/>
         <source>Open link in new window</source>
         <translation>Abrir enlace en una nueva ventana</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="105"/>
+        <location filename="../../miniwebbrowser.cpp" line="106"/>
         <source>Open image in new window</source>
         <translation>Abrir imagen en una nueva ventana</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="107"/>
+        <location filename="../../miniwebbrowser.cpp" line="108"/>
         <source>Save link as...</source>
         <translation>Guardar enlace como...</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="109"/>
+        <location filename="../../miniwebbrowser.cpp" line="110"/>
         <source>Copy link</source>
         <translation>Copiar enlace</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="111"/>
+        <location filename="../../miniwebbrowser.cpp" line="112"/>
         <source>Save image as...</source>
         <translation>Guardar imagen como...</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="113"/>
+        <location filename="../../miniwebbrowser.cpp" line="114"/>
         <source>Copy image</source>
         <translation>Copiar imagen</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="115"/>
+        <location filename="../../miniwebbrowser.cpp" line="116"/>
         <source>Copy image address</source>
         <translation>Copiar la ruta de la imagen</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="120"/>
+        <location filename="../../miniwebbrowser.cpp" line="121"/>
         <source>Reload</source>
         <translation>Recargar</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="122"/>
+        <location filename="../../miniwebbrowser.cpp" line="123"/>
         <source>Stop</source>
         <translation>Detener</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="124"/>
+        <location filename="../../miniwebbrowser.cpp" line="125"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="127"/>
+        <location filename="../../miniwebbrowser.cpp" line="128"/>
         <source>Inspect</source>
         <translation>Inspeccionar</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="638"/>
+        <location filename="../../miniwebbrowser.cpp" line="632"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>ATENCIÓN: respuesta de red incorrecta y/o error de red</translation>
     </message>
     <message>
+        <location filename="../../miniwebbrowser.cpp" line="662"/>
+        <location filename="../../miniwebbrowser.cpp" line="667"/>
+        <location filename="../../miniwebbrowser.cpp" line="669"/>
         <location filename="../../miniwebbrowser.cpp" line="672"/>
-        <location filename="../../miniwebbrowser.cpp" line="677"/>
-        <location filename="../../miniwebbrowser.cpp" line="679"/>
-        <location filename="../../miniwebbrowser.cpp" line="682"/>
         <source>MiniWebBrowser</source>
         <translation>MiniNavegadorWeb</translation>
     </message>

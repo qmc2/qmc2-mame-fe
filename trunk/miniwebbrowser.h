@@ -10,6 +10,7 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include <QCache>
+
 #include "ui_miniwebbrowser.h"
 #include "iconlineedit.h"
 #include "macros.h"
@@ -18,119 +19,124 @@ class MiniWebBrowser;
 
 class BrowserWidget : public QWebView
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QPoint lastMouseClickPosition;
-    bool mouseCurrentlyOnView;
-    QTimer bwuDelayTimer;
-    MiniWebBrowser *parentBrowser;
+	public:
+		QPoint lastMouseClickPosition;
+		bool mouseCurrentlyOnView;
+		QTimer bwuDelayTimer;
+		MiniWebBrowser *parentBrowser;
 
-    BrowserWidget(QWidget *parent, MiniWebBrowser *browserParent) : QWebView(parent)
-    {
-      bwuDelayTimer.setSingleShot(true);
-      lastMouseClickPosition = QPoint(-1, -1);
-      mouseCurrentlyOnView = false;
-      parentBrowser = browserParent;
-    }
+		BrowserWidget(QWidget *parent, MiniWebBrowser *browserParent) : QWebView(parent)
+		{
+			bwuDelayTimer.setSingleShot(true);
+			lastMouseClickPosition = QPoint(-1, -1);
+			mouseCurrentlyOnView = false;
+			parentBrowser = browserParent;
+		}
 
-  public slots:
-    void delayedUpdate()
-    {
-      if ( !bwuDelayTimer.isActive() ) {
-        QTimer::singleShot(QMC2_MAWS_BWU_DELAY, this, SLOT(update()));
-        bwuDelayTimer.start(QMC2_MAWS_BWU_DELAY);
-      }
-    }
+	public slots:
+		void delayedUpdate()
+		{
+			if ( !bwuDelayTimer.isActive() ) {
+				QTimer::singleShot(QMC2_MAWS_BWU_DELAY, this, SLOT(update()));
+				bwuDelayTimer.start(QMC2_MAWS_BWU_DELAY);
+			}
+		}
 
-  signals:
-    void mouseOnView(bool);
+	signals:
+		void mouseOnView(bool);
 
-  protected:
-    void mousePressEvent(QMouseEvent *e)
-    {
-      lastMouseClickPosition = e->pos();
-      QWebView::mousePressEvent(e);
-    }
-    void enterEvent(QEvent *e)
-    {
-      QWebView::enterEvent(e);
-      mouseCurrentlyOnView = true;
-      emit mouseOnView(true);
-    }
-    void leaveEvent(QEvent *e)
-    {
-      QWebView::leaveEvent(e);
-      mouseCurrentlyOnView = false;
-      emit mouseOnView(false);
-    }
-    void wheelEvent(QWheelEvent *);
-    QWebView *createWindow(QWebPage::WebWindowType);
+	protected:
+		void mousePressEvent(QMouseEvent *e)
+		{
+			lastMouseClickPosition = e->pos();
+			QWebView::mousePressEvent(e);
+		}
+		void enterEvent(QEvent *e)
+		{
+			QWebView::enterEvent(e);
+			mouseCurrentlyOnView = true;
+			emit mouseOnView(true);
+		}
+		void leaveEvent(QEvent *e)
+		{
+			QWebView::leaveEvent(e);
+			mouseCurrentlyOnView = false;
+			emit mouseOnView(false);
+		}
+		void wheelEvent(QWheelEvent *);
+		QWebView *createWindow(QWebPage::WebWindowType);
 };
 
 class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QUrl homeUrl;
-    static QCache<QString, QIcon> iconCache;
-    static QStringList supportedSchemes;
-    bool firstTimeLoadStarted,
-         firstTimeLoadProgress,
-         firstTimeLoadFinished;
-    QTimer statusTimer;
-    QTimer searchTimer;
-    BrowserWidget *webViewBrowser;
-    QString currentTitle;
-    IconLineEdit *iconLineEditSearch;
+	public:
+		QUrl homeUrl;
+		static QCache<QString, QIcon> iconCache;
+		static QStringList supportedSchemes;
+		bool firstTimeLoadStarted,
+		firstTimeLoadProgress,
+		firstTimeLoadFinished;
+		QTimer statusTimer;
+		QTimer searchTimer;
+		BrowserWidget *webViewBrowser;
+		QString currentTitle;
+		IconLineEdit *iconLineEditSearch;
 
-    MiniWebBrowser(QWidget *parent = 0);
-    ~MiniWebBrowser();
+		MiniWebBrowser(QWidget *parent = 0);
+		~MiniWebBrowser();
 
-  public slots:
-    void on_comboBoxURL_activated(int);
-    void comboBoxURL_activated() { on_comboBoxURL_activated(0); };
-    void on_toolButtonHome_clicked();
-    void on_toolButtonLoad_clicked();
-    void on_toolButtonBack_clicked();
-    void on_toolButtonForward_clicked();
-    void on_toolButtonNext_clicked();
-    void on_toolButtonPrevious_clicked();
-    void on_toolButtonCaseSensitive_clicked();
-    void on_toolButtonHighlight_clicked();
-    void on_toolButtonToggleSearchBar_clicked();
-    void on_spinBoxZoom_valueChanged(int);
-    void changeTitle(QString &);
-    void checkBackAndForward();
-    void startSearchTimer() { searchTimer.start(QMC2_SEARCH_DELAY); }
+	public slots:
+		void on_comboBoxURL_activated(int);
+		void comboBoxURL_activated() { on_comboBoxURL_activated(0); };
+		void on_toolButtonHome_clicked();
+		void on_toolButtonLoad_clicked();
+		void on_toolButtonBack_clicked();
+		void on_toolButtonForward_clicked();
+		void on_toolButtonNext_clicked();
+		void on_toolButtonPrevious_clicked();
+		void on_toolButtonCaseSensitive_clicked();
+		void on_toolButtonHighlight_clicked();
+		void on_toolButtonToggleSearchBar_clicked();
+		void on_spinBoxZoom_valueChanged(int);
+		void changeTitle(QString &);
+		void checkBackAndForward();
+		void startSearchTimer() { searchTimer.start(QMC2_SEARCH_DELAY); }
 
-    // page actions
-    void processPageActionDownloadRequested(const QNetworkRequest &);
-    void processPageActionHandleUnsupportedContent(QNetworkReply *);
-    void postProcessPageActionInspect();
+		// page actions
+		void processPageActionDownloadRequested(const QNetworkRequest &);
+		void processPageActionHandleUnsupportedContent(QNetworkReply *);
+		void postProcessPageActionInspect();
 
-    // other
-    void webViewBrowser_linkClicked(const QUrl);
-    void webViewBrowser_urlChanged(const QUrl);
-    void webViewBrowser_loadStarted();
-    void webViewBrowser_loadFinished(bool);
-    void webViewBrowser_loadProgress(int);
-    void webViewBrowser_statusBarMessage(const QString &);
-    void webViewBrowser_iconChanged();
-    void webViewBrowser_linkHovered(const QString &, const QString &, const QString &);
-    void webViewBrowser_statusBarVisibilityChangeRequested(bool);
-    void webViewBrowser_frameCreated(QWebFrame *);
-    void statusTimeout();
-    void adjustIconSizes();
+		// other
+		void webViewBrowser_linkClicked(const QUrl);
+		void webViewBrowser_urlChanged(const QUrl);
+		void webViewBrowser_loadStarted();
+		void webViewBrowser_loadFinished(bool);
+		void webViewBrowser_loadProgress(int);
+		void webViewBrowser_statusBarMessage(const QString &);
+		void webViewBrowser_iconChanged();
+		void webViewBrowser_linkHovered(const QString &, const QString &, const QString &);
+		void webViewBrowser_statusBarVisibilityChangeRequested(bool);
+		void webViewBrowser_frameCreated(QWebFrame *);
+		void statusTimeout();
+		void adjustIconSizes();
+		void setStatus(QString);
+		void clearStatus() { setStatus(QString()); }
 
-  protected:
-    void resizeEvent(QResizeEvent *);
-    void moveEvent(QMoveEvent *);
-    void hideEvent(QHideEvent *);
+	protected:
+		void resizeEvent(QResizeEvent *);
+		void moveEvent(QMoveEvent *);
+		void hideEvent(QHideEvent *);
 
-  signals:
-    void titleChanged(QString &);
+	signals:
+		void titleChanged(QString &);
+
+	private:
+		QString m_statusMessage;
 };
 
 #endif
