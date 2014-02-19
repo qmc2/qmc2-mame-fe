@@ -866,7 +866,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   on_actionFullscreenToggle_triggered();
 
-  actionSearchInternalBrowser->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", false).toBool());
+  actionSearchInternalBrowser->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", true).toBool());
   on_actionSearchInternalBrowser_triggered(actionSearchInternalBrowser->isChecked());
 
   // context menus
@@ -11264,7 +11264,7 @@ void MainWindow::on_actionSearchGoogle_triggered(bool)
 		return;
 
 	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
-	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
+	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").replace(" - ", " ").simplified();
 	url.replace(" ", "+");
 	url.prepend("http://www.google.com/search?q=");
 
@@ -11295,7 +11295,7 @@ void MainWindow::on_actionSearchWikipedia_triggered(bool)
 		return;
 
 	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
-	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
+	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").replace(" - ", " ").simplified();
 	url.replace(" ", "+");
 	url.prepend("http://en.wikipedia.org/wiki/Special:Search?search=");
 
