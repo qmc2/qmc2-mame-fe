@@ -10368,7 +10368,7 @@ void MainWindow::on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *item, int co
 void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int column)
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
-		if ( qApp->mouseButtons() == Qt::LeftButton ) {
+		if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
 			QPoint cPos = treeWidgetHierarchy->viewport()->mapFromGlobal(QCursor::pos());
 			if ( treeWidgetHierarchy->itemAt(cPos) == item ) {
 				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
@@ -10405,7 +10405,7 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
 		if ( item->parent() ) {
-			if ( qApp->mouseButtons() == Qt::LeftButton ) {
+			if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
 				QPoint cPos = treeWidgetCategoryView->viewport()->mapFromGlobal(QCursor::pos());
 				if ( treeWidgetCategoryView->itemAt(cPos) == item ) {
 					Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
@@ -10444,7 +10444,7 @@ void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int
 {
 	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
 		if ( item->parent() ) {
-			if ( qApp->mouseButtons() == Qt::LeftButton ) {
+			if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
 				QPoint cPos = treeWidgetVersionView->viewport()->mapFromGlobal(QCursor::pos());
 				if ( treeWidgetVersionView->itemAt(cPos) == item ) {
 					Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
