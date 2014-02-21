@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Cleaning up category.ini, please wait..."
 cp data/cat/category.ini /tmp/category.ini
-dos2unix /tmp/category.ini 2&>1 >/dev/null
+dos2unix -q /tmp/category.ini
 sed 's/\s*$//g' /tmp/category.ini > /tmp/category.ini.new
 rm /tmp/category.ini
 mv /tmp/category.ini.new /tmp/category.ini
@@ -14,7 +14,7 @@ for i in $(cat /tmp/category.ini | grep -v "^\\[" | grep "^[0-9a-z]"); do
 		echo "Removed invalid machine name '$i'"
 	fi
 done
-unix2dos /tmp/category.ini 2&>1 >/dev/null
+unix2dos -q /tmp/category.ini
 cp /tmp/category.ini data/cat/category.ini
 rm /tmp/category.ini
 echo "Done"
