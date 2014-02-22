@@ -313,38 +313,5 @@
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>pushButtonOk</sender>
-   <signal>clicked()</signal>
-   <receiver>ToolBarCustomizer</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>249</x>
-     <y>278</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>185</x>
-     <y>276</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>ToolBarCustomizer</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>413</x>
-     <y>280</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>277</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
