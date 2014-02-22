@@ -170,6 +170,7 @@ void ToolBarCustomizer::on_pushButtonOk_clicked()
 #endif
 
 	on_pushButtonApply_clicked();
+	accept();
 }
 
 void ToolBarCustomizer::on_pushButtonApply_clicked()
@@ -200,6 +201,7 @@ void ToolBarCustomizer::on_pushButtonCancel_clicked()
 
 	activeActions = appliedActions;
 	refreshAvailableActions();
+	reject();
 }
 
 void ToolBarCustomizer::on_pushButtonDefault_clicked()
