@@ -11254,19 +11254,15 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	progressBarGamelist->setFormat(oldFormat);
 }
 
-void MainWindow::on_actionSearchGoogle_triggered(bool)
+void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 {
-#ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchGoogle_triggered(bool)");
-#endif
-
-	if ( !qmc2CurrentItem )
+	if ( !item )
 		return;
 
-	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
+	QString url = item->text(QMC2_GAMELIST_COLUMN_GAME);
 	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").replace(" - ", " ").simplified();
 	url.replace(" ", "+");
-	url.prepend("http://www.google.com/search?q=");
+	url.prepend(baseUrl);
 
 	if ( actionSearchInternalBrowser->isChecked() ) {
 		MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
@@ -11285,35 +11281,31 @@ void MainWindow::on_actionSearchGoogle_triggered(bool)
 		QDesktopServices::openUrl(QUrl::fromUserInput(url));
 }
 
+void MainWindow::on_actionSearchDuckDuckGo_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchDuckDuckGo_triggered(bool)");
+#endif
+
+	commonWebSearch("http://duckduckgo.com/?q=", qmc2CurrentItem);
+}
+
+void MainWindow::on_actionSearchGoogle_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchGoogle_triggered(bool)");
+#endif
+
+	commonWebSearch("http://www.google.com/search?q=", qmc2CurrentItem);
+}
+
 void MainWindow::on_actionSearchWikipedia_triggered(bool)
 {
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchWikipedia_triggered(bool)");
 #endif
 
-	if ( !qmc2CurrentItem )
-		return;
-
-	QString url = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
-	url = url.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").replace(" - ", " ").simplified();
-	url.replace(" ", "+");
-	url.prepend("http://en.wikipedia.org/wiki/Special:Search?search=");
-
-	if ( actionSearchInternalBrowser->isChecked() ) {
-		MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
-		webBrowser->homeUrl = QUrl::fromUserInput(url);
-		webBrowser->setAttribute(Qt::WA_DeleteOnClose);
-		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
-			webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
-		else {
-			webBrowser->adjustSize();
-			webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
-		}
-		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
-		webBrowser->show();
-		webBrowser->webViewBrowser->load(webBrowser->homeUrl);
-	} else
-		QDesktopServices::openUrl(QUrl::fromUserInput(url));
+	commonWebSearch("http://en.wikipedia.org/wiki/Special:Search?search=", qmc2CurrentItem);
 }
 
 void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)

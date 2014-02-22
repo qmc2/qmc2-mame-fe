@@ -2656,6 +2656,7 @@
      </property>
      <addaction name="actionSearchGoogle"/>
      <addaction name="actionSearchWikipedia"/>
+     <addaction name="actionSearchDuckDuckGo"/>
      <addaction name="separator"/>
      <addaction name="actionSearchInternalBrowser"/>
     </widget>
@@ -4187,6 +4188,21 @@
    </property>
    <property name="statusTip">
     <string>Use internal (or external) browser?</string>
+   </property>
+  </action>
+  <action name="actionSearchDuckDuckGo">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/duckduckgo.png</normaloff>:/data/img/duckduckgo.png</iconset>
+   </property>
+   <property name="text">
+    <string>DuckDuckGo</string>
+   </property>
+   <property name="toolTip">
+    <string>Search with DuckDuckGo</string>
+   </property>
+   <property name="statusTip">
+    <string>Search with DuckDuckGo</string>
    </property>
   </action>
  </widget>
