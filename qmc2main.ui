@@ -2657,6 +2657,7 @@
      <addaction name="actionSearchGoogle"/>
      <addaction name="actionSearchWikipedia"/>
      <addaction name="actionSearchDuckDuckGo"/>
+     <addaction name="actionSearchYandex"/>
      <addaction name="separator"/>
      <addaction name="actionSearchInternalBrowser"/>
     </widget>
@@ -4203,6 +4204,21 @@
    </property>
    <property name="statusTip">
     <string>Search with DuckDuckGo</string>
+   </property>
+  </action>
+  <action name="actionSearchYandex">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/yandex.png</normaloff>:/data/img/yandex.png</iconset>
+   </property>
+   <property name="text">
+    <string>Yandex</string>
+   </property>
+   <property name="toolTip">
+    <string>Search with Yandex</string>
+   </property>
+   <property name="statusTip">
+    <string>Search with Yandex</string>
    </property>
   </action>
  </widget>

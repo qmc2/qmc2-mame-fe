@@ -11310,6 +11310,15 @@ void MainWindow::on_actionSearchWikipedia_triggered(bool)
 	commonWebSearch("http://en.wikipedia.org/wiki/Special:Search?search=", qmc2CurrentItem);
 }
 
+void MainWindow::on_actionSearchYandex_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSearchYandex_triggered(bool)");
+#endif
+
+	commonWebSearch("http://www.yandex.com/yandsearch?text=", qmc2CurrentItem);
+}
+
 void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
 {
 	if ( checked )

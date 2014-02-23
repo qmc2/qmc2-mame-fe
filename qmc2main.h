@@ -237,6 +237,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionSearchDuckDuckGo_triggered(bool checked = false);
 		void on_actionSearchGoogle_triggered(bool checked = false);
 		void on_actionSearchWikipedia_triggered(bool checked = false);
+		void on_actionSearchYandex_triggered(bool checked = false);
 		void on_actionSearchInternalBrowser_triggered(bool checked = false);
 
 		// arcade menu
