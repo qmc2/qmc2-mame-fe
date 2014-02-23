@@ -2898,42 +2898,42 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>FtpReply</name>
     <message>
-        <location filename="../../ftpreply.cpp" line="99"/>
+        <location filename="../../ftpreply.cpp" line="103"/>
         <source>FTP directory listing for %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="101"/>
+        <location filename="../../ftpreply.cpp" line="105"/>
         <source>Name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="101"/>
+        <location filename="../../ftpreply.cpp" line="105"/>
         <source>Type</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="101"/>
+        <location filename="../../ftpreply.cpp" line="105"/>
         <source>Size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="106"/>
+        <location filename="../../ftpreply.cpp" line="110"/>
         <source>Parent directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="119"/>
+        <location filename="../../ftpreply.cpp" line="127"/>
         <source>File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="121"/>
+        <location filename="../../ftpreply.cpp" line="129"/>
         <source>Folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ftpreply.cpp" line="123"/>
+        <location filename="../../ftpreply.cpp" line="131"/>
         <source>Unknown</source>
         <translation></translation>
     </message>
@@ -15339,6 +15339,103 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../procmgr.cpp" line="267"/>
         <source>WARNING: ProcessManager::finished(...): trying to remove a null item</source>
         <translation>WARNING: ProcessManager::finished(...): trying to remove a null item</translation>
+    </message>
+</context>
+<context>
+    <name>QFtp</name>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="841"/>
+        <source>Not connected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="909"/>
+        <source>Host %1 not found</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="913"/>
+        <source>Connection refused to host %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="917"/>
+        <source>Connection timed out to host %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="1021"/>
+        <source>Connected to host %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="1240"/>
+        <source>Connection refused for data connection</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="1414"/>
+        <source>Unknown error</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2314"/>
+        <source>Connecting to host failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2318"/>
+        <source>Login failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2322"/>
+        <source>Listing directory failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2326"/>
+        <source>Changing directory failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2330"/>
+        <source>Downloading file failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2334"/>
+        <source>Uploading file failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2338"/>
+        <source>Removing file failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2342"/>
+        <source>Creating directory failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2346"/>
+        <source>Removing directory failed:
+%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qftp/qftp.cpp" line="2374"/>
+        <source>Connection closed</source>
+        <translation></translation>
     </message>
 </context>
 <context>

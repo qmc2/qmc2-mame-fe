@@ -1,4 +1,4 @@
-This is a subset of the QFtp add-on for Qt 5, included for compatibility
+This is a subset of the QtFtp add-on for Qt 5, included for compatibility
 with the QFtp / QUrlInfo classes which were available in Qt 4.
 
 Copyright (C) 2012 - 2013 Digia Plc
