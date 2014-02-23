@@ -19,9 +19,10 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "options.h"
+#include "networkaccessmanager.h"
 
 extern MainWindow *qmc2MainWindow;
-extern QNetworkAccessManager *qmc2NetworkAccessManager;
+extern NetworkAccessManager *qmc2NetworkAccessManager;
 extern Settings *qmc2Config;
 
 QCache<QString, QIcon> MiniWebBrowser::iconCache;
@@ -39,7 +40,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 	QWebSettings::setMaximumPagesInCache(QMC2_BROWSER_CACHE_PAGES);
 
 	if ( MiniWebBrowser::supportedSchemes.isEmpty() )
-		MiniWebBrowser::supportedSchemes << "http" << "file";
+		MiniWebBrowser::supportedSchemes << "http" << "ftp" << "file";
 
 	setupUi(this);
 

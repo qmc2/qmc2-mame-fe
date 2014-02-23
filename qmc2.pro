@@ -114,6 +114,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			imageformatsetup.cpp \
 			settings.cpp \
 			sevenzipfile.cpp \
+			networkaccessmanager.cpp \
+			ftpreply.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -224,6 +226,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			macros.h \
 			settings.h \
 			sevenzipfile.h \
+			networkaccessmanager.h \
+			ftpreply.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

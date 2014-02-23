@@ -63,6 +63,7 @@
 #include "brusheditor.h"
 #include "iconlineedit.h"
 #include "cookiejar.h"
+#include "networkaccessmanager.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -271,7 +272,7 @@ QMutex qmc2LogFrontendMutex;
 QMutex qmc2LogEmulatorMutex;
 QString qmc2FileEditStartPath;
 QString qmc2DirectoryEditStartPath;
-QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
+NetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
 QFont *qmc2StartupDefaultFont = NULL;
@@ -1587,7 +1588,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(floatToggleButtonSoftwareDetail, SIGNAL(toggled(bool)), this, SLOT(floatToggleButtonSoftwareDetail_toggled(bool)));
 
   // setup the global network access manager
-  qmc2NetworkAccessManager = new QNetworkAccessManager(this);
+  qmc2NetworkAccessManager = new NetworkAccessManager(0, this);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool() )
 	  qmc2NetworkAccessManager->setCookieJar(new CookieJar(qmc2NetworkAccessManager));
 
@@ -9990,40 +9991,41 @@ void MainWindow::projectMessSystemLoadFinished(bool ok)
 void MainWindow::startDownload(QWidget *forParent, QNetworkReply *reply, QString saveAsName, QString savePath)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QWidget *forParent = %1, QNetworkReply *reply = %2, QString saveAsName = %3, QString savePath = %4)").arg((qulonglong)forParent).arg((qulonglong)reply).arg(saveAsName).arg(savePath));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QWidget *forParent = %1, QNetworkReply *reply = %2, QString saveAsName = %3, QString savePath = %4)").arg((qulonglong)forParent).arg((qulonglong)reply).arg(saveAsName).arg(savePath));
 #endif
 
-  if ( !reply )
-    return;
+	if ( !reply )
+		return;
 
-  QFileInfo fi(reply->url().path());
-  QString proposedName = fi.baseName();
-  if ( !saveAsName.isEmpty() )
-    proposedName = saveAsName;
-  else if ( !fi.completeSuffix().isEmpty() )
-    proposedName += "." + fi.completeSuffix();
+	QFileInfo fi(reply->url().path());
+	QString proposedName = fi.baseName();
+	if ( !saveAsName.isEmpty() )
+		proposedName = saveAsName;
+	else if ( !fi.completeSuffix().isEmpty() )
+		proposedName += "." + fi.completeSuffix();
 
-  QString filePath;
+	QString filePath;
 
-  if ( !saveAsName.isEmpty() && !savePath.isEmpty() ) {
-    if ( !savePath.endsWith("/") ) savePath.append("/");
-    filePath = savePath + saveAsName;
-  } else {
-    if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
-      proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
-    filePath = QFileDialog::getSaveFileName(forParent, tr("Choose file to store download"), proposedName, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  }
+	if ( !saveAsName.isEmpty() && !savePath.isEmpty() ) {
+		if ( !savePath.endsWith("/") )
+			savePath.append("/");
+		filePath = savePath + saveAsName;
+	} else {
+		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
+			proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+		filePath = QFileDialog::getSaveFileName(forParent, tr("Choose file to store download"), proposedName, tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	}
 
-  if ( !filePath.isEmpty() ) {
-    DownloadItem *downloadItem = new DownloadItem(reply, filePath, treeWidgetDownloads);
-    treeWidgetDownloads->scrollToItem(downloadItem);
-    QFileInfo fiFilePath(filePath);
-    QString storagePath = fiFilePath.absolutePath();
-    if ( !storagePath.endsWith("/") )
-      storagePath.append("/");
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath", storagePath);
-  } else
-    reply->close();
+	if ( !filePath.isEmpty() ) {
+		DownloadItem *downloadItem = new DownloadItem(reply, filePath, treeWidgetDownloads);
+		treeWidgetDownloads->scrollToItem(downloadItem);
+		QFileInfo fiFilePath(filePath);
+		QString storagePath = fiFilePath.absolutePath();
+		if ( !storagePath.endsWith("/") )
+			storagePath.append("/");
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath", storagePath);
+	} else
+		reply->close();
 }
 
 void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
