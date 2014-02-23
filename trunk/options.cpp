@@ -45,6 +45,7 @@
 #include "imagewidget.h"
 #include "cookiejar.h"
 #include "cookiemanager.h"
+#include "networkaccessmanager.h"
 #include "additionalartworksetup.h"
 #include "imageformatsetup.h"
 #if QMC2_JOYSTICK == 1
@@ -172,7 +173,7 @@ extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QList<QTreeWidgetItem *> qmc2ExpandedGamelistItems;
 extern bool qmc2SortingActive;
 extern SampleChecker *qmc2SampleChecker;
-extern QNetworkAccessManager *qmc2NetworkAccessManager;
+extern NetworkAccessManager *qmc2NetworkAccessManager;
 extern QPalette qmc2CustomPalette;
 extern QMap<QString, QPalette> qmc2StandardPalettes;
 extern bool qmc2CategoryInfoUsed;

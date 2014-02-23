@@ -10,10 +10,11 @@
 #include "macros.h"
 #include "cookiemanager.h"
 #include "cookiejar.h"
+#include "networkaccessmanager.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern QNetworkAccessManager *qmc2NetworkAccessManager;
+extern NetworkAccessManager *qmc2NetworkAccessManager;
 
 CookieManager::CookieManager(QWidget *parent) : QDialog(parent)
 {
