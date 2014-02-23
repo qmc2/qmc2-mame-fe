@@ -5,6 +5,11 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		greaterThan(QT_MAJOR_VERSION, 4) {
 			QT += testlib widgets webkitwidgets
 			contains(DEFINES, "QMC2_YOUTUBE_ENABLED"): QT += multimedia multimediawidgets
+			HEADERS += qftp/qftp.h \
+				qftp/qurlinfo.h
+			SOURCES += qftp/qftp.cpp \
+				qftp/qurlinfo.cpp
+			INCLUDEPATH += qftp
 		} else {
 			CONFIG += qtestlib
 		}
