@@ -263,9 +263,12 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
   qmc2Options->toolButtonCompressGameInfoDB->setEnabled(enable);
   qmc2Options->checkBoxProcessGameInfoDB->setEnabled(enable);
-  qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
-  qmc2Options->toolButtonCompressEmuInfoDB->setEnabled(enable);
-  qmc2Options->checkBoxProcessEmuInfoDB->setEnabled(enable);
+  qmc2Options->toolButtonBrowseMameInfoDat->setEnabled(enable);
+  qmc2Options->toolButtonBrowseMessInfoDat->setEnabled(enable);
+  qmc2Options->toolButtonCompressMameInfoDat->setEnabled(enable);
+  qmc2Options->toolButtonCompressMessInfoDat->setEnabled(enable);
+  qmc2Options->checkBoxProcessMameInfoDat->setEnabled(enable);
+  qmc2Options->checkBoxProcessMessInfoDat->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareInfoDB->setEnabled(enable);
   qmc2Options->toolButtonCompressSoftwareInfoDB->setEnabled(enable);
   qmc2Options->checkBoxProcessSoftwareInfoDB->setEnabled(enable);
@@ -2787,12 +2790,10 @@ void Gamelist::loadReadyReadStandardOutput()
 		xmlLineBuffer += singleXMLLine;
 		if ( xmlLineBuffer.endsWith("\n") ) {
 			if ( !dtdBufferReady ) {
-#if defined(QMC2_EMUTYPE_MAME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 				dtdBufferReady = xmlLineBuffer.startsWith("<mame build=");
 #elif defined(QMC2_EMUTYPE_MESS)
 				dtdBufferReady = xmlLineBuffer.startsWith("<mess build=");
-#elif defined(QMC2_EMUTYPE_UME)
-				dtdBufferReady = xmlLineBuffer.startsWith("<ume build=");
 #endif
 				if ( !dtdBufferReady ) {
 					if ( !xmlLineBuffer.startsWith("<?xml version=") )

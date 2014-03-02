@@ -732,14 +732,24 @@ bool ArcadeSettings::compressGameInfoDB()
     return value(QString("%1/GUI/CompressGameInfoDB").arg(frontEndPrefix)).toBool();
 }
 
-QString ArcadeSettings::emuInfoDB()
+QString ArcadeSettings::mameInfoDat()
 {
-    return value(QString("%1/FilesAndDirectories/EmuInfoDB").arg(emulatorPrefix)).toString();
+    return value(QString("%1/FilesAndDirectories/MameInfoDat").arg(frontEndPrefix)).toString();
 }
 
-bool ArcadeSettings::compressEmuInfoDB()
+bool ArcadeSettings::compressMameInfoDat()
 {
-    return value(QString("%1/GUI/CompressEmuInfoDB").arg(frontEndPrefix)).toBool();
+    return value(QString("%1/FilesAndDirectories/CompressMameInfoDat").arg(frontEndPrefix)).toBool();
+}
+
+QString ArcadeSettings::messInfoDat()
+{
+    return value(QString("%1/FilesAndDirectories/MessInfoDat").arg(frontEndPrefix)).toString();
+}
+
+bool ArcadeSettings::compressMessInfoDat()
+{
+    return value(QString("%1/FilesAndDirectories/CompressMessInfoDat").arg(frontEndPrefix)).toBool();
 }
 
 QStringList ArcadeSettings::activeImageFormats(QString imageType)

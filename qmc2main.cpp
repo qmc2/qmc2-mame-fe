@@ -2253,12 +2253,31 @@ void MainWindow::on_actionReload_triggered(bool)
         qmc2Gamelist->enableWidgets(true);
       }
 
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() )
-      if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
-        qmc2Gamelist->enableWidgets(false);
-        loadEmuInfoDB();
-        qmc2Gamelist->enableWidgets(true);
-      }
+#if defined(QMC2_EMUTYPE_MAME)
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() ) {
+	    if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
+		    qmc2Gamelist->enableWidgets(false);
+		    loadEmuInfoDB();
+		    qmc2Gamelist->enableWidgets(true);
+	    }
+    }
+#elif defined(QMC2_EMUTYPE_MESS)
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
+	    if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
+		    qmc2Gamelist->enableWidgets(false);
+		    loadEmuInfoDB();
+		    qmc2Gamelist->enableWidgets(true);
+	    }
+    }
+#elif defined(QMC2_EMUTYPE_UME)
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
+	    if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
+		    qmc2Gamelist->enableWidgets(false);
+		    loadEmuInfoDB();
+		    qmc2Gamelist->enableWidgets(true);
+	    }
+    }
+#endif
 
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB").toBool() )
       if ( qmc2SoftwareInfoDB.isEmpty() && !qmc2StopParser ) {
@@ -7578,8 +7597,27 @@ void MainWindow::loadEmuInfoDB()
   deletedRecords.clear();
   qmc2EmuInfoDB.clear();
 
-  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool();
-  QString pathToEmuInfoDB = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB").toString();
+#if defined(QMC2_EMUTYPE_MAME)
+  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool();
+  QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool();
+  QString pathToEmuInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+#elif defined(QMC2_EMUTYPE_UME)
+  QList<bool> compressDataList;
+  QStringList pathToEmuInfoDBList;
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() ) {
+	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool();
+	  pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() ) {
+	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool();
+	  pathToEmuInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString();
+  }
+  for (int index = 0; index < compressDataList.count(); index++) {
+	  QString pathToEmuInfoDB = pathToEmuInfoDBList[index];
+	  bool compressData = compressDataList[index];
+#endif
   QFile emuInfoDB(pathToEmuInfoDB);
   emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
 
@@ -7675,6 +7713,9 @@ void MainWindow::loadEmuInfoDB()
     emuInfoDB.close();
   } else
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info DB %1").arg(pathToEmuInfoDB));
+#if defined(QMC2_EMUTYPE_UME)
+  }
+#endif
 
   emuInfoElapsedTime = emuInfoElapsedTime.addMSecs(emuInfoTimer.elapsed());
   log(QMC2_LOG_FRONTEND, tr("done (loading emulator info DB, elapsed time = %1)").arg(emuInfoElapsedTime.toString("mm:ss.zzz")));

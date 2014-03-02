@@ -27,8 +27,8 @@
 <context>
     <name>ImageProvider</name>
     <message>
-        <location filename="../imageprovider.cpp" line="78"/>
-        <location filename="../imageprovider.cpp" line="130"/>
+        <location filename="../imageprovider.cpp" line="90"/>
+        <location filename="../imageprovider.cpp" line="156"/>
         <source>Decompressing archive, please wait...</source>
         <translation></translation>
     </message>
@@ -285,65 +285,75 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="208"/>
-        <location filename="../imageprovider.cpp" line="210"/>
+        <location filename="../imageprovider.cpp" line="243"/>
+        <location filename="../imageprovider.cpp" line="245"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image ID &apos;%1&apos; requested</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="280"/>
-        <location filename="../imageprovider.cpp" line="369"/>
+        <location filename="../imageprovider.cpp" line="315"/>
+        <location filename="../imageprovider.cpp" line="404"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image type &apos;%1&apos; requested</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="231"/>
-        <location filename="../imageprovider.cpp" line="320"/>
+        <location filename="../imageprovider.cpp" line="266"/>
+        <location filename="../imageprovider.cpp" line="355"/>
         <source>WARNING: ImageProvider::loadImage(): unable to load image file &apos;%1&apos; from ZIP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="424"/>
+        <location filename="../imageprovider.cpp" line="463"/>
         <source>preview</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="426"/>
+        <location filename="../imageprovider.cpp" line="465"/>
         <source>flyer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="428"/>
+        <location filename="../imageprovider.cpp" line="467"/>
         <source>cabinet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="430"/>
+        <location filename="../imageprovider.cpp" line="469"/>
         <source>controller</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="433"/>
+        <location filename="../imageprovider.cpp" line="472"/>
         <source>logo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="435"/>
+        <location filename="../imageprovider.cpp" line="474"/>
         <source>marquee</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="437"/>
+        <location filename="../imageprovider.cpp" line="476"/>
         <source>title</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="439"/>
+        <location filename="../imageprovider.cpp" line="478"/>
         <source>PCB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../macros.h" line="40"/>
+        <location filename="../imageprovider.cpp" line="480"/>
+        <source>software snapshot</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../imageprovider.cpp" line="482"/>
+        <source>icon</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../macros.h" line="44"/>
         <source>QMC2 Arcade</source>
         <translation></translation>
     </message>
@@ -490,32 +500,32 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="259"/>
+        <location filename="../infoprovider.cpp" line="280"/>
         <source>WARNING: Missing &apos;$end&apos; in emulator info DB %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="261"/>
+        <location filename="../infoprovider.cpp" line="282"/>
         <source>WARNING: Missing &apos;$mame&apos; in emulator info DB %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="264"/>
+        <location filename="../infoprovider.cpp" line="285"/>
         <source>WARNING: Missing &apos;$info&apos; in emulator info DB %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="269"/>
+        <location filename="../infoprovider.cpp" line="290"/>
         <source>WARNING: Can&apos;t open emulator info DB %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="271"/>
+        <location filename="../infoprovider.cpp" line="293"/>
         <source>Done (Loading emulator info DB)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="274"/>
+        <location filename="../infoprovider.cpp" line="296"/>
         <source>Invalidating emulator info DB</source>
         <translation></translation>
     </message>
@@ -538,7 +548,7 @@
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../infoprovider.cpp" line="272"/>
+        <location filename="../infoprovider.cpp" line="294"/>
         <source>%n emulator info record(s) loaded</source>
         <translation>
             <numerusform>%n emulator info record loaded</numerusform>
@@ -546,10 +556,10 @@
         </translation>
     </message>
     <message>
-        <location filename="../infoprovider.cpp" line="304"/>
-        <location filename="../infoprovider.cpp" line="306"/>
-        <location filename="../infoprovider.cpp" line="317"/>
-        <location filename="../infoprovider.cpp" line="319"/>
+        <location filename="../infoprovider.cpp" line="326"/>
+        <location filename="../infoprovider.cpp" line="328"/>
+        <location filename="../infoprovider.cpp" line="339"/>
+        <location filename="../infoprovider.cpp" line="341"/>
         <source>no info available</source>
         <translation></translation>
     </message>
@@ -872,231 +882,231 @@
 <context>
     <name>ToxicWaste</name>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="62"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="62"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="71"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="71"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="62"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="62"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="71"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="71"/>
         <source>ROM state</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="127"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="127"/>
-        <source>Flyer image</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="130"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="130"/>
-        <source>Cabinet image</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="133"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="133"/>
-        <source>Controller image</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="136"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="136"/>
-        <source>Marquee image</source>
+        <source>Flyer image</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="139"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="139"/>
-        <source>Title image</source>
+        <source>Cabinet image</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="142"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="142"/>
+        <source>Controller image</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="145"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="145"/>
+        <source>Marquee image</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="148"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="148"/>
+        <source>Title image</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="151"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="151"/>
         <source>PCB image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="146"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="146"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.js" line="155"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.js" line="155"/>
         <source>Preview image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="242"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="241"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="257"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="255"/>
         <source>Images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="369"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="368"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="387"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="385"/>
         <source>Emu info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="390"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="389"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="408"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="406"/>
         <source>Game info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="709"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="708"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="746"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="744"/>
         <source>Really quit?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="726"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="725"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="763"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="761"/>
         <source>Yes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="742"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="741"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="779"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="777"/>
         <source>No</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="821"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="820"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="858"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="856"/>
         <source>Switches</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="840"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="839"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="877"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="875"/>
         <source>Show floating-bubbles animation?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="873"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="872"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="910"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="908"/>
         <source>Draw animation in the foreground?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="902"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="901"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="939"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="937"/>
         <source>Show radial wave effect on background?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="932"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="931"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="969"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="967"/>
         <source>Auto-stop animation and wave effect?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="961"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="960"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="998"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="996"/>
         <source>Show FPS counter in the menu-bar?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="990"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="989"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1027"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1025"/>
         <source>Confirm when quitting the application?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1019"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1018"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1056"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1054"/>
         <source>Scale &amp; position cabinet automatically?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1040"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1039"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1077"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1075"/>
         <source>Sliders</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1055"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1054"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1092"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1090"/>
         <source>Cabinet zoom</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1068"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1067"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1105"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1103"/>
         <source>Cabinet X center offset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1082"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1081"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1119"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1117"/>
         <source>Cabinet Y center offset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1096"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1095"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1133"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1131"/>
         <source>Cabinet opacity</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1109"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1108"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1146"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1144"/>
         <source>Background opacity</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1122"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1121"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1159"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1157"/>
         <source>Game list opacity</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1132"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1131"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1169"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1167"/>
         <source>Backend</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1149"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1148"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1186"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1184"/>
         <source>Option</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1201"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1200"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1238"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1236"/>
         <source>Value</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1243"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1242"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1280"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1278"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1269"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1268"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1306"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1304"/>
         <source>Close</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1371"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1370"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1408"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1406"/>
         <source>FPS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1594"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1593"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1631"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1629"/>
         <source>Starting shader effect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1596"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1595"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1633"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1631"/>
         <source>Shader effect stopped</source>
         <translation></translation>
     </message>
@@ -1292,118 +1302,118 @@ take effect, please restart QMC2 Arcade!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1651"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1639"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1650"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1638"/>
         <source>Preferences</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1674"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1662"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1673"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1661"/>
         <source>behaviour</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1764"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1752"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1763"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1751"/>
         <source>FPS counter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1791"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1779"/>
+        <source>lights out in</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../qml/darkone/1.1/darkone.qml" line="1792"/>
         <location filename="../qml/darkone/2.0/darkone.qml" line="1780"/>
-        <source>lights out in</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1793"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1781"/>
         <source>secs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1845"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1833"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1844"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1832"/>
         <source>scale</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1869"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1857"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1868"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1856"/>
         <source>effects</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1898"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1886"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1897"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1885"/>
         <source>screen lighting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2016"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2004"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2015"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2003"/>
         <source>launch flash?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2040"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2028"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2039"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2027"/>
         <source>launch zoom?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2065"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2053"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2064"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2052"/>
         <source>colour scheme</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2093"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2081"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2092"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2080"/>
         <source>dark</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2117"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2105"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2116"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2104"/>
         <source>metal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2144"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2132"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2143"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2131"/>
         <source>backend</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1704"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1692"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1703"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1691"/>
         <source>sort by name?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1740"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1728"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1739"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1727"/>
         <source>auto-hide toolbar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1931"/>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1990"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1919"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1978"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1930"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1989"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1918"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1977"/>
         <source>opacity</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="1957"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="1945"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="1956"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="1944"/>
         <source>back lighting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/darkone/1.1/darkone.qml" line="2893"/>
-        <location filename="../qml/darkone/2.0/darkone.qml" line="2881"/>
+        <location filename="../qml/darkone/1.1/darkone.qml" line="2892"/>
+        <location filename="../qml/darkone/2.0/darkone.qml" line="2880"/>
         <source>FPS</source>
         <translation></translation>
     </message>
