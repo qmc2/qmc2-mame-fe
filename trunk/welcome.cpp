@@ -423,6 +423,40 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ListXMLCache");
 			}
 		}
+		if ( oldMinor < 43 || (oldSvnRevision < 5684 && oldSvnRevision > 0) ) {
+			// separate and rename MAME/MESS emulator info DB keys (in order to be able to merge them for UME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB").toString());
+				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB");
+			}
+#elif defined(QMC2_EMUTYPE_MESS)
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB").toString());
+				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/EmuInfoDB");
+			}
+#endif
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

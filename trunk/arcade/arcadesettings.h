@@ -177,8 +177,10 @@ public slots:
     QString emulatorWorkingDirectory();
     QString gameInfoDB();
     bool compressGameInfoDB();
-    QString emuInfoDB();
-    bool compressEmuInfoDB();
+    QString mameInfoDat();
+    bool compressMameInfoDat();
+    QString messInfoDat();
+    bool compressMessInfoDat();
     QStringList activeImageFormats(QString);
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
     int joystickAxisMinimum(int, int);
