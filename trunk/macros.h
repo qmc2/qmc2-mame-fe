@@ -536,22 +536,22 @@
 #define QMC2_COMMAND_RUNONCE			"runonce"
 #define QMC2_VARIANT_SDLMAME_NAME		"qmc2-sdlmame"
 #define QMC2_VARIANT_SDLMAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMAME_NAME
-#define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II")
+#define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
 #define QMC2_VARIANT_SDLMESS_NAME		"qmc2-sdlmess"
 #define QMC2_VARIANT_SDLMESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMESS_NAME
-#define QMC2_VARIANT_SDLMESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II")
+#define QMC2_VARIANT_SDLMESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
 #define QMC2_VARIANT_SDLUME_NAME		"qmc2-sdlume"
 #define QMC2_VARIANT_SDLUME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLUME_NAME
-#define QMC2_VARIANT_SDLUME_TITLE		MainWindow::tr("U.M.E. Catalog / Launcher II")
+#define QMC2_VARIANT_SDLUME_TITLE		MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
 #define QMC2_VARIANT_MAME_NAME			"qmc2-mame.exe"
 #define QMC2_VARIANT_MAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MAME_NAME
-#define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II")
+#define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
 #define QMC2_VARIANT_MESS_NAME			"qmc2-mess.exe"
 #define QMC2_VARIANT_MESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MESS_NAME
-#define QMC2_VARIANT_MESS_TITLE			MainWindow::tr("M.E.S.S. Catalog / Launcher II")
+#define QMC2_VARIANT_MESS_TITLE			MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
 #define QMC2_VARIANT_UME_NAME			"qmc2-ume.exe"
 #define QMC2_VARIANT_UME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_UME_NAME
-#define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II")
+#define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
 
 // separation for QMC2 variants
 #define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/MAME/")
