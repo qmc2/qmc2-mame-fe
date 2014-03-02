@@ -253,25 +253,18 @@ bool Welcome::checkConfig()
 
 #if defined(QMC2_SDLMAME)
 	variant = "qmc2-sdlmame";
-	fallbackVariant = "qmc2-sdlmess";
 #elif defined(QMC2_SDLMESS)
 	variant = "qmc2-sdlmess";
-	fallbackVariant = "qmc2-sdlmame";
 #elif defined(QMC2_SDLUME)
 	variant = "qmc2-sdlume";
-	fallbackVariant = "qmc2-sdlume";
 #elif defined(QMC2_MAME)
 	variant = "qmc2-mame";
-	fallbackVariant = "qmc2-mess";
 #elif defined(QMC2_MESS)
 	variant = "qmc2-mess";
-	fallbackVariant = "qmc2-mame";
 #elif defined(QMC2_UME)
 	variant = "qmc2-ume";
-	fallbackVariant = "qmc2-ume";
 #else
 	variant = "qmc2-???";
-	fallbackVariant = "qmc2-sdlmame";
 #endif
 
 	startupConfig->beginGroup(QString("Frontend/%1").arg(variant));

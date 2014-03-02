@@ -16,7 +16,6 @@ class Welcome : public QDialog, public Ui::Welcome
     bool checkOkay;
     QSettings *startupConfig;
     QString variant;
-    QString fallbackVariant;
 
     bool checkConfig();
     bool useNativeFileDialogs() { return startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
