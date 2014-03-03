@@ -450,6 +450,40 @@ bool Welcome::checkConfig()
 			}
 #endif
 		}
+		if ( oldMinor < 43 || (oldSvnRevision < 5688 && oldSvnRevision > 0) ) {
+			// separate and rename MAME/MESS game/machine info DB keys (in order to be able to merge them for UME)
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB").toString());
+				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB");
+			}
+#elif defined(QMC2_EMUTYPE_MESS)
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool());
+				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB");
+
+			}
+			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB") ) {
+				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB").toString());
+				startupConfig->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB");
+			}
+#endif
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();

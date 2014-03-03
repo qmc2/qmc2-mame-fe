@@ -2246,12 +2246,32 @@ void MainWindow::on_actionReload_triggered(bool)
 #endif
   } else {
     qmc2StopParser = false;
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() )
-      if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
-        qmc2Gamelist->enableWidgets(false);
-        loadGameInfoDB();
-        qmc2Gamelist->enableWidgets(true);
-      }
+
+#if defined(QMC2_EMUTYPE_MAME)
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
+	    if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
+		    qmc2Gamelist->enableWidgets(false);
+		    loadGameInfoDB();
+		    qmc2Gamelist->enableWidgets(true);
+	    }
+    }
+#elif defined(QMC2_EMUTYPE_MESS)
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
+	    if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
+		    qmc2Gamelist->enableWidgets(false);
+		    loadGameInfoDB();
+		    qmc2Gamelist->enableWidgets(true);
+	    }
+    }
+#elif defined(QMC2_EMUTYPE_UME)
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
+	    if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
+		    qmc2Gamelist->enableWidgets(false);
+		    loadGameInfoDB();
+		    qmc2Gamelist->enableWidgets(true);
+	    }
+    }
+#endif
 
 #if defined(QMC2_EMUTYPE_MAME)
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() ) {
@@ -7407,8 +7427,27 @@ void MainWindow::loadGameInfoDB()
   deletedRecords.clear();
   qmc2GameInfoDB.clear();
 
-  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool();
-  QString pathToGameInfoDB = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GameInfoDB").toString();
+#if defined(QMC2_EMUTYPE_MAME)
+  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
+  QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+  bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
+  QString pathToGameInfoDB = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+#elif defined(QMC2_EMUTYPE_UME)
+  QList<bool> compressDataList;
+  QStringList pathToGameInfoDBList;
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() ) {
+	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool();
+	  pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() ) {
+	  compressDataList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool();
+	  pathToGameInfoDBList << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString();
+  }
+  for (int index = 0; index < compressDataList.count(); index++) {
+	  QString pathToGameInfoDB = pathToGameInfoDBList[index];
+	  bool compressData = compressDataList[index];
+#endif
   QFile gameInfoDB(pathToGameInfoDB);
   gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
 
@@ -7539,6 +7578,9 @@ void MainWindow::loadGameInfoDB()
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't open machine info DB %1").arg(pathToGameInfoDB));
 #endif
   }
+#if defined(QMC2_EMUTYPE_UME)
+  }
+#endif
 
   gameInfoElapsedTime = gameInfoElapsedTime.addMSecs(gameInfoTimer.elapsed());
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
