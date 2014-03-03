@@ -722,14 +722,24 @@ QString ArcadeSettings::emulatorWorkingDirectory()
     return value(QString("%1/FilesAndDirectories/WorkingDirectory").arg(emulatorPrefix)).toString();
 }
 
-QString ArcadeSettings::gameInfoDB()
+QString ArcadeSettings::mameHistoryDat()
 {
-    return value(QString("%1/FilesAndDirectories/GameInfoDB").arg(emulatorPrefix)).toString();
+    return value(QString("%1/FilesAndDirectories/MameHistoryDat").arg(frontEndPrefix)).toString();
 }
 
-bool ArcadeSettings::compressGameInfoDB()
+bool ArcadeSettings::compressMameHistoryDat()
 {
-    return value(QString("%1/GUI/CompressGameInfoDB").arg(frontEndPrefix)).toBool();
+    return value(QString("%1/GUI/CompressMameHistoryDat").arg(frontEndPrefix)).toBool();
+}
+
+QString ArcadeSettings::messSysinfoDat()
+{
+    return value(QString("%1/FilesAndDirectories/MessSysinfoDat").arg(frontEndPrefix)).toString();
+}
+
+bool ArcadeSettings::compressMessSysinfoDat()
+{
+    return value(QString("%1/GUI/CompressMessSysinfoDat").arg(frontEndPrefix)).toBool();
 }
 
 QString ArcadeSettings::mameInfoDat()

@@ -4803,13 +4803,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             if ( newGameInfo ) {
               QString gameInfoText;
 #if defined(QMC2_EMUTYPE_MESS)
-              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
+              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() )
                 gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo));
               else
                 gameInfoText = QString(*newGameInfo);
               textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
 #else
-              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
+              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
                 gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
               else
                 gameInfoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
@@ -4859,10 +4859,17 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             }
           if ( updateInfo ) {
             if ( newEmuInfo ) {
-              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() )
+#if defined(QMC2_EMUTYPE_MESS)
+              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool() )
                 textBrowserEmuInfo->setHtml(QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
               else
                 textBrowserEmuInfo->setHtml(QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+#else
+              if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool() )
+                textBrowserEmuInfo->setHtml(QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+              else
+                textBrowserEmuInfo->setHtml(QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+#endif
             } else
               textBrowserEmuInfo->setHtml(tr("No data available"));
           }
@@ -5048,10 +5055,17 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      if ( !newEmuInfo )
 			      newEmuInfo = qmc2EmuInfoDB[qmc2ParentMap[gameName]];
 		      if ( newEmuInfo ) {
-			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() )
+#if defined(QMC2_EMUTYPE_MESS)
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessInfoDat").toBool() )
 				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 			      else
 				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+#else
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat").toBool() )
+				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+			      else
+				      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+#endif
 			      qmc2SystemNotesEditor->templateMap["$EMU_INFO_STATUS$"] = "OK";
 		      } else {
 			      qmc2SystemNotesEditor->templateMap["$EMU_INFO$"] = tr("No data available");
@@ -5069,13 +5083,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		      if ( newGameInfo ) {
 #if defined(QMC2_EMUTYPE_MESS)
 			      QString machineInfoString;
-			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() )
 				      machineInfoString = QString(QMC2_UNCOMPRESS(*newGameInfo));
 			      else
 				      machineInfoString = QString(*newGameInfo);
 			      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = messWikiToHtml(machineInfoString);
 #else
-			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
+			      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() )
 				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
 			      else
 				      qmc2SystemNotesEditor->templateMap["$GAME_INFO$"] = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
