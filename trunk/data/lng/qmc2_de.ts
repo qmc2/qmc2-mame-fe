@@ -11776,14 +11776,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Zwischen der Angabe eines Titel-Verzeichnisses oder einer komprimierten Titel-Datei umschalten</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1465"/>
         <source>MAME game information database - MAME history.dat (read)</source>
-        <translation>MAME Spiel Informations Datenbank - MAME history.dat (lesen)</translation>
+        <translation type="obsolete">MAME Spiel Informations Datenbank - MAME history.dat (lesen)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1478"/>
         <source>Browse MAME game information database (MAME history.dat)</source>
-        <translation>MAME Spiel Informations Datenbank auswählen (MAME history.dat)</translation>
+        <translation type="obsolete">MAME Spiel Informations Datenbank auswählen (MAME history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1495"/>
@@ -11889,6 +11887,11 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <location filename="../../options.ui" line="2368"/>
         <source>Browse compressed software snap-shot file</source>
         <translation>Komprimierte Software Snapshot Datei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2434"/>
+        <source>Load MAME game information database (history.dat)</source>
+        <translation>MAME Spiel Informations Datenbank laden (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2437"/>
@@ -12066,9 +12069,8 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>MESS Emulator Informations Datenbank auswählen (mameinfo.dat)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2884"/>
         <source>Load MESS machine information database (MESS sysinfo.dat)</source>
-        <translation>MESS Maschinen Informations Datenbank laden (MESS sysinfo.dat)</translation>
+        <translation type="obsolete">MESS Maschinen Informations Datenbank laden (MESS sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2887"/>
@@ -12081,14 +12083,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Daten-Kompression im Hauptspeicher für MESS Maschinen-Info DB aktivieren (ein wenig langsamer, aber reduziert den Speicherbedarf deutlich; die Kompressionsrate liegt üblicherweise bei etwa 1:16)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2926"/>
         <source>MESS machine information database - MESS sysinfo.dat (read)</source>
-        <translation>MESS Maschinen Informations Datenbank - MESS sysinfo.dat (lesen)</translation>
+        <translation type="obsolete">MESS Maschinen Informations Datenbank - MESS sysinfo.dat (lesen)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2939"/>
         <source>Browse MESS machine information database (MESS sysinfo.dat)</source>
-        <translation>MESS Maschinen Informations Datenbank auswählen (MESS sysinfo.dat)</translation>
+        <translation type="obsolete">MESS Maschinen Informations Datenbank auswählen (MESS sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3059"/>
@@ -12335,6 +12335,31 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <location filename="../../options.ui" line="861"/>
         <source>One emulator at a time</source>
         <translation>Nur ein aktiver Emulator</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="1465"/>
+        <source>MAME game information database - history.dat (read)</source>
+        <translation>MAME Spiel Informations Datenbank - history.dat (lesen)</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="1478"/>
+        <source>Browse MAME game information database (history.dat)</source>
+        <translation>MAME Spiel Informations Datenbank auswählen (history.dat)</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2884"/>
+        <source>Load MESS machine information database (sysinfo.dat)</source>
+        <translation>MESS Maschinen Informations Datenbank laden (sysinfo.dat)</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2926"/>
+        <source>MESS machine information database - sysinfo.dat (read)</source>
+        <translation>MESS Maschinen Informations Datenbank - sysinfo.dat (lesen)</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2939"/>
+        <source>Browse MESS machine information database (sysinfo.dat)</source>
+        <translation>MESS Maschinen Informations Datenbank auswählen (sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4193"/>
@@ -13789,9 +13814,8 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Invalidiere Spiel-Info DB</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2434"/>
         <source>Load game information database (MAME history.dat)</source>
-        <translation>Spiel Informations Datenbank laden (MAME history.dat)</translation>
+        <translation type="obsolete">Spiel Informations Datenbank laden (MAME history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="373"/>

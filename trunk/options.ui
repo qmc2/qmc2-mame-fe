@@ -1462,7 +1462,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>MAME game information database - MAME history.dat (read)</string>
+                    <string>MAME game information database - history.dat (read)</string>
                    </property>
                   </widget>
                  </item>
@@ -1475,7 +1475,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse MAME game information database (MAME history.dat)</string>
+                    <string>Browse MAME game information database (history.dat)</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -2431,7 +2431,7 @@
                    <item>
                     <widget class="QCheckBox" name="checkBoxProcessMameHistoryDat">
                      <property name="toolTip">
-                      <string>Load game information database (MAME history.dat)</string>
+                      <string>Load MAME game information database (history.dat)</string>
                      </property>
                      <property name="text">
                       <string>Game info DB (MAME)</string>
@@ -2881,7 +2881,7 @@
                    <item>
                     <widget class="QCheckBox" name="checkBoxProcessMessSysinfoDat">
                      <property name="toolTip">
-                      <string>Load MESS machine information database (MESS sysinfo.dat)</string>
+                      <string>Load MESS machine information database (sysinfo.dat)</string>
                      </property>
                      <property name="text">
                       <string>Machine info DB (MESS)</string>
@@ -2923,7 +2923,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>MESS machine information database - MESS sysinfo.dat (read)</string>
+                    <string>MESS machine information database - sysinfo.dat (read)</string>
                    </property>
                   </widget>
                  </item>
@@ -2936,7 +2936,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse MESS machine information database (MESS sysinfo.dat)</string>
+                    <string>Browse MESS machine information database (sysinfo.dat)</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -2973,8 +2973,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
-                <height>542</height>
+                <width>505</width>
+                <height>248</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3624,8 +3624,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
-                <height>542</height>
+                <width>249</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3746,8 +3746,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>559</width>
-                <height>542</height>
+                <width>342</width>
+                <height>209</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4209,7 +4209,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
+                <width>374</width>
                 <height>543</height>
                </rect>
               </property>

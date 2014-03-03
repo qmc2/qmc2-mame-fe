@@ -11876,6 +11876,16 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="1465"/>
+        <source>MAME game information database - history.dat (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="1478"/>
+        <source>Browse MAME game information database (history.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="1519"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
         <translation type="unfinished"></translation>
@@ -12098,11 +12108,6 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2434"/>
-        <source>Load game information database (MAME history.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="370"/>
         <source>Game info DB</source>
         <translation type="unfinished"></translation>
@@ -12283,11 +12288,6 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2884"/>
-        <source>Load MESS machine information database (MESS sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="2887"/>
         <source>Machine info DB (MESS)</source>
         <translation type="unfinished"></translation>
@@ -12295,16 +12295,6 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="2904"/>
         <source>Use in-memory compression for MESS machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="2926"/>
-        <source>MESS machine information database - MESS sysinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="2939"/>
-        <source>Browse MESS machine information database (MESS sysinfo.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -13443,16 +13433,6 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1465"/>
-        <source>MAME game information database - MAME history.dat (read)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="1478"/>
-        <source>Browse MAME game information database (MAME history.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="1495"/>
         <source>MAME emulator information database - mameinfo.dat (read)</source>
         <translation type="unfinished"></translation>
@@ -13558,6 +13538,11 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="2434"/>
+        <source>Load MAME game information database (history.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="2437"/>
         <source>Game info DB (MAME)</source>
         <translation type="unfinished"></translation>
@@ -13585,6 +13570,21 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="2508"/>
         <source>Switch between specifying a software snap directory or a compressed software snap file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2884"/>
+        <source>Load MESS machine information database (sysinfo.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2926"/>
+        <source>MESS machine information database - sysinfo.dat (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2939"/>
+        <source>Browse MESS machine information database (sysinfo.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

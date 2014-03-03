@@ -12983,9 +12983,8 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="obsolete">Usar compressão em memória para o BD de informações de emulador ( um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2434"/>
         <source>Load game information database (MAME history.dat)</source>
-        <translation>Carregar base de dados de informações de jogos (history.dat do MAME)</translation>
+        <translation type="obsolete">Carregar base de dados de informações de jogos (history.dat do MAME)</translation>
     </message>
     <message>
         <source>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
@@ -13703,6 +13702,31 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Um emulador por vez</translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="1465"/>
+        <source>MAME game information database - history.dat (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="1478"/>
+        <source>Browse MAME game information database (history.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2884"/>
+        <source>Load MESS machine information database (sysinfo.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2926"/>
+        <source>MESS machine information database - sysinfo.dat (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2939"/>
+        <source>Browse MESS machine information database (sysinfo.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="3454"/>
         <source>Above / Center</source>
         <translation>Acima / Centro</translation>
@@ -14072,16 +14096,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1465"/>
-        <source>MAME game information database - MAME history.dat (read)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="1478"/>
-        <source>Browse MAME game information database (MAME history.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="1495"/>
         <source>MAME emulator information database - mameinfo.dat (read)</source>
         <translation type="unfinished"></translation>
@@ -14184,6 +14198,11 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2368"/>
         <source>Browse compressed software snap-shot file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2434"/>
+        <source>Load MAME game information database (history.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -14362,11 +14381,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2884"/>
-        <source>Load MESS machine information database (MESS sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="2887"/>
         <source>Machine info DB (MESS)</source>
         <translation type="unfinished"></translation>
@@ -14374,16 +14388,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2904"/>
         <source>Use in-memory compression for MESS machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="2926"/>
-        <source>MESS machine information database - MESS sysinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="2939"/>
-        <source>Browse MESS machine information database (MESS sysinfo.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
