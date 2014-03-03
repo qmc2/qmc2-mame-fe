@@ -175,8 +175,10 @@ public slots:
     QString optionsTemplateFile();
     QString emulatorExecutablePath();
     QString emulatorWorkingDirectory();
-    QString gameInfoDB();
-    bool compressGameInfoDB();
+    QString mameHistoryDat();
+    bool compressMameHistoryDat();
+    QString messSysinfoDat();
+    bool compressMessSysinfoDat();
     QString mameInfoDat();
     bool compressMameInfoDat();
     QString messInfoDat();

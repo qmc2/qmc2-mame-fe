@@ -82,101 +82,121 @@ void InfoProvider::loadGameInfoDB()
 
     clearGameInfoDB();
 
-    bool compressData = globalConfig->compressGameInfoDB();
-    QString pathToGameInfoDB = globalConfig->gameInfoDB();
+    QList<bool> compressDataList;
+    QStringList gameInfoPathList;
 
-    QFile gameInfoDB(pathToGameInfoDB);
-    gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
+    switch ( emulatorMode ) {
+    case QMC2_ARCADE_EMUMODE_MAME:
+        compressDataList << globalConfig->compressMameHistoryDat();
+        gameInfoPathList << globalConfig->mameHistoryDat();
+        break;
+    case QMC2_ARCADE_EMUMODE_MESS:
+        compressDataList << globalConfig->compressMessSysinfoDat();
+        gameInfoPathList << globalConfig->messSysinfoDat();
+        break;
+    case QMC2_ARCADE_EMUMODE_UME:
+        compressDataList << globalConfig->compressMameHistoryDat() << globalConfig->compressMessSysinfoDat();
+        gameInfoPathList << globalConfig->mameHistoryDat() << globalConfig->messSysinfoDat();
+        break;
+    default:
+        return;
+    }
 
-    if ( gameInfoDB.isOpen() ) {
-        QTextStream ts(&gameInfoDB);
-        ts.setCodec(QTextCodec::codecForName("UTF-8"));
-        while ( !ts.atEnd() && !qmc2InfoStopParser ) {
-            QString singleLine = ts.readLine();
-            while ( !singleLine.simplified().startsWith("$info=") && !ts.atEnd() )
-                singleLine = ts.readLine();
-            if ( singleLine.simplified().startsWith("$info=") ) {
-                QStringList gameWords = singleLine.simplified().mid(6).split(",");
-                while ( !singleLine.simplified().startsWith("$bio") && !ts.atEnd() )
+    for (int index = 0; index < compressDataList.count(); index++) {
+        bool compressData = compressDataList[index];
+        QString pathToGameInfoDB = gameInfoPathList[index];
+        QFile gameInfoDB(pathToGameInfoDB);
+        gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
+        if ( gameInfoDB.isOpen() ) {
+            QTextStream ts(&gameInfoDB);
+            ts.setCodec(QTextCodec::codecForName("UTF-8"));
+            while ( !ts.atEnd() && !qmc2InfoStopParser ) {
+                QString singleLine = ts.readLine();
+                while ( !singleLine.simplified().startsWith("$info=") && !ts.atEnd() )
                     singleLine = ts.readLine();
-                if ( singleLine.simplified().startsWith("$bio") ) {
-                    QString gameInfoString;
-                    bool firstLine = true;
-                    while ( !singleLine.simplified().startsWith("$end") && !ts.atEnd() ) {
+                if ( singleLine.simplified().startsWith("$info=") ) {
+                    QStringList gameWords = singleLine.simplified().mid(6).split(",");
+                    while ( !singleLine.simplified().startsWith("$bio") && !ts.atEnd() )
                         singleLine = ts.readLine();
-                        if ( !singleLine.simplified().startsWith("$end") ) {
-                            if ( !firstLine )
-                                gameInfoString.append(singleLine.trimmed() + "<br>");
-                            else if ( !singleLine.isEmpty() ) {
-                                gameInfoString.append("<b>" + singleLine.trimmed() + "</b><br>");
-                                firstLine = false;
+                    if ( singleLine.simplified().startsWith("$bio") ) {
+                        QString gameInfoString;
+                        bool firstLine = true;
+                        while ( !singleLine.simplified().startsWith("$end") && !ts.atEnd() ) {
+                            singleLine = ts.readLine();
+                            if ( !singleLine.simplified().startsWith("$end") ) {
+                                if ( !firstLine )
+                                    gameInfoString.append(singleLine.trimmed() + "<br>");
+                                else if ( !singleLine.isEmpty() ) {
+                                    gameInfoString.append("<b>" + singleLine.trimmed() + "</b><br>");
+                                    firstLine = false;
+                                }
                             }
                         }
-                    }
-                    if ( singleLine.simplified().startsWith("$end") ) {
-                        // reduce the number of line breaks
-                        gameInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
-                        if ( gameInfoString.endsWith("<p>") )
-                            gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
-                        QByteArray *gameInfo;
-#if QT_VERSION >= 0x050000
-                        if ( compressData )
-                            gameInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(gameInfoString)));
-                        else
-                            gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
-#else
-                        if ( compressData )
-                            gameInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString)));
-                        else
-                            gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
-#endif
-                        for (int i = 0; i < gameWords.count(); i++)
-                            if ( !gameWords[i].isEmpty() )
-                                qmc2GameInfoDB[gameWords[i]] = gameInfo;
+                        if ( singleLine.simplified().startsWith("$end") ) {
+                            // reduce the number of line breaks
+                            gameInfoString.replace(QRegExp("(<br>){2,}"), "<p>");
+                            if ( gameInfoString.endsWith("<p>") )
+                                gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
+                            QByteArray *gameInfo;
+    #if QT_VERSION >= 0x050000
+                            if ( compressData )
+                                gameInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(gameInfoString)));
+                            else
+                                gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
+    #else
+                            if ( compressData )
+                                gameInfo = new QByteArray(QMC2_ARCADE_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString)));
+                            else
+                                gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
+    #endif
+                            for (int i = 0; i < gameWords.count(); i++)
+                                if ( !gameWords[i].isEmpty() )
+                                    qmc2GameInfoDB[gameWords[i]] = gameInfo;
+                        } else {
+                            switch ( emulatorMode ) {
+                            case QMC2_ARCADE_EMUMODE_MAME:
+                            case QMC2_ARCADE_EMUMODE_UME:
+                                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in game info DB %1").arg(pathToGameInfoDB));
+                                break;
+                            case QMC2_ARCADE_EMUMODE_MESS:
+                                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
+                                break;
+                            }
+                        }
                     } else {
                         switch ( emulatorMode ) {
                         case QMC2_ARCADE_EMUMODE_MAME:
                         case QMC2_ARCADE_EMUMODE_UME:
-                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in game info DB %1").arg(pathToGameInfoDB));
+                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
                             break;
                         case QMC2_ARCADE_EMUMODE_MESS:
-                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
+                            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
                             break;
                         }
                     }
-                } else {
+                } else if ( !ts.atEnd() ) {
                     switch ( emulatorMode ) {
                     case QMC2_ARCADE_EMUMODE_MAME:
                     case QMC2_ARCADE_EMUMODE_UME:
-                        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
+                        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in game info DB %1").arg(pathToGameInfoDB));
                         break;
                     case QMC2_ARCADE_EMUMODE_MESS:
-                        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
+                        QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
                         break;
                     }
                 }
-            } else if ( !ts.atEnd() ) {
-                switch ( emulatorMode ) {
-                case QMC2_ARCADE_EMUMODE_MAME:
-                case QMC2_ARCADE_EMUMODE_UME:
-                    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in game info DB %1").arg(pathToGameInfoDB));
-                    break;
-                case QMC2_ARCADE_EMUMODE_MESS:
-                    QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
-                    break;
-                }
             }
-        }
-        gameInfoDB.close();
-    } else {
-        switch ( emulatorMode ) {
-        case QMC2_ARCADE_EMUMODE_MAME:
-        case QMC2_ARCADE_EMUMODE_UME:
-            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open game info DB %1").arg(pathToGameInfoDB));
-            break;
-        case QMC2_ARCADE_EMUMODE_MESS:
-            QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open machine info DB %1").arg(pathToGameInfoDB));
-            break;
+            gameInfoDB.close();
+        } else {
+            switch ( emulatorMode ) {
+            case QMC2_ARCADE_EMUMODE_MAME:
+            case QMC2_ARCADE_EMUMODE_UME:
+                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open game info DB %1").arg(pathToGameInfoDB));
+                break;
+            case QMC2_ARCADE_EMUMODE_MESS:
+                QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: Can't open machine info DB %1").arg(pathToGameInfoDB));
+                break;
+            }
         }
     }
 
@@ -232,10 +252,8 @@ void InfoProvider::loadEmuInfoDB()
     for (int index = 0; index < compressDataList.count(); index++) {
         bool compressData = compressDataList[index];
         QString pathToEmuInfoDB = emuInfoPathList[index];
-
         QFile emuInfoDB(pathToEmuInfoDB);
         emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
-
         if ( emuInfoDB.isOpen() ) {
             QTextStream ts(&emuInfoDB);
             ts.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -310,13 +328,13 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
                 switch ( emulatorMode ) {
                 case QMC2_ARCADE_EMUMODE_MAME:
                 case QMC2_ARCADE_EMUMODE_UME:
-                    if ( globalConfig->compressGameInfoDB() )
+                    if ( globalConfig->compressMameHistoryDat() )
                         infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
                     else
                         infoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
                     break;
                 case QMC2_ARCADE_EMUMODE_MESS:
-                    if ( globalConfig->compressGameInfoDB() )
+                    if ( globalConfig->compressMameHistoryDat() )
                         infoText = QString(QMC2_ARCADE_UNCOMPRESS(*newGameInfo));
                     else
                         infoText = QString(*newGameInfo);
