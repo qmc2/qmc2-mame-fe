@@ -315,11 +315,6 @@ Options::Options(QWidget *parent)
 #endif
 
 #if defined(QMC2_EMUTYPE_MESS)
-  checkBoxProcessGameInfoDB->setText(tr("Machine info DB"));
-  checkBoxProcessGameInfoDB->setToolTip(tr("Load machine information database (MESS sysinfo.dat)"));
-  toolButtonCompressGameInfoDB->setToolTip(tr("Use in-memory compression for machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)"));
-  lineEditGameInfoDB->setToolTip(tr("Machine information database - MESS sysinfo.dat (read)"));
-  toolButtonBrowseGameInfoDB->setToolTip(tr("Browse machine information database (MESS sysinfo.dat)"));
   tabWidgetFrontendSettings->setTabText(QMC2_OPTIONS_FE_MACHINELIST_INDEX, tr("Machine &list"));
   comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_DESCRIPTION, tr("Machine description"));
   comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_MACHINENAME, tr("Machine name"));
@@ -351,6 +346,11 @@ Options::Options(QWidget *parent)
   labelGamelistCacheFile->setText(tr("Machine list cache"));
   lineEditGamelistCacheFile->setToolTip(tr("Machine list cache file (write)"));
   toolButtonBrowseGamelistCacheFile->setToolTip(tr("Browse machine list cache file"));
+  checkBoxProcessMessSysinfoDat->setText(tr("Machine info DB"));
+  checkBoxProcessMameHistoryDat->setVisible(false);
+  toolButtonCompressMameHistoryDat->setVisible(false);
+  toolButtonBrowseMameHistoryDat->setVisible(false);
+  lineEditMameHistoryDat->setVisible(false);
   checkBoxProcessMessInfoDat->setText(tr("Emu info DB"));
   checkBoxProcessMameInfoDat->setVisible(false);
   toolButtonCompressMameInfoDat->setVisible(false);
@@ -367,6 +367,11 @@ Options::Options(QWidget *parent)
   labelSlotInfoCacheFile->setVisible(false);
   lineEditSlotInfoCacheFile->setVisible(false);
   toolButtonBrowseSlotInfoCacheFile->setVisible(false);
+  checkBoxProcessMameHistoryDat->setText(tr("Game info DB"));
+  checkBoxProcessMessSysinfoDat->setVisible(false);
+  toolButtonCompressMessSysinfoDat->setVisible(false);
+  lineEditMessSysinfoDat->setVisible(false);
+  toolButtonBrowseMessSysinfoDat->setVisible(false);
   checkBoxProcessMameInfoDat->setText(tr("Emu info DB"));
   checkBoxProcessMessInfoDat->setVisible(false);
   toolButtonCompressMessInfoDat->setVisible(false);
@@ -653,7 +658,8 @@ void Options::apply()
   toolButtonBrowseROMStateCacheFile->setIconSize(iconSize);
   toolButtonBrowseSlotInfoCacheFile->setIconSize(iconSize);
   toolButtonBrowseDataDirectory->setIconSize(iconSize);
-  toolButtonBrowseGameInfoDB->setIconSize(iconSize);
+  toolButtonBrowseMameHistoryDat->setIconSize(iconSize);
+  toolButtonBrowseMessSysinfoDat->setIconSize(iconSize);
   toolButtonBrowseMameInfoDat->setIconSize(iconSize);
   toolButtonBrowseMessInfoDat->setIconSize(iconSize);
   toolButtonBrowseSoftwareInfoDB->setIconSize(iconSize);
@@ -737,8 +743,10 @@ void Options::apply()
   toolButtonCompressMameInfoDat->setIconSize(iconSize);
   checkBoxProcessMessInfoDat->setIconSize(iconSize);
   toolButtonCompressMessInfoDat->setIconSize(iconSize);
-  checkBoxProcessGameInfoDB->setIconSize(iconSize);
-  toolButtonCompressGameInfoDB->setIconSize(iconSize);
+  checkBoxProcessMameHistoryDat->setIconSize(iconSize);
+  checkBoxProcessMessSysinfoDat->setIconSize(iconSize);
+  toolButtonCompressMameHistoryDat->setIconSize(iconSize);
+  toolButtonCompressMessSysinfoDat->setIconSize(iconSize);
   checkBoxProcessSoftwareInfoDB->setIconSize(iconSize);
   toolButtonCompressSoftwareInfoDB->setIconSize(iconSize);
   QPixmap exitPixmap = QPixmap(QString::fromUtf8(":/data/img/exit.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -988,14 +996,31 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", checkBoxStatusbar->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", checkBoxStandardColorPalette->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", checkBoxProgressTexts->isChecked());
-  bool b = checkBoxProcessGameInfoDB->isChecked();
-  needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() != b);
-  bool invalidateGameInfoDB = (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() != b);
-  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", checkBoxProcessGameInfoDB->isChecked());
-  b = toolButtonCompressGameInfoDB->isChecked();
-  needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
-  invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
-  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", toolButtonCompressGameInfoDB->isChecked());
+
+  bool b;
+
+  bool invalidateGameInfoDB = false;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+  b = checkBoxProcessMameHistoryDat->isChecked();
+  needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() != b);
+  invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() != b);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", checkBoxProcessMameHistoryDat->isChecked());
+  b = toolButtonCompressMameHistoryDat->isChecked();
+  needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() != b);
+  invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat").toBool() != b);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat", toolButtonCompressMameHistoryDat->isChecked());
+#endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+  b = checkBoxProcessMessSysinfoDat->isChecked();
+  needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() != b);
+  invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() != b);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", checkBoxProcessMessSysinfoDat->isChecked());
+  b = toolButtonCompressMessSysinfoDat->isChecked();
+  needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() != b);
+  invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat").toBool() != b);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat", toolButtonCompressMessSysinfoDat->isChecked());
+#endif
+
   bool invalidateEmuInfoDB = false;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
   b = checkBoxProcessMameInfoDat->isChecked();
@@ -1193,10 +1218,10 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
   config->setValue("MAME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
   config->setValue("MAME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
-  s = lineEditGameInfoDB->text();
-  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
-  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
-  config->setValue("MAME/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
+  s = lineEditMameHistoryDat->text();
+  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
+  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", lineEditMameHistoryDat->text());
   s = lineEditMameInfoDat->text();
   needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString() != s);
   invalidateEmuInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString() != s);
@@ -1272,10 +1297,10 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
   config->setValue("MESS/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
   config->setValue("MESS/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
-  s = lineEditGameInfoDB->text();
-  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
-  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
-  config->setValue("MESS/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
+  s = lineEditMessSysinfoDat->text();
+  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString() != s);
+  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString() != s);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", lineEditMessSysinfoDat->text());
   s = lineEditMessInfoDat->text();
   needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString() != s);
   invalidateEmuInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat").toString() != s);
@@ -1351,10 +1376,14 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("UME/FilesAndDirectories/SystemNotesFolder", lineEditSystemNotesFolder->text());
   config->setValue("UME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
   config->setValue("UME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
-  s = lineEditGameInfoDB->text();
-  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
-  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GameInfoDB").toString() != s);
-  config->setValue("UME/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
+  s = lineEditMameHistoryDat->text();
+  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
+  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", lineEditMameHistoryDat->text());
+  s = lineEditMessSysinfoDat->text();
+  needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString() != s);
+  invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat").toString() != s);
+  config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", lineEditMessSysinfoDat->text());
   s = lineEditMameInfoDat->text();
   needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString() != s);
   invalidateEmuInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat").toString() != s);
@@ -2344,8 +2373,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxStatusbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
   checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
   checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", false).toBool());
-  checkBoxProcessGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", false).toBool());
-  toolButtonCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", false).toBool());
+  checkBoxProcessMameHistoryDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool());
+  checkBoxProcessMessSysinfoDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool());
+  toolButtonCompressMameHistoryDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameHistoryDat", false).toBool());
+  toolButtonCompressMessSysinfoDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMessSysinfoDat", false).toBool());
   checkBoxProcessMameInfoDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool());
   checkBoxProcessMessInfoDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool());
   toolButtonCompressMameInfoDat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/CompressMameInfoDat", false).toBool());
@@ -2497,7 +2528,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditSystemNotesFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
   lineEditSystemNotesTemplate->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
   checkBoxUseSystemNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
-  lineEditGameInfoDB->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditMameHistoryDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditMameInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
   checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
@@ -2569,7 +2600,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditSystemNotesFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
   lineEditSystemNotesTemplate->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
   checkBoxUseSystemNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
-  lineEditGameInfoDB->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
+  lineEditMessSysinfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditMessInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
   lineEditCategoryIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("MESS/FilesAndDirectories/CategoryIni", userScopePath + "/category.ini").toString());
   checkBoxUseCategoryIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCategoryIni", false).toBool());
@@ -2641,7 +2672,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditSystemNotesFolder->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
   lineEditSystemNotesTemplate->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
   checkBoxUseSystemNotesTemplate->setChecked(config->value("UME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
-  lineEditGameInfoDB->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditMameHistoryDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
+  lineEditMessSysinfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditMameInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditMessInfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessInfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
   lineEditCatverIniFile->setText(QMC2_QSETTINGS_CAST(config)->value("UME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
@@ -3057,6 +3089,27 @@ void Options::on_pushButtonImageFormats_clicked()
 	ifs.exec();
 }
 
+#if defined(QMC2_EMUTYPE_UME)
+void Options::on_toolButtonCompressMameHistoryDat_clicked()
+{
+	toolButtonCompressMessSysinfoDat->setChecked(toolButtonCompressMameHistoryDat->isChecked());
+}
+
+void Options::on_toolButtonCompressMessSysinfoDat_clicked()
+{
+	toolButtonCompressMameHistoryDat->setChecked(toolButtonCompressMessSysinfoDat->isChecked());
+}
+
+void Options::on_toolButtonCompressMameInfoDat_clicked()
+{
+	toolButtonCompressMessInfoDat->setChecked(toolButtonCompressMameInfoDat->isChecked());
+}
+
+void Options::on_toolButtonCompressMessInfoDat_clicked()
+{
+	toolButtonCompressMameInfoDat->setChecked(toolButtonCompressMessInfoDat->isChecked());
+}
+#endif
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
 {
@@ -3558,16 +3611,28 @@ void Options::on_toolButtonBrowseDataDirectory_clicked()
   raise();
 }
 
-void Options::on_toolButtonBrowseGameInfoDB_clicked()
+void Options::on_toolButtonBrowseMameHistoryDat_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGameInfoDB_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMameHistoryDat_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose game info DB"), lineEditGameInfoDB->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-  if ( !s.isNull() )
-    lineEditGameInfoDB->setText(s);
-  raise();
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose MAME game info DB"), lineEditMameHistoryDat->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditMameHistoryDat->setText(s);
+	raise();
+}
+
+void Options::on_toolButtonBrowseMessSysinfoDat_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMessSysinfoDat_clicked()");
+#endif
+
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose MESS machine info DB"), lineEditMessSysinfoDat->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditMessSysinfoDat->setText(s);
+	raise();
 }
 
 void Options::on_toolButtonBrowseMameInfoDat_clicked()
