@@ -2546,7 +2546,7 @@ void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int sta
 #endif
 
 	fileModelRowInsertionCounter += end - start;
-	if ( fileModelRowInsertionCounter > 1000 ) {
+	if ( fileModelRowInsertionCounter > QMC2_FILECHOOSER_INSERTED_ROWS ) {
 		fileModelRowInsertionCounter = 0;
 		treeViewFileChooser->setUpdatesEnabled(true);
 		treeViewFileChooser->update();
