@@ -179,10 +179,16 @@
 // delay in milliseconds before updating the device map due to slot-option changes
 #define QMC2_SLOTOPTION_CHANGE_DELAY		25
 
-// file chooser columns
+// file-chooser columns
 #define QMC2_FILECHOOSER_COLUMN_NAME		0
 #define QMC2_FILECHOOSER_COLUMN_SIZE		1
 #define QMC2_FILECHOOSER_COLUMN_DATE		2
+
+// number of rows to insert before updating the file-chooser's file-view
+#define QMC2_FILECHOOSER_INSERTED_ROWS		2500
+
+// init delay for the file-chooser's dir-view
+#define QMC2_DIRCHOOSER_INIT_WAIT		250
 
 // page indexes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE		0
@@ -332,9 +338,6 @@
 
 // time after which the 'forced snapshot' flag is unset automatically
 #define QMC2_SWSNAP_UNFORCE_DELAY		50
-
-// init delay for the dir chooser
-#define QMC2_DIRCHOOSER_INIT_WAIT		250
 
 // gamelist sort criteria
 #define QMC2_SORT_BY_DESCRIPTION		0
@@ -536,22 +539,22 @@
 #define QMC2_COMMAND_RUNONCE			"runonce"
 #define QMC2_VARIANT_SDLMAME_NAME		"qmc2-sdlmame"
 #define QMC2_VARIANT_SDLMAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMAME_NAME
-#define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
+#define QMC2_VARIANT_SDLMAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_SDLMESS_NAME		"qmc2-sdlmess"
 #define QMC2_VARIANT_SDLMESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMESS_NAME
-#define QMC2_VARIANT_SDLMESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
+#define QMC2_VARIANT_SDLMESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_SDLUME_NAME		"qmc2-sdlume"
 #define QMC2_VARIANT_SDLUME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLUME_NAME
-#define QMC2_VARIANT_SDLUME_TITLE		MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
+#define QMC2_VARIANT_SDLUME_TITLE		MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_MAME_NAME			"qmc2-mame.exe"
 #define QMC2_VARIANT_MAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MAME_NAME
-#define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
+#define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_MESS_NAME			"qmc2-mess.exe"
 #define QMC2_VARIANT_MESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MESS_NAME
-#define QMC2_VARIANT_MESS_TITLE			MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
+#define QMC2_VARIANT_MESS_TITLE			MainWindow::tr("M.E.S.S. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 #define QMC2_VARIANT_UME_NAME			"qmc2-ume.exe"
 #define QMC2_VARIANT_UME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_UME_NAME
-#define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt ") + qVersion() + QString("]")
+#define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II") + QString(" [Qt %1]").arg(qVersion())
 
 // separation for QMC2 variants
 #define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/MAME/")
