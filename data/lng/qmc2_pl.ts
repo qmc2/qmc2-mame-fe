@@ -12354,16 +12354,6 @@ Ponowić próbę osadzania?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1465"/>
-        <source>MAME game information database - MAME history.dat (read)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="1478"/>
-        <source>Browse MAME game information database (MAME history.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="1495"/>
         <source>MAME emulator information database - mameinfo.dat (read)</source>
         <translation type="unfinished"></translation>
@@ -12466,6 +12456,11 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2368"/>
         <source>Browse compressed software snap-shot file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2434"/>
+        <source>Load MAME game information database (history.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -12644,11 +12639,6 @@ Ponowić próbę osadzania?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2884"/>
-        <source>Load MESS machine information database (MESS sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="2887"/>
         <source>Machine info DB (MESS)</source>
         <translation type="unfinished"></translation>
@@ -12656,16 +12646,6 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2904"/>
         <source>Use in-memory compression for MESS machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="2926"/>
-        <source>MESS machine information database - MESS sysinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="2939"/>
-        <source>Browse MESS machine information database (MESS sysinfo.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -13888,6 +13868,31 @@ Ponowić próbę osadzania?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="1465"/>
+        <source>MAME game information database - history.dat (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="1478"/>
+        <source>Browse MAME game information database (history.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2884"/>
+        <source>Load MESS machine information database (sysinfo.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2926"/>
+        <source>MESS machine information database - sysinfo.dat (read)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2939"/>
+        <source>Browse MESS machine information database (sysinfo.dat)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="3101"/>
         <source>Game name</source>
         <translation>Nazwa gry</translation>
@@ -14246,9 +14251,8 @@ Ponowić próbę osadzania?</translation>
         <translation>unieważnianie bazy danych informacji o grach</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2434"/>
         <source>Load game information database (MAME history.dat)</source>
-        <translation>Ładuj bazę danych informacji o grach (MAME history.dat)</translation>
+        <translation type="obsolete">Ładuj bazę danych informacji o grach (MAME history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="373"/>
