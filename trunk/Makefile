@@ -645,6 +645,7 @@ MYAPPICON = ume.icns
 endif
 endif
 
+ifndef SVN_REV
 # determine the SVN revision (if any)
 ifneq '$(ARCH)' 'Windows'
 SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
@@ -655,6 +656,7 @@ ifneq '$(SVN_SUBWCREV_CMD)' ''
 SVN_REV=$(shell arch\Windows\svnversion.bat)
 else
 SVN_REV=
+endif
 endif
 endif
 
