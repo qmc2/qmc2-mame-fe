@@ -1028,6 +1028,14 @@
       <description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
       <description lang="es" text="Nombre de un archivo PNG a utilizar para los efectos visuales, o 'ninguno'"/>
     </option>
+    <option default="0" name="minimum_width" type="int">
+      <description lang="us" text="Minimum screen width"/>
+      <description lang="de" text="Minimale Bildschirm-Breite"/>
+    </option>
+    <option default="0" name="minimum_height" type="int">
+      <description lang="us" text="Minimum screen height"/>
+      <description lang="de" text="Minimale Bildschirm-Höhe"/>
+    </option>
     <option default="false" name="waitvsync" type="bool">
       <description lang="us" text="Wait for the start of VBLANK before flipping screens; reduces tearing effects"/>
       <description lang="de" text="Auf V-Sync warten, bevor die Bildschirme getauscht werden; reduziert Flacker-Effekte"/>
