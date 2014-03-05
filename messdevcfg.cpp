@@ -26,9 +26,9 @@ extern bool qmc2CriticalSection;
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 #endif
-extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern bool qmc2UseDefaultEmulator;
 extern Options *qmc2Options;
+extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 
 QList<FileEditWidget *> messFileEditWidgetList;
 QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
@@ -1018,13 +1018,12 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 #endif
 			QStringList newSlotOptionDescriptions;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
+				QString slotOptionDescription = qmc2GamelistItemMap[xmlHandler.newSlotDevices[newSlotOption]]->text(QMC2_GAMELIST_COLUMN_GAME);
 #ifdef QMC2_DEBUG
 				printf("MESSDeviceConfigurator::refreshDeviceMap():     newSlotOption = %s [%s], default = %s\n",
-				       (const char *)newSlotOption.toLocal8Bit(),
-				       (const char *)qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]].toLocal8Bit(),
-				       xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
+				       newSlotOption.toLocal8Bit().constData(), slotOptionDescription.toLocal8Bit().constData(), xmlHandler.defaultSlotOptions[newSlot] == newSlotOption ? "yes" : "no");
 #endif
-				newSlotOptionDescriptions << qmc2GamelistDescriptionMap[xmlHandler.newSlotDevices[newSlotOption]];
+				newSlotOptionDescriptions << slotOptionDescription;
 			}
 			addNestedSlot(newSlot, xmlHandler.newSlotOptions[newSlot], newSlotOptionDescriptions, xmlHandler.defaultSlotOptions[newSlot]);
 		}

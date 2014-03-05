@@ -241,7 +241,6 @@ QMenu *qmc2EmulatorMenu = NULL,
 QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 QMap<QString, QString> qmc2GamelistNameMap;
-QMap<QString, QString> qmc2GamelistDescriptionMap;
 QMap<QString, QStringList> qmc2HierarchyMap;
 QMap<QString, QString> qmc2ParentMap;
 QMap<QString, QIcon> qmc2IconMap;
@@ -1748,7 +1747,7 @@ void MainWindow::on_actionPlay_triggered(bool)
         foreignEmulator = true;
         QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
         QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator)).toString();
-	QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]);
+	QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME));
         QStringList emuArgs;
         QRegExp rx("([^ ]+|\"[^\"]+\")");
         int i = 0;
@@ -2521,7 +2520,7 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
   QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments").toString().split(" ");
   QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory").toString();
   QString gameID = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
-  QString gameDescription = qmc2GamelistDescriptionMap[gameID];
+  QString gameDescription = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
   QStringList newArgs;
   foreach (QString argument, args)
     newArgs << argument.replace("$ID$", gameID).replace("$DESCRIPTION$", gameDescription);
@@ -4414,7 +4413,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           QVBoxLayout *layout = new QVBoxLayout;
           layout->setContentsMargins(left, top, right, bottom);
 	  QString setID = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
-          qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2GamelistDescriptionMap[setID], tabYouTube);
+          qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2GamelistItemMap[setID]->text(QMC2_GAMELIST_COLUMN_GAME), tabYouTube);
           layout->addWidget(qmc2YouTubeWidget);
           tabYouTube->setLayout(layout);
           qmc2YouTubeWidget->show();
@@ -4564,7 +4563,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
         qmc2MAWSLookup->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/Zoom", 100).toInt());
-        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
+        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME)));
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);
         QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_DEFAULT_URL).toString().arg(gameName);
@@ -4602,7 +4601,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
             qmc2MAWSLookup->webViewBrowser->setHtml(
                                     QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
-                                    tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
+                                    tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME)) +
                                     "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>",
                                     QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
@@ -4817,16 +4816,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
             } else
 #if defined(QMC2_EMUTYPE_MESS)
-              textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistDescriptionMap[gameName] + "</h2>" + tr("<p>No data available</p>"));
+              textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
 #else
-              textBrowserGameInfo->setHtml("<b>" + qmc2GamelistDescriptionMap[gameName] + "</b><p>" + tr("No data available"));
+              textBrowserGameInfo->setHtml("<b>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</b><p>" + tr("No data available"));
 #endif
           }
         } else
 #if defined(QMC2_EMUTYPE_MESS)
-          textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistDescriptionMap[gameName] + "</h2>" + tr("<p>No data available</p>"));
+          textBrowserGameInfo->setHtml("<h2>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</h2>" + tr("<p>No data available</p>"));
 #else
-          textBrowserGameInfo->setHtml("<b>" + qmc2GamelistDescriptionMap[gameName] + "</b><p>" + tr("No data available"));
+          textBrowserGameInfo->setHtml("<b>" + qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME) + "</b><p>" + tr("No data available"));
 #endif
         qmc2LastGameInfoItem = qmc2CurrentItem;
         tabGameInfo->setUpdatesEnabled(true);
@@ -5557,11 +5556,11 @@ void MainWindow::action_embedEmulator_triggered()
     int xwininfoRetries = 0;
     while ( winIdList.isEmpty() && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
 #if defined(QMC2_EMUTYPE_MAME)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(gameID)));
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME))), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_MESS)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-MESS-ID-%1").arg(gameID)));
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("MESS: %1").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME))), QRegExp::escape(QString("QMC2-MESS-ID-%1").arg(gameID)));
 #elif defined(QMC2_EMUTYPE_UME)
-	WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(qmc2GamelistDescriptionMap[gameName])), QRegExp::escape(QString("QMC2-UME-ID-%1").arg(gameID)));
+	WId windowId = x11FindWindowId(QRegExp::escape(QString("UME: %1").arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME))), QRegExp::escape(QString("QMC2-UME-ID-%1").arg(gameID)));
 #endif
 	
 	if ( windowId )
@@ -5615,7 +5614,7 @@ void MainWindow::action_embedEmulator_triggered()
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0], false, this, qmc2IconMap[gameName]);
 #endif
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
-      tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistDescriptionMap[gameName]));
+      tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME)));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
@@ -5860,7 +5859,7 @@ void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 #endif
 
   if ( embedder ) {
-    QString gameDescription = qmc2GamelistDescriptionMap[embedder->gameName];
+    QString gameDescription = qmc2GamelistItemMap[embedder->gameName]->text(QMC2_GAMELIST_COLUMN_GAME);
     QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
     if ( matches.count() <= 0 ) {
       QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);

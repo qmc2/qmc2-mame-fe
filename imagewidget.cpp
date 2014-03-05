@@ -27,7 +27,6 @@ extern bool qmc2ShowGameName;
 extern bool qmc2ShowGameNameOnlyWhenRequired;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QMap<QString, QString> qmc2ParentMap;
-extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
 QStringList ImageWidget::formatNames;
@@ -779,7 +778,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 	if ( drawGameName ) {
 		// draw game/machine title
 		p->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
-		QString title = qmc2GamelistDescriptionMap[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+		QString title = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
 		QFont f(qApp->font());
 		f.setWeight(QFont::Bold);
 		p->setFont(f);

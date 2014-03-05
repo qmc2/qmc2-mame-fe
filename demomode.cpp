@@ -10,7 +10,6 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QStringList qmc2BiosROMs;
 extern QStringList qmc2DeviceROMs;
 extern QString qmc2DemoGame;
@@ -360,7 +359,7 @@ void DemoModeDialog::startNextEmu()
 		qmc2DemoGame = selectedGames[seqNum];
 	} else
 		qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-	QString gameDescription = qmc2GamelistDescriptionMap[qmc2DemoGame];
+	QString gameDescription = qmc2GamelistItemMap[qmc2DemoGame]->text(QMC2_GAMELIST_COLUMN_GAME);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
 	setStatus(gameDescription);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
