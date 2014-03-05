@@ -94,7 +94,6 @@ extern bool swlSupported;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern QMap<QString, QString> qmc2GamelistNameMap;
-extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QMap<QString, QStringList> qmc2HierarchyMap;
 extern QMap<QString, QString> qmc2ParentMap;
 extern int qmc2SortCriteria;
@@ -421,7 +420,6 @@ void Gamelist::load()
   gameStatusMap.clear();
   qmc2GamelistItemMap.clear();
   qmc2GamelistNameMap.clear();
-  qmc2GamelistDescriptionMap.clear();
   qmc2BiosROMs.clear();
   qmc2DeviceROMs.clear();
   qmc2HierarchyItemMap.clear();
@@ -1664,7 +1662,6 @@ void Gamelist::parse()
             nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
             nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
             qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-            qmc2GamelistDescriptionMap[gameName] = gameDescription;
             qmc2GamelistNameMap[gameDescription] = gameName;
 
             loadIcon(gameName, gameDescriptionItem);
@@ -1938,7 +1935,6 @@ void Gamelist::parse()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(gameName));
 #endif
 		qmc2GamelistItemMap[gameName] = gameDescriptionItem;
-		qmc2GamelistDescriptionMap[gameName] = gameDescription;
 		qmc2GamelistNameMap[gameDescription] = gameName;
 
 		loadIcon(gameName, gameDescriptionItem);
@@ -1988,7 +1984,7 @@ void Gamelist::parse()
   while ( i.hasNext() ) {
     i.next();
     QString iValue = i.key();
-    QString iDescription = qmc2GamelistDescriptionMap[iValue];
+    QString iDescription = qmc2GamelistItemMap[iValue]->text(QMC2_GAMELIST_COLUMN_GAME);
     if ( iDescription.isEmpty() )
       continue;
     bool isBIOS = qmc2BiosROMs.contains(iValue);
@@ -2072,7 +2068,7 @@ void Gamelist::parse()
     int j;
     for (j = 0; j < i.value().count(); j++) {
       QString jValue = i.value().at(j);
-      QString jDescription = qmc2GamelistDescriptionMap[jValue];
+      QString jDescription = qmc2GamelistItemMap[jValue]->text(QMC2_GAMELIST_COLUMN_GAME);
       if ( jDescription.isEmpty() )
         continue;
       isBIOS = qmc2BiosROMs.contains(jValue);
