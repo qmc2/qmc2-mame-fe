@@ -73,6 +73,8 @@ class Gamelist : public QObject
 		QMap<QString, QString *> versionMap;
 #endif
 		QTreeWidgetItem *checkedItem;
+		QStringList biosSets;
+		QStringList deviceSets;
 
 		static QStringList romTypeNames;
 		static QStringList phraseTranslatorList;
@@ -80,6 +82,9 @@ class Gamelist : public QObject
 
 		QString lookupDriverName(QString);
 		QString romStatus(QString, bool translated = false);
+		bool isBios(QString systemName) { return biosSets.contains(systemName); }
+		bool isDevice(QString systemName) { return deviceSets.contains(systemName); }
+
 		void clearCategoryNames();
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
 		void clearVersionNames();

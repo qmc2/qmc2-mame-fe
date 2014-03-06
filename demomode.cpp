@@ -10,8 +10,6 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
-extern QStringList qmc2BiosROMs;
-extern QStringList qmc2DeviceROMs;
 extern QString qmc2DemoGame;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
@@ -206,7 +204,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     selectedGames.clear();
     if ( checkBoxTagged->isChecked() ) {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-		    if ( qmc2DeviceROMs.contains(game) )
+		    if ( qmc2Gamelist->isDevice(game) )
 			    continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( !gameItem )
@@ -216,7 +214,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 	    }
     } else if ( checkBoxFavorites->isChecked() ) {
 	    foreach (QString game, qmc2GamelistItemMap.keys()) {
-		    if ( qmc2DeviceROMs.contains(game) )
+		    if ( qmc2Gamelist->isDevice(game) )
 			    continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( gameItem ) {
@@ -242,7 +240,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			    category = *categoryPtr;
 		    else
 			    category = tr("?");
-		    if ( qmc2DeviceROMs.contains(game) || (!qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category)) )
+		    if ( qmc2Gamelist->isDevice(game) || (!qmc2Gamelist->categoryMap.isEmpty() && excludedCategories.contains(category)) )
 			    continue;
 		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
 		    if ( !gameItem )

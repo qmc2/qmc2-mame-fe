@@ -256,8 +256,6 @@ bool qmc2SortingActive = false;
 QBitArray qmc2Filter;
 QMap<QString, unzFile> qmc2IconFileMap;
 QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
-QStringList qmc2BiosROMs;
-QStringList qmc2DeviceROMs;
 KeyPressFilter *qmc2KeyPressFilter = NULL;
 QMap<QString, QKeySequence> qmc2QtKeyMap;
 #if QMC2_JOYSTICK == 1
@@ -1776,7 +1774,7 @@ void MainWindow::on_actionPlay_triggered(bool)
     return;
   }
 
-  if ( qmc2DeviceROMs.contains(gameName) ) {
+  if ( qmc2Gamelist->isDevice(gameName) ) {
 	   log(QMC2_LOG_FRONTEND, tr("sorry, devices cannot run standalone"));
 	   return;
   }
@@ -4941,6 +4939,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = Gamelist::reverseTranslation[qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT)];
 	      qmc2SystemNotesEditor->templateMap["$ROM_STATUS$"] = qmc2Gamelist->romStatus(gameName, true);
 	      qmc2SystemNotesEditor->templateMap["$ROM_STATUS_UT$"] = qmc2Gamelist->romStatus(gameName, false);
+	      qmc2SystemNotesEditor->templateMap["$IS_BIOS$"] = qmc2Gamelist->isBios(gameName) ? "true" : "false";
+	      qmc2SystemNotesEditor->templateMap["$IS_DEVICE$"] = qmc2Gamelist->isDevice(gameName) ? "true" : "false";
 	      qmc2SystemNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 	      qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 	      qmc2SystemNotesEditor->templateMap["$EMULATOR_TYPE$"] = QMC2_EMU_NAME;

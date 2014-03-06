@@ -22,8 +22,6 @@
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern QStringList qmc2BiosROMs;
-extern QStringList qmc2DeviceROMs;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern Gamelist *qmc2Gamelist;
@@ -655,7 +653,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		progressBarFilter->setValue(++itemCount);
 
 		// no devices
-		if ( qmc2DeviceROMs.contains(game) )
+		if ( qmc2Gamelist->isDevice(game) )
 			continue;
 
 		// tagged
@@ -758,7 +756,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_MANU) << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_YEAR) << "\t"
 		   << cloneOf << "\t"
-	   	   << (qmc2BiosROMs.contains(gameName) ? "1": "0") << "\t"
+	   	   << (qmc2Gamelist->isBios(gameName) ? "1": "0") << "\t"
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
 		   << (gameItem->text(QMC2_GAMELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"
 		   << gameItem->text(QMC2_GAMELIST_COLUMN_PLAYERS) << "\t"
