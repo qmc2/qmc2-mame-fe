@@ -161,6 +161,9 @@ public slots:
     bool queryXml(QString id, QString queryString, bool sort = true) { return queryLocalXml(id, queryString, sort); }
     bool queryLocalXml(QString id, QString queryString, bool sort = true);
     QStringList getXmlResult() { return xmlResult; }
+    bool isBios(QString id);
+    bool isDevice(QString id);
+    QString romStatus(QString id, bool translated = false);
 
 private:
     Ui_HTMLEditorMainWindow *ui;

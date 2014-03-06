@@ -1207,6 +1207,21 @@ bool HtmlEditor::queryLocalXml(QString id, QString queryString, bool sort)
 		return false;
 }
 
+bool HtmlEditor::isBios(QString id)
+{
+	return qmc2Gamelist->isBios(id);
+}
+
+bool HtmlEditor::isDevice(QString id)
+{
+	return qmc2Gamelist->isDevice(id);
+}
+
+QString HtmlEditor::romStatus(QString id, bool translated)
+{
+	return qmc2Gamelist->romStatus(id, translated);
+}
+
 void HtmlEditor::closeXmlBuffer()
 {
 	if ( xmlQueryBuffer ) {
