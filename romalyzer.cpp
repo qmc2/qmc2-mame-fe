@@ -476,15 +476,15 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   checkBoxAutoScroll->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/AutoScroll", true).toBool());
   checkBoxCalculateCRC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateCRC", true).toBool());
   checkBoxCalculateSHA1->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateSHA1", true).toBool());
-  checkBoxCalculateMD5->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", true).toBool());
+  checkBoxCalculateMD5->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", false).toBool());
   checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", true).toBool());
   spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
   spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 10000).toInt());
   spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", 1000).toInt());
-  lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", "").toString());
-  lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", "").toString());
-  lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", "").toString());
-  lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", "").toString());
+  lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", QString()).toString());
+  lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", QString()).toString());
+  lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", QString()).toString());
+  lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterAdditionalRomPath", QString()).toString());
   groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", false).toBool());
   checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", false).toBool());
   checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", false).toBool());
@@ -503,7 +503,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", false).toBool());
 
 #if defined(QMC2_DATABASE_ENABLED)
-  lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", "").toString());
+  lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", QString()).toString());
 #if defined(QMC2_EMUTYPE_MAME)
   lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "mame_romdb").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -512,16 +512,16 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "ume_romdb").toString());
 #endif
   spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
-  lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", "").toString());
-  lineEditDatabasePassword->setText(QString(QMC2_UNCOMPRESS(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", "").toByteArray())));
+  lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", QString()).toString());
+  lineEditDatabasePassword->setText(QString(QMC2_UNCOMPRESS(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", QString()).toByteArray())));
   checkBoxDatabaseDownload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", true).toBool());
   checkBoxDatabaseUpload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", false).toBool());
   checkBoxDatabaseOverwrite->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", false).toBool());
   comboBoxDatabaseDriver->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", QMC2_DB_DRIVER_MYSQL).toInt());
-  lineEditDatabaseOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", "").toString());
+  lineEditDatabaseOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", QString()).toString());
   groupBoxDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", false).toBool());
 #endif
-  lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", "").toString());
+  lineEditSetRenamerOldXmlFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerOldXmlFile", QString()).toString());
   comboBoxSetRenamerAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRenamerAutomationLevel", QMC2_ROMALYZER_SRTOOL_AMLVL_NONE).toInt());
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
@@ -2329,13 +2329,17 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	}
 
 	for (int i = 0; i < qmc2MainWindow->treeWidgetGamelist->topLevelItemCount(); i++) {
-		progressBar->setValue(i);
+		if ( i % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
+			progressBar->setValue(i);
+			qApp->processEvents();
+		}
 		QString currentGame = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i)->text(QMC2_GAMELIST_COLUMN_NAME);
 		QStringList xmlLines = qmc2Gamelist->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
 		for (int j = 0; j < xmlLines.count(); j++) {
 			QString xmlLine = xmlLines[j];
-			int hashPos = xmlLine.indexOf(hashStartString) + hashStartOffset;
-			if ( hashPos >= 0 ) {
+			int hashIndex = xmlLine.indexOf(hashStartString);
+			if ( hashIndex >= 0 ) {
+				int hashPos = hashIndex + hashStartOffset;
 				QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
 				if ( currentChecksum == searchedChecksum ) {
 					int fileNamePos;
@@ -3294,6 +3298,8 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 			actionRewriteSet->setVisible(groupBoxSetRewriter->isChecked());
 			actionRewriteSet->setEnabled(groupBoxSetRewriter->isChecked());
 			QStringList deviceRefs = item->whatsThis(QMC2_ROMALYZER_COLUMN_GAME).split(",", QString::SkipEmptyParts);
+			deviceRefs.removeDuplicates();
+			actionAnalyzeDeviceRefs->setText(tr("Analyse referenced devices") + QString(" [%1]").arg(deviceRefs.count()));
 			actionAnalyzeDeviceRefs->setVisible(!deviceRefs.isEmpty());
 			actionAnalyzeDeviceRefs->setEnabled(!deviceRefs.isEmpty());
 			treeWidgetChecksums->setItemSelected(item, true);

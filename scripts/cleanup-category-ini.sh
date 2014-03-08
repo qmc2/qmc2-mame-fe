@@ -1,4 +1,9 @@
 #!/bin/sh
+#
+# Note: this script *assumes* that 'qmc2-sdlmess' has been run prior to using it, that
+# its XML cache database is *up-to-date* and stored as ~/.qmc2/mess-xml-cache.db. Also,
+# it *requires* the command 'sqlite3', so make sure it's available!
+#
 echo "Cleaning up category.ini, please wait..."
 cp data/cat/category.ini /tmp/category.ini
 dos2unix -q /tmp/category.ini
