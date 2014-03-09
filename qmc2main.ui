@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>657</width>
-    <height>365</height>
+    <width>677</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2510,7 +2510,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>657</width>
+     <width>677</width>
      <height>17</height>
     </rect>
    </property>
@@ -2584,6 +2584,7 @@
     <addaction name="separator"/>
     <addaction name="actionDemoMode"/>
     <addaction name="actionNewBrowserWindow"/>
+    <addaction name="actionNewPdfViewer"/>
     <addaction name="separator"/>
     <addaction name="menuAudioPlayer"/>
     <addaction name="separator"/>
@@ -4219,6 +4220,21 @@
    </property>
    <property name="statusTip">
     <string>Search with Yandex</string>
+   </property>
+  </action>
+  <action name="actionNewPdfViewer">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/pdf.png</normaloff>:/data/img/pdf.png</iconset>
+   </property>
+   <property name="text">
+    <string>PDF viewer...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new empty PDF viewer window</string>
+   </property>
+   <property name="statusTip">
+    <string>Open a new empty PDF viewer window</string>
    </property>
   </action>
  </widget>

@@ -86,8 +86,10 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 		QString currentTitle;
 		IconLineEdit *iconLineEditSearch;
 
-		MiniWebBrowser(QWidget *parent = 0);
+		MiniWebBrowser(QWidget *parent = 0, bool useAsPdfViewer = false);
 		~MiniWebBrowser();
+
+		bool isPdfViewer() { return m_isPdfViewer; }
 
 	public slots:
 		void on_comboBoxURL_activated(int);
@@ -137,6 +139,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 
 	private:
 		QString m_statusMessage;
+		bool m_isPdfViewer;
 };
 
 #endif

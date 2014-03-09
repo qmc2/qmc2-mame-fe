@@ -2448,6 +2448,34 @@ void MainWindow::on_actionNewBrowserWindow_triggered(bool)
 	webBrowser->show();
 }
 
+void MainWindow::on_actionNewPdfViewer_triggered(bool)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionNewPdfViewer_triggered(bool)");
+#endif
+
+	QString htmlPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "/js/pdfjs/web/viewer.html";
+	QFileInfo fi(htmlPath);
+	if ( fi.isReadable() ) {
+		MiniWebBrowser *webBrowser = new MiniWebBrowser(0, true);
+		webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "PdfViewer/Geometry") )
+			webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "PdfViewer/Geometry").toByteArray());
+		else {
+			webBrowser->adjustSize();
+			webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+		}
+		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+#if defined(QMC2_OS_WIN)
+		webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath());
+#else
+		webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath());
+#endif
+		webBrowser->show();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't load PDF viewer from '%1'").arg(htmlPath));
+}
+
 void MainWindow::on_actionCheckSamples_triggered(bool)
 {
 #ifdef QMC2_DEBUG

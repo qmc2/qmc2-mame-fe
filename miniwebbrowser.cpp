@@ -28,14 +28,15 @@ extern Settings *qmc2Config;
 QCache<QString, QIcon> MiniWebBrowser::iconCache;
 QStringList MiniWebBrowser::supportedSchemes;
 
-MiniWebBrowser::MiniWebBrowser(QWidget *parent)
+MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::MiniWebBrowser(QWidget *parent = %1)").arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::MiniWebBrowser(QWidget *parent = %1, bool useAsPdfViewer = %2)").arg((qulonglong)parent).arg(useAsPdfViewer));
 #endif
 
 	setObjectName("MiniWebBrowser");
+	m_isPdfViewer = useAsPdfViewer;
 
 	QWebSettings::setMaximumPagesInCache(QMC2_BROWSER_CACHE_PAGES);
 
@@ -96,43 +97,53 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 	connect(toolButtonReload, SIGNAL(clicked()), webViewBrowser, SLOT(reload()));
 	connect(toolButtonStop, SIGNAL(clicked()), webViewBrowser, SLOT(stop()));
 
-	// hide page actions we don't provide
-	webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
+	if ( isPdfViewer() ) {
+		frameUrl->hide();
+		// hide all page actions
+		for(QWebPage::WebAction pa = QWebPage::OpenLink; pa != QWebPage::AlignRight; pa = static_cast<QWebPage::WebAction>(static_cast<int>(pa) + 1)) {
+			QAction *a= webViewBrowser->pageAction(pa);
+			if ( a )
+				a->setVisible(false);
+		}
+	} else {
+		// hide page actions we don't provide
+		webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
 
-	// change provided page actions to better fit our usage / integrate into QMC2's look
-	webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
-	webViewBrowser->pageAction(QWebPage::OpenLink)->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-	webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setText(tr("Open link in new window"));
-	webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
-	webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setText(tr("Open image in new window"));
-	webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
-	webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setText(tr("Save link as..."));
-	webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
-	webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setText(tr("Copy link"));
-	webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-	webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setText(tr("Save image as..."));
-	webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
-	webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setText(tr("Copy image"));
-	webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-	webViewBrowser->pageAction(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy image address"));
-	webViewBrowser->pageAction(QWebPage::Back)->setText(tr("Go back"));
-	webViewBrowser->pageAction(QWebPage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
-	webViewBrowser->pageAction(QWebPage::Forward)->setText(tr("Go forward"));
-	webViewBrowser->pageAction(QWebPage::Forward)->setIcon(QIcon(QString::fromUtf8(":/data/img/forward.png")));
-	webViewBrowser->pageAction(QWebPage::Reload)->setText(tr("Reload"));
-	webViewBrowser->pageAction(QWebPage::Reload)->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
-	webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
-	webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
-	webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
-	webViewBrowser->pageAction(QWebPage::Copy)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+		// change provided page actions to better fit our usage / integrate into QMC2's look
+		webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
+		webViewBrowser->pageAction(QWebPage::OpenLink)->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+		webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setText(tr("Open link in new window"));
+		webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
+		webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setText(tr("Open image in new window"));
+		webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
+		webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setText(tr("Save link as..."));
+		webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+		webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setText(tr("Copy link"));
+		webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+		webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setText(tr("Save image as..."));
+		webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+		webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setText(tr("Copy image"));
+		webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+		webViewBrowser->pageAction(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy image address"));
+		webViewBrowser->pageAction(QWebPage::Back)->setText(tr("Go back"));
+		webViewBrowser->pageAction(QWebPage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
+		webViewBrowser->pageAction(QWebPage::Forward)->setText(tr("Go forward"));
+		webViewBrowser->pageAction(QWebPage::Forward)->setIcon(QIcon(QString::fromUtf8(":/data/img/forward.png")));
+		webViewBrowser->pageAction(QWebPage::Reload)->setText(tr("Reload"));
+		webViewBrowser->pageAction(QWebPage::Reload)->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
+		webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
+		webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
+		webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
+		webViewBrowser->pageAction(QWebPage::Copy)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
-	webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
-	webViewBrowser->pageAction(QWebPage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));
+		webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
+		webViewBrowser->pageAction(QWebPage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));
 #endif
 
-	// connect page actions to own routines
-	connect(webViewBrowser->pageAction(QWebPage::Back), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
-	connect(webViewBrowser->pageAction(QWebPage::Forward), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
+		// connect page actions to own routines
+		connect(webViewBrowser->pageAction(QWebPage::Back), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
+		connect(webViewBrowser->pageAction(QWebPage::Forward), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
+	}
 
 	// setup browser settings
 	webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DYNAMIC_DOT_PATH);
@@ -660,17 +671,17 @@ void MiniWebBrowser::changeTitle(QString &title)
 #endif
 
 	if ( title == "QMC2_NO_TITLE" ) {
-			setWindowTitle(tr("MiniWebBrowser"));
-			currentTitle = "QMC2_NO_TITLE";
+		setWindowTitle(isPdfViewer() ? tr("PDF viewer") : tr("MiniWebBrowser"));
+		currentTitle = "QMC2_NO_TITLE";
 	} else {
 		if ( title.isEmpty() ) {
 			if ( currentTitle == "QMC2_NO_TITLE" )
-				setWindowTitle(tr("MiniWebBrowser"));
+				setWindowTitle(isPdfViewer() ? tr("PDF viewer") : tr("MiniWebBrowser"));
 			else
-				setWindowTitle(tr("MiniWebBrowser") + " :: " + currentTitle);
+				setWindowTitle((isPdfViewer() ? tr("PDF viewer") : tr("MiniWebBrowser")) + " :: " + currentTitle);
 		} else {
 			currentTitle = title;
-			setWindowTitle(tr("MiniWebBrowser") + " :: " + currentTitle);
+			setWindowTitle((isPdfViewer() ? tr("PDF viewer") : tr("MiniWebBrowser")) + " :: " + currentTitle);
 		}
 	}
 }
@@ -679,18 +690,21 @@ void MiniWebBrowser::resizeEvent(QResizeEvent *e)
 {
 	QWidget::resizeEvent(e);
 	if ( parentWidget() == 0 )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry", saveGeometry());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + (isPdfViewer() ? "PdfViewer/Geometry" : "WebBrowser/Geometry"), saveGeometry());
 }
 
 void MiniWebBrowser::moveEvent(QMoveEvent *e)
 {
 	QWidget::moveEvent(e);
 	if ( parentWidget() == 0 )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry", saveGeometry());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + (isPdfViewer() ? "PdfViewer/Geometry" : "WebBrowser/Geometry"), saveGeometry());
 }
 
 void MiniWebBrowser::setStatus(QString statusMessage)
 {
+	if ( isPdfViewer() )
+		return;
+
 	m_statusMessage = statusMessage;
 
 	if ( m_statusMessage.isEmpty() )
