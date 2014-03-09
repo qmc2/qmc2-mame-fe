@@ -2454,6 +2454,15 @@ void MainWindow::on_actionNewPdfViewer_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionNewPdfViewer_triggered(bool)");
 #endif
 
+	viewPdf();
+}
+
+void MainWindow::viewPdf(QString filePath)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::viewPdf(QString filePath = %1)").arg(filePath));
+#endif
+
 	QString htmlPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "/js/pdfjs/web/viewer.html";
 	QFileInfo fi(htmlPath);
 	if ( fi.isReadable() ) {
@@ -2467,9 +2476,9 @@ void MainWindow::on_actionNewPdfViewer_triggered(bool)
 		}
 		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
 #if defined(QMC2_OS_WIN)
-		webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath());
+		webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath() + QString("?file=%1").arg(filePath));
 #else
-		webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath());
+		webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath() + QString("?file=%1").arg(filePath));
 #endif
 		webBrowser->show();
 	} else
