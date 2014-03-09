@@ -325,6 +325,18 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_toggleArchive()));
 	actionChooserToggleArchive = action;
 
+	action = fileChooserContextMenu->addAction(tr("View PDF..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/pdf.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewPdf()));
+	actionChooserViewPdf = action;
+
+	action = fileChooserContextMenu->addAction(tr("View HTML..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/html.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewHtml()));
+	actionChooserViewHtml = action;
+
 	fileChooserContextMenu->addSeparator();
 	action = fileChooserContextMenu->addAction(tr("Open e&xternally..."));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -2393,6 +2405,8 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 	actionChooserPlayEmbedded->setVisible(true);
 #endif
 	if ( modelIndexFileModel.isValid() ) {
+		actionChooserViewPdf->setVisible(fileModel->isPdf(modelIndexFileModel));
+		actionChooserViewHtml->setVisible(fileModel->isHtml(modelIndexFileModel));
 		if ( fileModel->isZip(modelIndexFileModel) ) {
 			actionChooserToggleArchive->setText(treeViewFileChooser->isExpanded(modelIndexFileModel) ? tr("&Close archive") : tr("&Open archive"));
 			actionChooserToggleArchive->setVisible(true);
@@ -2463,6 +2477,30 @@ void MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()
 			fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 		}
 	}
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_viewPdf()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_viewPdf()");
+#endif
+
+	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
+
+	if ( selected.count() > 0 )
+		qmc2MainWindow->viewPdf(fileModel->fileName(selected[0]));
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_viewHtml()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_viewHtml()");
+#endif
+
+	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
+
+	if ( selected.count() > 0 )
+		qmc2MainWindow->viewHtml(fileModel->fileName(selected[0]));
 }
 
 void MESSDeviceConfigurator::treeViewFileChooser_openFileExternally()
