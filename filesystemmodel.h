@@ -734,6 +734,33 @@ class FileSystemModel : public QAbstractItemModel
 			mBreakZipScan = true;
 		}
 
+		bool isPdf(const QModelIndex &index)
+		{
+			FileSystemItem *item = getItem(index);
+			if ( item ) {
+				if ( item->itemParent() != mRootItem )
+					return false;
+				else {
+					return (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Pp][Dd][Ff]")) == 4);
+				}
+			} else
+				return false;
+		}
+
+		bool isHtml(const QModelIndex &index)
+		{
+			FileSystemItem *item = getItem(index);
+			if ( item ) {
+				if ( item->itemParent() != mRootItem )
+					return false;
+				else {
+					return (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Hh][Tt][Mm][Ll]")) == 5) || (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Hh][Tt][Mm]")) == 4);
+				}
+			} else
+				return false;
+		}
+
+
 	public slots:
 		QModelIndex refresh()
 		{

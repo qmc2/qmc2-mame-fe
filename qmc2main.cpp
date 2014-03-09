@@ -2436,6 +2436,15 @@ void MainWindow::on_actionNewBrowserWindow_triggered(bool)
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionNewBrowserWindow_triggered(bool)");
 #endif
 
+	viewHtml();
+}
+
+void MainWindow::viewHtml(QString filePath)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::viewHtml(QString filePath = %1)").arg(filePath));
+#endif
+
 	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
 	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
@@ -2445,6 +2454,17 @@ void MainWindow::on_actionNewBrowserWindow_triggered(bool)
 		webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
 	}
 	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+	if ( !filePath.isEmpty() ) {
+		QFileInfo fi(filePath);
+		if ( fi.isReadable() ) {
+#if defined(QMC2_OS_WIN)
+			webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath());
+#else
+			webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath());
+#endif
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't load HTML file '%1'").arg(filePath));
+	}
 	webBrowser->show();
 }
 

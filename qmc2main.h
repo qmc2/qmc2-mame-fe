@@ -524,6 +524,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void reloadImageFormats();
 		void updateTabWidgets();
 		void viewPdf(QString filePath = QString());
+		void viewHtml(QString filePath = QString());
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);
