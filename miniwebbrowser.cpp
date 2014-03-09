@@ -401,12 +401,26 @@ void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 #endif
 
 	if ( url.isValid() ) {
-		QWebHitTestResult hitTest = webViewBrowser->page()->mainFrame()->hitTestContent(webViewBrowser->lastMouseClickPosition);
-		if ( hitTest.linkTargetFrame() )
-			hitTest.linkTargetFrame()->load(url);
-		else {
-			webViewBrowser->load(url);
-			webViewBrowser_urlChanged(url);
+		if ( isPdfViewer() ) {
+			MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
+			webBrowser->setAttribute(Qt::WA_DeleteOnClose);
+			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry") )
+				webBrowser->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/Geometry").toByteArray());
+			else {
+				webBrowser->adjustSize();
+				webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
+			}
+			connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+			webBrowser->webViewBrowser->load(url);
+			webBrowser->show();
+		} else {
+			QWebHitTestResult hitTest = webViewBrowser->page()->mainFrame()->hitTestContent(webViewBrowser->lastMouseClickPosition);
+			if ( hitTest.linkTargetFrame() )
+				hitTest.linkTargetFrame()->load(url);
+			else {
+				webViewBrowser->load(url);
+				webViewBrowser_urlChanged(url);
+			}
 		}
 	}
 	QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
