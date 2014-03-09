@@ -252,6 +252,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionExportROMStatus_triggered(bool checked = false);
 		void on_actionDemoMode_triggered(bool checked = false);
 		void on_actionNewBrowserWindow_triggered(bool checked = false);
+		void on_actionNewPdfViewer_triggered(bool checked = false);
 		void on_actionClearImageCache_triggered(bool checked = false);
 		void on_actionClearIconCache_triggered(bool checked = false);
 		void on_actionClearMAWSCache_triggered(bool checked = false);
