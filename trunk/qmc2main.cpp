@@ -2496,9 +2496,9 @@ void MainWindow::viewPdf(QString filePath)
 		}
 		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
 #if defined(QMC2_OS_WIN)
-		webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath() + QString("?file=%1").arg(filePath));
+		webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath() + QString("?file=file:///%1").arg(filePath));
 #else
-		webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath() + QString("?file=%1").arg(filePath));
+		webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath() + QString("?file=file://%1").arg(filePath));
 #endif
 		webBrowser->show();
 	} else
