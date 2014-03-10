@@ -691,7 +691,7 @@ class FileSystemModel : public QAbstractItemModel
 		{
 			FileSystemItem *item = getItem(index);
 			if ( item )
-				return item->absoluteDirPath() + QDir::toNativeSeparators("/") + item->fileName();
+				return item->absoluteDirPath() + "/" + item->fileName();
 			else
 				return QString();
 		}
