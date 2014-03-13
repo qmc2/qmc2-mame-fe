@@ -97,6 +97,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QAction *actionRemoveConfiguration;
 		QAction *actionChooserToggleArchive;
 		QAction *actionChooserViewPdf;
+		QAction *actionChooserViewPostscript;
 		QAction *actionChooserViewHtml;
 		QAction *actionChooserOpenExternally;
 		QAction *actionChooserOpenFolder;
