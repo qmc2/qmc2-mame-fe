@@ -760,6 +760,19 @@ class FileSystemModel : public QAbstractItemModel
 				return false;
 		}
 
+		bool isPostscript(const QModelIndex &index)
+		{
+			FileSystemItem *item = getItem(index);
+			if ( item ) {
+				if ( item->itemParent() != mRootItem )
+					return false;
+				else {
+					return (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Pp][Ss]")) == 3);
+				}
+			} else
+				return false;
+		}
+
 
 	public slots:
 		QModelIndex refresh()

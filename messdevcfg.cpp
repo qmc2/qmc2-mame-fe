@@ -331,6 +331,12 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewPdf()));
 	actionChooserViewPdf = action;
 
+	action = fileChooserContextMenu->addAction(tr("View Postscript..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/postscript.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewPdf()));
+	actionChooserViewPostscript = action;
+
 	action = fileChooserContextMenu->addAction(tr("View HTML..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/html.png")));
@@ -2406,6 +2412,7 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 #endif
 	if ( modelIndexFileModel.isValid() ) {
 		actionChooserViewPdf->setVisible(fileModel->isPdf(modelIndexFileModel));
+		actionChooserViewPostscript->setVisible(fileModel->isPostscript(modelIndexFileModel));
 		actionChooserViewHtml->setVisible(fileModel->isHtml(modelIndexFileModel));
 		if ( fileModel->isZip(modelIndexFileModel) ) {
 			actionChooserToggleArchive->setText(treeViewFileChooser->isExpanded(modelIndexFileModel) ? tr("&Close archive") : tr("&Open archive"));

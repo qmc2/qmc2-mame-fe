@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1194';
-PDFJS.build = '1c0e1cc';
+PDFJS.version = '0.8.1202';
+PDFJS.build = 'e5cd750';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -179,7 +179,9 @@ var OPS = PDFJS.OPS = {
   paintImageMaskXObjectGroup: 84,
   paintImageXObject: 85,
   paintInlineImageXObject: 86,
-  paintInlineImageXObjectGroup: 87
+  paintInlineImageXObjectGroup: 87,
+  paintImageXObjectRepeat: 88,
+  paintImageMaskXObjectRepeat: 89
 };
 
 // A notice for devs. These are good for things that are helpful to devs, such
@@ -7015,6 +7017,39 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.paintInlineImageXObject(maskCanvas.canvas);
     },
 
+    paintImageMaskXObjectRepeat:
+      function CanvasGraphics_paintImageMaskXObjectRepeat(imgData, scaleX,
+                                                          scaleY, positions) {
+      var width = imgData.width;
+      var height = imgData.height;
+      var ctx = this.ctx;
+
+      var maskCanvas = CachedCanvases.getCanvas('maskCanvas', width, height);
+      var maskCtx = maskCanvas.context;
+      maskCtx.save();
+
+      putBinaryImageMask(maskCtx, imgData);
+
+      maskCtx.globalCompositeOperation = 'source-in';
+
+      var fillColor = this.current.fillColor;
+      maskCtx.fillStyle = (fillColor && fillColor.hasOwnProperty('type') &&
+        fillColor.type === 'Pattern') ?
+        fillColor.getPattern(maskCtx, this) : fillColor;
+      maskCtx.fillRect(0, 0, width, height);
+
+      maskCtx.restore();
+
+      for (var i = 0, ii = positions.length; i < ii; i += 2) {
+        ctx.save();
+        ctx.transform(scaleX, 0, 0, scaleY, positions[i], positions[i + 1]);
+        ctx.scale(1, -1);
+        ctx.drawImage(maskCanvas.canvas, 0, 0, width, height,
+          0, -1, 1, 1);
+        ctx.restore();
+      }
+    },
+
     paintImageMaskXObjectGroup:
       function CanvasGraphics_paintImageMaskXObjectGroup(images) {
       var ctx = this.ctx;
@@ -7050,10 +7085,29 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
     paintImageXObject: function CanvasGraphics_paintImageXObject(objId) {
       var imgData = this.objs.get(objId);
-      if (!imgData)
+      if (!imgData) {
         error('Dependent image isn\'t ready yet');
+      }
 
       this.paintInlineImageXObject(imgData);
+    },
+
+    paintImageXObjectRepeat:
+      function CanvasGraphics_paintImageXObjectRepeat(objId, scaleX, scaleY,
+                                                          positions) {
+      var imgData = this.objs.get(objId);
+      if (!imgData) {
+        error('Dependent image isn\'t ready yet');
+      }
+
+      var width = imgData.width;
+      var height = imgData.height;
+      var map = [];
+      for (var i = 0, ii = positions.length; i < ii; i += 2) {
+        map.push({transform: [scaleX, 0, 0, scaleY, positions[i],
+                 positions[i + 1]], x: 0, y: 0, w: width, h: height});
+      }
+      this.paintInlineImageXObjectGroup(imgData, map);
     },
 
     paintInlineImageXObject:
