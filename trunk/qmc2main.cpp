@@ -2495,11 +2495,19 @@ void MainWindow::viewPdf(QString filePath)
 			webBrowser->move(QApplication::desktop()->screen()->rect().center() - webBrowser->rect().center());
 		}
 		connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
+		if ( !filePath.isEmpty() ) {
 #if defined(QMC2_OS_WIN)
-		webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath() + QString("?file=file:///%1").arg(filePath));
+			webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath() + QString("?file=file:///%1").arg(filePath));
 #else
-		webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath() + QString("?file=file://%1").arg(filePath));
+			webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath() + QString("?file=file://%1").arg(filePath));
 #endif
+		} else {
+#if defined(QMC2_OS_WIN)
+			webBrowser->webViewBrowser->load("file:///" + fi.canonicalFilePath() + QString("?file="));
+#else
+			webBrowser->webViewBrowser->load("file://" + fi.canonicalFilePath() + QString("?file="));
+#endif
+		}
 		webBrowser->show();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't load PDF viewer from '%1'").arg(htmlPath));
