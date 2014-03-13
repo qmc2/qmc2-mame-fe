@@ -548,6 +548,7 @@ Options::Options(QWidget *parent)
   lineEditLogFont->setPlaceholderText(tr("Default"));
   lineEditMAMEVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
   lineEditMESSVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
+  lineEditUMEVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
 
 #if QMC2_JOYSTICK != 1
   tabWidgetFrontendSettings->removeTab(tabWidgetFrontendSettings->indexOf(tabFrontendJoystick));

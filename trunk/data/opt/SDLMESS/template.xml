@@ -983,14 +983,6 @@
       <description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
       <description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
     </option>
-    <option default="0" name="minimum_width" type="int">
-      <description lang="us" text="Minimum screen width"/>
-      <description lang="de" text="Minimale Bildschirm-Breite"/>
-    </option>
-    <option default="0" name="minimum_height" type="int">
-      <description lang="us" text="Minimum screen height"/>
-      <description lang="de" text="Minimale Bildschirm-Höhe"/>
-    </option>
     <option default="true" name="centerh" type="bool">
       <description lang="es" text="Centrar horizontalmente en el área visible"/>
       <description lang="us" text="Center horizontally within the view area"/>
