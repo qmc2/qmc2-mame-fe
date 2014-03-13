@@ -13,72 +13,30 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+Adobe CMap resources are covered by their own copyright and license:
+http://sourceforge.net/adobe/cmap/wiki/License/
 -->
 <html dir="ltr" mozdisallowselectionprint moznomarginboxes>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--#if GENERIC || CHROME-->
     <meta name="google" content="notranslate">
-<!--#endif-->
     <title></title>
 
-<!--#if FIREFOX || MOZCENTRAL-->
-<!--#include viewer-snippet-firefox-extension.html-->
-<!--#endif-->
-<!--#if CHROME-->
-<!--#include viewer-snippet-chrome-extension.html-->
-<!--#endif-->
 
     <link rel="stylesheet" href="viewer.css"/>
-<!--#if !PRODUCTION-->
-    <link rel="resource" type="application/l10n" href="locale/locale.properties"/>
-<!--#endif-->
 
-<!--#if !(FIREFOX || MOZCENTRAL || CHROME)-->
     <script type="text/javascript" src="compatibility.js"></script>
-<!--#endif-->
 
-<!--#if !PRODUCTION-->
-    <script type="text/javascript" src="../external/webL10n/l10n.js"></script>
-<!--#endif-->
 
-<!--#if !PRODUCTION-->
-    <script type="text/javascript" src="../src/shared/util.js"></script>
-    <script type="text/javascript" src="../src/shared/colorspace.js"></script>
-    <script type="text/javascript" src="../src/shared/function.js"></script>
-    <script type="text/javascript" src="../src/shared/annotation.js"></script>
-    <script type="text/javascript" src="../src/display/api.js"></script>
-    <script type="text/javascript" src="../src/display/metadata.js"></script>
-    <script type="text/javascript" src="../src/display/canvas.js"></script>
-    <script type="text/javascript" src="../src/display/pattern_helper.js"></script>
-    <script type="text/javascript" src="../src/display/font_loader.js"></script>
-    <script type="text/javascript">PDFJS.workerSrc = '../src/worker_loader.js';</script>
-<!--#endif-->
 
-<!--#if GENERIC -->
-<!--#include viewer-snippet.html-->
-<!--#endif-->
+<!-- This snippet is used in production, see Makefile -->
+<link rel="resource" type="application/l10n" href="locale/locale.properties"/>
+<script type="text/javascript" src="l10n.js"></script>
+<script type="text/javascript" src="../build/pdf.js"></script>
 
-<!--#if !PRODUCTION-->
-    <script type="text/javascript" src="ui_utils.js"></script>
-    <script type="text/javascript" src="default_preferences.js"></script>
-    <script type="text/javascript" src="preferences.js"></script>
-    <script type="text/javascript" src="download_manager.js"></script>
-    <script type="text/javascript" src="view_history.js"></script>
-    <script type="text/javascript" src="page_view.js"></script>
-    <script type="text/javascript" src="thumbnail_view.js"></script>
-    <script type="text/javascript" src="text_layer_builder.js"></script>
-    <script type="text/javascript" src="pdf_find_bar.js"></script>
-    <script type="text/javascript" src="pdf_find_controller.js"></script>
-    <script type="text/javascript" src="pdf_history.js"></script>
-    <script type="text/javascript" src="secondary_toolbar.js"></script>
-    <script type="text/javascript" src="password_prompt.js"></script>
-    <script type="text/javascript" src="presentation_mode.js"></script>
-    <script type="text/javascript" src="grab_to_pan.js"></script>
-    <script type="text/javascript" src="hand_tool.js"></script>
-    <script type="text/javascript" src="document_properties.js"></script>
-<!--#endif-->
+
 
     <script type="text/javascript" src="debugger.js"></script>
     <script type="text/javascript" src="viewer.js"></script>
@@ -369,8 +327,78 @@ limitations under the License.
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
-<!--#if !(FIREFOX || MOZCENTRAL)-->
-<!--#include viewer-snippet-mozPrintCallback-polyfill.html-->
-<!--#endif--->
+<div id="mozPrintCallback-shim" hidden>
+  <style scoped>
+#mozPrintCallback-shim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999999;
+
+  display: block;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#mozPrintCallback-shim[hidden] {
+  display: none;
+}
+@media print {
+  #mozPrintCallback-shim {
+    display: none;
+  }
+}
+
+#mozPrintCallback-shim .mozPrintCallback-dialog-box {
+  display: inline-block;
+  margin: -50px auto 0;
+  position: relative;
+  top: 45%;
+  left: 0;
+  min-width: 220px;
+  max-width: 400px;
+
+  padding: 9px;
+
+  border: 1px solid hsla(0, 0%, 0%, .5);
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+  background-color: #474747;
+
+  color: hsl(0, 0%, 85%);
+  font-size: 16px;
+  line-height: 20px;
+}
+#mozPrintCallback-shim .progress-row {
+  clear: both;
+  padding: 1em 0;
+}
+#mozPrintCallback-shim progress {
+  width: 100%;
+}
+#mozPrintCallback-shim .relative-progress {
+  clear: both;
+  float: right;
+}
+#mozPrintCallback-shim .progress-actions {
+  clear: both;
+}
+  </style>
+  <div class="mozPrintCallback-dialog-box">
+    <!-- TODO: Localise the following strings -->
+    Preparing document for printing...
+    <div class="progress-row">
+      <progress value="0" max="100"></progress>
+      <span class="relative-progress">0%</span>
+    </div>
+    <div class="progress-actions">
+      <input type="button" value="Cancel" class="mozPrintCallback-cancel">
+    </div>
+  </div>
+</div>
+
   </body>
 </html>
+
