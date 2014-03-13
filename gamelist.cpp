@@ -294,8 +294,9 @@ void Gamelist::enableWidgets(bool enable)
 #endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(QMC2_OS_WIN)
+  qmc2Options->toolButtonBrowseMAMEVariantExe->setEnabled(enable);
   qmc2Options->toolButtonBrowseMESSVariantExe->setEnabled(enable);
-  qmc2Options->toolButtonBrowseMESSVariantExe->setEnabled(enable);
+  qmc2Options->toolButtonBrowseUMEVariantExe->setEnabled(enable);
 #endif
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
