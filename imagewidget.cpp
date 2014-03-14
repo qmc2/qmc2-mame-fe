@@ -337,7 +337,6 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	} else if ( useSevenZip() ) {
 		// try loading image from (semicolon-separated) 7z archive(s)
 		QByteArray imageData;
-		int len, i;
 
 		foreach (int format, activeFormats) {
 			QString formatName = formatNames[format];
