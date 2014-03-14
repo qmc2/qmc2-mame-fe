@@ -664,7 +664,7 @@ class FileSystemModel : public QAbstractItemModel
 			} else if ( lowerCaseFilePath.endsWith(".7z") ) {
 				SevenZipFile sevenZipFile(fileItem->absoluteFilePath());
 				if ( sevenZipFile.open() ) {
-					uint row = 0;
+					int row = 0;
 					mZipEntryList.clear();
 					mZipEntrySizes.clear();
 					mZipEntryDates.clear();
