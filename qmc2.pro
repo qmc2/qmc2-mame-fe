@@ -121,6 +121,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			sevenzipfile.cpp \
 			networkaccessmanager.cpp \
 			ftpreply.cpp \
+			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
 			htmleditor/htmleditor.cpp \
@@ -293,8 +294,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc
 			}
-		} else {
-			SOURCES += minizip/ioapi.c
 		}
 	} else {
 		error(Qt $$QT_VERSION is insufficient -- Qt 4.8.0+ required)
