@@ -68,9 +68,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef NOUNCRYPT
-        #define NOUNCRYPT
-#endif
+// Matt Connolly 2013-09-12: this was defined in minizip 1.1.
+// @see http://www.winimage.com/zLibDll/minizip.html
+// Defining it defeats the ability to unzip password protected zip files, so this
+// is commented out so that existing tests pass.
+
+//#ifndef NOUNCRYPT
+//        #define NOUNCRYPT
+//#endif
 
 #include "zlib.h"
 #include "unzip.h"
@@ -1696,8 +1701,7 @@ extern int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, unsigned len)
         return UNZ_PARAMERROR;
 
 
-    if ((pfile_in_zip_read_info->read_buffer == NULL))
-        return UNZ_END_OF_LIST_OF_FILE;
+    if (pfile_in_zip_read_info->read_buffer == NULL)        return UNZ_END_OF_LIST_OF_FILE;
     if (len==0)
         return 0;
 
