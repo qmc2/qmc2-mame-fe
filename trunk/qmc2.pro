@@ -121,7 +121,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			sevenzipfile.cpp \
 			networkaccessmanager.cpp \
 			ftpreply.cpp \
-			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
 			htmleditor/htmleditor.cpp \
@@ -273,7 +272,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			}
 		}
 		win32 {
-			SOURCES += windows_tools.cpp
+			SOURCES += windows_tools.cpp \
+				   minizip/iowin32.c
 			DEFINES += PSAPI_VERSION=1
 			# use VC++ (default) / MinGW
 			greaterThan(QMC2_MINGW, 0) {
@@ -293,6 +293,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc
 			}
+		} else {
+			SOURCES += minizip/ioapi.c
 		}
 	} else {
 		error(Qt $$QT_VERSION is insufficient -- Qt 4.8.0+ required)
