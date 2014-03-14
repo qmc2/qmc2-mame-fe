@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1204';
-PDFJS.build = '432af8b';
+PDFJS.version = '0.8.1220';
+PDFJS.build = '8266225';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -36171,41 +36171,39 @@ var ArithmeticDecoder = (function ArithmeticDecoderClosure() {
       var cx_index = contexts[pos] >> 1, cx_mps = contexts[pos] & 1;
       var qeTableIcx = QeTable[cx_index];
       var qeIcx = qeTableIcx.qe;
-      var nmpsIcx = qeTableIcx.nmps;
-      var nlpsIcx = qeTableIcx.nlps;
-      var switchIcx = qeTableIcx.switchFlag;
       var d;
-      this.a -= qeIcx;
+      var a = this.a - qeIcx;
 
       if (this.chigh < qeIcx) {
         // exchangeLps
-        if (this.a < qeIcx) {
-          this.a = qeIcx;
+        if (a < qeIcx) {
+          a = qeIcx;
           d = cx_mps;
-          cx_index = nmpsIcx;
+          cx_index = qeTableIcx.nmps;
         } else {
-          this.a = qeIcx;
-          d = 1 - cx_mps;
-          if (switchIcx) {
+          a = qeIcx;
+          d = 1 ^ cx_mps;
+          if (qeTableIcx.switchFlag === 1) {
             cx_mps = d;
           }
-          cx_index = nlpsIcx;
+          cx_index = qeTableIcx.nlps;
         }
       } else {
         this.chigh -= qeIcx;
-        if ((this.a & 0x8000) !== 0) {
+        if ((a & 0x8000) !== 0) {
+          this.a = a;
           return cx_mps;
         }
         // exchangeMps
-        if (this.a < qeIcx) {
-          d = 1 - cx_mps;
-          if (switchIcx) {
+        if (a < qeIcx) {
+          d = 1 ^ cx_mps;
+          if (qeTableIcx.switchFlag === 1) {
             cx_mps = d;
           }
-          cx_index = nlpsIcx;
+          cx_index = qeTableIcx.nlps;
         } else {
           d = cx_mps;
-          cx_index = nmpsIcx;
+          cx_index = qeTableIcx.nmps;
         }
       }
       // C.3.3 renormD;
@@ -36214,11 +36212,12 @@ var ArithmeticDecoder = (function ArithmeticDecoderClosure() {
           this.byteIn();
         }
 
-        this.a <<= 1;
+        a <<= 1;
         this.chigh = ((this.chigh << 1) & 0xFFFF) | ((this.clow >> 15) & 1);
         this.clow = (this.clow << 1) & 0xFFFF;
         this.ct--;
-      } while ((this.a & 0x8000) === 0);
+      } while ((a & 0x8000) === 0);
+      this.a = a;
 
       contexts[pos] = cx_index << 1 | cx_mps;
       return d;
@@ -38121,7 +38120,7 @@ var Jbig2Image = (function Jbig2ImageClosure() {
           offset = 340;
           break;
         default:
-          v = v * 2 + bit;
+          v = ((v << 1) | bit) >>> 0;
           if (--toRead === 0) {
             state = 0;
           }
@@ -38140,12 +38139,12 @@ var Jbig2Image = (function Jbig2ImageClosure() {
     var prev = 1;
     for (var i = 0; i < codeLength; i++) {
       var bit = decoder.readBit(contexts, prev);
-      prev = (prev * 2) + bit;
+      prev = (prev << 1) | bit;
     }
     if (codeLength < 31) {
       return prev & ((1 << codeLength) - 1);
     }
-    return prev - Math.pow(2, codeLength);
+    return prev & 0x7FFFFFFF;
   }
 
   // 7.3 Segment types
@@ -38271,26 +38270,41 @@ var Jbig2Image = (function Jbig2ImageClosure() {
         changingTemplateEntries.push(k);
       }
     }
-    changingTemplateEntries = new Uint8Array(changingTemplateEntries);
     var changingEntriesLength = changingTemplateEntries.length;
 
+    var changingTemplateX = new Int8Array(changingEntriesLength);
+    var changingTemplateY = new Int8Array(changingEntriesLength);
+    var changingTemplateBit = new Uint16Array(changingEntriesLength);
+    for (var c = 0; c < changingEntriesLength; c++) {
+      k = changingTemplateEntries[c];
+      changingTemplateX[c] = template[k].x;
+      changingTemplateY[c] = template[k].y;
+      changingTemplateBit[c] = 1 << (templateLength - 1 - k);
+    }
+
+    // Get the safe bounding box edges from the width, height, minX, maxX, minY
+    var sbb_left = -minX;
+    var sbb_top = -minY;
+    var sbb_right = width - maxX;
+
     var pseudoPixelContext = ReusedContexts[templateIndex];
+    var row = new Uint8Array(width);
     var bitmap = [];
 
     var decoder = decodingContext.decoder;
     var contexts = decodingContext.contextCache.getContexts('GB');
 
-    var ltp = 0, c, j, i0, j0, k, contextLabel = 0;
+    var ltp = 0, c, j, i0, j0, k, contextLabel = 0, bit, shift;
     for (var i = 0; i < height; i++) {
       if (prediction) {
         var sltp = decoder.readBit(contexts, pseudoPixelContext);
         ltp ^= sltp;
+        if (ltp) {
+          bitmap.push(row); // duplicate previous row
+          continue;
+        }
       }
-      if (ltp) {
-        bitmap.push(bitmap[bitmap.length - 1]); // duplicate previous row
-        continue;
-      }
-      var row = new Uint8Array(width);
+      row = new Uint8Array(row);
       bitmap.push(row);
       for (j = 0; j < width; j++) {
         if (useskip && skip[i][j]) {
@@ -38299,24 +38313,33 @@ var Jbig2Image = (function Jbig2ImageClosure() {
         }
         // Are we in the middle of a scanline, so we can reuse contextLabel
         // bits?
-        if (i + minY > 0 && j + minX >= 0 && j + maxX < width) {
+        if (j >= sbb_left && j < sbb_right && i >= sbb_top) {
           // If yes, we can just shift the bits that are reusable and only
           // fetch the remaining ones.
           contextLabel = (contextLabel << 1) & reuseMask;
-          for (c = 0; c < changingEntriesLength; c++) {
-            k = changingTemplateEntries[c];
-            i0 = i + templateY[k];
-            j0 = j + templateX[k];
-            contextLabel |= bitmap[i0][j0] << (templateLength - 1 - k);
+          for (k = 0; k < changingEntriesLength; k++) {
+            i0 = i + changingTemplateY[k];
+            j0 = j + changingTemplateX[k];
+            bit = bitmap[i0][j0];
+            if (bit) {
+              bit = changingTemplateBit[k];
+              contextLabel |= bit;
+            }
           }
         } else {
           // compute the contextLabel from scratch
           contextLabel = 0;
-          for (k = 0; k < templateLength; k++) {
-            i0 = i + templateY[k];
+          shift = templateLength - 1;
+          for (k = 0; k < templateLength; k++, shift--) {
             j0 = j + templateX[k];
-            if (i0 >= 0 && j0 >= 0 && j0 < width) {
-              contextLabel |= bitmap[i0][j0] << (templateLength - 1 - k);
+            if (j0 >= 0 && j0 < width) {
+              i0 = i + templateY[k];
+              if (i0 >= 0) {
+                bit = bitmap[i0][j0];
+                if (bit) {
+                  contextLabel |= bit << shift;
+                }
+              }
             }
           }
         }
@@ -38368,13 +38391,13 @@ var Jbig2Image = (function Jbig2ImageClosure() {
       if (prediction) {
         var sltp = decoder.readBit(contexts, pseudoPixelContext);
         ltp ^= sltp;
+        if (ltp) {
+          error('JBIG2 error: prediction is not supported');
+        }
       }
       var row = new Uint8Array(width);
       bitmap.push(row);
       for (var j = 0; j < width; j++) {
-        if (ltp) {
-          error('JBIG2 error: prediction is not supported');
-        }
 
         var contextLabel = 0;
         for (var k = 0; k < codingTemplateLength; k++) {
@@ -38954,34 +38977,46 @@ var Jbig2Image = (function Jbig2ImageClosure() {
       var combinationOperator = pageInfo.combinationOperatorOverride ?
         regionInfo.combinationOperator : pageInfo.combinationOperator;
       var buffer = this.buffer;
-      for (var i = 0; i < height; i++) {
-        var mask = 128 >> (regionInfo.x & 7);
-        var offset = (i + regionInfo.y) * rowSize + (regionInfo.x >> 3);
-        switch (combinationOperator) {
-          case 0: // OR
+      var mask0 =  128 >> (regionInfo.x & 7);
+      var offset0 = regionInfo.y * rowSize + (regionInfo.x >> 3);
+      switch (combinationOperator) {
+        case 0: // OR
+          for (var i = 0; i < height; i++) {
+            var mask = mask0;
+            var offset = offset0;
             for (var j = 0; j < width; j++) {
-              buffer[offset] |= bitmap[i][j] ? mask : 0;
+              if (bitmap[i][j]) {
+                buffer[offset] |= mask;
+              }
               mask >>= 1;
               if (!mask) {
                 mask = 128;
                 offset++;
               }
             }
-            break;
-          case 2: // XOR
+            offset0 += rowSize;
+          }
+        break;
+        case 2: // XOR
+          for (var i = 0; i < height; i++) {
+            var mask = mask0;
+            var offset = offset0;
             for (var j = 0; j < width; j++) {
-              buffer[offset] ^= bitmap[i][j] ? mask : 0;
+              if (bitmap[i][j]) {
+                buffer[offset] ^= mask;
+              }
               mask >>= 1;
               if (!mask) {
                 mask = 128;
                 offset++;
               }
             }
-            break;
-          default:
-            error('JBIG2 error: operator ' + combinationOperator +
-                  ' is not supported');
-        }
+            offset0 += rowSize;
+          }
+          break;
+        default:
+          error('JBIG2 error: operator ' + combinationOperator +
+                ' is not supported');
       }
     },
     onImmediateGenericRegion:
