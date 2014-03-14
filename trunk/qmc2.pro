@@ -273,8 +273,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			}
 		}
 		win32 {
-			SOURCES += windows_tools.cpp \
-				   minizip/iowin32.c
+			SOURCES += windows_tools.cpp
 			DEFINES += PSAPI_VERSION=1
 			# use VC++ (default) / MinGW
 			greaterThan(QMC2_MINGW, 0) {
