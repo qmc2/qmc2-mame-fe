@@ -820,7 +820,10 @@ class FileSystemModel : public QAbstractItemModel
 		void populateItems()
 		{
 			if ( dirScanner ) {
-				if ( !dirScanner->isReady ) QTimer::singleShot(10, this, SLOT(populateItems()));
+				if ( !dirScanner->isReady ) {
+					QTimer::singleShot(1, this, SLOT(populateItems()));
+					return;
+				}
 				dirScanner->dirPath = mRootItem->absoluteDirPath();
 				dirScanner->nameFilters = mNameFilters;
 				dirScanner->stopScanning = false;
