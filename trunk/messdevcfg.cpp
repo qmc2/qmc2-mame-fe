@@ -141,6 +141,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	setupUi(this);
 
+	iconFactory = new QFileIconProvider();
+
 	tabFileChooser->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
@@ -327,19 +329,28 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	action = fileChooserContextMenu->addAction(tr("View PDF..."));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/pdf.png")));
+	QIcon icon = iconFactory->icon(QFileInfo("dummy.pdf"));
+	if ( icon.isNull() )
+		icon = QIcon(QString::fromUtf8(":/data/img/pdf.png"));
+	action->setIcon(icon);
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewPdf()));
 	actionChooserViewPdf = action;
 
 	action = fileChooserContextMenu->addAction(tr("View Postscript..."));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/postscript.png")));
+	icon = iconFactory->icon(QFileInfo("dummy.ps"));
+	if ( icon.isNull() )
+		icon = QIcon(QString::fromUtf8(":/data/img/postscript.png"));
+	action->setIcon(icon);
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewPdf()));
 	actionChooserViewPostscript = action;
 
 	action = fileChooserContextMenu->addAction(tr("View HTML..."));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/html.png")));
+	icon = iconFactory->icon(QFileInfo("dummy.html"));
+	if ( icon.isNull() )
+		icon = QIcon(QString::fromUtf8(":/data/img/html.png"));
+	action->setIcon(icon);
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_viewHtml()));
 	actionChooserViewHtml = action;
 
@@ -398,6 +409,7 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::~MESSDeviceConfigurator()");
 #endif
 
+	delete iconFactory;
 }
 
 void MESSDeviceConfigurator::saveSetup()

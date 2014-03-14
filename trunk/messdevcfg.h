@@ -4,8 +4,10 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QXmlDefaultHandler>
-#include "filesystemmodel.h"
+#include <QFileIconProvider>
+#include <QIcon>
 
+#include "filesystemmodel.h"
 #include "ui_messdevcfg.h"
 
 class MESSDeviceFileDelegate : public QItemDelegate
@@ -68,6 +70,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool comboBoxChooserFilterPatternHadFocus;
 		int fileModelRowInsertionCounter;
 		MESSDeviceFileDelegate fileEditDelegate;
+		QFileIconProvider *iconFactory;
 		QByteArray fileChooserHeaderState;
 		QByteArray dirChooserHeaderState;
 		QString messMachineName;
