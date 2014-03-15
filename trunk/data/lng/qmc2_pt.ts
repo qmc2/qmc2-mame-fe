@@ -2921,42 +2921,42 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../ftpreply.cpp" line="103"/>
         <source>FTP directory listing for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Listagem de diretório FTP para %1</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="110"/>
         <source>Parent directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório pai</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="127"/>
         <source>File</source>
-        <translation type="unfinished">Arquivo</translation>
+        <translation>Arquivo</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="129"/>
         <source>Folder</source>
-        <translation type="unfinished">Pasta</translation>
+        <translation>Pasta</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="131"/>
         <source>Unknown</source>
-        <translation type="unfinished">Desconhecido</translation>
+        <translation>Desconhecido</translation>
     </message>
 </context>
 <context>
@@ -3221,12 +3221,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="203"/>
         <source>FATAL: can&apos;t open icon file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir o arquivo de ícone %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="203"/>
         <source>7z error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do 7z</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="529"/>
@@ -3628,12 +3628,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="3600"/>
         <source>pre-caching icons from 7z archive</source>
-        <translation type="unfinished"></translation>
+        <translation>fazendo pré-cache de ícones do arquivo 7z</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3644"/>
         <source>done (pre-caching icons from 7z archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (fazendo pré-cache de ícones do arquivo 7z, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4159"/>
@@ -3994,7 +3994,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="888"/>
         <source>loading XML data and recreating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando dados XML e recriando cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1570"/>
@@ -4370,12 +4370,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../gamelist.cpp" line="2639"/>
         <source>done (loading XML data and recreating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados XML e recriando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3539"/>
         <source>pre-caching icons from ZIP archive</source>
-        <translation>pre-cache de íconos do arquivo ZIP</translation>
+        <translation>pre-cache de ícones do arquivo ZIP</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3546"/>
@@ -5294,12 +5294,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.ui" line="160"/>
         <source>Current progress</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="173"/>
         <source>Current status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado atual</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="252"/>
@@ -5475,7 +5475,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.cpp" line="542"/>
         <location filename="../../imagechecker.cpp" line="699"/>
         <source>logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="544"/>
@@ -5520,7 +5520,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="755"/>
         <source>Decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimindo arquivo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="804"/>
@@ -5597,19 +5597,19 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.cpp" line="1207"/>
         <location filename="../../imagechecker.cpp" line="1372"/>
         <source>Executing 7z tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando ferramenta 7z</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1044"/>
         <source>Running 7z tool to remove bad image files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando ferramenta 7z para remover arquivos de imagem ruins, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1067"/>
         <location filename="../../imagechecker.cpp" line="1256"/>
         <location filename="../../imagechecker.cpp" line="1421"/>
         <source>WARNING: 7z tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ferramenta 7z não terminou corretamente. código de saída = %1, estado da saída = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1081"/>
@@ -5638,7 +5638,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.cpp" line="1250"/>
         <location filename="../../imagechecker.cpp" line="1415"/>
         <source>Running 7z tool to remove obsolete files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando ferramenta 7z para remover arquivos obsoletos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1268"/>
@@ -5706,7 +5706,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../imagechecker.cpp" line="1560"/>
         <location filename="../../imagechecker.cpp" line="1577"/>
         <source>Reading 7z directory recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo diretório do 7z recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1566"/>
@@ -5800,12 +5800,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="121"/>
         <source>Thread[%1]: failed opening 7z file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: falha ao abrir arquivo 7z &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="127"/>
         <source>Thread[%1]: 7z file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]:  Arquivo 7z &apos;%2&apos; aberto com sucesso</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="135"/>
@@ -5846,7 +5846,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="204"/>
         <source>Thread[%1]: decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: Descomprimindo arquivo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="277"/>
@@ -5856,7 +5856,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="282"/>
         <source>Thread[%1]: 7z file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: Arquivo 7z &apos;%2&apos; fechado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="286"/>
@@ -5866,7 +5866,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagechecker.cpp" line="295"/>
         <source>Thread[%1]: finished decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Thread[%1]: Descompressão do arquivo terminada</translation>
     </message>
 </context>
 <context>
@@ -6097,7 +6097,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../imagewidget.cpp" line="390"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="521"/>
@@ -6576,17 +6576,17 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../messdevcfg.cpp" line="328"/>
         <source>View PDF...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver PDF...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="334"/>
         <source>View Postscript...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver Postscript...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="340"/>
         <source>View HTML...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver HTML...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="347"/>
@@ -6941,7 +6941,7 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../messdevcfg.ui" line="340"/>
         <location filename="../../messdevcfg.ui" line="343"/>
         <source>Process ZIP and 7z contents on item activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Processar conteúdo ZIP e 7z na ativação do ítem</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="363"/>
@@ -8323,12 +8323,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2466"/>
         <source>ERROR: can&apos;t load HTML file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir arquivo HTML &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2513"/>
         <source>ERROR: can&apos;t load PDF viewer from &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir visualizador PDF em &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2745"/>
@@ -8809,7 +8809,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="11488"/>
         <source>External browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador externo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11670"/>
@@ -9885,7 +9885,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="2652"/>
         <source>Search web</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar na web</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2708"/>
@@ -10546,102 +10546,102 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="4108"/>
         <source>Wiki...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4111"/>
         <location filename="../../qmc2main.ui" line="4114"/>
         <source>Open our wiki in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nosso wiki no navegador padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4123"/>
         <source>Forum...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fórum...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4126"/>
         <location filename="../../qmc2main.ui" line="4129"/>
         <source>Open our forum in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nosso fórum no navegador padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4138"/>
         <source>Bug tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciador de defeitos (bug tracker)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4141"/>
         <location filename="../../qmc2main.ui" line="4144"/>
         <source>Open our bug-tracking system in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nossa ferramenta de gerenciamento de defeitos no navegador padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4153"/>
         <source>Google</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4156"/>
         <location filename="../../qmc2main.ui" line="4159"/>
         <source>Search with Google</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar com o Google</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4168"/>
         <source>Wikipedia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4171"/>
         <location filename="../../qmc2main.ui" line="4174"/>
         <source>Search with Wikipedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar na Wikipedia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4186"/>
         <location filename="../../qmc2main.cpp" line="11486"/>
         <source>Internal browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador interno</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4189"/>
         <location filename="../../qmc2main.ui" line="4192"/>
         <source>Use internal (or external) browser?</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar navegador interno ou externo?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4201"/>
         <source>DuckDuckGo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4204"/>
         <location filename="../../qmc2main.ui" line="4207"/>
         <source>Search with DuckDuckGo</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar com o DuckDuckGo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4216"/>
         <source>Yandex</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4219"/>
         <location filename="../../qmc2main.ui" line="4222"/>
         <source>Search with Yandex</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar com o Yandex</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4231"/>
         <source>PDF viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador PDF...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4234"/>
         <location filename="../../qmc2main.ui" line="4237"/>
         <source>Open a new empty PDF viewer window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir uma nova janela do visualizador de PDFs vazia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4036"/>
@@ -10678,7 +10678,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.ui" line="2836"/>
         <location filename="../../qmc2main.ui" line="2839"/>
         <source>View offline documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver documentação offline</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3578"/>
@@ -11273,7 +11273,7 @@ Tentar novamente?</translation>
         <location filename="../../miniwebbrowser.cpp" line="695"/>
         <location filename="../../miniwebbrowser.cpp" line="698"/>
         <source>PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador PDF</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="189"/>
@@ -11928,59 +11928,59 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="2214"/>
         <source>FATAL: can&apos;t open %1 file %2</source>
-        <translation type="unfinished"></translation>
+        <translation>FALTAL: impossível abrir arquivo %1 %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2214"/>
         <location filename="../../options.cpp" line="2249"/>
         <location filename="../../options.cpp" line="2282"/>
         <source>7z error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do 7z</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2249"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de snapshot de software %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2282"/>
         <source>FATAL: can&apos;t open icon file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de ícone %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3392"/>
         <source>Choose XML cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo do banco de dados do cache XML</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3428"/>
         <source>Choose 7-zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher ferramenta 7-zip</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3621"/>
         <source>Choose MAME game info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o BD de informações de jogos do MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3633"/>
         <source>Choose MESS machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o BD de informações de máquinas do MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3645"/>
         <source>Choose MAME emulator info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o BD de informações de emulador do MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3657"/>
         <source>Choose MESS emulator info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o BD de informações de emulador do MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3921"/>
         <source>Choose compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de preview</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3921"/>
@@ -11994,7 +11994,7 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="4044"/>
         <location filename="../../options.cpp" line="4075"/>
         <source>ZIP archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos ZIP</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3921"/>
@@ -12008,7 +12008,7 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="4044"/>
         <location filename="../../options.cpp" line="4075"/>
         <source>7z archives</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos 7z</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3921"/>
@@ -12022,52 +12022,52 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="4044"/>
         <location filename="../../options.cpp" line="4075"/>
         <source>All files</source>
-        <translation type="unfinished">Todos os arquivos</translation>
+        <translation>Todos os arquivos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3938"/>
         <source>Choose compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de flyer</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3955"/>
         <source>Choose compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de ícone</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3972"/>
         <source>Choose compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de gabinetes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3989"/>
         <source>Choose compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de controles</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4007"/>
         <source>Choose compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de lgoso</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4009"/>
         <source>Choose compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de marquees</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4027"/>
         <source>Choose compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de títulos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4044"/>
         <source>Choose compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de PCB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4075"/>
         <source>Choose compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido de snapshot de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4657"/>
@@ -12082,17 +12082,17 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="326"/>
         <source>Switch between specifying a logo directory or a compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de logos ou um arquivo comprimido de logos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="328"/>
         <source>Compressed logo file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de logos (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="330"/>
         <source>Browse compressed logo file</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar arquivo comprimido de logo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="486"/>
@@ -13749,27 +13749,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="1465"/>
         <source>MAME game information database - history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados de informação de jogos do MAME - history.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1478"/>
         <source>Browse MAME game information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por base de dados de informação de jogos do MAME(history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2884"/>
         <source>Load MESS machine information database (sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base da dados de informação de máquinas do MESS (sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2926"/>
         <source>MESS machine information database - sysinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base da dados de informação de máquinas do MESS -- sysinfo.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2939"/>
         <source>Browse MESS machine information database (sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por base da dados de informação de máquinas do MESS (sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3454"/>
@@ -14069,7 +14069,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="963"/>
         <source>Compressed cabinet file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de gabinetes (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="976"/>
@@ -14082,7 +14082,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.ui" line="2219"/>
         <location filename="../../options.ui" line="2337"/>
         <source>Select compression format</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher formato de compressão</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="980"/>
@@ -14095,7 +14095,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.ui" line="2223"/>
         <location filename="../../options.ui" line="2341"/>
         <source>ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="989"/>
@@ -14108,177 +14108,177 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.ui" line="2232"/>
         <location filename="../../options.ui" line="2350"/>
         <source>7z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1007"/>
         <source>Browse compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de gabinetes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1098"/>
         <source>Compressed controller file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de controles (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1142"/>
         <source>Browse compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de controles</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1216"/>
         <source>Compressed marquee file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de marquees (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1260"/>
         <source>Browse compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de marquees</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1288"/>
         <source>Switch between specifying a title directory or a compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de títulos ou um arquivo comprimido de títulos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1495"/>
         <source>MAME emulator information database - mameinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banco de dados de informação de emulador do MAME - mameinfo.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1508"/>
         <source>Browse MAME emulator information database (mameinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por banco de dados de informação de emulador do MAME (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1563"/>
         <source>Switch between specifying a preview directory or a compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de previews ou um arquivo comprimido de previews</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1638"/>
         <source>Compressed preview file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de previews (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1682"/>
         <source>Browse compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de previews</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1697"/>
         <source>Switch between specifying a flyer directory or a compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de flyers ou um arquivo comprimido de flyers</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1772"/>
         <source>Compressed flyer file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de flyers (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1816"/>
         <source>Browse compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de flyers</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1831"/>
         <source>Switch between specifying an icon directory or a compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de ícones ou um arquivo comprimido de ícones</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1906"/>
         <source>Compressed icon file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de ícones (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1950"/>
         <source>Browse compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de ícones</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1965"/>
         <source>Switch between specifying a cabinet directory or a compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de gabinetes ou um arquivo comprimido de gabinetes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1981"/>
         <source>Switch between specifying a controller directory or a compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de controles ou um arquivo comprimido de controles</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1997"/>
         <source>Switch between specifying a marquee directory or a compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de marquees ou um arquivo comprimido de marquees</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2072"/>
         <source>Compressed title file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de títulos (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2116"/>
         <source>Browse compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de títulos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2131"/>
         <source>Switch between specifying a PCB directory or a compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de PCBs ou um arquivo comprimido de PCBs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2206"/>
         <source>Compressed PCB file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de PCBs (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2250"/>
         <source>Browse compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de PCBs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2324"/>
         <source>Compressed software snap-shot file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de snapshots de software (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2368"/>
         <source>Browse compressed software snap-shot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido de snapshots de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2434"/>
         <source>Load MAME game information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base de dados de informações de jogos do MAME (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2437"/>
         <source>Game info DB (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD de informação de jogos (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2454"/>
         <source>Use in-memory compression for MAME game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compressão em memória para o BD de informações de jogos do MAME (um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2472"/>
         <source>Load MAME emulator information database (mameinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base de dados de informações de emulador do MAME (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2475"/>
         <source>Emu info DB (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD de informação de emulador (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2492"/>
         <source>Use in-memory compression for MAME emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compressão em memória para o BD de informações de emulador do MAME ( um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2508"/>
         <source>Switch between specifying a software snap directory or a compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar entre especificar um diretório de snapshots de software ou um arquivo comprimido de snapshots de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2561"/>
@@ -14403,37 +14403,37 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2816"/>
         <source>Load MESS emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base de dados de informações de emulador do MESS (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2819"/>
         <source>Emu info DB (MESS)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD de informação de emulador (MESS)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2836"/>
         <source>Use in-memory compression for MESS emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compressão em memória para o BD de informações de emulador do MESS ( um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2858"/>
         <source>MESS emulator information database - messinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banco de dados de informação de emulador do MESS - messinfo.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2871"/>
         <source>Browse MESS emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por banco de dados de informação de emulador do MESS (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2887"/>
         <source>Machine info DB (MESS)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD de informação de máquina (MESS)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2904"/>
         <source>Use in-memory compression for MESS machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compressão em memória para o BD de informações de máquina do MESS (um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3056"/>
@@ -14808,22 +14808,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4636"/>
         <source>7-zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>ferramenta 7-zip</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4655"/>
         <source>External 7-zip tool, i.e. &quot;7za&quot; (read and execute)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramenta externa de 7-zip, p.e. &quot;7za&quot; (ler e executar)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4668"/>
         <source>Browse for 7-zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pela ferramenta de 7-zip</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4692"/>
         <source>7-zip tool argument list to remove entries from the 7-zip archive (i. e. &quot;d $ARCHIVE$ $FILELIST$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de argumentos da ferramenta 7-zip para remover entradas de um arquivo 7-zip (p. e. &quot;d $ARCHIVE$ $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4713"/>
@@ -14995,17 +14995,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="5350"/>
         <source>XML cache database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados de cache XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5363"/>
         <source>Database file for caching the output from -listxml (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de base de dados para fazer cache da saída do comando -listxml (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5376"/>
         <source>Browse XML cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo da base de dados do cache XML</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5436"/>
@@ -15537,96 +15537,105 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../qftp/qftp.cpp" line="841"/>
         <source>Not connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Não conectado</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="909"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquina %1 não encontrada</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="913"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexão recusada para a máquina %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="917"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo de conexão expirado para a máquina %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1021"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectado à máquina %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1240"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexão recusada para conexão de dados</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1414"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro desconhecido</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2314"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexão com a máquina falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2318"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Login falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2322"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Listagem de diretório falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2326"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mudar diretório falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2330"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar arquivo falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2334"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar arquivo falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2338"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover arquivo falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2342"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar diretório falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2346"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover diretório falhou:
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2374"/>
         <source>Connection closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Conexão fechada</translation>
     </message>
 </context>
 <context>
@@ -16267,29 +16276,29 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1711"/>
         <source>ERROR</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1713"/>
         <location filename="../../romalyzer.cpp" line="1718"/>
         <source>WARNING</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1713"/>
         <source>actual bytes read != file size in header</source>
-        <translation type="unfinished"></translation>
+        <translation>bytes lidos != tamanho do arquivo no cabeçalho</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1713"/>
         <location filename="../../romalyzer.cpp" line="1718"/>
         <source>check archive integrity</source>
-        <translation type="unfinished"></translation>
+        <translation>verifique a integridade do arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1718"/>
         <source>actual CRC != CRC in header</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC atual != CRC no cabeçalho</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2497"/>
@@ -19130,7 +19139,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../samplechecker.cpp" line="230"/>
         <location filename="../../samplechecker.cpp" line="375"/>
         <source>done (verifying samples, elapsed time = %1)</source>
-        <translation type="unfinished">feito (verificando exemplos, tempo = %1)</translation>
+        <translation>feito (verificando exemplos, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="32"/>
@@ -19162,27 +19171,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="245"/>
         <source>WARNING: XML bug: the following machines are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MESS developers</source>
-        <translation type="unfinished">AVISO: Defeito do XML: as máquinas a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MESS</translation>
+        <translation>AVISO: Defeito do XML: as máquinas a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="247"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MESS developers</source>
-        <translation type="unfinished">AVISO: Defeito do XML: a máquina a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MESS</translation>
+        <translation>AVISO: Defeito do XML: a máquina a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MESS</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="250"/>
         <source>WARNING: XML bug: the following games are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished">AVISO: Defeito do XML: os jogos a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
+        <translation>AVISO: Defeito do XML: os jogos a seguir referenciam um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="252"/>
         <source>WARNING: XML bug: the following game is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished">AVISO: Defeito do XML: o jogo a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
+        <translation>AVISO: Defeito do XML: o jogo a seguir referencia um conjunto de sample não requerido (sampleof=&quot;%1&quot;): %2 -- por favor informe os desenvolvedores do MAME</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="259"/>
         <source>found %n individual sample set(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>encontrado %n conjunto de sample individual</numerusform>
             <numerusform>encontrados %n conjuntos de samples individuais</numerusform>
         </translation>
@@ -19190,12 +19199,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="259"/>
         <source>and</source>
-        <translation type="unfinished">e</translation>
+        <translation>e</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="259"/>
         <source>%n system(s) using samples</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n sistema usando samples</numerusform>
             <numerusform>%n sistemas usando samples</numerusform>
         </translation>
@@ -19203,48 +19212,48 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../samplechecker.cpp" line="263"/>
         <source>Checking sample status</source>
-        <translation type="unfinished">Verificando estado da sample</translation>
+        <translation>Verificando estado da sample</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="264"/>
         <source>check pass 1: checking sample status</source>
-        <translation type="unfinished">passo 1 da verificação: verificando estado da sample</translation>
+        <translation>passo 1 da verificação: verificando estado da sample</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="317"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do emulador dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="347"/>
         <source>Good: %1</source>
-        <translation type="unfinished">Bom: %1</translation>
+        <translation>Bom: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="350"/>
         <source>Bad: %1</source>
-        <translation type="unfinished">Ruim: %1</translation>
+        <translation>Ruim: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="353"/>
         <source>Missing: %1</source>
-        <translation type="unfinished">Faltantes: %1</translation>
+        <translation>Faltantes: %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="355"/>
         <source>WARNING: received unknown output when checking the sample status of &apos;%1&apos;: &apos;%2&apos;</source>
-        <translation type="unfinished">AVISO: saída desconhecida recebida verificando o estado da sample de &apos;%1&apos;: &apos;%2&apos;</translation>
+        <translation>AVISO: saída desconhecida recebida verificando o estado da sample de &apos;%1&apos;: &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="358"/>
         <location filename="../../samplechecker.cpp" line="360"/>
         <source>WARNING: received no output when checking the sample status of &apos;%1&apos;</source>
-        <translation type="unfinished">AVISO: nenhuma saída recebida verificando o estado da sample de &apos;%1&apos;</translation>
+        <translation>AVISO: nenhuma saída recebida verificando o estado da sample de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="376"/>
         <source>%1 good, %2 bad, %3 missing, %4 obsolete</source>
-        <translation type="unfinished">%1 bom, %2 ruim, %3 faltante, %4 obsoleto</translation>
+        <translation>%1 bom, %2 ruim, %3 faltante, %4 obsoleto</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="392"/>
@@ -19317,115 +19326,115 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../sevenzipfile.cpp" line="36"/>
         <source>file name &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>nome de arquivo &apos;%1&apos; não encontrado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="47"/>
         <source>archive not open</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo não aberto</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="53"/>
         <source>null-buffer not allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>buffer nulo não permitido</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="80"/>
         <location filename="../../sevenzipfile.cpp" line="101"/>
         <location filename="../../sevenzipfile.cpp" line="119"/>
         <source>extraction of file &apos;%1&apos; (index %2) failed</source>
-        <translation type="unfinished"></translation>
+        <translation>extração do arquivo &apos;%1&apos; (índice %2) falhou</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="149"/>
         <source>no error</source>
-        <translation type="unfinished">nenhum erro</translation>
+        <translation>nenhum erro</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="151"/>
         <source>incorrect data</source>
-        <translation type="unfinished"></translation>
+        <translation>dados incorretos</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="153"/>
         <source>out of memory</source>
-        <translation type="unfinished"></translation>
+        <translation>sem memória</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="155"/>
         <source>incorrect CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC incorreto</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="157"/>
         <source>unsupported compression</source>
-        <translation type="unfinished"></translation>
+        <translation>compressão não suportada</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>incorrect properties</source>
-        <translation type="unfinished"></translation>
+        <translation>propriedades incorretas</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="161"/>
         <source>premature end-of-file (input)</source>
-        <translation type="unfinished"></translation>
+        <translation>fim de arquivo prematuro (entrada)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="163"/>
         <source>premature end-of-file (output)</source>
-        <translation type="unfinished"></translation>
+        <translation>fim de arquivo prematuro (saída)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="165"/>
         <source>failed reading</source>
-        <translation type="unfinished"></translation>
+        <translation>falha lendo</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="167"/>
         <source>failed writing</source>
-        <translation type="unfinished"></translation>
+        <translation>falha escrevendo</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="169"/>
         <source>failed signalling progress</source>
-        <translation type="unfinished"></translation>
+        <translation>falha sinalizando progresso</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="171"/>
         <source>fatal error</source>
-        <translation type="unfinished">erro fatal</translation>
+        <translation>erro fatal</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="173"/>
         <source>thread error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro de thread</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="175"/>
         <source>invalid archive structure</source>
-        <translation type="unfinished"></translation>
+        <translation>estrutura de arquivo inválida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="177"/>
         <source>invalid header structure</source>
-        <translation type="unfinished"></translation>
+        <translation>estrutura de cabeçalho inválida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="179"/>
         <source>unknown error</source>
-        <translation type="unfinished">erro desconhecido</translation>
+        <translation>erro desconhecido</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="194"/>
         <source>no file name specified</source>
-        <translation type="unfinished"></translation>
+        <translation>nome de arquivo não especificado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="201"/>
         <location filename="../../sevenzipfile.cpp" line="221"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>impossível abrir arquivo &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -20655,13 +20664,13 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="3673"/>
         <location filename="../../softwarelist.cpp" line="4030"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de snapshot de software %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3673"/>
         <location filename="../../softwarelist.cpp" line="4030"/>
         <source>7z error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do 7z</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3726"/>
@@ -20686,7 +20695,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="4065"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
 </context>
 <context>
@@ -20714,17 +20723,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="4800"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de snapshot de software %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4800"/>
         <source>7z error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro do 7z</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4833"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
 </context>
 <context>
@@ -21272,7 +21281,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../xmldbmgr.cpp" line="29"/>
         <source>WARNING: failed to open XML cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir a base de dados de cache XML &apos;%1&apos;: erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="47"/>
@@ -21287,7 +21296,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../xmldbmgr.cpp" line="215"/>
         <location filename="../../xmldbmgr.cpp" line="244"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados do cache XML: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="62"/>
@@ -21296,7 +21305,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../xmldbmgr.cpp" line="176"/>
         <location filename="../../xmldbmgr.cpp" line="232"/>
         <source>WARNING: failed to add &apos;%1&apos; to XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; à base de dados do cache XML: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="69"/>
@@ -21305,31 +21314,31 @@ p, li { white-space: pre-wrap; }
         <location filename="../../xmldbmgr.cpp" line="183"/>
         <location filename="../../xmldbmgr.cpp" line="240"/>
         <source>WARNING: failed to update &apos;%1&apos; in XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados do cache XML: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="254"/>
         <source>WARNING: failed to fetch row count from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler quantidade de linhas da base de dados do cache XML: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="262"/>
         <location filename="../../xmldbmgr.cpp" line="267"/>
         <location filename="../../xmldbmgr.cpp" line="272"/>
         <source>WARNING: failed to remove XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover base de dados do cache XML: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="280"/>
         <location filename="../../xmldbmgr.cpp" line="285"/>
         <location filename="../../xmldbmgr.cpp" line="290"/>
         <source>WARNING: failed to create XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar base de dados do cache XML: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="294"/>
         <source>XML cache database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados do cache XML &apos;%1&apos; inicializado</translation>
     </message>
 </context>
 <context>
