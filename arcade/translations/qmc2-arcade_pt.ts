@@ -30,7 +30,7 @@
         <location filename="../imageprovider.cpp" line="90"/>
         <location filename="../imageprovider.cpp" line="156"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimindo arquivo, por favor espere...</translation>
     </message>
 </context>
 <context>
@@ -325,7 +325,7 @@
     <message>
         <location filename="../imageprovider.cpp" line="472"/>
         <source>logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="474"/>
@@ -345,12 +345,12 @@
     <message>
         <location filename="../imageprovider.cpp" line="480"/>
         <source>software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>snapshot de software</translation>
     </message>
     <message>
         <location filename="../imageprovider.cpp" line="482"/>
         <source>icon</source>
-        <translation type="unfinished"></translation>
+        <translation>ícone</translation>
     </message>
     <message>
         <location filename="../macros.h" line="44"/>
@@ -768,115 +768,115 @@
     <message>
         <location filename="../../sevenzipfile.cpp" line="36"/>
         <source>file name &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>nome de arquivo &apos;%1&apos; não encontrado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="47"/>
         <source>archive not open</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo não aberto</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="53"/>
         <source>null-buffer not allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>buffer nulo não permitido</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="80"/>
         <location filename="../../sevenzipfile.cpp" line="101"/>
         <location filename="../../sevenzipfile.cpp" line="119"/>
         <source>extraction of file &apos;%1&apos; (index %2) failed</source>
-        <translation type="unfinished"></translation>
+        <translation>extração do arquivo &apos;%1&apos; (índice %2) falhou</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="149"/>
         <source>no error</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhum erro</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="151"/>
         <source>incorrect data</source>
-        <translation type="unfinished"></translation>
+        <translation>dados incorretos</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="153"/>
         <source>out of memory</source>
-        <translation type="unfinished"></translation>
+        <translation>sem memória</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="155"/>
         <source>incorrect CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC incorreto</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="157"/>
         <source>unsupported compression</source>
-        <translation type="unfinished"></translation>
+        <translation>compressão não suportada</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>incorrect properties</source>
-        <translation type="unfinished"></translation>
+        <translation>propriedades incorretas</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="161"/>
         <source>premature end-of-file (input)</source>
-        <translation type="unfinished"></translation>
+        <translation>fim de arquivo prematuro (entrada)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="163"/>
         <source>premature end-of-file (output)</source>
-        <translation type="unfinished"></translation>
+        <translation>fim de arquivo prematuro (saída)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="165"/>
         <source>failed reading</source>
-        <translation type="unfinished"></translation>
+        <translation>falha lendo</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="167"/>
         <source>failed writing</source>
-        <translation type="unfinished"></translation>
+        <translation>falha escrevendo</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="169"/>
         <source>failed signalling progress</source>
-        <translation type="unfinished"></translation>
+        <translation>falha sinalizando progresso</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="171"/>
         <source>fatal error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro fatal</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="173"/>
         <source>thread error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro de thread</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="175"/>
         <source>invalid archive structure</source>
-        <translation type="unfinished"></translation>
+        <translation>estrutura de arquivo inválida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="177"/>
         <source>invalid header structure</source>
-        <translation type="unfinished"></translation>
+        <translation>estrutura de cabeçalho inválida</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="179"/>
         <source>unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro desconhecido</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="194"/>
         <source>no file name specified</source>
-        <translation type="unfinished"></translation>
+        <translation>nome de arquivo não especificado</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="201"/>
         <location filename="../../sevenzipfile.cpp" line="221"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>impossível abrir arquivo &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
