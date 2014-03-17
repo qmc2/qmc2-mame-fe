@@ -255,6 +255,20 @@ int XmlDatabaseManager::xmlRowCount()
 	}	return -1;
 }
 
+bool XmlDatabaseManager::exists(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT id FROM %1 WHERE id=:id").arg(m_tableBasename));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		query.first();
+		return query.value(0).toString() == id;
+	} else {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
+		return false;
+	}
+}
+
 void XmlDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);

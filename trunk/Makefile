@@ -1291,7 +1291,7 @@ clean: $(QMAKEFILE)
 	@$(ECHO) "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) data/opt/template.xml error.log
+	@$(RM) data/opt/template.xml error.log exclude.list
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1327,7 +1327,7 @@ else
 endif
 else
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) data/log/* data/tmp/* data/cat/* data/opt/template.xml error.log > /dev/null
+	@$(RM) data/opt/template.xml error.log exclude.list > /dev/null
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin > /dev/null
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1368,19 +1368,25 @@ ifneq '$(ARCH)' 'Windows'
 # rules for creation of distribution archives
 NOW = $(shell $(DATE))
 SRCDIR = $(shell $(BASENAME) `pwd`)
-snapshot: snap exclude.list
+snapshot: snap
 snap: distclean
-	@$(ECHO) "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)"
-	$(CD) .. ; \
+	@$(MAKE) xl
+	@$(ECHO) -n "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)... "
+	@$(CD) .. ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
+	@$(RM) $(SRCDIR)/exclude.list
+	@$(ECHO) "done"
 
-distribution: dist exclude.list
+distribution: dist
 dist: distclean
-	@$(ECHO) "Creating source distribution archive for QMC2 v$(VERSION)"
-	$(CD) .. ; \
+	@$(MAKE) xl
+	@$(ECHO) -n "Creating source distribution archive for QMC2 v$(VERSION)... "
+	@$(CD) .. ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
+	@$(RM) $(SRCDIR)/exclude.list
+	@$(ECHO) "done"
 
 endif
 
@@ -1404,13 +1410,11 @@ xlist: exclude-list
 svn-exclude-list: exclude-list
 exclude.list: exclude-list
 exclude-list:
-	@$(ECHO) -n "Creating SVN exclude list... "
 	@cd .. ; \
 	$(FIND) $(PROJECT) -name "*svn*" > $(PROJECT)/exclude.list.new ; \
 	$(ECHO) "$(PROJECT)/exclude.list" >> $(PROJECT)/exclude.list.new ; \
 	$(CAT) $(PROJECT)/exclude.list.new | env LOCALE=C sort > $(PROJECT)/exclude.list ; \
 	$(RM) $(PROJECT)/exclude.list.new
-	@$(ECHO) "done"
 
 detect-os: os-detect
 os-detect:
@@ -1432,7 +1436,6 @@ ifneq '$(ARCH)' 'Windows'
 	@$(ECHO) "doc              Convert man-pages to troff/nroff format, alias: man"
 	@$(ECHO) "doc-clean        Clean up converted man-pages, alias: man-clean"
 	@$(ECHO) "doc-install      Install man-pages system-wide, alias: man-install"
-	@$(ECHO) "exclude-list     Recreate SVN exclude-list (only used by developers)"
 endif
 	@$(ECHO) "help | ?         Show this help"
 ifneq '$(ARCH)' 'Windows'
