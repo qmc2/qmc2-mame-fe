@@ -39,8 +39,6 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
-QCache<QString, int> ROMAlyzer::xmlGamePositionCache;
-
 /*
   HOWTO: Calculate the 32-bit CRC of a QByteArray with zlib:
 
@@ -591,7 +589,7 @@ void ROMAlyzer::analyze()
   romPaths = myRomPath.split(";", QString::SkipEmptyParts);
 
   QStringList analyzerList;
-  QStringList patternList = lineEditGames->text().simplified().split(" ");
+  QStringList patternList = lineEditGames->text().simplified().split(" ", QString::SkipEmptyParts);
 
   if ( !checkBoxAppendReport->isChecked() ) {
     treeWidgetChecksums->clear();
@@ -610,8 +608,6 @@ void ROMAlyzer::analyze()
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
   tabSetRenamer->setEnabled(false);
   QTime analysisTimer, elapsedTime(0, 0, 0, 0);
-  xmlGamePositionCache.clear();
-  xmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
   analysisTimer.start();
   log(tr("analysis started"));
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -624,7 +620,9 @@ void ROMAlyzer::analyze()
   QRegExp wildcardRx("(\\*|\\?)");
   if ( wizardSearch || quickSearch || wildcardRx.indexIn(lineEditGames->text().simplified()) == -1 ) {
     // no wild-cards => no need to search!
-    analyzerList = patternList;
+    foreach (QString id, patternList)
+	    if ( qmc2Gamelist->xmlDb()->exists(id) )
+		    analyzerList << id;
     analyzerList.sort();
   } else {
     if ( patternList.count() == 1 ) {

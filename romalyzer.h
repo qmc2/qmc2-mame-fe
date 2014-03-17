@@ -3,7 +3,6 @@
 
 #include <QtGui>
 #include <QtXml>
-#include <QCache>
 
 #include "macros.h"
 #include "romdbmgr.h"
@@ -211,7 +210,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QPalette savedCheckButtonPalette;
 		bool connectionCheckRunning;
 #endif
-		static QCache<QString, int> xmlGamePositionCache;
 
 		ROMAlyzer(QWidget *);
 		~ROMAlyzer();
