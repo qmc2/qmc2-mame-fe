@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1239';
-PDFJS.build = '1a6e103';
+PDFJS.version = '0.8.1241';
+PDFJS.build = '59829bb';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -22652,12 +22652,17 @@ var CFFParser = (function CFFParserClosure() {
     },
     parseHeader: function CFFParser_parseHeader() {
       var bytes = this.bytes;
+      var bytesLength = bytes.length;
       var offset = 0;
 
-      while (bytes[offset] != 1)
+      // Prevent an infinite loop, by checking that the offset is within the
+      // bounds of the bytes array. Necessary in empty, or invalid, font files.
+      while (offset < bytesLength && bytes[offset] !== 1) {
         ++offset;
-
-      if (offset !== 0) {
+      }
+      if (offset >= bytesLength) {
+        error('Invalid CFF header');
+      } else if (offset !== 0) {
         info('cff data is shifted');
         bytes = bytes.subarray(offset);
         this.bytes = bytes;
