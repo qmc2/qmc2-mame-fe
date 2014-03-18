@@ -57,6 +57,7 @@ var FindStates = {
 PDFJS.imageResourcesPath = './images/';
   PDFJS.workerSrc = '../build/pdf.worker.js';
   PDFJS.cMapUrl = '../web/cmaps/';
+  PDFJS.cMapPacked = true;
 
 var mozL10n = document.mozL10n || document.webL10n;
 
@@ -5040,6 +5041,8 @@ function webViewerLoad(evt) {
     IGNORE_CURRENT_POSITION_ON_ZOOM =
       (hashParams['ignoreCurrentPositionOnZoom'] === 'true');
   }
+
+
 
   var locale = PDFJS.locale || navigator.language;
   if ('locale' in hashParams) {

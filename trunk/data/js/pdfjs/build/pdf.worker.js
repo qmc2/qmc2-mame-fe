@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1241';
-PDFJS.build = '59829bb';
+PDFJS.version = '0.8.1259';
+PDFJS.build = '329d0ec';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -4133,6 +4133,20 @@ var ChunkedStream = (function ChunkedStreamClosure() {
       return this.bytes[this.pos++];
     },
 
+    getUint16: function ChunkedStream_getUint16() {
+      var b0 = this.getByte();
+      var b1 = this.getByte();
+      return (b0 << 8) + b1;
+    },
+
+    getUint32: function ChunkedStream_getUint32() {
+      var b0 = this.getByte();
+      var b1 = this.getByte();
+      var b2 = this.getByte();
+      var b3 = this.getByte();
+      return (b0 << 24) + (b1 << 16) + (b2 << 8) + b3;
+    },
+
     // returns subarray of original buffer
     // should only be read
     getBytes: function ChunkedStream_getBytes(length) {
@@ -4513,24 +4527,24 @@ var BasePdfManager = (function BasePdfManagerClosure() {
       throw new NotImplementedException();
     },
 
-    ensureModel: function BasePdfManager_ensureModel(prop, args) {
-      return this.ensure(this.pdfModel, prop, args);
+    ensureDoc: function BasePdfManager_ensureDoc(prop, args) {
+      return this.ensure(this.pdfDocument, prop, args);
     },
 
     ensureXRef: function BasePdfManager_ensureXRef(prop, args) {
-      return this.ensure(this.pdfModel.xref, prop, args);
+      return this.ensure(this.pdfDocument.xref, prop, args);
     },
 
     ensureCatalog: function BasePdfManager_ensureCatalog(prop, args) {
-      return this.ensure(this.pdfModel.catalog, prop, args);
+      return this.ensure(this.pdfDocument.catalog, prop, args);
     },
 
     getPage: function BasePdfManager_pagePage(pageIndex) {
-      return this.pdfModel.getPage(pageIndex);
+      return this.pdfDocument.getPage(pageIndex);
     },
 
     cleanup: function BasePdfManager_cleanup() {
-      return this.pdfModel.cleanup();
+      return this.pdfDocument.cleanup();
     },
 
     ensure: function BasePdfManager_ensure(obj, prop, args) {
@@ -4546,7 +4560,7 @@ var BasePdfManager = (function BasePdfManagerClosure() {
     },
 
     updatePassword: function BasePdfManager_updatePassword(password) {
-      this.pdfModel.xref.password = this.password = password;
+      this.pdfDocument.xref.password = this.password = password;
       if (this.passwordChangedPromise) {
         this.passwordChangedPromise.resolve();
       }
@@ -4563,7 +4577,7 @@ var BasePdfManager = (function BasePdfManagerClosure() {
 var LocalPdfManager = (function LocalPdfManagerClosure() {
   function LocalPdfManager(data, password) {
     var stream = new Stream(data);
-    this.pdfModel = new PDFDocument(this, stream, password);
+    this.pdfDocument = new PDFDocument(this, stream, password);
     this.loadedStream = new LegacyPromise();
     this.loadedStream.resolve(stream);
   }
@@ -4630,7 +4644,7 @@ var NetworkPdfManager = (function NetworkPdfManagerClosure() {
     this.streamManager = new ChunkedStreamManager(args.length, RANGE_CHUNK_SIZE,
                                                   args.url, params);
 
-    this.pdfModel = new PDFDocument(this, this.streamManager.getStream(),
+    this.pdfDocument = new PDFDocument(this, this.streamManager.getStream(),
                                     args.password);
   }
 
@@ -4699,6 +4713,8 @@ var NetworkPdfManager = (function NetworkPdfManagerClosure() {
 
 var Page = (function PageClosure() {
 
+  var LETTER_SIZE_MEDIABOX = [0, 0, 612, 792];
+
   function Page(pdfManager, xref, pageIndex, pageDict, ref, fontCache) {
     this.pdfManager = pdfManager;
     this.pageIndex = pageIndex;
@@ -4716,51 +4732,69 @@ var Page = (function PageClosure() {
     getPageProp: function Page_getPageProp(key) {
       return this.pageDict.get(key);
     },
-    inheritPageProp: function Page_inheritPageProp(key) {
+
+    getInheritedPageProp: function Page_inheritPageProp(key) {
       var dict = this.pageDict;
-      var obj = dict.get(key);
-      while (obj === undefined) {
+      var value = dict.get(key);
+      while (value === undefined) {
         dict = dict.get('Parent');
-        if (!dict)
+        if (!dict) {
           break;
-        obj = dict.get(key);
+        }
+        value = dict.get(key);
       }
-      return obj;
+      return value;
     },
+
     get content() {
       return this.getPageProp('Contents');
     },
+
     get resources() {
-      return shadow(this, 'resources', this.inheritPageProp('Resources'));
+      var value = this.getInheritedPageProp('Resources');
+      // For robustness: The spec states that a \Resources entry has to be
+      // present, but can be empty. Some document omit it still. In this case
+      // return an empty dictionary:
+      if (value === undefined) {
+        value = new Dict();
+      }
+      return shadow(this, 'resources', value);
     },
+
     get mediaBox() {
-      var obj = this.inheritPageProp('MediaBox');
+      var obj = this.getInheritedPageProp('MediaBox');
       // Reset invalid media box to letter size.
-      if (!isArray(obj) || obj.length !== 4)
-        obj = [0, 0, 612, 792];
+      if (!isArray(obj) || obj.length !== 4) {
+        obj = LETTER_SIZE_MEDIABOX;
+      }
       return shadow(this, 'mediaBox', obj);
     },
+
     get view() {
       var mediaBox = this.mediaBox;
-      var cropBox = this.inheritPageProp('CropBox');
-      if (!isArray(cropBox) || cropBox.length !== 4)
+      var cropBox = this.getInheritedPageProp('CropBox');
+      if (!isArray(cropBox) || cropBox.length !== 4) {
         return shadow(this, 'view', mediaBox);
+      }
 
       // From the spec, 6th ed., p.963:
       // "The crop, bleed, trim, and art boxes should not ordinarily
       // extend beyond the boundaries of the media box. If they do, they are
       // effectively reduced to their intersection with the media box."
       cropBox = Util.intersect(cropBox, mediaBox);
-      if (!cropBox)
+      if (!cropBox) {
         return shadow(this, 'view', mediaBox);
-
+      }
       return shadow(this, 'view', cropBox);
     },
+
     get annotationRefs() {
-      return shadow(this, 'annotationRefs', this.inheritPageProp('Annots'));
+      return shadow(this, 'annotationRefs',
+                    this.getInheritedPageProp('Annots'));
     },
+
     get rotate() {
-      var rotate = this.inheritPageProp('Rotate') || 0;
+      var rotate = this.getInheritedPageProp('Rotate') || 0;
       // Normalize rotation so it's a multiple of 90 and between 0 and 270
       if (rotate % 90 !== 0) {
         rotate = 0;
@@ -4773,6 +4807,7 @@ var Page = (function PageClosure() {
       }
       return shadow(this, 'rotate', rotate);
     },
+
     getContentStream: function Page_getContentStream() {
       var content = this.content;
       var stream;
@@ -4792,9 +4827,10 @@ var Page = (function PageClosure() {
       }
       return stream;
     },
+
     loadResources: function(keys) {
       if (!this.resourcesPromise) {
-        // TODO: add async inheritPageProp and remove this.
+        // TODO: add async getInheritedPageProp and remove this.
         this.resourcesPromise = this.pdfManager.ensure(this, 'resources');
       }
       var promise = new LegacyPromise();
@@ -4808,6 +4844,7 @@ var Page = (function PageClosure() {
       }.bind(this));
       return promise;
     },
+
     getOperatorList: function Page_getOperatorList(handler, intent) {
       var self = this;
       var promise = new LegacyPromise();
@@ -4827,7 +4864,7 @@ var Page = (function PageClosure() {
         'Pattern',
         'Shading',
         'XObject',
-        'Font',
+        'Font'
         // ProcSet
         // Properties
       ]);
@@ -4875,6 +4912,7 @@ var Page = (function PageClosure() {
 
       return promise;
     },
+
     extractTextContent: function Page_extractTextContent() {
       var handler = {
         on: function nullHandlerOn() {},
@@ -15857,11 +15895,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
           if (chunkBuf.length > 0) {
             var chunk = chunkBuf.join('');
-            var bidiResult = PDFJS.bidi(chunk, -1, font.vertical);
-            var bidiText = {
-              str: bidiResult.str,
-              dir: bidiResult.dir
-            };
+            var bidiText = PDFJS.bidi(chunk, -1, font.vertical);
             var renderParams = textState.calcRenderParams(preprocessor.ctm);
             var fontHeight = textState.fontSize * renderParams.vScale;
             var fontAscent = font.ascent ? font.ascent * fontHeight :
@@ -16304,7 +16338,8 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         if (isName(cidEncoding)) {
           properties.cidEncoding = cidEncoding.name;
         }
-        properties.cMap = CMapFactory.create(cidEncoding, PDFJS.cMapUrl, null);
+        properties.cMap = CMapFactory.create(cidEncoding,
+          { url: PDFJS.cMapUrl, packed: PDFJS.cMapPacked }, null);
         properties.vertical = properties.cMap.vertical;
       }
       this.extractDataStructures(dict, baseDict, xref, properties);
@@ -19336,13 +19371,12 @@ var Font = (function FontClosure() {
     return strBuf.join('');
   }
 
-  function int16(bytes) {
-    return (bytes[0] << 8) + (bytes[1] & 0xff);
+  function int16(b0, b1) {
+    return (b0 << 8) + b1;
   }
 
-  function int32(bytes) {
-    return (bytes[0] << 24) + (bytes[1] << 16) +
-           (bytes[2] << 8) + (bytes[3] & 0xff);
+  function int32(b0, b1, b2, b3) {
+    return (b0 << 24) + (b1 << 16) + (b2 << 8) + b3;
   }
 
   function getMaxPower2(number) {
@@ -19421,8 +19455,8 @@ var Font = (function FontClosure() {
     // checksum
     var checksum = 0, n = data.length;
     for (var i = 0; i < n; i += 4)
-      checksum = (checksum + int32([data[i], data[i + 1], data[i + 2],
-                                    data[i + 3]])) | 0;
+      checksum = (checksum + int32(data[i], data[i + 1], data[i + 2],
+                                   data[i + 3])) | 0;
 
     var tableEntry = (tag + string32(checksum) +
                       string32(offset) + string32(length));
@@ -19650,21 +19684,21 @@ var Font = (function FontClosure() {
 
   function validateOS2Table(os2) {
     var stream = new Stream(os2.data);
-    var version = int16(stream.getBytes(2));
+    var version = stream.getUint16();
     // TODO verify all OS/2 tables fields, but currently we validate only those
     // that give us issues
     stream.getBytes(60); // skipping type, misc sizes, panose, unicode ranges
-    var selection = int16(stream.getBytes(2));
+    var selection = stream.getUint16();
     if (version < 4 && (selection & 0x0300)) {
       return false;
     }
-    var firstChar = int16(stream.getBytes(2));
-    var lastChar = int16(stream.getBytes(2));
+    var firstChar = stream.getUint16();
+    var lastChar = stream.getUint16();
     if (firstChar > lastChar) {
       return false;
     }
     stream.getBytes(6); // skipping sTypoAscender/Descender/LineGap
-    var usWinAscent = int16(stream.getBytes(2));
+    var usWinAscent = stream.getUint16();
     if (usWinAscent === 0) { // makes font unreadable by windows
       return false;
     }
@@ -19883,9 +19917,9 @@ var Font = (function FontClosure() {
               String.fromCharCode(tag[2]) +
               String.fromCharCode(tag[3]);
 
-        var checksum = int32(file.getBytes(4));
-        var offset = int32(file.getBytes(4));
-        var length = int32(file.getBytes(4));
+        var checksum = file.getUint32();
+        var offset = file.getUint32();
+        var length = file.getUint32();
 
         // Read the table associated data
         var previousPosition = file.pos;
@@ -19912,10 +19946,10 @@ var Font = (function FontClosure() {
       function readOpenTypeHeader(ttf) {
         return {
           version: arrayToString(ttf.getBytes(4)),
-          numTables: int16(ttf.getBytes(2)),
-          searchRange: int16(ttf.getBytes(2)),
-          entrySelector: int16(ttf.getBytes(2)),
-          rangeShift: int16(ttf.getBytes(2))
+          numTables: ttf.getUint16(),
+          searchRange: ttf.getUint16(),
+          entrySelector: ttf.getUint16(),
+          rangeShift: ttf.getUint16()
         };
       }
 
@@ -19927,8 +19961,8 @@ var Font = (function FontClosure() {
         var start = (font.start ? font.start : 0) + cmap.offset;
         font.pos = start;
 
-        var version = int16(font.getBytes(2));
-        var numTables = int16(font.getBytes(2));
+        var version = font.getUint16();
+        var numTables = font.getUint16();
 
         var potentialTable;
         var canBreak = false;
@@ -19939,9 +19973,9 @@ var Font = (function FontClosure() {
         // The following takes advantage of the fact that the tables are sorted
         // to work.
         for (var i = 0; i < numTables; i++) {
-          var platformId = int16(font.getBytes(2));
-          var encodingId = int16(font.getBytes(2));
-          var offset = int32(font.getBytes(4));
+          var platformId = font.getUint16();
+          var encodingId = font.getUint16();
+          var offset = font.getUint32();
           var useTable = false;
 
           if (platformId == 1 && encodingId === 0) {
@@ -19974,9 +20008,9 @@ var Font = (function FontClosure() {
         }
 
         font.pos = start + potentialTable.offset;
-        var format = int16(font.getBytes(2));
-        var length = int16(font.getBytes(2));
-        var language = int16(font.getBytes(2));
+        var format = font.getUint16();
+        var length = font.getUint16();
+        var language = font.getUint16();
 
         var hasShortCmap = false;
         var mappings = [];
@@ -19997,25 +20031,25 @@ var Font = (function FontClosure() {
         } else if (format === 4) {
           // re-creating the table in format 4 since the encoding
           // might be changed
-          var segCount = (int16(font.getBytes(2)) >> 1);
+          var segCount = (font.getUint16() >> 1);
           font.getBytes(6); // skipping range fields
           var segIndex, segments = [];
           for (segIndex = 0; segIndex < segCount; segIndex++) {
-            segments.push({ end: int16(font.getBytes(2)) });
+            segments.push({ end: font.getUint16() });
           }
-          font.getBytes(2);
+          font.getUint16();
           for (segIndex = 0; segIndex < segCount; segIndex++) {
-            segments[segIndex].start = int16(font.getBytes(2));
+            segments[segIndex].start = font.getUint16();
           }
 
           for (segIndex = 0; segIndex < segCount; segIndex++) {
-            segments[segIndex].delta = int16(font.getBytes(2));
+            segments[segIndex].delta = font.getUint16();
           }
 
           var offsetsCount = 0;
           for (segIndex = 0; segIndex < segCount; segIndex++) {
             var segment = segments[segIndex];
-            var rangeOffset = int16(font.getBytes(2));
+            var rangeOffset = font.getUint16();
             if (!rangeOffset) {
               segment.offsetIndex = -1;
               continue;
@@ -20029,7 +20063,7 @@ var Font = (function FontClosure() {
 
           var offsets = [];
           for (var j = 0; j < offsetsCount; j++) {
-            offsets.push(int16(font.getBytes(2)));
+            offsets.push(font.getUint16());
           }
 
           for (segIndex = 0; segIndex < segCount; segIndex++) {
@@ -20060,13 +20094,13 @@ var Font = (function FontClosure() {
           // table. (This looks weird, so I can have missed something), this
           // works on Linux but seems to fails on Mac so let's rewrite the
           // cmap table to a 3-1-4 style
-          var firstCode = int16(font.getBytes(2));
-          var entryCount = int16(font.getBytes(2));
+          var firstCode = font.getUint16();
+          var entryCount = font.getUint16();
 
           var glyphs = [];
           var ids = [];
           for (var j = 0; j < entryCount; j++) {
-            var glyphId = int16(font.getBytes(2));
+            var glyphId = font.getUint16();
             var charCode = firstCode + j;
 
             mappings.push({
@@ -20107,7 +20141,7 @@ var Font = (function FontClosure() {
 
         font.pos = (font.start ? font.start : 0) + header.offset;
         font.pos += header.length - 2;
-        var numOfMetrics = int16(font.getBytes(2));
+        var numOfMetrics = font.getUint16();
 
         if (numOfMetrics > numGlyphs) {
           info('The numOfMetrics (' + numOfMetrics + ') should not be ' +
@@ -20211,7 +20245,7 @@ var Font = (function FontClosure() {
 
         // Validate version:
         // Should always be 0x00010000
-        var version = int32([data[0], data[1], data[2], data[3]]);
+        var version = int32(data[0], data[1], data[2], data[3]);
         if (version >> 16 !== 1) {
           info('Attempting to fix invalid version in head table: ' + version);
           data[0] = 0;
@@ -20220,7 +20254,7 @@ var Font = (function FontClosure() {
           data[3] = 0;
         }
 
-        var indexToLocFormat = int16([data[50], data[51]]);
+        var indexToLocFormat = int16(data[50], data[51]);
         if (indexToLocFormat < 0 || indexToLocFormat > 1) {
           info('Attempting to fix invalid indexToLocFormat in head table: ' +
                indexToLocFormat);
@@ -20345,7 +20379,7 @@ var Font = (function FontClosure() {
         font.pos = start;
 
         var length = post.length, end = start + length;
-        var version = int32(font.getBytes(4));
+        var version = font.getUint32();
         // skip rest to the tables
         font.getBytes(28);
 
@@ -20356,14 +20390,14 @@ var Font = (function FontClosure() {
             glyphNames = MacStandardGlyphOrdering;
             break;
           case 0x00020000:
-            var numGlyphs = int16(font.getBytes(2));
+            var numGlyphs = font.getUint16();
             if (numGlyphs != maxpNumGlyphs) {
               valid = false;
               break;
             }
             var glyphNameIndexes = [];
             for (var i = 0; i < numGlyphs; ++i) {
-              var index = int16(font.getBytes(2));
+              var index = font.getUint16();
               if (index >= 32768) {
                 valid = false;
                 break;
@@ -20409,25 +20443,25 @@ var Font = (function FontClosure() {
 
         var names = [[], []];
         var length = nameTable.length, end = start + length;
-        var format = int16(font.getBytes(2));
+        var format = font.getUint16();
         var FORMAT_0_HEADER_LENGTH = 6;
         if (format !== 0 || length < FORMAT_0_HEADER_LENGTH) {
           // unsupported name table format or table "too" small
           return names;
         }
-        var numRecords = int16(font.getBytes(2));
-        var stringsStart = int16(font.getBytes(2));
+        var numRecords = font.getUint16();
+        var stringsStart = font.getUint16();
         var records = [];
         var NAME_RECORD_LENGTH = 12;
         for (var i = 0; i < numRecords &&
                         font.pos + NAME_RECORD_LENGTH <= end; i++) {
           var r = {
-            platform: int16(font.getBytes(2)),
-            encoding: int16(font.getBytes(2)),
-            language: int16(font.getBytes(2)),
-            name: int16(font.getBytes(2)),
-            length: int16(font.getBytes(2)),
-            offset: int16(font.getBytes(2))
+            platform: font.getUint16(),
+            encoding: font.getUint16(),
+            language: font.getUint16(),
+            name: font.getUint16(),
+            length: font.getUint16(),
+            offset: font.getUint16()
           };
           // using only Macintosh and Windows platform/encoding names
           if ((r.platform == 1 && r.encoding === 0 && r.language === 0) ||
@@ -20448,7 +20482,7 @@ var Font = (function FontClosure() {
             // unicode
             var str = '';
             for (var j = 0, jj = record.length; j < jj; j += 2) {
-              str += String.fromCharCode(int16(font.getBytes(2)));
+              str += String.fromCharCode(font.getUint16());
             }
             names[1][nameIndex] = str;
           } else {
@@ -20743,19 +20777,19 @@ var Font = (function FontClosure() {
       }
 
       font.pos = (font.start || 0) + tables.maxp.offset;
-      var version = int32(font.getBytes(4));
-      var numGlyphs = int16(font.getBytes(2));
+      var version = font.getUint32();
+      var numGlyphs = font.getUint16();
       var maxFunctionDefs = 0;
       if (version >= 0x00010000 && tables.maxp.length >= 22) {
         // maxZones can be invalid
         font.pos += 8;
-        var maxZones = int16(font.getBytes(2));
+        var maxZones = font.getUint16();
         if (maxZones > 2) { // reset to 2 if font has invalid maxZones
           tables.maxp.data[14] = 0;
           tables.maxp.data[15] = 2;
         }
         font.pos += 4;
-        maxFunctionDefs = int16(font.getBytes(2));
+        maxFunctionDefs = font.getUint16();
       }
 
       var dupFirstEntry = false;
@@ -20805,8 +20839,8 @@ var Font = (function FontClosure() {
       sanitizeHead(tables.head, numGlyphs, isTrueType ? tables.loca.length : 0);
 
       if (isTrueType) {
-        var isGlyphLocationsLong = int16([tables.head.data[50],
-                                          tables.head.data[51]]);
+        var isGlyphLocationsLong = int16(tables.head.data[50],
+                                         tables.head.data[51]);
         sanitizeGlyphLocations(tables.loca, tables.glyf, numGlyphs,
                                isGlyphLocationsLong, hintsValid, dupFirstEntry);
       }
@@ -20950,11 +20984,11 @@ var Font = (function FontClosure() {
         // extract some more font properties from the OpenType head and
         // hhea tables; yMin and descent value are always negative
         var override = {
-          unitsPerEm: int16([tables.head.data[18], tables.head.data[19]]),
-          yMax: int16([tables.head.data[42], tables.head.data[43]]),
-          yMin: int16([tables.head.data[38], tables.head.data[39]]) - 0x10000,
-          ascent: int16([tables.hhea.data[4], tables.hhea.data[5]]),
-          descent: int16([tables.hhea.data[6], tables.hhea.data[7]]) - 0x10000
+          unitsPerEm: int16(tables.head.data[18], tables.head.data[19]),
+          yMax: int16(tables.head.data[42], tables.head.data[43]),
+          yMin: int16(tables.head.data[38], tables.head.data[39]) - 0x10000,
+          ascent: int16(tables.hhea.data[4], tables.hhea.data[5]),
+          descent: int16(tables.hhea.data[6], tables.hhea.data[7]) - 0x10000
         };
 
         tables['OS/2'] = {
@@ -21247,7 +21281,8 @@ var Font = (function FontClosure() {
         var ucs2CMapName = new Name(registry + '-' + ordering + '-UCS2');
         // d) Obtain the CMap with the name constructed in step (c) (available
         // from the ASN Web site; see the Bibliography).
-        var ucs2CMap = CMapFactory.create(ucs2CMapName, PDFJS.cMapUrl, null);
+        var ucs2CMap = CMapFactory.create(ucs2CMapName,
+          { url: PDFJS.cMapUrl, packed: PDFJS.cMapPacked }, null);
         var cMap = properties.cMap;
         var toUnicode = [];
         for (var charcode in cMap.map) {
@@ -21804,7 +21839,7 @@ var Type1CharString = (function Type1CharStringClosure() {
       if (keepStack) {
         this.stack.splice(start, howManyArgs);
       } else {
-        this.stack = [];
+        this.stack.length = 0;
       }
       return false;
     }
@@ -33327,6 +33362,18 @@ var Stream = (function StreamClosure() {
         return -1;
       return this.bytes[this.pos++];
     },
+    getUint16: function Stream_getUint16() {
+      var b0 = this.getByte();
+      var b1 = this.getByte();
+      return (b0 << 8) + b1;
+    },
+    getUint32: function Stream_getUint32() {
+      var b0 = this.getByte();
+      var b1 = this.getByte();
+      var b2 = this.getByte();
+      var b3 = this.getByte();
+      return (b0 << 24) + (b1 << 16) + (b2 << 8) + b3;
+    },
     // returns subarray of original buffer
     // should only be read
     getBytes: function Stream_getBytes(length) {
@@ -33429,6 +33476,18 @@ var DecodeStream = (function DecodeStreamClosure() {
         this.readBlock();
       }
       return this.buffer[this.pos++];
+    },
+    getUint16: function DecodeStream_getUint16() {
+      var b0 = this.getByte();
+      var b1 = this.getByte();
+      return (b0 << 8) + b1;
+    },
+    getUint32: function DecodeStream_getUint32() {
+      var b0 = this.getByte();
+      var b1 = this.getByte();
+      var b2 = this.getByte();
+      var b3 = this.getByte();
+      return (b0 << 24) + (b1 << 16) + (b2 << 8) + b3;
     },
     getBytes: function DecodeStream_getBytes(length) {
       var end, pos = this.pos;
@@ -35640,10 +35699,10 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       var loadDocumentPromise = new LegacyPromise();
 
       var parseSuccess = function parseSuccess() {
-        var numPagesPromise = pdfManager.ensureModel('numPages');
-        var fingerprintPromise = pdfManager.ensureModel('fingerprint');
+        var numPagesPromise = pdfManager.ensureDoc('numPages');
+        var fingerprintPromise = pdfManager.ensureDoc('fingerprint');
         var outlinePromise = pdfManager.ensureCatalog('documentOutline');
-        var infoPromise = pdfManager.ensureModel('documentInfo');
+        var infoPromise = pdfManager.ensureDoc('documentInfo');
         var metadataPromise = pdfManager.ensureCatalog('metadata');
         var encryptedPromise = pdfManager.ensureXRef('encrypt');
         var javaScriptPromise = pdfManager.ensureCatalog('javaScript');
@@ -35670,9 +35729,9 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
         loadDocumentPromise.reject(e);
       };
 
-      pdfManager.ensureModel('checkHeader', []).then(function() {
-        pdfManager.ensureModel('parseStartXRef', []).then(function() {
-          pdfManager.ensureModel('parse', [recoveryMode]).then(
+      pdfManager.ensureDoc('checkHeader', []).then(function() {
+        pdfManager.ensureDoc('parseStartXRef', []).then(function() {
+          pdfManager.ensureDoc('parse', [recoveryMode]).then(
               parseSuccess, parseFailure);
         }, parseFailure);
       }, parseFailure);
@@ -35851,6 +35910,7 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       PDFJS.verbosity = data.verbosity;
       PDFJS.cMapUrl = data.cMapUrl === undefined ?
                            null : data.cMapUrl;
+      PDFJS.cMapPacked = data.cMapPacked === true;
 
       getPdfManager(data).then(function () {
         pdfManager.onLoadedStream().then(function(stream) {
@@ -39231,21 +39291,28 @@ var bidi = PDFJS.bidi = (function bidiClosure() {
     }
   }
 
-  function BidiResult(str, isLTR, vertical) {
-    this.str = str;
-    this.dir = (vertical ? 'ttb' : (isLTR ? 'ltr' : 'rtl'));
+  function createBidiText(str, isLTR, vertical) {
+    return {
+      str: str,
+      dir: (vertical ? 'ttb' : (isLTR ? 'ltr' : 'rtl'))
+    };
   }
+
+  // These are used in bidi(), which is called frequently. We re-use them on
+  // each call to avoid unnecessary allocations.
+  var chars = [];
+  var types = [];
 
   function bidi(str, startLevel, vertical) {
     var isLTR = true;
     var strLength = str.length;
     if (strLength === 0 || vertical) {
-      return new BidiResult(str, isLTR, vertical);
+      return createBidiText(str, isLTR, vertical);
     }
 
     // Get types and fill arrays
-    var chars = [];
-    var types = [];
+    chars.length = 0;
+    types.length = 0;
     var numBidi = 0;
 
     for (var i = 0; i < strLength; ++i) {
@@ -39274,7 +39341,7 @@ var bidi = PDFJS.bidi = (function bidiClosure() {
     // - If more than 30% chars are rtl then string is primarily rtl
     if (numBidi === 0) {
       isLTR = true;
-      return new BidiResult(str, isLTR);
+      return createBidiText(str, isLTR);
     }
 
     if (startLevel == -1) {
@@ -39539,7 +39606,7 @@ var bidi = PDFJS.bidi = (function bidiClosure() {
         result += ch;
       }
     }
-    return new BidiResult(result, isLTR);
+    return createBidiText(result, isLTR);
   }
 
   return bidi;
@@ -39803,6 +39870,314 @@ var IdentityCMap = (function IdentityCMapClosure() {
   return IdentityCMap;
 })();
 
+var BinaryCMapReader = (function BinaryCMapReaderClosure() {
+  function fetchBinaryData(url) {
+    var nonBinaryRequest = PDFJS.disableWorker;
+    var request = new XMLHttpRequest();
+    request.open('GET', url, false);
+    if (!nonBinaryRequest) {
+      try {
+        request.responseType = 'arraybuffer';
+        nonBinaryRequest = request.responseType !== 'arraybuffer';
+      } catch (e) {
+        nonBinaryRequest = true;
+      }
+    }
+    if (nonBinaryRequest && request.overrideMimeType) {
+      request.overrideMimeType('text/plain; charset=x-user-defined');
+    }
+    request.send(null);
+    if (request.status === 0 && /^https?:/i.test(url)) {
+      error('Unable to get binary cMap at: ' + url);
+    }
+    if (nonBinaryRequest) {
+      var data = Array.prototype.map.call(request.responseText, function (ch) {
+        return ch.charCodeAt(0) & 255;
+      });
+      return new Uint8Array(data);
+    }
+    return new Uint8Array(request.response);
+  }
+
+  function hexToInt(a, size) {
+    var n = 0;
+    for (var i = 0; i <= size; i++) {
+      n = (n << 8) | a[i];
+    }
+    return n >>> 0;
+  }
+
+  function hexToStr(a, size) {
+    return String.fromCharCode.apply(null, a.subarray(0, size + 1));
+  }
+
+  function addHex(a, b, size) {
+    var c = 0;
+    for (var i = size; i >= 0; i--) {
+      c += a[i] + b[i];
+      a[i] = c & 255;
+      c >>= 8;
+    }
+  }
+
+  function incHex(a, size) {
+    var c = 1;
+    for (var i = size; i >= 0 && c > 0; i--) {
+      c += a[i];
+      a[i] = c & 255;
+      c >>= 8;
+    }
+  }
+
+  var MAX_NUM_SIZE = 16;
+  var MAX_ENCODED_NUM_SIZE = 19; // ceil(MAX_NUM_SIZE * 7 / 8)
+
+  function BinaryCMapStream(data) {
+    this.buffer = data;
+    this.pos = 0;
+    this.end = data.length;
+    this.tmpBuf = new Uint8Array(MAX_ENCODED_NUM_SIZE);
+  }
+
+  BinaryCMapStream.prototype = {
+    readByte: function () {
+      if (this.pos >= this.end) {
+        return -1;
+      }
+      return this.buffer[this.pos++];
+    },
+    readNumber: function () {
+      var n = 0;
+      var last;
+      do {
+        var b = this.readByte();
+        if (b < 0) {
+          error('unexpected EOF in bcmap');
+        }
+        last = !(b & 0x80);
+        n = (n << 7) | (b & 0x7F);
+      } while (!last);
+      return n;
+    },
+    readSigned: function () {
+      var n = this.readNumber();
+      return (n & 1) ? ~(n >>> 1) : n >>> 1;
+    },
+    readHex: function (num, size) {
+      num.set(this.buffer.subarray(this.pos,
+        this.pos + size + 1));
+      this.pos += size + 1;
+    },
+    readHexNumber: function (num, size) {
+      var last;
+      var stack = this.tmpBuf, sp = 0;
+      do {
+        var b = this.readByte();
+        if (b < 0) {
+          error('unexpected EOF in bcmap');
+        }
+        last = !(b & 0x80);
+        stack[sp++] = b & 0x7F;
+      } while (!last);
+      var i = size, buffer = 0, bufferSize = 0;
+      while (i >= 0) {
+        while (bufferSize < 8 && stack.length > 0) {
+          buffer = (stack[--sp] << bufferSize) | buffer;
+          bufferSize += 7;
+        }
+        num[i] = buffer & 255;
+        i--;
+        buffer >>= 8;
+        bufferSize -= 8;
+      }
+    },
+    readHexSigned: function (num, size) {
+      this.readHexNumber(num, size);
+      var sign = num[size] & 1 ? 255 : 0;
+      var c = 0;
+      for (var i = 0; i <= size; i++) {
+        c = ((c & 1) << 8) | num[i];
+        num[i] = (c >> 1) ^ sign;
+      }
+    },
+    readString: function () {
+      var len = this.readNumber();
+      var s = '';
+      for (var i = 0; i < len; i++) {
+        s += String.fromCharCode(this.readNumber());
+      }
+      return s;
+    }
+  };
+
+  function processBinaryCMap(url, cMap, extend) {
+    var data = fetchBinaryData(url);
+    var stream = new BinaryCMapStream(data);
+
+    var header = stream.readByte();
+    cMap.vertical = !!(header & 1);
+
+    var useCMap = null;
+    var start = new Uint8Array(MAX_NUM_SIZE);
+    var end = new Uint8Array(MAX_NUM_SIZE);
+    var char = new Uint8Array(MAX_NUM_SIZE);
+    var charCode = new Uint8Array(MAX_NUM_SIZE);
+    var tmp = new Uint8Array(MAX_NUM_SIZE);
+    var code;
+
+    var b;
+    while ((b = stream.readByte()) >= 0) {
+      var type = b >> 5;
+      if (type === 7) { // metadata, e.g. comment or usecmap
+        switch (b & 0x1F) {
+          case 0:
+            stream.readString(); // skipping comment
+            break;
+          case 1:
+            useCMap = stream.readString();
+            break;
+        }
+        continue;
+      }
+      var sequence = !!(b & 0x10);
+      var dataSize = b & 15;
+
+      assert(dataSize + 1 <= MAX_NUM_SIZE);
+
+      var ucs2DataSize = 1;
+      var subitemsCount = stream.readNumber();
+      switch (type) {
+        case 0: // codespacerange
+          stream.readHex(start, dataSize);
+          stream.readHexNumber(end, dataSize);
+          addHex(end, start, dataSize);
+          cMap.addCodespaceRange(dataSize + 1, hexToInt(start, dataSize),
+                                 hexToInt(end, dataSize));
+          for (var i = 1; i < subitemsCount; i++) {
+            incHex(end, dataSize);
+            stream.readHexNumber(start, dataSize);
+            addHex(start, end, dataSize);
+            stream.readHexNumber(end, dataSize);
+            addHex(end, start, dataSize);
+            cMap.addCodespaceRange(dataSize + 1, hexToInt(start, dataSize),
+                                   hexToInt(end, dataSize));
+          }
+          break;
+        case 1: // notdefrange
+          stream.readHex(start, dataSize);
+          stream.readHexNumber(end, dataSize);
+          addHex(end, start, dataSize);
+          code = stream.readNumber();
+          // undefined range, skipping
+          for (var i = 1; i < subitemsCount; i++) {
+            incHex(end, dataSize);
+            stream.readHexNumber(start, dataSize);
+            addHex(start, end, dataSize);
+            stream.readHexNumber(end, dataSize);
+            addHex(end, start, dataSize);
+            code = stream.readNumber();
+            // nop
+          }
+          break;
+        case 2: // cidchar
+          stream.readHex(char, dataSize);
+          code = stream.readNumber();
+          cMap.mapOne(hexToInt(char, dataSize), String.fromCharCode(code));
+          for (var i = 1; i < subitemsCount; i++) {
+            incHex(char, dataSize);
+            if (!sequence) {
+              stream.readHexNumber(tmp, dataSize);
+              addHex(char, tmp, dataSize);
+            }
+            code = stream.readSigned() + (code + 1);
+            cMap.mapOne(hexToInt(char, dataSize), String.fromCharCode(code));
+          }
+          break;
+        case 3: // cidrange
+          stream.readHex(start, dataSize);
+          stream.readHexNumber(end, dataSize);
+          addHex(end, start, dataSize);
+          code = stream.readNumber();
+          cMap.mapRange(hexToInt(start, dataSize), hexToInt(end, dataSize),
+                        String.fromCharCode(code));
+          for (var i = 1; i < subitemsCount; i++) {
+            incHex(end, dataSize);
+            if (!sequence) {
+              stream.readHexNumber(start, dataSize);
+              addHex(start, end, dataSize);
+            } else {
+              start.set(end);
+            }
+            stream.readHexNumber(end, dataSize);
+            addHex(end, start, dataSize);
+            code = stream.readNumber();
+            cMap.mapRange(hexToInt(start, dataSize), hexToInt(end, dataSize),
+                          String.fromCharCode(code));
+          }
+          break;
+        case 4: // bfchar
+          stream.readHex(char, ucs2DataSize);
+          stream.readHex(charCode, dataSize);
+          cMap.mapOne(hexToInt(char, ucs2DataSize),
+                      hexToStr(charCode, dataSize));
+          for (var i = 1; i < subitemsCount; i++) {
+            incHex(char, ucs2DataSize);
+            if (!sequence) {
+              stream.readHexNumber(tmp, ucs2DataSize);
+              addHex(char, tmp, ucs2DataSize);
+            }
+            incHex(charCode, dataSize);
+            stream.readHexSigned(tmp, dataSize);
+            addHex(charCode, tmp, dataSize);
+            cMap.mapOne(hexToInt(char, ucs2DataSize),
+                        hexToStr(charCode, dataSize));
+          }
+          break;
+        case 5: // bfrange
+          stream.readHex(start, ucs2DataSize);
+          stream.readHexNumber(end, ucs2DataSize);
+          addHex(end, start, ucs2DataSize);
+          stream.readHex(charCode, dataSize);
+          cMap.mapRange(hexToInt(start, ucs2DataSize),
+                        hexToInt(end, ucs2DataSize),
+                        hexToStr(charCode, dataSize));
+          for (var i = 1; i < subitemsCount; i++) {
+            incHex(end, ucs2DataSize);
+            if (!sequence) {
+              stream.readHexNumber(start, ucs2DataSize);
+              addHex(start, end, ucs2DataSize);
+            } else {
+              start.set(end);
+            }
+            stream.readHexNumber(end, ucs2DataSize);
+            addHex(end, start, ucs2DataSize);
+            stream.readHex(charCode, dataSize);
+            cMap.mapRange(hexToInt(start, ucs2DataSize),
+                          hexToInt(end, ucs2DataSize),
+                          hexToStr(charCode, dataSize));
+          }
+          break;
+        default:
+          error('Unknown type: ' + type);
+          break;
+      }
+    }
+
+    if (useCMap) {
+      extend(useCMap);
+    }
+    return cMap;
+  }
+
+  function BinaryCMapReader() {}
+
+  BinaryCMapReader.prototype = {
+    read: processBinaryCMap
+  };
+
+  return BinaryCMapReader;
+})();
+
 var CMapFactory = (function CMapFactoryClosure() {
   function strToInt(str) {
     var a = 0;
@@ -39945,7 +40320,7 @@ var CMapFactory = (function CMapFactoryClosure() {
     }
   }
 
-  function parseCMap(cMap, lexer, builtInCMapUrl, useCMap) {
+  function parseCMap(cMap, lexer, builtInCMapParams, useCMap) {
     var previous;
     var embededUseCMap;
     objLoop: while (true) {
@@ -39991,28 +40366,41 @@ var CMapFactory = (function CMapFactoryClosure() {
       useCMap = embededUseCMap;
     }
     if (useCMap) {
-      cMap.useCMap = createBuiltInCMap(useCMap, builtInCMapUrl);
-      // If there aren't any code space ranges defined clone all the parent ones
-      // into this cMap.
-      if (cMap.numCodespaceRanges === 0) {
-        var useCodespaceRanges = cMap.useCMap.codespaceRanges;
-        for (var i = 0; i < useCodespaceRanges.length; i++) {
-          cMap.codespaceRanges[i] = useCodespaceRanges[i].slice();
-        }
-        cMap.numCodespaceRanges = cMap.useCMap.numCodespaceRanges;
-      }
-      // Merge the map into the current one, making sure not to override
-      // any previously defined entries.
-      for (var key in cMap.useCMap.map) {
-        if (key in cMap.map) {
-          continue;
-        }
-        cMap.map[key] = cMap.useCMap.map[key];
-      }
+      extendCMap(cMap, builtInCMapParams, useCMap);
     }
   }
 
-  function createBuiltInCMap(name, builtInCMapUrl) {
+  function extendCMap(cMap, builtInCMapParams, useCMap) {
+    cMap.useCMap = createBuiltInCMap(useCMap, builtInCMapParams);
+    // If there aren't any code space ranges defined clone all the parent ones
+    // into this cMap.
+    if (cMap.numCodespaceRanges === 0) {
+      var useCodespaceRanges = cMap.useCMap.codespaceRanges;
+      for (var i = 0; i < useCodespaceRanges.length; i++) {
+        cMap.codespaceRanges[i] = useCodespaceRanges[i].slice();
+      }
+      cMap.numCodespaceRanges = cMap.useCMap.numCodespaceRanges;
+    }
+    // Merge the map into the current one, making sure not to override
+    // any previously defined entries.
+    for (var key in cMap.useCMap.map) {
+      if (key in cMap.map) {
+        continue;
+      }
+      cMap.map[key] = cMap.useCMap.map[key];
+    }
+  }
+
+  function parseBinaryCMap(name, builtInCMapParams) {
+    var url = builtInCMapParams.url + name + '.bcmap';
+    var cMap = new CMap(true);
+    new BinaryCMapReader().read(url, cMap, function (useCMap) {
+      extendCMap(cMap, builtInCMapParams, useCMap);
+    });
+    return cMap;
+  }
+
+  function createBuiltInCMap(name, builtInCMapParams) {
     if (name === 'Identity-H') {
       return new IdentityCMap(false, 2);
     } else if (name === 'Identity-V') {
@@ -40021,9 +40409,14 @@ var CMapFactory = (function CMapFactoryClosure() {
     if (BUILT_IN_CMAPS.indexOf(name) === -1) {
       error('Unknown cMap name: ' + name);
     }
+    assert (builtInCMapParams, 'buildin cmap parameters are not provided');
+
+    if (builtInCMapParams.packed) {
+      return parseBinaryCMap(name, builtInCMapParams);
+    }
 
     var request = new XMLHttpRequest();
-    var url = builtInCMapUrl + name;
+    var url = builtInCMapParams.url + name;
     request.open('GET', url, false);
     request.send(null);
     if (request.status === 0 && /^https?:/i.test(url)) {
@@ -40031,19 +40424,19 @@ var CMapFactory = (function CMapFactoryClosure() {
     }
     var cMap = new CMap(true);
     var lexer = new Lexer(new StringStream(request.responseText));
-    parseCMap(cMap, lexer, builtInCMapUrl, null);
+    parseCMap(cMap, lexer, builtInCMapParams, null);
     return cMap;
   }
 
   return {
-    create: function (encoding, builtInCMapUrl, useCMap) {
+    create: function (encoding, builtInCMapParams, useCMap) {
       if (isName(encoding)) {
-        return createBuiltInCMap(encoding.name, builtInCMapUrl);
+        return createBuiltInCMap(encoding.name, builtInCMapParams);
       } else if (isStream(encoding)) {
         var cMap = new CMap();
         var lexer = new Lexer(encoding);
         try {
-          parseCMap(cMap, lexer, builtInCMapUrl, useCMap);
+          parseCMap(cMap, lexer, builtInCMapParams, useCMap);
         } catch (e) {
           warn('Invalid CMap data. ' + e);
         }
