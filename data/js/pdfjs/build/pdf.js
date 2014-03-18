@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1241';
-PDFJS.build = '59829bb';
+PDFJS.version = '0.8.1259';
+PDFJS.build = '329d0ec';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -3824,6 +3824,12 @@ PDFJS.maxImageSize = (PDFJS.maxImageSize === undefined ?
  */
 PDFJS.cMapUrl = (PDFJS.cMapUrl === undefined ? null : PDFJS.cMapUrl);
 
+/**
+ * Specifies if CMaps are binary packed.
+ * @var {boolean}
+ */
+PDFJS.cMapPacked = PDFJS.cMapPacked === undefined ? false : PDFJS.cMapPacked;
+
 /*
  * By default fonts are converted to OpenType fonts and loaded via font face
  * rules. If disabled, the font will be rendered using a built in font renderer
@@ -4726,6 +4732,7 @@ var WorkerTransport = (function WorkerTransportClosure() {
         disableRange: PDFJS.disableRange,
         maxImageSize: PDFJS.maxImageSize,
         cMapUrl: PDFJS.cMapUrl,
+        cMapPacked: PDFJS.cMapPacked,
         disableFontFace: PDFJS.disableFontFace,
         disableCreateObjectURL: PDFJS.disableCreateObjectURL,
         verbosity: PDFJS.verbosity
