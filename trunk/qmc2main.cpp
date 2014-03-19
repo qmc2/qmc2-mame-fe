@@ -3377,7 +3377,7 @@ void MainWindow::on_actionForum_triggered(bool)
 
 void MainWindow::on_actionBugTracker_triggered(bool)
 {
-	QDesktopServices::openUrl(QUrl::fromUserInput("http://tracker.batcom-it.net/view_all_bug_page.php"));
+	QDesktopServices::openUrl(QUrl::fromUserInput("http://tracker.batcom-it.net/view_all_bug_page.php?project_id=1"));
 }
 
 void MainWindow::on_actionAboutQt_triggered(bool)
