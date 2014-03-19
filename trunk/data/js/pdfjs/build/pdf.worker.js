@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1259';
-PDFJS.build = '329d0ec';
+PDFJS.version = '0.8.1264';
+PDFJS.build = 'b7545e1';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -35963,7 +35963,8 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
 
     handler.on('GetPageIndex', function wphSetupGetPageIndex(data, deferred) {
       var ref = new Ref(data.ref.num, data.ref.gen);
-      pdfManager.pdfModel.catalog.getPageIndex(ref).then(function (pageIndex) {
+      var catalog = pdfManager.pdfDocument.catalog;
+      catalog.getPageIndex(ref).then(function (pageIndex) {
         deferred.resolve(pageIndex);
       }, deferred.reject);
     });
