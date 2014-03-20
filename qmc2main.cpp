@@ -7287,121 +7287,123 @@ void MainWindow::viewByVersion()
 
 bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
 {
-  if ( event->type() == QEvent::KeyPress || event->type() == QEvent::KeyRelease ) {
-    QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+	if ( event->type() == QEvent::KeyPress || event->type() == QEvent::KeyRelease ) {
+		QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
 
 #ifdef QMC2_DEBUG
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: KeyPressFilter::eventFilter(QObject *object = %1, QEvent *event = %2)").arg((qulonglong)object).arg((qulonglong)event));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: KeyPressFilter::eventFilter(QObject *object = %1, QEvent *event = %2)").arg((qulonglong)object).arg((qulonglong)event));
 #endif
     
-    if ( keyEvent->text() == QString("QMC2_EMULATED_KEY") ) {
-      QString emulatedSequence = QKeySequence(keyEvent->key() | keyEvent->modifiers()).toString();
+		if ( keyEvent->text() == QString("QMC2_EMULATED_KEY") ) {
+			QString emulatedSequence = QKeySequence(keyEvent->key() | keyEvent->modifiers()).toString();
 #ifdef QMC2_DEBUG
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulated key event, key-sequence = '%1'").arg(emulatedSequence));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulated key event, key-sequence = '%1'").arg(emulatedSequence));
 #endif
-      QPair<QString, QAction *> actionPair = qmc2ShortcutMap[emulatedSequence];
-      if ( actionPair.second ) {
-	      if ( event->type() == QEvent::KeyPress )
-		      actionPair.second->trigger();
-	      return true;
-      } else
-	      return false;
-    }
+			QPair<QString, QAction *> actionPair = qmc2ShortcutMap[emulatedSequence];
+			if ( actionPair.second ) {
+				if ( event->type() == QEvent::KeyPress && actionPair.second->isEnabled() )
+					actionPair.second->trigger();
+				return true;
+			} else
+				return false;
+		}
 
-    int myKeySeq = 0;
-    if ( keyEvent->modifiers() & Qt::ShiftModifier )
-      myKeySeq += Qt::SHIFT;
-    if ( keyEvent->modifiers() & Qt::ControlModifier )
-      myKeySeq += Qt::CTRL;
-    if ( keyEvent->modifiers() & Qt::AltModifier )
-      myKeySeq += Qt::ALT;
-    if ( keyEvent->modifiers() & Qt::MetaModifier )
-      myKeySeq += Qt::META;
-    myKeySeq += keyEvent->key();
+		int myKeySeq = 0;
+		if ( keyEvent->modifiers() & Qt::ShiftModifier )
+			myKeySeq += Qt::SHIFT;
+		if ( keyEvent->modifiers() & Qt::ControlModifier )
+			myKeySeq += Qt::CTRL;
+		if ( keyEvent->modifiers() & Qt::AltModifier )
+			myKeySeq += Qt::ALT;
+		if ( keyEvent->modifiers() & Qt::MetaModifier )
+			myKeySeq += Qt::META;
+		myKeySeq += keyEvent->key();
 
-    QString pressedKeySeq = QKeySequence(myKeySeq).toString();
+		QString pressedKeySeq = QKeySequence(myKeySeq).toString();
 #ifdef QMC2_DEBUG
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: current key-sequence = '%1'").arg(pressedKeySeq));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: current key-sequence = '%1'").arg(pressedKeySeq));
 #endif
 
-    QString matchedKeySeq = qmc2CustomShortcutMap.key(pressedKeySeq);
-    if ( !matchedKeySeq.isEmpty() ) {
-      if ( !qmc2MainWindow->menuBar()->isVisible() ) {
-        QPair<QString, QAction *> actionPair = qmc2ShortcutMap[qmc2CustomShortcutMap.key(pressedKeySeq)];
-        if ( actionPair.second )
-        {
+		QString matchedKeySeq = qmc2CustomShortcutMap.key(pressedKeySeq);
+		if ( !matchedKeySeq.isEmpty() ) {
+			if ( !qmc2MainWindow->menuBar()->isVisible() ) {
+				QPair<QString, QAction *> actionPair = qmc2ShortcutMap[qmc2CustomShortcutMap.key(pressedKeySeq)];
+				if ( actionPair.second )
+				{
 #ifdef QMC2_DEBUG
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, emulating key event (due to no menu bar)").arg(pressedKeySeq));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, emulating key event (due to no menu bar)").arg(pressedKeySeq));
 #endif
-          actionPair.second->trigger();
-          return true;
-        }
-      }
+					if ( actionPair.second->isEnabled() )
+						actionPair.second->trigger();
+					return true;
+				}
+			}
 
-      if ( matchedKeySeq != pressedKeySeq ) {
+			if ( matchedKeySeq != pressedKeySeq ) {
 #ifdef QMC2_DEBUG
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulating key event for '%1'").arg(matchedKeySeq));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: emulating key event for '%1'").arg(matchedKeySeq));
 #endif
-        // emulate a key event for the mapped key
-        int key;
-        if ( qmc2QtKeyMap.contains(matchedKeySeq) )
-          key = qmc2QtKeyMap[matchedKeySeq][0] | qmc2QtKeyMap[matchedKeySeq][1] | qmc2QtKeyMap[matchedKeySeq][2] | qmc2QtKeyMap[matchedKeySeq][3];
-        else {
-          QKeySequence emulatedKeySequence(matchedKeySeq);
-          key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
-        }
-        Qt::KeyboardModifiers mods = Qt::NoModifier;
-        if ( key & Qt::ShiftModifier ) {
-          key -= Qt::ShiftModifier;
-          mods |= Qt::ShiftModifier;
-        }
-        if ( key & Qt::ControlModifier ) {
-          key -= Qt::ControlModifier;
-          mods |= Qt::ControlModifier;
-        }
-        if ( key & Qt::AltModifier ) {
-          key -= Qt::AltModifier;
-          mods |= Qt::AltModifier;
-        }
-        if ( key & Qt::MetaModifier ) {
-          key -= Qt::MetaModifier;
-          mods |= Qt::MetaModifier;
-        }
-        QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods, QString("QMC2_EMULATED_KEY"));
-        qApp->postEvent(object, emulatedKeyEvent);
-        return true;
-      } else {
-#ifdef QMC2_DEBUG
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, default key event processing").arg(pressedKeySeq));
-#endif
-        // default key event processing
-        return false;
-      }
-    }
+				// emulate a key event for the mapped key
+				int key = 0;
+				if ( qmc2QtKeyMap.contains(matchedKeySeq) )
+					key = qmc2QtKeyMap[matchedKeySeq][0] | qmc2QtKeyMap[matchedKeySeq][1] | qmc2QtKeyMap[matchedKeySeq][2] | qmc2QtKeyMap[matchedKeySeq][3];
+				else {
+					QKeySequence emulatedKeySequence(matchedKeySeq);
+					key = emulatedKeySequence[0] | emulatedKeySequence[1] | emulatedKeySequence[2] | emulatedKeySequence[3];
+				}
 
-    QMap<QString, QString>::const_iterator it = qmc2CustomShortcutMap.find(pressedKeySeq);
-    if ( it != qmc2CustomShortcutMap.end() ) {
-      if ( !it.value().isEmpty() ) {
+				Qt::KeyboardModifiers mods = Qt::NoModifier;
+				if ( key & Qt::ShiftModifier ) {
+					key -= Qt::ShiftModifier;
+					mods |= Qt::ShiftModifier;
+				}
+				if ( key & Qt::ControlModifier ) {
+					key -= Qt::ControlModifier;
+					mods |= Qt::ControlModifier;
+				}
+				if ( key & Qt::AltModifier ) {
+					key -= Qt::AltModifier;
+					mods |= Qt::AltModifier;
+				}
+				if ( key & Qt::MetaModifier ) {
+					key -= Qt::MetaModifier;
+					mods |= Qt::MetaModifier;
+				}
+				QKeyEvent *emulatedKeyEvent = new QKeyEvent(event->type(), key, mods, QString("QMC2_EMULATED_KEY"));
+				qApp->postEvent(object, emulatedKeyEvent);
+				return true;
+			} else {
 #ifdef QMC2_DEBUG
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, key event suppressed").arg(pressedKeySeq));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, default key event processing").arg(pressedKeySeq));
 #endif
-        return true;
-      } else {
+				// default key event processing
+				return false;
+			}
+		}
+
+		QMap<QString, QString>::const_iterator it = qmc2CustomShortcutMap.find(pressedKeySeq);
+		if ( it != qmc2CustomShortcutMap.end() ) {
+			if ( !it.value().isEmpty() ) {
 #ifdef QMC2_DEBUG
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, default key event processing").arg(pressedKeySeq));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, key event suppressed").arg(pressedKeySeq));
 #endif
-        return false;
-      }
-    }
+				return true;
+			} else {
+#ifdef QMC2_DEBUG
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, default key event processing").arg(pressedKeySeq));
+#endif
+				return false;
+			}
+		}
 
 #ifdef QMC2_DEBUG
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, default key event processing").arg(pressedKeySeq));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: '%1' pressed, default key event processing").arg(pressedKeySeq));
 #endif
-    return false;
-  } else {
-    // default event processing
-    return QObject::eventFilter(object, event);
-  }
+		return false;
+	} else {
+		// default event processing
+		return QObject::eventFilter(object, event);
+	}
 }
 
 #if defined(QMC2_YOUTUBE_ENABLED)

@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1264';
-PDFJS.build = 'b7545e1';
+PDFJS.version = '0.8.1269';
+PDFJS.build = '10deadd';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -181,7 +181,8 @@ var OPS = PDFJS.OPS = {
   paintInlineImageXObject: 86,
   paintInlineImageXObjectGroup: 87,
   paintImageXObjectRepeat: 88,
-  paintImageMaskXObjectRepeat: 89
+  paintImageMaskXObjectRepeat: 89,
+  paintSolidColorImageMask: 90,
 };
 
 // A notice for devs. These are good for things that are helpful to devs, such
@@ -7236,6 +7237,11 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         }
         ctx.restore();
       }
+    },
+
+    paintSolidColorImageMask:
+      function CanvasGraphics_paintSolidColorImageMask() {
+        this.ctx.fillRect(0, 0, 1, 1);
     },
 
     // Marked content
