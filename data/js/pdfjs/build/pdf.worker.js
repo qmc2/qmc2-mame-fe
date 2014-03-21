@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1269';
-PDFJS.build = '10deadd';
+PDFJS.version = '0.8.1277';
+PDFJS.build = 'cebf783';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -5236,7 +5236,7 @@ var Name = (function NameClosure() {
 
   Name.get = function Name_get(name) {
     var nameValue = nameCache[name];
-    return nameValue ? nameValue : (nameCache[name] = new Name(name));
+    return (nameValue ? nameValue : (nameCache[name] = new Name(name)));
   };
 
   return Name;
@@ -5253,7 +5253,7 @@ var Cmd = (function CmdClosure() {
 
   Cmd.get = function Cmd_get(cmd) {
     var cmdValue = cmdCache[cmd];
-    return cmdValue ? cmdValue : (cmdCache[cmd] = new Cmd(cmd));
+    return (cmdValue ? cmdValue : (cmdCache[cmd] = new Cmd(cmd)));
   };
 
   return Cmd;
@@ -5335,7 +5335,7 @@ var Dict = (function DictClosure() {
       var all = {};
       for (var key in this.map) {
         var obj = this.get(key);
-        all[key] = obj instanceof Dict ? obj.getAll() : obj;
+        all[key] = (obj instanceof Dict ? obj.getAll() : obj);
       }
       return all;
     },
@@ -5369,8 +5369,8 @@ var Ref = (function RefClosure() {
   return Ref;
 })();
 
-// The reference is identified by number and generation,
-// this structure stores only one instance of the reference.
+// The reference is identified by number and generation.
+// This structure stores only one instance of the reference.
 var RefSet = (function RefSetClosure() {
   function RefSet() {
     this.dict = {};
@@ -5444,8 +5444,8 @@ var Catalog = (function CatalogClosure() {
         return shadow(this, 'metadata', null);
       }
 
-      var encryptMetadata = !this.xref.encrypt ? false :
-        this.xref.encrypt.encryptMetadata;
+      var encryptMetadata = (!this.xref.encrypt ? false :
+                             this.xref.encrypt.encryptMetadata);
 
       var stream = this.xref.fetch(streamRef, !encryptMetadata);
       var metadata;
@@ -5542,7 +5542,7 @@ var Catalog = (function CatalogClosure() {
           }
         }
       }
-      return root.items.length > 0 ? root.items : null;
+      return (root.items.length > 0 ? root.items : null);
     },
     get numPages() {
       var obj = this.toplevelPagesDict.get('Count');
@@ -5601,7 +5601,7 @@ var Catalog = (function CatalogClosure() {
           if (!names.hasOwnProperty(name)) {
             continue;
           }
-          // We don't really use the JavaScript right now so this code is
+          // We don't really use the JavaScript right now. This code is
           // defensive so we don't cause errors on document load.
           var jsDict = names[name];
           if (!isDict(jsDict)) {
@@ -5737,7 +5737,7 @@ var Catalog = (function CatalogClosure() {
           var found = false;
           for (var i = 0; i < kids.length; i++) {
             var kid = kids[i];
-            assert(isRef(kid), 'kids must be an ref');
+            assert(isRef(kid), 'kids must be a ref');
             if (kid.num == kidRef.num) {
               found = true;
               break;
@@ -5782,7 +5782,6 @@ var Catalog = (function CatalogClosure() {
 
 var XRef = (function XRefClosure() {
   function XRef(stream, password) {
-
     this.stream = stream;
     this.entries = [];
     this.xrefstms = {};
@@ -5812,8 +5811,8 @@ var XRef = (function XRefClosure() {
       if (encrypt) {
         var ids = trailerDict.get('ID');
         var fileId = (ids && ids.length) ? ids[0] : '';
-        this.encrypt = new CipherTransformFactory(
-            encrypt, fileId, this.password);
+        this.encrypt = new CipherTransformFactory(encrypt, fileId,
+                                                  this.password);
       }
 
       // get the root dictionary (catalog) object
@@ -5904,16 +5903,17 @@ var XRef = (function XRefClosure() {
           entry.gen = parser.getObj();
           var type = parser.getObj();
 
-          if (isCmd(type, 'f'))
+          if (isCmd(type, 'f')) {
             entry.free = true;
-          else if (isCmd(type, 'n'))
+          } else if (isCmd(type, 'n')) {
             entry.uncompressed = true;
+          }
 
           // Validate entry obj
           if (!isInt(entry.offset) || !isInt(entry.gen) ||
               !(entry.free || entry.uncompressed)) {
             console.log(entry.offset, entry.gen, entry.free,
-                entry.uncompressed);
+                        entry.uncompressed);
             error('Invalid entry in XRef subsection: ' + first + ', ' + count);
           }
 
@@ -5979,7 +5979,6 @@ var XRef = (function XRefClosure() {
 
       var entryRanges = streamState.entryRanges;
       while (entryRanges.length > 0) {
-
         var first = entryRanges[0];
         var n = entryRanges[1];
 
@@ -5995,9 +5994,10 @@ var XRef = (function XRefClosure() {
           streamState.streamPos = stream.pos;
 
           var type = 0, offset = 0, generation = 0;
-          for (j = 0; j < typeFieldWidth; ++j)
+          for (j = 0; j < typeFieldWidth; ++j) {
             type = (type << 8) | stream.getByte();
-          // if type field is absent, its default value = 1
+          }
+          // if type field is absent, its default value is 1
           if (typeFieldWidth === 0) {
             type = 1;
           }
@@ -6039,8 +6039,9 @@ var XRef = (function XRefClosure() {
       function readToken(data, offset) {
         var token = '', ch = data[offset];
         while (ch !== 13 && ch !== 10) {
-          if (++offset >= data.length)
+          if (++offset >= data.length) {
             break;
+          }
           token += String.fromCharCode(ch);
           ch = data[offset];
         }
@@ -6055,9 +6056,9 @@ var XRef = (function XRefClosure() {
           while (i < length && data[offset + i] == what[i]) {
             ++i;
           }
-          if (i >= length)
+          if (i >= length) {
             break; // sequence found
-
+          }
           offset++;
           skipped++;
         }
@@ -6169,7 +6170,6 @@ var XRef = (function XRefClosure() {
 
           // Get dictionary
           if (isCmd(obj, 'xref')) {
-
             // Parse end-of-file XRef
             dict = this.processXRefTable(parser);
             if (!this.topDict) {
@@ -6188,7 +6188,6 @@ var XRef = (function XRefClosure() {
               }
             }
           } else if (isInt(obj)) {
-
             // Parse in-stream XRef
             if (!isInt(parser.getObj()) ||
                 !isCmd(parser.getObj(), 'obj') ||
@@ -6199,7 +6198,6 @@ var XRef = (function XRefClosure() {
             if (!this.topDict) {
               this.topDict = dict;
             }
-
             if (!dict) {
               error('Failed to read XRef stream');
             }
@@ -6271,8 +6269,7 @@ var XRef = (function XRefClosure() {
       }
     },
 
-    fetchUncompressed: function XRef_fetchUncompressed(ref,
-                                                       xrefEntry,
+    fetchUncompressed: function XRef_fetchUncompressed(ref, xrefEntry,
                                                        suppressEncryption) {
       var gen = ref.gen;
       var num = ref.num;
@@ -6291,7 +6288,7 @@ var XRef = (function XRefClosure() {
         error('bad XRef entry');
       }
       if (!isCmd(obj3, 'obj')) {
-        // some bad pdfs use "obj1234" and really mean 1234
+        // some bad PDFs use "obj1234" and really mean 1234
         if (obj3.cmd.indexOf('obj') === 0) {
           num = parseInt(obj3.cmd.substring(3), 10);
           if (!isNaN(num)) {
@@ -6305,9 +6302,9 @@ var XRef = (function XRefClosure() {
           xrefEntry = parser.getObj(this.encrypt.createCipherTransform(num,
                                                                        gen));
         } catch (ex) {
-          // almost all streams must be encrypted, but sometimes
-          // they are not probably due to some broken generators
-          // re-trying without encryption
+          // Almost all streams must be encrypted, but sometimes
+          // they are not, probably due to some broken generators.
+          // Retrying without encryption...
           return this.fetch(ref, true);
         }
       } else {
@@ -6397,8 +6394,8 @@ var XRef = (function XRefClosure() {
 })();
 
 /**
- * A NameTree is like a Dict but has some adventagous properties, see the spec
- * (7.9.6) for more details.
+ * A NameTree is like a Dict but has some advantageous properties, see the
+ * spec (7.9.6) for more details.
  * TODO: implement all the Dict functions and make this more efficent.
  */
 var NameTree = (function NameTreeClosure() {
@@ -6461,7 +6458,6 @@ var NameTree = (function NameTreeClosure() {
  * entire PDF document object graph to be traversed.
  */
 var ObjectLoader = (function() {
-
   function mayHaveChildren(value) {
     return isRef(value) || isDict(value) || isArray(value) || isStream(value);
   }
@@ -6498,7 +6494,6 @@ var ObjectLoader = (function() {
   }
 
   ObjectLoader.prototype = {
-
     load: function ObjectLoader_load() {
       var keys = this.keys;
       this.promise = new LegacyPromise();
@@ -6586,7 +6581,6 @@ var ObjectLoader = (function() {
       this.refSet = null;
       this.promise.resolve();
     }
-
   };
 
   return ObjectLoader;
@@ -16361,38 +16355,30 @@ var OperatorList = (function OperatorListClosure() {
   var CHUNK_SIZE = 1000;
   var CHUNK_SIZE_ABOUT = CHUNK_SIZE - 5; // close to chunk size
 
-    function getTransfers(queue) {
-      var transfers = [];
-      var fnArray = queue.fnArray, argsArray = queue.argsArray;
-      for (var i = 0, ii = queue.length; i < ii; i++) {
-        switch (fnArray[i]) {
-          case OPS.paintInlineImageXObject:
-          case OPS.paintInlineImageXObjectGroup:
-          case OPS.paintImageMaskXObject:
-            var arg = argsArray[i][0]; // first param in imgData
-            if (!arg.cached) {
-              transfers.push(arg.data.buffer);
-            }
-            break;
-        }
+  function getTransfers(queue) {
+    var transfers = [];
+    var fnArray = queue.fnArray, argsArray = queue.argsArray;
+    for (var i = 0, ii = queue.length; i < ii; i++) {
+      switch (fnArray[i]) {
+        case OPS.paintInlineImageXObject:
+        case OPS.paintInlineImageXObjectGroup:
+        case OPS.paintImageMaskXObject:
+          var arg = argsArray[i][0]; // first param in imgData
+          if (!arg.cached) {
+            transfers.push(arg.data.buffer);
+          }
+          break;
       }
-      return transfers;
     }
+    return transfers;
+  }
 
-
-    function OperatorList(intent, messageHandler, pageIndex) {
+  function OperatorList(intent, messageHandler, pageIndex) {
     this.messageHandler = messageHandler;
-    // When there isn't a message handler the fn array needs to be able to grow
-    // since we can't flush the operators.
-    if (messageHandler) {
-      this.fnArray = new Uint8Array(CHUNK_SIZE);
-    } else {
-      this.fnArray = [];
-    }
+    this.fnArray = [];
     this.argsArray = [];
     this.dependencies = {};
     this.pageIndex = pageIndex;
-    this.fnIndex = 0;
     this.intent = intent;
   }
 
@@ -16403,19 +16389,16 @@ var OperatorList = (function OperatorListClosure() {
     },
 
     addOp: function(fn, args) {
+      this.fnArray.push(fn);
+      this.argsArray.push(args);
       if (this.messageHandler) {
-        this.fnArray[this.fnIndex++] = fn;
-        this.argsArray.push(args);
-        if (this.fnIndex >= CHUNK_SIZE) {
+        if (this.fnArray.length >= CHUNK_SIZE) {
           this.flush();
-        } else if (this.fnIndex >= CHUNK_SIZE_ABOUT &&
+        } else if (this.fnArray.length >= CHUNK_SIZE_ABOUT &&
           (fn === OPS.restore || fn === OPS.endText)) {
           // heuristic to flush on boundary of restore or endText
           this.flush();
         }
-      } else {
-        this.fnArray.push(fn);
-        this.argsArray.push(args);
       }
     },
 
@@ -16461,9 +16444,9 @@ var OperatorList = (function OperatorListClosure() {
         pageIndex: this.pageIndex,
         intent: this.intent
       }, null, transfers);
-      this.dependencies = [];
-      this.fnIndex = 0;
-      this.argsArray = [];
+      this.dependencies = {};
+      this.fnArray.length = 0;
+      this.argsArray.length = 0;
     }
   };
 
@@ -16755,22 +16738,6 @@ var EvaluatorPreprocessor = (function EvaluatorPreprocessor() {
 })();
 
 var QueueOptimizer = (function QueueOptimizerClosure() {
-  function squash(array, index, howMany, element) {
-    if (isArray(array)) {
-      array.splice(index, howMany, element);
-    } else if (typeof element !== 'undefined') {
-      // Replace the element.
-      array[index] = element;
-      // Shift everything after the element up.
-      var sub = array.subarray(index + howMany);
-      array.set(sub, index + 1);
-    } else {
-      // Shift everything after the element up.
-      var sub = array.subarray(index + howMany);
-      array.set(sub, index);
-    }
-  }
-
   function addState(parentState, pattern, fn) {
     var state = parentState;
     for (var i = 0, ii = pattern.length - 1; i < ii; i++) {
@@ -16813,7 +16780,7 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
 
       var fnArray = context.fnArray, argsArray = context.argsArray;
       var j = context.currentOperation - 3, i = j + 4;
-      var ii = context.operationsLength;
+      var ii = fnArray.length;
 
       for (; i < ii && fnArray[i - 4] === fnArray[i]; i++) {
       }
@@ -16878,12 +16845,11 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
         }
       }
       // replacing queue items
-      squash(fnArray, j, count * 4, OPS.paintInlineImageXObjectGroup);
+      fnArray.splice(j, count * 4, OPS.paintInlineImageXObjectGroup);
       argsArray.splice(j, count * 4,
         [{width: imgWidth, height: imgHeight, kind: ImageKind.RGBA_32BPP,
           data: imgData}, map]);
       context.currentOperation = j;
-      context.operationsLength -= count * 4 - 1;
     });
 
   addState(InitialState,
@@ -16897,7 +16863,7 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
 
       var fnArray = context.fnArray, argsArray = context.argsArray;
       var j = context.currentOperation - 3, i = j + 4;
-      var ii = context.operationsLength;
+      var ii = fnArray.length;
 
       for (; i < ii && fnArray[i - 4] === fnArray[i]; i++) {
       }
@@ -16942,12 +16908,11 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
         }
 
         // replacing queue items
-        squash(fnArray, j, count * 4, OPS.paintImageMaskXObjectRepeat);
+        fnArray.splice(j, count * 4, OPS.paintImageMaskXObjectRepeat);
         argsArray.splice(j, count * 4, [argsArray[j + 2][0],
           argsArray[j + 1][0], argsArray[j + 1][3], positions]);
 
         context.currentOperation = j;
-        context.operationsLength -= count * 4 - 1;
       } else {
         count = Math.min(count, MAX_IMAGES_IN_MASKS_BLOCK);
         var images = [];
@@ -16959,11 +16924,10 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
         }
 
         // replacing queue items
-        squash(fnArray, j, count * 4, OPS.paintImageMaskXObjectGroup);
+        fnArray.splice(j, count * 4, OPS.paintImageMaskXObjectGroup);
         argsArray.splice(j, count * 4, [images]);
 
         context.currentOperation = j;
-        context.operationsLength -= count * 4 - 1;
       }
     });
 
@@ -16978,7 +16942,7 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
       if (argsArray[j + 1][1] !== 0 || argsArray[j + 1][2] !== 0) {
         return;
       }
-      var ii = context.operationsLength;
+      var ii = fnArray.length;
       for (; i + 3 < ii && fnArray[i - 4] === fnArray[i]; i += 4) {
         if (fnArray[i - 3] !== fnArray[i + 1] ||
             fnArray[i - 2] !== fnArray[i + 2] ||
@@ -17014,11 +16978,10 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
       var args = [argsArray[j + 2][0], argsArray[j + 1][0],
         argsArray[j + 1][3], positions];
       // replacing queue items
-      squash(fnArray, j, count * 4, OPS.paintImageXObjectRepeat);
+      fnArray.splice(j, count * 4, OPS.paintImageXObjectRepeat);
       argsArray.splice(j, count * 4, args);
 
       context.currentOperation = j;
-      context.operationsLength -= count * 4 - 1;
     });
 
   addState(InitialState,
@@ -17031,7 +16994,7 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
 
       var fnArray = context.fnArray, argsArray = context.argsArray;
       var j = context.currentOperation - 4, i = j + 5;
-      var ii = context.operationsLength;
+      var ii = fnArray.length;
 
       for (; i < ii && fnArray[i - 5] === fnArray[i]; i++) {
         if (fnArray[i] === OPS.setFont) {
@@ -17067,12 +17030,10 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
         k += 5;
       }
       var removed = (count - 1) * 3;
-      squash(fnArray, i, removed);
+      fnArray.splice(i, removed);
       argsArray.splice(i, removed);
 
       context.currentOperation = i;
-      context.operationsLength -= removed;
-
     });
 
   function QueueOptimizer() {
@@ -17082,7 +17043,6 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
       var fnArray = queue.fnArray, argsArray = queue.argsArray;
       var context = {
         currentOperation: 0,
-        operationsLength: argsArray.length,
         fnArray: fnArray,
         argsArray: argsArray
       };
@@ -17094,7 +17054,7 @@ var QueueOptimizer = (function QueueOptimizerClosure() {
           context.currentOperation = i;
           state = state(context);
           i = context.currentOperation;
-          ii = context.operationsLength;
+          ii = context.fnArray.length;
         }
       }
     }
@@ -28880,7 +28840,7 @@ var PDFImage = (function PDFImageClosure() {
   function decodeAndClamp(value, addend, coefficient, max) {
     value = addend + value * coefficient;
     // Clamp the value to the range
-    return value < 0 ? 0 : value > max ? max : value;
+    return (value < 0 ? 0 : (value > max ? max : value));
   }
   function PDFImage(xref, res, image, inline, smask, mask, isMask) {
     this.image = image;
@@ -28922,7 +28882,7 @@ var PDFImage = (function PDFImageClosure() {
     if (!this.imageMask) {
       var colorSpace = dict.get('ColorSpace', 'CS');
       if (!colorSpace) {
-        warn('JPX images (which don"t require color spaces');
+        warn('JPX images (which do not require color spaces)');
         colorSpace = Name.get('DeviceRGB');
       }
       this.colorSpace = ColorSpace.parse(colorSpace, xref, res);
@@ -28967,7 +28927,7 @@ var PDFImage = (function PDFImageClosure() {
     var imageDataPromise = new LegacyPromise();
     var smaskPromise = new LegacyPromise();
     var maskPromise = new LegacyPromise();
-    // The image data and smask data may not be ready yet, wait till both are
+    // The image data and smask data may not be ready yet, wait until both are
     // resolved.
     Promise.all([imageDataPromise, smaskPromise, maskPromise]).then(
         function(results) {
@@ -29003,7 +28963,7 @@ var PDFImage = (function PDFImageClosure() {
   };
 
   /**
-   * Resize an image using the nearest neighbor algorithm.  Currently only
+   * Resize an image using the nearest neighbor algorithm. Currently only
    * supports one and three component images.
    * @param {TypedArray} pixels The original image with one component.
    * @param {Number} bpc Number of bits per component.
@@ -29017,8 +28977,8 @@ var PDFImage = (function PDFImageClosure() {
   PDFImage.resize = function PDFImage_resize(pixels, bpc, components,
                                              w1, h1, w2, h2) {
     var length = w2 * h2 * components;
-    var temp = bpc <= 8 ? new Uint8Array(length) :
-        bpc <= 16 ? new Uint16Array(length) : new Uint32Array(length);
+    var temp = (bpc <= 8 ? new Uint8Array(length) :
+        (bpc <= 16 ? new Uint16Array(length) : new Uint32Array(length)));
     var xRatio = w1 / w2;
     var yRatio = h1 / h2;
     var px, py, newIndex, oldIndex;
@@ -29099,7 +29059,7 @@ var PDFImage = (function PDFImageClosure() {
       for (var i = 0, ii = this.width * this.height; i < ii; i++) {
         for (var j = 0; j < numComps; j++) {
           buffer[index] = decodeAndClamp(buffer[index], decodeAddends[j],
-                                            decodeCoefficients[j], max);
+                                         decodeCoefficients[j], max);
           index++;
         }
       }
@@ -29118,8 +29078,8 @@ var PDFImage = (function PDFImageClosure() {
 
       var length = width * height * numComps;
       var bufferPos = 0;
-      var output = bpc <= 8 ? new Uint8Array(length) :
-        bpc <= 16 ? new Uint16Array(length) : new Uint32Array(length);
+      var output = (bpc <= 8 ? new Uint8Array(length) :
+        (bpc <= 16 ? new Uint16Array(length) : new Uint32Array(length)));
       var rowComps = width * numComps;
 
       var max = (1 << bpc) - 1;
@@ -29171,7 +29131,7 @@ var PDFImage = (function PDFImageClosure() {
 
           var remainingBits = bits - bpc;
           var value = buf >> remainingBits;
-          output[i] = value < 0 ? 0 : value > max ? max : value;
+          output[i] = (value < 0 ? 0 : (value > max ? max : value));
           buf = buf & ((1 << remainingBits) - 1);
           bits = remainingBits;
         }
@@ -29251,7 +29211,7 @@ var PDFImage = (function PDFImageClosure() {
       }
 
       function clamp(value) {
-        return (value < 0 ? 0 : value > 255 ? 255 : value) | 0;
+        return (value < 0 ? 0 : (value > 255 ? 255 : value)) | 0;
       }
 
       var matteRgb = this.colorSpace.getRgb(matte, 0);
@@ -29275,7 +29235,7 @@ var PDFImage = (function PDFImageClosure() {
     createImageData: function PDFImage_createImageData(forceRGBA) {
       var drawWidth = this.drawWidth;
       var drawHeight = this.drawHeight;
-      var imgData = {       // other fields are filled in below
+      var imgData = { // other fields are filled in below
         width: drawWidth,
         height: drawHeight
       };
@@ -29362,14 +29322,15 @@ var PDFImage = (function PDFImageClosure() {
     },
     fillGrayBuffer: function PDFImage_fillGrayBuffer(buffer) {
       var numComps = this.numComps;
-      if (numComps != 1)
+      if (numComps != 1) {
         error('Reading gray scale from a color image: ' + numComps);
+      }
 
       var width = this.width;
       var height = this.height;
       var bpc = this.bpc;
 
-      // rows start at byte boundary;
+      // rows start at byte boundary
       var rowBytes = (width * numComps * bpc + 7) >> 3;
       var imgArray = this.getImageBytes(height * rowBytes);
 
@@ -32358,7 +32319,7 @@ var Metrics = {
 var EOF = {};
 
 function isEOF(v) {
-  return v == EOF;
+  return (v == EOF);
 }
 
 var Parser = (function ParserClosure() {
@@ -32396,10 +32357,12 @@ var Parser = (function ParserClosure() {
       if (isCmd(this.buf1, '[')) { // array
         this.shift();
         var array = [];
-        while (!isCmd(this.buf1, ']') && !isEOF(this.buf1))
+        while (!isCmd(this.buf1, ']') && !isEOF(this.buf1)) {
           array.push(this.getObj(cipherTransform));
-        if (isEOF(this.buf1))
+        }
+        if (isEOF(this.buf1)) {
           error('End of file inside array');
+        }
         this.shift();
         return array;
       }
@@ -32408,25 +32371,27 @@ var Parser = (function ParserClosure() {
         var dict = new Dict(this.xref);
         while (!isCmd(this.buf1, '>>') && !isEOF(this.buf1)) {
           if (!isName(this.buf1)) {
-            info('Malformed dictionary, key must be a name object');
+            info('Malformed dictionary: key must be a name object');
             this.shift();
             continue;
           }
 
           var key = this.buf1.name;
           this.shift();
-          if (isEOF(this.buf1))
+          if (isEOF(this.buf1)) {
             break;
+          }
           dict.set(key, this.getObj(cipherTransform));
         }
-        if (isEOF(this.buf1))
+        if (isEOF(this.buf1)) {
           error('End of file inside dictionary');
+        }
 
-        // stream objects are not allowed inside content streams or
-        // object streams
+        // Stream objects are not allowed inside content streams or
+        // object streams.
         if (isCmd(this.buf2, 'stream')) {
-          return this.allowStreams ?
-            this.makeStream(dict, cipherTransform) : dict;
+          return (this.allowStreams ?
+                  this.makeStream(dict, cipherTransform) : dict);
         }
         this.shift();
         return dict;
@@ -32445,8 +32410,9 @@ var Parser = (function ParserClosure() {
       if (isString(this.buf1)) { // string
         var str = this.buf1;
         this.shift();
-        if (cipherTransform)
+        if (cipherTransform) {
           str = cipherTransform.decryptString(str);
+        }
         return str;
       }
 
@@ -32462,13 +32428,15 @@ var Parser = (function ParserClosure() {
       // parse dictionary
       var dict = new Dict();
       while (!isCmd(this.buf1, 'ID') && !isEOF(this.buf1)) {
-        if (!isName(this.buf1))
+        if (!isName(this.buf1)) {
           error('Dictionary key must be a name object');
+        }
 
         var key = this.buf1.name;
         this.shift();
-        if (isEOF(this.buf1))
+        if (isEOF(this.buf1)) {
           break;
+        }
         dict.set(key, this.getObj(cipherTransform));
       }
 
@@ -32492,13 +32460,13 @@ var Parser = (function ParserClosure() {
                 break; // some binary stuff found, resetting the state
               }
             }
-            state = state === 3 ? 4 : 0;
+            state = (state === 3 ? 4 : 0);
             break;
           case 0x45:
             state = 2;
             break;
           case 0x49:
-            state = state === 2 ? 3 : 0;
+            state = (state === 2 ? 3 : 0);
             break;
           default:
             state = 0;
@@ -32558,7 +32526,7 @@ var Parser = (function ParserClosure() {
     },
     fetchIfRef: function Parser_fetchIfRef(obj) {
       // not relying on the xref.fetchIfRef -- xref might not be set
-      return isRef(obj) ? this.xref.fetch(obj) : obj;
+      return (isRef(obj) ? this.xref.fetch(obj) : obj);
     },
     makeStream: function Parser_makeStream(dict, cipherTransform) {
       var lexer = this.lexer;
@@ -32627,8 +32595,9 @@ var Parser = (function ParserClosure() {
       this.shift(); // 'endstream'
 
       stream = stream.makeSubStream(pos, length, dict);
-      if (cipherTransform)
+      if (cipherTransform) {
         stream = cipherTransform.createStream(stream, length);
+      }
       stream = this.filter(stream, dict, length);
       stream.dict = dict;
       return stream;
@@ -32636,8 +32605,9 @@ var Parser = (function ParserClosure() {
     filter: function Parser_filter(stream, dict, length) {
       var filter = this.fetchIfRef(dict.get('Filter', 'F'));
       var params = this.fetchIfRef(dict.get('DecodeParms', 'DP'));
-      if (isName(filter))
+      if (isName(filter)) {
         return this.makeFilter(stream, filter.name, length, params);
+      }
 
       var maybeLength = length;
       if (isArray(filter)) {
@@ -32645,12 +32615,14 @@ var Parser = (function ParserClosure() {
         var paramsArray = params;
         for (var i = 0, ii = filterArray.length; i < ii; ++i) {
           filter = filterArray[i];
-          if (!isName(filter))
+          if (!isName(filter)) {
             error('Bad filter name: ' + filter);
+          }
 
           params = null;
-          if (isArray(paramsArray) && (i in paramsArray))
+          if (isArray(paramsArray) && (i in paramsArray)) {
             params = paramsArray[i];
+          }
           stream = this.makeFilter(stream, filter.name, maybeLength, params);
           // after the first stream the length variable is invalid
           maybeLength = null;
@@ -32672,11 +32644,12 @@ var Parser = (function ParserClosure() {
       if (name == 'LZWDecode' || name == 'LZW') {
         var earlyChange = 1;
         if (params) {
-          if (params.has('EarlyChange'))
+          if (params.has('EarlyChange')) {
             earlyChange = params.get('EarlyChange');
+          }
           return new PredictorStream(
             new LZWStream(stream, maybeLength, earlyChange),
-            maybeLength, params);
+                          maybeLength, params);
         }
         return new LZWStream(stream, maybeLength, earlyChange);
       }
@@ -32732,29 +32705,29 @@ var Lexer = (function LexerClosure() {
   }
 
   Lexer.isSpace = function Lexer_isSpace(ch) {
-    // space is one of the following characters: SPACE, TAB, CR, or LF
-    return ch === 0x20 || ch === 0x09 || ch === 0x0D || ch === 0x0A;
+    // Space is one of the following characters: SPACE, TAB, CR or LF.
+    return (ch === 0x20 || ch === 0x09 || ch === 0x0D || ch === 0x0A);
   };
 
-  // A '1' in this array means the character is white space.  A '1' or
+  // A '1' in this array means the character is white space. A '1' or
   // '2' means the character ends a name or command.
   var specialChars = [
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,   // 0x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 1x
-    1, 0, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 0, 0, 0, 2,   // 2x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0,   // 3x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 4x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0,   // 5x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 6x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0,   // 7x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 8x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // 9x
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // ax
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // bx
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // cx
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // dx
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   // ex
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0    // fx
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, // 0x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 1x
+    1, 0, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 0, 0, 0, 2, // 2x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, // 3x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 4x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, // 5x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 6x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, // 7x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 8x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 9x
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // ax
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // bx
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // cx
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // dx
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // ex
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  // fx
   ];
 
   function toHexDigit(ch) {
@@ -32779,9 +32752,7 @@ var Lexer = (function LexerClosure() {
       var ch = this.currentChar;
       var eNotation = false;
       var divideBy = 0; // different from 0 if it's a floating point value
-
       var sign = 1;
-
 
       if (ch === 0x2D) { // '-'
         sign = -1;
@@ -32793,7 +32764,6 @@ var Lexer = (function LexerClosure() {
         divideBy = 10;
         ch = this.nextChar();
       }
-
       if (ch < 0x30 || ch > 0x39) { // '0' - '9'
         error('Invalid number: ' + String.fromCharCode(ch));
         return 0;
@@ -32918,10 +32888,14 @@ var Lexer = (function LexerClosure() {
                     x = (x << 3) + (ch & 0x0F);
                   }
                 }
-
                 strBuf.push(String.fromCharCode(x));
                 break;
-              case 0x0A: case 0x0D: // LF, CR
+              case 0x0D: // CR
+                if (this.peekChar() === 0x0A) { // LF
+                  this.nextChar();
+                }
+                break;
+              case 0x0A: // LF
                 break;
               default:
                 strBuf.push(String.fromCharCode(ch));
@@ -32951,8 +32925,9 @@ var Lexer = (function LexerClosure() {
           var x = toHexDigit(ch);
           if (x != -1) {
             var x2 = toHexDigit(this.nextChar());
-            if (x2 == -1)
+            if (x2 == -1) {
               error('Illegal digit in hex char in name: ' + x2);
+            }
             strBuf.push(String.fromCharCode((x << 4) | x2));
           } else {
             strBuf.push('#', String.fromCharCode(ch));
@@ -33016,8 +32991,9 @@ var Lexer = (function LexerClosure() {
           return EOF;
         }
         if (comment) {
-          if (ch === 0x0A || ch == 0x0D) // LF, CR
+          if (ch === 0x0A || ch == 0x0D) { // LF, CR
             comment = false;
+          }
         } else if (ch === 0x25) { // '%'
           comment = true;
         } else if (specialChars[ch] !== 1) {
@@ -33082,17 +33058,21 @@ var Lexer = (function LexerClosure() {
         if (knownCommandFound && !(possibleCommand in knownCommands)) {
           break;
         }
-        if (str.length == 128)
+        if (str.length == 128) {
           error('Command token too long: ' + str.length);
+        }
         str = possibleCommand;
         knownCommandFound = knownCommands && (str in knownCommands);
       }
-      if (str == 'true')
+      if (str == 'true') {
         return true;
-      if (str == 'false')
+      }
+      if (str == 'false') {
         return false;
-      if (str == 'null')
+      }
+      if (str == 'null') {
         return null;
+      }
       return Cmd.get(str);
     },
     skipToNextLine: function Lexer_skipToNextLine() {
@@ -33127,8 +33107,9 @@ var Linearization = (function LinearizationClosure() {
     if (isInt(obj1) && isInt(obj2) && isCmd(obj3, 'obj') &&
         isDict(this.linDict)) {
       var obj = this.linDict.get('Linearized');
-      if (!(isNum(obj) && obj > 0))
+      if (!(isNum(obj) && obj > 0)) {
         this.linDict = null;
+      }
     }
   }
 
@@ -33136,9 +33117,7 @@ var Linearization = (function LinearizationClosure() {
     getInt: function Linearization_getInt(name) {
       var linDict = this.linDict;
       var obj;
-      if (isDict(linDict) &&
-          isInt(obj = linDict.get(name)) &&
-          obj > 0) {
+      if (isDict(linDict) && isInt(obj = linDict.get(name)) && obj > 0) {
         return obj;
       }
       error('"' + name + '" field in linearization table is invalid');
@@ -33146,18 +33125,16 @@ var Linearization = (function LinearizationClosure() {
     getHint: function Linearization_getHint(index) {
       var linDict = this.linDict;
       var obj1, obj2;
-      if (isDict(linDict) &&
-          isArray(obj1 = linDict.get('H')) &&
-          obj1.length >= 2 &&
-          isInt(obj2 = obj1[index]) &&
-          obj2 > 0) {
+      if (isDict(linDict) && isArray(obj1 = linDict.get('H')) &&
+          obj1.length >= 2 && isInt(obj2 = obj1[index]) && obj2 > 0) {
         return obj2;
       }
       error('Hints table in linearization table is invalid: ' + index);
     },
     get length() {
-      if (!isDict(this.linDict))
+      if (!isDict(this.linDict)) {
         return 0;
+      }
       return this.getInt('L');
     },
     get hintsOffset() {
