@@ -1101,14 +1101,6 @@
       <description lang="fr" text="Active OpenGL GLSL plutôt que filtrage FF: 0-normal 1-bi-linéaire (défaut: 1)"/>
       <description lang="pt" text="Habilitar filtro GLSL do OpenGL ao invés do filtro FF: 0-plano, 1-bilinear (padrão 1)"/>
     </option>
-    <option default="true" name="gl_glsl_vid_attr" type="bool">
-      <description lang="es" text="Activar el manejo de brillo y contraste por OpenGL GLSL. Mejor rendimiento RGB gratis (activado por defecto)"/>
-      <description lang="us" text="Enable OpenGL GLSL handling of brightness and contrast. Better RGB game performance for free (default on)"/>
-      <description lang="de" text="OpenGL GLSL Verwaltung von Helligkeit und Kontrast: bessere RGB Spiel-Performance gratis (Standard: an)"/>
-      <description lang="pl" text="Włącz obsługę jasności i kontrastu przez OpenGL GLSL. Lepsza wydajność RGB za darmo (domyślnie włączone)"/>
-      <description lang="fr" text="Active OpenGL GLSL pour le contrôle de luminosité et contraste. Meilleurs perfs RGB gratis (défaut: oui)"/>
-      <description lang="pt" text="Habilitar tratamento de brilho e contraste GLSL do OpenGL. Desempenho RGB melhor de graça (padrão ligado)"/>
-    </option>
     <option default="none" name="glsl_shader_mame0" type="combo">
       <description lang="es" text="OpenGL GLSL shader personalizado para bitmap 0 de MAME"/>
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 0"/>
