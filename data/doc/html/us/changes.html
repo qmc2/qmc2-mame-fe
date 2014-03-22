@@ -36,6 +36,7 @@ inf: informational only
   <li>imp: MAME/MESS/UME emulator templates updated to 0.152+ (SVN r28777)</li>
   <li>imp: system- and software-notes templates: new template macros ($IS_BIOS$ and $IS_DEVICE$) and JS functions (isBios(), isDevice() and romStatus())</li>
   <li>imp: Windows: the FileSystemModel's directory scanner thread now uses Win32 API calls instead of Qt classes (see also <a href="http://tracker.batcom-it.net/view.php?id=56" target="_blank">bug tracker ID #56</a>)</li>
+  <li>imp: added a caching FileIconProvider wrapper class for QFileIconProvider (uses Win32 API calls on Windows for better performance)</li>
   <li>new: ROMAlyzer: added read-only support for 7z archived ROMs</li>
   <li>new: added support for 7z archived icons and image artwork - note that for best performance 7-zipped icons should be packed in a solid block (7z default) and images should be packed <b>non-solid</b> (7za option <i>-ms=off</i>)</li>
   <li>new: MESS device configurator: added support for 7z archives to the file-chooser (just like the existing support for zip archives)</li>
