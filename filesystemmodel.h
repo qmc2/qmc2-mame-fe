@@ -24,7 +24,6 @@
 #include "unzip.h"
 #include "sevenzipfile.h"
 
-//#define QMC2_DIRSCANNER_USE_NATIVE_WIN32_API
 #define QMC2_DIRENTRY_THRESHOLD		250
 
 class DirectoryModel : public QFileSystemModel
@@ -103,7 +102,7 @@ class DirectoryScannerThread : public QThread
 					isScanning = true;
 					stopScanning = false;
 					dirEntries.clear();
-#if defined(QMC2_OS_WIN) && defined(QMC2_DIRSCANNER_USE_NATIVE_WIN32_API)
+#if defined(QMC2_OS_WIN)
 					WIN32_FIND_DATA ffd;
 					QString dirName = QDir::toNativeSeparators(QDir::cleanPath(dirPath + "/*"));
 					QList<QRegExp> nameFilterRegExps;
@@ -124,17 +123,14 @@ class DirectoryScannerThread : public QThread
 							QString fName = QString::fromLocal8Bit(ffd.cFileName);
 #endif
 							if ( fName != "." ) {
-								bool includeEntry = true;
 								if ( !nameFilterRegExps.isEmpty() ) {
-									bool filterMatched = false;
 									foreach (QRegExp filterRx, nameFilterRegExps) {
-										filterMatched = (filterRx.indexIn(fName) >= 0);
-										if ( filterMatched )
+										if ( filterRx.indexIn(fName) >= 0 ) {
+											dirEntries << fName;
 											break;
+										}
 									}
-									includeEntry = filterMatched;
-								}
-								if ( includeEntry )
+								} else
 									dirEntries << fName;
 								if ( dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
 									emit entriesAvailable(dirEntries);
