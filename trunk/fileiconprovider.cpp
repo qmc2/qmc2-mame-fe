@@ -25,8 +25,9 @@ QIcon FileIconProvider::fileIcon(const QString &filename)
 {
 	QFileInfo fileInfo(filename);
 #if defined(QMC2_OS_WIN)
+	QIcon *iconPtr = instance()->iconCache.object(fileInfo.suffix());
 	QIcon icon;
-	if ( !instance()->iconCache.find(fileInfo.suffix(), &icon) ) {
+	if ( !iconPtr ) {
 		if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() ) {
 			icon = instance()->iconProvider.icon(fileInfo);
 			instance()->iconCache.insert(fileInfo.suffix(), new QIcon(icon));
@@ -44,7 +45,8 @@ QIcon FileIconProvider::fileIcon(const QString &filename)
 				DestroyIcon(shFileInfo.hIcon);
 			}
 		}
-	}
+	} else
+		icon = *iconPtr;
 	return icon;
 #else
 	return instance()->iconProvider.icon(fileInfo);
