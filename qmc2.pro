@@ -283,14 +283,14 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				DEFINES += QMC2_MINGW
 				QMAKE_LIBS_QT_ENTRY =
 				QMAKE_LFLAGS_CONSOLE =
-				LIBS += -lSDLmain -lSDL.dll -lSDL -lpsapi $$quote($$QMC2_LIBS)
+				LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi $$quote($$QMC2_LIBS)
 				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc
 			} else {
 				CONFIG += embed_manifest_exe windows
-				LIBS += psapi.lib
+				LIBS += psapi.lib ole32.lib
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 				contains(TARGET, qmc2-ume):RC_FILE = qmc2-ume.rc
