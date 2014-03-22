@@ -5,6 +5,8 @@
 #include <QCache>
 #include <QFileIconProvider>
 
+#define QMC2_FILEICONPROVIDER_CACHE_SIZE	1000
+
 class FileIconProvider
 {
 	public:
