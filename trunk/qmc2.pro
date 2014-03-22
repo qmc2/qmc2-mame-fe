@@ -121,6 +121,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			sevenzipfile.cpp \
 			networkaccessmanager.cpp \
 			ftpreply.cpp \
+			fileiconprovider.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -233,6 +234,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			sevenzipfile.h \
 			networkaccessmanager.h \
 			ftpreply.h \
+			fileiconprovider.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

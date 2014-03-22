@@ -4,7 +4,6 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QDateTime>
-#include <QFileIconProvider>
 #include <QAbstractItemModel>
 #include <QFileSystemModel>
 #include <QApplication>
@@ -23,6 +22,7 @@
 #include "macros.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
+#include "fileiconprovider.h"
 
 #define QMC2_DIRENTRY_THRESHOLD		250
 
@@ -358,7 +358,7 @@ class FileSystemModel : public QAbstractItemModel
 		enum Column {NAME, SIZE, DATE, LASTCOLUMN};
 		DirectoryScannerThread *dirScanner;
 
-		FileSystemModel(QObject *parent, bool includeFolders = false, bool foldersFirst = false) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
+		FileSystemModel(QObject *parent, bool includeFolders = false, bool foldersFirst = false) : QAbstractItemModel(parent), mIconFactory(new FileIconProvider())
 		{
 			mHeaders << tr("Name") << tr("Size") << tr("Date modified");
 			mRootItem = new FileSystemItem("");
@@ -499,13 +499,11 @@ class FileSystemModel : public QAbstractItemModel
 
 			if ( role == Qt::DecorationRole ) {
 				if ( index.column() == int(NAME) ) {
-					QIcon icon = mIconFactory->icon(item->fileInfo());
-					if ( icon.isNull() ) { // icon fall-back
-						if ( item->fileName().endsWith("/") )
-							icon = mIconFactory->icon(QFileIconProvider::Folder);
-						else
-							icon = mIconFactory->icon(QFileIconProvider::File);
-					}
+					if ( item->isFolder() )
+						return mIconFactory->folderIcon();
+					QIcon icon = mIconFactory->fileIcon(item->fileName());
+					if ( icon.isNull() ) // icon fall-back
+						icon = mIconFactory->defaultFileIcon();
 					return icon;
 				} else
 					return QIcon();
@@ -896,7 +894,7 @@ class FileSystemModel : public QAbstractItemModel
 		QStringList mZipEntryList;
 		QList<quint64> mZipEntrySizes;
 		QList<QDateTime> mZipEntryDates;
-		QFileIconProvider *mIconFactory;
+		FileIconProvider *mIconFactory;
 		QString mSearchPattern;
 		int mFileCount;
 		int mStaleCount;
