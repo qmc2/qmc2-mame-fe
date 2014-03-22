@@ -16,11 +16,15 @@
 #include <QTest>
 
 #include <time.h>
+#if defined(QMC2_OS_WIN)
+#include <windows.h>
+#endif
 
 #include "macros.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
 
+//#define QMC2_DIRSCANNER_USE_NATIVE_WIN32_API
 #define QMC2_DIRENTRY_THRESHOLD		250
 
 class DirectoryModel : public QFileSystemModel
@@ -91,7 +95,7 @@ class DirectoryScannerThread : public QThread
 				waitCondition.wait(&waitMutex);
 				waitMutex.unlock();
 #if defined(QMC2_DEBUG)
-				printf("DirectoryScannerThread: starting scan of %s\n", (const char *)dirPath.toLocal8Bit());
+				printf("DirectoryScannerThread: starting scan of %s\n", dirPath.toLocal8Bit().constData());
 #endif
 				if ( !stopScanning && !quitFlag ) {
 					waitMutex.lock();
@@ -99,6 +103,51 @@ class DirectoryScannerThread : public QThread
 					isScanning = true;
 					stopScanning = false;
 					dirEntries.clear();
+#if defined(QMC2_OS_WIN) && defined(QMC2_DIRSCANNER_USE_NATIVE_WIN32_API)
+					WIN32_FIND_DATA ffd;
+					QString dirName = QDir::toNativeSeparators(QDir::cleanPath(dirPath + "/*"));
+					QList<QRegExp> nameFilterRegExps;
+					foreach (QString filter, nameFilters)
+						nameFilterRegExps << QRegExp(filter, Qt::CaseSensitive, QRegExp::Wildcard);
+#ifdef UNICODE
+					HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
+#else
+					HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
+#endif
+					if ( hFind != INVALID_HANDLE_VALUE ) {
+						do {
+							if ( (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && !includeFolders )
+								continue;
+#ifdef UNICODE
+							QString fName = QString::fromUtf16((ushort*)ffd.cFileName);
+#else
+							QString fName = QString::fromLocal8Bit(ffd.cFileName);
+#endif
+							if ( fName != "." ) {
+								bool includeEntry = true;
+								if ( !nameFilterRegExps.isEmpty() ) {
+									bool filterMatched = false;
+									foreach (QRegExp filterRx, nameFilterRegExps) {
+										filterMatched = (filterRx.indexIn(fName) >= 0);
+										if ( filterMatched )
+											break;
+									}
+									includeEntry = filterMatched;
+								}
+								if ( includeEntry )
+									dirEntries << fName;
+								if ( dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
+									emit entriesAvailable(dirEntries);
+#if defined(QMC2_DEBUG)
+									foreach (QString entry, dirEntries)
+										printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
+#endif
+									dirEntries.clear();
+								}
+							}
+						} while ( FindNextFile(hFind, &ffd) != 0 && !stopScanning && !quitFlag );
+					}
+#else
 					QDirIterator dirIterator(dirPath, nameFilters, includeFolders ? QDir::Files | QDir::Dirs | QDir::NoDot : QDir::Files);
 					while ( dirIterator.hasNext() && !stopScanning && !quitFlag ) {
 						dirIterator.next();
@@ -107,17 +156,19 @@ class DirectoryScannerThread : public QThread
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
-								printf("DirectoryScannerThread: %s\n", (const char *)entry.toLocal8Bit());
+								printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
 #endif
 							dirEntries.clear();
 						}
 					}
+#endif
+
 					if ( !stopScanning && !quitFlag ) {
 						if ( dirEntries.count() > 0 ) {
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
-								printf("DirectoryScannerThread: %s\n", (const char *)entry.toLocal8Bit());
+								printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
 #endif
 						}
 						emit finished();
@@ -126,7 +177,7 @@ class DirectoryScannerThread : public QThread
 					waitMutex.unlock();
 				}
 #if defined(QMC2_DEBUG)
-				printf("DirectoryScannerThread: finished scan of %s\n", (const char *)dirPath.toLocal8Bit());
+				printf("DirectoryScannerThread: finished scan of %s\n", dirPath.toLocal8Bit().constData());
 #endif
 			}
 #if defined(QMC2_DEBUG)
@@ -625,7 +676,7 @@ class FileSystemModel : public QAbstractItemModel
 
 			QString lowerCaseFilePath = fileItem->absoluteFilePath().toLower();
 			if ( lowerCaseFilePath.endsWith(".zip") ) {
-				unzFile zipFile = unzOpen((const char *)fileItem->absoluteFilePath().toLocal8Bit());
+				unzFile zipFile = unzOpen(fileItem->absoluteFilePath().toLocal8Bit().constData());
 
 				if ( zipFile ) {
 					char zipFileName[QMC2_ZIP_BUFFER_SIZE];
@@ -804,8 +855,9 @@ class FileSystemModel : public QAbstractItemModel
 				foreach (QString entry, entryList)
 					new FileSystemItem(entry, mRootItem);
 			} else {
+				QRegExp rx(filterPattern, Qt::CaseInsensitive, QRegExp::Wildcard);
 				foreach (QString entry, entryList)
-					if ( entry.indexOf(QRegExp(filterPattern, Qt::CaseInsensitive, QRegExp::Wildcard)) >= 0 ) {
+					if ( rx.indexIn(entry) >= 0 ) {
 						new FileSystemItem(entry, mRootItem);
 						filteredCount++;
 					}
