@@ -21,9 +21,9 @@ FileIconProvider *FileIconProvider::instance()
 	return self;
 }
 
-QIcon FileIconProvider::fileIcon(const QString &filename)
+QIcon FileIconProvider::fileIcon(const QString &fileName)
 {
-	QFileInfo fileInfo(filename);
+	QFileInfo fileInfo(fileName);
 #if defined(QMC2_OS_WIN)
 	QIcon *iconPtr = instance()->iconCache.object(fileInfo.suffix());
 	QIcon icon;
@@ -53,12 +53,12 @@ QIcon FileIconProvider::fileIcon(const QString &filename)
 #endif
 }
 
-QIcon FileIconProvider::folderIcon()
-{
-	return instance()->iconProvider.icon(QFileIconProvider::Folder);
-}
-
 QIcon FileIconProvider::defaultFileIcon()
 {
 	return instance()->iconProvider.icon(QFileIconProvider::File);
+}
+
+QIcon FileIconProvider::folderIcon()
+{
+	return instance()->iconProvider.icon(QFileIconProvider::Folder);
 }

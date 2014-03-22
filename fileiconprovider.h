@@ -11,9 +11,9 @@ class FileIconProvider
 {
 	public:
 		static FileIconProvider *instance();
-		static QIcon fileIcon(const QString &filename);
-		static QIcon folderIcon();
+		static QIcon fileIcon(const QString &fileName);
 		static QIcon defaultFileIcon();
+		static QIcon folderIcon();
 
 		FileIconProvider();
 
