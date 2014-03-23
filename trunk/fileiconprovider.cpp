@@ -10,7 +10,8 @@
 
 FileIconProvider *FileIconProvider::self = 0;
 
-FileIconProvider::FileIconProvider() {
+FileIconProvider::FileIconProvider()
+{
 	iconCache.setMaxCost(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 }
 
@@ -25,13 +26,12 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 {
 	QFileInfo fileInfo(fileName);
 #if defined(QMC2_OS_WIN)
-	QIcon *iconPtr = instance()->iconCache.object(fileInfo.suffix());
+	if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() ) {
+		return instance()->iconProvider.icon(fileInfo);
+	QIcon *cachedIcon = instance()->iconCache.object(fileInfo.suffix());
 	QIcon icon;
-	if ( !iconPtr ) {
-		if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() ) {
-			icon = instance()->iconProvider.icon(fileInfo);
-			instance()->iconCache.insert(fileInfo.suffix(), new QIcon(icon));
-		} else {
+	if ( !cachedIcon ) {
+		QFileInfo fileInfo(fileName);
 			static HRESULT comInit = CoInitialize(NULL);
 			Q_UNUSED(comInit);
 			SHFILEINFO shFileInfo;
@@ -44,9 +44,8 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 				}
 				DestroyIcon(shFileInfo.hIcon);
 			}
-		}
 	} else
-		icon = *iconPtr;
+		icon = *cachedIcon;
 	return icon;
 #else
 	return instance()->iconProvider.icon(fileInfo);
