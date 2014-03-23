@@ -1375,7 +1375,7 @@ snap: distclean
 	@$(CD) .. ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
-	@$(RM) $(SRCDIR)/exclude.list
+	@$(RM) exclude.list
 	@$(ECHO) "done"
 
 distribution: dist
@@ -1385,7 +1385,7 @@ dist: distclean
 	@$(CD) .. ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
 	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
-	@$(RM) $(SRCDIR)/exclude.list
+	@$(RM) exclude.list
 	@$(ECHO) "done"
 
 endif
