@@ -607,6 +607,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
   qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECT_MESS_CACHE_SIZE);
+  messDevCfgTimer.setSingleShot(true);
 #endif
 
   floatToggleButtonSoftwareDetail = new QToolButton(tabWidgetSoftwareDetail);
@@ -4539,6 +4540,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
         tabDevices->setUpdatesEnabled(false);
         if ( qmc2MESSDeviceConfigurator ) {
+          messDevCfgTimer.disconnect(qmc2MESSDeviceConfigurator);
           qmc2MESSDeviceConfigurator->save();
           qmc2MESSDeviceConfigurator->saveSetup();
           QLayout *vbl = tabDevices->layout();
@@ -4551,13 +4553,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
+	connect(&messDevCfgTimer, SIGNAL(timeout()), qmc2MESSDeviceConfigurator, SLOT(load()));
         layout->addWidget(qmc2MESSDeviceConfigurator);
-	QTimer::singleShot(0, qmc2MESSDeviceConfigurator, SLOT(load()));
         if ( !tabDevices->layout() )
           tabDevices->setLayout(layout);
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
         tabDevices->setUpdatesEnabled(true);
+	messDevCfgTimer.start(QMC2_DEVCONFIG_LOAD_DELAY);
       }
       break;
 
