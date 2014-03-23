@@ -141,11 +141,11 @@ class DirectoryScannerThread : public QThread
 									dirEntries.clear();
 								}
 							}
-						} while ( FindNextFile(hFind, &ffd) != 0 && !stopScanning && !quitFlag );
+						} while ( !stopScanning && !quitFlag && FindNextFile(hFind, &ffd) != 0 );
 					}
 #else
 					QDirIterator dirIterator(dirPath, nameFilters, includeFolders ? QDir::Files | QDir::Dirs | QDir::NoDot : QDir::Files);
-					while ( dirIterator.hasNext() && !stopScanning && !quitFlag ) {
+					while ( !stopScanning && !quitFlag && dirIterator.hasNext() ) {
 						dirIterator.next();
 						dirEntries << dirIterator.fileName();
 						if ( dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
