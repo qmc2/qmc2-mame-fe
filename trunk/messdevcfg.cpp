@@ -12,6 +12,7 @@
 #include "options.h"
 #include "fileeditwidget.h"
 #include "iconlineedit.h"
+#include "fileiconprovider.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -140,8 +141,6 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 #endif
 
 	setupUi(this);
-
-	iconFactory = new QFileIconProvider();
 
 	tabFileChooser->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
@@ -294,7 +293,10 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	s = tr("Use as default directory");
 	action = dirChooserContextMenu->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	QIcon icon = FileIconProvider::folderIcon();
+	if ( icon.isNull() )
+		icon = QIcon(QString::fromUtf8(":/data/img/folders-on.png"));
+	action->setIcon(icon);
 	connect(action, SIGNAL(triggered()), this, SLOT(dirChooserUseCurrentAsDefaultDirectory()));
 
 	// file chooser context menu
@@ -316,20 +318,26 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	fileChooserContextMenu->addSeparator();
 	action = fileChooserContextMenu->addAction(tr("&Open folder"));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
+	icon = FileIconProvider::folderIcon();
+	if ( icon.isNull() )
+		icon = QIcon(QString::fromUtf8(":/data/img/folders-on.png"));
+	action->setIcon(icon);
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_openFolder()));
 	actionChooserOpenFolder = action;
 
 	fileChooserContextMenu->addSeparator();
 	action = fileChooserContextMenu->addAction(tr("&Open archive"));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/compressed.png")));
+	icon = FileIconProvider::fileIcon("dummy.zip");
+	if ( icon.isNull() )
+		icon = QIcon(QString::fromUtf8(":/data/img/compressed.png"));
+	action->setIcon(icon);
 	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_toggleArchive()));
 	actionChooserToggleArchive = action;
 
 	action = fileChooserContextMenu->addAction(tr("View PDF..."));
 	action->setToolTip(s); action->setStatusTip(s);
-	QIcon icon = iconFactory->icon(QFileInfo("dummy.pdf"));
+	icon = FileIconProvider::fileIcon("dummy.pdf");
 	if ( icon.isNull() )
 		icon = QIcon(QString::fromUtf8(":/data/img/pdf.png"));
 	action->setIcon(icon);
@@ -338,7 +346,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	action = fileChooserContextMenu->addAction(tr("View Postscript..."));
 	action->setToolTip(s); action->setStatusTip(s);
-	icon = iconFactory->icon(QFileInfo("dummy.ps"));
+	icon = FileIconProvider::fileIcon("dummy.ps");
 	if ( icon.isNull() )
 		icon = QIcon(QString::fromUtf8(":/data/img/postscript.png"));
 	action->setIcon(icon);
@@ -347,7 +355,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	action = fileChooserContextMenu->addAction(tr("View HTML..."));
 	action->setToolTip(s); action->setStatusTip(s);
-	icon = iconFactory->icon(QFileInfo("dummy.html"));
+	icon = FileIconProvider::fileIcon("dummy.html");
 	if ( icon.isNull() )
 		icon = QIcon(QString::fromUtf8(":/data/img/html.png"));
 	action->setIcon(icon);
@@ -409,7 +417,6 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::~MESSDeviceConfigurator()");
 #endif
 
-	delete iconFactory;
 }
 
 void MESSDeviceConfigurator::saveSetup()

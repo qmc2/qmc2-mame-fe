@@ -79,6 +79,8 @@ class DirectoryScannerThread : public QThread
 		~DirectoryScannerThread()
 		{
 			stopScanning = quitFlag = true;
+			waitCondition.wakeAll();
+			wait();
 			quit();
 		}
 
@@ -108,40 +110,43 @@ class DirectoryScannerThread : public QThread
 					QList<QRegExp> nameFilterRegExps;
 					foreach (QString filter, nameFilters)
 						nameFilterRegExps << QRegExp(filter, Qt::CaseSensitive, QRegExp::Wildcard);
+
+					if ( !stopScanning && !quitFlag ) {
 #ifdef UNICODE
-					HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
+						HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
 #else
-					HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
+						HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
 #endif
-					if ( !stopScanning && !quitFlag && hFind != INVALID_HANDLE_VALUE ) {
-						do {
-							if ( (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && !includeFolders )
-								continue;
+						if ( !stopScanning && !quitFlag && hFind != INVALID_HANDLE_VALUE ) {
+							do {
+								if ( (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && !includeFolders )
+									continue;
 #ifdef UNICODE
-							QString fName = QString::fromUtf16((ushort*)ffd.cFileName);
+								QString fName = QString::fromUtf16((ushort*)ffd.cFileName);
 #else
-							QString fName = QString::fromLocal8Bit(ffd.cFileName);
+								QString fName = QString::fromLocal8Bit(ffd.cFileName);
 #endif
-							if ( fName != "." ) {
-								if ( !nameFilterRegExps.isEmpty() ) {
-									foreach (QRegExp filterRx, nameFilterRegExps) {
-										if ( filterRx.indexIn(fName) >= 0 ) {
-											dirEntries << fName;
-											break;
+								if ( fName != "." ) {
+									if ( !nameFilterRegExps.isEmpty() ) {
+										foreach (QRegExp filterRx, nameFilterRegExps) {
+											if ( filterRx.indexIn(fName) >= 0 ) {
+												dirEntries << fName;
+												break;
+											}
 										}
-									}
-								} else
-									dirEntries << fName;
-								if ( !stopScanning && !quitFlag && dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
-									emit entriesAvailable(dirEntries);
+									} else
+										dirEntries << fName;
+									if ( !stopScanning && !quitFlag && dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
+										emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
-									foreach (QString entry, dirEntries)
-										printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
+										foreach (QString entry, dirEntries)
+											printf("DirectoryScannerThread: %s\n", entry.toLocal8Bit().constData());
 #endif
-									dirEntries.clear();
+										dirEntries.clear();
+									}
 								}
-							}
-						} while ( !stopScanning && !quitFlag && FindNextFile(hFind, &ffd) != 0 );
+							} while ( !stopScanning && !quitFlag && FindNextFile(hFind, &ffd) != 0 );
+						}
 					}
 #else
 					QDirIterator dirIterator(dirPath, nameFilters, includeFolders ? QDir::Files | QDir::Dirs | QDir::NoDot : QDir::Files);
@@ -361,8 +366,8 @@ class FileSystemModel : public QAbstractItemModel
 		FileSystemModel(QObject *parent, bool includeFolders = false, bool foldersFirst = false) : QAbstractItemModel(parent), mIconFactory(new FileIconProvider())
 		{
 			mHeaders << tr("Name") << tr("Size") << tr("Date modified");
-			mRootItem = new FileSystemItem("");
-			mCurrentPath = "";
+			mRootItem = new FileSystemItem(QString());
+			mCurrentPath = QString();
 			mFileCount = mStaleCount = 0;
 			mBreakZipScan = false;
 			mIncludeFolders = includeFolders;
@@ -601,7 +606,8 @@ class FileSystemModel : public QAbstractItemModel
 			if ( dirScanner )
 				if ( dirScanner->isScanning ) {
 					dirScanner->stopScanning = true;
-					while ( dirScanner->isScanning ) QTest::qWait(1);
+					while ( dirScanner->isScanning )
+						QTest::qWait(1);
 				}
 
 			mFileCount = mStaleCount = 0;
@@ -783,10 +789,11 @@ class FileSystemModel : public QAbstractItemModel
 		{
 			FileSystemItem *item = getItem(index);
 			if ( item ) {
-				if ( item->itemParent() != mRootItem )
+				if ( item->itemParent() != mRootItem || item->isFolder() )
 					return false;
 				else {
-					return (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Pp][Dd][Ff]")) == 4);
+					QFileInfo fileInfo(item->fileName());
+					return (fileInfo.suffix().indexOf(QRegExp("[Pp][Dd][Ff]")) >= 0);
 				}
 			} else
 				return false;
@@ -796,10 +803,11 @@ class FileSystemModel : public QAbstractItemModel
 		{
 			FileSystemItem *item = getItem(index);
 			if ( item ) {
-				if ( item->itemParent() != mRootItem )
+				if ( item->itemParent() != mRootItem || item->isFolder() )
 					return false;
 				else {
-					return (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Hh][Tt][Mm][Ll]")) == 5) || (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Hh][Tt][Mm]")) == 4);
+					QFileInfo fileInfo(item->fileName());
+					return (fileInfo.suffix().indexOf(QRegExp("[Hh][Tt][Mm][Ll]")) >= 0 || fileInfo.suffix().indexOf(QRegExp("[Hh][Tt][Mm]")) >= 0);
 				}
 			} else
 				return false;
@@ -809,13 +817,18 @@ class FileSystemModel : public QAbstractItemModel
 		{
 			FileSystemItem *item = getItem(index);
 			if ( item ) {
-				if ( item->itemParent() != mRootItem )
+				if ( item->itemParent() != mRootItem || item->isFolder() )
 					return false;
 				else {
-					return (item->fileName().length() - item->fileName().indexOf(QRegExp("\\.[Pp][Ss]")) == 3);
+					QFileInfo fileInfo(item->fileName());
+					return (fileInfo.suffix().indexOf("[Pp][Ss]") >= 0);
 				}
 			} else
 				return false;
+		}
+
+		FileIconProvider *iconFactory() {
+			return mIconFactory;
 		}
 
 
@@ -867,7 +880,8 @@ class FileSystemModel : public QAbstractItemModel
 		{
 			if ( dirScanner ) {
 				if ( !dirScanner->isReady ) {
-					QTimer::singleShot(1, this, SLOT(populateItems()));
+					qApp->processEvents();
+					QTimer::singleShot(10, this, SLOT(populateItems()));
 					return;
 				}
 				dirScanner->dirPath = mRootItem->absoluteDirPath();

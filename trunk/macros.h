@@ -166,6 +166,9 @@
 #define QMC2_DEVCONFIG_COLUMN_EXT		4
 #define QMC2_DEVCONFIG_COLUMN_FILE		5
 
+// delay in milliseconds before actually loading the MESS device configurator
+#define QMC2_DEVCONFIG_LOAD_DELAY		50
+
 // logical column indexes of the MESS device configurator's slot setup
 #define QMC2_SLOTCONFIG_COLUMN_SLOT		0
 #define QMC2_SLOTCONFIG_COLUMN_OPTION		1

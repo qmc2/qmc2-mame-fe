@@ -163,6 +163,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QToolButton *toolButtonEmbedderAutoPause;
 		QMenu *menuAutoPause;
 #endif
+#if defined(QMC2_EMUTYPE_MESS) || defined(QMC2_EMUTYPE_UME)
+		QTimer messDevCfgTimer;
+#endif
 		QList<int> hSplitterSizes;
 		QList<int> vSplitterSizes;
 		QList<int> vSplitterSizesSoftwareDetail;
