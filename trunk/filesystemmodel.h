@@ -113,7 +113,7 @@ class DirectoryScannerThread : public QThread
 #else
 					HANDLE hFind = FindFirstFile((TCHAR *)dirName.toLocal8Bit().constData(), &ffd);
 #endif
-					if ( hFind != INVALID_HANDLE_VALUE ) {
+					if ( !stopScanning && !quitFlag && hFind != INVALID_HANDLE_VALUE ) {
 						do {
 							if ( (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && !includeFolders )
 								continue;
