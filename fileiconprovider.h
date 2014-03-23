@@ -19,8 +19,8 @@ class FileIconProvider
 
 	private:
 		static FileIconProvider *self;
-		QCache<QString, QIcon> iconCache;
-		QFileIconProvider iconProvider;
+		static QCache<QString, QIcon> iconCache;
+		static QFileIconProvider iconProvider;
 };
 
 #endif

@@ -9,10 +9,13 @@
 #endif
 
 FileIconProvider *FileIconProvider::self = 0;
+QCache<QString, QIcon> FileIconProvider::iconCache;
+QFileIconProvider FileIconProvider::iconProvider;
 
 FileIconProvider::FileIconProvider()
 {
-	iconCache.setMaxCost(QMC2_FILEICONPROVIDER_CACHE_SIZE);
+	if ( iconCache.maxCost() != QMC2_FILEICONPROVIDER_CACHE_SIZE )
+		iconCache.setMaxCost(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 }
 
 FileIconProvider *FileIconProvider::instance()
@@ -24,31 +27,30 @@ FileIconProvider *FileIconProvider::instance()
 
 QIcon FileIconProvider::fileIcon(const QString &fileName)
 {
-	QFileInfo fileInfo(fileName);
 #if defined(QMC2_OS_WIN)
+	QFileInfo fileInfo(fileName);
 	if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() )
 		return instance()->iconProvider.icon(fileInfo);
 	QIcon *cachedIcon = instance()->iconCache.object(fileInfo.suffix());
 	QIcon icon;
 	if ( !cachedIcon ) {
-		QFileInfo fileInfo(fileName);
-			static HRESULT comInit = CoInitialize(NULL);
-			Q_UNUSED(comInit);
-			SHFILEINFO shFileInfo;
-			unsigned long val = SHGetFileInfo((const wchar_t *)("dummy." + fileInfo.suffix()).utf16(), 0, &shFileInfo, sizeof(SHFILEINFO), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
-			if ( val && shFileInfo.hIcon ) {
-				QPixmap pixmap = QPixmap::fromWinHICON(shFileInfo.hIcon);
-				if ( !pixmap.isNull() ) {
-					icon = QIcon(pixmap);
-					instance()->iconCache.insert(fileInfo.suffix(), new QIcon(icon));
-				}
-				DestroyIcon(shFileInfo.hIcon);
+		static HRESULT comInit = CoInitialize(NULL);
+		Q_UNUSED(comInit);
+		SHFILEINFO shFileInfo;
+		unsigned long val = SHGetFileInfo((const wchar_t *)("dummy." + fileInfo.suffix()).utf16(), 0, &shFileInfo, sizeof(SHFILEINFO), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
+		if ( val && shFileInfo.hIcon ) {
+			QPixmap pixmap = QPixmap::fromWinHICON(shFileInfo.hIcon);
+			if ( !pixmap.isNull() ) {
+				icon = QIcon(pixmap);
+				instance()->iconCache.insert(fileInfo.suffix(), new QIcon(icon));
 			}
+			DestroyIcon(shFileInfo.hIcon);
+		}
 	} else
 		icon = *cachedIcon;
 	return icon;
 #else
-	return instance()->iconProvider.icon(fileInfo);
+	return instance()->iconProvider.icon(QFileInfo(fileName));
 #endif
 }
 
