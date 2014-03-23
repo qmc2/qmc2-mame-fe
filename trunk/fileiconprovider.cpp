@@ -26,7 +26,7 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 {
 	QFileInfo fileInfo(fileName);
 #if defined(QMC2_OS_WIN)
-	if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() ) {
+	if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() )
 		return instance()->iconProvider.icon(fileInfo);
 	QIcon *cachedIcon = instance()->iconCache.object(fileInfo.suffix());
 	QIcon icon;
