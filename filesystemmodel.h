@@ -132,7 +132,7 @@ class DirectoryScannerThread : public QThread
 									}
 								} else
 									dirEntries << fName;
-								if ( dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
+								if ( !stopScanning && !quitFlag && dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
 									emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 									foreach (QString entry, dirEntries)
@@ -148,7 +148,7 @@ class DirectoryScannerThread : public QThread
 					while ( !stopScanning && !quitFlag && dirIterator.hasNext() ) {
 						dirIterator.next();
 						dirEntries << dirIterator.fileName();
-						if ( dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
+						if ( !stopScanning && !quitFlag && dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
 							emit entriesAvailable(dirEntries);
 #if defined(QMC2_DEBUG)
 							foreach (QString entry, dirEntries)
@@ -367,7 +367,7 @@ class FileSystemModel : public QAbstractItemModel
 			mBreakZipScan = false;
 			mIncludeFolders = includeFolders;
 			mFoldersFirst = foldersFirst;
-			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath(), this, mIncludeFolders);
+			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath(), 0, mIncludeFolders);
 			connect(dirScanner, SIGNAL(entriesAvailable(const QStringList &)), this, SLOT(scannerEntriesAvailable(const QStringList &)));
 			connect(dirScanner, SIGNAL(finished()), this, SLOT(scannerFinished()));
 		}
@@ -375,8 +375,8 @@ class FileSystemModel : public QAbstractItemModel
 		~FileSystemModel()
 		{
 			if ( dirScanner ) {
-				dirScanner->stopScanning = true;
 				dirScanner->quitFlag = true;
+				dirScanner->stopScanning = true;
 				dirScanner->waitCondition.wakeAll();
 				dirScanner->wait();
 				dirScanner->deleteLater();
