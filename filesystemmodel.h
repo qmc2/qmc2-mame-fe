@@ -363,7 +363,7 @@ class FileSystemModel : public QAbstractItemModel
 		enum Column {NAME, SIZE, DATE, LASTCOLUMN};
 		DirectoryScannerThread *dirScanner;
 
-		FileSystemModel(QObject *parent, bool includeFolders = false, bool foldersFirst = false) : QAbstractItemModel(parent), mIconFactory(new FileIconProvider())
+		FileSystemModel(QObject *parent, bool includeFolders = false, bool foldersFirst = false) : QAbstractItemModel(parent)
 		{
 			mHeaders << tr("Name") << tr("Size") << tr("Date modified");
 			mRootItem = new FileSystemItem(QString());
@@ -388,7 +388,6 @@ class FileSystemModel : public QAbstractItemModel
 				dirScanner = NULL;
 			}
 			delete mRootItem;
-			delete mIconFactory;
 		}
 
 		virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const
@@ -505,10 +504,10 @@ class FileSystemModel : public QAbstractItemModel
 			if ( role == Qt::DecorationRole ) {
 				if ( index.column() == int(NAME) ) {
 					if ( item->isFolder() )
-						return mIconFactory->folderIcon();
-					QIcon icon = mIconFactory->fileIcon(item->fileName());
+						return FileIconProvider::folderIcon();
+					QIcon icon = FileIconProvider::fileIcon(item->fileName());
 					if ( icon.isNull() ) // icon fall-back
-						icon = mIconFactory->defaultFileIcon();
+						icon = FileIconProvider::defaultFileIcon();
 					return icon;
 				} else
 					return QIcon();
@@ -827,11 +826,6 @@ class FileSystemModel : public QAbstractItemModel
 				return false;
 		}
 
-		FileIconProvider *iconFactory() {
-			return mIconFactory;
-		}
-
-
 	public slots:
 		QModelIndex refresh()
 		{
@@ -908,7 +902,6 @@ class FileSystemModel : public QAbstractItemModel
 		QStringList mZipEntryList;
 		QList<quint64> mZipEntrySizes;
 		QList<QDateTime> mZipEntryDates;
-		FileIconProvider *mIconFactory;
 		QString mSearchPattern;
 		int mFileCount;
 		int mStaleCount;

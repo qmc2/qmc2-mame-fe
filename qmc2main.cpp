@@ -86,6 +86,7 @@
 #endif
 #include "htmleditor/htmleditor.h"
 #include "arcademodesetup.h"
+#include "fileiconprovider.h"
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -428,6 +429,8 @@ MainWindow::MainWindow(QWidget *parent)
   isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = false;
   comboBoxEmuSelector = NULL;
   proxyStyle = NULL;
+
+  FileIconProvider::setCacheSize(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 
   // remember the default style
   defaultStyle = QApplication::style()->objectName();
@@ -4549,18 +4552,18 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MESSDeviceConfigurator = NULL;
         }
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-        QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+        QString machineName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
-	connect(&messDevCfgTimer, SIGNAL(timeout()), qmc2MESSDeviceConfigurator, SLOT(load()));
+        connect(&messDevCfgTimer, SIGNAL(timeout()), qmc2MESSDeviceConfigurator, SLOT(load()));
         layout->addWidget(qmc2MESSDeviceConfigurator);
         if ( !tabDevices->layout() )
           tabDevices->setLayout(layout);
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
         tabDevices->setUpdatesEnabled(true);
-	messDevCfgTimer.start(QMC2_DEVCONFIG_LOAD_DELAY);
+        messDevCfgTimer.start(QMC2_DEVCONFIG_LOAD_DELAY);
       }
       break;
 
