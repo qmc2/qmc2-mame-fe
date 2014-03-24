@@ -612,8 +612,8 @@ void Gamelist::load()
 	  commandProc.start(execFile, args);
 	  started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 	  while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-		  started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 		  qApp->processEvents();
+		  started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 	  }
 	  if ( started ) {
 		  commandProcStarted = true;
@@ -730,8 +730,8 @@ void Gamelist::load()
   commandProc.start(execFile, args);
   started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-    started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
     qApp->processEvents();
+    started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
   }
   if ( started ) {
     commandProcStarted = true;
