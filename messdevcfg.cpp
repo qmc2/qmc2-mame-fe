@@ -160,7 +160,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	dirModel = NULL;
 	fileModel = NULL;
 	configurationRenameItem = NULL;
-	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = fullyLoaded = false;
+	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = fullyLoaded = forceQuit = false;
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
@@ -499,13 +499,15 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	args << machineName;
 
 	QList<QTreeWidgetItem *> allSlotItems;
-	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount() && !forceQuit; i++) {
 		QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
 		allSlotItems << item;
 		insertChildItems(item, allSlotItems);
 	}
 
 	foreach (QTreeWidgetItem *item, allSlotItems) {
+		if ( forceQuit )
+			break;
 		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 		if ( !slotName.isEmpty() ) {
 			bool isNestedSlot = !messSystemSlotMap[messMachineName].contains(slotName);
@@ -538,6 +540,9 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 		}
 	}
 
+	if ( forceQuit )
+		return slotXmlBuffer;
+
 	args << "-listxml";
 
 #ifdef QMC2_DEBUG
@@ -556,12 +561,13 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	if ( started ) {
 		commandProcStarted = true;
 		bool commandProcRunning = (commandProc.state() == QProcess::Running);
-		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning && !forceQuit ) {
 			qApp->processEvents();
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
+		if ( !forceQuit )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up"));
 		qmc2CriticalSection = false;
 		return slotXmlBuffer;
 	}
@@ -1010,7 +1016,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	bool wasManualSlotOptionChange = isManualSlotOptionChange;
 	isManualSlotOptionChange = false;
 
-	if ( refreshRunning )
+	if ( refreshRunning || forceQuit )
 		return false;
 
 	refreshRunning = true;
@@ -1197,6 +1203,8 @@ void MESSDeviceConfigurator::updateSlotBiosSelections()
 #endif
 
 	for (int i = 0; i < allSlots.count(); i++) {
+		if ( forceQuit )
+			break;
 		QString slotName = allSlots[i];
 		QTreeWidgetItem *item;
 		QComboBox *cb = comboBoxByName(slotName, &item);
@@ -1850,7 +1858,7 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
-	if ( qmc2CriticalSection )
+	if ( qmc2CriticalSection || forceQuit )
 		return;
 
 	qmc2CriticalSection = true;
