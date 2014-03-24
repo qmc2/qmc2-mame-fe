@@ -4541,9 +4541,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	      qmc2YouTubeWidget->clearMessage();
 #endif
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
-        tabDevices->setUpdatesEnabled(false);
         if ( qmc2MESSDeviceConfigurator ) {
-          messDevCfgTimer.disconnect(qmc2MESSDeviceConfigurator);
+          qmc2MESSDeviceConfigurator->forceQuit = true;
+          if ( qmc2MESSDeviceConfigurator->refreshRunning ) {
+		  QTimer::singleShot(1, this, SLOT(treeWidgetGamelist_itemSelectionChanged_delayed()));
+		  return;
+          }
+          tabDevices->setUpdatesEnabled(false);
+          qmc2MESSDeviceConfigurator->disconnect();
           qmc2MESSDeviceConfigurator->save();
           qmc2MESSDeviceConfigurator->saveSetup();
           QLayout *vbl = tabDevices->layout();

@@ -78,10 +78,6 @@ class DirectoryScannerThread : public QThread
 
 		~DirectoryScannerThread()
 		{
-			stopScanning = quitFlag = true;
-			waitCondition.wakeAll();
-			wait();
-			quit();
 		}
 
 	protected:
@@ -380,12 +376,10 @@ class FileSystemModel : public QAbstractItemModel
 		~FileSystemModel()
 		{
 			if ( dirScanner ) {
-				dirScanner->quitFlag = true;
-				dirScanner->stopScanning = true;
+				dirScanner->quitFlag = dirScanner->stopScanning = true;
 				dirScanner->waitCondition.wakeAll();
 				dirScanner->wait();
 				dirScanner->deleteLater();
-				dirScanner = NULL;
 			}
 			delete mRootItem;
 		}

@@ -67,6 +67,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool foldersFirst;
 		bool fullyLoaded;
 		bool comboBoxChooserFilterPatternHadFocus;
+		bool forceQuit;
 		int fileModelRowInsertionCounter;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QByteArray fileChooserHeaderState;
