@@ -11761,9 +11761,23 @@ void MainWindow::checkRomPath()
 
 	QString myRomPath;
 
-	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
-		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
-	else if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory")  )
+	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") ) {
+		QStringList romPaths;
+		foreach (QString romPath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().split(";", QString::SkipEmptyParts)) {
+			QDir romDir(romPath);
+			if ( romDir.isRelative() ) {
+				if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") ) {
+					QString workPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString();
+					if ( !workPath.isEmpty() )
+						romPaths << QDir::cleanPath(workPath + "/" + romPath);
+					else
+						romPaths << romPath;
+				}
+			} else
+				romPaths << romPath;
+		}
+		myRomPath = romPaths.join(";");
+	} else if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") )
 		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString() + "/roms";
 	else
 		myRomPath = QDir::currentPath() + "/roms";
@@ -11771,16 +11785,16 @@ void MainWindow::checkRomPath()
 	bool allRomPathsOk = true;
 	QStringList pathsToCheck;
 
-	foreach (QString rompath, myRomPath.split(";", QString::SkipEmptyParts)) {
-		QDir romDir(rompath);
+	foreach (QString romPath, myRomPath.split(";", QString::SkipEmptyParts)) {
+		QDir romDir(romPath);
 		if ( !romDir.exists() ) {
-			log(QMC2_LOG_FRONTEND, tr("WARNING: ROM path '%1' doesn't exist").arg(rompath));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: ROM path '%1' doesn't exist").arg(romPath));
 			allRomPathsOk = false;
-			pathsToCheck << rompath;
+			pathsToCheck << romPath;
 		} else if ( !romDir.isReadable() ) {
-			log(QMC2_LOG_FRONTEND, tr("WARNING: ROM path '%1' isn't accessible").arg(rompath));;
+			log(QMC2_LOG_FRONTEND, tr("WARNING: ROM path '%1' isn't accessible").arg(romPath));;
 			allRomPathsOk = false;
-			pathsToCheck << rompath;
+			pathsToCheck << romPath;
 		}
 	}
 
