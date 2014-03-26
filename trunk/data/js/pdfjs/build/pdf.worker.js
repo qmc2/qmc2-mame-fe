@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1305';
-PDFJS.build = 'e80c6a8';
+PDFJS.version = '0.8.1295';
+PDFJS.build = '42679e1';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -439,79 +439,6 @@ function stringToBytes(str) {
   }
   return bytes;
 }
-
-// Lazy test the endianness of the platform
-// NOTE: This will be 'true' for simulated TypedArrays
-function isLittleEndian() {
-  var buffer8 = new Uint8Array(2);
-  buffer8[0] = 1;
-  var buffer16 = new Uint16Array(buffer8.buffer);
-  return (buffer16[0] === 1);
-}
-
-Object.defineProperty(PDFJS, 'isLittleEndian', {
-  configurable: true,
-  get: function PDFJS_isLittleEndian() {
-    return shadow(PDFJS, 'isLittleEndian', isLittleEndian());
-  }
-});
-
-   Lazy test if the userAgant support CanvasTypedArrays
-function hasCanvasTypedArrays() {
-  var canvas = document.createElement('canvas');
-  canvas.width = canvas.height = 1;
-  var ctx = canvas.getContext('2d');
-  var imageData = ctx.createImageData(1, 1);
-  return (typeof imageData.data.buffer !== 'undefined');
-}
-
-Object.defineProperty(PDFJS, 'hasCanvasTypedArrays', {
-  configurable: true,
-  get: function PDFJS_hasCanvasTypedArrays() {
-    return shadow(PDFJS, 'hasCanvasTypedArrays', hasCanvasTypedArrays());
-  }
-});
-
-   Uint32ArrayView
-var Uint32ArrayView = (function Uint32ArrayViewClosure() {
-
-  function Uint32ArrayView(buffer) {
-    this.buffer = buffer;
-    this.byteLength = buffer.length;
-    this.length = (this.byteLength >> 2);
-    ensureUint32ArrayViewProps(this.length);
-  }
-  Uint32ArrayView.prototype = Object.create(null);
-
-  var uint32ArrayViewSetters = 0;
-  function createUint32ArrayProp(index) {
-    return {
-      get: function () {
-        var buffer = this.buffer, offset = index << 2;
-        return (buffer[offset] | (buffer[offset + 1] << 8) |
-          (buffer[offset + 2] << 16) | (buffer[offset + 3] << 24)) >>> 0;
-      },
-      set: function (value) {
-        var buffer = this.buffer, offset = index << 2;
-        buffer[offset] = value & 255;
-        buffer[offset + 1] = (value >> 8) & 255;
-        buffer[offset + 2] = (value >> 16) & 255;
-        buffer[offset + 3] = (value >>> 24) & 255;
-      }
-    };
-  }
-
-  function ensureUint32ArrayViewProps(length) {
-    while (uint32ArrayViewSetters < length) {
-      Object.defineProperty(Uint32ArrayView.prototype,
-        uint32ArrayViewSetters,
-        createUint32ArrayProp(uint32ArrayViewSetters));
-      uint32ArrayViewSetters++;
-    }
-  }
-
-  return Uint32ArrayView;
-})();
 
 var IDENTITY_MATRIX = [1, 0, 0, 1, 0, 0];
 
@@ -38787,28 +38714,16 @@ var Jbig2Image = (function Jbig2ImageClosure() {
           // 6.5.8.2 Refinement/aggregate-coded symbol bitmap
           var numberOfInstances = decodeInteger(contextCache, 'IAAI', decoder);
           if (numberOfInstances > 1) {
-            bitmap = decodeTextRegion(huffman, refinement,
-                                      currentWidth, currentHeight, 0,
-                                      numberOfInstances, 1, //strip size
-                                      symbols.concat(newSymbols),
-                                      symbolCodeLength,
-                                      0, //transposed
-                                      0, //ds offset
-                                      1, //top left 7.4.3.1.1
-                                      0, //OR operator
-                                      huffmanTables,
-                                      refinementTemplateIndex, refinementAt,
-                                      decodingContext);
-          } else {
-            var symbolId = decodeIAID(contextCache, decoder, symbolCodeLength);
-            var rdx = decodeInteger(contextCache, 'IARDX', decoder); // 6.4.11.3
-            var rdy = decodeInteger(contextCache, 'IARDY', decoder); // 6.4.11.4
-            var symbol = (symbolId < symbols.length ? symbols[symbolId] :
-                          newSymbols[symbolId - symbols.length]);
-            bitmap = decodeRefinement(currentWidth, currentHeight,
+            error('JBIG2 error: number of instances > 1 is not supported');
+          }
+          var symbolId = decodeIAID(contextCache, decoder, symbolCodeLength);
+          var rdx = decodeInteger(contextCache, 'IARDX', decoder); // 6.4.11.3
+          var rdy = decodeInteger(contextCache, 'IARDY', decoder); // 6.4.11.4
+          var symbol = (symbolId < symbols.length ? symbols[symbolId] :
+                        newSymbols[symbolId - symbols.length]);
+          bitmap = decodeRefinement(currentWidth, currentHeight,
             refinementTemplateIndex, symbol, rdx, rdy, false, refinementAt,
             decodingContext);
-          }
         } else {
           // 6.5.8.1 Direct-coded symbol bitmap
           bitmap = decodeBitmap(false, currentWidth, currentHeight,
@@ -40878,7 +40793,7 @@ var JpegImage = (function jpegImage() {
     function decodeBaseline(component, offset) {
       var t = decodeHuffman(component.huffmanTableDC);
       var diff = t === 0 ? 0 : receiveAndExtend(t);
-      component.blockData[offset] = (component.pred += diff);
+      component.blocks[offset] = (component.pred += diff);
       var k = 1;
       while (k < 64) {
         var rs = decodeHuffman(component.huffmanTableAC);
@@ -40891,7 +40806,7 @@ var JpegImage = (function jpegImage() {
         }
         k += r;
         var z = dctZigZag[k];
-        component.blockData[offset + z] = receiveAndExtend(s);
+        component.blocks[offset + z] = receiveAndExtend(s);
         k++;
       }
     }
@@ -40899,11 +40814,11 @@ var JpegImage = (function jpegImage() {
     function decodeDCFirst(component, offset) {
       var t = decodeHuffman(component.huffmanTableDC);
       var diff = t === 0 ? 0 : (receiveAndExtend(t) << successive);
-      component.blockData[offset] = (component.pred += diff);
+      component.blocks[offset] = (component.pred += diff);
     }
 
     function decodeDCSuccessive(component, offset) {
-      component.blockData[offset] |= readBit() << successive;
+      component.blocks[offset] |= readBit() << successive;
     }
 
     var eobrun = 0;
@@ -40926,7 +40841,7 @@ var JpegImage = (function jpegImage() {
         }
         k += r;
         var z = dctZigZag[k];
-        component.blockData[offset + z] = receiveAndExtend(s) * (1 << successive);
+        component.blocks[offset + z] = receiveAndExtend(s) * (1 << successive);
         k++;
       }
     }
@@ -40957,8 +40872,8 @@ var JpegImage = (function jpegImage() {
           continue;
         case 1: // skipping r zero items
         case 2:
-          if (component.blockData[offset + z]) {
-            component.blockData[offset + z] += (readBit() << successive);
+          if (component.blocks[offset + z]) {
+            component.blocks[offset + z] += (readBit() << successive);
           } else {
             r--;
             if (r === 0)
@@ -40966,16 +40881,16 @@ var JpegImage = (function jpegImage() {
           }
           break;
         case 3: // set value for a zero item
-          if (component.blockData[offset + z]) {
-            component.blockData[offset + z] += (readBit() << successive);
+          if (component.blocks[offset + z]) {
+            component.blocks[offset + z] += (readBit() << successive);
           } else {
-            component.blockData[offset + z] = successiveACNextValue << successive;
+            component.blocks[offset + z] = successiveACNextValue << successive;
             successiveACState = 0;
           }
           break;
         case 4: // eob
-          if (component.blockData[offset + z]) {
-            component.blockData[offset + z] += (readBit() << successive);
+          if (component.blocks[offset + z]) {
+            component.blocks[offset + z] += (readBit() << successive);
           }
           break;
         }
@@ -41085,9 +41000,8 @@ var JpegImage = (function jpegImage() {
     var i;
 
     // dequant
-    for (i = 0; i < 64; i++) {
-      p[i] = component.blockData[blockBufferOffset + i] * qt[i];
-    }
+    for (i = 0; i < 64; i++)
+      p[i] = component.blocks[blockBufferOffset + i] * qt[i];
 
     // inverse DCT on rows
     for (i = 0; i < 8; ++i) {
@@ -41229,8 +41143,7 @@ var JpegImage = (function jpegImage() {
 
     // convert to 8-bit integers
     for (i = 0; i < 64; ++i) {
-      var index = blockBufferOffset + i;
-      component.blockData[index] = clampTo8bitInt((p[i] + 2056) >> 4);
+      p[i] = clampTo8bit((p[i] + 2056) >> 4);
     }
   }
 
@@ -41239,24 +41152,33 @@ var JpegImage = (function jpegImage() {
     var blocksPerLine = component.blocksPerLine;
     var blocksPerColumn = component.blocksPerColumn;
     var samplesPerLine = blocksPerLine << 3;
-    var computationBuffer = new Int32Array(64);
+    var R = new Int16Array(64);
 
     var i, j, ll = 0;
     for (var blockRow = 0; blockRow < blocksPerColumn; blockRow++) {
+      var scanLine = blockRow << 3;
+      for (i = 0; i < 8; i++) {
+        lines[ll++] = new Uint8Array(samplesPerLine);
+      }
       for (var blockCol = 0; blockCol < blocksPerLine; blockCol++) {
-        var offset = getBlockBufferOffset(component, blockRow, blockCol)
-        quantizeAndInverse(component, offset, computationBuffer);
+
+        quantizeAndInverse(component,
+                           getBlockBufferOffset(component, blockRow, blockCol),
+                           R);
+        var offset = 0, sample = blockCol << 3;
+        for (j = 0; j < 8; j++) {
+          var line = lines[scanLine + j];
+          for (i = 0; i < 8; i++) {
+            line[sample + i] = R[offset++];
+          }
+        }
       }
     }
-    return component.blockData;
+    return lines;
   }
 
-  function clampTo8bitInt(a) {
+  function clampTo8bit(a) {
     return a <= 0 ? 0 : a >= 255 ? 255 : a | 0;
-  }
-
-  function clamp0to255(a) {
-    return a <= 0 ? 0 : a >= 255 ? 255 : a;
   }
 
   constructor.prototype = {
@@ -41301,9 +41223,11 @@ var JpegImage = (function jpegImage() {
 
           var blocksBufferSize = 64 * blocksPerColumnForMcu
                                     * (blocksPerLineForMcu + 1);
-          component.blockData = new Int16Array(blocksBufferSize);
+          var blocks = new Int16Array(blocksBufferSize);
+
           component.blocksPerLine = blocksPerLine;
           component.blocksPerColumn = blocksPerColumn;
+          component.blocks = blocks;
         }
         frame.mcusPerLine = mcusPerLine;
         frame.mcusPerColumn = mcusPerColumn;
@@ -41497,19 +41421,16 @@ var JpegImage = (function jpegImage() {
       for (var i = 0; i < frame.components.length; i++) {
         var component = frame.components[i];
         this.components.push({
-          output: buildComponentData(frame, component),
+          lines: buildComponentData(frame, component),
           scaleX: component.h / frame.maxH,
-          scaleY: component.v / frame.maxV,
-          blocksPerLine: component.blocksPerLine,
-          blocksPerColumn: component.blocksPerColumn
+          scaleY: component.v / frame.maxV
         });
       }
     },
-
     getData: function getData(width, height) {
       var scaleX = this.width / width, scaleY = this.height / height;
 
-      var component, componentScaleX, componentScaleY;
+      var component, componentLine, componentScaleX, componentScaleY;
       var x, y, i;
       var offset = 0;
       var Y, Cb, Cr, K, C, M, Ye, R, G, B;
@@ -41517,49 +41438,17 @@ var JpegImage = (function jpegImage() {
       var numComponents = this.components.length;
       var dataLength = width * height * numComponents;
       var data = new Uint8Array(dataLength);
-      var componentLine;
-
-      // lineData is reused for all components. Assume first component is
-      // the biggest
-      var lineData = new Uint8Array((this.components[0].blocksPerLine << 3) *
-                                    this.components[0].blocksPerColumn * 8);
 
       // First construct image data ...
       for (i = 0; i < numComponents; i++) {
         component = this.components[i];
-        var blocksPerLine = component.blocksPerLine;
-        var blocksPerColumn = component.blocksPerColumn;
-        var samplesPerLine = blocksPerLine << 3;
-
-        var j, k, ll = 0;
-        var lineOffset = 0;
-        for (var blockRow = 0; blockRow < blocksPerColumn; blockRow++) {
-          var scanLine = blockRow << 3;
-          for (var blockCol = 0; blockCol < blocksPerLine; blockCol++) {
-            var bufferOffset = getBlockBufferOffset(component, blockRow, blockCol);
-            var offset = 0, sample = blockCol << 3;
-            for (j = 0; j < 8; j++) {
-              var lineOffset = (scanLine + j) * samplesPerLine;
-              for (k = 0; k < 8; k++) {
-                lineData[lineOffset + sample + k] =
-                  component.output[bufferOffset + offset++];
-              }
-            }
-          }
-        }
-
         componentScaleX = component.scaleX * scaleX;
         componentScaleY = component.scaleY * scaleY;
         offset = i;
-
-        var cx, cy;
-        var index;
         for (y = 0; y < height; y++) {
+          componentLine = component.lines[0 | (y * componentScaleY)];
           for (x = 0; x < width; x++) {
-            cy = 0 | (y * componentScaleY);
-            cx = 0 | (x * componentScaleX);
-            index = cy * samplesPerLine + cx;
-            data[offset] = lineData[index];
+            data[offset] = componentLine[0 | (x * componentScaleX)];
             offset += numComponents;
           }
         }
@@ -41585,9 +41474,9 @@ var JpegImage = (function jpegImage() {
               Cb = data[i + 1];
               Cr = data[i + 2];
 
-              R = clamp0to255(Y + 1.402 * (Cr - 128));
-              G = clamp0to255(Y - 0.3441363 * (Cb - 128) - 0.71413636 * (Cr - 128));
-              B = clamp0to255(Y + 1.772 * (Cb - 128));
+              R = clampTo8bit(Y + 1.402 * (Cr - 128));
+              G = clampTo8bit(Y - 0.3441363 * (Cb - 128) - 0.71413636 * (Cr - 128));
+              B = clampTo8bit(Y + 1.772 * (Cb - 128));
 
               data[i    ] = R;
               data[i + 1] = G;
@@ -41610,9 +41499,9 @@ var JpegImage = (function jpegImage() {
               Cb = data[i + 1];
               Cr = data[i + 2];
 
-              C = 255 - clamp0to255(Y + 1.402 * (Cr - 128));
-              M = 255 - clamp0to255(Y - 0.3441363 * (Cb - 128) - 0.71413636 * (Cr - 128));
-              Ye = 255 - clamp0to255(Y + 1.772 * (Cb - 128));
+              C = 255 - clampTo8bit(Y + 1.402 * (Cr - 128));
+              M = 255 - clampTo8bit(Y - 0.3441363 * (Cb - 128) - 0.71413636 * (Cr - 128));
+              Ye = 255 - clampTo8bit(Y + 1.772 * (Cb - 128));
 
               data[i    ] = C;
               data[i + 1] = M;
@@ -41663,9 +41552,9 @@ var JpegImage = (function jpegImage() {
             Y = data[i++];
             K = data[i++];
 
-            R = 255 - clamp0to255(C * (1 - K / 255) + K);
-            G = 255 - clamp0to255(M * (1 - K / 255) + K);
-            B = 255 - clamp0to255(Y * (1 - K / 255) + K);
+            R = 255 - clampTo8bit(C * (1 - K / 255) + K);
+            G = 255 - clampTo8bit(M * (1 - K / 255) + K);
+            B = 255 - clampTo8bit(Y * (1 - K / 255) + K);
 
             imageDataArray[j++] = R;
             imageDataArray[j++] = G;

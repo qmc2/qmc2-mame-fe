@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1305';
-PDFJS.build = 'e80c6a8';
+PDFJS.version = '0.8.1295';
+PDFJS.build = '42679e1';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -439,79 +439,6 @@ function stringToBytes(str) {
   }
   return bytes;
 }
-
-// Lazy test the endianness of the platform
-// NOTE: This will be 'true' for simulated TypedArrays
-function isLittleEndian() {
-  var buffer8 = new Uint8Array(2);
-  buffer8[0] = 1;
-  var buffer16 = new Uint16Array(buffer8.buffer);
-  return (buffer16[0] === 1);
-}
-
-Object.defineProperty(PDFJS, 'isLittleEndian', {
-  configurable: true,
-  get: function PDFJS_isLittleEndian() {
-    return shadow(PDFJS, 'isLittleEndian', isLittleEndian());
-  }
-});
-
-   Lazy test if the userAgant support CanvasTypedArrays
-function hasCanvasTypedArrays() {
-  var canvas = document.createElement('canvas');
-  canvas.width = canvas.height = 1;
-  var ctx = canvas.getContext('2d');
-  var imageData = ctx.createImageData(1, 1);
-  return (typeof imageData.data.buffer !== 'undefined');
-}
-
-Object.defineProperty(PDFJS, 'hasCanvasTypedArrays', {
-  configurable: true,
-  get: function PDFJS_hasCanvasTypedArrays() {
-    return shadow(PDFJS, 'hasCanvasTypedArrays', hasCanvasTypedArrays());
-  }
-});
-
-   Uint32ArrayView
-var Uint32ArrayView = (function Uint32ArrayViewClosure() {
-
-  function Uint32ArrayView(buffer) {
-    this.buffer = buffer;
-    this.byteLength = buffer.length;
-    this.length = (this.byteLength >> 2);
-    ensureUint32ArrayViewProps(this.length);
-  }
-  Uint32ArrayView.prototype = Object.create(null);
-
-  var uint32ArrayViewSetters = 0;
-  function createUint32ArrayProp(index) {
-    return {
-      get: function () {
-        var buffer = this.buffer, offset = index << 2;
-        return (buffer[offset] | (buffer[offset + 1] << 8) |
-          (buffer[offset + 2] << 16) | (buffer[offset + 3] << 24)) >>> 0;
-      },
-      set: function (value) {
-        var buffer = this.buffer, offset = index << 2;
-        buffer[offset] = value & 255;
-        buffer[offset + 1] = (value >> 8) & 255;
-        buffer[offset + 2] = (value >> 16) & 255;
-        buffer[offset + 3] = (value >>> 24) & 255;
-      }
-    };
-  }
-
-  function ensureUint32ArrayViewProps(length) {
-    while (uint32ArrayViewSetters < length) {
-      Object.defineProperty(Uint32ArrayView.prototype,
-        uint32ArrayViewSetters,
-        createUint32ArrayProp(uint32ArrayViewSetters));
-      uint32ArrayViewSetters++;
-    }
-  }
-
-  return Uint32ArrayView;
-})();
 
 var IDENTITY_MATRIX = [1, 0, 0, 1, 0, 0];
 
@@ -5647,48 +5574,45 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       // Grayscale, 1 bit per pixel (i.e. black-and-white).
       var destDataLength = dest.length;
       var srcLength = src.byteLength;
-      var dest32 = PDFJS.hasCanvasTypedArrays ? new Uint32Array(dest.buffer) :
-        new Uint32ArrayView(dest);
-      var dest32DataLength = dest32.length;
-      var fullSrcDiff = (width + 7) >> 3;
-      var white = 0xFFFFFFFF;
-      var black = (PDFJS.isLittleEndian || !PDFJS.hasCanvasTypedArrays) ?
-        0xFF000000 : 0x000000FF;
+      for (var i = 3; i < destDataLength; i += 4) {
+        dest[i] = 255;
+      }
       for (var i = 0; i < totalChunks; i++) {
         var thisChunkHeight =
           (i < fullChunks) ? fullChunkHeight : partialChunkHeight;
         var destPos = 0;
         for (var j = 0; j < thisChunkHeight; j++) {
-          var srcDiff = srcLength - srcPos;
-          var k = 0;
-          var kEnd = (srcDiff > fullSrcDiff) ? width : srcDiff * 8 - 7;
-          var kEndUnrolled = kEnd & ~7;
           var mask = 0;
           var srcByte = 0;
-          for (; k < kEndUnrolled; k += 8) {
-            srcByte = src[srcPos++];
-            dest32[destPos++] = (srcByte & 128) ? white : black;
-            dest32[destPos++] = (srcByte & 64) ? white : black;
-            dest32[destPos++] = (srcByte & 32) ? white : black;
-            dest32[destPos++] = (srcByte & 16) ? white : black;
-            dest32[destPos++] = (srcByte & 8) ? white : black;
-            dest32[destPos++] = (srcByte & 4) ? white : black;
-            dest32[destPos++] = (srcByte & 2) ? white : black;
-            dest32[destPos++] = (srcByte & 1) ? white : black;
-          }
-          for (; k < kEnd; k++) {
-             if (mask === 0) {
-               srcByte = src[srcPos++];
-               mask = 128;
-             }
+          for (var k = 0; k < width; k++, destPos += 4) {
+            if (mask === 0) {
+              if (srcPos >= srcLength) {
+                break;
+              }
+              srcByte = src[srcPos++];
+              mask = 128;
+            }
 
-            dest32[destPos++] = (srcByte & mask) ? white : black;
+            if ((srcByte & mask)) {
+              dest[destPos] = 255;
+              dest[destPos + 1] = 255;
+              dest[destPos + 2] = 255;
+            } else {
+              dest[destPos] = 0;
+              dest[destPos + 1] = 0;
+              dest[destPos + 2] = 0;
+            }
+
             mask >>= 1;
           }
         }
-        // We ran out of input. Make all remaining pixels transparent.
-        while (destPos < dest32DataLength) {
-          dest32[destPos++] = 0;
+        if (destPos < destDataLength) {
+          // We ran out of input. Make all remaining pixels transparent.
+          destPos += 3;
+          do {
+            dest[destPos] = 0;
+            destPos += 4;
+          } while (destPos < destDataLength);
         }
 
         ctx.putImageData(chunkImgData, 0, i * fullChunkHeight);
