@@ -317,8 +317,6 @@ var isLocalStorageEnabled = (function isLocalStorageEnabledClosure() {
 
 
 
-var EXPORTED_SYMBOLS = ['DEFAULT_PREFERENCES'];
-
 var DEFAULT_PREFERENCES = {
   showPreviousViewOnLoad: true,
   defaultZoomValue: '',
