@@ -814,7 +814,7 @@ class FileSystemModel : public QAbstractItemModel
 					return false;
 				else {
 					QFileInfo fileInfo(item->fileName());
-					return (fileInfo.suffix().indexOf("[Pp][Ss]") >= 0);
+					return (fileInfo.suffix().indexOf(QRegExp("[Pp][Ss]")) >= 0);
 				}
 			} else
 				return false;
