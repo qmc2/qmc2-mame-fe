@@ -1105,10 +1105,14 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   insertAttributeItems(&itemList, element, attributes, descriptions, true);
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  while ( !xmlLines[gamePos].contains("</game>") ) {
+  QString endMark = "</game>";
 #elif defined(QMC2_EMUTYPE_MESS)
-  while ( !xmlLines[gamePos].contains("</machine>") ) {
+  QString endMark = "</machine>";
+#else
+  QString endMark = "</undefined>";
 #endif
+
+  while ( !xmlLines[gamePos].contains(endMark) ) {
     childItem = NULL;
     element = xmlLines[gamePos].simplified();
     if ( element.contains("<year>") ) {
@@ -1355,11 +1359,8 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
         insertAttributeItems(secondChildItem, subElement, attributes, descriptions, false);
         gamePos++;
       }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-      if ( xmlLines[gamePos].contains("</game>") ) gamePos--;
-#else
-      if ( xmlLines[gamePos].contains("</machine>") ) gamePos--;
-#endif
+      if ( xmlLines[gamePos].contains(endMark) )
+	      gamePos--;
     }
     gamePos++;
     if ( childItem )
@@ -1785,6 +1786,13 @@ void Gamelist::parse()
 		int i = lineCounter;
 		QString gameYear = tr("?"), gameManufacturer = tr("?"), gamePlayers = tr("?"), gameStatus = tr("?");
 		bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		QString endMark = "</game>";
+#elif defined(QMC2_EMUTYPE_MESS)
+		QString endMark = "</machine>";
+#else
+		QString endMark = "</undefined>";
+#endif
 		while ( !endGame ) {
 		  QString xmlLine = xmlLines[i];
 		  if ( xmlLine.contains("<year>") ) {
@@ -1810,11 +1818,7 @@ void Gamelist::parse()
 		      statusFound = true;
 		    }
 		  }
-#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-		  endGame = xmlLine.contains("</game>") || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
-#elif defined(QMC2_EMUTYPE_MESS)
-		  endGame = xmlLine.contains("</machine>") || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
-#endif
+		  endGame = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
 		  i++;
 		}
 
@@ -2976,31 +2980,26 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	bool romRequired = true;
 	int xmlCounter = 0;
 	QStringList xmlLines = xmlDb()->xml(gameName).split("\n", QString::SkipEmptyParts);
-	bool xmlFound = xmlLines.count() > 0;
-	if ( xmlFound ) {
+	if ( xmlLines.count() > 0 ) {
 		int romCounter = 0;
 		int chdCounter = 0;
 		bool endFound = false;
-		while ( !endFound && xmlCounter < xmlLines.count() ) {
-#if defined(QMC2_EMUTYPE_MESS)
-			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
-				romCounter++;
-				endFound = true;
-			} else if ( xmlLines[xmlCounter].contains("<disk name=\"") ) {
-				chdCounter++;
-				endFound = true;
-			} else if ( xmlLines[xmlCounter].contains("</machine>") )
-				endFound = true;
-#elif defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
-				romCounter++;
-				endFound = true;
-			} else if ( xmlLines[xmlCounter].contains("<disk name=\"") ) {
-				chdCounter++;
-				endFound = true;
-			} else if ( xmlLines[xmlCounter].contains("</game>") )
-				endFound = true;
+#if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
+		QString endMark = "</game>";
+#elif defined(QMC2_EMUTYPE_MESS)
+		QString endMark = "</machine>";
+#else
+		QString endMark = "</undefined>";
 #endif
+		while ( !endFound && xmlCounter < xmlLines.count() ) {
+			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
+				romCounter++;
+				endFound = true;
+			} else if ( xmlLines[xmlCounter].contains("<disk name=\"") ) {
+				chdCounter++;
+				endFound = true;
+			} else if ( xmlLines[xmlCounter].contains(endMark) )
+				endFound = true;
 			xmlCounter++;
 		}
 		if ( romCounter == 0 && chdCounter > 0 )
