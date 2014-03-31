@@ -43,9 +43,9 @@ QString XmlDatabaseManager::emulatorVersion()
 	if ( query.exec() ) {
 		if ( query.first() )
 			emu_version = query.value(0).toString();
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	query.finish();
 	return emu_version;
 }
 
@@ -60,15 +60,14 @@ void XmlDatabaseManager::setEmulatorVersion(QString emu_version)
 			query.bindValue(":emu_version", emu_version);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to XML cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET emu_version=:emu_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":emu_version", emu_version);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in XML cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		}
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
@@ -81,9 +80,9 @@ QString XmlDatabaseManager::qmc2Version()
 	if ( query.exec() ) {
 		if ( query.first() )
 			qmc2_version = query.value(0).toString();
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	query.finish();
 	return qmc2_version;
 }
 
@@ -98,15 +97,14 @@ void XmlDatabaseManager::setQmc2Version(QString qmc2_version)
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to XML cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET qmc2_version=:qmc2_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in XML cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		}
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
@@ -119,9 +117,9 @@ int XmlDatabaseManager::xmlCacheVersion()
 	if ( query.exec() ) {
 		if ( query.first() )
 			xmlcache_version = query.value(0).toInt();
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	query.finish();
 	return xmlcache_version;
 }
 
@@ -136,15 +134,14 @@ void XmlDatabaseManager::setXmlCacheVersion(int xmlcache_version)
 			query.bindValue(":xmlcache_version", xmlcache_version);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET xmlcache_version=:xmlcache_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":xmlcache_version", xmlcache_version);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		}
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("xmlcache_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
@@ -157,9 +154,9 @@ QString XmlDatabaseManager::dtd()
 	if ( query.exec() ) {
 		if ( query.first() )
 			dtd = query.value(0).toString();
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("dtd").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	query.finish();
 	return dtd;
 }
 
@@ -174,15 +171,14 @@ void XmlDatabaseManager::setDtd(QString dtd)
 			query.bindValue(":dtd", dtd);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to XML cache database: query = '%2', error = '%3'").arg("dtd").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET dtd=:dtd WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":dtd", dtd);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in XML cache database: query = '%2', error = '%3'").arg("dtd").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		}
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("dtd").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
@@ -196,9 +192,9 @@ QString XmlDatabaseManager::xml(QString id)
 	if ( query.exec() ) {
 		if ( query.first() )
 			xml = query.value(0).toString();
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	query.finish();
 	return xml;
 }
 
@@ -211,9 +207,9 @@ QString XmlDatabaseManager::xml(int rowid)
 	if ( query.exec() ) {
 		if ( query.first() )
 			xml = query.value(0).toString();
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	query.finish();
 	return xml;
 }
 
@@ -230,7 +226,6 @@ void XmlDatabaseManager::setXml(QString id, QString xml)
 			query.bindValue(":xml", xml);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET xml=:xml WHERE id=:id").arg(m_tableBasename));
@@ -238,8 +233,8 @@ void XmlDatabaseManager::setXml(QString id, QString xml)
 			query.bindValue(":xml", xml);
 			if ( !query.exec() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			query.finish();
 		}
+		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("xml").arg(query.lastQuery()).arg(m_db.lastError().text()));
 }
