@@ -1683,12 +1683,7 @@ void SoftwareList::verifyReadyReadStandardOutput()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::verifyReadyReadStandardOutput()"));
 #endif
 
-#if defined(QMC2_OS_WIN)
-	QString s = swStatesLastLine + QString::fromLatin1(verifyProc->readAllStandardOutput());
-	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
-#else
 	QString s = swStatesLastLine + verifyProc->readAllStandardOutput();
-#endif
 	QStringList lines = s.split("\n");
 
 	if ( s.endsWith("\n") ) {
