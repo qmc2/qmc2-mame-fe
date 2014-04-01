@@ -509,6 +509,7 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
 		QTextStream ts(&qmc2TempXml);
+		ts.setCodec(QTextCodec::codecForName("UTF-8"));
 		xmlBuffer = ts.readAll();
 #if defined(QMC2_OS_WIN)
 		xmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
@@ -898,6 +899,7 @@ bool SoftwareList::load()
 			fileSWLCache.setFileName(swlCachePath);
 			if ( fileSWLCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 				QTextStream ts(&fileSWLCache);
+				ts.setCodec(QTextCodec::codecForName("UTF-8"));
 				QString line = ts.readLine();
 				line = ts.readLine();
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1015,6 +1017,7 @@ bool SoftwareList::load()
 		swlLastLine.clear();
 
 		tsSWLCache.setDevice(&fileSWLCache);
+		tsSWLCache.setCodec(QTextCodec::codecForName("UTF-8"));
 		tsSWLCache.reset();
 		tsSWLCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1388,12 +1391,7 @@ void SoftwareList::loadReadyReadStandardOutput()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardOutput()"));
 #endif
 
-#if defined(QMC2_OS_WIN)
-	QString s = swlLastLine + QString::fromLatin1(proc->readAllStandardOutput());
-	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
-#else
 	QString s = swlLastLine + proc->readAllStandardOutput();
-#endif
 	QStringList lines = s.split("\n");
 
 	if ( s.endsWith("\n") ) {
