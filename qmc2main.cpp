@@ -1843,6 +1843,23 @@ void MainWindow::on_actionPlay_triggered(bool)
           break;
         }
 
+        case QMC2_EMUOPT_TYPE_FILE:
+        case QMC2_EMUOPT_TYPE_DIRECTORY: {
+          QString  v = option.value;
+          QString dv = option.dvalue;
+          QString gv = qmc2Config->value(globalOptionKey, dv).toString();
+          if ( !option.valid )
+            v = gv;
+#if defined(QMC2_OS_WIN)
+          if ( v != dv )
+            args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(QDir::cleanPath(v))
+#else
+          if ( v != dv )
+            args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(v.replace("~", "$HOME"));
+#endif
+          }
+          break;
+
         case QMC2_EMUOPT_TYPE_STRING:
         default: {
           QString  v = option.value;
@@ -1851,7 +1868,7 @@ void MainWindow::on_actionPlay_triggered(bool)
           if ( !option.valid )
             v = gv;
           if ( v != dv )
-            args << QString("-%1").arg(option.name) << v.replace("~", "$HOME");
+            args << QString("-%1").arg(option.name) << v;
           break;
         }
       }
