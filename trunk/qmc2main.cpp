@@ -1852,7 +1852,7 @@ void MainWindow::on_actionPlay_triggered(bool)
             v = gv;
 #if defined(QMC2_OS_WIN)
           if ( v != dv )
-            args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(QDir::cleanPath(v))
+            args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(QDir::cleanPath(v));
 #else
           if ( v != dv )
             args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(v.replace("~", "$HOME"));
