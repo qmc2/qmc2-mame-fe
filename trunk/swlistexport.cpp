@@ -193,6 +193,7 @@ void SoftwareListExporter::exportToASCII()
 
 		if ( exportFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 			ts.setDevice(&exportFile);
+			ts.setCodec(QTextCodec::codecForName("UTF-8"));
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting current software-list in ASCII format to '%1'").arg(QFileInfo(exportFile).filePath()));
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ASCII export file '%1' for writing, please check permissions").arg(QFileInfo(exportFile).filePath()));
@@ -327,6 +328,7 @@ void SoftwareListExporter::exportToCSV()
 
 		if ( exportFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 			ts.setDevice(&exportFile);
+			ts.setCodec(QTextCodec::codecForName("UTF-8"));
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting current software-list in CSV format to '%1'").arg(QFileInfo(exportFile).filePath()));
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open CSV export file '%1' for writing, please check permissions").arg(QFileInfo(exportFile).filePath()));

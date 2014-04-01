@@ -1449,6 +1449,7 @@ void Gamelist::parse()
   if ( gamelistCache.isOpen() ) {
     QString line;
     tsGamelistCache.setDevice(&gamelistCache);
+    tsGamelistCache.setCodec(QTextCodec::codecForName("UTF-8"));
     tsGamelistCache.seek(0);
     
     if ( !tsGamelistCache.atEnd() ) {
@@ -1721,6 +1722,7 @@ void Gamelist::parse()
 #endif
     } else {
       tsGamelistCache.setDevice(&gamelistCache);
+      tsGamelistCache.setCodec(QTextCodec::codecForName("UTF-8"));
       tsGamelistCache.reset();
       tsGamelistCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 #if defined(QMC2_EMUTYPE_MAME)
