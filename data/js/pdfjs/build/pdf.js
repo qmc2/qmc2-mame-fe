@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '0.8.1326';
-PDFJS.build = '7d5bf83';
+PDFJS.version = '0.8.1351';
+PDFJS.build = 'bd11111';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -182,7 +182,7 @@ var OPS = PDFJS.OPS = {
   paintInlineImageXObjectGroup: 87,
   paintImageXObjectRepeat: 88,
   paintImageMaskXObjectRepeat: 89,
-  paintSolidColorImageMask: 90,
+  paintSolidColorImageMask: 90
 };
 
 // A notice for devs. These are good for things that are helpful to devs, such
@@ -423,21 +423,41 @@ var XRefParseException = (function XRefParseExceptionClosure() {
 
 
 function bytesToString(bytes) {
-  var strBuf = [];
   var length = bytes.length;
-  for (var n = 0; n < length; ++n) {
-    strBuf.push(String.fromCharCode(bytes[n]));
+  var MAX_ARGUMENT_COUNT = 8192;
+  if (length < MAX_ARGUMENT_COUNT) {
+    return String.fromCharCode.apply(null, bytes);
+  }
+  var strBuf = [];
+  for (var i = 0; i < length; i += MAX_ARGUMENT_COUNT) {
+    var chunkEnd = Math.min(i + MAX_ARGUMENT_COUNT, length);
+    var chunk = bytes.subarray(i, chunkEnd);
+    strBuf.push(String.fromCharCode.apply(null, chunk));
   }
   return strBuf.join('');
+}
+
+function stringToArray(str) {
+  var length = str.length;
+  var array = [];
+  for (var i = 0; i < length; ++i) {
+    array[i] = str.charCodeAt(i);
+  }
+  return array;
 }
 
 function stringToBytes(str) {
   var length = str.length;
   var bytes = new Uint8Array(length);
-  for (var n = 0; n < length; ++n) {
-    bytes[n] = str.charCodeAt(n) & 0xFF;
+  for (var i = 0; i < length; ++i) {
+    bytes[i] = str.charCodeAt(i) & 0xFF;
   }
   return bytes;
+}
+
+function string32(value) {
+  return String.fromCharCode((value >> 24) & 0xff, (value >> 16) & 0xff,
+                             (value >> 8) & 0xff, value & 0xff);
 }
 
 // Lazy test the endianness of the platform
@@ -3107,7 +3127,7 @@ var Annotation = (function AnnotationClosure() {
     var data = this.data = {};
 
     data.subtype = dict.get('Subtype').name;
-    var rect = dict.get('Rect');
+    var rect = dict.get('Rect') || [0, 0, 0, 0];
     data.rect = Util.normalizeRect(rect);
     data.annotationFlags = dict.get('F');
 
@@ -6158,6 +6178,13 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.ctx.closePath();
     },
     rectangle: function CanvasGraphics_rectangle(x, y, width, height) {
+      if (width === 0) {
+        width = this.getSinglePixelWidth();
+      }
+      if (height === 0) {
+        height = this.getSinglePixelWidth();
+      }
+
       this.ctx.rect(x, y, width, height);
     },
     stroke: function CanvasGraphics_stroke(consumePath) {
@@ -6504,6 +6531,19 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var canvasWidth = 0.0;
       var vertical = font.vertical;
       var defaultVMetrics = font.defaultVMetrics;
+
+      if (fontSize === 0) {
+        if (textSelection) {
+          geom = this.createTextGeometry();
+          geom.canvasWidth = canvasWidth;
+          if (vertical) {
+            var VERTICAL_TEXT_ROTATION = Math.PI / 2;
+            geom.angle += VERTICAL_TEXT_ROTATION;
+          }
+          this.textLayer.appendText(geom);
+        }
+        return canvasWidth;
+      }
 
       // Type3 fonts - each glyph is a "mini-PDF"
       if (font.coded) {
@@ -7929,16 +7969,9 @@ var FontLoader = {
                (data.charCodeAt(offset + 3) & 0xff);
       }
 
-      function string32(value) {
-        return String.fromCharCode((value >> 24) & 0xff) +
-               String.fromCharCode((value >> 16) & 0xff) +
-               String.fromCharCode((value >> 8) & 0xff) +
-               String.fromCharCode(value & 0xff);
-      }
-
       function spliceString(s, offset, remove, insert) {
-        var chunk1 = data.substr(0, offset);
-        var chunk2 = data.substr(offset + remove);
+        var chunk1 = s.substr(0, offset);
+        var chunk2 = s.substr(offset + remove);
         return chunk1 + insert + chunk2;
       }
 
@@ -8046,7 +8079,7 @@ var FontFace = (function FontFaceClosure() {
         return null;
       }
 
-      var data = bytesToString(this.data);
+      var data = bytesToString(new Uint8Array(this.data));
       var fontName = this.loadedName;
 
       // Add the font-face rule to the document
