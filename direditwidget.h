@@ -1,6 +1,7 @@
 #ifndef _DIREDITWIDGET_H_
 #define _DIREDITWIDGET_H_
 
+#include <QTreeWidget>
 #include "ui_direditwidget.h"
 
 class DirectoryEditWidget : public QWidget, public Ui::DirectoryEditWidget
@@ -8,7 +9,9 @@ class DirectoryEditWidget : public QWidget, public Ui::DirectoryEditWidget
 	Q_OBJECT
 
 	public:
-		DirectoryEditWidget(QString, QWidget *parent = 0);
+		QTreeWidget *myTreeWidget;
+
+		DirectoryEditWidget(QString, QWidget *parent = 0, QTreeWidget *treeWidget = NULL);
 		~DirectoryEditWidget();
 
 	public slots:

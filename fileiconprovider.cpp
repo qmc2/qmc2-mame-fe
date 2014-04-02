@@ -8,12 +8,12 @@
 #include <windows.h>
 #endif
 
-QCache<QString, QIcon> FileIconProvider::iconCache;
-QFileIconProvider FileIconProvider::iconProvider;
+QCache<QString, QIcon> FileIconProvider::m_iconCache;
+QFileIconProvider FileIconProvider::m_iconProvider;
 
 void FileIconProvider::setCacheSize(int size)
 {
-	iconCache.setMaxCost(size);
+	m_iconCache.setMaxCost(size);
 }
 
 QIcon FileIconProvider::fileIcon(const QString &fileName)
@@ -21,8 +21,8 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 #if defined(QMC2_OS_WIN)
 	QFileInfo fileInfo(fileName);
 	if ( fileInfo.suffix().isEmpty() || fileInfo.suffix() == "exe" && fileInfo.exists() )
-		return iconProvider.icon(fileInfo);
-	QIcon *cachedIcon = iconCache.object(fileInfo.suffix());
+		return m_iconProvider.icon(fileInfo);
+	QIcon *cachedIcon = m_iconCache.object(fileInfo.suffix());
 	QIcon icon;
 	if ( !cachedIcon ) {
 		static HRESULT comInit = CoInitialize(NULL);
@@ -33,7 +33,7 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 			QPixmap pixmap = QPixmap::fromWinHICON(shFileInfo.hIcon);
 			if ( !pixmap.isNull() ) {
 				icon = QIcon(pixmap);
-				iconCache.insert(fileInfo.suffix(), new QIcon(icon));
+				m_iconCache.insert(fileInfo.suffix(), new QIcon(icon));
 			}
 			DestroyIcon(shFileInfo.hIcon);
 		}
@@ -41,16 +41,16 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 		icon = *cachedIcon;
 	return icon;
 #else
-	return iconProvider.icon(QFileInfo(fileName));
+	return m_iconProvider.icon(QFileInfo(fileName));
 #endif
 }
 
 QIcon FileIconProvider::defaultFileIcon()
 {
-	return iconProvider.icon(QFileIconProvider::File);
+	return m_iconProvider.icon(QFileIconProvider::File);
 }
 
 QIcon FileIconProvider::folderIcon()
 {
-	return iconProvider.icon(QFileIconProvider::Folder);
+	return m_iconProvider.icon(QFileIconProvider::Folder);
 }

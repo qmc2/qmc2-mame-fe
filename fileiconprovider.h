@@ -10,17 +10,17 @@
 class FileIconProvider
 {
 	public:
+		FileIconProvider() {}
+
 		static QIcon fileIcon(const QString &fileName);
 		static QIcon defaultFileIcon();
 		static QIcon folderIcon();
 		static void setCacheSize(int size);
-
-		FileIconProvider() {}
+		static QFileIconProvider *iconProvider() { return &m_iconProvider; }
 
 	private:
-		static FileIconProvider *globalInstance;
-		static QCache<QString, QIcon> iconCache;
-		static QFileIconProvider iconProvider;
+		static QCache<QString, QIcon> m_iconCache;
+		static QFileIconProvider m_iconProvider;
 };
 
 #endif

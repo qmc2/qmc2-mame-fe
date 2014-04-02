@@ -31,7 +31,10 @@ class DirectoryModel : public QFileSystemModel
 	Q_OBJECT
 
 	public:
-		DirectoryModel(QObject *parent = 0) : QFileSystemModel(parent) {}
+		DirectoryModel(QObject *parent = 0) : QFileSystemModel(parent)
+		{
+			setIconProvider(FileIconProvider::iconProvider());
+		}
 
 		virtual QVariant headerData(int /*section*/, Qt::Orientation orientation, int role) const
 		{
