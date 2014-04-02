@@ -52,6 +52,7 @@ int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
 int optionDecimals = QMC2_EMUOPT_DFLT_DECIMALS;
 QStringList optionChoices;
 QString optionPart;
+QString optionRelativeTo;
 
 #if defined(_MIN)
 #undef _MIN
@@ -153,7 +154,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		}
 
 		case QMC2_EMUOPT_TYPE_FILE: {
-			FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), optionPart, parent);
+			FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), optionPart, parent, false, optionRelativeTo, mTreeWidget);
 			fileEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			fileEditor->setAccessibleName("fileEditor");
 			if ( !optionDescription.isEmpty() ) {
@@ -165,7 +166,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		}
 
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
-			DirectoryEditWidget *directoryEditor = new DirectoryEditWidget("", parent);
+			DirectoryEditWidget *directoryEditor = new DirectoryEditWidget("", parent, mTreeWidget);
 			directoryEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			directoryEditor->setAccessibleName("directoryEditor");
 			if ( !optionDescription.isEmpty() ) {
@@ -642,6 +643,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionType = QMC2_EMUOPT_TYPE_INT;
 					optionChoices.clear();
 					optionPart.clear();
+					optionRelativeTo.clear();
 					int v;
 					if ( qmc2GlobalEmulatorOptions != this ) {
 						if ( overwrite )
@@ -663,6 +665,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionDecimals = option.decimals;
 					optionChoices.clear();
 					optionPart.clear();
+					optionRelativeTo.clear();
 					double v;
 					if ( qmc2GlobalEmulatorOptions != this ) {
 						if ( overwrite )
@@ -684,6 +687,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionDecimals = option.decimals;
 					optionChoices.clear();
 					optionPart.clear();
+					optionRelativeTo.clear();
 					QString v;
 					if ( qmc2GlobalEmulatorOptions != this ) {
 						if ( overwrite )
@@ -703,6 +707,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionDecimals = option.decimals;
 					optionChoices.clear();
 					optionPart.clear();
+					optionRelativeTo.clear();
 					QString v;
 					if ( qmc2GlobalEmulatorOptions != this ) {
 						if ( overwrite )
@@ -721,6 +726,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionType = QMC2_EMUOPT_TYPE_BOOL;
 					optionChoices.clear();
 					optionPart.clear();
+					optionRelativeTo.clear();
 					bool v;
 					if ( qmc2GlobalEmulatorOptions != this ) {
 						if ( overwrite )
@@ -747,9 +753,10 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 						optionChoices = option.choices;
 					else
 						optionChoices.clear();
-					if ( optionType == QMC2_EMUOPT_TYPE_FILE )
+					if ( optionType == QMC2_EMUOPT_TYPE_FILE ) {
 						optionPart = option.part;
-					else
+						optionRelativeTo = option.relativeTo;
+					} else
 						optionPart.clear();
 					QString v;
 					if ( qmc2GlobalEmulatorOptions != this ) {
@@ -1030,12 +1037,13 @@ void EmulatorOptions::createMap()
 				optionDescription = emulatorOption.description;
 				optionChoices = emulatorOption.choices;
 				optionPart = emulatorOption.part;
+				optionRelativeTo = emulatorOption.relativeTo;
 				optionItem->setToolTip(0, optionDescription);
 				childItem = new QTreeWidgetItem(optionItem);
 				childItem->setText(0, tr("Description"));
 				childItem->setText(1, emulatorOption.description);
 			} else
-				optionDescription = "";
+				optionDescription.clear();
 			openPersistentEditor(optionItem, QMC2_EMUOPT_COLUMN_VALUE);
 			QString sysName;
 			if ( !isGlobal )
@@ -1193,9 +1201,20 @@ void EmulatorOptions::createTemplateMap()
 							if ( type == "combo" && xmlReader.name().toString() == "choice" )
 								optionChoices = readChoices(&xmlReader);
 							optionPart.clear();
-							if ( type == "file" && attributes.hasAttribute("part") )
-								optionPart = attributes.value("part").toString();
-							templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible));
+							optionRelativeTo.clear();
+							if ( type == "file" ) {
+								if ( attributes.hasAttribute("part") )
+									optionPart = attributes.value("part").toString();
+								if ( attributes.hasAttribute("relativeTo") )
+									optionRelativeTo = attributes.value("relativeTo").toString();
+								if ( !optionRelativeTo.isEmpty() ) {
+									if ( optionRelativeTo == "emulatorWorkingDirectory" )
+										optionDescription.append(" (" + tr("relative to the emulator's working directory") + ")");
+									else
+										optionDescription.append(" (" + tr("relative to the path specified in '%1'").arg(optionRelativeTo) + ")");
+								}
+							}
+							templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible, optionRelativeTo));
 						}
 					} else if ( elementType == "template" ) {
 						templateEmulator = attributes.value("emulator").toString();

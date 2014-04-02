@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="MAME" format="0.2.6" version="0.152">
+<template emulator="MAME" format="0.2.7" version="0.152">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -180,7 +180,7 @@
       <description lang="pt" text="Habilitar restauração automática ao inicializar, e automaticamente salvar ao sair"/>
       <description lang="es" text="Habilitar la restauración automática al iniciar y guardar automáticamente al salir"/>
     </option>
-    <option default="" name="playback" type="file">
+    <option default="" name="playback" type="file" relativeTo="input_directory">
       <description lang="us" text="Playback an input file"/>
       <description lang="de" text="Wiedergabe einer Eingabe-Datei"/>
       <description lang="pl" text="Odtwórz plik wejścia"/>
@@ -188,7 +188,7 @@
       <description lang="pt" text="Carregar um arquivo de entrada"/>
       <description lang="es" text="Reproducir un fichero de entrada"/>
     </option>
-    <option default="" name="record" type="file">
+    <option default="" name="record" type="file" relativeTo="input_directory">
       <description lang="us" text="Record an input file"/>
       <description lang="de" text="Aufnahme einer Eingabe-Datei"/>
       <description lang="pl" text="Zapisz plik wejścia"/>
@@ -196,7 +196,7 @@
       <description lang="pt" text="Gravar um arquivo de entrada"/>
       <description lang="es" text="Grabar un fichero de entrada"/>
     </option>
-    <option default="" name="mngwrite" type="file">
+    <option default="" name="mngwrite" type="file" relativeTo="snapshot_directory">
       <description lang="us" text="Optional filename to write an MNG movie of the current session"/>
       <description lang="de" text="Optionaler Dateiname zur Aufnahme eines MNG Films"/>
       <description lang="pl" text="Plik do zapisu filmu MNG bieżącej sesji"/>
@@ -204,7 +204,7 @@
       <description lang="pt" text="Nome opcional de arquivo para escrever um filme MNG da sessão atual"/>
       <description lang="es" text="Nombre de archivo opcional para guardar una vídeo MNG de la sesión actual"/>
     </option>
-    <option default="" name="aviwrite" type="file">
+    <option default="" name="aviwrite" type="file" relativeTo="snapshot_directory">
       <description lang="us" text="Optional filename to write an AVI movie of the current session"/>
       <description lang="de" text="Optionaler Dateiname zur Aufnahme eines AVI Films"/>
       <description lang="pl" text="Plik do zapisu filmu AVI bieżącej sesji"/>
@@ -212,7 +212,7 @@
       <description lang="pt" text="Nome opcional de arquivo para escrever um filme AVI da sessão corrente"/>
       <description lang="es" text="Nombre de archivo opcional para guardar una vídeo AVI de la sesión actual"/>
     </option>
-    <option default="" name="wavwrite" type="file">
+    <option default="" name="wavwrite" type="file" relativeTo="emulatorWorkingDirectory">
       <description lang="us" text="Optional filename to write a WAV file of the current session"/>
       <description lang="de" text="Optionaler Dateiname zur Aufnahme einer WAV Datei"/>
       <description lang="pl" text="Plik do zapisu pliku WAV bieżącej sesji"/>
@@ -696,13 +696,14 @@
       <description lang="pt" text="Converter botão 2 da pistola laser em recarregamento fora da tela"/>
       <description lang="es" text="Cambiar el botón 2 de la pistola de luz a &quot;recarga fuera de pantalla&quot;"/>
     </option>
-    <option default="auto" name="joystick_map" type="file">
+    <option default="auto" name="joystick_map" type="combo">
       <description lang="us" text="Explicit joystick map, or 'auto' to auto-select"/>
       <description lang="de" text="Explizite Joystick-Map oder 'auto' für Auto-Selektion"/>
       <description lang="pl" text="Sprecyzowana mapa komend dżojstika, lub 'auto' dla wyboru automatycznego"/>
       <description lang="fr" text="Choisir l'assignation des commandes du joystick, sinon 'auto' pour choisir automatiquement"/>
       <description lang="pt" text="Mapeamento explícito de joystick, ou 'auto' para selecionar automaticamente"/>
       <description lang="es" text="Mapeado explícito de joystick, o 'auto' para auto-seleccionar"/>
+      <choice name="auto"/>
     </option>
     <option default="0.3" name="joystick_deadzone" type="float">
       <description lang="us" text="Center deadzone range for joystick where change is ignored (0.0 center, 1.0 end)"/>
@@ -1020,7 +1021,7 @@
       <description lang="pt" text="Esticar renderização de tela por esse valor (em software)"/>
       <description lang="es" text="Escalar el renderizado de pantalla en software por esta cantidad"/>
     </option>
-    <option default="none" name="effect" type="file">
+    <option default="none" name="effect" type="file" relativeTo="artpath">
       <description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
       <description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
       <description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>
@@ -1475,7 +1476,7 @@
       <description lang="pt" text="Preset HLSL a ser utilizado (0-5)"/>
       <description lang="es" text="Parámetro HLSL a utilizar (0-5)"/>
     </option>
-    <option default="" name="hlsl_write" type="file">
+    <option default="" name="hlsl_write" type="file" relativeTo="snapshot_directory">
       <description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
       <description lang="de" text="HLSL AVI-Schreiben durch Angabe einer Ausgabe-Datei aktivieren (große Disk I/O Bandbreite empfohlen)"/>
       <description lang="fr" text="Active l'écriture AVI HLSL en choisissant le fichier de destination (disque de hautes performances recommandé)"/>
