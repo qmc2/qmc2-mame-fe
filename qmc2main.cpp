@@ -1732,9 +1732,9 @@ void MainWindow::on_actionPlay_triggered(bool)
 #endif
     if ( launchForeignID ) {
 	foreignEmulator = true;
-        QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName)).toString();
-        QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName)).toString();
-        QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
+        QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName), QString()).toString();
+        QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName), QString()).toString();
+        QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription);
         QStringList emuArgs;
         QRegExp rx("([^ ]+|\"[^\"]+\")");
         int i = 0;
@@ -1747,9 +1747,9 @@ void MainWindow::on_actionPlay_triggered(bool)
       QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
       if ( !selectedEmulator.isEmpty() && registeredEmulators.contains(selectedEmulator) ) {
         foreignEmulator = true;
-        QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
-        QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator)).toString();
-	QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME));
+        QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator), QString()).toString();
+        QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator), QString()).toString();
+	QString s = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME));
         QStringList emuArgs;
         QRegExp rx("([^ ]+|\"[^\"]+\")");
         int i = 0;
@@ -2090,8 +2090,8 @@ void MainWindow::on_actionPlay_triggered(bool)
   }
 #endif
 
-  QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
-  QString workingDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString();
+  QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString();
+  QString workingDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
   QStringList argsResolved = Settings::stResolve(args);
 
   // start game/machine
@@ -2600,9 +2600,9 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
   if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
     return;
 
-  QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool").toString();
-  QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments").toString().split(" ");
-  QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory").toString();
+  QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", QString()).toString();
+  QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", QString()).toString().split(" ");
+  QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", QString()).toString();
   QString gameID = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
   QString gameDescription = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME);
   QStringList newArgs;
@@ -3461,7 +3461,7 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 
 	log(QMC2_LOG_FRONTEND, tr("arcade mode: launching QMC2 Arcade, command = '%1'").arg(commandString));
 
-	if ( !QProcess::startDetached(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString(), args, qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory").toString()) )
+	if ( !QProcess::startDetached(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile", QString()).toString(), args, qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/WorkingDirectory", QString()).toString()) )
 		log(QMC2_LOG_FRONTEND, tr("WARNING: failed launching QMC2 Arcade"));
 }
 
@@ -11784,7 +11784,7 @@ void MainWindow::checkRomPath()
 			QDir romDir(romPath);
 			if ( romDir.isRelative() ) {
 				if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") ) {
-					QString workPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString();
+					QString workPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
 					if ( !workPath.isEmpty() )
 						romPaths << QDir::cleanPath(workPath + "/" + romPath);
 					else
@@ -11795,7 +11795,7 @@ void MainWindow::checkRomPath()
 		}
 		myRomPath = romPaths.join(";");
 	} else if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") )
-		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString() + "/roms";
+		myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString() + "/roms";
 	else
 		myRomPath = QDir::currentPath() + "/roms";
 
