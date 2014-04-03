@@ -1826,7 +1826,7 @@
             <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
           </attribute>
           <attribute name="title">
-           <string>MP&amp;3 player</string>
+           <string>&amp;Audio player</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayoutAudioPlayer">
            <property name="horizontalSpacing">

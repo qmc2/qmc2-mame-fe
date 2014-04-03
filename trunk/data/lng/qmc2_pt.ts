@@ -9414,11 +9414,6 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>Comando</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
-        <source>MP&amp;3 player</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="1877"/>
         <location filename="../../qmc2main.ui" line="1880"/>
         <location filename="../../qmc2main.ui" line="3238"/>
@@ -9642,6 +9637,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <translation>&amp;Limpeza</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Reprodutor de música</translation>

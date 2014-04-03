@@ -7293,9 +7293,8 @@ Czy wybrać inną nazwę?</translation>
         <translation type="unfinished">LED2</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
         <source>MP&amp;3 player</source>
-        <translation>Odtwarzacz MP&amp;3</translation>
+        <translation type="obsolete">Odtwarzacz MP&amp;3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1850"/>
@@ -9699,6 +9698,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>&amp;Wyczyść</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation>Odtwarzacz &amp;dźwięku</translation>
