@@ -1929,19 +1929,8 @@ void Gamelist::parse()
 		QTreeWidgetItem *nameItem = new QTreeWidgetItem(gameDescriptionItem);
 		nameItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
 		nameItem->setText(QMC2_GAMELIST_COLUMN_ICON, gameName);
-#if defined(QMC2_EMUTYPE_MAME)
-		if ( qmc2GamelistItemMap.contains(gameName) )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(gameName));
-#elif defined(QMC2_EMUTYPE_MESS)
-		if ( qmc2GamelistItemMap.contains(gameName) )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MESS developers").arg(gameName));
-#elif defined(QMC2_EMUTYPE_UME)
-		if ( qmc2GamelistItemMap.contains(gameName) )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(gameName));
-#endif
 		qmc2GamelistItemMap[gameName] = gameDescriptionItem;
 		qmc2GamelistNameMap[gameDescription] = gameName;
-
 		loadIcon(gameName, gameDescriptionItem);
 
 		if ( gamelistCache.isOpen() )
@@ -2837,6 +2826,17 @@ void Gamelist::loadReadyReadStandardOutput()
 					if ( index >= 0 ) {
 						if ( setXmlBuffer.endsWith("\n") )
 							setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
+
+						if ( xmlDb()->exists(currentSetName) ) {
+#if defined(QMC2_EMUTYPE_MAME)
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(currentSetName));
+#elif defined(QMC2_EMUTYPE_MESS)
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MESS developers").arg(currentSetName));
+#elif defined(QMC2_EMUTYPE_UME)
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME/MESS developers").arg(currentSetName));
+#endif
+						}
+
 						xmlDb()->setXml(currentSetName, setXmlBuffer);
 						uncommittedXmlDbRows++;
 						currentSetName.clear();

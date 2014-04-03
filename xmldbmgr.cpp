@@ -243,8 +243,10 @@ int XmlDatabaseManager::xmlRowCount()
 {
 	QSqlQuery query(m_db);
 	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {
-		query.first();
-		return query.value(0).toInt();
+		if ( query.first() )
+			return query.value(0).toInt();
+		else
+			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(m_db.lastError().text()));
 	}	return -1;
@@ -256,8 +258,10 @@ bool XmlDatabaseManager::exists(QString id)
 	query.prepare(QString("SELECT id FROM %1 WHERE id=:id").arg(m_tableBasename));
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
-		query.first();
-		return query.value(0).toString() == id;
+		if ( query.first() )
+			return query.value(0).toString() == id;
+		else
+			return false;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from XML cache database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(m_db.lastError().text()));
 		return false;
