@@ -1037,16 +1037,19 @@ bool SoftwareList::load()
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
 		connect(loadProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(loadStateChanged(QProcess::ProcessState)));
 
-		QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
+		QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString();
 		QStringList args;
 		args << "-listsoftware";
-		QString hashPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath").toString().replace("~", "$HOME");
+		QString hashPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", "$HOME");
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << hashPath;
 
 		if ( !qmc2StopParser ) {
 			validData = true;
 			loadFinishedFlag = false;
+			QString emuWorkDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
+			if ( !emuWorkDir.isEmpty() )
+				loadProc->setWorkingDirectory(emuWorkDir);
 			loadProc->start(command, args);
 			// FIXME: this is blocking the GUI shortly
 			if ( loadProc->waitForStarted() && !qmc2StopParser ) {
@@ -1536,8 +1539,8 @@ void SoftwareList::checkSoftwareStates()
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << hashPath;
 
-		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString().isEmpty() )
-			verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString());
+		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString().isEmpty() )
+			verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
 
 		verifyProc->start(command, args);
 

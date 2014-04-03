@@ -27,6 +27,7 @@ inf: informational only
   <li>fix: MESS device configurator: avoid crash (seen on Windows) when the selected system changes while the available devices and slot-options are currently being determined for another system</li>
   <li>fix: initial ROM path check: corrected handling of <i>relative</i> ROM paths</li>
   <li>fix: updated the handling of character encoding in software-lists on Windows to modern MAME/MESS/UME -- see also <a href="http://tracker.batcom-it.net/view.php?id=65" target="_blank">bug tracker ID #65</a></li>
+  <li>fix: corrected the working directory the emulator would use when scanning software-lists (so that a <i>relative</i> hash path would actually be found)</li>
   <li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to 0.152+ (SVN r29157)</li>
   <li>imp: QMC2 Arcade: enabled translation for joystick and key-sequence map debugging</li>
   <li>imp: initial ROM path check: output more detailed information for each non-existing/inaccessible ROM path</li>
