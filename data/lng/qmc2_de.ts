@@ -8851,9 +8851,8 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>&amp;YouTube</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
         <source>MP&amp;3 player</source>
-        <translation>MP&amp;3 Spieler</translation>
+        <translation type="obsolete">MP&amp;3 Spieler</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1850"/>
@@ -9741,6 +9740,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Au&amp;fräumen</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Audio Player</translation>

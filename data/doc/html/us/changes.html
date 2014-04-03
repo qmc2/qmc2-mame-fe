@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.43, 02-APR-2014</h3>
+<h3>CHANGES - v0.43, 03-APR-2014</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.43, 02-APR-2014:</b></p>
+<p><b>v0.43, 03-APR-2014:</b></p>
 <ul>
   <li>fix: avoid crash upon game/machine launch when <i>double-click activation</i> is enabled -- see also <a href="http://tracker.batcom-it.net/view.php?id=44" target="_blank">bug tracker ID #44</a></li>
   <li>fix: ROM status exporter: corrected mix up of certain sort criteria indexes</li>
@@ -41,6 +41,7 @@ inf: informational only
   <li>imp: Windows: the FileSystemModel's directory scanner thread now uses native Win32 API calls instead of Qt classes -- see also <a href="http://tracker.batcom-it.net/view.php?id=56" target="_blank">bug tracker ID #56</a></li>
   <li>imp: added a FileIconProvider wrapper class for QFileIconProvider that uses native Win32 API calls on Windows for better performance (also caches the icons internally)</li>
   <li>imp: updated template format to v0.2.7 which adds support for a new <i>relativeTo</i> attribute (valid only for file-type options) which - if set - will be used to generate a path relative to the current value of the referenced directory-type option when using a file-picker; note that this will only work correctly when the referenced directory-type option consists of a <b>single</b> path (i.e. not for semicolon-seperated paths, in which case you'd have to edit the corresponding file-type option manually to reflect relative file paths)</li>
+  <li>imp: replaced some icons in the <i>classic</i> image-set</li>
   <li>new: ROMAlyzer: added read-only support for 7z archived ROMs</li>
   <li>new: added support for 7z archived icons and image artwork - note that for best performance 7-zipped icons should be packed in a solid block (7z default) and images should be packed <b>non-solid</b> (7za option <i>-ms=off</i>)</li>
   <li>new: MESS device configurator: added support for 7z archives to the file-chooser (just like the existing support for zip archives)</li>

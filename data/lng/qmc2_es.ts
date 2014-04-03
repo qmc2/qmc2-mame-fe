@@ -7496,9 +7496,8 @@ Do you want to choose a different name?</source>
         <translation>Comando</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
         <source>MP&amp;3 player</source>
-        <translation>Reproductor MP&amp;3</translation>
+        <translation type="obsolete">Reproductor MP&amp;3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1850"/>
@@ -7709,6 +7708,7 @@ Do you want to choose a different name?</source>
         <translation>&amp;Herramientas</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Reproductor de sonido</translation>

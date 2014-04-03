@@ -7492,11 +7492,6 @@ Do you want to choose a different name?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
-        <source>MP&amp;3 player</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="1850"/>
         <location filename="../../qmc2main.ui" line="1853"/>
         <source>Playlist (move items by dragging &amp; dropping them)</source>
@@ -7705,6 +7700,7 @@ Do you want to choose a different name?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation type="unfinished"></translation>

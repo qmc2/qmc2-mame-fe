@@ -7493,9 +7493,8 @@ Vill du välja ett annat namn?</translation>
         <translation>Kommando</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
         <source>MP&amp;3 player</source>
-        <translation>MP&amp;3-spelare</translation>
+        <translation type="obsolete">MP&amp;3-spelare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1850"/>
@@ -7706,6 +7705,7 @@ Vill du välja ett annat namn?</translation>
         <translation>Ver&amp;ktyg</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Ljudspelare</translation>

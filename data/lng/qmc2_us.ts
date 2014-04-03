@@ -7799,9 +7799,8 @@ Should they be killed on exit?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1829"/>
         <source>MP&amp;3 player</source>
-        <translation>MP&amp;3 player</translation>
+        <translation type="obsolete">MP&amp;3 player</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1850"/>
@@ -9250,6 +9249,7 @@ Should they be killed on exit?</translation>
         <translation>&amp;Clean up</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1829"/>
         <location filename="../../qmc2main.ui" line="2560"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Audio player</translation>
