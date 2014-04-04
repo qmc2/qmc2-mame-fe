@@ -303,66 +303,104 @@ var Cache = function cacheCache(size) {
   };
 };
 
-var isLocalStorageEnabled = (function isLocalStorageEnabledClosure() {
-  // Feature test as per http://diveintohtml5.info/storage.html
-  // The additional localStorage call is to get around a FF quirk, see
-  // bug #495747 in bugzilla
-  try {
-    return ('localStorage' in window && window['localStorage'] !== null &&
-            localStorage);
-  } catch (e) {
-    return false;
-  }
-})();
 
 
 
 var DEFAULT_PREFERENCES = {
   showPreviousViewOnLoad: true,
   defaultZoomValue: '',
-  ifAvailableShowOutlineOnLoad: false
+  ifAvailableShowOutlineOnLoad: false,
+  enableHandToolOnLoad: false
 };
 
 
-var Preferences = (function PreferencesClosure() {
-  function Preferences() {
-    this.prefs = {};
-    this.isInitializedPromiseResolved = false;
-    this.initializedPromise = this.readFromStorage(DEFAULT_PREFERENCES).then(
-      function(prefObj) {
-        this.isInitializedPromiseResolved = true;
+/**
+ * Preferences - Utility for storing persistent settings.
+ *   Used for settings that should be applied to all opened documents,
+ *   or every time the viewer is loaded.
+ */
+var Preferences = {
+  prefs: Object.create(DEFAULT_PREFERENCES),
+  isInitializedPromiseResolved: false,
+  initializedPromise: null,
+
+  /**
+   * Initialize and fetch the current preference values from storage.
+   * @return {Promise} A promise that is resolved when the preferences
+   *                   have been initialized.
+   */
+  initialize: function preferencesInitialize() {
+    return this.initializedPromise =
+        this._readFromStorage(DEFAULT_PREFERENCES).then(function(prefObj) {
+      this.isInitializedPromiseResolved = true;
+      if (prefObj) {
+        this.prefs = prefObj;
+      }
+    }.bind(this));
+  },
+
+  /**
+   * Stub function for writing preferences to storage.
+   * NOTE: This should be overridden by a build-specific function defined below.
+   * @param {Object} prefObj The preferences that should be written to storage.
+   * @return {Promise} A promise that is resolved when the preference values
+   *                   have been written.
+   */
+  _writeToStorage: function preferences_writeToStorage(prefObj) {
+    return Promise.resolve();
+  },
+
+  /**
+   * Stub function for reading preferences from storage.
+   * NOTE: This should be overridden by a build-specific function defined below.
+   * @param {Object} prefObj The preferences that should be read from storage.
+   * @return {Promise} A promise that is resolved with an {Object} containing
+   *                   the preferences that have been read.
+   */
+  _readFromStorage: function preferences_readFromStorage(prefObj) {
+    return Promise.resolve();
+  },
+
+  /**
+   * Reset the preferences to their default values and update storage.
+   * @return {Promise} A promise that is resolved when the preference values
+   *                   have been reset.
+   */
+  reset: function preferencesReset() {
+    return this.initializedPromise.then(function() {
+      this.prefs = Object.create(DEFAULT_PREFERENCES);
+      return this._writeToStorage(DEFAULT_PREFERENCES);
+    }.bind(this));
+  },
+
+  /**
+   * Replace the current preference values with the ones from storage.
+   * @return {Promise} A promise that is resolved when the preference values
+   *                   have been updated.
+   */
+  reload: function preferencesReload() {
+    return this.initializedPromise.then(function () {
+      this._readFromStorage(DEFAULT_PREFERENCES).then(function(prefObj) {
         if (prefObj) {
           this.prefs = prefObj;
         }
       }.bind(this));
-  }
+    }.bind(this));
+  },
 
-  Preferences.prototype = {
-    writeToStorage: function Preferences_writeToStorage(prefObj) {
-      return;
-    },
-
-    readFromStorage: function Preferences_readFromStorage(prefObj) {
-      var readFromStoragePromise = Promise.resolve();
-      return readFromStoragePromise;
-    },
-
-    reset: function Preferences_reset() {
-      if (this.isInitializedPromiseResolved) {
-        this.prefs = {};
-        this.writeToStorage(DEFAULT_PREFERENCES);
-      }
-    },
-
-    set: function Preferences_set(name, value) {
-      if (!this.isInitializedPromiseResolved) {
-        return;
-      } else if (DEFAULT_PREFERENCES[name] === undefined) {
-        console.error('Preferences_set: \'' + name + '\' is undefined.');
-        return;
+  /**
+   * Set the value of a preference.
+   * @param {string} name The name of the preference that should be changed.
+   * @param {boolean|number|string} value The new value of the preference.
+   * @return {Promise} A promise that is resolved when the value has been set,
+   *                   provided that the preference exists and the types match.
+   */
+  set: function preferencesSet(name, value) {
+    return this.initializedPromise.then(function () {
+      if (DEFAULT_PREFERENCES[name] === undefined) {
+        throw new Error('preferencesSet: \'' + name + '\' is undefined.');
       } else if (value === undefined) {
-        console.error('Preferences_set: no value is specified.');
-        return;
+        throw new Error('preferencesSet: no value is specified.');
       }
       var valueType = typeof value;
       var defaultType = typeof DEFAULT_PREFERENCES[name];
@@ -371,56 +409,57 @@ var Preferences = (function PreferencesClosure() {
         if (valueType === 'number' && defaultType === 'string') {
           value = value.toString();
         } else {
-          console.error('Preferences_set: \'' + value + '\' is a \"' +
-                        valueType + '\", expected a \"' + defaultType + '\".');
-          return;
+          throw new Error('Preferences_set: \'' + value + '\' is a \"' +
+                          valueType + '\", expected \"' + defaultType + '\".');
         }
       } else {
         if (valueType === 'number' && (value | 0) !== value) {
-          console.error('Preferences_set: \'' + value +
-                        '\' must be an \"integer\".');
-          return;
+          throw new Error('Preferences_set: \'' + value +
+                          '\' must be an \"integer\".');
         }
       }
       this.prefs[name] = value;
-      this.writeToStorage(this.prefs);
-    },
+      return this._writeToStorage(this.prefs);
+    }.bind(this));
+  },
 
-    get: function Preferences_get(name) {
-      var defaultPref = DEFAULT_PREFERENCES[name];
+  /**
+   * Get the value of a preference.
+   * @param {string} name The name of the preference whose value is requested.
+   * @return {Promise} A promise that is resolved with a {boolean|number|string}
+   *                   containing the value of the preference.
+   */
+  get: function preferencesGet(name) {
+    return this.initializedPromise.then(function () {
+      var defaultValue = DEFAULT_PREFERENCES[name];
 
-      if (defaultPref === undefined) {
-        console.error('Preferences_get: \'' + name + '\' is undefined.');
-        return;
-      } else if (this.isInitializedPromiseResolved) {
-        var pref = this.prefs[name];
+      if (defaultValue === undefined) {
+        throw new Error('preferencesGet: \'' + name + '\' is undefined.');
+      } else {
+        var prefValue = this.prefs[name];
 
-        if (pref !== undefined) {
-          return pref;
+        if (prefValue !== undefined) {
+          return prefValue;
         }
       }
-      return defaultPref;
-    }
-  };
-
-  return Preferences;
-})();
-
-
-Preferences.prototype.writeToStorage = function(prefObj) {
-  if (isLocalStorageEnabled) {
-    localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
+      return defaultValue;
+    }.bind(this));
   }
 };
 
-Preferences.prototype.readFromStorage = function(prefObj) {
-  var readFromStoragePromise = new Promise(function (resolve) {
-    if (isLocalStorageEnabled) {
-      var readPrefs = JSON.parse(localStorage.getItem('pdfjs.preferences'));
-      resolve(readPrefs);
-    }
+
+Preferences._writeToStorage = function (prefObj) {
+  return new Promise(function (resolve) {
+    localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
+    resolve();
   });
-  return readFromStoragePromise;
+};
+
+Preferences._readFromStorage = function (prefObj) {
+  return new Promise(function (resolve) {
+    var readPrefs = JSON.parse(localStorage.getItem('pdfjs.preferences'));
+    resolve(readPrefs);
+  });
 };
 
 
@@ -637,7 +676,7 @@ var currentPageNumber = 1;
  *
  * The way that the view parameters are stored depends on how PDF.js is built,
  * for 'node make <flag>' the following cases exist:
- *  - FIREFOX or MOZCENTRAL - uses about:config.
+ *  - FIREFOX or MOZCENTRAL - uses sessionStorage.
  *  - B2G                   - uses asyncStorage.
  *  - GENERIC or CHROME     - uses localStorage, if it is available.
  */
@@ -658,9 +697,7 @@ var ViewHistory = (function ViewHistoryClosure() {
 
 
 
-    if (isLocalStorageEnabled) {
-      resolvePromise(localStorage.getItem('database'));
-    }
+    resolvePromise(localStorage.getItem('database'));
   }
 
   ViewHistory.prototype = {
@@ -697,9 +734,7 @@ var ViewHistory = (function ViewHistoryClosure() {
 
 
 
-      if (isLocalStorageEnabled) {
-        localStorage.setItem('database', database);
-      }
+      localStorage.setItem('database', database);
     },
 
     get: function ViewHistory_get(name, defaultValue) {
@@ -2248,8 +2283,15 @@ var HandTool = {
     });
     if (toggleHandTool) {
       toggleHandTool.addEventListener('click', this.toggle.bind(this), false);
+
+      window.addEventListener('localized', function (evt) {
+        Preferences.get('enableHandToolOnLoad').then(function (prefValue) {
+          if (prefValue) {
+            this.handTool.activate();
+          }
+        }.bind(this));
+      }.bind(this));
     }
-    // TODO: Read global prefs and call this.handTool.activate() if needed.
   },
 
   toggle: function handToolToggle() {
@@ -2498,6 +2540,8 @@ var PDFView = {
     this.thumbnailViewScroll = {};
     this.watchScroll(thumbnailContainer, this.thumbnailViewScroll,
                      this.renderHighestPriority.bind(this));
+
+    Preferences.initialize();
 
     PDFFindBar.initialize({
       bar: document.getElementById('findbar'),
@@ -2851,6 +2895,9 @@ var PDFView = {
                              pdfDataRangeTransport, args) {
     if (this.pdfDocument) {
       this.close();
+
+      // Reload the preferences if a document was previously opened.
+      Preferences.reload();
     }
 
     var parameters = {password: password};
@@ -2868,6 +2915,8 @@ var PDFView = {
 
     var self = this;
     self.loading = true;
+    self.downloadComplete = false;
+
     var passwordNeeded = function passwordNeeded(updatePassword, reason) {
       PasswordPrompt.updatePassword = updatePassword;
       PasswordPrompt.reason = reason;
@@ -2911,7 +2960,7 @@ var PDFView = {
   },
 
   download: function pdfViewDownload() {
-    function noData() {
+    function downloadByUrl() {
       downloadManager.downloadUrl(url, filename);
     }
 
@@ -2925,7 +2974,12 @@ var PDFView = {
     };
 
     if (!this.pdfDocument) { // the PDF is not ready yet
-      noData();
+      downloadByUrl();
+      return;
+    }
+
+    if (!this.downloadComplete) { // the PDF is still downloading
+      downloadByUrl();
       return;
     }
 
@@ -2934,8 +2988,8 @@ var PDFView = {
         var blob = PDFJS.createBlob(data, 'application/pdf');
         downloadManager.download(blob, url, filename);
       },
-      noData // Error occurred try downloading with just the url.
-    ).then(null, noData);
+      downloadByUrl // Error occurred try downloading with just the url.
+    ).then(null, downloadByUrl);
   },
 
   fallback: function pdfViewFallback(featureId) {
@@ -3123,6 +3177,7 @@ var PDFView = {
     DocumentProperties.resolveDataAvailable();
 
     pdfDocument.getDownloadInfo().then(function() {
+      self.downloadComplete = true;
       PDFView.loadingBar.hide();
       var outerContainer = document.getElementById('outerContainer');
       outerContainer.classList.remove('loadingInProgress');
@@ -3135,7 +3190,6 @@ var PDFView = {
       mozL10n.get('page_of', {pageCount: pagesCount}, 'of {{pageCount}}');
     document.getElementById('pageNumber').max = pagesCount;
 
-    var prefs = PDFView.prefs = new Preferences();
     PDFView.documentFingerprint = id;
     var store = PDFView.store = new ViewHistory(id);
 
@@ -3204,15 +3258,26 @@ var PDFView = {
       PDFView.loadingBar.setWidth(container);
 
       PDFFindController.resolveFirstPage();
+
+      // Initialize the browsing history.
+      PDFHistory.initialize(self.documentFingerprint);
     });
 
-    var prefsPromise = prefs.initializedPromise;
-    var storePromise = store.initializedPromise;
-    Promise.all([firstPagePromise, prefsPromise, storePromise]).
-        then(function() {
-      var showPreviousViewOnLoad = prefs.get('showPreviousViewOnLoad');
-      var defaultZoomValue = prefs.get('defaultZoomValue');
+    // Fetch the necessary preference values.
+    var showPreviousViewOnLoad;
+    var showPreviousViewOnLoadPromise =
+      Preferences.get('showPreviousViewOnLoad').then(function (prefValue) {
+        showPreviousViewOnLoad = prefValue;
+      });
+    var defaultZoomValue;
+    var defaultZoomValuePromise =
+      Preferences.get('defaultZoomValue').then(function (prefValue) {
+        defaultZoomValue = prefValue;
+      });
 
+    var storePromise = store.initializedPromise;
+    Promise.all([firstPagePromise, storePromise, showPreviousViewOnLoadPromise,
+                 defaultZoomValuePromise]).then(function resolved() {
       var storedHash = null;
       if (showPreviousViewOnLoad && store.get('exists', false)) {
         var pageNum = store.get('page', '1');
@@ -3225,9 +3290,6 @@ var PDFView = {
       } else if (defaultZoomValue) {
         storedHash = 'page=1&zoom=' + defaultZoomValue;
       }
-      // Initialize the browsing history.
-      PDFHistory.initialize(self.documentFingerprint);
-
       self.setInitialView(storedHash, scale);
 
       // Make all navigation keys work on document load,
@@ -3235,6 +3297,12 @@ var PDFView = {
       if (!self.isViewerEmbedded) {
         self.container.focus();
       }
+    }, function rejected(errorMsg) {
+      console.error(errorMsg);
+
+      firstPagePromise.then(function () {
+        self.setInitialView(null, scale);
+      });
     });
 
     pagesPromise.then(function() {
@@ -3273,11 +3341,16 @@ var PDFView = {
         self.outline = new DocumentOutlineView(outline);
         document.getElementById('viewOutline').disabled = !outline;
 
-        if (outline && prefs.get('ifAvailableShowOutlineOnLoad')) {
-          if (!self.sidebarOpen) {
-            document.getElementById('sidebarToggle').click();
-          }
-          self.switchSidebarView('outline');
+        if (outline) {
+          Preferences.get('ifAvailableShowOutlineOnLoad').then(
+            function (prefValue) {
+              if (prefValue) {
+                if (!self.sidebarOpen) {
+                  document.getElementById('sidebarToggle').click();
+                }
+                self.switchSidebarView('outline');
+              }
+            });
         }
       });
     });
