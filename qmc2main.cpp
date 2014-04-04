@@ -1875,19 +1875,40 @@ void MainWindow::on_actionPlay_triggered(bool)
     }
   }
 
+  QStringList extraOpts;
+
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
   if ( qmc2StartEmbedded )
-    args << "-window" << "-nomaximize" << "-keepaspect" << "-rotate" << "-noror" << "-norol";
+	  extraOpts << "enable-window" << "disable-maximize" << "enable-keepaspect" << "enable-rotate" << "disable-ror" << "disable-rol";
 #endif
-
-  QStringList softwareLists, softwareNames;
 
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
-  if ( !qmc2DemoGame.isEmpty() )
-    args << qmc2DemoArgs;
+  if ( qmc2DemoModeDialog && !qmc2DemoGame.isEmpty() ) {
+	  args << "-str" << QString::number(qmc2DemoModeDialog->spinBoxSecondsToRun->value());
+	  extraOpts << qmc2DemoArgs;
+  }
 #endif
 
+  foreach (QString extraOpt, extraOpts) {
+	  QStringList optParams = extraOpt.split("-", QString::SkipEmptyParts);
+	  QString negOpt = "-no" + optParams[1];
+	  QString posOpt = "-" + optParams[1];
+	  if ( optParams[0] == "enable" ) {
+		  if ( args.contains(negOpt) )
+			  args.removeAll(negOpt);
+		  if ( !args.contains(posOpt) )
+			  args << posOpt;
+	  } else {
+		  if ( args.contains(posOpt) )
+			  args.removeAll(posOpt);
+		  if ( !args.contains(negOpt) )
+			  args << negOpt;
+	  }
+  }
+
   args << gameName;
+
+  QStringList softwareLists, softwareNames;
 
   if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) ) {
 	  QStringList swlArgs = qmc2SoftwareList->arguments(&softwareLists, &softwareNames);

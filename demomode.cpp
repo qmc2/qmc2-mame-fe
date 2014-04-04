@@ -339,16 +339,15 @@ void DemoModeDialog::startNextEmu()
 		return;
 
 	qmc2DemoArgs.clear();
-	qmc2DemoArgs << "-str" << QString::number(spinBoxSecondsToRun->value());
 	emuProcess = NULL;
 	if ( checkBoxFullScreen->isChecked() )
-		qmc2DemoArgs << "-nowindow";
+		qmc2DemoArgs << "disable-window";
 	else {
-		qmc2DemoArgs << "-window";
-		if ( checkBoxMaximized )
-			qmc2DemoArgs << "-maximize";
+		qmc2DemoArgs << "enable-window";
+		if ( checkBoxMaximized->isChecked() )
+			qmc2DemoArgs << "enable-maximize";
 		else
-			qmc2DemoArgs << "-nomaximize";
+			qmc2DemoArgs << "disable-maximize";
 	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", false).toBool() ) {
 		seqNum++;
