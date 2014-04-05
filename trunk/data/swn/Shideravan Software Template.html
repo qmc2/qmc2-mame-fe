@@ -1,7 +1,6 @@
 <!--
-ULTIMATE SOFTWARE TEMPLATE
-LAST MODIFICATION: 15/04/2013
-
+SHIDERAVAN SOFTWARE TEMPLATE
+LAST MODIFICATION: 05/05/2013
   
 --------------------------------------------
 status of the languages supported: 
@@ -749,7 +748,7 @@ function supportCor()
    }          
 }
 
-<!--Creates a color software status bar
+<!--Creates a color software status bar-->
 function statusCor() 
 {
    switch ("$SOFTWARE_STATUS_UT$")
@@ -784,7 +783,7 @@ function statusCor()
          break;
       } 
    }          
-}-->
+}
 </script>
 </head>
 
@@ -1088,7 +1087,7 @@ else
       
 <!--Cria a tabela básica-->      
 document.write("<table border=\"0\" cellspacing=\"0\" valign=\"top\" width=\"100%\">");
-supportCor();
+statusCor();
 document.write("<td align=\"left\"><font color=\"white\">");
 if (localStorage['Shideravan/$EMULATOR_VARIANT$/SoftwareNotesTemplate/ToggleOptions'] == 'true')
 {
