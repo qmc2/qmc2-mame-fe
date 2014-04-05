@@ -1,17 +1,17 @@
 <!--
 SHIDERAVAN SYSTEM TEMPLATE
-LAST MODIFICATION: 05/05/2013
+LAST MODIFICATION: 05/05/2014
 
-This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.44 by Shideravan. Enjoy!
+This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.43 by Shideravan. Enjoy!
 
-This file is an example HTML template created by José Marcio Rezende Franco for use in QMC2 frontend (0.44 and far)
+This file is an example HTML template created by José Marcio Rezende Franco for use in QMC2 frontend (0.43 and far)
 
 --------------------------------------------
 status of the languages supported: 
  us (English) = Full
  pt (Portuguese) = Full
- de (German) = Full
- es (Spanish) = Full
+ de (German) = Partial
+ es (Spanish) = Partial
  fr (French) = Partial
  it (Italian) = Partial
  sv (Swedish) = Partial
@@ -302,6 +302,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Supported'] = 'Suportado';
       trMap['Unsupported'] = 'Não suportado';
       trMap['XML query error!'] = 'Erro de query XML!';
+      trMap['BIOS set'] = 'set de BIOS';
+      trMap['device set'] = 'set de dispositivo';
                                     
       /*PT:options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPÇÕES';
@@ -2294,8 +2296,8 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
    <font size="6" style="color:white">    
    <b valign="middle">$ID$</b> 
    <script language="JavaScript">
-       if (qmc2NEO.isBios("$ID$")) document.write("<font size=\"4\">"+tr('(BIOS set)')+"</font>");
-       if (qmc2NEO.isDevice("$ID$")) document.write("<font size=\"4\">"+tr('(device set)')+"</font>");</script>
+       if (qmc2NEO.isBios("$ID$")) document.write("<font size=\"4\">("+tr('BIOS set')+")</font>");
+       if (qmc2NEO.isDevice("$ID$")) document.write("<font size=\"4\">("+tr('device set')+")</font>");</script>
    </font></td>
    <td width="33%" align="center" valign="middle"><font size="5" color="white">
    <b>Driver: $DRIVER_STATUS$</b></font></td>
