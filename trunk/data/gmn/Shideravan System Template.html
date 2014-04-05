@@ -1,12 +1,10 @@
 <!--
-ULTIMATE SYSTEM TEMPLATE
-LAST MODIFICATION: 15/04/2013
+SHIDERAVAN SYSTEM TEMPLATE
+LAST MODIFICATION: 05/05/2013
 
-This is the Ultimate System Template aka Shideravan's templates for QMC2 0.39 by Shideravan. Enjoy!
+This is the Ultimate System Template aka Shideravan's System Templates for QMC2 0.44 by Shideravan. Enjoy!
 
-This file is an example HTML template created by José Marcio Rezende Franco for use in QMC2 frontend (0.39 and far)
-
-I want to thank all envolved in project and help with the project, in special, René Reucher for his awesome frontend and the fast support and the friends from Emuversal Forums :)
+This file is an example HTML template created by José Marcio Rezende Franco for use in QMC2 frontend (0.44 and far)
 
 --------------------------------------------
 status of the languages supported: 
@@ -36,6 +34,7 @@ status of the languages supported:
   $DRIVER_STATUS_UT$  The maturity status of the driver (untranslated)
   $ROM_STATUS$    The set's ROM status (translated)
   $ROM_STATUS_UT$    The set's ROM status (untranslated)
+  $SOURCE_FILE$		The driver's source file name
   
   
   Image macros:
@@ -1812,15 +1811,8 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
    {
       document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i><br>");
    
-      /*Driver and source*/   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/@sourcefile/string()", false) ) 
-      {
-         var result = qmc2NEO.getXmlResult();         
-         
-         document.write("<br><b>"+tr('Driver')+": </b><a href=http://mamedev.org/source/src/mess/drivers/"+result+".html title=\"Click here to see the source code in MAME website\">"+result+"</a>");             
-      } 
-      else
-         document.write(tr('XML query error!'));       
+      /*Driver and source*/             
+         document.write("<br><b>"+tr('Driver')+": </b><a href=http://mamedev.org/source/src/mess/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");             
 
       /*Screen*/  
       if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@type/string()", false)) 
@@ -1891,15 +1883,8 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/InfoXML'] ==
    {  
       document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i><br>");
    
-      /*Driver and source*/   
-      if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/@sourcefile/string()", false) ) 
-      {
-         var result = qmc2NEO.getXmlResult();         
-            document.write("<br><b>"+tr('Driver')+": </b><a href=http://mamedev.org/source/src/mame/drivers/"+result+".html title=\"Click here to see the source code in MAME website\">"+result+"</a>");             
-      } 
-      else
-         document.write(tr('XML query error!')); 
-         
+      /*Driver and source*/        
+            document.write("<br><b>"+tr('Driver')+": </b><a href=http://mamedev.org/source/src/mame/drivers/$SOURCE_FILE$.html title=\"Click here to see the source code in MAME website\">$SOURCE_FILE$</a>");                      
 
       /*Screen*/  
       if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//game/display/@type/string()", false)) 
@@ -2307,8 +2292,11 @@ if (localStorage['Shideravan/$EMULATOR_VARIANT$/SystemNotesTemplate/PrevImageMod
 <tr>
    <td width="33%" align="left" valign="middle">   
    <font size="6" style="color:white">    
-   <b valign="middle">$ID$</b></font></td> 
-   
+   <b valign="middle">$ID$</b> 
+   <script language="JavaScript">
+       if (qmc2NEO.isBios("$ID$")) document.write("<font size=\"4\">"+tr('(BIOS set)')+"</font>");
+       if (qmc2NEO.isDevice("$ID$")) document.write("<font size=\"4\">"+tr('(device set)')+"</font>");</script>
+   </font></td>
    <td width="33%" align="center" valign="middle"><font size="5" color="white">
    <b>Driver: $DRIVER_STATUS$</b></font></td>
    
