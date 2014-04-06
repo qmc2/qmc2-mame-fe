@@ -1,6 +1,6 @@
 <!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 05/05/2013
+LAST MODIFICATION: 06/05/2014
   
 --------------------------------------------
 status of the languages supported: 
@@ -129,8 +129,8 @@ switch ("$GUI_LANGUAGE$")
       trMap['Use images from ZIP (may be slow)'] = 'Usar imagens de ZIP (pode ficar lento)';
       
       /*BG Mode*/
-      trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';     
+      trMap['BG mode'] = 'Fundo';
+      trMap['SoftInfo/BG'] = 'Fundo SoftInfo';     
       break;
    }            
 
@@ -508,7 +508,9 @@ function imagemExiste(url)
 function iconTag() 
 {
    var data = qmc2NEO.getIconData();
-   imgTag = "<img style=\"border: 0; vertical-align: center; height: 32;\" src=\"data:image/png;base64," + data + "\"/>";
+   if (data != "")  
+      imgTag = "<img style=\"border: 0; vertical-align: bottom; max-height: 32;\" src=\"data:image/png;base64," + data + "\"/>";
+   else imgTag = "";   
    return imgTag;
 }
 
@@ -814,7 +816,7 @@ document.write("<body style=\""+corFun2+";color:"+textCor2+";\">");
 </script>
 
 <!--Create the top screen area-->
-<table border="0" cellspacing="0" valign="middle" width="100%" style="table-layout: fixed;">
+<table border="0" cellspacing="0" valign="middle" height="32" width="100%" style="table-layout: fixed;">
 
 <script language="JavaScript">
    supportCor();
