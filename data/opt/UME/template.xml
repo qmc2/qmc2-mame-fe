@@ -1476,13 +1476,6 @@
       <description lang="pt" text="Preset HLSL a ser utilizado (0-5)"/>
       <description lang="es" text="Parámetro HLSL a utilizar (0-5)"/>
     </option>
-    <option default="" name="hlsl_write" type="file" relativeTo="snapshot_directory">
-      <description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
-      <description lang="de" text="HLSL AVI-Schreiben durch Angabe einer Ausgabe-Datei aktivieren (große Disk I/O Bandbreite empfohlen)"/>
-      <description lang="fr" text="Active l'écriture AVI HLSL en choisissant le fichier de destination (disque de hautes performances recommandé)"/>
-      <description lang="pt" text="Habilitar escrita AVI do HLSL especificando um arquivo de saída (disco de alto desempenho recomendado)"/>
-      <description lang="es" text="Activar la escritura de AVI HLSL al especificar un archivo de salida (se recomienda un disco rápido)"/>
-    </option>
     <option default="2048" name="hlsl_snap_width" type="int">
       <description lang="us" text="HLSL upscaled-snapshot width"/>
       <description lang="de" text="HLSL Snapshot-Breite (hochskaliert)"/>
