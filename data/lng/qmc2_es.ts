@@ -518,17 +518,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="70"/>
         <location filename="../../arcademodesetup.ui" line="73"/>
         <source>Disable joystick function mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Deshabilitar mapeado de función de joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="93"/>
         <source>Log debug messages of key-sequence mapping events to the console</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrar mensajes de depuración de mapeado de secuencia de teclas a la consola</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="96"/>
         <source>Debug key-sequence mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Depurar mapeado de secuencia de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="103"/>
@@ -608,12 +608,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.ui" line="342"/>
         <source>Log debug messages of joystick function mapping events to the console</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrar mensajes de depuración de mapeado de función de joystick a la consola</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="345"/>
         <source>Debug joystick function mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Depurar mapeado de función de joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="377"/>
@@ -644,13 +644,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="978"/>
         <location filename="../../arcademodesetup.ui" line="1005"/>
         <source>Double-click to scan or clear a joystck function mapped to a key-sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Doble-click para escanear o limpiar una función de joystick mapeada a una secuencia de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="990"/>
         <location filename="../../arcademodesetup.ui" line="1017"/>
         <source>Joystick function</source>
-        <translation type="unfinished">Función de joystick</translation>
+        <translation>Función de joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="605"/>
@@ -845,12 +845,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="354"/>
         <location filename="../../arcademodesetup.ui" line="357"/>
         <source>Force use of joystick at specified index</source>
-        <translation type="unfinished"></translation>
+        <translation>Forzar uso de joystick en el índice especificado</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="364"/>
         <source>Joystick index</source>
-        <translation type="unfinished"></translation>
+        <translation>índice de joystick</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="457"/>
@@ -886,13 +886,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="904"/>
         <location filename="../../arcademodesetup.ui" line="972"/>
         <source>ToxicWaste</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="910"/>
         <location filename="../../arcademodesetup.ui" line="937"/>
         <source>Double-click to scan or clear a custom key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Doble-click para escanear o limpiar una secuencia de teclas personalizada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="917"/>
@@ -900,19 +900,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.ui" line="985"/>
         <location filename="../../arcademodesetup.ui" line="1012"/>
         <source>Function / Key-sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Función / Secuencia de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="922"/>
         <location filename="../../arcademodesetup.ui" line="949"/>
         <source>Custom key-sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Secuencia de teclas personalizada</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="931"/>
         <location filename="../../arcademodesetup.ui" line="999"/>
         <source>darkone</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.ui" line="962"/>
@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcademodesetup.cpp" line="50"/>
         <source>Please enable joystick control!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Por favor habilita el control de joystick!</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="67"/>
@@ -948,7 +948,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcademodesetup.cpp" line="178"/>
         <location filename="../../arcademodesetup.cpp" line="179"/>
         <source>Scanning key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Escaneando secuencia de teclas</translation>
     </message>
     <message>
         <location filename="../../arcademodesetup.cpp" line="491"/>
@@ -2251,12 +2251,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="444"/>
         <source>WARNING: invalid window ID %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: ID %1 de ventana inválido</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="448"/>
         <source>WARNING: unknown error, window ID = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: error desconocido, ID de ventana = %1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="469"/>
@@ -2609,12 +2609,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="1212"/>
         <source>relative to the emulator&apos;s working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>relativo al directorio de trabajo del emulador</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1214"/>
         <source>relative to the path specified in &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>relativo a la ruta especificada en &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1223"/>
@@ -2931,42 +2931,42 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../ftpreply.cpp" line="103"/>
         <source>FTP directory listing for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Listado de directorio FTP para %1</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="105"/>
         <source>Size</source>
-        <translation type="unfinished">Tamaño</translation>
+        <translation>Tamaño</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="110"/>
         <source>Parent directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio raíz</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="127"/>
         <source>File</source>
-        <translation type="unfinished">Archivo</translation>
+        <translation>Archivo</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="129"/>
         <source>Folder</source>
-        <translation type="unfinished">Carpeta</translation>
+        <translation>Carpeta</translation>
     </message>
     <message>
         <location filename="../../ftpreply.cpp" line="131"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconocido</translation>
     </message>
 </context>
 <context>
@@ -3231,12 +3231,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="203"/>
         <source>FATAL: can&apos;t open icon file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede abrir archivo de icono %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="203"/>
         <source>7z error</source>
-        <translation type="unfinished"></translation>
+        <translation>error 7z</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="529"/>
@@ -3430,7 +3430,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="888"/>
         <source>loading XML data and recreating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>cargando datos XML y recreando caché</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
@@ -3681,12 +3681,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="3601"/>
         <source>pre-caching icons from 7z archive</source>
-        <translation type="unfinished"></translation>
+        <translation>pre-cacheando iconos desde archivo 7z</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3645"/>
         <source>done (pre-caching icons from 7z archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (pre-cacheando iconos desde archivo 7z, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="4160"/>
@@ -4340,7 +4340,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../gamelist.cpp" line="2634"/>
         <source>done (loading XML data and recreating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>hecho (cargando datos XML y recreando caché, tiempo transcurrido = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2961"/>
@@ -5304,12 +5304,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.ui" line="160"/>
         <source>Current progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progreso actual</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="173"/>
         <source>Current status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado actual</translation>
     </message>
     <message>
         <location filename="../../imagechecker.ui" line="252"/>
@@ -5485,7 +5485,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="542"/>
         <location filename="../../imagechecker.cpp" line="699"/>
         <source>logo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="544"/>
@@ -5531,7 +5531,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="755"/>
         <source>Decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimiendo archivo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="804"/>
@@ -5608,19 +5608,19 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="1207"/>
         <location filename="../../imagechecker.cpp" line="1372"/>
         <source>Executing 7z tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando herramienta 7z</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1044"/>
         <source>Running 7z tool to remove bad image files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando herramienta 7z para eliminar archivos de imagen erróneos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1067"/>
         <location filename="../../imagechecker.cpp" line="1256"/>
         <location filename="../../imagechecker.cpp" line="1421"/>
         <source>WARNING: 7z tool didn&apos;t exit cleanly: exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: La herramienta 7z no finalizó correctamente: exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1081"/>
@@ -5649,7 +5649,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="1250"/>
         <location filename="../../imagechecker.cpp" line="1415"/>
         <source>Running 7z tool to remove obsolete files, command = &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutando la herramienta 7z para eliminar los archivos obsoletos, comando = &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1268"/>
@@ -5717,7 +5717,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../imagechecker.cpp" line="1560"/>
         <location filename="../../imagechecker.cpp" line="1577"/>
         <source>Reading 7z directory recursively</source>
-        <translation type="unfinished"></translation>
+        <translation>Leyendo directorio 7z recursivamente</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="1566"/>
@@ -5811,12 +5811,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="121"/>
         <source>Thread[%1]: failed opening 7z file &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: fallo al abrir el archivo 7z &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="127"/>
         <source>Thread[%1]: 7z file &apos;%2&apos; successfully opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: archivo 7z &apos;%2&apos; abierto con éxito</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="135"/>
@@ -5857,7 +5857,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="204"/>
         <source>Thread[%1]: decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: descomprimiendo archivo</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="277"/>
@@ -5867,7 +5867,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="282"/>
         <source>Thread[%1]: 7z file &apos;%2&apos; closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: archivo 7z &apos;%2&apos; cerrado</translation>
     </message>
     <message>
         <location filename="../../imagechecker.cpp" line="286"/>
@@ -5877,7 +5877,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagechecker.cpp" line="295"/>
         <source>Thread[%1]: finished decompressing archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Instancia[%1]: finalizada descompresión de archivo</translation>
     </message>
 </context>
 <context>
@@ -6108,7 +6108,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../imagewidget.cpp" line="389"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Descomprimiendo archivo, por favor espera...</translation>
     </message>
     <message>
         <location filename="../../imagewidget.cpp" line="520"/>
@@ -6364,12 +6364,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../joyfuncscan.ui" line="93"/>
         <source>Clear joystick function</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar función de joystick</translation>
     </message>
     <message>
         <location filename="../../joyfuncscan.ui" line="96"/>
         <source>Clear</source>
-        <translation type="unfinished">Borrar</translation>
+        <translation>Borrar</translation>
     </message>
 </context>
 <context>
@@ -6478,12 +6478,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../keyseqscan.ui" line="93"/>
         <source>Clear custom key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar secuencia de teclas personalizada</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="96"/>
         <source>Clear</source>
-        <translation type="unfinished">Borrar</translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.cpp" line="21"/>
@@ -6508,7 +6508,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../messdevcfg.ui" line="340"/>
         <location filename="../../messdevcfg.ui" line="343"/>
         <source>Process ZIP and 7z contents on item activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesar contenidos ZIP y 7z al activar el objeto</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="581"/>
@@ -6799,17 +6799,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../messdevcfg.cpp" line="338"/>
         <source>View PDF...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver PDF...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="347"/>
         <source>View Postscript...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver Postscript...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="356"/>
         <source>View HTML...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver HTML...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="366"/>
@@ -8070,7 +8070,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="756"/>
         <location filename="../../qmc2main.ui" line="759"/>
         <source>Search progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progreso de búsqueda</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1806"/>
@@ -8096,7 +8096,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="2652"/>
         <source>Search web</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar web</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2794"/>
@@ -8108,7 +8108,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="2836"/>
         <location filename="../../qmc2main.ui" line="2839"/>
         <source>View offline documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver documentación online</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3070"/>
@@ -8800,102 +8800,102 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="4108"/>
         <source>Wiki...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4111"/>
         <location filename="../../qmc2main.ui" line="4114"/>
         <source>Open our wiki in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abre nuestra wiki en el navegador predeterminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4123"/>
         <source>Forum...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4126"/>
         <location filename="../../qmc2main.ui" line="4129"/>
         <source>Open our forum in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abre nuestro forum en el navegador predeterminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4138"/>
         <source>Bug tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4141"/>
         <location filename="../../qmc2main.ui" line="4144"/>
         <source>Open our bug-tracking system in the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abre nuestro sistema de seguimiento de errores en el navegador predeterminado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4153"/>
         <source>Google</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4156"/>
         <location filename="../../qmc2main.ui" line="4159"/>
         <source>Search with Google</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar con Google</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4168"/>
         <source>Wikipedia</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4171"/>
         <location filename="../../qmc2main.ui" line="4174"/>
         <source>Search with Wikipedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar con Wikipedia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4186"/>
         <location filename="../../qmc2main.cpp" line="11537"/>
         <source>Internal browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador interno</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4189"/>
         <location filename="../../qmc2main.ui" line="4192"/>
         <source>Use internal (or external) browser?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Usar el navegador interno (o externo)?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4201"/>
         <source>DuckDuckGo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4204"/>
         <location filename="../../qmc2main.ui" line="4207"/>
         <source>Search with DuckDuckGo</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar con DuckDuckGo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4216"/>
         <source>Yandex</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4219"/>
         <location filename="../../qmc2main.ui" line="4222"/>
         <source>Search with Yandex</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar con Yandex</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4231"/>
         <source>PDF viewer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Visor PDF...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4234"/>
         <location filename="../../qmc2main.ui" line="4237"/>
         <source>Open a new empty PDF viewer window</source>
-        <translation type="unfinished"></translation>
+        <translation>Abre una nueva ventana vacia del visor PDF</translation>
     </message>
     <message>
         <location filename="../../macros.h" line="548"/>
@@ -9699,17 +9699,17 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="7196"/>
         <source>setting GUI style to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Estableciendo el estilo de GUI a &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7207"/>
         <source>WARNING: GUI style &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: estilo de GUI &apos;%1&apos; no encontrado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7224"/>
         <source>WARNING: can&apos;t open style sheet &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: no se puede abrir la capa de estilos &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2746"/>
@@ -9916,18 +9916,18 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="457"/>
         <source>Searching machines - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando máquinas - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="459"/>
         <source>Searching games - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscando juegos - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="495"/>
         <location filename="../../qmc2main.cpp" line="718"/>
         <source>note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \ must be escaped when they are meant literally!</source>
-        <translation type="unfinished"></translation>
+        <translation>nota: ¡los caracteres especiales $, (, ), *, +, ., ?, [, ], ^, {, |, } y \ deben ser precedidos por escape cuando se usan literalmente!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1309"/>
@@ -9945,12 +9945,12 @@ Se sobrescribirá los datos existentes en caché.
     <message>
         <location filename="../../qmc2main.cpp" line="2508"/>
         <source>ERROR: can&apos;t load HTML file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede cargar el archivo HTML &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2555"/>
         <source>ERROR: can&apos;t load PDF viewer from &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: no se puede cargar el visor PDF desde &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2895"/>
@@ -10404,12 +10404,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="7245"/>
         <source>using default color palette for GUI style &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>usando la paleta de colores predeterminada para el estilo de GUI &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7249"/>
         <source>using custom color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>usando paleta de colores personalizada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7465"/>
@@ -10821,7 +10821,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="11539"/>
         <source>External browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegador externo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11721"/>
@@ -10831,19 +10831,21 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="11829"/>
         <source>WARNING: ROM path &apos;%1&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: la ruta de ROM &apos;%1&apos; no existe</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11833"/>
         <source>WARNING: ROM path &apos;%1&apos; isn&apos;t accessible</source>
-        <translation type="unfinished"></translation>
+        <translation>ATENCIÓN: la ruta de ROM &apos;%1&apos; no es accesible</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11842"/>
         <source>The ROM path &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible.
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>La ruta de ROM &apos;%1&apos; no existe o no es accesible
+
+Por favor, revisa la opción &apos;rompath&apos; en la configuración global del emulador para arreglarlo, ¡de lo contrario las ROMs no estarán disponibles para el emulador!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11845"/>
@@ -10854,7 +10856,11 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
 don&apos;t exist or aren&apos;t accessible.
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>Las rutas de ROM 
+&apos;%1&apos;
+no existen o no son accesibles
+
+Por favor, revisa la opción &apos;rompath&apos; en la configuración global del emulador para arreglarlo, ¡de lo contrario las ROMs no estarán disponibles para el emulador!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="11848"/>
@@ -11344,7 +11350,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <location filename="../../miniwebbrowser.cpp" line="695"/>
         <location filename="../../miniwebbrowser.cpp" line="698"/>
         <source>PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visor PDF</translation>
     </message>
 </context>
 <context>
@@ -12082,12 +12088,12 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="1465"/>
         <source>MAME game information database - history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de información de juegos MAME - history.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1478"/>
         <source>Browse MAME game information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la base de datos de información de juegos MAME (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2035"/>
@@ -12307,37 +12313,37 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="2816"/>
         <source>Load MESS emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la base de datos de información de emulador MESS (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2819"/>
         <source>Emu info DB (MESS)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD info de emu (MESS)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2836"/>
         <source>Use in-memory compression for MESS emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compresión en memoria para la BD de info de emulador MESS (algo más lento pero consume mucha menos memoria; relación de compresión sobre 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2858"/>
         <source>MESS emulator information database - messinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de información de emulador MESS - messinfo.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2871"/>
         <source>Browse MESS emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la base de datos de información de emulador MESS (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2887"/>
         <source>Machine info DB (MESS)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD info máquina (MESS)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2904"/>
         <source>Use in-memory compression for MESS machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compresión en memoria para la BD de info de máquina MESS (algo más lento pero consume mucha menos memoria; relación de compresión sobre 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2957"/>
@@ -13104,22 +13110,22 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="4636"/>
         <source>7-zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>herramienta 7-zip</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4655"/>
         <source>External 7-zip tool, i.e. &quot;7za&quot; (read and execute)</source>
-        <translation type="unfinished"></translation>
+        <translation>Herramienta 7-zip externa, p. ej. &quot;7za&quot; (lectura y ejecución)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4668"/>
         <source>Browse for 7-zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a herramienta 7-zip</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4692"/>
         <source>7-zip tool argument list to remove entries from the 7-zip archive (i. e. &quot;d $ARCHIVE$ $FILELIST$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de argumentos de la herramienta 7-zip para eliminar entradas del archivo 7-zip (p.ej. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4904"/>
@@ -13164,7 +13170,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
     <message>
         <location filename="../../options.ui" line="963"/>
         <source>Compressed cabinet file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo cabinet comprimido (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="976"/>
@@ -13177,7 +13183,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <location filename="../../options.ui" line="2219"/>
         <location filename="../../options.ui" line="2337"/>
         <source>Select compression format</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar formato de compresión</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="980"/>
@@ -13190,7 +13196,7 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <location filename="../../options.ui" line="2223"/>
         <location filename="../../options.ui" line="2341"/>
         <source>ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="989"/>
@@ -13203,187 +13209,187 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <location filename="../../options.ui" line="2232"/>
         <location filename="../../options.ui" line="2350"/>
         <source>7z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1007"/>
         <source>Browse compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo cabinet comprimido</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1098"/>
         <source>Compressed controller file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de mandos comprimido (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1142"/>
         <source>Browse compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo de mandos comprimido</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1216"/>
         <source>Compressed marquee file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de marquesinas comprimido (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1260"/>
         <source>Browse compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al archivo de marquesinas comprimido</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1288"/>
         <source>Switch between specifying a title directory or a compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de títulos o un archivo comprimido de títulos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1495"/>
         <source>MAME emulator information database - mameinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de información de emulador MAME - mameinfo.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1508"/>
         <source>Browse MAME emulator information database (mameinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a la base de datos de información de emulador MAME (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1563"/>
         <source>Switch between specifying a preview directory or a compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de previsualizaciones o un archivo comprimido de previsualizaciones</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1638"/>
         <source>Compressed preview file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido de previsualizaciones (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1682"/>
         <source>Browse compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo comprimido de previsualizaciones</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1697"/>
         <source>Switch between specifying a flyer directory or a compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de flyers o un archivo comprimido de flyers</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1772"/>
         <source>Compressed flyer file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido de flyers (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1816"/>
         <source>Browse compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo comprimido de flyers</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1831"/>
         <source>Switch between specifying an icon directory or a compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de iconos o un archivo comprimido de iconos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1906"/>
         <source>Compressed icon file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido de iconos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1950"/>
         <source>Browse compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo comprimido de iconos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1965"/>
         <source>Switch between specifying a cabinet directory or a compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de cabinas o un archivo comprimido de cabinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1981"/>
         <source>Switch between specifying a controller directory or a compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de mandos o un archivo comprimido de mandos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1997"/>
         <source>Switch between specifying a marquee directory or a compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de marquesinas o un archivo comprimido de marquesinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2072"/>
         <source>Compressed title file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido de títulos (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2116"/>
         <source>Browse compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo comprimido de títulos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2131"/>
         <source>Switch between specifying a PCB directory or a compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de PCB o un archivo comprimido de PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2206"/>
         <source>Compressed PCB file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo comprimido de PCB (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2250"/>
         <source>Browse compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar a archivo comprimido de PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2324"/>
         <source>Compressed software snap-shot file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio de instantáneas de software comprimido (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2368"/>
         <source>Browse compressed software snap-shot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar al directorio de instantáneas de software comprimido</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2434"/>
         <source>Load MAME game information database (history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la base de datos de información de MAME (history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2437"/>
         <source>Game info DB (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD info de juegos (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2454"/>
         <source>Use in-memory compression for MAME game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compresión en memoria para la BD de info de juegos MAME (algo más lento pero consume mucha menos memoria; relación de compresión sobre 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2472"/>
         <source>Load MAME emulator information database (mameinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la base de datos de información de emulador MAME (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2475"/>
         <source>Emu info DB (MAME)</source>
-        <translation type="unfinished"></translation>
+        <translation>BD info de emu (MAME)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2492"/>
         <source>Use in-memory compression for MAME emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar compresión en memoria para la BD de info de emulador MAME (algo más lento pero consume mucha menos memoria; relación de compresión sobre 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2508"/>
         <source>Switch between specifying a software snap directory or a compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar entre especificar un directorio de instantáneas de software o un archivo comprimido de instantáneas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2884"/>
         <source>Load MESS machine information database (sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la base de datos de información de maquinas MESS (sysinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2926"/>
         <source>MESS machine information database - sysinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de datos de información de maquinas MESS - sysinfo.dat (lectura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2939"/>
