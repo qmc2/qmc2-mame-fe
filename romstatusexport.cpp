@@ -245,7 +245,7 @@ void ROMStatusExporter::exportToASCII()
     qApp->processEvents();
     QTreeWidgetItem *item = qmc2MainWindow->treeWidgetGamelist->topLevelItem(i);
     QString translatedState;
-    switch ( qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)] ) {
+    switch ( qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME)) ) {
       case 'C':
         if ( !toolButtonExportC->isChecked() )
           continue;
@@ -289,7 +289,7 @@ void ROMStatusExporter::exportToASCII()
         break;
 
       case QMC2_RSE_SORT_BY_ROM_STATE:
-        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)]), item);
+        exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME))), item);
         break;
 
       case QMC2_RSE_SORT_BY_YEAR:
@@ -374,7 +374,7 @@ void ROMStatusExporter::exportToASCII()
       ts << s.left(maxNameColumnWidth - 3).leftJustified(maxNameColumnWidth, '.', true) << "  ";
     else
       ts << s.leftJustified(maxNameColumnWidth, ' ', true) << "  ";
-    switch ( qmc2Gamelist->gameStatusMap[s] ) {
+    switch ( qmc2Gamelist->romState(s) ) {
       case 'C':
         s = tr("correct");
         break;
@@ -535,7 +535,7 @@ void ROMStatusExporter::exportToCSV()
         break;
 
       case QMC2_RSE_SORT_BY_ROM_STATE:
-        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)]), item);
+        exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME))), item);
         break;
 
       case QMC2_RSE_SORT_BY_YEAR:
@@ -583,7 +583,7 @@ void ROMStatusExporter::exportToCSV()
     else
       itExport.previous();
 
-    switch ( qmc2Gamelist->gameStatusMap[itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME)] ) {
+    switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME)) ) {
       case 'C':
         if ( toolButtonExportC->isChecked() ) {
           ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME) << del << sep;
@@ -781,7 +781,7 @@ void ROMStatusExporter::exportToHTML()
         break;
 
       case QMC2_RSE_SORT_BY_ROM_STATE:
-        exportMap.insert(QString(qmc2Gamelist->gameStatusMap[item->text(QMC2_GAMELIST_COLUMN_NAME)]), item);
+        exportMap.insert(QString(qmc2Gamelist->romState(item->text(QMC2_GAMELIST_COLUMN_NAME))), item);
         break;
 
       case QMC2_RSE_SORT_BY_YEAR:
@@ -827,7 +827,7 @@ void ROMStatusExporter::exportToHTML()
     else
       itExport.previous();
 
-    switch ( qmc2Gamelist->gameStatusMap[itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME)] ) {
+    switch ( qmc2Gamelist->romState(itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME)) ) {
       case 'C':
         if ( toolButtonExportC->isChecked() ) {
           ts << "<tr>\n"
