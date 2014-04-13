@@ -48,7 +48,7 @@ SRes Lzma86_Decode(Byte *dest, SizeT *destLen, const Byte *src, SizeT *srcLen)
     return res;
   if (useFilter == 1)
   {
-    UInt32 x86State;
+    UInt32_7z x86State;
     x86_Convert_Init(x86State);
     x86_Convert(dest, *destLen, 0, &x86State, 0);
   }

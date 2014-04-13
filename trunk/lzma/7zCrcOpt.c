@@ -7,14 +7,14 @@
 
 #ifndef MY_CPU_BE
 
-UInt32 MY_FAST_CALL CrcUpdateT4(UInt32 v, const void *data, size_t size, const UInt32 *table)
+UInt32_7z MY_FAST_CALL CrcUpdateT4(UInt32_7z v, const void *data, size_t size, const UInt32_7z *table)
 {
   const Byte *p = (const Byte *)data;
   for (; size > 0 && ((unsigned)(ptrdiff_t)p & 3) != 0; size--, p++)
     v = CRC_UPDATE_BYTE_2(v, *p);
   for (; size >= 4; size -= 4, p += 4)
   {
-    v ^= *(const UInt32 *)p;
+    v ^= *(const UInt32_7z *)p;
     v =
       table[0x300 + (v & 0xFF)] ^
       table[0x200 + ((v >> 8) & 0xFF)] ^
@@ -26,7 +26,7 @@ UInt32 MY_FAST_CALL CrcUpdateT4(UInt32 v, const void *data, size_t size, const U
   return v;
 }
 
-UInt32 MY_FAST_CALL CrcUpdateT8(UInt32 v, const void *data, size_t size, const UInt32 *table)
+UInt32_7z MY_FAST_CALL CrcUpdateT8(UInt32_7z v, const void *data, size_t size, const UInt32_7z *table)
 {
   return CrcUpdateT4(v, data, size, table);
 }
@@ -38,7 +38,7 @@ UInt32 MY_FAST_CALL CrcUpdateT8(UInt32 v, const void *data, size_t size, const U
 
 #define CRC_UINT32_SWAP(v) ((v >> 24) | ((v >> 8) & 0xFF00) | ((v << 8) & 0xFF0000) | (v << 24))
 
-UInt32 MY_FAST_CALL CrcUpdateT1_BeT4(UInt32 v, const void *data, size_t size, const UInt32 *table)
+UInt32_7z MY_FAST_CALL CrcUpdateT1_BeT4(UInt32_7z v, const void *data, size_t size, const UInt32_7z *table)
 {
   const Byte *p = (const Byte *)data;
   for (; size > 0 && ((unsigned)(ptrdiff_t)p & 3) != 0; size--, p++)
@@ -47,7 +47,7 @@ UInt32 MY_FAST_CALL CrcUpdateT1_BeT4(UInt32 v, const void *data, size_t size, co
   table += 0x100;
   for (; size >= 4; size -= 4, p += 4)
   {
-    v ^= *(const UInt32 *)p;
+    v ^= *(const UInt32_7z *)p;
     v =
       table[0x000 + (v & 0xFF)] ^
       table[0x100 + ((v >> 8) & 0xFF)] ^

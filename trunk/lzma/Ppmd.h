@@ -57,7 +57,7 @@ typedef
   #ifdef PPMD_32BIT
     CPpmd_State *
   #else
-    UInt32
+    UInt32_7z
   #endif
   CPpmd_State_Ref;
 
@@ -65,7 +65,7 @@ typedef
   #ifdef PPMD_32BIT
     void *
   #else
-    UInt32
+    UInt32_7z
   #endif
   CPpmd_Void_Ref;
 
@@ -73,7 +73,7 @@ typedef
   #ifdef PPMD_32BIT
     Byte *
   #else
-    UInt32
+    UInt32_7z
   #endif
   CPpmd_Byte_Ref;
 

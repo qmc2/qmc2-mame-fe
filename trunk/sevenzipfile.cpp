@@ -255,14 +255,14 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
     UInt64 v64 = (ft->Low | ((UInt64)ft->High << 32)) / 10000000;
     Byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     unsigned t;
-    UInt32 v;
+    UInt32_7z v;
     sec = (unsigned)(v64 % 60);
     v64 /= 60;
     min = (unsigned)(v64 % 60);
     v64 /= 60;
     hour = (unsigned)(v64 % 24);
     v64 /= 24;
-    v = (UInt32)v64;
+    v = (UInt32_7z)v64;
     year = (unsigned)(1601 + v / QMC2_SEVENZIP_PERIOD_400 * 400);
     v %= QMC2_SEVENZIP_PERIOD_400;
     t = v / QMC2_SEVENZIP_PERIOD_100;
@@ -344,7 +344,7 @@ SevenZipExtractorThread::~SevenZipExtractorThread()
     quit();
 }
 
-void SevenZipExtractorThread::setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32 *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp)
+void SevenZipExtractorThread::setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32_7z *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp)
 {
     m_db = db;
     m_lookInStream = lookInStream;

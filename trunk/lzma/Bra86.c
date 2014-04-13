@@ -8,10 +8,10 @@
 const Byte kMaskToAllowedStatus[8] = {1, 1, 1, 0, 1, 0, 0, 0};
 const Byte kMaskToBitNumber[8] = {0, 1, 2, 2, 3, 3, 3, 3};
 
-SizeT x86_Convert(Byte *data, SizeT size, UInt32 ip, UInt32 *state, int encoding)
+SizeT x86_Convert(Byte *data, SizeT size, UInt32_7z ip, UInt32_7z *state, int encoding)
 {
   SizeT bufferPos = 0, prevPosT;
-  UInt32 prevMask = *state & 0x7;
+  UInt32_7z prevMask = *state & 0x7;
   if (size < 5)
     return 0;
   ip += 5;
@@ -49,16 +49,16 @@ SizeT x86_Convert(Byte *data, SizeT size, UInt32 ip, UInt32 *state, int encoding
 
     if (Test86MSByte(p[4]))
     {
-      UInt32 src = ((UInt32)p[4] << 24) | ((UInt32)p[3] << 16) | ((UInt32)p[2] << 8) | ((UInt32)p[1]);
-      UInt32 dest;
+      UInt32_7z src = ((UInt32_7z)p[4] << 24) | ((UInt32_7z)p[3] << 16) | ((UInt32_7z)p[2] << 8) | ((UInt32_7z)p[1]);
+      UInt32_7z dest;
       for (;;)
       {
         Byte b;
         int index;
         if (encoding)
-          dest = (ip + (UInt32)bufferPos) + src;
+          dest = (ip + (UInt32_7z)bufferPos) + src;
         else
-          dest = src - (ip + (UInt32)bufferPos);
+          dest = src - (ip + (UInt32_7z)bufferPos);
         if (prevMask == 0)
           break;
         index = kMaskToBitNumber[prevMask] * 8;

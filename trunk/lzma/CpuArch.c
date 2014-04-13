@@ -10,7 +10,7 @@
 #endif
 
 #if defined(USE_ASM) && !defined(MY_CPU_AMD64)
-static UInt32 CheckFlag(UInt32 flag)
+static UInt32_7z CheckFlag(UInt32_7z flag)
 {
   #ifdef _MSC_VER
   __asm pushfd;
@@ -48,13 +48,13 @@ static UInt32 CheckFlag(UInt32 flag)
 #define CHECK_CPUID_IS_SUPPORTED
 #endif
 
-static void MyCPUID(UInt32 function, UInt32 *a, UInt32 *b, UInt32 *c, UInt32 *d)
+static void MyCPUID(UInt32_7z function, UInt32_7z *a, UInt32_7z *b, UInt32_7z *c, UInt32_7z *d)
 {
   #ifdef USE_ASM
 
   #ifdef _MSC_VER
 
-  UInt32 a2, b2, c2, d2;
+  UInt32_7z a2, b2, c2, d2;
   __asm xor EBX, EBX;
   __asm xor ECX, ECX;
   __asm xor EDX, EDX;
@@ -102,7 +102,7 @@ Bool7z x86cpuid_CheckAndRead(Cx86cpuid *p)
   return True;
 }
 
-static UInt32 kVendors[][3] =
+static UInt32_7z kVendors[][3] =
 {
   { 0x756E6547, 0x49656E69, 0x6C65746E},
   { 0x68747541, 0x69746E65, 0x444D4163},
@@ -114,7 +114,7 @@ int x86cpuid_GetFirm(const Cx86cpuid *p)
   unsigned i;
   for (i = 0; i < sizeof(kVendors) / sizeof(kVendors[i]); i++)
   {
-    const UInt32 *v = kVendors[i];
+    const UInt32_7z *v = kVendors[i];
     if (v[0] == p->vendor[0] &&
         v[1] == p->vendor[1] &&
         v[2] == p->vendor[2])
@@ -127,7 +127,7 @@ Bool7z CPU_Is_InOrder()
 {
   Cx86cpuid p;
   int firm;
-  UInt32 family, model;
+  UInt32_7z family, model;
   if (!x86cpuid_CheckAndRead(&p))
     return True;
   family = x86cpuid_GetFamily(&p);

@@ -63,10 +63,10 @@ Stop_Compiling_Bad_Endian
 #ifdef MY_CPU_LE_UNALIGN
 
 #define GetUi16(p) (*(const UInt16 *)(p))
-#define GetUi32(p) (*(const UInt32 *)(p))
+#define GetUi32(p) (*(const UInt32_7z *)(p))
 #define GetUi64(p) (*(const UInt64 *)(p))
 #define SetUi16(p, d) *(UInt16 *)(p) = (d);
-#define SetUi32(p, d) *(UInt32 *)(p) = (d);
+#define SetUi32(p, d) *(UInt32_7z *)(p) = (d);
 #define SetUi64(p, d) *(UInt64 *)(p) = (d);
 
 #else
@@ -75,25 +75,25 @@ Stop_Compiling_Bad_Endian
 
 #define GetUi32(p) ( \
              ((const Byte *)(p))[0]        | \
-    ((UInt32)((const Byte *)(p))[1] <<  8) | \
-    ((UInt32)((const Byte *)(p))[2] << 16) | \
-    ((UInt32)((const Byte *)(p))[3] << 24))
+    ((UInt32_7z)((const Byte *)(p))[1] <<  8) | \
+    ((UInt32_7z)((const Byte *)(p))[2] << 16) | \
+    ((UInt32_7z)((const Byte *)(p))[3] << 24))
 
 #define GetUi64(p) (GetUi32(p) | ((UInt64)GetUi32(((const Byte *)(p)) + 4) << 32))
 
-#define SetUi16(p, d) { UInt32 _x_ = (d); \
+#define SetUi16(p, d) { UInt32_7z _x_ = (d); \
     ((Byte *)(p))[0] = (Byte)_x_; \
     ((Byte *)(p))[1] = (Byte)(_x_ >> 8); }
 
-#define SetUi32(p, d) { UInt32 _x_ = (d); \
+#define SetUi32(p, d) { UInt32_7z _x_ = (d); \
     ((Byte *)(p))[0] = (Byte)_x_; \
     ((Byte *)(p))[1] = (Byte)(_x_ >> 8); \
     ((Byte *)(p))[2] = (Byte)(_x_ >> 16); \
     ((Byte *)(p))[3] = (Byte)(_x_ >> 24); }
 
 #define SetUi64(p, d) { UInt64 _x64_ = (d); \
-    SetUi32(p, (UInt32)_x64_); \
-    SetUi32(((Byte *)(p)) + 4, (UInt32)(_x64_ >> 32)); }
+    SetUi32(p, (UInt32_7z)_x64_); \
+    SetUi32(((Byte *)(p)) + 4, (UInt32_7z)(_x64_ >> 32)); }
 
 #endif
 
@@ -101,15 +101,15 @@ Stop_Compiling_Bad_Endian
 
 #pragma intrinsic(_byteswap_ulong)
 #pragma intrinsic(_byteswap_uint64)
-#define GetBe32(p) _byteswap_ulong(*(const UInt32 *)(const Byte *)(p))
+#define GetBe32(p) _byteswap_ulong(*(const UInt32_7z *)(const Byte *)(p))
 #define GetBe64(p) _byteswap_uint64(*(const UInt64 *)(const Byte *)(p))
 
 #else
 
 #define GetBe32(p) ( \
-    ((UInt32)((const Byte *)(p))[0] << 24) | \
-    ((UInt32)((const Byte *)(p))[1] << 16) | \
-    ((UInt32)((const Byte *)(p))[2] <<  8) | \
+    ((UInt32_7z)((const Byte *)(p))[0] << 24) | \
+    ((UInt32_7z)((const Byte *)(p))[1] << 16) | \
+    ((UInt32_7z)((const Byte *)(p))[2] <<  8) | \
              ((const Byte *)(p))[3] )
 
 #define GetBe64(p) (((UInt64)GetBe32(p) << 32) | GetBe32(((const Byte *)(p)) + 4))
@@ -123,12 +123,12 @@ Stop_Compiling_Bad_Endian
 
 typedef struct
 {
-  UInt32 maxFunc;
-  UInt32 vendor[3];
-  UInt32 ver;
-  UInt32 b;
-  UInt32 c;
-  UInt32 d;
+  UInt32_7z maxFunc;
+  UInt32_7z vendor[3];
+  UInt32_7z ver;
+  UInt32_7z b;
+  UInt32_7z c;
+  UInt32_7z d;
 } Cx86cpuid;
 
 enum

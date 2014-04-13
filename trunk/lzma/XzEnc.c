@@ -29,12 +29,12 @@ static ISzAlloc g_Alloc = { SzAlloc, SzFree };
 #define XzBlock_SetHasPackSize(p)   (p)->flags |= XZ_BF_PACK_SIZE;
 #define XzBlock_SetHasUnpackSize(p) (p)->flags |= XZ_BF_UNPACK_SIZE;
 
-static SRes WriteBytes(ISeqOutStream *s, const void *buf, UInt32 size)
+static SRes WriteBytes(ISeqOutStream *s, const void *buf, UInt32_7z size)
 {
   return (s->Write(s, buf, size) == size) ? SZ_OK : SZ_ERROR_WRITE;
 }
 
-static SRes WriteBytesAndCrc(ISeqOutStream *s, const void *buf, UInt32 size, UInt32 *crc)
+static SRes WriteBytesAndCrc(ISeqOutStream *s, const void *buf, UInt32_7z size, UInt32_7z *crc)
 {
   *crc = CrcUpdate(*crc, buf, size);
   return WriteBytes(s, buf, size);
@@ -42,7 +42,7 @@ static SRes WriteBytesAndCrc(ISeqOutStream *s, const void *buf, UInt32 size, UIn
 
 SRes Xz_WriteHeader(CXzStreamFlags f, ISeqOutStream *s)
 {
-  UInt32 crc;
+  UInt32_7z crc;
   Byte header[XZ_STREAM_HEADER_SIZE];
   memcpy(header, XZ_SIG, XZ_SIG_SIZE);
   header[XZ_SIG_SIZE] = (Byte)(f >> 8);
@@ -83,7 +83,7 @@ SRes Xz_WriteFooter(CXzStream *p, ISeqOutStream *s)
   Byte buf[32];
   UInt64 globalPos;
   {
-    UInt32 crc = CRC_INIT_VAL;
+    UInt32_7z crc = CRC_INIT_VAL;
     unsigned pos = 1 + Xz_WriteVarInt(buf + 1, p->numBlocks);
     size_t i;
 
@@ -113,7 +113,7 @@ SRes Xz_WriteFooter(CXzStream *p, ISeqOutStream *s)
   }
 
   {
-    UInt32 indexSize = (UInt32)((globalPos >> 2) - 1);
+    UInt32_7z indexSize = (UInt32_7z)((globalPos >> 2) - 1);
     SetUi32(buf + 4, indexSize);
     buf[8] = (Byte)(p->flags >> 8);
     buf[9] = (Byte)(p->flags & 0xFF);

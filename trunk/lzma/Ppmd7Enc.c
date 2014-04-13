@@ -16,7 +16,7 @@ void Ppmd7z_RangeEnc_Init(CPpmd7z_RangeEnc *p)
 
 static void RangeEnc_ShiftLow(CPpmd7z_RangeEnc *p)
 {
-  if ((UInt32)p->Low < (UInt32)0xFF000000 || (unsigned)(p->Low >> 32) != 0)
+  if ((UInt32_7z)p->Low < (UInt32_7z)0xFF000000 || (unsigned)(p->Low >> 32) != 0)
   {
     Byte temp = p->Cache;
     do
@@ -25,13 +25,13 @@ static void RangeEnc_ShiftLow(CPpmd7z_RangeEnc *p)
       temp = 0xFF;
     }
     while(--p->CacheSize != 0);
-    p->Cache = (Byte)((UInt32)p->Low >> 24);
+    p->Cache = (Byte)((UInt32_7z)p->Low >> 24);
   }
   p->CacheSize++;
-  p->Low = (UInt32)p->Low << 8;
+  p->Low = (UInt32_7z)p->Low << 8;
 }
 
-static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, UInt32 start, UInt32 size, UInt32 total)
+static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, UInt32_7z start, UInt32_7z size, UInt32_7z total)
 {
   p->Low += start * (p->Range /= total);
   p->Range *= size;
@@ -42,7 +42,7 @@ static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, UInt32 start, UInt32 size, UInt
   }
 }
 
-static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, UInt32 size0)
+static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, UInt32_7z size0)
 {
   p->Range = (p->Range >> 14) * size0;
   while (p->Range < kTopValue)
@@ -52,9 +52,9 @@ static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, UInt32 size0)
   }
 }
 
-static void RangeEnc_EncodeBit_1(CPpmd7z_RangeEnc *p, UInt32 size0)
+static void RangeEnc_EncodeBit_1(CPpmd7z_RangeEnc *p, UInt32_7z size0)
 {
-  UInt32 newBound = (p->Range >> 14) * size0;
+  UInt32_7z newBound = (p->Range >> 14) * size0;
   p->Low += newBound;
   p->Range -= newBound;
   while (p->Range < kTopValue)
@@ -80,7 +80,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol)
   if (p->MinContext->NumStats != 1)
   {
     CPpmd_State *s = Ppmd7_GetStats(p, p->MinContext);
-    UInt32 sum;
+    UInt32_7z sum;
     unsigned i;
     if (s->Symbol == symbol)
     {
@@ -136,10 +136,10 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol)
   }
   for (;;)
   {
-    UInt32 escFreq;
+    UInt32_7z escFreq;
     CPpmd_See *see;
     CPpmd_State *s;
-    UInt32 sum;
+    UInt32_7z sum;
     unsigned i, numMasked = p->MinContext->NumStats;
     do
     {
@@ -159,7 +159,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol)
       int cur = s->Symbol;
       if (cur == symbol)
       {
-        UInt32 low = sum;
+        UInt32_7z low = sum;
         CPpmd_State *s1 = s;
         do
         {

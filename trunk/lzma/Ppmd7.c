@@ -12,14 +12,14 @@ static const UInt16 kInitBinEsc[] = { 0x3CDD, 0x1F3F, 0x59BF, 0x48F3, 0x64A1, 0x
 #define MAX_FREQ 124
 #define UNIT_SIZE 12
 
-#define U2B(nu) ((UInt32)(nu) * UNIT_SIZE)
+#define U2B(nu) ((UInt32_7z)(nu) * UNIT_SIZE)
 #define U2I(nu) (p->Units2Indx[(nu) - 1])
 #define I2U(indx) (p->Indx2Units[indx])
 
 #ifdef PPMD_32BIT
   #define REF(ptr) (ptr)
 #else
-  #define REF(ptr) ((UInt32)((Byte *)(ptr) - (p)->Base))
+  #define REF(ptr) ((UInt32_7z)((Byte *)(ptr) - (p)->Base))
 #endif
 
 #define STATS_REF(ptr) ((CPpmd_State_Ref)REF(ptr))
@@ -37,7 +37,7 @@ typedef
   #ifdef PPMD_32BIT
     struct CPpmd7_Node_ *
   #else
-    UInt32
+    UInt32_7z
   #endif
   CPpmd7_Node_Ref;
 
@@ -93,7 +93,7 @@ void Ppmd7_Free(CPpmd7 *p, ISzAlloc *alloc)
   p->Base = 0;
 }
 
-Bool7z Ppmd7_Alloc(CPpmd7 *p, UInt32 size, ISzAlloc *alloc)
+Bool7z Ppmd7_Alloc(CPpmd7 *p, UInt32_7z size, ISzAlloc *alloc)
 {
   if (p->Base == 0 || p->Size != size)
   {
@@ -180,7 +180,7 @@ static void GlueFreeBlocks(CPpmd7 *p)
   while (n != head)
   {
     CPpmd7_Node *node = NODE(n);
-    UInt32 nu = (UInt32)node->NU;
+    UInt32_7z nu = (UInt32_7z)node->NU;
     for (;;)
     {
       CPpmd7_Node *node2 = NODE(n) + nu;
@@ -227,9 +227,9 @@ static void *AllocUnitsRare(CPpmd7 *p, unsigned indx)
   {
     if (++i == PPMD_NUM_INDEXES)
     {
-      UInt32 numBytes = U2B(I2U(indx));
+      UInt32_7z numBytes = U2B(I2U(indx));
       p->GlueCount--;
-      return ((UInt32)(p->UnitsStart - p->Text) > numBytes) ? (p->UnitsStart -= numBytes) : (NULL);
+      return ((UInt32_7z)(p->UnitsStart - p->Text) > numBytes) ? (p->UnitsStart -= numBytes) : (NULL);
     }
   }
   while (p->FreeList[i] == 0);
@@ -240,11 +240,11 @@ static void *AllocUnitsRare(CPpmd7 *p, unsigned indx)
 
 static void *AllocUnits(CPpmd7 *p, unsigned indx)
 {
-  UInt32 numBytes;
+  UInt32_7z numBytes;
   if (p->FreeList[indx] != 0)
     return RemoveNode(p, indx);
   numBytes = U2B(I2U(indx));
-  if (numBytes <= (UInt32)(p->HiUnit - p->LoUnit))
+  if (numBytes <= (UInt32_7z)(p->HiUnit - p->LoUnit))
   {
     void *retVal = p->LoUnit;
     p->LoUnit += numBytes;
@@ -254,7 +254,7 @@ static void *AllocUnits(CPpmd7 *p, unsigned indx)
 }
 
 #define MyMem12Cpy(dest, src, num) \
-  { UInt32 *d = (UInt32 *)dest; const UInt32 *s = (const UInt32 *)src; UInt32 n = num; \
+  { UInt32_7z *d = (UInt32_7z *)dest; const UInt32_7z *s = (const UInt32_7z *)src; UInt32_7z n = num; \
     do { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; s += 3; d += 3; } while(--n); }
 
 static void *ShrinkUnits(CPpmd7 *p, void *oldPtr, unsigned oldNU, unsigned newNU)
@@ -274,12 +274,12 @@ static void *ShrinkUnits(CPpmd7 *p, void *oldPtr, unsigned oldNU, unsigned newNU
   return oldPtr;
 }
 
-#define SUCCESSOR(p) ((CPpmd_Void_Ref)((p)->SuccessorLow | ((UInt32)(p)->SuccessorHigh << 16)))
+#define SUCCESSOR(p) ((CPpmd_Void_Ref)((p)->SuccessorLow | ((UInt32_7z)(p)->SuccessorHigh << 16)))
 
 static void SetSuccessor(CPpmd_State *p, CPpmd_Void_Ref v)
 {
-  (p)->SuccessorLow = (UInt16)((UInt32)(v) & 0xFFFF);
-  (p)->SuccessorHigh = (UInt16)(((UInt32)(v) >> 16) & 0xFFFF);
+  (p)->SuccessorLow = (UInt16)((UInt32_7z)(v) & 0xFFFF);
+  (p)->SuccessorHigh = (UInt16)(((UInt32_7z)(v) >> 16) & 0xFFFF);
 }
 
 static void RestartModel(CPpmd7 *p)
@@ -378,7 +378,7 @@ static CTX_PTR CreateSuccessors(CPpmd7 *p, Bool7z skip)
     upState.Freq = ONE_STATE(c)->Freq;
   else
   {
-    UInt32 cf, s0;
+    UInt32_7z cf, s0;
     CPpmd_State *s;
     for (s = STATS(c); s->Symbol != upState.Symbol; s++);
     cf = s->Freq - 1;
@@ -503,7 +503,7 @@ static void UpdateModel(CPpmd7 *p)
   for (c = p->MaxContext; c != p->MinContext; c = SUFFIX(c))
   {
     unsigned ns1;
-    UInt32 cf, sf;
+    UInt32_7z cf, sf;
     if ((ns1 = c->NumStats) != 1)
     {
       if ((ns1 & 1) == 0)
@@ -544,8 +544,8 @@ static void UpdateModel(CPpmd7 *p)
         s->Freq = MAX_FREQ - 4;
       c->SummFreq = (UInt16)(s->Freq + p->InitEsc + (ns > 3));
     }
-    cf = 2 * (UInt32)p->FoundState->Freq * (c->SummFreq + 6);
-    sf = (UInt32)s0 + c->SummFreq;
+    cf = 2 * (UInt32_7z)p->FoundState->Freq * (c->SummFreq + 6);
+    sf = (UInt32_7z)s0 + c->SummFreq;
     if (cf < 6 * sf)
     {
       cf = 1 + (cf > sf) + (cf >= 4 * sf);
@@ -631,7 +631,7 @@ static void Rescale(CPpmd7 *p)
   p->FoundState = STATS(p->MinContext);
 }
 
-CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, UInt32 *escFreq)
+CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, UInt32_7z *escFreq)
 {
   CPpmd_See *see;
   unsigned nonMasked = p->MinContext->NumStats - numMasked;

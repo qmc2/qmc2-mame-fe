@@ -58,10 +58,10 @@ typedef unsigned short UInt16;
 
 #ifdef _LZMA_UINT32_IS_ULONG
 typedef long Int32;
-typedef unsigned long UInt32;
+typedef unsigned long UInt32_7z;
 #else
 typedef int Int32;
-typedef unsigned int UInt32;
+typedef unsigned int UInt32_7z;
 #endif
 
 #ifdef _SZ_NO_INT_64
@@ -87,7 +87,7 @@ typedef unsigned long long int UInt64;
 #endif
 
 #ifdef _LZMA_NO_SYSTEM_SIZE_T
-typedef UInt32 SizeT;
+typedef UInt32_7z SizeT;
 #else
 typedef size_t SizeT;
 #endif

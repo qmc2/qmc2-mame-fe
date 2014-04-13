@@ -12,9 +12,9 @@ EXTERN_C_BEGIN
 
 typedef struct
 {
-  UInt32 id;
-  UInt32 delta;
-  UInt32 ip;
+  UInt32_7z id;
+  UInt32_7z delta;
+  UInt32_7z ip;
   int ipDefined;
 } CXzFilterProps;
 
