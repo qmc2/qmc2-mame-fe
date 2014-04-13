@@ -255,7 +255,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 					    continue;
 			    }
 		    }
-		    switch ( qmc2Gamelist->gameStatusMap[game] ) {
+		    switch ( qmc2Gamelist->romState(game) ) {
 			    case 'C':
 				    if ( toolButtonSelectC->isChecked() )
 					    selectedGames << game;

@@ -6,6 +6,8 @@
 #include <QIcon>
 #include <QTreeWidgetItem>
 #endif
+#include <QHash>
+#include <QMap>
 
 #include "xmldbmgr.h"
 #include "macros.h"
@@ -64,8 +66,8 @@ class Gamelist : public QObject
 		QStringList emulatorIdentifiers;
 		QStringList verifiedList;
 		QString xmlLineBuffer;
-		QMap<QString, QString> driverNameMap;
-		QMap<QString, char> gameStatusMap;
+		QHash<QString, QString> driverNameHash;
+		QHash<QString, char> gameStatusHash;
 		QMap<QString, QString *> categoryNames;
 		QMap<QString, QString *> categoryMap;
 #if defined(QMC2_EMUTYPE_MAME) || defined(QMC2_EMUTYPE_UME)
@@ -82,6 +84,7 @@ class Gamelist : public QObject
 
 		QString lookupDriverName(QString);
 		QString romStatus(QString, bool translated = false);
+		char romState(QString);
 		bool isBios(QString systemName) { return biosSets.contains(systemName); }
 		bool isDevice(QString systemName) { return deviceSets.contains(systemName); }
 

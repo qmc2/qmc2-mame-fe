@@ -708,7 +708,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		}
 
 		// ROM status
-		switch ( qmc2Gamelist->gameStatusMap[game] ) {
+		switch ( qmc2Gamelist->romState(game) ) {
 			case 'C':
 				if ( toolButtonSelectC->isChecked() )
 					selectedGames << gameItem;
@@ -803,9 +803,9 @@ bool ArcadeModeSetup::lessThan(const GamelistItem *item1, const GamelistItem *it
 				return (item1->text(QMC2_GAMELIST_COLUMN_GAME).toUpper() < item2->text(QMC2_GAMELIST_COLUMN_GAME).toUpper());
 		case QMC2_SORT_BY_ROM_STATE:
 			if ( qmc2ArcadeModeSortOrder )
-				return (qmc2Gamelist->gameStatusMap[item1->text(QMC2_GAMELIST_COLUMN_NAME)] > qmc2Gamelist->gameStatusMap[item2->text(QMC2_GAMELIST_COLUMN_NAME)]);
+				return (qmc2Gamelist->romState(item1->text(QMC2_GAMELIST_COLUMN_NAME)) > qmc2Gamelist->romState(item2->text(QMC2_GAMELIST_COLUMN_NAME)));
 			else
-				return (qmc2Gamelist->gameStatusMap[item1->text(QMC2_GAMELIST_COLUMN_NAME)] < qmc2Gamelist->gameStatusMap[item2->text(QMC2_GAMELIST_COLUMN_NAME)]);
+				return (qmc2Gamelist->romState(item1->text(QMC2_GAMELIST_COLUMN_NAME)) < qmc2Gamelist->romState(item2->text(QMC2_GAMELIST_COLUMN_NAME)));
 		case QMC2_SORT_BY_TAG:
 			if ( qmc2ArcadeModeSortOrder )
 				return (int(item1->checkState(QMC2_GAMELIST_COLUMN_TAG)) > int(item2->checkState(QMC2_GAMELIST_COLUMN_TAG)));

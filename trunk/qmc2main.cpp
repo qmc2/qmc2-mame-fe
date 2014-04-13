@@ -4427,7 +4427,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
 
   // setup status indicator color
-  switch ( qmc2Gamelist->gameStatusMap[gameName] ) {
+  switch ( qmc2Gamelist->romState(gameName) ) {
     case 'C':
       labelGameStatus->setPalette(qmc2StatusColorGreen);
       break;

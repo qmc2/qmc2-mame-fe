@@ -9,9 +9,11 @@
 #include <QTextStream>
 #include <QXmlDefaultHandler>
 #include <QMenu>
+#include <QMap>
 #if QMC2_OPENGL == 1
 #include <QGLWidget>
 #endif
+
 #include "ui_softwarelist.h"
 #include "unzip.h"
 #include "sevenzipfile.h"

@@ -8,6 +8,7 @@
 #include <QWidgetAction>
 #include <QLocale>
 #include <QPainterPath>
+#include <QHash>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -44,7 +45,7 @@ extern QMap<QString, QString> qmc2CustomShortcutMap;
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
 QMap<QString, QString> softwareListXmlDataCache;
-QMap<QString, QMap<QString, char> > softwareListStateMap;
+QHash<QString, QMap<QString, char> > softwareListStateHash;
 QString swlBuffer;
 QString swlSelectedMountDevice;
 QString swStatesBuffer;
@@ -1515,7 +1516,7 @@ void SoftwareList::checkSoftwareStates()
 
 		softwareListName = softwareList;
 		swStatesLastLine.clear();
-		softwareListStateMap[softwareListName].clear();
+		softwareListStateHash[softwareListName].clear();
 		softwareListItems = treeWidgetKnownSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
 		favoritesListItems = treeWidgetFavoriteSoftware->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
 		searchListItems = treeWidgetSearchResults->findItems(softwareList, Qt::MatchExactly, QMC2_SWLIST_COLUMN_LIST);
@@ -1624,7 +1625,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		}
 
 		QString listName = softwareItem->text(QMC2_SWLIST_COLUMN_LIST);
-		if ( !softwareListStateMap[listName].contains(softwareName) ) {
+		if ( !softwareListStateHash[listName].contains(softwareName) ) {
 			progressBar->setValue(progressBar->value() + 1);
 			if ( notFoundState ) {
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
@@ -1639,7 +1640,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_notfound.png")));
 				if ( softwareStateFile.isOpen() )
 					softwareStateStream << softwareName << " N\n";
-				softwareListStateMap[listName][softwareName] = 'N';
+				softwareListStateHash[listName][softwareName] = 'N';
 				numSoftwareNotFound++;
 			} else {
 				softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
@@ -1654,7 +1655,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					searchItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_unknown.png")));
 				if ( softwareStateFile.isOpen() )
 					softwareStateStream << softwareName << " U\n";
-				softwareListStateMap[listName][softwareName] = 'U';
+				softwareListStateHash[listName][softwareName] = 'U';
 				numSoftwareUnknown++;
 			}
 		}
@@ -1742,7 +1743,7 @@ void SoftwareList::verifyReadyReadStandardOutput()
 				else if ( status == "available" )
 					charStatus = 'M';
 
-				softwareListStateMap[listName][softwareName] = charStatus;
+				softwareListStateHash[listName][softwareName] = charStatus;
 
 				switch ( charStatus ) {
 					case 'C':
@@ -3287,9 +3288,9 @@ void SoftwareList::saveFavoritesToFile()
 
 QString SoftwareList::softwareStatus(QString listName, QString softwareName, bool translated)
 {
-	if ( softwareListStateMap.contains(listName) ) {
-		if ( softwareListStateMap[listName].contains(softwareName) ) {
-			switch ( softwareListStateMap[listName][softwareName] ) {
+	if ( softwareListStateHash.contains(listName) ) {
+		if ( softwareListStateHash[listName].contains(softwareName) ) {
+			switch ( softwareListStateHash[listName][softwareName] ) {
 				case 'C':
 					if ( translated )
 						return tr("correct");
@@ -3404,20 +3405,20 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 			if ( words.count() > 1 ) {
 				switch ( words[1][0].toLatin1() ) {
 					case 'C':
-						softwareListStateMap[listName][words[0]] = 'C';
+						softwareListStateHash[listName][words[0]] = 'C';
 						break;
 					case 'M':
-						softwareListStateMap[listName][words[0]] = 'M';
+						softwareListStateHash[listName][words[0]] = 'M';
 						break;
 					case 'I':
-						softwareListStateMap[listName][words[0]] = 'I';
+						softwareListStateHash[listName][words[0]] = 'I';
 						break;
 					case 'N':
-						softwareListStateMap[listName][words[0]] = 'N';
+						softwareListStateHash[listName][words[0]] = 'N';
 						break;
 					case 'U':
 					default:
-						softwareListStateMap[listName][words[0]] = 'U';
+						softwareListStateHash[listName][words[0]] = 'U';
 						break;
 				}
 			}
@@ -3445,7 +3446,7 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		softwareListName = attributes.value("name");
 		compatFilters = systemSoftwareFilterMap[qmc2SoftwareList->systemName];
 		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() )
-			if ( !softwareListStateMap.contains(softwareListName) )
+			if ( !softwareListStateHash.contains(softwareListName) )
 				loadSoftwareStates(softwareListName);
 	} else if ( qName == "software" ) {
 		softwareName = attributes.value("name");
@@ -3464,8 +3465,8 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		softwareItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, softwareSupported);
 		numTotal++;
 		if ( qmc2SoftwareList->toolButtonSoftwareStates->isChecked() ) {
-			if ( softwareListStateMap[softwareListName].contains(softwareName) ) {
-				switch ( softwareListStateMap[softwareListName][softwareName] ) {
+			if ( softwareListStateHash[softwareListName].contains(softwareName) ) {
+				switch ( softwareListStateHash[softwareListName][softwareName] ) {
 					case 'C':
 						numCorrect++;
 						softwareItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, QIcon(QString::fromUtf8(":/data/img/software_correct.png")));
