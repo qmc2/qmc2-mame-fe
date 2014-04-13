@@ -18,7 +18,7 @@ Bool7z Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
   return (p->Code < 0xFFFFFFFF);
 }
 
-static UInt32 Range_GetThreshold(void *pp, UInt32 total)
+static UInt32_7z Range_GetThreshold(void *pp, UInt32_7z total)
 {
   CPpmd7z_RangeDec *p = (CPpmd7z_RangeDec *)pp;
   return (p->Code) / (p->Range /= total);
@@ -38,7 +38,7 @@ static void Range_Normalize(CPpmd7z_RangeDec *p)
   }
 }
 
-static void Range_Decode(void *pp, UInt32 start, UInt32 size)
+static void Range_Decode(void *pp, UInt32_7z start, UInt32_7z size)
 {
   CPpmd7z_RangeDec *p = (CPpmd7z_RangeDec *)pp;
   p->Code -= start * p->Range;
@@ -46,11 +46,11 @@ static void Range_Decode(void *pp, UInt32 start, UInt32 size)
   Range_Normalize(p);
 }
 
-static UInt32 Range_DecodeBit(void *pp, UInt32 size0)
+static UInt32_7z Range_DecodeBit(void *pp, UInt32_7z size0)
 {
   CPpmd7z_RangeDec *p = (CPpmd7z_RangeDec *)pp;
-  UInt32 newBound = (p->Range >> 14) * size0;
-  UInt32 symbol;
+  UInt32_7z newBound = (p->Range >> 14) * size0;
+  UInt32_7z symbol;
   if (p->Code < newBound)
   {
     symbol = 0;
@@ -83,7 +83,7 @@ int Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
   {
     CPpmd_State *s = Ppmd7_GetStats(p, p->MinContext);
     unsigned i;
-    UInt32 count, hiCnt;
+    UInt32_7z count, hiCnt;
     if ((count = rc->GetThreshold(rc, p->MinContext->SummFreq)) < (hiCnt = s->Freq))
     {
       Byte symbol;
@@ -137,7 +137,7 @@ int Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
   for (;;)
   {
     CPpmd_State *ps[256], *s;
-    UInt32 freqSum, count, hiCnt;
+    UInt32_7z freqSum, count, hiCnt;
     CPpmd_See *see;
     unsigned i, num, numMasked = p->MinContext->NumStats;
     do

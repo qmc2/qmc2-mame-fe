@@ -16,6 +16,7 @@ inf: informational only
 </p>
 <p><b>v0.44, 13-APR-2014:</b></p>
 <ul>
+  <li>fix: Mac OS X build: resolved type conflicts between LZMA SDK and older XCode headers (&lt; 4.x)</li>
   <li>imp: MAME/MESS/UME emulator templates updated to 0.153+ (removed 'hlsl_write' from Windows OSD templates)</li>
   <li>imp: speeded up ROM- and software-state filtering by using QHash [<i>amortized O(1)</i>] instead of QMap [<i>O(log n)</i>] to store/retrieve states internally</li>
 </ul>

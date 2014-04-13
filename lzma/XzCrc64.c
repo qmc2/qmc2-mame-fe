@@ -8,7 +8,7 @@ UInt64 g_Crc64Table[256];
 
 void MY_FAST_CALL Crc64GenerateTable(void)
 {
-  UInt32 i;
+  UInt32_7z i;
   for (i = 0; i < 256; i++)
   {
     UInt64 r = i;

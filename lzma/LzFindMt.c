@@ -48,7 +48,7 @@ void MtSync_GetNextBlock(CMtSync *p)
 
 void MtSync_StopWriting(CMtSync *p)
 {
-  UInt32 myNumBlocks = p->numProcessedBlocks;
+  UInt32_7z myNumBlocks = p->numProcessedBlocks;
   if (!Thread_WasCreated(&p->thread) || p->needStart)
     return;
   p->stopWriting = True;
@@ -97,7 +97,7 @@ void MtSync_Destruct(CMtSync *p)
 
 #define RINOK_THREAD(x) { if ((x) != 0) return SZ_ERROR_THREAD; }
 
-static SRes MtSync_Create2(CMtSync *p, unsigned (MY_STD_CALL *startAddress)(void *), void *obj, UInt32 numBlocks)
+static SRes MtSync_Create2(CMtSync *p, unsigned (MY_STD_CALL *startAddress)(void *), void *obj, UInt32_7z numBlocks)
 {
   if (p->wasCreated)
     return SZ_OK;
@@ -119,7 +119,7 @@ static SRes MtSync_Create2(CMtSync *p, unsigned (MY_STD_CALL *startAddress)(void
   return SZ_OK;
 }
 
-static SRes MtSync_Create(CMtSync *p, unsigned (MY_STD_CALL *startAddress)(void *), void *obj, UInt32 numBlocks)
+static SRes MtSync_Create(CMtSync *p, unsigned (MY_STD_CALL *startAddress)(void *), void *obj, UInt32_7z numBlocks)
 {
   SRes res = MtSync_Create2(p, startAddress, obj, numBlocks);
   if (res != SZ_OK)
@@ -132,25 +132,25 @@ void MtSync_Init(CMtSync *p) { p->needStart = True; }
 #define kMtMaxValForNormalize 0xFFFFFFFF
 
 #define DEF_GetHeads2(name, v, action) \
-static void GetHeads ## name(const Byte *p, UInt32 pos, \
-UInt32 *hash, UInt32 hashMask, UInt32 *heads, UInt32 numHeads, const UInt32 *crc) \
+static void GetHeads ## name(const Byte *p, UInt32_7z pos, \
+UInt32_7z *hash, UInt32_7z hashMask, UInt32_7z *heads, UInt32_7z numHeads, const UInt32_7z *crc) \
 { action; for (; numHeads != 0; numHeads--) { \
-const UInt32 value = (v); p++; *heads++ = pos - hash[value]; hash[value] = pos++;  } }
+const UInt32_7z value = (v); p++; *heads++ = pos - hash[value]; hash[value] = pos++;  } }
 
 #define DEF_GetHeads(name, v) DEF_GetHeads2(name, v, ;)
 
-DEF_GetHeads2(2,  (p[0] | ((UInt32)p[1] << 8)), hashMask = hashMask; crc = crc; )
-DEF_GetHeads(3,  (crc[p[0]] ^ p[1] ^ ((UInt32)p[2] << 8)) & hashMask)
-DEF_GetHeads(4,  (crc[p[0]] ^ p[1] ^ ((UInt32)p[2] << 8) ^ (crc[p[3]] << 5)) & hashMask)
-DEF_GetHeads(4b, (crc[p[0]] ^ p[1] ^ ((UInt32)p[2] << 8) ^ ((UInt32)p[3] << 16)) & hashMask)
-/* DEF_GetHeads(5,  (crc[p[0]] ^ p[1] ^ ((UInt32)p[2] << 8) ^ (crc[p[3]] << 5) ^ (crc[p[4]] << 3)) & hashMask) */
+DEF_GetHeads2(2,  (p[0] | ((UInt32_7z)p[1] << 8)), hashMask = hashMask; crc = crc; )
+DEF_GetHeads(3,  (crc[p[0]] ^ p[1] ^ ((UInt32_7z)p[2] << 8)) & hashMask)
+DEF_GetHeads(4,  (crc[p[0]] ^ p[1] ^ ((UInt32_7z)p[2] << 8) ^ (crc[p[3]] << 5)) & hashMask)
+DEF_GetHeads(4b, (crc[p[0]] ^ p[1] ^ ((UInt32_7z)p[2] << 8) ^ ((UInt32_7z)p[3] << 16)) & hashMask)
+/* DEF_GetHeads(5,  (crc[p[0]] ^ p[1] ^ ((UInt32_7z)p[2] << 8) ^ (crc[p[3]] << 5) ^ (crc[p[4]] << 3)) & hashMask) */
 
 void HashThreadFunc(CMatchFinderMt *mt)
 {
   CMtSync *p = &mt->hashSync;
   for (;;)
   {
-    UInt32 numProcessedBlocks = 0;
+    UInt32_7z numProcessedBlocks = 0;
     Event_Wait(&p->canStart);
     Event_Set(&p->wasStarted);
     for (;;)
@@ -188,13 +188,13 @@ void HashThreadFunc(CMatchFinderMt *mt)
         MatchFinder_ReadIfRequired(mf);
         if (mf->pos > (kMtMaxValForNormalize - kMtHashBlockSize))
         {
-          UInt32 subValue = (mf->pos - mf->historySize - 1);
+          UInt32_7z subValue = (mf->pos - mf->historySize - 1);
           MatchFinder_ReduceOffsets(mf, subValue);
           MatchFinder_Normalize3(subValue, mf->hash + mf->fixedHashSize, mf->hashMask + 1);
         }
         {
-          UInt32 *heads = mt->hashBuf + ((numProcessedBlocks++) & kMtHashNumBlocksMask) * kMtHashBlockSize;
-          UInt32 num = mf->streamPos - mf->pos;
+          UInt32_7z *heads = mt->hashBuf + ((numProcessedBlocks++) & kMtHashNumBlocksMask) * kMtHashBlockSize;
+          UInt32_7z num = mf->streamPos - mf->pos;
           heads[0] = 2;
           heads[1] = num;
           if (num >= mf->numHashBytes)
@@ -231,23 +231,23 @@ void MatchFinderMt_GetNextBlock_Hash(CMatchFinderMt *p)
 
 #define NO_INLINE MY_FAST_CALL
 
-Int32 NO_INLINE GetMatchesSpecN(UInt32 lenLimit, UInt32 pos, const Byte *cur, CLzRef *son,
-    UInt32 _cyclicBufferPos, UInt32 _cyclicBufferSize, UInt32 _cutValue,
-    UInt32 *_distances, UInt32 _maxLen, const UInt32 *hash, Int32 limit, UInt32 size, UInt32 *posRes)
+Int32 NO_INLINE GetMatchesSpecN(UInt32_7z lenLimit, UInt32_7z pos, const Byte *cur, CLzRef *son,
+    UInt32_7z _cyclicBufferPos, UInt32_7z _cyclicBufferSize, UInt32_7z _cutValue,
+    UInt32_7z *_distances, UInt32_7z _maxLen, const UInt32_7z *hash, Int32 limit, UInt32_7z size, UInt32_7z *posRes)
 {
   do
   {
-  UInt32 *distances = _distances + 1;
-  UInt32 curMatch = pos - *hash++;
+  UInt32_7z *distances = _distances + 1;
+  UInt32_7z curMatch = pos - *hash++;
 
   CLzRef *ptr0 = son + (_cyclicBufferPos << 1) + 1;
   CLzRef *ptr1 = son + (_cyclicBufferPos << 1);
-  UInt32 len0 = 0, len1 = 0;
-  UInt32 cutValue = _cutValue;
-  UInt32 maxLen = _maxLen;
+  UInt32_7z len0 = 0, len1 = 0;
+  UInt32_7z cutValue = _cutValue;
+  UInt32_7z maxLen = _maxLen;
   for (;;)
   {
-    UInt32 delta = pos - curMatch;
+    UInt32_7z delta = pos - curMatch;
     if (cutValue-- == 0 || delta >= _cyclicBufferSize)
     {
       *ptr0 = *ptr1 = kEmptyHashValue;
@@ -256,7 +256,7 @@ Int32 NO_INLINE GetMatchesSpecN(UInt32 lenLimit, UInt32 pos, const Byte *cur, CL
     {
       CLzRef *pair = son + ((_cyclicBufferPos - delta + ((delta > _cyclicBufferPos) ? _cyclicBufferSize : 0)) << 1);
       const Byte *pb = cur - delta;
-      UInt32 len = (len0 < len1 ? len0 : len1);
+      UInt32_7z len = (len0 < len1 ? len0 : len1);
       if (pb[len] == cur[len])
       {
         if (++len != lenLimit && pb[len] == cur[len])
@@ -295,7 +295,7 @@ Int32 NO_INLINE GetMatchesSpecN(UInt32 lenLimit, UInt32 pos, const Byte *cur, CL
   _cyclicBufferPos++;
   cur++;
   {
-    UInt32 num = (UInt32)(distances - _distances);
+    UInt32_7z num = (UInt32_7z)(distances - _distances);
     *_distances = num - 1;
     _distances += num;
     limit -= num;
@@ -308,11 +308,11 @@ Int32 NO_INLINE GetMatchesSpecN(UInt32 lenLimit, UInt32 pos, const Byte *cur, CL
 
 #endif
 
-void BtGetMatches(CMatchFinderMt *p, UInt32 *distances)
+void BtGetMatches(CMatchFinderMt *p, UInt32_7z *distances)
 {
-  UInt32 numProcessed = 0;
-  UInt32 curPos = 2;
-  UInt32 limit = kMtBtBlockSize - (p->matchMaxLen * 2);
+  UInt32_7z numProcessed = 0;
+  UInt32_7z curPos = 2;
+  UInt32_7z limit = kMtBtBlockSize - (p->matchMaxLen * 2);
   distances[1] = p->hashNumAvail;
   while (curPos < limit)
   {
@@ -327,14 +327,14 @@ void BtGetMatches(CMatchFinderMt *p, UInt32 *distances)
       break;
     }
     {
-      UInt32 size = p->hashBufPosLimit - p->hashBufPos;
-      UInt32 lenLimit = p->matchMaxLen;
-      UInt32 pos = p->pos;
-      UInt32 cyclicBufferPos = p->cyclicBufferPos;
+      UInt32_7z size = p->hashBufPosLimit - p->hashBufPos;
+      UInt32_7z lenLimit = p->matchMaxLen;
+      UInt32_7z pos = p->pos;
+      UInt32_7z cyclicBufferPos = p->cyclicBufferPos;
       if (lenLimit >= p->hashNumAvail)
         lenLimit = p->hashNumAvail;
       {
-        UInt32 size2 = p->hashNumAvail - lenLimit + 1;
+        UInt32_7z size2 = p->hashNumAvail - lenLimit + 1;
         if (size2 < size)
           size = size2;
         size2 = p->cyclicBufferSize - cyclicBufferPos;
@@ -344,8 +344,8 @@ void BtGetMatches(CMatchFinderMt *p, UInt32 *distances)
       #ifndef MFMT_GM_INLINE
       while (curPos < limit && size-- != 0)
       {
-        UInt32 *startDistances = distances + curPos;
-        UInt32 num = (UInt32)(GetMatchesSpec1(lenLimit, pos - p->hashBuf[p->hashBufPos++],
+        UInt32_7z *startDistances = distances + curPos;
+        UInt32_7z num = (UInt32_7z)(GetMatchesSpec1(lenLimit, pos - p->hashBuf[p->hashBufPos++],
           pos, p->buffer, p->son, cyclicBufferPos, p->cyclicBufferSize, p->cutValue,
           startDistances + 1, p->numHashBytes - 1) - startDistances);
         *startDistances = num - 1;
@@ -356,7 +356,7 @@ void BtGetMatches(CMatchFinderMt *p, UInt32 *distances)
       }
       #else
       {
-        UInt32 posRes;
+        UInt32_7z posRes;
         curPos = limit - GetMatchesSpecN(lenLimit, pos, p->buffer, p->son, cyclicBufferPos, p->cyclicBufferSize, p->cutValue,
           distances + curPos, p->numHashBytes - 1, p->hashBuf + p->hashBufPos, (Int32)(limit - curPos) , size, &posRes);
         p->hashBufPos += posRes - pos;
@@ -377,7 +377,7 @@ void BtGetMatches(CMatchFinderMt *p, UInt32 *distances)
   distances[0] = curPos;
 }
 
-void BtFillBlock(CMatchFinderMt *p, UInt32 globalBlockIndex)
+void BtFillBlock(CMatchFinderMt *p, UInt32_7z globalBlockIndex)
 {
   CMtSync *sync = &p->hashSync;
   if (!sync->needStart)
@@ -390,7 +390,7 @@ void BtFillBlock(CMatchFinderMt *p, UInt32 globalBlockIndex)
 
   if (p->pos > kMtMaxValForNormalize - kMtBtBlockSize)
   {
-    UInt32 subValue = p->pos - p->cyclicBufferSize;
+    UInt32_7z subValue = p->pos - p->cyclicBufferSize;
     MatchFinder_Normalize3(subValue, p->son, p->cyclicBufferSize * 2);
     p->pos -= subValue;
   }
@@ -407,7 +407,7 @@ void BtThreadFunc(CMatchFinderMt *mt)
   CMtSync *p = &mt->btSync;
   for (;;)
   {
-    UInt32 blockIndex = 0;
+    UInt32_7z blockIndex = 0;
     Event_Wait(&p->canStart);
     Event_Set(&p->wasStarted);
     for (;;)
@@ -462,8 +462,8 @@ static unsigned MY_STD_CALL BtThreadFunc2(void *p)
   return 0;
 }
 
-SRes MatchFinderMt_Create(CMatchFinderMt *p, UInt32 historySize, UInt32 keepAddBufferBefore,
-    UInt32 matchMaxLen, UInt32 keepAddBufferAfter, ISzAlloc *alloc)
+SRes MatchFinderMt_Create(CMatchFinderMt *p, UInt32_7z historySize, UInt32_7z keepAddBufferBefore,
+    UInt32_7z matchMaxLen, UInt32_7z keepAddBufferAfter, ISzAlloc *alloc)
 {
   CMatchFinder *mf = p->MatchFinder;
   p->historySize = historySize;
@@ -471,7 +471,7 @@ SRes MatchFinderMt_Create(CMatchFinderMt *p, UInt32 historySize, UInt32 keepAddB
     return SZ_ERROR_PARAM;
   if (p->hashBuf == 0)
   {
-    p->hashBuf = (UInt32 *)alloc->Alloc(alloc, (kHashBufferSize + kBtBufferSize) * sizeof(UInt32));
+    p->hashBuf = (UInt32_7z *)alloc->Alloc(alloc, (kHashBufferSize + kBtBufferSize) * sizeof(UInt32_7z));
     if (p->hashBuf == 0)
       return SZ_ERROR_MEM;
     p->btBuf = p->hashBuf + kHashBufferSize;
@@ -526,7 +526,7 @@ void MatchFinderMt_Normalize(CMatchFinderMt *p)
 
 void MatchFinderMt_GetNextBlock_Bt(CMatchFinderMt *p)
 {
-  UInt32 blockIndex;
+  UInt32_7z blockIndex;
   MtSync_GetNextBlock(&p->btSync);
   blockIndex = ((p->btSync.numProcessedBlocks - 1) & kMtBtNumBlocksMask);
   p->btBufPosLimit = p->btBufPos = blockIndex * kMtBtBlockSize;
@@ -543,7 +543,7 @@ const Byte * MatchFinderMt_GetPointerToCurrentPos(CMatchFinderMt *p)
 
 #define GET_NEXT_BLOCK_IF_REQUIRED if (p->btBufPos == p->btBufPosLimit) MatchFinderMt_GetNextBlock_Bt(p);
 
-UInt32 MatchFinderMt_GetNumAvailableBytes(CMatchFinderMt *p)
+UInt32_7z MatchFinderMt_GetNumAvailableBytes(CMatchFinderMt *p)
 {
   GET_NEXT_BLOCK_IF_REQUIRED;
   return p->btNumAvailBytes;
@@ -554,12 +554,12 @@ Byte MatchFinderMt_GetIndexByte(CMatchFinderMt *p, Int32 index)
   return p->pointerToCurPos[index];
 }
 
-UInt32 * MixMatches2(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distances)
+UInt32_7z * MixMatches2(CMatchFinderMt *p, UInt32_7z matchMinPos, UInt32_7z *distances)
 {
-  UInt32 hash2Value, curMatch2;
-  UInt32 *hash = p->hash;
+  UInt32_7z hash2Value, curMatch2;
+  UInt32_7z *hash = p->hash;
   const Byte *cur = p->pointerToCurPos;
-  UInt32 lzPos = p->lzPos;
+  UInt32_7z lzPos = p->lzPos;
   MT_HASH2_CALC
       
   curMatch2 = hash[hash2Value];
@@ -574,12 +574,12 @@ UInt32 * MixMatches2(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distances)
   return distances;
 }
 
-UInt32 * MixMatches3(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distances)
+UInt32_7z * MixMatches3(CMatchFinderMt *p, UInt32_7z matchMinPos, UInt32_7z *distances)
 {
-  UInt32 hash2Value, hash3Value, curMatch2, curMatch3;
-  UInt32 *hash = p->hash;
+  UInt32_7z hash2Value, hash3Value, curMatch2, curMatch3;
+  UInt32_7z *hash = p->hash;
   const Byte *cur = p->pointerToCurPos;
-  UInt32 lzPos = p->lzPos;
+  UInt32_7z lzPos = p->lzPos;
   MT_HASH3_CALC
 
   curMatch2 = hash[                hash2Value];
@@ -609,12 +609,12 @@ UInt32 * MixMatches3(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distances)
 }
 
 /*
-UInt32 *MixMatches4(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distances)
+UInt32_7z *MixMatches4(CMatchFinderMt *p, UInt32_7z matchMinPos, UInt32_7z *distances)
 {
-  UInt32 hash2Value, hash3Value, hash4Value, curMatch2, curMatch3, curMatch4;
-  UInt32 *hash = p->hash;
+  UInt32_7z hash2Value, hash3Value, hash4Value, curMatch2, curMatch3, curMatch4;
+  UInt32_7z *hash = p->hash;
   const Byte *cur = p->pointerToCurPos;
-  UInt32 lzPos = p->lzPos;
+  UInt32_7z lzPos = p->lzPos;
   MT_HASH4_CALC
       
   curMatch2 = hash[                hash2Value];
@@ -664,14 +664,14 @@ UInt32 *MixMatches4(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *distances)
 
 #define INCREASE_LZ_POS p->lzPos++; p->pointerToCurPos++;
 
-UInt32 MatchFinderMt2_GetMatches(CMatchFinderMt *p, UInt32 *distances)
+UInt32_7z MatchFinderMt2_GetMatches(CMatchFinderMt *p, UInt32_7z *distances)
 {
-  const UInt32 *btBuf = p->btBuf + p->btBufPos;
-  UInt32 len = *btBuf++;
+  const UInt32_7z *btBuf = p->btBuf + p->btBufPos;
+  UInt32_7z len = *btBuf++;
   p->btBufPos += 1 + len;
   p->btNumAvailBytes--;
   {
-    UInt32 i;
+    UInt32_7z i;
     for (i = 0; i < len; i += 2)
     {
       *distances++ = *btBuf++;
@@ -682,21 +682,21 @@ UInt32 MatchFinderMt2_GetMatches(CMatchFinderMt *p, UInt32 *distances)
   return len;
 }
 
-UInt32 MatchFinderMt_GetMatches(CMatchFinderMt *p, UInt32 *distances)
+UInt32_7z MatchFinderMt_GetMatches(CMatchFinderMt *p, UInt32_7z *distances)
 {
-  const UInt32 *btBuf = p->btBuf + p->btBufPos;
-  UInt32 len = *btBuf++;
+  const UInt32_7z *btBuf = p->btBuf + p->btBufPos;
+  UInt32_7z len = *btBuf++;
   p->btBufPos += 1 + len;
 
   if (len == 0)
   {
     if (p->btNumAvailBytes-- >= 4)
-      len = (UInt32)(p->MixMatchesFunc(p, p->lzPos - p->historySize, distances) - (distances));
+      len = (UInt32_7z)(p->MixMatchesFunc(p, p->lzPos - p->historySize, distances) - (distances));
   }
   else
   {
     /* Condition: there are matches in btBuf with length < p->numHashBytes */
-    UInt32 *distances2;
+    UInt32_7z *distances2;
     p->btNumAvailBytes--;
     distances2 = p->MixMatchesFunc(p, p->lzPos - btBuf[1], distances);
     do
@@ -705,35 +705,35 @@ UInt32 MatchFinderMt_GetMatches(CMatchFinderMt *p, UInt32 *distances)
       *distances2++ = *btBuf++;
     }
     while ((len -= 2) != 0);
-    len  = (UInt32)(distances2 - (distances));
+    len  = (UInt32_7z)(distances2 - (distances));
   }
   INCREASE_LZ_POS
   return len;
 }
 
 #define SKIP_HEADER2_MT  do { GET_NEXT_BLOCK_IF_REQUIRED
-#define SKIP_HEADER_MT(n) SKIP_HEADER2_MT if (p->btNumAvailBytes-- >= (n)) { const Byte *cur = p->pointerToCurPos; UInt32 *hash = p->hash;
+#define SKIP_HEADER_MT(n) SKIP_HEADER2_MT if (p->btNumAvailBytes-- >= (n)) { const Byte *cur = p->pointerToCurPos; UInt32_7z *hash = p->hash;
 #define SKIP_FOOTER_MT } INCREASE_LZ_POS p->btBufPos += p->btBuf[p->btBufPos] + 1; } while (--num != 0);
 
-void MatchFinderMt0_Skip(CMatchFinderMt *p, UInt32 num)
+void MatchFinderMt0_Skip(CMatchFinderMt *p, UInt32_7z num)
 {
   SKIP_HEADER2_MT { p->btNumAvailBytes--;
   SKIP_FOOTER_MT
 }
 
-void MatchFinderMt2_Skip(CMatchFinderMt *p, UInt32 num)
+void MatchFinderMt2_Skip(CMatchFinderMt *p, UInt32_7z num)
 {
   SKIP_HEADER_MT(2)
-      UInt32 hash2Value;
+      UInt32_7z hash2Value;
       MT_HASH2_CALC
       hash[hash2Value] = p->lzPos;
   SKIP_FOOTER_MT
 }
 
-void MatchFinderMt3_Skip(CMatchFinderMt *p, UInt32 num)
+void MatchFinderMt3_Skip(CMatchFinderMt *p, UInt32_7z num)
 {
   SKIP_HEADER_MT(3)
-      UInt32 hash2Value, hash3Value;
+      UInt32_7z hash2Value, hash3Value;
       MT_HASH3_CALC
       hash[kFix3HashSize + hash3Value] =
       hash[                hash2Value] =
@@ -742,10 +742,10 @@ void MatchFinderMt3_Skip(CMatchFinderMt *p, UInt32 num)
 }
 
 /*
-void MatchFinderMt4_Skip(CMatchFinderMt *p, UInt32 num)
+void MatchFinderMt4_Skip(CMatchFinderMt *p, UInt32_7z num)
 {
   SKIP_HEADER_MT(4)
-      UInt32 hash2Value, hash3Value, hash4Value;
+      UInt32_7z hash2Value, hash3Value, hash4Value;
       MT_HASH4_CALC
       hash[kFix4HashSize + hash4Value] =
       hash[kFix3HashSize + hash3Value] =

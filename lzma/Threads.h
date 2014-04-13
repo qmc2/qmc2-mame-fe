@@ -42,8 +42,8 @@ typedef HANDLE CSemaphore;
 #define Semaphore_Construct(p) (*p) = NULL
 #define Semaphore_Close(p) HandlePtr_Close(p)
 #define Semaphore_Wait(p) Handle_WaitObject(*(p))
-WRes Semaphore_Create(CSemaphore *p, UInt32 initCount, UInt32 maxCount);
-WRes Semaphore_ReleaseN(CSemaphore *p, UInt32 num);
+WRes Semaphore_Create(CSemaphore *p, UInt32_7z initCount, UInt32_7z maxCount);
+WRes Semaphore_ReleaseN(CSemaphore *p, UInt32_7z num);
 WRes Semaphore_Release1(CSemaphore *p);
 
 typedef CRITICAL_SECTION CCriticalSection;

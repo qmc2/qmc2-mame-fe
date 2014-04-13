@@ -55,7 +55,7 @@ WRes ManualResetEvent_CreateNotSignaled(CManualResetEvent *p) { return ManualRes
 WRes AutoResetEvent_CreateNotSignaled(CAutoResetEvent *p) { return AutoResetEvent_Create(p, 0); }
 
 
-WRes Semaphore_Create(CSemaphore *p, UInt32 initCount, UInt32 maxCount)
+WRes Semaphore_Create(CSemaphore *p, UInt32_7z initCount, UInt32_7z maxCount)
 {
   *p = CreateSemaphore(NULL, (LONG)initCount, (LONG)maxCount, NULL);
   return HandleToWRes(*p);
@@ -63,7 +63,7 @@ WRes Semaphore_Create(CSemaphore *p, UInt32 initCount, UInt32 maxCount)
 
 static WRes Semaphore_Release(CSemaphore *p, LONG releaseCount, LONG *previousCount)
   { return BOOLToWRes(ReleaseSemaphore(*p, releaseCount, previousCount)); }
-WRes Semaphore_ReleaseN(CSemaphore *p, UInt32 num)
+WRes Semaphore_ReleaseN(CSemaphore *p, UInt32_7z num)
   { return Semaphore_Release(p, (LONG)num, NULL); }
 WRes Semaphore_Release1(CSemaphore *p) { return Semaphore_ReleaseN(p, 1); }
 

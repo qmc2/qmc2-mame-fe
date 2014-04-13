@@ -21,7 +21,7 @@
 
 #define LZMA2_LCLP_MAX 4
 
-#define LZMA2_DIC_SIZE_FROM_PROP(p) (((UInt32)2 | ((p) & 1)) << ((p) / 2 + 11))
+#define LZMA2_DIC_SIZE_FROM_PROP(p) (((UInt32_7z)2 | ((p) & 1)) << ((p) / 2 + 11))
 
 #define LZMA2_PACK_SIZE_MAX (1 << 16)
 #define LZMA2_COPY_CHUNK_SIZE LZMA2_PACK_SIZE_MAX
@@ -57,12 +57,12 @@ static SRes Lzma2EncInt_Init(CLzma2EncInt *p, const CLzma2EncProps *props)
   return SZ_OK;
 }
 
-SRes LzmaEnc_PrepareForLzma2(CLzmaEncHandle pp, ISeqInStream *inStream, UInt32 keepWindowSize,
+SRes LzmaEnc_PrepareForLzma2(CLzmaEncHandle pp, ISeqInStream *inStream, UInt32_7z keepWindowSize,
     ISzAlloc *alloc, ISzAlloc *allocBig);
 SRes LzmaEnc_MemPrepare(CLzmaEncHandle pp, const Byte *src, SizeT srcLen,
-    UInt32 keepWindowSize, ISzAlloc *alloc, ISzAlloc *allocBig);
+    UInt32_7z keepWindowSize, ISzAlloc *alloc, ISzAlloc *allocBig);
 SRes LzmaEnc_CodeOneMemBlock(CLzmaEncHandle pp, Bool7z reInit,
-    Byte *dest, size_t *destLen, UInt32 desiredPackSize, UInt32 *unpackSize);
+    Byte *dest, size_t *destLen, UInt32_7z desiredPackSize, UInt32_7z *unpackSize);
 const Byte *LzmaEnc_GetCurBuf(CLzmaEncHandle pp);
 void LzmaEnc_Finish(CLzmaEncHandle pp);
 void LzmaEnc_SaveState(CLzmaEncHandle pp);
@@ -74,7 +74,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
 {
   size_t packSizeLimit = *packSizeRes;
   size_t packSize = packSizeLimit;
-  UInt32 unpackSize = LZMA2_UNPACK_SIZE_MAX;
+  UInt32_7z unpackSize = LZMA2_UNPACK_SIZE_MAX;
   unsigned lzHeaderSize = 5 + (p->needInitProp ? 1 : 0);
   Bool7z useCopyBlock;
   SRes res;
@@ -109,7 +109,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
     PRF(printf("################# COPY           "));
     while (unpackSize > 0)
     {
-      UInt32 u = (unpackSize < LZMA2_COPY_CHUNK_SIZE) ? unpackSize : LZMA2_COPY_CHUNK_SIZE;
+      UInt32_7z u = (unpackSize < LZMA2_COPY_CHUNK_SIZE) ? unpackSize : LZMA2_COPY_CHUNK_SIZE;
       if (packSizeLimit - destPos < u + 3)
         return SZ_ERROR_OUTPUT_EOF;
       outBuf[destPos++] = (Byte)(p->srcPos == 0 ? LZMA2_CONTROL_COPY_RESET_DIC : LZMA2_CONTROL_COPY_NO_RESET);
@@ -135,8 +135,8 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
   }
   {
     size_t destPos = 0;
-    UInt32 u = unpackSize - 1;
-    UInt32 pm = (UInt32)(packSize - 1);
+    UInt32_7z u = unpackSize - 1;
+    UInt32_7z pm = (UInt32_7z)(packSize - 1);
     unsigned mode = (p->srcPos == 0) ? 3 : (p->needInitState ? (p->needInitProp ? 2 : 1) : 0);
 
     PRF(printf("               "));
@@ -222,10 +222,10 @@ void Lzma2EncProps_Normalize(CLzma2EncProps *p)
 
   if (p->blockSize == 0)
   {
-    UInt32 dictSize = p->lzmaProps.dictSize;
+    UInt32_7z dictSize = p->lzmaProps.dictSize;
     UInt64 blockSize = (UInt64)dictSize << 2;
-    const UInt32 kMinSize = (UInt32)1 << 20;
-    const UInt32 kMaxSize = (UInt32)1 << 28;
+    const UInt32_7z kMinSize = (UInt32_7z)1 << 20;
+    const UInt32_7z kMaxSize = (UInt32_7z)1 << 28;
     if (blockSize < kMinSize) blockSize = kMinSize;
     if (blockSize > kMaxSize) blockSize = kMaxSize;
     if (blockSize < dictSize) blockSize = dictSize;
@@ -424,7 +424,7 @@ Byte Lzma2Enc_WriteProperties(CLzma2EncHandle pp)
 {
   CLzma2Enc *p = (CLzma2Enc *)pp;
   unsigned i;
-  UInt32 dicSize = LzmaEncProps_GetDictSize(&p->props.lzmaProps);
+  UInt32_7z dicSize = LzmaEncProps_GetDictSize(&p->props.lzmaProps);
   for (i = 0; i < 40; i++)
     if (dicSize <= LZMA2_DIC_SIZE_FROM_PROP(i))
       break;

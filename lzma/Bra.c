@@ -3,7 +3,7 @@
 
 #include "Bra.h"
 
-SizeT ARM_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
+SizeT ARM_Convert(Byte *data, SizeT size, UInt32_7z ip, int encoding)
 {
   SizeT i;
   if (size < 4)
@@ -14,13 +14,13 @@ SizeT ARM_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
   {
     if (data[i + 3] == 0xEB)
     {
-      UInt32 dest;
-      UInt32 src = ((UInt32)data[i + 2] << 16) | ((UInt32)data[i + 1] << 8) | (data[i + 0]);
+      UInt32_7z dest;
+      UInt32_7z src = ((UInt32_7z)data[i + 2] << 16) | ((UInt32_7z)data[i + 1] << 8) | (data[i + 0]);
       src <<= 2;
       if (encoding)
-        dest = ip + (UInt32)i + src;
+        dest = ip + (UInt32_7z)i + src;
       else
-        dest = src - (ip + (UInt32)i);
+        dest = src - (ip + (UInt32_7z)i);
       dest >>= 2;
       data[i + 2] = (Byte)(dest >> 16);
       data[i + 1] = (Byte)(dest >> 8);
@@ -30,7 +30,7 @@ SizeT ARM_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
   return i;
 }
 
-SizeT ARMT_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
+SizeT ARMT_Convert(Byte *data, SizeT size, UInt32_7z ip, int encoding)
 {
   SizeT i;
   if (size < 4)
@@ -42,18 +42,18 @@ SizeT ARMT_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
     if ((data[i + 1] & 0xF8) == 0xF0 &&
         (data[i + 3] & 0xF8) == 0xF8)
     {
-      UInt32 dest;
-      UInt32 src =
-        (((UInt32)data[i + 1] & 0x7) << 19) |
-        ((UInt32)data[i + 0] << 11) |
-        (((UInt32)data[i + 3] & 0x7) << 8) |
+      UInt32_7z dest;
+      UInt32_7z src =
+        (((UInt32_7z)data[i + 1] & 0x7) << 19) |
+        ((UInt32_7z)data[i + 0] << 11) |
+        (((UInt32_7z)data[i + 3] & 0x7) << 8) |
         (data[i + 2]);
       
       src <<= 1;
       if (encoding)
-        dest = ip + (UInt32)i + src;
+        dest = ip + (UInt32_7z)i + src;
       else
-        dest = src - (ip + (UInt32)i);
+        dest = src - (ip + (UInt32_7z)i);
       dest >>= 1;
       
       data[i + 1] = (Byte)(0xF0 | ((dest >> 19) & 0x7));
@@ -66,7 +66,7 @@ SizeT ARMT_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
   return i;
 }
 
-SizeT PPC_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
+SizeT PPC_Convert(Byte *data, SizeT size, UInt32_7z ip, int encoding)
 {
   SizeT i;
   if (size < 4)
@@ -76,16 +76,16 @@ SizeT PPC_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
   {
     if ((data[i] >> 2) == 0x12 && (data[i + 3] & 3) == 1)
     {
-      UInt32 src = ((UInt32)(data[i + 0] & 3) << 24) |
-        ((UInt32)data[i + 1] << 16) |
-        ((UInt32)data[i + 2] << 8) |
-        ((UInt32)data[i + 3] & (~3));
+      UInt32_7z src = ((UInt32_7z)(data[i + 0] & 3) << 24) |
+        ((UInt32_7z)data[i + 1] << 16) |
+        ((UInt32_7z)data[i + 2] << 8) |
+        ((UInt32_7z)data[i + 3] & (~3));
       
-      UInt32 dest;
+      UInt32_7z dest;
       if (encoding)
-        dest = ip + (UInt32)i + src;
+        dest = ip + (UInt32_7z)i + src;
       else
-        dest = src - (ip + (UInt32)i);
+        dest = src - (ip + (UInt32_7z)i);
       data[i + 0] = (Byte)(0x48 | ((dest >> 24) &  0x3));
       data[i + 1] = (Byte)(dest >> 16);
       data[i + 2] = (Byte)(dest >> 8);
@@ -96,9 +96,9 @@ SizeT PPC_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
   return i;
 }
 
-SizeT SPARC_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
+SizeT SPARC_Convert(Byte *data, SizeT size, UInt32_7z ip, int encoding)
 {
-  UInt32 i;
+  UInt32_7z i;
   if (size < 4)
     return 0;
   size -= 4;
@@ -107,12 +107,12 @@ SizeT SPARC_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
     if ((data[i] == 0x40 && (data[i + 1] & 0xC0) == 0x00) ||
         (data[i] == 0x7F && (data[i + 1] & 0xC0) == 0xC0))
     {
-      UInt32 src =
-        ((UInt32)data[i + 0] << 24) |
-        ((UInt32)data[i + 1] << 16) |
-        ((UInt32)data[i + 2] << 8) |
-        ((UInt32)data[i + 3]);
-      UInt32 dest;
+      UInt32_7z src =
+        ((UInt32_7z)data[i + 0] << 24) |
+        ((UInt32_7z)data[i + 1] << 16) |
+        ((UInt32_7z)data[i + 2] << 8) |
+        ((UInt32_7z)data[i + 3]);
+      UInt32_7z dest;
       
       src <<= 2;
       if (encoding)

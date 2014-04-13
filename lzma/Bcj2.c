@@ -4,7 +4,7 @@
 #include "Bcj2.h"
 
 #ifdef _LZMA_PROB32
-#define CProb UInt32
+#define CProb UInt32_7z
 #else
 #define CProb UInt16
 #endif
@@ -13,7 +13,7 @@
 #define IsJ(b0, b1) ((b1 & 0xFE) == 0xE8 || IsJcc(b0, b1))
 
 #define kNumTopBits 24
-#define kTopValue ((UInt32)1 << kNumTopBits)
+#define kTopValue ((UInt32_7z)1 << kNumTopBits)
 
 #define kNumBitModelTotalBits 11
 #define kBitModelTotal (1 << kNumBitModelTotalBits)
@@ -41,7 +41,7 @@ int Bcj2_Decode(
   SizeT inPos = 0, outPos = 0;
 
   const Byte *buffer, *bufferLim;
-  UInt32 range, code;
+  UInt32_7z range, code;
   Byte prevByte = 0;
 
   unsigned int i;
@@ -59,8 +59,8 @@ int Bcj2_Decode(
   {
     Byte b;
     CProb *prob;
-    UInt32 bound;
-    UInt32 ttt;
+    UInt32_7z bound;
+    UInt32_7z ttt;
 
     SizeT limit = size0 - inPos;
     if (outSize - outPos < limit)
@@ -95,7 +95,7 @@ int Bcj2_Decode(
     }
     else
     {
-      UInt32 dest;
+      UInt32_7z dest;
       const Byte *v;
       UPDATE_1(prob)
       if (b == 0xE8)
@@ -114,8 +114,8 @@ int Bcj2_Decode(
         buf2 += 4;
         size2 -= 4;
       }
-      dest = (((UInt32)v[0] << 24) | ((UInt32)v[1] << 16) |
-          ((UInt32)v[2] << 8) | ((UInt32)v[3])) - ((UInt32)outPos + 4);
+      dest = (((UInt32_7z)v[0] << 24) | ((UInt32_7z)v[1] << 16) |
+          ((UInt32_7z)v[2] << 8) | ((UInt32_7z)v[3])) - ((UInt32_7z)outPos + 4);
       outBuf[outPos++] = (Byte)dest;
       if (outPos == outSize)
         break;

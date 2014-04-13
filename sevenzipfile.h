@@ -58,7 +58,7 @@ public:
     void setQuitFlag(bool flag) { m_quitFlag = flag; }
     bool isActive() { return m_active; }
     int fileCount() { return m_fileCount; }
-    void setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32 *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp);
+    void setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32_7z *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp);
     SRes result() { return m_result; }
     QMutex &waitMutex() { return m_waitMutex; }
     QWaitCondition &waitCondition() { return m_waitCondition; }
@@ -79,7 +79,7 @@ private:
     CSzArEx *m_db;
     ILookInStream *m_lookInStream;
     uint m_fileIndex;
-    UInt32 *m_blockIndex;
+    UInt32_7z *m_blockIndex;
     Byte **m_buffer;
     size_t *m_bufferSize;
     size_t *m_offset;
@@ -136,7 +136,7 @@ private:
     ISzAlloc m_allocTempImp;
     CFileInStream m_archiveStream;
     CLookToRead m_lookStream;
-    UInt32 m_blockIndex;
+    UInt32_7z m_blockIndex;
     size_t m_bufferSize;
     size_t m_sizeProcessed;
     Byte *m_buffer;

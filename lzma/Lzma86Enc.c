@@ -15,7 +15,7 @@ static void *SzAlloc(void *p, size_t size) { p = p; return MyAlloc(size); }
 static void SzFree(void *p, void *address) { p = p; MyFree(address); }
 
 int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
-    int level, UInt32 dictSize, int filterMode)
+    int level, UInt32_7z dictSize, int filterMode)
 {
   ISzAlloc g_Alloc = { SzAlloc, SzFree };
   size_t outSize2 = *destLen;
@@ -50,7 +50,7 @@ int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
       memcpy(filteredStream, src, srcLen);
     }
     {
-      UInt32 x86State;
+      UInt32_7z x86State;
       x86_Convert_Init(x86State);
       x86_Convert(filteredStream, srcLen, 0, &x86State, 1);
     }

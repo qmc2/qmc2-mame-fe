@@ -54,11 +54,11 @@ typedef struct
   size_t bufConv;
   size_t bufTotal;
 
-  UInt32 methodId;
+  UInt32_7z methodId;
   int encodeMode;
-  UInt32 delta;
-  UInt32 ip;
-  UInt32 x86State;
+  UInt32_7z delta;
+  UInt32_7z ip;
+  UInt32_7z x86State;
   Byte deltaState[DELTA_STATE_SIZE];
 
   Byte buf[BRA_BUF_SIZE];
@@ -84,7 +84,7 @@ SRes BraState_SetProps(void *pp, const Byte *props, size_t propSize, ISzAlloc *a
   {
     if (propSize == 4)
     {
-      UInt32 v = GetUi32(props);
+      UInt32_7z v = GetUi32(props);
       switch(p->methodId)
       {
         case XZ_ID_PPC:
@@ -181,7 +181,7 @@ static SRes BraState_Code(void *pp, Byte *dest, SizeT *destLen, const Byte *src,
       default:
         return SZ_ERROR_UNSUPPORTED;
     }
-    p->ip += (UInt32)p->bufConv;
+    p->ip += (UInt32_7z)p->bufConv;
 
     if (p->bufConv == 0)
     {
@@ -210,7 +210,7 @@ SRes BraState_SetFromMethod(IStateCoder *p, UInt64 id, int encodeMode, ISzAlloc 
   decoder = alloc->Alloc(alloc, sizeof(CBraState));
   if (decoder == 0)
     return SZ_ERROR_MEM;
-  decoder->methodId = (UInt32)id;
+  decoder->methodId = (UInt32_7z)id;
   decoder->encodeMode = encodeMode;
   p->p = decoder;
   p->Free = BraState_Free;
@@ -516,7 +516,7 @@ SRes XzBlock_Parse(CXzBlock *p, const Byte *header)
 {
   unsigned pos;
   int numFilters, i;
-  UInt32 headerSize = (UInt32)header[0] << 2;
+  UInt32_7z headerSize = (UInt32_7z)header[0] << 2;
 
   if (CrcCalc(header, headerSize) != GetUi32(header + headerSize))
     return SZ_ERROR_ARCHIVE;
@@ -545,7 +545,7 @@ SRes XzBlock_Parse(CXzBlock *p, const Byte *header)
     READ_VARINT_AND_CHECK(header, pos, headerSize, &size);
     if (size > headerSize - pos || size > XZ_FILTER_PROPS_SIZE_MAX)
       return SZ_ERROR_ARCHIVE;
-    filter->propsSize = (UInt32)size;
+    filter->propsSize = (UInt32_7z)size;
     memcpy(filter->props, header + pos, (size_t)size);
     pos += (unsigned)size;
 
@@ -715,13 +715,13 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
             p->crc = CrcUpdate(CRC_INIT_VAL, p->buf, p->indexPreSize);
             p->state = XZ_STATE_STREAM_INDEX;
           }
-          p->blockHeaderSize = ((UInt32)p->buf[0] << 2) + 4;
+          p->blockHeaderSize = ((UInt32_7z)p->buf[0] << 2) + 4;
         }
         else if (p->pos != p->blockHeaderSize)
         {
-          UInt32 cur = p->blockHeaderSize - p->pos;
+          UInt32_7z cur = p->blockHeaderSize - p->pos;
           if (cur > srcRem)
-            cur = (UInt32)srcRem;
+            cur = (UInt32_7z)srcRem;
           memcpy(p->buf + p->pos, src, cur);
           p->pos += cur;
           (*srcLen) += cur;
@@ -750,12 +750,12 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
         }
         else
         {
-          UInt32 checkSize = XzFlags_GetCheckSize(p->streamFlags);
-          UInt32 cur = checkSize - p->pos;
+          UInt32_7z checkSize = XzFlags_GetCheckSize(p->streamFlags);
+          UInt32_7z cur = checkSize - p->pos;
           if (cur != 0)
           {
             if (cur > srcRem)
-              cur = (UInt32)srcRem;
+              cur = (UInt32_7z)srcRem;
             memcpy(p->buf + p->pos, src, cur);
             p->pos += cur;
             (*srcLen) += cur;
@@ -837,9 +837,9 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
 
       case XZ_STATE_STREAM_FOOTER:
       {
-        UInt32 cur = XZ_STREAM_FOOTER_SIZE - p->pos;
+        UInt32_7z cur = XZ_STREAM_FOOTER_SIZE - p->pos;
         if (cur > srcRem)
-          cur = (UInt32)srcRem;
+          cur = (UInt32_7z)srcRem;
         memcpy(p->buf + p->pos, src, cur);
         p->pos += cur;
         (*srcLen) += cur;
@@ -859,7 +859,7 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
       {
         if (*src != 0)
         {
-          if (((UInt32)p->padSize & 3) != 0)
+          if (((UInt32_7z)p->padSize & 3) != 0)
             return SZ_ERROR_NO_ARCHIVE;
           p->pos = 0;
           p->state = XZ_STATE_STREAM_HEADER;
@@ -885,5 +885,5 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
 
 Bool7z XzUnpacker_IsStreamWasFinished(CXzUnpacker *p)
 {
-  return (p->state == XZ_STATE_STREAM_PADDING) && (((UInt32)p->padSize & 3) == 0);
+  return (p->state == XZ_STATE_STREAM_PADDING) && (((UInt32_7z)p->padSize & 3) == 0);
 }

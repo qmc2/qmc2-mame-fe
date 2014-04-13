@@ -35,7 +35,7 @@ unsigned Xz_WriteVarInt(Byte *buf, UInt64 v);
 typedef struct
 {
   UInt64 id;
-  UInt32 propsSize;
+  UInt32_7z propsSize;
   Byte props[XZ_FILTER_PROPS_SIZE_MAX];
 } CXzFilter;
 
@@ -52,7 +52,7 @@ typedef struct
 #define XzBlock_HasUnpackSize(p) (((p)->flags & XZ_BF_UNPACK_SIZE) != 0)
 
 SRes XzBlock_Parse(CXzBlock *p, const Byte *header);
-SRes XzBlock_ReadHeader(CXzBlock *p, ISeqInStream *inStream, Bool7z *isIndex, UInt32 *headerSizeRes);
+SRes XzBlock_ReadHeader(CXzBlock *p, ISeqInStream *inStream, Bool7z *isIndex, UInt32_7z *headerSizeRes);
 
 /* ---------- xz stream ---------- */
 
@@ -77,7 +77,7 @@ extern Byte XZ_FOOTER_SIG[XZ_FOOTER_SIG_SIZE];
 typedef struct
 {
   int mode;
-  UInt32 crc;
+  UInt32_7z crc;
   UInt64 crc64;
   CSha256 sha;
 } CXzCheck;
@@ -194,13 +194,13 @@ typedef enum
 typedef struct
 {
   EXzState state;
-  UInt32 pos;
+  UInt32_7z pos;
   unsigned alignPos;
   unsigned indexPreSize;
 
   CXzStreamFlags streamFlags;
   
-  UInt32 blockHeaderSize;
+  UInt32_7z blockHeaderSize;
   UInt64 packSize;
   UInt64 unpackSize;
 
@@ -211,7 +211,7 @@ typedef struct
 
   UInt64 numStreams;
 
-  UInt32 crc;
+  UInt32_7z crc;
   CMixCoder decoder;
   CXzBlock block;
   CXzCheck check;

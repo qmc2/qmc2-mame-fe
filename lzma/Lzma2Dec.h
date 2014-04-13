@@ -15,8 +15,8 @@ extern "C" {
 typedef struct
 {
   CLzmaDec decoder;
-  UInt32 packSize;
-  UInt32 unpackSize;
+  UInt32_7z packSize;
+  UInt32_7z unpackSize;
   int state;
   Byte control;
   Bool7z needInitDic;

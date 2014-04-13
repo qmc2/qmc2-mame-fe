@@ -71,7 +71,7 @@ void Sha256_Init(CSha256 *p)
 
 #endif
 
-static const UInt32 K[64] = {
+static const UInt32_7z K[64] = {
   0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
   0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
   0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -90,12 +90,12 @@ static const UInt32 K[64] = {
   0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 };
 
-static void Sha256_Transform(UInt32 *state, const UInt32 *data)
+static void Sha256_Transform(UInt32_7z *state, const UInt32_7z *data)
 {
-  UInt32 W[16];
+  UInt32_7z W[16];
   unsigned j;
   #ifdef _SHA256_UNROLL2
-  UInt32 a,b,c,d,e,f,g,h;
+  UInt32_7z a,b,c,d,e,f,g,h;
   a = state[0];
   b = state[1];
   c = state[2];
@@ -105,7 +105,7 @@ static void Sha256_Transform(UInt32 *state, const UInt32 *data)
   g = state[6];
   h = state[7];
   #else
-  UInt32 T[8];
+  UInt32_7z T[8];
   for (j = 0; j < 8; j++)
     T[j] = state[j];
   #endif
@@ -146,20 +146,20 @@ static void Sha256_Transform(UInt32 *state, const UInt32 *data)
 
 static void Sha256_WriteByteBlock(CSha256 *p)
 {
-  UInt32 data32[16];
+  UInt32_7z data32[16];
   unsigned i;
   for (i = 0; i < 16; i++)
     data32[i] =
-      ((UInt32)(p->buffer[i * 4    ]) << 24) +
-      ((UInt32)(p->buffer[i * 4 + 1]) << 16) +
-      ((UInt32)(p->buffer[i * 4 + 2]) <<  8) +
-      ((UInt32)(p->buffer[i * 4 + 3]));
+      ((UInt32_7z)(p->buffer[i * 4    ]) << 24) +
+      ((UInt32_7z)(p->buffer[i * 4 + 1]) << 16) +
+      ((UInt32_7z)(p->buffer[i * 4 + 2]) <<  8) +
+      ((UInt32_7z)(p->buffer[i * 4 + 3]));
   Sha256_Transform(p->state, data32);
 }
 
 void Sha256_Update(CSha256 *p, const Byte *data, size_t size)
 {
-  UInt32 curBufferPos = (UInt32)p->count & 0x3F;
+  UInt32_7z curBufferPos = (UInt32_7z)p->count & 0x3F;
   while (size > 0)
   {
     p->buffer[curBufferPos++] = *data++;
@@ -176,7 +176,7 @@ void Sha256_Update(CSha256 *p, const Byte *data, size_t size)
 void Sha256_Final(CSha256 *p, Byte *digest)
 {
   UInt64 lenInBits = (p->count << 3);
-  UInt32 curBufferPos = (UInt32)p->count & 0x3F;
+  UInt32_7z curBufferPos = (UInt32_7z)p->count & 0x3F;
   unsigned i;
   p->buffer[curBufferPos++] = 0x80;
   while (curBufferPos != (64 - 8))

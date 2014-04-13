@@ -12,7 +12,7 @@ EXTERN_C_BEGIN
 
 typedef struct
 {
-  UInt32 state[8];
+  UInt32_7z state[8];
   UInt64 count;
   Byte buffer[64];
 } CSha256;

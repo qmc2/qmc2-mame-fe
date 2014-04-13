@@ -82,7 +82,7 @@ static SRes SzDecodePpmd(CSzCoderInfo *coder, UInt64 inSize, ILookInStream *inSt
 
   {
     unsigned order = coder->Props.data[0];
-    UInt32 memSize = GetUi32(coder->Props.data + 1);
+    UInt32_7z memSize = GetUi32(coder->Props.data + 1);
     if (order < PPMD7_MIN_ORDER ||
         order > PPMD7_MAX_ORDER ||
         memSize < PPMD7_MIN_MEM_SIZE ||
@@ -239,7 +239,7 @@ static SRes SzDecodeCopy(UInt64 inSize, ILookInStream *inStream, Byte *outBuffer
   return SZ_OK;
 }
 
-static Bool7z IS_MAIN_METHOD(UInt32 m)
+static Bool7z IS_MAIN_METHOD(UInt32_7z m)
 {
   switch(m)
   {
@@ -259,8 +259,8 @@ static Bool7z IS_SUPPORTED_CODER(const CSzCoderInfo *c)
   return
       c->NumInStreams == 1 &&
       c->NumOutStreams == 1 &&
-      c->MethodID <= (UInt32)0xFFFFFFFF &&
-      IS_MAIN_METHOD((UInt32)c->MethodID);
+      c->MethodID <= (UInt32_7z)0xFFFFFFFF &&
+      IS_MAIN_METHOD((UInt32_7z)c->MethodID);
 }
 
 #define IS_BCJ2(c) ((c)->MethodID == k_BCJ2 && (c)->NumInStreams == 4 && (c)->NumOutStreams == 1)
@@ -280,7 +280,7 @@ static SRes CheckSupportedFolder(const CSzFolder *f)
   if (f->NumCoders == 2)
   {
     CSzCoderInfo *c = &f->Coders[1];
-    if (c->MethodID > (UInt32)0xFFFFFFFF ||
+    if (c->MethodID > (UInt32_7z)0xFFFFFFFF ||
         c->NumInStreams != 1 ||
         c->NumOutStreams != 1 ||
         f->NumPackStreams != 1 ||
@@ -289,7 +289,7 @@ static SRes CheckSupportedFolder(const CSzFolder *f)
         f->BindPairs[0].InIndex != 1 ||
         f->BindPairs[0].OutIndex != 0)
       return SZ_ERROR_UNSUPPORTED;
-    switch ((UInt32)c->MethodID)
+    switch ((UInt32_7z)c->MethodID)
     {
       case k_BCJ:
       case k_ARM:
@@ -320,10 +320,10 @@ static SRes CheckSupportedFolder(const CSzFolder *f)
   return SZ_ERROR_UNSUPPORTED;
 }
 
-static UInt64 GetSum(const UInt64 *values, UInt32 index)
+static UInt64 GetSum(const UInt64 *values, UInt32_7z index)
 {
   UInt64 sum = 0;
-  UInt32 i;
+  UInt32_7z i;
   for (i = 0; i < index; i++)
     sum += values[i];
   return sum;
@@ -336,7 +336,7 @@ static SRes SzFolder_Decode2(const CSzFolder *folder, const UInt64 *packSizes,
     Byte *outBuffer, SizeT outSize, ISzAlloc *allocMain,
     Byte *tempBuf[])
 {
-  UInt32 ci;
+  UInt32_7z ci;
   SizeT tempSizes[3] = { 0, 0, 0};
   SizeT tempSize3 = 0;
   Byte *tempBuf3 = 0;
@@ -347,16 +347,16 @@ static SRes SzFolder_Decode2(const CSzFolder *folder, const UInt64 *packSizes,
   {
     CSzCoderInfo *coder = &folder->Coders[ci];
 
-    if (IS_MAIN_METHOD((UInt32)coder->MethodID))
+    if (IS_MAIN_METHOD((UInt32_7z)coder->MethodID))
     {
-      UInt32 si = 0;
+      UInt32_7z si = 0;
       UInt64 offset;
       UInt64 inSize;
       Byte *outBufCur = outBuffer;
       SizeT outSizeCur = outSize;
       if (folder->NumCoders == 4)
       {
-        UInt32 indices[] = { 3, 2, 0 };
+        UInt32_7z indices[] = { 3, 2, 0 };
         UInt64 unpackSize = folder->UnpackSizes[ci];
         si = indices[ci];
         if (ci < 2)
@@ -441,7 +441,7 @@ static SRes SzFolder_Decode2(const CSzFolder *folder, const UInt64 *packSizes,
       {
         case k_BCJ:
         {
-          UInt32 state;
+          UInt32_7z state;
           x86_Convert_Init(state);
           x86_Convert(outBuffer, outSize, 0, &state, 0);
           break;

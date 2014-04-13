@@ -11,7 +11,7 @@ static const Byte kBranchTable[32] =
   4, 4, 0, 0, 4, 4, 0, 0
 };
 
-SizeT IA64_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
+SizeT IA64_Convert(Byte *data, SizeT size, UInt32_7z ip, int encoding)
 {
   SizeT i;
   if (size < 16)
@@ -19,13 +19,13 @@ SizeT IA64_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
   size -= 16;
   for (i = 0; i <= size; i += 16)
   {
-    UInt32 instrTemplate = data[i] & 0x1F;
-    UInt32 mask = kBranchTable[instrTemplate];
-    UInt32 bitPos = 5;
+    UInt32_7z instrTemplate = data[i] & 0x1F;
+    UInt32_7z mask = kBranchTable[instrTemplate];
+    UInt32_7z bitPos = 5;
     int slot;
     for (slot = 0; slot < 3; slot++, bitPos += 41)
     {
-      UInt32 bytePos, bitRes;
+      UInt32_7z bytePos, bitRes;
       UInt64 instruction, instNorm;
       int j;
       if (((mask >> slot) & 1) == 0)
@@ -39,16 +39,16 @@ SizeT IA64_Convert(Byte *data, SizeT size, UInt32 ip, int encoding)
       instNorm = instruction >> bitRes;
       if (((instNorm >> 37) & 0xF) == 0x5 && ((instNorm >> 9) & 0x7) == 0)
       {
-        UInt32 src = (UInt32)((instNorm >> 13) & 0xFFFFF);
-        UInt32 dest;
-        src |= ((UInt32)(instNorm >> 36) & 1) << 20;
+        UInt32_7z src = (UInt32_7z)((instNorm >> 13) & 0xFFFFF);
+        UInt32_7z dest;
+        src |= ((UInt32_7z)(instNorm >> 36) & 1) << 20;
         
         src <<= 4;
         
         if (encoding)
-          dest = ip + (UInt32)i + src;
+          dest = ip + (UInt32_7z)i + src;
         else
-          dest = src - (ip + (UInt32)i);
+          dest = src - (ip + (UInt32_7z)i);
         
         dest >>= 4;
         
