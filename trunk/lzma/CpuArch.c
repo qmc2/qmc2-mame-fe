@@ -5,8 +5,10 @@
 
 #ifdef MY_CPU_X86_OR_AMD64
 
-#if (defined(_MSC_VER) && !defined(MY_CPU_AMD64)) || defined(__GNUC__)
+#if (defined(_MSC_VER) && !defined(MY_CPU_AMD64)) || defined(__GNUC__) && !defined(__APPLE__)
 #define USE_ASM
+#else
+static void __cpuid(int *cpuinfo, UInt32_7z function) {}
 #endif
 
 #if defined(USE_ASM) && !defined(MY_CPU_AMD64)
