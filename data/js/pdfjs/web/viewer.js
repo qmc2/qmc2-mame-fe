@@ -2873,15 +2873,15 @@ var PDFView = {
   },
 
   close: function pdfViewClose() {
+    var errorWrapper = document.getElementById('errorWrapper');
+    errorWrapper.setAttribute('hidden', 'true');
+
     if (!this.pdfDocument) {
       return;
     }
 
     this.pdfDocument.destroy();
     this.pdfDocument = null;
-
-    var errorWrapper = document.getElementById('errorWrapper');
-    errorWrapper.setAttribute('hidden', 'true');
 
     var thumbsView = document.getElementById('thumbnailView');
     while (thumbsView.hasChildNodes()) {
@@ -2906,11 +2906,10 @@ var PDFView = {
   open: function pdfViewOpen(url, scale, password,
                              pdfDataRangeTransport, args) {
     if (this.pdfDocument) {
-      this.close();
-
       // Reload the preferences if a document was previously opened.
       Preferences.reload();
     }
+    this.close();
 
     var parameters = {password: password};
     if (typeof url === 'string') { // URL
@@ -3188,7 +3187,7 @@ var PDFView = {
 
     DocumentProperties.resolveDataAvailable();
 
-    pdfDocument.getDownloadInfo().then(function() {
+    var downloadedPromise = pdfDocument.getDownloadInfo().then(function() {
       self.downloadComplete = true;
       PDFView.loadingBar.hide();
       var outerContainer = document.getElementById('outerContainer');
@@ -3263,9 +3262,11 @@ var PDFView = {
         }
       });
 
-      var event = document.createEvent('CustomEvent');
-      event.initCustomEvent('documentload', true, true, {});
-      window.dispatchEvent(event);
+      downloadedPromise.then(function () {
+        var event = document.createEvent('CustomEvent');
+        event.initCustomEvent('documentload', true, true, {});
+        window.dispatchEvent(event);
+      });
 
       PDFView.loadingBar.setWidth(container);
 
@@ -3706,7 +3707,7 @@ var PDFView = {
   parseQueryString: function pdfViewParseQueryString(query) {
     var parts = query.split('&');
     var params = {};
-    for (var i = 0, ii = parts.length; i < parts.length; ++i) {
+    for (var i = 0, ii = parts.length; i < ii; ++i) {
       var param = parts[i].split('=');
       var key = param[0];
       var value = param.length > 1 ? param[1] : null;
@@ -4290,7 +4291,6 @@ var PageView = function pageView(container, id, scale,
     div.appendChild(canvasWrapper);
     this.canvas = canvas;
 
-    var scale = this.scale;
     var ctx = canvas.getContext('2d');
     var outputScale = getOutputScale(ctx);
 
@@ -4445,7 +4445,6 @@ var PageView = function pageView(container, id, scale,
     canvasWrapper.appendChild(canvas);
     printContainer.appendChild(canvasWrapper);
 
-    var self = this;
     canvas.mozPrintCallback = function(obj) {
       var ctx = obj.context;
 
@@ -4814,9 +4813,6 @@ var TextLayerBuilder = function textLayerBuilder(options) {
     var queryLen = (PDFFindController === null ?
                     0 : PDFFindController.state.query.length);
 
-    var lastDivIdx = -1;
-    var pos;
-
     var ret = [];
 
     // Loop over all the matches.
@@ -4889,26 +4885,17 @@ var TextLayerBuilder = function textLayerBuilder(options) {
       var divIdx = begin.divIdx;
       var div = textDivs[divIdx];
       div.textContent = '';
-
-      var content = bidiTexts[divIdx].str.substring(0, begin.offset);
-      var node = document.createTextNode(content);
-      if (className) {
-        var isSelected = isSelectedPage &&
-                          divIdx === selectedMatchIdx;
-        var span = document.createElement('span');
-        span.className = className + (isSelected ? ' selected' : '');
-        span.appendChild(node);
-        div.appendChild(span);
-        return;
-      }
-      div.appendChild(node);
+      appendTextToDiv(divIdx, 0, begin.offset, className);
     }
 
     function appendText(from, to, className) {
-      var divIdx = from.divIdx;
+      appendTextToDiv(from.divIdx, from.offset, to.offset, className);
+    }
+
+    function appendTextToDiv(divIdx, fromOffset, toOffset, className) {
       var div = textDivs[divIdx];
 
-      var content = bidiTexts[divIdx].str.substring(from.offset, to.offset);
+      var content = bidiTexts[divIdx].str.substring(fromOffset, toOffset);
       var node = document.createTextNode(content);
       if (className) {
         var span = document.createElement('span');
@@ -5016,7 +5003,6 @@ var TextLayerBuilder = function textLayerBuilder(options) {
 
 var DocumentOutlineView = function documentOutlineView(outline) {
   var outlineView = document.getElementById('outlineView');
-  var outlineButton = document.getElementById('viewOutline');
   while (outlineView.firstChild) {
     outlineView.removeChild(outlineView.firstChild);
   }

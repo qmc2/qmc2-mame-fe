@@ -21,8 +21,8 @@ if (typeof PDFJS === 'undefined') {
   (typeof window !== 'undefined' ? window : this).PDFJS = {};
 }
 
-PDFJS.version = '1.0.8';
-PDFJS.build = 'bb739c0';
+PDFJS.version = '1.0.31';
+PDFJS.build = '3940dc5';
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
@@ -312,14 +312,6 @@ function isValidUrl(url, allowRelative) {
   }
 }
 PDFJS.isValidUrl = isValidUrl;
-
-// In a well-formed PDF, |cond| holds.  If it doesn't, subsequent
-// behavior is undefined.
-function assertWellFormed(cond, msg) {
-  if (!cond) {
-    error(msg);
-  }
-}
 
 function shadow(obj, prop, value) {
   Object.defineProperty(obj, prop, { value: value,
@@ -948,6 +940,7 @@ function isPDFFunction(v) {
 /**
  * Legacy support for PDFJS Promise implementation.
  * TODO remove eventually
+ * @ignore
  */
 var LegacyPromise = PDFJS.LegacyPromise = (function LegacyPromiseClosure() {
   return function LegacyPromise() {
@@ -2443,7 +2436,6 @@ var PDFFunction = (function PDFFunctionClosure() {
     constructSampled: function PDFFunction_constructSampled(str, dict) {
       function toMultiArray(arr) {
         var inputLength = arr.length;
-        var outputLength = arr.length / 2;
         var out = [];
         var index = 0;
         for (var i = 0; i < inputLength; i += 2) {
@@ -2514,7 +2506,7 @@ var PDFFunction = (function PDFFunctionClosure() {
         var samples = IR[5];
         var size = IR[6];
         var n = IR[7];
-        var mask = IR[8];
+        //var mask = IR[8];
         var range = IR[9];
 
         if (m != args.length) {
@@ -3293,8 +3285,6 @@ var Annotation = (function AnnotationClosure() {
       var matrix = appearanceDict.get('Matrix') || [1, 0, 0, 1, 0 ,0];
       var transform = getTransformMatrix(data.rect, bbox, matrix);
 
-      var border = data.border;
-
       resourcesPromise.then(function(resources) {
         var opList = new OperatorList();
         opList.addOp(OPS.beginAnnotation, [data.rect, transform, matrix]);
@@ -3520,7 +3510,6 @@ var TextWidgetAnnotation = (function TextWidgetAnnotationClosure() {
   }
 
 
-  var parent = WidgetAnnotation.prototype;
   Util.inherit(TextWidgetAnnotation, WidgetAnnotation, {
     hasHtml: function TextWidgetAnnotation_hasHtml() {
       return !this.data.hasAppearance && !!this.data.fieldValue;
@@ -3543,7 +3532,7 @@ var TextWidgetAnnotation = (function TextWidgetAnnotationClosure() {
 
       var fontObj = item.fontRefName ?
                     commonObjs.getData(item.fontRefName) : null;
-      var cssRules = setTextStyles(content, item, fontObj);
+      setTextStyles(content, item, fontObj);
 
       element.appendChild(content);
 
@@ -3575,7 +3564,6 @@ var TextWidgetAnnotation = (function TextWidgetAnnotationClosure() {
       var appearanceFnArray = opList.fnArray;
       var appearanceArgsArray = opList.argsArray;
       var fnArray = [];
-      var argsArray = [];
 
       // TODO(mack): Add support for stroke color
       data.rgb = [0, 0, 0];
@@ -3791,7 +3779,6 @@ var TextAnnotation = (function TextAnnotationClosure() {
           }
         };
 
-        var self = this;
         image.addEventListener('click', function image_clickHandler() {
           toggleAnnotation();
         }, false);
@@ -3896,7 +3883,6 @@ var LinkAnnotation = (function LinkAnnotationClosure() {
       container.className = 'annotLink';
 
       var item = this.data;
-      var rect = item.rect;
 
       container.style.borderColor = item.colorCssRgb;
       container.style.borderStyle = 'solid';
@@ -4794,7 +4780,7 @@ var WorkerTransport = (function WorkerTransportClosure() {
 
             // heuristics that will allow not to store large data
             var MAX_IMAGE_SIZE_TO_STORE = 8000000;
-            if ('data' in imageData &&
+            if (imageData && 'data' in imageData &&
                 imageData.data.length > MAX_IMAGE_SIZE_TO_STORE) {
               pageProxy.cleanupAfterRender = true;
             }
@@ -5722,7 +5708,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     // imgData.kind tells us which one this is.
     if (imgData.kind === ImageKind.GRAYSCALE_1BPP) {
       // Grayscale, 1 bit per pixel (i.e. black-and-white).
-      var destDataLength = dest.length;
       var srcLength = src.byteLength;
       var dest32 = PDFJS.hasCanvasTypedArrays ? new Uint32Array(dest.buffer) :
         new Uint32ArrayView(dest);
@@ -5993,7 +5978,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         return i;
       }
 
-      var executionEndIdx;
       var endTime = Date.now() + EXECUTION_TIME;
 
       var commonObjs = this.commonObjs;
@@ -6569,7 +6553,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var vertical = font.vertical;
       var defaultVMetrics = font.defaultVMetrics;
       var i, glyph, width;
-      var VERTICAL_TEXT_ROTATION = Math.PI / 2;
 
       if (fontSize === 0) {
         return;
@@ -6697,7 +6680,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       }
     },
     showSpacedText: function CanvasGraphics_showSpacedText(arr) {
-      var ctx = this.ctx;
       var current = this.current;
       var font = current.font;
       var fontSize = current.fontSize;
@@ -6773,8 +6755,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         var base = cs.base;
         var color;
         if (base) {
-          var baseComps = base.numComps;
-
           color = base.getRgb(args, 0);
         }
         pattern = new TilingPattern(IR, color, this.ctx, this.objs,
@@ -7084,7 +7064,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     paintJpegXObject: function CanvasGraphics_paintJpegXObject(objId, w, h) {
       var domImage = this.objs.get(objId);
       if (!domImage) {
-        error('Dependent image isn\'t ready yet');
+        warn('Dependent image isn\'t ready yet');
+        return;
       }
 
       this.save();
@@ -7218,7 +7199,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     paintImageXObject: function CanvasGraphics_paintImageXObject(objId) {
       var imgData = this.objs.get(objId);
       if (!imgData) {
-        error('Dependent image isn\'t ready yet');
+        warn('Dependent image isn\'t ready yet');
+        return;
       }
 
       this.paintInlineImageXObject(imgData);
@@ -7229,7 +7211,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
                                                           positions) {
       var imgData = this.objs.get(objId);
       if (!imgData) {
-        error('Dependent image isn\'t ready yet');
+        warn('Dependent image isn\'t ready yet');
+        return;
       }
 
       var width = imgData.width;
@@ -8030,13 +8013,13 @@ var createMeshCanvas = (function createMeshCanvasClosure() {
 
 ShadingIRs.Mesh = {
   fromIR: function Mesh_fromIR(raw) {
-    var type = raw[1];
+    //var type = raw[1];
     var coords = raw[2];
     var colors = raw[3];
     var figures = raw[4];
     var bounds = raw[5];
     var matrix = raw[6];
-    var bbox = raw[7];
+    //var bbox = raw[7];
     var background = raw[8];
     return {
       type: 'Pattern',
@@ -8133,7 +8116,6 @@ var TilingPattern = (function TilingPatternClosure() {
       var color = this.color;
       var objs = this.objs;
       var commonObjs = this.commonObjs;
-      var ctx = this.ctx;
 
       info('TilingType: ' + tilingType);
 
