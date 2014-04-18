@@ -33,6 +33,8 @@ FILES
 
   CONFIG_PATH/mame-xml-cache.db, CONFIG_PATH/mess-xml-cache.db, CONFIG_PATH/ume-xml-cache.db  XML cache database (SQLite 3)
 
+  CONFIG_PATH/mame-user-data.db, CONFIG_PATH/mess-user-data.db, CONFIG_PATH/ume-user-data.db  User data database (SQLite 3) containing rank information and personal comments per game/machine
+
   CONFIG_PATH/mame.glc, CONFIG_PATH/mess.glc, CONFIG_PATH/ume.glc  Game/machine list cache
 
   CONFIG_PATH/mame.glc.filtered, CONFIG_PATH/mess.glc.filtered, CONFIG_PATH/ume.glc.filtered  Filtered version of the game/machine list cache used by qmc2-arcade(6) (optional)
